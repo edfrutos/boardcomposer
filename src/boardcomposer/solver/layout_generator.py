@@ -48,7 +48,10 @@ def generate_vertical_solution(project: Project) -> AssemblySolution:
 
 
 
-def generate_horizontal_permutations(project: Project) -> list[AssemblySolution]:
+def generate_horizontal_permutations(project: Project, max_boards: int = 6) -> list[AssemblySolution]:
+    if len(project.boards) > max_boards:
+        return [generate_horizontal_solution(project)]
+
     solutions: list[AssemblySolution] = []
 
     for boards in permutations(project.boards):
