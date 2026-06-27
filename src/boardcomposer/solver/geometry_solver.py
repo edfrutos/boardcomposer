@@ -15,6 +15,8 @@ class GeometrySolver(BaseSolver):
         candidates = [
             *generate_horizontal_permutations(self.project),
             *generate_vertical_permutations(self.project),
+            generate_free_space_solution(self.project),
+            generate_free_space_solution(self.project),
         ]
 
         valid = [

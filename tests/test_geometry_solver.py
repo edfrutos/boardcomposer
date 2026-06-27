@@ -2,14 +2,14 @@ from boardcomposer import Board, Project
 from boardcomposer.solver import GeometrySolver
 
 
-def test_geometry_solver_returns_four_solutions():
+def test_geometry_solver_returns_six_solutions():
     project = Project()
     project.add_board(Board(2000, 300, 20, "A"))
     project.add_board(Board(1000, 300, 20, "B"))
 
     solutions = GeometrySolver(project).solve()
 
-    assert len(solutions) == 4
+    assert len(solutions) == 6
 
 
 def test_geometry_solver_includes_horizontal_permutations():
@@ -58,5 +58,5 @@ def test_geometry_solver_respects_constraints():
 
     solutions = GeometrySolver(project).solve()
 
-    assert len(solutions) == 2
-    assert all(s.explanation.notes == ["vertical_permutation"] for s in solutions)
+    assert len(solutions) == 4
+    assert {tuple(s.explanation.notes) for s in solutions} == {("vertical_permutation",), ("free_space",)}
