@@ -1,5 +1,3 @@
-from .board import Board
-from .placement import BoardPlacement
-from .project import Project
+from .domain import Board, BoardPlacement, Project
 
 __all__ = ["Board", "BoardPlacement", "Project"]

@@ -1,6 +1,6 @@
 import pytest
 
-from boardcomposer.placement import BoardPlacement
+from boardcomposer import BoardPlacement
 
 
 def test_board_placement_area():
