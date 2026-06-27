@@ -14,7 +14,7 @@ def test_cli_project_constraints_from_cli_options():
     constraints = ProjectConstraints(
         max_length_mm=2500,
         max_width_mm=600,
-        **{'allow_rotation': True},
+        **{"allow_rotation": True},
     )
 
     assert constraints.max_length_mm == 2500

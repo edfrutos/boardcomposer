@@ -1,6 +1,12 @@
 from itertools import permutations
 
-from boardcomposer.domain import AssemblySolution, Board, BoardPlacement, Project, SolutionExplanation
+from boardcomposer.domain import (
+    AssemblySolution,
+    Board,
+    BoardPlacement,
+    Project,
+    SolutionExplanation,
+)
 
 
 def generate_horizontal_solution(project: Project) -> AssemblySolution:
@@ -47,8 +53,9 @@ def generate_vertical_solution(project: Project) -> AssemblySolution:
     )
 
 
-
-def generate_horizontal_permutations(project: Project, max_boards: int = 6) -> list[AssemblySolution]:
+def generate_horizontal_permutations(
+    project: Project, max_boards: int = 6
+) -> list[AssemblySolution]:
     if len(project.boards) > max_boards:
         return [generate_horizontal_solution(project)]
 
@@ -81,8 +88,9 @@ def generate_horizontal_permutations(project: Project, max_boards: int = 6) -> l
     return solutions
 
 
-
-def generate_vertical_permutations(project: Project, max_boards: int = 6) -> list[AssemblySolution]:
+def generate_vertical_permutations(
+    project: Project, max_boards: int = 6
+) -> list[AssemblySolution]:
     if len(project.boards) > max_boards:
         return [generate_vertical_solution(project)]
 

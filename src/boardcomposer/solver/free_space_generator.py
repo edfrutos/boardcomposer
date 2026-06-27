@@ -4,8 +4,12 @@ from boardcomposer.layout.placer import place_board_in_first_space
 
 
 def generate_free_space_solution(project: Project) -> AssemblySolution:
-    max_length = project.constraints.max_length_mm or sum(board.length_mm for board in project.boards)
-    max_width = project.constraints.max_width_mm or max((board.width_mm for board in project.boards), default=0)
+    max_length = project.constraints.max_length_mm or sum(
+        board.length_mm for board in project.boards
+    )
+    max_width = project.constraints.max_width_mm or max(
+        (board.width_mm for board in project.boards), default=0
+    )
 
     manager = FreeSpaceManager.from_bounds(max_length, max_width)
     placements = []

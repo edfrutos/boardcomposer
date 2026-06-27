@@ -4,7 +4,10 @@ from .base_solver import BaseSolver
 from .evaluation import evaluate
 from .free_space_generator import generate_free_space_solution
 from .constraints_validator import respects_constraints
-from .layout_generator import generate_horizontal_permutations, generate_vertical_permutations
+from .layout_generator import (
+    generate_horizontal_permutations,
+    generate_vertical_permutations,
+)
 
 
 class GeometrySolver(BaseSolver):
@@ -19,7 +22,8 @@ class GeometrySolver(BaseSolver):
         ]
 
         valid = [
-            solution for solution in candidates
+            solution
+            for solution in candidates
             if respects_constraints(solution, self.project.constraints)
         ]
 

@@ -1,4 +1,10 @@
-from boardcomposer.domain import AssemblySolution, BoardPlacement, Project, SolutionExplanation, SolutionScore
+from boardcomposer.domain import (
+    AssemblySolution,
+    BoardPlacement,
+    Project,
+    SolutionExplanation,
+    SolutionScore,
+)
 
 from .base_solver import BaseSolver
 
@@ -67,7 +73,11 @@ class SequentialSolver(BaseSolver):
 
         temp_solution = AssemblySolution(placements=placements)
 
-        usage_score = len(placements) / len(self.project.boards) * 50 if self.project.boards else 0
+        usage_score = (
+            len(placements) / len(self.project.boards) * 50
+            if self.project.boards
+            else 0
+        )
         waste_score = max(0.0, (1.0 - temp_solution.waste_ratio) * 50)
 
         solution = AssemblySolution(

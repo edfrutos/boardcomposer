@@ -29,7 +29,9 @@ def test_sequential_solver_places_boards_in_sequence():
 def test_solver_rotates_board_when_allowed():
     from boardcomposer import ProjectConstraints
 
-    project = Project(constraints=ProjectConstraints(max_length_mm=2300, allow_rotation=True))
+    project = Project(
+        constraints=ProjectConstraints(max_length_mm=2300, allow_rotation=True)
+    )
     project.add_board(Board(length_mm=2000, width_mm=300, thickness_mm=20, id="A"))
     project.add_board(Board(length_mm=1000, width_mm=300, thickness_mm=20, id="B"))
 
@@ -54,7 +56,9 @@ def test_solver_respects_max_width():
 def test_solver_wraps_to_next_row_when_length_exceeded():
     from boardcomposer import ProjectConstraints
 
-    project = Project(constraints=ProjectConstraints(max_length_mm=2500, max_width_mm=600))
+    project = Project(
+        constraints=ProjectConstraints(max_length_mm=2500, max_width_mm=600)
+    )
     project.add_board(Board(length_mm=2000, width_mm=300, thickness_mm=20, id="A"))
     project.add_board(Board(length_mm=1000, width_mm=300, thickness_mm=20, id="B"))
 

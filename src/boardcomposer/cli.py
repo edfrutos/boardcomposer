@@ -1,4 +1,3 @@
-
 import argparse
 
 import json
@@ -8,6 +7,7 @@ from boardcomposer import Board, Project, ProjectConstraints
 from boardcomposer.io import load_project_from_csv
 
 from boardcomposer.solver import GeometrySolver
+
 
 def build_demo_project() -> Project:
 
@@ -19,6 +19,7 @@ def build_demo_project() -> Project:
 
     return project
 
+
 def main() -> None:
 
     parser = argparse.ArgumentParser(description="BoardComposer CLI")
@@ -29,7 +30,9 @@ def main() -> None:
 
     parser.add_argument("--max-width", type=float, help="Ancho máximo en mm")
 
-    parser.add_argument("--allow-rotation", action="store_true", help="Permitir rotar tablas")
+    parser.add_argument(
+        "--allow-rotation", action="store_true", help="Permitir rotar tablas"
+    )
 
     parser.add_argument("--json", action="store_true", help="Mostrar salida JSON")
 
@@ -38,81 +41,47 @@ def main() -> None:
     project = load_project_from_csv(args.csv) if args.csv else build_demo_project()
 
     project.constraints = ProjectConstraints(
-
         max_length_mm=args.max_length,
-
         max_width_mm=args.max_width,
-
         allow_rotation=args.allow_rotation,
-
     )
 
     solutions = GeometrySolver(project).solve()
 
     if not solutions:
-
         print("No hay soluciones válidas.")
 
         return
 
     if args.json:
-
         print(
-
             json.dumps(
-
                 {
-
                     "input_boards": len(project.boards),
-
                     "solutions": [
-
                         {
-
                             "placed_boards": len(solution.placements),
-
                             "total_length_mm": solution.total_length_mm,
-
                             "total_width_mm": solution.total_width_mm,
-
                             "score": solution.score.total,
-
                             "layout": solution.explanation.notes,
-
                             "placements": [
-
                                 {
-
-                                   "board_id": placement.board_id,
-
+                                    "board_id": placement.board_id,
                                     "x_mm": placement.x_mm,
-
                                     "y_mm": placement.y_mm,
-
                                     "length_mm": placement.length_mm,
-
                                     "width_mm": placement.width_mm,
-
                                     "rotated": placement.rotated,
-
                                 }
-
                                 for placement in solution.placements
-
                             ],
-
                         }
-
                         for solution in solutions
-
                     ],
-
                 },
-
                 indent=2,
-
             )
-
         )
 
         return
@@ -134,4 +103,3 @@ def main() -> None:
     print(f"Puntuación: {best.score.total}")
 
     print(f"Layout: {', '.join(best.explanation.notes)}")
-
