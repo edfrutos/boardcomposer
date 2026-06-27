@@ -14,10 +14,11 @@ class GeometrySolver(BaseSolver):
         self.project = project
 
     def solve(self) -> list[AssemblySolution]:
-        return [
+        solutions = [
             self._horizontal_solution(),
             self._vertical_solution(),
         ]
+        return sorted(solutions, key=lambda solution: solution.score.total, reverse=True)
 
     def _horizontal_solution(self) -> AssemblySolution:
         x = 0.0
@@ -35,9 +36,12 @@ class GeometrySolver(BaseSolver):
             )
             x += board.length_mm
 
+        solution = AssemblySolution(placements=placements)
+        waste_score = max(0.0, (1.0 - solution.waste_ratio) * 50)
+
         return AssemblySolution(
             placements=placements,
-            score=SolutionScore(material_usage_score=50),
+            score=SolutionScore(material_usage_score=50, waste_score=waste_score),
             explanation=SolutionExplanation(notes=["horizontal"]),
         )
 
@@ -57,8 +61,11 @@ class GeometrySolver(BaseSolver):
             )
             y += board.width_mm
 
+        solution = AssemblySolution(placements=placements)
+        waste_score = max(0.0, (1.0 - solution.waste_ratio) * 50)
+
         return AssemblySolution(
             placements=placements,
-            score=SolutionScore(material_usage_score=50),
+            score=SolutionScore(material_usage_score=50, waste_score=waste_score),
             explanation=SolutionExplanation(notes=["vertical"]),
         )

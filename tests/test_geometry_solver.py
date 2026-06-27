@@ -34,3 +34,13 @@ def test_geometry_solver_vertical_solution():
     assert solution.explanation.notes == ["vertical"]
     assert solution.total_length_mm == 2000
     assert solution.total_width_mm == 600
+
+
+def test_geometry_solver_sorts_solutions_by_score():
+    project = Project()
+    project.add_board(Board(2000, 300, 20, "A"))
+    project.add_board(Board(1000, 300, 20, "B"))
+
+    solutions = GeometrySolver(project).solve()
+
+    assert solutions[0].score.total >= solutions[1].score.total
