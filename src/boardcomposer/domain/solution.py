@@ -1,5 +1,7 @@
 from dataclasses import dataclass, field
 
+from boardcomposer.layout.bounds import bounding_rectangle
+
 from .explanation import SolutionExplanation
 from .placement import BoardPlacement
 from .score import SolutionScore
@@ -17,15 +19,15 @@ class AssemblySolution:
 
     @property
     def total_length_mm(self) -> float:
-        return max((p.right_mm for p in self.placements), default=0)
+        return bounding_rectangle(self.placements).length_mm
 
     @property
     def total_width_mm(self) -> float:
-        return max((p.top_mm for p in self.placements), default=0)
+        return bounding_rectangle(self.placements).width_mm
 
     @property
     def bounding_area_mm2(self) -> float:
-        return self.total_length_mm * self.total_width_mm
+        return bounding_rectangle(self.placements).area_mm2
 
     @property
     def waste_area_mm2(self) -> float:
