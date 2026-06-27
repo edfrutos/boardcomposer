@@ -3,7 +3,7 @@ from boardcomposer.domain import AssemblySolution, Project
 from .base_solver import BaseSolver
 from .evaluation import evaluate
 from .constraints_validator import respects_constraints
-from .layout_generator import generate_horizontal_solution, generate_vertical_solution
+from .layout_generator import generate_horizontal_permutations, generate_vertical_solution
 
 
 class GeometrySolver(BaseSolver):
@@ -12,7 +12,7 @@ class GeometrySolver(BaseSolver):
 
     def solve(self) -> list[AssemblySolution]:
         candidates = [
-            generate_horizontal_solution(self.project),
+            *generate_horizontal_permutations(self.project),
             generate_vertical_solution(self.project),
         ]
 
