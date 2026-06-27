@@ -1,7 +1,10 @@
 from boardcomposer.domain import AssemblySolution, BoardPlacement, Project, SolutionScore
 
 
-class SequentialSolver:
+from .base_solver import BaseSolver
+
+
+class SequentialSolver(BaseSolver):
     def __init__(self, project: Project) -> None:
         self.project = project
 
