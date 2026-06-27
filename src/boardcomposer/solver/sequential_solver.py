@@ -34,6 +34,12 @@ class SequentialSolver(BaseSolver):
             ):
                 break
 
+            if (
+                self.project.constraints.max_width_mm is not None
+                and width > self.project.constraints.max_width_mm
+            ):
+                break
+
             placements.append(
                 BoardPlacement(
                     board_id=board_id,
