@@ -26,3 +26,16 @@ def test_horizontal_permutations_fallback_when_too_many_boards():
 
     assert solutions[0].explanation.notes == ["horizontal"]
 
+
+
+def test_generate_vertical_permutations():
+    from boardcomposer.solver.layout_generator import generate_vertical_permutations
+
+    project = Project()
+    project.add_board(Board(2000, 300, 20, "A"))
+    project.add_board(Board(1000, 300, 20, "B"))
+
+    solutions = generate_vertical_permutations(project)
+
+    assert len(solutions) == 2
+    assert {s.placements[0].board_id for s in solutions} == {"A", "B"}

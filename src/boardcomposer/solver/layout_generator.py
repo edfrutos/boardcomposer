@@ -79,3 +79,37 @@ def generate_horizontal_permutations(project: Project, max_boards: int = 6) -> l
         )
 
     return solutions
+
+
+
+def generate_vertical_permutations(project: Project, max_boards: int = 6) -> list[AssemblySolution]:
+    if len(project.boards) > max_boards:
+        return [generate_vertical_solution(project)]
+
+    solutions: list[AssemblySolution] = []
+
+    for boards in permutations(project.boards):
+        y = 0.0
+        placements: list[BoardPlacement] = []
+
+        for index, board in enumerate(boards):
+            assert isinstance(board, Board)
+            placements.append(
+                BoardPlacement(
+                    board_id=board.id or f"board-{index + 1}",
+                    x_mm=0,
+                    y_mm=y,
+                    length_mm=board.length_mm,
+                    width_mm=board.width_mm,
+                )
+            )
+            y += board.width_mm
+
+        solutions.append(
+            AssemblySolution(
+                placements=placements,
+                explanation=SolutionExplanation(notes=["vertical_permutation"]),
+            )
+        )
+
+    return solutions
