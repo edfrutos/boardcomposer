@@ -1,4 +1,6 @@
-from boardcomposer.domain import AssemblySolution, BoardPlacement, Project, SolutionExplanation
+from itertools import permutations
+
+from boardcomposer.domain import AssemblySolution, Board, BoardPlacement, Project, SolutionExplanation
 
 
 def generate_horizontal_solution(project: Project) -> AssemblySolution:
@@ -43,3 +45,34 @@ def generate_vertical_solution(project: Project) -> AssemblySolution:
         placements=placements,
         explanation=SolutionExplanation(notes=["vertical"]),
     )
+
+
+
+def generate_horizontal_permutations(project: Project) -> list[AssemblySolution]:
+    solutions: list[AssemblySolution] = []
+
+    for boards in permutations(project.boards):
+        x = 0.0
+        placements: list[BoardPlacement] = []
+
+        for index, board in enumerate(boards):
+            assert isinstance(board, Board)
+            placements.append(
+                BoardPlacement(
+                    board_id=board.id or f"board-{index + 1}",
+                    x_mm=x,
+                    y_mm=0,
+                    length_mm=board.length_mm,
+                    width_mm=board.width_mm,
+                )
+            )
+            x += board.length_mm
+
+        solutions.append(
+            AssemblySolution(
+                placements=placements,
+                explanation=SolutionExplanation(notes=["horizontal_permutation"]),
+            )
+        )
+
+    return solutions
