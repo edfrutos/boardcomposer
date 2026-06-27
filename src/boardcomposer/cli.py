@@ -1,6 +1,6 @@
 import argparse
 
-from boardcomposer import Board, Project
+from boardcomposer import Board, Project, ProjectConstraints
 from boardcomposer.io import load_project_from_csv
 from boardcomposer.solver import SequentialSolver
 
@@ -15,9 +15,18 @@ def build_demo_project() -> Project:
 def main() -> None:
     parser = argparse.ArgumentParser(description="BoardComposer CLI")
     parser.add_argument("--csv", help="Ruta a un CSV con tablas")
+    parser.add_argument("--max-length", type=float, help="Largo máximo en mm")
+    parser.add_argument("--max-width", type=float, help="Ancho máximo en mm")
+    parser.add_argument("--allow-rotation", action="store_true", help="Permitir rotar tablas")
     args = parser.parse_args()
 
-    project = load_project_from_csv(args.csv) if args.csv else build_demo_project()
+    project = load_project_from_csv(args.csv) if args.cselse build_demo_project()
+    project.constraints = ProjectConstraints(
+        max_length_mm=args.max_length,
+        max_width_mm=args.max_width,
+        allow_rotation=args.allow_rotation,
+    )
+
     solution = SequentialSolver(project).solve()[0]
 
     print("BoardComposer")
