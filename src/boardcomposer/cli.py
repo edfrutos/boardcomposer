@@ -20,7 +20,7 @@ def main() -> None:
     parser.add_argument("--allow-rotation", action="store_true", help="Permitir rotar tablas")
     args = parser.parse_args()
 
-    project = load_project_from_csv(args.csv) if args.cselse build_demo_project()
+    project = load_project_from_csv(args.csv) if args.csv else build_demo_project()
     project.constraints = ProjectConstraints(
         max_length_mm=args.max_length,
         max_width_mm=args.max_width,
