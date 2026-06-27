@@ -65,3 +65,15 @@ def test_solver_wraps_to_next_row_when_length_exceeded():
     assert solution.placements[1].y_mm == 300
     assert solution.total_length_mm == 2000
     assert solution.total_width_mm == 600
+
+
+def test_solver_score_combines_usage_and_waste():
+    project = Project()
+    project.add_board(Board(length_mm=1000, width_mm=300, thickness_mm=20, id="A"))
+    project.add_board(Board(length_mm=1000, width_mm=300, thickness_mm=20, id="B"))
+
+    solution = SequentialSolver(project).solve()[0]
+
+    assert solution.score.material_usage_score == 50
+    assert solution.score.waste_score == 50
+    assert solution.score.total == 100

@@ -65,12 +65,18 @@ class SequentialSolver(BaseSolver):
             x += length
             row_height = max(row_height, width)
 
-        usage = len(placements) / len(self.project.boards) * 100 if self.project.boards else 0
+        temp_solution = AssemblySolution(placements=placements)
 
-        return [
-            AssemblySolution(
-                placements=placements,
-                score=SolutionScore(material_usage_score=usage),
-                notes=["SequentialSolver"],
-            )
-        ]
+        usage_score = len(placements) / len(self.project.boards) * 50 if self.project.boards else 0
+        waste_score = max(0.0, (1.0 - temp_solution.waste_ratio) * 50)
+
+        solution = AssemblySolution(
+            placements=placements,
+            score=SolutionScore(
+                material_usage_score=usage_score,
+                waste_score=waste_score,
+            ),
+            notes=["SequentialSolver"],
+        )
+
+        return [solution]
