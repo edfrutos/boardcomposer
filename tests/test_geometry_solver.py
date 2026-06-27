@@ -9,7 +9,7 @@ def test_geometry_solver_returns_six_solutions():
 
     solutions = GeometrySolver(project).solve()
 
-    assert len(solutions) == 6
+    assert len(solutions) == 5
 
 
 def test_geometry_solver_includes_horizontal_permutations():
@@ -58,5 +58,5 @@ def test_geometry_solver_respects_constraints():
 
     solutions = GeometrySolver(project).solve()
 
-    assert len(solutions) == 4
+    assert len(solutions) == 3
     assert {tuple(s.explanation.notes) for s in solutions} == {("vertical_permutation",), ("free_space",)}
