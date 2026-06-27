@@ -1,20 +1,38 @@
 # BoardComposer
 
-BoardComposer es un motor de optimización para generar composiciones a partir de un conjunto arbitrario de tablas de madera.
+Motor 2D para generar composiciones de tablas a partir de medidas dadas.
 
-## Objetivo
-
-No es un optimizador de corte tradicional. Su misión es proponer múltiples configuraciones válidas, puntuarlas y explicar por qué una solución es mejor que otra.
-
-## Estado
-Fase 0 – Definición del proyecto.
-
-## Tecnologías previstas
+## Estado actual
 
 - Python 3.13
-- PySide6
-- OR-Tools
-- NetworkX
-- Shapely
-- SQLite
-- pytest
+- CLI funcional
+- Entrada CSV
+- Salida texto y JSON
+- Solver geométrico inicial
+- Layout free-space inicial
+- Tests automatizados
+
+## Instalación
+
+    python3.13 -m venv .venv
+    source .venv/bin/activate
+    pip install -e ".[dev]"
+
+## Comandos
+
+    make test
+    make check
+    make demo
+    make json
+
+## CSV de entrada
+
+Columnas obligatorias:
+
+    id,length_mm,width_mm,thickness_mm
+
+Ejemplo:
+
+    A,2000,300,20
+    B,1000,300,20
+    C,800,250,20
