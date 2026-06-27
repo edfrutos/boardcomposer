@@ -1,4 +1,4 @@
-from boardcomposer.domain import AssemblySolution, BoardPlacement, Project, SolutionScore
+from boardcomposer.domain import AssemblySolution, BoardPlacement, Project, SolutionExplanation, SolutionScore
 
 from .base_solver import BaseSolver
 
@@ -76,7 +76,7 @@ class SequentialSolver(BaseSolver):
                 material_usage_score=usage_score,
                 waste_score=waste_score,
             ),
-            notes=["SequentialSolver"],
+            explanation=SolutionExplanation(notes=["SequentialSolver"]),
         )
 
         return [solution]

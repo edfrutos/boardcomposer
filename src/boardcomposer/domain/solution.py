@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 
+from .explanation import SolutionExplanation
 from .placement import BoardPlacement
 from .score import SolutionScore
 
@@ -8,7 +9,7 @@ from .score import SolutionScore
 class AssemblySolution:
     placements: list[BoardPlacement]
     score: SolutionScore = field(default_factory=SolutionScore)
-    notes: list[str] = field(default_factory=list)
+    explanation: SolutionExplanation = field(default_factory=SolutionExplanation)
 
     @property
     def used_area_mm2(self) -> float:
@@ -16,15 +17,11 @@ class AssemblySolution:
 
     @property
     def total_length_mm(self) -> float:
-        if not self.placements:
-            return 0
-        return max(p.right_mm for p in self.placements)
+        return max((p.right_mm for p in self.placements), default=0)
 
     @property
     def total_width_mm(self) -> float:
-        if not self.placements:
-            return 0
-        return max(p.top_mm for p in self.placements)
+        return max((p.top_mm for p in self.placements), default=0)
 
     @property
     def bounding_area_mm2(self) -> float:

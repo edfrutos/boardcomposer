@@ -4,6 +4,7 @@ from .domain import (
     BoardPlacement,
     Project,
     ProjectConstraints,
+    SolutionExplanation,
     SolutionScore,
 )
 
@@ -13,5 +14,6 @@ __all__ = [
     "BoardPlacement",
     "Project",
     "ProjectConstraints",
+    "SolutionExplanation",
     "SolutionScore",
 ]

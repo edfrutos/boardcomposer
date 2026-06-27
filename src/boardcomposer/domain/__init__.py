@@ -1,5 +1,6 @@
 from .board import Board
 from .constraints import ProjectConstraints
+from .explanation import SolutionExplanation
 from .placement import BoardPlacement
 from .project import Project
 from .score import SolutionScore
@@ -11,5 +12,6 @@ __all__ = [
     "BoardPlacement",
     "Project",
     "ProjectConstraints",
+    "SolutionExplanation",
     "SolutionScore",
 ]
