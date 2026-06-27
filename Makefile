@@ -1,4 +1,4 @@
-.PHONY: test run demo json status
+.PHONY: test run demo json status check
 
 test:
 	pytest
@@ -14,3 +14,8 @@ json:
 
 status:
 	git status
+
+
+check:
+	python scripts/check_project.py
+	pytest
