@@ -7,6 +7,7 @@ from boardcomposer.domain import (
 )
 
 from .base_solver import BaseSolver
+from .evaluation import evaluate
 
 
 class GeometrySolver(BaseSolver):
@@ -18,7 +19,13 @@ class GeometrySolver(BaseSolver):
             self._horizontal_solution(),
             self._vertical_solution(),
         ]
-        return sorted(solutions, key=lambda solution: solution.score.total, reverse=True)
+        evaluated = [evaluate(solution) for solution in solutions]
+
+        return sorted(
+            evaluated,
+            key=lambda solution: solution.score.total,
+            reverse=True,
+        )
 
     def _horizontal_solution(self) -> AssemblySolution:
         x = 0.0
@@ -41,7 +48,8 @@ class GeometrySolver(BaseSolver):
 
         return AssemblySolution(
             placements=placements,
-            score=SolutionScore(material_usage_score=50, waste_score=waste_score),
+            score=SolutionScore(material_usage_score=50,
+                                waste_score=waste_score),
             explanation=SolutionExplanation(notes=["horizontal"]),
         )
 
@@ -66,6 +74,7 @@ class GeometrySolver(BaseSolver):
 
         return AssemblySolution(
             placements=placements,
-            score=SolutionScore(material_usage_score=50, waste_score=waste_score),
+            score=SolutionScore(material_usage_score=50,
+                                waste_score=waste_score),
             explanation=SolutionExplanation(notes=["vertical"]),
         )
