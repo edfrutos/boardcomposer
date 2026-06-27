@@ -2,6 +2,7 @@ from boardcomposer.domain import AssemblySolution, Project
 
 from .base_solver import BaseSolver
 from .evaluation import evaluate
+from .free_space_generator import generate_free_space_solution
 from .constraints_validator import respects_constraints
 from .layout_generator import generate_horizontal_permutations, generate_vertical_permutations
 
