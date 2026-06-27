@@ -1,13 +1,8 @@
-from boardcomposer.domain import (
-    AssemblySolution,
-    BoardPlacement,
-    Project,
-    SolutionExplanation,
-    SolutionScore,
-)
+from boardcomposer.domain import AssemblySolution, Project
 
 from .base_solver import BaseSolver
 from .evaluation import evaluate
+from .layout_generator import generate_horizontal_solution, generate_vertical_solution
 
 
 class GeometrySolver(BaseSolver):
@@ -15,11 +10,17 @@ class GeometrySolver(BaseSolver):
         self.project = project
 
     def solve(self) -> list[AssemblySolution]:
-        solutions = [
-            self._horizontal_solution(),
-            self._vertical_solution(),
+        candidates = [
+            generate_horizontal_solution(self.project),
+            generate_vertical_solution(self.project),
         ]
-        evaluated = [evaluate(solution) for solution in solutions]
+
+        valid = [
+            solution for solution in candidates
+            if self._respects_constraints(solution)
+        ]
+
+        evaluated = [evaluate(solution) for solution in valid]
 
         return sorted(
             evaluated,
@@ -27,54 +28,13 @@ class GeometrySolver(BaseSolver):
             reverse=True,
         )
 
-    def _horizontal_solution(self) -> AssemblySolution:
-        x = 0.0
-        placements: list[BoardPlacement] = []
+    def _respects_constraints(self, solution: AssemblySolution) -> bool:
+        constraints = self.project.constraints
 
-        for index, board in enumerate(self.project.boards):
-            placements.append(
-                BoardPlacement(
-                    board_id=board.id or f"board-{index + 1}",
-                    x_mm=x,
-                    y_mm=0,
-                    length_mm=board.length_mm,
-                    width_mm=board.width_mm,
-                )
-            )
-            x += board.length_mm
+        if constraints.max_length_mm is not None and solution.total_length_mm > constraints.max_length_mm:
+            return False
 
-        solution = AssemblySolution(placements=placements)
-        waste_score = max(0.0, (1.0 - solution.waste_ratio) * 50)
+        if constraints.max_width_mm is not None and solution.total_width_mm > constraints.max_width_mm:
+            return False
 
-        return AssemblySolution(
-            placements=placements,
-            score=SolutionScore(material_usage_score=50,
-                                waste_score=waste_score),
-            explanation=SolutionExplanation(notes=["horizontal"]),
-        )
-
-    def _vertical_solution(self) -> AssemblySolution:
-        y = 0.0
-        placements: list[BoardPlacement] = []
-
-        for index, board in enumerate(self.project.boards):
-            placements.append(
-                BoardPlacement(
-                    board_id=board.id or f"board-{index + 1}",
-                    x_mm=0,
-                    y_mm=y,
-                    length_mm=board.length_mm,
-                    width_mm=board.width_mm,
-                )
-            )
-            y += board.width_mm
-
-        solution = AssemblySolution(placements=placements)
-        waste_score = max(0.0, (1.0 - solution.waste_ratio) * 50)
-
-        return AssemblySolution(
-            placements=placements,
-            score=SolutionScore(material_usage_score=50,
-                                waste_score=waste_score),
-            explanation=SolutionExplanation(notes=["vertical"]),
-        )
+        return True
