@@ -2,6 +2,7 @@ from boardcomposer.domain import AssemblySolution, Project
 
 from .base_solver import BaseSolver
 from .evaluation import evaluate
+from .constraints_validator import respects_constraints
 from .layout_generator import generate_horizontal_solution, generate_vertical_solution
 
 
@@ -17,7 +18,7 @@ class GeometrySolver(BaseSolver):
 
         valid = [
             solution for solution in candidates
-            if self._respects_constraints(solution)
+            if respects_constraints(solution, self.project.constraints)
         ]
 
         evaluated = [evaluate(solution) for solution in valid]
@@ -27,14 +28,3 @@ class GeometrySolver(BaseSolver):
             key=lambda solution: solution.score.total,
             reverse=True,
         )
-
-    def _respects_constraints(self, solution: AssemblySolution) -> bool:
-        constraints = self.project.constraints
-
-        if constraints.max_length_mm is not None and solution.total_length_mm > constraints.max_length_mm:
-            return False
-
-        if constraints.max_width_mm is not None and solution.total_width_mm > constraints.max_width_mm:
-            return False
-
-        return True
