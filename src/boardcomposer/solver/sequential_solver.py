@@ -9,6 +9,8 @@ class SequentialSolver(BaseSolver):
 
     def solve(self) -> list[AssemblySolution]:
         x = 0.0
+        y = 0.0
+        row_height = 0.0
         placements: list[BoardPlacement] = []
 
         for index, board in enumerate(self.project.boards):
@@ -31,20 +33,29 @@ class SequentialSolver(BaseSolver):
             if (
                 self.project.constraints.max_length_mm is not None
                 and x + length > self.project.constraints.max_length_mm
+                and placements
             ):
-                break
+                x = 0.0
+                y += row_height
+                row_height = 0.0
+
+            if (
+                self.project.constraints.max_length_mm is not None
+                and x + length > self.project.constraints.max_length_mm
+            ):
+                continue
 
             if (
                 self.project.constraints.max_width_mm is not None
-                and width > self.project.constraints.max_width_mm
+                and y + width > self.project.constraints.max_width_mm
             ):
-                break
+                continue
 
             placements.append(
                 BoardPlacement(
                     board_id=board_id,
                     x_mm=x,
-                    y_mm=0,
+                    y_mm=y,
                     length_mm=length,
                     width_mm=width,
                     rotated=rotated,
@@ -52,6 +63,7 @@ class SequentialSolver(BaseSolver):
             )
 
             x += length
+            row_height = max(row_height, width)
 
         usage = len(placements) / len(self.project.boards) * 100 if self.project.boards else 0
 

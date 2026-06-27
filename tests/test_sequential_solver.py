@@ -49,3 +49,19 @@ def test_solver_respects_max_width():
     solution = SequentialSolver(project).solve()[0]
 
     assert len(solution.placements) == 0
+
+
+def test_solver_wraps_to_next_row_when_length_exceeded():
+    from boardcomposer import ProjectConstraints
+
+    project = Project(constraints=ProjectConstraints(max_length_mm=2500, max_width_mm=600))
+    project.add_board(Board(length_mm=2000, width_mm=300, thickness_mm=20, id="A"))
+    project.add_board(Board(length_mm=1000, width_mm=300, thickness_mm=20, id="B"))
+
+    solution = SequentialSolver(project).solve()[0]
+
+    assert len(solution.placements) == 2
+    assert solution.placements[1].x_mm == 0
+    assert solution.placements[1].y_mm == 300
+    assert solution.total_length_mm == 2000
+    assert solution.total_width_mm == 600
