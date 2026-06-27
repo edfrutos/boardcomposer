@@ -1,4 +1,4 @@
-.PHONY: test run demo json status check
+.PHONY: test run demo json status check lint format
 
 test:
 	pytest
@@ -18,4 +18,12 @@ status:
 
 check:
 	python scripts/check_project.py
+	ruff check .
 	pytest
+
+
+lint:
+	ruff check .
+
+format:
+	ruff format .
