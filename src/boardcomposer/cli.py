@@ -2,7 +2,7 @@ import argparse
 
 from boardcomposer import Board, Project, ProjectConstraints
 from boardcomposer.io import load_project_from_csv
-from boardcomposer.solver import SequentialSolver
+from boardcomposer.solver import GeometrySolver
 
 
 def build_demo_project() -> Project:
@@ -27,7 +27,8 @@ def main() -> None:
         allow_rotation=args.allow_rotation,
     )
 
-    solution = SequentialSolver(project).solve()[0]
+    solutions = GeometrySolver(project).solve()
+    solution = solutions[0] if solutions else None
 
     print("BoardComposer")
     print(f"Tablas entrada: {len(project.boards)}")
