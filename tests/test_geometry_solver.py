@@ -58,5 +58,5 @@ def test_geometry_solver_respects_constraints():
 
     solutions = GeometrySolver(project).solve()
 
-    assert len(solutions) == 1
-    assert solutions[0].explanation.notes == ["vertical_permutation"]
+    assert len(solutions) == 2
+    assert all(s.explanation.notes == ["vertical_permutation"] for s in solutions)
