@@ -24,3 +24,17 @@ def test_sequential_solver_places_boards_in_sequence():
     assert solution.placements[1].x_mm == 2000
     assert solution.total_length_mm == 3000
     assert solution.total_width_mm == 300
+
+
+def test_solver_rotates_board_when_allowed():
+    from boardcomposer import ProjectConstraints
+
+    project = Project(constraints=ProjectConstraints(max_length_mm=2300, allow_rotation=True))
+    project.add_board(Board(length_mm=2000, width_mm=300, thickness_mm=20, id="A"))
+    project.add_board(Board(length_mm=1000, width_mm=300, thickness_mm=20, id="B"))
+
+    solution = SequentialSolver(project).solve()[0]
+
+    assert len(solution.placements) == 2
+    assert solution.placements[1].rotated is True
+    assert solution.total_length_mm == 2300
