@@ -1,0 +1,26 @@
+from boardcomposer import Board, Project
+from boardcomposer.solver import SequentialSolver
+
+
+def test_sequential_solver_returns_one_solution():
+    project = Project()
+    project.add_board(Board(length_mm=2000, width_mm=300, thickness_mm=20, id="A"))
+    project.add_board(Board(length_mm=1000, width_mm=300, thickness_mm=20, id="B"))
+
+    solver = SequentialSolver(project)
+    solutions = solver.solve()
+
+    assert len(solutions) == 1
+
+
+def test_sequential_solver_places_boards_in_sequence():
+    project = Project()
+    project.add_board(Board(length_mm=2000, width_mm=300, thickness_mm=20, id="A"))
+    project.add_board(Board(length_mm=1000, width_mm=300, thickness_mm=20, id="B"))
+
+    solution = SequentialSolver(project).solve()[0]
+
+    assert solution.placements[0].x_mm == 0
+    assert solution.placements[1].x_mm == 2000
+    assert solution.total_length_mm == 3000
+    assert solution.total_width_mm == 300
