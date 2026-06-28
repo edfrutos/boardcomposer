@@ -8,11 +8,7 @@ from .base_solver import BaseSolver
 from .constraints_validator import respects_constraints
 from .deduplication import deduplicate_solutions
 from .evaluation import evaluate
-from .free_space_generator import generate_free_space_solution
-from .layout_generator import (
-    generate_horizontal_permutations,
-    generate_vertical_permutations,
-)
+from .generators import generators_by_name
 
 
 class GeometrySolver(BaseSolver):
@@ -25,11 +21,10 @@ class GeometrySolver(BaseSolver):
         self.strategy = strategy or balanced_strategy()
 
     def solve(self) -> list[AssemblySolution]:
-        candidates = [
-            *generate_horizontal_permutations(self.project),
-            *generate_vertical_permutations(self.project),
-            generate_free_space_solution(self.project),
-        ]
+        candidates = []
+
+        for generator in generators_by_name(list(self.strategy.generator_names)):
+            candidates.extend(generator(self.project))
 
         valid = [
             solution
