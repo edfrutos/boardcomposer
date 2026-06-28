@@ -1,4 +1,5 @@
 from boardcomposer.domain import AssemblySolution, SolutionExplanation, SolutionScore
+from boardcomposer.solver.scoring_weights import ScoringWeights
 from boardcomposer.solver.objectives import (
     compactness,
     material_utilization,
@@ -7,13 +8,14 @@ from boardcomposer.solver.objectives import (
 )
 
 
-def evaluate(solution: AssemblySolution, total_boards: int | None = None) -> AssemblySolution:
+def evaluate(solution: AssemblySolution, total_boards: int | None = None, weights: ScoringWeights | None = None) -> AssemblySolution:
     total = total_boards if total_boards is not None else len(solution.placements)
+    weights = weights or ScoringWeights()
 
-    waste_score = material_utilization(solution) * 40.0
-    usage_score = placed_board_ratio(solution, total) * 30.0
-    regularity_score = compactness(solution) * 20.0
-    rotation_penalty = rotation_ratio(solution) * 10.0
+    waste_score = material_utilization(solution) * weights.material_utilization
+    usage_score = placed_board_ratio(solution, total) * weights.placed_boards
+    regularity_score = compactness(solution) * weights.compactness
+    rotation_penalty = rotation_ratio(solution) * weights.rotation_penalty
     cuts_score = max(0.0, 10.0 - rotation_penalty)
 
     strengths = []
