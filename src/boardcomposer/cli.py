@@ -14,9 +14,11 @@ def build_demo_project() -> Project:
 
     project = Project()
 
-    project.add_board(Board(length_mm=2000, width_mm=300, thickness_mm=20, id="A"))
+    project.add_board(
+        Board(length_mm=2000, width_mm=300, thickness_mm=20, id="A"))
 
-    project.add_board(Board(length_mm=1000, width_mm=300, thickness_mm=20, id="B"))
+    project.add_board(
+        Board(length_mm=1000, width_mm=300, thickness_mm=20, id="B"))
 
     return project
 
@@ -35,13 +37,17 @@ def main() -> None:
         "--allow-rotation", action="store_true", help="Permitir rotar tablas"
     )
 
-    parser.add_argument("--json", action="store_true", help="Mostrar salida JSON")
-    parser.add_argument("--strategy", choices=["balanced", "material", "compact"], default="balanced")
-    parser.add_argument("--top", type=int, default=5, help="Número máximo de soluciones a mostrar")
+    parser.add_argument("--json", action="store_true",
+                        help="Mostrar salida JSON")
+    parser.add_argument(
+        "--strategy", choices=["balanced", "material", "compact"], default="balanced")
+    parser.add_argument("--top", type=int, default=5,
+                        help="Número máximo de soluciones a mostrar")
 
     args = parser.parse_args()
 
-    project = load_project_from_csv(args.csv) if args.csv else build_demo_project()
+    project = load_project_from_csv(
+        args.csv) if args.csv else build_demo_project()
 
     project.constraints = ProjectConstraints(
         max_length_mm=args.max_length,
@@ -71,13 +77,6 @@ def main() -> None:
                         "placed_boards": strategy.weights.placed_boards,
                         "compactness": strategy.weights.compactness,
                         "rotation_penalty": strategy.weights.rotation_penalty,
-                    },
-                    "best_solution": {
-                        "score": solutions[0].score.total,
-                        "layout": solutions[0].explanation.notes,
-                        "placed_boards": len(solutions[0].placements),
-                        "total_length_mm": solutions[0].total_length_mm,
-                        "total_width_mm": solutions[0].total_width_mm,
                     },
                     "best_solution": {
                         "score": solutions[0].score.total,

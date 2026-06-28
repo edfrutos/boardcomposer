@@ -29,3 +29,12 @@ def test_strategy_argument_is_supported():
 
     assert strategy.name == "material"
     assert strategy.weights.material_utilization == 60.0
+
+
+def test_cli_json_fields_are_stable():
+    from boardcomposer.solver.strategies import strategy_by_name
+
+    strategy = strategy_by_name("compact")
+
+    assert strategy.name == "compact"
+    assert strategy.generator_names == ("vertical", "free_space")
