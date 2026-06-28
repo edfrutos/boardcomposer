@@ -1,11 +1,14 @@
 from boardcomposer.domain import AssemblySolution, Project
-from boardcomposer.solver.scoring_weights import ScoringWeights
+from boardcomposer.solver.strategies import (
+    OptimizationStrategy,
+    balanced_strategy,
+)
 
 from .base_solver import BaseSolver
+from .constraints_validator import respects_constraints
 from .deduplication import deduplicate_solutions
 from .evaluation import evaluate
 from .free_space_generator import generate_free_space_solution
-from .constraints_validator import respects_constraints
 from .layout_generator import (
     generate_horizontal_permutations,
     generate_vertical_permutations,
@@ -13,9 +16,13 @@ from .layout_generator import (
 
 
 class GeometrySolver(BaseSolver):
-    def __init__(self, project: Project, weights: ScoringWeights | None = None) -> None:
+    def __init__(
+        self,
+        project: Project,
+        strategy: OptimizationStrategy | None = None,
+    ) -> None:
         self.project = project
-        self.weights = weights
+        self.strategy = strategy or balanced_strategy()
 
     def solve(self) -> list[AssemblySolution]:
         candidates = [
@@ -31,7 +38,14 @@ class GeometrySolver(BaseSolver):
         ]
 
         unique = deduplicate_solutions(valid)
-        evaluated = [evaluate(solution, total_boards=len(self.project.boards), weights=self.weights) for solution in unique]
+        evaluated = [
+            evaluate(
+                solution,
+                total_boards=len(self.project.boards),
+                weights=self.strategy.weights,
+            )
+            for solution in unique
+        ]
 
         return sorted(
             evaluated,
