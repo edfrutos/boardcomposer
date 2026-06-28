@@ -7,7 +7,7 @@ from boardcomposer import Board, Project, ProjectConstraints
 from boardcomposer.io import load_project_from_csv
 
 from boardcomposer.solver import GeometrySolver
-from boardcomposer.solver.scoring_weights import ScoringWeights
+from boardcomposer.solver.strategies import strategy_by_name
 
 
 def build_demo_project() -> Project:
@@ -36,10 +36,7 @@ def main() -> None:
     )
 
     parser.add_argument("--json", action="store_true", help="Mostrar salida JSON")
-    parser.add_argument("--w-material", type=float, default=40.0)
-    parser.add_argument("--w-placed", type=float, default=30.0)
-    parser.add_argument("--w-compact", type=float, default=20.0)
-    parser.add_argument("--w-rotation", type=float, default=10.0)
+    parser.add_argument("--strategy", choices=["balanced", "material", "compact"], default="balanced")
 
     args = parser.parse_args()
 
@@ -51,14 +48,9 @@ def main() -> None:
         allow_rotation=args.allow_rotation,
     )
 
-    weights = ScoringWeights(
-        material_utilization=args.w_material,
-        placed_boards=args.w_placed,
-        compactness=args.w_compact,
-        rotation_penalty=args.w_rotation,
-    )
+    strategy = strategy_by_name(args.strategy)
 
-    solutions = GeometrySolver(project, weights=weights).solve()
+    solutions = GeometrySolver(project, strategy=strategy).solve()
 
     if not solutions:
         print("No hay soluciones válidas.")
@@ -70,11 +62,12 @@ def main() -> None:
             json.dumps(
                 {
                     "input_boards": len(project.boards),
+                    "strategy": strategy.name,
                     "weights": {
-                        "material_utilization": args.w_material,
-                        "placed_boards": args.w_placed,
-                        "compactness": args.w_compact,
-                        "rotation_penalty": args.w_rotation,
+                        "material_utilization": strategy.weights.material_utilization,
+                        "placed_boards": strategy.weights.placed_boards,
+                        "compactness": strategy.weights.compactness,
+                        "rotation_penalty": strategy.weights.rotation_penalty,
                     },
                     "solutions": [
                         {
