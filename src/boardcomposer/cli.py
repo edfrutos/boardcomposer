@@ -70,6 +70,12 @@ def main() -> None:
             json.dumps(
                 {
                     "input_boards": len(project.boards),
+                    "weights": {
+                        "material_utilization": args.w_material,
+                        "placed_boards": args.w_placed,
+                        "compactness": args.w_compact,
+                        "rotation_penalty": args.w_rotation,
+                    },
                     "solutions": [
                         {
                             "placed_boards": len(solution.placements),
