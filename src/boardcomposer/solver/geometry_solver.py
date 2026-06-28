@@ -1,4 +1,5 @@
 from boardcomposer.domain import AssemblySolution, Project
+from boardcomposer.solver.scoring_weights import ScoringWeights
 
 from .base_solver import BaseSolver
 from .deduplication import deduplicate_solutions
@@ -12,8 +13,9 @@ from .layout_generator import (
 
 
 class GeometrySolver(BaseSolver):
-    def __init__(self, project: Project) -> None:
+    def __init__(self, project: Project, weights: ScoringWeights | None = None) -> None:
         self.project = project
+        self.weights = weights
 
     def solve(self) -> list[AssemblySolution]:
         candidates = [
@@ -29,7 +31,7 @@ class GeometrySolver(BaseSolver):
         ]
 
         unique = deduplicate_solutions(valid)
-        evaluated = [evaluate(solution, total_boards=len(self.project.boards)) for solution in unique]
+        evaluated = [evaluate(solution, total_boards=len(self.project.boards), weights=self.weights) for solution in unique]
 
         return sorted(
             evaluated,

@@ -7,6 +7,7 @@ from boardcomposer import Board, Project, ProjectConstraints
 from boardcomposer.io import load_project_from_csv
 
 from boardcomposer.solver import GeometrySolver
+from boardcomposer.solver.scoring_weights import ScoringWeights
 
 
 def build_demo_project() -> Project:
@@ -35,6 +36,10 @@ def main() -> None:
     )
 
     parser.add_argument("--json", action="store_true", help="Mostrar salida JSON")
+    parser.add_argument("--w-material", type=float, default=40.0)
+    parser.add_argument("--w-placed", type=float, default=30.0)
+    parser.add_argument("--w-compact", type=float, default=20.0)
+    parser.add_argument("--w-rotation", type=float, default=10.0)
 
     args = parser.parse_args()
 
@@ -46,7 +51,14 @@ def main() -> None:
         allow_rotation=args.allow_rotation,
     )
 
-    solutions = GeometrySolver(project).solve()
+    weights = ScoringWeights(
+        material_utilization=args.w_material,
+        placed_boards=args.w_placed,
+        compactness=args.w_compact,
+        rotation_penalty=args.w_rotation,
+    )
+
+    solutions = GeometrySolver(project, weights=weights).solve()
 
     if not solutions:
         print("No hay soluciones válidas.")
