@@ -3,7 +3,7 @@ import argparse
 from boardcomposer import Board, Project, ProjectConstraints
 
 from boardcomposer.io import load_project_from_csv
-from boardcomposer.presenters import solutions_to_json
+from boardcomposer.presenters import solution_to_text, solutions_to_json
 
 from boardcomposer.solver import GeometrySolver
 from boardcomposer.solver.strategies import strategy_by_name
@@ -75,20 +75,4 @@ def main() -> None:
 
         return
 
-    best = solutions[0]
-
-    print("BoardComposer")
-
-    print(f"Tablas entrada: {len(project.boards)}")
-
-    print(f"Soluciones válidas: {len(solutions)}")
-
-    print(f"Tablas colocadas: {len(best.placements)}")
-
-    print(f"Largo total: {best.total_length_mm} mm")
-
-    print(f"Ancho total: {best.total_width_mm} mm")
-
-    print(f"Puntuación: {best.score.total}")
-
-    print(f"Layout: {', '.join(best.explanation.notes)}")
+    print(solution_to_text(project, solutions))
