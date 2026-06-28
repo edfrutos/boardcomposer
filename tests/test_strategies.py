@@ -32,3 +32,9 @@ def test_compact_first_strategy():
 def test_strategy_by_name_rejects_unknown_strategy():
     with pytest.raises(ValueError):
         strategy_by_name("unknown")
+
+
+def test_strategy_defines_generators():
+    assert "horizontal" in balanced_strategy().generator_names
+    assert "vertical" in compact_first_strategy().generator_names
+    assert "horizontal" not in compact_first_strategy().generator_names
