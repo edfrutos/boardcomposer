@@ -29,7 +29,7 @@ class GeometrySolver(BaseSolver):
         ]
 
         unique = deduplicate_solutions(valid)
-        evaluated = [evaluate(solution) for solution in unique]
+        evaluated = [evaluate(solution, total_boards=len(self.project.boards)) for solution in unique]
 
         return sorted(
             evaluated,

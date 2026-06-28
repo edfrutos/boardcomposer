@@ -1,26 +1,41 @@
 from boardcomposer.domain import AssemblySolution, SolutionExplanation, SolutionScore
+from boardcomposer.solver.objectives import (
+    compactness,
+    material_utilization,
+    placed_board_ratio,
+    rotation_ratio,
+)
 
 
-def evaluate(solution: AssemblySolution) -> AssemblySolution:
+def evaluate(solution: AssemblySolution, total_boards: int | None = None) -> AssemblySolution:
+    total = total_boards if total_boards is not None else len(solution.placements)
 
-    waste_score = max(0.0, (1.0 - solution.waste_ratio) * 50.0)
-    usage_score = 50.0 if solution.placements else 0.0
+    waste_score = material_utilization(solution) * 40.0
+    usage_score = placed_board_ratio(solution, total) * 30.0
+    regularity_score = compactness(solution) * 20.0
+    rotation_penalty = rotation_ratio(solution) * 10.0
+    cuts_score = max(0.0, 10.0 - rotation_penalty)
 
     strengths = []
     weaknesses = []
 
-    if solution.waste_ratio < 0.10:
-        strengths.append("Muy poco desperdicio")
-    elif solution.waste_ratio < 0.25:
-        strengths.append("Desperdicio aceptable")
+    if material_utilization(solution) >= 0.90:
+        strengths.append("Muy buen aprovechamiento del material")
+    elif material_utilization(solution) < 0.70:
+        weaknesses.append("Aprovechamiento bajo del material")
+
+    if compactness(solution) >= 0.50:
+        strengths.append("Composición compacta")
     else:
-        weaknesses.append("Desperdicio elevado")
+        weaknesses.append("Composición alargada o poco compacta")
 
     return AssemblySolution(
         placements=solution.placements,
         score=SolutionScore(
             waste_score=waste_score,
             material_usage_score=usage_score,
+            regularity_score=regularity_score,
+            cuts_score=cuts_score,
         ),
         explanation=SolutionExplanation(
             strengths=strengths,
