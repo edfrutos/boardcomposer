@@ -72,6 +72,13 @@ def main() -> None:
                         "compactness": strategy.weights.compactness,
                         "rotation_penalty": strategy.weights.rotation_penalty,
                     },
+                    "best_solution": {
+                        "score": solutions[0].score.total,
+                        "layout": solutions[0].explanation.notes,
+                        "placed_boards": len(solutions[0].placements),
+                        "total_length_mm": solutions[0].total_length_mm,
+                        "total_width_mm": solutions[0].total_width_mm,
+                    },
                     "solutions": [
                         {
                             "placed_boards": len(solution.placements),
