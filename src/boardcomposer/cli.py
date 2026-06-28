@@ -65,6 +65,7 @@ def main() -> None:
                     "input_boards": len(project.boards),
                     "strategy": strategy.name,
                     "generators": list(strategy.generator_names),
+                    "top": args.top,
                     "weights": {
                         "material_utilization": strategy.weights.material_utilization,
                         "placed_boards": strategy.weights.placed_boards,
