@@ -20,3 +20,12 @@ def test_cli_project_constraints_from_cli_options():
     assert constraints.max_length_mm == 2500
     assert constraints.max_width_mm == 600
     assert constraints.allow_rotation is True
+
+
+def test_strategy_argument_is_supported():
+    from boardcomposer.solver.strategies import strategy_by_name
+
+    strategy = strategy_by_name("material")
+
+    assert strategy.name == "material"
+    assert strategy.weights.material_utilization == 60.0
