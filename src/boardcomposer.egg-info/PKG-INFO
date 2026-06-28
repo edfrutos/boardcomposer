@@ -5,3 +5,4 @@ Summary: BoardComposer
 Requires-Python: <3.14,>=3.13
 Provides-Extra: dev
 Requires-Dist: pytest>=8.4; extra == "dev"
+Requires-Dist: ruff>=0.14; extra == "dev"

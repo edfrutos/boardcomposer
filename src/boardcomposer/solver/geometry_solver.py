@@ -1,6 +1,7 @@
 from boardcomposer.domain import AssemblySolution, Project
 
 from .base_solver import BaseSolver
+from .deduplication import deduplicate_solutions
 from .evaluation import evaluate
 from .free_space_generator import generate_free_space_solution
 from .constraints_validator import respects_constraints
@@ -27,7 +28,8 @@ class GeometrySolver(BaseSolver):
             if respects_constraints(solution, self.project.constraints)
         ]
 
-        evaluated = [evaluate(solution) for solution in valid]
+        unique = deduplicate_solutions(valid)
+        evaluated = [evaluate(solution) for solution in unique]
 
         return sorted(
             evaluated,

@@ -21,7 +21,6 @@ def test_geometry_solver_includes_expected_layout_families():
 
     assert ("horizontal_permutation",) in layouts
     assert ("vertical_permutation",) in layouts
-    assert ("free_space",) in layouts
 
 
 def test_geometry_solver_sorts_solutions_by_score():

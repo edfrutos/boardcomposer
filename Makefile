@@ -1,29 +1,32 @@
+PYTHON := .venv/bin/python
+PYTEST := .venv/bin/pytest
+RUFF := .venv/bin/ruff
+BOARDCOMPOSER := .venv/bin/boardcomposer
+
 .PHONY: test run demo json status check lint format
 
 test:
-	pytest
+	$(PYTEST)
 
 run:
-	boardcomposer
+	$(BOARDCOMPOSER)
 
 demo:
-	boardcomposer --csv data/samples/basic_boards.csv --max-length 3000 --max-width 600
+	$(BOARDCOMPOSER) --csv data/samples/basic_boards.csv --max-length 3000 --max-width 600
 
 json:
-	boardcomposer --csv data/samples/basic_boards.csv --max-length 3000 --max-width 600 --json
+	$(BOARDCOMPOSER) --csv data/samples/basic_boards.csv --max-length 3000 --max-width 600 --json
 
 status:
 	git status
 
-
 check:
-	python scripts/check_project.py
-	ruff check .
-	pytest
-
+	$(PYTHON) scripts/check_project.py
+	$(RUFF) check .
+	$(PYTEST)
 
 lint:
-	ruff check .
+	$(RUFF) check .
 
 format:
-	ruff format .
+	$(RUFF) format .
