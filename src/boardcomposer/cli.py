@@ -37,6 +37,7 @@ def main() -> None:
 
     parser.add_argument("--json", action="store_true", help="Mostrar salida JSON")
     parser.add_argument("--strategy", choices=["balanced", "material", "compact"], default="balanced")
+    parser.add_argument("--top", type=int, default=5, help="Número máximo de soluciones a mostrar")
 
     args = parser.parse_args()
 
@@ -89,7 +90,7 @@ def main() -> None:
                                 for placement in solution.placements
                             ],
                         }
-                        for solution in solutions
+                        for solution in solutions[: args.top]
                     ],
                 },
                 indent=2,
