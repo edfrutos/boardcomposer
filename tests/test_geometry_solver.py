@@ -46,3 +46,18 @@ def test_geometry_solver_respects_constraints():
     assert len(solutions) > 0
     assert all(solution.total_length_mm <= 2500 for solution in solutions)
     assert all(solution.total_width_mm <= 600 for solution in solutions)
+
+
+def test_geometry_solver_matches_candidate_pipeline():
+    from boardcomposer.solver.candidate_pipeline import CandidatePipeline
+    from boardcomposer.solver.strategies import balanced_strategy
+
+    project = build_two_board_project()
+    strategy = balanced_strategy()
+
+    solver_solutions = GeometrySolver(project, strategy=strategy).solve()
+    pipeline_solutions = CandidatePipeline(project, strategy).run()
+
+    assert [s.score.total for s in solver_solutions] == [
+        s.score.total for s in pipeline_solutions
+    ]
