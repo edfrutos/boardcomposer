@@ -149,9 +149,12 @@ class MaxRects:
                 next_fragments = []
 
                 for fragment in fragments:
-                    next_fragments.extend(
-                        self._split_overlap(fragment, other)
-                    )
+                    if self._intersect(fragment, other):
+                        next_fragments.extend(
+                            self._split_overlap(fragment, other)
+                        )
+                    else:
+                        next_fragments.append(fragment)
 
                 fragments = next_fragments
 
