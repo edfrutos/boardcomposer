@@ -32,15 +32,9 @@ def solution_to_text(
     project: Project,
     solutions: list[AssemblySolution],
 ) -> str:
-    dummy_strategy = OptimizationStrategy(
-        name="text",
-        weights=None,
-        generator_names=(),
-    )
-
     return TextPresenter().render(
         project=project,
-        strategy=dummy_strategy,
+        strategy=None,
         solutions=solutions,
         top=1,
     )
