@@ -28,3 +28,19 @@ def test_skyline_generator_preserves_layout_name():
     solution = generate_skyline_solution(project)
 
     assert solution.explanation.notes == ["skyline"]
+
+
+def test_skyline_generator_stacks_when_width_is_limited():
+    project = Project(
+        constraints=ProjectConstraints(
+            max_width_mm=2000,
+        )
+    )
+    project.add_board(Board(2000, 300, 20, "A"))
+    project.add_board(Board(1000, 300, 20, "B"))
+
+    solution = generate_skyline_solution(project)
+
+    assert len(solution.placements) == 2
+    assert solution.total_length_mm == 2000
+    assert solution.total_width_mm == 600
