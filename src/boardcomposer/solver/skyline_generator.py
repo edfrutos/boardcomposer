@@ -15,6 +15,7 @@ def generate_skyline_solution(project: Project) -> AssemblySolution:
         position = skyline.place(
             width_mm=board.length_mm,
             height_mm=board.width_mm,
+            allow_rotation=project.constraints.allow_rotation,
         )
 
         if position is None:
@@ -25,8 +26,9 @@ def generate_skyline_solution(project: Project) -> AssemblySolution:
                 board_id=board.id or f"board-{index + 1}",
                 x_mm=position.x_mm,
                 y_mm=position.y_mm,
-                length_mm=board.length_mm,
-                width_mm=board.width_mm,
+                length_mm=board.width_mm if position.rotated else board.length_mm,
+                width_mm=board.length_mm if position.rotated else board.width_mm,
+                rotated=position.rotated,
             )
         )
 
