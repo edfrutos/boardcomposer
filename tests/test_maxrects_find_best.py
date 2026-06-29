@@ -47,3 +47,18 @@ def test_find_best_rectangle_can_rotate():
 
     assert placement is not None
     assert placement.rotated is True
+
+
+def test_maxrects_accepts_custom_heuristic():
+    def select_last(candidates):
+        return candidates[-1] if candidates else None
+
+    maxrects = MaxRects(
+        length_mm=3000,
+        width_mm=1000,
+        heuristic=select_last,
+    )
+
+    placement = maxrects.find_best_rectangle(1000, 300)
+
+    assert placement is not None

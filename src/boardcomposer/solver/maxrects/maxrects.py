@@ -1,5 +1,5 @@
 from boardcomposer.solver.maxrects.free_rectangle import FreeRectangle
-from boardcomposer.solver.maxrects.heuristics import best_area_fit
+from boardcomposer.solver.maxrects.heuristics import Heuristic, best_area_fit
 from boardcomposer.solver.maxrects.placement import MaxRectsPlacement
 
 
@@ -8,9 +8,11 @@ class MaxRects:
         self,
         length_mm: float = 3000,
         width_mm: float = 3000,
+        heuristic: Heuristic | None = None,
     ) -> None:
         self.length_mm = length_mm
         self.width_mm = width_mm
+        self.heuristic = heuristic
         self.free_rectangles = [
             FreeRectangle(
                 x_mm=0,
@@ -45,6 +47,9 @@ class MaxRects:
                         rotated=True,
                     )
                 )
+
+        if self.heuristic is not None:
+            return self.heuristic(candidates)
 
         return best_area_fit(
             candidates=candidates,
