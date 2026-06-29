@@ -38,3 +38,7 @@ def test_strategy_defines_generators():
     assert "horizontal" in balanced_strategy().generator_names
     assert "vertical" in compact_first_strategy().generator_names
     assert "horizontal" not in compact_first_strategy().generator_names
+
+
+def test_material_strategy_uses_skyline():
+    assert "skyline" in material_first_strategy().generator_names
