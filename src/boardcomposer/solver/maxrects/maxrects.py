@@ -13,9 +13,7 @@ class MaxRects:
         self.length_mm = length_mm
         self.width_mm = width_mm
         self.heuristic = heuristic
-        self.free_rectangles = [
-            FreeRectangle(0, 0, length_mm, width_mm)
-        ]
+        self.free_rectangles = [FreeRectangle(0, 0, length_mm, width_mm)]
 
     def find_best_rectangle(
         self,
@@ -82,6 +80,8 @@ class MaxRects:
             rectangle for rectangle in new_rectangles if rectangle.area_mm2 > 0
         ]
         self._prune_free_rectangles()
+        self._resolve_overlaps()
+        self._prune_free_rectangles()
 
         return placement
 
@@ -138,6 +138,88 @@ class MaxRects:
             )
 
         return result
+
+    def _resolve_overlaps(self) -> None:
+        resolved: list[FreeRectangle] = []
+
+        for rectangle in self.free_rectangles:
+            fragments = [rectangle]
+
+            for other in resolved:
+                next_fragments = []
+
+                for fragment in fragments:
+                    next_fragments.extend(
+                        self._split_overlap(fragment, other)
+                    )
+
+                fragments = next_fragments
+
+            resolved.extend(
+                fragment for fragment in fragments if fragment.area_mm2 > 0
+            )
+
+        self.free_rectangles = resolved
+
+    def _split_overlap(
+        self,
+        rectangle: FreeRectangle,
+        other: FreeRectangle,
+    ) -> list[FreeRectangle]:
+        if not self._intersect(rectangle, other):
+            return [rectangle]
+
+        rect_right = rectangle.x_mm + rectangle.length_mm
+        rect_bottom = rectangle.y_mm + rectangle.width_mm
+        other_right = other.x_mm + other.length_mm
+        other_bottom = other.y_mm + other.width_mm
+
+        overlap_left = max(rectangle.x_mm, other.x_mm)
+        overlap_right = min(rect_right, other_right)
+
+        fragments = []
+
+        if other.x_mm > rectangle.x_mm:
+            fragments.append(
+                FreeRectangle(
+                    rectangle.x_mm,
+                    rectangle.y_mm,
+                    other.x_mm - rectangle.x_mm,
+                    rectangle.width_mm,
+                )
+            )
+
+        if other_right < rect_right:
+            fragments.append(
+                FreeRectangle(
+                    other_right,
+                    rectangle.y_mm,
+                    rect_right - other_right,
+                    rectangle.width_mm,
+                )
+            )
+
+        if other.y_mm > rectangle.y_mm:
+            fragments.append(
+                FreeRectangle(
+                    overlap_left,
+                    rectangle.y_mm,
+                    overlap_right - overlap_left,
+                    other.y_mm - rectangle.y_mm,
+                )
+            )
+
+        if other_bottom < rect_bottom:
+            fragments.append(
+                FreeRectangle(
+                    overlap_left,
+                    other_bottom,
+                    overlap_right - overlap_left,
+                    rect_bottom - other_bottom,
+                )
+            )
+
+        return [fragment for fragment in fragments if fragment.area_mm2 > 0]
 
     def _prune_free_rectangles(self) -> None:
         pruned = []
