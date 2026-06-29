@@ -45,15 +45,23 @@ class Skyline:
         self,
         width_mm: float,
         height_mm: float,
+        allow_rotation: bool = False,
     ) -> SkylinePlacement | None:
-        candidate = self._find_best_candidate(width_mm)
+        normal = self._find_best_candidate(width_mm)
+        rotated = self._find_best_candidate(height_mm) if allow_rotation else None
+
+        candidate = self._choose_candidate(normal, rotated)
 
         if candidate is None:
             return None
 
+        rotated_placement = rotated is not None and candidate == rotated
+        placed_width = height_mm if rotated_placement else width_mm
+        placed_height = width_mm if rotated_placement else height_mm
+
         x_start = candidate.x_mm
-        x_end = x_start + width_mm
-        y_top = candidate.y_mm + height_mm
+        x_end = x_start + placed_width
+        y_top = candidate.y_mm + placed_height
 
         updated_nodes: list[SkylineNode] = []
 
@@ -101,6 +109,26 @@ class Skyline:
         return SkylinePlacement(
             x_mm=x_start,
             y_mm=candidate.y_mm,
+            rotated=rotated_placement,
+        )
+
+    def _choose_candidate(
+        self,
+        normal: SkylineCandidate | None,
+        rotated: SkylineCandidate | None,
+    ) -> SkylineCandidate | None:
+        candidates = [candidate for candidate in [normal, rotated] if candidate is not None]
+
+        if not candidates:
+            return None
+
+        return min(
+            candidates,
+            key=lambda candidate: (
+                candidate.y_mm,
+                candidate.x_mm,
+                candidate.waste_mm,
+            ),
         )
 
     def _find_best_candidate(self, width_mm: float) -> SkylineCandidate | None:
