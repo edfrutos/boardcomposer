@@ -1,4 +1,5 @@
 from boardcomposer.solver.maxrects.free_rectangle import FreeRectangle
+from boardcomposer.solver.maxrects.heuristics import best_area_fit
 from boardcomposer.solver.maxrects.placement import MaxRectsPlacement
 
 
@@ -45,16 +46,9 @@ class MaxRects:
                     )
                 )
 
-        if not candidates:
-            return None
-
-        return min(
-            candidates,
-            key=lambda candidate: (
-                self._waste_area(candidate),
-                candidate.y_mm,
-                candidate.x_mm,
-            ),
+        return best_area_fit(
+            candidates=candidates,
+            waste_area=self._waste_area,
         )
 
     def place(
