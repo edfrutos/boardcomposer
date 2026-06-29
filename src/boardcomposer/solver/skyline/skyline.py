@@ -46,7 +46,12 @@ class Skyline:
         if position is None:
             return None
 
-        node = self.nodes.pop(0)
+        node_index = next(
+            index
+            for index, node in enumerate(self.nodes)
+            if node.x_mm == position.x_mm and node.y_mm == position.y_mm
+        )
+        node = self.nodes.pop(node_index)
 
         remaining = node.width_mm - width_mm
 
