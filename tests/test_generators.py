@@ -17,3 +17,14 @@ def test_generators_by_name():
     assert ("horizontal_permutation",) in layouts
     assert ("vertical_permutation",) in layouts
     assert ("free_space",) in layouts
+
+
+def test_skyline_generator_is_registered():
+    project = Project()
+    project.add_board(Board(2000, 300, 20, "A"))
+
+    generator = generators_by_name(["skyline"])[0]
+    solutions = generator(project)
+
+    assert len(solutions) == 1
+    assert solutions[0].explanation.notes == ["skyline"]

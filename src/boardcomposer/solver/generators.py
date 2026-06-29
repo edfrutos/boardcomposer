@@ -2,6 +2,7 @@ from collections.abc import Callable
 
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.solver.free_space_generator import generate_free_space_solution
+from boardcomposer.solver.skyline_generator import generate_skyline_solution
 from boardcomposer.solver.layout_generator import (
     generate_horizontal_permutations,
     generate_vertical_permutations,
@@ -22,10 +23,15 @@ def free_space_generator(project: Project) -> list[AssemblySolution]:
     return [generate_free_space_solution(project)]
 
 
+
+def skyline_generator(project: Project) -> list[AssemblySolution]:
+    return [generate_skyline_solution(project)]
+
 GENERATOR_REGISTRY: dict[str, LayoutGenerator] = {
     "horizontal": horizontal_generator,
     "vertical": vertical_generator,
     "free_space": free_space_generator,
+    "skyline": skyline_generator,
 }
 
 
