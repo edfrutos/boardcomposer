@@ -3,7 +3,10 @@ from collections.abc import Callable
 from boardcomposer.solver.maxrects.placement import MaxRectsPlacement
 
 WasteAreaFn = Callable[[MaxRectsPlacement], float]
-Heuristic = Callable[[list[MaxRectsPlacement]], MaxRectsPlacement | None]
+Heuristic = Callable[
+    [list[MaxRectsPlacement], WasteAreaFn],
+    MaxRectsPlacement | None,
+]
 
 
 def best_area_fit(
@@ -25,6 +28,7 @@ def best_area_fit(
 
 def best_short_side_fit(
     candidates: list[MaxRectsPlacement],
+    waste_area: WasteAreaFn,
 ) -> MaxRectsPlacement | None:
     if not candidates:
         return None
@@ -42,6 +46,7 @@ def best_short_side_fit(
 
 def best_long_side_fit(
     candidates: list[MaxRectsPlacement],
+    waste_area: WasteAreaFn,
 ) -> MaxRectsPlacement | None:
     if not candidates:
         return None

@@ -21,7 +21,7 @@ def test_best_area_fit_prefers_less_waste():
 
 
 def test_best_short_side_fit_returns_none_without_candidates():
-    assert best_short_side_fit([]) is None
+    assert best_short_side_fit([], lambda _: 0) is None
 
 
 def test_best_short_side_fit_prefers_shorter_side():
@@ -30,13 +30,13 @@ def test_best_short_side_fit_prefers_shorter_side():
         MaxRectsPlacement(0, 500, 800, 300),
     ]
 
-    selected = best_short_side_fit(candidates)
+    selected = best_short_side_fit(candidates, lambda _: 0)
 
     assert selected == candidates[1]
 
 
 def test_best_long_side_fit_returns_none_without_candidates():
-    assert best_long_side_fit([]) is None
+    assert best_long_side_fit([], lambda _: 0) is None
 
 
 def test_best_long_side_fit_prefers_shorter_long_side():
@@ -45,6 +45,6 @@ def test_best_long_side_fit_prefers_shorter_long_side():
         MaxRectsPlacement(0, 500, 800, 300),
     ]
 
-    selected = best_long_side_fit(candidates)
+    selected = best_long_side_fit(candidates, lambda _: 0)
 
     assert selected == candidates[1]

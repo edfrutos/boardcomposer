@@ -49,7 +49,7 @@ class MaxRects:
                 )
 
         if self.heuristic is not None:
-            return self.heuristic(candidates)
+            return self.heuristic(candidates, self._waste_area)
 
         return best_area_fit(
             candidates=candidates,

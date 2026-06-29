@@ -50,7 +50,7 @@ def test_find_best_rectangle_can_rotate():
 
 
 def test_maxrects_accepts_custom_heuristic():
-    def select_last(candidates):
+    def select_last(candidates, waste_area):
         return candidates[-1] if candidates else None
 
     maxrects = MaxRects(

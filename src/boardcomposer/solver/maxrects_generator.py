@@ -1,3 +1,5 @@
+from collections.abc import Callable
+
 from boardcomposer.domain import (
     AssemblySolution,
     BoardPlacement,
@@ -5,9 +7,16 @@ from boardcomposer.domain import (
     SolutionExplanation,
 )
 from boardcomposer.solver.maxrects.maxrects import MaxRects
+from boardcomposer.solver.maxrects.placement import MaxRectsPlacement
+from boardcomposer.solver.maxrects.strategies import MAXRECTS_HEURISTICS
+
+MaxRectsHeuristic = Callable[
+    [list[MaxRectsPlacement]],
+    MaxRectsPlacement | None,
+]
 
 
-def generate_maxrects_solution(project: Project) -> AssemblySolution:
+def _maxrects_size(project: Project) -> tuple[float, float]:
     length = project.constraints.max_length_mm or sum(
         board.length_mm for board in project.boards
     )
@@ -16,7 +25,20 @@ def generate_maxrects_solution(project: Project) -> AssemblySolution:
         default=0,
     )
 
-    maxrects = MaxRects(length_mm=length, width_mm=width)
+    return length, width
+
+
+def _generate_solution(
+    project: Project,
+    heuristic_name: str,
+    heuristic: MaxRectsHeuristic,
+) -> AssemblySolution:
+    length, width = _maxrects_size(project)
+    maxrects = MaxRects(
+        length_mm=length,
+        width_mm=width,
+        heuristic=heuristic,
+    )
     placements: list[BoardPlacement] = []
 
     for index, board in enumerate(project.boards):
@@ -42,5 +64,21 @@ def generate_maxrects_solution(project: Project) -> AssemblySolution:
 
     return AssemblySolution(
         placements=placements,
-        explanation=SolutionExplanation(notes=["maxrects"]),
+        explanation=SolutionExplanation(notes=["maxrects", heuristic_name]),
+    )
+
+
+def generate_maxrects_solution(project: Project) -> AssemblySolution:
+    candidates = [
+        _generate_solution(project, name, heuristic)
+        for name, heuristic in MAXRECTS_HEURISTICS
+    ]
+
+    return max(
+        candidates,
+        key=lambda solution: (
+            len(solution.placements),
+            -solution.total_width_mm,
+            -solution.total_length_mm,
+        ),
     )
