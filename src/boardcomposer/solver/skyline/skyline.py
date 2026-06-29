@@ -11,6 +11,7 @@ class SkylineCandidate:
     width_mm: float
     height_mm: float
     waste_mm: float
+    fragmentation: int
     rotated: bool = False
 
 
@@ -128,8 +129,11 @@ class Skyline:
 
         covered_width = 0.0
         max_y = start.y_mm
+        covered_nodes = 0
 
         for node in self.nodes[index:]:
+            covered_nodes += 1
+
             if node.x_mm > x_start + covered_width:
                 return None
 
@@ -143,6 +147,7 @@ class Skyline:
                     width_mm=width_mm,
                     height_mm=height_mm,
                     waste_mm=covered_width - width_mm,
+                    fragmentation=covered_nodes,
                     rotated=rotated,
                 )
 
@@ -161,6 +166,7 @@ class Skyline:
             valid,
             key=lambda candidate: (
                 candidate.y_mm + candidate.height_mm,
+                candidate.fragmentation,
                 candidate.y_mm,
                 candidate.x_mm,
             ),
