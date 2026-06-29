@@ -42,3 +42,7 @@ def test_strategy_defines_generators():
 
 def test_material_strategy_uses_skyline():
     assert "skyline" in material_first_strategy().generator_names
+
+
+def test_material_strategy_uses_maxrects():
+    assert "maxrects" in material_first_strategy().generator_names

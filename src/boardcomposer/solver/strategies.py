@@ -27,7 +27,7 @@ def material_first_strategy() -> OptimizationStrategy:
     return OptimizationStrategy(
         name="material",
         weights=material_first(),
-        generator_names=("horizontal", "vertical", "free_space", "skyline"),
+        generator_names=("horizontal", "vertical", "free_space", "skyline", "maxrects"),
     )
 
 
