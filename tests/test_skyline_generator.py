@@ -14,7 +14,7 @@ def test_generate_skyline_solution():
     solution = generate_skyline_solution(project)
 
     assert len(solution.placements) == 2
-    assert solution.explanation.notes == ["skyline"]
+    assert "skyline" in solution.explanation.notes
 
 
 def test_skyline_generator_preserves_layout_name():
@@ -27,7 +27,7 @@ def test_skyline_generator_preserves_layout_name():
 
     solution = generate_skyline_solution(project)
 
-    assert solution.explanation.notes == ["skyline"]
+    assert "skyline" in solution.explanation.notes
 
 
 def test_skyline_generator_stacks_when_width_is_limited():

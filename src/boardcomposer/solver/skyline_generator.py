@@ -1,11 +1,17 @@
 """Generate Skyline-based layout solutions."""
-from boardcomposer.solver.skyline.skyline import Skyline
+
 from boardcomposer.domain import (
     AssemblySolution,
     BoardPlacement,
     Project,
     SolutionExplanation,
 )
+from boardcomposer.solver.board_ordering import (
+    largest_area_first,
+    longest_edge_first,
+    original_order,
+)
+from boardcomposer.solver.skyline.skyline import Skyline
 
 
 def _default_skyline_width(project: Project) -> float:
@@ -25,25 +31,27 @@ def _default_skyline_width(project: Project) -> float:
 
 
 def _sort_boards(boards):
-    return sorted(
-        boards,
-        key=lambda board: (
-            board.length_mm * board.width_mm,
-            board.length_mm,
-            board.width_mm,
-        ),
-        reverse=True,
+    return largest_area_first(boards)
+
+
+def _candidate_orders(project: Project):
+    return (
+        ("original", original_order(project.boards)),
+        ("largest_area", largest_area_first(project.boards)),
+        ("longest_edge", longest_edge_first(project.boards)),
     )
 
 
-def generate_skyline_solution(project: Project) -> AssemblySolution:
-    """Generate one Skyline layout solution for the given project."""
+def _generate_for_order(
+    project: Project,
+    boards,
+    order_name: str,
+) -> AssemblySolution:
     max_width = _default_skyline_width(project)
-
     skyline = Skyline(width_mm=max_width)
     placements: list[BoardPlacement] = []
 
-    for index, board in enumerate(_sort_boards(project.boards)):
+    for index, board in enumerate(boards):
         position = skyline.place(
             width_mm=board.length_mm,
             height_mm=board.width_mm,
@@ -70,5 +78,22 @@ def generate_skyline_solution(project: Project) -> AssemblySolution:
 
     return AssemblySolution(
         placements=placements,
-        explanation=SolutionExplanation(notes=["skyline"]),
+        explanation=SolutionExplanation(notes=["skyline", order_name]),
+    )
+
+
+def generate_skyline_solution(project: Project) -> AssemblySolution:
+    """Generate the best Skyline layout solution for the given project."""
+    candidates = [
+        _generate_for_order(project, boards, name)
+        for name, boards in _candidate_orders(project)
+    ]
+
+    return max(
+        candidates,
+        key=lambda solution: (
+            len(solution.placements),
+            -solution.total_width_mm,
+            -solution.total_length_mm,
+        ),
     )

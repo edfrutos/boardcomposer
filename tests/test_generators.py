@@ -27,4 +27,4 @@ def test_skyline_generator_is_registered():
     solutions = generator(project)
 
     assert len(solutions) == 1
-    assert solutions[0].explanation.notes == ["skyline"]
+    assert "skyline" in solutions[0].explanation.notes
