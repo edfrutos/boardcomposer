@@ -17,11 +17,56 @@ class Skyline:
         self,
         width_mm: float,
     ) -> SkylinePlacement | None:
-        for node in self.nodes:
-            if width_mm <= node.width_mm:
-                return SkylinePlacement(
-                    x_mm=node.x_mm,
-                    y_mm=node.y_mm,
-                )
+        candidates = [
+            node
+            for node in self.nodes
+            if width_mm <= node.width_mm
+        ]
 
-        return None
+        if not candidates:
+            return None
+
+        best = min(
+            candidates,
+            key=lambda node: (node.y_mm, node.x_mm),
+        )
+
+        return SkylinePlacement(
+            x_mm=best.x_mm,
+            y_mm=best.y_mm,
+        )
+
+    def place(
+        self,
+        width_mm: float,
+        height_mm: float,
+    ) -> SkylinePlacement | None:
+        position = self.find_position(width_mm)
+
+        if position is None:
+            return None
+
+        node = self.nodes.pop(0)
+
+        remaining = node.width_mm - width_mm
+
+        self.nodes.insert(
+            0,
+            SkylineNode(
+                x_mm=node.x_mm,
+                y_mm=node.y_mm + height_mm,
+                width_mm=width_mm,
+            ),
+        )
+
+        if remaining > 0:
+            self.nodes.insert(
+                1,
+                SkylineNode(
+                    x_mm=node.x_mm + width_mm,
+                    y_mm=node.y_mm,
+                    width_mm=remaining,
+                ),
+            )
+
+        return position
