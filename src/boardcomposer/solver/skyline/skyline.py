@@ -13,6 +13,26 @@ class Skyline:
             )
         ]
 
+    def _merge_adjacent_nodes(self) -> None:
+        if not self.nodes:
+            return
+
+        merged = [self.nodes[0]]
+
+        for node in self.nodes[1:]:
+            last = merged[-1]
+
+            if last.y_mm == node.y_mm and last.x_mm + last.width_mm == node.x_mm:
+                merged[-1] = SkylineNode(
+                    x_mm=last.x_mm,
+                    y_mm=last.y_mm,
+                    width_mm=last.width_mm + node.width_mm,
+                )
+            else:
+                merged.append(node)
+
+        self.nodes = merged
+
     def find_position(
         self,
         width_mm: float,
@@ -75,5 +95,6 @@ class Skyline:
             )
 
         self.nodes.sort(key=lambda node: node.x_mm)
+        self._merge_adjacent_nodes()
 
         return position
