@@ -5,3 +5,4 @@ from dataclasses import dataclass
 class SkylinePlacement:
     x_mm: float
     y_mm: float
+    rotated: bool = False
