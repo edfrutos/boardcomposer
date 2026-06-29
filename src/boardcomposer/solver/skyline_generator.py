@@ -2,11 +2,24 @@ from boardcomposer.domain import AssemblySolution, BoardPlacement, Project, Solu
 from boardcomposer.solver.skyline.skyline import Skyline
 
 
-def generate_skyline_solution(project: Project) -> AssemblySolution:
-    max_width = project.constraints.max_width_mm or max(
+def _default_skyline_width(project: Project) -> float:
+    if project.constraints.max_width_mm is not None:
+        return project.constraints.max_width_mm
+
+    if project.constraints.allow_rotation:
+        return max(
+            (min(board.length_mm, board.width_mm) for board in project.boards),
+            default=0,
+        )
+
+    return max(
         (board.length_mm for board in project.boards),
         default=0,
     )
+
+
+def generate_skyline_solution(project: Project) -> AssemblySolution:
+    max_width = _default_skyline_width(project)
 
     skyline = Skyline(width_mm=max_width)
     placements: list[BoardPlacement] = []
