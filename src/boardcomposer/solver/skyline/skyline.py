@@ -13,6 +13,13 @@ class Skyline:
             )
         ]
 
+    @property
+    def height_mm(self) -> float:
+        if not self.nodes:
+            return 0.0
+
+        return max(node.y_mm for node in self.nodes)
+
     def _merge_adjacent_nodes(self) -> None:
         if not self.nodes:
             return
