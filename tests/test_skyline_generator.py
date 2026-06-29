@@ -15,3 +15,16 @@ def test_generate_skyline_solution():
 
     assert len(solution.placements) == 2
     assert solution.explanation.notes == ["skyline"]
+
+
+def test_skyline_generator_preserves_layout_name():
+    project = Project(
+        constraints=ProjectConstraints(
+            max_width_mm=3000,
+        )
+    )
+    project.add_board(Board(2000, 300, 20, "A"))
+
+    solution = generate_skyline_solution(project)
+
+    assert solution.explanation.notes == ["skyline"]
