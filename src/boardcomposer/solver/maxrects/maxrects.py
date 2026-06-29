@@ -30,7 +30,8 @@ class MaxRects:
         for rectangle in self.free_rectangles:
             if rectangle.fits(length_mm, width_mm):
                 candidates.append(
-                    MaxRectsPlacement(rectangle.x_mm, rectangle.y_mm, length_mm, width_mm)
+                    MaxRectsPlacement(
+                        rectangle.x_mm, rectangle.y_mm, length_mm, width_mm)
                 )
 
             if allow_rotation and rectangle.fits(width_mm, length_mm):
@@ -84,8 +85,40 @@ class MaxRects:
         self.free_rectangles = [
             rectangle for rectangle in new_rectangles if rectangle.area_mm2 > 0
         ]
+        self._prune_free_rectangles()
 
         return placement
+
+    def _prune_free_rectangles(self) -> None:
+        pruned = []
+
+        for index, rectangle in enumerate(self.free_rectangles):
+            contained = False
+
+            for other_index, other in enumerate(self.free_rectangles):
+                if index == other_index:
+                    continue
+
+                if self._contains(other, rectangle):
+                    contained = True
+                    break
+
+            if not contained:
+                pruned.append(rectangle)
+
+        self.free_rectangles = pruned
+
+    def _contains(
+        self,
+        outer: FreeRectangle,
+        inner: FreeRectangle,
+    ) -> bool:
+        return (
+            inner.x_mm >= outer.x_mm
+            and inner.y_mm >= outer.y_mm
+            and inner.x_mm + inner.length_mm <= outer.x_mm + outer.length_mm
+            and inner.y_mm + inner.width_mm <= outer.y_mm + outer.width_mm
+        )
 
     def _split_free_rectangle(
         self,
