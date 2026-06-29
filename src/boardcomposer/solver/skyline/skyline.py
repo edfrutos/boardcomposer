@@ -66,12 +66,14 @@ class Skyline:
 
         if remaining > 0:
             self.nodes.insert(
-                1,
+                node_index + 1,
                 SkylineNode(
                     x_mm=node.x_mm + width_mm,
                     y_mm=node.y_mm,
                     width_mm=remaining,
                 ),
             )
+
+        self.nodes.sort(key=lambda node: node.x_mm)
 
         return position
