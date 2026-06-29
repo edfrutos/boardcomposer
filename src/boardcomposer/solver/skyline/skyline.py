@@ -160,9 +160,9 @@ class Skyline:
         return min(
             valid,
             key=lambda candidate: (
+                candidate.y_mm + candidate.height_mm,
                 candidate.y_mm,
                 candidate.x_mm,
-                candidate.waste_mm,
             ),
         )
 
