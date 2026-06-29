@@ -20,3 +20,20 @@ def best_area_fit(
             candidate.x_mm,
         ),
     )
+
+
+def best_short_side_fit(
+    candidates: list[MaxRectsPlacement],
+) -> MaxRectsPlacement | None:
+    if not candidates:
+        return None
+
+    return min(
+        candidates,
+        key=lambda candidate: (
+            min(candidate.length_mm, candidate.width_mm),
+            max(candidate.length_mm, candidate.width_mm),
+            candidate.y_mm,
+            candidate.x_mm,
+        ),
+    )
