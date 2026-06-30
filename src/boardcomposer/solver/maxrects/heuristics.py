@@ -60,3 +60,20 @@ def best_long_side_fit(
             candidate.x_mm,
         ),
     )
+
+
+def best_bottom_left_fit(
+    candidates: list[MaxRectsPlacement],
+    waste_area: WasteAreaFn,
+) -> MaxRectsPlacement | None:
+    if not candidates:
+        return None
+
+    return min(
+        candidates,
+        key=lambda candidate: (
+            candidate.y_mm + candidate.width_mm,
+            candidate.x_mm,
+            waste_area(candidate),
+        ),
+    )
