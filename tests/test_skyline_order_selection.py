@@ -1,7 +1,7 @@
 
 from boardcomposer import Board, Project
 
-from boardcomposer.solver.skyline_generator import _candidate_orders
+from boardcomposer.solver.skyline_runner import _candidate_orders
 
 def test_candidate_orders():
 
