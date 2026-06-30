@@ -26,3 +26,10 @@ def longest_edge_first(boards: list[Board]) -> list[Board]:
         ),
         reverse=True,
     )
+
+
+BOARD_ORDERINGS = (
+    ("original", original_order),
+    ("largest_area", largest_area_first),
+    ("longest_edge", longest_edge_first),
+)

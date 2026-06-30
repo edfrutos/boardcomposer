@@ -39,3 +39,22 @@ def test_generate_maxrects_solution_records_selected_heuristic():
             "best_long_side_fit",
         ]
     )
+
+
+
+def test_generate_maxrects_solution_records_selected_ordering():
+    project = Project(
+        constraints=ProjectConstraints(
+            max_length_mm=3000,
+            max_width_mm=1000,
+        )
+    )
+    project.add_board(Board(2000, 300, 20, "A"))
+    project.add_board(Board(1000, 300, 20, "B"))
+
+    solution = generate_maxrects_solution(project)
+
+    assert any(
+        name in solution.explanation.notes
+        for name in ["original", "largest_area", "longest_edge"]
+    )
