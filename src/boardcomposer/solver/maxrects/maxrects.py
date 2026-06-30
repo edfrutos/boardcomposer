@@ -1,9 +1,13 @@
+"""MaxRects bin packing over a set of free rectangles."""
+
 from boardcomposer.solver.maxrects.free_rectangle import FreeRectangle
 from boardcomposer.solver.maxrects.heuristics import Heuristic, best_area_fit
 from boardcomposer.solver.maxrects.placement import MaxRectsPlacement
 
 
 class MaxRects:
+    """Place rectangles using the MaxRects free-space algorithm."""
+
     def __init__(
         self,
         length_mm: float = 3000,
@@ -21,6 +25,7 @@ class MaxRects:
         width_mm: float,
         allow_rotation: bool = False,
     ) -> MaxRectsPlacement | None:
+        """Return the best placement candidate without mutating free space."""
         candidates = []
 
         for rectangle in self.free_rectangles:
@@ -34,13 +39,16 @@ class MaxRects:
                     )
                 )
 
-            if allow_rotation and rectangle.fits(width_mm, length_mm):
+            if allow_rotation and rectangle.fits(
+                length_mm=width_mm,
+                width_mm=length_mm,
+            ):
                 candidates.append(
                     MaxRectsPlacement(
                         rectangle.x_mm,
                         rectangle.y_mm,
-                        width_mm,
-                        length_mm,
+                        length_mm=width_mm,
+                        width_mm=length_mm,
                         rotated=True,
                     )
                 )
@@ -56,6 +64,7 @@ class MaxRects:
         width_mm: float,
         allow_rotation: bool = False,
     ) -> MaxRectsPlacement | None:
+        """Place a rectangle and update the remaining free rectangles."""
         placement = self.find_best_rectangle(
             length_mm=length_mm,
             width_mm=width_mm,
