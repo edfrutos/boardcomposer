@@ -19,13 +19,12 @@ class MaxRects:
         self.heuristic = heuristic
         self.free_rectangles = [FreeRectangle(0, 0, length_mm, width_mm)]
 
-    def find_best_rectangle(
+    def find_candidates(
         self,
         length_mm: float,
         width_mm: float,
         allow_rotation: bool = False,
-    ) -> MaxRectsPlacement | None:
-        """Return the best placement candidate without mutating free space."""
+    ) -> list[MaxRectsPlacement]:
         candidates = []
 
         for rectangle in self.free_rectangles:
@@ -53,27 +52,30 @@ class MaxRects:
                     )
                 )
 
-        if self.heuristic is not None:
-            return self.heuristic(candidates, self._waste_area)
+        return candidates
 
-        return best_area_fit(candidates, self._waste_area)
-
-    def place(
+    def find_best_rectangle(
         self,
         length_mm: float,
         width_mm: float,
         allow_rotation: bool = False,
     ) -> MaxRectsPlacement | None:
-        """Place a rectangle and update the remaining free rectangles."""
-        placement = self.find_best_rectangle(
+        """Return the best placement candidate without mutating free space."""
+        candidates = self.find_candidates(
             length_mm=length_mm,
             width_mm=width_mm,
             allow_rotation=allow_rotation,
         )
 
-        if placement is None:
-            return None
+        if self.heuristic is not None:
+            return self.heuristic(candidates, self._waste_area)
 
+        return best_area_fit(candidates, self._waste_area)
+
+    def place_candidate(
+        self,
+        placement: MaxRectsPlacement,
+    ) -> MaxRectsPlacement:
         new_rectangles: list[FreeRectangle] = []
 
         for rectangle in self.free_rectangles:
@@ -93,6 +95,24 @@ class MaxRects:
         self._prune_free_rectangles()
 
         return placement
+
+    def place(
+        self,
+        length_mm: float,
+        width_mm: float,
+        allow_rotation: bool = False,
+    ) -> MaxRectsPlacement | None:
+        """Place a rectangle and update the remaining free rectangles."""
+        placement = self.find_best_rectangle(
+            length_mm=length_mm,
+            width_mm=width_mm,
+            allow_rotation=allow_rotation,
+        )
+
+        if placement is None:
+            return None
+
+        return self.place_candidate(placement)
 
     def _split_free_rectangle(
         self,
