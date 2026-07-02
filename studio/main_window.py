@@ -9,10 +9,10 @@ from PySide6.QtWidgets import (
     QTextEdit,
 )
 
-
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, services):
         super().__init__()
+        self.services = services
         self.setWindowTitle("BoardComposer Studio")
         self.resize(1400, 900)
 
