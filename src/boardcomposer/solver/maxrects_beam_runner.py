@@ -1,11 +1,10 @@
-from boardcomposer.domain import AssemblySolution, Board, Project, SolutionExplanation
-from boardcomposer.solver.maxrects.heuristics import Heuristic
-from boardcomposer.solver.maxrects.orderings import MAXRECTS_BOARD_ORDERINGS
-from boardcomposer.solver.maxrects_runner import iter_maxrects_solutions
-from boardcomposer.solver.search import search_best_solution
+from collections.abc import Iterator
 
+from boardcomposer.domain import AssemblySolution, Board, Project, SolutionExplanation
 from boardcomposer.solver.maxrects.beam import search_states
+from boardcomposer.solver.maxrects.heuristics import Heuristic
 from boardcomposer.solver.maxrects.maxrects import MaxRects
+from boardcomposer.solver.maxrects.orderings import MAXRECTS_BOARD_ORDERINGS
 from boardcomposer.solver.maxrects.scoring import score_state
 from boardcomposer.solver.maxrects.state import MaxRectsState
 from boardcomposer.solver.maxrects.strategies import MAXRECTS_HEURISTICS
@@ -55,25 +54,17 @@ def _beam_candidate(
     )
 
 
-def generate_best_maxrects_solution(project: Project) -> AssemblySolution:
-    return search_best_solution(iter_maxrects_solutions(project))
-
-
-def generate_beam_maxrects_solution(
+def iter_beam_maxrects_solutions(
     project: Project,
-    beam_width: int = 1,
-) -> AssemblySolution:
-    candidates = [
-        _beam_candidate(
-            project=project,
-            boards=ordering(project.boards),
-            ordering_name=ordering_name,
-            heuristic_name=heuristic_name,
-            heuristic=heuristic,
-            beam_width=beam_width,
-        )
-        for heuristic_name, heuristic in MAXRECTS_HEURISTICS
-        for ordering_name, ordering in MAXRECTS_BOARD_ORDERINGS
-    ]
-
-    return search_best_solution(candidates)
+    beam_width: int,
+) -> Iterator[AssemblySolution]:
+    for heuristic_name, heuristic in MAXRECTS_HEURISTICS:
+        for ordering_name, ordering in MAXRECTS_BOARD_ORDERINGS:
+            yield _beam_candidate(
+                project=project,
+                boards=ordering(project.boards),
+                ordering_name=ordering_name,
+                heuristic_name=heuristic_name,
+                heuristic=heuristic,
+                beam_width=beam_width,
+            )

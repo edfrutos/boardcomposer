@@ -1,4 +1,3 @@
-
 # ROADMAP - BoardComposer
 
 ## Fase 0 - Fundamentos
@@ -58,4 +57,3 @@
 - Editor visual.
 
 - Panel de criterios.
-

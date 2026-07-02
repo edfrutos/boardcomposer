@@ -37,9 +37,9 @@ def test_generate_maxrects_solution_records_selected_heuristic():
             "best_area_fit",
             "best_short_side_fit",
             "best_long_side_fit",
+            "best_bottom_left_fit",
         ]
     )
-
 
 
 def test_generate_maxrects_solution_records_selected_ordering():
