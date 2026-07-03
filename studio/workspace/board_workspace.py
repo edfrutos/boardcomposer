@@ -60,6 +60,21 @@ class BoardPieceItem(QGraphicsRectItem):
         label.setBrush(QColor("#1e3a8a"))
         label.setPos(24, 20)
 
+        self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemIsMovable, True)
+        self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemIsSelectable, True)
+        self.setFlag(
+            QGraphicsItem.GraphicsItemFlag.ItemSendsGeometryChanges, True)
+
+        def itemChange(self, change, value):
+            if change == QGraphicsItem.GraphicsItemChange.ItemPositionHasChanged:
+                if self.scene() and self.scene().views():
+                    self.scene().views()[0].piece_moved(
+                        self.piece_id,
+                        value.x(),
+                        value.y(),
+                    )
+            return super().itemChange(change, value)
+
 
 class BoardWorkspace(QGraphicsView):
     """Graphics workspace used to display boards and placements."""
@@ -148,6 +163,21 @@ class BoardWorkspace(QGraphicsView):
             self._scene.addItem(item)
             self._piece_items.append(item)
 
+    def select_piece(self, piece_id: str) -> None:
+        self._scene.clearSelection()
+
+        for item in self._piece_items:
+            is_selected = item.piece_id == piece_id
+            item.setSelected(is_selected)
+
+            if is_selected:
+                item.setBrush(QColor("#bfdbfe"))
+                item.setPen(QPen(QColor("#dc2626"), 10))
+                self.centerOn(item.sceneBoundingRect().center())
+            else:
+                item.setBrush(QColor("#dbeafe"))
+                item.setPen(QPen(QColor("#1d4ed8"), 3))
+
     def fit_board(self) -> None:
         if self._board_item is None:
             return
@@ -226,3 +256,21 @@ class BoardWorkspace(QGraphicsView):
         self.resetTransform()
         self.scale(self._camera.zoom, self._camera.zoom)
         self.centerOn(self._camera.center)
+
+    def piece_moved(self, piece_id: str, x: float, y: float):
+        project = self.services.projects.current_project
+
+        if project is None:
+            return
+
+        placement = project.placement_by_piece_id(piece_id)
+        if placement is not None:
+            placement.x_mm = x
+            placement.y_mm = y
+
+        self.services.selection.select_one(piece_id)
+        self.services.projects.save_project()
+
+        window = self.window()
+        if hasattr(window, "refresh_inspector_for_piece"):
+            window.refresh_inspector_for_piece(piece_id)
