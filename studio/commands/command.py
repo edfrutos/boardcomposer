@@ -1,15 +1,15 @@
-"""Command protocol for BoardComposer Studio."""
+"""Base command protocol for Studio undo/redo."""
 
 from typing import Protocol
 
 
 class Command(Protocol):
-    """Executable Studio command."""
+    """Undoable command."""
 
     name: str
 
-    def execute(self) -> None:
-        """Execute the command."""
+    def redo(self) -> None:
+        """Apply command."""
 
     def undo(self) -> None:
-        """Undo the command."""
+        """Revert command."""

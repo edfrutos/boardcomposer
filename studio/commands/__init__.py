@@ -1,4 +1,4 @@
-"""Command services for BoardComposer Studio."""
+"""Studio command system."""
 
 from studio.commands.command import Command
 from studio.commands.command_manager import CommandManager
