@@ -45,19 +45,22 @@ class MainWindow(QMainWindow):
         ):
             menus[name] = menu.addMenu(name)
 
-        new_action = QAction("Nuevo proyecto", self)
-        open_action = QAction("Abrir…", self)
-        save_action = QAction("Guardar", self)
-        exit_action = QAction("Salir", self)
+        self._actions = {}
 
-        menus["Archivo"].addAction(new_action)
-        menus["Archivo"].addSeparator()
-        menus["Archivo"].addAction(open_action)
-        menus["Archivo"].addAction(save_action)
-        menus["Archivo"].addSeparator()
-        menus["Archivo"].addAction(exit_action)
+        self._actions["new_project"] = QAction("Nuevo proyecto", self)
+        self._actions["open"] = QAction("Abrir…", self)
+        self._actions["save"] = QAction("Guardar", self)
+        self._actions["exit"] = QAction("Salir", self)
 
-        exit_action.triggered.connect(self.close)
+        menus["Archivo"].addAction(self._actions["new_project"])
+        menus["Archivo"].addSeparator()
+        menus["Archivo"].addAction(self._actions["open"])
+        menus["Archivo"].addAction(self._actions["save"])
+        menus["Archivo"].addSeparator()
+        menus["Archivo"].addAction(self._actions["exit"])
+
+        self._actions["exit"].triggered.connect(self.close)
+        self._actions["new_project"].triggered.connect(self._new_project)
 
     def _build_workspace(self):
         self.workspace = BoardWorkspace(self.services)
