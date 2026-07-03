@@ -251,6 +251,7 @@ class BoardWorkspace(QGraphicsView):
             event.accept()
             return
 
+        self.services.projects.mark_modified()
         super().mouseReleaseEvent(event)
 
     def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
@@ -287,3 +288,5 @@ class BoardWorkspace(QGraphicsView):
         window = self.window()
         if hasattr(window, "refresh_inspector_for_piece"):
             window.refresh_inspector_for_piece(piece_id)
+
+        self.viewport().update()
