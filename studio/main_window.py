@@ -9,6 +9,7 @@ from PySide6.QtWidgets import (
     QTextEdit,
 )
 
+
 class MainWindow(QMainWindow):
     def __init__(self, services):
         super().__init__()
@@ -39,7 +40,7 @@ class MainWindow(QMainWindow):
             menu.addMenu(name)
 
     def _build_workspace(self):
-        self.workspace = BoardWorkspace()
+        self.workspace = BoardWorkspace(self.services)
         self.setCentralWidget(self.workspace)
 
     def _build_panels(self):
@@ -57,7 +58,8 @@ class MainWindow(QMainWindow):
 
         inspector_dock = QDockWidget("Inspector", self)
         inspector_dock.setWidget(inspector)
-        self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, inspector_dock)
+        self.addDockWidget(
+            Qt.DockWidgetArea.RightDockWidgetArea, inspector_dock)
 
         console = QTextEdit()
         console.setReadOnly(True)
@@ -65,7 +67,8 @@ class MainWindow(QMainWindow):
 
         console_dock = QDockWidget("Timeline", self)
         console_dock.setWidget(console)
-        self.addDockWidget(Qt.DockWidgetArea.BottomDockWidgetArea, console_dock)
+        self.addDockWidget(
+            Qt.DockWidgetArea.BottomDockWidgetArea, console_dock)
 
     def _build_statusbar(self):
         status = QStatusBar(self)

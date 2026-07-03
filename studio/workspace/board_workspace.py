@@ -58,15 +58,17 @@ class BoardPieceItem(QGraphicsRectItem):
 class BoardWorkspace(QGraphicsView):
     """Graphics workspace used to display boards and placements."""
 
-    def __init__(self):
+    def __init__(self, services):
         super().__init__()
+        self.services = services
         self._scene = QGraphicsScene(self)
         self._camera = WorkspaceCamera(center=QPointF(1500, 500))
         self._panning = False
         self._last_pan_point = QPoint()
         self._board_item = None
         self._piece_items = []
-        self._project = self._create_demo_project()
+        demo_project = self._create_demo_project()
+        self.services.projects.new_project(demo_project)
         self._initial_fit_done = False
 
         self.setScene(self._scene)
@@ -116,8 +118,14 @@ class BoardWorkspace(QGraphicsView):
         self._camera.center = board.sceneBoundingRect().center()
 
     def _add_demo_pieces(self):
-        for placement in self._project.placements:
-            piece = self._project.piece_by_id(placement.piece_id)
+        project = self.services.projects.current_project
+
+        if project is None:
+            return
+
+        for placement in project.placements:
+            piece = project.piece_by_id(placement.piece_id)
+
             item = BoardPieceItem(
                 piece.piece_id,
                 placement.x_mm,
@@ -125,6 +133,7 @@ class BoardWorkspace(QGraphicsView):
                 piece.length_mm,
                 piece.width_mm,
             )
+
             self._scene.addItem(item)
             self._piece_items.append(item)
 
