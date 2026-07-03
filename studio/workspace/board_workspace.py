@@ -7,7 +7,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from PySide6.QtCore import QPoint, QPointF, QRectF, Qt
-from PySide6.QtGui import QColor, QFont, QPainter, QPen
+from PySide6.QtGui import QColor, QFont, QMouseEvent, QPainter, QPen, QWheelEvent
 from PySide6.QtWidgets import (
     QGraphicsItem,
     QGraphicsRectItem,
@@ -15,8 +15,6 @@ from PySide6.QtWidgets import (
     QGraphicsSimpleTextItem,
     QGraphicsView,
 )
-
-from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 
 
 @dataclass
@@ -38,8 +36,16 @@ class WorkspaceCamera:
 class BoardPieceItem(QGraphicsRectItem):
     """Interactive graphics item representing a board piece."""
 
-    def __init__(self, piece_id, x_mm, y_mm, length_mm, width_mm):
+    def __init__(
+        self,
+        piece_id: str,
+        x_mm: float,
+        y_mm: float,
+        length_mm: float,
+        width_mm: float,
+    ):
         super().__init__(0, 0, length_mm, width_mm)
+
         self.piece_id = piece_id
         self.setPos(x_mm, y_mm)
         self.setBrush(QColor("#dbeafe"))
@@ -60,15 +66,14 @@ class BoardWorkspace(QGraphicsView):
 
     def __init__(self, services):
         super().__init__()
+
         self.services = services
         self._scene = QGraphicsScene(self)
         self._camera = WorkspaceCamera(center=QPointF(1500, 500))
         self._panning = False
         self._last_pan_point = QPoint()
-        self._board_item = None
-        self._piece_items = []
-        demo_project = self._create_demo_project()
-        self.services.projects.new_project(demo_project)
+        self._board_item: QGraphicsRectItem | None = None
+        self._piece_items: list[BoardPieceItem] = []
         self._initial_fit_done = False
 
         self.setScene(self._scene)
@@ -79,21 +84,18 @@ class BoardWorkspace(QGraphicsView):
         self.setResizeAnchor(QGraphicsView.ViewportAnchor.NoAnchor)
         self.setCursor(Qt.CursorShape.OpenHandCursor)
 
-        self._build_scene()
-
-    def showEvent(self, event):
-        super().showEvent(event)
-        if not self._initial_fit_done:
-            self.fit_board()
-            self._initial_fit_done = True
-
-    def _build_scene(self):
+    def reload_project(self) -> None:
+        self._scene.clear()
+        self._piece_items.clear()
+        self._board_item = None
         self._scene.setSceneRect(QRectF(-5000, -5000, 13000, 11000))
+
         self._add_grid()
         self._add_board()
-        self._add_demo_pieces()
+        self._add_pieces()
+        self.fit_board()
 
-    def _add_grid(self):
+    def _add_grid(self) -> None:
         grid_pen = QPen(QColor("#e5e7eb"), 1)
         grid_size = 100
         scene_rect = self._scene.sceneRect()
@@ -109,15 +111,26 @@ class BoardWorkspace(QGraphicsView):
         for y_value in range(top, bottom + 1, grid_size):
             self._scene.addLine(left, y_value, right, y_value, grid_pen)
 
-    def _add_board(self):
-        board = QGraphicsRectItem(0, 0, 3000, 1000)
+    def _add_board(self) -> None:
+        project = self.services.projects.current_project
+
+        if project is None or not project.boards:
+            return
+
+        board_model = project.boards[0]
+        board = QGraphicsRectItem(
+            0,
+            0,
+            board_model.length_mm,
+            board_model.width_mm,
+        )
         board.setBrush(QColor("#f8fafc"))
         board.setPen(QPen(QColor("#111827"), 4))
         self._scene.addItem(board)
         self._board_item = board
         self._camera.center = board.sceneBoundingRect().center()
 
-    def _add_demo_pieces(self):
+    def _add_pieces(self) -> None:
         project = self.services.projects.current_project
 
         if project is None:
@@ -125,7 +138,6 @@ class BoardWorkspace(QGraphicsView):
 
         for placement in project.placements:
             piece = project.piece_by_id(placement.piece_id)
-
             item = BoardPieceItem(
                 piece.piece_id,
                 placement.x_mm,
@@ -133,33 +145,16 @@ class BoardWorkspace(QGraphicsView):
                 piece.length_mm,
                 piece.width_mm,
             )
-
             self._scene.addItem(item)
             self._piece_items.append(item)
 
-    def _create_demo_project(self):
-        return StudioProject(
-            project_id="PRJ-DEMO-001",
-            name="Proyecto demo",
-            boards=[StudioBoard("TAB-001", 3000, 1000)],
-            pieces=[
-                StudioPiece("P-001", 700, 300),
-                StudioPiece("P-002", 520, 360),
-                StudioPiece("P-003", 820, 240),
-            ],
-            placements=[
-                StudioPlacement("P-001", 120, 120),
-                StudioPlacement("P-002", 900, 120),
-                StudioPlacement("P-003", 1500, 120),
-            ],
-        )
-
-    def fit_board(self):
+    def fit_board(self) -> None:
         if self._board_item is None:
             return
 
         viewport_rect = self.viewport().rect()
         board_rect = self._board_item.sceneBoundingRect()
+
         if viewport_rect.width() <= 0 or viewport_rect.height() <= 0:
             return
 
@@ -169,29 +164,33 @@ class BoardWorkspace(QGraphicsView):
         self._camera.center = board_rect.center()
         self._apply_camera()
 
-    def wheelEvent(self, event):
+    def wheelEvent(self, event: QWheelEvent) -> None:
         mouse_scene_before = self.mapToScene(event.position().toPoint())
         factor = self._camera.zoom_factor(event.angleDelta().y())
         self._camera.zoom = self._camera.clamp_zoom(self._camera.zoom * factor)
         self._apply_camera()
+
         mouse_scene_after = self.mapToScene(event.position().toPoint())
         self._camera.center += mouse_scene_before - mouse_scene_after
         self._apply_camera()
         event.accept()
 
-    def mousePressEvent(self, event):
+    def mousePressEvent(self, event: QMouseEvent) -> None:
         clicked_item = self.itemAt(event.position().toPoint())
+
         if event.button() == Qt.MouseButton.RightButton or clicked_item is None:
             self._start_pan(event.position().toPoint())
             event.accept()
             return
+
         super().mousePressEvent(event)
 
-    def mouseMoveEvent(self, event):
+    def mouseMoveEvent(self, event: QMouseEvent) -> None:
         if self._panning:
             current_position = event.position().toPoint()
             delta = current_position - self._last_pan_point
             self._last_pan_point = current_position
+
             self._camera.center -= QPointF(
                 delta.x() / self._camera.zoom,
                 delta.y() / self._camera.zoom,
@@ -199,29 +198,31 @@ class BoardWorkspace(QGraphicsView):
             self._apply_camera()
             event.accept()
             return
+
         super().mouseMoveEvent(event)
 
-    def mouseReleaseEvent(self, event):
+    def mouseReleaseEvent(self, event: QMouseEvent) -> None:
         if self._panning:
             self._end_pan()
             event.accept()
             return
+
         super().mouseReleaseEvent(event)
 
-    def mouseDoubleClickEvent(self, event):
+    def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
         self.fit_board()
         event.accept()
 
-    def _start_pan(self, point):
+    def _start_pan(self, point: QPoint) -> None:
         self._panning = True
         self._last_pan_point = point
         self.setCursor(Qt.CursorShape.ClosedHandCursor)
 
-    def _end_pan(self):
+    def _end_pan(self) -> None:
         self._panning = False
         self.setCursor(Qt.CursorShape.OpenHandCursor)
 
-    def _apply_camera(self):
+    def _apply_camera(self) -> None:
         self.resetTransform()
         self.scale(self._camera.zoom, self._camera.zoom)
         self.centerOn(self._camera.center)
