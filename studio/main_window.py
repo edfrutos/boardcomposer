@@ -126,7 +126,7 @@ class MainWindow(QMainWindow):
         self.services.projects.new_project(project)
         self.workspace.reload_project()
         self._reload_explorer()
-        self.setWindowTitle(f"BoardComposer Studio — {project.name}")
+        self._update_window_title()
 
     def _reload_explorer(self):
         project = self.services.projects.current_project
@@ -205,6 +205,7 @@ class MainWindow(QMainWindow):
     def _new_project(self):
         self._load_demo_project()
         self.statusBar().showMessage("Nuevo proyecto creado", 3000)
+        self._update_window_title()
 
     def refresh_inspector_for_piece(self, piece_id: str):
         project = self.services.projects.current_project
@@ -224,3 +225,13 @@ class MainWindow(QMainWindow):
             f"Posición: {placement.x_mm:g}, {placement.y_mm:g} mm\n"
             f"Material: {piece.material}"
         )
+
+    def _update_window_title(self):
+        project = self.services.projects.current_project
+        marker = "● " if self.services.projects.is_modified else ""
+
+        if project is None:
+            self.setWindowTitle("BoardComposer Studio")
+            return
+
+        self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")

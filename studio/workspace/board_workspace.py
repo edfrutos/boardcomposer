@@ -252,6 +252,9 @@ class BoardWorkspace(QGraphicsView):
             return
 
         self.services.projects.mark_modified()
+        window = self.window()
+        if hasattr(window, "_update_window_title"):
+            window._update_window_title()
         super().mouseReleaseEvent(event)
 
     def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
