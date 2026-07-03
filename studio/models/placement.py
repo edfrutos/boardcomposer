@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 
 
-@dataclass(frozen=True)
+@dataclass
 class StudioPlacement:
     """Placement data for a piece inside a board."""
 

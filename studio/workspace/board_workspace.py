@@ -65,15 +65,29 @@ class BoardPieceItem(QGraphicsRectItem):
         self.setFlag(
             QGraphicsItem.GraphicsItemFlag.ItemSendsGeometryChanges, True)
 
-        def itemChange(self, change, value):
-            if change == QGraphicsItem.GraphicsItemChange.ItemPositionHasChanged:
-                if self.scene() and self.scene().views():
-                    self.scene().views()[0].piece_moved(
-                        self.piece_id,
-                        value.x(),
-                        value.y(),
-                    )
-            return super().itemChange(change, value)
+    def itemChange(self, change, value):
+        if change == QGraphicsItem.GraphicsItemChange.ItemPositionChange:
+            new_pos = value
+            rect = self.rect()
+
+            min_x = 0
+            min_y = 0
+            max_x = 3000 - rect.width()
+            max_y = 1000 - rect.height()
+
+            x = min(max(new_pos.x(), min_x), max_x)
+            y = min(max(new_pos.y(), min_y), max_y)
+
+            return QPointF(x, y)
+
+        if change == QGraphicsItem.GraphicsItemChange.ItemPositionHasChanged:
+            if self.scene() and self.scene().views():
+                self.scene().views()[0].piece_moved(
+                    self.piece_id,
+                    value.x(),
+                    value.y(),
+                )
+        return super().itemChange(change, value)
 
 
 class BoardWorkspace(QGraphicsView):
@@ -173,7 +187,7 @@ class BoardWorkspace(QGraphicsView):
             if is_selected:
                 item.setBrush(QColor("#bfdbfe"))
                 item.setPen(QPen(QColor("#dc2626"), 10))
-                self.centerOn(item.sceneBoundingRect().center())
+                # self.centerOn(item.sceneBoundingRect().center())
             else:
                 item.setBrush(QColor("#dbeafe"))
                 item.setPen(QPen(QColor("#1d4ed8"), 3))
@@ -269,7 +283,6 @@ class BoardWorkspace(QGraphicsView):
             placement.y_mm = y
 
         self.services.selection.select_one(piece_id)
-        self.services.projects.save_project()
 
         window = self.window()
         if hasattr(window, "refresh_inspector_for_piece"):
