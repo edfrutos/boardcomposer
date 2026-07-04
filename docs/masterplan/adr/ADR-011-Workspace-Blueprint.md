@@ -127,8 +127,8 @@ Toda decisión sobre si una pieza cabe, colisiona, puede moverse o puede rotarse
 ## Plan de aplicación
 
 1. Consolidar PlacementValidator.
-2. Eliminar collision.py si queda vacío.
-3. Eliminar constraints.py si queda vacío.
+2. Eliminar `collision.py` una vez absorbido por `PlacementValidator`.
+3. Eliminar `constraints.py` una vez absorbido por `PlacementValidator`.
 4. Hacer que rotación consulte PlacementValidator.
 5. Hacer que movimiento consulte PlacementValidator.
 6. Mantener MainWindow libre de geometría.

@@ -12,11 +12,11 @@ from PySide6.QtWidgets import (
 from studio.commands import MovePieceCommand
 from studio.workspace.board_piece_item import BoardPieceItem
 from studio.workspace.drag_controller import DragController
-from studio.workspace.selection import apply_selection
 from studio.workspace.grid import add_grid
 from studio.workspace.board_item import create_board_item
 from studio.workspace.piece_factory import create_piece_item
 from studio.workspace.placement_validator import PlacementValidator
+from studio.workspace.selection_controller import SelectionController
 
 
 class BoardWorkspace(QGraphicsView):
@@ -31,6 +31,7 @@ class BoardWorkspace(QGraphicsView):
         self._last_pan_point = QPoint()
         self._board_item: QGraphicsRectItem | None = None
         self._piece_items: list[BoardPieceItem] = []
+        self.selection = SelectionController(services)
         self._drag = DragController()
         self._drag_start: tuple[str, float, float] | None = None
 
@@ -76,6 +77,8 @@ class BoardWorkspace(QGraphicsView):
             item = create_piece_item(piece, placement)
             self._scene.addItem(item)
             self._piece_items.append(item)
+            self.selection.bind_items(self._piece_items)
+            self.selection.bind_items(self._piece_items)
 
     def constrain_piece_position(self, item: BoardPieceItem, new_pos: QPointF) -> QPointF:
         if self._validator is not None and self._validator.collides(item):
@@ -84,9 +87,8 @@ class BoardWorkspace(QGraphicsView):
         return self._validator.constrain_position(item, new_pos)
 
     def select_piece(self, piece_id: str) -> None:
-        self._scene.clearSelection()
-        for item in self._piece_items:
-            apply_selection(item, item.piece_id == piece_id)
+        self.selection.select(piece_id)
+        self.selection.sync_inspector(self.window())
 
     def fit_board(self) -> None:
         if self._board_item is None:
@@ -248,10 +250,9 @@ class BoardWorkspace(QGraphicsView):
             placement.x_mm = x
             placement.y_mm = y
 
-        self.services.selection.select_one(piece_id)
+        self.selection.select(piece_id)
 
         window = self.window()
-        if hasattr(window, "refresh_inspector_for_piece"):
-            window.refresh_inspector_for_piece(piece_id)
+        self.selection.sync_inspector(window)
 
         self.viewport().update()

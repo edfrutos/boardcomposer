@@ -47,6 +47,11 @@ Crear:
 3. No reglas de colocación fuera de PlacementValidator.
 4. No comandos dependientes de Qt.
 5. Ruff limpio antes de cada commit.
-6. Commit al cerEOF
 6. Commit al cerrar cada bloque.
-
+7. Antes de cada commit:
+   - ejecutar `ruff check`;
+   - ejecutar `ruff check --fix`;
+   - volver a ejecutar `ruff check`;
+   - ejecutar la aplicación;
+   - comprobar manualmente la funcionalidad afectada;
+   - revisar `git status`..
