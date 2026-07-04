@@ -32,3 +32,9 @@ class CommandManager:
         command = self.redo_stack.pop()
         command.redo()
         self.undo_stack.append(command)
+
+    def can_undo(self) -> bool:
+        return bool(self.undo_stack)
+
+    def can_redo(self) -> bool:
+        return bool(self.redo_stack)

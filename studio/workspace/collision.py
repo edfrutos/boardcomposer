@@ -1,8 +1,5 @@
-from studio.workspace.board_piece_item import BoardPieceItem
+from studio.workspace.placement_validator import collides_with_other_piece
 
 
-def collides(item: BoardPieceItem) -> bool:
-    for other in item.collidingItems():
-        if isinstance(other, BoardPieceItem):
-            return True
-    return False
+def collides(item):
+    return collides_with_other_piece(item)

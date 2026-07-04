@@ -11,3 +11,4 @@ class StudioPlacement:
     x_mm: float
     y_mm: float
     rotated: bool = False
+    rotation: int = 0

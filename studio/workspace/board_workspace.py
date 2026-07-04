@@ -9,9 +9,6 @@ from PySide6.QtWidgets import (
     QGraphicsScene,
     QGraphicsView,
 )
-
-from studio.workspace.constraints import constrain_to_board
-from studio.workspace.collision import collides
 from studio.commands import MovePieceCommand
 from studio.workspace.board_piece_item import BoardPieceItem
 from studio.workspace.drag_controller import DragController
@@ -19,11 +16,13 @@ from studio.workspace.selection import apply_selection
 from studio.workspace.grid import add_grid
 from studio.workspace.board_item import create_board_item
 from studio.workspace.piece_factory import create_piece_item
+from studio.workspace.placement_validator import PlacementValidator
 
 
 class BoardWorkspace(QGraphicsView):
     def __init__(self, services):
         super().__init__()
+        self._validator = None
 
         self.services = services
         self._scene = QGraphicsScene(self)
@@ -64,6 +63,7 @@ class BoardWorkspace(QGraphicsView):
 
         self._scene.addItem(board)
         self._board_item = board
+        self._validator = PlacementValidator(board.sceneBoundingRect())
         self._camera.center = board.sceneBoundingRect().center()
 
     def _add_pieces(self) -> None:
@@ -78,14 +78,10 @@ class BoardWorkspace(QGraphicsView):
             self._piece_items.append(item)
 
     def constrain_piece_position(self, item: BoardPieceItem, new_pos: QPointF) -> QPointF:
-        if self._board_item is None:
+        if self._validator is not None and self._validator.collides(item):
             return new_pos
 
-        return constrain_to_board(
-            self._board_item,
-            item,
-            new_pos,
-        )
+        return self._validator.constrain_position(item, new_pos)
 
     def select_piece(self, piece_id: str) -> None:
         self._scene.clearSelection()
@@ -157,7 +153,7 @@ class BoardWorkspace(QGraphicsView):
         if len(selected) == 1 and isinstance(selected[0], BoardPieceItem):
             item = selected[0]
 
-            if collides(item):
+            if self._validator.collides(item):
                 item.set_invalid()
             else:
                 item.set_valid()
@@ -186,7 +182,7 @@ class BoardWorkspace(QGraphicsView):
         if item is None:
             return
 
-        if collides(item):
+        if self._validator.collides(item):
             item.setPos(old_x, old_y)
             item.set_normal()
             return
@@ -208,13 +204,19 @@ class BoardWorkspace(QGraphicsView):
             placement.x_mm,
             placement.y_mm,
         )
+
         self.services.commands.execute(command)
         self.services.projects.mark_modified()
 
         window = self.window()
+
+        if hasattr(window, "_update_undo_redo"):
+            window._update_undo_redo()
+
         if hasattr(window, "_update_window_title"):
             window._update_window_title()
-            item.set_normal()
+
+        item.set_normal()
 
     def _piece_item_by_id(self, piece_id: str) -> BoardPieceItem | None:
         for item in self._piece_items:

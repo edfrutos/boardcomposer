@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
 
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.workspace.board_workspace import BoardWorkspace
+from studio.commands import RotatePieceCommand
 
 
 class MainWindow(QMainWindow):
@@ -53,6 +54,22 @@ class MainWindow(QMainWindow):
         self._actions["open"] = QAction("Abrir…", self)
         self._actions["save"] = QAction("Guardar", self)
         self._actions["exit"] = QAction("Salir", self)
+        self._actions["undo"] = QAction("Deshacer", self)
+        self._actions["redo"] = QAction("Rehacer", self)
+        self._actions["undo"].setShortcut("Ctrl+Z")
+        self._actions["redo"].setShortcut("Ctrl+Shift+Z")
+
+        menus["Editar"].addAction(self._actions["undo"])
+        menus["Editar"].addAction(self._actions["redo"])
+        self._actions["rotate_piece"] = QAction("Rotar 90°", self)
+        self._actions["rotate_piece"].setShortcut("R")
+        menus["Editar"].addSeparator()
+        menus["Editar"].addAction(self._actions["rotate_piece"])
+        self._actions["rotate_piece"].triggered.connect(
+            self._rotate_selected_piece)
+
+        self._actions["undo"].triggered.connect(self._undo)
+        self._actions["redo"].triggered.connect(self._redo)
 
         menus["Archivo"].addAction(self._actions["new_project"])
         menus["Archivo"].addSeparator()
@@ -235,3 +252,57 @@ class MainWindow(QMainWindow):
             return
 
         self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
+
+    def _update_undo_redo(self):
+        self._actions["undo"].setEnabled(
+            self.services.commands.can_undo()
+        )
+        self._actions["redo"].setEnabled(
+            self.services.commands.can_redo()
+        )
+
+        self._actions["undo"].setShortcut("Ctrl+Z")
+        self._actions["redo"].setShortcut("Ctrl+Shift+Z")
+
+    def _undo(self):
+        self.services.commands.undo()
+        self.workspace.reload_project()
+        self._update_undo_redo()
+
+    def _redo(self):
+        self.services.commands.redo()
+        self.workspace.reload_project()
+        self._update_undo_redo()
+
+    def _rotate_selected_piece(self):
+        selected = self.workspace.scene().selectedItems()
+        if not selected:
+            return
+
+        piece_id = selected[0].piece_id
+        project = self.services.projects.current_project
+
+        if project is None or piece_id is None:
+            return
+
+        placement = project.placement_by_piece_id(piece_id)
+        if placement is None:
+            return
+
+        old_rotation = placement.rotation
+        new_rotation = 90 if old_rotation == 0 else 0
+
+        command = RotatePieceCommand(
+            self.services,
+            piece_id,
+            old_rotation,
+            new_rotation,
+        )
+        self.services.commands.execute(command)
+
+        self.workspace.reload_project()
+        self.workspace.select_piece(piece_id)
+        self.refresh_inspector_for_piece(piece_id)
+        self.services.projects.mark_modified()
+        self._update_window_title()
+        self._update_undo_redo()

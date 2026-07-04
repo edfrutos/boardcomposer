@@ -17,7 +17,19 @@ class BoardPieceItem(QGraphicsRectItem):
     ):
         super().__init__(0, 0, length_mm, width_mm)
 
+        # self.set_rotation(0)
         self.piece_id = piece_id
+
+        def set_rotation(self, angle: int) -> None:
+            angle = angle % 180
+
+            if angle == 90:
+                self.setRect(0, 0, self.width_mm, self.length_mm)
+            else:
+                self.setRect(0, 0, self.length_mm, self.width_mm)
+
+            self.setTransformOriginPoint(self.rect().center())
+            self.setRotation(0)
 
         self.setPos(x_mm, y_mm)
 
@@ -69,3 +81,7 @@ class BoardPieceItem(QGraphicsRectItem):
         else:
             self.setBrush(QColor("#dbeafe"))
             self.setPen(QPen(QColor("#1d4ed8"), 3))
+
+    def set_rotation(self, angle: int) -> None:
+        self.setTransformOriginPoint(self.rect().center())
+        self.setRotation(angle)
