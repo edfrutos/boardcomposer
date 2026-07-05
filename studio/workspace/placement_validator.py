@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from PySide6.QtCore import QRectF
 from PySide6 import QtCore
 
 from studio.workspace.board_piece_item import BoardPieceItem
@@ -37,6 +38,14 @@ class PlacementValidator:
 
     def can_place(self, item: BoardPieceItem) -> bool:
         return (
-            self.board_rect.contains(item.sceneBoundingRect())
+            self.board_rect.contains(self.item_logical_rect(item))
             and not self.collides(item)
+        )
+
+    def item_logical_rect(self, item: BoardPieceItem) -> QRectF:
+        return QRectF(
+            item.pos().x(),
+            item.pos().y(),
+            item.rect().width(),
+            item.rect().height(),
         )

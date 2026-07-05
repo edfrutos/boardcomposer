@@ -14,6 +14,7 @@ from PySide6.QtWidgets import (
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.workspace.board_workspace import BoardWorkspace
 from studio.commands import RotatePieceCommand
+from studio.commands import DeletePieceCommand
 
 
 class MainWindow(QMainWindow):
@@ -65,6 +66,11 @@ class MainWindow(QMainWindow):
         self._actions["rotate_piece"].setShortcut("R")
         menus["Editar"].addSeparator()
         menus["Editar"].addAction(self._actions["rotate_piece"])
+        self._actions["delete_piece"] = QAction("Eliminar pieza", self)
+        self._actions["delete_piece"].setShortcut("Backspace")
+        menus["Editar"].addAction(self._actions["delete_piece"])
+        self._actions["delete_piece"].triggered.connect(
+            self._delete_selected_piece)
         self._actions["rotate_piece"].triggered.connect(
             self._rotate_selected_piece)
 
@@ -303,6 +309,22 @@ class MainWindow(QMainWindow):
         self.workspace.reload_project()
         self.workspace.select_piece(piece_id)
         self.refresh_inspector_for_piece(piece_id)
+        self.services.projects.mark_modified()
+        self._update_window_title()
+        self._update_undo_redo()
+
+    def _delete_selected_piece(self):
+        piece_id = self.workspace.selection.current()
+        if piece_id is None:
+            return
+
+        command = DeletePieceCommand(self.services, piece_id)
+        self.services.commands.execute(command)
+
+        self.workspace.reload_project()
+        self.workspace.selection.clear()
+        self.workspace.selection.sync_inspector(self)
+
         self.services.projects.mark_modified()
         self._update_window_title()
         self._update_undo_redo()

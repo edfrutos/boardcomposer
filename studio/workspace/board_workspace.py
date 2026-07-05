@@ -64,7 +64,15 @@ class BoardWorkspace(QGraphicsView):
 
         self._scene.addItem(board)
         self._board_item = board
-        self._validator = PlacementValidator(board.sceneBoundingRect())
+        self._validator = PlacementValidator(
+            QRectF(
+                0,
+                0,
+                board_model.length_mm,
+                board_model.width_mm,
+            )
+        )
+
         self._camera.center = board.sceneBoundingRect().center()
 
     def _add_pieces(self) -> None:
@@ -81,7 +89,7 @@ class BoardWorkspace(QGraphicsView):
             self.selection.bind_items(self._piece_items)
 
     def constrain_piece_position(self, item: BoardPieceItem, new_pos: QPointF) -> QPointF:
-        if self._validator is not None and self._validator.collides(item):
+        if self._validator is None:
             return new_pos
 
         return self._validator.constrain_position(item, new_pos)

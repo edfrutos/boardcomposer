@@ -1,9 +1,5 @@
 from PySide6.QtGui import QColor, QFont, QPen
-from PySide6.QtWidgets import (
-    QGraphicsItem,
-    QGraphicsRectItem,
-    QGraphicsSimpleTextItem,
-)
+from PySide6.QtWidgets import QGraphicsItem, QGraphicsRectItem, QGraphicsSimpleTextItem
 
 
 class BoardPieceItem(QGraphicsRectItem):
@@ -17,19 +13,9 @@ class BoardPieceItem(QGraphicsRectItem):
     ):
         super().__init__(0, 0, length_mm, width_mm)
 
-        # self.set_rotation(0)
         self.piece_id = piece_id
-
-        def set_rotation(self, angle: int) -> None:
-            angle = angle % 180
-
-            if angle == 90:
-                self.setRect(0, 0, self.width_mm, self.length_mm)
-            else:
-                self.setRect(0, 0, self.length_mm, self.width_mm)
-
-            self.setTransformOriginPoint(self.rect().center())
-            self.setRotation(0)
+        self.length_mm = length_mm
+        self.width_mm = width_mm
 
         self.setPos(x_mm, y_mm)
 
@@ -49,15 +35,23 @@ class BoardPieceItem(QGraphicsRectItem):
 
     def itemChange(self, change, value):
         if change == QGraphicsItem.GraphicsItemChange.ItemPositionChange:
-            workspace = self.scene().views()[0] if self.scene(
-            ) and self.scene().views() else None
-            if workspace:
+            workspace = (
+                self.scene().views()[0]
+                if self.scene() and self.scene().views()
+                else None
+            )
+
+            if workspace is not None:
                 return workspace.constrain_piece_position(self, value)
 
         if change == QGraphicsItem.GraphicsItemChange.ItemPositionHasChanged:
-            workspace = self.scene().views()[0] if self.scene(
-            ) and self.scene().views() else None
-            if workspace:
+            workspace = (
+                self.scene().views()[0]
+                if self.scene() and self.scene().views()
+                else None
+            )
+
+            if workspace is not None:
                 workspace.piece_moved(
                     self.piece_id,
                     value.x(),
@@ -83,5 +77,12 @@ class BoardPieceItem(QGraphicsRectItem):
             self.setPen(QPen(QColor("#1d4ed8"), 3))
 
     def set_rotation(self, angle: int) -> None:
+        angle = angle % 180
+
+        if angle == 90:
+            self.setRect(0, 0, self.width_mm, self.length_mm)
+        else:
+            self.setRect(0, 0, self.length_mm, self.width_mm)
+
         self.setTransformOriginPoint(self.rect().center())
-        self.setRotation(angle)
+        self.setRotation(0)
