@@ -53,7 +53,7 @@ def render_svg(solution) -> str:
 
     return f"""
     <svg viewBox="0 0 {width} {height}" width="100%" style="background:#fafafa;border:1px solid #999">
-        {''.join(rects)}
+        {"".join(rects)}
     </svg>
     """
 
@@ -76,7 +76,10 @@ def index():
     solutions = [
         ("Skyline", generate_best_skyline_solution(project)),
         ("MaxRects clásico", generate_best_maxrects_solution(project)),
-        ("MaxRects Beam width=4", generate_beam_maxrects_solution(project, beam_width=4)),
+        (
+            "MaxRects Beam width=4",
+            generate_beam_maxrects_solution(project, beam_width=4),
+        ),
     ]
 
     body = "\n".join(render_solution(title, solution) for title, solution in solutions)

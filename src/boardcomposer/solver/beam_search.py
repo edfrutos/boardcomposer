@@ -21,11 +21,7 @@ def beam_search(
     beam = list(initial)
 
     for _ in range(config.depth):
-        candidates = [
-            next_state
-            for state in beam
-            for next_state in expand(state)
-        ]
+        candidates = [next_state for state in beam for next_state in expand(state)]
 
         if not candidates:
             break

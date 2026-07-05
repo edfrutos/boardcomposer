@@ -56,9 +56,11 @@ solutions = [
     ("MaxRects Beam width=4", generate_beam_maxrects_solution(project, beam_width=4)),
 ]
 
-html = "<html><body style='font-family:system-ui;padding:24px;background:#f3f4f6'>" + "\n<hr>\n".join(
-    svg(solution, title) for title, solution in solutions
-) + "</body></html>"
+html = (
+    "<html><body style='font-family:system-ui;padding:24px;background:#f3f4f6'>"
+    + "\n<hr>\n".join(svg(solution, title) for title, solution in solutions)
+    + "</body></html>"
+)
 
 Path("out").mkdir(exist_ok=True)
 Path("out/demo.html").write_text(html, encoding="utf-8")

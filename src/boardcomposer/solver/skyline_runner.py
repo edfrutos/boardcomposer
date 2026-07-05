@@ -62,12 +62,8 @@ def _generate_for_order(
                 board_id=board.id or f"board-{index + 1}",
                 x_mm=position.x_mm,
                 y_mm=position.y_mm,
-                length_mm=(
-                    board.width_mm if position.rotated else board.length_mm
-                ),
-                width_mm=(
-                    board.length_mm if position.rotated else board.width_mm
-                ),
+                length_mm=(board.width_mm if position.rotated else board.length_mm),
+                width_mm=(board.length_mm if position.rotated else board.width_mm),
                 rotated=position.rotated,
             )
         )

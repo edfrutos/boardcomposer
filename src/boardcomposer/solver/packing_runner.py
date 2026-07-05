@@ -17,8 +17,7 @@ class PackingAlgorithm(Protocol):
         length_mm: float,
         width_mm: float,
         allow_rotation: bool = False,
-    ) -> PlacementLike | None:
-        ...
+    ) -> PlacementLike | None: ...
 
 
 def to_board_placement(

@@ -24,13 +24,13 @@ def free_space_generator(project: Project) -> list[AssemblySolution]:
     return [generate_free_space_solution(project)]
 
 
-
 def skyline_generator(project: Project) -> list[AssemblySolution]:
     return [generate_skyline_solution(project)]
 
 
 def maxrects_generator(project: Project) -> list[AssemblySolution]:
     return [generate_maxrects_solution(project)]
+
 
 GENERATOR_REGISTRY: dict[str, LayoutGenerator] = {
     "horizontal": horizontal_generator,

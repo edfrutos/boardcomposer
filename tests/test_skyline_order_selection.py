@@ -1,7 +1,7 @@
-
 from boardcomposer import Board, Project
 
 from boardcomposer.solver.skyline_runner import _candidate_orders
+
 
 def test_candidate_orders():
 
@@ -14,4 +14,3 @@ def test_candidate_orders():
     names = [name for name, _ in _candidate_orders(project)]
 
     assert names == ["original", "largest_area", "longest_edge"]
-

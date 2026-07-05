@@ -69,10 +69,8 @@ class MainWindow(QMainWindow):
         self._actions["delete_piece"] = QAction("Eliminar pieza", self)
         self._actions["delete_piece"].setShortcut("Backspace")
         menus["Editar"].addAction(self._actions["delete_piece"])
-        self._actions["delete_piece"].triggered.connect(
-            self._delete_selected_piece)
-        self._actions["rotate_piece"].triggered.connect(
-            self._rotate_selected_piece)
+        self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
+        self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
 
         self._actions["undo"].triggered.connect(self._undo)
         self._actions["redo"].triggered.connect(self._redo)
@@ -94,9 +92,7 @@ class MainWindow(QMainWindow):
     def _build_panels(self):
         self.explorer = QTreeWidget()
         self.explorer.setHeaderHidden(True)
-        self.explorer.itemSelectionChanged.connect(
-            self._on_explorer_selection_changed
-        )
+        self.explorer.itemSelectionChanged.connect(self._on_explorer_selection_changed)
 
         explorer_dock = QDockWidget("Explorer", self)
         explorer_dock.setWidget(self.explorer)
@@ -167,16 +163,14 @@ class MainWindow(QMainWindow):
             item = QTreeWidgetItem(
                 [f"{board.board_id} — {board.length_mm:g} x {board.width_mm:g} mm"]
             )
-            item.setData(0, Qt.ItemDataRole.UserRole,
-                         f"board:{board.board_id}")
+            item.setData(0, Qt.ItemDataRole.UserRole, f"board:{board.board_id}")
             boards_root.addChild(item)
 
         for piece in project.pieces:
             item = QTreeWidgetItem(
                 [f"{piece.piece_id} — {piece.length_mm:g} x {piece.width_mm:g} mm"]
             )
-            item.setData(0, Qt.ItemDataRole.UserRole,
-                         f"piece:{piece.piece_id}")
+            item.setData(0, Qt.ItemDataRole.UserRole, f"piece:{piece.piece_id}")
             pieces_root.addChild(item)
 
         root.addChild(boards_root)
@@ -237,7 +231,8 @@ class MainWindow(QMainWindow):
 
         piece = project.piece_by_id(piece_id)
         placement = next(
-            placement for placement in project.placements
+            placement
+            for placement in project.placements
             if placement.piece_id == piece_id
         )
 
@@ -260,12 +255,8 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
 
     def _update_undo_redo(self):
-        self._actions["undo"].setEnabled(
-            self.services.commands.can_undo()
-        )
-        self._actions["redo"].setEnabled(
-            self.services.commands.can_redo()
-        )
+        self._actions["undo"].setEnabled(self.services.commands.can_undo())
+        self._actions["redo"].setEnabled(self.services.commands.can_redo())
 
         self._actions["undo"].setShortcut("Ctrl+Z")
         self._actions["redo"].setShortcut("Ctrl+Shift+Z")

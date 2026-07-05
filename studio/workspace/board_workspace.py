@@ -88,7 +88,9 @@ class BoardWorkspace(QGraphicsView):
             self.selection.bind_items(self._piece_items)
             self.selection.bind_items(self._piece_items)
 
-    def constrain_piece_position(self, item: BoardPieceItem, new_pos: QPointF) -> QPointF:
+    def constrain_piece_position(
+        self, item: BoardPieceItem, new_pos: QPointF
+    ) -> QPointF:
         if self._validator is None:
             return new_pos
 
@@ -198,8 +200,7 @@ class BoardWorkspace(QGraphicsView):
             return
 
         project = self.services.projects.current_project
-        placement = project.placement_by_piece_id(
-            piece_id) if project else None
+        placement = project.placement_by_piece_id(piece_id) if project else None
         if placement is None:
             return
 

@@ -19,9 +19,7 @@ def test_material_utilization():
 
 
 def test_compactness():
-    solution = AssemblySolution(
-        placements=[BoardPlacement("A", 0, 0, 100, 50)]
-    )
+    solution = AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
 
     assert compactness(solution) == 0.5
 
@@ -38,8 +36,6 @@ def test_rotation_ratio():
 
 
 def test_placed_board_ratio():
-    solution = AssemblySolution(
-        placements=[BoardPlacement("A", 0, 0, 100, 50)]
-    )
+    solution = AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
 
     assert placed_board_ratio(solution, total_boards=2) == 0.5

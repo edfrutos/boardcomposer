@@ -83,9 +83,7 @@ class MaxRects:
                 new_rectangles.append(rectangle)
                 continue
 
-            new_rectangles.extend(
-                self._split_free_rectangle(rectangle, placement)
-            )
+            new_rectangles.extend(self._split_free_rectangle(rectangle, placement))
 
         self.free_rectangles = [
             rectangle for rectangle in new_rectangles if rectangle.area_mm2 > 0
@@ -179,17 +177,13 @@ class MaxRects:
 
                 for fragment in fragments:
                     if self._intersect(fragment, other):
-                        next_fragments.extend(
-                            self._split_overlap(fragment, other)
-                        )
+                        next_fragments.extend(self._split_overlap(fragment, other))
                     else:
                         next_fragments.append(fragment)
 
                 fragments = next_fragments
 
-            resolved.extend(
-                fragment for fragment in fragments if fragment.area_mm2 > 0
-            )
+            resolved.extend(fragment for fragment in fragments if fragment.area_mm2 > 0)
 
         self.free_rectangles = resolved
 
@@ -312,8 +306,7 @@ class MaxRects:
         container = next(
             rectangle
             for rectangle in self.free_rectangles
-            if rectangle.x_mm == placement.x_mm
-            and rectangle.y_mm == placement.y_mm
+            if rectangle.x_mm == placement.x_mm and rectangle.y_mm == placement.y_mm
         )
 
         return container.area_mm2 - (placement.length_mm * placement.width_mm)

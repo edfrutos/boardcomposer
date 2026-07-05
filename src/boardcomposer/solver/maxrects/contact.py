@@ -9,16 +9,22 @@ def contact_score(
     edge_weight: float = 1.0,
     board_weight: float = 1.0,
 ) -> float:
-    score = _contact_with_edges(
-        placement,
-        board_length_mm,
-        board_width_mm,
-    ) * edge_weight
+    score = (
+        _contact_with_edges(
+            placement,
+            board_length_mm,
+            board_width_mm,
+        )
+        * edge_weight
+    )
 
-    score += _contact_with_placements(
-        placement,
-        placed,
-    ) * board_weight
+    score += (
+        _contact_with_placements(
+            placement,
+            placed,
+        )
+        * board_weight
+    )
 
     return score
 
@@ -49,10 +55,7 @@ def _contact_with_placements(
     placement: MaxRectsPlacement,
     placed: list[MaxRectsPlacement],
 ) -> float:
-    return sum(
-        _shared_edge(placement, other)
-        for other in placed
-    )
+    return sum(_shared_edge(placement, other) for other in placed)
 
 
 def _shared_edge(

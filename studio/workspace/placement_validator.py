@@ -53,15 +53,10 @@ class PlacementValidator:
     def piece_rect(self, item: BoardPieceItem) -> QRectF:
 
         return QRectF(
-
             item.pos().x(),
-
             item.pos().y(),
-
             item.rect().width(),
-
             item.rect().height(),
-
         )
 
     def overlaps(self, first: QRectF, second: QRectF) -> bool:
@@ -101,7 +96,6 @@ class PlacementValidator:
         return True
 
     def can_place(self, item: BoardPieceItem) -> bool:
-        return (
-            self.board_rect.contains(self.piece_rect(item))
-            and not self.collides(item)
+        return self.board_rect.contains(self.piece_rect(item)) and not self.collides(
+            item
         )

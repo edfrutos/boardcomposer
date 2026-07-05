@@ -70,9 +70,7 @@ class Skyline:
                 )
 
             if node_end > x_end:
-                updated_nodes.append(
-                    SkylineNode(x_end, node.y_mm, node_end - x_end)
-                )
+                updated_nodes.append(SkylineNode(x_end, node.y_mm, node_end - x_end))
 
         updated_nodes.append(
             SkylineNode(
