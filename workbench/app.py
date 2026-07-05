@@ -1,4 +1,3 @@
-from pathlib import Path
 
 from flask import Flask
 
@@ -82,7 +81,8 @@ def index():
         ),
     ]
 
-    body = "\n".join(render_solution(title, solution) for title, solution in solutions)
+    body = "\n".join(render_solution(title, solution)
+                     for title, solution in solutions)
 
     return f"""
     <!doctype html>

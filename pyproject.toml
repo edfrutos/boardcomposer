@@ -1,3 +1,19 @@
+[project]
+name = "boardcomposer"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "flask",
+    "pyside6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+    "pylint",
+]
+
 [tool.ruff]
 line-length = 88
 target-version = "py313"
