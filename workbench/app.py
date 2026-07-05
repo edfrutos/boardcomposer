@@ -1,4 +1,3 @@
-
 from flask import Flask
 
 from boardcomposer import Board, Project, ProjectConstraints
@@ -81,8 +80,7 @@ def index():
         ),
     ]
 
-    body = "\n".join(render_solution(title, solution)
-                     for title, solution in solutions)
+    body = "\n".join(render_solution(title, solution) for title, solution in solutions)
 
     return f"""
     <!doctype html>
