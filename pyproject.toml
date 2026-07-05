@@ -1,20 +1,32 @@
 [project]
 name = "boardcomposer"
 version = "0.1.0"
-description = "BoardComposer"
-requires-python = ">=3.13,<3.14"
-
-dependencies = []
+requires-python = ">=3.13"
+dependencies = [
+    "flask",
+    "pyside6",
+]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.4",
-    "ruff>=0.14",
+    "ruff",
+    "pytest",
+    "pylint",
 ]
 
-[tool.pytest.ini_options]
-pythonpath = ["src"]
-testpaths = ["tests"]
+[tool.ruff]
+line-length = 88
+target-version = "py313"
 
-[project.scripts]
-boardcomposer = "boardcomposer.cli:main"
+[tool.pylint.main]
+ignore-patterns = ["__pycache__"]
+
+[tool.pylint.typecheck]
+ignored-modules = [
+    "PySide6.QtCore",
+    "PySide6.QtGui",
+    "PySide6.QtWidgets",
+]
+
+[tool.pylint.format]
+max-line-length = 88

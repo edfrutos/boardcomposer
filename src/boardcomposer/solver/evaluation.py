@@ -8,7 +8,11 @@ from boardcomposer.solver.objectives import (
 )
 
 
-def evaluate(solution: AssemblySolution, total_boards: int | None = None, weights: ScoringWeights | None = None) -> AssemblySolution:
+def evaluate(
+    solution: AssemblySolution,
+    total_boards: int | None = None,
+    weights: ScoringWeights | None = None,
+) -> AssemblySolution:
     total = total_boards if total_boards is not None else len(solution.placements)
     weights = weights or ScoringWeights()
 

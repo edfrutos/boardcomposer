@@ -4,9 +4,7 @@ from boardcomposer.solver.scoring_weights import ScoringWeights
 
 
 def test_custom_scoring_weights():
-    solution = AssemblySolution(
-        placements=[BoardPlacement("A", 0, 0, 100, 50)]
-    )
+    solution = AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
 
     score = evaluate(
         solution,

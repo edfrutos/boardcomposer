@@ -17,7 +17,7 @@ def solution_to_svg(solution: AssemblySolution) -> str:
         )
         parts.append(
             f'<text x="{placement.x_mm + 5}" y="{placement.y_mm + 20}" font-size="16">'
-            f'{placement.board_id}</text>'
+            f"{placement.board_id}</text>"
         )
 
     parts.append("</svg>")

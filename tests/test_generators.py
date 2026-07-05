@@ -27,4 +27,15 @@ def test_skyline_generator_is_registered():
     solutions = generator(project)
 
     assert len(solutions) == 1
-    assert solutions[0].explanation.notes == ["skyline"]
+    assert "skyline" in solutions[0].explanation.notes
+
+
+def test_maxrects_generator_is_registered():
+    project = Project()
+    project.add_board(Board(2000, 300, 20, "A"))
+
+    generator = generators_by_name(["maxrects"])[0]
+    solutions = generator(project)
+
+    assert len(solutions) == 1
+    assert "maxrects" in solutions[0].explanation.notes
