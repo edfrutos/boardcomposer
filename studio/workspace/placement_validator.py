@@ -31,16 +31,16 @@ class PlacementValidator:
         return QtCore.QPointF(x, y)
 
     def collides(self, item: BoardPieceItem) -> bool:
-        for other in item.collidingItems():
-            if isinstance(other, BoardPieceItem):
-                return True
-        return False
+        item_rect = self.piece_rect(item)
 
-    def can_place(self, item: BoardPieceItem) -> bool:
-        return (
-            self.board_rect.contains(self.item_logical_rect(item))
-            and not self.collides(item)
-        )
+        for other in item.scene().items():
+            if other is item or not isinstance(other, BoardPieceItem):
+                continue
+
+            if self.overlaps(item_rect, self.piece_rect(other)):
+                return True
+
+        return False
 
     def item_logical_rect(self, item: BoardPieceItem) -> QRectF:
         return QRectF(
@@ -48,4 +48,60 @@ class PlacementValidator:
             item.pos().y(),
             item.rect().width(),
             item.rect().height(),
+        )
+
+    def piece_rect(self, item: BoardPieceItem) -> QRectF:
+
+        return QRectF(
+
+            item.pos().x(),
+
+            item.pos().y(),
+
+            item.rect().width(),
+
+            item.rect().height(),
+
+        )
+
+    def overlaps(self, first: QRectF, second: QRectF) -> bool:
+        return first.intersects(second)
+
+    def rotated_rect(self, item: BoardPieceItem, angle: int) -> QRectF:
+        angle = angle % 180
+
+        if angle == 90:
+            return QRectF(
+                item.pos().x(),
+                item.pos().y(),
+                item.width_mm,
+                item.length_mm,
+            )
+
+        return QRectF(
+            item.pos().x(),
+            item.pos().y(),
+            item.length_mm,
+            item.width_mm,
+        )
+
+    def can_rotate(self, item: BoardPieceItem, angle: int) -> bool:
+        rotated = self.rotated_rect(item, angle)
+
+        if not self.board_rect.contains(rotated):
+            return False
+
+        for other in item.scene().items():
+            if other is item or not isinstance(other, BoardPieceItem):
+                continue
+
+            if self.overlaps(rotated, self.piece_rect(other)):
+                return False
+
+        return True
+
+    def can_place(self, item: BoardPieceItem) -> bool:
+        return (
+            self.board_rect.contains(self.piece_rect(item))
+            and not self.collides(item)
         )

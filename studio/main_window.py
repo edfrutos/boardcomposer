@@ -288,7 +288,7 @@ class MainWindow(QMainWindow):
         piece_id = selected[0].piece_id
         project = self.services.projects.current_project
 
-        if project is None or piece_id is None:
+        if project is None:
             return
 
         placement = project.placement_by_piece_id(piece_id)
@@ -297,6 +297,17 @@ class MainWindow(QMainWindow):
 
         old_rotation = placement.rotation
         new_rotation = 90 if old_rotation == 0 else 0
+
+        item = self.workspace.piece_item_by_id(piece_id)
+        if item is None:
+            return
+
+        if not self.workspace.can_rotate_item(item, new_rotation):
+            self.statusBar().showMessage(
+                "La pieza no puede rotarse en esa posición",
+                3000,
+            )
+            return
 
         command = RotatePieceCommand(
             self.services,

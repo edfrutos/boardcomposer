@@ -163,7 +163,7 @@ class BoardWorkspace(QGraphicsView):
         if len(selected) == 1 and isinstance(selected[0], BoardPieceItem):
             item = selected[0]
 
-            if self._validator.collides(item):
+            if self._validator is not None and not self._validator.can_place(item):
                 item.set_invalid()
             else:
                 item.set_valid()
@@ -188,11 +188,11 @@ class BoardWorkspace(QGraphicsView):
 
         piece_id, old_x, old_y = drag
 
-        item = self._piece_item_by_id(piece_id)
+        item = self.piece_item_by_id(piece_id)
         if item is None:
             return
 
-        if self._validator.collides(item):
+        if self._validator is not None and not self._validator.can_place(item):
             item.setPos(old_x, old_y)
             item.set_normal()
             return
@@ -228,11 +228,17 @@ class BoardWorkspace(QGraphicsView):
 
         item.set_normal()
 
-    def _piece_item_by_id(self, piece_id: str) -> BoardPieceItem | None:
+    def piece_item_by_id(self, piece_id: str) -> BoardPieceItem | None:
         for item in self._piece_items:
             if item.piece_id == piece_id:
                 return item
         return None
+
+    def can_rotate_item(self, item: BoardPieceItem, angle: int) -> bool:
+        if self._validator is None:
+            return False
+
+        return self._validator.can_rotate(item, angle)
 
     def _start_pan(self, point: QPoint) -> None:
         self._panning = True
