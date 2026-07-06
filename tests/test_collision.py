@@ -1,5 +1,5 @@
 from boardcomposer import BoardPlacement
-from boardcomposer.layout.collision import placements_overlap
+from boardcomposer.geometry.collision import placements_overlap
 
 
 def test_placements_overlap():
