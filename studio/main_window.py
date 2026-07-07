@@ -78,13 +78,29 @@ class MainWindow(QMainWindow):
         self._actions["delete_piece"] = QAction("Eliminar pieza", self)
         self._actions["delete_piece"].setShortcut("Backspace")
         menus["Editar"].addAction(self._actions["delete_piece"])
-        self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
-        self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
+        self._actions["delete_piece"].triggered.connect(
+            self._delete_selected_piece)
+        self._actions["rotate_piece"].triggered.connect(
+            self._rotate_selected_piece)
         self._actions["solve_layout"] = QAction("Calcular layout", self)
         menus["Herramientas"].addAction(self._actions["solve_layout"])
         self._actions["solve_layout"].triggered.connect(self._solve_layout)
+        menus["Herramientas"].addSeparator()
 
-        self._actions["apply_layout"] = QAction("Aplicar layout calculado", self)
+        self._actions["previous_solution"] = QAction("Solución anterior", self)
+        menus["Herramientas"].addAction(self._actions["previous_solution"])
+        self._actions["previous_solution"].triggered.connect(
+            self._previous_layout_solution
+        )
+
+        self._actions["next_solution"] = QAction("Solución siguiente", self)
+        menus["Herramientas"].addAction(self._actions["next_solution"])
+        self._actions["next_solution"].triggered.connect(
+            self._next_layout_solution)
+
+        menus["Herramientas"].addSeparator()
+        self._actions["apply_layout"] = QAction(
+            "Aplicar layout calculado", self)
         menus["Herramientas"].addAction(self._actions["apply_layout"])
         self._actions["apply_layout"].triggered.connect(self._apply_layout)
 
@@ -108,7 +124,8 @@ class MainWindow(QMainWindow):
     def _build_panels(self):
         self.explorer = QTreeWidget()
         self.explorer.setHeaderHidden(True)
-        self.explorer.itemSelectionChanged.connect(self._on_explorer_selection_changed)
+        self.explorer.itemSelectionChanged.connect(
+            self._on_explorer_selection_changed)
 
         explorer_dock = QDockWidget("Explorer", self)
         explorer_dock.setWidget(self.explorer)
@@ -364,15 +381,22 @@ class MainWindow(QMainWindow):
             return
 
         self._show_layout_solution(solution)
+        solution_count = len(self.services.layout.solutions)
         self.statusBar().showMessage(
-            f"Layout calculado: {len(solution.placements)} piezas",
+            f"Layout calculado: {solution_count} soluciones",
             3000,
         )
 
     def _show_layout_solution(self, solution):
+        solution_count = len(self.services.layout.solutions)
+        selected_index = self.services.layout.selected_solution_index + 1
+        strategy_name = self.services.layout.strategy_name or "desconocida"
+
         lines = [
             "Layout calculado",
             "",
+            f"Solución: {selected_index} / {solution_count}",
+            f"Estrategia: {strategy_name}",
             f"Piezas colocadas: {len(solution.placements)}",
             f"Largo total: {solution.total_length_mm:.0f} mm",
             f"Ancho total: {solution.total_width_mm:.0f} mm",
@@ -387,10 +411,35 @@ class MainWindow(QMainWindow):
             return
 
         self.workspace.reload_project()
-        self.workspace.reload_project()
         self.services.selection.clear()
         self._reload_explorer()
         self._update_undo_redo()
         self._update_window_title()
 
-        self.statusBar().showMessage("Layout aplicado al proyecto", 3000)
+        selected_index = self.services.layout.selected_solution_index + 1
+        solution_count = len(self.services.layout.solutions)
+
+        self.statusBar().showMessage(
+            f"Solución {selected_index}/{solution_count} aplicada al proyecto",
+            3000,
+        )
+
+    def _previous_layout_solution(self):
+        solution = self.services.layout.select_previous_solution()
+
+        if solution is None:
+            self.statusBar().showMessage("No hay soluciones calculadas", 3000)
+            return
+
+        self._show_layout_solution(solution)
+        self.statusBar().showMessage("Solución anterior seleccionada", 3000)
+
+    def _next_layout_solution(self):
+        solution = self.services.layout.select_next_solution()
+
+        if solution is None:
+            self.statusBar().showMessage("No hay soluciones calculadas", 3000)
+            return
+
+        self._show_layout_solution(solution)
+        self.statusBar().showMessage("Solución siguiente seleccionada", 3000)
