@@ -1,3 +1,5 @@
+"""Main window for BoardComposer Studio."""
+
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction
 
@@ -11,13 +13,20 @@ from PySide6.QtWidgets import (
     QTreeWidgetItem,
 )
 
-from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
+from studio.models import (
+    StudioBoard,
+    StudioPiece,
+    StudioPlacement,
+    StudioProject,
+)
 from studio.workspace.board_workspace import BoardWorkspace
 from studio.commands import RotatePieceCommand
 from studio.commands import DeletePieceCommand
 
 
 class MainWindow(QMainWindow):
+    """Main application window."""
+
     def __init__(self, services):
         super().__init__()
         self.services = services
@@ -71,6 +80,13 @@ class MainWindow(QMainWindow):
         menus["Editar"].addAction(self._actions["delete_piece"])
         self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
+        self._actions["solve_layout"] = QAction("Calcular layout", self)
+        menus["Herramientas"].addAction(self._actions["solve_layout"])
+        self._actions["solve_layout"].triggered.connect(self._solve_layout)
+
+        self._actions["apply_layout"] = QAction("Aplicar layout calculado", self)
+        menus["Herramientas"].addAction(self._actions["apply_layout"])
+        self._actions["apply_layout"].triggered.connect(self._apply_layout)
 
         self._actions["undo"].triggered.connect(self._undo)
         self._actions["redo"].triggered.connect(self._redo)
@@ -163,14 +179,22 @@ class MainWindow(QMainWindow):
             item = QTreeWidgetItem(
                 [f"{board.board_id} — {board.length_mm:g} x {board.width_mm:g} mm"]
             )
-            item.setData(0, Qt.ItemDataRole.UserRole, f"board:{board.board_id}")
+            item.setData(
+                0,
+                Qt.ItemDataRole.UserRole,
+                f"board:{board.board_id}",
+            )
             boards_root.addChild(item)
 
         for piece in project.pieces:
             item = QTreeWidgetItem(
                 [f"{piece.piece_id} — {piece.length_mm:g} x {piece.width_mm:g} mm"]
             )
-            item.setData(0, Qt.ItemDataRole.UserRole, f"piece:{piece.piece_id}")
+            item.setData(
+                0,
+                Qt.ItemDataRole.UserRole,
+                f"piece:{piece.piece_id}",
+            )
             pieces_root.addChild(item)
 
         root.addChild(boards_root)
@@ -225,6 +249,7 @@ class MainWindow(QMainWindow):
         self._update_window_title()
 
     def refresh_inspector_for_piece(self, piece_id: str):
+        """Refresh inspector panel for the selected piece."""
         project = self.services.projects.current_project
         if project is None:
             return
@@ -330,3 +355,42 @@ class MainWindow(QMainWindow):
         self.services.projects.mark_modified()
         self._update_window_title()
         self._update_undo_redo()
+
+    def _solve_layout(self):
+        solution = self.services.layout.solve_current_project()
+
+        if solution is None:
+            self.statusBar().showMessage("No se pudo calcular layout", 3000)
+            return
+
+        self._show_layout_solution(solution)
+        self.statusBar().showMessage(
+            f"Layout calculado: {len(solution.placements)} piezas",
+            3000,
+        )
+
+    def _show_layout_solution(self, solution):
+        lines = [
+            "Layout calculado",
+            "",
+            f"Piezas colocadas: {len(solution.placements)}",
+            f"Largo total: {solution.total_length_mm:.0f} mm",
+            f"Ancho total: {solution.total_width_mm:.0f} mm",
+            f"Desperdicio: {solution.waste_ratio:.1%}",
+        ]
+
+        self.inspector.setText("\n".join(lines))
+
+    def _apply_layout(self):
+        if not self.services.layout.apply_last_solution_to_current_project():
+            self.statusBar().showMessage("Primero calcula un layout", 3000)
+            return
+
+        self.workspace.reload_project()
+        self.workspace.reload_project()
+        self.services.selection.clear()
+        self._reload_explorer()
+        self._update_undo_redo()
+        self._update_window_title()
+
+        self.statusBar().showMessage("Layout aplicado al proyecto", 3000)
