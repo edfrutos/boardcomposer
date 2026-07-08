@@ -83,7 +83,19 @@ class MainWindow(QMainWindow):
         self._actions["solve_layout"] = QAction("Calcular layout", self)
         menus["Herramientas"].addAction(self._actions["solve_layout"])
         self._actions["solve_layout"].triggered.connect(self._solve_layout)
+        menus["Herramientas"].addSeparator()
 
+        self._actions["previous_solution"] = QAction("Solución anterior", self)
+        menus["Herramientas"].addAction(self._actions["previous_solution"])
+        self._actions["previous_solution"].triggered.connect(
+            self._previous_layout_solution
+        )
+
+        self._actions["next_solution"] = QAction("Solución siguiente", self)
+        menus["Herramientas"].addAction(self._actions["next_solution"])
+        self._actions["next_solution"].triggered.connect(self._next_layout_solution)
+
+        menus["Herramientas"].addSeparator()
         self._actions["apply_layout"] = QAction("Aplicar layout calculado", self)
         menus["Herramientas"].addAction(self._actions["apply_layout"])
         self._actions["apply_layout"].triggered.connect(self._apply_layout)
@@ -165,6 +177,7 @@ class MainWindow(QMainWindow):
 
     def _reload_explorer(self):
         project = self.services.projects.current_project
+        previous_signal_state = self.explorer.blockSignals(True)
         self.explorer.clear()
 
         if project is None:
@@ -174,6 +187,7 @@ class MainWindow(QMainWindow):
         boards_root = QTreeWidgetItem(["Tableros"])
         pieces_root = QTreeWidgetItem(["Piezas"])
         solutions_root = QTreeWidgetItem(["Soluciones"])
+        selected_solution_item = None
 
         for board in project.boards:
             item = QTreeWidgetItem(
@@ -197,11 +211,36 @@ class MainWindow(QMainWindow):
             )
             pieces_root.addChild(item)
 
+        selected_solution_index = self.services.layout.selected_solution_index
+
+        for index, solution in enumerate(self.services.layout.solutions):
+            prefix = "✓ " if index == selected_solution_index else ""
+            item = QTreeWidgetItem(
+                [
+                    f"{prefix}Solución {index + 1} — "
+                    f"{len(solution.placements)} piezas — "
+                    f"{solution.waste_ratio:.1%} desperdicio"
+                ]
+            )
+            item.setData(
+                0,
+                Qt.ItemDataRole.UserRole,
+                f"solution:{index}",
+            )
+            solutions_root.addChild(item)
+
+            if index == selected_solution_index:
+                selected_solution_item = item
+
         root.addChild(boards_root)
         root.addChild(pieces_root)
         root.addChild(solutions_root)
         self.explorer.addTopLevelItem(root)
         self.explorer.expandAll()
+
+        if selected_solution_item is not None:
+            self.explorer.setCurrentItem(selected_solution_item)
+            self.explorer.blockSignals(previous_signal_state)
 
     def _on_explorer_selection_changed(self):
         selected = self.explorer.selectedItems()
@@ -229,6 +268,24 @@ class MainWindow(QMainWindow):
                 f"Tablero: {board.board_id}\n"
                 f"Dimensiones: {board.length_mm:g} x {board.width_mm:g} mm\n"
                 f"Material: {board.material}"
+            )
+            return
+
+        if kind == "solution":
+            solution = self.services.layout.select_solution(int(object_id))
+            if solution is None:
+                return
+
+            self.workspace.preview_solution(solution)
+            self._show_layout_solution(solution)
+            self._reload_explorer()
+
+            index = self.services.layout.selected_solution_index + 1
+            total = len(self.services.layout.solutions)
+            self.statusBar().showMessage(
+                f"Previsualizando solución {index}/{total}. "
+                "Pulsa 'Aplicar layout calculado' para conservarla.",
+                5000,
             )
             return
 
@@ -364,15 +421,24 @@ class MainWindow(QMainWindow):
             return
 
         self._show_layout_solution(solution)
+        self._reload_explorer()
+
+        solution_count = len(self.services.layout.solutions)
         self.statusBar().showMessage(
-            f"Layout calculado: {len(solution.placements)} piezas",
+            f"Layout calculado: {solution_count} soluciones",
             3000,
         )
 
     def _show_layout_solution(self, solution):
+        solution_count = len(self.services.layout.solutions)
+        selected_index = self.services.layout.selected_solution_index + 1
+        strategy_name = self.services.layout.strategy_name or "desconocida"
+
         lines = [
             "Layout calculado",
             "",
+            f"Solución: {selected_index} / {solution_count}",
+            f"Estrategia: {strategy_name}",
             f"Piezas colocadas: {len(solution.placements)}",
             f"Largo total: {solution.total_length_mm:.0f} mm",
             f"Ancho total: {solution.total_width_mm:.0f} mm",
@@ -387,10 +453,55 @@ class MainWindow(QMainWindow):
             return
 
         self.workspace.reload_project()
-        self.workspace.reload_project()
         self.services.selection.clear()
         self._reload_explorer()
         self._update_undo_redo()
         self._update_window_title()
 
-        self.statusBar().showMessage("Layout aplicado al proyecto", 3000)
+        selected_index = self.services.layout.selected_solution_index + 1
+        solution_count = len(self.services.layout.solutions)
+
+        self.statusBar().showMessage(
+            f"Solución {selected_index}/{solution_count} aplicada al proyecto",
+            3000,
+        )
+
+    def _previous_layout_solution(self):
+        solution = self.services.layout.select_previous_solution()
+
+        if solution is None:
+            self.statusBar().showMessage("No hay soluciones calculadas", 3000)
+            return
+
+        self.workspace.preview_solution(solution)
+        self._show_layout_solution(solution)
+        self._reload_explorer()
+
+        index = self.services.layout.selected_solution_index + 1
+        total = len(self.services.layout.solutions)
+
+        self.statusBar().showMessage(
+            f"Previsualizando solución {index}/{total}. "
+            "Pulsa 'Aplicar layout calculado' para conservarla.",
+            5000,
+        )
+
+    def _next_layout_solution(self):
+        solution = self.services.layout.select_next_solution()
+
+        if solution is None:
+            self.statusBar().showMessage("No hay soluciones calculadas", 3000)
+            return
+
+        self.workspace.preview_solution(solution)
+        self._show_layout_solution(solution)
+        self._reload_explorer()
+
+        index = self.services.layout.selected_solution_index + 1
+        total = len(self.services.layout.solutions)
+
+        self.statusBar().showMessage(
+            f"Previsualizando solución {index}/{total}. "
+            "Pulsa 'Aplicar layout calculado' para conservarla.",
+            5000,
+        )
