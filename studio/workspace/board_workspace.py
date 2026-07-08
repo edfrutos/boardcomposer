@@ -88,6 +88,24 @@ class BoardWorkspace(QGraphicsView):
             self.selection.bind_items(self._piece_items)
             self.selection.bind_items(self._piece_items)
 
+    def preview_solution(self, solution) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+
+        placements_by_piece_id = {
+            placement.board_id: placement
+            for placement in solution.placements
+        }
+
+        for item in self._piece_items:
+            placement = placements_by_piece_id.get(item.piece_id)
+            if placement is None:
+                continue
+
+            item.setPos(placement.x_mm, placement.y_mm)
+            item.set_rotation(90 if placement.rotated else 0)
+
     def constrain_piece_position(
         self, item: BoardPieceItem, new_pos: QPointF
     ) -> QPointF:
@@ -200,7 +218,8 @@ class BoardWorkspace(QGraphicsView):
             return
 
         project = self.services.projects.current_project
-        placement = project.placement_by_piece_id(piece_id) if project else None
+        placement = project.placement_by_piece_id(
+            piece_id) if project else None
         if placement is None:
             return
 

@@ -20,9 +20,9 @@ class LayoutService:
         if not self.solutions:
             return None
 
-        self.selected_solution_index = (
-            self.selected_solution_index + 1
-        ) % len(self.solutions)
+        self.selected_solution_index = (self.selected_solution_index + 1) % len(
+            self.solutions
+        )
 
         return self.selected_solution
 
@@ -30,10 +30,20 @@ class LayoutService:
         if not self.solutions:
             return None
 
-        self.selected_solution_index = (
-            self.selected_solution_index - 1
-        ) % len(self.solutions)
+        self.selected_solution_index = (self.selected_solution_index - 1) % len(
+            self.solutions
+        )
 
+        return self.selected_solution
+
+    def select_solution(self, index: int):
+        if not self.solutions:
+            return None
+
+        if index < 0 or index >= len(self.solutions):
+            return None
+
+        self.selected_solution_index = index
         return self.selected_solution
 
     @property
@@ -119,11 +129,3 @@ class LayoutService:
 
         self.services.projects.mark_modified()
         return True
-
-
-@property
-def selected_solution(self):
-    if not self.solutions:
-        return None
-
-    return self.solutions[self.selected_solution_index]
