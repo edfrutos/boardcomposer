@@ -94,8 +94,7 @@ class BoardWorkspace(QGraphicsView):
             return
 
         placements_by_piece_id = {
-            placement.board_id: placement
-            for placement in solution.placements
+            placement.board_id: placement for placement in solution.placements
         }
 
         for item in self._piece_items:
@@ -218,8 +217,7 @@ class BoardWorkspace(QGraphicsView):
             return
 
         project = self.services.projects.current_project
-        placement = project.placement_by_piece_id(
-            piece_id) if project else None
+        placement = project.placement_by_piece_id(piece_id) if project else None
         if placement is None:
             return
 
