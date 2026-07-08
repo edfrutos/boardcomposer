@@ -19,6 +19,11 @@ from studio.commands import DeletePieceCommand
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.workspace.board_workspace import BoardWorkspace
 
+from pathlib import Path
+
+from PySide6.QtWidgets import QFileDialog
+from boardcomposer.export import solution_to_svg
+
 
 class MainWindow(QMainWindow):
     """Main application window."""
@@ -59,6 +64,14 @@ class MainWindow(QMainWindow):
         self._actions["new_project"] = QAction("Nuevo proyecto", self)
         self._actions["open"] = QAction("Abrir…", self)
         self._actions["save"] = QAction("Guardar", self)
+        self._actions["export_selected_svg"] = QAction(
+            "Exportar solución seleccionada a SVG…",
+            self,
+        )
+        menus["Exportar"].addAction(self._actions["export_selected_svg"])
+        self._actions["export_selected_svg"].triggered.connect(
+            self._export_selected_solution_svg
+        )
         self._actions["exit"] = QAction("Salir", self)
         self._actions["undo"] = QAction("Deshacer", self)
         self._actions["redo"] = QAction("Rehacer", self)
@@ -600,3 +613,34 @@ class MainWindow(QMainWindow):
             f"Previsualizando solución {index}/{total}",
             3000,
         )
+
+    def _export_selected_solution_svg(self):
+        solution = self.services.layout.selected_solution
+
+        if solution is None:
+            self.statusBar().showMessage("Primero calcula un layout", 3000)
+            return
+
+        selected_index = self.services.layout.selected_solution_index + 1
+        default_filename = f"boardcomposer-solution-{selected_index}.svg"
+
+        path, _selected_filter = QFileDialog.getSaveFileName(
+            self,
+            "Exportar solución seleccionada",
+            default_filename,
+            "SVG (*.svg)",
+        )
+
+        if not path:
+            return
+
+        try:
+            Path(path).write_text(
+                solution_to_svg(solution),
+                encoding="utf-8",
+            )
+        except OSError as exc:
+            self.statusBar().showMessage(f"No se pudo exportar SVG: {exc}", 5000)
+            return
+
+        self.statusBar().showMessage(f"SVG exportado: {path}", 5000)
