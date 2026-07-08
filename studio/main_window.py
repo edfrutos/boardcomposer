@@ -2,26 +2,22 @@
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction
-
 from PySide6.QtWidgets import (
     QDockWidget,
     QMainWindow,
     QMenuBar,
     QStatusBar,
+    QTableWidget,
+    QTableWidgetItem,
     QTextEdit,
     QTreeWidget,
     QTreeWidgetItem,
 )
 
-from studio.models import (
-    StudioBoard,
-    StudioPiece,
-    StudioPlacement,
-    StudioProject,
-)
-from studio.workspace.board_workspace import BoardWorkspace
 from studio.commands import RotatePieceCommand
 from studio.commands import DeletePieceCommand
+from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
+from studio.workspace.board_workspace import BoardWorkspace
 
 
 class MainWindow(QMainWindow):
@@ -123,6 +119,7 @@ class MainWindow(QMainWindow):
         self.explorer.itemSelectionChanged.connect(self._on_explorer_selection_changed)
 
         explorer_dock = QDockWidget("Explorer", self)
+        explorer_dock.setAllowedAreas(Qt.DockWidgetArea.LeftDockWidgetArea)
         explorer_dock.setWidget(self.explorer)
         self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, explorer_dock)
 
@@ -131,6 +128,7 @@ class MainWindow(QMainWindow):
         self.inspector.setText("Inspector\n\nSin selección")
 
         inspector_dock = QDockWidget("Inspector", self)
+        inspector_dock.setAllowedAreas(Qt.DockWidgetArea.RightDockWidgetArea)
         inspector_dock.setWidget(self.inspector)
         self.addDockWidget(
             Qt.DockWidgetArea.RightDockWidgetArea,
@@ -142,10 +140,33 @@ class MainWindow(QMainWindow):
         console.setText("Timeline / Consola / Eventos")
 
         console_dock = QDockWidget("Timeline", self)
+        console_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
         console_dock.setWidget(console)
+
         self.addDockWidget(
             Qt.DockWidgetArea.BottomDockWidgetArea,
             console_dock,
+        )
+
+        self.solutions_table = QTableWidget()
+        self.solutions_table.setColumnCount(6)
+        self.solutions_table.setHorizontalHeaderLabels(
+            ["#", "Piezas", "Desperdicio", "Largo", "Ancho", "Score"]
+        )
+        self.solutions_table.cellDoubleClicked.connect(
+            self._on_solution_table_double_clicked
+        )
+        self.solutions_table.cellClicked.connect(
+            lambda row, column: self._select_solution_from_table(row)
+        )
+        solutions_dock = QDockWidget("Comparador de soluciones", self)
+        self.tabifyDockWidget(console_dock, solutions_dock)
+        (console_dock.raise_(),)
+        solutions_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
+        solutions_dock.setWidget(self.solutions_table)
+        self.addDockWidget(
+            Qt.DockWidgetArea.BottomDockWidgetArea,
+            solutions_dock,
         )
 
     def _build_statusbar(self):
@@ -190,9 +211,10 @@ class MainWindow(QMainWindow):
         selected_solution_item = None
 
         for board in project.boards:
-            item = QTreeWidgetItem(
-                [f"{board.board_id} — {board.length_mm:g} x {board.width_mm:g} mm"]
+            board_label = (
+                f"{board.board_id} — {board.length_mm:g} x {board.width_mm:g} mm"
             )
+            item = QTreeWidgetItem([board_label])
             item.setData(
                 0,
                 Qt.ItemDataRole.UserRole,
@@ -201,9 +223,10 @@ class MainWindow(QMainWindow):
             boards_root.addChild(item)
 
         for piece in project.pieces:
-            item = QTreeWidgetItem(
-                [f"{piece.piece_id} — {piece.length_mm:g} x {piece.width_mm:g} mm"]
+            piece_label = (
+                f"{piece.piece_id} — {piece.length_mm:g} x {piece.width_mm:g} mm"
             )
+            item = QTreeWidgetItem([piece_label])
             item.setData(
                 0,
                 Qt.ItemDataRole.UserRole,
@@ -240,7 +263,8 @@ class MainWindow(QMainWindow):
 
         if selected_solution_item is not None:
             self.explorer.setCurrentItem(selected_solution_item)
-            self.explorer.blockSignals(previous_signal_state)
+
+        self.explorer.blockSignals(previous_signal_state)
 
     def _on_explorer_selection_changed(self):
         selected = self.explorer.selectedItems()
@@ -420,6 +444,7 @@ class MainWindow(QMainWindow):
             self.statusBar().showMessage("No se pudo calcular layout", 3000)
             return
 
+        self._reload_solution_table()
         self._show_layout_solution(solution)
         self._reload_explorer()
 
@@ -428,6 +453,34 @@ class MainWindow(QMainWindow):
             f"Layout calculado: {solution_count} soluciones",
             3000,
         )
+
+    def _reload_solution_table(self):
+        self.solutions_table.setRowCount(0)
+
+        for row, solution in enumerate(self.services.layout.solutions):
+            self.solutions_table.insertRow(row)
+
+            values = [
+                str(row + 1),
+                str(len(solution.placements)),
+                f"{solution.waste_ratio:.1%}",
+                f"{solution.total_length_mm:.0f}",
+                f"{solution.total_width_mm:.0f}",
+                f"{solution.score.total:.2f}",
+            ]
+
+            for column, value in enumerate(values):
+                self.solutions_table.setItem(
+                    row,
+                    column,
+                    QTableWidgetItem(value),
+                )
+
+        self.solutions_table.resizeColumnsToContents()
+
+        selected_row = self.services.layout.selected_solution_index
+        if self.services.layout.solutions:
+            self.solutions_table.selectRow(selected_row)
 
     def _show_layout_solution(self, solution):
         solution_count = len(self.services.layout.solutions)
@@ -474,8 +527,10 @@ class MainWindow(QMainWindow):
             return
 
         self.workspace.preview_solution(solution)
+        self._reload_solution_table()
         self._show_layout_solution(solution)
         self._reload_explorer()
+        self._reload_solution_table()
 
         index = self.services.layout.selected_solution_index + 1
         total = len(self.services.layout.solutions)
@@ -504,4 +559,44 @@ class MainWindow(QMainWindow):
             f"Previsualizando solución {index}/{total}. "
             "Pulsa 'Aplicar layout calculado' para conservarla.",
             5000,
+        )
+
+    def _select_solution_from_table(self, row: int):
+        solution = self.services.layout.select_solution(row)
+        if solution is None:
+            return
+
+        self.workspace.preview_solution(solution)
+        self._show_layout_solution(solution)
+        self._reload_explorer()
+        self._reload_solution_table()
+
+        index = row + 1
+        total = len(self.services.layout.solutions)
+
+        self.statusBar().showMessage(
+            f"Previsualizando solución {index}/{total}",
+            3000,
+        )
+
+    def _on_solution_table_double_clicked(self, row: int, column: int):
+        del column
+        self._select_solution_from_table(row)
+
+    def _select_solution_from_table(self, row: int):
+        solution = self.services.layout.select_solution(row)
+        if solution is None:
+            return
+
+        self.workspace.preview_solution(solution)
+        self._show_layout_solution(solution)
+        self._reload_solution_table()
+        self._reload_explorer()
+
+        index = row + 1
+        total = len(self.services.layout.solutions)
+
+        self.statusBar().showMessage(
+            f"Previsualizando solución {index}/{total}",
+            3000,
         )
