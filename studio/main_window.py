@@ -39,7 +39,9 @@ class MainWindow(QMainWindow):
         self._build_workspace()
         self._build_panels()
         self._build_statusbar()
-        self._load_demo_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self._update_window_title()
 
     def _build_menu(self):
         menu = QMenuBar(self)
@@ -63,6 +65,7 @@ class MainWindow(QMainWindow):
         self._actions = {}
 
         self._actions["new_project"] = QAction("Nuevo proyecto", self)
+        self._actions["new_demo_project"] = QAction("Nuevo proyecto demo", self)
         self._actions["open"] = QAction("Abrir…", self)
         self._recent_menu = menus["Archivo"].addMenu("Abrir recientes")
         self._actions["open"].triggered.connect(self._open_project)
@@ -117,18 +120,19 @@ class MainWindow(QMainWindow):
         self._actions["redo"].triggered.connect(self._redo)
 
         menus["Archivo"].addAction(self._actions["new_project"])
+        menus["Archivo"].addAction(self._actions["new_demo_project"])
         menus["Archivo"].addSeparator()
         menus["Archivo"].addAction(self._actions["open"])
         menus["Archivo"].addMenu(self._recent_menu)
         menus["Archivo"].addSeparator()
         menus["Archivo"].addAction(self._actions["save"])
         menus["Archivo"].addAction(self._actions["save_as"])
-        menus["Archivo"].addAction(self._actions["save_as"])
         menus["Archivo"].addSeparator()
         menus["Archivo"].addAction(self._actions["exit"])
 
         self._actions["exit"].triggered.connect(self.close)
         self._actions["new_project"].triggered.connect(self._new_project)
+        self._actions["new_demo_project"].triggered.connect(self._new_demo_project)
         self._actions["save"].triggered.connect(self._save_project)
         self._actions["save_as"].triggered.connect(self._save_project_as)
         self._reload_recent_files_menu()
@@ -197,6 +201,22 @@ class MainWindow(QMainWindow):
         status = QStatusBar(self)
         status.showMessage("BoardComposer Studio listo")
         self.setStatusBar(status)
+
+    def _load_empty_project(self):
+        project = StudioProject(
+            project_id="PRJ-UNTITLED",
+            name="Proyecto sin título",
+            boards=[],
+            pieces=[],
+            placements=[],
+        )
+
+        self.services.projects.new_project(project)
+        self.services.layout.clear_solutions()
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self._update_window_title()
 
     def _load_demo_project(self):
         project = StudioProject(
@@ -352,9 +372,16 @@ class MainWindow(QMainWindow):
         if not self._confirm_discard_unsaved_changes():
             return
 
+        self._load_empty_project()
+        self.statusBar().showMessage("Nuevo proyecto vacío creado", 3000)
+
+    def _new_demo_project(self):
+        if not self._confirm_discard_unsaved_changes():
+            return
+
         self._load_demo_project()
-        self.statusBar().showMessage("Nuevo proyecto creado", 3000)
-        self._update_window_title()
+        self.services.layout.clear_solutions()
+        self.statusBar().showMessage("Proyecto demo creado", 3000)
 
     def refresh_inspector_for_piece(self, piece_id: str):
         """Refresh inspector panel for the selected piece."""
