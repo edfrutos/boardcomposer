@@ -1,6 +1,7 @@
 """Application services for BoardComposer Studio."""
 
 from dataclasses import dataclass, field
+from studio.recent_files import RecentFilesManager
 
 from studio.commands import CommandManager
 from studio.events import EventBus
@@ -17,6 +18,7 @@ class StudioServices:
     projects: ProjectManager = field(default_factory=ProjectManager)
     selection: SelectionManager = field(default_factory=SelectionManager)
     commands: CommandManager = field(default_factory=CommandManager)
+    recent_files: RecentFilesManager = field(default_factory=RecentFilesManager)
 
     def __post_init__(self):
         self.layout = LayoutService(self)

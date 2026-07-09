@@ -1,11 +1,15 @@
 """Main window for BoardComposer Studio."""
 
+from pathlib import Path
+
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import (
     QDockWidget,
+    QFileDialog,
     QMainWindow,
     QMenuBar,
+    QMessageBox,
     QStatusBar,
     QTableWidget,
     QTableWidgetItem,
@@ -14,15 +18,11 @@ from PySide6.QtWidgets import (
     QTreeWidgetItem,
 )
 
-from studio.commands import RotatePieceCommand
-from studio.commands import DeletePieceCommand
-from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
-from studio.workspace.board_workspace import BoardWorkspace
-
-from pathlib import Path
-
-from PySide6.QtWidgets import QFileDialog
 from boardcomposer.export import solution_to_svg
+from studio.commands import DeletePieceCommand, RotatePieceCommand
+from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
+from studio.project_serializer import load_project, save_project
+from studio.workspace.board_workspace import BoardWorkspace
 
 
 class MainWindow(QMainWindow):
@@ -31,6 +31,7 @@ class MainWindow(QMainWindow):
     def __init__(self, services):
         super().__init__()
         self.services = services
+        self.current_project_path = None
         self.setWindowTitle("BoardComposer Studio")
         self.resize(1400, 900)
 
@@ -63,7 +64,10 @@ class MainWindow(QMainWindow):
 
         self._actions["new_project"] = QAction("Nuevo proyecto", self)
         self._actions["open"] = QAction("Abrir…", self)
+        self._recent_menu = menus["Archivo"].addMenu("Abrir recientes")
+        self._actions["open"].triggered.connect(self._open_project)
         self._actions["save"] = QAction("Guardar", self)
+        self._actions["save_as"] = QAction("Guardar como…", self)
         self._actions["export_selected_svg"] = QAction(
             "Exportar solución seleccionada a SVG…",
             self,
@@ -115,12 +119,19 @@ class MainWindow(QMainWindow):
         menus["Archivo"].addAction(self._actions["new_project"])
         menus["Archivo"].addSeparator()
         menus["Archivo"].addAction(self._actions["open"])
+        menus["Archivo"].addMenu(self._recent_menu)
+        menus["Archivo"].addSeparator()
         menus["Archivo"].addAction(self._actions["save"])
+        menus["Archivo"].addAction(self._actions["save_as"])
+        menus["Archivo"].addAction(self._actions["save_as"])
         menus["Archivo"].addSeparator()
         menus["Archivo"].addAction(self._actions["exit"])
 
         self._actions["exit"].triggered.connect(self.close)
         self._actions["new_project"].triggered.connect(self._new_project)
+        self._actions["save"].triggered.connect(self._save_project)
+        self._actions["save_as"].triggered.connect(self._save_project_as)
+        self._reload_recent_files_menu()
 
     def _build_workspace(self):
         self.workspace = BoardWorkspace(self.services)
@@ -174,7 +185,7 @@ class MainWindow(QMainWindow):
         )
         solutions_dock = QDockWidget("Comparador de soluciones", self)
         self.tabifyDockWidget(console_dock, solutions_dock)
-        (console_dock.raise_(),)
+        console_dock.raise_()
         solutions_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
         solutions_dock.setWidget(self.solutions_table)
         self.addDockWidget(
@@ -338,6 +349,9 @@ class MainWindow(QMainWindow):
             )
 
     def _new_project(self):
+        if not self._confirm_discard_unsaved_changes():
+            return
+
         self._load_demo_project()
         self.statusBar().showMessage("Nuevo proyecto creado", 3000)
         self._update_window_title()
@@ -574,24 +588,6 @@ class MainWindow(QMainWindow):
             5000,
         )
 
-    def _select_solution_from_table(self, row: int):
-        solution = self.services.layout.select_solution(row)
-        if solution is None:
-            return
-
-        self.workspace.preview_solution(solution)
-        self._show_layout_solution(solution)
-        self._reload_explorer()
-        self._reload_solution_table()
-
-        index = row + 1
-        total = len(self.services.layout.solutions)
-
-        self.statusBar().showMessage(
-            f"Previsualizando solución {index}/{total}",
-            3000,
-        )
-
     def _on_solution_table_double_clicked(self, row: int, column: int):
         del column
         self._select_solution_from_table(row)
@@ -644,3 +640,150 @@ class MainWindow(QMainWindow):
             return
 
         self.statusBar().showMessage(f"SVG exportado: {path}", 5000)
+
+    def _save_project(self):
+        project = self.services.projects.current_project
+
+        if project is None:
+            self.statusBar().showMessage("No hay proyecto para guardar", 3000)
+            return
+
+        filename = self.services.projects.filename
+
+        if filename is None:
+            self._save_project_as()
+            return
+
+        try:
+            save_project(project, filename)
+        except OSError as exc:
+            self.statusBar().showMessage(f"No se pudo guardar: {exc}", 5000)
+            return
+
+        self.services.projects.mark_saved(filename)
+        self._reload_recent_files_menu()
+        self.services.recent_files.add(filename)
+        self._update_window_title()
+        self.statusBar().showMessage(f"Proyecto guardado: {filename}", 5000)
+
+    def _save_project_as(self):
+        project = self.services.projects.current_project
+
+        if project is None:
+            self.statusBar().showMessage("No hay proyecto para guardar", 3000)
+            return
+
+        path, _selected_filter = QFileDialog.getSaveFileName(
+            self,
+            "Guardar proyecto",
+            "boardcomposer-project.bcproj",
+            "BoardComposer Project (*.bcproj)",
+        )
+
+        if not path:
+            return
+
+        try:
+            save_project(project, path)
+        except OSError as exc:
+            self.statusBar().showMessage(f"No se pudo guardar: {exc}", 5000)
+            return
+
+        self.services.projects.mark_saved(path)
+        self._reload_recent_files_menu()
+        self.services.recent_files.add(path)
+        self._update_window_title()
+        self.statusBar().showMessage(f"Proyecto guardado: {path}", 5000)
+
+    def _open_project(self):
+        if not self._confirm_discard_unsaved_changes():
+            return
+
+        path, _selected_filter = QFileDialog.getOpenFileName(
+            self,
+            "Abrir proyecto",
+            "",
+            "BoardComposer Project (*.bcproj)",
+        )
+
+        if not path:
+            return
+
+        project = load_project(path)
+        self.services.projects.open_project(project, path)
+        self._reload_recent_files_menu()
+        self.services.recent_files.add(path)
+        self.services.layout.clear_solutions()
+
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self._update_window_title()
+
+        self.statusBar().showMessage("Proyecto abierto", 3000)
+
+    def _confirm_discard_unsaved_changes(self) -> bool:
+        if not self.services.projects.is_modified:
+            return True
+
+        result = QMessageBox.question(
+            self,
+            "Cambios sin guardar",
+            "El proyecto tiene cambios sin guardar.\n\n"
+            "¿Quieres guardarlos antes de continuar?",
+            QMessageBox.StandardButton.Save
+            | QMessageBox.StandardButton.Discard
+            | QMessageBox.StandardButton.Cancel,
+            QMessageBox.StandardButton.Save,
+        )
+
+        if result == QMessageBox.StandardButton.Cancel:
+            return False
+
+        if result == QMessageBox.StandardButton.Discard:
+            return True
+
+        self._save_project()
+        return not self.services.projects.is_modified
+
+    def _close_event(self, event):
+        if not self._confirm_discard_unsaved_changes():
+            event.ignore()
+        else:
+            event.accept()
+
+    def closeEvent(self, event):
+        self._close_event(event)
+
+    def _reload_recent_files_menu(self):
+        self._recent_menu.clear()
+
+        if not self.services.recent_files.files:
+            empty_action = QAction("Sin archivos recientes", self)
+            empty_action.setEnabled(False)
+            self._recent_menu.addAction(empty_action)
+            return
+
+        for filename in self.services.recent_files.files:
+            action = QAction(filename, self)
+            action.triggered.connect(
+                lambda checked=False, path=filename: self._open_recent_project(path)
+            )
+            self._recent_menu.addAction(action)
+
+    def _open_recent_project(self, path: str):
+        if not self._confirm_discard_unsaved_changes():
+            return
+
+        project = load_project(path)
+        self.services.projects.open_project(project, path)
+        self.services.recent_files.add(path)
+        self._reload_recent_files_menu()
+        self.services.layout.clear_solutions()
+
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self._update_window_title()
+
+        self.statusBar().showMessage(f"Proyecto abierto: {path}", 3000)

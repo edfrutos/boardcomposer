@@ -12,6 +12,8 @@ dev = [
     "ruff",
     "pytest",
     "pylint",
+    "flake8",
+    "mypy",
 ]
 
 [tool.ruff]
