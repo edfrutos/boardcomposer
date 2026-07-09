@@ -23,6 +23,7 @@ from studio.commands import DeletePieceCommand, RotatePieceCommand
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import load_project, save_project
 from studio.workspace.board_workspace import BoardWorkspace
+from studio.dialogs import NewBoardDialog
 
 
 class MainWindow(QMainWindow):
@@ -67,57 +68,29 @@ class MainWindow(QMainWindow):
         self._actions["new_project"] = QAction("Nuevo proyecto", self)
         self._actions["new_demo_project"] = QAction("Nuevo proyecto demo", self)
         self._actions["open"] = QAction("Abrir…", self)
-        self._recent_menu = menus["Archivo"].addMenu("Abrir recientes")
-        self._actions["open"].triggered.connect(self._open_project)
         self._actions["save"] = QAction("Guardar", self)
         self._actions["save_as"] = QAction("Guardar como…", self)
+        self._actions["add_board"] = QAction("Añadir tablero…", self)
         self._actions["export_selected_svg"] = QAction(
             "Exportar solución seleccionada a SVG…",
             self,
         )
-        menus["Exportar"].addAction(self._actions["export_selected_svg"])
-        self._actions["export_selected_svg"].triggered.connect(
-            self._export_selected_solution_svg
-        )
         self._actions["exit"] = QAction("Salir", self)
         self._actions["undo"] = QAction("Deshacer", self)
         self._actions["redo"] = QAction("Rehacer", self)
+        self._actions["rotate_piece"] = QAction("Rotar 90°", self)
+        self._actions["delete_piece"] = QAction("Eliminar pieza", self)
+        self._actions["solve_layout"] = QAction("Calcular layout", self)
+        self._actions["previous_solution"] = QAction("Solución anterior", self)
+        self._actions["next_solution"] = QAction("Solución siguiente", self)
+        self._actions["apply_layout"] = QAction("Aplicar layout calculado", self)
+
+        self._recent_menu = menus["Archivo"].addMenu("Abrir recientes")
+
         self._actions["undo"].setShortcut("Ctrl+Z")
         self._actions["redo"].setShortcut("Ctrl+Shift+Z")
-
-        menus["Editar"].addAction(self._actions["undo"])
-        menus["Editar"].addAction(self._actions["redo"])
-        self._actions["rotate_piece"] = QAction("Rotar 90°", self)
         self._actions["rotate_piece"].setShortcut("R")
-        menus["Editar"].addSeparator()
-        menus["Editar"].addAction(self._actions["rotate_piece"])
-        self._actions["delete_piece"] = QAction("Eliminar pieza", self)
         self._actions["delete_piece"].setShortcut("Backspace")
-        menus["Editar"].addAction(self._actions["delete_piece"])
-        self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
-        self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
-        self._actions["solve_layout"] = QAction("Calcular layout", self)
-        menus["Herramientas"].addAction(self._actions["solve_layout"])
-        self._actions["solve_layout"].triggered.connect(self._solve_layout)
-        menus["Herramientas"].addSeparator()
-
-        self._actions["previous_solution"] = QAction("Solución anterior", self)
-        menus["Herramientas"].addAction(self._actions["previous_solution"])
-        self._actions["previous_solution"].triggered.connect(
-            self._previous_layout_solution
-        )
-
-        self._actions["next_solution"] = QAction("Solución siguiente", self)
-        menus["Herramientas"].addAction(self._actions["next_solution"])
-        self._actions["next_solution"].triggered.connect(self._next_layout_solution)
-
-        menus["Herramientas"].addSeparator()
-        self._actions["apply_layout"] = QAction("Aplicar layout calculado", self)
-        menus["Herramientas"].addAction(self._actions["apply_layout"])
-        self._actions["apply_layout"].triggered.connect(self._apply_layout)
-
-        self._actions["undo"].triggered.connect(self._undo)
-        self._actions["redo"].triggered.connect(self._redo)
 
         menus["Archivo"].addAction(self._actions["new_project"])
         menus["Archivo"].addAction(self._actions["new_demo_project"])
@@ -130,11 +103,44 @@ class MainWindow(QMainWindow):
         menus["Archivo"].addSeparator()
         menus["Archivo"].addAction(self._actions["exit"])
 
+        menus["Editar"].addAction(self._actions["undo"])
+        menus["Editar"].addAction(self._actions["redo"])
+        menus["Editar"].addSeparator()
+        menus["Editar"].addAction(self._actions["rotate_piece"])
+        menus["Editar"].addAction(self._actions["delete_piece"])
+
+        menus["Proyecto"].addAction(self._actions["add_board"])
+
+        menus["Exportar"].addAction(self._actions["export_selected_svg"])
+
+        menus["Herramientas"].addAction(self._actions["solve_layout"])
+        menus["Herramientas"].addSeparator()
+        menus["Herramientas"].addAction(self._actions["previous_solution"])
+        menus["Herramientas"].addAction(self._actions["next_solution"])
+        menus["Herramientas"].addSeparator()
+        menus["Herramientas"].addAction(self._actions["apply_layout"])
+
+        self._actions["open"].triggered.connect(self._open_project)
+        self._actions["save"].triggered.connect(self._save_project)
+        self._actions["save_as"].triggered.connect(self._save_project_as)
         self._actions["exit"].triggered.connect(self.close)
         self._actions["new_project"].triggered.connect(self._new_project)
         self._actions["new_demo_project"].triggered.connect(self._new_demo_project)
-        self._actions["save"].triggered.connect(self._save_project)
-        self._actions["save_as"].triggered.connect(self._save_project_as)
+        self._actions["add_board"].triggered.connect(self._add_board)
+        self._actions["undo"].triggered.connect(self._undo)
+        self._actions["redo"].triggered.connect(self._redo)
+        self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
+        self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
+        self._actions["solve_layout"].triggered.connect(self._solve_layout)
+        self._actions["previous_solution"].triggered.connect(
+            self._previous_layout_solution
+        )
+        self._actions["next_solution"].triggered.connect(self._next_layout_solution)
+        self._actions["apply_layout"].triggered.connect(self._apply_layout)
+        self._actions["export_selected_svg"].triggered.connect(
+            self._export_selected_solution_svg
+        )
+
         self._reload_recent_files_menu()
 
     def _build_workspace(self):
@@ -347,6 +353,7 @@ class MainWindow(QMainWindow):
             self.workspace.preview_solution(solution)
             self._show_layout_solution(solution)
             self._reload_explorer()
+            self._reload_solution_table()
 
             index = self.services.layout.selected_solution_index + 1
             total = len(self.services.layout.solutions)
@@ -382,6 +389,46 @@ class MainWindow(QMainWindow):
         self._load_demo_project()
         self.services.layout.clear_solutions()
         self.statusBar().showMessage("Proyecto demo creado", 3000)
+
+    def _add_board(self):
+        project = self.services.projects.current_project
+
+        if project is None:
+            self._load_empty_project()
+            project = self.services.projects.current_project
+
+        if project is None:
+            return
+
+        dialog = NewBoardDialog(self)
+
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+
+        data = dialog.board_data()
+
+        if any(board.board_id == data["board_id"] for board in project.boards):
+            self.statusBar().showMessage(
+                f"Ya existe un tablero con id {data['board_id']}",
+                3000,
+            )
+            return
+
+        project.boards.append(
+            StudioBoard(
+                board_id=data["board_id"],
+                length_mm=data["length_mm"],
+                width_mm=data["width_mm"],
+                material=data["material"],
+            )
+        )
+
+        self.services.projects.mark_modified()
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._update_window_title()
+
+        self.statusBar().showMessage("Tablero añadido", 3000)
 
     def refresh_inspector_for_piece(self, piece_id: str):
         """Refresh inspector panel for the selected piece."""
