@@ -1,6 +1,13 @@
+"""Servicio de layout que conecta BoardComposer Studio con el motor de cálculo.
+
+Convierte el proyecto de Studio en un proyecto del núcleo, ejecuta el
+solver geométrico y gestiona la selección y aplicación de soluciones.
+"""
+
 from __future__ import annotations
 
 from boardcomposer import Board, Project, ProjectConstraints
+from boardcomposer.domain import AssemblySolution
 from boardcomposer.solver.geometry_solver import GeometrySolver
 from boardcomposer.solver.strategies import material_first_strategy
 
@@ -12,11 +19,12 @@ class LayoutService:
 
     def __init__(self, services):
         self.services = services
-        self.solutions = []
+        self.solutions: list[AssemblySolution] = []
         self.selected_solution_index = 0
-        self.strategy_name = None
+        self.strategy_name: str | None = None
 
-    def select_next_solution(self):
+    def select_next_solution(self) -> AssemblySolution | None:
+        """Select and return the next solution in the list, wrapping to the first."""
         if not self.solutions:
             return None
 
@@ -26,7 +34,8 @@ class LayoutService:
 
         return self.selected_solution
 
-    def select_previous_solution(self):
+    def select_previous_solution(self) -> AssemblySolution | None:
+        """Select and return the previous solution in the list, wrapping to the last."""
         if not self.solutions:
             return None
 
@@ -36,7 +45,8 @@ class LayoutService:
 
         return self.selected_solution
 
-    def select_solution(self, index: int):
+    def select_solution(self, index: int) -> AssemblySolution | None:
+        """Select and return the solution at the given index."""
         if not self.solutions:
             return None
 
@@ -47,7 +57,7 @@ class LayoutService:
         return self.selected_solution
 
     @property
-    def selected_solution(self):
+    def selected_solution(self) -> AssemblySolution | None:
         if not self.solutions:
             return None
 
@@ -87,7 +97,7 @@ class LayoutService:
 
         return core_project
 
-    def solve_current_project(self):
+    def solve_current_project(self) -> AssemblySolution | None:
         project = self.to_core_project()
         if project is None:
             return None
@@ -129,3 +139,8 @@ class LayoutService:
 
         self.services.projects.mark_modified()
         return True
+
+    def clear_solutions(self) -> None:
+        self.solutions = []
+        self.selected_solution_index = 0
+        self.strategy_name = None
