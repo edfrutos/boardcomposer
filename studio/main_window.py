@@ -23,7 +23,7 @@ from studio.commands import DeletePieceCommand, RotatePieceCommand
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import load_project, save_project
 from studio.workspace.board_workspace import BoardWorkspace
-from studio.dialogs import NewBoardDialog
+from studio.dialogs import NewBoardDialog, NewPieceDialog
 
 
 class MainWindow(QMainWindow):
@@ -71,6 +71,7 @@ class MainWindow(QMainWindow):
         self._actions["save"] = QAction("Guardar", self)
         self._actions["save_as"] = QAction("Guardar como…", self)
         self._actions["add_board"] = QAction("Añadir tablero…", self)
+        self._actions["add_piece"] = QAction("Añadir pieza…", self)
         self._actions["export_selected_svg"] = QAction(
             "Exportar solución seleccionada a SVG…",
             self,
@@ -110,6 +111,7 @@ class MainWindow(QMainWindow):
         menus["Editar"].addAction(self._actions["delete_piece"])
 
         menus["Proyecto"].addAction(self._actions["add_board"])
+        menus["Proyecto"].addAction(self._actions["add_piece"])
 
         menus["Exportar"].addAction(self._actions["export_selected_svg"])
 
@@ -127,6 +129,8 @@ class MainWindow(QMainWindow):
         self._actions["new_project"].triggered.connect(self._new_project)
         self._actions["new_demo_project"].triggered.connect(self._new_demo_project)
         self._actions["add_board"].triggered.connect(self._add_board)
+        self._actions["add_piece"].triggered.connect(self._add_piece)
+
         self._actions["undo"].triggered.connect(self._undo)
         self._actions["redo"].triggered.connect(self._redo)
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
@@ -429,6 +433,55 @@ class MainWindow(QMainWindow):
         self._update_window_title()
 
         self.statusBar().showMessage("Tablero añadido", 3000)
+
+    def _add_piece(self):
+        project = self.services.projects.current_project
+
+        if project is None:
+            self._load_empty_project()
+            project = self.services.projects.current_project
+
+        if project is None:
+            return
+
+        dialog = NewPieceDialog(self)
+
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+
+        data = dialog.piece_data()
+
+        if any(piece.piece_id == data["piece_id"] for piece in project.pieces):
+            self.statusBar().showMessage(
+                f"Ya existe una pieza con id {data['piece_id']}",
+                3000,
+            )
+            return
+
+        project.pieces.append(
+            StudioPiece(
+                piece_id=data["piece_id"],
+                length_mm=data["length_mm"],
+                width_mm=data["width_mm"],
+                material=data["material"],
+            )
+        )
+        project.placements.append(
+            StudioPlacement(
+                piece_id=data["piece_id"],
+                x_mm=0,
+                y_mm=0,
+                rotated=False,
+                rotation=0,
+            )
+        )
+
+        self.services.projects.mark_modified()
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._update_window_title()
+
+        self.statusBar().showMessage("Pieza añadida", 3000)
 
     def refresh_inspector_for_piece(self, piece_id: str):
         """Refresh inspector panel for the selected piece."""
@@ -785,8 +838,8 @@ class MainWindow(QMainWindow):
 
         project = load_project(path)
         self.services.projects.open_project(project, path)
-        self._reload_recent_files_menu()
         self.services.recent_files.add(path)
+        self._reload_recent_files_menu()
         self.services.layout.clear_solutions()
 
         self.workspace.reload_project()
@@ -794,40 +847,7 @@ class MainWindow(QMainWindow):
         self._reload_solution_table()
         self._update_window_title()
 
-        self.statusBar().showMessage("Proyecto abierto", 3000)
-
-    def _confirm_discard_unsaved_changes(self) -> bool:
-        if not self.services.projects.is_modified:
-            return True
-
-        result = QMessageBox.question(
-            self,
-            "Cambios sin guardar",
-            "El proyecto tiene cambios sin guardar.\n\n"
-            "¿Quieres guardarlos antes de continuar?",
-            QMessageBox.StandardButton.Save
-            | QMessageBox.StandardButton.Discard
-            | QMessageBox.StandardButton.Cancel,
-            QMessageBox.StandardButton.Save,
-        )
-
-        if result == QMessageBox.StandardButton.Cancel:
-            return False
-
-        if result == QMessageBox.StandardButton.Discard:
-            return True
-
-        self._save_project()
-        return not self.services.projects.is_modified
-
-    def _close_event(self, event):
-        if not self._confirm_discard_unsaved_changes():
-            event.ignore()
-        else:
-            event.accept()
-
-    def closeEvent(self, event):
-        self._close_event(event)
+        self.statusBar().showMessage(f"Proyecto abierto: {path}", 3000)
 
     def _reload_recent_files_menu(self):
         self._recent_menu.clear()
@@ -861,3 +881,36 @@ class MainWindow(QMainWindow):
         self._update_window_title()
 
         self.statusBar().showMessage(f"Proyecto abierto: {path}", 3000)
+
+    def _confirm_discard_unsaved_changes(self) -> bool:
+        if not self.services.projects.is_modified:
+            return True
+
+        result = QMessageBox.question(
+            self,
+            "Cambios sin guardar",
+            "El proyecto tiene cambios sin guardar.\n\n"
+            "¿Quieres guardarlos antes de continuar?",
+            QMessageBox.StandardButton.Save
+            | QMessageBox.StandardButton.Discard
+            | QMessageBox.StandardButton.Cancel,
+            QMessageBox.StandardButton.Save,
+        )
+
+        if result == QMessageBox.StandardButton.Cancel:
+            return False
+
+        if result == QMessageBox.StandardButton.Discard:
+            return True
+
+        self._save_project()
+        return not self.services.projects.is_modified
+
+    def _close_event(self, event):
+        if not self._confirm_discard_unsaved_changes():
+            event.ignore()
+        else:
+            event.accept()
+
+    def closeEvent(self, event):
+        self._close_event(event)
