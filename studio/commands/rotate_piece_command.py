@@ -1,7 +1,13 @@
+"""Comando deshacible para rotar una pieza colocada en el proyecto."""
+
 from studio.commands.command import Command
 
 
 class RotatePieceCommand(Command):
+    """Command to rotate a placed piece."""
+
+    name: str = "Rotar pieza"
+
     def __init__(self, services, piece_id: str, old_rotation: int, new_rotation: int):
         self.services = services
         self.piece_id = piece_id
@@ -9,6 +15,7 @@ class RotatePieceCommand(Command):
         self.new_rotation = new_rotation
 
     def execute(self):
+        """Execute the command to rotate the piece."""
         self._apply(self.new_rotation)
 
     def undo(self):

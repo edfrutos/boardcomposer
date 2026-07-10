@@ -1,7 +1,10 @@
 """Interactive board workspace for BoardComposer Studio."""
 
+# pylint: disable=invalid-name,too-many-instance-attributes
 from __future__ import annotations
-from studio.workspace.workspace_camera import WorkspaceCamera
+
+from typing import TYPE_CHECKING, cast
+
 from PySide6.QtCore import QPoint, QPointF, QRectF, Qt
 from PySide6.QtGui import QMouseEvent, QPainter, QWheelEvent
 from PySide6.QtWidgets import (
@@ -9,17 +12,24 @@ from PySide6.QtWidgets import (
     QGraphicsScene,
     QGraphicsView,
 )
+
 from studio.commands import MovePieceCommand
+from studio.workspace.board_item import create_board_item
 from studio.workspace.board_piece_item import BoardPieceItem
 from studio.workspace.drag_controller import DragController
 from studio.workspace.grid import add_grid
-from studio.workspace.board_item import create_board_item
 from studio.workspace.piece_factory import create_piece_item
 from studio.workspace.placement_validator import PlacementValidator
 from studio.workspace.selection_controller import SelectionController
+from studio.workspace.workspace_camera import WorkspaceCamera
+
+if TYPE_CHECKING:
+    from studio.main_window import MainWindow
 
 
 class BoardWorkspace(QGraphicsView):
+    """Interactive board workspace for BoardComposer Studio."""
+
     def __init__(self, services):
         super().__init__()
         self._validator = None
@@ -44,6 +54,7 @@ class BoardWorkspace(QGraphicsView):
         self.setCursor(Qt.CursorShape.OpenHandCursor)
 
     def reload_project(self) -> None:
+        """Reload the project."""
         self._scene.clear()
         self._piece_items.clear()
         self._board_item = None
@@ -89,6 +100,7 @@ class BoardWorkspace(QGraphicsView):
             self.selection.bind_items(self._piece_items)
 
     def preview_solution(self, solution) -> None:
+        """Preview the solution."""
         project = self.services.projects.current_project
         if project is None:
             return
@@ -108,16 +120,19 @@ class BoardWorkspace(QGraphicsView):
     def constrain_piece_position(
         self, item: BoardPieceItem, new_pos: QPointF
     ) -> QPointF:
+        """Constrain the piece position."""
         if self._validator is None:
             return new_pos
 
         return self._validator.constrain_position(item, new_pos)
 
     def select_piece(self, piece_id: str) -> None:
+        """Select the piece."""
         self.selection.select(piece_id)
         self.selection.sync_inspector(self.window())
 
     def fit_board(self) -> None:
+        """Fit the board to the viewport."""
         if self._board_item is None:
             return
 
@@ -134,6 +149,7 @@ class BoardWorkspace(QGraphicsView):
         self._apply_camera()
 
     def wheelEvent(self, event: QWheelEvent) -> None:
+        """Handle the wheel event."""
         mouse_scene_before = self.mapToScene(event.position().toPoint())
         factor = self._camera.zoom_factor(event.angleDelta().y())
         self._camera.zoom = self._camera.clamp_zoom(self._camera.zoom * factor)
@@ -145,6 +161,7 @@ class BoardWorkspace(QGraphicsView):
         event.accept()
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
+        """Handle the mouse press event."""
         clicked_item = self.itemAt(event.position().toPoint())
 
         if isinstance(clicked_item, BoardPieceItem):
@@ -162,6 +179,7 @@ class BoardWorkspace(QGraphicsView):
         super().mousePressEvent(event)
 
     def mouseMoveEvent(self, event: QMouseEvent) -> None:
+        """Handle the mouse move event."""
         if self._panning:
             current_position = event.position().toPoint()
             delta = current_position - self._last_pan_point
@@ -188,6 +206,7 @@ class BoardWorkspace(QGraphicsView):
                 item.set_valid()
 
     def mouseReleaseEvent(self, event: QMouseEvent) -> None:
+        """Handle the mouse release event."""
         if self._panning:
             self._end_pan()
             event.accept()
@@ -197,10 +216,12 @@ class BoardWorkspace(QGraphicsView):
         self._finish_piece_drag()
 
     def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
+        """Handle the mouse double click event."""
         self.fit_board()
         event.accept()
 
     def _finish_piece_drag(self) -> None:
+        """Finish the piece drag."""
         drag = self._drag.clear()
         if drag is None:
             return
@@ -236,23 +257,21 @@ class BoardWorkspace(QGraphicsView):
         self.services.commands.execute(command)
         self.services.projects.mark_modified()
 
-        window = self.window()
-
-        if hasattr(window, "_update_undo_redo"):
-            window._update_undo_redo()
-
-        if hasattr(window, "_update_window_title"):
-            window._update_window_title()
+        window = cast("MainWindow", self.window())
+        window.update_undo_redo()
+        window.update_window_title()
 
         item.set_normal()
 
     def piece_item_by_id(self, piece_id: str) -> BoardPieceItem | None:
+        """Get the piece item by ID."""
         for item in self._piece_items:
             if item.piece_id == piece_id:
                 return item
         return None
 
     def can_rotate_item(self, item: BoardPieceItem, angle: int) -> bool:
+        """Can rotate the item."""
         if self._validator is None:
             return False
 
@@ -264,15 +283,18 @@ class BoardWorkspace(QGraphicsView):
         self.setCursor(Qt.CursorShape.ClosedHandCursor)
 
     def _end_pan(self) -> None:
+        """End the pan."""
         self._panning = False
         self.setCursor(Qt.CursorShape.OpenHandCursor)
 
     def _apply_camera(self) -> None:
+        """Apply the camera."""
         self.resetTransform()
         self.scale(self._camera.zoom, self._camera.zoom)
         self.centerOn(self._camera.center)
 
     def piece_moved(self, piece_id: str, x: float, y: float) -> None:
+        """Piece moved event."""
         project = self.services.projects.current_project
         if project is None:
             return
