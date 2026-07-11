@@ -1,9 +1,8 @@
 """Main window for BoardComposer Studio."""
 
 from pathlib import Path
-
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QAction
+from PySide6.QtGui import QAction, QCloseEvent
 from PySide6.QtWidgets import (
     QDockWidget,
     QFileDialog,
@@ -23,6 +22,7 @@ from studio.commands import DeletePieceCommand, RotatePieceCommand
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import load_project, save_project
 from studio.workspace.board_workspace import BoardWorkspace
+from studio.workspace.board_piece_item import BoardPieceItem
 from studio.dialogs import NewBoardDialog, NewPieceDialog
 
 
@@ -42,7 +42,7 @@ class MainWindow(QMainWindow):
         self._build_statusbar()
         self._reload_explorer()
         self._reload_solution_table()
-        self._update_window_title()
+        self.update_window_title()
 
     def _build_menu(self):
         menu = QMenuBar(self)
@@ -156,6 +156,8 @@ class MainWindow(QMainWindow):
         self.explorer.setHeaderHidden(True)
         self.explorer.itemSelectionChanged.connect(self._on_explorer_selection_changed)
 
+        self.explorer.itemDoubleClicked.connect(self._on_explorer_item_double_clicked)
+
         explorer_dock = QDockWidget("Explorer", self)
         explorer_dock.setAllowedAreas(Qt.DockWidgetArea.LeftDockWidgetArea)
         explorer_dock.setWidget(self.explorer)
@@ -187,9 +189,17 @@ class MainWindow(QMainWindow):
         )
 
         self.solutions_table = QTableWidget()
-        self.solutions_table.setColumnCount(6)
+        self.solutions_table.setColumnCount(7)
         self.solutions_table.setHorizontalHeaderLabels(
-            ["#", "Piezas", "Desperdicio", "Largo", "Ancho", "Score"]
+            [
+                "#",
+                "Piezas",
+                "Huecos",
+                "Tablero libre",
+                "Largo",
+                "Ancho",
+                "Score",
+            ]
         )
         self.solutions_table.cellDoubleClicked.connect(
             self._on_solution_table_double_clicked
@@ -226,7 +236,7 @@ class MainWindow(QMainWindow):
         self.workspace.reload_project()
         self._reload_explorer()
         self._reload_solution_table()
-        self._update_window_title()
+        self.update_window_title()
 
     def _load_demo_project(self):
         project = StudioProject(
@@ -248,77 +258,84 @@ class MainWindow(QMainWindow):
         self.services.projects.new_project(project)
         self.workspace.reload_project()
         self._reload_explorer()
-        self._update_window_title()
+        self.update_window_title()
 
     def _reload_explorer(self):
         project = self.services.projects.current_project
         previous_signal_state = self.explorer.blockSignals(True)
-        self.explorer.clear()
 
-        if project is None:
-            return
+        try:
+            self.explorer.clear()
 
-        root = QTreeWidgetItem([project.name])
-        boards_root = QTreeWidgetItem(["Tableros"])
-        pieces_root = QTreeWidgetItem(["Piezas"])
-        solutions_root = QTreeWidgetItem(["Soluciones"])
-        selected_solution_item = None
+            if project is None:
+                return
 
-        for board in project.boards:
-            board_label = (
-                f"{board.board_id} — {board.length_mm:g} x {board.width_mm:g} mm"
-            )
-            item = QTreeWidgetItem([board_label])
-            item.setData(
-                0,
-                Qt.ItemDataRole.UserRole,
-                f"board:{board.board_id}",
-            )
-            boards_root.addChild(item)
+            root = QTreeWidgetItem([project.name])
+            boards_root = QTreeWidgetItem(["Tableros"])
+            pieces_root = QTreeWidgetItem(["Piezas"])
+            solutions_root = QTreeWidgetItem(["Soluciones"])
+            selected_solution_item = None
 
-        for piece in project.pieces:
-            piece_label = (
-                f"{piece.piece_id} — {piece.length_mm:g} x {piece.width_mm:g} mm"
-            )
-            item = QTreeWidgetItem([piece_label])
-            item.setData(
-                0,
-                Qt.ItemDataRole.UserRole,
-                f"piece:{piece.piece_id}",
-            )
-            pieces_root.addChild(item)
+            for board in project.boards:
+                board_label = (
+                    f"{board.board_id} — {board.length_mm:g} x {board.width_mm:g} mm"
+                )
+                item = QTreeWidgetItem([board_label])
+                item.setData(
+                    0,
+                    Qt.ItemDataRole.UserRole,
+                    f"board:{board.board_id}",
+                )
+                boards_root.addChild(item)
 
-        selected_solution_index = self.services.layout.selected_solution_index
+            for piece in project.pieces:
+                piece_label = (
+                    f"{piece.piece_id} — {piece.length_mm:g} x {piece.width_mm:g} mm"
+                )
+                item = QTreeWidgetItem([piece_label])
+                item.setData(
+                    0,
+                    Qt.ItemDataRole.UserRole,
+                    f"piece:{piece.piece_id}",
+                )
+                pieces_root.addChild(item)
 
-        for index, solution in enumerate(self.services.layout.solutions):
-            prefix = "✓ " if index == selected_solution_index else ""
-            item = QTreeWidgetItem(
-                [
-                    f"{prefix}Solución {index + 1} — "
-                    f"{len(solution.placements)} piezas — "
-                    f"{solution.waste_ratio:.1%} desperdicio"
-                ]
-            )
-            item.setData(
-                0,
-                Qt.ItemDataRole.UserRole,
-                f"solution:{index}",
-            )
-            solutions_root.addChild(item)
+            selected_solution_index = self.services.layout.selected_solution_index
 
-            if index == selected_solution_index:
-                selected_solution_item = item
+            for index, solution in enumerate(self.services.layout.solutions):
+                prefix = "✓ " if index == selected_solution_index else ""
 
-        root.addChild(boards_root)
-        root.addChild(pieces_root)
-        root.addChild(solutions_root)
-        self.explorer.addTopLevelItem(root)
-        self.explorer.expandAll()
+                item = QTreeWidgetItem(
+                    [
+                        f"{prefix}Solución {index + 1} — "
+                        f"{len(solution.placements)} piezas — "
+                        f"{solution.waste_ratio:.1%} huecos"
+                    ]
+                )
 
-        if selected_solution_item is not None:
-            self.explorer.setCurrentItem(selected_solution_item)
+                item.setData(
+                    0,
+                    Qt.ItemDataRole.UserRole,
+                    f"solution:{index}",
+                )
 
-        self.explorer.blockSignals(previous_signal_state)
+                solutions_root.addChild(item)
+
+                if index == selected_solution_index:
+                    selected_solution_item = item
+
+            root.addChild(boards_root)
+            root.addChild(pieces_root)
+            root.addChild(solutions_root)
+
+            self.explorer.addTopLevelItem(root)
+            self.explorer.expandAll()
+
+            if selected_solution_item is not None:
+                self.explorer.setCurrentItem(selected_solution_item)
+
+        finally:
+            self.explorer.blockSignals(previous_signal_state)
 
     def _on_explorer_selection_changed(self):
         selected = self.explorer.selectedItems()
@@ -337,6 +354,10 @@ class MainWindow(QMainWindow):
 
         kind, object_id = data.split(":", 1)
 
+        if kind == "solution":
+            self._select_layout_solution(int(object_id))
+            return
+
         if kind == "board":
             board = next(
                 board for board in project.boards if board.board_id == object_id
@@ -344,27 +365,9 @@ class MainWindow(QMainWindow):
             self.inspector.setText(
                 "Inspector\n\n"
                 f"Tablero: {board.board_id}\n"
-                f"Dimensiones: {board.length_mm:g} x {board.width_mm:g} mm\n"
+                f"Dimensiones: {board.length_mm:g} x "
+                f"{board.width_mm:g} mm\n"
                 f"Material: {board.material}"
-            )
-            return
-
-        if kind == "solution":
-            solution = self.services.layout.select_solution(int(object_id))
-            if solution is None:
-                return
-
-            self.workspace.preview_solution(solution)
-            self._show_layout_solution(solution)
-            self._reload_explorer()
-            self._reload_solution_table()
-
-            index = self.services.layout.selected_solution_index + 1
-            total = len(self.services.layout.solutions)
-            self.statusBar().showMessage(
-                f"Previsualizando solución {index}/{total}. "
-                "Pulsa 'Aplicar layout calculado' para conservarla.",
-                5000,
             )
             return
 
@@ -375,7 +378,8 @@ class MainWindow(QMainWindow):
             self.inspector.setText(
                 "Inspector\n\n"
                 f"Pieza: {piece.piece_id}\n"
-                f"Dimensiones: {piece.length_mm:g} x {piece.width_mm:g} mm\n"
+                f"Dimensiones: {piece.length_mm:g} x "
+                f"{piece.width_mm:g} mm\n"
                 f"Material: {piece.material}"
             )
 
@@ -430,7 +434,7 @@ class MainWindow(QMainWindow):
         self.services.projects.mark_modified()
         self.workspace.reload_project()
         self._reload_explorer()
-        self._update_window_title()
+        self.update_window_title()
 
         self.statusBar().showMessage("Tablero añadido", 3000)
 
@@ -451,9 +455,23 @@ class MainWindow(QMainWindow):
 
         data = dialog.piece_data()
 
-        if any(piece.piece_id == data["piece_id"] for piece in project.pieces):
+        new_piece_id = data["piece_id"].strip()
+
+        if not new_piece_id:
             self.statusBar().showMessage(
-                f"Ya existe una pieza con id {data['piece_id']}",
+                "El identificador de la pieza no puede estar vacío",
+                3000,
+            )
+            return
+
+        normalized_id = new_piece_id.casefold()
+
+        if any(
+            piece.piece_id.strip().casefold() == normalized_id
+            for piece in project.pieces
+        ):
+            self.statusBar().showMessage(
+                f"Ya existe una pieza con id {new_piece_id}",
                 3000,
             )
             return
@@ -466,11 +484,17 @@ class MainWindow(QMainWindow):
                 material=data["material"],
             )
         )
+
+        x_mm, y_mm = self._find_free_piece_position(
+            data["length_mm"],
+            data["width_mm"],
+        )
+
         project.placements.append(
             StudioPlacement(
                 piece_id=data["piece_id"],
-                x_mm=0,
-                y_mm=0,
+                x_mm=x_mm,
+                y_mm=y_mm,
                 rotated=False,
                 rotation=0,
             )
@@ -479,7 +503,7 @@ class MainWindow(QMainWindow):
         self.services.projects.mark_modified()
         self.workspace.reload_project()
         self._reload_explorer()
-        self._update_window_title()
+        self.update_window_title()
 
         self.statusBar().showMessage("Pieza añadida", 3000)
 
@@ -504,7 +528,8 @@ class MainWindow(QMainWindow):
             f"Material: {piece.material}"
         )
 
-    def _update_window_title(self):
+    def update_window_title(self):
+        """Update the window title from the current project state."""
         project = self.services.projects.current_project
         marker = "● " if self.services.projects.is_modified else ""
 
@@ -514,7 +539,8 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
 
-    def _update_undo_redo(self):
+    def update_undo_redo(self):
+        """Refresh the enabled state of undo and redo actions."""
         self._actions["undo"].setEnabled(self.services.commands.can_undo())
         self._actions["redo"].setEnabled(self.services.commands.can_redo())
 
@@ -524,19 +550,25 @@ class MainWindow(QMainWindow):
     def _undo(self):
         self.services.commands.undo()
         self.workspace.reload_project()
-        self._update_undo_redo()
+        self.update_undo_redo()
 
     def _redo(self):
         self.services.commands.redo()
         self.workspace.reload_project()
-        self._update_undo_redo()
+        self.update_undo_redo()
 
     def _rotate_selected_piece(self):
         selected = self.workspace.scene().selectedItems()
-        if not selected:
+
+        if len(selected) != 1:
             return
 
-        piece_id = selected[0].piece_id
+        item = selected[0]
+
+        if not isinstance(item, BoardPieceItem):
+            return
+
+        piece_id = item.piece_id
         project = self.services.projects.current_project
 
         if project is None:
@@ -548,10 +580,6 @@ class MainWindow(QMainWindow):
 
         old_rotation = placement.rotation
         new_rotation = 90 if old_rotation == 0 else 0
-
-        item = self.workspace.piece_item_by_id(piece_id)
-        if item is None:
-            return
 
         if not self.workspace.can_rotate_item(item, new_rotation):
             self.statusBar().showMessage(
@@ -566,14 +594,15 @@ class MainWindow(QMainWindow):
             old_rotation,
             new_rotation,
         )
+
         self.services.commands.execute(command)
 
         self.workspace.reload_project()
         self.workspace.select_piece(piece_id)
         self.refresh_inspector_for_piece(piece_id)
         self.services.projects.mark_modified()
-        self._update_window_title()
-        self._update_undo_redo()
+        self.update_window_title()
+        self.update_undo_redo()
 
     def _delete_selected_piece(self):
         piece_id = self.workspace.selection.current()
@@ -581,15 +610,22 @@ class MainWindow(QMainWindow):
             return
 
         command = DeletePieceCommand(self.services, piece_id)
+
         self.services.commands.execute(command)
 
-        self.workspace.reload_project()
         self.workspace.selection.clear()
+        self.services.selection.clear()
+
+        self.services.layout.clear_solutions()
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+
         self.workspace.selection.sync_inspector(self)
 
         self.services.projects.mark_modified()
-        self._update_window_title()
-        self._update_undo_redo()
+        self.update_window_title()
+        self.update_undo_redo()
 
     def _solve_layout(self):
         solution = self.services.layout.solve_current_project()
@@ -618,6 +654,7 @@ class MainWindow(QMainWindow):
                 str(row + 1),
                 str(len(solution.placements)),
                 f"{solution.waste_ratio:.1%}",
+                f"{self.services.layout.board_waste_ratio(solution):.1%}",
                 f"{solution.total_length_mm:.0f}",
                 f"{solution.total_width_mm:.0f}",
                 f"{solution.score.total:.2f}",
@@ -649,7 +686,8 @@ class MainWindow(QMainWindow):
             f"Piezas colocadas: {len(solution.placements)}",
             f"Largo total: {solution.total_length_mm:.0f} mm",
             f"Ancho total: {solution.total_width_mm:.0f} mm",
-            f"Desperdicio: {solution.waste_ratio:.1%}",
+            f"Huecos internos: {solution.waste_ratio:.1%}",
+            f"Tablero libre: {self.services.layout.board_waste_ratio(solution):.1%}",
         ]
 
         self.inspector.setText("\n".join(lines))
@@ -662,8 +700,8 @@ class MainWindow(QMainWindow):
         self.workspace.reload_project()
         self.services.selection.clear()
         self._reload_explorer()
-        self._update_undo_redo()
-        self._update_window_title()
+        self.update_undo_redo()
+        self.update_window_title()
 
         selected_index = self.services.layout.selected_solution_index + 1
         solution_count = len(self.services.layout.solutions)
@@ -720,22 +758,7 @@ class MainWindow(QMainWindow):
         self._select_solution_from_table(row)
 
     def _select_solution_from_table(self, row: int):
-        solution = self.services.layout.select_solution(row)
-        if solution is None:
-            return
-
-        self.workspace.preview_solution(solution)
-        self._show_layout_solution(solution)
-        self._reload_solution_table()
-        self._reload_explorer()
-
-        index = row + 1
-        total = len(self.services.layout.solutions)
-
-        self.statusBar().showMessage(
-            f"Previsualizando solución {index}/{total}",
-            3000,
-        )
+        self._select_layout_solution(row)
 
     def _export_selected_solution_svg(self):
         solution = self.services.layout.selected_solution
@@ -790,7 +813,7 @@ class MainWindow(QMainWindow):
         self.services.projects.mark_saved(filename)
         self._reload_recent_files_menu()
         self.services.recent_files.add(filename)
-        self._update_window_title()
+        self.update_window_title()
         self.statusBar().showMessage(f"Proyecto guardado: {filename}", 5000)
 
     def _save_project_as(self):
@@ -819,7 +842,7 @@ class MainWindow(QMainWindow):
         self.services.projects.mark_saved(path)
         self._reload_recent_files_menu()
         self.services.recent_files.add(path)
-        self._update_window_title()
+        self.update_window_title()
         self.statusBar().showMessage(f"Proyecto guardado: {path}", 5000)
 
     def _open_project(self):
@@ -845,7 +868,7 @@ class MainWindow(QMainWindow):
         self.workspace.reload_project()
         self._reload_explorer()
         self._reload_solution_table()
-        self._update_window_title()
+        self.update_window_title()
 
         self.statusBar().showMessage(f"Proyecto abierto: {path}", 3000)
 
@@ -878,7 +901,7 @@ class MainWindow(QMainWindow):
         self.workspace.reload_project()
         self._reload_explorer()
         self._reload_solution_table()
-        self._update_window_title()
+        self.update_window_title()
 
         self.statusBar().showMessage(f"Proyecto abierto: {path}", 3000)
 
@@ -912,5 +935,219 @@ class MainWindow(QMainWindow):
         else:
             event.accept()
 
-    def closeEvent(self, event):
+    def closeEvent(  # pylint: disable=invalid-name
+        self,
+        event: QCloseEvent,
+    ) -> None:
+        """Handle the Qt window close event."""
         self._close_event(event)
+
+    def _on_explorer_item_double_clicked(self, item, _column):
+        data = item.data(0, Qt.ItemDataRole.UserRole)
+
+        if not data:
+            return
+
+        kind, object_id = data.split(":", 1)
+
+        if kind == "board":
+            self._edit_board(object_id)
+            return
+
+        if kind == "piece":
+            self._edit_piece(object_id)
+
+    def _find_free_piece_position(
+        self,
+        length_mm: float,
+        width_mm: float,
+    ) -> tuple[float, float]:
+        project = self.services.projects.current_project
+
+        if project is None or not project.boards:
+            return 0.0, 0.0
+
+        board = project.boards[0]
+        margin = 20.0
+        x = margin
+        y = margin
+        row_height = 0.0
+
+        for placement in project.placements:
+            piece = project.piece_by_id(placement.piece_id)
+
+            placed_width = (
+                piece.width_mm if placement.rotation in (90, 270) else piece.length_mm
+            )
+            placed_height = (
+                piece.length_mm if placement.rotation in (90, 270) else piece.width_mm
+            )
+
+            if x + placed_width > board.length_mm - margin:
+                x = margin
+                y += row_height + margin
+                row_height = 0.0
+
+            x += placed_width + margin
+            row_height = max(row_height, placed_height)
+
+        if x + length_mm > board.length_mm - margin:
+            x = margin
+            y += row_height + margin
+
+        if y + width_mm > board.width_mm - margin:
+            return margin, margin
+
+        return x, y
+
+    def _select_layout_solution(self, index: int) -> None:
+        solution = self.services.layout.select_solution(index)
+
+        if solution is None:
+            return
+
+        self.workspace.preview_solution(solution)
+        self._show_layout_solution(solution)
+        self._reload_explorer()
+        self._reload_solution_table()
+
+        selected_index = self.services.layout.selected_solution_index + 1
+        total = len(self.services.layout.solutions)
+
+        self.statusBar().showMessage(
+            f"Previsualizando solución {selected_index}/{total}. "
+            "Pulsa 'Aplicar layout calculado' para conservarla.",
+            5000,
+        )
+
+    def _edit_board(self, board_id: str) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+
+        board = next(board for board in project.boards if board.board_id == board_id)
+        board_index = project.boards.index(board)
+
+        dialog = NewBoardDialog(
+            self,
+            board_id=board.board_id,
+            length_mm=int(board.length_mm),
+            width_mm=int(board.width_mm),
+            material=board.material,
+            title="Editar tablero",
+        )
+
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+
+        data = dialog.board_data()
+        new_board_id = data["board_id"]
+
+        if new_board_id != board_id and any(
+            existing.board_id == new_board_id for existing in project.boards
+        ):
+            self.statusBar().showMessage(
+                f"Ya existe un tablero con id {new_board_id}",
+                3000,
+            )
+            return
+
+        project.boards[board_index] = StudioBoard(
+            board_id=new_board_id,
+            length_mm=data["length_mm"],
+            width_mm=data["width_mm"],
+            material=data["material"],
+        )
+
+        self.services.layout.clear_solutions()
+        self.services.projects.mark_modified()
+
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self.update_window_title()
+
+        self.statusBar().showMessage("Tablero actualizado", 3000)
+
+    def _edit_piece(self, piece_id: str) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+
+        piece = project.piece_by_id(piece_id)
+        piece_index = project.pieces.index(piece)
+
+        dialog = NewPieceDialog(
+            self,
+            piece_id=piece.piece_id,
+            length_mm=int(piece.length_mm),
+            width_mm=int(piece.width_mm),
+            material=piece.material,
+            title="Editar pieza",
+        )
+
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+
+        data = dialog.piece_data()
+        new_piece_id = data["piece_id"].strip()
+
+        if not new_piece_id:
+            self.statusBar().showMessage(
+                "El identificador de la pieza no puede estar vacío",
+                3000,
+            )
+            return
+
+        normalized_id = new_piece_id.casefold()
+
+        if any(
+            existing.piece_id != piece_id
+            and existing.piece_id.strip().casefold() == normalized_id
+            for existing in project.pieces
+        ):
+            self.statusBar().showMessage(
+                f"Ya existe una pieza con id {new_piece_id}",
+                3000,
+            )
+            return
+
+        placement = project.placement_by_piece_id(piece_id)
+
+        updated_piece = StudioPiece(
+            piece_id=new_piece_id,
+            length_mm=data["length_mm"],
+            width_mm=data["width_mm"],
+            material=data["material"],
+        )
+
+        project.pieces[piece_index] = updated_piece
+
+        if placement is not None:
+            placement.piece_id = new_piece_id
+
+        self.services.layout.clear_solutions()
+        self.services.projects.mark_modified()
+
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+
+        self.services.selection.select_one(new_piece_id)
+        self.workspace.select_piece(new_piece_id)
+
+        position_text = ""
+        if placement is not None:
+            position_text = f"Posición: {placement.x_mm:g}, {placement.y_mm:g} mm\n"
+
+        self.inspector.setText(
+            "Inspector\n\n"
+            f"Pieza: {updated_piece.piece_id}\n"
+            f"Dimensiones: {updated_piece.length_mm:g} x "
+            f"{updated_piece.width_mm:g} mm\n"
+            f"{position_text}"
+            f"Material: {updated_piece.material}"
+        )
+
+        self.update_window_title()
+        self.statusBar().showMessage("Pieza actualizada", 3000)

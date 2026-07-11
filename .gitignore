@@ -10,3 +10,4 @@ graphify-out/
 exportaciones/
 proyectos/
 *.bcproj
+*.svg

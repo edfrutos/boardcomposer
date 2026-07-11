@@ -12,6 +12,7 @@ from boardcomposer.solver.geometry_solver import GeometrySolver
 from boardcomposer.solver.strategies import material_first_strategy
 
 from studio.models import StudioPlacement
+from boardcomposer.layout.validation import has_overlaps
 
 
 class LayoutService:
@@ -105,17 +106,22 @@ class LayoutService:
         strategy = material_first_strategy()
         self.strategy_name = strategy.name
 
-        solutions = GeometrySolver(
+        candidate_solutions = GeometrySolver(
             project,
             strategy=strategy,
         ).solve()
 
+        solutions = [
+            solution
+            for solution in candidate_solutions
+            if self._is_valid_solution(solution)
+        ]
+
         if not solutions:
+            self.clear_solutions()
             return None
 
         self.solutions = solutions
-        self.selected_solution_index = 0
-        return self.selected_solution
 
     def apply_last_solution_to_current_project(self) -> bool:
         studio_project = self.services.projects.current_project
@@ -140,7 +146,68 @@ class LayoutService:
         self.services.projects.mark_modified()
         return True
 
+    def _is_valid_solution(
+        self,
+        solution: AssemblySolution,
+    ) -> bool:
+        studio_project = self.services.projects.current_project
+
+        if studio_project is None or not studio_project.boards:
+            return False
+
+        expected_ids = {piece.piece_id for piece in studio_project.pieces}
+        placed_ids = [placement.board_id for placement in solution.placements]
+
+        if len(placed_ids) != len(expected_ids):
+            return False
+
+        if len(set(placed_ids)) != len(placed_ids):
+            return False
+
+        if set(placed_ids) != expected_ids:
+            return False
+
+        if has_overlaps(solution.placements):
+            return False
+
+        board = studio_project.boards[0]
+
+        for placement in solution.placements:
+            placed_length = (
+                placement.width_mm if placement.rotated else placement.length_mm
+            )
+            placed_width = (
+                placement.length_mm if placement.rotated else placement.width_mm
+            )
+
+            if placement.x_mm < 0 or placement.y_mm < 0:
+                return False
+
+            if placement.x_mm + placed_length > board.length_mm:
+                return False
+
+            if placement.y_mm + placed_width > board.width_mm:
+                return False
+
+        return True
+
     def clear_solutions(self) -> None:
+        """Clear cached layout solutions and reset selection state."""
         self.solutions = []
         self.selected_solution_index = 0
         self.strategy_name = None
+
+    def board_waste_ratio(self, solution: AssemblySolution) -> float:
+        """Return unused board area relative to the source board."""
+        studio_project = self.services.projects.current_project
+
+        if studio_project is None or not studio_project.boards:
+            return 0.0
+
+        board = studio_project.boards[0]
+        board_area = board.length_mm * board.width_mm
+
+        if board_area <= 0:
+            return 0.0
+
+        return max(0.0, 1.0 - solution.used_area_mm2 / board_area)

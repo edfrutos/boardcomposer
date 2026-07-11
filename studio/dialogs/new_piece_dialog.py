@@ -14,23 +14,32 @@ from PySide6.QtWidgets import (
 class NewPieceDialog(QDialog):
     """Diálogo para crear una pieza."""
 
-    def __init__(self, parent=None):
+    def __init__(
+        self,
+        parent=None,
+        *,
+        piece_id: str = "P-001",
+        length_mm: int = 700,
+        width_mm: int = 300,
+        material: str = "Melamina blanca",
+        title: str = "Nueva pieza",
+    ):
         super().__init__(parent)
 
-        self.setWindowTitle("Nueva pieza")
+        self.setWindowTitle(title)
 
-        self.piece_id = QLineEdit("P-001")
+        self.piece_id = QLineEdit(piece_id)
         self.length_mm = QSpinBox()
         self.width_mm = QSpinBox()
-        self.material = QLineEdit("Melamina blanca")
+        self.material = QLineEdit(material)
         self.rotatable = QCheckBox()
         self.rotatable.setChecked(True)
 
         for field in (self.length_mm, self.width_mm):
             field.setRange(1, 100000)
 
-        self.length_mm.setValue(700)
-        self.width_mm.setValue(300)
+        self.length_mm.setValue(length_mm)
+        self.width_mm.setValue(width_mm)
 
         form = QFormLayout()
         form.addRow("Identificador:", self.piece_id)

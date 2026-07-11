@@ -1,4 +1,4 @@
-"""Dialog for creating a Studio board."""
+"""Dialog for creating or editing a Studio board."""
 
 from PySide6.QtWidgets import (
     QDialog,
@@ -11,25 +11,39 @@ from PySide6.QtWidgets import (
 
 
 class NewBoardDialog(QDialog):
-    """Dialogo para crear un tablero."""
+    """Dialog for creating or editing a board."""
 
-    def __init__(self, parent=None):
+    def __init__(
+        self,
+        parent=None,
+        *,
+        board_id: str = "TAB-001",
+        length_mm: int = 3000,
+        width_mm: int = 1200,
+        thickness_mm: int = 19,
+        material: str = "Melamina blanca",
+        title: str = "Nuevo tablero",
+    ) -> None:
         super().__init__(parent)
 
-        self.setWindowTitle("Nuevo tablero")
+        self.setWindowTitle(title)
 
-        self.board_id = QLineEdit("TAB-001")
+        self.board_id = QLineEdit(board_id)
         self.length_mm = QSpinBox()
         self.width_mm = QSpinBox()
         self.thickness_mm = QSpinBox()
-        self.material = QLineEdit("Melamina blanca")
+        self.material = QLineEdit(material)
 
-        for field in (self.length_mm, self.width_mm, self.thickness_mm):
+        for field in (
+            self.length_mm,
+            self.width_mm,
+            self.thickness_mm,
+        ):
             field.setRange(1, 100_000)
 
-        self.length_mm.setValue(3000)
-        self.width_mm.setValue(1200)
-        self.thickness_mm.setValue(19)
+        self.length_mm.setValue(length_mm)
+        self.width_mm.setValue(width_mm)
+        self.thickness_mm.setValue(thickness_mm)
 
         form = QFormLayout()
         form.addRow("Identificador:", self.board_id)
@@ -47,10 +61,10 @@ class NewBoardDialog(QDialog):
         layout = QVBoxLayout()
         layout.addLayout(form)
         layout.addWidget(buttons)
-
         self.setLayout(layout)
 
     def board_data(self) -> dict:
+        """Return the values entered in the dialog."""
         return {
             "board_id": self.board_id.text().strip(),
             "length_mm": float(self.length_mm.value()),

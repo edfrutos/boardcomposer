@@ -1,6 +1,11 @@
 from PySide6.QtGui import QColor, QFont, QPen
 from PySide6.QtWidgets import QGraphicsItem, QGraphicsRectItem, QGraphicsSimpleTextItem
 
+from typing import TYPE_CHECKING, cast
+
+if TYPE_CHECKING:
+    from studio.workspace.board_workspace import BoardWorkspace
+
 
 class BoardPieceItem(QGraphicsRectItem):
     def __init__(
@@ -34,29 +39,26 @@ class BoardPieceItem(QGraphicsRectItem):
         label.setPos(24, 20)
 
     def itemChange(self, change, value):
-        if change == QGraphicsItem.GraphicsItemChange.ItemPositionChange:
-            workspace = (
-                self.scene().views()[0]
-                if self.scene() and self.scene().views()
-                else None
+        scene = self.scene()
+        views = scene.views() if scene is not None else []
+
+        workspace = cast("BoardWorkspace", views[0]) if views else None
+
+        if (
+            change == QGraphicsItem.GraphicsItemChange.ItemPositionChange
+            and workspace is not None
+        ):
+            return workspace.constrain_piece_position(self, value)
+
+        if (
+            change == QGraphicsItem.GraphicsItemChange.ItemPositionHasChanged
+            and workspace is not None
+        ):
+            workspace.piece_moved(
+                self.piece_id,
+                value.x(),
+                value.y(),
             )
-
-            if workspace is not None:
-                return workspace.constrain_piece_position(self, value)
-
-        if change == QGraphicsItem.GraphicsItemChange.ItemPositionHasChanged:
-            workspace = (
-                self.scene().views()[0]
-                if self.scene() and self.scene().views()
-                else None
-            )
-
-            if workspace is not None:
-                workspace.piece_moved(
-                    self.piece_id,
-                    value.x(),
-                    value.y(),
-                )
 
         return super().itemChange(change, value)
 
