@@ -189,9 +189,17 @@ class MainWindow(QMainWindow):
         )
 
         self.solutions_table = QTableWidget()
-        self.solutions_table.setColumnCount(6)
+        self.solutions_table.setColumnCount(7)
         self.solutions_table.setHorizontalHeaderLabels(
-            ["#", "Piezas", "Desperdicio", "Largo", "Ancho", "Score"]
+            [
+                "#",
+                "Piezas",
+                "Huecos",
+                "Tablero libre",
+                "Largo",
+                "Ancho",
+                "Score",
+            ]
         )
         self.solutions_table.cellDoubleClicked.connect(
             self._on_solution_table_double_clicked
@@ -301,7 +309,7 @@ class MainWindow(QMainWindow):
                     [
                         f"{prefix}Solución {index + 1} — "
                         f"{len(solution.placements)} piezas — "
-                        f"{solution.waste_ratio:.1%} desperdicio"
+                        f"{solution.waste_ratio:.1%} huecos"
                     ]
                 )
 
@@ -447,9 +455,23 @@ class MainWindow(QMainWindow):
 
         data = dialog.piece_data()
 
-        if any(piece.piece_id == data["piece_id"] for piece in project.pieces):
+        new_piece_id = data["piece_id"].strip()
+
+        if not new_piece_id:
             self.statusBar().showMessage(
-                f"Ya existe una pieza con id {data['piece_id']}",
+                "El identificador de la pieza no puede estar vacío",
+                3000,
+            )
+            return
+
+        normalized_id = new_piece_id.casefold()
+
+        if any(
+            piece.piece_id.strip().casefold() == normalized_id
+            for piece in project.pieces
+        ):
+            self.statusBar().showMessage(
+                f"Ya existe una pieza con id {new_piece_id}",
                 3000,
             )
             return
@@ -632,6 +654,7 @@ class MainWindow(QMainWindow):
                 str(row + 1),
                 str(len(solution.placements)),
                 f"{solution.waste_ratio:.1%}",
+                f"{self.services.layout.board_waste_ratio(solution):.1%}",
                 f"{solution.total_length_mm:.0f}",
                 f"{solution.total_width_mm:.0f}",
                 f"{solution.score.total:.2f}",
@@ -663,7 +686,8 @@ class MainWindow(QMainWindow):
             f"Piezas colocadas: {len(solution.placements)}",
             f"Largo total: {solution.total_length_mm:.0f} mm",
             f"Ancho total: {solution.total_width_mm:.0f} mm",
-            f"Desperdicio: {solution.waste_ratio:.1%}",
+            f"Huecos internos: {solution.waste_ratio:.1%}",
+            f"Tablero libre: {self.services.layout.board_waste_ratio(solution):.1%}",
         ]
 
         self.inspector.setText("\n".join(lines))
@@ -926,59 +950,12 @@ class MainWindow(QMainWindow):
 
         kind, object_id = data.split(":", 1)
 
+        if kind == "board":
+            self._edit_board(object_id)
+            return
+
         if kind == "piece":
             self._edit_piece(object_id)
-
-    def _edit_piece(self, piece_id: str):
-        project = self.services.projects.current_project
-        if project is None:
-            return
-
-        piece = project.piece_by_id(piece_id)
-
-        dialog = NewPieceDialog(
-            self,
-            piece_id=piece.piece_id,
-            length_mm=int(piece.length_mm),
-            width_mm=int(piece.width_mm),
-            material=piece.material,
-        )
-
-        if dialog.exec() != dialog.DialogCode.Accepted:
-            return
-
-        data = dialog.piece_data()
-
-        if data["piece_id"] != piece_id and any(
-            existing.piece_id == data["piece_id"] for existing in project.pieces
-        ):
-            self.statusBar().showMessage(
-                f"Ya existe una pieza con id {data['piece_id']}",
-                3000,
-            )
-            return
-
-        placement = project.placement_by_piece_id(piece_id)
-
-        project.pieces.remove(piece)
-        project.pieces.append(
-            StudioPiece(
-                piece_id=data["piece_id"],
-                length_mm=data["length_mm"],
-                width_mm=data["width_mm"],
-                material=data["material"],
-            )
-        )
-
-        if placement is not None:
-            placement.piece_id = data["piece_id"]
-
-        self.services.projects.mark_modified()
-        self.workspace.reload_project()
-        self._reload_explorer()
-        self.update_window_title()
-
-        self.statusBar().showMessage("Pieza actualizada", 3000)
 
     def _find_free_piece_position(
         self,
@@ -1042,3 +1019,135 @@ class MainWindow(QMainWindow):
             "Pulsa 'Aplicar layout calculado' para conservarla.",
             5000,
         )
+
+    def _edit_board(self, board_id: str) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+
+        board = next(board for board in project.boards if board.board_id == board_id)
+        board_index = project.boards.index(board)
+
+        dialog = NewBoardDialog(
+            self,
+            board_id=board.board_id,
+            length_mm=int(board.length_mm),
+            width_mm=int(board.width_mm),
+            material=board.material,
+            title="Editar tablero",
+        )
+
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+
+        data = dialog.board_data()
+        new_board_id = data["board_id"]
+
+        if new_board_id != board_id and any(
+            existing.board_id == new_board_id for existing in project.boards
+        ):
+            self.statusBar().showMessage(
+                f"Ya existe un tablero con id {new_board_id}",
+                3000,
+            )
+            return
+
+        project.boards[board_index] = StudioBoard(
+            board_id=new_board_id,
+            length_mm=data["length_mm"],
+            width_mm=data["width_mm"],
+            material=data["material"],
+        )
+
+        self.services.layout.clear_solutions()
+        self.services.projects.mark_modified()
+
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self.update_window_title()
+
+        self.statusBar().showMessage("Tablero actualizado", 3000)
+
+    def _edit_piece(self, piece_id: str) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+
+        piece = project.piece_by_id(piece_id)
+        piece_index = project.pieces.index(piece)
+
+        dialog = NewPieceDialog(
+            self,
+            piece_id=piece.piece_id,
+            length_mm=int(piece.length_mm),
+            width_mm=int(piece.width_mm),
+            material=piece.material,
+            title="Editar pieza",
+        )
+
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+
+        data = dialog.piece_data()
+        new_piece_id = data["piece_id"].strip()
+
+        if not new_piece_id:
+            self.statusBar().showMessage(
+                "El identificador de la pieza no puede estar vacío",
+                3000,
+            )
+            return
+
+        normalized_id = new_piece_id.casefold()
+
+        if any(
+            existing.piece_id != piece_id
+            and existing.piece_id.strip().casefold() == normalized_id
+            for existing in project.pieces
+        ):
+            self.statusBar().showMessage(
+                f"Ya existe una pieza con id {new_piece_id}",
+                3000,
+            )
+            return
+
+        placement = project.placement_by_piece_id(piece_id)
+
+        updated_piece = StudioPiece(
+            piece_id=new_piece_id,
+            length_mm=data["length_mm"],
+            width_mm=data["width_mm"],
+            material=data["material"],
+        )
+
+        project.pieces[piece_index] = updated_piece
+
+        if placement is not None:
+            placement.piece_id = new_piece_id
+
+        self.services.layout.clear_solutions()
+        self.services.projects.mark_modified()
+
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+
+        self.services.selection.select_one(new_piece_id)
+        self.workspace.select_piece(new_piece_id)
+
+        position_text = ""
+        if placement is not None:
+            position_text = f"Posición: {placement.x_mm:g}, {placement.y_mm:g} mm\n"
+
+        self.inspector.setText(
+            "Inspector\n\n"
+            f"Pieza: {updated_piece.piece_id}\n"
+            f"Dimensiones: {updated_piece.length_mm:g} x "
+            f"{updated_piece.width_mm:g} mm\n"
+            f"{position_text}"
+            f"Material: {updated_piece.material}"
+        )
+
+        self.update_window_title()
+        self.statusBar().showMessage("Pieza actualizada", 3000)
