@@ -24,7 +24,7 @@ class CandidatePipeline:
         valid = [
             solution
             for solution in candidates
-            if is_valid_solution(solution, self.project.constraints)
+            if is_valid_solution(solution, self.project)
         ]
 
         unique = deduplicate_solutions(valid)
