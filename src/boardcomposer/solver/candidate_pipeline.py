@@ -1,5 +1,5 @@
 from boardcomposer.domain import AssemblySolution, Project
-from boardcomposer.solver.constraints_validator import respects_constraints
+from boardcomposer.solver.solution_validator import is_valid_solution
 from boardcomposer.solver.deduplication import deduplicate_solutions
 from boardcomposer.solver.evaluation import evaluate
 from boardcomposer.solver.generators import generators_by_name
@@ -24,7 +24,7 @@ class CandidatePipeline:
         valid = [
             solution
             for solution in candidates
-            if respects_constraints(solution, self.project.constraints)
+            if is_valid_solution(solution, self.project.constraints)
         ]
 
         unique = deduplicate_solutions(valid)
