@@ -30,10 +30,12 @@ class CandidatePipeline:
         evaluated: list[AssemblySolution] = []
 
         for candidate in unique_candidates:
-            solution = evaluator.evaluate(candidate)
+            result = evaluator.evaluate(candidate)
 
-            if solution is not None:
-                evaluated.append(solution)
+            if result.solution is None:
+                continue
+
+            evaluated.append(result.solution)
 
         return sorted(
             evaluated,

@@ -8,6 +8,7 @@ from boardcomposer import (
     ProjectConstraints,
 )
 from boardcomposer.solver.solution_evaluator import SolutionEvaluator
+from boardcomposer.solver.validation_result import ValidationReason
 
 
 def make_project() -> Project:
@@ -34,8 +35,11 @@ def test_evaluator_returns_scored_valid_solution():
 
     result = SolutionEvaluator(make_project()).evaluate(candidate)
 
-    assert result is not None
-    assert result.score.total > 0
+    assert result.accepted is True
+    assert result.solution is not None
+    assert result.solution.score.total > 0
+    assert result.validation.valid is True
+    assert result.validation.reasons == ()
 
 
 def test_evaluator_rejects_overlapping_solution():
@@ -49,7 +53,9 @@ def test_evaluator_rejects_overlapping_solution():
 
     result = SolutionEvaluator(make_project()).evaluate(candidate)
 
-    assert result is None
+    assert result.accepted is False
+    assert result.solution is None
+    assert ValidationReason.OVERLAP in result.validation.reasons
 
 
 def test_evaluator_rejects_incomplete_solution():
@@ -62,4 +68,6 @@ def test_evaluator_rejects_incomplete_solution():
 
     result = SolutionEvaluator(make_project()).evaluate(candidate)
 
-    assert result is None
+    assert result.accepted is False
+    assert result.solution is None
+    assert ValidationReason.MISSING_BOARD in result.validation.reasons
