@@ -1,8 +1,7 @@
 from boardcomposer.domain import AssemblySolution, Project
-from boardcomposer.solver.solution_validator import is_valid_solution
 from boardcomposer.solver.deduplication import deduplicate_solutions
-from boardcomposer.solver.evaluation import evaluate
 from boardcomposer.solver.generators import generators_by_name
+from boardcomposer.solver.solution_evaluator import SolutionEvaluator
 from boardcomposer.solver.strategies import OptimizationStrategy
 
 
@@ -21,22 +20,20 @@ class CandidatePipeline:
         for generator in generators_by_name(list(self.strategy.generator_names)):
             candidates.extend(generator(self.project))
 
-        valid = [
-            solution
-            for solution in candidates
-            if is_valid_solution(solution, self.project)
-        ]
+        unique_candidates = deduplicate_solutions(candidates)
 
-        unique = deduplicate_solutions(valid)
+        evaluator = SolutionEvaluator(
+            project=self.project,
+            weights=self.strategy.weights,
+        )
 
-        evaluated = [
-            evaluate(
-                solution,
-                total_boards=len(self.project.boards),
-                weights=self.strategy.weights,
-            )
-            for solution in unique
-        ]
+        evaluated: list[AssemblySolution] = []
+
+        for candidate in unique_candidates:
+            solution = evaluator.evaluate(candidate)
+
+            if solution is not None:
+                evaluated.append(solution)
 
         return sorted(
             evaluated,
