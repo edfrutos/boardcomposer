@@ -690,6 +690,11 @@ class MainWindow(QMainWindow):
             f"Tablero libre: {self.services.layout.board_waste_ratio(solution):.1%}",
         ]
 
+        stats_lines = self.services.layout.stats_summary_lines()
+
+        if stats_lines:
+            lines.extend(["", *stats_lines])
+
         self.inspector.setText("\n".join(lines))
 
     def _apply_layout(self):
