@@ -9,10 +9,10 @@ from __future__ import annotations
 from boardcomposer import Board, Project, ProjectConstraints
 from boardcomposer.domain import AssemblySolution
 from boardcomposer.solver.geometry_solver import GeometrySolver
+from boardcomposer.solver.pipeline_stats import PipelineStats
 from boardcomposer.solver.strategies import material_first_strategy
 
 from studio.models import StudioPlacement
-from boardcomposer.layout.validation import has_overlaps
 
 
 class LayoutService:
@@ -23,6 +23,7 @@ class LayoutService:
         self.solutions: list[AssemblySolution] = []
         self.selected_solution_index = 0
         self.strategy_name: str | None = None
+        self.stats = PipelineStats()
 
     def select_next_solution(self) -> AssemblySolution | None:
         """Select and return the next solution in the list, wrapping to the first."""
@@ -106,24 +107,26 @@ class LayoutService:
         strategy = material_first_strategy()
         self.strategy_name = strategy.name
 
-        candidate_solutions = GeometrySolver(
+        solver = GeometrySolver(
             project,
             strategy=strategy,
-        ).solve()
+        )
 
-        solutions = [
-            solution
-            for solution in candidate_solutions
-            if self._is_valid_solution(solution)
-        ]
+        solutions = solver.solve()
+        self.stats = solver.stats
 
         if not solutions:
             self.clear_solutions()
+
             return None
 
         self.solutions = solutions
+        self.selected_solution_index = 0
+
+        return self.selected_solution
 
     def apply_last_solution_to_current_project(self) -> bool:
+        """Apply the last solution to the current project."""
         studio_project = self.services.projects.current_project
         solution = self.selected_solution
 
@@ -146,56 +149,12 @@ class LayoutService:
         self.services.projects.mark_modified()
         return True
 
-    def _is_valid_solution(
-        self,
-        solution: AssemblySolution,
-    ) -> bool:
-        studio_project = self.services.projects.current_project
-
-        if studio_project is None or not studio_project.boards:
-            return False
-
-        expected_ids = {piece.piece_id for piece in studio_project.pieces}
-        placed_ids = [placement.board_id for placement in solution.placements]
-
-        if len(placed_ids) != len(expected_ids):
-            return False
-
-        if len(set(placed_ids)) != len(placed_ids):
-            return False
-
-        if set(placed_ids) != expected_ids:
-            return False
-
-        if has_overlaps(solution.placements):
-            return False
-
-        board = studio_project.boards[0]
-
-        for placement in solution.placements:
-            placed_length = (
-                placement.width_mm if placement.rotated else placement.length_mm
-            )
-            placed_width = (
-                placement.length_mm if placement.rotated else placement.width_mm
-            )
-
-            if placement.x_mm < 0 or placement.y_mm < 0:
-                return False
-
-            if placement.x_mm + placed_length > board.length_mm:
-                return False
-
-            if placement.y_mm + placed_width > board.width_mm:
-                return False
-
-        return True
-
     def clear_solutions(self) -> None:
         """Clear cached layout solutions and reset selection state."""
         self.solutions = []
         self.selected_solution_index = 0
         self.strategy_name = None
+        self.stats = PipelineStats()
 
     def board_waste_ratio(self, solution: AssemblySolution) -> float:
         """Return unused board area relative to the source board."""
@@ -211,3 +170,31 @@ class LayoutService:
             return 0.0
 
         return max(0.0, 1.0 - solution.used_area_mm2 / board_area)
+
+    def stats_summary_lines(self) -> list[str]:
+        """Return human-readable solver statistics."""
+        lines = [
+            "Diagnóstico del cálculo",
+            f"Candidatas generadas: {self.stats.generated}",
+            f"Candidatas únicas: {self.stats.unique}",
+            f"Aceptadas: {self.stats.accepted}",
+            f"Rechazadas: {self.stats.rejected}",
+        ]
+
+        reason_labels = {
+            "missing_board": "Piezas omitidas",
+            "duplicate_board": "Piezas duplicadas",
+            "unknown_board": "Piezas desconocidas",
+            "overlap": "Solapes",
+            "exceeds_constraints": "Fuera del tablero",
+        }
+
+        if self.stats.rejection_reasons:
+            lines.append("")
+            lines.append("Motivos de rechazo:")
+
+            for reason, count in self.stats.rejection_reasons.items():
+                label = reason_labels.get(reason.value, reason.value)
+                lines.append(f"  {label}: {count}")
+
+        return lines
