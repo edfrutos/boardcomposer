@@ -8,7 +8,7 @@ class TextPresenter(Presenter):
     def render(
         self,
         project: Project,
-        strategy: OptimizationStrategy,
+        strategy: OptimizationStrategy | None,
         solutions: list[AssemblySolution],
         top: int,
     ) -> str:

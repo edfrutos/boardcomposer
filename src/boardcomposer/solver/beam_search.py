@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import TypeVar
 
 State = TypeVar("State")
-Score = tuple[int, ...]
+Score = tuple[int | float, ...]
 
 
 @dataclass(frozen=True)
