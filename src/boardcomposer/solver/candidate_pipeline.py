@@ -4,6 +4,7 @@ from boardcomposer.solver.generators import generators_by_name
 from boardcomposer.solver.solution_evaluator import SolutionEvaluator
 from boardcomposer.solver.strategies import OptimizationStrategy
 from boardcomposer.solver.pipeline_stats import PipelineStats
+from boardcomposer.solver.solution_ranking import solution_ranking_key
 
 
 class CandidatePipeline:
@@ -50,6 +51,6 @@ class CandidatePipeline:
 
         return sorted(
             evaluated,
-            key=lambda solution: solution.score.total,
+            key=solution_ranking_key,
             reverse=True,
         )
