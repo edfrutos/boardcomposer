@@ -1,6 +1,7 @@
 from collections.abc import Iterable
 
 from boardcomposer.domain import AssemblySolution
+from boardcomposer.solver.solution_ranking import solution_ranking_key
 
 
 def search_best_solution(
@@ -8,9 +9,5 @@ def search_best_solution(
 ) -> AssemblySolution:
     return max(
         solutions,
-        key=lambda solution: (
-            len(solution.placements),
-            -solution.total_width_mm,
-            -solution.total_length_mm,
-        ),
+        key=solution_ranking_key,
     )
