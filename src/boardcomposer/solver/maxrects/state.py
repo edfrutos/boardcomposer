@@ -1,4 +1,5 @@
 """MaxRects state implementation."""
+
 from copy import deepcopy
 from dataclasses import dataclass
 

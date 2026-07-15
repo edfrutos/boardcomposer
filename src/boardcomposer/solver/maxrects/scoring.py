@@ -1,4 +1,5 @@
 """Scoring criteria for partial MaxRects beam-search states."""
+
 from boardcomposer.solver.maxrects.state import MaxRectsState
 
 
