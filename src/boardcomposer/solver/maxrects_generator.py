@@ -1,6 +1,17 @@
 from boardcomposer.domain import AssemblySolution, Project
-from boardcomposer.solver.maxrects_search import generate_best_maxrects_solution
+from boardcomposer.solver.maxrects_search import (
+    generate_beam_maxrects_solution,
+    generate_best_maxrects_solution,
+)
+from boardcomposer.solver.search import search_best_solution
 
 
 def generate_maxrects_solution(project: Project) -> AssemblySolution:
-    return generate_best_maxrects_solution(project)
+    classic = generate_best_maxrects_solution(project)
+    beam = generate_beam_maxrects_solution(
+        project,
+        beam_width=2,
+        candidate_width=None,
+    )
+
+    return search_best_solution([classic, beam])

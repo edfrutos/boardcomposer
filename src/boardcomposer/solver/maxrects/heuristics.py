@@ -77,3 +77,23 @@ def best_bottom_left_fit(
             waste_area(candidate),
         ),
     )
+
+
+ScoreFn = Callable[[MaxRectsPlacement], float]
+
+
+def best_contact_point_fit(
+    candidates: list[MaxRectsPlacement],
+    score: ScoreFn,
+) -> MaxRectsPlacement | None:
+    if not candidates:
+        return None
+
+    return max(
+        candidates,
+        key=lambda candidate: (
+            score(candidate),
+            -candidate.y_mm,
+            -candidate.x_mm,
+        ),
+    )
