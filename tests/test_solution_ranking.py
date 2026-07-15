@@ -81,3 +81,26 @@ def test_fewer_rotations_break_equal_geometry_tie():
     )
 
     assert ranked[0] is normal
+
+
+def test_more_placements_outrank_lower_waste():
+    """Completeness takes priority over compact but incomplete layouts."""
+    incomplete = make_solution(
+        [BoardPlacement("A", 0, 0, 100, 50)],
+        score=50,
+    )
+    complete = make_solution(
+        [
+            BoardPlacement("A", 0, 0, 100, 50),
+            BoardPlacement("B", 200, 0, 100, 50),
+        ],
+        score=50,
+    )
+
+    ranked = sorted(
+        [incomplete, complete],
+        key=solution_ranking_key,
+        reverse=True,
+    )
+
+    assert ranked[0] is complete

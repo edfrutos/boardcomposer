@@ -1,3 +1,7 @@
+"""
+Beam search implementation for the MaxRects solver.
+"""
+
 from boardcomposer.domain import Board
 from boardcomposer.solver.beam_search import BeamSearchConfig, beam_search
 from boardcomposer.solver.maxrects.scoring import score_state
@@ -9,12 +13,17 @@ def search_states(
     boards: list[Board],
     allow_rotation: bool,
     width: int,
+    candidate_width: int | None = None,
 ) -> list[MaxRectsState]:
+    """
+    Search for the best states using beam search.
+    """
     return beam_search(
         initial=[initial],
         expand=lambda state: state.expand(
             boards=boards,
             allow_rotation=allow_rotation,
+            candidate_width=candidate_width,
         ),
         score=score_state,
         config=BeamSearchConfig(
