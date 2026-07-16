@@ -95,9 +95,7 @@ def _candidate_items(
         width_mm = round(board.width_mm)
         fits_upright = length_mm <= bin_length_mm and width_mm <= bin_width_mm
         fits_rotated = (
-            allow_rotation
-            and width_mm <= bin_length_mm
-            and length_mm <= bin_width_mm
+            allow_rotation and width_mm <= bin_length_mm and length_mm <= bin_width_mm
         )
 
         if fits_upright or fits_rotated:
@@ -233,9 +231,7 @@ def generate_cp_sat_solution(
     items = _candidate_items(project, bin_length_mm, bin_width_mm)
 
     placeable_ids = {item.board_id for item in items}
-    never_fit = tuple(
-        board_id for board_id in all_ids if board_id not in placeable_ids
-    )
+    never_fit = tuple(board_id for board_id in all_ids if board_id not in placeable_ids)
 
     if not items:
         return _empty_solution("ninguna_pieza_cabe", all_ids)

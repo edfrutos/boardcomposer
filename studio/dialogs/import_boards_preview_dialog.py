@@ -71,8 +71,7 @@ class ImportBoardsPreviewDialog(QDialog):
             return "El archivo no se pudo importar."
 
         return (
-            f"{valid_count} tablero(s) válido(s), "
-            f"{invalid_count} fila(s) con errores."
+            f"{valid_count} tablero(s) válido(s), {invalid_count} fila(s) con errores."
         )
 
     def _populate_row(self, row_index: int, row) -> None:

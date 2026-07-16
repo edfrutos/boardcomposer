@@ -130,9 +130,7 @@ def test_stock_panel_project_rejects_material_mismatch():
 
 def test_stock_panel_project_accepts_case_and_whitespace_insensitive_material():
     project = Project()
-    project.add_stock_panel(
-        StockPanel(100, 100, 19, "P1", material="Melamina Blanca")
-    )
+    project.add_stock_panel(StockPanel(100, 100, 19, "P1", material="Melamina Blanca"))
     project.add_board(Board(50, 50, 19, "A", material="  melamina blanca  "))
     solution = AssemblySolution(
         placements=[

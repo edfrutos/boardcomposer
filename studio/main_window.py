@@ -530,9 +530,7 @@ class MainWindow(QMainWindow):
             )
             return
 
-        existing_ids = {
-            piece.piece_id.strip().casefold() for piece in project.pieces
-        }
+        existing_ids = {piece.piece_id.strip().casefold() for piece in project.pieces}
 
         quantity = data.get("quantity", 1)
         piece_ids = self._generate_piece_ids(new_piece_id, quantity, existing_ids)
@@ -579,9 +577,7 @@ class MainWindow(QMainWindow):
         self.update_window_title()
 
         if len(piece_ids) > 1:
-            self.statusBar().showMessage(
-                f"{len(piece_ids)} piezas añadidas", 3000
-            )
+            self.statusBar().showMessage(f"{len(piece_ids)} piezas añadidas", 3000)
         else:
             self.statusBar().showMessage("Pieza añadida", 3000)
 
@@ -625,11 +621,7 @@ class MainWindow(QMainWindow):
             return "Sin tablero asignado"
 
         board = next(
-            (
-                board
-                for board in project.boards
-                if board.board_id == placement.board_id
-            ),
+            (board for board in project.boards if board.board_id == placement.board_id),
             None,
         )
         quantity = board.quantity if board is not None else 1
@@ -864,9 +856,7 @@ class MainWindow(QMainWindow):
         ]
 
         if not solution.is_complete:
-            lines.append(
-                "Piezas omitidas: " + ", ".join(solution.omitted_piece_ids)
-            )
+            lines.append("Piezas omitidas: " + ", ".join(solution.omitted_piece_ids))
 
         if solution.offcuts:
             lines.append(
@@ -882,9 +872,7 @@ class MainWindow(QMainWindow):
 
         if solution.explanation.strengths or solution.explanation.weaknesses:
             lines.append("")
-            lines.extend(
-                f"+ {strength}" for strength in solution.explanation.strengths
-            )
+            lines.extend(f"+ {strength}" for strength in solution.explanation.strengths)
             lines.extend(
                 f"- {weakness}" for weakness in solution.explanation.weaknesses
             )
@@ -1369,9 +1357,7 @@ class MainWindow(QMainWindow):
         panel_text = ""
         if placement is not None:
             position_text = f"Posición: {placement.x_mm:g}, {placement.y_mm:g} mm\n"
-            panel_text = (
-                f"Tablero: {self._panel_info_text(project, placement)}\n"
-            )
+            panel_text = f"Tablero: {self._panel_info_text(project, placement)}\n"
 
         self.inspector.setText(
             "Inspector\n\n"

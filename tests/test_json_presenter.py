@@ -86,9 +86,7 @@ def test_solutions_to_json_reports_offcuts():
     strategy = compact_first_strategy()
     solution = AssemblySolution(
         placements=[
-            BoardPlacement(
-                "A", 0, 0, 400, 400, panel_reference=PanelReference(0, 0)
-            )
+            BoardPlacement("A", 0, 0, 400, 400, panel_reference=PanelReference(0, 0))
         ],
         offcuts=(Offcut(PanelReference(0, 0), 400, 0, 600, 1000),),
     )

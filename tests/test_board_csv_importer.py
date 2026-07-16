@@ -36,8 +36,7 @@ def test_import_boards_from_csv_parses_valid_rows(tmp_path):
 def test_import_boards_from_csv_applies_defaults_for_optional_columns(tmp_path):
     csv_path = _write_csv(
         tmp_path,
-        "id,length_mm,width_mm\n"
-        "TAB-1,2440,1220\n",
+        "id,length_mm,width_mm\nTAB-1,2440,1220\n",
     )
 
     result = import_boards_from_csv(csv_path)
@@ -99,9 +98,7 @@ def test_import_boards_from_csv_flags_non_positive_dimensions(tmp_path):
 def test_import_boards_from_csv_flags_duplicate_ids_within_the_file(tmp_path):
     csv_path = _write_csv(
         tmp_path,
-        "board_id,length_mm,width_mm\n"
-        "TAB-1,2440,1220\n"
-        "TAB-1,2000,1000\n",
+        "board_id,length_mm,width_mm\nTAB-1,2440,1220\nTAB-1,2000,1000\n",
     )
 
     result = import_boards_from_csv(csv_path)

@@ -131,9 +131,7 @@ def _legend_svg_parts(
         return []
 
     text = f"Piezas omitidas: {', '.join(solution.omitted_piece_ids)}"
-    return [
-        f'<text x="5" y="{top_y:g}" font-size="14" fill="#b91c1c">{text}</text>'
-    ]
+    return [f'<text x="5" y="{top_y:g}" font-size="14" fill="#b91c1c">{text}</text>']
 
 
 def solution_to_svg(

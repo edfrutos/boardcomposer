@@ -220,9 +220,7 @@ def import_boards_from_csv(
                 for index, raw_row in enumerate(reader, start=2)
             ]
     except OSError as error:
-        return ImportBoardsResult(
-            file_errors=(f"No se pudo leer el archivo: {error}",)
-        )
+        return ImportBoardsResult(file_errors=(f"No se pudo leer el archivo: {error}",))
     except csv.Error as error:
         return ImportBoardsResult(
             file_errors=(f"El archivo CSV no es válido: {error}",)
