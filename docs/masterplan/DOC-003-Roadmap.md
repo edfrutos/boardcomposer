@@ -104,18 +104,19 @@ Objetivos:
 
 ## Prioridades actuales
 
-### Prioridad P0
+### Prioridad P0 — Completada (2026-07-16)
 
 - UAT visual multipanel.
 - Flujo completo de trabajo en Studio.
 - Movimiento y reasignación interactiva entre paneles.
 
-### Prioridad P1
+### Prioridad P1 — En curso / siguiente
 
-- Comparador visual avanzado.
-- Importación de inventario multipanel.
-- Exportadores avanzados.
-- Cobertura automatizada de interacción Qt.
+- Comparador visual: resaltado por métrica hecho; queda ordenar/filtrar.
+- Importación de inventario multipanel desde CSV (Excel pendiente).
+- Cobertura automatizada de interacción Qt (resuelta).
+- Exportadores avanzados (PDF/DXF).
+- Exploración CP-SAT como generador exacto de un solo panel.
 
 ### Prioridad P2
 

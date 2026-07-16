@@ -83,3 +83,13 @@ primero contra el código y `git status`/`git log`.
 Con el contrato multipanel estabilizado (material, retales, soluciones
 parciales, migraciones), retomar la exploración de CP-SAT como generador
 exacto de un solo panel, ya iniciada en `cp_sat_runner.py`.
+
+## 2026-07-16 - Cierre de sesión (docs + limpieza)
+
+- Documentación alineada con el código fusionado en `main` (PR #21):
+  README, ROADMAP, TODO, AI_CONTEXT, DECISIONS, INDEX, DOC-003/004/005/006,
+  `data_model.md`, `algorithms.md`, `project_structure.md`.
+- Checklist UAT multipanel en `uat/multipanel/CHECKLIST.md`.
+- Eliminados prototipos obsoletos (`workbench/`, `tools/visualize_demo.py`,
+  `out/demo.html`) y directorios vacíos (`prompts/`, `research/`,
+  `assets/icons/`, `assets/images/`). `out/` queda en `.gitignore`.

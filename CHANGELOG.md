@@ -57,6 +57,14 @@
 - Los ficheros Studio versión 1 cargan espesor 19 mm, cantidad 1 y panel sin
   asignar como valores por defecto (ahora vía migración explícita v1→v2).
 
+### Documentación y limpieza
+
+- README, ROADMAP, TODO, AI_CONTEXT, DECISIONS y masterplan (INDEX,
+  DOC-003/004/005/006) alineados con el estado post-PR #21.
+- Checklist UAT multipanel en `uat/multipanel/CHECKLIST.md`.
+- Eliminados prototipos obsoletos (`workbench/`, `tools/visualize_demo.py`,
+  `out/demo.html`) y directorios vacíos.
+
 ## 0.3.0-stable — 2026-07-11
 
 ### Añadido

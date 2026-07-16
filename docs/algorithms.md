@@ -25,21 +25,32 @@ y motivos estructurados de rechazo.
 
 ## MaxRects multipanel
 
-Para cada combinación de heurística y orden de piezas:
+Para cada combinación de heurística, orden de piezas **y orden de panel**
+(`panel_ordering.py`: orden original, mayor área primero, menor área
+primero):
 
 1. Expande `StockPanel.quantity` en paneles físicos.
-2. Recorre los paneles en el orden declarado por el proyecto.
-3. Intenta colocar las piezas de espesor compatible.
+2. Recorre los paneles en el orden de la combinación actual.
+3. Intenta colocar las piezas de espesor **y material** compatibles con el
+   panel (`material_key` normalizado en ambos lados).
 4. Conserva las que no caben para el siguiente panel.
 5. Asigna `PanelReference` a cada colocación.
-6. Prefiere más piezas, menos paneles, menos desperdicio y menos rotaciones.
+6. Registra los rectángulos libres restantes de cada panel consumido como
+   `Offcut`, descartando los menores al umbral mínimo (`_MIN_OFFCUT_SIDE_MM`,
+   ver ADR-016).
+7. Prefiere más piezas, menos paneles, menos desperdicio y menos rotaciones.
 
-Una candidata puede ser parcial cuando el inventario es insuficiente; el
-pipeline solo acepta soluciones completas y válidas como resultado final.
+Una candidata puede ser parcial cuando el inventario es insuficiente o hay
+incompatibilidad de material/espesor: el pipeline acepta soluciones
+parciales como resultado final (piezas no colocadas se listan en
+`omitted_piece_ids`), reservando el rechazo total para motivos "duros"
+(solapes, límites excedidos).
 
 ## Evolución prevista
 
-- Comparar órdenes de panel y políticas best-fit entre tipos.
-- Benchmarks multipanel reproducibles.
-- Incorporar material y retales al inventario.
-- Añadir CP-SAT cuando el contrato de dominio esté estabilizado.
+- Añadir CP-SAT (`cp_sat_runner.py`) como generador exacto de un solo panel,
+  una vez estabilizado el contrato multipanel de dominio.
+- Extender el comparador de Studio (SCR-003) con ordenación/filtrado por
+  métrica, además del resaltado ya disponible.
+- Evaluar si los retales informativos (ADR-016) deben pasar a ser inventario
+  reutilizable entre proyectos.

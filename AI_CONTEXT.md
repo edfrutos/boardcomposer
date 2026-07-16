@@ -12,8 +12,12 @@ alternativas comprensibles para que el usuario decida.
 
 - Fase de producto: Fase 2, BoardComposer Studio.
 - Core base completado y en evolución controlada.
-- Vertical multipanel MaxRects implementada.
-- Studio funcional con persistencia versión 2 y compatibilidad versión 1.
+- Vertical multipanel MaxRects implementada, con compatibilidad de material
+  y espesor, órdenes de panel, retales informativos (ADR-016) y soluciones
+  parciales (piezas omitidas en vez de "sin solución").
+- Studio funcional con persistencia versionada y migraciones explícitas
+  (ADR-015), importación de inventario de tableros desde CSV, y movimiento
+  de piezas entre paneles físicos desde el Workspace.
 - Versión de desarrollo: `0.4.0.dev0`.
 
 ## Fuentes de verdad

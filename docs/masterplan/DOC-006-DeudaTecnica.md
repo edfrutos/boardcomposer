@@ -86,8 +86,8 @@ Estado
 | DT-0001 | DT-D | Contrastar flujos y pantallas documentados con el Studio real. | 🟡 En curso |
 | DT-0002 | DT-A | Documentar arquitectura interna y contrato multipanel del Solver. | 🟢 Controlado |
 | DT-0003 | DT-T | Mantener la cobertura de pruebas por encima del objetivo definido. | 🟢 Controlado |
-| DT-0004 | DT-T | Añadir cobertura automatizada de interacción Qt y Workspace. | 🟡 Pendiente |
-| DT-0005 | DT-UX | Habilitar movimiento y reasignación interactiva entre paneles. | 🟡 Pendiente |
+| DT-0004 | DT-T | Añadir cobertura automatizada de interacción Qt y Workspace. | 🟢 Resuelto (`tests/conftest.py`, `tests/test_workspace_qt_interaction.py`) |
+| DT-0005 | DT-UX | Habilitar movimiento y reasignación interactiva entre paneles. | 🟢 Resuelto (arrastre entre paneles físicos en el Workspace) |
 
 ---
 

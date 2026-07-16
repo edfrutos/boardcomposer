@@ -47,13 +47,15 @@ referencia oficial del manifiesto es `DOC-000-Manifiesto.md`.
 - ADR-012 — SelectionController.
 - ADR-013 — Geometry Engine.
 - ADR-014 — Packing multipanel.
+- ADR-015 — Migraciones explícitas de `.bcproj`.
+- ADR-016 — Retales informativos (no inventario).
 
 ## UX
 
 `ui/flows/` contiene los flujos FLW-001 a FLW-006. `ui/SCR-*.md` contiene las
 especificaciones de Inicio, Workspace, Comparador, Inspector, Proyecto,
-Preferencias y Exportación. Permanecen en revisión y deben contrastarse con el
-Studio real durante el UAT.
+Preferencias y Exportación. El UAT multipanel del 2026-07-16 contrastó el
+Workspace real; queda revisar el resto de pantallas contra Studio.
 
 ## Documentación técnica viva
 

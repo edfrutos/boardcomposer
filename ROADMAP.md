@@ -31,10 +31,11 @@ arquitectónica y funcional está consolidada.
 - [x] Persistencia, archivos recientes y exportación SVG.
 - [x] Exploración de varias soluciones y diagnósticos del solver.
 - [x] Modelo, persistencia y representación básica multipanel.
-- [ ] UAT visual multipanel completo.
-- [ ] Movimiento interactivo de piezas entre paneles.
-- [ ] Comparador visual avanzado conforme a SCR-003.
-- [ ] Importación de inventario multipanel desde CSV/Excel.
+- [x] UAT visual multipanel completo.
+- [x] Movimiento interactivo de piezas entre paneles.
+- [x] Comparador visual con resaltado por métrica (SCR-003); ordenación y
+      filtrado avanzado quedan como siguiente iteración.
+- [x] Importación de inventario multipanel desde CSV (Excel queda pendiente).
 
 ## Fase 3 — Plataforma — Planificada
 

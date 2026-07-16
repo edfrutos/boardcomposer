@@ -3,7 +3,7 @@ PYTEST := .venv/bin/pytest
 RUFF := .venv/bin/ruff
 BOARDCOMPOSER := .venv/bin/boardcomposer
 
-.PHONY: test run demo json status check lint format
+.PHONY: test run demo json status check lint format benchmark-multipanel
 
 test:
 	$(PYTEST)
@@ -30,3 +30,6 @@ lint:
 
 format:
 	$(RUFF) format .
+
+benchmark-multipanel:
+	$(PYTHON) scripts/benchmark_multipanel_maxrects.py

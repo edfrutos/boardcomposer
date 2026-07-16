@@ -64,6 +64,9 @@ Documentos relacionados
 | DEC-0004 | Toda funcionalidad comenzará en el Core antes de llegar a cualquier interfaz | ✅ Vigente |
 | DEC-0005 | El proyecto utilizará un Master Plan versionado como referencia oficial | ✅ Vigente |
 | DEC-0006 | Las colocaciones multipanel usan referencias físicas y coordenadas locales | ✅ Vigente |
+| DEC-0007 | Las migraciones de `.bcproj` son explícitas y versionadas (ADR-015) | ✅ Vigente |
+| DEC-0008 | Los retales se reportan como información, no como inventario (ADR-016) | ✅ Vigente |
+| DEC-0009 | Una solución parcial (piezas omitidas) es válida; solo fallan motivos duros | ✅ Vigente |
 
 ---
 
