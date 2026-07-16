@@ -31,14 +31,16 @@ def test_valid_complete_solution_is_accepted():
     assert is_valid_solution(solution, make_project()) is True
 
 
-def test_incomplete_solution_is_rejected():
+def test_incomplete_solution_is_still_valid_as_a_partial_solution():
+    """A solution missing pieces is usable as a partial solution — only a
+    geometrically broken solution (overlap, duplicate, ...) is rejected."""
     solution = AssemblySolution(
         placements=[
             BoardPlacement("A", 0, 0, 100, 50),
         ]
     )
 
-    assert is_valid_solution(solution, make_project()) is False
+    assert is_valid_solution(solution, make_project()) is True
 
 
 def test_solution_with_duplicate_piece_is_rejected():

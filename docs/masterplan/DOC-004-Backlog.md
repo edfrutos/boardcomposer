@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.0.0
-**Estado:** En revisión
+**Versión:** 1.1.0
+**Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 01/07/2026
+**Última revisión:** 16/07/2026
 
 ---
 
@@ -70,14 +70,18 @@ Observaciones:
 
 | ID | Título | Estado | Prioridad |
 |----|--------|--------|-----------|
-| IDE-0001 | Workspace interactivo | 🔵 | P0 |
-| IDE-0002 | Comparador de algoritmos | 🔵 | P0 |
-| IDE-0003 | Inspector de piezas | 🔵 | P0 |
-| IDE-0004 | Gestión de proyectos | 🔵 | P1 |
-| IDE-0005 | Exportación PDF/SVG | 🔵 | P1 |
+| IDE-0001 | Workspace interactivo | 🟡 | P0 |
+| IDE-0002 | Comparador de algoritmos | 🟡 | P0 |
+| IDE-0003 | Inspector de piezas | 🟡 | P0 |
+| IDE-0004 | Gestión de proyectos | 🟢 | P1 |
+| IDE-0005 | Exportación PDF/SVG | 🟡 | P1 |
 | IDE-0006 | API pública | ⚪ | P2 |
 | IDE-0007 | Asistente IA | ⚪ | P2 |
 | IDE-0008 | Sistema de plugins | ⚪ | P3 |
+| IDE-0009 | Packing multipanel MaxRects | 🟢 | P0 |
+| IDE-0010 | Tests de interacción Qt | 🔵 | P1 |
+| IDE-0011 | Movimiento de piezas entre paneles | 🔵 | P0 |
+| IDE-0012 | Importación de inventario multipanel | 🔵 | P1 |
 
 ---
 
@@ -92,7 +96,7 @@ Observaciones:
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión
+**Estado actual:** 🟡 En revisión — implementación vinculada hasta IDE-0012
 
 Pendiente de:
 

@@ -16,6 +16,7 @@ class StockPanel:
     thickness_mm: float
     id: str | None = None
     quantity: int = 1
+    material: str = "Generico"
 
     def __post_init__(self) -> None:
         if self.length_mm <= 0:
@@ -33,3 +34,8 @@ class StockPanel:
         Area of the panel in square millimeters.
         """
         return self.length_mm * self.width_mm
+
+    @property
+    def material_key(self) -> str:
+        """Normalized material for case/whitespace-insensitive comparisons."""
+        return self.material.strip().casefold()

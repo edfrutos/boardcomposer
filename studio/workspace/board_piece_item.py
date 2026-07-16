@@ -15,12 +15,18 @@ class BoardPieceItem(QGraphicsRectItem):
         y_mm: float,
         length_mm: float,
         width_mm: float,
+        board_id: str | None = None,
+        board_instance: int = 0,
+        stock_panel_index: int | None = None,
     ):
         super().__init__(0, 0, length_mm, width_mm)
 
         self.piece_id = piece_id
         self.length_mm = length_mm
         self.width_mm = width_mm
+        self.board_id = board_id
+        self.board_instance = board_instance
+        self.stock_panel_index = stock_panel_index
 
         self.setPos(x_mm, y_mm)
 

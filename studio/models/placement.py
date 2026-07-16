@@ -12,3 +12,6 @@ class StudioPlacement:
     y_mm: float
     rotated: bool = False
     rotation: int = 0
+    board_id: str | None = None
+    board_instance: int = 0
+    stock_panel_index: int | None = None

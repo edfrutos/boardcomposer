@@ -102,3 +102,17 @@ Las piezas válidas quedan incorporadas al proyecto sin alterar la información 
 ## Observaciones
 
 En futuras versiones se admitirán asistentes de mapeo de columnas, plantillas de importación, compatibilidad con Excel y formatos de terceros, así como reglas de validación configurables por el usuario.
+
+---
+
+## Estado de implementación (2026-07-16)
+
+Se implementó primero la importación de **inventario de tableros**
+(`Proyecto → Importar inventario de tableros (CSV)…`, prioridad P1 del
+roadmap para la vertical multipanel), no la de piezas descrita como
+ejemplo principal en este documento. Cubre vista previa, validación por
+fila y detección de duplicados/ids ya existentes
+(`studio/board_csv_importer.py`, `ImportBoardsPreviewDialog`). La
+importación de **piezas** desde CSV, tal como la describe el flujo
+principal de este documento, queda pendiente como trabajo futuro.
+Soporte Excel (.xlsx) también pendiente.

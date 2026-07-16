@@ -1,16 +1,82 @@
-# CHANGELOG - BoardComposer
+# CHANGELOG — BoardComposer
 
-## 0.0.1 - 2026-06-26
+## Unreleased — 0.4.0.dev0 — 2026-07-16
+
+### Añadido
+
+- `StockPanel.quantity` como inventario de unidades físicas.
+- `PanelReference` para asignar colocaciones a tipo e instancia de panel.
+- Packing MaxRects sobre múltiples paneles y tipos de espesor compatible.
+- Validación de referencia, límites, espesor y solapes por panel físico.
+- Estado completo/parcial en `ValidationResult`.
+- Métricas de área usada y desperdicio por panel consumido.
+- Persistencia Studio versión 2 compatible con proyectos versión 1.
+- Cantidad y espesor editables en tableros y piezas de Studio.
+- Disposición visual y exportación SVG de paneles lado a lado.
+- ADR-014 con el contrato multipanel.
+- Compatibilidad de **material** (además de espesor) entre pieza y panel,
+  validada en el solver y enrutada por `multi_panel_maxrects`.
+- Búsqueda de órdenes de panel (`panel_ordering.py`) como eje adicional del
+  generador MaxRects, junto a heurísticas y órdenes de pieza.
+- **Retales aprovechables** (`Offcut`) reportados de forma informativa por
+  panel consumido, en Inspector, SVG y presentadores JSON/texto (ADR-016).
+- Soluciones **parciales**: piezas que no caben se reportan como
+  `omitted_piece_ids` en vez de descartar toda la solución.
+- Migraciones explícitas y versionadas de `.bcproj`, con
+  `UnsupportedProjectVersionError` para ficheros de una versión futura
+  desconocida (ADR-015).
+- Importación de inventario de tableros desde CSV
+  (`Proyecto → Importar inventario de tableros (CSV)…`), con vista previa,
+  validación por fila y detección de duplicados.
+- Campo de cantidad al crear una pieza nueva, generando varios ids
+  correlativos de una sola vez.
+- Movimiento y reasignación interactiva de piezas entre paneles físicos
+  distintos desde el Workspace, arrastrando la pieza sobre el panel destino.
+- Identificador e instancia de panel físico visibles en el Inspector de
+  pieza.
+- Resaltado de "puntos clave" (mejor solución por métrica) en el comparador
+  de soluciones de Studio (SCR-003).
+- Diagnóstico con estadísticas del solver cuando no se encuentra ninguna
+  solución.
+- Suite de pruebas de interacción Qt para el Workspace (arrastre,
+  reasignación de panel, selección, reversión de movimientos inválidos).
+- Script de benchmarks reproducibles para `multi_panel_maxrects`
+  (`scripts/benchmark_multipanel_maxrects.py`).
+
+### Cambiado
+
+- El pipeline utiliza MaxRects cuando el proyecto declara inventario físico.
+- El scoring de aprovechamiento usa el área de panel consumida.
+- La deduplicación incluye la asignación física de panel.
+- README, contexto de IA, roadmap, backlog y documentación técnica alineados.
+- Versión de paquete actualizada a `0.4.0.dev0`.
+
+### Compatibilidad
+
+- Los proyectos sin `StockPanel` conservan restricciones y coordenadas legacy.
+- Los ficheros Studio versión 1 cargan espesor 19 mm, cantidad 1 y panel sin
+  asignar como valores por defecto (ahora vía migración explícita v1→v2).
+
+## 0.3.0-stable — 2026-07-11
+
+### Añadido
+
+- Edición de proyectos, tableros y piezas en Studio.
+- Generación, selección y aplicación de varias soluciones.
+- Exportación SVG y persistencia de proyectos.
+- Validación, evaluación y deduplicación centralizadas.
+
+## 0.1-prototype — 2026-06-27
+
+### Añadido
+
+- Primer motor funcional con layouts básicos y free-space.
+- CLI, CSV, presentadores y pruebas iniciales.
+
+## 0.0.1 — 2026-06-26
 
 ### Añadido
 
 - Documentación fundacional.
 - Estructura base del proyecto.
-- Backlog inicial.
-- Documentación técnica v0.1.
-
-### Decisiones
-
-- Inicio con ensamblaje 2D.
-- Núcleo independiente de la interfaz.
-- Soluciones explicables.
+- Backlog y decisiones iniciales.

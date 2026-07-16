@@ -1,57 +1,57 @@
 # BoardComposer — MASTERPLAN
 
+Última revisión: 2026-07-16.
+
 ## Estado actual
 
-Rama: `feat/skyline-multinode`
+- Fase de producto: **Fase 2 — BoardComposer Studio**.
+- Versión de desarrollo: `0.4.0.dev0`.
+- Core base consolidado y cubierto por tests.
+- Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación.
+- Primera vertical multipanel implementada sobre MaxRects.
 
-Último bloque consolidado:
-- Workspace modular
-- CommandManager
-- MovePieceCommand
-- RotatePieceCommand
-- PlacementValidator
-- ADR-010
-- ADR-011
-- ADR-012
+## Último bloque consolidado
 
-## Bloque en curso
+### Packing multipanel
 
-### Bloque 2 — SelectionController
-
-Objetivo:
-Centralizar toda la selección del Workspace.
-
-Estado:
-- ADR-012 creado
-- Pendiente implementación
+- `StockPanel` con cantidad.
+- `PanelReference` por tipo e instancia física.
+- MaxRects multipanel con compatibilidad de espesor.
+- Validación, completitud, deduplicación y scoring por panel.
+- Persistencia Studio versión 2 compatible con versión 1.
+- Workspace y SVG con paneles dispuestos lado a lado.
+- ADR-014 y documentación técnica actualizada.
 
 ## Próxima tarea única
 
-Crear:
+Ejecutar y documentar un UAT visual completo de Studio con:
 
-`studio/workspace/selection_controller.py`
+- dos tipos de tablero;
+- varias unidades de un tipo;
+- piezas de espesores compatibles e incompatibles;
+- generación, comparación, aplicación, guardado, reapertura y exportación SVG.
 
-## Criterio de finalización del bloque
+## Criterio de finalización del próximo bloque
 
-- Selección centralizada
-- BoardWorkspace sin lógica directa de selección
-- Inspector sincronizado
-- Ruff limpio
-- App ejecuta sin errores
-- Commit realizado
+- El flujo se completa sin errores ni pérdida de asignación física.
+- Inspector y Workspace identifican correctamente panel e instancia.
+- Los defectos encontrados tienen test de regresión cuando sea viable.
+- Ruff, Mypy y Pytest limpios.
+- Resultado del UAT registrado en documentación.
+
+## Límites conocidos
+
+- Solo MaxRects implementa por ahora el contrato multipanel.
+- El movimiento interactivo entre paneles todavía no está habilitado.
+- La compatibilidad de material no existe en el Core; se valida espesor.
+- La cobertura automatizada de interacción Qt sigue siendo reducida.
 
 ## Normas de trabajo
 
 1. No añadir funcionalidad sin bloque definido.
-2. No lógica geométrica en MainWindow.
-3. No reglas de colocación fuera de PlacementValidator.
-4. No comandos dependientes de Qt.
-5. Ruff limpio antes de cada commit.
-6. Commit al cerrar cada bloque.
-7. Antes de cada commit:
-   - ejecutar `ruff check`;
-   - ejecutar `ruff check --fix`;
-   - volver a ejecutar `ruff check`;
-   - ejecutar la aplicación;
-   - comprobar manualmente la funcionalidad afectada;
-   - revisar `git status`..
+2. No introducir dependencias de interfaz en el Core.
+3. No duplicar reglas geométricas o de validación.
+4. Mantener coordenadas multipanel locales al panel físico.
+5. Trabajar desde interfaces públicas con tests de comportamiento.
+6. Actualizar ADR, CHANGELOG y MASTERPLAN al cerrar un hito.
+7. Ejecutar Ruff, type checking, Pytest y smoke test de Studio antes del commit.

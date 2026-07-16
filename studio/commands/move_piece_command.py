@@ -1,4 +1,4 @@
-"""Command for moving a piece."""
+"""Command for moving a piece, possibly to another physical panel."""
 
 from typing import TYPE_CHECKING
 
@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class MovePieceCommand(Command):
-    """Move a piece between two positions."""
+    """Move a piece between two positions and, if applicable, panels."""
 
     name: str = "Mover pieza"
 
@@ -21,6 +21,13 @@ class MovePieceCommand(Command):
         old_y: float,
         new_x: float,
         new_y: float,
+        *,
+        old_board_id: str | None = None,
+        old_board_instance: int = 0,
+        old_stock_panel_index: int | None = None,
+        new_board_id: str | None = None,
+        new_board_instance: int = 0,
+        new_stock_panel_index: int | None = None,
     ) -> None:
         self.services = services
         self.piece_id = piece_id
@@ -28,14 +35,39 @@ class MovePieceCommand(Command):
         self.old_y = old_y
         self.new_x = new_x
         self.new_y = new_y
+        self.old_board_id = old_board_id
+        self.old_board_instance = old_board_instance
+        self.old_stock_panel_index = old_stock_panel_index
+        self.new_board_id = new_board_id
+        self.new_board_instance = new_board_instance
+        self.new_stock_panel_index = new_stock_panel_index
 
     def redo(self) -> None:
-        self._move_to(self.new_x, self.new_y)
+        self._move_to(
+            self.new_x,
+            self.new_y,
+            self.new_board_id,
+            self.new_board_instance,
+            self.new_stock_panel_index,
+        )
 
     def undo(self) -> None:
-        self._move_to(self.old_x, self.old_y)
+        self._move_to(
+            self.old_x,
+            self.old_y,
+            self.old_board_id,
+            self.old_board_instance,
+            self.old_stock_panel_index,
+        )
 
-    def _move_to(self, x: float, y: float) -> None:
+    def _move_to(
+        self,
+        x: float,
+        y: float,
+        board_id: str | None,
+        board_instance: int,
+        stock_panel_index: int | None,
+    ) -> None:
         project = self.services.projects.current_project
         if project is None:
             return
@@ -46,3 +78,6 @@ class MovePieceCommand(Command):
 
         placement.x_mm = x
         placement.y_mm = y
+        placement.board_id = board_id
+        placement.board_instance = board_instance
+        placement.stock_panel_index = stock_panel_index

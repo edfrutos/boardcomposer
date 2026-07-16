@@ -21,6 +21,7 @@ class NewBoardDialog(QDialog):
         length_mm: int = 3000,
         width_mm: int = 1200,
         thickness_mm: int = 19,
+        quantity: int = 1,
         material: str = "Melamina blanca",
         title: str = "Nuevo tablero",
     ) -> None:
@@ -32,6 +33,7 @@ class NewBoardDialog(QDialog):
         self.length_mm = QSpinBox()
         self.width_mm = QSpinBox()
         self.thickness_mm = QSpinBox()
+        self.quantity = QSpinBox()
         self.material = QLineEdit(material)
 
         for field in (
@@ -44,12 +46,15 @@ class NewBoardDialog(QDialog):
         self.length_mm.setValue(length_mm)
         self.width_mm.setValue(width_mm)
         self.thickness_mm.setValue(thickness_mm)
+        self.quantity.setRange(1, 10_000)
+        self.quantity.setValue(quantity)
 
         form = QFormLayout()
         form.addRow("Identificador:", self.board_id)
         form.addRow("Largo (mm):", self.length_mm)
         form.addRow("Ancho (mm):", self.width_mm)
         form.addRow("Espesor (mm):", self.thickness_mm)
+        form.addRow("Cantidad:", self.quantity)
         form.addRow("Material:", self.material)
 
         buttons = QDialogButtonBox(
@@ -70,5 +75,6 @@ class NewBoardDialog(QDialog):
             "length_mm": float(self.length_mm.value()),
             "width_mm": float(self.width_mm.value()),
             "thickness_mm": float(self.thickness_mm.value()),
+            "quantity": self.quantity.value(),
             "material": self.material.text().strip(),
         }

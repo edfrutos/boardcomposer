@@ -26,6 +26,10 @@ BoardOrdering = Callable[[list[Board]], list[Board]]
 
 
 def _maxrects_size(project: Project) -> tuple[float, float]:
+    if project.stock_panels:
+        panel = project.stock_panels[0]
+        return panel.length_mm, panel.width_mm
+
     length = project.constraints.max_length_mm or sum(
         board.length_mm for board in project.boards
     )
@@ -61,6 +65,7 @@ def _place_all_boards_adaptive(
     selector = AdaptiveSelector()
 
     for index, board in enumerate(boards):
+        placement: MaxRectsPlacement | None
         heuristic = selector.choose(
             board,
             placements,
@@ -108,8 +113,8 @@ def _place_all_boards_adaptive(
                 allow_rotation=allow_rotation,
             )
 
-            if placement is None:
-                continue
+        if placement is None:
+            continue
 
         placements.append(
             _to_board_placement(

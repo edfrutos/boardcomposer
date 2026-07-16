@@ -3,10 +3,10 @@
 ## Documento 5 — Registro de Decisiones
 
 **Código:** DOC-005
-**Versión:** 1.0.0
-**Estado:** En revisión
+**Versión:** 1.1.0
+**Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 01/07/2026
+**Última revisión:** 16/07/2026
 
 ---
 
@@ -63,12 +63,13 @@ Documentos relacionados
 | DEC-0003 | El usuario explorará soluciones en lugar de ejecutar un único «Resolver» | ✅ Vigente |
 | DEC-0004 | Toda funcionalidad comenzará en el Core antes de llegar a cualquier interfaz | ✅ Vigente |
 | DEC-0005 | El proyecto utilizará un Master Plan versionado como referencia oficial | ✅ Vigente |
+| DEC-0006 | Las colocaciones multipanel usan referencias físicas y coordenadas locales | ✅ Vigente |
 
 ---
 
 ## Relación con ADR
 
-Las decisiones que requieran un análisis técnico más profundo se desarrollarán en documentos independientes dentro de `docs/adr/`.
+Las decisiones que requieran un análisis técnico más profundo se desarrollarán en documentos independientes dentro de `docs/masterplan/adr/`.
 
 Este documento actúa como índice de dichas decisiones y como referencia histórica del proyecto.
 
@@ -84,10 +85,9 @@ Este documento actúa como índice de dichas decisiones y como referencia histó
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión
+**Estado actual:** 🟡 En revisión — ADR-001 a ADR-014 registrados
 
 Pendiente de:
 
-- crear los primeros ADR;
 - enlazar decisiones con los documentos DOC-000 a DOC-004;
 - incorporar referencias cruzadas con futuras Épicas y Sprints.

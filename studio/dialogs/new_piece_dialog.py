@@ -21,8 +21,11 @@ class NewPieceDialog(QDialog):
         piece_id: str = "P-001",
         length_mm: int = 700,
         width_mm: int = 300,
+        thickness_mm: int = 19,
+        quantity: int = 1,
         material: str = "Melamina blanca",
         title: str = "Nueva pieza",
+        show_quantity: bool = True,
     ):
         super().__init__(parent)
 
@@ -31,20 +34,30 @@ class NewPieceDialog(QDialog):
         self.piece_id = QLineEdit(piece_id)
         self.length_mm = QSpinBox()
         self.width_mm = QSpinBox()
+        self.thickness_mm = QSpinBox()
+        self.quantity = QSpinBox()
         self.material = QLineEdit(material)
         self.rotatable = QCheckBox()
         self.rotatable.setChecked(True)
 
-        for field in (self.length_mm, self.width_mm):
+        for field in (self.length_mm, self.width_mm, self.thickness_mm):
             field.setRange(1, 100000)
 
         self.length_mm.setValue(length_mm)
         self.width_mm.setValue(width_mm)
+        self.thickness_mm.setValue(thickness_mm)
+        self.quantity.setRange(1, 10_000)
+        self.quantity.setValue(quantity)
 
         form = QFormLayout()
         form.addRow("Identificador:", self.piece_id)
         form.addRow("Largo (mm):", self.length_mm)
         form.addRow("Ancho (mm):", self.width_mm)
+        form.addRow("Espesor (mm):", self.thickness_mm)
+        if show_quantity:
+            form.addRow("Cantidad:", self.quantity)
+        else:
+            self.quantity.setEnabled(False)
         form.addRow("Material:", self.material)
         form.addRow("Permitir rotación:", self.rotatable)
 
@@ -66,6 +79,8 @@ class NewPieceDialog(QDialog):
             "piece_id": self.piece_id.text().strip(),
             "length_mm": float(self.length_mm.value()),
             "width_mm": float(self.width_mm.value()),
+            "thickness_mm": float(self.thickness_mm.value()),
+            "quantity": self.quantity.value(),
             "material": self.material.text().strip(),
             "rotatable": self.rotatable.isChecked(),
         }

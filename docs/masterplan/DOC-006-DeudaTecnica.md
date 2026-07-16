@@ -5,10 +5,10 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.0.0
-**Estado:** En revisión
+**Versión:** 1.1.0
+**Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 01/07/2026
+**Última revisión:** 16/07/2026
 
 ---
 
@@ -83,9 +83,11 @@ Estado
 | ID | Categoría | Descripción | Estado |
 
 |----|-----------|-------------|--------|
-| DT-0001 | DT-D | Completar la documentación funcional de BoardComposer Studio. | 🟡 Pendiente |
-| DT-0002 | DT-A | Revisar y documentar la arquitectura interna del Solver tras la incorporación de nuevos algoritmos. | 🟡 Pendiente |
+| DT-0001 | DT-D | Contrastar flujos y pantallas documentados con el Studio real. | 🟡 En curso |
+| DT-0002 | DT-A | Documentar arquitectura interna y contrato multipanel del Solver. | 🟢 Controlado |
 | DT-0003 | DT-T | Mantener la cobertura de pruebas por encima del objetivo definido. | 🟢 Controlado |
+| DT-0004 | DT-T | Añadir cobertura automatizada de interacción Qt y Workspace. | 🟡 Pendiente |
+| DT-0005 | DT-UX | Habilitar movimiento y reasignación interactiva entre paneles. | 🟡 Pendiente |
 
 ---
 
@@ -110,7 +112,7 @@ Estado
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión
+**Estado actual:** 🟡 En revisión — revisado para `0.4.0.dev0`
 
 Pendiente de:
 

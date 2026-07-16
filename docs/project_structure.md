@@ -11,10 +11,17 @@
 ## Código
 
 - `src/boardcomposer/domain/`: modelos principales.
+- `src/boardcomposer/domain/panel_reference.py`: identidad de panel físico.
 - `src/boardcomposer/layout/`: geometría y colocación.
 - `src/boardcomposer/solver/`: generación, validación y evaluación.
 - `src/boardcomposer/io/`: entrada/salida de datos.
 - `src/boardcomposer/cli.py`: interfaz de línea de comandos.
+
+## Studio
+
+- `studio/models/`: modelos persistentes de la aplicación.
+- `studio/layout_service.py`: adaptador Studio → Core.
+- `studio/workspace/`: vista, controladores y disposición multipanel.
 
 ## Pruebas
 

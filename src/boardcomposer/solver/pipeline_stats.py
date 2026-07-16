@@ -13,5 +13,6 @@ class PipelineStats:
     generated: int = 0
     unique: int = 0
     accepted: int = 0
+    accepted_partial: int = 0
     rejected: int = 0
     rejection_reasons: Counter[ValidationReason] = field(default_factory=Counter)
