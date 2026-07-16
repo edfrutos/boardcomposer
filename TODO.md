@@ -1,54 +1,37 @@
-# TODO - BoardComposer
+# TODO — BoardComposer
 
-Backlog inicial del proyecto BoardComposer.
+Backlog operativo de corto plazo. El registro de producto se mantiene en
+`docs/masterplan/DOC-004-Backlog.md`.
 
-## Alta prioridad
+## Inmediato
 
-- [x] Crear la estructura base del repositorio.
-- [x] Crear `NOTEBOOK.md` como cuaderno de ingeniería.
-- [x] Crear `DECISIONS.md` para registrar decisiones importantes.
-- [x] Crear `ROADMAP.md` con las fases previstas.
-- [x] Crear `CHANGELOG.md` para registrar hitos y versiones.
-- [x] Crear `docs/architecture.md`.
-- [x] Crear `docs/data_model.md`.
-- [x] Crear `docs/scoring.md`.
-- [x] Crear `docs/algorithms.md`.
-- [ ] Crear `pyproject.toml`.
-- [ ] Crear `.gitignore`.
-- [ ] Inicializar Git.
-- [ ] Hacer el primer commit del proyecto.
+- [x] Ejecutar UAT visual con varios tipos, cantidades y espesores.
+- [x] Permitir mover una pieza entre paneles físicos desde el Workspace.
+- [x] Mostrar identificador e instancia de panel en el Inspector de pieza.
+- [x] Añadir pruebas automatizadas de interacción Qt para el Workspace.
 
-## Motor v0.1
+## Datos y flujo de trabajo
 
-- [ ] Definir la clase `Board` o `Tabla`.
-- [ ] Definir la clase `Project`.
-- [ ] Definir la clase `AssemblySolution`.
-- [ ] Definir restricciones iniciales de forma objetivo.
-- [ ] Implementar una primera función de puntuación.
-- [ ] Generar composiciones 2D simples.
-- [ ] Ordenar soluciones por puntuación.
-- [ ] Exportar resultados básicos en texto.
+- [x] Importar inventario de tableros y cantidades desde CSV.
+- [x] Incorporar material al modelo Core y validar compatibilidad material/espesor.
+- [x] Definir migraciones explícitas para futuras versiones de `.bcproj`.
 
-## Datos de prueba
+## Solver
 
-- [ ] Crear un CSV de ejemplo con tablas de prueba.
-- [ ] Crear un caso real sencillo.
-- [ ] Crear un segundo caso con tablas desiguales.
-- [ ] Crear tests unitarios para el modelo de datos.
-- [ ] Crear tests unitarios para el cálculo de puntuación.
+- [x] Comparar órdenes de panel además de órdenes de piezas.
+- [x] Evaluar reutilización de retales como inventario futuro (decisión: informativo por ahora, ADR-016).
+- [x] Añadir benchmarks multipanel reproducibles.
+- [ ] Explorar CP-SAT tras estabilizar el contrato multipanel.
+
+## Studio
+
+- [ ] Completar el comparador visual definido en SCR-003 (resaltado por métrica añadido; queda ordenar/filtrar por criterio).
+- [ ] Exportación PDF/DXF.
+- [ ] Preferencias de estrategia y pesos de scoring.
+- [ ] Importación de piezas (no solo tableros) desde CSV; soporte Excel (.xlsx).
 
 ## Documentación
 
-- [ ] Actualizar `README.md` con instrucciones de instalación.
-- [ ] Documentar el formato de entrada CSV.
-- [ ] Documentar el primer algoritmo usado.
-- [ ] Documentar los criterios iniciales de puntuación.
-
-## Más adelante
-
-- [ ] Añadir importación desde Excel.
-- [ ] Añadir visualización gráfica.
-- [ ] Añadir exportación a PDF.
-- [ ] Añadir exportación DXF.
-- [ ] Añadir interfaz macOS con PySide6.
-- [ ] Explorar integración con IA.
+- [x] Registrar resultados del UAT multipanel.
+- [ ] Revisar flujos y pantallas de `docs/masterplan/ui/` contra Studio real.
+- [x] Mantener CHANGELOG, MASTERPLAN y deuda técnica al cerrar cada bloque.

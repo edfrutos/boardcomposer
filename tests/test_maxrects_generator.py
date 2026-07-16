@@ -1,10 +1,17 @@
-from boardcomposer import Board, Project, ProjectConstraints
+from boardcomposer import (
+    Board,
+    PanelReference,
+    Project,
+    ProjectConstraints,
+    StockPanel,
+)
 from boardcomposer.solver.maxrects_generator import generate_maxrects_solution
 from boardcomposer.solver.maxrects_search import (
     generate_beam_maxrects_solution,
     generate_best_maxrects_solution,
 )
 from boardcomposer.solver.solution_ranking import solution_ranking_key
+from boardcomposer.solver.solution_validator import validate_solution
 
 
 def test_generate_maxrects_solution():
@@ -124,3 +131,144 @@ def test_generate_maxrects_solution_selects_best_available_candidate():
         solution_ranking_key(classic),
         solution_ranking_key(beam),
     )
+
+
+def test_maxrects_uses_stock_panel_dimensions():
+    project = Project(
+        constraints=ProjectConstraints(
+            max_length_mm=5000,
+            max_width_mm=5000,
+        )
+    )
+    project.add_stock_panel(
+        StockPanel(
+            length_mm=1000,
+            width_mm=500,
+            thickness_mm=19,
+            id="P1",
+        )
+    )
+    project.add_board(Board(900, 400, 19, "A"))
+    project.add_board(Board(900, 400, 19, "B"))
+
+    solution = generate_maxrects_solution(project)
+
+    assert len(solution.placements) == 1
+    assert solution.total_length_mm <= 1000
+    assert solution.total_width_mm <= 500
+
+
+def test_maxrects_keeps_constraints_fallback_without_stock_panels():
+    project = Project(
+        constraints=ProjectConstraints(
+            max_length_mm=2000,
+            max_width_mm=500,
+        )
+    )
+    project.add_board(Board(900, 400, 19, "A"))
+    project.add_board(Board(900, 400, 19, "B"))
+
+    solution = generate_maxrects_solution(project)
+
+    assert len(solution.placements) == 2
+
+
+def test_maxrects_uses_each_physical_panel_from_quantity():
+    project = Project()
+    project.add_stock_panel(StockPanel(1000, 500, 19, "P1", quantity=2))
+    project.add_board(Board(900, 400, 19, "A"))
+    project.add_board(Board(900, 400, 19, "B"))
+
+    solution = generate_maxrects_solution(project)
+
+    assert {placement.board_id for placement in solution.placements} == {"A", "B"}
+    assert {placement.panel_reference for placement in solution.placements} == {
+        PanelReference(0, 0),
+        PanelReference(0, 1),
+    }
+
+
+def test_maxrects_routes_piece_to_thickness_compatible_panel():
+    project = Project()
+    project.add_stock_panel(StockPanel(1000, 500, 19, "P19"))
+    project.add_stock_panel(StockPanel(1000, 500, 18, "P18"))
+    project.add_board(Board(900, 400, 18, "A"))
+
+    solution = generate_maxrects_solution(project)
+
+    assert solution.placements[0].panel_reference == PanelReference(1, 0)
+
+
+def test_maxrects_reports_partial_solution_when_inventory_is_insufficient():
+    project = Project()
+    project.add_stock_panel(StockPanel(1000, 500, 19, "P1"))
+    project.add_board(Board(900, 400, 19, "A"))
+    project.add_board(Board(900, 400, 19, "B"))
+
+    solution = generate_maxrects_solution(project)
+    result = validate_solution(solution, project)
+
+    assert len(solution.placements) == 1
+    assert result.complete is False
+
+
+def test_maxrects_routes_piece_to_material_compatible_panel():
+    project = Project()
+    project.add_stock_panel(
+        StockPanel(1000, 500, 19, "MEL", material="Melamina blanca")
+    )
+    project.add_stock_panel(
+        StockPanel(1000, 500, 19, "CONTRA", material="Contrachapado")
+    )
+    project.add_board(Board(900, 400, 19, "A", material="Contrachapado"))
+
+    solution = generate_maxrects_solution(project)
+
+    assert solution.placements[0].panel_reference == PanelReference(1, 0)
+
+
+def test_maxrects_tries_multiple_panel_orderings_to_reduce_waste():
+    """A piece that fits both panels should end up on the smaller one when
+    that leaves less waste, provided the search explores panel orderings."""
+    project = Project()
+    project.add_stock_panel(StockPanel(2440, 1220, 19, "GRANDE"))
+    project.add_stock_panel(StockPanel(700, 700, 19, "PEQUENO"))
+    project.add_board(Board(600, 600, 19, "A"))
+
+    solution = generate_maxrects_solution(project)
+
+    assert solution.placements[0].panel_reference == PanelReference(1, 0)
+
+
+def test_maxrects_reports_offcuts_for_consumed_panels():
+    project = Project()
+    project.add_stock_panel(StockPanel(1000, 1000, 19, "P1"))
+    project.add_board(Board(400, 400, 19, "A"))
+
+    solution = generate_maxrects_solution(project)
+
+    assert solution.offcuts
+    assert all(
+        offcut.panel_reference == PanelReference(0, 0) for offcut in solution.offcuts
+    )
+    assert solution.total_offcut_area_mm2 > 0
+
+
+def test_maxrects_drops_offcuts_smaller_than_the_reuse_threshold():
+    project = Project()
+    project.add_stock_panel(StockPanel(410, 410, 19, "P1"))
+    project.add_board(Board(400, 400, 19, "A"))
+
+    solution = generate_maxrects_solution(project)
+
+    assert solution.offcuts == ()
+
+
+def test_maxrects_reports_no_offcuts_for_an_unconsumed_panel():
+    project = Project()
+    project.add_stock_panel(StockPanel(1000, 1000, 19, "P1"))
+    project.add_board(Board(2000, 2000, 19, "TOO_BIG"))
+
+    solution = generate_maxrects_solution(project)
+
+    assert solution.offcuts == ()

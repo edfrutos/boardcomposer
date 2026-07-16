@@ -1,3 +1,5 @@
+from dataclasses import replace
+
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.solver.deduplication import deduplicate_solutions
 from boardcomposer.solver.generators import generators_by_name
@@ -20,8 +22,33 @@ class CandidatePipeline:
         self.stats = PipelineStats()
         candidates: list[AssemblySolution] = []
 
-        for generator in generators_by_name(list(self.strategy.generator_names)):
-            candidates.extend(generator(self.project))
+        panel_instances = self.project.stock_panel_instances()
+        generator_names = (
+            ["maxrects"]
+            if len(panel_instances) > 1
+            else list(self.strategy.generator_names)
+        )
+
+        for generator in generators_by_name(generator_names):
+            generated = generator(self.project)
+            if len(panel_instances) == 1:
+                reference = panel_instances[0][0]
+                generated = [
+                    replace(
+                        solution,
+                        placements=[
+                            replace(
+                                placement,
+                                panel_reference=(
+                                    placement.panel_reference or reference
+                                ),
+                            )
+                            for placement in solution.placements
+                        ],
+                    )
+                    for solution in generated
+                ]
+            candidates.extend(generated)
 
         self.stats.generated = len(candidates)
 
@@ -47,6 +74,8 @@ class CandidatePipeline:
                 continue
 
             self.stats.accepted += 1
+            if not result.solution.is_complete:
+                self.stats.accepted_partial += 1
             evaluated.append(result.solution)
 
         return sorted(

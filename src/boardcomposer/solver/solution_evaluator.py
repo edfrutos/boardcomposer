@@ -38,6 +38,8 @@ class SolutionEvaluator:
             solution,
             total_boards=len(self.project.boards),
             weights=self.weights,
+            project=self.project,
+            omitted_piece_ids=validation.missing_board_ids,
         )
 
         return EvaluationResult(

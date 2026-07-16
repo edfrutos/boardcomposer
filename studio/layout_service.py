@@ -6,13 +6,14 @@ solver geométrico y gestiona la selección y aplicación de soluciones.
 
 from __future__ import annotations
 
-from boardcomposer import Board, Project, ProjectConstraints
+from boardcomposer import Board, Project, ProjectConstraints, StockPanel
 from boardcomposer.domain import AssemblySolution
 from boardcomposer.solver.geometry_solver import GeometrySolver
 from boardcomposer.solver.pipeline_stats import PipelineStats
 from boardcomposer.solver.strategies import material_first_strategy
 
 from studio.models import StudioPlacement
+from studio.solution_highlights import solution_highlights
 
 
 class LayoutService:
@@ -24,6 +25,7 @@ class LayoutService:
         self.selected_solution_index = 0
         self.strategy_name: str | None = None
         self.stats = PipelineStats()
+        self._solved_project: Project | None = None
 
     def select_next_solution(self) -> AssemblySolution | None:
         """Select and return the next solution in the list, wrapping to the first."""
@@ -65,6 +67,11 @@ class LayoutService:
 
         return self.solutions[self.selected_solution_index]
 
+    @property
+    def solved_project(self) -> Project | None:
+        """Return the Core project used for the current solution set."""
+        return self._solved_project
+
     def to_core_project(self) -> Project | None:
         studio_project = self.services.projects.current_project
         if studio_project is None:
@@ -87,13 +94,26 @@ class LayoutService:
                 allow_cutting=False,
             )
 
+        for board in studio_project.boards:
+            core_project.add_stock_panel(
+                StockPanel(
+                    id=board.board_id,
+                    length_mm=board.length_mm,
+                    width_mm=board.width_mm,
+                    thickness_mm=board.thickness_mm,
+                    quantity=board.quantity,
+                    material=board.material,
+                )
+            )
+
         for piece in studio_project.pieces:
             core_project.add_board(
                 Board(
                     id=piece.piece_id,
                     length_mm=piece.length_mm,
                     width_mm=piece.width_mm,
-                    thickness_mm=19,
+                    thickness_mm=piece.thickness_mm,
+                    material=piece.material,
                 )
             )
 
@@ -103,6 +123,7 @@ class LayoutService:
         project = self.to_core_project()
         if project is None:
             return None
+        self._solved_project = project
 
         strategy = material_first_strategy()
         self.strategy_name = strategy.name
@@ -116,7 +137,8 @@ class LayoutService:
         self.stats = solver.stats
 
         if not solutions:
-            self.clear_solutions()
+            self.solutions = []
+            self.selected_solution_index = 0
 
             return None
 
@@ -136,6 +158,18 @@ class LayoutService:
         studio_project.placements.clear()
 
         for placement in solution.placements:
+            panel_reference = placement.panel_reference
+            board_id = None
+            board_instance = 0
+
+            if panel_reference is not None and panel_reference.stock_panel_index < len(
+                studio_project.boards
+            ):
+                board_id = studio_project.boards[
+                    panel_reference.stock_panel_index
+                ].board_id
+                board_instance = panel_reference.instance_index
+
             studio_project.placements.append(
                 StudioPlacement(
                     piece_id=placement.board_id,
@@ -143,6 +177,13 @@ class LayoutService:
                     y_mm=placement.y_mm,
                     rotated=placement.rotated,
                     rotation=90 if placement.rotated else 0,
+                    board_id=board_id,
+                    board_instance=board_instance,
+                    stock_panel_index=(
+                        panel_reference.stock_panel_index
+                        if panel_reference is not None
+                        else None
+                    ),
                 )
             )
 
@@ -155,9 +196,13 @@ class LayoutService:
         self.selected_solution_index = 0
         self.strategy_name = None
         self.stats = PipelineStats()
+        self._solved_project = None
 
     def board_waste_ratio(self, solution: AssemblySolution) -> float:
         """Return unused board area relative to the source board."""
+        if self._solved_project is not None and solution.panel_references:
+            return solution.panel_waste_ratio(self._solved_project)
+
         studio_project = self.services.projects.current_project
 
         if studio_project is None or not studio_project.boards:
@@ -170,6 +215,11 @@ class LayoutService:
             return 0.0
 
         return max(0.0, 1.0 - solution.used_area_mm2 / board_area)
+
+    @property
+    def solution_highlights(self) -> dict[int, list[str]]:
+        """Return, per solution index, which metrics it wins at (SCR-003)."""
+        return solution_highlights(self.solutions)
 
     def stats_summary_lines(self) -> list[str]:
         """Return human-readable solver statistics."""
@@ -187,6 +237,11 @@ class LayoutService:
             "unknown_board": "Piezas desconocidas",
             "overlap": "Solapes",
             "exceeds_constraints": "Fuera del tablero",
+            "unassigned_stock_panel": "Sin tablero asignado",
+            "unknown_stock_panel": "Tablero desconocido",
+            "exceeds_stock_panel": "Fuera del tablero físico",
+            "panel_thickness_mismatch": "Espesor incompatible",
+            "panel_material_mismatch": "Material incompatible",
         }
 
         if self.stats.rejection_reasons:

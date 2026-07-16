@@ -1,4 +1,4 @@
-from boardcomposer import Board, Project, ProjectConstraints
+from boardcomposer import Board, PanelReference, Project, ProjectConstraints, StockPanel
 from boardcomposer.solver import GeometrySolver
 
 
@@ -61,3 +61,36 @@ def test_geometry_solver_matches_candidate_pipeline():
     assert [s.score.total for s in solver_solutions] == [
         s.score.total for s in pipeline_solutions
     ]
+
+
+def test_geometry_solver_returns_complete_multi_panel_solution():
+    project = Project()
+    project.add_stock_panel(StockPanel(1000, 500, 19, "P1", quantity=2))
+    project.add_board(Board(900, 400, 19, "A"))
+    project.add_board(Board(900, 400, 19, "B"))
+
+    solutions = GeometrySolver(project).solve()
+
+    assert solutions
+    assert {placement.board_id for placement in solutions[0].placements} == {"A", "B"}
+    assert {placement.panel_reference for placement in solutions[0].placements} == {
+        PanelReference(0, 0),
+        PanelReference(0, 1),
+    }
+
+
+def test_single_stock_panel_keeps_strategy_layout_families():
+    project = Project()
+    project.add_stock_panel(StockPanel(3000, 600, 20, "P1"))
+    project.add_board(Board(2000, 300, 20, "A"))
+    project.add_board(Board(1000, 300, 20, "B"))
+
+    solutions = GeometrySolver(project).solve()
+    layouts = {tuple(solution.explanation.notes) for solution in solutions}
+
+    assert ("horizontal_permutation",) in layouts
+    assert all(
+        placement.panel_reference == PanelReference(0, 0)
+        for solution in solutions
+        for placement in solution.placements
+    )

@@ -58,8 +58,9 @@ def test_evaluator_rejects_overlapping_solution():
     assert ValidationReason.OVERLAP in result.validation.reasons
 
 
-def test_evaluator_rejects_incomplete_solution():
-    """An incomplete solution is rejected."""
+def test_evaluator_accepts_incomplete_solution_as_partial():
+    """An incomplete solution is accepted and scored as a partial one,
+    with the missing piece recorded on the solution itself."""
     candidate = AssemblySolution(
         placements=[
             BoardPlacement("A", 0, 0, 100, 50),
@@ -68,6 +69,10 @@ def test_evaluator_rejects_incomplete_solution():
 
     result = SolutionEvaluator(make_project()).evaluate(candidate)
 
-    assert result.accepted is False
-    assert result.solution is None
+    assert result.accepted is True
+    assert result.solution is not None
+    assert result.solution.omitted_piece_ids == ("B",)
+    assert result.solution.is_complete is False
+    assert result.validation.valid is True
+    assert result.validation.complete is False
     assert ValidationReason.MISSING_BOARD in result.validation.reasons

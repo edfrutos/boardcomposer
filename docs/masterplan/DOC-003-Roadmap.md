@@ -3,10 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003
-**Versión:** 1.0.0
-**Estado:** En revisión
+**Versión:** 1.1.0
+**Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 01/07/2026
+**Última revisión:** 16/07/2026
 
 ---
 
@@ -34,6 +34,11 @@ Objetivos alcanzados:
 - Sistema de evaluación.
 - Exportadores básicos.
 - Cobertura amplia mediante pruebas automatizadas.
+- Pipeline común de validación, evaluación, ranking y diagnósticos.
+- Primera vertical de packing multipanel con MaxRects.
+
+La base del Core está completada, pero continúa recibiendo extensiones
+controladas que preservan sus contratos públicos.
 
 ---
 
@@ -47,12 +52,14 @@ Construir la aplicación visual profesional para explorar, comparar y comprender
 
 Entregables principales:
 
-- Workspace.
-- Comparador de algoritmos.
-- Inspector de piezas.
-- Panel de propiedades.
-- Gestión de proyectos.
-- Exportación visual.
+- Workspace y cámara: funcionales.
+- Selección, inspector y comandos undo/redo: funcionales.
+- Gestión y persistencia de proyectos: funcionales.
+- Exploración de varias soluciones y diagnósticos: funcionales.
+- Exportación SVG: funcional, incluido multipanel.
+- Representación básica de varios paneles: funcional.
+- Comparador visual avanzado: en desarrollo.
+- UAT visual multipanel: siguiente bloque.
 
 ---
 
@@ -99,15 +106,16 @@ Objetivos:
 
 ### Prioridad P0
 
-- BoardComposer Studio.
-- Diseño UX.
-- Flujo completo de trabajo.
+- UAT visual multipanel.
+- Flujo completo de trabajo en Studio.
+- Movimiento y reasignación interactiva entre paneles.
 
 ### Prioridad P1
 
-- API.
+- Comparador visual avanzado.
+- Importación de inventario multipanel.
 - Exportadores avanzados.
-- Persistencia de proyectos.
+- Cobertura automatizada de interacción Qt.
 
 ### Prioridad P2
 
@@ -130,7 +138,7 @@ Toda modificación deberá:
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión
+**Estado actual:** 🟡 Fase 2 en curso; documento actualizado
 
 Pendiente de:
 

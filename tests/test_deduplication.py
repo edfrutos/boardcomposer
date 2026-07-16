@@ -1,4 +1,4 @@
-from boardcomposer import AssemblySolution, BoardPlacement
+from boardcomposer import AssemblySolution, BoardPlacement, PanelReference
 from boardcomposer.solver.deduplication import deduplicate_solutions
 
 
@@ -60,6 +60,23 @@ def test_deduplicate_solutions_keeps_different_geometry():
         placements=[
             BoardPlacement("A", 0, 0, 100, 50),
             BoardPlacement("B", 0, 50, 80, 50),
+        ]
+    )
+
+    unique = deduplicate_solutions([solution_a, solution_b])
+
+    assert len(unique) == 2
+
+
+def test_deduplicate_solutions_keeps_different_panel_assignments():
+    solution_a = AssemblySolution(
+        placements=[
+            BoardPlacement("A", 0, 0, 100, 50, panel_reference=PanelReference(0, 0))
+        ]
+    )
+    solution_b = AssemblySolution(
+        placements=[
+            BoardPlacement("A", 0, 0, 100, 50, panel_reference=PanelReference(0, 1))
         ]
     )
 

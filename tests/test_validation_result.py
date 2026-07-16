@@ -36,17 +36,21 @@ def test_valid_solution_has_no_reasons():
     result = validate_solution(solution, make_project())
 
     assert result.valid is True
+    assert result.complete is True
     assert result.reasons == ()
 
 
-def test_missing_board_is_reported():
-    """A missing board is identified."""
+def test_missing_board_is_reported_but_kept_as_a_valid_partial_solution():
+    """A missing board is identified but doesn't invalidate an otherwise
+    geometrically correct solution — only overlaps/duplicates/etc. do."""
     solution = AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
 
     result = validate_solution(solution, make_project())
 
-    assert result.valid is False
+    assert result.valid is True
+    assert result.complete is False
     assert ValidationReason.MISSING_BOARD in result.reasons
+    assert result.missing_board_ids == ("B",)
 
 
 def test_duplicate_board_is_reported():

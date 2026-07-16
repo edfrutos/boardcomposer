@@ -20,10 +20,15 @@ from PySide6.QtWidgets import (
 from boardcomposer.export import solution_to_svg
 from studio.commands import DeletePieceCommand, RotatePieceCommand
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
-from studio.project_serializer import load_project, save_project
+from studio.project_serializer import (
+    UnsupportedProjectVersionError,
+    load_project,
+    save_project,
+)
 from studio.workspace.board_workspace import BoardWorkspace
 from studio.workspace.board_piece_item import BoardPieceItem
-from studio.dialogs import NewBoardDialog, NewPieceDialog
+from studio.dialogs import ImportBoardsPreviewDialog, NewBoardDialog, NewPieceDialog
+from studio.board_csv_importer import import_boards_from_csv
 
 
 class MainWindow(QMainWindow):
@@ -72,6 +77,9 @@ class MainWindow(QMainWindow):
         self._actions["save_as"] = QAction("Guardar como…", self)
         self._actions["add_board"] = QAction("Añadir tablero…", self)
         self._actions["add_piece"] = QAction("Añadir pieza…", self)
+        self._actions["import_boards_csv"] = QAction(
+            "Importar inventario de tableros (CSV)…", self
+        )
         self._actions["export_selected_svg"] = QAction(
             "Exportar solución seleccionada a SVG…",
             self,
@@ -112,6 +120,7 @@ class MainWindow(QMainWindow):
 
         menus["Proyecto"].addAction(self._actions["add_board"])
         menus["Proyecto"].addAction(self._actions["add_piece"])
+        menus["Proyecto"].addAction(self._actions["import_boards_csv"])
 
         menus["Exportar"].addAction(self._actions["export_selected_svg"])
 
@@ -130,6 +139,9 @@ class MainWindow(QMainWindow):
         self._actions["new_demo_project"].triggered.connect(self._new_demo_project)
         self._actions["add_board"].triggered.connect(self._add_board)
         self._actions["add_piece"].triggered.connect(self._add_piece)
+        self._actions["import_boards_csv"].triggered.connect(
+            self._import_boards_from_csv
+        )
 
         self._actions["undo"].triggered.connect(self._undo)
         self._actions["redo"].triggered.connect(self._redo)
@@ -278,7 +290,8 @@ class MainWindow(QMainWindow):
 
             for board in project.boards:
                 board_label = (
-                    f"{board.board_id} — {board.length_mm:g} x {board.width_mm:g} mm"
+                    f"{board.board_id} — {board.length_mm:g} x {board.width_mm:g} "
+                    f"x {board.thickness_mm:g} mm — {board.quantity} ud."
                 )
                 item = QTreeWidgetItem([board_label])
                 item.setData(
@@ -367,6 +380,8 @@ class MainWindow(QMainWindow):
                 f"Tablero: {board.board_id}\n"
                 f"Dimensiones: {board.length_mm:g} x "
                 f"{board.width_mm:g} mm\n"
+                f"Espesor: {board.thickness_mm:g} mm\n"
+                f"Cantidad: {board.quantity}\n"
                 f"Material: {board.material}"
             )
             return
@@ -428,6 +443,8 @@ class MainWindow(QMainWindow):
                 length_mm=data["length_mm"],
                 width_mm=data["width_mm"],
                 material=data["material"],
+                thickness_mm=data["thickness_mm"],
+                quantity=data["quantity"],
             )
         )
 
@@ -437,6 +454,55 @@ class MainWindow(QMainWindow):
         self.update_window_title()
 
         self.statusBar().showMessage("Tablero añadido", 3000)
+
+    def _import_boards_from_csv(self) -> None:
+        project = self.services.projects.current_project
+
+        if project is None:
+            self._load_empty_project()
+            project = self.services.projects.current_project
+
+        if project is None:
+            return
+
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Importar inventario de tableros (CSV)",
+            "",
+            "Archivos CSV (*.csv);;Todos los archivos (*)",
+        )
+
+        if not file_path:
+            return
+
+        existing_ids = {board.board_id.casefold() for board in project.boards}
+        result = import_boards_from_csv(file_path, existing_ids=existing_ids)
+
+        if result.file_errors:
+            QMessageBox.warning(
+                self,
+                "Importar inventario de tableros",
+                "\n".join(result.file_errors),
+            )
+            return
+
+        dialog = ImportBoardsPreviewDialog(result, self)
+
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+
+        for board in result.valid_boards:
+            project.boards.append(board)
+
+        self.services.projects.mark_modified()
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self.update_window_title()
+
+        self.statusBar().showMessage(
+            f"{len(result.valid_boards)} tablero(s) importado(s) desde CSV",
+            5000,
+        )
 
     def _add_piece(self):
         project = self.services.projects.current_project
@@ -464,48 +530,109 @@ class MainWindow(QMainWindow):
             )
             return
 
-        normalized_id = new_piece_id.casefold()
+        existing_ids = {piece.piece_id.strip().casefold() for piece in project.pieces}
 
-        if any(
-            piece.piece_id.strip().casefold() == normalized_id
-            for piece in project.pieces
-        ):
+        quantity = data.get("quantity", 1)
+        piece_ids = self._generate_piece_ids(new_piece_id, quantity, existing_ids)
+
+        if piece_ids is None:
             self.statusBar().showMessage(
                 f"Ya existe una pieza con id {new_piece_id}",
                 3000,
             )
             return
 
-        project.pieces.append(
-            StudioPiece(
-                piece_id=data["piece_id"],
-                length_mm=data["length_mm"],
-                width_mm=data["width_mm"],
-                material=data["material"],
+        for piece_id in piece_ids:
+            project.pieces.append(
+                StudioPiece(
+                    piece_id=piece_id,
+                    length_mm=data["length_mm"],
+                    width_mm=data["width_mm"],
+                    material=data["material"],
+                    thickness_mm=data["thickness_mm"],
+                )
             )
-        )
 
-        x_mm, y_mm = self._find_free_piece_position(
-            data["length_mm"],
-            data["width_mm"],
-        )
-
-        project.placements.append(
-            StudioPlacement(
-                piece_id=data["piece_id"],
-                x_mm=x_mm,
-                y_mm=y_mm,
-                rotated=False,
-                rotation=0,
+            x_mm, y_mm = self._find_free_piece_position(
+                data["length_mm"],
+                data["width_mm"],
             )
-        )
+
+            project.placements.append(
+                StudioPlacement(
+                    piece_id=piece_id,
+                    x_mm=x_mm,
+                    y_mm=y_mm,
+                    rotated=False,
+                    rotation=0,
+                    board_id=project.boards[0].board_id if project.boards else None,
+                    board_instance=0,
+                    stock_panel_index=0 if project.boards else None,
+                )
+            )
 
         self.services.projects.mark_modified()
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
 
-        self.statusBar().showMessage("Pieza añadida", 3000)
+        if len(piece_ids) > 1:
+            self.statusBar().showMessage(f"{len(piece_ids)} piezas añadidas", 3000)
+        else:
+            self.statusBar().showMessage("Pieza añadida", 3000)
+
+    @staticmethod
+    def _generate_piece_ids(
+        base_id: str,
+        quantity: int,
+        existing_ids: set[str],
+    ) -> list[str] | None:
+        """Generate `quantity` unique piece ids derived from `base_id`.
+
+        For quantity 1, `base_id` is used verbatim (and must be free).
+        For quantity > 1, ids are suffixed as `base-1`, `base-2`, etc.,
+        skipping any suffix that collides with an existing id.
+        Returns None if `base_id` itself already collides with an existing id.
+        """
+        if base_id.casefold() in existing_ids:
+            return None
+
+        if quantity <= 1:
+            return [base_id]
+
+        generated_ids: list[str] = []
+        reserved = set(existing_ids)
+        suffix = 1
+
+        while len(generated_ids) < quantity:
+            candidate = f"{base_id}-{suffix}"
+            suffix += 1
+            if candidate.casefold() in reserved:
+                continue
+            reserved.add(candidate.casefold())
+            generated_ids.append(candidate)
+
+        return generated_ids
+
+    @staticmethod
+    def _panel_info_text(project, placement) -> str:
+        """Return a human-readable label for a placement's physical panel."""
+        if placement is None or placement.board_id is None:
+            return "Sin tablero asignado"
+
+        board = next(
+            (board for board in project.boards if board.board_id == placement.board_id),
+            None,
+        )
+        quantity = board.quantity if board is not None else 1
+
+        if quantity > 1:
+            return (
+                f"{placement.board_id} · instancia "
+                f"{placement.board_instance + 1}/{quantity}"
+            )
+
+        return placement.board_id
 
     def refresh_inspector_for_piece(self, piece_id: str):
         """Refresh inspector panel for the selected piece."""
@@ -515,16 +642,30 @@ class MainWindow(QMainWindow):
 
         piece = project.piece_by_id(piece_id)
         placement = next(
-            placement
-            for placement in project.placements
-            if placement.piece_id == piece_id
+            (
+                placement
+                for placement in project.placements
+                if placement.piece_id == piece_id
+            ),
+            None,
         )
+
+        if placement is None:
+            self.inspector.setText(
+                "Inspector\n\n"
+                f"Pieza: {piece.piece_id}\n"
+                f"Dimensiones: {piece.length_mm:g} x {piece.width_mm:g} mm\n"
+                f"Material: {piece.material}\n"
+                "Sin colocar en el Workspace"
+            )
+            return
 
         self.inspector.setText(
             "Inspector\n\n"
             f"Pieza: {piece.piece_id}\n"
             f"Dimensiones: {piece.length_mm:g} x {piece.width_mm:g} mm\n"
             f"Posición: {placement.x_mm:g}, {placement.y_mm:g} mm\n"
+            f"Tablero: {self._panel_info_text(project, placement)}\n"
             f"Material: {piece.material}"
         )
 
@@ -631,6 +772,7 @@ class MainWindow(QMainWindow):
         solution = self.services.layout.solve_current_project()
 
         if solution is None:
+            self._show_no_solution_diagnosis()
             self.statusBar().showMessage("No se pudo calcular layout", 3000)
             return
 
@@ -639,20 +781,39 @@ class MainWindow(QMainWindow):
         self._reload_explorer()
 
         solution_count = len(self.services.layout.solutions)
+
+        if not solution.is_complete:
+            self.statusBar().showMessage(
+                f"Layout parcial: {len(solution.omitted_piece_ids)} pieza(s) "
+                f"sin colocar de {solution_count} soluciones",
+                5000,
+            )
+            return
+
         self.statusBar().showMessage(
             f"Layout calculado: {solution_count} soluciones",
             3000,
         )
 
+    def _show_no_solution_diagnosis(self) -> None:
+        lines = ["Sin solución", ""]
+        lines.extend(self.services.layout.stats_summary_lines())
+        self.inspector.setText("\n".join(lines))
+
     def _reload_solution_table(self):
         self.solutions_table.setRowCount(0)
+        highlights = self.services.layout.solution_highlights
 
         for row, solution in enumerate(self.services.layout.solutions):
             self.solutions_table.insertRow(row)
 
+            placed_label = str(len(solution.placements))
+            if not solution.is_complete:
+                placed_label += f" ({len(solution.omitted_piece_ids)} sin colocar)"
+
             values = [
                 str(row + 1),
-                str(len(solution.placements)),
+                placed_label,
                 f"{solution.waste_ratio:.1%}",
                 f"{self.services.layout.board_waste_ratio(solution):.1%}",
                 f"{solution.total_length_mm:.0f}",
@@ -660,12 +821,16 @@ class MainWindow(QMainWindow):
                 f"{solution.score.total:.2f}",
             ]
 
+            row_highlights = highlights.get(row, [])
+
             for column, value in enumerate(values):
-                self.solutions_table.setItem(
-                    row,
-                    column,
-                    QTableWidgetItem(value),
-                )
+                item = QTableWidgetItem(value)
+                if row_highlights:
+                    item.setToolTip("Mejor en: " + ", ".join(row_highlights))
+                    font = item.font()
+                    font.setBold(True)
+                    item.setFont(font)
+                self.solutions_table.setItem(row, column, item)
 
         self.solutions_table.resizeColumnsToContents()
 
@@ -687,8 +852,30 @@ class MainWindow(QMainWindow):
             f"Largo total: {solution.total_length_mm:.0f} mm",
             f"Ancho total: {solution.total_width_mm:.0f} mm",
             f"Huecos internos: {solution.waste_ratio:.1%}",
-            f"Tablero libre: {self.services.layout.board_waste_ratio(solution):.1%}",
+            f"Material libre: {self.services.layout.board_waste_ratio(solution):.1%}",
         ]
+
+        if not solution.is_complete:
+            lines.append("Piezas omitidas: " + ", ".join(solution.omitted_piece_ids))
+
+        if solution.offcuts:
+            lines.append(
+                f"Retales aprovechables: {len(solution.offcuts)} "
+                f"(área total {solution.total_offcut_area_mm2:.0f} mm²)"
+            )
+
+        highlights = self.services.layout.solution_highlights.get(
+            self.services.layout.selected_solution_index
+        )
+        if highlights:
+            lines.append("Puntos clave: " + ", ".join(highlights))
+
+        if solution.explanation.strengths or solution.explanation.weaknesses:
+            lines.append("")
+            lines.extend(f"+ {strength}" for strength in solution.explanation.strengths)
+            lines.extend(
+                f"- {weakness}" for weakness in solution.explanation.weaknesses
+            )
 
         stats_lines = self.services.layout.stats_summary_lines()
 
@@ -787,7 +974,7 @@ class MainWindow(QMainWindow):
 
         try:
             Path(path).write_text(
-                solution_to_svg(solution),
+                solution_to_svg(solution, self.services.layout.solved_project),
                 encoding="utf-8",
             )
         except OSError as exc:
@@ -864,7 +1051,12 @@ class MainWindow(QMainWindow):
         if not path:
             return
 
-        project = load_project(path)
+        try:
+            project = load_project(path)
+        except UnsupportedProjectVersionError as error:
+            QMessageBox.warning(self, "Abrir proyecto", str(error))
+            return
+
         self.services.projects.open_project(project, path)
         self.services.recent_files.add(path)
         self._reload_recent_files_menu()
@@ -897,7 +1089,12 @@ class MainWindow(QMainWindow):
         if not self._confirm_discard_unsaved_changes():
             return
 
-        project = load_project(path)
+        try:
+            project = load_project(path)
+        except UnsupportedProjectVersionError as error:
+            QMessageBox.warning(self, "Abrir proyecto", str(error))
+            return
+
         self.services.projects.open_project(project, path)
         self.services.recent_files.add(path)
         self._reload_recent_files_menu()
@@ -1038,6 +1235,8 @@ class MainWindow(QMainWindow):
             board_id=board.board_id,
             length_mm=int(board.length_mm),
             width_mm=int(board.width_mm),
+            thickness_mm=int(board.thickness_mm),
+            quantity=board.quantity,
             material=board.material,
             title="Editar tablero",
         )
@@ -1062,7 +1261,17 @@ class MainWindow(QMainWindow):
             length_mm=data["length_mm"],
             width_mm=data["width_mm"],
             material=data["material"],
+            thickness_mm=data["thickness_mm"],
+            quantity=data["quantity"],
         )
+
+        for placement in project.placements:
+            if placement.board_id == board_id:
+                placement.board_id = new_board_id
+                placement.board_instance = min(
+                    placement.board_instance,
+                    data["quantity"] - 1,
+                )
 
         self.services.layout.clear_solutions()
         self.services.projects.mark_modified()
@@ -1087,8 +1296,10 @@ class MainWindow(QMainWindow):
             piece_id=piece.piece_id,
             length_mm=int(piece.length_mm),
             width_mm=int(piece.width_mm),
+            thickness_mm=int(piece.thickness_mm),
             material=piece.material,
             title="Editar pieza",
+            show_quantity=False,
         )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
@@ -1124,6 +1335,7 @@ class MainWindow(QMainWindow):
             length_mm=data["length_mm"],
             width_mm=data["width_mm"],
             material=data["material"],
+            thickness_mm=data["thickness_mm"],
         )
 
         project.pieces[piece_index] = updated_piece
@@ -1142,8 +1354,10 @@ class MainWindow(QMainWindow):
         self.workspace.select_piece(new_piece_id)
 
         position_text = ""
+        panel_text = ""
         if placement is not None:
             position_text = f"Posición: {placement.x_mm:g}, {placement.y_mm:g} mm\n"
+            panel_text = f"Tablero: {self._panel_info_text(project, placement)}\n"
 
         self.inspector.setText(
             "Inspector\n\n"
@@ -1151,6 +1365,7 @@ class MainWindow(QMainWindow):
             f"Dimensiones: {updated_piece.length_mm:g} x "
             f"{updated_piece.width_mm:g} mm\n"
             f"{position_text}"
+            f"{panel_text}"
             f"Material: {updated_piece.material}"
         )
 

@@ -3,10 +3,10 @@
 ## Documento 2 — Arquitectura del Sistema
 
 **Código:** DOC-002
-**Versión:** 1.0.0
-**Estado:** En revisión
+**Versión:** 1.1.0
+**Estado:** En revisión — arquitectura vigente
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 01/07/2026
+**Última revisión:** 16/07/2026
 
 ---
 
@@ -58,6 +58,13 @@ Toda aplicación, servicio o integración deberá construirse alrededor del Core
 
 Contiene toda la lógica de negocio y optimización. No conocerá ningún detalle de la interfaz gráfica, servicios web o tecnologías externas.
 
+La arquitectura implementada separa `domain`, `geometry`, `layout`, `solver`,
+`io`, `presenters` y `export`. `GeometrySolver` y `CandidatePipeline` coordinan
+la generación, deduplicación, validación, evaluación y ranking.
+
+El inventario multipanel pertenece al dominio mediante `StockPanel` y
+`PanelReference`; Studio solo adapta y presenta esos contratos.
+
 ### Studio
 
 Aplicación visual para explorar proyectos, comparar soluciones y gestionar el flujo de trabajo del usuario.
@@ -105,11 +112,10 @@ La arquitectura está diseñada para admitir, sin cambios estructurales importan
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión
+**Estado actual:** 🟡 Implementada y en revisión continua
 
 Pendiente de:
 
-- validar la estructura definitiva del Core;
-- documentar los módulos internos;
+- mantener validada la estructura del Core al incorporar nuevos algoritmos;
 - incorporar diagramas de dependencias;
 - aprobar la arquitectura como referencia oficial del proyecto.

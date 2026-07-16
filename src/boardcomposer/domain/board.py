@@ -7,6 +7,7 @@ class Board:
     width_mm: float
     thickness_mm: float
     id: str | None = None
+    material: str = "Generico"
 
     def __post_init__(self) -> None:
         if self.length_mm <= 0:
@@ -19,3 +20,8 @@ class Board:
     @property
     def area_mm2(self) -> float:
         return self.length_mm * self.width_mm
+
+    @property
+    def material_key(self) -> str:
+        """Normalized material for case/whitespace-insensitive comparisons."""
+        return self.material.strip().casefold()

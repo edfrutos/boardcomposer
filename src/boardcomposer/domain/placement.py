@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from .panel_reference import PanelReference
+
 
 @dataclass(frozen=True)
 class BoardPlacement:
@@ -9,6 +11,7 @@ class BoardPlacement:
     length_mm: float
     width_mm: float
     rotated: bool = False
+    panel_reference: PanelReference | None = None
 
     def __post_init__(self) -> None:
         if self.x_mm < 0:
