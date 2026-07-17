@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
+from PySide6.QtCore import QSize, Qt
 from PySide6.QtWidgets import (
     QCheckBox,
     QComboBox,
     QDialog,
     QDialogButtonBox,
     QFormLayout,
+    QFrame,
     QLabel,
+    QScrollArea,
     QTextEdit,
     QVBoxLayout,
 )
@@ -18,8 +21,12 @@ from studio.export_options import (
     VALID_EXPORT_FORMATS,
     ExportOptions,
     format_label,
+    preview_svg,
     preview_text,
 )
+from studio.solution_thumbnail import svg_to_pixmap
+
+_GRAPHIC_PREVIEW_SIZE = QSize(520, 280)
 
 
 class ExportDialog(QDialog):
@@ -38,7 +45,7 @@ class ExportDialog(QDialog):
         super().__init__(parent)
 
         self.setWindowTitle("Exportar solución")
-        self.setMinimumSize(560, 480)
+        self.setMinimumSize(640, 620)
         self._solution = solution
         self._project = project
         self._strategy_name = strategy_name
@@ -77,9 +84,25 @@ class ExportDialog(QDialog):
         form.addRow("", self.include_offcuts)
         layout.addLayout(form)
 
-        layout.addWidget(QLabel("Vista previa"))
+        layout.addWidget(QLabel("Vista previa gráfica"))
+        self.graphic_preview = QLabel()
+        self.graphic_preview.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.graphic_preview.setMinimumHeight(200)
+        self.graphic_preview.setFrameShape(QFrame.Shape.StyledPanel)
+        self.graphic_preview.setStyleSheet(
+            "QLabel { background: white; color: #64748b; }"
+        )
+        graphic_scroll = QScrollArea()
+        graphic_scroll.setWidgetResizable(True)
+        graphic_scroll.setFrameShape(QFrame.Shape.NoFrame)
+        graphic_scroll.setMinimumHeight(220)
+        graphic_scroll.setWidget(self.graphic_preview)
+        layout.addWidget(graphic_scroll)
+
+        layout.addWidget(QLabel("Resumen / contenido"))
         self.preview = QTextEdit()
         self.preview.setReadOnly(True)
+        self.preview.setMinimumHeight(120)
         layout.addWidget(self.preview)
 
         buttons = QDialogButtonBox(
@@ -105,6 +128,11 @@ class ExportDialog(QDialog):
         json_only = options.format == "json"
         self.include_metrics.setEnabled(json_only)
         self.include_explanation.setEnabled(json_only)
+
+        svg = preview_svg(self._solution, self._project, options)
+        pixmap = svg_to_pixmap(svg, box=_GRAPHIC_PREVIEW_SIZE)
+        self.graphic_preview.setPixmap(pixmap)
+        self.graphic_preview.setText("" if not pixmap.isNull() else "Sin vista previa")
 
         self.preview.setPlainText(
             preview_text(
