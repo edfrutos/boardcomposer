@@ -54,6 +54,8 @@ El Event Bus será un mecanismo de comunicación, nunca un lugar donde resida l�
 - AlgorithmStarted
 - AlgorithmFinished
 - EvaluationFinished
+- PlacementFailed
+- PlacementFailuresSummary
 - ExportCompleted
 - WorkspaceUpdated
 

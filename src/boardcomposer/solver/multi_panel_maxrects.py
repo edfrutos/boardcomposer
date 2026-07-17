@@ -20,6 +20,7 @@ from boardcomposer.solver.maxrects.maxrects import MaxRects
 from boardcomposer.solver.maxrects.orderings import MAXRECTS_BOARD_ORDERINGS
 from boardcomposer.solver.maxrects.strategies import MAXRECTS_HEURISTICS
 from boardcomposer.solver.panel_ordering import PANEL_ORDERINGS
+from boardcomposer.solver.placement_failures import record_placement_failure
 
 BoardOrdering = Callable[[list[Board]], list[Board]]
 PanelOrdering = Callable[
@@ -86,6 +87,12 @@ def _pack_panel(
         )
 
         if not compatible:
+            record_placement_failure(
+                piece_id=board.id or f"board-{board_index + 1}",
+                reason="incompatible",
+                stock_panel_index=reference.stock_panel_index,
+                instance_index=reference.instance_index,
+            )
             not_placed.append((board_index, board))
             continue
 
@@ -96,6 +103,12 @@ def _pack_panel(
         )
 
         if placement is None:
+            record_placement_failure(
+                piece_id=board.id or f"board-{board_index + 1}",
+                reason="no_fit",
+                stock_panel_index=reference.stock_panel_index,
+                instance_index=reference.instance_index,
+            )
             not_placed.append((board_index, board))
             continue
 

@@ -11,6 +11,10 @@ from boardcomposer.solver.generators import generators_by_name
 from boardcomposer.solver.solution_evaluator import SolutionEvaluator
 from boardcomposer.solver.strategies import OptimizationStrategy
 from boardcomposer.solver.pipeline_stats import PipelineStats
+from boardcomposer.solver.placement_failures import (
+    PlacementFailureLog,
+    capture_placement_failures,
+)
 from boardcomposer.solver.solution_ranking import solution_ranking_key
 from boardcomposer.solver.solve_trace import SolveTrace
 
@@ -45,7 +49,13 @@ class CandidatePipeline:
                 check_cancelled(self.cancel)
                 self.trace.record("generator_started", algorithm=name)
                 generator = generators_by_name([name])[0]
-                generated = generator(self.project)
+                if name == "maxrects":
+                    failure_log = PlacementFailureLog()
+                    with capture_placement_failures(failure_log):
+                        generated = generator(self.project)
+                    self._record_placement_failures(failure_log)
+                else:
+                    generated = generator(self.project)
                 if len(panel_instances) == 1:
                     reference = panel_instances[0][0]
                     generated = [
@@ -130,3 +140,26 @@ class CandidatePipeline:
             self.stats.generated = max(self.stats.generated, len(candidates))
             self.trace.record("cancelled")
             return []
+
+    def _record_placement_failures(self, failure_log: PlacementFailureLog) -> None:
+        """Fold MaxRects failure samples into the solve trace."""
+        if failure_log.total == 0:
+            return
+        self.trace.record(
+            "placement_failures_summary",
+            total=failure_log.total,
+            incompatible=failure_log.counts.get("incompatible", 0),
+            no_fit=failure_log.counts.get("no_fit", 0),
+            unique=len(failure_log.failures),
+        )
+        for failure in failure_log.failures:
+            payload: dict[str, object] = {
+                "piece": failure.piece_id,
+                "reason": failure.reason,
+                "algorithm": failure.algorithm,
+            }
+            if failure.stock_panel_index is not None:
+                payload["stock"] = failure.stock_panel_index
+            if failure.instance_index is not None:
+                payload["instance"] = failure.instance_index
+            self.trace.record("placement_failed", **payload)

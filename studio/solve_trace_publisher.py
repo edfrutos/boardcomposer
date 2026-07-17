@@ -31,3 +31,18 @@ def publish_solve_trace(bus: EventBus, trace: SolveTrace) -> None:
                     "rejected": event.payload.get("rejected", 0),
                 },
             )
+        elif event.kind == "placement_failures_summary":
+            bus.publish(
+                events.PLACEMENT_FAILURES_SUMMARY,
+                {
+                    "total": event.payload.get("total", 0),
+                    "incompatible": event.payload.get("incompatible", 0),
+                    "no_fit": event.payload.get("no_fit", 0),
+                    "unique": event.payload.get("unique", 0),
+                },
+            )
+        elif event.kind == "placement_failed":
+            bus.publish(
+                events.PLACEMENT_FAILED,
+                dict(event.payload),
+            )

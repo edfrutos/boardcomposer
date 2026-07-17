@@ -270,6 +270,19 @@ def _format_payload(payload: dict, language: str) -> str:
         parts.append(str(payload["strategy"]))
     if "algorithm" in payload:
         parts.append(str(payload["algorithm"]))
+    if "piece" in payload:
+        parts.append(str(payload["piece"]))
+    if "reason" in payload:
+        reason = str(payload["reason"])
+        parts.append(tr(f"timeline.reason.{reason}", language))
+    if "total" in payload and "count" not in payload:
+        parts.append(tr("timeline.detail.total", language, n=payload["total"]))
+    if "no_fit" in payload:
+        parts.append(tr("timeline.detail.no_fit", language, n=payload["no_fit"]))
+    if "incompatible" in payload:
+        parts.append(
+            tr("timeline.detail.incompatible", language, n=payload["incompatible"])
+        )
     if "accepted" in payload:
         parts.append(tr("timeline.detail.accepted", language, n=payload["accepted"]))
     if "rejected" in payload:

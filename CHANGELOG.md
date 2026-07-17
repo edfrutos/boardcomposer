@@ -104,6 +104,8 @@
   replay etiqueta el generador y la pieza actual (ADR-005).
 - Exportación del historial del Timeline a JSON/CSV (menú Exportar y botón
   en el dock) respetando el filtro activo.
+- Instrumentación de fallos de colocación MaxRects (`incompatible` / `no_fit`)
+  en la traza del solver y el Timeline (`PlacementFailed` + resumen).
 
 ### Cambiado
 
