@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
     QListWidget,
     QListWidgetItem,
     QPushButton,
+    QSizePolicy,
     QVBoxLayout,
     QWidget,
 )
@@ -35,63 +36,63 @@ class WelcomeScreen(QWidget):
 
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
+        self.setObjectName("welcomeRoot")
 
         self._language = DEFAULT_LANGUAGE
         self._recent_paths: list[str] = []
         self._thumbnail_cache: dict[tuple[str, float], QIcon] = {}
 
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(48, 40, 48, 40)
-        layout.setSpacing(20)
+        root = QHBoxLayout(self)
+        root.setContentsMargins(56, 48, 56, 48)
+        root.setSpacing(48)
+
+        hero = QVBoxLayout()
+        hero.setSpacing(12)
+        hero.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         brand = QLabel("BoardComposer")
         brand.setObjectName("welcomeBrand")
-        brand.setStyleSheet(
-            "QLabel#welcomeBrand { font-size: 36px; font-weight: 700; }"
-        )
-        layout.addWidget(brand)
+        brand.setWordWrap(True)
+        hero.addWidget(brand)
 
-        subtitle = QLabel(f"Studio {STUDIO_VERSION}")
-        subtitle.setStyleSheet("font-size: 14px; opacity: 0.7;")
-        layout.addWidget(subtitle)
+        self.subtitle = QLabel(f"Studio {STUDIO_VERSION}")
+        self.subtitle.setObjectName("welcomeSubtitle")
+        hero.addWidget(self.subtitle)
 
         self.tagline = QLabel()
+        self.tagline.setObjectName("welcomeTagline")
         self.tagline.setWordWrap(True)
-        self.tagline.setStyleSheet("font-size: 15px; margin-top: 8px;")
-        layout.addWidget(self.tagline)
+        hero.addWidget(self.tagline)
+
+        hero.addSpacing(16)
 
         actions = QHBoxLayout()
-        actions.setSpacing(12)
+        actions.setSpacing(10)
 
         self.new_button = QPushButton()
-        self.new_button.setMinimumHeight(40)
+        self.new_button.setObjectName("primaryButton")
+        self.new_button.setMinimumHeight(44)
+        self.new_button.setMinimumWidth(140)
         self.new_button.clicked.connect(self.new_project_requested.emit)
         actions.addWidget(self.new_button)
 
         self.open_button = QPushButton()
-        self.open_button.setMinimumHeight(40)
+        self.open_button.setMinimumHeight(44)
         self.open_button.clicked.connect(self.open_project_requested.emit)
         actions.addWidget(self.open_button)
 
         self.import_button = QPushButton()
-        self.import_button.setMinimumHeight(40)
+        self.import_button.setMinimumHeight(44)
         self.import_button.clicked.connect(self.import_pieces_requested.emit)
         actions.addWidget(self.import_button)
 
         actions.addStretch(1)
-        layout.addLayout(actions)
+        hero.addLayout(actions)
 
-        self.recent_label = QLabel()
-        layout.addWidget(self.recent_label)
-        self.recent_list = QListWidget()
-        self.recent_list.setMinimumHeight(180)
-        self.recent_list.setIconSize(RECENT_THUMBNAIL_SIZE)
-        self.recent_list.setSpacing(6)
-        self.recent_list.itemActivated.connect(self._on_recent_activated)
-        self.recent_list.itemDoubleClicked.connect(self._on_recent_activated)
-        layout.addWidget(self.recent_list)
+        hero.addSpacing(20)
 
         secondary = QHBoxLayout()
+        secondary.setSpacing(10)
         self.demo_button = QPushButton()
         self.demo_button.clicked.connect(self.demo_project_requested.emit)
         secondary.addWidget(self.demo_button)
@@ -100,9 +101,42 @@ class WelcomeScreen(QWidget):
         self.preferences_button.clicked.connect(self.preferences_requested.emit)
         secondary.addWidget(self.preferences_button)
         secondary.addStretch(1)
-        layout.addLayout(secondary)
+        hero.addLayout(secondary)
 
-        layout.addStretch(1)
+        hero.addStretch(1)
+
+        hero_wrap = QWidget()
+        hero_wrap.setLayout(hero)
+        hero_wrap.setSizePolicy(
+            QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding
+        )
+        root.addWidget(hero_wrap, stretch=3)
+
+        recent_col = QVBoxLayout()
+        recent_col.setSpacing(10)
+        recent_col.setAlignment(Qt.AlignmentFlag.AlignTop)
+
+        self.recent_label = QLabel()
+        self.recent_label.setObjectName("welcomeRecentLabel")
+        recent_col.addWidget(self.recent_label)
+
+        self.recent_list = QListWidget()
+        self.recent_list.setObjectName("welcomeRecentList")
+        self.recent_list.setMinimumWidth(280)
+        self.recent_list.setMinimumHeight(280)
+        self.recent_list.setIconSize(RECENT_THUMBNAIL_SIZE)
+        self.recent_list.setSpacing(6)
+        self.recent_list.itemActivated.connect(self._on_recent_activated)
+        self.recent_list.itemDoubleClicked.connect(self._on_recent_activated)
+        recent_col.addWidget(self.recent_list, stretch=1)
+
+        recent_wrap = QWidget()
+        recent_wrap.setLayout(recent_col)
+        recent_wrap.setSizePolicy(
+            QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding
+        )
+        root.addWidget(recent_wrap, stretch=2)
+
         self.apply_language(DEFAULT_LANGUAGE)
 
     def apply_language(self, language: str) -> None:
