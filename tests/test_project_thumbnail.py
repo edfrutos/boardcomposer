@@ -27,7 +27,7 @@ def test_studio_project_to_svg_renders_placed_pieces():
 
     assert svg is not None
     assert "P1" in svg
-    assert "width=\"400\"" in svg
+    assert 'width="400"' in svg
     assert ">A</text>" in svg
 
 
