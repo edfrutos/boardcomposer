@@ -61,6 +61,13 @@ class TimelineStore:
                 names.append(value)
         return tuple(names)
 
+    def entry_by_sequence(self, sequence: int) -> TimelineEntry | None:
+        """Return the entry with the given sequence, if still in the buffer."""
+        for entry in self._entries:
+            if entry.sequence == sequence:
+                return entry
+        return None
+
     def filtered(
         self,
         event_name: str | None = None,

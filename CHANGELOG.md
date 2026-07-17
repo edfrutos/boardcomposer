@@ -116,6 +116,8 @@
   y el Timeline; captura activa para todos los generadores instrumentados.
 - Reproducción de fases del solver en el Timeline (modo Colocaciones /
   Fases): recorre `SolveTrace` y sincroniza solución/pieza cuando aplica.
+- Clic en un hecho del Timeline para buscar contexto (algoritmo → solución,
+  pieza fallida, índice de solución, nota de marcador).
 
 ### Cambiado
 
