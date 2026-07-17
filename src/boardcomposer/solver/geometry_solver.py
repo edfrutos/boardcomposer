@@ -2,6 +2,7 @@ from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.solver.cancel import CancellationToken
 from boardcomposer.solver.candidate_pipeline import CandidatePipeline
 from boardcomposer.solver.pipeline_stats import PipelineStats
+from boardcomposer.solver.solve_trace import SolveTrace
 from boardcomposer.solver.strategies import (
     OptimizationStrategy,
     balanced_strategy,
@@ -22,6 +23,7 @@ class GeometrySolver(BaseSolver):
         self.strategy = strategy or balanced_strategy()
         self.cancel = cancel
         self.stats = PipelineStats()
+        self.trace = SolveTrace()
 
     def solve(self) -> list[AssemblySolution]:
         pipeline = CandidatePipeline(
@@ -32,5 +34,6 @@ class GeometrySolver(BaseSolver):
 
         solutions = pipeline.run()
         self.stats = pipeline.stats
+        self.trace = pipeline.trace
 
         return solutions

@@ -204,14 +204,32 @@ class TimelinePanel(QWidget):
         )
         self._replay_play.setText(tr(play_key, self._language))
         if available:
-            self._replay_label.setText(
-                tr(
-                    "timeline.replay_progress",
-                    self._language,
-                    current=self._replay.step,
-                    total=self._replay.total,
-                )
+            algorithm = self._replay.algorithm or tr(
+                "timeline.replay_algorithm_unknown",
+                self._language,
             )
+            piece = self._replay.current_piece_id
+            if piece:
+                self._replay_label.setText(
+                    tr(
+                        "timeline.replay_progress_algo_piece",
+                        self._language,
+                        algorithm=algorithm,
+                        piece=piece,
+                        current=self._replay.step,
+                        total=self._replay.total,
+                    )
+                )
+            else:
+                self._replay_label.setText(
+                    tr(
+                        "timeline.replay_progress_algo",
+                        self._language,
+                        algorithm=algorithm,
+                        current=self._replay.step,
+                        total=self._replay.total,
+                    )
+                )
         else:
             self._replay_label.setText(tr("timeline.replay_none", self._language))
 
@@ -236,4 +254,10 @@ def _format_payload(payload: dict, language: str) -> str:
         parts.append(str(payload["kind"]))
     if "strategy" in payload:
         parts.append(str(payload["strategy"]))
+    if "algorithm" in payload:
+        parts.append(str(payload["algorithm"]))
+    if "accepted" in payload:
+        parts.append(tr("timeline.detail.accepted", language, n=payload["accepted"]))
+    if "rejected" in payload:
+        parts.append(tr("timeline.detail.rejected", language, n=payload["rejected"]))
     return ", ".join(parts)

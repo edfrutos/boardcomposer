@@ -99,6 +99,9 @@
   `SolutionsMarkedOutdated`.
 - Comparador sincronizado con la reproducción del Timeline: el panel de
   diferencias muestra el divergencia paso a paso vs la referencia (SCR-003).
+- Trazas de algoritmo del solver (`SolveTrace`): el Timeline registra
+  `AlgorithmStarted` / `AlgorithmFinished` / `EvaluationFinished`, y el
+  replay etiqueta el generador y la pieza actual (ADR-005).
 
 ### Cambiado
 

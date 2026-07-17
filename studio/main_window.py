@@ -1191,11 +1191,13 @@ class MainWindow(QMainWindow):
                 cancel_text=self._tr("progress.layout_cancel"),
             )
         except RuntimeError as exc:
+            self._publish_solve_trace()
             self._emit(events.SOLUTION_GENERATED, status="error", detail=str(exc))
             self._status("status.layout_error", error=str(exc))
             return
 
         self._comparator_reference_index = None
+        self._publish_solve_trace()
 
         if self.services.layout.stats.cancelled:
             self._reload_solution_table()
@@ -1234,6 +1236,11 @@ class MainWindow(QMainWindow):
             return
 
         self._status("status.layout_ok", n=solution_count)
+
+    def _publish_solve_trace(self) -> None:
+        from studio.solve_trace_publisher import publish_solve_trace
+
+        publish_solve_trace(self.services.events, self.services.layout.trace)
 
     def _show_no_solution_diagnosis(self) -> None:
         lines = [self._tr("inspector.no_solution"), ""]

@@ -125,6 +125,18 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "timeline.replay_none": "Reproducción: sin solución",
         "timeline.replay_progress": "Reproducción: {current}/{total} piezas",
+        "timeline.replay_progress_algo": (
+            "Algoritmo {algorithm} · {current}/{total} piezas"
+        ),
+        "timeline.replay_progress_algo_piece": (
+            "Algoritmo {algorithm} · {piece} · {current}/{total}"
+        ),
+        "timeline.replay_algorithm_unknown": "desconocido",
+        "timeline.detail.accepted": "aceptadas {n}",
+        "timeline.detail.rejected": "rechazadas {n}",
+        "timeline.event.AlgorithmStarted": "Algoritmo iniciado",
+        "timeline.event.AlgorithmFinished": "Algoritmo finalizado",
+        "timeline.event.EvaluationFinished": "Evaluación finalizada",
         "timeline.replay_reset": "Inicio",
         "timeline.replay_back": "◀",
         "timeline.replay_forward": "▶",
@@ -489,6 +501,18 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "timeline.replay_none": "Replay: no solution",
         "timeline.replay_progress": "Replay: {current}/{total} pieces",
+        "timeline.replay_progress_algo": (
+            "Algorithm {algorithm} · {current}/{total} pieces"
+        ),
+        "timeline.replay_progress_algo_piece": (
+            "Algorithm {algorithm} · {piece} · {current}/{total}"
+        ),
+        "timeline.replay_algorithm_unknown": "unknown",
+        "timeline.detail.accepted": "accepted {n}",
+        "timeline.detail.rejected": "rejected {n}",
+        "timeline.event.AlgorithmStarted": "Algorithm started",
+        "timeline.event.AlgorithmFinished": "Algorithm finished",
+        "timeline.event.EvaluationFinished": "Evaluation finished",
         "timeline.replay_reset": "Start",
         "timeline.replay_back": "◀",
         "timeline.replay_forward": "▶",
