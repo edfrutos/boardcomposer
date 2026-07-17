@@ -18,13 +18,17 @@ from PySide6.QtWidgets import (
 )
 
 from boardcomposer.domain import AssemblySolution
+from boardcomposer.solver.solve_trace import SolveTrace
 from studio.events.catalog import ALL_EVENTS, CATALOG, TIMELINE_MARKED
 from studio.i18n import tr
+from studio.timeline.phase_replay import SolvePhaseReplay
 from studio.timeline.replay import SolutionReplay
 from studio.timeline.store import TimelineEntry, TimelineStore
 
 _PLAY_INTERVAL_MS = 450
 _ALL_ALGORITHMS = "__all_algorithms__"
+_MODE_PLACEMENTS = "placements"
+_MODE_PHASES = "phases"
 _PERIOD_OPTIONS: tuple[tuple[int | None, str], ...] = (
     (None, "timeline.filter_period_all"),
     (60, "timeline.filter_period_1m"),
@@ -40,6 +44,9 @@ class TimelinePanel(QWidget):
     replay_step_changed = Signal(object, int)
     """Emitted as ``(solution | None, reveal_count)`` when the replay step changes."""
 
+    phase_step_changed = Signal(object, int)
+    """Emitted as ``(TraceEvent | None, step)`` when the phase replay step changes."""
+
     export_requested = Signal()
     """Ask the main window to run the Timeline history export dialog."""
 
@@ -50,7 +57,9 @@ class TimelinePanel(QWidget):
         self._filter_event: str | None = None
         self._filter_algorithm: str | None = None
         self._filter_period_seconds: int | None = None
+        self._replay_mode = _MODE_PLACEMENTS
         self._replay = SolutionReplay()
+        self._phase_replay = SolvePhaseReplay()
 
         self._filter_label = QLabel()
         self._filter = QComboBox()
@@ -82,6 +91,9 @@ class TimelinePanel(QWidget):
         actions.addWidget(self._export)
         actions.addWidget(self._clear)
 
+        self._mode_label = QLabel()
+        self._mode = QComboBox()
+        self._mode.currentIndexChanged.connect(self._on_mode_changed)
         self._replay_label = QLabel()
         self._replay_reset = QPushButton()
         self._replay_back = QPushButton()
@@ -93,8 +105,9 @@ class TimelinePanel(QWidget):
         self._replay_play.clicked.connect(self._on_replay_play)
 
         replay_row = QHBoxLayout()
-        replay_row.addWidget(self._replay_label)
-        replay_row.addStretch(1)
+        replay_row.addWidget(self._mode_label)
+        replay_row.addWidget(self._mode)
+        replay_row.addWidget(self._replay_label, stretch=1)
         replay_row.addWidget(self._replay_reset)
         replay_row.addWidget(self._replay_back)
         replay_row.addWidget(self._replay_forward)
@@ -124,6 +137,7 @@ class TimelinePanel(QWidget):
         self._filter_label.setText(tr("timeline.filter", language))
         self._algo_label.setText(tr("timeline.filter_algorithm", language))
         self._period_label.setText(tr("timeline.filter_period", language))
+        self._mode_label.setText(tr("timeline.replay_mode", language))
         self._clear.setText(tr("timeline.clear", language))
         self._mark.setText(tr("timeline.mark", language))
         self._export.setText(tr("timeline.export", language))
@@ -133,6 +147,7 @@ class TimelinePanel(QWidget):
         self._rebuild_filter_items()
         self._rebuild_algorithm_items()
         self._rebuild_period_items()
+        self._rebuild_mode_items()
         self._rebuild()
         self._update_replay_controls()
 
@@ -141,6 +156,45 @@ class TimelinePanel(QWidget):
         self._replay.load(solution)
         self._play_timer.stop()
         self._update_replay_controls()
+
+    def set_phase_trace(self, trace: SolveTrace | None) -> None:
+        """Bind the last solve trace for algorithm-phase walkthrough."""
+        self._phase_replay.load(trace)
+        self._play_timer.stop()
+        self._update_replay_controls()
+
+    def _rebuild_mode_items(self) -> None:
+        current = self._replay_mode
+        self._mode.blockSignals(True)
+        self._mode.clear()
+        self._mode.addItem(
+            tr("timeline.replay_mode_placements", self._language),
+            _MODE_PLACEMENTS,
+        )
+        self._mode.addItem(
+            tr("timeline.replay_mode_phases", self._language),
+            _MODE_PHASES,
+        )
+        index = self._mode.findData(current)
+        self._mode.setCurrentIndex(index if index >= 0 else 0)
+        self._mode.blockSignals(False)
+        data = self._mode.currentData()
+        self._replay_mode = data if isinstance(data, str) else _MODE_PLACEMENTS
+
+    def _on_mode_changed(self, _index: int) -> None:
+        data = self._mode.currentData()
+        self._replay_mode = data if isinstance(data, str) else _MODE_PLACEMENTS
+        self._play_timer.stop()
+        self._replay.stop()
+        self._phase_replay.stop()
+        self._update_replay_controls()
+        if self._replay_mode == _MODE_PHASES:
+            self.phase_step_changed.emit(
+                self._phase_replay.current,
+                self._phase_replay.step,
+            )
+        else:
+            self.replay_step_changed.emit(self._replay.solution, self._replay.step)
 
     def _rebuild_filter_items(self) -> None:
         current = self._filter.currentData()
@@ -254,6 +308,11 @@ class TimelinePanel(QWidget):
         """Return the active period length in seconds, or None for all time."""
         return self._filter_period_seconds
 
+    @property
+    def phase_replay_total(self) -> int:
+        """Number of solver phases available for algorithm-level replay."""
+        return self._phase_replay.total
+
     def _matches_filters(self, entry: TimelineEntry) -> bool:
         if self._filter_event and entry.event_name != self._filter_event:
             return False
@@ -303,44 +362,76 @@ class TimelinePanel(QWidget):
         return item
 
     def _on_replay_reset(self) -> None:
+        if self._replay_mode == _MODE_PHASES:
+            step = self._phase_replay.reset()
+            self._emit_phase(step)
+            return
         step = self._replay.reset()
         self._emit_replay(step)
 
     def _on_replay_back(self) -> None:
+        if self._replay_mode == _MODE_PHASES:
+            step = self._phase_replay.step_back()
+            self._emit_phase(step)
+            return
         step = self._replay.step_back()
         self._emit_replay(step)
 
     def _on_replay_forward(self) -> None:
+        if self._replay_mode == _MODE_PHASES:
+            step = self._phase_replay.step_forward()
+            self._emit_phase(step)
+            return
         step = self._replay.step_forward()
         self._emit_replay(step)
 
     def _on_replay_play(self) -> None:
-        if self._replay.playing:
-            self._replay.stop()
+        active = (
+            self._phase_replay if self._replay_mode == _MODE_PHASES else self._replay
+        )
+        if active.playing:
+            active.stop()
             self._play_timer.stop()
             self._update_replay_controls()
             return
-        self._replay.start()
-        self._emit_replay(self._replay.step)
-        if self._replay.playing:
+        active.start()
+        if self._replay_mode == _MODE_PHASES:
+            self._emit_phase(self._phase_replay.step)
+        else:
+            self._emit_replay(self._replay.step)
+        if active.playing:
             self._play_timer.start()
         self._update_replay_controls()
 
     def _on_play_tick(self) -> None:
-        if not self._replay.playing:
+        active = (
+            self._phase_replay if self._replay_mode == _MODE_PHASES else self._replay
+        )
+        if not active.playing:
             self._play_timer.stop()
             self._update_replay_controls()
             return
-        step = self._replay.step_forward()
-        self._emit_replay(step)
-        if not self._replay.playing:
+        if self._replay_mode == _MODE_PHASES:
+            step = self._phase_replay.step_forward()
+            self._emit_phase(step)
+        else:
+            step = self._replay.step_forward()
+            self._emit_replay(step)
+        if not active.playing:
             self._play_timer.stop()
 
     def _emit_replay(self, step: int) -> None:
         self._update_replay_controls()
         self.replay_step_changed.emit(self._replay.solution, step)
 
+    def _emit_phase(self, step: int) -> None:
+        self._update_replay_controls()
+        self.phase_step_changed.emit(self._phase_replay.current, step)
+
     def _update_replay_controls(self) -> None:
+        if self._replay_mode == _MODE_PHASES:
+            self._update_phase_controls()
+            return
         available = self._replay.available
         self._replay_reset.setEnabled(available)
         self._replay_back.setEnabled(available and self._replay.step > 0)
@@ -381,6 +472,58 @@ class TimelinePanel(QWidget):
                 )
         else:
             self._replay_label.setText(tr("timeline.replay_none", self._language))
+
+    def _update_phase_controls(self) -> None:
+        available = self._phase_replay.available
+        self._replay_reset.setEnabled(available)
+        self._replay_back.setEnabled(available and self._phase_replay.step > 0)
+        self._replay_forward.setEnabled(
+            available and self._phase_replay.step < self._phase_replay.total
+        )
+        self._replay_play.setEnabled(available)
+        play_key = (
+            "timeline.replay_pause"
+            if self._phase_replay.playing
+            else "timeline.replay_play"
+        )
+        self._replay_play.setText(tr(play_key, self._language))
+        if not available:
+            self._replay_label.setText(tr("timeline.phase_none", self._language))
+            return
+        event = self._phase_replay.current
+        if event is None:
+            self._replay_label.setText(
+                tr(
+                    "timeline.phase_progress_idle",
+                    self._language,
+                    current=0,
+                    total=self._phase_replay.total,
+                )
+            )
+            return
+        algorithm = event.payload.get("algorithm")
+        kind_label = tr(f"timeline.phase.{event.kind}", self._language)
+        if isinstance(algorithm, str) and algorithm:
+            self._replay_label.setText(
+                tr(
+                    "timeline.phase_progress_algo",
+                    self._language,
+                    kind=kind_label,
+                    algorithm=algorithm,
+                    current=self._phase_replay.step,
+                    total=self._phase_replay.total,
+                )
+            )
+        else:
+            self._replay_label.setText(
+                tr(
+                    "timeline.phase_progress",
+                    self._language,
+                    kind=kind_label,
+                    current=self._phase_replay.step,
+                    total=self._phase_replay.total,
+                )
+            )
 
 
 def _format_payload(payload: dict, language: str) -> str:

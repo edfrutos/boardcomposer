@@ -114,6 +114,8 @@
   respetado también al exportar (`since` / `period_seconds`).
 - Instrumentación de fallos de colocación Skyline (`no_fit`) en la traza
   y el Timeline; captura activa para todos los generadores instrumentados.
+- Reproducción de fases del solver en el Timeline (modo Colocaciones /
+  Fases): recorre `SolveTrace` y sincroniza solución/pieza cuando aplica.
 
 ### Cambiado
 

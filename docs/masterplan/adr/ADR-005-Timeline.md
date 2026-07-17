@@ -87,13 +87,14 @@ En versiones posteriores el Timeline permitirá reproducción paso a paso de alg
 
 **Estado 2026-07-17:** MVP en Studio — dock Timeline con hechos del Event Bus (filtro, vaciado).
 
-**Estado 2026-07-17 (c):** reproducción paso a paso de colocaciones de la solución seleccionada (Inicio / ◀ / ▶ / Play), sin mutar el proyecto. La reproducción a nivel de algoritmo interno sigue pendiente.
+**Estado 2026-07-17 (c):** reproducción paso a paso de colocaciones de la solución seleccionada (Inicio / ◀ / ▶ / Play), sin mutar el proyecto.
 
 **Estado 2026-07-17 (e):** Comparador sincronizado con el replay de colocaciones (diff parcial por paso vs referencia).
-**Estado 2026-07-17 (f):** traza de fases del solver (`SolveTrace`) publicada en el Timeline; el replay muestra algoritmo y pieza. Instrumentación de intentos fallidos internos sigue pendiente.
+**Estado 2026-07-17 (f):** traza de fases del solver (`SolveTrace`) publicada en el Timeline; el replay muestra algoritmo y pieza.
 **Estado 2026-07-17 (g):** exportación del historial del Timeline a JSON/CSV (filtro activo respetado).
 **Estado 2026-07-17 (h):** MaxRects registra fallos de colocación (`incompatible` / `no_fit`) en `SolveTrace` y el Timeline (muestra deduplicada + resumen).
 **Estado 2026-07-17 (i):** filtro del Timeline por algoritmo (además del tipo de evento) y duración en ms de generadores/evaluación (`duration_ms`).
 **Estado 2026-07-17 (j):** marcadores/anotaciones de usuario (`TimelineMarked`) vía Event Bus, con contexto opcional del replay (algoritmo, pieza, paso).
 **Estado 2026-07-17 (k):** filtro del Timeline por intervalo temporal (presets: 1/5/15 min, 1 h) además de tipo de evento y algoritmo.
 **Estado 2026-07-17 (l):** Skyline registra fallos `no_fit` en `SolveTrace` / Timeline; el pipeline captura fallos de todos los generadores instrumentados.
+**Estado 2026-07-17 (m):** reproducción de fases del solver (`SolvePhaseReplay`) en el Timeline — modo Colocaciones / Fases; al avanzar selecciona solución por algoritmo y pieza fallida si aplica.
