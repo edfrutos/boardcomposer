@@ -18,6 +18,9 @@ dev = [
     "flake8",
     "mypy",
 ]
+cp_sat = [
+    "ortools",
+]
 
 [tool.ruff]
 line-length = 88

@@ -1,0 +1,4 @@
+piece_id,length_mm,width_mm,thickness_mm,quantity,material
+LAT-001,700,300,19,2,Melamina blanca
+EST-001,820,240,19,1,Melamina blanca
+FON-001,520,360,19,3,MDF

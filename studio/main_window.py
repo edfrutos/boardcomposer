@@ -1,11 +1,18 @@
 """Main window for BoardComposer Studio."""
 
 from pathlib import Path
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QAction, QCloseEvent
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtGui import QAction, QCloseEvent, QIcon
 from PySide6.QtWidgets import (
+    QAbstractItemView,
+    QCheckBox,
+    QComboBox,
     QDockWidget,
     QFileDialog,
+    QHBoxLayout,
+    QLabel,
+    QListWidget,
+    QListWidgetItem,
     QMainWindow,
     QMenuBar,
     QMessageBox,
@@ -15,9 +22,11 @@ from PySide6.QtWidgets import (
     QTextEdit,
     QTreeWidget,
     QTreeWidgetItem,
+    QVBoxLayout,
+    QWidget,
 )
 
-from boardcomposer.export import solution_to_svg
+from boardcomposer.export import solution_to_dxf, solution_to_pdf, solution_to_svg
 from studio.commands import DeletePieceCommand, RotatePieceCommand
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import (
@@ -27,8 +36,17 @@ from studio.project_serializer import (
 )
 from studio.workspace.board_workspace import BoardWorkspace
 from studio.workspace.board_piece_item import BoardPieceItem
-from studio.dialogs import ImportBoardsPreviewDialog, NewBoardDialog, NewPieceDialog
+from studio.dialogs import (
+    ImportBoardsPreviewDialog,
+    ImportPiecesPreviewDialog,
+    NewBoardDialog,
+    NewPieceDialog,
+    PreferencesDialog,
+)
 from studio.board_csv_importer import import_boards_from_csv
+from studio.piece_csv_importer import import_pieces_from_csv
+from studio.solution_ordering import SORT_LABELS, ordered_solution_indexes
+from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
 
 
 class MainWindow(QMainWindow):
@@ -38,6 +56,9 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.services = services
         self.current_project_path = None
+        self._solution_display_indexes: list[int] = []
+        self._comparator_sort_by = "ranking"
+        self._comparator_complete_only = False
         self.setWindowTitle("BoardComposer Studio")
         self.resize(1400, 900)
 
@@ -80,8 +101,17 @@ class MainWindow(QMainWindow):
         self._actions["import_boards_csv"] = QAction(
             "Importar inventario de tableros (CSV)…", self
         )
+        self._actions["import_pieces_csv"] = QAction("Importar piezas (CSV)…", self)
         self._actions["export_selected_svg"] = QAction(
             "Exportar solución seleccionada a SVG…",
+            self,
+        )
+        self._actions["export_selected_dxf"] = QAction(
+            "Exportar solución seleccionada a DXF…",
+            self,
+        )
+        self._actions["export_selected_pdf"] = QAction(
+            "Exportar solución seleccionada a PDF…",
             self,
         )
         self._actions["exit"] = QAction("Salir", self)
@@ -89,6 +119,7 @@ class MainWindow(QMainWindow):
         self._actions["redo"] = QAction("Rehacer", self)
         self._actions["rotate_piece"] = QAction("Rotar 90°", self)
         self._actions["delete_piece"] = QAction("Eliminar pieza", self)
+        self._actions["preferences"] = QAction("Preferencias…", self)
         self._actions["solve_layout"] = QAction("Calcular layout", self)
         self._actions["previous_solution"] = QAction("Solución anterior", self)
         self._actions["next_solution"] = QAction("Solución siguiente", self)
@@ -117,12 +148,17 @@ class MainWindow(QMainWindow):
         menus["Editar"].addSeparator()
         menus["Editar"].addAction(self._actions["rotate_piece"])
         menus["Editar"].addAction(self._actions["delete_piece"])
+        menus["Editar"].addSeparator()
+        menus["Editar"].addAction(self._actions["preferences"])
 
         menus["Proyecto"].addAction(self._actions["add_board"])
         menus["Proyecto"].addAction(self._actions["add_piece"])
         menus["Proyecto"].addAction(self._actions["import_boards_csv"])
+        menus["Proyecto"].addAction(self._actions["import_pieces_csv"])
 
         menus["Exportar"].addAction(self._actions["export_selected_svg"])
+        menus["Exportar"].addAction(self._actions["export_selected_dxf"])
+        menus["Exportar"].addAction(self._actions["export_selected_pdf"])
 
         menus["Herramientas"].addAction(self._actions["solve_layout"])
         menus["Herramientas"].addSeparator()
@@ -142,11 +178,15 @@ class MainWindow(QMainWindow):
         self._actions["import_boards_csv"].triggered.connect(
             self._import_boards_from_csv
         )
+        self._actions["import_pieces_csv"].triggered.connect(
+            self._import_pieces_from_csv
+        )
 
         self._actions["undo"].triggered.connect(self._undo)
         self._actions["redo"].triggered.connect(self._redo)
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
         self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
+        self._actions["preferences"].triggered.connect(self._open_preferences)
         self._actions["solve_layout"].triggered.connect(self._solve_layout)
         self._actions["previous_solution"].triggered.connect(
             self._previous_layout_solution
@@ -155,6 +195,12 @@ class MainWindow(QMainWindow):
         self._actions["apply_layout"].triggered.connect(self._apply_layout)
         self._actions["export_selected_svg"].triggered.connect(
             self._export_selected_solution_svg
+        )
+        self._actions["export_selected_dxf"].triggered.connect(
+            self._export_selected_solution_dxf
+        )
+        self._actions["export_selected_pdf"].triggered.connect(
+            self._export_selected_solution_pdf
         )
 
         self._reload_recent_files_menu()
@@ -219,11 +265,53 @@ class MainWindow(QMainWindow):
         self.solutions_table.cellClicked.connect(
             lambda row, column: self._select_solution_from_table(row)
         )
+
+        self.comparator_sort = QComboBox()
+        for key, label in SORT_LABELS:
+            self.comparator_sort.addItem(label, key)
+        self.comparator_sort.currentIndexChanged.connect(
+            self._on_comparator_sort_changed
+        )
+
+        self.comparator_complete_only = QCheckBox("Solo soluciones completas")
+        self.comparator_complete_only.toggled.connect(
+            self._on_comparator_filter_toggled
+        )
+
+        controls = QHBoxLayout()
+        controls.addWidget(QLabel("Ordenar por:"))
+        controls.addWidget(self.comparator_sort)
+        controls.addWidget(self.comparator_complete_only)
+        controls.addStretch(1)
+
+        self.solution_thumbnails = QListWidget()
+        self.solution_thumbnails.setViewMode(QListWidget.ViewMode.IconMode)
+        self.solution_thumbnails.setFlow(QListWidget.Flow.LeftToRight)
+        self.solution_thumbnails.setWrapping(False)
+        self.solution_thumbnails.setResizeMode(QListWidget.ResizeMode.Adjust)
+        self.solution_thumbnails.setMovement(QListWidget.Movement.Static)
+        self.solution_thumbnails.setIconSize(DEFAULT_THUMBNAIL_SIZE)
+        self.solution_thumbnails.setSpacing(8)
+        self.solution_thumbnails.setMaximumHeight(DEFAULT_THUMBNAIL_SIZE.height() + 48)
+        self.solution_thumbnails.setSelectionMode(
+            QAbstractItemView.SelectionMode.SingleSelection
+        )
+        self.solution_thumbnails.itemClicked.connect(
+            self._on_solution_thumbnail_clicked
+        )
+
+        comparator_panel = QWidget()
+        comparator_layout = QVBoxLayout(comparator_panel)
+        comparator_layout.setContentsMargins(0, 0, 0, 0)
+        comparator_layout.addLayout(controls)
+        comparator_layout.addWidget(self.solution_thumbnails)
+        comparator_layout.addWidget(self.solutions_table)
+
         solutions_dock = QDockWidget("Comparador de soluciones", self)
         self.tabifyDockWidget(console_dock, solutions_dock)
         console_dock.raise_()
         solutions_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
-        solutions_dock.setWidget(self.solutions_table)
+        solutions_dock.setWidget(comparator_panel)
         self.addDockWidget(
             Qt.DockWidgetArea.BottomDockWidgetArea,
             solutions_dock,
@@ -504,6 +592,71 @@ class MainWindow(QMainWindow):
             5000,
         )
 
+    def _import_pieces_from_csv(self) -> None:
+        project = self.services.projects.current_project
+
+        if project is None:
+            self._load_empty_project()
+            project = self.services.projects.current_project
+
+        if project is None:
+            return
+
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Importar piezas (CSV)",
+            "",
+            "Archivos CSV (*.csv);;Todos los archivos (*)",
+        )
+
+        if not file_path:
+            return
+
+        existing_ids = {piece.piece_id.casefold() for piece in project.pieces}
+        result = import_pieces_from_csv(file_path, existing_ids=existing_ids)
+
+        if result.file_errors:
+            QMessageBox.warning(
+                self,
+                "Importar piezas",
+                "\n".join(result.file_errors),
+            )
+            return
+
+        dialog = ImportPiecesPreviewDialog(result, self)
+
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+
+        for piece in result.valid_pieces:
+            project.pieces.append(piece)
+            x_mm, y_mm = self._find_free_piece_position(
+                piece.length_mm,
+                piece.width_mm,
+            )
+            project.placements.append(
+                StudioPlacement(
+                    piece_id=piece.piece_id,
+                    x_mm=x_mm,
+                    y_mm=y_mm,
+                    rotated=False,
+                    rotation=0,
+                    board_id=project.boards[0].board_id if project.boards else None,
+                    board_instance=0,
+                    stock_panel_index=0 if project.boards else None,
+                )
+            )
+
+        self.services.projects.mark_modified()
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self.update_window_title()
+
+        self.statusBar().showMessage(
+            f"{len(result.valid_pieces)} pieza(s) importada(s) desde CSV",
+            5000,
+        )
+
     def _add_piece(self):
         project = self.services.projects.current_project
 
@@ -768,6 +921,13 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self.update_undo_redo()
 
+    def _open_preferences(self) -> None:
+        dialog = PreferencesDialog(self.services.preferences.current, self)
+        if dialog.exec() != PreferencesDialog.DialogCode.Accepted:
+            return
+        self.services.preferences.update(dialog.preferences())
+        self.statusBar().showMessage("Preferencias guardadas", 3000)
+
     def _solve_layout(self):
         solution = self.services.layout.solve_current_project()
 
@@ -800,11 +960,36 @@ class MainWindow(QMainWindow):
         lines.extend(self.services.layout.stats_summary_lines())
         self.inspector.setText("\n".join(lines))
 
+    def _on_comparator_sort_changed(self, index: int) -> None:
+        del index
+        self._comparator_sort_by = self.comparator_sort.currentData() or "ranking"
+        self._reload_solution_table()
+
+    def _on_comparator_filter_toggled(self, checked: bool) -> None:
+        self._comparator_complete_only = checked
+        self._reload_solution_table()
+
     def _reload_solution_table(self):
         self.solutions_table.setRowCount(0)
+        self.solution_thumbnails.clear()
+        solutions = self.services.layout.solutions
         highlights = self.services.layout.solution_highlights
+        self._solution_display_indexes = ordered_solution_indexes(
+            solutions,
+            sort_by=self._comparator_sort_by,
+            complete_only=self._comparator_complete_only,
+            board_waste=self.services.layout.board_waste_ratio,
+        )
 
-        for row, solution in enumerate(self.services.layout.solutions):
+        project = self.services.layout.solved_project
+        svgs = [
+            solution_to_svg(solutions[index], project)
+            for index in self._solution_display_indexes
+        ]
+        pixmaps = solution_thumbnails(svgs, box=DEFAULT_THUMBNAIL_SIZE)
+
+        for row, solution_index in enumerate(self._solution_display_indexes):
+            solution = solutions[solution_index]
             self.solutions_table.insertRow(row)
 
             placed_label = str(len(solution.placements))
@@ -812,7 +997,7 @@ class MainWindow(QMainWindow):
                 placed_label += f" ({len(solution.omitted_piece_ids)} sin colocar)"
 
             values = [
-                str(row + 1),
+                str(solution_index + 1),
                 placed_label,
                 f"{solution.waste_ratio:.1%}",
                 f"{self.services.layout.board_waste_ratio(solution):.1%}",
@@ -821,7 +1006,7 @@ class MainWindow(QMainWindow):
                 f"{solution.score.total:.2f}",
             ]
 
-            row_highlights = highlights.get(row, [])
+            row_highlights = highlights.get(solution_index, [])
 
             for column, value in enumerate(values):
                 item = QTableWidgetItem(value)
@@ -832,11 +1017,26 @@ class MainWindow(QMainWindow):
                     item.setFont(font)
                 self.solutions_table.setItem(row, column, item)
 
+            thumb = QListWidgetItem(f"#{solution_index + 1}")
+            thumb.setData(Qt.ItemDataRole.UserRole, solution_index)
+            thumb.setIcon(QIcon(pixmaps[row]))
+            thumb.setSizeHint(
+                QSize(
+                    DEFAULT_THUMBNAIL_SIZE.width() + 16,
+                    DEFAULT_THUMBNAIL_SIZE.height() + 28,
+                )
+            )
+            if row_highlights:
+                thumb.setToolTip("Mejor en: " + ", ".join(row_highlights))
+            self.solution_thumbnails.addItem(thumb)
+
         self.solutions_table.resizeColumnsToContents()
 
-        selected_row = self.services.layout.selected_solution_index
-        if self.services.layout.solutions:
-            self.solutions_table.selectRow(selected_row)
+        selected = self.services.layout.selected_solution_index
+        if selected in self._solution_display_indexes:
+            display_row = self._solution_display_indexes.index(selected)
+            self.solutions_table.selectRow(display_row)
+            self.solution_thumbnails.setCurrentRow(display_row)
 
     def _show_layout_solution(self, solution):
         solution_count = len(self.services.layout.solutions)
@@ -950,7 +1150,15 @@ class MainWindow(QMainWindow):
         self._select_solution_from_table(row)
 
     def _select_solution_from_table(self, row: int):
-        self._select_layout_solution(row)
+        if row < 0 or row >= len(self._solution_display_indexes):
+            return
+        self._select_layout_solution(self._solution_display_indexes[row])
+
+    def _on_solution_thumbnail_clicked(self, item: QListWidgetItem) -> None:
+        solution_index = item.data(Qt.ItemDataRole.UserRole)
+        if solution_index is None:
+            return
+        self._select_layout_solution(int(solution_index))
 
     def _export_selected_solution_svg(self):
         solution = self.services.layout.selected_solution
@@ -982,6 +1190,67 @@ class MainWindow(QMainWindow):
             return
 
         self.statusBar().showMessage(f"SVG exportado: {path}", 5000)
+
+    def _export_selected_solution_dxf(self):
+        solution = self.services.layout.selected_solution
+
+        if solution is None:
+            self.statusBar().showMessage("Primero calcula un layout", 3000)
+            return
+
+        selected_index = self.services.layout.selected_solution_index + 1
+        default_filename = f"boardcomposer-solution-{selected_index}.dxf"
+
+        path, _selected_filter = QFileDialog.getSaveFileName(
+            self,
+            "Exportar solución seleccionada",
+            default_filename,
+            "DXF (*.dxf)",
+        )
+
+        if not path:
+            return
+
+        try:
+            Path(path).write_text(
+                solution_to_dxf(solution, self.services.layout.solved_project),
+                encoding="utf-8",
+            )
+        except OSError as exc:
+            self.statusBar().showMessage(f"No se pudo exportar DXF: {exc}", 5000)
+            return
+
+        self.statusBar().showMessage(f"DXF exportado: {path}", 5000)
+
+    def _export_selected_solution_pdf(self):
+        solution = self.services.layout.selected_solution
+
+        if solution is None:
+            self.statusBar().showMessage("Primero calcula un layout", 3000)
+            return
+
+        selected_index = self.services.layout.selected_solution_index + 1
+        default_filename = f"boardcomposer-solution-{selected_index}.pdf"
+
+        path, _selected_filter = QFileDialog.getSaveFileName(
+            self,
+            "Exportar solución seleccionada",
+            default_filename,
+            "PDF (*.pdf)",
+        )
+
+        if not path:
+            return
+
+        try:
+            Path(path).write_bytes(
+                solution_to_pdf(solution, self.services.layout.solved_project)
+            )
+        except OSError as exc:
+            self.statusBar().showMessage(f"No se pudo exportar PDF: {exc}", 5000)
+            return
+
+        self.statusBar().showMessage(f"PDF exportado: {path}", 5000)
 
     def _save_project(self):
         project = self.services.projects.current_project

@@ -49,13 +49,15 @@ referencia oficial del manifiesto es `DOC-000-Manifiesto.md`.
 - ADR-014 — Packing multipanel.
 - ADR-015 — Migraciones explícitas de `.bcproj`.
 - ADR-016 — Retales informativos (no inventario).
+- ADR-017 — CP-SAT como generador exacto de un solo panel.
 
 ## UX
 
 `ui/flows/` contiene los flujos FLW-001 a FLW-006. `ui/SCR-*.md` contiene las
 especificaciones de Inicio, Workspace, Comparador, Inspector, Proyecto,
 Preferencias y Exportación. El UAT multipanel del 2026-07-16 contrastó el
-Workspace real; queda revisar el resto de pantallas contra Studio.
+Workspace real; la revisión del 2026-07-17 está en
+`ui/REVIEW-2026-07-17.md`.
 
 ## Documentación técnica viva
 

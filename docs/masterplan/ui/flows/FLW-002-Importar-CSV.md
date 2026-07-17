@@ -105,14 +105,12 @@ En futuras versiones se admitirán asistentes de mapeo de columnas, plantillas d
 
 ---
 
-## Estado de implementación (2026-07-16)
+## Estado de implementación (2026-07-17)
 
-Se implementó primero la importación de **inventario de tableros**
-(`Proyecto → Importar inventario de tableros (CSV)…`, prioridad P1 del
-roadmap para la vertical multipanel), no la de piezas descrita como
-ejemplo principal en este documento. Cubre vista previa, validación por
-fila y detección de duplicados/ids ya existentes
-(`studio/board_csv_importer.py`, `ImportBoardsPreviewDialog`). La
-importación de **piezas** desde CSV, tal como la describe el flujo
-principal de este documento, queda pendiente como trabajo futuro.
-Soporte Excel (.xlsx) también pendiente.
+- Inventario de tableros: `Proyecto → Importar inventario de tableros (CSV)…`
+  (`studio/board_csv_importer.py`, `ImportBoardsPreviewDialog`).
+- Piezas: `Proyecto → Importar piezas (CSV)…`
+  (`studio/piece_csv_importer.py`, `ImportPiecesPreviewDialog`), con
+  expansión de cantidad a ids correlativos y colocación inicial en el
+  Workspace.
+- Soporte Excel (.xlsx) sigue pendiente.
