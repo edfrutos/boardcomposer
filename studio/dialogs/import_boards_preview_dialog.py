@@ -100,7 +100,7 @@ class ImportBoardsPreviewDialog(QDialog):
         board = row.board
         values = (
             str(row.row_number),
-            board.board_id if board else row.raw.get("board_id", ""),
+            board.board_id if board else row.display_id,
             f"{board.length_mm:g}" if board else "",
             f"{board.width_mm:g}" if board else "",
             f"{board.thickness_mm:g}" if board else "",

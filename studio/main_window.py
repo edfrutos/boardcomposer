@@ -65,7 +65,7 @@ from studio.import_headers import (
     missing_required_fields,
     resolve_header_map,
 )
-from studio.tabular_file import load_tabular_file
+from studio.tabular_file import list_xlsx_sheets, load_tabular_file
 from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
 from studio.solution_diff import (
     compare_solutions,
@@ -712,7 +712,10 @@ class MainWindow(QMainWindow):
             return
 
         existing_ids = {board.board_id.casefold() for board in project.boards}
-        loaded = load_tabular_file(file_path)
+        sheet = self._prompt_xlsx_sheet(file_path)
+        if sheet is False:
+            return
+        loaded = load_tabular_file(file_path, sheet=sheet)
         if not loaded.ok:
             QMessageBox.warning(
                 self,
@@ -788,7 +791,10 @@ class MainWindow(QMainWindow):
             return
 
         existing_ids = {piece.piece_id.casefold() for piece in project.pieces}
-        loaded = load_tabular_file(file_path)
+        sheet = self._prompt_xlsx_sheet(file_path)
+        if sheet is False:
+            return
+        loaded = load_tabular_file(file_path, sheet=sheet)
         if not loaded.ok:
             QMessageBox.warning(
                 self,
@@ -856,6 +862,27 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self._emit(events.CSV_IMPORTED, kind="pieces", count=len(result.valid_pieces))
         self._status("status.pieces_imported", 5000, n=len(result.valid_pieces))
+
+    def _prompt_xlsx_sheet(self, file_path: str) -> str | None | bool:
+        """Return sheet name, None for default/first, or False if cancelled."""
+        suffix = Path(file_path).suffix.casefold()
+        if suffix not in {".xlsx", ".xlsm"}:
+            return None
+        sheets = list_xlsx_sheets(file_path)
+        if len(sheets) <= 1:
+            return None
+        names = [sheet.name for sheet in sheets]
+        choice, ok = QInputDialog.getItem(
+            self,
+            self._tr("import.sheet_title"),
+            self._tr("import.sheet_label"),
+            names,
+            0,
+            False,
+        )
+        if not ok:
+            return False
+        return choice
 
     def _prompt_column_mapping(
         self,

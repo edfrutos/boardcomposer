@@ -120,6 +120,8 @@
   pieza fallida, índice de solución, nota de marcador).
 - Asistente de mapeo de columnas al importar CSV/Excel cuando no se
   reconocen cabeceras obligatorias (FLW-002).
+- Selector de hoja al importar libros Excel con varias hojas; el preview
+  muestra el id aunque la fila sea inválida.
 
 ### Cambiado
 

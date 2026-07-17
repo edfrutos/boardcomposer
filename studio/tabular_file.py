@@ -1,6 +1,6 @@
 """Load simple tabular files (CSV or Excel .xlsx) as string dictionaries.
 
-Excel support covers the common case used by FLW-002: first worksheet,
+Excel support covers FLW-002: selectable worksheet (default first sheet),
 header row, shared strings / inline strings / numbers. No third-party
 dependency — only the standard library OOXML zip + XML parser.
 """
@@ -21,6 +21,7 @@ _XLSX_NS = {
 }
 
 _CELL_REF_RE = re.compile(r"^([A-Z]+)(\d+)$")
+_REL_NS = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id"
 
 
 @dataclass(frozen=True)
@@ -30,10 +31,19 @@ class TabularLoadResult:
     fieldnames: tuple[str, ...] = ()
     rows: tuple[dict[str, str], ...] = ()
     errors: tuple[str, ...] = field(default_factory=tuple)
+    sheet_name: str | None = None
 
     @property
     def ok(self) -> bool:
         return not self.errors and bool(self.fieldnames)
+
+
+@dataclass(frozen=True)
+class XlsxSheetInfo:
+    """One worksheet entry from an Excel workbook."""
+
+    name: str
+    path: str
 
 
 def _column_index(cell_ref: str) -> int | None:
@@ -80,30 +90,67 @@ def _read_shared_strings(archive: zipfile.ZipFile) -> list[str]:
     return strings
 
 
-def _first_sheet_path(archive: zipfile.ZipFile) -> str | None:
+def _sheet_target_path(target: str) -> str:
+    if target.startswith("/"):
+        return target.lstrip("/")
+    return f"xl/{target}"
+
+
+def list_xlsx_sheets(path: str | Path) -> tuple[XlsxSheetInfo, ...]:
+    """Return worksheet names and archive paths for an .xlsx file."""
+    file_path = Path(path)
+    try:
+        with zipfile.ZipFile(file_path) as archive:
+            return _list_sheets(archive)
+    except (OSError, zipfile.BadZipFile, ET.ParseError, KeyError):
+        return ()
+
+
+def _list_sheets(archive: zipfile.ZipFile) -> tuple[XlsxSheetInfo, ...]:
     try:
         workbook = ET.fromstring(archive.read("xl/workbook.xml"))
         rels = ET.fromstring(archive.read("xl/_rels/workbook.xml.rels"))
     except KeyError:
-        return None
+        return ()
 
-    sheets = workbook.findall("m:sheets/m:sheet", _XLSX_NS)
+    targets = {
+        relationship.attrib.get("Id"): relationship.attrib.get("Target", "")
+        for relationship in rels.findall("pr:Relationship", _XLSX_NS)
+    }
+    sheets: list[XlsxSheetInfo] = []
+    for sheet in workbook.findall("m:sheets/m:sheet", _XLSX_NS):
+        name = sheet.attrib.get("name", "").strip()
+        rel_id = sheet.attrib.get(_REL_NS)
+        target = targets.get(rel_id, "") if rel_id else ""
+        if not name or not target:
+            continue
+        sheets.append(XlsxSheetInfo(name=name, path=_sheet_target_path(target)))
+    return tuple(sheets)
+
+
+def _resolve_sheet_path(
+    archive: zipfile.ZipFile,
+    sheet: str | int | None,
+) -> tuple[str | None, str | None, str | None]:
+    """Return ``(sheet_path, sheet_name, error)``."""
+    sheets = _list_sheets(archive)
     if not sheets:
-        return None
+        return None, None, "El archivo Excel no contiene hojas legibles"
 
-    rel_id = sheets[0].attrib.get(
-        "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id"
-    )
-    if not rel_id:
-        return None
+    if sheet is None:
+        return sheets[0].path, sheets[0].name, None
 
-    for relationship in rels.findall("pr:Relationship", _XLSX_NS):
-        if relationship.attrib.get("Id") == rel_id:
-            target = relationship.attrib.get("Target", "")
-            if target.startswith("/"):
-                return target.lstrip("/")
-            return f"xl/{target}"
-    return None
+    if isinstance(sheet, int):
+        if sheet < 0 or sheet >= len(sheets):
+            return None, None, f"Índice de hoja fuera de rango: {sheet}"
+        return sheets[sheet].path, sheets[sheet].name, None
+
+    wanted = sheet.strip().casefold()
+    for info in sheets:
+        if info.name.casefold() == wanted:
+            return info.path, info.name, None
+    available = ", ".join(info.name for info in sheets)
+    return None, None, f"Hoja no encontrada: {sheet!r}. Disponibles: {available}"
 
 
 def _sheet_matrix(
@@ -132,15 +179,25 @@ def _sheet_matrix(
     return matrix
 
 
-def _matrix_to_tabular(matrix: list[list[str]]) -> TabularLoadResult:
+def _matrix_to_tabular(
+    matrix: list[list[str]],
+    *,
+    sheet_name: str | None = None,
+) -> TabularLoadResult:
     if not matrix:
-        return TabularLoadResult(errors=("El archivo está vacío",))
+        return TabularLoadResult(
+            errors=("El archivo está vacío",),
+            sheet_name=sheet_name,
+        )
 
     header = [value.strip() for value in matrix[0]]
     while header and header[-1] == "":
         header.pop()
     if not any(header):
-        return TabularLoadResult(errors=("El archivo está vacío",))
+        return TabularLoadResult(
+            errors=("El archivo está vacío",),
+            sheet_name=sheet_name,
+        )
 
     width = len(header)
     rows: list[dict[str, str]] = []
@@ -155,9 +212,14 @@ def _matrix_to_tabular(matrix: list[list[str]]) -> TabularLoadResult:
         return TabularLoadResult(
             fieldnames=tuple(header),
             errors=("El archivo no contiene filas de datos",),
+            sheet_name=sheet_name,
         )
 
-    return TabularLoadResult(fieldnames=tuple(header), rows=tuple(rows))
+    return TabularLoadResult(
+        fieldnames=tuple(header),
+        rows=tuple(rows),
+        sheet_name=sheet_name,
+    )
 
 
 def load_csv_file(path: Path) -> TabularLoadResult:
@@ -189,14 +251,16 @@ def load_csv_file(path: Path) -> TabularLoadResult:
     return TabularLoadResult(fieldnames=tuple(fieldnames), rows=tuple(rows))
 
 
-def load_xlsx_file(path: Path) -> TabularLoadResult:
+def load_xlsx_file(
+    path: Path,
+    *,
+    sheet: str | int | None = None,
+) -> TabularLoadResult:
     try:
         with zipfile.ZipFile(path) as archive:
-            sheet_path = _first_sheet_path(archive)
-            if sheet_path is None:
-                return TabularLoadResult(
-                    errors=("El archivo Excel no contiene hojas legibles",)
-                )
+            sheet_path, sheet_name, error = _resolve_sheet_path(archive, sheet)
+            if error or sheet_path is None:
+                return TabularLoadResult(errors=(error or "Hoja no legible",))
             shared_strings = _read_shared_strings(archive)
             matrix = _sheet_matrix(archive, sheet_path, shared_strings)
     except zipfile.BadZipFile:
@@ -204,17 +268,21 @@ def load_xlsx_file(path: Path) -> TabularLoadResult:
     except (OSError, ET.ParseError, KeyError) as error:
         return TabularLoadResult(errors=(f"No se pudo leer el archivo Excel: {error}",))
 
-    return _matrix_to_tabular(matrix)
+    return _matrix_to_tabular(matrix, sheet_name=sheet_name)
 
 
-def load_tabular_file(path: str | Path) -> TabularLoadResult:
+def load_tabular_file(
+    path: str | Path,
+    *,
+    sheet: str | int | None = None,
+) -> TabularLoadResult:
     """Dispatch CSV / XLSX loaders by file extension."""
     file_path = Path(path)
     suffix = file_path.suffix.casefold()
     if suffix == ".csv":
         return load_csv_file(file_path)
     if suffix in {".xlsx", ".xlsm"}:
-        return load_xlsx_file(file_path)
+        return load_xlsx_file(file_path, sheet=sheet)
     return TabularLoadResult(
         errors=("Formato no soportado. Usa un archivo .csv o .xlsx.",)
     )
