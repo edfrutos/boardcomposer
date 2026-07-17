@@ -72,6 +72,7 @@
 - Plantillas de exportación nombradas en el diálogo SCR-007
   (`~/.boardcomposer/export_templates.json`).
 - i18n es/en de diálogos (export/import) y mensajes de la barra de estado.
+- i18n es/en de formularios Nuevo/Editar tablero y pieza.
 
 ### Cambiado
 

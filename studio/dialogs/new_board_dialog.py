@@ -10,6 +10,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.units import display_to_mm, mm_to_display, unit_label
 
 
@@ -26,14 +27,17 @@ class NewBoardDialog(QDialog):
         thickness_mm: int = 19,
         quantity: int = 1,
         material: str = "Melamina blanca",
-        title: str = "Nuevo tablero",
+        title: str | None = None,
         units: str = "mm",
+        language: str = DEFAULT_LANGUAGE,
     ) -> None:
         super().__init__(parent)
 
         self._units = units
-        self.setWindowTitle(title)
+        self._language = language
+        self.setWindowTitle(title or tr("form.new_board", language))
         suffix = f" {unit_label(units)}"
+        unit = unit_label(units)
 
         self.board_id = QLineEdit(board_id)
         self.length = QDoubleSpinBox()
@@ -55,12 +59,12 @@ class NewBoardDialog(QDialog):
         self.quantity.setValue(quantity)
 
         form = QFormLayout()
-        form.addRow("Identificador:", self.board_id)
-        form.addRow(f"Largo ({unit_label(units)}):", self.length)
-        form.addRow(f"Ancho ({unit_label(units)}):", self.width)
-        form.addRow(f"Espesor ({unit_label(units)}):", self.thickness)
-        form.addRow("Cantidad:", self.quantity)
-        form.addRow("Material:", self.material)
+        form.addRow(tr("form.id", language), self.board_id)
+        form.addRow(tr("form.length", language, unit=unit), self.length)
+        form.addRow(tr("form.width", language, unit=unit), self.width)
+        form.addRow(tr("form.thickness", language, unit=unit), self.thickness)
+        form.addRow(tr("form.quantity", language), self.quantity)
+        form.addRow(tr("form.material", language), self.material)
 
         buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
