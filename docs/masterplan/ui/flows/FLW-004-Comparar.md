@@ -105,4 +105,7 @@ El usuario identifica con claridad las ventajas e inconvenientes de cada alterna
 
 ## Observaciones
 
-En futuras versiones el Comparador incorporará reproducción sincronizada mediante Timeline, análisis asistido por IA, comparación histórica entre versiones del proyecto, gráficos avanzados y recomendaciones automáticas basadas en los objetivos definidos por el usuario.
+**Estado 2026-07-17:** la reproducción del Timeline actualiza el panel de
+diferencias paso a paso frente a la solución de referencia (SCR-003).
+
+En futuras versiones el Comparador incorporará análisis asistido por IA, comparación histórica entre versiones del proyecto, gráficos avanzados y recomendaciones automáticas basadas en los objetivos definidos por el usuario.

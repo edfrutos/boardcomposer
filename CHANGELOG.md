@@ -97,6 +97,8 @@
 - Detección de soluciones desactualizadas al editar el proyecto (FLW-006):
   banner en el Comparador, aviso al aplicar y eventos `ProjectModified` /
   `SolutionsMarkedOutdated`.
+- Comparador sincronizado con la reproducción del Timeline: el panel de
+  diferencias muestra el divergencia paso a paso vs la referencia (SCR-003).
 
 ### Cambiado
 

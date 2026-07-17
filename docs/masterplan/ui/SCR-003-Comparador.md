@@ -124,7 +124,7 @@ Versiones futuras podrán incorporar:
 - gráficos históricos de rendimiento;
 - recomendaciones automáticas mediante IA;
 - comparación entre versiones de un mismo proyecto;
-- reproducción sincronizada del proceso de colocación (Timeline).
+- reproducción a nivel de algoritmo interno del solver.
 
 ---
 
@@ -134,3 +134,5 @@ Versiones futuras podrán incorporar:
 - Panel de diferencias vs solución de referencia (`Fijar como referencia`),
   con deltas de métricas y cambios de colocación (`studio/solution_diff.py`).
 - Exportación directa de la solución seleccionada (SVG/DXF/PDF).
+- Reproducción sincronizada con el Timeline: diff parcial por paso de
+  colocación frente a la referencia.

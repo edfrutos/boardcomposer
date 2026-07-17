@@ -332,6 +332,19 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff.title": "Diferencias",
         "diff.identical": "Solución #{candidate} es idéntica a la referencia #{reference}.",
         "diff.header": "Diferencias de #{candidate} respecto a la referencia #{reference}",
+        "diff.sync_header": (
+            "Reproducción sincronizada · paso {step}/{total} "
+            "(#{candidate} vs ref. #{reference})"
+        ),
+        "diff.sync_empty": "Sin piezas reveladas todavía. Pulsa ▶ o Play.",
+        "diff.sync_same_solution": (
+            "La referencia es la solución en reproducción "
+            "({revealed}/{total} piezas visibles)."
+        ),
+        "diff.sync_matched": (
+            "Hasta el paso {step}, candidato y referencia coinciden "
+            "en las piezas reveladas."
+        ),
         "diff.metrics": "Métricas",
         "diff.placements": "Colocaciones",
         "diff.none": "Sin diferencias relevantes en métricas ni colocaciones.",
@@ -683,6 +696,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff.title": "Differences",
         "diff.identical": "Solution #{candidate} is identical to reference #{reference}.",
         "diff.header": "Differences of #{candidate} vs reference #{reference}",
+        "diff.sync_header": (
+            "Synced replay · step {step}/{total} (#{candidate} vs ref. #{reference})"
+        ),
+        "diff.sync_empty": "No pieces revealed yet. Press ▶ or Play.",
+        "diff.sync_same_solution": (
+            "Reference is the solution being replayed "
+            "({revealed}/{total} pieces visible)."
+        ),
+        "diff.sync_matched": (
+            "Up to step {step}, candidate and reference match on the revealed pieces."
+        ),
         "diff.metrics": "Metrics",
         "diff.placements": "Placements",
         "diff.none": "No relevant differences in metrics or placements.",

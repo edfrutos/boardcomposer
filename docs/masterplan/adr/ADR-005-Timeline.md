@@ -88,3 +88,5 @@ En versiones posteriores el Timeline permitirá reproducción paso a paso de alg
 **Estado 2026-07-17:** MVP en Studio — dock Timeline con hechos del Event Bus (filtro, vaciado).
 
 **Estado 2026-07-17 (c):** reproducción paso a paso de colocaciones de la solución seleccionada (Inicio / ◀ / ▶ / Play), sin mutar el proyecto. La reproducción a nivel de algoritmo interno sigue pendiente.
+
+**Estado 2026-07-17 (e):** Comparador sincronizado con el replay de colocaciones (diff parcial por paso vs referencia).
