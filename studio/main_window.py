@@ -280,6 +280,11 @@ class MainWindow(QMainWindow):
         self.pin_reference_button.clicked.connect(self._pin_selected_as_reference)
         controls.addWidget(self.pin_reference_button)
 
+        self.solutions_outdated_banner = QLabel()
+        self.solutions_outdated_banner.setWordWrap(True)
+        self.solutions_outdated_banner.setObjectName("solutionsOutdatedBanner")
+        self.solutions_outdated_banner.hide()
+
         self.solution_thumbnails = QListWidget()
         self.solution_thumbnails.setViewMode(QListWidget.ViewMode.IconMode)
         self.solution_thumbnails.setFlow(QListWidget.Flow.LeftToRight)
@@ -303,6 +308,7 @@ class MainWindow(QMainWindow):
         comparator_panel = QWidget()
         comparator_layout = QVBoxLayout(comparator_panel)
         comparator_layout.setContentsMargins(0, 0, 0, 0)
+        comparator_layout.addWidget(self.solutions_outdated_banner)
         comparator_layout.addLayout(controls)
         comparator_layout.addWidget(self.solution_thumbnails)
         comparator_layout.addWidget(self.solutions_table)
@@ -655,7 +661,7 @@ class MainWindow(QMainWindow):
             )
         )
 
-        self.services.projects.mark_modified()
+        self._mark_project_modified()
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
@@ -701,7 +707,7 @@ class MainWindow(QMainWindow):
         for board in result.valid_boards:
             project.boards.append(board)
 
-        self.services.projects.mark_modified()
+        self._mark_project_modified()
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
@@ -765,7 +771,7 @@ class MainWindow(QMainWindow):
                 )
             )
 
-        self.services.projects.mark_modified()
+        self._mark_project_modified()
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
@@ -835,7 +841,7 @@ class MainWindow(QMainWindow):
                 )
             )
 
-        self.services.projects.mark_modified()
+        self._mark_project_modified()
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
@@ -1008,7 +1014,7 @@ class MainWindow(QMainWindow):
         self.workspace.reload_project()
         self.workspace.select_piece(piece_id)
         self.refresh_inspector_for_piece(piece_id)
-        self.services.projects.mark_modified()
+        self._mark_project_modified()
         self.update_window_title()
         self.update_undo_redo()
 
@@ -1031,7 +1037,8 @@ class MainWindow(QMainWindow):
 
         self.workspace.selection.sync_inspector(self)
 
-        self.services.projects.mark_modified()
+        self._mark_project_modified(reason="piece_deleted")
+        self._refresh_solutions_outdated_banner()
         self.update_window_title()
         self.update_undo_redo()
 
@@ -1071,6 +1078,22 @@ class MainWindow(QMainWindow):
 
     def _emit(self, event_name: str, **payload: object) -> None:
         self.services.events.publish(event_name, dict(payload))
+
+    def _mark_project_modified(self, **payload: object) -> None:
+        marked = self.services.mark_project_modified(**payload)
+        self._refresh_solutions_outdated_banner()
+        if marked:
+            self._status("status.solutions_outdated", 5000)
+
+    def _refresh_solutions_outdated_banner(self) -> None:
+        outdated = self.services.layout.solutions_outdated
+        banner = self.solutions_outdated_banner
+        if outdated:
+            banner.setText(self._tr("comparator.solutions_outdated"))
+            banner.show()
+        else:
+            banner.hide()
+            banner.clear()
 
     def _status(self, key: str, timeout: int = 3000, **kwargs: object) -> None:
         self.statusBar().showMessage(self._tr(key, **kwargs), timeout)
@@ -1120,6 +1143,7 @@ class MainWindow(QMainWindow):
         self.comparator_complete_only.setText(self._tr("comparator.complete_only"))
         self.pin_reference_button.setText(self._tr("comparator.pin_reference"))
         self.comparator_diff_label.setText(self._tr("comparator.diff_title"))
+        self._refresh_solutions_outdated_banner()
         self.solution_differences.setPlaceholderText(
             self._tr("comparator.diff_placeholder")
         )
@@ -1173,18 +1197,21 @@ class MainWindow(QMainWindow):
             self._reload_solution_table()
             self.inspector.setText(self._tr("inspector.layout_cancelled"))
             self._emit(events.SOLUTION_GENERATED, status="cancelled")
+            self._refresh_solutions_outdated_banner()
             self._status("status.layout_cancelled")
             return
 
         if solution is None:
             self._show_no_solution_diagnosis()
             self._emit(events.SOLUTION_GENERATED, status="none", count=0)
+            self._refresh_solutions_outdated_banner()
             self._status("status.layout_failed")
             return
 
         self._reload_solution_table()
         self._show_layout_solution(solution)
         self._reload_explorer()
+        self._refresh_solutions_outdated_banner()
 
         solution_count = len(self.services.layout.solutions)
         self._emit(
@@ -1394,6 +1421,10 @@ class MainWindow(QMainWindow):
                 )
             )
 
+        if self.services.layout.solutions_outdated:
+            lines.append("")
+            lines.append(self._tr("inspector.solutions_outdated"))
+
         highlights = self.services.layout.solution_highlights.get(
             self.services.layout.selected_solution_index
         )
@@ -1432,6 +1463,15 @@ class MainWindow(QMainWindow):
         )
 
     def _apply_layout(self):
+        if self.services.layout.solutions_outdated:
+            answer = QMessageBox.question(
+                self,
+                self._tr("dialog.outdated_solutions_title"),
+                self._tr("dialog.outdated_solutions_apply"),
+            )
+            if answer != QMessageBox.StandardButton.Yes:
+                return
+
         if not self.services.layout.apply_last_solution_to_current_project():
             self._status("status.calculate_layout_first")
             return
@@ -1888,15 +1928,15 @@ class MainWindow(QMainWindow):
                     data["quantity"] - 1,
                 )
 
-        self.services.layout.clear_solutions()
-        self.services.projects.mark_modified()
+        self._mark_project_modified(reason="board_edited")
 
         self.workspace.reload_project()
         self._reload_explorer()
         self._reload_solution_table()
         self.update_window_title()
 
-        self._status("status.board_updated")
+        if not self.services.layout.solutions_outdated:
+            self._status("status.board_updated")
 
     def _edit_piece(self, piece_id: str) -> None:
         project = self.services.projects.current_project
@@ -1954,8 +1994,7 @@ class MainWindow(QMainWindow):
         if placement is not None:
             placement.piece_id = new_piece_id
 
-        self.services.layout.clear_solutions()
-        self.services.projects.mark_modified()
+        self._mark_project_modified(reason="piece_edited")
 
         self.workspace.reload_project()
         self._reload_explorer()
@@ -1988,4 +2027,5 @@ class MainWindow(QMainWindow):
         )
 
         self.update_window_title()
-        self._status("status.piece_updated")
+        if not self.services.layout.solutions_outdated:
+            self._status("status.piece_updated")

@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-006
-**Versión:** 1.0.0
+**Versión:** 1.1.0
 **Estado:** En revisión
-**Última revisión:** 01/07/2026
+**Última revisión:** 17/07/2026
 
 ---
 
@@ -100,6 +100,11 @@ El proyecto refleja los cambios realizados manteniendo su integridad y permitien
 ---
 
 ## Observaciones
+
+**Estado 2026-07-17:** Studio marca las soluciones calculadas como
+desactualizadas cuando el proyecto cambia (banner en el Comparador, aviso al
+aplicar, eventos `ProjectModified` / `SolutionsMarkedOutdated`). Regenerar el
+layout limpia el aviso.
 
 En futuras versiones este flujo incorporará control de versiones del proyecto, diferencias visuales entre revisiones, edición colaborativa, bloqueo de recursos durante la edición, recuperación automática tras fallos y un sistema de deshacer/rehacer ilimitado basado en el historial de eventos.
 

@@ -407,9 +407,13 @@ class BoardWorkspace(QGraphicsView):
         )
 
         self.services.commands.execute(command)
-        self.services.projects.mark_modified()
 
         window = cast("MainWindow", self.window())
+        if hasattr(window, "_mark_project_modified"):
+            window._mark_project_modified(reason="piece_moved")
+        else:
+            self.services.mark_project_modified(reason="piece_moved")
+
         if hasattr(window, "update_undo_redo"):
             window.update_undo_redo()
         if hasattr(window, "update_window_title"):

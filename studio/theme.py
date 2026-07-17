@@ -261,6 +261,15 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         letter-spacing: 0.6px;
         text-transform: uppercase;
     }}
+    QLabel#solutionsOutdatedBanner {{
+        background-color: {tokens.alternate};
+        color: {tokens.danger};
+        border: 1px solid {tokens.danger};
+        border-radius: 4px;
+        padding: 6px 8px;
+        font-family: "{ui}";
+        font-size: 12px;
+    }}
     QWidget#welcomeRoot {{
         background-color: {tokens.window};
     }}
