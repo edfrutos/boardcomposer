@@ -23,6 +23,6 @@ def test_solution_highlights_flags_best_and_worst_solution():
 
     highlights = solution_highlights([better, worse])
 
-    assert "Piezas colocadas" in highlights[0]
-    assert "Mejor puntuación" in highlights[0]
-    assert 1 not in highlights or "Piezas colocadas" not in highlights[1]
+    assert "highlight.pieces" in highlights[0]
+    assert "highlight.score" in highlights[0]
+    assert 1 not in highlights or "highlight.pieces" not in highlights[1]

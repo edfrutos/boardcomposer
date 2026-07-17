@@ -21,6 +21,13 @@ def test_tr_switches_language():
     assert tr("welcome.new", "en") == "New project"
 
 
+def test_tr_formats_interpolated_values():
+    assert tr("inspector.placed", "en", n=3) == "Pieces placed: 3"
+    assert tr("menu.file", "en") == "File"
+    assert tr("action.solve_layout", "en") == "Calculate layout"
+    assert tr("inspector.none", "en") == "No selection"
+
+
 def test_preferences_persist_language_and_units(tmp_path):
     path = tmp_path / "preferences.json"
     manager = PreferencesManager(path)

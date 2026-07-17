@@ -176,9 +176,10 @@ En el futuro podrán asociarse a una cuenta de usuario para sincronizar automát
 - Persistencia en `~/.boardcomposer/preferences.json` (fuera de `.bcproj`).
 - Diálogo `Editar → Preferencias…` con General, Workspace, Algoritmos y Exportación.
 - Tema: sistema / claro / oscuro (aplicado al instante).
-- Idioma: es / en (bienvenida y diálogo de preferencias; menús principales siguen en español).
+- Idioma: es / en (bienvenida, preferencias, menús, docks, Inspector y
+  chrome del comparador).
 - Unidades: mm / cm / in (inspector, explorador y formularios de tablero/pieza; almacenamiento interno en mm).
 - Workspace: mostrar cuadrícula y tamaño en mm.
 - Algoritmos: estrategia y pesos de scoring.
 - Exportación: formato y flags por defecto recordados.
-- Pendiente: i18n completa de menús e Inspector; rendimiento/avanzado.
+- Pendiente: i18n de diálogos secundarios y mensajes de estado; rendimiento/avanzado.

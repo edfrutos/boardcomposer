@@ -20,9 +20,9 @@ class _Metric:
 
 
 _METRICS = (
-    _Metric("Piezas colocadas", lambda s: len(s.placements), True),
-    _Metric("Menos huecos internos", lambda s: s.waste_ratio, False),
-    _Metric("Mejor puntuación", lambda s: s.score.total, True),
+    _Metric("highlight.pieces", lambda s: len(s.placements), True),
+    _Metric("highlight.waste", lambda s: s.waste_ratio, False),
+    _Metric("highlight.score", lambda s: s.score.total, True),
 )
 
 
