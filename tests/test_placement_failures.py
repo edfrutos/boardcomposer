@@ -1,6 +1,7 @@
-"""Tests for MaxRects placement-failure instrumentation."""
+"""Tests for placement-failure instrumentation (MaxRects / Skyline)."""
 
 from boardcomposer import Board, Project, StockPanel
+from boardcomposer.domain.constraints import ProjectConstraints
 from boardcomposer.solver.candidate_pipeline import CandidatePipeline
 from boardcomposer.solver.multi_panel_maxrects import (
     generate_multi_panel_maxrects_solution,
@@ -10,6 +11,7 @@ from boardcomposer.solver.placement_failures import (
     capture_placement_failures,
     record_placement_failure,
 )
+from boardcomposer.solver.skyline_runner import iter_skyline_solutions
 from boardcomposer.solver.strategies import material_first_strategy
 from studio.events import EventBus
 from studio.events.catalog import PLACEMENT_FAILED, PLACEMENT_FAILURES_SUMMARY
@@ -54,6 +56,52 @@ def test_multi_panel_maxrects_records_incompatible_and_no_fit():
     reasons = {failure.reason for failure in log.failures}
     assert "incompatible" in reasons
     assert "no_fit" in reasons
+
+
+def test_skyline_records_no_fit_when_piece_exceeds_width():
+    project = Project(
+        constraints=ProjectConstraints(max_width_mm=100, allow_rotation=False)
+    )
+    project.add_board(Board(80, 40, 19, "FIT"))
+    project.add_board(Board(250, 40, 19, "WIDE"))
+
+    log = PlacementFailureLog()
+    with capture_placement_failures(log):
+        list(iter_skyline_solutions(project))
+
+    assert log.counts.get("no_fit", 0) >= 1
+    assert any(
+        failure.piece_id == "WIDE" and failure.algorithm == "skyline"
+        for failure in log.failures
+    )
+
+
+def test_pipeline_publishes_skyline_placement_failures():
+    project = Project(
+        constraints=ProjectConstraints(max_width_mm=100, allow_rotation=False)
+    )
+    project.add_board(Board(80, 40, 19, "FIT"))
+    project.add_board(Board(250, 40, 19, "WIDE"))
+
+    pipeline = CandidatePipeline(
+        project=project,
+        strategy=material_first_strategy(),
+    )
+    pipeline.run()
+
+    kinds = [event.kind for event in pipeline.trace.events]
+    assert "placement_failures_summary" in kinds
+    failed = [
+        event for event in pipeline.trace.events if event.kind == "placement_failed"
+    ]
+    assert any(event.payload.get("algorithm") == "skyline" for event in failed)
+
+    bus = EventBus()
+    seen: list[str] = []
+    bus.subscribe("*", lambda name, _p: seen.append(name))
+    publish_solve_trace(bus, pipeline.trace)
+    assert PLACEMENT_FAILURES_SUMMARY in seen
+    assert PLACEMENT_FAILED in seen
 
 
 def test_pipeline_publishes_placement_failures_for_maxrects():

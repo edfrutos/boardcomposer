@@ -51,13 +51,10 @@ class CandidatePipeline:
                 self.trace.record("generator_started", algorithm=name)
                 started = perf_counter()
                 generator = generators_by_name([name])[0]
-                if name == "maxrects":
-                    failure_log = PlacementFailureLog()
-                    with capture_placement_failures(failure_log):
-                        generated = generator(self.project)
-                    self._record_placement_failures(failure_log)
-                else:
+                failure_log = PlacementFailureLog()
+                with capture_placement_failures(failure_log):
                     generated = generator(self.project)
+                self._record_placement_failures(failure_log)
                 if len(panel_instances) == 1:
                     reference = panel_instances[0][0]
                     generated = [
@@ -149,7 +146,7 @@ class CandidatePipeline:
             return []
 
     def _record_placement_failures(self, failure_log: PlacementFailureLog) -> None:
-        """Fold MaxRects failure samples into the solve trace."""
+        """Fold placement-failure samples into the solve trace."""
         if failure_log.total == 0:
             return
         self.trace.record(
