@@ -85,6 +85,8 @@
 - Compartir plantillas de exportación entre equipos (pack JSON).
 - Plantillas de proyecto (guardar / nuevo desde plantilla).
 - Accesos a documentación y novedades (menú Ayuda + pantalla de inicio).
+- Preferencias avanzadas: tope de soluciones y progreso al calcular layout
+  (FLW-003 / SCR-006).
 
 ### Cambiado
 
