@@ -76,6 +76,8 @@
 - i18n es/en del panel de diferencias del comparador (SCR-003).
 - Perfiles de exportación por cliente (plantillas SCR-007 con campo
   `client` y filtro en el diálogo).
+- Tema visual «Industrial madera»: tokens + QSS (claro/oscuro), fuentes
+  Archivo / Source Sans 3, y pantalla de inicio brand-first (`docs/DESIGN.md`).
 
 ### Cambiado
 

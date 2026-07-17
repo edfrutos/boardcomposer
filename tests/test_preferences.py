@@ -92,15 +92,28 @@ def test_preferences_clamp_grid_size_and_reject_unknown_theme(tmp_path):
 
 
 def test_apply_theme_switches_palette(qapp):
+    from PySide6.QtGui import QColor
+
     from studio.theme import apply_theme
+    from studio.theme_tokens import DARK, LIGHT
 
     apply_theme(qapp, "dark")
     dark_window = qapp.palette().color(qapp.palette().ColorRole.Window)
+    dark_accent = qapp.palette().color(qapp.palette().ColorRole.Highlight)
+    assert dark_window.name() == QColor(DARK.window).name()
+    assert dark_accent.name() == QColor(DARK.accent).name()
+    assert qapp.styleSheet()
+
     apply_theme(qapp, "light")
     light_window = qapp.palette().color(qapp.palette().ColorRole.Window)
-    apply_theme(qapp, "system")
-
+    light_accent = qapp.palette().color(qapp.palette().ColorRole.Highlight)
+    assert light_window.name() == QColor(LIGHT.window).name()
+    assert light_accent.name() == QColor(LIGHT.accent).name()
+    assert "primaryButton" in qapp.styleSheet()
     assert dark_window.lightness() < light_window.lightness()
+
+    apply_theme(qapp, "system")
+    assert qapp.styleSheet() == ""
 
 
 def test_layout_service_uses_preferences_strategy(tmp_path):

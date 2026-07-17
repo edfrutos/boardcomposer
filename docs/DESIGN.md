@@ -1,0 +1,44 @@
+# BoardComposer Studio — DESIGN
+
+**Registro:** product (herramienta de taller)  
+**Dirección:** Industrial madera  
+**Alcance actual:** chrome QSS + pantalla de inicio (canvas fuera de alcance)
+
+## Escena
+
+Carpintero/tallador frente al monitor en un taller con luz diurna. La UI
+sirve al oficio: clara, cálida, sin look SaaS ni CAD genérico azul.
+
+## Color (restrained)
+
+Neutros cálidos tintados + acento ámbar herramienta ≤10% del chrome.
+
+| Token | Light | Dark |
+|---|---|---|
+| window | `#f3ebe1` | `#1f1b17` |
+| base | `#faf6f0` | `#2a241f` |
+| panel | `#e8ddd0` | `#342c25` |
+| text | `#2c241c` | `#ebe1d4` |
+| muted | `#6b5c4d` | `#a89480` |
+| border | `#c9b8a4` | `#4a3f34` |
+| accent | `#c47a1a` | `#d4922a` |
+
+Fuente de verdad: `studio/theme_tokens.py`. Aplicación: `studio/theme.py`
+(`QPalette` + QSS). Preferencia `system` limpia el stylesheet.
+
+## Tipografía
+
+| Rol | Familia | Notas |
+|---|---|---|
+| Marca | Archivo (bundled) | Hero `QLabel#welcomeBrand` |
+| UI | Source Sans 3 (bundled) | Cuerpo y controles |
+| Énfasis | Source Sans 3 SemiBold | Headers, primario |
+
+Fuentes OFL en `studio/assets/fonts/`.
+
+## Componentes clave
+
+- `QPushButton#primaryButton` — CTA principal (ámbar).
+- Welcome: marca hero + tagline + CTAs; recientes en columna secundaria.
+- Sin cards decorativas; sin purple/glow; canvas de piezas aún con colores
+  legacy (siguiente pasada).

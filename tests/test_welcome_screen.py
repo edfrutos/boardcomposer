@@ -37,3 +37,17 @@ def test_welcome_screen_shows_empty_state(qapp):
 
     assert screen.recent_list.count() == 1
     assert "Sin proyectos recientes" in screen.recent_list.item(0).text()
+
+
+def test_welcome_screen_brand_and_primary_object_names(qapp):
+    del qapp
+    from PySide6.QtWidgets import QLabel, QPushButton
+
+    screen = WelcomeScreen()
+
+    assert screen.objectName() == "welcomeRoot"
+    brand = screen.findChild(QLabel, "welcomeBrand")
+    assert brand is not None
+    assert brand.text() == "BoardComposer"
+    assert screen.new_button.objectName() == "primaryButton"
+    assert isinstance(screen.new_button, QPushButton)
