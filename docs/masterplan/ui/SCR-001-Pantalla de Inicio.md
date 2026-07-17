@@ -119,5 +119,7 @@ Versiones futuras podrán incorporar:
 - Acciones: nuevo, abrir, importar piezas, ejemplo, preferencias.
 - Lista de proyectos recientes (persistidos en
   `~/.boardcomposer/recent_files.json`); solo se muestran los que existen.
+- Miniatura SVG del layout guardado (tableros/piezas) y fecha de
+  modificación por entrada.
 - Menú `Archivo → Pantalla de inicio` para volver.
-- Pendiente: miniaturas de proyecto y accesos a documentación/novedades.
+- Pendiente: accesos a documentación/novedades.

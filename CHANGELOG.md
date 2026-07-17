@@ -64,6 +64,8 @@
   explicación, retales), vista previa y recuerdo de la última elección.
 - Preferencias SCR-006: idioma (es/en), unidades (mm/cm/in) aplicadas a
   inspector, explorador y formularios; defaults de exportación editables.
+- Miniaturas reales de proyectos recientes en la pantalla de inicio
+  (SCR-001): SVG del layout del `.bcproj` más fecha de modificación.
 
 ### Cambiado
 
