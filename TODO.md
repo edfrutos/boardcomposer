@@ -26,7 +26,7 @@ Backlog operativo de corto plazo. El registro de producto se mantiene en
 ## Studio
 
 - [x] Completar el comparador visual definido en SCR-003
-  (resaltado + ordenar/filtrar por métrica + miniaturas SVG).
+  (resaltado + ordenar/filtrar + miniaturas + panel de diferencias).
 - [x] Exportación PDF/DXF.
 - [x] Preferencias de estrategia y pesos de scoring.
 - [x] Importación de piezas desde CSV; soporte Excel (.xlsx) incluido.

@@ -125,3 +125,12 @@ Versiones futuras podrán incorporar:
 - recomendaciones automáticas mediante IA;
 - comparación entre versiones de un mismo proyecto;
 - reproducción sincronizada del proceso de colocación (Timeline).
+
+---
+
+## Estado de implementación (2026-07-17)
+
+- Tabla de métricas, resaltado de mejores, ordenar/filtrar y miniaturas SVG.
+- Panel de diferencias vs solución de referencia (`Fijar como referencia`),
+  con deltas de métricas y cambios de colocación (`studio/solution_diff.py`).
+- Exportación directa de la solución seleccionada (SVG/DXF/PDF).
