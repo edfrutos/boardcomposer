@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-003
-**Versión:** 1.0.0
+**Versión:** 1.1.0
 **Estado:** En revisión
-**Última revisión:** 01/07/2026
+**Última revisión:** 17/07/2026
 
 ---
 
@@ -34,11 +34,12 @@ Describir el flujo mediante el cual BoardComposer genera una o varias soluciones
 1. El usuario pulsa **Generar soluciones**.
 2. Studio recopila la configuración activa del proyecto.
 3. El Core valida los datos de entrada.
-4. Se ejecutan los algoritmos seleccionados.
-5. Cada solución es evaluada y puntuada.
-6. Las soluciones se ordenan según el perfil de evaluación activo.
-7. Studio actualiza el Workspace y el Comparador.
-8. El usuario comienza la exploración de resultados.
+4. Se muestra un diálogo de progreso modal; el cálculo corre en segundo plano.
+5. Se ejecutan los algoritmos seleccionados (con cancelación cooperativa entre generadores y candidatas).
+6. Cada solución es evaluada y puntuada.
+7. Las soluciones se ordenan según el perfil de evaluación activo.
+8. Studio actualiza el Workspace y el Comparador.
+9. El usuario comienza la exploración de resultados.
 
 ---
 
@@ -55,6 +56,15 @@ Describir el flujo mediante el cual BoardComposer genera una o varias soluciones
 1. Ningún algoritmo encuentra una solución aceptable.
 2. Studio informa del motivo.
 3. Se sugieren posibles acciones (permitir rotación, cambiar tableros, revisar restricciones, etc.).
+
+---
+
+## Flujo alternativo C — Cancelación del cálculo
+
+1. El usuario pulsa **Cancelar** en el diálogo de progreso.
+2. Studio marca el token de cancelación cooperativa.
+3. El pipeline interrumpe entre generadores o candidatas y no aplica resultados parciales.
+4. El Workspace/Comparador se limpian de soluciones previas del cálculo y se informa del cancelado.
 
 ---
 
@@ -78,6 +88,7 @@ El usuario dispone de una colección de soluciones clasificadas, explicadas y li
 ## Criterios de aceptación
 
 - La generación muestra progreso cuando el cálculo supera un tiempo apreciable.
+- El usuario puede cancelar el cálculo en curso; el solver responde de forma cooperativa.
 - El usuario puede identificar qué algoritmos han participado.
 - Cada solución conserva su explicación y métricas.
 - El proceso queda registrado en el historial del proyecto.
@@ -94,4 +105,7 @@ El usuario dispone de una colección de soluciones clasificadas, explicadas y li
 
 ## Observaciones
 
-En versiones futuras este flujo incorporará ejecución en paralelo, cancelación de cálculos, generación incremental de soluciones y un Timeline visual que permitirá reproducir paso a paso cómo cada algoritmo construyó el resultado final.
+En versiones futuras este flujo incorporará ejecución en paralelo, generación
+incremental de soluciones y un Timeline visual (ADR-005) que permitirá
+reproducir paso a paso cómo cada algoritmo construyó el resultado final.
+La cancelación cooperativa del solver ya está disponible.

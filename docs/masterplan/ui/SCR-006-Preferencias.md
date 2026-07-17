@@ -185,4 +185,5 @@ En el futuro podrán asociarse a una cuenta de usuario para sincronizar automát
 - Exportación: formato y flags por defecto recordados.
 - Avanzado / rendimiento: máximo de soluciones a conservar tras el ranking
   y acceso a la carpeta `~/.boardcomposer/`.
-- Generar soluciones (FLW-003): diálogo de progreso modal mientras corre el solver.
+- Generar soluciones (FLW-003): diálogo de progreso modal con Cancelar
+  (cancelación cooperativa del solver en segundo plano).
