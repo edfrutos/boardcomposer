@@ -66,6 +66,8 @@
   inspector, explorador y formularios; defaults de exportación editables.
 - Miniaturas reales de proyectos recientes en la pantalla de inicio
   (SCR-001): SVG del layout del `.bcproj` más fecha de modificación.
+- Vista previa gráfica SVG embebida en el diálogo de exportación
+  (SCR-007), actualizada al cambiar formato u opciones.
 
 ### Cambiado
 

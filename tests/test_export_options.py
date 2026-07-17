@@ -13,6 +13,7 @@ from boardcomposer.domain import (
 from studio.export_options import (
     ExportOptions,
     prepare_solution,
+    preview_svg,
     preview_text,
     render_export,
 )
@@ -67,3 +68,30 @@ def test_preview_text_includes_format_summary():
 
     assert "Formato: PDF" in text
     assert "Piezas colocadas: 1" in text
+
+
+def test_preview_svg_respects_offcuts_option():
+    solution = _solution()
+
+    with_offcuts = preview_svg(solution, None, ExportOptions(include_offcuts=True))
+    without_offcuts = preview_svg(solution, None, ExportOptions(include_offcuts=False))
+
+    assert "#16a34a" in with_offcuts
+    assert "#16a34a" not in without_offcuts
+    assert "A" in with_offcuts
+
+
+def test_export_dialog_embeds_graphic_preview(qapp):
+    del qapp
+    from studio.dialogs import ExportDialog
+
+    dialog = ExportDialog(_solution(), None, ExportOptions(format="svg"))
+    pixmap = dialog.graphic_preview.pixmap()
+
+    assert pixmap is not None
+    assert not pixmap.isNull()
+    assert "Formato: SVG" in dialog.preview.toPlainText()
+
+    dialog.include_offcuts.setChecked(False)
+    dialog._refresh_preview()
+    assert "Retales: 0" in dialog.preview.toPlainText()

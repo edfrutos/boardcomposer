@@ -145,7 +145,9 @@ Toda exportación deberá conservar la trazabilidad de la solución de origen, i
 
 - Menú `Exportar → Exportar solución seleccionada…` abre un diálogo con
   formato (SVG/DXF/PDF/JSON/CSV), opciones de contenido y vista previa.
+- Vista previa gráfica SVG embebida (respeta retales) más resumen/texto
+  del contenido según formato.
 - JSON admite incluir/omitir métricas, explicación y retales.
 - SVG/DXF/PDF respetan la opción de retales.
 - Las últimas opciones se guardan en `preferences.json`.
-- Pendiente: vista previa gráfica SVG embebida y plantillas de exportación.
+- Pendiente: plantillas de exportación.

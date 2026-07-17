@@ -112,6 +112,17 @@ def render_export(
     )
 
 
+def preview_svg(
+    solution: AssemblySolution,
+    project: Project | None,
+    options: ExportOptions,
+) -> str:
+    """Return the layout SVG used for the graphical export preview."""
+    options = options.normalized()
+    prepared = prepare_solution(solution, options)
+    return solution_to_svg(prepared, project)
+
+
 def preview_text(
     solution: AssemblySolution,
     project: Project | None,
@@ -150,11 +161,15 @@ def preview_text(
     if options.format == "svg":
         svg = solution_to_svg(prepared, project)
         summary.append(f"Tamaño SVG: {len(svg)} caracteres")
-        summary.append("La vista gráfica se exportará como dibujo vectorial.")
+        summary.append("Arriba: vista previa gráfica del dibujo vectorial.")
         return "\n".join(summary)
 
     summary.append(
         f"Se generará un archivo {options.label} con paneles, piezas"
         + (" y retales." if options.include_offcuts else " (sin retales).")
     )
+    if options.format in {"dxf", "pdf"}:
+        summary.append(
+            "Arriba: vista previa del layout (misma geometría que el export)."
+        )
     return "\n".join(summary)
