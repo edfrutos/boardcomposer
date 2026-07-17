@@ -248,6 +248,7 @@ class MainWindow(QMainWindow):
             language=self._ui_language(),
         )
         self.console.replay_step_changed.connect(self._on_timeline_replay_step)
+        self.console.phase_step_changed.connect(self._on_timeline_phase_step)
         self.console.export_requested.connect(self._export_timeline_history)
 
         self.console_dock = QDockWidget("", self)
@@ -1246,6 +1247,7 @@ class MainWindow(QMainWindow):
         from studio.solve_trace_publisher import publish_solve_trace
 
         publish_solve_trace(self.services.events, self.services.layout.trace)
+        self.console.set_phase_trace(self.services.layout.trace)
 
     def _show_no_solution_diagnosis(self) -> None:
         lines = [self._tr("inspector.no_solution"), ""]
@@ -1267,6 +1269,7 @@ class MainWindow(QMainWindow):
         solutions = self.services.layout.solutions
         if not solutions:
             self.console.set_replay_solution(None)
+            self.console.set_phase_trace(None)
         highlights = self.services.layout.solution_highlights
         self._solution_display_indexes = ordered_solution_indexes(
             solutions,
@@ -1490,6 +1493,56 @@ class MainWindow(QMainWindow):
             current=reveal_count,
             total=total,
         )
+
+    def _on_timeline_phase_step(self, event, step: int) -> None:
+        """React to algorithm-phase replay without mutating the project."""
+        total = self.console.phase_replay_total
+        if event is None:
+            self._status(
+                "status.timeline_phase",
+                2000,
+                current=step,
+                total=total,
+                detail=self._tr("timeline.phase_idle_detail"),
+            )
+            return
+
+        algorithm = event.payload.get("algorithm")
+        if isinstance(algorithm, str) and algorithm:
+            self._select_solution_for_algorithm(algorithm)
+
+        piece = event.payload.get("piece")
+        if isinstance(piece, str) and piece:
+            self.workspace.select_piece(piece)
+
+        detail = tr(
+            f"timeline.phase.{event.kind}",
+            self._ui_language(),
+        )
+        if isinstance(algorithm, str) and algorithm:
+            detail = f"{detail} · {algorithm}"
+        if isinstance(piece, str) and piece:
+            detail = f"{detail} · {piece}"
+        duration = event.payload.get("duration_ms")
+        if isinstance(duration, int):
+            detail = f"{detail} · {duration} ms"
+
+        self._status(
+            "status.timeline_phase",
+            2500,
+            current=step,
+            total=total,
+            detail=detail,
+        )
+
+    def _select_solution_for_algorithm(self, algorithm: str) -> None:
+        """Select the first cached solution produced by ``algorithm``."""
+        for index, solution in enumerate(self.services.layout.solutions):
+            notes = solution.explanation.notes
+            if notes and notes[0] == algorithm:
+                if index != self.services.layout.selected_solution_index:
+                    self._select_layout_solution(index)
+                return
 
     def _reload_solution_differences_at_step(self, step: int) -> None:
         """Update the diff panel for Timeline-synced placement replay."""
