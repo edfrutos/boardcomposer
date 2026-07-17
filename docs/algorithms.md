@@ -48,9 +48,16 @@ parciales como resultado final (piezas no colocadas se listan en
 
 ## Evolución prevista
 
-- Añadir CP-SAT (`cp_sat_runner.py`) como generador exacto de un solo panel,
-  una vez estabilizado el contrato multipanel de dominio.
 - Extender el comparador de Studio (SCR-003) con ordenación/filtrado por
   métrica, además del resaltado ya disponible.
 - Evaluar si los retales informativos (ADR-016) deben pasar a ser inventario
   reutilizable entre proyectos.
+- Valorar CP-SAT multipanel si aparece un caso de uso real (hoy solo un
+  panel, ADR-017).
+
+## CP-SAT (un panel)
+
+Generador exacto opcional (`pip install 'boardcomposer[cp_sat]'`), registrado
+como `"cp_sat"` y activado con la estrategia `exact` (`maxrects` + `cp_sat`).
+Sin `ortools` el generador no aporta candidatas y el pipeline sigue con las
+heurísticas. Ver ADR-017.

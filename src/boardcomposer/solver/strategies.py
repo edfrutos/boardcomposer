@@ -39,11 +39,21 @@ def compact_first_strategy() -> OptimizationStrategy:
     )
 
 
+def exact_strategy() -> OptimizationStrategy:
+    """Heuristics plus optional CP-SAT (single-panel exact search, ADR-017)."""
+    return OptimizationStrategy(
+        name="exact",
+        weights=material_first(),
+        generator_names=("maxrects", "cp_sat"),
+    )
+
+
 def strategy_by_name(name: str) -> OptimizationStrategy:
     strategies = {
         "balanced": balanced_strategy,
         "material": material_first_strategy,
         "compact": compact_first_strategy,
+        "exact": exact_strategy,
     }
 
     try:

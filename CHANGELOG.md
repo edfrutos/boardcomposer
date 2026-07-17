@@ -42,6 +42,12 @@
   reasignación de panel, selección, reversión de movimientos inválidos).
 - Script de benchmarks reproducibles para `multi_panel_maxrects`
   (`scripts/benchmark_multipanel_maxrects.py`).
+- Generador exacto CP-SAT de un solo panel (opcional,
+  `pip install 'boardcomposer[cp_sat]'`, estrategia `exact`, ADR-017).
+- Comparador: ordenar por métrica y filtrar «solo completas» (SCR-003).
+- Exportación DXF y PDF de la solución seleccionada (además de SVG).
+- Importación de piezas desde CSV (`Proyecto → Importar piezas (CSV)…`).
+- Revisión UI `docs/masterplan/ui/REVIEW-2026-07-17.md`.
 
 ### Cambiado
 

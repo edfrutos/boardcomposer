@@ -32,12 +32,26 @@ def maxrects_generator(project: Project) -> list[AssemblySolution]:
     return [generate_maxrects_solution(project)]
 
 
+def cp_sat_generator(project: Project) -> list[AssemblySolution]:
+    """Exact single-panel packing. No-ops when `ortools` is not installed."""
+    from boardcomposer.solver.cp_sat_runner import (
+        CpSatUnavailableError,
+        generate_cp_sat_solution,
+    )
+
+    try:
+        return [generate_cp_sat_solution(project)]
+    except CpSatUnavailableError:
+        return []
+
+
 GENERATOR_REGISTRY: dict[str, LayoutGenerator] = {
     "horizontal": horizontal_generator,
     "vertical": vertical_generator,
     "free_space": free_space_generator,
     "skyline": skyline_generator,
     "maxrects": maxrects_generator,
+    "cp_sat": cp_sat_generator,
 }
 
 

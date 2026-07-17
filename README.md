@@ -28,6 +28,11 @@ conserva la decisión final.
   con Ruff y Pytest.
 - Benchmarks reproducibles del generador multipanel
   (`scripts/benchmark_multipanel_maxrects.py`).
+- Generador CP-SAT opcional de un solo panel (`boardcomposer[cp_sat]`,
+  estrategia `exact`).
+- Comparador con ordenación/filtrado por métrica.
+- Exportación SVG, DXF y PDF de la solución seleccionada.
+- Importación CSV de inventario de tableros y de piezas.
 
 ## Arquitectura
 
