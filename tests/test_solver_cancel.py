@@ -1,7 +1,11 @@
 """Tests for cooperative solver cancellation."""
 
 from boardcomposer import Board, Project
-from boardcomposer.solver.cancel import CancellationToken, CancelledError, check_cancelled
+from boardcomposer.solver.cancel import (
+    CancellationToken,
+    CancelledError,
+    check_cancelled,
+)
 from boardcomposer.solver.candidate_pipeline import CandidatePipeline
 from boardcomposer.solver.geometry_solver import GeometrySolver
 from boardcomposer.solver.strategies import compact_first_strategy

@@ -1,7 +1,11 @@
 from dataclasses import replace
 
 from boardcomposer.domain import AssemblySolution, Project
-from boardcomposer.solver.cancel import CancellationToken, CancelledError, check_cancelled
+from boardcomposer.solver.cancel import (
+    CancellationToken,
+    CancelledError,
+    check_cancelled,
+)
 from boardcomposer.solver.deduplication import deduplicate_solutions
 from boardcomposer.solver.generators import generators_by_name
 from boardcomposer.solver.solution_evaluator import SolutionEvaluator
