@@ -107,5 +107,5 @@ El usuario dispone de una colección de soluciones clasificadas, explicadas y li
 
 En versiones futuras este flujo incorporará ejecución en paralelo y
 generación incremental de soluciones. El Timeline (ADR-005) ya registra el
-inicio/fin del cálculo; la reproducción paso a paso de algoritmos sigue
-pendiente.
+inicio/fin del cálculo y permite reproducir las colocaciones de la solución
+seleccionada; la reproducción a nivel de algoritmo interno sigue pendiente.

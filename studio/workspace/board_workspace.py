@@ -133,19 +133,37 @@ class BoardWorkspace(QGraphicsView):
 
         self.selection.bind_items(self._piece_items)
 
-    def preview_solution(self, solution) -> None:
-        """Preview the solution."""
+    def preview_solution(self, solution, *, reveal_count: int | None = None) -> None:
+        """Preview the solution.
+
+        When ``reveal_count`` is set, only the first N placements are shown
+        (pieces that belong to the solution but are not yet revealed are hidden).
+        ``None`` shows every placement (default behaviour).
+        """
         project = self.services.projects.current_project
         if project is None:
             return
 
+        all_placements = solution.placements
+        solution_ids = {placement.board_id for placement in all_placements}
+        if reveal_count is None:
+            revealed_ids = solution_ids
+        else:
+            count = max(0, min(reveal_count, len(all_placements)))
+            revealed_ids = {placement.board_id for placement in all_placements[:count]}
+
         placements_by_piece_id = {
-            placement.board_id: placement for placement in solution.placements
+            placement.board_id: placement for placement in all_placements
         }
 
         for item in self._piece_items:
+            if item.piece_id in solution_ids:
+                item.setVisible(item.piece_id in revealed_ids)
+
             placement = placements_by_piece_id.get(item.piece_id)
             if placement is None:
+                continue
+            if item.piece_id not in revealed_ids:
                 continue
 
             slot = None

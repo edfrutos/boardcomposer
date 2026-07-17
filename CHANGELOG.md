@@ -92,6 +92,8 @@
 - Timeline MVP (ADR-005): dock alimentado por el Event Bus (ADR-003) con
   filtro por tipo de evento y vaciado; publicación de hechos clave
   (proyecto, CSV, cálculo, selección, export, workspace).
+- Reproducción paso a paso de colocaciones de la solución seleccionada
+  en el Timeline (Inicio / ◀ / ▶ / Play), sin mutar el proyecto.
 
 ### Cambiado
 
