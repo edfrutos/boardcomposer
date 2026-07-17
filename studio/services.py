@@ -7,6 +7,7 @@ from studio.commands import CommandManager
 from studio.events import EventBus
 from studio.export_templates import ExportTemplatesManager
 from studio.project import ProjectManager
+from studio.project_templates import ProjectTemplatesManager
 from studio.selection import SelectionManager
 from studio.layout_service import LayoutService
 from studio.preferences import PreferencesManager
@@ -24,6 +25,9 @@ class StudioServices:
     preferences: PreferencesManager = field(default_factory=PreferencesManager)
     export_templates: ExportTemplatesManager = field(
         default_factory=ExportTemplatesManager
+    )
+    project_templates: ProjectTemplatesManager = field(
+        default_factory=ProjectTemplatesManager
     )
 
     def __post_init__(self):

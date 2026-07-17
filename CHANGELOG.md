@@ -80,6 +80,8 @@
   Archivo / Source Sans 3, y pantalla de inicio brand-first (`docs/DESIGN.md`).
 - Compartir plantillas de exportación entre equipos (exportar/importar
   pack JSON con fusión o reemplazo).
+- Plantillas de proyecto (guardar / nuevo desde plantilla) en
+  `~/.boardcomposer/project_templates/`.
 
 ### Cambiado
 

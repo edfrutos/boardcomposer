@@ -33,6 +33,7 @@ class WelcomeScreen(QWidget):
     import_pieces_requested = Signal()
     preferences_requested = Signal()
     demo_project_requested = Signal()
+    from_template_requested = Signal()
 
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -97,6 +98,10 @@ class WelcomeScreen(QWidget):
         self.demo_button.clicked.connect(self.demo_project_requested.emit)
         secondary.addWidget(self.demo_button)
 
+        self.template_button = QPushButton()
+        self.template_button.clicked.connect(self.from_template_requested.emit)
+        secondary.addWidget(self.template_button)
+
         self.preferences_button = QPushButton()
         self.preferences_button.clicked.connect(self.preferences_requested.emit)
         secondary.addWidget(self.preferences_button)
@@ -148,6 +153,7 @@ class WelcomeScreen(QWidget):
         self.import_button.setText(tr("welcome.import", language))
         self.recent_label.setText(tr("welcome.recent", language))
         self.demo_button.setText(tr("welcome.demo", language))
+        self.template_button.setText(tr("welcome.from_template", language))
         self.preferences_button.setText(tr("welcome.preferences", language))
         self.set_recent_files(self._recent_paths)
 
