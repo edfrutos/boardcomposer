@@ -98,3 +98,4 @@ En versiones posteriores el Timeline permitirá reproducción paso a paso de alg
 **Estado 2026-07-17 (k):** filtro del Timeline por intervalo temporal (presets: 1/5/15 min, 1 h) además de tipo de evento y algoritmo.
 **Estado 2026-07-17 (l):** Skyline registra fallos `no_fit` en `SolveTrace` / Timeline; el pipeline captura fallos de todos los generadores instrumentados.
 **Estado 2026-07-17 (m):** reproducción de fases del solver (`SolvePhaseReplay`) en el Timeline — modo Colocaciones / Fases; al avanzar selecciona solución por algoritmo y pieza fallida si aplica.
+**Estado 2026-07-17 (n):** clic en un hecho del Timeline busca contexto (algoritmo → solución, pieza, solución seleccionada, marcador).

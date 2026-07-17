@@ -100,6 +100,18 @@ def test_timeline_store_clear_and_listeners():
     assert store.entries == ()
 
 
+def test_timeline_store_entry_by_sequence():
+    bus = EventBus()
+    store = TimelineStore(bus)
+    bus.publish(PROJECT_CREATED, {"kind": "a"})
+    bus.publish(PROJECT_SAVED, {"path": "b.bcproj"})
+
+    first, second = store.entries
+    assert store.entry_by_sequence(first.sequence) is first
+    assert store.entry_by_sequence(second.sequence) is second
+    assert store.entry_by_sequence(999) is None
+
+
 def test_timeline_marked_event_is_recorded():
     from studio.events.catalog import CATALOG, TIMELINE_MARKED
 

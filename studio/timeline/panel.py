@@ -47,6 +47,9 @@ class TimelinePanel(QWidget):
     phase_step_changed = Signal(object, int)
     """Emitted as ``(TraceEvent | None, step)`` when the phase replay step changes."""
 
+    entry_selected = Signal(object)
+    """Emitted as ``TimelineEntry`` when the user clicks an event in the list."""
+
     export_requested = Signal()
     """Ask the main window to run the Timeline history export dialog."""
 
@@ -115,6 +118,7 @@ class TimelinePanel(QWidget):
 
         self._list = QListWidget()
         self._list.setUniformItemSizes(True)
+        self._list.itemClicked.connect(self._on_item_clicked)
 
         layout = QVBoxLayout(self)
         layout.setContentsMargins(4, 4, 4, 4)
@@ -312,6 +316,15 @@ class TimelinePanel(QWidget):
     def phase_replay_total(self) -> int:
         """Number of solver phases available for algorithm-level replay."""
         return self._phase_replay.total
+
+    def _on_item_clicked(self, item: QListWidgetItem) -> None:
+        sequence = item.data(Qt.ItemDataRole.UserRole)
+        if not isinstance(sequence, int):
+            return
+        entry = self._store.entry_by_sequence(sequence)
+        if entry is None:
+            return
+        self.entry_selected.emit(entry)
 
     def _matches_filters(self, entry: TimelineEntry) -> bool:
         if self._filter_event and entry.event_name != self._filter_event:

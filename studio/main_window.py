@@ -249,6 +249,7 @@ class MainWindow(QMainWindow):
         )
         self.console.replay_step_changed.connect(self._on_timeline_replay_step)
         self.console.phase_step_changed.connect(self._on_timeline_phase_step)
+        self.console.entry_selected.connect(self._on_timeline_entry_selected)
         self.console.export_requested.connect(self._export_timeline_history)
 
         self.console_dock = QDockWidget("", self)
@@ -1507,18 +1508,13 @@ class MainWindow(QMainWindow):
             )
             return
 
-        algorithm = event.payload.get("algorithm")
-        if isinstance(algorithm, str) and algorithm:
-            self._select_solution_for_algorithm(algorithm)
-
-        piece = event.payload.get("piece")
-        if isinstance(piece, str) and piece:
-            self.workspace.select_piece(piece)
-
+        self._apply_timeline_context(event.payload)
         detail = tr(
             f"timeline.phase.{event.kind}",
             self._ui_language(),
         )
+        algorithm = event.payload.get("algorithm")
+        piece = event.payload.get("piece")
         if isinstance(algorithm, str) and algorithm:
             detail = f"{detail} · {algorithm}"
         if isinstance(piece, str) and piece:
@@ -1534,6 +1530,44 @@ class MainWindow(QMainWindow):
             total=total,
             detail=detail,
         )
+
+    def _on_timeline_entry_selected(self, entry) -> None:
+        """Seek Workspace/Comparator context from a clicked Timeline fact."""
+        self._apply_timeline_context(entry.payload)
+        if entry.event_name == events.SOLUTION_SELECTED:
+            index = entry.payload.get("index")
+            if isinstance(index, int) and index >= 1:
+                self._select_layout_solution(index - 1)
+
+        label = tr(
+            f"timeline.event.{entry.event_name}",
+            self._ui_language(),
+        )
+        detail_parts: list[str] = [label]
+        note = entry.payload.get("note")
+        if isinstance(note, str) and note:
+            detail_parts.append(note)
+        algorithm = entry.payload.get("algorithm")
+        if isinstance(algorithm, str) and algorithm:
+            detail_parts.append(algorithm)
+        piece = entry.payload.get("piece")
+        if isinstance(piece, str) and piece:
+            detail_parts.append(piece)
+        self._status(
+            "status.timeline_seek",
+            3000,
+            detail=" · ".join(detail_parts),
+        )
+
+    def _apply_timeline_context(self, payload: dict) -> None:
+        """Select solution/piece hinted by a Timeline or SolveTrace payload."""
+        algorithm = payload.get("algorithm")
+        if isinstance(algorithm, str) and algorithm:
+            self._select_solution_for_algorithm(algorithm)
+
+        piece = payload.get("piece")
+        if isinstance(piece, str) and piece:
+            self.workspace.select_piece(piece)
 
     def _select_solution_for_algorithm(self, algorithm: str) -> None:
         """Select the first cached solution produced by ``algorithm``."""
