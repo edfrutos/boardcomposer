@@ -378,6 +378,22 @@ _STRINGS: dict[str, dict[str, str]] = {
         "import.col.thickness": "Espesor",
         "import.col.material": "Material",
         "import.col.status": "Estado",
+        "import.mapping_title": "Asignar columnas",
+        "import.mapping_intro": (
+            "No se reconocieron columnas obligatorias ({fields}). "
+            "Asigna cada campo a una columna del archivo:"
+        ),
+        "import.mapping_none": "(ninguna)",
+        "import.mapping_incomplete": (
+            "Siguen faltando columnas obligatorias: {fields}"
+        ),
+        "import.mapping.field.board_id": "Id tablero",
+        "import.mapping.field.piece_id": "Id pieza",
+        "import.mapping.field.length_mm": "Largo",
+        "import.mapping.field.width_mm": "Ancho",
+        "import.mapping.field.thickness_mm": "Espesor",
+        "import.mapping.field.quantity": "Cantidad",
+        "import.mapping.field.material": "Material",
         "form.new_board": "Nuevo tablero",
         "form.new_piece": "Nueva pieza",
         "form.id": "Identificador:",
@@ -800,6 +816,20 @@ _STRINGS: dict[str, dict[str, str]] = {
         "import.col.thickness": "Thickness",
         "import.col.material": "Material",
         "import.col.status": "Status",
+        "import.mapping_title": "Map columns",
+        "import.mapping_intro": (
+            "Required columns were not recognized ({fields}). "
+            "Assign each field to a column from the file:"
+        ),
+        "import.mapping_none": "(none)",
+        "import.mapping_incomplete": ("Required columns are still missing: {fields}"),
+        "import.mapping.field.board_id": "Board id",
+        "import.mapping.field.piece_id": "Piece id",
+        "import.mapping.field.length_mm": "Length",
+        "import.mapping.field.width_mm": "Width",
+        "import.mapping.field.thickness_mm": "Thickness",
+        "import.mapping.field.quantity": "Quantity",
+        "import.mapping.field.material": "Material",
         "form.new_board": "New board",
         "form.new_piece": "New piece",
         "form.id": "Identifier:",

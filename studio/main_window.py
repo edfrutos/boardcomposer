@@ -53,8 +53,20 @@ from studio.dialogs import (
     ProjectTemplatePickerDialog,
     WhatsNewDialog,
 )
-from studio.board_csv_importer import import_boards_from_file
-from studio.piece_csv_importer import import_pieces_from_file
+from studio.board_csv_importer import import_boards_from_rows
+from studio.piece_csv_importer import import_pieces_from_rows
+from studio.import_headers import (
+    BOARD_FIELD_ORDER,
+    BOARD_HEADER_ALIASES,
+    BOARD_REQUIRED_FIELDS,
+    PIECE_FIELD_ORDER,
+    PIECE_HEADER_ALIASES,
+    PIECE_REQUIRED_FIELDS,
+    missing_required_fields,
+    resolve_header_map,
+)
+from studio.tabular_file import load_tabular_file
+from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
 from studio.solution_diff import (
     compare_solutions,
     compare_solutions_at_step,
@@ -700,7 +712,35 @@ class MainWindow(QMainWindow):
             return
 
         existing_ids = {board.board_id.casefold() for board in project.boards}
-        result = import_boards_from_file(file_path, existing_ids=existing_ids)
+        loaded = load_tabular_file(file_path)
+        if not loaded.ok:
+            QMessageBox.warning(
+                self,
+                self._tr("dialog.import_boards_short"),
+                "\n".join(loaded.errors),
+            )
+            return
+
+        header_map = resolve_header_map(loaded.fieldnames, BOARD_HEADER_ALIASES)
+        missing = missing_required_fields(header_map, BOARD_REQUIRED_FIELDS)
+        if missing:
+            mapped = self._prompt_column_mapping(
+                fieldnames=loaded.fieldnames,
+                field_order=BOARD_FIELD_ORDER,
+                required_fields=BOARD_REQUIRED_FIELDS,
+                initial_map=header_map,
+                missing_fields=missing,
+            )
+            if mapped is None:
+                return
+            header_map = mapped
+
+        result = import_boards_from_rows(
+            loaded.fieldnames,
+            loaded.rows,
+            existing_ids=existing_ids,
+            header_map=header_map,
+        )
 
         if result.file_errors:
             QMessageBox.warning(
@@ -748,7 +788,35 @@ class MainWindow(QMainWindow):
             return
 
         existing_ids = {piece.piece_id.casefold() for piece in project.pieces}
-        result = import_pieces_from_file(file_path, existing_ids=existing_ids)
+        loaded = load_tabular_file(file_path)
+        if not loaded.ok:
+            QMessageBox.warning(
+                self,
+                self._tr("dialog.import_pieces_short"),
+                "\n".join(loaded.errors),
+            )
+            return
+
+        header_map = resolve_header_map(loaded.fieldnames, PIECE_HEADER_ALIASES)
+        missing = missing_required_fields(header_map, PIECE_REQUIRED_FIELDS)
+        if missing:
+            mapped = self._prompt_column_mapping(
+                fieldnames=loaded.fieldnames,
+                field_order=PIECE_FIELD_ORDER,
+                required_fields=PIECE_REQUIRED_FIELDS,
+                initial_map=header_map,
+                missing_fields=missing,
+            )
+            if mapped is None:
+                return
+            header_map = mapped
+
+        result = import_pieces_from_rows(
+            loaded.fieldnames,
+            loaded.rows,
+            existing_ids=existing_ids,
+            header_map=header_map,
+        )
 
         if result.file_errors:
             QMessageBox.warning(
@@ -788,6 +856,41 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self._emit(events.CSV_IMPORTED, kind="pieces", count=len(result.valid_pieces))
         self._status("status.pieces_imported", 5000, n=len(result.valid_pieces))
+
+    def _prompt_column_mapping(
+        self,
+        *,
+        fieldnames: list[str] | tuple[str, ...],
+        field_order: tuple[str, ...],
+        required_fields: tuple[str, ...],
+        initial_map: dict[str, str],
+        missing_fields: list[str],
+    ) -> dict[str, str] | None:
+        """Ask the user to map file headers; return None if cancelled."""
+        dialog = ImportColumnMappingDialog(
+            fieldnames=fieldnames,
+            field_order=field_order,
+            required_fields=required_fields,
+            initial_map=initial_map,
+            missing_fields=missing_fields,
+            language=self._ui_language(),
+            parent=self,
+        )
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return None
+        mapped = dialog.header_map()
+        still_missing = missing_required_fields(mapped, required_fields)
+        if still_missing:
+            QMessageBox.warning(
+                self,
+                self._tr("import.mapping_title"),
+                self._tr(
+                    "import.mapping_incomplete",
+                    fields=", ".join(still_missing),
+                ),
+            )
+            return None
+        return mapped
 
     def _add_piece(self):
         project = self.services.projects.current_project

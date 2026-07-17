@@ -11,22 +11,21 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from studio.models.board import StudioBoard
+from studio.import_headers import (
+    BOARD_HEADER_ALIASES,
+    BOARD_REQUIRED_FIELDS,
+    missing_required_fields,
+    resolve_header_map,
+    sanitize_header_map,
+)
 from studio.tabular_file import load_tabular_file
-
-_HEADER_ALIASES: dict[str, tuple[str, ...]] = {
-    "board_id": ("board_id", "id", "identificador", "tablero"),
-    "length_mm": ("length_mm", "length", "largo_mm", "largo"),
-    "width_mm": ("width_mm", "width", "ancho_mm", "ancho"),
-    "thickness_mm": ("thickness_mm", "thickness", "espesor_mm", "espesor"),
-    "quantity": ("quantity", "qty", "cantidad"),
-    "material": ("material",),
-}
 
 _DEFAULT_THICKNESS_MM = 19.0
 _DEFAULT_QUANTITY = 1
 _DEFAULT_MATERIAL = "Generico"
 
-_REQUIRED_FIELDS = ("board_id", "length_mm", "width_mm")
+_REQUIRED_FIELDS = BOARD_REQUIRED_FIELDS
+_HEADER_ALIASES = BOARD_HEADER_ALIASES
 
 
 @dataclass(frozen=True)
@@ -69,16 +68,7 @@ class ImportBoardsResult:
 
 def _resolve_header_map(fieldnames: list[str] | tuple[str, ...]) -> dict[str, str]:
     """Map canonical field names to the actual header found in the file."""
-    normalized = {name.strip().casefold(): name for name in fieldnames}
-    resolved: dict[str, str] = {}
-
-    for canonical, aliases in _HEADER_ALIASES.items():
-        for alias in aliases:
-            if alias in normalized:
-                resolved[canonical] = normalized[alias]
-                break
-
-    return resolved
+    return resolve_header_map(fieldnames, _HEADER_ALIASES)
 
 
 def _parse_positive_float(
@@ -189,11 +179,17 @@ def import_boards_from_rows(
     fieldnames: list[str] | tuple[str, ...],
     data_rows: list[dict[str, str]] | tuple[dict[str, str], ...],
     existing_ids: set[str] | None = None,
+    *,
+    header_map: dict[str, str] | None = None,
 ) -> ImportBoardsResult:
     """Parse already-loaded tabular rows into an `ImportBoardsResult`."""
     existing = {board_id.casefold() for board_id in (existing_ids or set())}
-    header_map = _resolve_header_map(fieldnames)
-    missing = [field for field in _REQUIRED_FIELDS if field not in header_map]
+    resolved = (
+        sanitize_header_map(header_map, fieldnames)
+        if header_map is not None
+        else _resolve_header_map(fieldnames)
+    )
+    missing = missing_required_fields(resolved, _REQUIRED_FIELDS)
     if missing:
         return ImportBoardsResult(
             file_errors=(
@@ -203,7 +199,7 @@ def import_boards_from_rows(
 
     seen_ids: set[str] = set()
     rows = [
-        _parse_row(index, raw_row, header_map, seen_ids, existing)
+        _parse_row(index, raw_row, resolved, seen_ids, existing)
         for index, raw_row in enumerate(data_rows, start=2)
     ]
     if not rows:
@@ -216,13 +212,18 @@ def import_boards_from_rows(
 def import_boards_from_file(
     path: str | Path,
     existing_ids: set[str] | None = None,
+    *,
+    header_map: dict[str, str] | None = None,
 ) -> ImportBoardsResult:
     """Parse a CSV or Excel inventory file and return an `ImportBoardsResult`."""
     loaded = load_tabular_file(path)
     if not loaded.ok:
         return ImportBoardsResult(file_errors=loaded.errors)
     return import_boards_from_rows(
-        loaded.fieldnames, loaded.rows, existing_ids=existing_ids
+        loaded.fieldnames,
+        loaded.rows,
+        existing_ids=existing_ids,
+        header_map=header_map,
     )
 
 
