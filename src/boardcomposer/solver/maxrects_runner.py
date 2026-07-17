@@ -21,6 +21,7 @@ from boardcomposer.solver.maxrects.maxrects import MaxRects
 from boardcomposer.solver.maxrects.orderings import MAXRECTS_BOARD_ORDERINGS
 from boardcomposer.solver.maxrects.placement import MaxRectsPlacement
 from boardcomposer.solver.maxrects.strategies import MAXRECTS_HEURISTICS
+from boardcomposer.solver.placement_failures import record_placement_failure
 
 BoardOrdering = Callable[[list[Board]], list[Board]]
 
@@ -100,6 +101,10 @@ def _place_all_boards_adaptive(
             )
 
             if selected is None:
+                record_placement_failure(
+                    piece_id=board.id or f"board-{index + 1}",
+                    reason="no_fit",
+                )
                 continue
 
             placement = maxrects.place_candidate(selected)
@@ -114,6 +119,10 @@ def _place_all_boards_adaptive(
             )
 
         if placement is None:
+            record_placement_failure(
+                piece_id=board.id or f"board-{index + 1}",
+                reason="no_fit",
+            )
             continue
 
         placements.append(
@@ -210,6 +219,10 @@ def _place_all_boards_by_contact(
         )
 
         if selected is None:
+            record_placement_failure(
+                piece_id=board.id or f"board-{index + 1}",
+                reason="no_fit",
+            )
             continue
 
         placement = maxrects.place_candidate(selected)
@@ -258,6 +271,10 @@ def _place_all_boards_fixed(
         )
 
         if placement is None:
+            record_placement_failure(
+                piece_id=board.id or f"board-{index + 1}",
+                reason="no_fit",
+            )
             continue
 
         placements.append(_to_board_placement(placement, board, index))
