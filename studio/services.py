@@ -8,6 +8,7 @@ from studio.events import EventBus
 from studio.project import ProjectManager
 from studio.selection import SelectionManager
 from studio.layout_service import LayoutService
+from studio.preferences import PreferencesManager
 
 
 @dataclass
@@ -19,6 +20,7 @@ class StudioServices:
     selection: SelectionManager = field(default_factory=SelectionManager)
     commands: CommandManager = field(default_factory=CommandManager)
     recent_files: RecentFilesManager = field(default_factory=RecentFilesManager)
+    preferences: PreferencesManager = field(default_factory=PreferencesManager)
 
     def __post_init__(self):
         self.layout = LayoutService(self)

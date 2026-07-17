@@ -6,10 +6,12 @@ from .import_pieces_preview_dialog import (
 )
 from .new_board_dialog import NewBoardDialog as NewBoardDialog
 from .new_piece_dialog import NewPieceDialog as NewPieceDialog
+from .preferences_dialog import PreferencesDialog as PreferencesDialog
 
 __all__ = [
     "ImportBoardsPreviewDialog",
     "ImportPiecesPreviewDialog",
     "NewBoardDialog",
     "NewPieceDialog",
+    "PreferencesDialog",
 ]

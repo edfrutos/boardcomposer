@@ -48,6 +48,9 @@
 - Exportación DXF y PDF de la solución seleccionada (además de SVG).
 - Importación de piezas desde CSV (`Proyecto → Importar piezas (CSV)…`).
 - Revisión UI `docs/masterplan/ui/REVIEW-2026-07-17.md`.
+- Preferencias de Studio (SCR-006): estrategia y pesos de scoring en
+  `~/.boardcomposer/preferences.json` (`Editar → Preferencias…`).
+- Miniaturas SVG sincronizadas en el comparador de soluciones (misma escala).
 
 ### Cambiado
 

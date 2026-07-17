@@ -119,13 +119,19 @@ class LayoutService:
 
         return core_project
 
+    def _resolve_strategy(self):
+        preferences = getattr(self.services, "preferences", None)
+        if preferences is None:
+            return material_first_strategy()
+        return preferences.current.resolved_strategy()
+
     def solve_current_project(self) -> AssemblySolution | None:
         project = self.to_core_project()
         if project is None:
             return None
         self._solved_project = project
 
-        strategy = material_first_strategy()
+        strategy = self._resolve_strategy()
         self.strategy_name = strategy.name
 
         solver = GeometrySolver(

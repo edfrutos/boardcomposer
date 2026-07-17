@@ -1,0 +1,87 @@
+"""Tests for Studio preferences persistence and strategy resolution."""
+
+from boardcomposer.solver.strategies import strategy_by_name
+from studio.preferences import (
+    PreferencesManager,
+    StudioPreferences,
+    WeightPreferences,
+)
+
+
+def test_resolved_strategy_uses_the_named_preset_by_default():
+    prefs = StudioPreferences(strategy_name="compact")
+
+    strategy = prefs.resolved_strategy()
+
+    assert strategy.name == "compact"
+    assert strategy.weights == strategy_by_name("compact").weights
+
+
+def test_resolved_strategy_applies_custom_weights_when_enabled():
+    prefs = StudioPreferences(
+        strategy_name="material",
+        use_custom_weights=True,
+        weights=WeightPreferences(
+            material_utilization=11,
+            placed_boards=22,
+            compactness=33,
+            rotation_penalty=44,
+        ),
+    )
+
+    strategy = prefs.resolved_strategy()
+
+    assert strategy.name == "material"
+    assert strategy.generator_names == strategy_by_name("material").generator_names
+    assert strategy.weights.material_utilization == 11
+    assert strategy.weights.compactness == 33
+
+
+def test_preferences_manager_round_trips_through_json(tmp_path):
+    path = tmp_path / "preferences.json"
+    manager = PreferencesManager(path)
+    updated = StudioPreferences(
+        strategy_name="exact",
+        use_custom_weights=True,
+        weights=WeightPreferences(
+            material_utilization=50,
+            placed_boards=20,
+            compactness=20,
+            rotation_penalty=10,
+        ),
+    )
+
+    manager.update(updated)
+    reloaded = PreferencesManager(path).current
+
+    assert reloaded == updated
+    assert path.is_file()
+
+
+def test_preferences_manager_falls_back_on_corrupt_or_missing_files(tmp_path):
+    missing = PreferencesManager(tmp_path / "missing.json")
+    assert missing.current.strategy_name == "material"
+
+    corrupt_path = tmp_path / "corrupt.json"
+    corrupt_path.write_text("{not-json", encoding="utf-8")
+    corrupt = PreferencesManager(corrupt_path)
+    assert corrupt.current.strategy_name == "material"
+
+
+def test_unknown_strategy_name_falls_back_to_material():
+    prefs = StudioPreferences(strategy_name="nope")
+
+    assert prefs.resolved_strategy().name == "material"
+
+
+def test_layout_service_uses_preferences_strategy(tmp_path):
+    from studio.layout_service import LayoutService
+    from studio.preferences import PreferencesManager
+    from studio.services import StudioServices
+
+    services = StudioServices()
+    services.preferences = PreferencesManager(tmp_path / "prefs.json")
+    services.preferences.update(StudioPreferences(strategy_name="compact"))
+    layout = LayoutService(services)
+
+    assert layout._resolve_strategy().name == "compact"

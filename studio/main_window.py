@@ -1,15 +1,18 @@
 """Main window for BoardComposer Studio."""
 
 from pathlib import Path
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QAction, QCloseEvent
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtGui import QAction, QCloseEvent, QIcon
 from PySide6.QtWidgets import (
+    QAbstractItemView,
     QCheckBox,
     QComboBox,
     QDockWidget,
     QFileDialog,
     QHBoxLayout,
     QLabel,
+    QListWidget,
+    QListWidgetItem,
     QMainWindow,
     QMenuBar,
     QMessageBox,
@@ -38,10 +41,12 @@ from studio.dialogs import (
     ImportPiecesPreviewDialog,
     NewBoardDialog,
     NewPieceDialog,
+    PreferencesDialog,
 )
 from studio.board_csv_importer import import_boards_from_csv
 from studio.piece_csv_importer import import_pieces_from_csv
 from studio.solution_ordering import SORT_LABELS, ordered_solution_indexes
+from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
 
 
 class MainWindow(QMainWindow):
@@ -114,6 +119,7 @@ class MainWindow(QMainWindow):
         self._actions["redo"] = QAction("Rehacer", self)
         self._actions["rotate_piece"] = QAction("Rotar 90°", self)
         self._actions["delete_piece"] = QAction("Eliminar pieza", self)
+        self._actions["preferences"] = QAction("Preferencias…", self)
         self._actions["solve_layout"] = QAction("Calcular layout", self)
         self._actions["previous_solution"] = QAction("Solución anterior", self)
         self._actions["next_solution"] = QAction("Solución siguiente", self)
@@ -142,6 +148,8 @@ class MainWindow(QMainWindow):
         menus["Editar"].addSeparator()
         menus["Editar"].addAction(self._actions["rotate_piece"])
         menus["Editar"].addAction(self._actions["delete_piece"])
+        menus["Editar"].addSeparator()
+        menus["Editar"].addAction(self._actions["preferences"])
 
         menus["Proyecto"].addAction(self._actions["add_board"])
         menus["Proyecto"].addAction(self._actions["add_piece"])
@@ -178,6 +186,7 @@ class MainWindow(QMainWindow):
         self._actions["redo"].triggered.connect(self._redo)
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
         self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
+        self._actions["preferences"].triggered.connect(self._open_preferences)
         self._actions["solve_layout"].triggered.connect(self._solve_layout)
         self._actions["previous_solution"].triggered.connect(
             self._previous_layout_solution
@@ -275,10 +284,27 @@ class MainWindow(QMainWindow):
         controls.addWidget(self.comparator_complete_only)
         controls.addStretch(1)
 
+        self.solution_thumbnails = QListWidget()
+        self.solution_thumbnails.setViewMode(QListWidget.ViewMode.IconMode)
+        self.solution_thumbnails.setFlow(QListWidget.Flow.LeftToRight)
+        self.solution_thumbnails.setWrapping(False)
+        self.solution_thumbnails.setResizeMode(QListWidget.ResizeMode.Adjust)
+        self.solution_thumbnails.setMovement(QListWidget.Movement.Static)
+        self.solution_thumbnails.setIconSize(DEFAULT_THUMBNAIL_SIZE)
+        self.solution_thumbnails.setSpacing(8)
+        self.solution_thumbnails.setMaximumHeight(DEFAULT_THUMBNAIL_SIZE.height() + 48)
+        self.solution_thumbnails.setSelectionMode(
+            QAbstractItemView.SelectionMode.SingleSelection
+        )
+        self.solution_thumbnails.itemClicked.connect(
+            self._on_solution_thumbnail_clicked
+        )
+
         comparator_panel = QWidget()
         comparator_layout = QVBoxLayout(comparator_panel)
         comparator_layout.setContentsMargins(0, 0, 0, 0)
         comparator_layout.addLayout(controls)
+        comparator_layout.addWidget(self.solution_thumbnails)
         comparator_layout.addWidget(self.solutions_table)
 
         solutions_dock = QDockWidget("Comparador de soluciones", self)
@@ -895,6 +921,13 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self.update_undo_redo()
 
+    def _open_preferences(self) -> None:
+        dialog = PreferencesDialog(self.services.preferences.current, self)
+        if dialog.exec() != PreferencesDialog.DialogCode.Accepted:
+            return
+        self.services.preferences.update(dialog.preferences())
+        self.statusBar().showMessage("Preferencias guardadas", 3000)
+
     def _solve_layout(self):
         solution = self.services.layout.solve_current_project()
 
@@ -938,6 +971,7 @@ class MainWindow(QMainWindow):
 
     def _reload_solution_table(self):
         self.solutions_table.setRowCount(0)
+        self.solution_thumbnails.clear()
         solutions = self.services.layout.solutions
         highlights = self.services.layout.solution_highlights
         self._solution_display_indexes = ordered_solution_indexes(
@@ -946,6 +980,13 @@ class MainWindow(QMainWindow):
             complete_only=self._comparator_complete_only,
             board_waste=self.services.layout.board_waste_ratio,
         )
+
+        project = self.services.layout.solved_project
+        svgs = [
+            solution_to_svg(solutions[index], project)
+            for index in self._solution_display_indexes
+        ]
+        pixmaps = solution_thumbnails(svgs, box=DEFAULT_THUMBNAIL_SIZE)
 
         for row, solution_index in enumerate(self._solution_display_indexes):
             solution = solutions[solution_index]
@@ -976,13 +1017,26 @@ class MainWindow(QMainWindow):
                     item.setFont(font)
                 self.solutions_table.setItem(row, column, item)
 
+            thumb = QListWidgetItem(f"#{solution_index + 1}")
+            thumb.setData(Qt.ItemDataRole.UserRole, solution_index)
+            thumb.setIcon(QIcon(pixmaps[row]))
+            thumb.setSizeHint(
+                QSize(
+                    DEFAULT_THUMBNAIL_SIZE.width() + 16,
+                    DEFAULT_THUMBNAIL_SIZE.height() + 28,
+                )
+            )
+            if row_highlights:
+                thumb.setToolTip("Mejor en: " + ", ".join(row_highlights))
+            self.solution_thumbnails.addItem(thumb)
+
         self.solutions_table.resizeColumnsToContents()
 
         selected = self.services.layout.selected_solution_index
         if selected in self._solution_display_indexes:
-            self.solutions_table.selectRow(
-                self._solution_display_indexes.index(selected)
-            )
+            display_row = self._solution_display_indexes.index(selected)
+            self.solutions_table.selectRow(display_row)
+            self.solution_thumbnails.setCurrentRow(display_row)
 
     def _show_layout_solution(self, solution):
         solution_count = len(self.services.layout.solutions)
@@ -1099,6 +1153,12 @@ class MainWindow(QMainWindow):
         if row < 0 or row >= len(self._solution_display_indexes):
             return
         self._select_layout_solution(self._solution_display_indexes[row])
+
+    def _on_solution_thumbnail_clicked(self, item: QListWidgetItem) -> None:
+        solution_index = item.data(Qt.ItemDataRole.UserRole)
+        if solution_index is None:
+            return
+        self._select_layout_solution(int(solution_index))
 
     def _export_selected_solution_svg(self):
         solution = self.services.layout.selected_solution
