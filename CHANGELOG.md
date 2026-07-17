@@ -53,6 +53,8 @@
 - Miniaturas SVG sincronizadas en el comparador de soluciones (misma escala).
 - Importación CSV/Excel (`.xlsx`) de tableros y piezas (FLW-002), sin
   dependencias extra (lector OOXML mínimo).
+- Panel de diferencias del comparador (SCR-003): métricas y colocaciones
+  respecto a una solución de referencia fijable.
 
 ### Cambiado
 

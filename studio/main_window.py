@@ -16,6 +16,7 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QMenuBar,
     QMessageBox,
+    QPushButton,
     QStatusBar,
     QTableWidget,
     QTableWidgetItem,
@@ -45,6 +46,7 @@ from studio.dialogs import (
 )
 from studio.board_csv_importer import import_boards_from_file
 from studio.piece_csv_importer import import_pieces_from_file
+from studio.solution_diff import compare_solutions, format_diff_unavailable
 from studio.solution_ordering import SORT_LABELS, ordered_solution_indexes
 from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
 
@@ -59,6 +61,7 @@ class MainWindow(QMainWindow):
         self._solution_display_indexes: list[int] = []
         self._comparator_sort_by = "ranking"
         self._comparator_complete_only = False
+        self._comparator_reference_index: int | None = None
         self.setWindowTitle("BoardComposer Studio")
         self.resize(1400, 900)
 
@@ -286,6 +289,10 @@ class MainWindow(QMainWindow):
         controls.addWidget(self.comparator_complete_only)
         controls.addStretch(1)
 
+        self.pin_reference_button = QPushButton("Fijar como referencia")
+        self.pin_reference_button.clicked.connect(self._pin_selected_as_reference)
+        controls.addWidget(self.pin_reference_button)
+
         self.solution_thumbnails = QListWidget()
         self.solution_thumbnails.setViewMode(QListWidget.ViewMode.IconMode)
         self.solution_thumbnails.setFlow(QListWidget.Flow.LeftToRight)
@@ -302,12 +309,21 @@ class MainWindow(QMainWindow):
             self._on_solution_thumbnail_clicked
         )
 
+        self.solution_differences = QTextEdit()
+        self.solution_differences.setReadOnly(True)
+        self.solution_differences.setPlaceholderText(
+            "Diferencias respecto a la solución de referencia"
+        )
+        self.solution_differences.setMaximumHeight(140)
+
         comparator_panel = QWidget()
         comparator_layout = QVBoxLayout(comparator_panel)
         comparator_layout.setContentsMargins(0, 0, 0, 0)
         comparator_layout.addLayout(controls)
         comparator_layout.addWidget(self.solution_thumbnails)
         comparator_layout.addWidget(self.solutions_table)
+        comparator_layout.addWidget(QLabel("Diferencias vs referencia"))
+        comparator_layout.addWidget(self.solution_differences)
 
         solutions_dock = QDockWidget("Comparador de soluciones", self)
         self.tabifyDockWidget(console_dock, solutions_dock)
@@ -934,6 +950,7 @@ class MainWindow(QMainWindow):
 
     def _solve_layout(self):
         solution = self.services.layout.solve_current_project()
+        self._comparator_reference_index = None
 
         if solution is None:
             self._show_no_solution_diagnosis()
@@ -1041,6 +1058,61 @@ class MainWindow(QMainWindow):
             display_row = self._solution_display_indexes.index(selected)
             self.solutions_table.selectRow(display_row)
             self.solution_thumbnails.setCurrentRow(display_row)
+
+        self._reload_solution_differences()
+
+    def _pin_selected_as_reference(self) -> None:
+        solutions = self.services.layout.solutions
+        selected = self.services.layout.selected_solution_index
+        if not solutions or selected < 0 or selected >= len(solutions):
+            self.statusBar().showMessage("Primero selecciona una solución", 3000)
+            return
+        self._comparator_reference_index = selected
+        self._reload_solution_differences()
+        self.statusBar().showMessage(
+            f"Referencia fijada en solución #{selected + 1}",
+            3000,
+        )
+
+    def _reload_solution_differences(self) -> None:
+        solutions = self.services.layout.solutions
+        if len(solutions) < 2:
+            self.solution_differences.setPlainText(
+                "\n".join(
+                    format_diff_unavailable(
+                        "Se necesitan al menos dos soluciones para comparar "
+                        "diferencias."
+                    )
+                )
+            )
+            return
+
+        candidate_index = self.services.layout.selected_solution_index
+        if candidate_index < 0 or candidate_index >= len(solutions):
+            self.solution_differences.setPlainText(
+                "\n".join(
+                    format_diff_unavailable("Selecciona una solución en el comparador.")
+                )
+            )
+            return
+
+        reference_index = self._comparator_reference_index
+        if reference_index is None or reference_index >= len(solutions):
+            reference_index = 0 if candidate_index != 0 else min(1, len(solutions) - 1)
+            self._comparator_reference_index = reference_index
+
+        reference = solutions[reference_index]
+        candidate = solutions[candidate_index]
+        layout = self.services.layout
+        diff = compare_solutions(
+            reference,
+            candidate,
+            reference_index=reference_index,
+            candidate_index=candidate_index,
+            board_waste_reference=layout.board_waste_ratio(reference),
+            board_waste_candidate=layout.board_waste_ratio(candidate),
+        )
+        self.solution_differences.setPlainText("\n".join(diff.summary_lines()))
 
     def _show_layout_solution(self, solution):
         solution_count = len(self.services.layout.solutions)
