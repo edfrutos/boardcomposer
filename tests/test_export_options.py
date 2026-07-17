@@ -71,13 +71,15 @@ def test_preview_text_includes_format_summary():
 
 
 def test_preview_svg_respects_offcuts_option():
+    from boardcomposer.export import DEFAULT_SVG_PALETTE
+
     solution = _solution()
 
     with_offcuts = preview_svg(solution, None, ExportOptions(include_offcuts=True))
     without_offcuts = preview_svg(solution, None, ExportOptions(include_offcuts=False))
 
-    assert "#16a34a" in with_offcuts
-    assert "#16a34a" not in without_offcuts
+    assert DEFAULT_SVG_PALETTE.offcut_stroke in with_offcuts
+    assert DEFAULT_SVG_PALETTE.offcut_stroke not in without_offcuts
     assert "A" in with_offcuts
 
 

@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from PySide6.QtCore import QByteArray, QSize, Qt
-from PySide6.QtGui import QImage, QPainter, QPixmap
+from PySide6.QtCore import QByteArray, QSize
+from PySide6.QtGui import QColor, QImage, QPainter, QPixmap
 from PySide6.QtSvg import QSvgRenderer
+
+from boardcomposer.export import DEFAULT_SVG_PALETTE
 
 DEFAULT_THUMBNAIL_SIZE = QSize(200, 120)
 
@@ -31,6 +33,10 @@ def shared_fit_scale(sizes: list[QSize], box: QSize) -> float:
     return min(box.width() / max_width, box.height() / max_height)
 
 
+def _fill_color() -> QColor:
+    return QColor(DEFAULT_SVG_PALETTE.background)
+
+
 def svg_to_pixmap(
     svg: str,
     *,
@@ -45,9 +51,10 @@ def svg_to_pixmap(
     """
     renderer = QSvgRenderer(QByteArray(svg.encode("utf-8")))
     default = renderer.defaultSize()
+    fill = _fill_color()
     if default.width() <= 0 or default.height() <= 0:
         pixmap = QPixmap(box)
-        pixmap.fill(Qt.GlobalColor.white)
+        pixmap.fill(fill)
         return pixmap
 
     if scale is None:
@@ -57,7 +64,7 @@ def svg_to_pixmap(
     height = max(1, int(round(default.height() * scale)))
 
     image = QImage(width, height, QImage.Format.Format_ARGB32)
-    image.fill(Qt.GlobalColor.white)
+    image.fill(fill)
     painter = QPainter(image)
     renderer.render(painter)
     painter.end()

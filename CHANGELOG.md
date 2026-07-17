@@ -80,6 +80,8 @@
   Archivo / Source Sans 3, y pantalla de inicio brand-first (`docs/DESIGN.md`).
 - Colores del canvas/workspace alineados al tema (tablero, pieza, selección,
   validación y grid).
+- Paleta SVG Industrial madera en exportación y miniaturas (inicio,
+  comparador, vista previa de export).
 
 ### Cambiado
 
