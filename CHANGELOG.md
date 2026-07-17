@@ -56,6 +56,8 @@
 - Panel de diferencias del comparador (SCR-003): métricas y colocaciones
   respecto a una solución de referencia fijable.
 - Exportación JSON y CSV de la solución seleccionada (SCR-007).
+- Preferencias ampliadas SCR-006: tema (sistema/claro/oscuro), mostrar
+  cuadrícula y tamaño de grid persistidos en `preferences.json`.
 
 ### Cambiado
 
@@ -81,7 +83,7 @@
 
 ## 0.3.0-stable — 2026-07-11
 
-### Añadido
+### Añadido-1
 
 - Edición de proyectos, tableros y piezas en Studio.
 - Generación, selección y aplicación de varias soluciones.
@@ -90,14 +92,14 @@
 
 ## 0.1-prototype — 2026-06-27
 
-### Añadido
+### Añadido-2
 
 - Primer motor funcional con layouts básicos y free-space.
 - CLI, CSV, presentadores y pruebas iniciales.
 
 ## 0.0.1 — 2026-06-26
 
-### Añadido
+### Añadido-3
 
 - Documentación fundacional.
 - Estructura base del proyecto.

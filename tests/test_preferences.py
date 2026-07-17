@@ -49,6 +49,9 @@ def test_preferences_manager_round_trips_through_json(tmp_path):
             compactness=20,
             rotation_penalty=10,
         ),
+        theme="dark",
+        show_grid=False,
+        grid_size_mm=50,
     )
 
     manager.update(updated)
@@ -72,6 +75,32 @@ def test_unknown_strategy_name_falls_back_to_material():
     prefs = StudioPreferences(strategy_name="nope")
 
     assert prefs.resolved_strategy().name == "material"
+
+
+def test_preferences_clamp_grid_size_and_reject_unknown_theme(tmp_path):
+    path = tmp_path / "preferences.json"
+    path.write_text(
+        '{"theme": "neon", "grid_size_mm": 9999, "show_grid": false}',
+        encoding="utf-8",
+    )
+
+    prefs = PreferencesManager(path).current
+
+    assert prefs.theme == "system"
+    assert prefs.grid_size_mm == 500
+    assert prefs.show_grid is False
+
+
+def test_apply_theme_switches_palette(qapp):
+    from studio.theme import apply_theme
+
+    apply_theme(qapp, "dark")
+    dark_window = qapp.palette().color(qapp.palette().ColorRole.Window)
+    apply_theme(qapp, "light")
+    light_window = qapp.palette().color(qapp.palette().ColorRole.Window)
+    apply_theme(qapp, "system")
+
+    assert dark_window.lightness() < light_window.lightness()
 
 
 def test_layout_service_uses_preferences_strategy(tmp_path):

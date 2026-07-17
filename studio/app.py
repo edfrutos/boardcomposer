@@ -6,12 +6,14 @@ from PySide6.QtWidgets import QApplication
 
 from studio.main_window import MainWindow
 from studio.services import StudioServices
+from studio.theme import apply_theme
 
 
 def main() -> int:
     """Run BoardComposer Studio."""
     app = QApplication(sys.argv)
     services = StudioServices()
+    apply_theme(app, services.preferences.current.theme)
     window = MainWindow(services=services)
     window.show()
     return app.exec()

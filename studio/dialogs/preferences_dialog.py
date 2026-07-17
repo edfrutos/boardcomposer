@@ -1,4 +1,4 @@
-"""Preferences dialog for strategy and scoring weights (SCR-006)."""
+"""Preferences dialog for Studio appearance, workspace and scoring (SCR-006)."""
 
 from __future__ import annotations
 
@@ -9,16 +9,22 @@ from PySide6.QtWidgets import (
     QDialogButtonBox,
     QDoubleSpinBox,
     QFormLayout,
+    QGroupBox,
     QLabel,
+    QSpinBox,
     QVBoxLayout,
 )
 
 from boardcomposer.solver.strategies import strategy_by_name
 from studio.preferences import (
+    DEFAULT_GRID_SIZE_MM,
+    MAX_GRID_SIZE_MM,
+    MIN_GRID_SIZE_MM,
     VALID_STRATEGIES,
     StudioPreferences,
     WeightPreferences,
 )
+from studio.theme import DEFAULT_THEME, VALID_THEMES
 
 _STRATEGY_LABELS = {
     "balanced": "Equilibrada",
@@ -27,15 +33,21 @@ _STRATEGY_LABELS = {
     "exact": "Exacta (MaxRects + CP-SAT)",
 }
 
+_THEME_LABELS = {
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro",
+}
+
 
 class PreferencesDialog(QDialog):
-    """Edit user-level solver preferences."""
+    """Edit user-level Studio preferences."""
 
     def __init__(self, preferences: StudioPreferences, parent=None) -> None:
         super().__init__(parent)
 
         self.setWindowTitle("Preferencias")
-        self.setMinimumWidth(420)
+        self.setMinimumWidth(440)
         self._preferences = preferences
 
         layout = QVBoxLayout(self)
@@ -46,7 +58,31 @@ class PreferencesDialog(QDialog):
             )
         )
 
-        form = QFormLayout()
+        general = QGroupBox("General")
+        general_form = QFormLayout(general)
+        self.theme = QComboBox()
+        for key in VALID_THEMES:
+            self.theme.addItem(_THEME_LABELS[key], key)
+        theme_index = self.theme.findData(preferences.theme)
+        self.theme.setCurrentIndex(theme_index if theme_index >= 0 else 0)
+        general_form.addRow("Tema:", self.theme)
+        layout.addWidget(general)
+
+        workspace = QGroupBox("Workspace")
+        workspace_form = QFormLayout(workspace)
+        self.show_grid = QCheckBox("Mostrar cuadrícula")
+        self.show_grid.setChecked(preferences.show_grid)
+        workspace_form.addRow("", self.show_grid)
+        self.grid_size_mm = QSpinBox()
+        self.grid_size_mm.setRange(MIN_GRID_SIZE_MM, MAX_GRID_SIZE_MM)
+        self.grid_size_mm.setSuffix(" mm")
+        self.grid_size_mm.setSingleStep(10)
+        self.grid_size_mm.setValue(preferences.grid_size_mm)
+        workspace_form.addRow("Tamaño de cuadrícula:", self.grid_size_mm)
+        layout.addWidget(workspace)
+
+        algorithms = QGroupBox("Algoritmos")
+        form = QFormLayout(algorithms)
 
         self.strategy = QComboBox()
         for key in VALID_STRATEGIES:
@@ -70,8 +106,7 @@ class PreferencesDialog(QDialog):
         form.addRow("Piezas colocadas:", self.placed_boards)
         form.addRow("Compacidad:", self.compactness)
         form.addRow("Penalización por rotación:", self.rotation_penalty)
-
-        layout.addLayout(form)
+        layout.addWidget(algorithms)
 
         buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.RestoreDefaults
@@ -122,6 +157,9 @@ class PreferencesDialog(QDialog):
             self._on_strategy_changed(self.strategy.currentIndex())
 
     def _restore_defaults(self) -> None:
+        self.theme.setCurrentIndex(self.theme.findData(DEFAULT_THEME))
+        self.show_grid.setChecked(True)
+        self.grid_size_mm.setValue(DEFAULT_GRID_SIZE_MM)
         self.strategy.setCurrentIndex(self.strategy.findData("material"))
         self.use_custom_weights.setChecked(False)
         self._on_strategy_changed(self.strategy.currentIndex())
@@ -136,4 +174,7 @@ class PreferencesDialog(QDialog):
                 compactness=self.compactness.value(),
                 rotation_penalty=self.rotation_penalty.value(),
             ),
+            theme=self.theme.currentData() or DEFAULT_THEME,
+            show_grid=self.show_grid.isChecked(),
+            grid_size_mm=self.grid_size_mm.value(),
         )

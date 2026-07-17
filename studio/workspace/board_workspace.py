@@ -66,7 +66,12 @@ class BoardWorkspace(QGraphicsView):
         self._validators.clear()
         self._scene.setSceneRect(QRectF(-5000, -5000, 13000, 11000))
 
-        add_grid(self._scene)
+        preferences = getattr(self.services, "preferences", None)
+        if preferences is None or preferences.current.show_grid:
+            grid_size = (
+                preferences.current.grid_size_mm if preferences is not None else 100
+            )
+            add_grid(self._scene, grid_size=grid_size)
         self._add_board()
         self._add_pieces()
         self.fit_board()
