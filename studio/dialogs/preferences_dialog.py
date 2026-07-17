@@ -177,4 +177,8 @@ class PreferencesDialog(QDialog):
             theme=self.theme.currentData() or DEFAULT_THEME,
             show_grid=self.show_grid.isChecked(),
             grid_size_mm=self.grid_size_mm.value(),
+            export_format=self._preferences.export_format,
+            export_include_metrics=self._preferences.export_include_metrics,
+            export_include_explanation=self._preferences.export_include_explanation,
+            export_include_offcuts=self._preferences.export_include_offcuts,
         )

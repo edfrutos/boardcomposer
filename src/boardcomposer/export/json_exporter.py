@@ -22,6 +22,9 @@ def solution_to_dict(
     *,
     strategy_name: str | None = None,
     solution_index: int | None = None,
+    include_metrics: bool = True,
+    include_explanation: bool = True,
+    include_offcuts: bool = True,
 ) -> dict:
     """Return a JSON-serializable dict for one solution."""
     payload: dict = {
@@ -29,19 +32,6 @@ def solution_to_dict(
         "strategy": strategy_name,
         "complete": solution.is_complete,
         "score": solution.score.total,
-        "metrics": {
-            "placed_pieces": len(solution.placements),
-            "omitted_pieces": len(solution.omitted_piece_ids),
-            "total_length_mm": solution.total_length_mm,
-            "total_width_mm": solution.total_width_mm,
-            "waste_ratio": solution.waste_ratio,
-            "used_area_mm2": solution.used_area_mm2,
-            "offcut_area_mm2": solution.total_offcut_area_mm2,
-            "panels_used": len(solution.panel_references),
-        },
-        "notes": list(solution.explanation.notes),
-        "strengths": list(solution.explanation.strengths),
-        "weaknesses": list(solution.explanation.weaknesses),
         "omitted_piece_ids": list(solution.omitted_piece_ids),
         "placements": [
             {
@@ -55,7 +45,27 @@ def solution_to_dict(
             }
             for placement in solution.placements
         ],
-        "offcuts": [
+    }
+
+    if include_metrics:
+        payload["metrics"] = {
+            "placed_pieces": len(solution.placements),
+            "omitted_pieces": len(solution.omitted_piece_ids),
+            "total_length_mm": solution.total_length_mm,
+            "total_width_mm": solution.total_width_mm,
+            "waste_ratio": solution.waste_ratio,
+            "used_area_mm2": solution.used_area_mm2,
+            "offcut_area_mm2": solution.total_offcut_area_mm2,
+            "panels_used": len(solution.panel_references),
+        }
+
+    if include_explanation:
+        payload["notes"] = list(solution.explanation.notes)
+        payload["strengths"] = list(solution.explanation.strengths)
+        payload["weaknesses"] = list(solution.explanation.weaknesses)
+
+    if include_offcuts:
+        payload["offcuts"] = [
             {
                 "panel_reference": _panel_reference_to_dict(offcut.panel_reference),
                 "x_mm": offcut.x_mm,
@@ -65,8 +75,7 @@ def solution_to_dict(
                 "area_mm2": offcut.area_mm2,
             }
             for offcut in solution.offcuts
-        ],
-    }
+        ]
 
     if project is not None:
         payload["stock_panels"] = [
@@ -80,7 +89,7 @@ def solution_to_dict(
             }
             for panel in project.stock_panels
         ]
-        if solution.panel_references:
+        if include_metrics and solution.panel_references:
             payload["metrics"]["panel_waste_ratio"] = solution.panel_waste_ratio(
                 project
             )
@@ -94,6 +103,9 @@ def solution_to_json(
     *,
     strategy_name: str | None = None,
     solution_index: int | None = None,
+    include_metrics: bool = True,
+    include_explanation: bool = True,
+    include_offcuts: bool = True,
 ) -> str:
     """Serialize one solution to indented JSON text."""
     return (
@@ -103,6 +115,9 @@ def solution_to_json(
                 project,
                 strategy_name=strategy_name,
                 solution_index=solution_index,
+                include_metrics=include_metrics,
+                include_explanation=include_explanation,
+                include_offcuts=include_offcuts,
             ),
             indent=2,
             ensure_ascii=False,
