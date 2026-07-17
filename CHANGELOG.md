@@ -118,6 +118,8 @@
   Fases): recorre `SolveTrace` y sincroniza solución/pieza cuando aplica.
 - Clic en un hecho del Timeline para buscar contexto (algoritmo → solución,
   pieza fallida, índice de solución, nota de marcador).
+- Asistente de mapeo de columnas al importar CSV/Excel cuando no se
+  reconocen cabeceras obligatorias (FLW-002).
 
 ### Cambiado
 

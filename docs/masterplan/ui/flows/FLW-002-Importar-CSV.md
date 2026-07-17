@@ -101,9 +101,10 @@ Las piezas válidas quedan incorporadas al proyecto sin alterar la información 
 
 ## Observaciones
 
-En futuras versiones se admitirán asistentes de mapeo de columnas, plantillas
-de importación, formatos de terceros adicionales y reglas de validación
-configurables por el usuario. Excel `.xlsx` (primera hoja) ya está soportado.
+En futuras versiones se admitirán plantillas de importación, formatos de
+terceros adicionales y reglas de validación configurables por el usuario.
+Excel `.xlsx` (primera hoja) ya está soportado. Si el auto-match de
+cabeceras falla, Studio ofrece un asistente de mapeo de columnas.
 
 ---
 
@@ -117,3 +118,5 @@ configurables por el usuario. Excel `.xlsx` (primera hoja) ya está soportado.
   Workspace.
 - Formatos: CSV y Excel `.xlsx` (primera hoja) vía `studio/tabular_file.py`.
   Samples: `data/samples/studio_*.csv` y `data/samples/studio_*.xlsx`.
+- Asistente de mapeo de columnas cuando fallan las obligatorias
+  (`ImportColumnMappingDialog`, `studio/import_headers.py`).

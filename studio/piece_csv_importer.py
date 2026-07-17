@@ -10,21 +10,20 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from studio.models.piece import StudioPiece
+from studio.import_headers import (
+    PIECE_HEADER_ALIASES,
+    PIECE_REQUIRED_FIELDS,
+    missing_required_fields,
+    resolve_header_map,
+    sanitize_header_map,
+)
 from studio.tabular_file import load_tabular_file
-
-_HEADER_ALIASES: dict[str, tuple[str, ...]] = {
-    "piece_id": ("piece_id", "id", "identificador", "pieza", "referencia"),
-    "length_mm": ("length_mm", "length", "largo_mm", "largo"),
-    "width_mm": ("width_mm", "width", "ancho_mm", "ancho"),
-    "thickness_mm": ("thickness_mm", "thickness", "espesor_mm", "espesor"),
-    "quantity": ("quantity", "qty", "cantidad"),
-    "material": ("material",),
-}
 
 _DEFAULT_THICKNESS_MM = 19.0
 _DEFAULT_QUANTITY = 1
 _DEFAULT_MATERIAL = "Generico"
-_REQUIRED_FIELDS = ("piece_id", "length_mm", "width_mm")
+_REQUIRED_FIELDS = PIECE_REQUIRED_FIELDS
+_HEADER_ALIASES = PIECE_HEADER_ALIASES
 
 
 @dataclass(frozen=True)
@@ -68,14 +67,7 @@ class ImportPiecesResult:
 
 
 def _resolve_header_map(fieldnames: list[str] | tuple[str, ...]) -> dict[str, str]:
-    normalized = {name.strip().casefold(): name for name in fieldnames}
-    resolved: dict[str, str] = {}
-    for canonical, aliases in _HEADER_ALIASES.items():
-        for alias in aliases:
-            if alias in normalized:
-                resolved[canonical] = normalized[alias]
-                break
-    return resolved
+    return resolve_header_map(fieldnames, _HEADER_ALIASES)
 
 
 def _parse_positive_float(
@@ -210,11 +202,17 @@ def import_pieces_from_rows(
     fieldnames: list[str] | tuple[str, ...],
     data_rows: list[dict[str, str]] | tuple[dict[str, str], ...],
     existing_ids: set[str] | None = None,
+    *,
+    header_map: dict[str, str] | None = None,
 ) -> ImportPiecesResult:
     """Parse already-loaded tabular rows into an `ImportPiecesResult`."""
     reserved = {piece_id.casefold() for piece_id in (existing_ids or set())}
-    header_map = _resolve_header_map(fieldnames)
-    missing = [field for field in _REQUIRED_FIELDS if field not in header_map]
+    resolved = (
+        sanitize_header_map(header_map, fieldnames)
+        if header_map is not None
+        else _resolve_header_map(fieldnames)
+    )
+    missing = missing_required_fields(resolved, _REQUIRED_FIELDS)
     if missing:
         return ImportPiecesResult(
             file_errors=(
@@ -223,7 +221,7 @@ def import_pieces_from_rows(
         )
 
     rows = [
-        _parse_row(index, raw_row, header_map, reserved)
+        _parse_row(index, raw_row, resolved, reserved)
         for index, raw_row in enumerate(data_rows, start=2)
     ]
     if not rows:
@@ -236,13 +234,18 @@ def import_pieces_from_rows(
 def import_pieces_from_file(
     path: str | Path,
     existing_ids: set[str] | None = None,
+    *,
+    header_map: dict[str, str] | None = None,
 ) -> ImportPiecesResult:
     """Parse a CSV or Excel file and return an `ImportPiecesResult`."""
     loaded = load_tabular_file(path)
     if not loaded.ok:
         return ImportPiecesResult(file_errors=loaded.errors)
     return import_pieces_from_rows(
-        loaded.fieldnames, loaded.rows, existing_ids=existing_ids
+        loaded.fieldnames,
+        loaded.rows,
+        existing_ids=existing_ids,
+        header_map=header_map,
     )
 
 
