@@ -6,6 +6,7 @@ from PySide6.QtCore import Qt, QTimer, Signal
 from PySide6.QtWidgets import (
     QComboBox,
     QHBoxLayout,
+    QInputDialog,
     QLabel,
     QListWidget,
     QListWidgetItem,
@@ -15,7 +16,7 @@ from PySide6.QtWidgets import (
 )
 
 from boardcomposer.domain import AssemblySolution
-from studio.events.catalog import ALL_EVENTS, CATALOG
+from studio.events.catalog import ALL_EVENTS, CATALOG, TIMELINE_MARKED
 from studio.i18n import tr
 from studio.timeline.replay import SolutionReplay
 from studio.timeline.store import TimelineEntry, TimelineStore
@@ -49,6 +50,8 @@ class TimelinePanel(QWidget):
         self._algo_filter.currentIndexChanged.connect(self._on_algo_filter_changed)
         self._clear = QPushButton()
         self._clear.clicked.connect(self._on_clear)
+        self._mark = QPushButton()
+        self._mark.clicked.connect(self._on_mark_clicked)
         self._export = QPushButton()
         self._export.clicked.connect(self._on_export_clicked)
 
@@ -57,6 +60,7 @@ class TimelinePanel(QWidget):
         controls.addWidget(self._filter, stretch=1)
         controls.addWidget(self._algo_label)
         controls.addWidget(self._algo_filter, stretch=1)
+        controls.addWidget(self._mark)
         controls.addWidget(self._export)
         controls.addWidget(self._clear)
 
@@ -101,6 +105,7 @@ class TimelinePanel(QWidget):
         self._filter_label.setText(tr("timeline.filter", language))
         self._algo_label.setText(tr("timeline.filter_algorithm", language))
         self._clear.setText(tr("timeline.clear", language))
+        self._mark.setText(tr("timeline.mark", language))
         self._export.setText(tr("timeline.export", language))
         self._replay_reset.setText(tr("timeline.replay_reset", language))
         self._replay_back.setText(tr("timeline.replay_back", language))
@@ -165,6 +170,27 @@ class TimelinePanel(QWidget):
 
     def _on_export_clicked(self) -> None:
         self.export_requested.emit()
+
+    def _on_mark_clicked(self) -> None:
+        note, ok = QInputDialog.getText(
+            self,
+            tr("timeline.mark_dialog_title", self._language),
+            tr("timeline.mark_dialog_label", self._language),
+        )
+        if not ok:
+            return
+        text = note.strip()
+        if not text:
+            return
+        payload: dict[str, object] = {"note": text}
+        if self._replay.available:
+            payload["step"] = self._replay.step
+            if self._replay.algorithm:
+                payload["algorithm"] = self._replay.algorithm
+            piece = self._replay.current_piece_id
+            if piece:
+                payload["piece"] = piece
+        self._store.bus.publish(TIMELINE_MARKED, payload)
 
     def current_filter_event(self) -> str | None:
         """Return the active event filter, or None for all events."""
@@ -313,6 +339,8 @@ def _format_payload(payload: dict, language: str) -> str:
         parts.append(tr("timeline.detail.count", language, n=payload["count"]))
     if "index" in payload:
         parts.append(tr("timeline.detail.index", language, n=payload["index"]))
+    if "step" in payload and "index" not in payload:
+        parts.append(tr("timeline.detail.step", language, n=payload["step"]))
     if "status" in payload:
         parts.append(str(payload["status"]))
     if "kind" in payload:
@@ -323,6 +351,8 @@ def _format_payload(payload: dict, language: str) -> str:
         parts.append(str(payload["algorithm"]))
     if "piece" in payload:
         parts.append(str(payload["piece"]))
+    if "note" in payload:
+        parts.append(str(payload["note"]))
     if "reason" in payload:
         reason = str(payload["reason"])
         parts.append(tr(f"timeline.reason.{reason}", language))
