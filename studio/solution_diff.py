@@ -10,6 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from boardcomposer.domain import AssemblySolution, BoardPlacement, PanelReference
+from studio.i18n import DEFAULT_LANGUAGE, tr
 
 
 @dataclass(frozen=True)
@@ -40,48 +41,63 @@ class SolutionDiff:
     identical: bool
     metrics: tuple[MetricDelta, ...] = ()
     placements: tuple[PlacementChange, ...] = ()
+    language: str = DEFAULT_LANGUAGE
 
     def summary_lines(self) -> list[str]:
         """Human-readable lines for the Studio differences panel."""
+        lang = self.language
         if self.identical:
             return [
-                f"Solución #{self.candidate_index + 1} es idéntica a la "
-                f"referencia #{self.reference_index + 1}."
+                tr(
+                    "diff.identical",
+                    lang,
+                    candidate=self.candidate_index + 1,
+                    reference=self.reference_index + 1,
+                )
             ]
 
         lines = [
-            f"Diferencias de #{self.candidate_index + 1} "
-            f"respecto a la referencia #{self.reference_index + 1}",
+            tr(
+                "diff.header",
+                lang,
+                candidate=self.candidate_index + 1,
+                reference=self.reference_index + 1,
+            ),
             "",
         ]
 
         if self.metrics:
-            lines.append("Métricas")
+            lines.append(tr("diff.metrics", lang))
             for metric in self.metrics:
                 marker = ""
                 if metric.better == "candidate":
-                    marker = "  ↑ mejor aquí"
+                    marker = tr("diff.better_here", lang)
                 elif metric.better == "reference":
-                    marker = "  ↑ mejor en referencia"
+                    marker = tr("diff.better_reference", lang)
                 lines.append(
                     f"  {metric.label}: {metric.reference} → {metric.candidate}{marker}"
                 )
             lines.append("")
 
         if self.placements:
-            lines.append("Colocaciones")
+            lines.append(tr("diff.placements", lang))
             for change in self.placements:
                 lines.append(f"  {change.piece_id}: {change.detail}")
         elif not self.metrics:
-            lines.append("Sin diferencias relevantes en métricas ni colocaciones.")
+            lines.append(tr("diff.none", lang))
 
         return lines
 
 
-def _panel_label(reference: PanelReference | None) -> str:
+def _panel_label(reference: PanelReference | None, language: str) -> str:
     if reference is None:
-        return "sin panel"
-    return f"panel {reference.stock_panel_index + 1}.{reference.instance_index}"
+        return tr("diff.no_panel", language)
+    return tr(
+        "diff.panel",
+        language,
+        stock=reference.stock_panel_index + 1,
+        instance=reference.instance_index,
+    )
 
 
 def _placement_key(placement: BoardPlacement) -> tuple:
@@ -95,12 +111,13 @@ def _placement_key(placement: BoardPlacement) -> tuple:
     )
 
 
-def _format_placement(placement: BoardPlacement) -> str:
+def _format_placement(placement: BoardPlacement, language: str) -> str:
+    rotated = tr("diff.rotated", language) if placement.rotated else ""
     return (
         f"({placement.x_mm:g}, {placement.y_mm:g}) "
         f"{placement.length_mm:g}×{placement.width_mm:g} mm"
-        f"{' rotada' if placement.rotated else ''}"
-        f", {_panel_label(placement.panel_reference)}"
+        f"{rotated}"
+        f", {_panel_label(placement.panel_reference, language)}"
     )
 
 
@@ -116,11 +133,12 @@ def _metric_deltas(
     *,
     board_waste_reference: float | None,
     board_waste_candidate: float | None,
+    language: str,
 ) -> list[MetricDelta]:
     deltas: list[MetricDelta] = []
 
     def add(
-        label: str,
+        label_key: str,
         ref_value: float,
         cand_value: float,
         *,
@@ -149,7 +167,7 @@ def _metric_deltas(
 
         deltas.append(
             MetricDelta(
-                label=label,
+                label=tr(label_key, language),
                 reference=ref_text,
                 candidate=cand_text,
                 better=better,
@@ -157,21 +175,21 @@ def _metric_deltas(
         )
 
     add(
-        "Piezas colocadas",
+        "diff.metric.pieces",
         float(len(reference.placements)),
         float(len(candidate.placements)),
         higher_is_better=True,
         as_int=True,
     )
     add(
-        "Piezas omitidas",
+        "diff.metric.omitted",
         float(len(reference.omitted_piece_ids)),
         float(len(candidate.omitted_piece_ids)),
         higher_is_better=False,
         as_int=True,
     )
     add(
-        "Huecos internos",
+        "diff.metric.waste",
         reference.waste_ratio,
         candidate.waste_ratio,
         higher_is_better=False,
@@ -179,42 +197,42 @@ def _metric_deltas(
     )
     if board_waste_reference is not None and board_waste_candidate is not None:
         add(
-            "Material libre",
+            "diff.metric.board_free",
             board_waste_reference,
             board_waste_candidate,
             higher_is_better=False,
             as_percent=True,
         )
     add(
-        "Largo total (mm)",
+        "diff.metric.length",
         reference.total_length_mm,
         candidate.total_length_mm,
         higher_is_better=False,
         as_int=True,
     )
     add(
-        "Ancho total (mm)",
+        "diff.metric.width",
         reference.total_width_mm,
         candidate.total_width_mm,
         higher_is_better=False,
         as_int=True,
     )
     add(
-        "Paneles usados",
+        "diff.metric.panels",
         float(len(reference.panel_references)),
         float(len(candidate.panel_references)),
         higher_is_better=False,
         as_int=True,
     )
     add(
-        "Retales",
+        "diff.metric.offcuts",
         float(len(reference.offcuts)),
         float(len(candidate.offcuts)),
         higher_is_better=True,
         as_int=True,
     )
     add(
-        "Puntuación",
+        "diff.metric.score",
         reference.score.total,
         candidate.score.total,
         higher_is_better=True,
@@ -223,9 +241,15 @@ def _metric_deltas(
     if reference.is_complete != candidate.is_complete:
         deltas.append(
             MetricDelta(
-                label="Completitud",
-                reference="completa" if reference.is_complete else "parcial",
-                candidate="completa" if candidate.is_complete else "parcial",
+                label=tr("diff.metric.completeness", language),
+                reference=tr(
+                    "diff.complete" if reference.is_complete else "diff.partial",
+                    language,
+                ),
+                candidate=tr(
+                    "diff.complete" if candidate.is_complete else "diff.partial",
+                    language,
+                ),
                 better="candidate" if candidate.is_complete else "reference",
             )
         )
@@ -236,6 +260,7 @@ def _metric_deltas(
 def _placement_changes(
     reference: AssemblySolution,
     candidate: AssemblySolution,
+    language: str,
 ) -> list[PlacementChange]:
     ref_map = _placements_by_id(reference)
     cand_map = _placements_by_id(candidate)
@@ -246,7 +271,11 @@ def _placement_changes(
             PlacementChange(
                 piece_id=piece_id,
                 kind="only_reference",
-                detail=f"solo en referencia ({_format_placement(ref_map[piece_id])})",
+                detail=tr(
+                    "diff.only_reference",
+                    language,
+                    placement=_format_placement(ref_map[piece_id], language),
+                ),
             )
         )
 
@@ -255,7 +284,11 @@ def _placement_changes(
             PlacementChange(
                 piece_id=piece_id,
                 kind="only_candidate",
-                detail=f"solo aquí ({_format_placement(cand_map[piece_id])})",
+                detail=tr(
+                    "diff.only_candidate",
+                    language,
+                    placement=_format_placement(cand_map[piece_id], language),
+                ),
             )
         )
 
@@ -269,8 +302,8 @@ def _placement_changes(
                 piece_id=piece_id,
                 kind="moved",
                 detail=(
-                    f"{_format_placement(ref_placement)} → "
-                    f"{_format_placement(cand_placement)}"
+                    f"{_format_placement(ref_placement, language)} → "
+                    f"{_format_placement(cand_placement, language)}"
                 ),
             )
         )
@@ -286,6 +319,7 @@ def compare_solutions(
     candidate_index: int,
     board_waste_reference: float | None = None,
     board_waste_candidate: float | None = None,
+    language: str = DEFAULT_LANGUAGE,
 ) -> SolutionDiff:
     """Return the structured diff of `candidate` against `reference`."""
     if reference_index == candidate_index:
@@ -293,6 +327,7 @@ def compare_solutions(
             reference_index=reference_index,
             candidate_index=candidate_index,
             identical=True,
+            language=language,
         )
 
     metrics = tuple(
@@ -301,9 +336,10 @@ def compare_solutions(
             candidate,
             board_waste_reference=board_waste_reference,
             board_waste_candidate=board_waste_candidate,
+            language=language,
         )
     )
-    placements = tuple(_placement_changes(reference, candidate))
+    placements = tuple(_placement_changes(reference, candidate, language))
     identical = not metrics and not placements
 
     return SolutionDiff(
@@ -312,9 +348,13 @@ def compare_solutions(
         identical=identical,
         metrics=metrics,
         placements=placements,
+        language=language,
     )
 
 
-def format_diff_unavailable(reason: str) -> list[str]:
+def format_diff_unavailable(
+    reason_key: str,
+    language: str = DEFAULT_LANGUAGE,
+) -> list[str]:
     """Friendly lines when a diff cannot be computed yet."""
-    return ["Diferencias", "", reason]
+    return [tr("diff.title", language), "", tr(reason_key, language)]

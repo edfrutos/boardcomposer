@@ -73,6 +73,7 @@
   (`~/.boardcomposer/export_templates.json`).
 - i18n es/en de diálogos (export/import) y mensajes de la barra de estado.
 - i18n es/en de formularios Nuevo/Editar tablero y pieza.
+- i18n es/en del panel de diferencias del comparador (SCR-003).
 
 ### Cambiado
 
