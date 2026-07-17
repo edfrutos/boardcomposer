@@ -82,6 +82,9 @@
   validación y grid).
 - Paleta SVG Industrial madera en exportación y miniaturas (inicio,
   comparador, vista previa de export).
+- Compartir plantillas de exportación entre equipos (pack JSON).
+- Plantillas de proyecto (guardar / nuevo desde plantilla).
+- Accesos a documentación y novedades (menú Ayuda + pantalla de inicio).
 
 ### Cambiado
 

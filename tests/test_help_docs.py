@@ -1,0 +1,52 @@
+"""Tests for changelog highlights and documentation paths."""
+
+from studio.dialogs.help_dialogs import AboutDialog, WhatsNewDialog
+from studio.welcome_screen import WelcomeScreen
+from studio.whats_new import documentation_paths, load_whats_new, repo_root
+
+
+def test_repo_root_contains_changelog():
+    root = repo_root()
+    assert (root / "CHANGELOG.md").is_file()
+    assert (root / "studio").is_dir()
+
+
+def test_documentation_paths_exist():
+    paths = documentation_paths()
+    assert paths["readme"].is_file()
+    assert paths["masterplan"].is_file()
+    assert paths["changelog"].is_file()
+
+
+def test_load_whats_new_from_changelog(tmp_path):
+    changelog = tmp_path / "CHANGELOG.md"
+    changelog.write_text(
+        "# CHANGELOG\n\n## Unreleased — 0.4.0\n\n### Añadido\n\n"
+        "- Primera novedad\n- Segunda novedad\n\n### Cambiado\n\n- Ignorar\n",
+        encoding="utf-8",
+    )
+    title, bullets = load_whats_new(changelog_path=changelog, max_items=10)
+    assert "Unreleased" in title
+    assert bullets == ["Primera novedad", "Segunda novedad"]
+
+
+def test_load_whats_new_missing_file(tmp_path):
+    title, bullets = load_whats_new(changelog_path=tmp_path / "missing.md")
+    assert title
+    assert bullets
+
+
+def test_whats_new_and_about_dialogs(qapp):
+    del qapp
+    whats = WhatsNewDialog(language="en")
+    assert whats.windowTitle() == "What’s new"
+    about = AboutDialog(language="en")
+    assert about.windowTitle() == "About"
+
+
+def test_welcome_has_docs_and_whats_new_buttons(qapp):
+    del qapp
+    screen = WelcomeScreen()
+    screen.apply_language("en")
+    assert screen.docs_button.text() == "Documentation…"
+    assert screen.whats_new_button.text() == "What’s new…"

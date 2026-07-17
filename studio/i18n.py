@@ -34,6 +34,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "welcome.import": "Importar piezas (CSV/Excel)…",
         "welcome.demo": "Proyecto de ejemplo",
         "welcome.from_template": "Desde plantilla…",
+        "welcome.docs": "Documentación…",
+        "welcome.whats_new": "Novedades…",
         "welcome.preferences": "Preferencias…",
         "welcome.empty_recent": "Sin proyectos recientes",
         "menu.file": "Archivo",
@@ -70,7 +72,20 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.next_solution": "Solución siguiente",
         "action.apply_layout": "Aplicar layout calculado",
         "action.no_recent": "Sin archivos recientes",
-        "dock.explorer": "Explorer",
+        "action.whats_new": "Novedades…",
+        "action.open_docs": "Documentación…",
+        "action.about": "Acerca de BoardComposer…",
+        "help.whats_new_title": "Novedades",
+        "help.whats_new_heading": "Cambios recientes ({section})",
+        "help.about_title": "Acerca de",
+        "help.about_version": "Versión {version}",
+        "help.about_blurb": (
+            "Studio para optimizar el corte de tableros. "
+            "Consulta la documentación local y el CHANGELOG del repositorio."
+        ),
+        "help.docs_missing": "No se encontró la documentación en:\n{path}",
+        "status.docs_opened": "Documentación abierta",
+        "dock.explorer": "Explorador",
         "dock.inspector": "Inspector",
         "dock.timeline": "Timeline",
         "dock.comparator": "Comparador de soluciones",
@@ -321,6 +336,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "welcome.import": "Import pieces (CSV/Excel)…",
         "welcome.demo": "Sample project",
         "welcome.from_template": "From template…",
+        "welcome.docs": "Documentation…",
+        "welcome.whats_new": "What’s new…",
         "welcome.preferences": "Preferences…",
         "welcome.empty_recent": "No recent projects",
         "menu.file": "File",
@@ -357,6 +374,19 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.next_solution": "Next solution",
         "action.apply_layout": "Apply calculated layout",
         "action.no_recent": "No recent files",
+        "action.whats_new": "What’s new…",
+        "action.open_docs": "Documentation…",
+        "action.about": "About BoardComposer…",
+        "help.whats_new_title": "What’s new",
+        "help.whats_new_heading": "Recent changes ({section})",
+        "help.about_title": "About",
+        "help.about_version": "Version {version}",
+        "help.about_blurb": (
+            "Studio for optimizing board cutting. "
+            "See the local documentation and the repository CHANGELOG."
+        ),
+        "help.docs_missing": "Documentation not found at:\n{path}",
+        "status.docs_opened": "Documentation opened",
         "dock.explorer": "Explorer",
         "dock.inspector": "Inspector",
         "dock.timeline": "Timeline",
@@ -618,6 +648,9 @@ _ACTION_KEYS = (
     "previous_solution",
     "next_solution",
     "apply_layout",
+    "whats_new",
+    "open_docs",
+    "about",
 )
 
 

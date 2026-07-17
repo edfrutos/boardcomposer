@@ -34,6 +34,8 @@ class WelcomeScreen(QWidget):
     preferences_requested = Signal()
     demo_project_requested = Signal()
     from_template_requested = Signal()
+    docs_requested = Signal()
+    whats_new_requested = Signal()
 
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -102,6 +104,14 @@ class WelcomeScreen(QWidget):
         self.template_button.clicked.connect(self.from_template_requested.emit)
         secondary.addWidget(self.template_button)
 
+        self.docs_button = QPushButton()
+        self.docs_button.clicked.connect(self.docs_requested.emit)
+        secondary.addWidget(self.docs_button)
+
+        self.whats_new_button = QPushButton()
+        self.whats_new_button.clicked.connect(self.whats_new_requested.emit)
+        secondary.addWidget(self.whats_new_button)
+
         self.preferences_button = QPushButton()
         self.preferences_button.clicked.connect(self.preferences_requested.emit)
         secondary.addWidget(self.preferences_button)
@@ -154,6 +164,8 @@ class WelcomeScreen(QWidget):
         self.recent_label.setText(tr("welcome.recent", language))
         self.demo_button.setText(tr("welcome.demo", language))
         self.template_button.setText(tr("welcome.from_template", language))
+        self.docs_button.setText(tr("welcome.docs", language))
+        self.whats_new_button.setText(tr("welcome.whats_new", language))
         self.preferences_button.setText(tr("welcome.preferences", language))
         self.set_recent_files(self._recent_paths)
 

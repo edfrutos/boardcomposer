@@ -124,4 +124,5 @@ Versiones futuras podrán incorporar:
 - Plantillas de proyecto: guardar el abierto como plantilla y crear nuevo
   desde plantilla (welcome + menú Archivo); catálogo en
   `~/.boardcomposer/project_templates/`.
-- Pendiente: accesos a documentación/novedades.
+- Accesos a documentación (índice masterplan / README) y novedades
+  (CHANGELOG Unreleased) desde welcome y menú Ayuda.
