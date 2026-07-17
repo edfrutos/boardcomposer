@@ -91,3 +91,4 @@ En versiones posteriores el Timeline permitirá reproducción paso a paso de alg
 
 **Estado 2026-07-17 (e):** Comparador sincronizado con el replay de colocaciones (diff parcial por paso vs referencia).
 **Estado 2026-07-17 (f):** traza de fases del solver (`SolveTrace`) publicada en el Timeline; el replay muestra algoritmo y pieza. Instrumentación de intentos fallidos internos sigue pendiente.
+**Estado 2026-07-17 (g):** exportación del historial del Timeline a JSON/CSV (filtro activo respetado).

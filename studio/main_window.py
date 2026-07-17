@@ -138,6 +138,7 @@ class MainWindow(QMainWindow):
         self._menus["project"].addAction(self._actions["import_pieces_csv"])
 
         self._menus["export"].addAction(self._actions["export_selected"])
+        self._menus["export"].addAction(self._actions["export_timeline"])
 
         self._menus["tools"].addAction(self._actions["solve_layout"])
         self._menus["tools"].addSeparator()
@@ -182,6 +183,9 @@ class MainWindow(QMainWindow):
         self._actions["apply_layout"].triggered.connect(self._apply_layout)
         self._actions["export_selected"].triggered.connect(
             self._export_selected_solution
+        )
+        self._actions["export_timeline"].triggered.connect(
+            self._export_timeline_history
         )
         self._actions["whats_new"].triggered.connect(self._show_whats_new)
         self._actions["open_docs"].triggered.connect(self._open_documentation)
@@ -244,6 +248,7 @@ class MainWindow(QMainWindow):
             language=self._ui_language(),
         )
         self.console.replay_step_changed.connect(self._on_timeline_replay_step)
+        self.console.export_requested.connect(self._export_timeline_history)
 
         self.console_dock = QDockWidget("", self)
         self.console_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
@@ -1609,6 +1614,43 @@ class MainWindow(QMainWindow):
         if solution_index is None:
             return
         self._select_layout_solution(int(solution_index))
+
+    def _export_timeline_history(self) -> None:
+        from studio.timeline.export import timeline_to_csv, timeline_to_json
+
+        store = self.services.timeline
+        event_filter = self.console.current_filter_event()
+        entries = store.filtered(event_filter) if event_filter else store.entries
+        if not entries:
+            self._status("status.timeline_export_empty")
+            return
+
+        path, selected_filter = QFileDialog.getSaveFileName(
+            self,
+            self._tr("dialog.export_timeline"),
+            "boardcomposer-timeline.json",
+            self._tr("dialog.filter_timeline"),
+        )
+        if not path:
+            return
+
+        use_csv = path.lower().endswith(".csv") or "CSV" in (selected_filter or "")
+        if use_csv and not path.lower().endswith(".csv"):
+            path = f"{path}.csv"
+        elif not use_csv and not path.lower().endswith(".json"):
+            path = f"{path}.json"
+
+        try:
+            if use_csv:
+                payload = timeline_to_csv(store, event_name=event_filter)
+            else:
+                payload = timeline_to_json(store, event_name=event_filter)
+            Path(path).write_text(payload, encoding="utf-8")
+        except OSError as exc:
+            self._status("status.timeline_export_failed", 5000, error=exc)
+            return
+
+        self._status("status.timeline_exported", 5000, path=path)
 
     def _export_selected_solution(self):
         solution = self.services.layout.selected_solution

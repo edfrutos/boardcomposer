@@ -29,6 +29,9 @@ class TimelinePanel(QWidget):
     replay_step_changed = Signal(object, int)
     """Emitted as ``(solution | None, reveal_count)`` when the replay step changes."""
 
+    export_requested = Signal()
+    """Ask the main window to run the Timeline history export dialog."""
+
     def __init__(self, store: TimelineStore, language: str = "es", parent=None) -> None:
         super().__init__(parent)
         self._store = store
@@ -41,10 +44,13 @@ class TimelinePanel(QWidget):
         self._filter.currentIndexChanged.connect(self._on_filter_changed)
         self._clear = QPushButton()
         self._clear.clicked.connect(self._on_clear)
+        self._export = QPushButton()
+        self._export.clicked.connect(self._on_export_clicked)
 
         controls = QHBoxLayout()
         controls.addWidget(self._filter_label)
         controls.addWidget(self._filter, stretch=1)
+        controls.addWidget(self._export)
         controls.addWidget(self._clear)
 
         self._replay_label = QLabel()
@@ -87,6 +93,7 @@ class TimelinePanel(QWidget):
         self._language = language
         self._filter_label.setText(tr("timeline.filter", language))
         self._clear.setText(tr("timeline.clear", language))
+        self._export.setText(tr("timeline.export", language))
         self._replay_reset.setText(tr("timeline.replay_reset", language))
         self._replay_back.setText(tr("timeline.replay_back", language))
         self._replay_forward.setText(tr("timeline.replay_forward", language))
@@ -123,6 +130,13 @@ class TimelinePanel(QWidget):
     def _on_clear(self) -> None:
         self._store.clear()
         self._rebuild()
+
+    def _on_export_clicked(self) -> None:
+        self.export_requested.emit()
+
+    def current_filter_event(self) -> str | None:
+        """Return the active event filter, or None for all events."""
+        return self._filter_event
 
     def _on_entry(self, entry: TimelineEntry) -> None:
         if self._filter_event and entry.event_name != self._filter_event:
