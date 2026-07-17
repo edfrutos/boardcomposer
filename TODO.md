@@ -9,6 +9,7 @@ Backlog operativo de corto plazo. El registro de producto se mantiene en
 - [x] Permitir mover una pieza entre paneles físicos desde el Workspace.
 - [x] Mostrar identificador e instancia de panel en el Inspector de pieza.
 - [x] Añadir pruebas automatizadas de interacción Qt para el Workspace.
+- [x] Pantalla de inicio / bienvenida (SCR-001).
 
 ## Datos y flujo de trabajo
 
