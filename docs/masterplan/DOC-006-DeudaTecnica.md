@@ -1,5 +1,3 @@
-
-
 # BoardComposer
 
 ## Documento 6 — Gestión de la Deuda Técnica
@@ -33,21 +31,27 @@ La deuda técnica es un elemento normal del desarrollo. El objetivo no es elimin
 ## Clasificación
 
 ### DT-A — Arquitectura
+
 Problemas de diseño estructural.
 
 ### DT-C — Código
+
 Duplicación, complejidad o refactorizaciones pendientes.
 
 ### DT-T — Tests
+
 Cobertura insuficiente o pruebas mejorables.
 
 ### DT-D — Documentación
+
 Documentación incompleta o desactualizada.
 
 ### DT-P — Rendimiento
+
 Aspectos relacionados con optimización y escalabilidad.
 
 ### DT-UX — Experiencia de usuario
+
 Limitaciones conocidas en la interfaz o flujo de trabajo.
 
 ---

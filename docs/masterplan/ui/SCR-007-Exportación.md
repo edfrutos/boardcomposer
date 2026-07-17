@@ -143,8 +143,9 @@ Toda exportación deberá conservar la trazabilidad de la solución de origen, i
 
 ## Estado de implementación (2026-07-17)
 
-- Menú `Exportar` en Studio: SVG, DXF, PDF, JSON y CSV de la solución
-  seleccionada.
-- JSON: métricas, colocaciones, retales, omitidas y paneles de stock.
-- CSV: tabla de colocaciones (`piece_id`, posición, tamaño, rotación, panel).
-- Pendiente: pantalla dedicada con opciones avanzadas y vista previa.
+- Menú `Exportar → Exportar solución seleccionada…` abre un diálogo con
+  formato (SVG/DXF/PDF/JSON/CSV), opciones de contenido y vista previa.
+- JSON admite incluir/omitir métricas, explicación y retales.
+- SVG/DXF/PDF respetan la opción de retales.
+- Las últimas opciones se guardan en `preferences.json`.
+- Pendiente: vista previa gráfica SVG embebida y plantillas de exportación.

@@ -9,6 +9,11 @@ from pathlib import Path
 from boardcomposer.solver.scoring_weights import ScoringWeights
 from boardcomposer.solver.strategies import OptimizationStrategy, strategy_by_name
 from studio.theme import DEFAULT_THEME, VALID_THEMES
+from studio.export_options import (
+    DEFAULT_EXPORT_FORMAT,
+    VALID_EXPORT_FORMATS,
+    ExportOptions,
+)
 
 DEFAULT_STRATEGY = "material"
 VALID_STRATEGIES = ("balanced", "material", "compact", "exact")
@@ -56,6 +61,10 @@ class StudioPreferences:
     theme: str = DEFAULT_THEME
     show_grid: bool = True
     grid_size_mm: int = DEFAULT_GRID_SIZE_MM
+    export_format: str = DEFAULT_EXPORT_FORMAT
+    export_include_metrics: bool = True
+    export_include_explanation: bool = True
+    export_include_offcuts: bool = True
 
     def resolved_strategy(self) -> OptimizationStrategy:
         """Return the OptimizationStrategy implied by these preferences."""
@@ -68,6 +77,15 @@ class StudioPreferences:
         if not self.use_custom_weights:
             return base
         return replace(base, weights=self.weights.to_scoring_weights())
+
+    def export_options(self) -> ExportOptions:
+        """Return the last-used / default export options."""
+        return ExportOptions(
+            format=self.export_format,
+            include_metrics=self.export_include_metrics,
+            include_explanation=self.export_include_explanation,
+            include_offcuts=self.export_include_offcuts,
+        ).normalized()
 
 
 def _clamp_grid_size(value: int | float) -> int:
@@ -127,6 +145,10 @@ class PreferencesManager:
         except (TypeError, ValueError):
             grid_size_mm = DEFAULT_GRID_SIZE_MM
 
+        export_format = payload.get("export_format", DEFAULT_EXPORT_FORMAT)
+        if export_format not in VALID_EXPORT_FORMATS:
+            export_format = DEFAULT_EXPORT_FORMAT
+
         return StudioPreferences(
             strategy_name=strategy_name,
             use_custom_weights=bool(payload.get("use_custom_weights", False)),
@@ -134,6 +156,12 @@ class PreferencesManager:
             theme=theme,
             show_grid=bool(payload.get("show_grid", True)),
             grid_size_mm=grid_size_mm,
+            export_format=export_format,
+            export_include_metrics=bool(payload.get("export_include_metrics", True)),
+            export_include_explanation=bool(
+                payload.get("export_include_explanation", True)
+            ),
+            export_include_offcuts=bool(payload.get("export_include_offcuts", True)),
         )
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
@@ -147,6 +175,10 @@ class PreferencesManager:
             "theme": preferences.theme,
             "show_grid": preferences.show_grid,
             "grid_size_mm": preferences.grid_size_mm,
+            "export_format": preferences.export_format,
+            "export_include_metrics": preferences.export_include_metrics,
+            "export_include_explanation": preferences.export_include_explanation,
+            "export_include_offcuts": preferences.export_include_offcuts,
         }
         self.path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",

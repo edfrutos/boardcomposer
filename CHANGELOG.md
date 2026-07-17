@@ -60,6 +60,8 @@
   cuadrícula y tamaño de grid persistidos en `preferences.json`.
 - Pantalla de inicio SCR-001 con acciones principales, recientes
   persistidos y acceso a preferencias/ejemplo.
+- Diálogo de exportación SCR-007 con formato, opciones (métricas,
+  explicación, retales), vista previa y recuerdo de la última elección.
 
 ### Cambiado
 
