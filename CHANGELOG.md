@@ -55,6 +55,7 @@
   dependencias extra (lector OOXML mínimo).
 - Panel de diferencias del comparador (SCR-003): métricas y colocaciones
   respecto a una solución de referencia fijable.
+- Exportación JSON y CSV de la solución seleccionada (SCR-007).
 
 ### Cambiado
 
