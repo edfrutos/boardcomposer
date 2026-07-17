@@ -84,6 +84,32 @@ def test_compare_solutions_reports_metric_and_placement_changes():
     assert "A:" in text
 
 
+def test_compare_solutions_summary_translates_to_english():
+    reference = _solution([BoardPlacement("A", 0, 0, 10, 10)], score=2.0)
+    candidate = _solution([BoardPlacement("A", 5, 0, 10, 10)], score=8.0)
+
+    diff = compare_solutions(
+        reference,
+        candidate,
+        reference_index=0,
+        candidate_index=1,
+        language="en",
+    )
+
+    text = "\n".join(diff.summary_lines())
+    assert "Differences of #2" in text
+    assert "Score" in text
+    assert "better here" in text or "better in reference" in text
+
+
+def test_format_diff_unavailable_translates():
+    from studio.solution_diff import format_diff_unavailable
+
+    lines = format_diff_unavailable("diff.need_two", "en")
+    assert lines[0] == "Differences"
+    assert "At least two solutions" in lines[2]
+
+
 def test_compare_solutions_identical_content_is_flagged():
     placement = BoardPlacement("A", 0, 0, 10, 10)
     left = _solution([placement], score=3.0)

@@ -1141,23 +1141,17 @@ class MainWindow(QMainWindow):
 
     def _reload_solution_differences(self) -> None:
         solutions = self.services.layout.solutions
+        language = self._ui_language()
         if len(solutions) < 2:
             self.solution_differences.setPlainText(
-                "\n".join(
-                    format_diff_unavailable(
-                        "Se necesitan al menos dos soluciones para comparar "
-                        "diferencias."
-                    )
-                )
+                "\n".join(format_diff_unavailable("diff.need_two", language))
             )
             return
 
         candidate_index = self.services.layout.selected_solution_index
         if candidate_index < 0 or candidate_index >= len(solutions):
             self.solution_differences.setPlainText(
-                "\n".join(
-                    format_diff_unavailable("Selecciona una solución en el comparador.")
-                )
+                "\n".join(format_diff_unavailable("diff.select_solution", language))
             )
             return
 
@@ -1176,6 +1170,7 @@ class MainWindow(QMainWindow):
             candidate_index=candidate_index,
             board_waste_reference=layout.board_waste_ratio(reference),
             board_waste_candidate=layout.board_waste_ratio(candidate),
+            language=language,
         )
         self.solution_differences.setPlainText("\n".join(diff.summary_lines()))
 

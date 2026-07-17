@@ -177,10 +177,10 @@ En el futuro podrán asociarse a una cuenta de usuario para sincronizar automát
 - Diálogo `Editar → Preferencias…` con General, Workspace, Algoritmos y Exportación.
 - Tema: sistema / claro / oscuro (aplicado al instante).
 - Idioma: es / en (bienvenida, preferencias, menús, docks, Inspector,
-  comparador, diálogos de export/import, formularios de tablero/pieza y
-  mensajes de estado).
+  comparador incluido panel de diferencias, diálogos de export/import,
+  formularios de tablero/pieza y mensajes de estado).
 - Unidades: mm / cm / in (inspector, explorador y formularios de tablero/pieza; almacenamiento interno en mm).
 - Workspace: mostrar cuadrícula y tamaño en mm.
 - Algoritmos: estrategia y pesos de scoring.
 - Exportación: formato y flags por defecto recordados.
-- Pendiente: i18n del panel de diferencias; rendimiento/avanzado.
+- Pendiente: rendimiento/avanzado.
