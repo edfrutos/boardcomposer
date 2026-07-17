@@ -11,11 +11,12 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.units import display_to_mm, mm_to_display, unit_label
 
 
 class NewPieceDialog(QDialog):
-    """Diálogo para crear una pieza."""
+    """Dialog for creating or editing a piece."""
 
     def __init__(
         self,
@@ -27,15 +28,18 @@ class NewPieceDialog(QDialog):
         thickness_mm: int = 19,
         quantity: int = 1,
         material: str = "Melamina blanca",
-        title: str = "Nueva pieza",
+        title: str | None = None,
         show_quantity: bool = True,
         units: str = "mm",
+        language: str = DEFAULT_LANGUAGE,
     ):
         super().__init__(parent)
 
         self._units = units
-        self.setWindowTitle(title)
+        self._language = language
+        self.setWindowTitle(title or tr("form.new_piece", language))
         suffix = f" {unit_label(units)}"
+        unit = unit_label(units)
 
         self.piece_id = QLineEdit(piece_id)
         self.length = QDoubleSpinBox()
@@ -59,16 +63,16 @@ class NewPieceDialog(QDialog):
         self.quantity.setValue(quantity)
 
         form = QFormLayout()
-        form.addRow("Identificador:", self.piece_id)
-        form.addRow(f"Largo ({unit_label(units)}):", self.length)
-        form.addRow(f"Ancho ({unit_label(units)}):", self.width)
-        form.addRow(f"Espesor ({unit_label(units)}):", self.thickness)
+        form.addRow(tr("form.id", language), self.piece_id)
+        form.addRow(tr("form.length", language, unit=unit), self.length)
+        form.addRow(tr("form.width", language, unit=unit), self.width)
+        form.addRow(tr("form.thickness", language, unit=unit), self.thickness)
         if show_quantity:
-            form.addRow("Cantidad:", self.quantity)
+            form.addRow(tr("form.quantity", language), self.quantity)
         else:
             self.quantity.setEnabled(False)
-        form.addRow("Material:", self.material)
-        form.addRow("Permitir rotación:", self.rotatable)
+        form.addRow(tr("form.material", language), self.material)
+        form.addRow(tr("form.allow_rotation", language), self.rotatable)
 
         buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel

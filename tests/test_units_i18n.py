@@ -29,6 +29,8 @@ def test_tr_formats_interpolated_values():
     assert tr("status.board_added", "en") == "Board added"
     assert tr("export.title", "en") == "Export solution"
     assert "unsaved changes" in tr("dialog.unsaved_body", "en").lower()
+    assert tr("form.new_board", "en") == "New board"
+    assert tr("form.allow_rotation", "en") == "Allow rotation:"
 
 
 def test_preferences_persist_language_and_units(tmp_path):

@@ -501,7 +501,9 @@ class MainWindow(QMainWindow):
         if project is None:
             return
 
-        dialog = NewBoardDialog(self, units=self._display_units())
+        dialog = NewBoardDialog(
+            self, units=self._display_units(), language=self._ui_language()
+        )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
             return
@@ -650,7 +652,9 @@ class MainWindow(QMainWindow):
         if project is None:
             return
 
-        dialog = NewPieceDialog(self, units=self._display_units())
+        dialog = NewPieceDialog(
+            self, units=self._display_units(), language=self._ui_language()
+        )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
             return
@@ -1660,6 +1664,7 @@ class MainWindow(QMainWindow):
             material=board.material,
             title=self._tr("dialog.edit_board"),
             units=self._display_units(),
+            language=self._ui_language(),
         )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
@@ -1719,6 +1724,7 @@ class MainWindow(QMainWindow):
             title=self._tr("dialog.edit_piece"),
             show_quantity=False,
             units=self._display_units(),
+            language=self._ui_language(),
         )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
