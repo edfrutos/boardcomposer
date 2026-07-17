@@ -112,6 +112,8 @@
   nota libre y contexto opcional del replay (algoritmo, pieza, paso).
 - Filtro del Timeline por intervalo temporal (presets 1/5/15 min y 1 h),
   respetado también al exportar (`since` / `period_seconds`).
+- Instrumentación de fallos de colocación Skyline (`no_fit`) en la traza
+  y el Timeline; captura activa para todos los generadores instrumentados.
 
 ### Cambiado
 

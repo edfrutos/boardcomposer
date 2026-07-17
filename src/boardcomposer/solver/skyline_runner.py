@@ -11,6 +11,7 @@ from boardcomposer.solver.board_ordering import (
     longest_edge_first,
     original_order,
 )
+from boardcomposer.solver.placement_failures import record_placement_failure
 from boardcomposer.solver.skyline.skyline import Skyline
 
 
@@ -55,6 +56,12 @@ def _generate_for_order(
         )
 
         if position is None:
+            piece_id = board.id or f"board-{index + 1}"
+            record_placement_failure(
+                piece_id=piece_id,
+                reason="no_fit",
+                algorithm="skyline",
+            )
             continue
 
         placements.append(

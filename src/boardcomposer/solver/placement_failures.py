@@ -1,4 +1,4 @@
-"""Optional collector for MaxRects placement failures (ADR-005)."""
+"""Optional collector for placement failures (ADR-005)."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from typing import Iterator
 
 @dataclass(frozen=True)
 class PlacementFailure:
-    """One recorded attempt where a piece was not placed on a panel."""
+    """One recorded attempt where a piece was not placed."""
 
     piece_id: str
     reason: str  # incompatible | no_fit
@@ -80,7 +80,7 @@ def record_placement_failure(
 def capture_placement_failures(
     log: PlacementFailureLog | None = None,
 ) -> Iterator[PlacementFailureLog]:
-    """Activate a failure log for the duration of a MaxRects run."""
+    """Activate a failure log for the duration of a generator run."""
     active = log if log is not None else PlacementFailureLog()
     token = _CURRENT_LOG.set(active)
     try:
