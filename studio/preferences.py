@@ -8,9 +8,13 @@ from pathlib import Path
 
 from boardcomposer.solver.scoring_weights import ScoringWeights
 from boardcomposer.solver.strategies import OptimizationStrategy, strategy_by_name
+from studio.theme import DEFAULT_THEME, VALID_THEMES
 
 DEFAULT_STRATEGY = "material"
 VALID_STRATEGIES = ("balanced", "material", "compact", "exact")
+DEFAULT_GRID_SIZE_MM = 100
+MIN_GRID_SIZE_MM = 10
+MAX_GRID_SIZE_MM = 500
 
 
 @dataclass(frozen=True)
@@ -49,6 +53,9 @@ class StudioPreferences:
             strategy_by_name(DEFAULT_STRATEGY).weights
         )
     )
+    theme: str = DEFAULT_THEME
+    show_grid: bool = True
+    grid_size_mm: int = DEFAULT_GRID_SIZE_MM
 
     def resolved_strategy(self) -> OptimizationStrategy:
         """Return the OptimizationStrategy implied by these preferences."""
@@ -61,6 +68,11 @@ class StudioPreferences:
         if not self.use_custom_weights:
             return base
         return replace(base, weights=self.weights.to_scoring_weights())
+
+
+def _clamp_grid_size(value: int | float) -> int:
+    size = int(value)
+    return max(MIN_GRID_SIZE_MM, min(MAX_GRID_SIZE_MM, size))
 
 
 def default_preferences_path() -> Path:
@@ -87,6 +99,10 @@ class PreferencesManager:
         if strategy_name not in VALID_STRATEGIES:
             strategy_name = DEFAULT_STRATEGY
 
+        theme = payload.get("theme", DEFAULT_THEME)
+        if theme not in VALID_THEMES:
+            theme = DEFAULT_THEME
+
         weights_payload = payload.get("weights") or {}
         preset = WeightPreferences.from_scoring_weights(
             strategy_by_name(strategy_name).weights
@@ -104,10 +120,20 @@ class PreferencesManager:
             ),
         )
 
+        try:
+            grid_size_mm = _clamp_grid_size(
+                payload.get("grid_size_mm", DEFAULT_GRID_SIZE_MM)
+            )
+        except (TypeError, ValueError):
+            grid_size_mm = DEFAULT_GRID_SIZE_MM
+
         return StudioPreferences(
             strategy_name=strategy_name,
             use_custom_weights=bool(payload.get("use_custom_weights", False)),
             weights=weights,
+            theme=theme,
+            show_grid=bool(payload.get("show_grid", True)),
+            grid_size_mm=grid_size_mm,
         )
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
@@ -118,6 +144,9 @@ class PreferencesManager:
             "strategy_name": preferences.strategy_name,
             "use_custom_weights": preferences.use_custom_weights,
             "weights": asdict(preferences.weights),
+            "theme": preferences.theme,
+            "show_grid": preferences.show_grid,
+            "grid_size_mm": preferences.grid_size_mm,
         }
         self.path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",

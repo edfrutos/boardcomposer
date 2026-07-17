@@ -168,3 +168,14 @@ Versiones futuras podrán incorporar:
 Las preferencias deberán almacenarse de forma independiente a los proyectos y ser compatibles entre versiones de BoardComposer Studio.
 
 En el futuro podrán asociarse a una cuenta de usuario para sincronizar automáticamente la configuración entre distintos equipos.
+
+---
+
+## Estado de implementación (2026-07-17)
+
+- Persistencia en `~/.boardcomposer/preferences.json` (fuera de `.bcproj`).
+- Diálogo `Editar → Preferencias…` con secciones General, Workspace y Algoritmos.
+- Tema: sistema / claro / oscuro (aplicado al instante).
+- Workspace: mostrar cuadrícula y tamaño en mm.
+- Algoritmos: estrategia y pesos de scoring (como antes).
+- Pendiente: idioma, unidades, defaults de exportación, rendimiento.

@@ -78,6 +78,7 @@ class MainWindow(QMainWindow):
         self._reload_explorer()
         self._reload_solution_table()
         self.update_window_title()
+        self._apply_preferences()
 
     def _build_menu(self):
         menu = QMenuBar(self)
@@ -968,7 +969,19 @@ class MainWindow(QMainWindow):
         if dialog.exec() != PreferencesDialog.DialogCode.Accepted:
             return
         self.services.preferences.update(dialog.preferences())
+        self._apply_preferences()
         self.statusBar().showMessage("Preferencias guardadas", 3000)
+
+    def _apply_preferences(self) -> None:
+        from PySide6.QtWidgets import QApplication
+
+        from studio.theme import apply_theme
+
+        app = QApplication.instance()
+        if app is not None:
+            apply_theme(app, self.services.preferences.current.theme)
+        self.workspace.reload_project()
+        self._reload_explorer()
 
     def _solve_layout(self):
         solution = self.services.layout.solve_current_project()
