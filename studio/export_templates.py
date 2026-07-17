@@ -182,3 +182,87 @@ class ExportTemplatesManager:
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
             encoding="utf-8",
         )
+
+    def export_pack(
+        self,
+        path: Path | str,
+        *,
+        client: str | None = None,
+    ) -> int:
+        """Write templates to a shareable JSON pack. Returns count exported.
+
+        `client=None` exports all templates. `client=""` exports only general.
+        """
+        destination = Path(path)
+        templates = self.templates_for(client)
+        payload = {
+            "version": 1,
+            "kind": "boardcomposer.export_templates",
+            "templates": [template.to_dict() for template in templates],
+        }
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(
+            json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        return len(templates)
+
+    @staticmethod
+    def parse_pack(payload: object) -> list[ExportTemplate]:
+        """Parse a pack (versioned dict) or a legacy bare list of templates."""
+        items: list[object]
+        if isinstance(payload, dict):
+            raw = payload.get("templates", [])
+            if not isinstance(raw, list):
+                return []
+            items = raw
+        elif isinstance(payload, list):
+            items = payload
+        else:
+            return []
+
+        templates: list[ExportTemplate] = []
+        seen: set[tuple[str, str]] = set()
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            template = ExportTemplate.from_dict(item)
+            if template is None or template.key in seen:
+                continue
+            seen.add(template.key)
+            templates.append(template)
+        templates.sort(key=lambda item: (item.client.casefold(), item.name.casefold()))
+        return templates
+
+    def import_pack(
+        self,
+        path: Path | str,
+        *,
+        mode: str = "merge",
+    ) -> tuple[int, int]:
+        """Import templates from a JSON pack.
+
+        `mode="merge"` upserts by (client, name).
+        `mode="replace"` replaces the whole catalog.
+
+        Returns `(imported_count, total_after)`.
+        """
+        source = Path(path)
+        try:
+            payload = json.loads(source.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise ValueError(f"No se pudo leer el paquete: {exc}") from exc
+
+        incoming = self.parse_pack(payload)
+        if mode == "replace":
+            self.templates = list(incoming)
+        else:
+            by_key = {template.key: template for template in self.templates}
+            for template in incoming:
+                by_key[template.key] = template
+            self.templates = sorted(
+                by_key.values(),
+                key=lambda item: (item.client.casefold(), item.name.casefold()),
+            )
+        self.save()
+        return len(incoming), len(self.templates)
