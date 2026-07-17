@@ -14,6 +14,8 @@ from studio.export_options import (
     VALID_EXPORT_FORMATS,
     ExportOptions,
 )
+from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES
+from studio.units import DEFAULT_UNITS, VALID_UNITS
 
 DEFAULT_STRATEGY = "material"
 VALID_STRATEGIES = ("balanced", "material", "compact", "exact")
@@ -61,6 +63,8 @@ class StudioPreferences:
     theme: str = DEFAULT_THEME
     show_grid: bool = True
     grid_size_mm: int = DEFAULT_GRID_SIZE_MM
+    language: str = DEFAULT_LANGUAGE
+    units: str = DEFAULT_UNITS
     export_format: str = DEFAULT_EXPORT_FORMAT
     export_include_metrics: bool = True
     export_include_explanation: bool = True
@@ -121,6 +125,14 @@ class PreferencesManager:
         if theme not in VALID_THEMES:
             theme = DEFAULT_THEME
 
+        language = payload.get("language", DEFAULT_LANGUAGE)
+        if language not in VALID_LANGUAGES:
+            language = DEFAULT_LANGUAGE
+
+        units = payload.get("units", DEFAULT_UNITS)
+        if units not in VALID_UNITS:
+            units = DEFAULT_UNITS
+
         weights_payload = payload.get("weights") or {}
         preset = WeightPreferences.from_scoring_weights(
             strategy_by_name(strategy_name).weights
@@ -156,6 +168,8 @@ class PreferencesManager:
             theme=theme,
             show_grid=bool(payload.get("show_grid", True)),
             grid_size_mm=grid_size_mm,
+            language=language,
+            units=units,
             export_format=export_format,
             export_include_metrics=bool(payload.get("export_include_metrics", True)),
             export_include_explanation=bool(
@@ -175,6 +189,8 @@ class PreferencesManager:
             "theme": preferences.theme,
             "show_grid": preferences.show_grid,
             "grid_size_mm": preferences.grid_size_mm,
+            "language": preferences.language,
+            "units": preferences.units,
             "export_format": preferences.export_format,
             "export_include_metrics": preferences.export_include_metrics,
             "export_include_explanation": preferences.export_include_explanation,

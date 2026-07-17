@@ -3,11 +3,14 @@
 from PySide6.QtWidgets import (
     QDialog,
     QDialogButtonBox,
+    QDoubleSpinBox,
     QFormLayout,
     QLineEdit,
     QSpinBox,
     QVBoxLayout,
 )
+
+from studio.units import display_to_mm, mm_to_display, unit_label
 
 
 class NewBoardDialog(QDialog):
@@ -24,36 +27,38 @@ class NewBoardDialog(QDialog):
         quantity: int = 1,
         material: str = "Melamina blanca",
         title: str = "Nuevo tablero",
+        units: str = "mm",
     ) -> None:
         super().__init__(parent)
 
+        self._units = units
         self.setWindowTitle(title)
+        suffix = f" {unit_label(units)}"
 
         self.board_id = QLineEdit(board_id)
-        self.length_mm = QSpinBox()
-        self.width_mm = QSpinBox()
-        self.thickness_mm = QSpinBox()
+        self.length = QDoubleSpinBox()
+        self.width = QDoubleSpinBox()
+        self.thickness = QDoubleSpinBox()
         self.quantity = QSpinBox()
         self.material = QLineEdit(material)
 
-        for field in (
-            self.length_mm,
-            self.width_mm,
-            self.thickness_mm,
-        ):
-            field.setRange(1, 100_000)
+        decimals = 0 if units == "mm" else 2
+        for field in (self.length, self.width, self.thickness):
+            field.setRange(0.01, 100_000)
+            field.setDecimals(decimals)
+            field.setSuffix(suffix)
 
-        self.length_mm.setValue(length_mm)
-        self.width_mm.setValue(width_mm)
-        self.thickness_mm.setValue(thickness_mm)
+        self.length.setValue(mm_to_display(length_mm, units))
+        self.width.setValue(mm_to_display(width_mm, units))
+        self.thickness.setValue(mm_to_display(thickness_mm, units))
         self.quantity.setRange(1, 10_000)
         self.quantity.setValue(quantity)
 
         form = QFormLayout()
         form.addRow("Identificador:", self.board_id)
-        form.addRow("Largo (mm):", self.length_mm)
-        form.addRow("Ancho (mm):", self.width_mm)
-        form.addRow("Espesor (mm):", self.thickness_mm)
+        form.addRow(f"Largo ({unit_label(units)}):", self.length)
+        form.addRow(f"Ancho ({unit_label(units)}):", self.width)
+        form.addRow(f"Espesor ({unit_label(units)}):", self.thickness)
         form.addRow("Cantidad:", self.quantity)
         form.addRow("Material:", self.material)
 
@@ -69,12 +74,12 @@ class NewBoardDialog(QDialog):
         self.setLayout(layout)
 
     def board_data(self) -> dict:
-        """Return the values entered in the dialog."""
+        """Return the values entered in the dialog (always in mm)."""
         return {
             "board_id": self.board_id.text().strip(),
-            "length_mm": float(self.length_mm.value()),
-            "width_mm": float(self.width_mm.value()),
-            "thickness_mm": float(self.thickness_mm.value()),
+            "length_mm": display_to_mm(self.length.value(), self._units),
+            "width_mm": display_to_mm(self.width.value(), self._units),
+            "thickness_mm": display_to_mm(self.thickness.value(), self._units),
             "quantity": self.quantity.value(),
             "material": self.material.text().strip(),
         }
