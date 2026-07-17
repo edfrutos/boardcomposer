@@ -108,4 +108,4 @@ El usuario dispone de una colección de soluciones clasificadas, explicadas y li
 En versiones futuras este flujo incorporará ejecución en paralelo y
 generación incremental de soluciones. El Timeline (ADR-005) ya registra el
 inicio/fin del cálculo y permite reproducir las colocaciones de la solución
-seleccionada; el Timeline registra las fases de cada algoritmo (`AlgorithmStarted`/`Finished`) y los fallos de colocación MaxRects (`PlacementFailed` / resumen).
+seleccionada; el Timeline registra las fases de cada algoritmo (`AlgorithmStarted`/`Finished` con duración), permite filtrar por algoritmo y muestra los fallos de colocación MaxRects (`PlacementFailed` / resumen).

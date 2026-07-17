@@ -37,8 +37,29 @@ def test_timeline_export_respects_event_filter():
     document = json.loads(timeline_to_json(store, event_name=PROJECT_SAVED))
     assert document["count"] == 1
     assert document["filter"] == PROJECT_SAVED
+    assert document["algorithm_filter"] is None
     assert document["events"][0]["event"] == PROJECT_SAVED
 
     csv_text = timeline_to_csv(store, event_name=PROJECT_CREATED)
     assert PROJECT_CREATED in csv_text
     assert PROJECT_SAVED not in csv_text
+
+
+def test_timeline_export_respects_algorithm_filter():
+    from studio.events.catalog import ALGORITHM_FINISHED, ALGORITHM_STARTED
+
+    bus = EventBus()
+    store = TimelineStore(bus)
+    bus.publish(ALGORITHM_STARTED, {"algorithm": "maxrects"})
+    bus.publish(ALGORITHM_FINISHED, {"algorithm": "skyline", "count": 1})
+    bus.publish(PROJECT_CREATED, {"kind": "empty"})
+
+    document = json.loads(timeline_to_json(store, algorithm="maxrects"))
+    assert document["count"] == 1
+    assert document["algorithm_filter"] == "maxrects"
+    assert document["events"][0]["payload"]["algorithm"] == "maxrects"
+
+    csv_text = timeline_to_csv(store, algorithm="skyline")
+    assert "skyline" in csv_text
+    assert "maxrects" not in csv_text
+    assert PROJECT_CREATED not in csv_text

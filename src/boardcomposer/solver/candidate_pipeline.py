@@ -1,4 +1,5 @@
 from dataclasses import replace
+from time import perf_counter
 
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.solver.cancel import (
@@ -48,6 +49,7 @@ class CandidatePipeline:
             for name in generator_names:
                 check_cancelled(self.cancel)
                 self.trace.record("generator_started", algorithm=name)
+                started = perf_counter()
                 generator = generators_by_name([name])[0]
                 if name == "maxrects":
                     failure_log = PlacementFailureLog()
@@ -73,10 +75,12 @@ class CandidatePipeline:
                         )
                         for solution in generated
                     ]
+                duration_ms = int((perf_counter() - started) * 1000)
                 self.trace.record(
                     "generator_finished",
                     algorithm=name,
                     count=len(generated),
+                    duration_ms=duration_ms,
                 )
                 candidates.extend(generated)
 
@@ -89,6 +93,7 @@ class CandidatePipeline:
                 "evaluation_started",
                 unique=len(unique_candidates),
             )
+            eval_started = perf_counter()
 
             evaluator = SolutionEvaluator(
                 project=self.project,
@@ -119,10 +124,12 @@ class CandidatePipeline:
                 key=solution_ranking_key,
                 reverse=True,
             )
+            eval_ms = int((perf_counter() - eval_started) * 1000)
             self.trace.record(
                 "evaluation_finished",
                 accepted=self.stats.accepted,
                 rejected=self.stats.rejected,
+                duration_ms=eval_ms,
             )
             if ranked:
                 best = ranked[0]

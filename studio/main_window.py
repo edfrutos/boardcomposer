@@ -1620,7 +1620,8 @@ class MainWindow(QMainWindow):
 
         store = self.services.timeline
         event_filter = self.console.current_filter_event()
-        entries = store.filtered(event_filter) if event_filter else store.entries
+        algo_filter = self.console.current_filter_algorithm()
+        entries = store.filtered(event_filter, algorithm=algo_filter)
         if not entries:
             self._status("status.timeline_export_empty")
             return
@@ -1642,9 +1643,17 @@ class MainWindow(QMainWindow):
 
         try:
             if use_csv:
-                payload = timeline_to_csv(store, event_name=event_filter)
+                payload = timeline_to_csv(
+                    store,
+                    event_name=event_filter,
+                    algorithm=algo_filter,
+                )
             else:
-                payload = timeline_to_json(store, event_name=event_filter)
+                payload = timeline_to_json(
+                    store,
+                    event_name=event_filter,
+                    algorithm=algo_filter,
+                )
             Path(path).write_text(payload, encoding="utf-8")
         except OSError as exc:
             self._status("status.timeline_export_failed", 5000, error=exc)
