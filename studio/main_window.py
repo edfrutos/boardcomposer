@@ -18,6 +18,7 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QPushButton,
     QStatusBar,
+    QStackedWidget,
     QTableWidget,
     QTableWidgetItem,
     QTextEdit,
@@ -55,6 +56,7 @@ from studio.piece_csv_importer import import_pieces_from_file
 from studio.solution_diff import compare_solutions, format_diff_unavailable
 from studio.solution_ordering import SORT_LABELS, ordered_solution_indexes
 from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
+from studio.welcome_screen import WelcomeScreen
 
 
 class MainWindow(QMainWindow):
@@ -103,6 +105,7 @@ class MainWindow(QMainWindow):
 
         self._actions["new_project"] = QAction("Nuevo proyecto", self)
         self._actions["new_demo_project"] = QAction("Nuevo proyecto demo", self)
+        self._actions["show_welcome"] = QAction("Pantalla de inicio", self)
         self._actions["open"] = QAction("Abrir…", self)
         self._actions["save"] = QAction("Guardar", self)
         self._actions["save_as"] = QAction("Guardar como…", self)
@@ -154,6 +157,7 @@ class MainWindow(QMainWindow):
 
         menus["Archivo"].addAction(self._actions["new_project"])
         menus["Archivo"].addAction(self._actions["new_demo_project"])
+        menus["Archivo"].addAction(self._actions["show_welcome"])
         menus["Archivo"].addSeparator()
         menus["Archivo"].addAction(self._actions["open"])
         menus["Archivo"].addMenu(self._recent_menu)
@@ -195,6 +199,7 @@ class MainWindow(QMainWindow):
         self._actions["exit"].triggered.connect(self.close)
         self._actions["new_project"].triggered.connect(self._new_project)
         self._actions["new_demo_project"].triggered.connect(self._new_demo_project)
+        self._actions["show_welcome"].triggered.connect(self._show_welcome_screen)
         self._actions["add_board"].triggered.connect(self._add_board)
         self._actions["add_piece"].triggered.connect(self._add_piece)
         self._actions["import_boards_csv"].triggered.connect(
@@ -235,7 +240,27 @@ class MainWindow(QMainWindow):
 
     def _build_workspace(self):
         self.workspace = BoardWorkspace(self.services)
-        self.setCentralWidget(self.workspace)
+        self.welcome = WelcomeScreen()
+        self.welcome.new_project_requested.connect(self._new_project)
+        self.welcome.open_project_requested.connect(self._open_project)
+        self.welcome.open_recent_requested.connect(self._open_recent_project)
+        self.welcome.import_pieces_requested.connect(self._import_pieces_from_csv)
+        self.welcome.preferences_requested.connect(self._open_preferences)
+        self.welcome.demo_project_requested.connect(self._new_demo_project)
+
+        self._central_stack = QStackedWidget()
+        self._central_stack.addWidget(self.welcome)
+        self._central_stack.addWidget(self.workspace)
+        self.setCentralWidget(self._central_stack)
+        self._show_welcome_screen()
+
+    def _show_welcome_screen(self) -> None:
+        self.welcome.set_recent_files(self.services.recent_files.existing_files())
+        self._central_stack.setCurrentWidget(self.welcome)
+        self.statusBar().showMessage("Pantalla de inicio", 2000)
+
+    def _show_workspace(self) -> None:
+        self._central_stack.setCurrentWidget(self.workspace)
 
     def _build_panels(self):
         self.explorer = QTreeWidget()
@@ -532,6 +557,7 @@ class MainWindow(QMainWindow):
             return
 
         self._load_empty_project()
+        self._show_workspace()
         self.statusBar().showMessage("Nuevo proyecto vacío creado", 3000)
 
     def _new_demo_project(self):
@@ -540,6 +566,7 @@ class MainWindow(QMainWindow):
 
         self._load_demo_project()
         self.services.layout.clear_solutions()
+        self._show_workspace()
         self.statusBar().showMessage("Proyecto demo creado", 3000)
 
     def _add_board(self):
@@ -643,6 +670,8 @@ class MainWindow(QMainWindow):
 
         if project is None:
             return
+
+        self._show_workspace()
 
         file_path, _ = QFileDialog.getOpenFileName(
             self,
@@ -1506,6 +1535,7 @@ class MainWindow(QMainWindow):
         self._reload_recent_files_menu()
         self.services.layout.clear_solutions()
 
+        self._show_workspace()
         self.workspace.reload_project()
         self._reload_explorer()
         self._reload_solution_table()
@@ -1515,6 +1545,7 @@ class MainWindow(QMainWindow):
 
     def _reload_recent_files_menu(self):
         self._recent_menu.clear()
+        self.welcome.set_recent_files(self.services.recent_files.existing_files())
 
         if not self.services.recent_files.files:
             empty_action = QAction("Sin archivos recientes", self)
@@ -1535,7 +1566,7 @@ class MainWindow(QMainWindow):
 
         try:
             project = load_project(path)
-        except UnsupportedProjectVersionError as error:
+        except (UnsupportedProjectVersionError, OSError) as error:
             QMessageBox.warning(self, "Abrir proyecto", str(error))
             return
 
@@ -1544,6 +1575,7 @@ class MainWindow(QMainWindow):
         self._reload_recent_files_menu()
         self.services.layout.clear_solutions()
 
+        self._show_workspace()
         self.workspace.reload_project()
         self._reload_explorer()
         self._reload_solution_table()

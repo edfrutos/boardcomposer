@@ -58,6 +58,8 @@
 - Exportación JSON y CSV de la solución seleccionada (SCR-007).
 - Preferencias ampliadas SCR-006: tema (sistema/claro/oscuro), mostrar
   cuadrícula y tamaño de grid persistidos en `preferences.json`.
+- Pantalla de inicio SCR-001 con acciones principales, recientes
+  persistidos y acceso a preferencias/ejemplo.
 
 ### Cambiado
 

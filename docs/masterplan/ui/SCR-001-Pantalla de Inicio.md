@@ -110,3 +110,14 @@ Versiones futuras podrán incorporar:
 - plantillas de proyectos;
 - panel de actividad reciente;
 - búsqueda global.
+
+---
+
+## Estado de implementación (2026-07-17)
+
+- `WelcomeScreen` al arrancar Studio (stack central antes del Workspace).
+- Acciones: nuevo, abrir, importar piezas, ejemplo, preferencias.
+- Lista de proyectos recientes (persistidos en
+  `~/.boardcomposer/recent_files.json`); solo se muestran los que existen.
+- Menú `Archivo → Pantalla de inicio` para volver.
+- Pendiente: miniaturas de proyecto y accesos a documentación/novedades.
