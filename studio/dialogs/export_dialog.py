@@ -29,6 +29,7 @@ from studio.export_options import (
     preview_text,
 )
 from studio.export_templates import ExportTemplatesManager
+from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.solution_thumbnail import svg_to_pixmap
 
 _GRAPHIC_PREVIEW_SIZE = QSize(520, 280)
@@ -47,12 +48,12 @@ class ExportDialog(QDialog):
         templates: ExportTemplatesManager | None = None,
         strategy_name: str | None = None,
         solution_index: int | None = None,
+        language: str = DEFAULT_LANGUAGE,
         parent=None,
     ) -> None:
         super().__init__(parent)
 
-        self.setWindowTitle("Exportar solución")
-        self.setMinimumSize(640, 660)
+        self._language = language
         self._solution = solution
         self._project = project
         self._strategy_name = strategy_name
@@ -63,13 +64,12 @@ class ExportDialog(QDialog):
             else ExportTemplatesManager(autoload=False)
         )
 
+        self.setWindowTitle(self._tr("export.title"))
+        self.setMinimumSize(640, 660)
+
         layout = QVBoxLayout(self)
-        layout.addWidget(
-            QLabel(
-                "Elige el formato y el contenido. La vista previa refleja "
-                "las opciones seleccionadas."
-            )
-        )
+        self.intro = QLabel(self._tr("export.intro"))
+        layout.addWidget(self.intro)
 
         form = QFormLayout()
 
@@ -78,14 +78,14 @@ class ExportDialog(QDialog):
         self.template.currentIndexChanged.connect(self._on_template_selected)
         template_row.addWidget(self.template, stretch=1)
 
-        self.save_template_button = QPushButton("Guardar…")
+        self.save_template_button = QPushButton(self._tr("export.save"))
         self.save_template_button.clicked.connect(self._save_template)
         template_row.addWidget(self.save_template_button)
 
-        self.delete_template_button = QPushButton("Eliminar")
+        self.delete_template_button = QPushButton(self._tr("export.delete"))
         self.delete_template_button.clicked.connect(self._delete_template)
         template_row.addWidget(self.delete_template_button)
-        form.addRow("Plantilla:", template_row)
+        form.addRow(self._tr("export.template"), template_row)
 
         self.format = QComboBox()
         for key in VALID_EXPORT_FORMATS:
@@ -93,25 +93,25 @@ class ExportDialog(QDialog):
         index = self.format.findData(options.format)
         self.format.setCurrentIndex(index if index >= 0 else 0)
         self.format.currentIndexChanged.connect(self._on_options_edited)
-        form.addRow("Formato:", self.format)
+        form.addRow(self._tr("export.format"), self.format)
 
-        self.include_metrics = QCheckBox("Incluir métricas (JSON)")
+        self.include_metrics = QCheckBox(self._tr("export.metrics"))
         self.include_metrics.setChecked(options.include_metrics)
         self.include_metrics.toggled.connect(self._on_options_edited)
         form.addRow("", self.include_metrics)
 
-        self.include_explanation = QCheckBox("Incluir explicación (JSON)")
+        self.include_explanation = QCheckBox(self._tr("export.explanation"))
         self.include_explanation.setChecked(options.include_explanation)
         self.include_explanation.toggled.connect(self._on_options_edited)
         form.addRow("", self.include_explanation)
 
-        self.include_offcuts = QCheckBox("Incluir retales")
+        self.include_offcuts = QCheckBox(self._tr("export.offcuts"))
         self.include_offcuts.setChecked(options.include_offcuts)
         self.include_offcuts.toggled.connect(self._on_options_edited)
         form.addRow("", self.include_offcuts)
         layout.addLayout(form)
 
-        layout.addWidget(QLabel("Vista previa gráfica"))
+        layout.addWidget(QLabel(self._tr("export.graphic")))
         self.graphic_preview = QLabel()
         self.graphic_preview.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.graphic_preview.setMinimumHeight(200)
@@ -126,7 +126,7 @@ class ExportDialog(QDialog):
         graphic_scroll.setWidget(self.graphic_preview)
         layout.addWidget(graphic_scroll)
 
-        layout.addWidget(QLabel("Resumen / contenido"))
+        layout.addWidget(QLabel(self._tr("export.summary")))
         self.preview = QTextEdit()
         self.preview.setReadOnly(True)
         self.preview.setMinimumHeight(120)
@@ -135,13 +135,18 @@ class ExportDialog(QDialog):
         buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
         )
-        buttons.button(QDialogButtonBox.StandardButton.Ok).setText("Exportar…")
+        buttons.button(QDialogButtonBox.StandardButton.Ok).setText(
+            self._tr("export.export_btn")
+        )
         buttons.accepted.connect(self.accept)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
 
         self._reload_templates()
         self._refresh_preview()
+
+    def _tr(self, key: str, **kwargs: object) -> str:
+        return tr(key, self._language, **kwargs)
 
     def options(self) -> ExportOptions:
         return ExportOptions(
@@ -155,7 +160,7 @@ class ExportDialog(QDialog):
         current = selected if selected is not None else self.template.currentData()
         self.template.blockSignals(True)
         self.template.clear()
-        self.template.addItem("(sin plantilla)", _NO_TEMPLATE)
+        self.template.addItem(self._tr("export.no_template"), _NO_TEMPLATE)
         for name in self._templates.names():
             self.template.addItem(name, name)
         index = self.template.findData(current or _NO_TEMPLATE)
@@ -209,8 +214,8 @@ class ExportDialog(QDialog):
         suggested = self.template.currentData() or ""
         name, accepted = QInputDialog.getText(
             self,
-            "Guardar plantilla",
-            "Nombre de la plantilla:",
+            self._tr("export.save_template_title"),
+            self._tr("export.save_template_prompt"),
             text=suggested,
         )
         if not accepted:
@@ -219,8 +224,8 @@ class ExportDialog(QDialog):
         if not name:
             QMessageBox.warning(
                 self,
-                "Guardar plantilla",
-                "El nombre de la plantilla no puede estar vacío.",
+                self._tr("export.save_template_title"),
+                self._tr("export.empty_name"),
             )
             return
         self._templates.save_template(name, self.options())
@@ -232,8 +237,8 @@ class ExportDialog(QDialog):
             return
         answer = QMessageBox.question(
             self,
-            "Eliminar plantilla",
-            f"¿Eliminar la plantilla «{name}»?",
+            self._tr("export.delete_title"),
+            self._tr("export.delete_confirm", name=name),
         )
         if answer != QMessageBox.StandardButton.Yes:
             return
@@ -249,7 +254,9 @@ class ExportDialog(QDialog):
         svg = preview_svg(self._solution, self._project, options)
         pixmap = svg_to_pixmap(svg, box=_GRAPHIC_PREVIEW_SIZE)
         self.graphic_preview.setPixmap(pixmap)
-        self.graphic_preview.setText("" if not pixmap.isNull() else "Sin vista previa")
+        self.graphic_preview.setText(
+            "" if not pixmap.isNull() else self._tr("export.no_preview")
+        )
 
         self.preview.setPlainText(
             preview_text(

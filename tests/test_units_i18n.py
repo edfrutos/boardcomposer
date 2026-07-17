@@ -26,6 +26,9 @@ def test_tr_formats_interpolated_values():
     assert tr("menu.file", "en") == "File"
     assert tr("action.solve_layout", "en") == "Calculate layout"
     assert tr("inspector.none", "en") == "No selection"
+    assert tr("status.board_added", "en") == "Board added"
+    assert tr("export.title", "en") == "Export solution"
+    assert "unsaved changes" in tr("dialog.unsaved_body", "en").lower()
 
 
 def test_preferences_persist_language_and_units(tmp_path):

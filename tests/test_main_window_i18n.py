@@ -29,3 +29,6 @@ def test_main_window_menus_and_inspector_follow_language(qapp, tmp_path):
     assert window.solutions_dock.windowTitle() == "Solution comparator"
     assert window.pin_reference_button.text() == "Pin as reference"
     assert window.comparator_sort.itemText(0) == "Solver order"
+
+    window._status("status.prefs_saved")
+    assert "Preferences saved" in window.statusBar().currentMessage()
