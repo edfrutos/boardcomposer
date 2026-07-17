@@ -1621,7 +1621,13 @@ class MainWindow(QMainWindow):
         store = self.services.timeline
         event_filter = self.console.current_filter_event()
         algo_filter = self.console.current_filter_algorithm()
-        entries = store.filtered(event_filter, algorithm=algo_filter)
+        since_filter = self.console.current_filter_since()
+        period_seconds = self.console.current_filter_period_seconds()
+        entries = store.filtered(
+            event_filter,
+            algorithm=algo_filter,
+            since=since_filter,
+        )
         if not entries:
             self._status("status.timeline_export_empty")
             return
@@ -1647,12 +1653,15 @@ class MainWindow(QMainWindow):
                     store,
                     event_name=event_filter,
                     algorithm=algo_filter,
+                    since=since_filter,
                 )
             else:
                 payload = timeline_to_json(
                     store,
                     event_name=event_filter,
                     algorithm=algo_filter,
+                    since=since_filter,
+                    period_seconds=period_seconds,
                 )
             Path(path).write_text(payload, encoding="utf-8")
         except OSError as exc:

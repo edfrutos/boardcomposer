@@ -55,6 +55,26 @@ def test_timeline_store_filters_by_algorithm():
     assert started_skyline[0].payload["algorithm"] == "skyline"
 
 
+def test_timeline_store_filters_by_since():
+    from datetime import datetime, timedelta, timezone
+    from dataclasses import replace
+
+    bus = EventBus()
+    store = TimelineStore(bus)
+    bus.publish(PROJECT_CREATED, {"kind": "old"})
+    bus.publish(PROJECT_SAVED, {"path": "new.bcproj"})
+
+    old, recent = store.entries
+    past = datetime.now(timezone.utc) - timedelta(hours=1)
+    store._entries[0] = replace(old, timestamp=past)
+
+    since = datetime.now(timezone.utc) - timedelta(minutes=5)
+    filtered = store.filtered(since=since)
+    assert len(filtered) == 1
+    assert filtered[0].event_name == PROJECT_SAVED
+    assert store.filtered(PROJECT_CREATED, since=since) == ()
+
+
 def test_timeline_store_respects_max_entries():
     bus = EventBus()
     store = TimelineStore(bus, max_entries=2)

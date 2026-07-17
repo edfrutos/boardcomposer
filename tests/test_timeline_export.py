@@ -63,3 +63,24 @@ def test_timeline_export_respects_algorithm_filter():
     assert "skyline" in csv_text
     assert "maxrects" not in csv_text
     assert PROJECT_CREATED not in csv_text
+
+
+def test_timeline_export_respects_since_filter():
+    from dataclasses import replace
+    from datetime import datetime, timedelta, timezone
+
+    bus = EventBus()
+    store = TimelineStore(bus)
+    bus.publish(PROJECT_CREATED, {"kind": "old"})
+    bus.publish(PROJECT_SAVED, {"path": "new.bcproj"})
+    old, _recent = store.entries
+    past = datetime.now(timezone.utc) - timedelta(hours=2)
+    store._entries[0] = replace(old, timestamp=past)
+
+    since = datetime.now(timezone.utc) - timedelta(minutes=10)
+    document = json.loads(timeline_to_json(store, since=since, period_seconds=600))
+    assert document["count"] == 1
+    assert document["period_seconds"] == 600
+    assert document["since"] is not None
+    assert document["events"][0]["event"] == PROJECT_SAVED
+    assert PROJECT_CREATED not in timeline_to_csv(store, since=since)

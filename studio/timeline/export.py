@@ -44,11 +44,12 @@ def timeline_entries(
     *,
     event_name: str | None = None,
     algorithm: str | None = None,
+    since: datetime | None = None,
 ) -> tuple[TimelineEntry, ...]:
-    """Return entries, optionally filtered by event type and algorithm."""
+    """Return entries, optionally filtered by event, algorithm and time."""
     use_event = event_name if event_name and event_name != ALL_EVENTS else None
-    if use_event or algorithm:
-        return store.filtered(use_event, algorithm=algorithm)
+    if use_event or algorithm or since is not None:
+        return store.filtered(use_event, algorithm=algorithm, since=since)
     return store.entries
 
 
@@ -57,6 +58,8 @@ def timeline_to_json(
     *,
     event_name: str | None = None,
     algorithm: str | None = None,
+    since: datetime | None = None,
+    period_seconds: int | None = None,
     exported_at: datetime | None = None,
 ) -> str:
     """Return a JSON document with the timeline history."""
@@ -64,6 +67,7 @@ def timeline_to_json(
         store,
         event_name=event_name,
         algorithm=algorithm,
+        since=since,
     )
     stamp = exported_at or datetime.now().astimezone()
     event_filter = event_name if event_name and event_name != ALL_EVENTS else None
@@ -73,6 +77,8 @@ def timeline_to_json(
         "exported_at": stamp.isoformat(),
         "filter": event_filter,
         "algorithm_filter": algorithm,
+        "since": since.isoformat() if since is not None else None,
+        "period_seconds": period_seconds,
         "count": len(entries),
         "events": [entry_to_dict(entry) for entry in entries],
     }
@@ -84,12 +90,14 @@ def timeline_to_csv(
     *,
     event_name: str | None = None,
     algorithm: str | None = None,
+    since: datetime | None = None,
 ) -> str:
     """Return a CSV table with sequence, timestamp, event and payload JSON."""
     entries = timeline_entries(
         store,
         event_name=event_name,
         algorithm=algorithm,
+        since=since,
     )
     buffer = StringIO()
     writer = csv.writer(buffer)
