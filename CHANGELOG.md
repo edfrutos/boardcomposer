@@ -102,6 +102,8 @@
 - Trazas de algoritmo del solver (`SolveTrace`): el Timeline registra
   `AlgorithmStarted` / `AlgorithmFinished` / `EvaluationFinished`, y el
   replay etiqueta el generador y la pieza actual (ADR-005).
+- Exportación del historial del Timeline a JSON/CSV (menú Exportar y botón
+  en el dock) respetando el filtro activo.
 
 ### Cambiado
 
