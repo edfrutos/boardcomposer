@@ -11,6 +11,7 @@ from studio.project_templates import ProjectTemplatesManager
 from studio.selection import SelectionManager
 from studio.layout_service import LayoutService
 from studio.preferences import PreferencesManager
+from studio.timeline import TimelineStore
 
 
 @dataclass
@@ -32,3 +33,4 @@ class StudioServices:
 
     def __post_init__(self):
         self.layout = LayoutService(self)
+        self.timeline = TimelineStore(self.events)

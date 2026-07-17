@@ -45,6 +45,7 @@ El Event Bus será un mecanismo de comunicación, nunca un lugar donde resida l�
 - ProjectCreated
 - ProjectModified
 - ProjectSaved
+- ProjectOpened
 - CsvImported
 - SolutionGenerationStarted
 - SolutionGenerated

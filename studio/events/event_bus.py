@@ -4,13 +4,17 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Callable, DefaultDict
 
+from studio.events.catalog import ALL_EVENTS
 
 EventHandler = Callable[[str, dict], None]
 
 
 @dataclass
 class EventBus:
-    """Simple synchronous event bus."""
+    """Simple synchronous event bus (ADR-003).
+
+    Handlers subscribed to ``ALL_EVENTS`` ("*") receive every publication.
+    """
 
     _subscribers: DefaultDict[str, list[EventHandler]] = field(
         default_factory=lambda: defaultdict(list)
@@ -28,3 +32,7 @@ class EventBus:
 
         for handler in list(self._subscribers[event_name]):
             handler(event_name, event_payload)
+
+        if event_name != ALL_EVENTS:
+            for handler in list(self._subscribers[ALL_EVENTS]):
+                handler(event_name, event_payload)

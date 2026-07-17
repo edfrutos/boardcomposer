@@ -60,6 +60,8 @@ from studio.solution_ordering import SORT_LABELS, ordered_solution_indexes
 from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
 from studio.units import format_length, format_size
 from studio.welcome_screen import WelcomeScreen
+from studio.timeline import TimelinePanel
+from studio.events import catalog as events
 
 
 class MainWindow(QMainWindow):
@@ -233,8 +235,10 @@ class MainWindow(QMainWindow):
             self.inspector_dock,
         )
 
-        self.console = QTextEdit()
-        self.console.setReadOnly(True)
+        self.console = TimelinePanel(
+            self.services.timeline,
+            language=self._ui_language(),
+        )
 
         self.console_dock = QDockWidget("", self)
         self.console_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
@@ -499,6 +503,7 @@ class MainWindow(QMainWindow):
 
         self._load_empty_project()
         self._show_workspace()
+        self._emit(events.PROJECT_CREATED, kind="empty")
         self._status("status.new_empty")
 
     def _new_demo_project(self):
@@ -508,6 +513,7 @@ class MainWindow(QMainWindow):
         self._load_demo_project()
         self.services.layout.clear_solutions()
         self._show_workspace()
+        self._emit(events.PROJECT_CREATED, kind="demo")
         self._status("status.demo_created")
 
     def _new_from_template(self):
@@ -545,6 +551,7 @@ class MainWindow(QMainWindow):
         self._reload_solution_table()
         self.update_window_title()
         self._show_workspace()
+        self._emit(events.PROJECT_CREATED, kind="template", name=name)
         self._status("status.template_loaded", name=name)
 
     def _save_as_template(self):
@@ -697,7 +704,7 @@ class MainWindow(QMainWindow):
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
-
+        self._emit(events.CSV_IMPORTED, kind="boards", count=len(result.valid_boards))
         self._status("status.boards_imported", 5000, n=len(result.valid_boards))
 
     def _import_pieces_from_csv(self) -> None:
@@ -761,7 +768,7 @@ class MainWindow(QMainWindow):
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
-
+        self._emit(events.CSV_IMPORTED, kind="pieces", count=len(result.valid_pieces))
         self._status("status.pieces_imported", 5000, n=len(result.valid_pieces))
 
     def _add_piece(self):
@@ -1061,6 +1068,9 @@ class MainWindow(QMainWindow):
     def _tr(self, key: str, **kwargs: object) -> str:
         return tr(key, self._ui_language(), **kwargs)
 
+    def _emit(self, event_name: str, **payload: object) -> None:
+        self.services.events.publish(event_name, dict(payload))
+
     def _status(self, key: str, timeout: int = 3000, **kwargs: object) -> None:
         self.statusBar().showMessage(self._tr(key, **kwargs), timeout)
 
@@ -1082,7 +1092,7 @@ class MainWindow(QMainWindow):
         self.inspector_dock.setWindowTitle(self._tr("dock.inspector"))
         self.console_dock.setWindowTitle(self._tr("dock.timeline"))
         self.solutions_dock.setWindowTitle(self._tr("dock.comparator"))
-        self.console.setText(self._tr("timeline.placeholder"))
+        self.console.retranslate(self._ui_language())
 
         self.solutions_table.setHorizontalHeaderLabels(
             [
@@ -1138,6 +1148,11 @@ class MainWindow(QMainWindow):
         from studio.solve_worker import run_solve_with_progress
 
         self._status("status.layout_computing", 0)
+        self._emit(
+            events.SOLUTION_GENERATION_STARTED,
+            strategy=self.services.layout.strategy_name
+            or self.services.preferences.current.strategy_name,
+        )
         try:
             solution = run_solve_with_progress(
                 parent=self,
@@ -1147,6 +1162,7 @@ class MainWindow(QMainWindow):
                 cancel_text=self._tr("progress.layout_cancel"),
             )
         except RuntimeError as exc:
+            self._emit(events.SOLUTION_GENERATED, status="error", detail=str(exc))
             self._status("status.layout_error", error=str(exc))
             return
 
@@ -1155,11 +1171,13 @@ class MainWindow(QMainWindow):
         if self.services.layout.stats.cancelled:
             self._reload_solution_table()
             self.inspector.setText(self._tr("inspector.layout_cancelled"))
+            self._emit(events.SOLUTION_GENERATED, status="cancelled")
             self._status("status.layout_cancelled")
             return
 
         if solution is None:
             self._show_no_solution_diagnosis()
+            self._emit(events.SOLUTION_GENERATED, status="none", count=0)
             self._status("status.layout_failed")
             return
 
@@ -1168,6 +1186,11 @@ class MainWindow(QMainWindow):
         self._reload_explorer()
 
         solution_count = len(self.services.layout.solutions)
+        self._emit(
+            events.SOLUTION_GENERATED,
+            status="ok" if solution.is_complete else "partial",
+            count=solution_count,
+        )
 
         if not solution.is_complete:
             self._status(
@@ -1412,6 +1435,11 @@ class MainWindow(QMainWindow):
             current=selected_index,
             total=solution_count,
         )
+        self._emit(
+            events.WORKSPACE_UPDATED,
+            reason="apply_layout",
+            index=selected_index,
+        )
 
     def _previous_layout_solution(self):
         solution = self.services.layout.select_previous_solution()
@@ -1435,6 +1463,7 @@ class MainWindow(QMainWindow):
             current=index,
             total=total,
         )
+        self._emit(events.SOLUTION_SELECTED, index=index, total=total)
 
     def _next_layout_solution(self):
         solution = self.services.layout.select_next_solution()
@@ -1456,6 +1485,7 @@ class MainWindow(QMainWindow):
             current=index,
             total=total,
         )
+        self._emit(events.SOLUTION_SELECTED, index=index, total=total)
 
     def _on_solution_table_double_clicked(self, row: int, column: int):
         del column
@@ -1538,6 +1568,11 @@ class MainWindow(QMainWindow):
         )
         self.services.preferences.update(updated)
 
+        self._emit(
+            events.EXPORT_COMPLETED,
+            format=options.label,
+            path=path,
+        )
         self._status("status.exported", 5000, format=options.label, path=path)
 
     def _save_project(self):
@@ -1563,6 +1598,7 @@ class MainWindow(QMainWindow):
         self._reload_recent_files_menu()
         self.services.recent_files.add(filename)
         self.update_window_title()
+        self._emit(events.PROJECT_SAVED, path=str(filename))
         self._status("status.project_saved", 5000, path=filename)
 
     def _save_project_as(self):
@@ -1592,6 +1628,7 @@ class MainWindow(QMainWindow):
         self._reload_recent_files_menu()
         self.services.recent_files.add(path)
         self.update_window_title()
+        self._emit(events.PROJECT_SAVED, path=str(path))
         self._status("status.project_saved", 5000, path=path)
 
     def _open_project(self):
@@ -1625,6 +1662,7 @@ class MainWindow(QMainWindow):
         self._reload_solution_table()
         self.update_window_title()
 
+        self._emit(events.PROJECT_OPENED, path=str(path))
         self._status("status.project_opened", path=path)
 
     def _reload_recent_files_menu(self):
@@ -1666,6 +1704,7 @@ class MainWindow(QMainWindow):
         self._reload_solution_table()
         self.update_window_title()
 
+        self._emit(events.PROJECT_OPENED, path=str(path))
         self._status("status.project_opened", path=path)
 
     def _confirm_discard_unsaved_changes(self) -> bool:
@@ -1782,6 +1821,7 @@ class MainWindow(QMainWindow):
             current=selected_index,
             total=total,
         )
+        self._emit(events.SOLUTION_SELECTED, index=selected_index, total=total)
 
     def _edit_board(self, board_id: str) -> None:
         project = self.services.projects.current_project

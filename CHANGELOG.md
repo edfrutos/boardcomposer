@@ -89,6 +89,9 @@
   (FLW-003 / SCR-006).
 - Cancelación cooperativa del solver (`CancellationToken`) con botón
   Cancelar en el diálogo de progreso de layout (FLW-003).
+- Timeline MVP (ADR-005): dock alimentado por el Event Bus (ADR-003) con
+  filtro por tipo de evento y vaciado; publicación de hechos clave
+  (proyecto, CSV, cálculo, selección, export, workspace).
 
 ### Cambiado
 
