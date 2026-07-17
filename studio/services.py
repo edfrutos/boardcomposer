@@ -12,6 +12,7 @@ from studio.selection import SelectionManager
 from studio.layout_service import LayoutService
 from studio.preferences import PreferencesManager
 from studio.timeline import TimelineStore
+from studio.events import catalog as events
 
 
 @dataclass
@@ -34,3 +35,28 @@ class StudioServices:
     def __post_init__(self):
         self.layout = LayoutService(self)
         self.timeline = TimelineStore(self.events)
+
+    def mark_project_modified(
+        self,
+        *,
+        affects_layout: bool = True,
+        **payload: object,
+    ) -> bool:
+        """Mark the project dirty and optionally flag layout solutions as stale.
+
+        Returns True when solutions were newly marked outdated (FLW-006).
+        """
+        self.projects.mark_modified()
+        self.events.publish(events.PROJECT_MODIFIED, dict(payload))
+
+        if not affects_layout:
+            return False
+
+        if not self.layout.mark_solutions_outdated():
+            return False
+
+        self.events.publish(
+            events.SOLUTIONS_MARKED_OUTDATED,
+            {"count": len(self.layout.solutions), **payload},
+        )
+        return True

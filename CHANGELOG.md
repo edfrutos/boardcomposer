@@ -94,6 +94,9 @@
   (proyecto, CSV, cálculo, selección, export, workspace).
 - Reproducción paso a paso de colocaciones de la solución seleccionada
   en el Timeline (Inicio / ◀ / ▶ / Play), sin mutar el proyecto.
+- Detección de soluciones desactualizadas al editar el proyecto (FLW-006):
+  banner en el Comparador, aviso al aplicar y eventos `ProjectModified` /
+  `SolutionsMarkedOutdated`.
 
 ### Cambiado
 

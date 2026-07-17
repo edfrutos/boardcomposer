@@ -50,6 +50,7 @@ El Event Bus será un mecanismo de comunicación, nunca un lugar donde resida l�
 - SolutionGenerationStarted
 - SolutionGenerated
 - SolutionSelected
+- SolutionsMarkedOutdated
 - ExportCompleted
 - WorkspaceUpdated
 

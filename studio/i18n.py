@@ -107,8 +107,22 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.event.SolutionGenerationStarted": "Cálculo iniciado",
         "timeline.event.SolutionGenerated": "Cálculo finalizado",
         "timeline.event.SolutionSelected": "Solución seleccionada",
+        "timeline.event.SolutionsMarkedOutdated": "Soluciones desactualizadas",
         "timeline.event.ExportCompleted": "Exportación completada",
         "timeline.event.WorkspaceUpdated": "Workspace actualizado",
+        "comparator.solutions_outdated": (
+            "Soluciones desactualizadas: el proyecto cambió. "
+            "Vuelve a generar el layout para actualizarlas."
+        ),
+        "inspector.solutions_outdated": (
+            "⚠ Soluciones pendientes de regeneración (proyecto modificado)."
+        ),
+        "status.solutions_outdated": "Soluciones marcadas como desactualizadas",
+        "dialog.outdated_solutions_title": "Soluciones desactualizadas",
+        "dialog.outdated_solutions_apply": (
+            "Las soluciones ya no coinciden con el proyecto actual. "
+            "¿Aplicar de todos modos la solución seleccionada?"
+        ),
         "timeline.replay_none": "Reproducción: sin solución",
         "timeline.replay_progress": "Reproducción: {current}/{total} piezas",
         "timeline.replay_reset": "Inicio",
@@ -444,8 +458,22 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.event.SolutionGenerationStarted": "Solve started",
         "timeline.event.SolutionGenerated": "Solve finished",
         "timeline.event.SolutionSelected": "Solution selected",
+        "timeline.event.SolutionsMarkedOutdated": "Solutions marked outdated",
         "timeline.event.ExportCompleted": "Export completed",
         "timeline.event.WorkspaceUpdated": "Workspace updated",
+        "comparator.solutions_outdated": (
+            "Outdated solutions: the project changed. "
+            "Regenerate the layout to refresh them."
+        ),
+        "inspector.solutions_outdated": (
+            "⚠ Solutions pending regeneration (project modified)."
+        ),
+        "status.solutions_outdated": "Solutions marked as outdated",
+        "dialog.outdated_solutions_title": "Outdated solutions",
+        "dialog.outdated_solutions_apply": (
+            "Solutions no longer match the current project. "
+            "Apply the selected solution anyway?"
+        ),
         "timeline.replay_none": "Replay: no solution",
         "timeline.replay_progress": "Replay: {current}/{total} pieces",
         "timeline.replay_reset": "Start",

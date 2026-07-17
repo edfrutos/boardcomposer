@@ -27,6 +27,7 @@ class LayoutService:
         self.strategy_name: str | None = None
         self.stats = PipelineStats()
         self._solved_project: Project | None = None
+        self.solutions_outdated: bool = False
 
     def select_next_solution(self) -> AssemblySolution | None:
         """Select and return the next solution in the list, wrapping to the first."""
@@ -150,6 +151,7 @@ class LayoutService:
         if not solutions:
             self.solutions = []
             self.selected_solution_index = 0
+            self.solutions_outdated = False
 
             return None
 
@@ -161,8 +163,19 @@ class LayoutService:
         )
         self.solutions = solutions[: max(1, limit)]
         self.selected_solution_index = 0
+        self.solutions_outdated = False
 
         return self.selected_solution
+
+    def mark_solutions_outdated(self) -> bool:
+        """Flag cached solutions as stale after project edits (FLW-006).
+
+        Returns True the first time solutions become outdated.
+        """
+        if not self.solutions or self.solutions_outdated:
+            return False
+        self.solutions_outdated = True
+        return True
 
     def apply_last_solution_to_current_project(self) -> bool:
         """Apply the last solution to the current project."""
@@ -204,7 +217,10 @@ class LayoutService:
                 )
             )
 
-        self.services.projects.mark_modified()
+        self.services.mark_project_modified(
+            affects_layout=False,
+            reason="apply_layout",
+        )
         return True
 
     def clear_solutions(self) -> None:
@@ -214,6 +230,7 @@ class LayoutService:
         self.strategy_name = None
         self.stats = PipelineStats()
         self._solved_project = None
+        self.solutions_outdated = False
 
     def board_waste_ratio(self, solution: AssemblySolution) -> float:
         """Return unused board area relative to the source board."""
