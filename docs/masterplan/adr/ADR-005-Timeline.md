@@ -84,3 +84,4 @@ Esta decisión afecta a Studio, Event Bus, Inspector, Comparador, sistema de aud
 ## Revisión futura
 
 En versiones posteriores el Timeline permitirá reproducción paso a paso de algoritmos, marcadores, anotaciones del usuario, comparación sincronizada entre soluciones, métricas temporales y exportación del historial para análisis o soporte técnico.
+**Estado 2026-07-17:** MVP en Studio — el dock Timeline lista hechos publicados en el Event Bus (filtro por tipo, vaciado). La reproducción paso a paso sigue pendiente.

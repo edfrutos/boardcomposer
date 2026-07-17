@@ -105,7 +105,7 @@ El usuario dispone de una colección de soluciones clasificadas, explicadas y li
 
 ## Observaciones
 
-En versiones futuras este flujo incorporará ejecución en paralelo, generación
-incremental de soluciones y un Timeline visual (ADR-005) que permitirá
-reproducir paso a paso cómo cada algoritmo construyó el resultado final.
-La cancelación cooperativa del solver ya está disponible.
+En versiones futuras este flujo incorporará ejecución en paralelo y
+generación incremental de soluciones. El Timeline (ADR-005) ya registra el
+inicio/fin del cálculo; la reproducción paso a paso de algoritmos sigue
+pendiente.
