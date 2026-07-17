@@ -101,6 +101,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.detail.duration_ms": "{n} ms",
         "timeline.clear": "Vaciar",
         "timeline.export": "Exportar…",
+        "timeline.mark": "Marcador…",
+        "timeline.mark_dialog_title": "Añadir marcador",
+        "timeline.mark_dialog_label": "Nota:",
+        "timeline.detail.step": "paso {n}",
         "dialog.export_timeline": "Exportar historial del Timeline",
         "dialog.filter_timeline": "JSON (*.json);;CSV (*.csv)",
         "status.timeline_exported": "Historial del Timeline exportado: {path}",
@@ -120,6 +124,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.event.SolutionsMarkedOutdated": "Soluciones desactualizadas",
         "timeline.event.ExportCompleted": "Exportación completada",
         "timeline.event.WorkspaceUpdated": "Workspace actualizado",
+        "timeline.event.TimelineMarked": "Marcador",
         "comparator.solutions_outdated": (
             "Soluciones desactualizadas: el proyecto cambió. "
             "Vuelve a generar el layout para actualizarlas."
@@ -494,6 +499,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.detail.duration_ms": "{n} ms",
         "timeline.clear": "Clear",
         "timeline.export": "Export…",
+        "timeline.mark": "Marker…",
+        "timeline.mark_dialog_title": "Add marker",
+        "timeline.mark_dialog_label": "Note:",
+        "timeline.detail.step": "step {n}",
         "dialog.export_timeline": "Export Timeline history",
         "dialog.filter_timeline": "JSON (*.json);;CSV (*.csv)",
         "status.timeline_exported": "Timeline history exported: {path}",
@@ -513,6 +522,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.event.SolutionsMarkedOutdated": "Solutions marked outdated",
         "timeline.event.ExportCompleted": "Export completed",
         "timeline.event.WorkspaceUpdated": "Workspace updated",
+        "timeline.event.TimelineMarked": "Marker",
         "comparator.solutions_outdated": (
             "Outdated solutions: the project changed. "
             "Regenerate the layout to refresh them."

@@ -78,3 +78,22 @@ def test_timeline_store_clear_and_listeners():
 
     store.clear()
     assert store.entries == ()
+
+
+def test_timeline_marked_event_is_recorded():
+    from studio.events.catalog import CATALOG, TIMELINE_MARKED
+
+    bus = EventBus()
+    store = TimelineStore(bus)
+    bus.publish(
+        TIMELINE_MARKED,
+        {"note": "revisar retal", "algorithm": "maxrects", "step": 2},
+    )
+
+    assert TIMELINE_MARKED in CATALOG
+    assert len(store.entries) == 1
+    entry = store.entries[0]
+    assert entry.event_name == TIMELINE_MARKED
+    assert entry.payload["note"] == "revisar retal"
+    assert store.filtered(TIMELINE_MARKED) == (entry,)
+    assert store.filtered(algorithm="maxrects") == (entry,)

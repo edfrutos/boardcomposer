@@ -94,3 +94,4 @@ En versiones posteriores el Timeline permitirá reproducción paso a paso de alg
 **Estado 2026-07-17 (g):** exportación del historial del Timeline a JSON/CSV (filtro activo respetado).
 **Estado 2026-07-17 (h):** MaxRects registra fallos de colocación (`incompatible` / `no_fit`) en `SolveTrace` y el Timeline (muestra deduplicada + resumen).
 **Estado 2026-07-17 (i):** filtro del Timeline por algoritmo (además del tipo de evento) y duración en ms de generadores/evaluación (`duration_ms`).
+**Estado 2026-07-17 (j):** marcadores/anotaciones de usuario (`TimelineMarked`) vía Event Bus, con contexto opcional del replay (algoritmo, pieza, paso).

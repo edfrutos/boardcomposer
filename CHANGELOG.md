@@ -108,6 +108,8 @@
   en la traza del solver y el Timeline (`PlacementFailed` + resumen).
 - Filtro del Timeline por algoritmo y métricas temporales (`duration_ms`) en
   `AlgorithmFinished` / `EvaluationFinished` (ADR-005).
+- Marcadores/anotaciones de usuario en el Timeline (`TimelineMarked`) con
+  nota libre y contexto opcional del replay (algoritmo, pieza, paso).
 
 ### Cambiado
 

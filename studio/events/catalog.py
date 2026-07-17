@@ -22,6 +22,7 @@ PLACEMENT_FAILED = "PlacementFailed"
 PLACEMENT_FAILURES_SUMMARY = "PlacementFailuresSummary"
 EXPORT_COMPLETED = "ExportCompleted"
 WORKSPACE_UPDATED = "WorkspaceUpdated"
+TIMELINE_MARKED = "TimelineMarked"
 
 CATALOG: tuple[str, ...] = (
     PROJECT_CREATED,
@@ -40,4 +41,5 @@ CATALOG: tuple[str, ...] = (
     PLACEMENT_FAILURES_SUMMARY,
     EXPORT_COMPLETED,
     WORKSPACE_UPDATED,
+    TIMELINE_MARKED,
 )
