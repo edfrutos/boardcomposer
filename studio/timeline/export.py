@@ -66,9 +66,7 @@ def timeline_to_json(
         algorithm=algorithm,
     )
     stamp = exported_at or datetime.now().astimezone()
-    event_filter = (
-        event_name if event_name and event_name != ALL_EVENTS else None
-    )
+    event_filter = event_name if event_name and event_name != ALL_EVENTS else None
     document = {
         "format": "boardcomposer.timeline",
         "version": 1,

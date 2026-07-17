@@ -31,17 +31,13 @@ def test_pipeline_records_generator_and_evaluation_trace():
     assert "evaluation_finished" in kinds
     assert pipeline.trace.algorithms() == ("vertical", "free_space")
     finished = [
-        event
-        for event in pipeline.trace.events
-        if event.kind == "generator_finished"
+        event for event in pipeline.trace.events if event.kind == "generator_finished"
     ]
     assert finished
     assert all(isinstance(event.payload.get("duration_ms"), int) for event in finished)
     assert all(event.payload["duration_ms"] >= 0 for event in finished)
     evaluation = next(
-        event
-        for event in pipeline.trace.events
-        if event.kind == "evaluation_finished"
+        event for event in pipeline.trace.events if event.kind == "evaluation_finished"
     )
     assert isinstance(evaluation.payload.get("duration_ms"), int)
     if solutions:
