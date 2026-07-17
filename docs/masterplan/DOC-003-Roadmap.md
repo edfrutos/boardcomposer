@@ -112,9 +112,10 @@ Objetivos:
 
 ### Prioridad P1 — En curso / siguiente
 
-- Comparador visual: resaltado por métrica hecho; queda ordenar/filtrar.
-- Importación de inventario multipanel desde CSV (Excel pendiente).
+- Importación de inventario multipanel desde CSV/Excel (`.xlsx`).
 - Cobertura automatizada de interacción Qt (resuelta).
+- Comparador visual: resaltado, ordenar/filtrar y miniaturas (resuelto).
+- Preferencias de estrategia y pesos (SCR-006 mínimo, resuelto).
 - Exportadores avanzados (PDF/DXF).
 - Exploración CP-SAT como generador exacto de un solo panel.
 

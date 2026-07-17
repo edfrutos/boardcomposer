@@ -1,4 +1,4 @@
-"""Parse CSV files describing pieces to import into a Studio project (FLW-002).
+"""Parse CSV/Excel files describing pieces to import into a Studio project (FLW-002).
 
 Pure Python (no Qt). Quantity > 1 expands into several `StudioPiece` ids
 (`P-1`, `P-2`, …) the same way as the New Piece dialog.
@@ -6,11 +6,11 @@ Pure Python (no Qt). Quantity > 1 expands into several `StudioPiece` ids
 
 from __future__ import annotations
 
-import csv
 from dataclasses import dataclass, field
 from pathlib import Path
 
 from studio.models.piece import StudioPiece
+from studio.tabular_file import load_tabular_file
 
 _HEADER_ALIASES: dict[str, tuple[str, ...]] = {
     "piece_id": ("piece_id", "id", "identificador", "pieza", "referencia"),
@@ -29,7 +29,7 @@ _REQUIRED_FIELDS = ("piece_id", "length_mm", "width_mm")
 
 @dataclass(frozen=True)
 class ImportedPieceRow:
-    """The result of parsing a single CSV row."""
+    """The result of parsing a single CSV/Excel row."""
 
     row_number: int
     raw: dict[str, str]
@@ -45,7 +45,7 @@ class ImportedPieceRow:
 
 @dataclass(frozen=True)
 class ImportPiecesResult:
-    """The complete outcome of importing a pieces CSV file."""
+    """The complete outcome of importing a pieces CSV/Excel file."""
 
     rows: tuple[ImportedPieceRow, ...] = field(default_factory=tuple)
     file_errors: tuple[str, ...] = ()
@@ -67,7 +67,7 @@ class ImportPiecesResult:
         return bool(self.file_errors) or bool(self.invalid_rows)
 
 
-def _resolve_header_map(fieldnames: list[str]) -> dict[str, str]:
+def _resolve_header_map(fieldnames: list[str] | tuple[str, ...]) -> dict[str, str]:
     normalized = {name.strip().casefold(): name for name in fieldnames}
     resolved: dict[str, str] = {}
     for canonical, aliases in _HEADER_ALIASES.items():
@@ -206,45 +206,49 @@ def _parse_row(
     )
 
 
-def import_pieces_from_csv(
-    path: str | Path,
+def import_pieces_from_rows(
+    fieldnames: list[str] | tuple[str, ...],
+    data_rows: list[dict[str, str]] | tuple[dict[str, str], ...],
     existing_ids: set[str] | None = None,
 ) -> ImportPiecesResult:
-    """Parse `path` and return an `ImportPiecesResult`."""
+    """Parse already-loaded tabular rows into an `ImportPiecesResult`."""
     reserved = {piece_id.casefold() for piece_id in (existing_ids or set())}
-
-    try:
-        with open(path, newline="", encoding="utf-8-sig") as csv_file:
-            reader = csv.DictReader(csv_file)
-            fieldnames = reader.fieldnames
-
-            if not fieldnames:
-                return ImportPiecesResult(file_errors=("El archivo está vacío",))
-
-            header_map = _resolve_header_map(fieldnames)
-            missing = [field for field in _REQUIRED_FIELDS if field not in header_map]
-            if missing:
-                return ImportPiecesResult(
-                    file_errors=(
-                        "No se reconocen las columnas obligatorias: "
-                        f"{', '.join(missing)}",
-                    )
-                )
-
-            rows = [
-                _parse_row(index, raw_row, header_map, reserved)
-                for index, raw_row in enumerate(reader, start=2)
-            ]
-    except OSError as error:
-        return ImportPiecesResult(file_errors=(f"No se pudo leer el archivo: {error}",))
-    except csv.Error as error:
+    header_map = _resolve_header_map(fieldnames)
+    missing = [field for field in _REQUIRED_FIELDS if field not in header_map]
+    if missing:
         return ImportPiecesResult(
-            file_errors=(f"El archivo CSV no es válido: {error}",)
+            file_errors=(
+                f"No se reconocen las columnas obligatorias: {', '.join(missing)}",
+            )
         )
 
+    rows = [
+        _parse_row(index, raw_row, header_map, reserved)
+        for index, raw_row in enumerate(data_rows, start=2)
+    ]
     if not rows:
         return ImportPiecesResult(
             file_errors=("El archivo no contiene filas de datos",)
         )
-
     return ImportPiecesResult(rows=tuple(rows))
+
+
+def import_pieces_from_file(
+    path: str | Path,
+    existing_ids: set[str] | None = None,
+) -> ImportPiecesResult:
+    """Parse a CSV or Excel file and return an `ImportPiecesResult`."""
+    loaded = load_tabular_file(path)
+    if not loaded.ok:
+        return ImportPiecesResult(file_errors=loaded.errors)
+    return import_pieces_from_rows(
+        loaded.fieldnames, loaded.rows, existing_ids=existing_ids
+    )
+
+
+def import_pieces_from_csv(
+    path: str | Path,
+    existing_ids: set[str] | None = None,
+) -> ImportPiecesResult:
+    """Backward-compatible alias for `import_pieces_from_file`."""
+    return import_pieces_from_file(path, existing_ids=existing_ids)

@@ -85,8 +85,8 @@ Observaciones:
 | IDE-0013 | Migraciones explícitas `.bcproj` | 🟢 | P1 |
 | IDE-0014 | Retales informativos por panel | 🟢 | P1 |
 | IDE-0015 | Compatibilidad material pieza/panel | 🟢 | P0 |
-| IDE-0016 | Generador CP-SAT (un panel) | 🔵 | P1 |
-| IDE-0017 | Importación de piezas desde CSV/Excel | ⚪ | P1 |
+| IDE-0016 | Generador CP-SAT (un panel) | 🟢 | P1 |
+| IDE-0017 | Importación de piezas desde CSV/Excel | 🟢 | P1 |
 
 ---
 

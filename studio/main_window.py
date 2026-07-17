@@ -43,8 +43,8 @@ from studio.dialogs import (
     NewPieceDialog,
     PreferencesDialog,
 )
-from studio.board_csv_importer import import_boards_from_csv
-from studio.piece_csv_importer import import_pieces_from_csv
+from studio.board_csv_importer import import_boards_from_file
+from studio.piece_csv_importer import import_pieces_from_file
 from studio.solution_ordering import SORT_LABELS, ordered_solution_indexes
 from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
 
@@ -99,9 +99,11 @@ class MainWindow(QMainWindow):
         self._actions["add_board"] = QAction("Añadir tablero…", self)
         self._actions["add_piece"] = QAction("Añadir pieza…", self)
         self._actions["import_boards_csv"] = QAction(
-            "Importar inventario de tableros (CSV)…", self
+            "Importar inventario de tableros (CSV/Excel)…", self
         )
-        self._actions["import_pieces_csv"] = QAction("Importar piezas (CSV)…", self)
+        self._actions["import_pieces_csv"] = QAction(
+            "Importar piezas (CSV/Excel)…", self
+        )
         self._actions["export_selected_svg"] = QAction(
             "Exportar solución seleccionada a SVG…",
             self,
@@ -555,16 +557,17 @@ class MainWindow(QMainWindow):
 
         file_path, _ = QFileDialog.getOpenFileName(
             self,
-            "Importar inventario de tableros (CSV)",
+            "Importar inventario de tableros (CSV/Excel)",
             "",
-            "Archivos CSV (*.csv);;Todos los archivos (*)",
+            "CSV / Excel (*.csv *.xlsx);;CSV (*.csv);;Excel (*.xlsx);;"
+            "Todos los archivos (*)",
         )
 
         if not file_path:
             return
 
         existing_ids = {board.board_id.casefold() for board in project.boards}
-        result = import_boards_from_csv(file_path, existing_ids=existing_ids)
+        result = import_boards_from_file(file_path, existing_ids=existing_ids)
 
         if result.file_errors:
             QMessageBox.warning(
@@ -588,7 +591,7 @@ class MainWindow(QMainWindow):
         self.update_window_title()
 
         self.statusBar().showMessage(
-            f"{len(result.valid_boards)} tablero(s) importado(s) desde CSV",
+            f"{len(result.valid_boards)} tablero(s) importado(s)",
             5000,
         )
 
@@ -604,16 +607,17 @@ class MainWindow(QMainWindow):
 
         file_path, _ = QFileDialog.getOpenFileName(
             self,
-            "Importar piezas (CSV)",
+            "Importar piezas (CSV/Excel)",
             "",
-            "Archivos CSV (*.csv);;Todos los archivos (*)",
+            "CSV / Excel (*.csv *.xlsx);;CSV (*.csv);;Excel (*.xlsx);;"
+            "Todos los archivos (*)",
         )
 
         if not file_path:
             return
 
         existing_ids = {piece.piece_id.casefold() for piece in project.pieces}
-        result = import_pieces_from_csv(file_path, existing_ids=existing_ids)
+        result = import_pieces_from_file(file_path, existing_ids=existing_ids)
 
         if result.file_errors:
             QMessageBox.warning(
@@ -653,7 +657,7 @@ class MainWindow(QMainWindow):
         self.update_window_title()
 
         self.statusBar().showMessage(
-            f"{len(result.valid_pieces)} pieza(s) importada(s) desde CSV",
+            f"{len(result.valid_pieces)} pieza(s) importada(s)",
             5000,
         )
 

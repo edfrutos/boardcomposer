@@ -29,7 +29,7 @@ Backlog operativo de corto plazo. El registro de producto se mantiene en
   (resaltado + ordenar/filtrar por métrica + miniaturas SVG).
 - [x] Exportación PDF/DXF.
 - [x] Preferencias de estrategia y pesos de scoring.
-- [x] Importación de piezas desde CSV; soporte Excel (.xlsx) pendiente.
+- [x] Importación de piezas desde CSV; soporte Excel (.xlsx) incluido.
 
 ## Documentación
 
