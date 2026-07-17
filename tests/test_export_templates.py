@@ -166,3 +166,53 @@ def test_export_dialog_save_template_via_manager(qapp, tmp_path):
 
     assert manager.get("PDF taller", client="Acme") is not None
     assert dialog.template.currentData() == _template_key("Acme", "PDF taller")
+
+
+def test_export_pack_and_import_merge(tmp_path):
+    source = ExportTemplatesManager(path=tmp_path / "a.json", autoload=False)
+    source.save_template("PDF", ExportOptions(format="pdf"), client="Acme")
+    source.save_template("SVG", ExportOptions(format="svg"))
+
+    pack = tmp_path / "pack.json"
+    assert source.export_pack(pack) == 2
+    assert source.export_pack(tmp_path / "acme.json", client="Acme") == 1
+
+    target = ExportTemplatesManager(path=tmp_path / "b.json", autoload=False)
+    target.save_template("SVG", ExportOptions(format="json"))
+    imported, total = target.import_pack(pack, mode="merge")
+
+    assert imported == 2
+    assert total == 2
+    assert target.get("SVG", client="").options.format == "svg"
+    assert target.get("PDF", client="Acme") is not None
+
+
+def test_import_pack_replace_and_legacy_list(tmp_path):
+    pack = tmp_path / "legacy.json"
+    pack.write_text(
+        '[{"name": "Solo", "format": "dxf", "client": "Beta"}]',
+        encoding="utf-8",
+    )
+    manager = ExportTemplatesManager(path=tmp_path / "c.json", autoload=False)
+    manager.save_template("Keep", ExportOptions(format="svg"))
+    imported, total = manager.import_pack(pack, mode="replace")
+
+    assert imported == 1
+    assert total == 1
+    assert manager.get("Keep") is None
+    assert manager.get("Solo", client="Beta").options.format == "dxf"
+
+
+def test_export_dialog_shows_share_buttons(qapp):
+    del qapp
+    solution = AssemblySolution(
+        placements=[BoardPlacement("A", 0, 0, 100, 50)],
+    )
+    dialog = ExportDialog(
+        solution,
+        None,
+        ExportOptions(format="svg"),
+        language="en",
+    )
+    assert dialog.export_templates_button.text() == "Export pack…"
+    assert dialog.import_templates_button.text() == "Import pack…"

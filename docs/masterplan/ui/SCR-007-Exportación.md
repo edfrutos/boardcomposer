@@ -153,4 +153,5 @@ Toda exportación deberá conservar la trazabilidad de la solución de origen, i
 - Plantillas de exportación nombradas (guardar / aplicar / eliminar) en
   `~/.boardcomposer/export_templates.json`, con perfiles por cliente
   (mismo nombre de plantilla permitido en clientes distintos).
-- Pendiente: compartir plantillas entre equipos.
+- Compartir plantillas entre equipos: exportar/importar pack JSON
+  (fusión o reemplazo) desde el diálogo de exportación.

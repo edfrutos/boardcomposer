@@ -208,6 +208,24 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.client_all": "(todos los clientes)",
         "export.client_general": "(general)",
         "export.client_prompt": "Cliente (opcional):",
+        "export.share_export": "Exportar pack…",
+        "export.share_import": "Importar pack…",
+        "export.share_export_title": "Exportar plantillas",
+        "export.share_import_title": "Importar plantillas",
+        "export.share_filter": "Plantillas BoardComposer (*.json)",
+        "export.share_export_done": "Se exportaron {count} plantilla(s).",
+        "export.share_import_mode": (
+            "¿Fusionar con las plantillas existentes?\n\n"
+            "Sí = fusionar (sustituye homónimas)\n"
+            "No = reemplazar todo el catálogo\n"
+            "Cancelar = no importar"
+        ),
+        "export.share_import_done": (
+            "Importadas {imported} plantilla(s) ({mode}). Catálogo actual: {total}."
+        ),
+        "export.share_mode_merge": "fusión",
+        "export.share_mode_replace": "reemplazo",
+        "export.share_error": "No se pudo completar la operación:\n{error}",
         "import.boards_title": "Importar inventario de tableros (CSV)",
         "import.pieces_title": "Importar piezas (CSV)",
         "import.file_error_header": "No se pudo procesar el archivo:",
@@ -463,6 +481,24 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.client_all": "(all clients)",
         "export.client_general": "(general)",
         "export.client_prompt": "Client (optional):",
+        "export.share_export": "Export pack…",
+        "export.share_import": "Import pack…",
+        "export.share_export_title": "Export templates",
+        "export.share_import_title": "Import templates",
+        "export.share_filter": "BoardComposer templates (*.json)",
+        "export.share_export_done": "Exported {count} template(s).",
+        "export.share_import_mode": (
+            "Merge with existing templates?\n\n"
+            "Yes = merge (overwrite same client+name)\n"
+            "No = replace the whole catalog\n"
+            "Cancel = do not import"
+        ),
+        "export.share_import_done": (
+            "Imported {imported} template(s) ({mode}). Current catalog: {total}."
+        ),
+        "export.share_mode_merge": "merge",
+        "export.share_mode_replace": "replace",
+        "export.share_error": "Could not complete the operation:\n{error}",
         "import.boards_title": "Import board inventory (CSV)",
         "import.pieces_title": "Import pieces (CSV)",
         "import.file_error_header": "Could not process the file:",

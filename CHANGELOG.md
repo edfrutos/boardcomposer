@@ -78,6 +78,8 @@
   `client` y filtro en el diálogo).
 - Tema visual «Industrial madera»: tokens + QSS (claro/oscuro), fuentes
   Archivo / Source Sans 3, y pantalla de inicio brand-first (`docs/DESIGN.md`).
+- Compartir plantillas de exportación entre equipos (exportar/importar
+  pack JSON con fusión o reemplazo).
 
 ### Cambiado
 
