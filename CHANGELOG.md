@@ -74,6 +74,8 @@
 - i18n es/en de diálogos (export/import) y mensajes de la barra de estado.
 - i18n es/en de formularios Nuevo/Editar tablero y pieza.
 - i18n es/en del panel de diferencias del comparador (SCR-003).
+- Perfiles de exportación por cliente (plantillas SCR-007 con campo
+  `client` y filtro en el diálogo).
 
 ### Cambiado
 

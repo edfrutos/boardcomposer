@@ -151,5 +151,6 @@ Toda exportación deberá conservar la trazabilidad de la solución de origen, i
 - SVG/DXF/PDF respetan la opción de retales.
 - Las últimas opciones se guardan en `preferences.json`.
 - Plantillas de exportación nombradas (guardar / aplicar / eliminar) en
-  `~/.boardcomposer/export_templates.json`.
-- Pendiente: compartir plantillas entre equipos / perfiles por cliente.
+  `~/.boardcomposer/export_templates.json`, con perfiles por cliente
+  (mismo nombre de plantilla permitido en clientes distintos).
+- Pendiente: compartir plantillas entre equipos.

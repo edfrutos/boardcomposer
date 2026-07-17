@@ -1,4 +1,4 @@
-"""Named export option templates for Studio (SCR-007)."""
+"""Named export option templates / client profiles for Studio (SCR-007)."""
 
 from __future__ import annotations
 
@@ -13,21 +13,40 @@ def default_export_templates_path() -> Path:
     return Path.home() / ".boardcomposer" / "export_templates.json"
 
 
+def normalize_client(client: str | None) -> str:
+    return (client or "").strip()
+
+
 @dataclass(frozen=True)
 class ExportTemplate:
-    """A named snapshot of export options."""
+    """A named snapshot of export options, optionally scoped to a client."""
 
     name: str
     options: ExportOptions
+    client: str = ""
+
+    @property
+    def key(self) -> tuple[str, str]:
+        return (self.client.casefold(), self.name.casefold())
+
+    def display_label(self, *, general_label: str = "") -> str:
+        if self.client:
+            return f"{self.client} — {self.name}"
+        if general_label:
+            return f"{general_label} — {self.name}"
+        return self.name
 
     def to_dict(self) -> dict:
-        return {
+        payload = {
             "name": self.name,
             "format": self.options.format,
             "include_metrics": self.options.include_metrics,
             "include_explanation": self.options.include_explanation,
             "include_offcuts": self.options.include_offcuts,
         }
+        if self.client:
+            payload["client"] = self.client
+        return payload
 
     @classmethod
     def from_dict(cls, payload: dict) -> ExportTemplate | None:
@@ -40,7 +59,8 @@ class ExportTemplate:
             include_explanation=bool(payload.get("include_explanation", True)),
             include_offcuts=bool(payload.get("include_offcuts", True)),
         ).normalized()
-        return cls(name=name, options=options)
+        client = normalize_client(str(payload.get("client", "")))
+        return cls(name=name, options=options, client=client)
 
 
 @dataclass
@@ -57,34 +77,70 @@ class ExportTemplatesManager:
         if self.autoload and not self.templates:
             self.load()
 
-    def names(self) -> list[str]:
-        return [template.name for template in self.templates]
+    def clients(self) -> list[str]:
+        """Return sorted unique client names (excluding the empty/general bucket)."""
+        names = {template.client for template in self.templates if template.client}
+        return sorted(names, key=str.casefold)
 
-    def get(self, name: str) -> ExportTemplate | None:
+    def names(self, client: str | None = None) -> list[str]:
+        """Return template names, optionally filtered by client.
+
+        `client=None` returns every template name (legacy helper).
+        `client=""` returns only general (no-client) templates.
+        """
+        if client is None:
+            return [template.name for template in self.templates]
+        wanted = normalize_client(client)
+        return [
+            template.name for template in self.templates if template.client == wanted
+        ]
+
+    def templates_for(self, client: str | None = None) -> list[ExportTemplate]:
+        if client is None:
+            return list(self.templates)
+        wanted = normalize_client(client)
+        return [template for template in self.templates if template.client == wanted]
+
+    def get(self, name: str, client: str = "") -> ExportTemplate | None:
+        wanted = (normalize_client(client).casefold(), name.strip().casefold())
         for template in self.templates:
-            if template.name == name:
+            if template.key == wanted:
                 return template
         return None
 
-    def save_template(self, name: str, options: ExportOptions) -> ExportTemplate:
-        """Insert or replace a template by name and persist."""
+    def save_template(
+        self,
+        name: str,
+        options: ExportOptions,
+        *,
+        client: str = "",
+    ) -> ExportTemplate:
+        """Insert or replace a template by client+name and persist."""
         cleaned = name.strip()
         if not cleaned:
             raise ValueError("El nombre de la plantilla no puede estar vacío")
 
-        template = ExportTemplate(name=cleaned, options=options.normalized())
+        client_name = normalize_client(client)
+        template = ExportTemplate(
+            name=cleaned,
+            options=options.normalized(),
+            client=client_name,
+        )
         self.templates = [
-            existing for existing in self.templates if existing.name != cleaned
+            existing for existing in self.templates if existing.key != template.key
         ]
         self.templates.append(template)
-        self.templates.sort(key=lambda item: item.name.casefold())
+        self.templates.sort(
+            key=lambda item: (item.client.casefold(), item.name.casefold())
+        )
         self.save()
         return template
 
-    def delete(self, name: str) -> bool:
+    def delete(self, name: str, client: str = "") -> bool:
+        wanted = (normalize_client(client).casefold(), name.strip().casefold())
         before = len(self.templates)
         self.templates = [
-            template for template in self.templates if template.name != name
+            template for template in self.templates if template.key != wanted
         ]
         if len(self.templates) == before:
             return False
@@ -105,16 +161,16 @@ class ExportTemplatesManager:
             return
 
         templates: list[ExportTemplate] = []
-        seen: set[str] = set()
+        seen: set[tuple[str, str]] = set()
         for item in payload:
             if not isinstance(item, dict):
                 continue
             template = ExportTemplate.from_dict(item)
-            if template is None or template.name in seen:
+            if template is None or template.key in seen:
                 continue
-            seen.add(template.name)
+            seen.add(template.key)
             templates.append(template)
-        templates.sort(key=lambda item: item.name.casefold())
+        templates.sort(key=lambda item: (item.client.casefold(), item.name.casefold()))
         self.templates = templates
 
     def save(self) -> None:
