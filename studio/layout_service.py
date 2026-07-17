@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from boardcomposer import Board, Project, ProjectConstraints, StockPanel
 from boardcomposer.domain import AssemblySolution
+from boardcomposer.solver.cancel import CancellationToken
 from boardcomposer.solver.geometry_solver import GeometrySolver
 from boardcomposer.solver.pipeline_stats import PipelineStats
 from boardcomposer.solver.strategies import material_first_strategy
@@ -125,7 +126,10 @@ class LayoutService:
             return material_first_strategy()
         return preferences.current.resolved_strategy()
 
-    def solve_current_project(self) -> AssemblySolution | None:
+    def solve_current_project(
+        self,
+        cancel: CancellationToken | None = None,
+    ) -> AssemblySolution | None:
         project = self.to_core_project()
         if project is None:
             return None
@@ -137,6 +141,7 @@ class LayoutService:
         solver = GeometrySolver(
             project,
             strategy=strategy,
+            cancel=cancel,
         )
 
         solutions = solver.solve()
@@ -244,6 +249,8 @@ class LayoutService:
             tr("diag.accepted", language, n=self.stats.accepted),
             tr("diag.rejected", language, n=self.stats.rejected),
         ]
+        if self.stats.cancelled:
+            lines.insert(1, tr("diag.cancelled", language))
 
         reason_keys = {
             "missing_board": "diag.missing_board",

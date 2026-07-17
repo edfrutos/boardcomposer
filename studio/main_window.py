@@ -17,7 +17,6 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QMenuBar,
     QMessageBox,
-    QProgressDialog,
     QPushButton,
     QStatusBar,
     QStackedWidget,
@@ -1136,31 +1135,28 @@ class MainWindow(QMainWindow):
         self._reload_solution_table()
 
     def _solve_layout(self):
-        from PySide6.QtWidgets import QApplication
+        from studio.solve_worker import run_solve_with_progress
 
         self._status("status.layout_computing", 0)
-        progress = QProgressDialog(
-            self._tr("progress.layout_label"),
-            None,
-            0,
-            0,
-            self,
-        )
-        progress.setWindowTitle(self._tr("progress.layout_title"))
-        progress.setWindowModality(Qt.WindowModality.WindowModal)
-        progress.setMinimumDuration(0)
-        progress.setValue(0)
-        progress.show()
-        app = QApplication.instance()
-        if app is not None:
-            app.processEvents()
-
         try:
-            solution = self.services.layout.solve_current_project()
-        finally:
-            progress.close()
+            solution = run_solve_with_progress(
+                parent=self,
+                layout_service=self.services.layout,
+                label=self._tr("progress.layout_label"),
+                title=self._tr("progress.layout_title"),
+                cancel_text=self._tr("progress.layout_cancel"),
+            )
+        except RuntimeError as exc:
+            self._status("status.layout_error", error=str(exc))
+            return
 
         self._comparator_reference_index = None
+
+        if self.services.layout.stats.cancelled:
+            self._reload_solution_table()
+            self.inspector.setText(self._tr("inspector.layout_cancelled"))
+            self._status("status.layout_cancelled")
+            return
 
         if solution is None:
             self._show_no_solution_diagnosis()

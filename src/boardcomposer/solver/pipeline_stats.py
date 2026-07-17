@@ -16,3 +16,4 @@ class PipelineStats:
     accepted_partial: int = 0
     rejected: int = 0
     rejection_reasons: Counter[ValidationReason] = field(default_factory=Counter)
+    cancelled: bool = False

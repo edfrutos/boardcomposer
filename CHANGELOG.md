@@ -87,6 +87,8 @@
 - Accesos a documentación y novedades (menú Ayuda + pantalla de inicio).
 - Preferencias avanzadas: tope de soluciones y progreso al calcular layout
   (FLW-003 / SCR-006).
+- Cancelación cooperativa del solver (`CancellationToken`) con botón
+  Cancelar en el diálogo de progreso de layout (FLW-003).
 
 ### Cambiado
 
