@@ -27,7 +27,13 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from boardcomposer.export import solution_to_dxf, solution_to_pdf, solution_to_svg
+from boardcomposer.export import (
+    solution_to_csv,
+    solution_to_dxf,
+    solution_to_json,
+    solution_to_pdf,
+    solution_to_svg,
+)
 from studio.commands import DeletePieceCommand, RotatePieceCommand
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import (
@@ -119,6 +125,14 @@ class MainWindow(QMainWindow):
             "Exportar solución seleccionada a PDF…",
             self,
         )
+        self._actions["export_selected_json"] = QAction(
+            "Exportar solución seleccionada a JSON…",
+            self,
+        )
+        self._actions["export_selected_csv"] = QAction(
+            "Exportar solución seleccionada a CSV…",
+            self,
+        )
         self._actions["exit"] = QAction("Salir", self)
         self._actions["undo"] = QAction("Deshacer", self)
         self._actions["redo"] = QAction("Rehacer", self)
@@ -164,6 +178,8 @@ class MainWindow(QMainWindow):
         menus["Exportar"].addAction(self._actions["export_selected_svg"])
         menus["Exportar"].addAction(self._actions["export_selected_dxf"])
         menus["Exportar"].addAction(self._actions["export_selected_pdf"])
+        menus["Exportar"].addAction(self._actions["export_selected_json"])
+        menus["Exportar"].addAction(self._actions["export_selected_csv"])
 
         menus["Herramientas"].addAction(self._actions["solve_layout"])
         menus["Herramientas"].addSeparator()
@@ -206,6 +222,12 @@ class MainWindow(QMainWindow):
         )
         self._actions["export_selected_pdf"].triggered.connect(
             self._export_selected_solution_pdf
+        )
+        self._actions["export_selected_json"].triggered.connect(
+            self._export_selected_solution_json
+        )
+        self._actions["export_selected_csv"].triggered.connect(
+            self._export_selected_solution_csv
         )
 
         self._reload_recent_files_menu()
@@ -1327,6 +1349,70 @@ class MainWindow(QMainWindow):
             return
 
         self.statusBar().showMessage(f"PDF exportado: {path}", 5000)
+
+    def _export_selected_solution_json(self):
+        solution = self.services.layout.selected_solution
+
+        if solution is None:
+            self.statusBar().showMessage("Primero calcula un layout", 3000)
+            return
+
+        selected_index = self.services.layout.selected_solution_index + 1
+        default_filename = f"boardcomposer-solution-{selected_index}.json"
+
+        path, _selected_filter = QFileDialog.getSaveFileName(
+            self,
+            "Exportar solución seleccionada",
+            default_filename,
+            "JSON (*.json)",
+        )
+
+        if not path:
+            return
+
+        try:
+            Path(path).write_text(
+                solution_to_json(
+                    solution,
+                    self.services.layout.solved_project,
+                    strategy_name=self.services.layout.strategy_name,
+                    solution_index=self.services.layout.selected_solution_index,
+                ),
+                encoding="utf-8",
+            )
+        except OSError as exc:
+            self.statusBar().showMessage(f"No se pudo exportar JSON: {exc}", 5000)
+            return
+
+        self.statusBar().showMessage(f"JSON exportado: {path}", 5000)
+
+    def _export_selected_solution_csv(self):
+        solution = self.services.layout.selected_solution
+
+        if solution is None:
+            self.statusBar().showMessage("Primero calcula un layout", 3000)
+            return
+
+        selected_index = self.services.layout.selected_solution_index + 1
+        default_filename = f"boardcomposer-solution-{selected_index}.csv"
+
+        path, _selected_filter = QFileDialog.getSaveFileName(
+            self,
+            "Exportar solución seleccionada",
+            default_filename,
+            "CSV (*.csv)",
+        )
+
+        if not path:
+            return
+
+        try:
+            Path(path).write_text(solution_to_csv(solution), encoding="utf-8")
+        except OSError as exc:
+            self.statusBar().showMessage(f"No se pudo exportar CSV: {exc}", 5000)
+            return
+
+        self.statusBar().showMessage(f"CSV exportado: {path}", 5000)
 
     def _save_project(self):
         project = self.services.projects.current_project
