@@ -43,6 +43,7 @@ from studio.i18n import action_keys, menu_keys, tr
 from studio.workspace.board_workspace import BoardWorkspace
 from studio.workspace.board_piece_item import BoardPieceItem
 from studio.dialogs import (
+    AboutDialog,
     ExportDialog,
     ImportBoardsPreviewDialog,
     ImportPiecesPreviewDialog,
@@ -50,6 +51,7 @@ from studio.dialogs import (
     NewPieceDialog,
     PreferencesDialog,
     ProjectTemplatePickerDialog,
+    WhatsNewDialog,
 )
 from studio.board_csv_importer import import_boards_from_file
 from studio.piece_csv_importer import import_pieces_from_file
@@ -138,6 +140,11 @@ class MainWindow(QMainWindow):
         self._menus["tools"].addSeparator()
         self._menus["tools"].addAction(self._actions["apply_layout"])
 
+        self._menus["help"].addAction(self._actions["whats_new"])
+        self._menus["help"].addAction(self._actions["open_docs"])
+        self._menus["help"].addSeparator()
+        self._menus["help"].addAction(self._actions["about"])
+
         self._actions["open"].triggered.connect(self._open_project)
         self._actions["save"].triggered.connect(self._save_project)
         self._actions["save_as"].triggered.connect(self._save_project_as)
@@ -170,6 +177,9 @@ class MainWindow(QMainWindow):
         self._actions["export_selected"].triggered.connect(
             self._export_selected_solution
         )
+        self._actions["whats_new"].triggered.connect(self._show_whats_new)
+        self._actions["open_docs"].triggered.connect(self._open_documentation)
+        self._actions["about"].triggered.connect(self._show_about)
 
         self._reload_recent_files_menu()
 
@@ -183,6 +193,8 @@ class MainWindow(QMainWindow):
         self.welcome.preferences_requested.connect(self._open_preferences)
         self.welcome.demo_project_requested.connect(self._new_demo_project)
         self.welcome.from_template_requested.connect(self._new_from_template)
+        self.welcome.docs_requested.connect(self._open_documentation)
+        self.welcome.whats_new_requested.connect(self._show_whats_new)
 
         self._central_stack = QStackedWidget()
         self._central_stack.addWidget(self.welcome)
@@ -573,6 +585,33 @@ class MainWindow(QMainWindow):
             include_placements=include,
         )
         self._status("status.template_saved", name=name)
+
+    def _show_whats_new(self) -> None:
+        dialog = WhatsNewDialog(language=self._ui_language(), parent=self)
+        dialog.exec()
+
+    def _show_about(self) -> None:
+        dialog = AboutDialog(language=self._ui_language(), parent=self)
+        dialog.exec()
+
+    def _open_documentation(self) -> None:
+        from PySide6.QtCore import QUrl
+        from PySide6.QtGui import QDesktopServices
+
+        from studio.whats_new import documentation_paths
+
+        path = documentation_paths()["masterplan"]
+        if not path.is_file():
+            path = documentation_paths()["readme"]
+        if not path.is_file():
+            QMessageBox.warning(
+                self,
+                self._tr("action.open_docs"),
+                self._tr("help.docs_missing", path=str(path)),
+            )
+            return
+        QDesktopServices.openUrl(QUrl.fromLocalFile(str(path.resolve())))
+        self._status("status.docs_opened")
 
     def _add_board(self):
         project = self.services.projects.current_project
