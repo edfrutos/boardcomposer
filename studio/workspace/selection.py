@@ -1,14 +1,13 @@
-from PySide6.QtGui import QColor, QPen
-
 from studio.workspace.board_piece_item import BoardPieceItem
+from studio.workspace.canvas_style import color, pen
 
 
 def apply_selection(item: BoardPieceItem, selected: bool) -> None:
     item.setSelected(selected)
 
     if selected:
-        item.setBrush(QColor("#bfdbfe"))
-        item.setPen(QPen(QColor("#dc2626"), 10))
+        item.setBrush(color("selected_fill"))
+        item.setPen(pen("selected_stroke", 10))
     else:
-        item.setBrush(QColor("#dbeafe"))
-        item.setPen(QPen(QColor("#1d4ed8"), 3))
+        item.setBrush(color("piece_fill"))
+        item.setPen(pen("piece_stroke", 3))

@@ -1,9 +1,10 @@
-from PySide6.QtGui import QColor, QPen
 from PySide6.QtWidgets import QGraphicsScene
+
+from studio.workspace.canvas_style import pen
 
 
 def add_grid(scene: QGraphicsScene, grid_size: int = 100) -> None:
-    grid_pen = QPen(QColor("#e5e7eb"), 1)
+    grid_pen = pen("grid", 1)
     scene_rect = scene.sceneRect()
 
     for x_value in range(

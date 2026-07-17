@@ -1,7 +1,7 @@
-from PySide6.QtGui import QColor, QPen
 from PySide6.QtWidgets import QGraphicsRectItem
 
 from studio.models import StudioBoard
+from studio.workspace.canvas_style import color, pen
 
 
 def create_board_item(board_model: StudioBoard) -> QGraphicsRectItem:
@@ -11,6 +11,6 @@ def create_board_item(board_model: StudioBoard) -> QGraphicsRectItem:
         board_model.length_mm,
         board_model.width_mm,
     )
-    board.setBrush(QColor("#f8fafc"))
-    board.setPen(QPen(QColor("#111827"), 4))
+    board.setBrush(color("board_fill"))
+    board.setPen(pen("board_stroke", 4))
     return board

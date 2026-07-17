@@ -78,6 +78,8 @@
   `client` y filtro en el diálogo).
 - Tema visual «Industrial madera»: tokens + QSS (claro/oscuro), fuentes
   Archivo / Source Sans 3, y pantalla de inicio brand-first (`docs/DESIGN.md`).
+- Colores del canvas/workspace alineados al tema (tablero, pieza, selección,
+  validación y grid).
 
 ### Cambiado
 
