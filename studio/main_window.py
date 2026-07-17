@@ -10,6 +10,7 @@ from PySide6.QtWidgets import (
     QDockWidget,
     QFileDialog,
     QHBoxLayout,
+    QInputDialog,
     QLabel,
     QListWidget,
     QListWidgetItem,
@@ -48,6 +49,7 @@ from studio.dialogs import (
     NewBoardDialog,
     NewPieceDialog,
     PreferencesDialog,
+    ProjectTemplatePickerDialog,
 )
 from studio.board_csv_importer import import_boards_from_file
 from studio.piece_csv_importer import import_pieces_from_file
@@ -101,6 +103,7 @@ class MainWindow(QMainWindow):
         self._actions["delete_piece"].setShortcut("Backspace")
 
         self._menus["file"].addAction(self._actions["new_project"])
+        self._menus["file"].addAction(self._actions["new_from_template"])
         self._menus["file"].addAction(self._actions["new_demo_project"])
         self._menus["file"].addAction(self._actions["show_welcome"])
         self._menus["file"].addSeparator()
@@ -109,6 +112,7 @@ class MainWindow(QMainWindow):
         self._menus["file"].addSeparator()
         self._menus["file"].addAction(self._actions["save"])
         self._menus["file"].addAction(self._actions["save_as"])
+        self._menus["file"].addAction(self._actions["save_as_template"])
         self._menus["file"].addSeparator()
         self._menus["file"].addAction(self._actions["exit"])
 
@@ -139,8 +143,10 @@ class MainWindow(QMainWindow):
         self._actions["save_as"].triggered.connect(self._save_project_as)
         self._actions["exit"].triggered.connect(self.close)
         self._actions["new_project"].triggered.connect(self._new_project)
+        self._actions["new_from_template"].triggered.connect(self._new_from_template)
         self._actions["new_demo_project"].triggered.connect(self._new_demo_project)
         self._actions["show_welcome"].triggered.connect(self._show_welcome_screen)
+        self._actions["save_as_template"].triggered.connect(self._save_as_template)
         self._actions["add_board"].triggered.connect(self._add_board)
         self._actions["add_piece"].triggered.connect(self._add_piece)
         self._actions["import_boards_csv"].triggered.connect(
@@ -176,6 +182,7 @@ class MainWindow(QMainWindow):
         self.welcome.import_pieces_requested.connect(self._import_pieces_from_csv)
         self.welcome.preferences_requested.connect(self._open_preferences)
         self.welcome.demo_project_requested.connect(self._new_demo_project)
+        self.welcome.from_template_requested.connect(self._new_from_template)
 
         self._central_stack = QStackedWidget()
         self._central_stack.addWidget(self.welcome)
@@ -490,6 +497,82 @@ class MainWindow(QMainWindow):
         self.services.layout.clear_solutions()
         self._show_workspace()
         self._status("status.demo_created")
+
+    def _new_from_template(self):
+        if not self._confirm_discard_unsaved_changes():
+            return
+
+        manager = self.services.project_templates
+        manager.refresh()
+        templates = manager.list()
+        if not templates:
+            self._status("status.template_empty")
+            QMessageBox.information(
+                self,
+                self._tr("template.pick_title"),
+                self._tr("status.template_empty"),
+            )
+            return
+
+        dialog = ProjectTemplatePickerDialog(
+            templates,
+            language=self._ui_language(),
+            parent=self,
+        )
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+        name = dialog.selected_name()
+        if not name:
+            return
+
+        project = manager.instantiate(name, include_placements=False)
+        self.services.projects.new_project(project)
+        self.services.layout.clear_solutions()
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self.update_window_title()
+        self._show_workspace()
+        self._status("status.template_loaded", name=name)
+
+    def _save_as_template(self):
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.template_missing_project")
+            return
+
+        name, accepted = QInputDialog.getText(
+            self,
+            self._tr("template.save_title"),
+            self._tr("template.save_prompt"),
+            text=project.name,
+        )
+        if not accepted:
+            return
+        name = name.strip()
+        if not name:
+            QMessageBox.warning(
+                self,
+                self._tr("template.save_title"),
+                self._tr("template.empty_name"),
+            )
+            return
+
+        include = False
+        if project.placements:
+            answer = QMessageBox.question(
+                self,
+                self._tr("template.save_title"),
+                self._tr("template.save_placements"),
+            )
+            include = answer == QMessageBox.StandardButton.Yes
+
+        self.services.project_templates.save_from_project(
+            name,
+            project,
+            include_placements=include,
+        )
+        self._status("status.template_saved", name=name)
 
     def _add_board(self):
         project = self.services.projects.current_project

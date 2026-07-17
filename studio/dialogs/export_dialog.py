@@ -8,6 +8,7 @@ from PySide6.QtWidgets import (
     QComboBox,
     QDialog,
     QDialogButtonBox,
+    QFileDialog,
     QFormLayout,
     QFrame,
     QHBoxLayout,
@@ -106,6 +107,16 @@ class ExportDialog(QDialog):
         self.delete_template_button.clicked.connect(self._delete_template)
         template_row.addWidget(self.delete_template_button)
         form.addRow(self._tr("export.template"), template_row)
+
+        share_row = QHBoxLayout()
+        self.export_templates_button = QPushButton(self._tr("export.share_export"))
+        self.export_templates_button.clicked.connect(self._export_templates_pack)
+        share_row.addWidget(self.export_templates_button)
+        self.import_templates_button = QPushButton(self._tr("export.share_import"))
+        self.import_templates_button.clicked.connect(self._import_templates_pack)
+        share_row.addWidget(self.import_templates_button)
+        share_row.addStretch(1)
+        form.addRow("", share_row)
 
         self.format = QComboBox()
         for key in VALID_EXPORT_FORMATS:
@@ -362,6 +373,80 @@ class ExportDialog(QDialog):
         self._templates.delete(name, client=client)
         self._reload_clients(selected=self.client.currentData())
         self._reload_templates(selected_key=_NO_TEMPLATE)
+
+    def _export_templates_pack(self) -> None:
+        client_filter = self._client_filter()
+        path, _ = QFileDialog.getSaveFileName(
+            self,
+            self._tr("export.share_export_title"),
+            "boardcomposer-export-templates.json",
+            self._tr("export.share_filter"),
+        )
+        if not path:
+            return
+        try:
+            count = self._templates.export_pack(path, client=client_filter)
+        except OSError as exc:
+            QMessageBox.warning(
+                self,
+                self._tr("export.share_export_title"),
+                self._tr("export.share_error", error=str(exc)),
+            )
+            return
+        QMessageBox.information(
+            self,
+            self._tr("export.share_export_title"),
+            self._tr("export.share_export_done", count=count),
+        )
+
+    def _import_templates_pack(self) -> None:
+        path, _ = QFileDialog.getOpenFileName(
+            self,
+            self._tr("export.share_import_title"),
+            "",
+            self._tr("export.share_filter"),
+        )
+        if not path:
+            return
+
+        choice = QMessageBox.question(
+            self,
+            self._tr("export.share_import_title"),
+            self._tr("export.share_import_mode"),
+            QMessageBox.StandardButton.Yes
+            | QMessageBox.StandardButton.No
+            | QMessageBox.StandardButton.Cancel,
+        )
+        if choice == QMessageBox.StandardButton.Cancel:
+            return
+        mode = "replace" if choice == QMessageBox.StandardButton.No else "merge"
+
+        try:
+            imported, total = self._templates.import_pack(path, mode=mode)
+        except (OSError, ValueError) as exc:
+            QMessageBox.warning(
+                self,
+                self._tr("export.share_import_title"),
+                self._tr("export.share_error", error=str(exc)),
+            )
+            return
+
+        self._reload_clients(selected=_ALL_CLIENTS)
+        self._reload_templates(selected_key=_NO_TEMPLATE)
+        QMessageBox.information(
+            self,
+            self._tr("export.share_import_title"),
+            self._tr(
+                "export.share_import_done",
+                imported=imported,
+                total=total,
+                mode=self._tr(
+                    "export.share_mode_replace"
+                    if mode == "replace"
+                    else "export.share_mode_merge"
+                ),
+            ),
+        )
 
     def _refresh_preview(self) -> None:
         options = self.options()
