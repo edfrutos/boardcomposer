@@ -46,3 +46,13 @@ def test_stats_summary_shows_rejection_reasons():
     assert "Motivos de rechazo:" in lines
     assert "  Solapes: 3" in lines
     assert "  Fuera del tablero: 1" in lines
+
+
+def test_stats_summary_translates_to_english():
+    services = StudioServices()
+    services.layout.stats = PipelineStats(generated=1, unique=1, accepted=1, rejected=0)
+
+    lines = services.layout.stats_summary_lines("en")
+
+    assert "Solver diagnosis" in lines
+    assert "Candidates generated: 1" in lines

@@ -68,6 +68,7 @@
   (SCR-001): SVG del layout del `.bcproj` más fecha de modificación.
 - Vista previa gráfica SVG embebida en el diálogo de exportación
   (SCR-007), actualizada al cambiar formato u opciones.
+- Idioma es/en aplicado a menús, docks, Inspector y comparador (SCR-006).
 
 ### Cambiado
 

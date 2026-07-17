@@ -38,6 +38,7 @@ from studio.project_serializer import (
     load_project,
     save_project,
 )
+from studio.i18n import action_keys, menu_keys, tr
 from studio.workspace.board_workspace import BoardWorkspace
 from studio.workspace.board_piece_item import BoardPieceItem
 from studio.dialogs import (
@@ -84,92 +85,54 @@ class MainWindow(QMainWindow):
         menu = QMenuBar(self)
         self.setMenuBar(menu)
 
-        menus = {}
-
-        for name in (
-            "Archivo",
-            "Editar",
-            "Ver",
-            "Proyecto",
-            "Generar",
-            "Comparar",
-            "Exportar",
-            "Herramientas",
-            "Ayuda",
-        ):
-            menus[name] = menu.addMenu(name)
+        self._menus = {}
+        for key in menu_keys():
+            self._menus[key] = menu.addMenu("")
 
         self._actions = {}
+        for key in action_keys():
+            self._actions[key] = QAction("", self)
 
-        self._actions["new_project"] = QAction("Nuevo proyecto", self)
-        self._actions["new_demo_project"] = QAction("Nuevo proyecto demo", self)
-        self._actions["show_welcome"] = QAction("Pantalla de inicio", self)
-        self._actions["open"] = QAction("Abrir…", self)
-        self._actions["save"] = QAction("Guardar", self)
-        self._actions["save_as"] = QAction("Guardar como…", self)
-        self._actions["add_board"] = QAction("Añadir tablero…", self)
-        self._actions["add_piece"] = QAction("Añadir pieza…", self)
-        self._actions["import_boards_csv"] = QAction(
-            "Importar inventario de tableros (CSV/Excel)…", self
-        )
-        self._actions["import_pieces_csv"] = QAction(
-            "Importar piezas (CSV/Excel)…", self
-        )
-        self._actions["export_selected"] = QAction(
-            "Exportar solución seleccionada…",
-            self,
-        )
-        self._actions["exit"] = QAction("Salir", self)
-        self._actions["undo"] = QAction("Deshacer", self)
-        self._actions["redo"] = QAction("Rehacer", self)
-        self._actions["rotate_piece"] = QAction("Rotar 90°", self)
-        self._actions["delete_piece"] = QAction("Eliminar pieza", self)
-        self._actions["preferences"] = QAction("Preferencias…", self)
-        self._actions["solve_layout"] = QAction("Calcular layout", self)
-        self._actions["previous_solution"] = QAction("Solución anterior", self)
-        self._actions["next_solution"] = QAction("Solución siguiente", self)
-        self._actions["apply_layout"] = QAction("Aplicar layout calculado", self)
-
-        self._recent_menu = menus["Archivo"].addMenu("Abrir recientes")
+        self._recent_menu = self._menus["file"].addMenu("")
 
         self._actions["undo"].setShortcut("Ctrl+Z")
         self._actions["redo"].setShortcut("Ctrl+Shift+Z")
         self._actions["rotate_piece"].setShortcut("R")
         self._actions["delete_piece"].setShortcut("Backspace")
 
-        menus["Archivo"].addAction(self._actions["new_project"])
-        menus["Archivo"].addAction(self._actions["new_demo_project"])
-        menus["Archivo"].addAction(self._actions["show_welcome"])
-        menus["Archivo"].addSeparator()
-        menus["Archivo"].addAction(self._actions["open"])
-        menus["Archivo"].addMenu(self._recent_menu)
-        menus["Archivo"].addSeparator()
-        menus["Archivo"].addAction(self._actions["save"])
-        menus["Archivo"].addAction(self._actions["save_as"])
-        menus["Archivo"].addSeparator()
-        menus["Archivo"].addAction(self._actions["exit"])
+        self._menus["file"].addAction(self._actions["new_project"])
+        self._menus["file"].addAction(self._actions["new_demo_project"])
+        self._menus["file"].addAction(self._actions["show_welcome"])
+        self._menus["file"].addSeparator()
+        self._menus["file"].addAction(self._actions["open"])
+        self._menus["file"].addMenu(self._recent_menu)
+        self._menus["file"].addSeparator()
+        self._menus["file"].addAction(self._actions["save"])
+        self._menus["file"].addAction(self._actions["save_as"])
+        self._menus["file"].addSeparator()
+        self._menus["file"].addAction(self._actions["exit"])
 
-        menus["Editar"].addAction(self._actions["undo"])
-        menus["Editar"].addAction(self._actions["redo"])
-        menus["Editar"].addSeparator()
-        menus["Editar"].addAction(self._actions["rotate_piece"])
-        menus["Editar"].addAction(self._actions["delete_piece"])
-        menus["Editar"].addSeparator()
-        menus["Editar"].addAction(self._actions["preferences"])
+        self._menus["edit"].addAction(self._actions["undo"])
+        self._menus["edit"].addAction(self._actions["redo"])
+        self._menus["edit"].addSeparator()
+        self._menus["edit"].addAction(self._actions["rotate_piece"])
+        self._menus["edit"].addAction(self._actions["delete_piece"])
+        self._menus["edit"].addSeparator()
+        self._menus["edit"].addAction(self._actions["preferences"])
 
-        menus["Proyecto"].addAction(self._actions["add_board"])
-        menus["Proyecto"].addAction(self._actions["add_piece"])
-        menus["Proyecto"].addAction(self._actions["import_boards_csv"])
-        menus["Proyecto"].addAction(self._actions["import_pieces_csv"])
+        self._menus["project"].addAction(self._actions["add_board"])
+        self._menus["project"].addAction(self._actions["add_piece"])
+        self._menus["project"].addAction(self._actions["import_boards_csv"])
+        self._menus["project"].addAction(self._actions["import_pieces_csv"])
 
-        menus["Exportar"].addAction(self._actions["export_selected"])
+        self._menus["export"].addAction(self._actions["export_selected"])
 
-        menus["Herramientas"].addAction(self._actions["solve_layout"])
-        menus["Herramientas"].addSeparator()
-        menus["Herramientas"].addAction(self._actions["previous_solution"])
-        menus["Herramientas"].addAction(self._actions["next_solution"])
-        menus["Herramientas"].addSeparator()
-        menus["Herramientas"].addAction(self._actions["apply_layout"])
+        self._menus["tools"].addAction(self._actions["solve_layout"])
+        self._menus["tools"].addSeparator()
+        self._menus["tools"].addAction(self._actions["previous_solution"])
+        self._menus["tools"].addAction(self._actions["next_solution"])
+        self._menus["tools"].addSeparator()
+        self._menus["tools"].addAction(self._actions["apply_layout"])
 
         self._actions["open"].triggered.connect(self._open_project)
         self._actions["save"].triggered.connect(self._save_project)
@@ -223,7 +186,7 @@ class MainWindow(QMainWindow):
     def _show_welcome_screen(self) -> None:
         self.welcome.set_recent_files(self.services.recent_files.existing_files())
         self._central_stack.setCurrentWidget(self.welcome)
-        self.statusBar().showMessage("Pantalla de inicio", 2000)
+        self.statusBar().showMessage(self._tr("status.welcome"), 2000)
 
     def _show_workspace(self) -> None:
         self._central_stack.setCurrentWidget(self.workspace)
@@ -235,49 +198,36 @@ class MainWindow(QMainWindow):
 
         self.explorer.itemDoubleClicked.connect(self._on_explorer_item_double_clicked)
 
-        explorer_dock = QDockWidget("Explorer", self)
-        explorer_dock.setAllowedAreas(Qt.DockWidgetArea.LeftDockWidgetArea)
-        explorer_dock.setWidget(self.explorer)
-        self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, explorer_dock)
+        self.explorer_dock = QDockWidget("", self)
+        self.explorer_dock.setAllowedAreas(Qt.DockWidgetArea.LeftDockWidgetArea)
+        self.explorer_dock.setWidget(self.explorer)
+        self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.explorer_dock)
 
         self.inspector = QTextEdit()
         self.inspector.setReadOnly(True)
-        self.inspector.setText("Inspector\n\nSin selección")
 
-        inspector_dock = QDockWidget("Inspector", self)
-        inspector_dock.setAllowedAreas(Qt.DockWidgetArea.RightDockWidgetArea)
-        inspector_dock.setWidget(self.inspector)
+        self.inspector_dock = QDockWidget("", self)
+        self.inspector_dock.setAllowedAreas(Qt.DockWidgetArea.RightDockWidgetArea)
+        self.inspector_dock.setWidget(self.inspector)
         self.addDockWidget(
             Qt.DockWidgetArea.RightDockWidgetArea,
-            inspector_dock,
+            self.inspector_dock,
         )
 
-        console = QTextEdit()
-        console.setReadOnly(True)
-        console.setText("Timeline / Consola / Eventos")
+        self.console = QTextEdit()
+        self.console.setReadOnly(True)
 
-        console_dock = QDockWidget("Timeline", self)
-        console_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
-        console_dock.setWidget(console)
+        self.console_dock = QDockWidget("", self)
+        self.console_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
+        self.console_dock.setWidget(self.console)
 
         self.addDockWidget(
             Qt.DockWidgetArea.BottomDockWidgetArea,
-            console_dock,
+            self.console_dock,
         )
 
         self.solutions_table = QTableWidget()
         self.solutions_table.setColumnCount(7)
-        self.solutions_table.setHorizontalHeaderLabels(
-            [
-                "#",
-                "Piezas",
-                "Huecos",
-                "Tablero libre",
-                "Largo",
-                "Ancho",
-                "Score",
-            ]
-        )
         self.solutions_table.cellDoubleClicked.connect(
             self._on_solution_table_double_clicked
         )
@@ -286,24 +236,23 @@ class MainWindow(QMainWindow):
         )
 
         self.comparator_sort = QComboBox()
-        for key, label in SORT_LABELS:
-            self.comparator_sort.addItem(label, key)
         self.comparator_sort.currentIndexChanged.connect(
             self._on_comparator_sort_changed
         )
 
-        self.comparator_complete_only = QCheckBox("Solo soluciones completas")
+        self.comparator_complete_only = QCheckBox()
         self.comparator_complete_only.toggled.connect(
             self._on_comparator_filter_toggled
         )
 
         controls = QHBoxLayout()
-        controls.addWidget(QLabel("Ordenar por:"))
+        self.comparator_sort_label = QLabel()
+        controls.addWidget(self.comparator_sort_label)
         controls.addWidget(self.comparator_sort)
         controls.addWidget(self.comparator_complete_only)
         controls.addStretch(1)
 
-        self.pin_reference_button = QPushButton("Fijar como referencia")
+        self.pin_reference_button = QPushButton()
         self.pin_reference_button.clicked.connect(self._pin_selected_as_reference)
         controls.addWidget(self.pin_reference_button)
 
@@ -325,9 +274,6 @@ class MainWindow(QMainWindow):
 
         self.solution_differences = QTextEdit()
         self.solution_differences.setReadOnly(True)
-        self.solution_differences.setPlaceholderText(
-            "Diferencias respecto a la solución de referencia"
-        )
         self.solution_differences.setMaximumHeight(140)
 
         comparator_panel = QWidget()
@@ -336,23 +282,26 @@ class MainWindow(QMainWindow):
         comparator_layout.addLayout(controls)
         comparator_layout.addWidget(self.solution_thumbnails)
         comparator_layout.addWidget(self.solutions_table)
-        comparator_layout.addWidget(QLabel("Diferencias vs referencia"))
+        self.comparator_diff_label = QLabel()
+        comparator_layout.addWidget(self.comparator_diff_label)
         comparator_layout.addWidget(self.solution_differences)
 
-        solutions_dock = QDockWidget("Comparador de soluciones", self)
-        self.tabifyDockWidget(console_dock, solutions_dock)
-        console_dock.raise_()
-        solutions_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
-        solutions_dock.setWidget(comparator_panel)
+        self.solutions_dock = QDockWidget("", self)
+        self.tabifyDockWidget(self.console_dock, self.solutions_dock)
+        self.console_dock.raise_()
+        self.solutions_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
+        self.solutions_dock.setWidget(comparator_panel)
         self.addDockWidget(
             Qt.DockWidgetArea.BottomDockWidgetArea,
-            solutions_dock,
+            self.solutions_dock,
         )
+
+        self.clear_inspector()
 
     def _build_statusbar(self):
         status = QStatusBar(self)
-        status.showMessage("BoardComposer Studio listo")
         self.setStatusBar(status)
+        status.showMessage(self._tr("status.ready"))
 
     def _load_empty_project(self):
         project = StudioProject(
@@ -403,16 +352,16 @@ class MainWindow(QMainWindow):
                 return
 
             root = QTreeWidgetItem([project.name])
-            boards_root = QTreeWidgetItem(["Tableros"])
-            pieces_root = QTreeWidgetItem(["Piezas"])
-            solutions_root = QTreeWidgetItem(["Soluciones"])
+            boards_root = QTreeWidgetItem([self._tr("explorer.boards")])
+            pieces_root = QTreeWidgetItem([self._tr("explorer.pieces")])
+            solutions_root = QTreeWidgetItem([self._tr("explorer.solutions")])
             selected_solution_item = None
 
             for board in project.boards:
                 board_label = (
                     f"{board.board_id} — "
                     f"{self._format_size(board.length_mm, board.width_mm, thickness_mm=board.thickness_mm)} "
-                    f"— {board.quantity} ud."
+                    f"— {board.quantity} {self._tr('explorer.units')}"
                 )
                 item = QTreeWidgetItem([board_label])
                 item.setData(
@@ -442,9 +391,13 @@ class MainWindow(QMainWindow):
 
                 item = QTreeWidgetItem(
                     [
-                        f"{prefix}Solución {index + 1} — "
-                        f"{len(solution.placements)} piezas — "
-                        f"{solution.waste_ratio:.1%} huecos"
+                        f"{prefix}"
+                        + self._tr(
+                            "explorer.solution",
+                            n=index + 1,
+                            pieces=len(solution.placements),
+                            waste=f"{solution.waste_ratio:.1%}",
+                        )
                     ]
                 )
 
@@ -476,7 +429,7 @@ class MainWindow(QMainWindow):
         selected = self.explorer.selectedItems()
 
         if not selected:
-            self.inspector.setText("Inspector\n\nSin selección")
+            self.clear_inspector()
             return
 
         item = selected[0]
@@ -484,7 +437,7 @@ class MainWindow(QMainWindow):
         project = self.services.projects.current_project
 
         if project is None or data is None:
-            self.inspector.setText(f"Inspector\n\n{item.text(0)}")
+            self.inspector.setText(f"{self._tr('inspector.title')}\n\n{item.text(0)}")
             return
 
         kind, object_id = data.split(":", 1)
@@ -498,12 +451,14 @@ class MainWindow(QMainWindow):
                 board for board in project.boards if board.board_id == object_id
             )
             self.inspector.setText(
-                "Inspector\n\n"
-                f"Tablero: {board.board_id}\n"
-                f"Dimensiones: {self._format_size(board.length_mm, board.width_mm)}\n"
-                f"Espesor: {self._format_length(board.thickness_mm)}\n"
-                f"Cantidad: {board.quantity}\n"
-                f"Material: {board.material}"
+                f"{self._tr('inspector.title')}\n\n"
+                f"{self._tr('inspector.board')}: {board.board_id}\n"
+                f"{self._tr('inspector.dimensions')}: "
+                f"{self._format_size(board.length_mm, board.width_mm)}\n"
+                f"{self._tr('inspector.thickness')}: "
+                f"{self._format_length(board.thickness_mm)}\n"
+                f"{self._tr('inspector.quantity')}: {board.quantity}\n"
+                f"{self._tr('inspector.material')}: {board.material}"
             )
             return
 
@@ -512,10 +467,11 @@ class MainWindow(QMainWindow):
             self.services.selection.select_one(object_id)
             self.workspace.select_piece(object_id)
             self.inspector.setText(
-                "Inspector\n\n"
-                f"Pieza: {piece.piece_id}\n"
-                f"Dimensiones: {self._format_size(piece.length_mm, piece.width_mm)}\n"
-                f"Material: {piece.material}"
+                f"{self._tr('inspector.title')}\n\n"
+                f"{self._tr('inspector.piece')}: {piece.piece_id}\n"
+                f"{self._tr('inspector.dimensions')}: "
+                f"{self._format_size(piece.length_mm, piece.width_mm)}\n"
+                f"{self._tr('inspector.material')}: {piece.material}"
             )
 
     def _new_project(self):
@@ -805,11 +761,10 @@ class MainWindow(QMainWindow):
 
         return generated_ids
 
-    @staticmethod
-    def _panel_info_text(project, placement) -> str:
+    def _panel_info_text(self, project, placement) -> str:
         """Return a human-readable label for a placement's physical panel."""
         if placement is None or placement.board_id is None:
-            return "Sin tablero asignado"
+            return self._tr("inspector.no_panel")
 
         board = next(
             (board for board in project.boards if board.board_id == placement.board_id),
@@ -818,9 +773,11 @@ class MainWindow(QMainWindow):
         quantity = board.quantity if board is not None else 1
 
         if quantity > 1:
-            return (
-                f"{placement.board_id} · instancia "
-                f"{placement.board_instance + 1}/{quantity}"
+            return self._tr(
+                "inspector.panel_instance",
+                board=placement.board_id,
+                instance=placement.board_instance + 1,
+                quantity=quantity,
             )
 
         return placement.board_id
@@ -843,22 +800,26 @@ class MainWindow(QMainWindow):
 
         if placement is None:
             self.inspector.setText(
-                "Inspector\n\n"
-                f"Pieza: {piece.piece_id}\n"
-                f"Dimensiones: {self._format_size(piece.length_mm, piece.width_mm)}\n"
-                f"Material: {piece.material}\n"
-                "Sin colocar en el Workspace"
+                f"{self._tr('inspector.title')}\n\n"
+                f"{self._tr('inspector.piece')}: {piece.piece_id}\n"
+                f"{self._tr('inspector.dimensions')}: "
+                f"{self._format_size(piece.length_mm, piece.width_mm)}\n"
+                f"{self._tr('inspector.material')}: {piece.material}\n"
+                f"{self._tr('inspector.unplaced')}"
             )
             return
 
         self.inspector.setText(
-            "Inspector\n\n"
-            f"Pieza: {piece.piece_id}\n"
-            f"Dimensiones: {self._format_size(piece.length_mm, piece.width_mm)}\n"
-            f"Posición: {self._format_length(placement.x_mm)}, "
+            f"{self._tr('inspector.title')}\n\n"
+            f"{self._tr('inspector.piece')}: {piece.piece_id}\n"
+            f"{self._tr('inspector.dimensions')}: "
+            f"{self._format_size(piece.length_mm, piece.width_mm)}\n"
+            f"{self._tr('inspector.position')}: "
+            f"{self._format_length(placement.x_mm)}, "
             f"{self._format_length(placement.y_mm)}\n"
-            f"Tablero: {self._panel_info_text(project, placement)}\n"
-            f"Material: {piece.material}"
+            f"{self._tr('inspector.board')}: "
+            f"{self._panel_info_text(project, placement)}\n"
+            f"{self._tr('inspector.material')}: {piece.material}"
         )
 
     def update_window_title(self):
@@ -988,6 +949,63 @@ class MainWindow(QMainWindow):
     def _format_length(self, value_mm: float) -> str:
         return format_length(value_mm, self._display_units())
 
+    def _ui_language(self) -> str:
+        return self.services.preferences.current.language
+
+    def _tr(self, key: str, **kwargs: object) -> str:
+        return tr(key, self._ui_language(), **kwargs)
+
+    def clear_inspector(self) -> None:
+        """Show the empty Inspector state in the active language."""
+        self.inspector.setText(
+            f"{self._tr('inspector.title')}\n\n{self._tr('inspector.none')}"
+        )
+
+    def _retranslate_ui(self) -> None:
+        """Refresh menus, docks, comparator chrome and explorer labels."""
+        for key, menu in self._menus.items():
+            menu.setTitle(self._tr(f"menu.{key}"))
+        for key, action in self._actions.items():
+            action.setText(self._tr(f"action.{key}"))
+        self._recent_menu.setTitle(self._tr("menu.recent"))
+
+        self.explorer_dock.setWindowTitle(self._tr("dock.explorer"))
+        self.inspector_dock.setWindowTitle(self._tr("dock.inspector"))
+        self.console_dock.setWindowTitle(self._tr("dock.timeline"))
+        self.solutions_dock.setWindowTitle(self._tr("dock.comparator"))
+        self.console.setText(self._tr("timeline.placeholder"))
+
+        self.solutions_table.setHorizontalHeaderLabels(
+            [
+                "#",
+                self._tr("comparator.pieces"),
+                self._tr("comparator.waste"),
+                self._tr("comparator.board_free"),
+                self._tr("comparator.length"),
+                self._tr("comparator.width"),
+                self._tr("comparator.score"),
+            ]
+        )
+
+        current_sort = self.comparator_sort.currentData() or self._comparator_sort_by
+        self.comparator_sort.blockSignals(True)
+        self.comparator_sort.clear()
+        for key, _label in SORT_LABELS:
+            self.comparator_sort.addItem(self._tr(f"sort.{key}"), key)
+        index = self.comparator_sort.findData(current_sort)
+        self.comparator_sort.setCurrentIndex(index if index >= 0 else 0)
+        self.comparator_sort.blockSignals(False)
+
+        self.comparator_sort_label.setText(self._tr("comparator.sort_by"))
+        self.comparator_complete_only.setText(self._tr("comparator.complete_only"))
+        self.pin_reference_button.setText(self._tr("comparator.pin_reference"))
+        self.comparator_diff_label.setText(self._tr("comparator.diff_title"))
+        self.solution_differences.setPlaceholderText(
+            self._tr("comparator.diff_placeholder")
+        )
+
+        self._reload_recent_files_menu()
+
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication
 
@@ -996,10 +1014,16 @@ class MainWindow(QMainWindow):
         app = QApplication.instance()
         if app is not None:
             apply_theme(app, self.services.preferences.current.theme)
+        self._retranslate_ui()
         self.welcome.apply_language(self.services.preferences.current.language)
         self.workspace.reload_project()
         self._reload_explorer()
         self.welcome.set_recent_files(self.services.recent_files.existing_files())
+        if self.services.layout.selected_solution is not None:
+            self._show_layout_solution(self.services.layout.selected_solution)
+        else:
+            self.workspace.selection.sync_inspector(self)
+        self._reload_solution_table()
 
     def _solve_layout(self):
         solution = self.services.layout.solve_current_project()
@@ -1030,8 +1054,8 @@ class MainWindow(QMainWindow):
         )
 
     def _show_no_solution_diagnosis(self) -> None:
-        lines = ["Sin solución", ""]
-        lines.extend(self.services.layout.stats_summary_lines())
+        lines = [self._tr("inspector.no_solution"), ""]
+        lines.extend(self.services.layout.stats_summary_lines(self._ui_language()))
         self.inspector.setText("\n".join(lines))
 
     def _on_comparator_sort_changed(self, index: int) -> None:
@@ -1068,7 +1092,10 @@ class MainWindow(QMainWindow):
 
             placed_label = str(len(solution.placements))
             if not solution.is_complete:
-                placed_label += f" ({len(solution.omitted_piece_ids)} sin colocar)"
+                placed_label += self._tr(
+                    "comparator.unplaced_suffix",
+                    n=len(solution.omitted_piece_ids),
+                )
 
             values = [
                 str(solution_index + 1),
@@ -1081,11 +1108,15 @@ class MainWindow(QMainWindow):
             ]
 
             row_highlights = highlights.get(solution_index, [])
+            highlight_text = self._tr(
+                "comparator.best_in",
+                items=", ".join(self._tr(key) for key in row_highlights),
+            )
 
             for column, value in enumerate(values):
                 item = QTableWidgetItem(value)
                 if row_highlights:
-                    item.setToolTip("Mejor en: " + ", ".join(row_highlights))
+                    item.setToolTip(highlight_text)
                     font = item.font()
                     font.setBold(True)
                     item.setFont(font)
@@ -1101,9 +1132,8 @@ class MainWindow(QMainWindow):
                 )
             )
             if row_highlights:
-                thumb.setToolTip("Mejor en: " + ", ".join(row_highlights))
+                thumb.setToolTip(highlight_text)
             self.solution_thumbnails.addItem(thumb)
-
         self.solutions_table.resizeColumnsToContents()
 
         selected = self.services.layout.selected_solution_index
@@ -1170,34 +1200,65 @@ class MainWindow(QMainWindow):
     def _show_layout_solution(self, solution):
         solution_count = len(self.services.layout.solutions)
         selected_index = self.services.layout.selected_solution_index + 1
-        strategy_name = self.services.layout.strategy_name or "desconocida"
+        strategy_name = self.services.layout.strategy_name or self._tr(
+            "inspector.strategy_unknown"
+        )
 
         lines = [
-            "Layout calculado",
+            self._tr("inspector.layout_title"),
             "",
-            f"Solución: {selected_index} / {solution_count}",
-            f"Estrategia: {strategy_name}",
-            f"Piezas colocadas: {len(solution.placements)}",
-            f"Largo total: {solution.total_length_mm:.0f} mm",
-            f"Ancho total: {solution.total_width_mm:.0f} mm",
-            f"Huecos internos: {solution.waste_ratio:.1%}",
-            f"Material libre: {self.services.layout.board_waste_ratio(solution):.1%}",
+            self._tr(
+                "inspector.solution",
+                current=selected_index,
+                total=solution_count,
+            ),
+            self._tr("inspector.strategy", name=strategy_name),
+            self._tr("inspector.placed", n=len(solution.placements)),
+            self._tr(
+                "inspector.total_length",
+                value=f"{solution.total_length_mm:.0f}",
+            ),
+            self._tr(
+                "inspector.total_width",
+                value=f"{solution.total_width_mm:.0f}",
+            ),
+            self._tr(
+                "inspector.internal_waste",
+                value=f"{solution.waste_ratio:.1%}",
+            ),
+            self._tr(
+                "inspector.free_material",
+                value=f"{self.services.layout.board_waste_ratio(solution):.1%}",
+            ),
         ]
 
         if not solution.is_complete:
-            lines.append("Piezas omitidas: " + ", ".join(solution.omitted_piece_ids))
+            lines.append(
+                self._tr(
+                    "inspector.omitted",
+                    ids=", ".join(solution.omitted_piece_ids),
+                )
+            )
 
         if solution.offcuts:
             lines.append(
-                f"Retales aprovechables: {len(solution.offcuts)} "
-                f"(área total {solution.total_offcut_area_mm2:.0f} mm²)"
+                self._tr(
+                    "inspector.offcuts",
+                    n=len(solution.offcuts),
+                    area=f"{solution.total_offcut_area_mm2:.0f}",
+                )
             )
 
         highlights = self.services.layout.solution_highlights.get(
             self.services.layout.selected_solution_index
         )
         if highlights:
-            lines.append("Puntos clave: " + ", ".join(highlights))
+            lines.append(
+                self._tr(
+                    "inspector.highlights",
+                    items=", ".join(self._tr(key) for key in highlights),
+                )
+            )
 
         if solution.explanation.strengths or solution.explanation.weaknesses:
             lines.append("")
@@ -1206,7 +1267,7 @@ class MainWindow(QMainWindow):
                 f"- {weakness}" for weakness in solution.explanation.weaknesses
             )
 
-        stats_lines = self.services.layout.stats_summary_lines()
+        stats_lines = self.services.layout.stats_summary_lines(self._ui_language())
 
         if stats_lines:
             lines.extend(["", *stats_lines])
@@ -1442,10 +1503,11 @@ class MainWindow(QMainWindow):
 
     def _reload_recent_files_menu(self):
         self._recent_menu.clear()
-        self.welcome.set_recent_files(self.services.recent_files.existing_files())
+        if hasattr(self, "welcome"):
+            self.welcome.set_recent_files(self.services.recent_files.existing_files())
 
         if not self.services.recent_files.files:
-            empty_action = QAction("Sin archivos recientes", self)
+            empty_action = QAction(self._tr("action.no_recent"), self)
             empty_action.setEnabled(False)
             self._recent_menu.addAction(empty_action)
             return
@@ -1732,19 +1794,23 @@ class MainWindow(QMainWindow):
         panel_text = ""
         if placement is not None:
             position_text = (
-                f"Posición: {self._format_length(placement.x_mm)}, "
+                f"{self._tr('inspector.position')}: "
+                f"{self._format_length(placement.x_mm)}, "
                 f"{self._format_length(placement.y_mm)}\n"
             )
-            panel_text = f"Tablero: {self._panel_info_text(project, placement)}\n"
+            panel_text = (
+                f"{self._tr('inspector.board')}: "
+                f"{self._panel_info_text(project, placement)}\n"
+            )
 
         self.inspector.setText(
-            "Inspector\n\n"
-            f"Pieza: {updated_piece.piece_id}\n"
-            f"Dimensiones: "
+            f"{self._tr('inspector.title')}\n\n"
+            f"{self._tr('inspector.piece')}: {updated_piece.piece_id}\n"
+            f"{self._tr('inspector.dimensions')}: "
             f"{self._format_size(updated_piece.length_mm, updated_piece.width_mm)}\n"
             f"{position_text}"
             f"{panel_text}"
-            f"Material: {updated_piece.material}"
+            f"{self._tr('inspector.material')}: {updated_piece.material}"
         )
 
         self.update_window_title()

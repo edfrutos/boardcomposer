@@ -227,35 +227,38 @@ class LayoutService:
         """Return, per solution index, which metrics it wins at (SCR-003)."""
         return solution_highlights(self.solutions)
 
-    def stats_summary_lines(self) -> list[str]:
+    def stats_summary_lines(self, language: str = "es") -> list[str]:
         """Return human-readable solver statistics."""
+        from studio.i18n import tr
+
         lines = [
-            "Diagnóstico del cálculo",
-            f"Candidatas generadas: {self.stats.generated}",
-            f"Candidatas únicas: {self.stats.unique}",
-            f"Aceptadas: {self.stats.accepted}",
-            f"Rechazadas: {self.stats.rejected}",
+            tr("diag.title", language),
+            tr("diag.generated", language, n=self.stats.generated),
+            tr("diag.unique", language, n=self.stats.unique),
+            tr("diag.accepted", language, n=self.stats.accepted),
+            tr("diag.rejected", language, n=self.stats.rejected),
         ]
 
-        reason_labels = {
-            "missing_board": "Piezas omitidas",
-            "duplicate_board": "Piezas duplicadas",
-            "unknown_board": "Piezas desconocidas",
-            "overlap": "Solapes",
-            "exceeds_constraints": "Fuera del tablero",
-            "unassigned_stock_panel": "Sin tablero asignado",
-            "unknown_stock_panel": "Tablero desconocido",
-            "exceeds_stock_panel": "Fuera del tablero físico",
-            "panel_thickness_mismatch": "Espesor incompatible",
-            "panel_material_mismatch": "Material incompatible",
+        reason_keys = {
+            "missing_board": "diag.missing_board",
+            "duplicate_board": "diag.duplicate_board",
+            "unknown_board": "diag.unknown_board",
+            "overlap": "diag.overlap",
+            "exceeds_constraints": "diag.exceeds_constraints",
+            "unassigned_stock_panel": "diag.unassigned_stock_panel",
+            "unknown_stock_panel": "diag.unknown_stock_panel",
+            "exceeds_stock_panel": "diag.exceeds_stock_panel",
+            "panel_thickness_mismatch": "diag.panel_thickness_mismatch",
+            "panel_material_mismatch": "diag.panel_material_mismatch",
         }
 
         if self.stats.rejection_reasons:
             lines.append("")
-            lines.append("Motivos de rechazo:")
+            lines.append(tr("diag.reasons", language))
 
             for reason, count in self.stats.rejection_reasons.items():
-                label = reason_labels.get(reason.value, reason.value)
+                key = reason_keys.get(reason.value)
+                label = tr(key, language) if key else reason.value
                 lines.append(f"  {label}: {count}")
 
         return lines

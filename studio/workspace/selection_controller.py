@@ -43,7 +43,9 @@ class SelectionController:
         current = self.current()
 
         if current is None:
-            if hasattr(window, "inspector"):
+            if hasattr(window, "clear_inspector"):
+                window.clear_inspector()
+            elif hasattr(window, "inspector"):
                 window.inspector.setText("Inspector\n\nSin selección")
             return
 
