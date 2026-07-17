@@ -116,7 +116,8 @@ cabeceras falla, Studio ofrece un asistente de mapeo de columnas.
   (`studio/piece_csv_importer.py`, `ImportPiecesPreviewDialog`), con
   expansión de cantidad a ids correlativos y colocación inicial en el
   Workspace.
-- Formatos: CSV y Excel `.xlsx` (primera hoja) vía `studio/tabular_file.py`.
-  Samples: `data/samples/studio_*.csv` y `data/samples/studio_*.xlsx`.
+- Formatos: CSV y Excel `.xlsx` (primera hoja por defecto) vía
+  `studio/tabular_file.py`. Si el libro tiene varias hojas, Studio pide
+  cuál usar. Samples: `data/samples/studio_*.csv` y `data/samples/studio_*.xlsx`.
 - Asistente de mapeo de columnas cuando fallan las obligatorias
   (`ImportColumnMappingDialog`, `studio/import_headers.py`).

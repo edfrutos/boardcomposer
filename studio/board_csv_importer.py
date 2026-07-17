@@ -35,6 +35,7 @@ class ImportedBoardRow:
     row_number: int
     raw: dict[str, str]
     board: StudioBoard | None = None
+    display_id: str = ""
     errors: tuple[str, ...] = ()
 
     @property
@@ -109,15 +110,21 @@ def _parse_row(
     existing_ids: set[str],
 ) -> ImportedBoardRow:
     errors: list[str] = []
+    display_id = ""
+    if "board_id" in header_map:
+        display_id = raw_row.get(header_map["board_id"], "").strip()
 
     missing = [field for field in _REQUIRED_FIELDS if field not in header_map]
     if missing:
         errors.append(f"Faltan columnas obligatorias: {', '.join(missing)}")
         return ImportedBoardRow(
-            row_number=row_number, raw=raw_row, errors=tuple(errors)
+            row_number=row_number,
+            raw=raw_row,
+            display_id=display_id,
+            errors=tuple(errors),
         )
 
-    board_id = raw_row.get(header_map["board_id"], "").strip()
+    board_id = display_id
     if not board_id:
         errors.append("El identificador no puede estar vacío")
 
@@ -158,7 +165,10 @@ def _parse_row(
 
     if errors:
         return ImportedBoardRow(
-            row_number=row_number, raw=raw_row, errors=tuple(errors)
+            row_number=row_number,
+            raw=raw_row,
+            display_id=display_id,
+            errors=tuple(errors),
         )
 
     seen_ids.add(normalized_id)
@@ -172,7 +182,12 @@ def _parse_row(
         quantity=quantity,
     )
 
-    return ImportedBoardRow(row_number=row_number, raw=raw_row, board=board)
+    return ImportedBoardRow(
+        row_number=row_number,
+        raw=raw_row,
+        board=board,
+        display_id=display_id,
+    )
 
 
 def import_boards_from_rows(
