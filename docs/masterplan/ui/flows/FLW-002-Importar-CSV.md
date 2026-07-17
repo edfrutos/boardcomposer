@@ -101,16 +101,19 @@ Las piezas válidas quedan incorporadas al proyecto sin alterar la información 
 
 ## Observaciones
 
-En futuras versiones se admitirán asistentes de mapeo de columnas, plantillas de importación, compatibilidad con Excel y formatos de terceros, así como reglas de validación configurables por el usuario.
+En futuras versiones se admitirán asistentes de mapeo de columnas, plantillas
+de importación, formatos de terceros adicionales y reglas de validación
+configurables por el usuario. Excel `.xlsx` (primera hoja) ya está soportado.
 
 ---
 
 ## Estado de implementación (2026-07-17)
 
-- Inventario de tableros: `Proyecto → Importar inventario de tableros (CSV)…`
+- Inventario de tableros: `Proyecto → Importar inventario de tableros (CSV/Excel)…`
   (`studio/board_csv_importer.py`, `ImportBoardsPreviewDialog`).
-- Piezas: `Proyecto → Importar piezas (CSV)…`
+- Piezas: `Proyecto → Importar piezas (CSV/Excel)…`
   (`studio/piece_csv_importer.py`, `ImportPiecesPreviewDialog`), con
   expansión de cantidad a ids correlativos y colocación inicial en el
   Workspace.
-- Soporte Excel (.xlsx) sigue pendiente.
+- Formatos: CSV y Excel `.xlsx` (primera hoja) vía `studio/tabular_file.py`.
+  Samples: `data/samples/studio_*.csv` y `data/samples/studio_*.xlsx`.

@@ -1,4 +1,4 @@
-"""Parse CSV files describing a stock-panel inventory (FLW-002).
+"""Parse CSV/Excel files describing a stock-panel inventory (FLW-002).
 
 This module is pure Python (no Qt dependency) so it can be unit tested in
 isolation. `ImportBoardsPreviewDialog` builds its preview table on top of
@@ -7,11 +7,11 @@ the `ImportBoardsResult` it returns.
 
 from __future__ import annotations
 
-import csv
 from dataclasses import dataclass, field
 from pathlib import Path
 
 from studio.models.board import StudioBoard
+from studio.tabular_file import load_tabular_file
 
 _HEADER_ALIASES: dict[str, tuple[str, ...]] = {
     "board_id": ("board_id", "id", "identificador", "tablero"),
@@ -31,7 +31,7 @@ _REQUIRED_FIELDS = ("board_id", "length_mm", "width_mm")
 
 @dataclass(frozen=True)
 class ImportedBoardRow:
-    """The result of parsing a single CSV row."""
+    """The result of parsing a single CSV/Excel row."""
 
     row_number: int
     raw: dict[str, str]
@@ -45,7 +45,7 @@ class ImportedBoardRow:
 
 @dataclass(frozen=True)
 class ImportBoardsResult:
-    """The complete outcome of importing a CSV inventory file."""
+    """The complete outcome of importing a CSV/Excel inventory file."""
 
     rows: tuple[ImportedBoardRow, ...] = field(default_factory=tuple)
     file_errors: tuple[str, ...] = ()
@@ -67,7 +67,7 @@ class ImportBoardsResult:
         return bool(self.file_errors) or bool(self.invalid_rows)
 
 
-def _resolve_header_map(fieldnames: list[str]) -> dict[str, str]:
+def _resolve_header_map(fieldnames: list[str] | tuple[str, ...]) -> dict[str, str]:
     """Map canonical field names to the actual header found in the file."""
     normalized = {name.strip().casefold(): name for name in fieldnames}
     resolved: dict[str, str] = {}
@@ -185,50 +185,50 @@ def _parse_row(
     return ImportedBoardRow(row_number=row_number, raw=raw_row, board=board)
 
 
-def import_boards_from_csv(
-    path: str | Path,
+def import_boards_from_rows(
+    fieldnames: list[str] | tuple[str, ...],
+    data_rows: list[dict[str, str]] | tuple[dict[str, str], ...],
     existing_ids: set[str] | None = None,
 ) -> ImportBoardsResult:
-    """Parse `path` and return an `ImportBoardsResult`.
-
-    `existing_ids` should contain the case-folded ids already present in
-    the target project, so duplicates against it can be flagged per row.
-    """
+    """Parse already-loaded tabular rows into an `ImportBoardsResult`."""
     existing = {board_id.casefold() for board_id in (existing_ids or set())}
-
-    try:
-        with open(path, newline="", encoding="utf-8-sig") as csv_file:
-            reader = csv.DictReader(csv_file)
-            fieldnames = reader.fieldnames
-
-            if not fieldnames:
-                return ImportBoardsResult(file_errors=("El archivo está vacío",))
-
-            header_map = _resolve_header_map(fieldnames)
-            missing = [field for field in _REQUIRED_FIELDS if field not in header_map]
-            if missing:
-                return ImportBoardsResult(
-                    file_errors=(
-                        "No se reconocen las columnas obligatorias: "
-                        f"{', '.join(missing)}",
-                    )
-                )
-
-            seen_ids: set[str] = set()
-            rows = [
-                _parse_row(index, raw_row, header_map, seen_ids, existing)
-                for index, raw_row in enumerate(reader, start=2)
-            ]
-    except OSError as error:
-        return ImportBoardsResult(file_errors=(f"No se pudo leer el archivo: {error}",))
-    except csv.Error as error:
+    header_map = _resolve_header_map(fieldnames)
+    missing = [field for field in _REQUIRED_FIELDS if field not in header_map]
+    if missing:
         return ImportBoardsResult(
-            file_errors=(f"El archivo CSV no es válido: {error}",)
+            file_errors=(
+                f"No se reconocen las columnas obligatorias: {', '.join(missing)}",
+            )
         )
 
+    seen_ids: set[str] = set()
+    rows = [
+        _parse_row(index, raw_row, header_map, seen_ids, existing)
+        for index, raw_row in enumerate(data_rows, start=2)
+    ]
     if not rows:
         return ImportBoardsResult(
             file_errors=("El archivo no contiene filas de datos",)
         )
-
     return ImportBoardsResult(rows=tuple(rows))
+
+
+def import_boards_from_file(
+    path: str | Path,
+    existing_ids: set[str] | None = None,
+) -> ImportBoardsResult:
+    """Parse a CSV or Excel inventory file and return an `ImportBoardsResult`."""
+    loaded = load_tabular_file(path)
+    if not loaded.ok:
+        return ImportBoardsResult(file_errors=loaded.errors)
+    return import_boards_from_rows(
+        loaded.fieldnames, loaded.rows, existing_ids=existing_ids
+    )
+
+
+def import_boards_from_csv(
+    path: str | Path,
+    existing_ids: set[str] | None = None,
+) -> ImportBoardsResult:
+    """Backward-compatible alias for `import_boards_from_file`."""
+    return import_boards_from_file(path, existing_ids=existing_ids)

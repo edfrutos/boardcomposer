@@ -51,6 +51,8 @@
 - Preferencias de Studio (SCR-006): estrategia y pesos de scoring en
   `~/.boardcomposer/preferences.json` (`Editar → Preferencias…`).
 - Miniaturas SVG sincronizadas en el comparador de soluciones (misma escala).
+- Importación CSV/Excel (`.xlsx`) de tableros y piezas (FLW-002), sin
+  dependencias extra (lector OOXML mínimo).
 
 ### Cambiado
 
