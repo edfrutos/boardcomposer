@@ -28,12 +28,25 @@ from studio.export_options import (
     preview_svg,
     preview_text,
 )
-from studio.export_templates import ExportTemplatesManager
+from studio.export_templates import ExportTemplatesManager, normalize_client
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.solution_thumbnail import svg_to_pixmap
 
 _GRAPHIC_PREVIEW_SIZE = QSize(520, 280)
 _NO_TEMPLATE = ""
+_ALL_CLIENTS = "*"
+_KEY_SEP = "\x1e"
+
+
+def _template_key(client: str, name: str) -> str:
+    return f"{normalize_client(client)}{_KEY_SEP}{name}"
+
+
+def _split_template_key(key: str) -> tuple[str, str]:
+    if _KEY_SEP not in key:
+        return "", key
+    client, name = key.split(_KEY_SEP, 1)
+    return client, name
 
 
 class ExportDialog(QDialog):
@@ -65,13 +78,19 @@ class ExportDialog(QDialog):
         )
 
         self.setWindowTitle(self._tr("export.title"))
-        self.setMinimumSize(640, 660)
+        self.setMinimumSize(640, 700)
 
         layout = QVBoxLayout(self)
         self.intro = QLabel(self._tr("export.intro"))
         layout.addWidget(self.intro)
 
         form = QFormLayout()
+
+        self.client = QComboBox()
+        self.client.setEditable(True)
+        self.client.currentIndexChanged.connect(self._on_client_changed)
+        self.client.editTextChanged.connect(self._on_client_edited)
+        form.addRow(self._tr("export.client"), self.client)
 
         template_row = QHBoxLayout()
         self.template = QComboBox()
@@ -142,6 +161,7 @@ class ExportDialog(QDialog):
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
 
+        self._reload_clients()
         self._reload_templates()
         self._refresh_preview()
 
@@ -156,13 +176,72 @@ class ExportDialog(QDialog):
             include_offcuts=self.include_offcuts.isChecked(),
         ).normalized()
 
-    def _reload_templates(self, selected: str | None = None) -> None:
-        current = selected if selected is not None else self.template.currentData()
+    def _client_filter(self) -> str | None:
+        """Return client filter: None=all, ''=general, or a client name."""
+        data = self.client.currentData()
+        if data == _ALL_CLIENTS:
+            return None
+        if data is not None:
+            return str(data)
+        text = normalize_client(self.client.currentText())
+        general = self._tr("export.client_general")
+        all_label = self._tr("export.client_all")
+        if text in {general, all_label}:
+            return None if text == all_label else ""
+        return text
+
+    def _client_for_save(self) -> str:
+        """Client name used when saving a profile (never the 'all' sentinel)."""
+        data = self.client.currentData()
+        if data == _ALL_CLIENTS:
+            return ""
+        if data is not None:
+            return normalize_client(str(data))
+        text = normalize_client(self.client.currentText())
+        if text in {
+            self._tr("export.client_general"),
+            self._tr("export.client_all"),
+        }:
+            return ""
+        return text
+
+    def _reload_clients(self, selected: str | None = _ALL_CLIENTS) -> None:
+        current = selected if selected is not None else self._client_filter()
+        if current is None:
+            current = _ALL_CLIENTS
+
+        self.client.blockSignals(True)
+        self.client.clear()
+        self.client.addItem(self._tr("export.client_all"), _ALL_CLIENTS)
+        self.client.addItem(self._tr("export.client_general"), "")
+        for name in self._templates.clients():
+            self.client.addItem(name, name)
+
+        index = self.client.findData(current)
+        if index < 0 and current not in {_ALL_CLIENTS, ""}:
+            self.client.addItem(str(current), str(current))
+            index = self.client.findData(current)
+        self.client.setCurrentIndex(index if index >= 0 else 0)
+        self.client.blockSignals(False)
+
+    def _reload_templates(self, selected_key: str | None = None) -> None:
+        current = (
+            selected_key if selected_key is not None else self.template.currentData()
+        )
+        client_filter = self._client_filter()
+        general_label = self._tr("export.client_general")
+
         self.template.blockSignals(True)
         self.template.clear()
         self.template.addItem(self._tr("export.no_template"), _NO_TEMPLATE)
-        for name in self._templates.names():
-            self.template.addItem(name, name)
+
+        for template in self._templates.templates_for(client_filter):
+            key = _template_key(template.client, template.name)
+            label = template.display_label(
+                general_label=general_label if client_filter is None else ""
+            )
+            self.template.addItem(label, key)
+
         index = self.template.findData(current or _NO_TEMPLATE)
         self.template.setCurrentIndex(index if index >= 0 else 0)
         self.template.blockSignals(False)
@@ -191,15 +270,30 @@ class ExportDialog(QDialog):
         self.include_offcuts.blockSignals(False)
         self._refresh_preview()
 
+    def _on_client_changed(self, index: int) -> None:
+        del index
+        self._reload_templates(selected_key=_NO_TEMPLATE)
+
+    def _on_client_edited(self, text: str) -> None:
+        del text
+        # Typing a custom client name: keep template list for exact data match
+        # when the combo still points at a known item; otherwise show all.
+        if self.client.findText(self.client.currentText()) < 0:
+            return
+
     def _on_template_selected(self, index: int) -> None:
         del index
         self._update_template_buttons()
-        name = self.template.currentData() or _NO_TEMPLATE
-        if not name:
+        key = self.template.currentData() or _NO_TEMPLATE
+        if not key:
             return
-        template = self._templates.get(name)
+        client, name = _split_template_key(key)
+        template = self._templates.get(name, client=client)
         if template is None:
             return
+        if self.client.currentData() == _ALL_CLIENTS and template.client:
+            # Keep "all clients" filter but still apply options.
+            pass
         self._apply_options(template.options)
 
     def _on_options_edited(self, *_args) -> None:
@@ -211,7 +305,12 @@ class ExportDialog(QDialog):
         self._refresh_preview()
 
     def _save_template(self) -> None:
-        suggested = self.template.currentData() or ""
+        client = self._client_for_save()
+        suggested_key = self.template.currentData() or ""
+        suggested = ""
+        if suggested_key:
+            _, suggested = _split_template_key(suggested_key)
+
         name, accepted = QInputDialog.getText(
             self,
             self._tr("export.save_template_title"),
@@ -228,22 +327,37 @@ class ExportDialog(QDialog):
                 self._tr("export.empty_name"),
             )
             return
-        self._templates.save_template(name, self.options())
-        self._reload_templates(selected=name)
+
+        # If filter is "all" and user typed a client in the editable field
+        # that isn't a sentinel, prefer that text.
+        if self.client.currentData() == _ALL_CLIENTS:
+            typed = normalize_client(self.client.currentText())
+            if typed and typed not in {
+                self._tr("export.client_all"),
+                self._tr("export.client_general"),
+            }:
+                client = typed
+
+        self._templates.save_template(name, self.options(), client=client)
+        self._reload_clients(selected=client or "")
+        self._reload_templates(selected_key=_template_key(client, name))
 
     def _delete_template(self) -> None:
-        name = self.template.currentData() or _NO_TEMPLATE
-        if not name:
+        key = self.template.currentData() or _NO_TEMPLATE
+        if not key:
             return
+        client, name = _split_template_key(key)
+        label = self.template.currentText()
         answer = QMessageBox.question(
             self,
             self._tr("export.delete_title"),
-            self._tr("export.delete_confirm", name=name),
+            self._tr("export.delete_confirm", name=label),
         )
         if answer != QMessageBox.StandardButton.Yes:
             return
-        self._templates.delete(name)
-        self._reload_templates(selected=_NO_TEMPLATE)
+        self._templates.delete(name, client=client)
+        self._reload_clients(selected=self.client.currentData())
+        self._reload_templates(selected_key=_NO_TEMPLATE)
 
     def _refresh_preview(self) -> None:
         options = self.options()
