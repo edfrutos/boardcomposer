@@ -138,3 +138,13 @@ Versiones futuras podrán incorporar:
 ## Nota de diseño
 
 Toda exportación deberá conservar la trazabilidad de la solución de origen, incluyendo el identificador del proyecto, la versión de BoardComposer, el algoritmo utilizado y la fecha de generación cuando el formato lo permita.
+
+---
+
+## Estado de implementación (2026-07-17)
+
+- Menú `Exportar` en Studio: SVG, DXF, PDF, JSON y CSV de la solución
+  seleccionada.
+- JSON: métricas, colocaciones, retales, omitidas y paneles de stock.
+- CSV: tabla de colocaciones (`piece_id`, posición, tamaño, rotación, panel).
+- Pendiente: pantalla dedicada con opciones avanzadas y vista previa.
