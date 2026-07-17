@@ -34,8 +34,10 @@ def test_pipeline_records_generator_and_evaluation_trace():
         event for event in pipeline.trace.events if event.kind == "generator_finished"
     ]
     assert finished
-    assert all(isinstance(event.payload.get("duration_ms"), int) for event in finished)
-    assert all(event.payload["duration_ms"] >= 0 for event in finished)
+    for event in finished:
+        duration = event.payload.get("duration_ms")
+        assert isinstance(duration, int)
+        assert duration >= 0
     evaluation = next(
         event for event in pipeline.trace.events if event.kind == "evaluation_finished"
     )
