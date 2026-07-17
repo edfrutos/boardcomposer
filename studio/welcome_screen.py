@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 from pathlib import Path
 
 from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
@@ -16,6 +18,7 @@ from PySide6.QtWidgets import (
 )
 
 from studio.i18n import DEFAULT_LANGUAGE, tr
+from studio.project_thumbnail import RECENT_THUMBNAIL_SIZE, project_file_thumbnail
 
 STUDIO_VERSION = "0.4.0.dev0"
 
@@ -35,6 +38,7 @@ class WelcomeScreen(QWidget):
 
         self._language = DEFAULT_LANGUAGE
         self._recent_paths: list[str] = []
+        self._thumbnail_cache: dict[tuple[str, float], QIcon] = {}
 
         layout = QVBoxLayout(self)
         layout.setContentsMargins(48, 40, 48, 40)
@@ -81,6 +85,8 @@ class WelcomeScreen(QWidget):
         layout.addWidget(self.recent_label)
         self.recent_list = QListWidget()
         self.recent_list.setMinimumHeight(180)
+        self.recent_list.setIconSize(RECENT_THUMBNAIL_SIZE)
+        self.recent_list.setSpacing(6)
         self.recent_list.itemActivated.connect(self._on_recent_activated)
         self.recent_list.itemDoubleClicked.connect(self._on_recent_activated)
         layout.addWidget(self.recent_list)
@@ -112,7 +118,7 @@ class WelcomeScreen(QWidget):
         self.set_recent_files(self._recent_paths)
 
     def set_recent_files(self, paths: list[str]) -> None:
-        """Populate the recent-projects list."""
+        """Populate the recent-projects list with name, date and thumbnail."""
         self._recent_paths = list(paths)
         self.recent_list.clear()
         if not paths:
@@ -121,11 +127,40 @@ class WelcomeScreen(QWidget):
             self.recent_list.addItem(empty)
             return
 
+        keep_keys = set()
         for path in paths:
             path_obj = Path(path)
-            item = QListWidgetItem(f"{path_obj.name}\n{path}")
+            mtime = 0.0
+            date_str = ""
+            try:
+                mtime = path_obj.stat().st_mtime
+                date_str = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M")
+            except OSError:
+                pass
+
+            lines = [path_obj.name]
+            if date_str:
+                lines.append(date_str)
+            lines.append(path)
+            item = QListWidgetItem("\n".join(lines))
             item.setData(Qt.ItemDataRole.UserRole, path)
+
+            cache_key = (path, mtime)
+            keep_keys.add(cache_key)
+            icon = self._thumbnail_cache.get(cache_key)
+            if icon is None:
+                pixmap = project_file_thumbnail(path)
+                if pixmap is not None and not pixmap.isNull():
+                    icon = QIcon(pixmap)
+                    self._thumbnail_cache[cache_key] = icon
+            if icon is not None:
+                item.setIcon(icon)
+
             self.recent_list.addItem(item)
+
+        stale = [key for key in self._thumbnail_cache if key not in keep_keys]
+        for key in stale:
+            del self._thumbnail_cache[key]
 
     def _on_recent_activated(self, item: QListWidgetItem) -> None:
         path = item.data(Qt.ItemDataRole.UserRole)
