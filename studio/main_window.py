@@ -53,6 +53,7 @@ from studio.piece_csv_importer import import_pieces_from_file
 from studio.solution_diff import compare_solutions, format_diff_unavailable
 from studio.solution_ordering import SORT_LABELS, ordered_solution_indexes
 from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
+from studio.units import format_length, format_size
 from studio.welcome_screen import WelcomeScreen
 
 
@@ -409,8 +410,9 @@ class MainWindow(QMainWindow):
 
             for board in project.boards:
                 board_label = (
-                    f"{board.board_id} — {board.length_mm:g} x {board.width_mm:g} "
-                    f"x {board.thickness_mm:g} mm — {board.quantity} ud."
+                    f"{board.board_id} — "
+                    f"{self._format_size(board.length_mm, board.width_mm, thickness_mm=board.thickness_mm)} "
+                    f"— {board.quantity} ud."
                 )
                 item = QTreeWidgetItem([board_label])
                 item.setData(
@@ -422,7 +424,8 @@ class MainWindow(QMainWindow):
 
             for piece in project.pieces:
                 piece_label = (
-                    f"{piece.piece_id} — {piece.length_mm:g} x {piece.width_mm:g} mm"
+                    f"{piece.piece_id} — "
+                    f"{self._format_size(piece.length_mm, piece.width_mm)}"
                 )
                 item = QTreeWidgetItem([piece_label])
                 item.setData(
@@ -497,9 +500,8 @@ class MainWindow(QMainWindow):
             self.inspector.setText(
                 "Inspector\n\n"
                 f"Tablero: {board.board_id}\n"
-                f"Dimensiones: {board.length_mm:g} x "
-                f"{board.width_mm:g} mm\n"
-                f"Espesor: {board.thickness_mm:g} mm\n"
+                f"Dimensiones: {self._format_size(board.length_mm, board.width_mm)}\n"
+                f"Espesor: {self._format_length(board.thickness_mm)}\n"
                 f"Cantidad: {board.quantity}\n"
                 f"Material: {board.material}"
             )
@@ -512,8 +514,7 @@ class MainWindow(QMainWindow):
             self.inspector.setText(
                 "Inspector\n\n"
                 f"Pieza: {piece.piece_id}\n"
-                f"Dimensiones: {piece.length_mm:g} x "
-                f"{piece.width_mm:g} mm\n"
+                f"Dimensiones: {self._format_size(piece.length_mm, piece.width_mm)}\n"
                 f"Material: {piece.material}"
             )
 
@@ -544,7 +545,7 @@ class MainWindow(QMainWindow):
         if project is None:
             return
 
-        dialog = NewBoardDialog(self)
+        dialog = NewBoardDialog(self, units=self._display_units())
 
         if dialog.exec() != dialog.DialogCode.Accepted:
             return
@@ -704,7 +705,7 @@ class MainWindow(QMainWindow):
         if project is None:
             return
 
-        dialog = NewPieceDialog(self)
+        dialog = NewPieceDialog(self, units=self._display_units())
 
         if dialog.exec() != dialog.DialogCode.Accepted:
             return
@@ -844,7 +845,7 @@ class MainWindow(QMainWindow):
             self.inspector.setText(
                 "Inspector\n\n"
                 f"Pieza: {piece.piece_id}\n"
-                f"Dimensiones: {piece.length_mm:g} x {piece.width_mm:g} mm\n"
+                f"Dimensiones: {self._format_size(piece.length_mm, piece.width_mm)}\n"
                 f"Material: {piece.material}\n"
                 "Sin colocar en el Workspace"
             )
@@ -853,8 +854,9 @@ class MainWindow(QMainWindow):
         self.inspector.setText(
             "Inspector\n\n"
             f"Pieza: {piece.piece_id}\n"
-            f"Dimensiones: {piece.length_mm:g} x {piece.width_mm:g} mm\n"
-            f"Posición: {placement.x_mm:g}, {placement.y_mm:g} mm\n"
+            f"Dimensiones: {self._format_size(piece.length_mm, piece.width_mm)}\n"
+            f"Posición: {self._format_length(placement.x_mm)}, "
+            f"{self._format_length(placement.y_mm)}\n"
             f"Tablero: {self._panel_info_text(project, placement)}\n"
             f"Material: {piece.material}"
         )
@@ -966,6 +968,26 @@ class MainWindow(QMainWindow):
         self._apply_preferences()
         self.statusBar().showMessage("Preferencias guardadas", 3000)
 
+    def _display_units(self) -> str:
+        return self.services.preferences.current.units
+
+    def _format_size(
+        self,
+        length_mm: float,
+        width_mm: float,
+        *,
+        thickness_mm: float | None = None,
+    ) -> str:
+        return format_size(
+            length_mm,
+            width_mm,
+            self._display_units(),
+            thickness_mm=thickness_mm,
+        )
+
+    def _format_length(self, value_mm: float) -> str:
+        return format_length(value_mm, self._display_units())
+
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication
 
@@ -974,8 +996,10 @@ class MainWindow(QMainWindow):
         app = QApplication.instance()
         if app is not None:
             apply_theme(app, self.services.preferences.current.theme)
+        self.welcome.apply_language(self.services.preferences.current.language)
         self.workspace.reload_project()
         self._reload_explorer()
+        self.welcome.set_recent_files(self.services.recent_files.existing_files())
 
     def _solve_layout(self):
         solution = self.services.layout.solve_current_project()
@@ -1588,6 +1612,7 @@ class MainWindow(QMainWindow):
             quantity=board.quantity,
             material=board.material,
             title="Editar tablero",
+            units=self._display_units(),
         )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
@@ -1649,6 +1674,7 @@ class MainWindow(QMainWindow):
             material=piece.material,
             title="Editar pieza",
             show_quantity=False,
+            units=self._display_units(),
         )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
@@ -1705,14 +1731,17 @@ class MainWindow(QMainWindow):
         position_text = ""
         panel_text = ""
         if placement is not None:
-            position_text = f"Posición: {placement.x_mm:g}, {placement.y_mm:g} mm\n"
+            position_text = (
+                f"Posición: {self._format_length(placement.x_mm)}, "
+                f"{self._format_length(placement.y_mm)}\n"
+            )
             panel_text = f"Tablero: {self._panel_info_text(project, placement)}\n"
 
         self.inspector.setText(
             "Inspector\n\n"
             f"Pieza: {updated_piece.piece_id}\n"
-            f"Dimensiones: {updated_piece.length_mm:g} x "
-            f"{updated_piece.width_mm:g} mm\n"
+            f"Dimensiones: "
+            f"{self._format_size(updated_piece.length_mm, updated_piece.width_mm)}\n"
             f"{position_text}"
             f"{panel_text}"
             f"Material: {updated_piece.material}"

@@ -16,6 +16,8 @@ from PySide6.QtWidgets import (
 )
 
 from boardcomposer.solver.strategies import strategy_by_name
+from studio.export_options import VALID_EXPORT_FORMATS, format_label
+from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES, tr
 from studio.preferences import (
     DEFAULT_GRID_SIZE_MM,
     MAX_GRID_SIZE_MM,
@@ -25,6 +27,7 @@ from studio.preferences import (
     WeightPreferences,
 )
 from studio.theme import DEFAULT_THEME, VALID_THEMES
+from studio.units import DEFAULT_UNITS, VALID_UNITS
 
 _STRATEGY_LABELS = {
     "balanced": "Equilibrada",
@@ -46,31 +49,43 @@ class PreferencesDialog(QDialog):
     def __init__(self, preferences: StudioPreferences, parent=None) -> None:
         super().__init__(parent)
 
-        self.setWindowTitle("Preferencias")
-        self.setMinimumWidth(440)
         self._preferences = preferences
+        self._language = preferences.language
+        self.setMinimumWidth(460)
 
         layout = QVBoxLayout(self)
-        layout.addWidget(
-            QLabel(
-                "Estas opciones se aplican a todos los proyectos y no forman "
-                "parte del fichero `.bcproj`."
-            )
-        )
+        self._intro = QLabel()
+        layout.addWidget(self._intro)
 
-        general = QGroupBox("General")
-        general_form = QFormLayout(general)
+        self.general = QGroupBox()
+        general_form = QFormLayout(self.general)
+
+        self.language = QComboBox()
+        for key in VALID_LANGUAGES:
+            self.language.addItem(tr(f"language.{key}", preferences.language), key)
+        language_index = self.language.findData(preferences.language)
+        self.language.setCurrentIndex(language_index if language_index >= 0 else 0)
+        self.language.currentIndexChanged.connect(self._on_language_changed)
+        general_form.addRow(tr("prefs.language", preferences.language), self.language)
+
         self.theme = QComboBox()
         for key in VALID_THEMES:
             self.theme.addItem(_THEME_LABELS[key], key)
         theme_index = self.theme.findData(preferences.theme)
         self.theme.setCurrentIndex(theme_index if theme_index >= 0 else 0)
-        general_form.addRow("Tema:", self.theme)
-        layout.addWidget(general)
+        general_form.addRow(tr("prefs.theme", preferences.language), self.theme)
 
-        workspace = QGroupBox("Workspace")
-        workspace_form = QFormLayout(workspace)
-        self.show_grid = QCheckBox("Mostrar cuadrícula")
+        self.units = QComboBox()
+        for key in VALID_UNITS:
+            self.units.addItem(tr(f"units.{key}", preferences.language), key)
+        units_index = self.units.findData(preferences.units)
+        self.units.setCurrentIndex(units_index if units_index >= 0 else 0)
+        general_form.addRow(tr("prefs.units", preferences.language), self.units)
+        layout.addWidget(self.general)
+
+        self.workspace = QGroupBox()
+        workspace_form = QFormLayout(self.workspace)
+        self.show_grid = QCheckBox()
         self.show_grid.setChecked(preferences.show_grid)
         workspace_form.addRow("", self.show_grid)
         self.grid_size_mm = QSpinBox()
@@ -78,11 +93,13 @@ class PreferencesDialog(QDialog):
         self.grid_size_mm.setSuffix(" mm")
         self.grid_size_mm.setSingleStep(10)
         self.grid_size_mm.setValue(preferences.grid_size_mm)
-        workspace_form.addRow("Tamaño de cuadrícula:", self.grid_size_mm)
-        layout.addWidget(workspace)
+        workspace_form.addRow(
+            tr("prefs.grid_size", preferences.language), self.grid_size_mm
+        )
+        layout.addWidget(self.workspace)
 
-        algorithms = QGroupBox("Algoritmos")
-        form = QFormLayout(algorithms)
+        self.algorithms = QGroupBox()
+        form = QFormLayout(self.algorithms)
 
         self.strategy = QComboBox()
         for key in VALID_STRATEGIES:
@@ -90,7 +107,7 @@ class PreferencesDialog(QDialog):
         index = self.strategy.findData(preferences.strategy_name)
         self.strategy.setCurrentIndex(index if index >= 0 else 0)
         self.strategy.currentIndexChanged.connect(self._on_strategy_changed)
-        form.addRow("Estrategia:", self.strategy)
+        form.addRow(tr("prefs.strategy", preferences.language), self.strategy)
 
         self.use_custom_weights = QCheckBox("Usar pesos personalizados")
         self.use_custom_weights.setChecked(preferences.use_custom_weights)
@@ -106,7 +123,30 @@ class PreferencesDialog(QDialog):
         form.addRow("Piezas colocadas:", self.placed_boards)
         form.addRow("Compacidad:", self.compactness)
         form.addRow("Penalización por rotación:", self.rotation_penalty)
-        layout.addWidget(algorithms)
+        layout.addWidget(self.algorithms)
+
+        self.export_group = QGroupBox()
+        export_form = QFormLayout(self.export_group)
+        self.export_format = QComboBox()
+        for key in VALID_EXPORT_FORMATS:
+            self.export_format.addItem(format_label(key), key)
+        export_index = self.export_format.findData(preferences.export_format)
+        self.export_format.setCurrentIndex(export_index if export_index >= 0 else 0)
+        export_form.addRow(
+            tr("prefs.export_format", preferences.language), self.export_format
+        )
+        self.export_include_metrics = QCheckBox("Incluir métricas (JSON)")
+        self.export_include_metrics.setChecked(preferences.export_include_metrics)
+        export_form.addRow("", self.export_include_metrics)
+        self.export_include_explanation = QCheckBox("Incluir explicación (JSON)")
+        self.export_include_explanation.setChecked(
+            preferences.export_include_explanation
+        )
+        export_form.addRow("", self.export_include_explanation)
+        self.export_include_offcuts = QCheckBox("Incluir retales")
+        self.export_include_offcuts.setChecked(preferences.export_include_offcuts)
+        export_form.addRow("", self.export_include_offcuts)
+        layout.addWidget(self.export_group)
 
         buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.RestoreDefaults
@@ -122,6 +162,32 @@ class PreferencesDialog(QDialog):
 
         self._apply_weights_to_spins(preferences.weights)
         self._on_custom_weights_toggled(preferences.use_custom_weights)
+        self._retranslate()
+
+    def _retranslate(self) -> None:
+        language = self.language.currentData() or DEFAULT_LANGUAGE
+        self._language = language
+        self.setWindowTitle(tr("prefs.title", language))
+        self._intro.setText(
+            "Estas opciones se aplican a todos los proyectos y no forman "
+            "parte del fichero `.bcproj`."
+            if language == "es"
+            else "These options apply to all projects and are not part of "
+            "the `.bcproj` file."
+        )
+        self.general.setTitle(tr("prefs.general", language))
+        self.workspace.setTitle(tr("prefs.workspace", language))
+        self.algorithms.setTitle(tr("prefs.algorithms", language))
+        self.export_group.setTitle(tr("prefs.export", language))
+        self.show_grid.setText(tr("prefs.show_grid", language))
+
+        for index, key in enumerate(VALID_LANGUAGES):
+            self.language.setItemText(index, tr(f"language.{key}", language))
+        for index, key in enumerate(VALID_UNITS):
+            self.units.setItemText(index, tr(f"units.{key}", language))
+
+    def _on_language_changed(self, _index: int) -> None:
+        self._retranslate()
 
     @staticmethod
     def _weight_spin() -> QDoubleSpinBox:
@@ -157,12 +223,19 @@ class PreferencesDialog(QDialog):
             self._on_strategy_changed(self.strategy.currentIndex())
 
     def _restore_defaults(self) -> None:
+        self.language.setCurrentIndex(self.language.findData(DEFAULT_LANGUAGE))
         self.theme.setCurrentIndex(self.theme.findData(DEFAULT_THEME))
+        self.units.setCurrentIndex(self.units.findData(DEFAULT_UNITS))
         self.show_grid.setChecked(True)
         self.grid_size_mm.setValue(DEFAULT_GRID_SIZE_MM)
         self.strategy.setCurrentIndex(self.strategy.findData("material"))
         self.use_custom_weights.setChecked(False)
+        self.export_format.setCurrentIndex(self.export_format.findData("svg"))
+        self.export_include_metrics.setChecked(True)
+        self.export_include_explanation.setChecked(True)
+        self.export_include_offcuts.setChecked(True)
         self._on_strategy_changed(self.strategy.currentIndex())
+        self._retranslate()
 
     def preferences(self) -> StudioPreferences:
         return StudioPreferences(
@@ -177,8 +250,10 @@ class PreferencesDialog(QDialog):
             theme=self.theme.currentData() or DEFAULT_THEME,
             show_grid=self.show_grid.isChecked(),
             grid_size_mm=self.grid_size_mm.value(),
-            export_format=self._preferences.export_format,
-            export_include_metrics=self._preferences.export_include_metrics,
-            export_include_explanation=self._preferences.export_include_explanation,
-            export_include_offcuts=self._preferences.export_include_offcuts,
+            language=self.language.currentData() or DEFAULT_LANGUAGE,
+            units=self.units.currentData() or DEFAULT_UNITS,
+            export_format=self.export_format.currentData() or "svg",
+            export_include_metrics=self.export_include_metrics.isChecked(),
+            export_include_explanation=self.export_include_explanation.isChecked(),
+            export_include_offcuts=self.export_include_offcuts.isChecked(),
         )

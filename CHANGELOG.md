@@ -62,6 +62,8 @@
   persistidos y acceso a preferencias/ejemplo.
 - Diálogo de exportación SCR-007 con formato, opciones (métricas,
   explicación, retales), vista previa y recuerdo de la última elección.
+- Preferencias SCR-006: idioma (es/en), unidades (mm/cm/in) aplicadas a
+  inspector, explorador y formularios; defaults de exportación editables.
 
 ### Cambiado
 
