@@ -66,8 +66,9 @@ class TimelineStore:
         event_name: str | None = None,
         *,
         algorithm: str | None = None,
+        since: datetime | None = None,
     ) -> tuple[TimelineEntry, ...]:
-        """Return entries matching optional event-type and algorithm filters."""
+        """Return entries matching optional event, algorithm and time filters."""
         result: list[TimelineEntry] = []
         for entry in self._entries:
             if event_name and event_name != ALL_EVENTS:
@@ -77,6 +78,8 @@ class TimelineStore:
                 value = entry.payload.get("algorithm")
                 if value != algorithm:
                     continue
+            if since is not None and entry.timestamp < since:
+                continue
             result.append(entry)
         return tuple(result)
 

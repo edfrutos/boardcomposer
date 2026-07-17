@@ -110,6 +110,8 @@
   `AlgorithmFinished` / `EvaluationFinished` (ADR-005).
 - Marcadores/anotaciones de usuario en el Timeline (`TimelineMarked`) con
   nota libre y contexto opcional del replay (algoritmo, pieza, paso).
+- Filtro del Timeline por intervalo temporal (presets 1/5/15 min y 1 h),
+  respetado también al exportar (`since` / `period_seconds`).
 
 ### Cambiado
 

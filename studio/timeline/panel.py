@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timedelta, timezone
+
 from PySide6.QtCore import Qt, QTimer, Signal
 from PySide6.QtWidgets import (
     QComboBox,
@@ -23,6 +25,13 @@ from studio.timeline.store import TimelineEntry, TimelineStore
 
 _PLAY_INTERVAL_MS = 450
 _ALL_ALGORITHMS = "__all_algorithms__"
+_PERIOD_OPTIONS: tuple[tuple[int | None, str], ...] = (
+    (None, "timeline.filter_period_all"),
+    (60, "timeline.filter_period_1m"),
+    (300, "timeline.filter_period_5m"),
+    (900, "timeline.filter_period_15m"),
+    (3600, "timeline.filter_period_1h"),
+)
 
 
 class TimelinePanel(QWidget):
@@ -40,6 +49,7 @@ class TimelinePanel(QWidget):
         self._language = language
         self._filter_event: str | None = None
         self._filter_algorithm: str | None = None
+        self._filter_period_seconds: int | None = None
         self._replay = SolutionReplay()
 
         self._filter_label = QLabel()
@@ -48,6 +58,9 @@ class TimelinePanel(QWidget):
         self._algo_label = QLabel()
         self._algo_filter = QComboBox()
         self._algo_filter.currentIndexChanged.connect(self._on_algo_filter_changed)
+        self._period_label = QLabel()
+        self._period_filter = QComboBox()
+        self._period_filter.currentIndexChanged.connect(self._on_period_changed)
         self._clear = QPushButton()
         self._clear.clicked.connect(self._on_clear)
         self._mark = QPushButton()
@@ -55,14 +68,19 @@ class TimelinePanel(QWidget):
         self._export = QPushButton()
         self._export.clicked.connect(self._on_export_clicked)
 
-        controls = QHBoxLayout()
-        controls.addWidget(self._filter_label)
-        controls.addWidget(self._filter, stretch=1)
-        controls.addWidget(self._algo_label)
-        controls.addWidget(self._algo_filter, stretch=1)
-        controls.addWidget(self._mark)
-        controls.addWidget(self._export)
-        controls.addWidget(self._clear)
+        filters = QHBoxLayout()
+        filters.addWidget(self._filter_label)
+        filters.addWidget(self._filter, stretch=1)
+        filters.addWidget(self._algo_label)
+        filters.addWidget(self._algo_filter, stretch=1)
+        filters.addWidget(self._period_label)
+        filters.addWidget(self._period_filter, stretch=1)
+
+        actions = QHBoxLayout()
+        actions.addStretch(1)
+        actions.addWidget(self._mark)
+        actions.addWidget(self._export)
+        actions.addWidget(self._clear)
 
         self._replay_label = QLabel()
         self._replay_reset = QPushButton()
@@ -87,7 +105,8 @@ class TimelinePanel(QWidget):
 
         layout = QVBoxLayout(self)
         layout.setContentsMargins(4, 4, 4, 4)
-        layout.addLayout(controls)
+        layout.addLayout(filters)
+        layout.addLayout(actions)
         layout.addLayout(replay_row)
         layout.addWidget(self._list)
 
@@ -104,6 +123,7 @@ class TimelinePanel(QWidget):
         self._language = language
         self._filter_label.setText(tr("timeline.filter", language))
         self._algo_label.setText(tr("timeline.filter_algorithm", language))
+        self._period_label.setText(tr("timeline.filter_period", language))
         self._clear.setText(tr("timeline.clear", language))
         self._mark.setText(tr("timeline.mark", language))
         self._export.setText(tr("timeline.export", language))
@@ -112,6 +132,7 @@ class TimelinePanel(QWidget):
         self._replay_forward.setText(tr("timeline.replay_forward", language))
         self._rebuild_filter_items()
         self._rebuild_algorithm_items()
+        self._rebuild_period_items()
         self._rebuild()
         self._update_replay_controls()
 
@@ -153,6 +174,26 @@ class TimelinePanel(QWidget):
         data = self._algo_filter.currentData()
         self._filter_algorithm = None if data == _ALL_ALGORITHMS else data
 
+    def _rebuild_period_items(self) -> None:
+        current = self._filter_period_seconds
+        self._period_filter.blockSignals(True)
+        self._period_filter.clear()
+        for seconds, key in _PERIOD_OPTIONS:
+            self._period_filter.addItem(tr(key, self._language), seconds)
+        if current is not None:
+            index = self._period_filter.findData(current)
+            self._period_filter.setCurrentIndex(index if index >= 0 else 0)
+        self._period_filter.blockSignals(False)
+        data = self._period_filter.currentData()
+        self._filter_period_seconds = data if isinstance(data, int) else None
+
+    def _filter_since(self) -> datetime | None:
+        if self._filter_period_seconds is None:
+            return None
+        return datetime.now(timezone.utc) - timedelta(
+            seconds=self._filter_period_seconds
+        )
+
     def _on_filter_changed(self, _index: int) -> None:
         data = self._filter.currentData()
         self._filter_event = None if data == ALL_EVENTS else data
@@ -161,6 +202,11 @@ class TimelinePanel(QWidget):
     def _on_algo_filter_changed(self, _index: int) -> None:
         data = self._algo_filter.currentData()
         self._filter_algorithm = None if data == _ALL_ALGORITHMS else data
+        self._rebuild()
+
+    def _on_period_changed(self, _index: int) -> None:
+        data = self._period_filter.currentData()
+        self._filter_period_seconds = data if isinstance(data, int) else None
         self._rebuild()
 
     def _on_clear(self) -> None:
@@ -200,12 +246,23 @@ class TimelinePanel(QWidget):
         """Return the active algorithm filter, or None for all algorithms."""
         return self._filter_algorithm
 
+    def current_filter_since(self) -> datetime | None:
+        """Return the lower time bound for the active period filter."""
+        return self._filter_since()
+
+    def current_filter_period_seconds(self) -> int | None:
+        """Return the active period length in seconds, or None for all time."""
+        return self._filter_period_seconds
+
     def _matches_filters(self, entry: TimelineEntry) -> bool:
         if self._filter_event and entry.event_name != self._filter_event:
             return False
         if self._filter_algorithm:
             if entry.payload.get("algorithm") != self._filter_algorithm:
                 return False
+        since = self._filter_since()
+        if since is not None and entry.timestamp < since:
+            return False
         return True
 
     def _on_entry(self, entry: TimelineEntry) -> None:
@@ -223,6 +280,7 @@ class TimelinePanel(QWidget):
         for entry in self._store.filtered(
             self._filter_event,
             algorithm=self._filter_algorithm,
+            since=self._filter_since(),
         ):
             self._list.addItem(self._item_for(entry))
         if self._list.count() == 0:
