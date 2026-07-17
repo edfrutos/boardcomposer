@@ -30,6 +30,20 @@ def test_pipeline_records_generator_and_evaluation_trace():
     assert "evaluation_started" in kinds
     assert "evaluation_finished" in kinds
     assert pipeline.trace.algorithms() == ("vertical", "free_space")
+    finished = [
+        event
+        for event in pipeline.trace.events
+        if event.kind == "generator_finished"
+    ]
+    assert finished
+    assert all(isinstance(event.payload.get("duration_ms"), int) for event in finished)
+    assert all(event.payload["duration_ms"] >= 0 for event in finished)
+    evaluation = next(
+        event
+        for event in pipeline.trace.events
+        if event.kind == "evaluation_finished"
+    )
+    assert isinstance(evaluation.payload.get("duration_ms"), int)
     if solutions:
         assert any(event.kind == "build_order" for event in pipeline.trace.events)
 
@@ -57,10 +71,16 @@ def test_publish_solve_trace_maps_to_event_bus():
     pipeline.run()
 
     bus = EventBus()
-    seen: list[str] = []
-    bus.subscribe("*", lambda name, _payload: seen.append(name))
+    seen: list[tuple[str, dict]] = []
+    bus.subscribe("*", lambda name, payload: seen.append((name, payload)))
     publish_solve_trace(bus, pipeline.trace)
 
-    assert ALGORITHM_STARTED in seen
-    assert ALGORITHM_FINISHED in seen
-    assert EVALUATION_FINISHED in seen
+    names = [name for name, _ in seen]
+    assert ALGORITHM_STARTED in names
+    assert ALGORITHM_FINISHED in names
+    assert EVALUATION_FINISHED in names
+    finished_payloads = [
+        payload for name, payload in seen if name == ALGORITHM_FINISHED
+    ]
+    assert finished_payloads
+    assert all("duration_ms" in payload for payload in finished_payloads)

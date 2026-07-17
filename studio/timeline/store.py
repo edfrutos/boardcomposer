@@ -50,10 +50,35 @@ class TimelineStore:
     def clear(self) -> None:
         self._entries.clear()
 
-    def filtered(self, event_name: str | None = None) -> tuple[TimelineEntry, ...]:
-        if not event_name or event_name == ALL_EVENTS:
-            return self.entries
-        return tuple(e for e in self._entries if e.event_name == event_name)
+    def algorithms(self) -> tuple[str, ...]:
+        """Return distinct algorithm names seen in entry payloads."""
+        names: list[str] = []
+        seen: set[str] = set()
+        for entry in self._entries:
+            value = entry.payload.get("algorithm")
+            if isinstance(value, str) and value and value not in seen:
+                seen.add(value)
+                names.append(value)
+        return tuple(names)
+
+    def filtered(
+        self,
+        event_name: str | None = None,
+        *,
+        algorithm: str | None = None,
+    ) -> tuple[TimelineEntry, ...]:
+        """Return entries matching optional event-type and algorithm filters."""
+        result: list[TimelineEntry] = []
+        for entry in self._entries:
+            if event_name and event_name != ALL_EVENTS:
+                if entry.event_name != event_name:
+                    continue
+            if algorithm:
+                value = entry.payload.get("algorithm")
+                if value != algorithm:
+                    continue
+            result.append(entry)
+        return tuple(result)
 
     def _on_event(self, event_name: str, payload: dict) -> None:
         self._sequence += 1

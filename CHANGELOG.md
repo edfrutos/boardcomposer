@@ -106,6 +106,8 @@
   en el dock) respetando el filtro activo.
 - Instrumentación de fallos de colocación MaxRects (`incompatible` / `no_fit`)
   en la traza del solver y el Timeline (`PlacementFailed` + resumen).
+- Filtro del Timeline por algoritmo y métricas temporales (`duration_ms`) en
+  `AlgorithmFinished` / `EvaluationFinished` (ADR-005).
 
 ### Cambiado
 

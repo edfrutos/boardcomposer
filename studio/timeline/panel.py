@@ -21,6 +21,7 @@ from studio.timeline.replay import SolutionReplay
 from studio.timeline.store import TimelineEntry, TimelineStore
 
 _PLAY_INTERVAL_MS = 450
+_ALL_ALGORITHMS = "__all_algorithms__"
 
 
 class TimelinePanel(QWidget):
@@ -37,11 +38,15 @@ class TimelinePanel(QWidget):
         self._store = store
         self._language = language
         self._filter_event: str | None = None
+        self._filter_algorithm: str | None = None
         self._replay = SolutionReplay()
 
         self._filter_label = QLabel()
         self._filter = QComboBox()
         self._filter.currentIndexChanged.connect(self._on_filter_changed)
+        self._algo_label = QLabel()
+        self._algo_filter = QComboBox()
+        self._algo_filter.currentIndexChanged.connect(self._on_algo_filter_changed)
         self._clear = QPushButton()
         self._clear.clicked.connect(self._on_clear)
         self._export = QPushButton()
@@ -50,6 +55,8 @@ class TimelinePanel(QWidget):
         controls = QHBoxLayout()
         controls.addWidget(self._filter_label)
         controls.addWidget(self._filter, stretch=1)
+        controls.addWidget(self._algo_label)
+        controls.addWidget(self._algo_filter, stretch=1)
         controls.addWidget(self._export)
         controls.addWidget(self._clear)
 
@@ -92,12 +99,14 @@ class TimelinePanel(QWidget):
     def retranslate(self, language: str) -> None:
         self._language = language
         self._filter_label.setText(tr("timeline.filter", language))
+        self._algo_label.setText(tr("timeline.filter_algorithm", language))
         self._clear.setText(tr("timeline.clear", language))
         self._export.setText(tr("timeline.export", language))
         self._replay_reset.setText(tr("timeline.replay_reset", language))
         self._replay_back.setText(tr("timeline.replay_back", language))
         self._replay_forward.setText(tr("timeline.replay_forward", language))
         self._rebuild_filter_items()
+        self._rebuild_algorithm_items()
         self._rebuild()
         self._update_replay_controls()
 
@@ -122,13 +131,36 @@ class TimelinePanel(QWidget):
         data = self._filter.currentData()
         self._filter_event = None if data == ALL_EVENTS else data
 
+    def _rebuild_algorithm_items(self) -> None:
+        current = self._filter_algorithm
+        self._algo_filter.blockSignals(True)
+        self._algo_filter.clear()
+        self._algo_filter.addItem(
+            tr("timeline.filter_algorithm_all", self._language),
+            _ALL_ALGORITHMS,
+        )
+        for name in self._store.algorithms():
+            self._algo_filter.addItem(name, name)
+        if current:
+            index = self._algo_filter.findData(current)
+            self._algo_filter.setCurrentIndex(index if index >= 0 else 0)
+        self._algo_filter.blockSignals(False)
+        data = self._algo_filter.currentData()
+        self._filter_algorithm = None if data == _ALL_ALGORITHMS else data
+
     def _on_filter_changed(self, _index: int) -> None:
         data = self._filter.currentData()
         self._filter_event = None if data == ALL_EVENTS else data
         self._rebuild()
 
+    def _on_algo_filter_changed(self, _index: int) -> None:
+        data = self._algo_filter.currentData()
+        self._filter_algorithm = None if data == _ALL_ALGORITHMS else data
+        self._rebuild()
+
     def _on_clear(self) -> None:
         self._store.clear()
+        self._rebuild_algorithm_items()
         self._rebuild()
 
     def _on_export_clicked(self) -> None:
@@ -138,15 +170,34 @@ class TimelinePanel(QWidget):
         """Return the active event filter, or None for all events."""
         return self._filter_event
 
-    def _on_entry(self, entry: TimelineEntry) -> None:
+    def current_filter_algorithm(self) -> str | None:
+        """Return the active algorithm filter, or None for all algorithms."""
+        return self._filter_algorithm
+
+    def _matches_filters(self, entry: TimelineEntry) -> bool:
         if self._filter_event and entry.event_name != self._filter_event:
+            return False
+        if self._filter_algorithm:
+            if entry.payload.get("algorithm") != self._filter_algorithm:
+                return False
+        return True
+
+    def _on_entry(self, entry: TimelineEntry) -> None:
+        if entry.payload.get("algorithm") and (
+            self._algo_filter.findData(entry.payload["algorithm"]) < 0
+        ):
+            self._rebuild_algorithm_items()
+        if not self._matches_filters(entry):
             return
         self._list.addItem(self._item_for(entry))
         self._list.scrollToBottom()
 
     def _rebuild(self) -> None:
         self._list.clear()
-        for entry in self._store.filtered(self._filter_event):
+        for entry in self._store.filtered(
+            self._filter_event,
+            algorithm=self._filter_algorithm,
+        ):
             self._list.addItem(self._item_for(entry))
         if self._list.count() == 0:
             empty = QListWidgetItem(tr("timeline.empty", self._language))
@@ -275,6 +326,10 @@ def _format_payload(payload: dict, language: str) -> str:
     if "reason" in payload:
         reason = str(payload["reason"])
         parts.append(tr(f"timeline.reason.{reason}", language))
+    if "duration_ms" in payload:
+        parts.append(
+            tr("timeline.detail.duration_ms", language, n=payload["duration_ms"])
+        )
     if "total" in payload and "count" not in payload:
         parts.append(tr("timeline.detail.total", language, n=payload["total"]))
     if "no_fit" in payload:

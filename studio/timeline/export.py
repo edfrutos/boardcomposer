@@ -43,10 +43,12 @@ def timeline_entries(
     store: TimelineStore,
     *,
     event_name: str | None = None,
+    algorithm: str | None = None,
 ) -> tuple[TimelineEntry, ...]:
-    """Return entries, optionally filtered by event type."""
-    if event_name and event_name != ALL_EVENTS:
-        return store.filtered(event_name)
+    """Return entries, optionally filtered by event type and algorithm."""
+    use_event = event_name if event_name and event_name != ALL_EVENTS else None
+    if use_event or algorithm:
+        return store.filtered(use_event, algorithm=algorithm)
     return store.entries
 
 
@@ -54,16 +56,25 @@ def timeline_to_json(
     store: TimelineStore,
     *,
     event_name: str | None = None,
+    algorithm: str | None = None,
     exported_at: datetime | None = None,
 ) -> str:
     """Return a JSON document with the timeline history."""
-    entries = timeline_entries(store, event_name=event_name)
+    entries = timeline_entries(
+        store,
+        event_name=event_name,
+        algorithm=algorithm,
+    )
     stamp = exported_at or datetime.now().astimezone()
+    event_filter = (
+        event_name if event_name and event_name != ALL_EVENTS else None
+    )
     document = {
         "format": "boardcomposer.timeline",
         "version": 1,
         "exported_at": stamp.isoformat(),
-        "filter": event_name if event_name and event_name != ALL_EVENTS else None,
+        "filter": event_filter,
+        "algorithm_filter": algorithm,
         "count": len(entries),
         "events": [entry_to_dict(entry) for entry in entries],
     }
@@ -74,9 +85,14 @@ def timeline_to_csv(
     store: TimelineStore,
     *,
     event_name: str | None = None,
+    algorithm: str | None = None,
 ) -> str:
     """Return a CSV table with sequence, timestamp, event and payload JSON."""
-    entries = timeline_entries(store, event_name=event_name)
+    entries = timeline_entries(
+        store,
+        event_name=event_name,
+        algorithm=algorithm,
+    )
     buffer = StringIO()
     writer = csv.writer(buffer)
     writer.writerow(["sequence", "timestamp", "event", "payload_json"])

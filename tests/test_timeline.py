@@ -33,6 +33,28 @@ def test_timeline_store_records_and_filters_events():
     assert [e.event_name for e in store.filtered(PROJECT_SAVED)] == [PROJECT_SAVED]
 
 
+def test_timeline_store_filters_by_algorithm():
+    from studio.events.catalog import ALGORITHM_FINISHED, ALGORITHM_STARTED
+
+    bus = EventBus()
+    store = TimelineStore(bus)
+
+    bus.publish(ALGORITHM_STARTED, {"algorithm": "maxrects"})
+    bus.publish(ALGORITHM_FINISHED, {"algorithm": "maxrects", "count": 2})
+    bus.publish(ALGORITHM_STARTED, {"algorithm": "skyline"})
+    bus.publish(PROJECT_CREATED, {"kind": "empty"})
+
+    assert store.algorithms() == ("maxrects", "skyline")
+    only_maxrects = store.filtered(algorithm="maxrects")
+    assert [e.payload.get("algorithm") for e in only_maxrects] == [
+        "maxrects",
+        "maxrects",
+    ]
+    started_skyline = store.filtered(ALGORITHM_STARTED, algorithm="skyline")
+    assert len(started_skyline) == 1
+    assert started_skyline[0].payload["algorithm"] == "skyline"
+
+
 def test_timeline_store_respects_max_entries():
     bus = EventBus()
     store = TimelineStore(bus, max_entries=2)

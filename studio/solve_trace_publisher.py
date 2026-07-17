@@ -16,21 +16,21 @@ def publish_solve_trace(bus: EventBus, trace: SolveTrace) -> None:
                 {"algorithm": event.payload.get("algorithm")},
             )
         elif event.kind == "generator_finished":
-            bus.publish(
-                events.ALGORITHM_FINISHED,
-                {
-                    "algorithm": event.payload.get("algorithm"),
-                    "count": event.payload.get("count", 0),
-                },
-            )
+            payload = {
+                "algorithm": event.payload.get("algorithm"),
+                "count": event.payload.get("count", 0),
+            }
+            if "duration_ms" in event.payload:
+                payload["duration_ms"] = event.payload["duration_ms"]
+            bus.publish(events.ALGORITHM_FINISHED, payload)
         elif event.kind == "evaluation_finished":
-            bus.publish(
-                events.EVALUATION_FINISHED,
-                {
-                    "accepted": event.payload.get("accepted", 0),
-                    "rejected": event.payload.get("rejected", 0),
-                },
-            )
+            payload = {
+                "accepted": event.payload.get("accepted", 0),
+                "rejected": event.payload.get("rejected", 0),
+            }
+            if "duration_ms" in event.payload:
+                payload["duration_ms"] = event.payload["duration_ms"]
+            bus.publish(events.EVALUATION_FINISHED, payload)
         elif event.kind == "placement_failures_summary":
             bus.publish(
                 events.PLACEMENT_FAILURES_SUMMARY,
