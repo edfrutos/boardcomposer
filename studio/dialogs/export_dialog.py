@@ -22,6 +22,7 @@ from PySide6.QtWidgets import (
 )
 
 from boardcomposer.domain import AssemblySolution, Project
+from boardcomposer.export import DEFAULT_SVG_PALETTE
 from studio.export_options import (
     VALID_EXPORT_FORMATS,
     ExportOptions,
@@ -146,8 +147,11 @@ class ExportDialog(QDialog):
         self.graphic_preview.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.graphic_preview.setMinimumHeight(200)
         self.graphic_preview.setFrameShape(QFrame.Shape.StyledPanel)
+        self.graphic_preview.setObjectName("exportGraphicPreview")
+        palette = DEFAULT_SVG_PALETTE
         self.graphic_preview.setStyleSheet(
-            "QLabel { background: white; color: #64748b; }"
+            f"QLabel#exportGraphicPreview {{ background: {palette.background}; "
+            f"color: {palette.piece_label}; }}"
         )
         graphic_scroll = QScrollArea()
         graphic_scroll.setWidgetResizable(True)

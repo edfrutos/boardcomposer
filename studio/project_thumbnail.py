@@ -16,7 +16,7 @@ from boardcomposer import (
     StockPanel,
 )
 from boardcomposer.domain import PanelReference
-from boardcomposer.export import solution_to_svg
+from boardcomposer.export import DEFAULT_SVG_PALETTE, solution_to_svg
 
 from studio.models import StudioProject
 from studio.project_serializer import load_project
@@ -113,6 +113,7 @@ def studio_to_assembly_solution(studio: StudioProject) -> AssemblySolution:
 
 def _boards_only_svg(studio: StudioProject) -> str:
     """Draw empty stock panels when the project has no placements yet."""
+    palette = DEFAULT_SVG_PALETTE
     next_x = 0.0
     max_height = 0.0
     parts: list[str] = []
@@ -121,13 +122,15 @@ def _boards_only_svg(studio: StudioProject) -> str:
         y = _PANEL_LABEL_MARGIN
         parts.append(
             f'<rect x="{next_x:g}" y="{y:g}" width="{board.length_mm:g}" '
-            f'height="{board.width_mm:g}" fill="none" stroke="#64748b" />'
+            f'height="{board.width_mm:g}" fill="{palette.panel_fill}" '
+            f'stroke="{palette.panel_stroke}" />'
         )
         label = board.board_id
         if board.quantity > 1:
             label = f"{label} ×{board.quantity}"
         parts.append(
-            f'<text x="{next_x + 5:g}" y="{y - 10:g}" font-size="16">{label}</text>'
+            f'<text x="{next_x + 5:g}" y="{y - 10:g}" font-size="16" '
+            f'fill="{palette.piece_label}">{label}</text>'
         )
         next_x += board.length_mm + _PANEL_GAP
         max_height = max(max_height, board.width_mm)
@@ -138,6 +141,7 @@ def _boards_only_svg(studio: StudioProject) -> str:
         [
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{width:g}" '
             f'height="{height:g}" viewBox="0 0 {width:g} {height:g}">',
+            f'<rect width="100%" height="100%" fill="{palette.background}" />',
             *parts,
             "</svg>",
         ]

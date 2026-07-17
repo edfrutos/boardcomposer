@@ -1,7 +1,9 @@
-from PySide6.QtGui import QColor, QFont, QPen
+from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QGraphicsItem, QGraphicsRectItem, QGraphicsSimpleTextItem
 
 from typing import TYPE_CHECKING, cast
+
+from studio.workspace.canvas_style import color, pen
 
 if TYPE_CHECKING:
     from studio.workspace.board_workspace import BoardWorkspace
@@ -27,11 +29,9 @@ class BoardPieceItem(QGraphicsRectItem):
         self.board_id = board_id
         self.board_instance = board_instance
         self.stock_panel_index = stock_panel_index
+        self._label: QGraphicsSimpleTextItem | None = None
 
         self.setPos(x_mm, y_mm)
-
-        self.setBrush(QColor("#dbeafe"))
-        self.setPen(QPen(QColor("#1d4ed8"), 3))
 
         self.setFlags(
             QGraphicsItem.GraphicsItemFlag.ItemIsMovable
@@ -40,9 +40,10 @@ class BoardPieceItem(QGraphicsRectItem):
         )
 
         label = QGraphicsSimpleTextItem(piece_id, self)
-        label.setFont(QFont("Arial", 40))
-        label.setBrush(QColor("#1e3a8a"))
+        label.setFont(QFont("Source Sans 3", 40))
         label.setPos(24, 20)
+        self._label = label
+        self.set_normal()
 
     def itemChange(self, change, value):
         scene = self.scene()
@@ -69,20 +70,26 @@ class BoardPieceItem(QGraphicsRectItem):
         return super().itemChange(change, value)
 
     def set_valid(self):
-        self.setBrush(QColor("#bbf7d0"))
-        self.setPen(QPen(QColor("#15803d"), 3))
+        self.setBrush(color("valid_fill"))
+        self.setPen(pen("valid_stroke", 3))
+        if self._label is not None:
+            self._label.setBrush(color("piece_label"))
 
     def set_invalid(self):
-        self.setBrush(QColor("#fecaca"))
-        self.setPen(QPen(QColor("#dc2626"), 3))
+        self.setBrush(color("invalid_fill"))
+        self.setPen(pen("invalid_stroke", 3))
+        if self._label is not None:
+            self._label.setBrush(color("piece_label"))
 
     def set_normal(self):
         if self.isSelected():
-            self.setBrush(QColor("#bfdbfe"))
-            self.setPen(QPen(QColor("#dc2626"), 10))
+            self.setBrush(color("selected_fill"))
+            self.setPen(pen("selected_stroke", 10))
         else:
-            self.setBrush(QColor("#dbeafe"))
-            self.setPen(QPen(QColor("#1d4ed8"), 3))
+            self.setBrush(color("piece_fill"))
+            self.setPen(pen("piece_stroke", 3))
+        if self._label is not None:
+            self._label.setBrush(color("piece_label"))
 
     def set_rotation(self, angle: int) -> None:
         angle = angle % 180

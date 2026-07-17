@@ -2,7 +2,7 @@
 
 **Registro:** product (herramienta de taller)  
 **Dirección:** Industrial madera  
-**Alcance actual:** chrome QSS + pantalla de inicio (canvas fuera de alcance)
+**Alcance actual:** chrome QSS + pantalla de inicio + canvas/workspace
 
 ## Escena
 
@@ -26,6 +26,21 @@ Neutros cálidos tintados + acento ámbar herramienta ≤10% del chrome.
 Fuente de verdad: `studio/theme_tokens.py`. Aplicación: `studio/theme.py`
 (`QPalette` + QSS). Preferencia `system` limpia el stylesheet.
 
+## Canvas / workspace
+
+Colores de tablero, pieza, selección, válido/inválido y grid viven en
+`CanvasColors` (`LIGHT_CANVAS` / `DARK_CANVAS`) y se activan con el tema vía
+`studio.workspace.canvas_style`. `system` usa el canvas claro (taller diurno).
+
+| Rol | Light | Dark |
+|---|---|---|
+| background | `#e8ddd0` | `#1f1b17` |
+| board_fill | `#faf6f0` | `#342c25` |
+| piece_fill | `#edd5a8` | `#4a3828` |
+| piece_stroke | `#a86512` | `#d4922a` |
+| selected_stroke | `#b42318` | `#f04438` |
+| grid | `#d4c4b0` | `#4a3f34` |
+
 ## Tipografía
 
 | Rol | Familia | Notas |
@@ -40,5 +55,7 @@ Fuentes OFL en `studio/assets/fonts/`.
 
 - `QPushButton#primaryButton` — CTA principal (ámbar).
 - Welcome: marca hero + tagline + CTAs; recientes en columna secundaria.
-- Sin cards decorativas; sin purple/glow; canvas de piezas aún con colores
-  legacy (siguiente pasada).
+- Workspace: tableros/piezas/grid/selección con tokens Industrial madera
+  (sin azul Tailwind legacy).
+- SVG de exportación y miniaturas (inicio, comparador, preview) usan
+  `DEFAULT_SVG_PALETTE` alineada a `LIGHT_CANVAS`.

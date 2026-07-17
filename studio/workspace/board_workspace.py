@@ -55,9 +55,17 @@ class BoardWorkspace(QGraphicsView):
         self.setTransformationAnchor(QGraphicsView.ViewportAnchor.NoAnchor)
         self.setResizeAnchor(QGraphicsView.ViewportAnchor.NoAnchor)
         self.setCursor(Qt.CursorShape.OpenHandCursor)
+        self._apply_canvas_background()
+
+    def _apply_canvas_background(self) -> None:
+        from studio.workspace.canvas_style import color
+
+        self.setBackgroundBrush(color("background"))
+        self._scene.setBackgroundBrush(color("background"))
 
     def reload_project(self) -> None:
         """Reload the project."""
+        self._apply_canvas_background()
         self._scene.clear()
         self._piece_items.clear()
         self._board_item = None

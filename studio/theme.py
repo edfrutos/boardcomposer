@@ -277,10 +277,14 @@ def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
     `system` restores the platform default style/palette and clears QSS.
+    Canvas colors follow light/dark; `system` uses the light (taller) canvas.
     """
+    from studio.workspace.canvas_style import set_active_canvas_theme
+
     _register_bundled_fonts()
     name = theme if theme in VALID_THEMES else DEFAULT_THEME
     app.setStyle("Fusion")
+    set_active_canvas_theme(name)
 
     if name == "system":
         app.setStyleSheet("")

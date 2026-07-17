@@ -78,10 +78,10 @@
   `client` y filtro en el diálogo).
 - Tema visual «Industrial madera»: tokens + QSS (claro/oscuro), fuentes
   Archivo / Source Sans 3, y pantalla de inicio brand-first (`docs/DESIGN.md`).
-- Compartir plantillas de exportación entre equipos (exportar/importar
-  pack JSON con fusión o reemplazo).
-- Plantillas de proyecto (guardar / nuevo desde plantilla) en
-  `~/.boardcomposer/project_templates/`.
+- Colores del canvas/workspace alineados al tema (tablero, pieza, selección,
+  validación y grid).
+- Paleta SVG Industrial madera en exportación y miniaturas (inicio,
+  comparador, vista previa de export).
 
 ### Cambiado
 
