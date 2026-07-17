@@ -57,3 +57,5 @@ Fuentes OFL en `studio/assets/fonts/`.
 - Welcome: marca hero + tagline + CTAs; recientes en columna secundaria.
 - Workspace: tableros/piezas/grid/selección con tokens Industrial madera
   (sin azul Tailwind legacy).
+- SVG de exportación y miniaturas (inicio, comparador, preview) usan
+  `DEFAULT_SVG_PALETTE` alineada a `LIGHT_CANVAS`.

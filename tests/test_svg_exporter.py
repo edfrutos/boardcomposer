@@ -9,6 +9,20 @@ from boardcomposer import (
 from boardcomposer.export import solution_to_svg
 
 
+def test_solution_to_svg_uses_industrial_palette():
+    from boardcomposer.export import DEFAULT_SVG_PALETTE
+
+    svg = solution_to_svg(
+        AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
+    )
+
+    assert DEFAULT_SVG_PALETTE.piece_fill in svg
+    assert DEFAULT_SVG_PALETTE.piece_stroke in svg
+    assert DEFAULT_SVG_PALETTE.background in svg
+    assert "#64748b" not in svg
+    assert 'stroke="black"' not in svg
+
+
 def test_solution_to_svg():
     solution = AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
 
