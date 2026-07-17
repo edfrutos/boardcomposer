@@ -183,4 +183,6 @@ En el futuro podrán asociarse a una cuenta de usuario para sincronizar automát
 - Workspace: mostrar cuadrícula y tamaño en mm.
 - Algoritmos: estrategia y pesos de scoring.
 - Exportación: formato y flags por defecto recordados.
-- Pendiente: rendimiento/avanzado.
+- Avanzado / rendimiento: máximo de soluciones a conservar tras el ranking
+  y acceso a la carpeta `~/.boardcomposer/`.
+- Generar soluciones (FLW-003): diálogo de progreso modal mientras corre el solver.

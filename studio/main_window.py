@@ -17,6 +17,7 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QMenuBar,
     QMessageBox,
+    QProgressDialog,
     QPushButton,
     QStatusBar,
     QStackedWidget,
@@ -1135,7 +1136,30 @@ class MainWindow(QMainWindow):
         self._reload_solution_table()
 
     def _solve_layout(self):
-        solution = self.services.layout.solve_current_project()
+        from PySide6.QtWidgets import QApplication
+
+        self._status("status.layout_computing", 0)
+        progress = QProgressDialog(
+            self._tr("progress.layout_label"),
+            None,
+            0,
+            0,
+            self,
+        )
+        progress.setWindowTitle(self._tr("progress.layout_title"))
+        progress.setWindowModality(Qt.WindowModality.WindowModal)
+        progress.setMinimumDuration(0)
+        progress.setValue(0)
+        progress.show()
+        app = QApplication.instance()
+        if app is not None:
+            app.processEvents()
+
+        try:
+            solution = self.services.layout.solve_current_project()
+        finally:
+            progress.close()
+
         self._comparator_reference_index = None
 
         if solution is None:

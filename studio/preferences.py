@@ -22,6 +22,9 @@ VALID_STRATEGIES = ("balanced", "material", "compact", "exact")
 DEFAULT_GRID_SIZE_MM = 100
 MIN_GRID_SIZE_MM = 10
 MAX_GRID_SIZE_MM = 500
+DEFAULT_MAX_SOLUTIONS = 20
+MIN_MAX_SOLUTIONS = 1
+MAX_MAX_SOLUTIONS = 100
 
 
 @dataclass(frozen=True)
@@ -69,6 +72,7 @@ class StudioPreferences:
     export_include_metrics: bool = True
     export_include_explanation: bool = True
     export_include_offcuts: bool = True
+    max_solutions: int = DEFAULT_MAX_SOLUTIONS
 
     def resolved_strategy(self) -> OptimizationStrategy:
         """Return the OptimizationStrategy implied by these preferences."""
@@ -95,6 +99,11 @@ class StudioPreferences:
 def _clamp_grid_size(value: int | float) -> int:
     size = int(value)
     return max(MIN_GRID_SIZE_MM, min(MAX_GRID_SIZE_MM, size))
+
+
+def _clamp_max_solutions(value: int | float) -> int:
+    size = int(value)
+    return max(MIN_MAX_SOLUTIONS, min(MAX_MAX_SOLUTIONS, size))
 
 
 def default_preferences_path() -> Path:
@@ -157,6 +166,13 @@ class PreferencesManager:
         except (TypeError, ValueError):
             grid_size_mm = DEFAULT_GRID_SIZE_MM
 
+        try:
+            max_solutions = _clamp_max_solutions(
+                payload.get("max_solutions", DEFAULT_MAX_SOLUTIONS)
+            )
+        except (TypeError, ValueError):
+            max_solutions = DEFAULT_MAX_SOLUTIONS
+
         export_format = payload.get("export_format", DEFAULT_EXPORT_FORMAT)
         if export_format not in VALID_EXPORT_FORMATS:
             export_format = DEFAULT_EXPORT_FORMAT
@@ -176,6 +192,7 @@ class PreferencesManager:
                 payload.get("export_include_explanation", True)
             ),
             export_include_offcuts=bool(payload.get("export_include_offcuts", True)),
+            max_solutions=max_solutions,
         )
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
@@ -195,6 +212,7 @@ class PreferencesManager:
             "export_include_metrics": preferences.export_include_metrics,
             "export_include_explanation": preferences.export_include_explanation,
             "export_include_offcuts": preferences.export_include_offcuts,
+            "max_solutions": preferences.max_solutions,
         }
         self.path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",

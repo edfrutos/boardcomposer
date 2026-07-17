@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from PySide6.QtCore import QUrl
+from PySide6.QtGui import QDesktopServices
 from PySide6.QtWidgets import (
     QCheckBox,
     QComboBox,
@@ -11,6 +13,7 @@ from PySide6.QtWidgets import (
     QFormLayout,
     QGroupBox,
     QLabel,
+    QPushButton,
     QSpinBox,
     QVBoxLayout,
 )
@@ -20,11 +23,15 @@ from studio.export_options import VALID_EXPORT_FORMATS, format_label
 from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES, tr
 from studio.preferences import (
     DEFAULT_GRID_SIZE_MM,
+    DEFAULT_MAX_SOLUTIONS,
     MAX_GRID_SIZE_MM,
+    MAX_MAX_SOLUTIONS,
     MIN_GRID_SIZE_MM,
+    MIN_MAX_SOLUTIONS,
     VALID_STRATEGIES,
     StudioPreferences,
     WeightPreferences,
+    default_preferences_path,
 )
 from studio.theme import DEFAULT_THEME, VALID_THEMES
 from studio.units import DEFAULT_UNITS, VALID_UNITS
@@ -148,6 +155,21 @@ class PreferencesDialog(QDialog):
         export_form.addRow("", self.export_include_offcuts)
         layout.addWidget(self.export_group)
 
+        self.advanced = QGroupBox()
+        advanced_form = QFormLayout(self.advanced)
+        self.max_solutions = QSpinBox()
+        self.max_solutions.setRange(MIN_MAX_SOLUTIONS, MAX_MAX_SOLUTIONS)
+        self.max_solutions.setValue(preferences.max_solutions)
+        advanced_form.addRow(
+            tr("prefs.max_solutions", preferences.language), self.max_solutions
+        )
+        self.open_config_folder = QPushButton(
+            tr("prefs.open_config_folder", preferences.language)
+        )
+        self.open_config_folder.clicked.connect(self._open_config_folder)
+        advanced_form.addRow("", self.open_config_folder)
+        layout.addWidget(self.advanced)
+
         buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.RestoreDefaults
             | QDialogButtonBox.StandardButton.Ok
@@ -179,7 +201,9 @@ class PreferencesDialog(QDialog):
         self.workspace.setTitle(tr("prefs.workspace", language))
         self.algorithms.setTitle(tr("prefs.algorithms", language))
         self.export_group.setTitle(tr("prefs.export", language))
+        self.advanced.setTitle(tr("prefs.advanced", language))
         self.show_grid.setText(tr("prefs.show_grid", language))
+        self.open_config_folder.setText(tr("prefs.open_config_folder", language))
 
         for index, key in enumerate(VALID_LANGUAGES):
             self.language.setItemText(index, tr(f"language.{key}", language))
@@ -234,8 +258,14 @@ class PreferencesDialog(QDialog):
         self.export_include_metrics.setChecked(True)
         self.export_include_explanation.setChecked(True)
         self.export_include_offcuts.setChecked(True)
+        self.max_solutions.setValue(DEFAULT_MAX_SOLUTIONS)
         self._on_strategy_changed(self.strategy.currentIndex())
         self._retranslate()
+
+    def _open_config_folder(self) -> None:
+        folder = default_preferences_path().parent
+        folder.mkdir(parents=True, exist_ok=True)
+        QDesktopServices.openUrl(QUrl.fromLocalFile(str(folder.resolve())))
 
     def preferences(self) -> StudioPreferences:
         return StudioPreferences(
@@ -256,4 +286,5 @@ class PreferencesDialog(QDialog):
             export_include_metrics=self.export_include_metrics.isChecked(),
             export_include_explanation=self.export_include_explanation.isChecked(),
             export_include_offcuts=self.export_include_offcuts.isChecked(),
+            max_solutions=self.max_solutions.value(),
         )

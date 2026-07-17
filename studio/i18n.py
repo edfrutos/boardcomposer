@@ -17,6 +17,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.workspace": "Workspace",
         "prefs.algorithms": "Algoritmos",
         "prefs.export": "Exportación",
+        "prefs.advanced": "Avanzado / rendimiento",
         "prefs.language": "Idioma:",
         "prefs.theme": "Tema:",
         "prefs.units": "Unidades:",
@@ -24,6 +25,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.grid_size": "Tamaño de cuadrícula:",
         "prefs.strategy": "Estrategia:",
         "prefs.export_format": "Formato por defecto:",
+        "prefs.max_solutions": "Máx. soluciones a conservar:",
+        "prefs.open_config_folder": "Abrir carpeta de configuración…",
         "welcome.tagline": (
             "Optimiza el corte de tableros. Crea un proyecto, abre uno reciente "
             "o importa piezas para empezar."
@@ -187,6 +190,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.layout_failed": "No se pudo calcular layout",
         "status.layout_partial": "Layout parcial: {omitted} pieza(s) sin colocar de {total} soluciones",
         "status.layout_ok": "Layout calculado: {n} soluciones",
+        "status.layout_computing": "Calculando layout…",
+        "progress.layout_title": "Generar soluciones",
+        "progress.layout_label": "Ejecutando algoritmos de empaquetado…",
         "status.select_solution_first": "Primero selecciona una solución",
         "status.reference_pinned": "Referencia fijada en solución #{n}",
         "status.calculate_layout_first": "Primero calcula un layout",
@@ -319,6 +325,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.workspace": "Workspace",
         "prefs.algorithms": "Algorithms",
         "prefs.export": "Export",
+        "prefs.advanced": "Advanced / performance",
         "prefs.language": "Language:",
         "prefs.theme": "Theme:",
         "prefs.units": "Units:",
@@ -326,6 +333,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.grid_size": "Grid size:",
         "prefs.strategy": "Strategy:",
         "prefs.export_format": "Default format:",
+        "prefs.max_solutions": "Max solutions to keep:",
+        "prefs.open_config_folder": "Open settings folder…",
         "welcome.tagline": (
             "Optimise panel cutting. Create a project, open a recent one, "
             "or import pieces to get started."
@@ -489,6 +498,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.layout_failed": "Could not calculate layout",
         "status.layout_partial": "Partial layout: {omitted} unplaced piece(s) across {total} solutions",
         "status.layout_ok": "Layout calculated: {n} solutions",
+        "status.layout_computing": "Calculating layout…",
+        "progress.layout_title": "Generate solutions",
+        "progress.layout_label": "Running packing algorithms…",
         "status.select_solution_first": "Select a solution first",
         "status.reference_pinned": "Reference pinned to solution #{n}",
         "status.calculate_layout_first": "Calculate a layout first",

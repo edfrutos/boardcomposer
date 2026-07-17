@@ -80,7 +80,8 @@ def test_unknown_strategy_name_falls_back_to_material():
 def test_preferences_clamp_grid_size_and_reject_unknown_theme(tmp_path):
     path = tmp_path / "preferences.json"
     path.write_text(
-        '{"theme": "neon", "grid_size_mm": 9999, "show_grid": false}',
+        '{"theme": "neon", "grid_size_mm": 9999, "show_grid": false, '
+        '"max_solutions": 999}',
         encoding="utf-8",
     )
 
@@ -89,6 +90,18 @@ def test_preferences_clamp_grid_size_and_reject_unknown_theme(tmp_path):
     assert prefs.theme == "system"
     assert prefs.grid_size_mm == 500
     assert prefs.show_grid is False
+    assert prefs.max_solutions == 100
+
+
+def test_preferences_dialog_exposes_advanced_max_solutions(qapp):
+    del qapp
+    from studio.dialogs.preferences_dialog import PreferencesDialog
+
+    dialog = PreferencesDialog(StudioPreferences(max_solutions=5, language="en"))
+    assert dialog.advanced.title() == "Advanced / performance"
+    assert dialog.max_solutions.value() == 5
+    dialog.max_solutions.setValue(8)
+    assert dialog.preferences().max_solutions == 8
 
 
 def test_apply_theme_switches_palette(qapp):
@@ -127,3 +140,29 @@ def test_layout_service_uses_preferences_strategy(tmp_path):
     layout = LayoutService(services)
 
     assert layout._resolve_strategy().name == "compact"
+
+
+def test_layout_service_truncates_to_max_solutions(tmp_path):
+    from studio.preferences import PreferencesManager
+    from studio.services import StudioServices
+    from studio.models import StudioBoard, StudioPiece, StudioProject
+
+    services = StudioServices()
+    services.preferences = PreferencesManager(tmp_path / "prefs.json")
+    services.preferences.update(StudioPreferences(max_solutions=1))
+    services.projects.new_project(
+        StudioProject(
+            project_id="PRJ-1",
+            name="Limit",
+            boards=[StudioBoard("TAB", 2000, 1000)],
+            pieces=[
+                StudioPiece("A", 400, 300),
+                StudioPiece("B", 500, 300),
+                StudioPiece("C", 600, 200),
+            ],
+        )
+    )
+
+    solution = services.layout.solve_current_project()
+    assert solution is not None
+    assert len(services.layout.solutions) == 1

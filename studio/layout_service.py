@@ -148,7 +148,13 @@ class LayoutService:
 
             return None
 
-        self.solutions = solutions
+        preferences = getattr(self.services, "preferences", None)
+        limit = (
+            preferences.current.max_solutions
+            if preferences is not None
+            else len(solutions)
+        )
+        self.solutions = solutions[: max(1, limit)]
         self.selected_solution_index = 0
 
         return self.selected_solution
