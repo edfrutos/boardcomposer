@@ -5,6 +5,7 @@ from studio.recent_files import RecentFilesManager
 
 from studio.commands import CommandManager
 from studio.events import EventBus
+from studio.export_templates import ExportTemplatesManager
 from studio.project import ProjectManager
 from studio.selection import SelectionManager
 from studio.layout_service import LayoutService
@@ -21,6 +22,9 @@ class StudioServices:
     commands: CommandManager = field(default_factory=CommandManager)
     recent_files: RecentFilesManager = field(default_factory=RecentFilesManager)
     preferences: PreferencesManager = field(default_factory=PreferencesManager)
+    export_templates: ExportTemplatesManager = field(
+        default_factory=ExportTemplatesManager
+    )
 
     def __post_init__(self):
         self.layout = LayoutService(self)

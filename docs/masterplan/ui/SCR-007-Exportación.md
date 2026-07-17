@@ -150,4 +150,6 @@ Toda exportación deberá conservar la trazabilidad de la solución de origen, i
 - JSON admite incluir/omitir métricas, explicación y retales.
 - SVG/DXF/PDF respetan la opción de retales.
 - Las últimas opciones se guardan en `preferences.json`.
-- Pendiente: plantillas de exportación.
+- Plantillas de exportación nombradas (guardar / aplicar / eliminar) en
+  `~/.boardcomposer/export_templates.json`.
+- Pendiente: compartir plantillas entre equipos / perfiles por cliente.

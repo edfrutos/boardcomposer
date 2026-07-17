@@ -69,6 +69,8 @@
 - Vista previa gráfica SVG embebida en el diálogo de exportación
   (SCR-007), actualizada al cambiar formato u opciones.
 - Idioma es/en aplicado a menús, docks, Inspector y comparador (SCR-006).
+- Plantillas de exportación nombradas en el diálogo SCR-007
+  (`~/.boardcomposer/export_templates.json`).
 
 ### Cambiado
 

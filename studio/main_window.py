@@ -1362,6 +1362,7 @@ class MainWindow(QMainWindow):
             solution,
             self.services.layout.solved_project,
             prefs.export_options(),
+            templates=self.services.export_templates,
             strategy_name=self.services.layout.strategy_name,
             solution_index=self.services.layout.selected_solution_index,
             parent=self,
