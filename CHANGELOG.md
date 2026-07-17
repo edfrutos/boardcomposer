@@ -71,6 +71,7 @@
 - Idioma es/en aplicado a menús, docks, Inspector y comparador (SCR-006).
 - Plantillas de exportación nombradas en el diálogo SCR-007
   (`~/.boardcomposer/export_templates.json`).
+- i18n es/en de diálogos (export/import) y mensajes de la barra de estado.
 
 ### Cambiado
 

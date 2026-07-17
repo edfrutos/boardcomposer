@@ -186,7 +186,7 @@ class MainWindow(QMainWindow):
     def _show_welcome_screen(self) -> None:
         self.welcome.set_recent_files(self.services.recent_files.existing_files())
         self._central_stack.setCurrentWidget(self.welcome)
-        self.statusBar().showMessage(self._tr("status.welcome"), 2000)
+        self._status("status.welcome", 2000)
 
     def _show_workspace(self) -> None:
         self._central_stack.setCurrentWidget(self.workspace)
@@ -480,7 +480,7 @@ class MainWindow(QMainWindow):
 
         self._load_empty_project()
         self._show_workspace()
-        self.statusBar().showMessage("Nuevo proyecto vacío creado", 3000)
+        self._status("status.new_empty")
 
     def _new_demo_project(self):
         if not self._confirm_discard_unsaved_changes():
@@ -489,7 +489,7 @@ class MainWindow(QMainWindow):
         self._load_demo_project()
         self.services.layout.clear_solutions()
         self._show_workspace()
-        self.statusBar().showMessage("Proyecto demo creado", 3000)
+        self._status("status.demo_created")
 
     def _add_board(self):
         project = self.services.projects.current_project
@@ -509,10 +509,7 @@ class MainWindow(QMainWindow):
         data = dialog.board_data()
 
         if any(board.board_id == data["board_id"] for board in project.boards):
-            self.statusBar().showMessage(
-                f"Ya existe un tablero con id {data['board_id']}",
-                3000,
-            )
+            self._status("status.board_id_exists", id=data["board_id"])
             return
 
         project.boards.append(
@@ -531,7 +528,7 @@ class MainWindow(QMainWindow):
         self._reload_explorer()
         self.update_window_title()
 
-        self.statusBar().showMessage("Tablero añadido", 3000)
+        self._status("status.board_added")
 
     def _import_boards_from_csv(self) -> None:
         project = self.services.projects.current_project
@@ -545,10 +542,9 @@ class MainWindow(QMainWindow):
 
         file_path, _ = QFileDialog.getOpenFileName(
             self,
-            "Importar inventario de tableros (CSV/Excel)",
+            self._tr("dialog.import_boards"),
             "",
-            "CSV / Excel (*.csv *.xlsx);;CSV (*.csv);;Excel (*.xlsx);;"
-            "Todos los archivos (*)",
+            self._tr("dialog.filter_csv_excel"),
         )
 
         if not file_path:
@@ -560,12 +556,12 @@ class MainWindow(QMainWindow):
         if result.file_errors:
             QMessageBox.warning(
                 self,
-                "Importar inventario de tableros",
+                self._tr("dialog.import_boards_short"),
                 "\n".join(result.file_errors),
             )
             return
 
-        dialog = ImportBoardsPreviewDialog(result, self)
+        dialog = ImportBoardsPreviewDialog(result, self, language=self._ui_language())
 
         if dialog.exec() != dialog.DialogCode.Accepted:
             return
@@ -578,10 +574,7 @@ class MainWindow(QMainWindow):
         self._reload_explorer()
         self.update_window_title()
 
-        self.statusBar().showMessage(
-            f"{len(result.valid_boards)} tablero(s) importado(s)",
-            5000,
-        )
+        self._status("status.boards_imported", 5000, n=len(result.valid_boards))
 
     def _import_pieces_from_csv(self) -> None:
         project = self.services.projects.current_project
@@ -597,10 +590,9 @@ class MainWindow(QMainWindow):
 
         file_path, _ = QFileDialog.getOpenFileName(
             self,
-            "Importar piezas (CSV/Excel)",
+            self._tr("dialog.import_pieces"),
             "",
-            "CSV / Excel (*.csv *.xlsx);;CSV (*.csv);;Excel (*.xlsx);;"
-            "Todos los archivos (*)",
+            self._tr("dialog.filter_csv_excel"),
         )
 
         if not file_path:
@@ -612,12 +604,12 @@ class MainWindow(QMainWindow):
         if result.file_errors:
             QMessageBox.warning(
                 self,
-                "Importar piezas",
+                self._tr("dialog.import_pieces_short"),
                 "\n".join(result.file_errors),
             )
             return
 
-        dialog = ImportPiecesPreviewDialog(result, self)
+        dialog = ImportPiecesPreviewDialog(result, self, language=self._ui_language())
 
         if dialog.exec() != dialog.DialogCode.Accepted:
             return
@@ -646,10 +638,7 @@ class MainWindow(QMainWindow):
         self._reload_explorer()
         self.update_window_title()
 
-        self.statusBar().showMessage(
-            f"{len(result.valid_pieces)} pieza(s) importada(s)",
-            5000,
-        )
+        self._status("status.pieces_imported", 5000, n=len(result.valid_pieces))
 
     def _add_piece(self):
         project = self.services.projects.current_project
@@ -671,10 +660,7 @@ class MainWindow(QMainWindow):
         new_piece_id = data["piece_id"].strip()
 
         if not new_piece_id:
-            self.statusBar().showMessage(
-                "El identificador de la pieza no puede estar vacío",
-                3000,
-            )
+            self._status("status.piece_id_empty")
             return
 
         existing_ids = {piece.piece_id.strip().casefold() for piece in project.pieces}
@@ -683,10 +669,7 @@ class MainWindow(QMainWindow):
         piece_ids = self._generate_piece_ids(new_piece_id, quantity, existing_ids)
 
         if piece_ids is None:
-            self.statusBar().showMessage(
-                f"Ya existe una pieza con id {new_piece_id}",
-                3000,
-            )
+            self._status("status.piece_id_exists", id=new_piece_id)
             return
 
         for piece_id in piece_ids:
@@ -724,9 +707,9 @@ class MainWindow(QMainWindow):
         self.update_window_title()
 
         if len(piece_ids) > 1:
-            self.statusBar().showMessage(f"{len(piece_ids)} piezas añadidas", 3000)
+            self._status("status.pieces_added", n=len(piece_ids))
         else:
-            self.statusBar().showMessage("Pieza añadida", 3000)
+            self._status("status.piece_added")
 
     @staticmethod
     def _generate_piece_ids(
@@ -876,10 +859,7 @@ class MainWindow(QMainWindow):
         new_rotation = 90 if old_rotation == 0 else 0
 
         if not self.workspace.can_rotate_item(item, new_rotation):
-            self.statusBar().showMessage(
-                "La pieza no puede rotarse en esa posición",
-                3000,
-            )
+            self._status("status.cannot_rotate")
             return
 
         command = RotatePieceCommand(
@@ -927,7 +907,7 @@ class MainWindow(QMainWindow):
             return
         self.services.preferences.update(dialog.preferences())
         self._apply_preferences()
-        self.statusBar().showMessage("Preferencias guardadas", 3000)
+        self._status("status.prefs_saved")
 
     def _display_units(self) -> str:
         return self.services.preferences.current.units
@@ -954,6 +934,9 @@ class MainWindow(QMainWindow):
 
     def _tr(self, key: str, **kwargs: object) -> str:
         return tr(key, self._ui_language(), **kwargs)
+
+    def _status(self, key: str, timeout: int = 3000, **kwargs: object) -> None:
+        self.statusBar().showMessage(self._tr(key, **kwargs), timeout)
 
     def clear_inspector(self) -> None:
         """Show the empty Inspector state in the active language."""
@@ -1031,7 +1014,7 @@ class MainWindow(QMainWindow):
 
         if solution is None:
             self._show_no_solution_diagnosis()
-            self.statusBar().showMessage("No se pudo calcular layout", 3000)
+            self._status("status.layout_failed")
             return
 
         self._reload_solution_table()
@@ -1041,17 +1024,15 @@ class MainWindow(QMainWindow):
         solution_count = len(self.services.layout.solutions)
 
         if not solution.is_complete:
-            self.statusBar().showMessage(
-                f"Layout parcial: {len(solution.omitted_piece_ids)} pieza(s) "
-                f"sin colocar de {solution_count} soluciones",
+            self._status(
+                "status.layout_partial",
                 5000,
+                omitted=len(solution.omitted_piece_ids),
+                total=solution_count,
             )
             return
 
-        self.statusBar().showMessage(
-            f"Layout calculado: {solution_count} soluciones",
-            3000,
-        )
+        self._status("status.layout_ok", n=solution_count)
 
     def _show_no_solution_diagnosis(self) -> None:
         lines = [self._tr("inspector.no_solution"), ""]
@@ -1148,14 +1129,11 @@ class MainWindow(QMainWindow):
         solutions = self.services.layout.solutions
         selected = self.services.layout.selected_solution_index
         if not solutions or selected < 0 or selected >= len(solutions):
-            self.statusBar().showMessage("Primero selecciona una solución", 3000)
+            self._status("status.select_solution_first")
             return
         self._comparator_reference_index = selected
         self._reload_solution_differences()
-        self.statusBar().showMessage(
-            f"Referencia fijada en solución #{selected + 1}",
-            3000,
-        )
+        self._status("status.reference_pinned", n=selected + 1)
 
     def _reload_solution_differences(self) -> None:
         solutions = self.services.layout.solutions
@@ -1276,7 +1254,7 @@ class MainWindow(QMainWindow):
 
     def _apply_layout(self):
         if not self.services.layout.apply_last_solution_to_current_project():
-            self.statusBar().showMessage("Primero calcula un layout", 3000)
+            self._status("status.calculate_layout_first")
             return
 
         self.workspace.reload_project()
@@ -1288,16 +1266,17 @@ class MainWindow(QMainWindow):
         selected_index = self.services.layout.selected_solution_index + 1
         solution_count = len(self.services.layout.solutions)
 
-        self.statusBar().showMessage(
-            f"Solución {selected_index}/{solution_count} aplicada al proyecto",
-            3000,
+        self._status(
+            "status.solution_applied",
+            current=selected_index,
+            total=solution_count,
         )
 
     def _previous_layout_solution(self):
         solution = self.services.layout.select_previous_solution()
 
         if solution is None:
-            self.statusBar().showMessage("No hay soluciones calculadas", 3000)
+            self._status("status.no_solutions")
             return
 
         self.workspace.preview_solution(solution)
@@ -1309,17 +1288,18 @@ class MainWindow(QMainWindow):
         index = self.services.layout.selected_solution_index + 1
         total = len(self.services.layout.solutions)
 
-        self.statusBar().showMessage(
-            f"Previsualizando solución {index}/{total}. "
-            "Pulsa 'Aplicar layout calculado' para conservarla.",
+        self._status(
+            "status.previewing_solution",
             5000,
+            current=index,
+            total=total,
         )
 
     def _next_layout_solution(self):
         solution = self.services.layout.select_next_solution()
 
         if solution is None:
-            self.statusBar().showMessage("No hay soluciones calculadas", 3000)
+            self._status("status.no_solutions")
             return
 
         self.workspace.preview_solution(solution)
@@ -1329,10 +1309,11 @@ class MainWindow(QMainWindow):
         index = self.services.layout.selected_solution_index + 1
         total = len(self.services.layout.solutions)
 
-        self.statusBar().showMessage(
-            f"Previsualizando solución {index}/{total}. "
-            "Pulsa 'Aplicar layout calculado' para conservarla.",
+        self._status(
+            "status.previewing_solution",
             5000,
+            current=index,
+            total=total,
         )
 
     def _on_solution_table_double_clicked(self, row: int, column: int):
@@ -1354,7 +1335,7 @@ class MainWindow(QMainWindow):
         solution = self.services.layout.selected_solution
 
         if solution is None:
-            self.statusBar().showMessage("Primero calcula un layout", 3000)
+            self._status("status.calculate_layout_first")
             return
 
         prefs = self.services.preferences.current
@@ -1365,6 +1346,7 @@ class MainWindow(QMainWindow):
             templates=self.services.export_templates,
             strategy_name=self.services.layout.strategy_name,
             solution_index=self.services.layout.selected_solution_index,
+            language=self._ui_language(),
             parent=self,
         )
         if dialog.exec() != ExportDialog.DialogCode.Accepted:
@@ -1378,7 +1360,7 @@ class MainWindow(QMainWindow):
 
         path, _selected_filter = QFileDialog.getSaveFileName(
             self,
-            "Exportar solución seleccionada",
+            self._tr("dialog.export_selected"),
             default_filename,
             options.file_filter,
         )
@@ -1398,9 +1380,11 @@ class MainWindow(QMainWindow):
             else:
                 Path(path).write_text(payload, encoding="utf-8")
         except OSError as exc:
-            self.statusBar().showMessage(
-                f"No se pudo exportar {options.label}: {exc}",
+            self._status(
+                "status.export_failed",
                 5000,
+                format=options.label,
+                error=exc,
             )
             return
 
@@ -1413,13 +1397,13 @@ class MainWindow(QMainWindow):
         )
         self.services.preferences.update(updated)
 
-        self.statusBar().showMessage(f"{options.label} exportado: {path}", 5000)
+        self._status("status.exported", 5000, format=options.label, path=path)
 
     def _save_project(self):
         project = self.services.projects.current_project
 
         if project is None:
-            self.statusBar().showMessage("No hay proyecto para guardar", 3000)
+            self._status("status.nothing_to_save")
             return
 
         filename = self.services.projects.filename
@@ -1431,27 +1415,27 @@ class MainWindow(QMainWindow):
         try:
             save_project(project, filename)
         except OSError as exc:
-            self.statusBar().showMessage(f"No se pudo guardar: {exc}", 5000)
+            self._status("status.save_failed", 5000, error=exc)
             return
 
         self.services.projects.mark_saved(filename)
         self._reload_recent_files_menu()
         self.services.recent_files.add(filename)
         self.update_window_title()
-        self.statusBar().showMessage(f"Proyecto guardado: {filename}", 5000)
+        self._status("status.project_saved", 5000, path=filename)
 
     def _save_project_as(self):
         project = self.services.projects.current_project
 
         if project is None:
-            self.statusBar().showMessage("No hay proyecto para guardar", 3000)
+            self._status("status.nothing_to_save")
             return
 
         path, _selected_filter = QFileDialog.getSaveFileName(
             self,
-            "Guardar proyecto",
+            self._tr("dialog.save_project"),
             "boardcomposer-project.bcproj",
-            "BoardComposer Project (*.bcproj)",
+            self._tr("dialog.filter_bcproj"),
         )
 
         if not path:
@@ -1460,14 +1444,14 @@ class MainWindow(QMainWindow):
         try:
             save_project(project, path)
         except OSError as exc:
-            self.statusBar().showMessage(f"No se pudo guardar: {exc}", 5000)
+            self._status("status.save_failed", 5000, error=exc)
             return
 
         self.services.projects.mark_saved(path)
         self._reload_recent_files_menu()
         self.services.recent_files.add(path)
         self.update_window_title()
-        self.statusBar().showMessage(f"Proyecto guardado: {path}", 5000)
+        self._status("status.project_saved", 5000, path=path)
 
     def _open_project(self):
         if not self._confirm_discard_unsaved_changes():
@@ -1475,9 +1459,9 @@ class MainWindow(QMainWindow):
 
         path, _selected_filter = QFileDialog.getOpenFileName(
             self,
-            "Abrir proyecto",
+            self._tr("dialog.open_project"),
             "",
-            "BoardComposer Project (*.bcproj)",
+            self._tr("dialog.filter_bcproj"),
         )
 
         if not path:
@@ -1486,7 +1470,7 @@ class MainWindow(QMainWindow):
         try:
             project = load_project(path)
         except UnsupportedProjectVersionError as error:
-            QMessageBox.warning(self, "Abrir proyecto", str(error))
+            QMessageBox.warning(self, self._tr("dialog.open_project"), str(error))
             return
 
         self.services.projects.open_project(project, path)
@@ -1500,7 +1484,7 @@ class MainWindow(QMainWindow):
         self._reload_solution_table()
         self.update_window_title()
 
-        self.statusBar().showMessage(f"Proyecto abierto: {path}", 3000)
+        self._status("status.project_opened", path=path)
 
     def _reload_recent_files_menu(self):
         self._recent_menu.clear()
@@ -1527,7 +1511,7 @@ class MainWindow(QMainWindow):
         try:
             project = load_project(path)
         except (UnsupportedProjectVersionError, OSError) as error:
-            QMessageBox.warning(self, "Abrir proyecto", str(error))
+            QMessageBox.warning(self, self._tr("dialog.open_project"), str(error))
             return
 
         self.services.projects.open_project(project, path)
@@ -1541,7 +1525,7 @@ class MainWindow(QMainWindow):
         self._reload_solution_table()
         self.update_window_title()
 
-        self.statusBar().showMessage(f"Proyecto abierto: {path}", 3000)
+        self._status("status.project_opened", path=path)
 
     def _confirm_discard_unsaved_changes(self) -> bool:
         if not self.services.projects.is_modified:
@@ -1549,9 +1533,8 @@ class MainWindow(QMainWindow):
 
         result = QMessageBox.question(
             self,
-            "Cambios sin guardar",
-            "El proyecto tiene cambios sin guardar.\n\n"
-            "¿Quieres guardarlos antes de continuar?",
+            self._tr("dialog.unsaved_title"),
+            self._tr("dialog.unsaved_body"),
             QMessageBox.StandardButton.Save
             | QMessageBox.StandardButton.Discard
             | QMessageBox.StandardButton.Cancel,
@@ -1652,10 +1635,11 @@ class MainWindow(QMainWindow):
         selected_index = self.services.layout.selected_solution_index + 1
         total = len(self.services.layout.solutions)
 
-        self.statusBar().showMessage(
-            f"Previsualizando solución {selected_index}/{total}. "
-            "Pulsa 'Aplicar layout calculado' para conservarla.",
+        self._status(
+            "status.previewing_solution",
             5000,
+            current=selected_index,
+            total=total,
         )
 
     def _edit_board(self, board_id: str) -> None:
@@ -1674,7 +1658,7 @@ class MainWindow(QMainWindow):
             thickness_mm=int(board.thickness_mm),
             quantity=board.quantity,
             material=board.material,
-            title="Editar tablero",
+            title=self._tr("dialog.edit_board"),
             units=self._display_units(),
         )
 
@@ -1687,10 +1671,7 @@ class MainWindow(QMainWindow):
         if new_board_id != board_id and any(
             existing.board_id == new_board_id for existing in project.boards
         ):
-            self.statusBar().showMessage(
-                f"Ya existe un tablero con id {new_board_id}",
-                3000,
-            )
+            self._status("status.board_id_exists", id=new_board_id)
             return
 
         project.boards[board_index] = StudioBoard(
@@ -1718,7 +1699,7 @@ class MainWindow(QMainWindow):
         self._reload_solution_table()
         self.update_window_title()
 
-        self.statusBar().showMessage("Tablero actualizado", 3000)
+        self._status("status.board_updated")
 
     def _edit_piece(self, piece_id: str) -> None:
         project = self.services.projects.current_project
@@ -1735,7 +1716,7 @@ class MainWindow(QMainWindow):
             width_mm=int(piece.width_mm),
             thickness_mm=int(piece.thickness_mm),
             material=piece.material,
-            title="Editar pieza",
+            title=self._tr("dialog.edit_piece"),
             show_quantity=False,
             units=self._display_units(),
         )
@@ -1747,10 +1728,7 @@ class MainWindow(QMainWindow):
         new_piece_id = data["piece_id"].strip()
 
         if not new_piece_id:
-            self.statusBar().showMessage(
-                "El identificador de la pieza no puede estar vacío",
-                3000,
-            )
+            self._status("status.piece_id_empty")
             return
 
         normalized_id = new_piece_id.casefold()
@@ -1760,10 +1738,7 @@ class MainWindow(QMainWindow):
             and existing.piece_id.strip().casefold() == normalized_id
             for existing in project.pieces
         ):
-            self.statusBar().showMessage(
-                f"Ya existe una pieza con id {new_piece_id}",
-                3000,
-            )
+            self._status("status.piece_id_exists", id=new_piece_id)
             return
 
         placement = project.placement_by_piece_id(piece_id)
@@ -1815,4 +1790,4 @@ class MainWindow(QMainWindow):
         )
 
         self.update_window_title()
-        self.statusBar().showMessage("Pieza actualizada", 3000)
+        self._status("status.piece_updated")

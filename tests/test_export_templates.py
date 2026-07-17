@@ -76,6 +76,23 @@ def test_export_dialog_applies_selected_template(qapp, tmp_path):
     assert dialog.options().include_offcuts is False
 
 
+def test_export_dialog_uses_english_labels(qapp):
+    del qapp
+    solution = AssemblySolution(
+        placements=[BoardPlacement("A", 0, 0, 100, 50)],
+    )
+    dialog = ExportDialog(
+        solution,
+        None,
+        ExportOptions(format="svg"),
+        language="en",
+    )
+
+    assert dialog.windowTitle() == "Export solution"
+    assert dialog.save_template_button.text() == "Save…"
+    assert dialog.include_offcuts.text() == "Include offcuts"
+
+
 def test_export_dialog_save_template_via_manager(qapp, tmp_path):
     del qapp
     manager = ExportTemplatesManager(path=tmp_path / "templates.json")

@@ -13,30 +13,38 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.piece_csv_importer import ImportPiecesResult
 
-_COLUMNS = (
-    "Fila",
-    "Id base",
-    "Cantidad",
-    "Ids generados",
-    "Largo",
-    "Ancho",
-    "Espesor",
-    "Material",
-    "Estado",
-)
 _ERROR_BACKGROUND = QColor(255, 214, 214)
+_COLUMN_KEYS = (
+    "import.col.row",
+    "import.col.base_id",
+    "import.col.quantity",
+    "import.col.generated_ids",
+    "import.col.length",
+    "import.col.width",
+    "import.col.thickness",
+    "import.col.material",
+    "import.col.status",
+)
 
 
 class ImportPiecesPreviewDialog(QDialog):
     """Shows a preview table of a parsed pieces CSV import."""
 
-    def __init__(self, result: ImportPiecesResult, parent=None) -> None:
+    def __init__(
+        self,
+        result: ImportPiecesResult,
+        parent=None,
+        *,
+        language: str = DEFAULT_LANGUAGE,
+    ) -> None:
         super().__init__(parent)
 
         self.result = result
-        self.setWindowTitle("Importar piezas (CSV)")
+        self._language = language
+        self.setWindowTitle(tr("import.pieces_title", language))
         self.setMinimumSize(720, 400)
 
         layout = QVBoxLayout(self)
@@ -45,13 +53,15 @@ class ImportPiecesPreviewDialog(QDialog):
         if result.file_errors:
             layout.addWidget(
                 QLabel(
-                    "No se pudo procesar el archivo:\n"
+                    tr("import.file_error_header", language)
+                    + "\n"
                     + "\n".join(f"- {error}" for error in result.file_errors)
                 )
             )
 
-        self.table = QTableWidget(len(result.rows), len(_COLUMNS))
-        self.table.setHorizontalHeaderLabels(_COLUMNS)
+        columns = [tr(key, language) for key in _COLUMN_KEYS]
+        self.table = QTableWidget(len(result.rows), len(columns))
+        self.table.setHorizontalHeaderLabels(columns)
         self.table.horizontalHeader().setSectionResizeMode(
             QHeaderView.ResizeMode.Stretch
         )
@@ -74,11 +84,13 @@ class ImportPiecesPreviewDialog(QDialog):
 
     def _summary_text(self) -> str:
         if self.result.file_errors:
-            return "El archivo no se pudo importar."
-        return (
-            f"{len(self.result.valid_pieces)} pieza(s) válida(s) "
-            f"en {len(self.result.valid_rows)} fila(s); "
-            f"{len(self.result.invalid_rows)} fila(s) con errores."
+            return tr("import.file_failed", self._language)
+        return tr(
+            "import.pieces_summary",
+            self._language,
+            pieces=len(self.result.valid_pieces),
+            rows=len(self.result.valid_rows),
+            invalid=len(self.result.invalid_rows),
         )
 
     def _populate_row(self, row_index: int, row) -> None:
