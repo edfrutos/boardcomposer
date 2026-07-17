@@ -125,9 +125,16 @@ Vista consolidada con las características principales del proyecto y un diagnó
 
 Versiones futuras podrán incorporar:
 
-- plantillas de proyecto;
 - historial completo de cambios;
 - versiones y revisiones del proyecto;
 - sincronización en la nube;
 - colaboración multiusuario;
 - firma digital y auditoría de proyectos.
+
+---
+
+## Estado de implementación (2026-07-17)
+
+- Nuevo / abrir / guardar / guardar como y recientes.
+- Plantillas de proyecto: `Archivo → Guardar como plantilla…` y
+  `Nuevo desde plantilla…` (también en pantalla de inicio).

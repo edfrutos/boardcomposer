@@ -107,7 +107,6 @@ Versiones futuras podrán incorporar:
 
 - proyectos anclados;
 - sincronización en la nube;
-- plantillas de proyectos;
 - panel de actividad reciente;
 - búsqueda global.
 
@@ -122,4 +121,7 @@ Versiones futuras podrán incorporar:
 - Miniatura SVG del layout guardado (tableros/piezas) y fecha de
   modificación por entrada.
 - Menú `Archivo → Pantalla de inicio` para volver.
+- Plantillas de proyecto: guardar el abierto como plantilla y crear nuevo
+  desde plantilla (welcome + menú Archivo); catálogo en
+  `~/.boardcomposer/project_templates/`.
 - Pendiente: accesos a documentación/novedades.
