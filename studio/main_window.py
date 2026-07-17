@@ -239,6 +239,7 @@ class MainWindow(QMainWindow):
             self.services.timeline,
             language=self._ui_language(),
         )
+        self.console.replay_step_changed.connect(self._on_timeline_replay_step)
 
         self.console_dock = QDockWidget("", self)
         self.console_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
@@ -1221,6 +1222,8 @@ class MainWindow(QMainWindow):
         self.solutions_table.setRowCount(0)
         self.solution_thumbnails.clear()
         solutions = self.services.layout.solutions
+        if not solutions:
+            self.console.set_replay_solution(None)
         highlights = self.services.layout.solution_highlights
         self._solution_display_indexes = ordered_solution_indexes(
             solutions,
@@ -1415,6 +1418,18 @@ class MainWindow(QMainWindow):
             lines.extend(["", *stats_lines])
 
         self.inspector.setText("\n".join(lines))
+        self.console.set_replay_solution(solution)
+
+    def _on_timeline_replay_step(self, solution, reveal_count: int) -> None:
+        if solution is None:
+            return
+        self.workspace.preview_solution(solution, reveal_count=reveal_count)
+        self._status(
+            "status.timeline_replay",
+            2000,
+            current=reveal_count,
+            total=len(solution.placements),
+        )
 
     def _apply_layout(self):
         if not self.services.layout.apply_last_solution_to_current_project():
