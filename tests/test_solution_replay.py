@@ -42,9 +42,20 @@ def test_solution_replay_play_wraps_from_end():
     assert not replay.playing
 
 
-def test_solution_replay_empty_solution_disabled():
+def test_solution_replay_exposes_algorithm_and_piece():
+    from boardcomposer.domain import SolutionExplanation
+
+    solution = _solution_with_placements(2)
+    solution = AssemblySolution(
+        placements=solution.placements,
+        explanation=SolutionExplanation(notes=["maxrects", "bssf"]),
+    )
     replay = SolutionReplay()
-    replay.load(AssemblySolution(placements=[]))
-    assert not replay.available
-    replay.start()
-    assert not replay.playing
+    replay.load(solution)
+    assert replay.algorithm == "maxrects"
+    assert replay.current_piece_id == "P-1"
+
+    replay.reset()
+    assert replay.current_piece_id is None
+    replay.step_forward()
+    assert replay.current_piece_id == "P-0"

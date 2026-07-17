@@ -11,6 +11,7 @@ from boardcomposer.domain import AssemblySolution
 from boardcomposer.solver.cancel import CancellationToken
 from boardcomposer.solver.geometry_solver import GeometrySolver
 from boardcomposer.solver.pipeline_stats import PipelineStats
+from boardcomposer.solver.solve_trace import SolveTrace
 from boardcomposer.solver.strategies import material_first_strategy
 
 from studio.models import StudioPlacement
@@ -28,6 +29,7 @@ class LayoutService:
         self.stats = PipelineStats()
         self._solved_project: Project | None = None
         self.solutions_outdated: bool = False
+        self.trace = SolveTrace()
 
     def select_next_solution(self) -> AssemblySolution | None:
         """Select and return the next solution in the list, wrapping to the first."""
@@ -147,6 +149,7 @@ class LayoutService:
 
         solutions = solver.solve()
         self.stats = solver.stats
+        self.trace = solver.trace
 
         if not solutions:
             self.solutions = []
@@ -231,6 +234,7 @@ class LayoutService:
         self.stats = PipelineStats()
         self._solved_project = None
         self.solutions_outdated = False
+        self.trace = SolveTrace()
 
     def board_waste_ratio(self, solution: AssemblySolution) -> float:
         """Return unused board area relative to the source board."""

@@ -33,6 +33,19 @@ class SolutionReplay:
     def playing(self) -> bool:
         return self._playing
 
+    @property
+    def algorithm(self) -> str | None:
+        if self.solution is None or not self.solution.explanation.notes:
+            return None
+        return self.solution.explanation.notes[0]
+
+    @property
+    def current_piece_id(self) -> str | None:
+        if self.solution is None or self.step <= 0:
+            return None
+        index = min(self.step, self.total) - 1
+        return self.solution.placements[index].board_id
+
     def load(self, solution: AssemblySolution | None) -> None:
         self.stop()
         self.solution = solution
