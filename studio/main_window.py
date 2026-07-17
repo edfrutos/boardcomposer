@@ -55,7 +55,11 @@ from studio.dialogs import (
 )
 from studio.board_csv_importer import import_boards_from_file
 from studio.piece_csv_importer import import_pieces_from_file
-from studio.solution_diff import compare_solutions, format_diff_unavailable
+from studio.solution_diff import (
+    compare_solutions,
+    compare_solutions_at_step,
+    format_diff_unavailable,
+)
 from studio.solution_ordering import SORT_LABELS, ordered_solution_indexes
 from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
 from studio.units import format_length, format_size
@@ -1455,12 +1459,54 @@ class MainWindow(QMainWindow):
         if solution is None:
             return
         self.workspace.preview_solution(solution, reveal_count=reveal_count)
+        total = len(solution.placements)
+        if reveal_count <= 0:
+            self._reload_solution_differences_at_step(0)
+        elif reveal_count >= total:
+            self._reload_solution_differences()
+            if total > 0:
+                last_id = solution.placements[total - 1].board_id
+                self.workspace.select_piece(last_id)
+        else:
+            self._reload_solution_differences_at_step(reveal_count)
+            last_id = solution.placements[reveal_count - 1].board_id
+            self.workspace.select_piece(last_id)
+
         self._status(
             "status.timeline_replay",
             2000,
             current=reveal_count,
-            total=len(solution.placements),
+            total=total,
         )
+
+    def _reload_solution_differences_at_step(self, step: int) -> None:
+        """Update the diff panel for Timeline-synced placement replay."""
+        solutions = self.services.layout.solutions
+        language = self._ui_language()
+        if len(solutions) < 1:
+            return
+
+        candidate_index = self.services.layout.selected_solution_index
+        if candidate_index < 0 or candidate_index >= len(solutions):
+            return
+
+        reference_index = self._comparator_reference_index
+        if reference_index is None or reference_index >= len(solutions):
+            reference_index = 0 if candidate_index != 0 else min(1, len(solutions) - 1)
+            if reference_index >= len(solutions):
+                reference_index = candidate_index
+            self._comparator_reference_index = reference_index
+
+        lines = compare_solutions_at_step(
+            solutions[reference_index],
+            solutions[candidate_index],
+            step,
+            reference_index=reference_index,
+            candidate_index=candidate_index,
+            language=language,
+        )
+        self.solution_differences.setPlainText("\n".join(lines))
+        self.solutions_dock.raise_()
 
     def _apply_layout(self):
         if self.services.layout.solutions_outdated:

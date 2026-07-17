@@ -7,7 +7,7 @@ UI can show a concise diff without re-deriving comparison rules.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from boardcomposer.domain import AssemblySolution, BoardPlacement, PanelReference
 from studio.i18n import DEFAULT_LANGUAGE, tr
@@ -350,6 +350,96 @@ def compare_solutions(
         placements=placements,
         language=language,
     )
+
+
+def truncate_solution_to_step(
+    solution: AssemblySolution,
+    step: int,
+) -> AssemblySolution:
+    """Return a copy revealing only the first ``step`` placements."""
+    count = max(0, min(step, len(solution.placements)))
+    return replace(solution, placements=list(solution.placements[:count]))
+
+
+def compare_solutions_at_step(
+    reference: AssemblySolution,
+    candidate: AssemblySolution,
+    step: int,
+    *,
+    reference_index: int,
+    candidate_index: int,
+    language: str = DEFAULT_LANGUAGE,
+) -> list[str]:
+    """Diff the first ``step`` placements of each solution (SCR-003 sync).
+
+    Used while the Timeline walks through the candidate: the Comparador
+    shows how reference and candidate diverge up to the same reveal count.
+    """
+    ref_total = len(reference.placements)
+    cand_total = len(candidate.placements)
+    max_total = max(ref_total, cand_total)
+    clamped = max(0, min(step, max_total))
+
+    header = tr(
+        "diff.sync_header",
+        language,
+        step=clamped,
+        total=max_total,
+        candidate=candidate_index + 1,
+        reference=reference_index + 1,
+    )
+
+    if clamped == 0:
+        return [header, "", tr("diff.sync_empty", language)]
+
+    ref_part = truncate_solution_to_step(reference, clamped)
+    cand_part = truncate_solution_to_step(candidate, clamped)
+
+    if reference_index == candidate_index:
+        return [
+            header,
+            "",
+            tr(
+                "diff.sync_same_solution",
+                language,
+                revealed=len(cand_part.placements),
+                total=cand_total,
+            ),
+        ]
+
+    diff = compare_solutions(
+        ref_part,
+        cand_part,
+        reference_index=reference_index,
+        candidate_index=candidate_index,
+        language=language,
+    )
+    lines = [header, ""]
+    if diff.identical:
+        lines.append(tr("diff.sync_matched", language, step=clamped))
+        return lines
+
+    if diff.metrics:
+        lines.append(tr("diff.metrics", language))
+        for metric in diff.metrics:
+            marker = ""
+            if metric.better == "candidate":
+                marker = tr("diff.better_here", language)
+            elif metric.better == "reference":
+                marker = tr("diff.better_reference", language)
+            lines.append(
+                f"  {metric.label}: {metric.reference} → {metric.candidate}{marker}"
+            )
+        lines.append("")
+
+    if diff.placements:
+        lines.append(tr("diff.placements", language))
+        for change in diff.placements:
+            lines.append(f"  {change.piece_id}: {change.detail}")
+    elif not diff.metrics:
+        lines.append(tr("diff.none", language))
+
+    return lines
 
 
 def format_diff_unavailable(
