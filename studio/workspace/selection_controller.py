@@ -24,12 +24,23 @@ class SelectionController:
 
         if len(self._selected_ids) == 1:
             self.services.selection.select_one(next(iter(self._selected_ids)))
+        elif not self._selected_ids:
+            self.services.selection.clear()
+        else:
+            self.services.selection.clear()
+            for piece_id in self._selected_ids:
+                self.services.selection.add(piece_id)
+
+    def select_all(self) -> None:
+        """Select every bound piece item."""
+        self.select_many([item.piece_id for item in self._items])
 
     def clear(self) -> None:
         self._selected_ids.clear()
 
         for item in self._items:
             apply_selection(item, False)
+        self.services.selection.clear()
 
     def current(self) -> str | None:
         if len(self._selected_ids) != 1:

@@ -170,6 +170,21 @@ def test_select_piece_updates_the_shared_selection_manager(qapp):
     assert services.selection.selected_ids == ("A",)
 
 
+def test_select_all_pieces_selects_every_canvas_piece(qapp):
+    services = _multipanel_services()
+    project = services.projects.current_project
+    project.pieces.append(StudioPiece("B", 200, 100, "Demo", 19))
+    project.placements.append(StudioPlacement("B", 500, 0, False, 0, "P1", 0, 0))
+
+    workspace = BoardWorkspace(services)
+    workspace.reload_project()
+    workspace.select_all_pieces()
+
+    assert set(workspace.selection.selected()) == {"A", "B"}
+    assert set(services.selection.selected_ids) == {"A", "B"}
+    assert all(item.isSelected() for item in workspace._piece_items)
+
+
 def test_rotating_a_piece_that_would_leave_the_panel_is_rejected(qapp):
     services = _multipanel_services()
     project = services.projects.current_project

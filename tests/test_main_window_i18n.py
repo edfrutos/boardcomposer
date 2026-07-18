@@ -216,6 +216,22 @@ def test_clear_recent_files_updates_menu_and_welcome(qapp, tmp_path, monkeypatch
     )
 
 
+def test_edit_menu_includes_select_all_pieces(qapp, tmp_path):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="en"))
+    window = MainWindow(services)
+
+    texts = [a.text() for a in window._menus["edit"].actions() if a.text()]
+    assert "Select all pieces" in texts
+    assert window._actions["select_all_pieces"].shortcut().toString() in {
+        "Ctrl+A",
+        "Meta+A",
+    }
+
+
 def test_view_menu_includes_zoom_actions(qapp, tmp_path):
     del qapp
     services = StudioServices(
