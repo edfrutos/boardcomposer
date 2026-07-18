@@ -34,6 +34,26 @@ def test_main_window_menus_and_inspector_follow_language(qapp, tmp_path):
     assert "Preferences saved" in window.statusBar().currentMessage()
 
 
+def test_generate_and_compare_menus_are_populated(qapp, tmp_path):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="en"))
+    window = MainWindow(services)
+
+    assert "tools" not in window._menus
+    assert window._menus["generate"].title() == "Generate"
+    assert window._menus["compare"].title() == "Compare"
+
+    generate_texts = [a.text() for a in window._menus["generate"].actions() if a.text()]
+    compare_texts = [a.text() for a in window._menus["compare"].actions() if a.text()]
+    assert "Calculate layout" in generate_texts
+    assert "Previous solution" in compare_texts
+    assert "Next solution" in compare_texts
+    assert "Apply calculated layout" in compare_texts
+
+
 def test_clear_recent_files_updates_menu_and_welcome(qapp, tmp_path, monkeypatch):
     del qapp
     from PySide6.QtWidgets import QMessageBox

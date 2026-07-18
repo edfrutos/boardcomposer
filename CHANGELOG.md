@@ -152,6 +152,8 @@
   persistiendo `show_grid` sin resetear el zoom.
 - Vaciar lista de proyectos recientes desde **Archivo → Abrir recientes**
   o la pantalla de bienvenida (confirma; no borra ficheros).
+- Menús **Generar** y **Comparar** poblados (Calcular layout; navegar/aplicar
+  solución); se elimina el menú Herramientas vacío.
 
 ### Cambiado
 
