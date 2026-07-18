@@ -26,7 +26,10 @@ def test_import_boards_redo_appends_and_undo_removes():
     command = ImportBoardsCommand(services, boards)
 
     command.redo()
-    assert [b.board_id for b in services.projects.current_project.boards] == ["B1", "B2"]
+    assert [b.board_id for b in services.projects.current_project.boards] == [
+        "B1",
+        "B2",
+    ]
 
     command.undo()
     assert services.projects.current_project.boards == []
@@ -39,7 +42,10 @@ def test_import_boards_redo_skips_duplicate_ids():
     )
     command = ImportBoardsCommand(
         services,
-        [StudioBoard("B1", 2800, 2070, "MDF", 19, 1), StudioBoard("B2", 1000, 500, "MDF", 16, 1)],
+        [
+            StudioBoard("B1", 2800, 2070, "MDF", 19, 1),
+            StudioBoard("B2", 1000, 500, "MDF", 16, 1),
+        ],
     )
 
     command.redo()

@@ -32,7 +32,12 @@ from PySide6.QtWidgets import (
 from boardcomposer.export import solution_to_svg
 from studio.export_options import render_export
 from dataclasses import replace as dataclass_replace
-from studio.commands import DeletePieceCommand, ImportBoardsCommand, ImportPiecesCommand, RotatePieceCommand
+from studio.commands import (
+    DeletePieceCommand,
+    ImportBoardsCommand,
+    ImportPiecesCommand,
+    RotatePieceCommand,
+)
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import (
     UnsupportedProjectVersionError,
