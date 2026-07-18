@@ -322,6 +322,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_saved": "Proyecto guardado: {path}",
         "status.project_opened": "Proyecto abierto: {path}",
         "status.board_updated": "Tablero actualizado",
+        "status.board_deleted": "Tablero eliminado: {id}",
         "status.piece_updated": "Pieza actualizada",
         "dialog.open_project": "Abrir proyecto",
         "dialog.save_project": "Guardar proyecto",
@@ -347,6 +348,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.filter_bcproj": "BoardComposer Project (*.bcproj)",
         "dialog.edit_board": "Editar tablero",
         "dialog.edit_piece": "Editar pieza",
+        "dialog.delete_board_title": "Eliminar tablero",
+        "dialog.delete_board_confirm": "¿Eliminar el tablero «{id}»?",
+        "dialog.delete_board_confirm_placements": (
+            "¿Eliminar el tablero «{id}»?\n\n"
+            "Se quitarán {n} colocación(es) de ese tablero; las piezas se conservan."
+        ),
         "export.title": "Exportar solución",
         "export.intro": "Elige el formato y el contenido. La vista previa refleja las opciones seleccionadas.",
         "export.template": "Plantilla:",
@@ -805,6 +812,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_saved": "Project saved: {path}",
         "status.project_opened": "Project opened: {path}",
         "status.board_updated": "Board updated",
+        "status.board_deleted": "Board deleted: {id}",
         "status.piece_updated": "Piece updated",
         "dialog.open_project": "Open project",
         "dialog.save_project": "Save project",
@@ -830,6 +838,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.filter_bcproj": "BoardComposer Project (*.bcproj)",
         "dialog.edit_board": "Edit board",
         "dialog.edit_piece": "Edit piece",
+        "dialog.delete_board_title": "Delete board",
+        "dialog.delete_board_confirm": "Delete board “{id}”?",
+        "dialog.delete_board_confirm_placements": (
+            "Delete board “{id}”?\n\n"
+            "{n} placement(s) on that board will be removed; pieces are kept."
+        ),
         "export.title": "Export solution",
         "export.intro": "Choose the format and content. The preview reflects the selected options.",
         "export.template": "Template:",

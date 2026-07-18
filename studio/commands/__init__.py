@@ -2,6 +2,7 @@
 
 from studio.commands.command import Command
 from studio.commands.command_manager import CommandManager
+from studio.commands.delete_board_command import DeleteBoardCommand
 from studio.commands.delete_piece_command import DeletePieceCommand
 from studio.commands.duplicate_piece_command import DuplicatePieceCommand
 from studio.commands.edit_board_command import EditBoardCommand
@@ -14,6 +15,7 @@ from studio.commands.rotate_piece_command import RotatePieceCommand
 __all__ = [
     "Command",
     "CommandManager",
+    "DeleteBoardCommand",
     "DeletePieceCommand",
     "DuplicatePieceCommand",
     "EditBoardCommand",

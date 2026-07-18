@@ -141,6 +141,8 @@
   `EditBoardCommand`), actualizando ids en colocaciones.
 - Menú contextual en el Explorador: editar/duplicar/eliminar pieza,
   editar tablero, añadir en categorías y vista previa de solución.
+- Eliminar tablero desde el Explorador con undo (`DeleteBoardCommand`);
+  se quitan colocaciones del tablero y se conservan las piezas.
 
 ### Cambiado
 

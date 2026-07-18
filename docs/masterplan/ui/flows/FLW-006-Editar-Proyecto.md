@@ -118,6 +118,10 @@ explícito si falla el guardado; cancelar «Guardar como» no continúa la acci�
 (`EditPieceCommand` / `EditBoardCommand`), incluyendo renombrado de ids en
 colocaciones.
 
+**Estado 2026-07-18 (d):** eliminar tablero (`DeleteBoardCommand`) desde el
+Explorador; las piezas se conservan y las colocaciones del tablero se quitan
+(deshacible).
+
 En futuras versiones este flujo incorporará control de versiones del proyecto, diferencias visuales entre revisiones, edición colaborativa, bloqueo de recursos durante la edición, recuperación automática tras fallos y un sistema de deshacer/rehacer ilimitado basado en el historial de eventos.
 
 Asimismo, cada modificación significativa podrá registrarse como una revisión identificable, facilitando auditorías, comparaciones entre estados del proyecto y reproducción exacta de cualquier versión anterior.
