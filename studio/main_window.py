@@ -34,6 +34,7 @@ from boardcomposer.export import solution_to_svg
 from studio.export_options import render_export
 from dataclasses import replace as dataclass_replace
 from studio.commands import (
+    DeleteBoardCommand,
     DeletePieceCommand,
     DuplicatePieceCommand,
     EditBoardCommand,
@@ -2493,8 +2494,54 @@ class MainWindow(QMainWindow):
             elif action_key == "delete":
                 self._delete_selected_piece()
             return
-        if kind == "board" and action_key == "edit":
-            self._edit_board(object_id)
+        if kind == "board":
+            if action_key == "edit":
+                self._edit_board(object_id)
+            elif action_key == "delete":
+                self._delete_board(object_id)
+
+    def _delete_board(self, board_id: str) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        if not any(board.board_id == board_id for board in project.boards):
+            return
+
+        placed = sum(
+            1 for placement in project.placements if placement.board_id == board_id
+        )
+        if placed:
+            answer = QMessageBox.question(
+                self,
+                self._tr("dialog.delete_board_title"),
+                self._tr(
+                    "dialog.delete_board_confirm_placements",
+                    id=board_id,
+                    n=placed,
+                ),
+            )
+        else:
+            answer = QMessageBox.question(
+                self,
+                self._tr("dialog.delete_board_title"),
+                self._tr("dialog.delete_board_confirm", id=board_id),
+            )
+        if answer != QMessageBox.StandardButton.Yes:
+            return
+
+        command = DeleteBoardCommand(self.services, board_id)
+        self.services.commands.execute(command)
+
+        self.services.layout.clear_solutions()
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self.clear_inspector()
+        self._mark_project_modified(reason="board_deleted")
+        self._refresh_solutions_outdated_banner()
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.board_deleted", id=board_id)
 
     def _on_explorer_item_double_clicked(self, item, _column):
         data = item.data(0, Qt.ItemDataRole.UserRole)
