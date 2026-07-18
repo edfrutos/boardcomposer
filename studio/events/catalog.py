@@ -20,7 +20,9 @@ ALGORITHM_FINISHED = "AlgorithmFinished"
 EVALUATION_FINISHED = "EvaluationFinished"
 PLACEMENT_FAILED = "PlacementFailed"
 PLACEMENT_FAILURES_SUMMARY = "PlacementFailuresSummary"
+EXPORT_STARTED = "ExportStarted"
 EXPORT_COMPLETED = "ExportCompleted"
+EXPORT_FAILED = "ExportFailed"
 WORKSPACE_UPDATED = "WorkspaceUpdated"
 TIMELINE_MARKED = "TimelineMarked"
 
@@ -39,7 +41,9 @@ CATALOG: tuple[str, ...] = (
     EVALUATION_FINISHED,
     PLACEMENT_FAILED,
     PLACEMENT_FAILURES_SUMMARY,
+    EXPORT_STARTED,
     EXPORT_COMPLETED,
+    EXPORT_FAILED,
     WORKSPACE_UPDATED,
     TIMELINE_MARKED,
 )
