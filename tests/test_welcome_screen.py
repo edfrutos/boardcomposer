@@ -21,6 +21,19 @@ def test_recent_files_manager_persists_and_filters_missing(tmp_path):
     assert reloaded.existing_files() == [str(existing)]
 
 
+def test_recent_files_manager_clear(tmp_path):
+    path = tmp_path / "recent.json"
+    existing = tmp_path / "demo.bcproj"
+    existing.write_text("{}", encoding="utf-8")
+
+    manager = RecentFilesManager(path=path)
+    manager.add(str(existing))
+    manager.clear()
+
+    assert manager.files == []
+    assert RecentFilesManager(path=path).files == []
+
+
 def test_welcome_screen_lists_recent_paths(qapp):
     del qapp
     screen = WelcomeScreen()
@@ -28,6 +41,7 @@ def test_welcome_screen_lists_recent_paths(qapp):
 
     assert screen.recent_list.count() == 2
     assert "proyecto-a.bcproj" in screen.recent_list.item(0).text()
+    assert screen.clear_recent_button.isEnabled()
 
 
 def test_welcome_screen_shows_empty_state(qapp):
@@ -37,6 +51,7 @@ def test_welcome_screen_shows_empty_state(qapp):
 
     assert screen.recent_list.count() == 1
     assert "Sin proyectos recientes" in screen.recent_list.item(0).text()
+    assert not screen.clear_recent_button.isEnabled()
 
 
 def test_welcome_screen_brand_and_primary_object_names(qapp):

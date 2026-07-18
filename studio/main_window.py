@@ -242,6 +242,7 @@ class MainWindow(QMainWindow):
         self.welcome.new_project_requested.connect(self._new_project)
         self.welcome.open_project_requested.connect(self._open_project)
         self.welcome.open_recent_requested.connect(self._open_recent_project)
+        self.welcome.clear_recent_requested.connect(self._clear_recent_files)
         self.welcome.import_pieces_requested.connect(self._import_pieces_from_csv)
         self.welcome.preferences_requested.connect(self._open_preferences)
         self.welcome.demo_project_requested.connect(self._new_demo_project)
@@ -1563,6 +1564,7 @@ class MainWindow(QMainWindow):
 
         app = QApplication.instance()
         if app is not None:
+            # pyright: ignore[reportArgumentType]
             apply_theme(app, self.services.preferences.current.theme)
         self._retranslate_ui()
         self._sync_view_actions()
@@ -2398,6 +2400,27 @@ class MainWindow(QMainWindow):
                 lambda checked=False, path=filename: self._open_recent_project(path)
             )
             self._recent_menu.addAction(action)
+
+        self._recent_menu.addSeparator()
+        clear_action = QAction(self._tr("action.clear_recent"), self)
+        clear_action.triggered.connect(self._clear_recent_files)
+        self._recent_menu.addAction(clear_action)
+
+    def _clear_recent_files(self) -> None:
+        if not self.services.recent_files.files:
+            return
+        answer = QMessageBox.question(
+            self,
+            self._tr("dialog.clear_recent_title"),
+            self._tr("dialog.clear_recent_body"),
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+        if answer != QMessageBox.StandardButton.Yes:
+            return
+        self.services.recent_files.clear()
+        self._reload_recent_files_menu()
+        self._status("status.recent_cleared")
 
     def _open_recent_project(self, path: str):
         if not self._confirm_discard_unsaved_changes():

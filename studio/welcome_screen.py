@@ -30,6 +30,7 @@ class WelcomeScreen(QWidget):
     new_project_requested = Signal()
     open_project_requested = Signal()
     open_recent_requested = Signal(str)
+    clear_recent_requested = Signal()
     import_pieces_requested = Signal()
     preferences_requested = Signal()
     demo_project_requested = Signal()
@@ -131,9 +132,17 @@ class WelcomeScreen(QWidget):
         recent_col.setSpacing(10)
         recent_col.setAlignment(Qt.AlignmentFlag.AlignTop)
 
+        recent_header = QHBoxLayout()
+        recent_header.setSpacing(8)
         self.recent_label = QLabel()
         self.recent_label.setObjectName("welcomeRecentLabel")
-        recent_col.addWidget(self.recent_label)
+        recent_header.addWidget(self.recent_label, stretch=1)
+        self.clear_recent_button = QPushButton()
+        self.clear_recent_button.setObjectName("welcomeClearRecent")
+        self.clear_recent_button.setFlat(True)
+        self.clear_recent_button.clicked.connect(self.clear_recent_requested.emit)
+        recent_header.addWidget(self.clear_recent_button)
+        recent_col.addLayout(recent_header)
 
         self.recent_list = QListWidget()
         self.recent_list.setObjectName("welcomeRecentList")
@@ -162,6 +171,7 @@ class WelcomeScreen(QWidget):
         self.open_button.setText(tr("welcome.open", language))
         self.import_button.setText(tr("welcome.import", language))
         self.recent_label.setText(tr("welcome.recent", language))
+        self.clear_recent_button.setText(tr("welcome.clear_recent", language))
         self.demo_button.setText(tr("welcome.demo", language))
         self.template_button.setText(tr("welcome.from_template", language))
         self.docs_button.setText(tr("welcome.docs", language))
@@ -172,6 +182,7 @@ class WelcomeScreen(QWidget):
     def set_recent_files(self, paths: list[str]) -> None:
         """Populate the recent-projects list with name, date and thumbnail."""
         self._recent_paths = list(paths)
+        self.clear_recent_button.setEnabled(bool(paths))
         self.recent_list.clear()
         if not paths:
             empty = QListWidgetItem(tr("welcome.empty_recent", self._language))

@@ -32,6 +32,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "o importa piezas para empezar."
         ),
         "welcome.recent": "Proyectos recientes",
+        "welcome.clear_recent": "Vaciar lista",
         "welcome.new": "Nuevo proyecto",
         "welcome.open": "Abrir proyecto…",
         "welcome.import": "Importar piezas (CSV/Excel)…",
@@ -80,7 +81,14 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.next_solution": "Solución siguiente",
         "action.apply_layout": "Aplicar layout calculado",
         "action.no_recent": "Sin archivos recientes",
+        "action.clear_recent": "Vaciar lista de recientes",
         "action.whats_new": "Novedades…",
+        "dialog.clear_recent_title": "Vaciar recientes",
+        "dialog.clear_recent_body": (
+            "¿Vaciar la lista de proyectos recientes?\n"
+            "Los archivos del disco no se eliminan."
+        ),
+        "status.recent_cleared": "Lista de recientes vaciada",
         "action.shortcuts": "Atajos de teclado…",
         "action.open_docs": "Documentación…",
         "action.about": "Acerca de BoardComposer…",
@@ -537,6 +545,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "or import pieces to get started."
         ),
         "welcome.recent": "Recent projects",
+        "welcome.clear_recent": "Clear list",
         "welcome.new": "New project",
         "welcome.open": "Open project…",
         "welcome.import": "Import pieces (CSV/Excel)…",
@@ -585,7 +594,13 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.next_solution": "Next solution",
         "action.apply_layout": "Apply calculated layout",
         "action.no_recent": "No recent files",
+        "action.clear_recent": "Clear recent list",
         "action.whats_new": "What’s new…",
+        "dialog.clear_recent_title": "Clear recent",
+        "dialog.clear_recent_body": (
+            "Clear the list of recent projects?\nFiles on disk are not deleted."
+        ),
+        "status.recent_cleared": "Recent list cleared",
         "action.shortcuts": "Keyboard shortcuts…",
         "action.open_docs": "Documentation…",
         "action.about": "About BoardComposer…",
