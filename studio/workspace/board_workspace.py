@@ -265,6 +265,11 @@ class BoardWorkspace(QGraphicsView):
         self.selection.clear()
         self.selection.sync_inspector(self.window())
 
+    def invert_piece_selection(self) -> None:
+        """Invert the current piece selection on the canvas."""
+        self.selection.invert_selection()
+        self.selection.sync_inspector(self.window())
+
     def fit_board(self) -> None:
         """Fit the board to the viewport."""
         if not self._board_items:

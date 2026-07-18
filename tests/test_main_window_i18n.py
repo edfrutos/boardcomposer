@@ -227,11 +227,16 @@ def test_edit_menu_includes_select_all_pieces(qapp, tmp_path):
     texts = [a.text() for a in window._menus["edit"].actions() if a.text()]
     assert "Select all pieces" in texts
     assert "Deselect pieces" in texts
+    assert "Invert selection" in texts
     assert window._actions["select_all_pieces"].shortcut().toString() in {
         "Ctrl+A",
         "Meta+A",
     }
     assert window._actions["deselect_pieces"].shortcut().toString() == "Esc"
+    assert window._actions["invert_selection"].shortcut().toString() in {
+        "Ctrl+Shift+I",
+        "Meta+Shift+I",
+    }
 
 
 def test_view_menu_includes_zoom_actions(qapp, tmp_path):

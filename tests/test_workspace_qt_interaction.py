@@ -201,6 +201,23 @@ def test_clear_piece_selection_after_select_all(qapp):
     assert all(not item.isSelected() for item in workspace._piece_items)
 
 
+def test_invert_piece_selection_swaps_selected_set(qapp):
+    services = _multipanel_services()
+    project = services.projects.current_project
+    project.pieces.append(StudioPiece("B", 200, 100, "Demo", 19))
+    project.pieces.append(StudioPiece("C", 150, 100, "Demo", 19))
+    project.placements.append(StudioPlacement("B", 500, 0, False, 0, "P1", 0, 0))
+    project.placements.append(StudioPlacement("C", 700, 0, False, 0, "P1", 0, 0))
+
+    workspace = BoardWorkspace(services)
+    workspace.reload_project()
+    workspace.select_piece("A")
+    workspace.invert_piece_selection()
+
+    assert set(workspace.selection.selected()) == {"B", "C"}
+    assert set(services.selection.selected_ids) == {"B", "C"}
+
+
 def test_rotating_a_piece_that_would_leave_the_panel_is_rejected(qapp):
     services = _multipanel_services()
     project = services.projects.current_project
