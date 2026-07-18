@@ -168,6 +168,7 @@ class MainWindow(QMainWindow):
         self._menus["view"].addAction(self._actions["toggle_grid"])
 
         self._menus["project"].addAction(self._actions["rename_project"])
+        self._menus["project"].addAction(self._actions["reveal_project_folder"])
         self._menus["project"].addSeparator()
         self._menus["project"].addAction(self._actions["add_board"])
         self._menus["project"].addAction(self._actions["add_piece"])
@@ -200,6 +201,9 @@ class MainWindow(QMainWindow):
         self._actions["show_welcome"].triggered.connect(self._show_welcome_screen)
         self._actions["save_as_template"].triggered.connect(self._save_as_template)
         self._actions["rename_project"].triggered.connect(self._rename_project)
+        self._actions["reveal_project_folder"].triggered.connect(
+            self._reveal_project_folder
+        )
         self._actions["add_board"].triggered.connect(self._add_board)
         self._actions["add_piece"].triggered.connect(self._add_piece)
         self._actions["import_boards_csv"].triggered.connect(
@@ -392,7 +396,14 @@ class MainWindow(QMainWindow):
     def _build_statusbar(self):
         status = QStatusBar(self)
         self.setStatusBar(status)
+        self._project_path_label = QLabel()
+        self._project_path_label.setObjectName("statusProjectPath")
+        self._project_path_label.setTextInteractionFlags(
+            Qt.TextInteractionFlag.TextSelectableByMouse
+        )
+        status.addPermanentWidget(self._project_path_label, 1)
         status.showMessage(self._tr("status.ready"))
+        self._update_project_path_status()
 
     def _load_empty_project(
         self,
@@ -1282,9 +1293,28 @@ class MainWindow(QMainWindow):
 
         if project is None:
             self.setWindowTitle("BoardComposer Studio")
-            return
+        else:
+            self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
+        self._update_project_path_status()
 
-        self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
+    def _update_project_path_status(self) -> None:
+        """Refresh the permanent project-path widget and reveal action."""
+        label = getattr(self, "_project_path_label", None)
+        filename = self.services.projects.filename
+        if label is not None:
+            if filename:
+                from PySide6.QtGui import QFontMetrics
+
+                metrics = QFontMetrics(label.font())
+                elided = metrics.elidedText(filename, Qt.TextElideMode.ElideMiddle, 560)
+                label.setText(elided)
+                label.setToolTip(filename)
+            else:
+                label.setText(self._tr("status.project_unsaved"))
+                label.setToolTip("")
+        reveal = self._actions.get("reveal_project_folder")
+        if reveal is not None:
+            reveal.setEnabled(bool(filename))
 
     def update_undo_redo(self):
         """Refresh the enabled state of undo and redo actions."""
@@ -1569,6 +1599,7 @@ class MainWindow(QMainWindow):
         )
 
         self._reload_recent_files_menu()
+        self._update_project_path_status()
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication
@@ -2534,6 +2565,8 @@ class MainWindow(QMainWindow):
         triggered: dict[QAction, str] = {}
         for key in actions:
             action = menu.addAction(self._tr(f"explorer.context.{key}"))
+            if key == "reveal_folder" and not self.services.projects.filename:
+                action.setEnabled(False)
             triggered[action] = key
         chosen = menu.exec(self.explorer.viewport().mapToGlobal(position))
         if chosen is None:
@@ -2551,6 +2584,9 @@ class MainWindow(QMainWindow):
 
         if kind == "project" and action_key == "rename":
             self._rename_project()
+            return
+        if kind == "project" and action_key == "reveal_folder":
+            self._reveal_project_folder()
             return
         if action_key == "add_board":
             self._add_board()
@@ -2580,6 +2616,18 @@ class MainWindow(QMainWindow):
                 self._edit_board(object_id)
             elif action_key == "delete":
                 self._delete_board(object_id)
+
+    def _reveal_project_folder(self) -> None:
+        from studio.file_reveal import reveal_in_file_manager
+
+        filename = self.services.projects.filename
+        if not filename:
+            self._status("status.project_folder_unavailable")
+            return
+        if not reveal_in_file_manager(filename):
+            self._status("status.project_folder_failed")
+            return
+        self._status("status.project_folder_opened")
 
     def _rename_project(self) -> None:
         project = self.services.projects.current_project

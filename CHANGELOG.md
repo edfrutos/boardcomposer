@@ -160,6 +160,8 @@
   el menú/bienvenida, y se quita la entrada si falla al abrir.
 - Tips en la barra de estado al pasar el ratón sobre las acciones de menú
   (`setStatusTip`, i18n es/en).
+- Ruta del proyecto en la barra de estado (permanente) y
+  **Proyecto → Abrir carpeta del proyecto** (también en el Explorador).
 
 ### Cambiado
 

@@ -34,6 +34,45 @@ def test_main_window_menus_and_inspector_follow_language(qapp, tmp_path):
     assert "Preferences saved" in window.statusBar().currentMessage()
 
 
+def test_project_path_status_and_reveal_action(qapp, tmp_path, monkeypatch):
+    del qapp
+    from studio.models import StudioBoard, StudioProject
+    from studio.project_serializer import save_project
+
+    path = tmp_path / "demo.bcproj"
+    project = StudioProject(
+        project_id="PRJ-1",
+        name="Demo",
+        boards=[StudioBoard("P1", 1000, 500, "Demo", 19, 1)],
+        pieces=[],
+        placements=[],
+    )
+    save_project(project, path)
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="en"))
+    window = MainWindow(services)
+
+    assert window._project_path_label.text() == "Project not saved yet"
+    assert not window._actions["reveal_project_folder"].isEnabled()
+
+    services.projects.open_project(project, str(path))
+    window.update_window_title()
+
+    assert str(path) in window._project_path_label.toolTip()
+    assert window._actions["reveal_project_folder"].isEnabled()
+
+    revealed: list[str] = []
+    monkeypatch.setattr(
+        "studio.file_reveal.reveal_in_file_manager",
+        lambda target: revealed.append(str(target)) or True,
+    )
+    window._reveal_project_folder()
+    assert revealed == [str(path)]
+
+
 def test_menu_actions_have_status_tips(qapp, tmp_path):
     del qapp
     services = StudioServices(
