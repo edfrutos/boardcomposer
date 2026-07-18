@@ -2179,38 +2179,48 @@ class MainWindow(QMainWindow):
             if not reveal_in_file_manager(path):
                 self._status("status.export_reveal_failed", 5000, path=path)
 
-    def _save_project(self):
+    def _save_project(self) -> None:
         project = self.services.projects.current_project
 
         if project is None:
             self._status("status.nothing_to_save")
             return
 
-        filename = self.services.projects.filename
+        self._try_save_project()
 
-        if filename is None:
-            self._save_project_as()
+    def _save_project_as(self) -> None:
+        project = self.services.projects.current_project
+
+        if project is None:
+            self._status("status.nothing_to_save")
             return
+
+        self._try_save_project_as()
+
+    def _try_save_project(self) -> bool:
+        """Save the current project. Return True only on success."""
+        project = self.services.projects.current_project
+        if project is None:
+            return False
+
+        filename = self.services.projects.filename
+        if filename is None:
+            return self._try_save_project_as()
 
         try:
             save_project(project, filename)
         except OSError as exc:
-            self._status("status.save_failed", 5000, error=exc)
-            return
+            self._report_save_failure(exc)
+            return False
 
-        self.services.projects.mark_saved(filename)
-        self._reload_recent_files_menu()
-        self.services.recent_files.add(filename)
-        self.update_window_title()
-        self._emit(events.PROJECT_SAVED, path=str(filename))
-        self._status("status.project_saved", 5000, path=filename)
+        self._after_successful_save(filename)
+        return True
 
-    def _save_project_as(self):
+    def _try_save_project_as(self) -> bool:
+        """Prompt for a path and save. Return True only on success."""
         project = self.services.projects.current_project
-
         if project is None:
-            self._status("status.nothing_to_save")
-            return
+            return False
 
         path, _selected_filter = QFileDialog.getSaveFileName(
             self,
@@ -2220,20 +2230,34 @@ class MainWindow(QMainWindow):
         )
 
         if not path:
-            return
+            return False
 
         try:
             save_project(project, path)
         except OSError as exc:
-            self._status("status.save_failed", 5000, error=exc)
-            return
+            self._report_save_failure(exc)
+            return False
 
-        self.services.projects.mark_saved(path)
+        self._after_successful_save(path)
+        return True
+
+    def _after_successful_save(self, path: str | Path) -> None:
+        saved = str(path)
+        self.services.projects.mark_saved(saved)
         self._reload_recent_files_menu()
-        self.services.recent_files.add(path)
+        self.services.recent_files.add(saved)
         self.update_window_title()
-        self._emit(events.PROJECT_SAVED, path=str(path))
-        self._status("status.project_saved", 5000, path=path)
+        self._emit(events.PROJECT_SAVED, path=saved)
+        self._status("status.project_saved", 5000, path=saved)
+
+    def _report_save_failure(self, error: OSError) -> None:
+        message = self._tr("status.save_failed", error=error)
+        QMessageBox.warning(
+            self,
+            self._tr("dialog.save_failed_title"),
+            message,
+        )
+        self._status("status.save_failed", 5000, error=error)
 
     def _open_project(self):
         if not self._confirm_discard_unsaved_changes():
@@ -2315,24 +2339,41 @@ class MainWindow(QMainWindow):
         if not self.services.projects.is_modified:
             return True
 
-        result = QMessageBox.question(
-            self,
-            self._tr("dialog.unsaved_title"),
-            self._tr("dialog.unsaved_body"),
-            QMessageBox.StandardButton.Save
-            | QMessageBox.StandardButton.Discard
-            | QMessageBox.StandardButton.Cancel,
-            QMessageBox.StandardButton.Save,
+        from studio.unsaved_changes import unsaved_changes_message
+
+        project = self.services.projects.current_project
+        project_name = project.name if project is not None else ""
+        body = unsaved_changes_message(
+            project_name,
+            self.services.projects.filename,
+            language=self._ui_language(),
         )
 
-        if result == QMessageBox.StandardButton.Cancel:
+        box = QMessageBox(self)
+        box.setIcon(QMessageBox.Icon.Warning)
+        box.setWindowTitle(self._tr("dialog.unsaved_title"))
+        box.setText(body)
+        save_button = box.addButton(
+            self._tr("dialog.unsaved_save"),
+            QMessageBox.ButtonRole.AcceptRole,
+        )
+        discard_button = box.addButton(
+            self._tr("dialog.unsaved_discard"),
+            QMessageBox.ButtonRole.DestructiveRole,
+        )
+        cancel_button = box.addButton(
+            self._tr("dialog.unsaved_cancel"),
+            QMessageBox.ButtonRole.RejectRole,
+        )
+        box.setDefaultButton(save_button)
+        box.exec()
+
+        clicked = box.clickedButton()
+        if clicked is cancel_button:
             return False
-
-        if result == QMessageBox.StandardButton.Discard:
+        if clicked is discard_button:
             return True
-
-        self._save_project()
-        return not self.services.projects.is_modified
+        return self._try_save_project()
 
     def _close_event(self, event):
         if not self._confirm_discard_unsaved_changes():
