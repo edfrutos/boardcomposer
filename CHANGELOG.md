@@ -156,6 +156,8 @@
   solución); se elimina el menú Herramientas vacío.
 - Menú **Ver**: Acercar / Alejar (Ctrl+= / Ctrl+-), además de ajustar y
   cuadrícula.
+- Higiene de proyectos recientes: se podan rutas inexistentes al refrescar
+  el menú/bienvenida, y se quita la entrada si falla al abrir.
 
 ### Cambiado
 

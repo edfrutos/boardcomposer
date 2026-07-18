@@ -54,6 +54,70 @@ def test_generate_and_compare_menus_are_populated(qapp, tmp_path):
     assert "Apply calculated layout" in compare_texts
 
 
+def test_reload_recent_menu_prunes_missing_paths(qapp, tmp_path):
+    del qapp
+    from studio.recent_files import RecentFilesManager
+
+    existing = tmp_path / "demo.bcproj"
+    existing.write_text("{}", encoding="utf-8")
+    missing = tmp_path / "gone.bcproj"
+    recent = RecentFilesManager(path=tmp_path / "recent.json")
+    recent.add(str(missing))
+    recent.add(str(existing))
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json"),
+        recent_files=recent,
+    )
+    window = MainWindow(services)
+    window._reload_recent_files_menu()
+
+    clear_label = window._tr("action.clear_recent")
+    menu_paths = [
+        action.text()
+        for action in window._recent_menu.actions()
+        if action.isEnabled()
+        and not action.isSeparator()
+        and action.text() != clear_label
+    ]
+    assert menu_paths == [str(existing)]
+    assert services.recent_files.files == [str(existing)]
+    assert window.welcome.recent_list.count() == 1
+
+
+def test_failed_open_recent_removes_entry(qapp, tmp_path, monkeypatch):
+    del qapp
+    from PySide6.QtWidgets import QMessageBox
+
+    from studio.recent_files import RecentFilesManager
+
+    ghost = tmp_path / "ghost.bcproj"
+    ghost.write_text("{}", encoding="utf-8")
+    recent = RecentFilesManager(path=tmp_path / "recent.json")
+    recent.add(str(ghost))
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json"),
+        recent_files=recent,
+    )
+    window = MainWindow(services)
+    window._reload_recent_files_menu()
+
+    monkeypatch.setattr(
+        QMessageBox, "warning", lambda *args, **kwargs: QMessageBox.StandardButton.Ok
+    )
+    monkeypatch.setattr(
+        "studio.main_window.load_project",
+        lambda path: (_ for _ in ()).throw(OSError("missing")),
+    )
+    monkeypatch.setattr(window, "_confirm_discard_unsaved_changes", lambda: True)
+
+    window._open_recent_project(str(ghost))
+
+    assert services.recent_files.files == []
+    assert not window.welcome.clear_recent_button.isEnabled()
+
+
 def test_clear_recent_files_updates_menu_and_welcome(qapp, tmp_path, monkeypatch):
     del qapp
     from PySide6.QtWidgets import QMessageBox

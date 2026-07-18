@@ -34,6 +34,25 @@ def test_recent_files_manager_clear(tmp_path):
     assert RecentFilesManager(path=path).files == []
 
 
+def test_recent_files_manager_prune_and_remove(tmp_path):
+    path = tmp_path / "recent.json"
+    existing = tmp_path / "demo.bcproj"
+    existing.write_text("{}", encoding="utf-8")
+    missing = tmp_path / "gone.bcproj"
+
+    manager = RecentFilesManager(path=path)
+    manager.add(str(missing))
+    manager.add(str(existing))
+
+    assert manager.prune_missing() == 1
+    assert manager.files == [str(existing)]
+    assert RecentFilesManager(path=path).files == [str(existing)]
+
+    assert manager.remove(str(existing)) is True
+    assert manager.files == []
+    assert manager.remove(str(existing)) is False
+
+
 def test_welcome_screen_lists_recent_paths(qapp):
     del qapp
     screen = WelcomeScreen()
