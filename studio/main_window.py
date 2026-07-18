@@ -55,10 +55,12 @@ from studio.dialogs import (
     ImportPiecesPreviewDialog,
     NewBoardDialog,
     NewPieceDialog,
+    NewProjectDialog,
     PreferencesDialog,
     ProjectTemplatePickerDialog,
     WhatsNewDialog,
 )
+from studio.project_ids import new_project_id
 from studio.board_csv_importer import import_boards_from_rows
 from studio.piece_csv_importer import import_pieces_from_rows
 from studio.import_headers import (
@@ -244,6 +246,7 @@ class MainWindow(QMainWindow):
 
     def _show_workspace(self) -> None:
         self._central_stack.setCurrentWidget(self.workspace)
+        self._emit(events.WORKSPACE_OPENED)
 
     def _build_panels(self):
         self.explorer = QTreeWidget()
@@ -369,10 +372,15 @@ class MainWindow(QMainWindow):
         self.setStatusBar(status)
         status.showMessage(self._tr("status.ready"))
 
-    def _load_empty_project(self):
+    def _load_empty_project(
+        self,
+        *,
+        name: str | None = None,
+        project_id: str | None = None,
+    ) -> None:
         project = StudioProject(
-            project_id="PRJ-UNTITLED",
-            name="Proyecto sin título",
+            project_id=project_id or new_project_id(),
+            name=name or self._tr("project.untitled"),
             boards=[],
             pieces=[],
             placements=[],
@@ -544,10 +552,39 @@ class MainWindow(QMainWindow):
         if not self._confirm_discard_unsaved_changes():
             return
 
-        self._load_empty_project()
+        prefs = self.services.preferences.current
+        dialog = NewProjectDialog(
+            self,
+            name=self._tr("project.untitled"),
+            units=prefs.units,
+            language=self._ui_language(),
+        )
+        if dialog.exec() != NewProjectDialog.DialogCode.Accepted:
+            return
+
+        data = dialog.project_data()
+        if not data["name"]:
+            QMessageBox.warning(
+                self,
+                self._tr("form.new_project"),
+                self._tr("dialog.project_name_required"),
+            )
+            return
+
+        if data["units"] != prefs.units:
+            self.services.preferences.update(
+                dataclass_replace(prefs, units=data["units"])
+            )
+            self._apply_preferences()
+
+        self._load_empty_project(name=data["name"])
         self._show_workspace()
-        self._emit(events.PROJECT_CREATED, kind="empty")
-        self._status("status.new_empty")
+        self._emit(
+            events.PROJECT_CREATED,
+            kind="empty",
+            name=data["name"],
+        )
+        self._status("status.new_project_created", name=data["name"])
 
     def _new_demo_project(self):
         if not self._confirm_discard_unsaved_changes():

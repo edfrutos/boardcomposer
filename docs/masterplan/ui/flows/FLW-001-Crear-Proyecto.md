@@ -97,6 +97,18 @@ Se crea un proyecto válido, reproducible y preparado para recibir información 
 
 ---
 
+## Estado de implementación (2026-07-18)
+
+- «Nuevo proyecto» abre `NewProjectDialog` (nombre obligatorio + unidades).
+- `project_id` único (`PRJ-` + UUID corto, ADR-006).
+- Eventos: `ProjectCreated`, `WorkspaceOpened`.
+- Plantillas de proyecto e importación inicial siguen disponibles como
+  flujos aparte (bienvenida / menú Proyecto).
+
+---
+
 ## Observaciones
 
-En versiones futuras este flujo podrá ampliarse con asistentes, plantillas de proyecto, importación inicial de datos y creación basada en proyectos existentes, manteniendo siempre un recorrido simple para los nuevos usuarios.
+En versiones futuras este flujo podrá ampliarse con asistentes más ricos,
+material por defecto a nivel de proyecto y creación basada en proyectos
+existentes, manteniendo siempre un recorrido simple para los nuevos usuarios.

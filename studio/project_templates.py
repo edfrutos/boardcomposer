@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-import uuid
+from studio.project_ids import new_project_id
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -182,7 +182,7 @@ class ProjectTemplatesManager:
             raise KeyError(name)
         source = load_project(template.path)
         return StudioProject(
-            project_id=f"PRJ-{uuid.uuid4().hex[:8].upper()}",
+            project_id=new_project_id(),
             name=source.name,
             boards=list(source.boards),
             pieces=list(source.pieces),
