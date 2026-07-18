@@ -122,6 +122,9 @@ colocaciones.
 Explorador; las piezas se conservan y las colocaciones del tablero se quitan
 (deshacible).
 
+**Estado 2026-07-18 (e):** renombrar proyecto (`RenameProjectCommand`) sin
+invalidar soluciones; menú Proyecto y contexto en la raíz del Explorador.
+
 En futuras versiones este flujo incorporará control de versiones del proyecto, diferencias visuales entre revisiones, edición colaborativa, bloqueo de recursos durante la edición, recuperación automática tras fallos y un sistema de deshacer/rehacer ilimitado basado en el historial de eventos.
 
 Asimismo, cada modificación significativa podrá registrarse como una revisión identificable, facilitando auditorías, comparaciones entre estados del proyecto y reproducción exacta de cualquier versión anterior.

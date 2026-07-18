@@ -41,6 +41,7 @@ from studio.commands import (
     EditPieceCommand,
     ImportBoardsCommand,
     ImportPiecesCommand,
+    RenameProjectCommand,
     RotatePieceCommand,
 )
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
@@ -161,6 +162,8 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["preferences"])
 
+        self._menus["project"].addAction(self._actions["rename_project"])
+        self._menus["project"].addSeparator()
         self._menus["project"].addAction(self._actions["add_board"])
         self._menus["project"].addAction(self._actions["add_piece"])
         self._menus["project"].addAction(self._actions["import_boards_csv"])
@@ -190,6 +193,7 @@ class MainWindow(QMainWindow):
         self._actions["new_demo_project"].triggered.connect(self._new_demo_project)
         self._actions["show_welcome"].triggered.connect(self._show_welcome_screen)
         self._actions["save_as_template"].triggered.connect(self._save_as_template)
+        self._actions["rename_project"].triggered.connect(self._rename_project)
         self._actions["add_board"].triggered.connect(self._add_board)
         self._actions["add_piece"].triggered.connect(self._add_piece)
         self._actions["import_boards_csv"].triggered.connect(
@@ -432,6 +436,7 @@ class MainWindow(QMainWindow):
                 return
 
             root = QTreeWidgetItem([project.name])
+            root.setData(0, Qt.ItemDataRole.UserRole, "project:root")
             boards_root = QTreeWidgetItem([self._tr("explorer.boards")])
             boards_root.setData(0, Qt.ItemDataRole.UserRole, "category:boards")
             pieces_root = QTreeWidgetItem([self._tr("explorer.pieces")])
@@ -529,7 +534,7 @@ class MainWindow(QMainWindow):
             return
         kind, object_id = parsed
 
-        if kind == "category":
+        if kind in {"category", "project"}:
             self.inspector.setText(f"{self._tr('inspector.title')}\n\n{item.text(0)}")
             return
 
@@ -2471,6 +2476,9 @@ class MainWindow(QMainWindow):
             return
         kind, object_id = parsed
 
+        if kind == "project" and action_key == "rename":
+            self._rename_project()
+            return
         if action_key == "add_board":
             self._add_board()
             return
@@ -2499,6 +2507,39 @@ class MainWindow(QMainWindow):
                 self._edit_board(object_id)
             elif action_key == "delete":
                 self._delete_board(object_id)
+
+    def _rename_project(self) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.nothing_to_rename")
+            return
+
+        name, ok = QInputDialog.getText(
+            self,
+            self._tr("dialog.rename_project_title"),
+            self._tr("form.project_name"),
+            text=project.name,
+        )
+        if not ok:
+            return
+        cleaned = name.strip()
+        if not cleaned:
+            QMessageBox.warning(
+                self,
+                self._tr("dialog.rename_project_title"),
+                self._tr("dialog.project_name_required"),
+            )
+            return
+        if cleaned == project.name:
+            return
+
+        command = RenameProjectCommand(self.services, project.name, cleaned)
+        self.services.commands.execute(command)
+        self._mark_project_modified(affects_layout=False, reason="project_renamed")
+        self._reload_explorer()
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.project_renamed", name=cleaned)
 
     def _delete_board(self, board_id: str) -> None:
         project = self.services.projects.current_project

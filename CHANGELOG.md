@@ -143,6 +143,8 @@
   editar tablero, añadir en categorías y vista previa de solución.
 - Eliminar tablero desde el Explorador con undo (`DeleteBoardCommand`);
   se quitan colocaciones del tablero y se conservan las piezas.
+- Renombrar proyecto (`Proyecto → Renombrar…` o clic derecho en la raíz
+  del Explorador) con undo, sin marcar soluciones como desactualizadas.
 
 ### Cambiado
 
