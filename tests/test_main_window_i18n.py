@@ -34,6 +34,26 @@ def test_main_window_menus_and_inspector_follow_language(qapp, tmp_path):
     assert "Preferences saved" in window.statusBar().currentMessage()
 
 
+def test_menu_actions_have_status_tips(qapp, tmp_path):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="en"))
+    window = MainWindow(services)
+
+    assert window._actions["solve_layout"].statusTip() == "Calculate layout solutions"
+    assert window._actions["fit_board"].statusTip() == "Zoom to fit all boards"
+
+    services.preferences.update(StudioPreferences(language="es"))
+    window._apply_preferences()
+
+    assert (
+        window._actions["solve_layout"].statusTip() == "Calcular soluciones de layout"
+    )
+    assert window._actions["zoom_in"].statusTip() == "Acercar el Workspace"
+
+
 def test_generate_and_compare_menus_are_populated(qapp, tmp_path):
     del qapp
     services = StudioServices(
