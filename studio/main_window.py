@@ -35,6 +35,8 @@ from dataclasses import replace as dataclass_replace
 from studio.commands import (
     DeletePieceCommand,
     DuplicatePieceCommand,
+    EditBoardCommand,
+    EditPieceCommand,
     ImportBoardsCommand,
     ImportPiecesCommand,
     RotatePieceCommand,
@@ -2511,7 +2513,6 @@ class MainWindow(QMainWindow):
             return
 
         board = next(board for board in project.boards if board.board_id == board_id)
-        board_index = project.boards.index(board)
 
         dialog = NewBoardDialog(
             self,
@@ -2538,7 +2539,7 @@ class MainWindow(QMainWindow):
             self._status("status.board_id_exists", id=new_board_id)
             return
 
-        project.boards[board_index] = StudioBoard(
+        updated_board = StudioBoard(
             board_id=new_board_id,
             length_mm=data["length_mm"],
             width_mm=data["width_mm"],
@@ -2546,14 +2547,11 @@ class MainWindow(QMainWindow):
             thickness_mm=data["thickness_mm"],
             quantity=data["quantity"],
         )
+        if updated_board == board:
+            return
 
-        for placement in project.placements:
-            if placement.board_id == board_id:
-                placement.board_id = new_board_id
-                placement.board_instance = min(
-                    placement.board_instance,
-                    data["quantity"] - 1,
-                )
+        command = EditBoardCommand(self.services, board, updated_board)
+        self.services.commands.execute(command)
 
         self._mark_project_modified(reason="board_edited")
 
@@ -2561,6 +2559,7 @@ class MainWindow(QMainWindow):
         self._reload_explorer()
         self._reload_solution_table()
         self.update_window_title()
+        self.update_undo_redo()
 
         if not self.services.layout.solutions_outdated:
             self._status("status.board_updated")
@@ -2571,7 +2570,6 @@ class MainWindow(QMainWindow):
             return
 
         piece = project.piece_by_id(piece_id)
-        piece_index = project.pieces.index(piece)
 
         dialog = NewPieceDialog(
             self,
@@ -2606,8 +2604,6 @@ class MainWindow(QMainWindow):
             self._status("status.piece_id_exists", id=new_piece_id)
             return
 
-        placement = project.placement_by_piece_id(piece_id)
-
         updated_piece = StudioPiece(
             piece_id=new_piece_id,
             length_mm=data["length_mm"],
@@ -2615,11 +2611,11 @@ class MainWindow(QMainWindow):
             material=data["material"],
             thickness_mm=data["thickness_mm"],
         )
+        if updated_piece == piece:
+            return
 
-        project.pieces[piece_index] = updated_piece
-
-        if placement is not None:
-            placement.piece_id = new_piece_id
+        command = EditPieceCommand(self.services, piece, updated_piece)
+        self.services.commands.execute(command)
 
         self._mark_project_modified(reason="piece_edited")
 
@@ -2629,30 +2625,9 @@ class MainWindow(QMainWindow):
 
         self.services.selection.select_one(new_piece_id)
         self.workspace.select_piece(new_piece_id)
-
-        position_text = ""
-        panel_text = ""
-        if placement is not None:
-            position_text = (
-                f"{self._tr('inspector.position')}: "
-                f"{self._format_length(placement.x_mm)}, "
-                f"{self._format_length(placement.y_mm)}\n"
-            )
-            panel_text = (
-                f"{self._tr('inspector.board')}: "
-                f"{self._panel_info_text(project, placement)}\n"
-            )
-
-        self.inspector.setText(
-            f"{self._tr('inspector.title')}\n\n"
-            f"{self._tr('inspector.piece')}: {updated_piece.piece_id}\n"
-            f"{self._tr('inspector.dimensions')}: "
-            f"{self._format_size(updated_piece.length_mm, updated_piece.width_mm)}\n"
-            f"{position_text}"
-            f"{panel_text}"
-            f"{self._tr('inspector.material')}: {updated_piece.material}"
-        )
+        self.refresh_inspector_for_piece(new_piece_id)
 
         self.update_window_title()
+        self.update_undo_redo()
         if not self.services.layout.solutions_outdated:
             self._status("status.piece_updated")

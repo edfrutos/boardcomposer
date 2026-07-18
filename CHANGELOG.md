@@ -137,6 +137,8 @@
   guardado.
 - Diálogo «Nuevo proyecto» con nombre y unidades; `project_id` único y
   evento `WorkspaceOpened` al abrir el Workspace (FLW-001).
+- Editar pieza o tablero con undo/redo (`EditPieceCommand` /
+  `EditBoardCommand`), actualizando ids en colocaciones.
 
 ### Cambiado
 
