@@ -396,6 +396,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Siguen faltando columnas obligatorias: {fields}"
         ),
         "import.mapping_template": "Plantilla:",
+        "import.mapping_delete": "Eliminar…",
+        "import.mapping_delete_title": "Eliminar plantilla de importación",
+        "import.mapping_delete_confirm": "¿Eliminar la plantilla «{name}»?",
         "import.mapping_save_title": "Guardar plantilla de importación",
         "import.mapping_save_prompt": (
             "¿Guardar este mapeo de columnas como plantilla reutilizable?"
@@ -848,6 +851,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "import.mapping_none": "(none)",
         "import.mapping_incomplete": ("Required columns are still missing: {fields}"),
         "import.mapping_template": "Template:",
+        "import.mapping_delete": "Delete…",
+        "import.mapping_delete_title": "Delete import template",
+        "import.mapping_delete_confirm": "Delete template “{name}”?",
         "import.mapping_save_title": "Save import template",
         "import.mapping_save_prompt": (
             "Save this column mapping as a reusable template?"

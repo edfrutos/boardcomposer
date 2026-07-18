@@ -163,3 +163,47 @@ def test_mapping_dialog_applies_selected_template(qapp):
         "length_mm": "L",
         "width_mm": "A",
     }
+
+
+def test_mapping_dialog_deletes_selected_template(qapp, tmp_path, monkeypatch):
+    del qapp
+    from PySide6.QtWidgets import QMessageBox
+
+    from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
+
+    path = tmp_path / "import_templates.json"
+    manager = ImportTemplatesManager(path=path)
+    manager.save_template(
+        "boards",
+        "ERP",
+        {
+            "board_id": "Codigo",
+            "length_mm": "L",
+            "width_mm": "A",
+        },
+    )
+    dialog = ImportColumnMappingDialog(
+        fieldnames=["Codigo", "L", "A"],
+        field_order=("board_id", "length_mm", "width_mm"),
+        required_fields=("board_id", "length_mm", "width_mm"),
+        initial_map={},
+        missing_fields=["board_id"],
+        templates_manager=manager,
+        kind="boards",
+    )
+
+    assert dialog._template_combo is not None
+    assert dialog._delete_template_button is not None
+    dialog._template_combo.setCurrentIndex(1)
+    assert dialog._delete_template_button.isEnabled()
+
+    monkeypatch.setattr(
+        QMessageBox,
+        "question",
+        lambda *args, **kwargs: QMessageBox.StandardButton.Yes,
+    )
+    dialog._delete_selected_template()
+
+    assert manager.names("boards") == []
+    assert dialog._template_combo.count() == 1
+    assert dialog._delete_template_button.isEnabled() is False

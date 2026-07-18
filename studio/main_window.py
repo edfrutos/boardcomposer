@@ -969,7 +969,8 @@ class MainWindow(QMainWindow):
             required_fields=required_fields,
             initial_map=initial_map,
             missing_fields=missing_fields,
-            templates=self.services.import_templates.for_kind(kind),
+            templates_manager=self.services.import_templates,
+            kind=kind,
             language=self._ui_language(),
             parent=self,
         )

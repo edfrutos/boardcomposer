@@ -127,4 +127,4 @@ puede reutilizar plantillas guardadas).
 - Plantillas de mapeo de columnas (`ImportTemplatesManager`,
   `~/.boardcomposer/import_templates.json`): se reutilizan automáticamente
   cuando cubren las columnas obligatorias; si no, el asistente permite
-  elegirlas y guardar un mapeo nuevo.
+  elegirlas, guardar un mapeo nuevo o eliminar una plantilla existente.
