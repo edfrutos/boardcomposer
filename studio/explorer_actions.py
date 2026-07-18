@@ -19,6 +19,8 @@ def explorer_context_actions(role: object) -> tuple[str, ...]:
     if parsed is None:
         return ()
     kind, object_id = parsed
+    if kind == "project":
+        return ("rename",)
     if kind == "piece":
         return ("edit", "duplicate", "delete")
     if kind == "board":

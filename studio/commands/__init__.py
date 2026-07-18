@@ -10,6 +10,7 @@ from studio.commands.edit_piece_command import EditPieceCommand
 from studio.commands.import_boards_command import ImportBoardsCommand
 from studio.commands.import_pieces_command import ImportPiecesCommand
 from studio.commands.move_piece_command import MovePieceCommand
+from studio.commands.rename_project_command import RenameProjectCommand
 from studio.commands.rotate_piece_command import RotatePieceCommand
 
 __all__ = [
@@ -23,5 +24,6 @@ __all__ = [
     "ImportBoardsCommand",
     "ImportPiecesCommand",
     "MovePieceCommand",
+    "RenameProjectCommand",
     "RotatePieceCommand",
 ]
