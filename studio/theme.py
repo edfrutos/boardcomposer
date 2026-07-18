@@ -273,6 +273,22 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
     QWidget#welcomeRoot {{
         background-color: {tokens.window};
     }}
+    QWidget#workspaceEmptyOverlay {{
+        background-color: {tokens.base};
+        border: 1px solid {tokens.border};
+        border-radius: 8px;
+    }}
+    QLabel#workspaceEmptyTitle {{
+        font-family: "{_UI_SEMIBOLD_FAMILY}";
+        font-size: 18px;
+        font-weight: 600;
+        color: {tokens.text};
+    }}
+    QLabel#workspaceEmptyBlurb {{
+        font-family: "{ui}";
+        font-size: 13px;
+        color: {tokens.muted};
+    }}
     QListWidget#welcomeRecentList {{
         background-color: {tokens.base};
         border: 1px solid {tokens.border};
