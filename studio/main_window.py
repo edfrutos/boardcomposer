@@ -32,7 +32,12 @@ from PySide6.QtWidgets import (
 from boardcomposer.export import solution_to_svg
 from studio.export_options import render_export
 from dataclasses import replace as dataclass_replace
-from studio.commands import DeletePieceCommand, RotatePieceCommand
+from studio.commands import (
+    DeletePieceCommand,
+    ImportBoardsCommand,
+    ImportPiecesCommand,
+    RotatePieceCommand,
+)
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import (
     UnsupportedProjectVersionError,
@@ -758,15 +763,21 @@ class MainWindow(QMainWindow):
         if dialog.exec() != dialog.DialogCode.Accepted:
             return
 
-        for board in result.valid_boards:
-            project.boards.append(board)
+        boards = list(result.valid_boards)
+        if not boards:
+            self._status("status.boards_imported", 5000, n=0)
+            return
 
-        self._mark_project_modified()
+        command = ImportBoardsCommand(self.services, boards)
+        self.services.commands.execute(command)
+
+        self._mark_project_modified(reason="boards_imported")
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
-        self._emit(events.CSV_IMPORTED, kind="boards", count=len(result.valid_boards))
-        self._status("status.boards_imported", 5000, n=len(result.valid_boards))
+        self.update_undo_redo()
+        self._emit(events.CSV_IMPORTED, kind="boards", count=len(boards))
+        self._status("status.boards_imported", 5000, n=len(boards))
 
     def _import_pieces_from_csv(self) -> None:
         project = self.services.projects.current_project
@@ -837,13 +848,18 @@ class MainWindow(QMainWindow):
         if dialog.exec() != dialog.DialogCode.Accepted:
             return
 
-        for piece in result.valid_pieces:
-            project.pieces.append(piece)
+        pieces = list(result.valid_pieces)
+        if not pieces:
+            self._status("status.pieces_imported", 5000, n=0)
+            return
+
+        placements: list[StudioPlacement] = []
+        for piece in pieces:
             x_mm, y_mm = self._find_free_piece_position(
                 piece.length_mm,
                 piece.width_mm,
             )
-            project.placements.append(
+            placements.append(
                 StudioPlacement(
                     piece_id=piece.piece_id,
                     x_mm=x_mm,
@@ -856,12 +872,16 @@ class MainWindow(QMainWindow):
                 )
             )
 
-        self._mark_project_modified()
+        command = ImportPiecesCommand(self.services, pieces, placements)
+        self.services.commands.execute(command)
+
+        self._mark_project_modified(reason="pieces_imported")
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
-        self._emit(events.CSV_IMPORTED, kind="pieces", count=len(result.valid_pieces))
-        self._status("status.pieces_imported", 5000, n=len(result.valid_pieces))
+        self.update_undo_redo()
+        self._emit(events.CSV_IMPORTED, kind="pieces", count=len(pieces))
+        self._status("status.pieces_imported", 5000, n=len(pieces))
 
     def _prompt_xlsx_sheet(self, file_path: str) -> str | None | bool:
         """Return sheet name, None for default/first, or False if cancelled."""

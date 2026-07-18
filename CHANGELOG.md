@@ -122,6 +122,8 @@
   reconocen cabeceras obligatorias (FLW-002).
 - Selector de hoja al importar libros Excel con varias hojas; el preview
   muestra el id aunque la fila sea inválida.
+- Importación CSV/Excel de tableros y piezas deshacible (Ctrl+Z) con
+  `ImportBoardsCommand` / `ImportPiecesCommand`.
 
 ### Cambiado
 

@@ -121,3 +121,5 @@ cabeceras falla, Studio ofrece un asistente de mapeo de columnas.
   cuál usar. Samples: `data/samples/studio_*.csv` y `data/samples/studio_*.xlsx`.
 - Asistente de mapeo de columnas cuando fallan las obligatorias
   (`ImportColumnMappingDialog`, `studio/import_headers.py`).
+- La importación confirmada es deshacible (Ctrl+Z) vía
+  `ImportBoardsCommand` / `ImportPiecesCommand`.
