@@ -239,6 +239,24 @@ def test_edit_menu_includes_select_all_pieces(qapp, tmp_path):
     }
 
 
+def test_main_toolbar_reuses_core_actions(qapp, tmp_path):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="en"))
+    window = MainWindow(services)
+
+    assert window._toolbar.objectName() == "mainToolbar"
+    assert window._toolbar.windowTitle() == "Main toolbar"
+    toolbar_actions = set(window._toolbar.actions())
+    assert window._actions["solve_layout"] in toolbar_actions
+    assert window._actions["export_selected"] in toolbar_actions
+    assert window._actions["fit_board"] in toolbar_actions
+    assert window._toolbar_toggle in window._menus["view"].actions()
+    assert window._toolbar_toggle.text() == "Toolbar"
+
+
 def test_view_menu_includes_zoom_actions(qapp, tmp_path):
     del qapp
     services = StudioServices(

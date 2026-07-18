@@ -168,6 +168,8 @@
 - **Editar → Invertir selección** (Ctrl+Shift+I) en el Workspace.
 - CTA de primeros pasos en el Workspace cuando el proyecto no tiene
   tableros ni piezas (añadir/importar).
+- Barra de herramientas principal (archivo, undo, zoom, generar, comparar,
+  exportar) con toggle en **Ver**.
 
 ### Cambiado
 

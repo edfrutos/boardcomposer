@@ -129,6 +129,30 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         font-family: "{_UI_SEMIBOLD_FAMILY}";
         font-weight: 600;
     }}
+    QToolBar#mainToolbar {{
+        background-color: {tokens.window};
+        border: none;
+        border-bottom: 1px solid {tokens.border};
+        spacing: 4px;
+        padding: 2px 6px;
+    }}
+    QToolBar#mainToolbar QToolButton {{
+        color: {tokens.text};
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-family: "{ui}";
+        font-size: 12px;
+    }}
+    QToolBar#mainToolbar QToolButton:hover {{
+        background-color: {tokens.alternate};
+        border: 1px solid {tokens.border};
+    }}
+    QToolBar#mainToolbar QToolButton:checked {{
+        background-color: {tokens.alternate};
+        border: 1px solid {tokens.accent};
+    }}
     QPushButton#primaryButton:hover {{
         background-color: {tokens.accent_hover};
     }}
