@@ -135,6 +135,8 @@
 - Diálogo de cambios sin guardar con nombre del proyecto, ruta o aviso de
   «aún no guardado», botones traducidos y error explícito si falla el
   guardado.
+- Diálogo «Nuevo proyecto» con nombre y unidades; `project_id` único y
+  evento `WorkspaceOpened` al abrir el Workspace (FLW-001).
 
 ### Cambiado
 
