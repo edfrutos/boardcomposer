@@ -154,6 +154,8 @@
   o la pantalla de bienvenida (confirma; no borra ficheros).
 - Menús **Generar** y **Comparar** poblados (Calcular layout; navegar/aplicar
   solución); se elimina el menú Herramientas vacío.
+- Menú **Ver**: Acercar / Alejar (Ctrl+= / Ctrl+-), además de ajustar y
+  cuadrícula.
 
 ### Cambiado
 

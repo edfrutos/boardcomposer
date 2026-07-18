@@ -62,10 +62,28 @@ def test_reload_project_creates_a_slot_per_physical_panel_instance(qapp):
     assert set(workspace._panel_slots.keys()) == {(0, 0), (0, 1)}
 
 
-def test_reload_project_can_preserve_camera_when_toggling_grid(qapp):
+def test_zoom_in_and_out_change_camera_zoom(qapp):
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.resize(800, 600)
+    workspace.reload_project()
+    baseline = workspace._camera.zoom
+
+    workspace.zoom_in()
+    assert workspace._camera.zoom > baseline
+
+    zoomed = workspace._camera.zoom
+    workspace.zoom_out()
+    assert workspace._camera.zoom < zoomed
+
+
+def test_reload_project_can_preserve_camera_when_toggling_grid(qapp, tmp_path):
     from dataclasses import replace
 
+    from studio.preferences import PreferencesManager
+
     services = _multipanel_services()
+    services.preferences = PreferencesManager(tmp_path / "preferences.json")
     workspace = BoardWorkspace(services)
     workspace.resize(800, 600)
     workspace.reload_project()
