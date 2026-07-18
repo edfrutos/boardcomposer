@@ -1527,6 +1527,9 @@ class MainWindow(QMainWindow):
             menu.setTitle(self._tr(f"menu.{key}"))
         for key, action in self._actions.items():
             action.setText(self._tr(f"action.{key}"))
+            tip_key = f"tip.{key}"
+            tip = self._tr(tip_key)
+            action.setStatusTip(tip if tip != tip_key else "")
         self._recent_menu.setTitle(self._tr("menu.recent"))
 
         self.explorer_dock.setWindowTitle(self._tr("dock.explorer"))
@@ -2416,6 +2419,9 @@ class MainWindow(QMainWindow):
 
         self._recent_menu.addSeparator()
         clear_action = QAction(self._tr("action.clear_recent"), self)
+        clear_tip = self._tr("tip.clear_recent")
+        if clear_tip != "tip.clear_recent":
+            clear_action.setStatusTip(clear_tip)
         clear_action.triggered.connect(self._clear_recent_files)
         self._recent_menu.addAction(clear_action)
 
