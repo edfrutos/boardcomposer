@@ -162,6 +162,7 @@
   (`setStatusTip`, i18n es/en).
 - Ruta del proyecto en la barra de estado (permanente) y
   **Proyecto → Abrir carpeta del proyecto** (también en el Explorador).
+- **Editar → Seleccionar todas las piezas** (Ctrl+A) en el Workspace.
 
 ### Cambiado
 

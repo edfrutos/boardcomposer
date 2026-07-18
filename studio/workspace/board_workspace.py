@@ -255,6 +255,11 @@ class BoardWorkspace(QGraphicsView):
         self.selection.select(piece_id)
         self.selection.sync_inspector(self.window())
 
+    def select_all_pieces(self) -> None:
+        """Select every piece on the canvas."""
+        self.selection.select_all()
+        self.selection.sync_inspector(self.window())
+
     def fit_board(self) -> None:
         """Fit the board to the viewport."""
         if not self._board_items:

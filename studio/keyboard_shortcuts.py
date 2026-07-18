@@ -26,6 +26,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("rotate_piece", "R"),
     ShortcutBinding("duplicate_piece", "Ctrl+D"),
     ShortcutBinding("delete_piece", "Backspace"),
+    ShortcutBinding("select_all_pieces", "Ctrl+A"),
     ShortcutBinding("preferences", "Ctrl+,"),
     ShortcutBinding("solve_layout", "Ctrl+Return"),
     ShortcutBinding("fit_board", "Ctrl+0"),

@@ -158,6 +158,8 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
         self._menus["edit"].addSeparator()
+        self._menus["edit"].addAction(self._actions["select_all_pieces"])
+        self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["preferences"])
 
         self._actions["toggle_grid"].setCheckable(True)
@@ -220,6 +222,7 @@ class MainWindow(QMainWindow):
             self._duplicate_selected_piece
         )
         self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
+        self._actions["select_all_pieces"].triggered.connect(self._select_all_pieces)
         self._actions["preferences"].triggered.connect(self._open_preferences)
         self._actions["fit_board"].triggered.connect(self._fit_board)
         self._actions["zoom_in"].triggered.connect(self._zoom_in)
@@ -1464,6 +1467,14 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self.update_undo_redo()
         self._status("status.piece_duplicated", id=new_id)
+
+    def _select_all_pieces(self) -> None:
+        self.workspace.select_all_pieces()
+        count = len(self.workspace.selection.selected())
+        if count:
+            self._status("status.pieces_selected", n=count)
+        else:
+            self._status("status.no_pieces_to_select")
 
     def _fit_board(self) -> None:
         self.workspace.fit_board()
