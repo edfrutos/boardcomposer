@@ -29,6 +29,12 @@ target-version = "py313"
 [tool.pylint.main]
 ignore-patterns = ["__pycache__"]
 
+[tool.pylint.messages_control]
+disable = [
+    "missing-module-docstring",
+    "missing-function-docstring",
+]
+
 [tool.pylint.typecheck]
 ignored-modules = [
     "PySide6.QtCore",
