@@ -162,6 +162,8 @@ class MainWindow(QMainWindow):
 
         self._actions["toggle_grid"].setCheckable(True)
         self._menus["view"].addAction(self._actions["fit_board"])
+        self._menus["view"].addAction(self._actions["zoom_in"])
+        self._menus["view"].addAction(self._actions["zoom_out"])
         self._menus["view"].addSeparator()
         self._menus["view"].addAction(self._actions["toggle_grid"])
 
@@ -216,6 +218,8 @@ class MainWindow(QMainWindow):
         self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
         self._actions["preferences"].triggered.connect(self._open_preferences)
         self._actions["fit_board"].triggered.connect(self._fit_board)
+        self._actions["zoom_in"].triggered.connect(self._zoom_in)
+        self._actions["zoom_out"].triggered.connect(self._zoom_out)
         self._actions["toggle_grid"].toggled.connect(self._toggle_grid)
         self._actions["solve_layout"].triggered.connect(self._solve_layout)
         self._actions["previous_solution"].triggered.connect(
@@ -1433,6 +1437,12 @@ class MainWindow(QMainWindow):
 
     def _fit_board(self) -> None:
         self.workspace.fit_board()
+
+    def _zoom_in(self) -> None:
+        self.workspace.zoom_in()
+
+    def _zoom_out(self) -> None:
+        self.workspace.zoom_out()
 
     def _toggle_grid(self, checked: bool) -> None:
         prefs = self.services.preferences.current

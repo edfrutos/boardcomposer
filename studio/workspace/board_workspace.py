@@ -272,6 +272,19 @@ class BoardWorkspace(QGraphicsView):
         self._camera.center = board_rect.center()
         self._apply_camera()
 
+    def zoom_in(self) -> None:
+        """Zoom in around the current camera center."""
+        self._zoom_by_steps(1)
+
+    def zoom_out(self) -> None:
+        """Zoom out around the current camera center."""
+        self._zoom_by_steps(-1)
+
+    def _zoom_by_steps(self, direction: int) -> None:
+        factor = self._camera.zoom_factor(direction)
+        self._camera.zoom = self._camera.clamp_zoom(self._camera.zoom * factor)
+        self._apply_camera()
+
     def wheelEvent(self, event: QWheelEvent) -> None:
         """Handle the wheel event."""
         mouse_scene_before = self.mapToScene(event.position().toPoint())
