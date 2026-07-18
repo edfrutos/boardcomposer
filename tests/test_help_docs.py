@@ -50,7 +50,9 @@ def test_whats_new_and_about_dialogs(qapp):
 
 def test_shortcuts_catalog_and_dialog(qapp):
     del qapp
-    assert any(b.action_key == "undo" and b.sequence == "Ctrl+Z" for b in STUDIO_SHORTCUTS)
+    assert any(
+        b.action_key == "undo" and b.sequence == "Ctrl+Z" for b in STUDIO_SHORTCUTS
+    )
     assert any(
         b.action_key == "duplicate_piece" and b.sequence == "Ctrl+D"
         for b in STUDIO_SHORTCUTS
