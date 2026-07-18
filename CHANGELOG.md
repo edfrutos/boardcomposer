@@ -130,6 +130,8 @@
   carpeta; eventos `ExportStarted` / `ExportFailed` en el Timeline (FLW-005).
 - Eliminar plantillas de mapeo de columnas desde el asistente de
   importación CSV/Excel.
+- Duplicar la pieza seleccionada (`Editar → Duplicar pieza`, Ctrl+D) con
+  undo/redo.
 
 ### Cambiado
 

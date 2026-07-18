@@ -106,6 +106,10 @@ desactualizadas cuando el proyecto cambia (banner en el Comparador, aviso al
 aplicar, eventos `ProjectModified` / `SolutionsMarkedOutdated`). Regenerar el
 layout limpia el aviso.
 
+**Estado 2026-07-18:** duplicar la pieza seleccionada (`Editar → Duplicar pieza`,
+Ctrl+D) con `DuplicatePieceCommand` (deshacible); el clon usa id `*-copy` y
+desplaza la colocación 20 mm.
+
 En futuras versiones este flujo incorporará control de versiones del proyecto, diferencias visuales entre revisiones, edición colaborativa, bloqueo de recursos durante la edición, recuperación automática tras fallos y un sistema de deshacer/rehacer ilimitado basado en el historial de eventos.
 
 Asimismo, cada modificación significativa podrá registrarse como una revisión identificable, facilitando auditorías, comparaciones entre estados del proyecto y reproducción exacta de cualquier versión anterior.

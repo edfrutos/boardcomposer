@@ -34,6 +34,7 @@ from studio.export_options import render_export
 from dataclasses import replace as dataclass_replace
 from studio.commands import (
     DeletePieceCommand,
+    DuplicatePieceCommand,
     ImportBoardsCommand,
     ImportPiecesCommand,
     RotatePieceCommand,
@@ -72,6 +73,7 @@ from studio.import_headers import (
     sanitize_header_map,
 )
 from studio.tabular_file import list_xlsx_sheets, load_tabular_file
+from studio.piece_ids import allocate_unique_piece_id
 from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
 from studio.solution_diff import (
     compare_solutions,
@@ -126,6 +128,7 @@ class MainWindow(QMainWindow):
         self._actions["undo"].setShortcut("Ctrl+Z")
         self._actions["redo"].setShortcut("Ctrl+Shift+Z")
         self._actions["rotate_piece"].setShortcut("R")
+        self._actions["duplicate_piece"].setShortcut("Ctrl+D")
         self._actions["delete_piece"].setShortcut("Backspace")
 
         self._menus["file"].addAction(self._actions["new_project"])
@@ -146,6 +149,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["redo"])
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["rotate_piece"])
+        self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["preferences"])
@@ -191,6 +195,9 @@ class MainWindow(QMainWindow):
         self._actions["undo"].triggered.connect(self._undo)
         self._actions["redo"].triggered.connect(self._redo)
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
+        self._actions["duplicate_piece"].triggered.connect(
+            self._duplicate_selected_piece
+        )
         self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
         self._actions["preferences"].triggered.connect(self._open_preferences)
         self._actions["solve_layout"].triggered.connect(self._solve_layout)
@@ -1289,6 +1296,71 @@ class MainWindow(QMainWindow):
         self._refresh_solutions_outdated_banner()
         self.update_window_title()
         self.update_undo_redo()
+
+    def _duplicate_selected_piece(self) -> None:
+        piece_id = self.workspace.selection.current()
+        if piece_id is None:
+            self._status("status.select_piece_first")
+            return
+
+        project = self.services.projects.current_project
+        if project is None:
+            return
+
+        try:
+            source = project.piece_by_id(piece_id)
+        except KeyError:
+            return
+
+        existing_ids = {piece.piece_id.casefold() for piece in project.pieces}
+        new_id = allocate_unique_piece_id(f"{source.piece_id}-copy", existing_ids)
+        clone = StudioPiece(
+            piece_id=new_id,
+            length_mm=source.length_mm,
+            width_mm=source.width_mm,
+            material=source.material,
+            thickness_mm=source.thickness_mm,
+        )
+
+        source_placement = project.placement_by_piece_id(piece_id)
+        if source_placement is not None:
+            placement = StudioPlacement(
+                piece_id=new_id,
+                x_mm=source_placement.x_mm + 20.0,
+                y_mm=source_placement.y_mm + 20.0,
+                rotated=source_placement.rotated,
+                rotation=source_placement.rotation,
+                board_id=source_placement.board_id,
+                board_instance=source_placement.board_instance,
+                stock_panel_index=source_placement.stock_panel_index,
+            )
+        else:
+            x_mm, y_mm = self._find_free_piece_position(
+                clone.length_mm,
+                clone.width_mm,
+            )
+            placement = StudioPlacement(
+                piece_id=new_id,
+                x_mm=x_mm,
+                y_mm=y_mm,
+                rotated=False,
+                rotation=0,
+                board_id=project.boards[0].board_id if project.boards else None,
+                board_instance=0,
+                stock_panel_index=0 if project.boards else None,
+            )
+
+        command = DuplicatePieceCommand(self.services, clone, placement)
+        self.services.commands.execute(command)
+
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self.workspace.select_piece(new_id)
+        self.refresh_inspector_for_piece(new_id)
+        self._mark_project_modified(reason="piece_duplicated")
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.piece_duplicated", id=new_id)
 
     def _open_preferences(self) -> None:
         dialog = PreferencesDialog(self.services.preferences.current, self)
