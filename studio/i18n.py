@@ -335,6 +335,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diag.exceeds_stock_panel": "Fuera del tablero físico",
         "diag.panel_thickness_mismatch": "Espesor incompatible",
         "diag.panel_material_mismatch": "Material incompatible",
+        "workspace.empty_title": "Empieza tu proyecto",
+        "workspace.empty_blurb": (
+            "Añade tableros y piezas, o impórtalos desde CSV/Excel "
+            "para comenzar a componer."
+        ),
         "status.ready": "BoardComposer Studio listo",
         "status.project_unsaved": "Proyecto aún no guardado",
         "status.project_folder_unavailable": "Guarda el proyecto para abrir su carpeta",
@@ -899,6 +904,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diag.exceeds_stock_panel": "Outside physical board",
         "diag.panel_thickness_mismatch": "Incompatible thickness",
         "diag.panel_material_mismatch": "Incompatible material",
+        "workspace.empty_title": "Start your project",
+        "workspace.empty_blurb": (
+            "Add boards and pieces, or import them from CSV/Excel to begin composing."
+        ),
         "status.ready": "BoardComposer Studio ready",
         "status.project_unsaved": "Project not saved yet",
         "status.project_folder_unavailable": "Save the project to open its folder",

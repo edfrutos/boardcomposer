@@ -52,6 +52,29 @@ def test_reload_project_creates_one_item_per_placement(qapp):
     assert len(workspace._piece_items) == 1
     assert workspace.piece_item_by_id("A") is not None
     assert workspace.piece_item_by_id("does-not-exist") is None
+    assert not workspace.empty_overlay.isVisible()
+
+
+def test_empty_workspace_overlay_shows_for_blank_project(qapp):
+    services = StudioServices()
+    services.projects.new_project(
+        StudioProject(
+            project_id="PRJ-EMPTY",
+            name="Empty",
+            boards=[],
+            pieces=[],
+            placements=[],
+        )
+    )
+    workspace = BoardWorkspace(services)
+    workspace.resize(800, 600)
+    workspace.retranslate("en")
+    workspace.reload_project()
+
+    assert workspace._project_is_empty()
+    assert not workspace.empty_overlay.isHidden()
+    assert workspace.empty_overlay.title.text() == "Start your project"
+    assert workspace.empty_overlay.add_board_button.text() == "Add board…"
 
 
 def test_reload_project_creates_a_slot_per_physical_panel_instance(qapp):

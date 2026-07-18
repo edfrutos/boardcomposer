@@ -5,8 +5,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, cast
 
-from PySide6.QtCore import QPoint, QPointF, QRectF, Qt
-from PySide6.QtGui import QMouseEvent, QPainter, QWheelEvent
+from PySide6.QtCore import QPoint, QPointF, QRectF, Qt, Signal
+from PySide6.QtGui import QMouseEvent, QPainter, QResizeEvent, QWheelEvent
 from PySide6.QtWidgets import (
     QGraphicsRectItem,
     QGraphicsScene,
@@ -14,9 +14,11 @@ from PySide6.QtWidgets import (
 )
 
 from studio.commands import MovePieceCommand
+from studio.i18n import DEFAULT_LANGUAGE
 from studio.workspace.board_item import create_board_item
 from studio.workspace.board_piece_item import BoardPieceItem
 from studio.workspace.drag_controller import DragController
+from studio.workspace.empty_overlay import EmptyWorkspaceOverlay
 from studio.workspace.grid import add_grid
 from studio.workspace.panel_layout import PanelSlot, arrange_panel_slots, slot_at_point
 from studio.workspace.piece_factory import create_piece_item
@@ -30,6 +32,11 @@ if TYPE_CHECKING:
 
 class BoardWorkspace(QGraphicsView):
     """Interactive board workspace for BoardComposer Studio."""
+
+    add_board_requested = Signal()
+    add_piece_requested = Signal()
+    import_boards_requested = Signal()
+    import_pieces_requested = Signal()
 
     def __init__(self, services):
         super().__init__()
@@ -47,6 +54,7 @@ class BoardWorkspace(QGraphicsView):
         self.selection = SelectionController(services)
         self._drag = DragController()
         self._drag_start: tuple[str, float, float] | None = None
+        self._language = DEFAULT_LANGUAGE
 
         self.setScene(self._scene)
         self.setRenderHint(QPainter.RenderHint.Antialiasing)
@@ -56,6 +64,17 @@ class BoardWorkspace(QGraphicsView):
         self.setResizeAnchor(QGraphicsView.ViewportAnchor.NoAnchor)
         self.setCursor(Qt.CursorShape.OpenHandCursor)
         self._apply_canvas_background()
+
+        self.empty_overlay = EmptyWorkspaceOverlay(self)
+        self.empty_overlay.add_board_requested.connect(self.add_board_requested.emit)
+        self.empty_overlay.add_piece_requested.connect(self.add_piece_requested.emit)
+        self.empty_overlay.import_boards_requested.connect(
+            self.import_boards_requested.emit
+        )
+        self.empty_overlay.import_pieces_requested.connect(
+            self.import_pieces_requested.emit
+        )
+        self.empty_overlay.hide()
 
     def _apply_canvas_background(self) -> None:
         from studio.workspace.canvas_style import color
@@ -89,6 +108,7 @@ class BoardWorkspace(QGraphicsView):
             self.fit_board()
         else:
             self._apply_camera()
+        self._refresh_empty_overlay()
 
     def _add_board(self) -> None:
         project = self.services.projects.current_project
@@ -249,6 +269,38 @@ class BoardWorkspace(QGraphicsView):
             old_x + (old_slot.x_mm if old_slot is not None else 0),
             old_y + (old_slot.y_mm if old_slot is not None else 0),
         )
+
+    def retranslate(self, language: str) -> None:
+        """Refresh empty-state strings for the selected language."""
+        self._language = language
+        self.empty_overlay.apply_language(language)
+
+    def _project_is_empty(self) -> bool:
+        project = self.services.projects.current_project
+        return project is not None and not project.boards and not project.pieces
+
+    def _refresh_empty_overlay(self) -> None:
+        visible = self._project_is_empty()
+        self.empty_overlay.setVisible(visible)
+        if visible:
+            self._position_empty_overlay()
+
+    def _position_empty_overlay(self) -> None:
+        overlay = self.empty_overlay
+        overlay.adjustSize()
+        hint = overlay.sizeHint()
+        overlay.resize(max(hint.width(), 320), hint.height())
+        geo = self.viewport().rect()
+        overlay.move(
+            geo.center().x() - overlay.width() // 2,
+            max(16, geo.center().y() - overlay.height() // 2),
+        )
+
+    def resizeEvent(self, event: QResizeEvent) -> None:
+        """Keep the empty-state overlay centered on resize."""
+        super().resizeEvent(event)
+        if self.empty_overlay.isVisible():
+            self._position_empty_overlay()
 
     def select_piece(self, piece_id: str) -> None:
         """Select the piece."""

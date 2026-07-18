@@ -253,6 +253,10 @@ class MainWindow(QMainWindow):
 
     def _build_workspace(self):
         self.workspace = BoardWorkspace(self.services)
+        self.workspace.add_board_requested.connect(self._add_board)
+        self.workspace.add_piece_requested.connect(self._add_piece)
+        self.workspace.import_boards_requested.connect(self._import_boards_from_csv)
+        self.workspace.import_pieces_requested.connect(self._import_pieces_from_csv)
         self.welcome = WelcomeScreen()
         self.welcome.new_project_requested.connect(self._new_project)
         self.welcome.open_project_requested.connect(self._open_project)
@@ -1629,6 +1633,7 @@ class MainWindow(QMainWindow):
 
         self._reload_recent_files_menu()
         self._update_project_path_status()
+        self.workspace.retranslate(self._ui_language())
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication
