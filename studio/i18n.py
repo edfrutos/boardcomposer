@@ -79,6 +79,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.apply_layout": "Aplicar layout calculado",
         "action.no_recent": "Sin archivos recientes",
         "action.whats_new": "Novedades…",
+        "action.shortcuts": "Atajos de teclado…",
         "action.open_docs": "Documentación…",
         "action.about": "Acerca de BoardComposer…",
         "help.whats_new_title": "Novedades",
@@ -89,6 +90,13 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Studio para optimizar el corte de tableros. "
             "Consulta la documentación local y el CHANGELOG del repositorio."
         ),
+        "help.shortcuts_title": "Atajos de teclado",
+        "help.shortcuts_intro": (
+            "Atajos activos en BoardComposer Studio. "
+            "Los mismos valores se aplican desde el menú y el teclado."
+        ),
+        "help.shortcuts_col_action": "Acción",
+        "help.shortcuts_col_keys": "Atajo",
         "help.docs_missing": "No se encontró la documentación en:\n{path}",
         "status.docs_opened": "Documentación abierta",
         "dock.explorer": "Explorador",
@@ -574,6 +582,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.apply_layout": "Apply calculated layout",
         "action.no_recent": "No recent files",
         "action.whats_new": "What’s new…",
+        "action.shortcuts": "Keyboard shortcuts…",
         "action.open_docs": "Documentation…",
         "action.about": "About BoardComposer…",
         "help.whats_new_title": "What’s new",
@@ -584,6 +593,13 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Studio for optimizing board cutting. "
             "See the local documentation and the repository CHANGELOG."
         ),
+        "help.shortcuts_title": "Keyboard shortcuts",
+        "help.shortcuts_intro": (
+            "Active shortcuts in BoardComposer Studio. "
+            "The same bindings apply from the menu and the keyboard."
+        ),
+        "help.shortcuts_col_action": "Action",
+        "help.shortcuts_col_keys": "Shortcut",
         "help.docs_missing": "Documentation not found at:\n{path}",
         "status.docs_opened": "Documentation opened",
         "dock.explorer": "Explorer",
@@ -1034,6 +1050,7 @@ _ACTION_KEYS = (
     "next_solution",
     "apply_layout",
     "whats_new",
+    "shortcuts",
     "open_docs",
     "about",
 )

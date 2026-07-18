@@ -145,6 +145,9 @@
   se quitan colocaciones del tablero y se conservan las piezas.
 - Renombrar proyecto (`Proyecto → Renombrar…` o clic derecho en la raíz
   del Explorador) con undo, sin marcar soluciones como desactualizadas.
+- Diálogo **Ayuda → Atajos de teclado…** con catálogo compartido
+  (`studio/keyboard_shortcuts.py`); incluye atajos de archivo (Ctrl+N/O/S)
+  y preferencias además de undo/redo/rotar/duplicar/eliminar.
 
 ### Cambiado
 

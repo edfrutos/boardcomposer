@@ -63,8 +63,10 @@ from studio.dialogs import (
     NewProjectDialog,
     PreferencesDialog,
     ProjectTemplatePickerDialog,
+    ShortcutsDialog,
     WhatsNewDialog,
 )
+from studio.keyboard_shortcuts import apply_shortcuts
 from studio.project_ids import new_project_id
 from studio.board_csv_importer import import_boards_from_rows
 from studio.piece_csv_importer import import_pieces_from_rows
@@ -133,11 +135,7 @@ class MainWindow(QMainWindow):
 
         self._recent_menu = self._menus["file"].addMenu("")
 
-        self._actions["undo"].setShortcut("Ctrl+Z")
-        self._actions["redo"].setShortcut("Ctrl+Shift+Z")
-        self._actions["rotate_piece"].setShortcut("R")
-        self._actions["duplicate_piece"].setShortcut("Ctrl+D")
-        self._actions["delete_piece"].setShortcut("Backspace")
+        apply_shortcuts(self._actions)
 
         self._menus["file"].addAction(self._actions["new_project"])
         self._menus["file"].addAction(self._actions["new_from_template"])
@@ -180,6 +178,7 @@ class MainWindow(QMainWindow):
         self._menus["tools"].addAction(self._actions["apply_layout"])
 
         self._menus["help"].addAction(self._actions["whats_new"])
+        self._menus["help"].addAction(self._actions["shortcuts"])
         self._menus["help"].addAction(self._actions["open_docs"])
         self._menus["help"].addSeparator()
         self._menus["help"].addAction(self._actions["about"])
@@ -224,6 +223,7 @@ class MainWindow(QMainWindow):
             self._export_timeline_history
         )
         self._actions["whats_new"].triggered.connect(self._show_whats_new)
+        self._actions["shortcuts"].triggered.connect(self._show_shortcuts)
         self._actions["open_docs"].triggered.connect(self._open_documentation)
         self._actions["about"].triggered.connect(self._show_about)
 
@@ -701,6 +701,10 @@ class MainWindow(QMainWindow):
 
     def _show_about(self) -> None:
         dialog = AboutDialog(language=self._ui_language(), parent=self)
+        dialog.exec()
+
+    def _show_shortcuts(self) -> None:
+        dialog = ShortcutsDialog(language=self._ui_language(), parent=self)
         dialog.exec()
 
     def _open_documentation(self) -> None:
@@ -1274,9 +1278,7 @@ class MainWindow(QMainWindow):
         """Refresh the enabled state of undo and redo actions."""
         self._actions["undo"].setEnabled(self.services.commands.can_undo())
         self._actions["redo"].setEnabled(self.services.commands.can_redo())
-
-        self._actions["undo"].setShortcut("Ctrl+Z")
-        self._actions["redo"].setShortcut("Ctrl+Shift+Z")
+        apply_shortcuts(self._actions)
 
     def _undo(self):
         self.services.commands.undo()
@@ -2153,6 +2155,7 @@ class MainWindow(QMainWindow):
         )
 
         path, _selected_filter = QFileDialog.getSaveFileName(
+            # pyright: ignore[reportArgumentType]
             self,
             self._tr("dialog.export_selected"),
             default_filename,
