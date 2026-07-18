@@ -160,6 +160,11 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["preferences"])
 
+        self._actions["toggle_grid"].setCheckable(True)
+        self._menus["view"].addAction(self._actions["fit_board"])
+        self._menus["view"].addSeparator()
+        self._menus["view"].addAction(self._actions["toggle_grid"])
+
         self._menus["project"].addAction(self._actions["rename_project"])
         self._menus["project"].addSeparator()
         self._menus["project"].addAction(self._actions["add_board"])
@@ -210,6 +215,8 @@ class MainWindow(QMainWindow):
         )
         self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
         self._actions["preferences"].triggered.connect(self._open_preferences)
+        self._actions["fit_board"].triggered.connect(self._fit_board)
+        self._actions["toggle_grid"].toggled.connect(self._toggle_grid)
         self._actions["solve_layout"].triggered.connect(self._solve_layout)
         self._actions["previous_solution"].triggered.connect(
             self._previous_layout_solution
@@ -1423,6 +1430,24 @@ class MainWindow(QMainWindow):
         self.update_undo_redo()
         self._status("status.piece_duplicated", id=new_id)
 
+    def _fit_board(self) -> None:
+        self.workspace.fit_board()
+
+    def _toggle_grid(self, checked: bool) -> None:
+        prefs = self.services.preferences.current
+        if prefs.show_grid == checked:
+            return
+        self.services.preferences.update(dataclass_replace(prefs, show_grid=checked))
+        self.workspace.reload_project(fit=False)
+
+    def _sync_view_actions(self) -> None:
+        action = self._actions.get("toggle_grid")
+        if action is None:
+            return
+        action.blockSignals(True)
+        action.setChecked(self.services.preferences.current.show_grid)
+        action.blockSignals(False)
+
     def _open_preferences(self) -> None:
         dialog = PreferencesDialog(self.services.preferences.current, self)
         if dialog.exec() != PreferencesDialog.DialogCode.Accepted:
@@ -1540,6 +1565,7 @@ class MainWindow(QMainWindow):
         if app is not None:
             apply_theme(app, self.services.preferences.current.theme)
         self._retranslate_ui()
+        self._sync_view_actions()
         self.welcome.apply_language(self.services.preferences.current.language)
         self.workspace.reload_project()
         self._reload_explorer()

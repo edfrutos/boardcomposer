@@ -63,8 +63,11 @@ class BoardWorkspace(QGraphicsView):
         self.setBackgroundBrush(color("background"))
         self._scene.setBackgroundBrush(color("background"))
 
-    def reload_project(self) -> None:
-        """Reload the project."""
+    def reload_project(self, *, fit: bool = True) -> None:
+        """Reload the project.
+
+        When ``fit`` is False, preserve the current camera (e.g. grid toggle).
+        """
         self._apply_canvas_background()
         self._scene.clear()
         self._piece_items.clear()
@@ -82,7 +85,10 @@ class BoardWorkspace(QGraphicsView):
             add_grid(self._scene, grid_size=grid_size)
         self._add_board()
         self._add_pieces()
-        self.fit_board()
+        if fit:
+            self.fit_board()
+        else:
+            self._apply_camera()
 
     def _add_board(self) -> None:
         project = self.services.projects.current_project
@@ -251,7 +257,7 @@ class BoardWorkspace(QGraphicsView):
 
     def fit_board(self) -> None:
         """Fit the board to the viewport."""
-        if self._board_item is None:
+        if not self._board_items:
             return
 
         viewport_rect = self.viewport().rect()

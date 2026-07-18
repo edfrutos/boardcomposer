@@ -62,6 +62,24 @@ def test_reload_project_creates_a_slot_per_physical_panel_instance(qapp):
     assert set(workspace._panel_slots.keys()) == {(0, 0), (0, 1)}
 
 
+def test_reload_project_can_preserve_camera_when_toggling_grid(qapp):
+    from dataclasses import replace
+
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.resize(800, 600)
+    workspace.reload_project()
+    workspace._camera.zoom = workspace._camera.clamp_zoom(2.5)
+    workspace._apply_camera()
+    zoom = workspace._camera.zoom
+
+    services.preferences.update(replace(services.preferences.current, show_grid=False))
+    workspace.reload_project(fit=False)
+
+    assert workspace._camera.zoom == zoom
+    assert services.preferences.current.show_grid is False
+
+
 def test_dragging_a_piece_within_its_panel_updates_the_placement(qapp):
     services = _multipanel_services()
     workspace = BoardWorkspace(services)
