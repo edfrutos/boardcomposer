@@ -172,15 +172,15 @@ class MainWindow(QMainWindow):
         self._menus["project"].addAction(self._actions["import_boards_csv"])
         self._menus["project"].addAction(self._actions["import_pieces_csv"])
 
+        self._menus["generate"].addAction(self._actions["solve_layout"])
+
+        self._menus["compare"].addAction(self._actions["previous_solution"])
+        self._menus["compare"].addAction(self._actions["next_solution"])
+        self._menus["compare"].addSeparator()
+        self._menus["compare"].addAction(self._actions["apply_layout"])
+
         self._menus["export"].addAction(self._actions["export_selected"])
         self._menus["export"].addAction(self._actions["export_timeline"])
-
-        self._menus["tools"].addAction(self._actions["solve_layout"])
-        self._menus["tools"].addSeparator()
-        self._menus["tools"].addAction(self._actions["previous_solution"])
-        self._menus["tools"].addAction(self._actions["next_solution"])
-        self._menus["tools"].addSeparator()
-        self._menus["tools"].addAction(self._actions["apply_layout"])
 
         self._menus["help"].addAction(self._actions["whats_new"])
         self._menus["help"].addAction(self._actions["shortcuts"])

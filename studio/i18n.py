@@ -49,7 +49,6 @@ _STRINGS: dict[str, dict[str, str]] = {
         "menu.generate": "Generar",
         "menu.compare": "Comparar",
         "menu.export": "Exportar",
-        "menu.tools": "Herramientas",
         "menu.help": "Ayuda",
         "menu.recent": "Abrir recientes",
         "action.new_project": "Nuevo proyecto",
@@ -562,7 +561,6 @@ _STRINGS: dict[str, dict[str, str]] = {
         "menu.generate": "Generate",
         "menu.compare": "Compare",
         "menu.export": "Export",
-        "menu.tools": "Tools",
         "menu.help": "Help",
         "menu.recent": "Open recent",
         "action.new_project": "New project",
@@ -1037,7 +1035,6 @@ _MENU_KEYS = (
     "generate",
     "compare",
     "export",
-    "tools",
     "help",
 )
 
