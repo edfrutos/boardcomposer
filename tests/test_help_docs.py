@@ -1,6 +1,10 @@
 """Tests for changelog highlights and documentation paths."""
 
-from studio.dialogs.help_dialogs import AboutDialog, WhatsNewDialog
+from PySide6.QtGui import QAction, QKeySequence
+from PySide6.QtWidgets import QTableWidget
+
+from studio.dialogs.help_dialogs import AboutDialog, ShortcutsDialog, WhatsNewDialog
+from studio.keyboard_shortcuts import STUDIO_SHORTCUTS, apply_shortcuts
 from studio.welcome_screen import WelcomeScreen
 from studio.whats_new import documentation_paths, load_whats_new, repo_root
 
@@ -42,6 +46,30 @@ def test_whats_new_and_about_dialogs(qapp):
     assert whats.windowTitle() == "What’s new"
     about = AboutDialog(language="en")
     assert about.windowTitle() == "About"
+
+
+def test_shortcuts_catalog_and_dialog(qapp):
+    del qapp
+    assert any(
+        b.action_key == "undo" and b.sequence == "Ctrl+Z" for b in STUDIO_SHORTCUTS
+    )
+    assert any(
+        b.action_key == "duplicate_piece" and b.sequence == "Ctrl+D"
+        for b in STUDIO_SHORTCUTS
+    )
+
+    actions = {binding.action_key: QAction("") for binding in STUDIO_SHORTCUTS}
+    apply_shortcuts(actions)
+    assert actions["save"].shortcut() == QKeySequence("Ctrl+S")
+    assert actions["rotate_piece"].shortcut() == QKeySequence("R")
+
+    dialog = ShortcutsDialog(language="en")
+    assert dialog.windowTitle() == "Keyboard shortcuts"
+    table = dialog.findChild(QTableWidget)
+    assert table is not None
+    assert table.rowCount() == len(STUDIO_SHORTCUTS)
+    assert table.item(0, 0) is not None
+    assert table.item(0, 1) is not None
 
 
 def test_welcome_has_docs_and_whats_new_buttons(qapp):

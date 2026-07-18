@@ -1,4 +1,4 @@
-"""Help dialogs: What's New and About."""
+"""Help dialogs: What's New, About, and keyboard shortcuts."""
 
 from __future__ import annotations
 
@@ -6,11 +6,14 @@ from PySide6.QtWidgets import (
     QDialog,
     QDialogButtonBox,
     QLabel,
+    QTableWidget,
+    QTableWidgetItem,
     QTextEdit,
     QVBoxLayout,
 )
 
 from studio.i18n import DEFAULT_LANGUAGE, tr
+from studio.keyboard_shortcuts import STUDIO_SHORTCUTS
 from studio.whats_new import load_whats_new
 from studio.welcome_screen import STUDIO_VERSION
 
@@ -57,6 +60,46 @@ class AboutDialog(QDialog):
         blurb = QLabel(tr("help.about_blurb", language))
         blurb.setWordWrap(True)
         layout.addWidget(blurb)
+
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
+        buttons.accepted.connect(self.accept)
+        layout.addWidget(buttons)
+
+
+class ShortcutsDialog(QDialog):
+    """Read-only table of Studio keyboard shortcuts."""
+
+    def __init__(self, *, language: str = DEFAULT_LANGUAGE, parent=None) -> None:
+        super().__init__(parent)
+        self.setWindowTitle(tr("help.shortcuts_title", language))
+        self.setMinimumSize(420, 360)
+
+        layout = QVBoxLayout(self)
+        intro = QLabel(tr("help.shortcuts_intro", language))
+        intro.setWordWrap(True)
+        layout.addWidget(intro)
+
+        table = QTableWidget(len(STUDIO_SHORTCUTS), 2)
+        table.setHorizontalHeaderLabels(
+            [
+                tr("help.shortcuts_col_action", language),
+                tr("help.shortcuts_col_keys", language),
+            ]
+        )
+        table.verticalHeader().setVisible(False)
+        table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+        table.setSelectionMode(QTableWidget.SelectionMode.NoSelection)
+        table.setShowGrid(False)
+        for row, binding in enumerate(STUDIO_SHORTCUTS):
+            table.setItem(
+                row,
+                0,
+                QTableWidgetItem(tr(f"action.{binding.action_key}", language)),
+            )
+            table.setItem(row, 1, QTableWidgetItem(binding.sequence))
+        table.resizeColumnsToContents()
+        table.horizontalHeader().setStretchLastSection(True)
+        layout.addWidget(table)
 
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
         buttons.accepted.connect(self.accept)
