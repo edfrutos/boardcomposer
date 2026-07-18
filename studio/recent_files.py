@@ -35,9 +35,26 @@ class RecentFilesManager:
         self.files.clear()
         self.save()
 
+    def remove(self, filename: str) -> bool:
+        """Remove one path from the list. Returns True if it was present."""
+        if filename not in self.files:
+            return False
+        self.files.remove(filename)
+        self.save()
+        return True
+
     def existing_files(self) -> list[str]:
         """Return recent paths that still exist on disk."""
         return [path for path in self.files if Path(path).is_file()]
+
+    def prune_missing(self) -> int:
+        """Drop paths that no longer exist on disk. Returns how many were removed."""
+        kept = self.existing_files()
+        removed = len(self.files) - len(kept)
+        if removed:
+            self.files = kept
+            self.save()
+        return removed
 
     def load(self) -> None:
         if self.path is None or not self.path.is_file():

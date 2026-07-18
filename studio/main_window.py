@@ -2394,17 +2394,20 @@ class MainWindow(QMainWindow):
         self._status("status.project_opened", path=path)
 
     def _reload_recent_files_menu(self):
+        self.services.recent_files.prune_missing()
+        recent_paths = self.services.recent_files.files
+
         self._recent_menu.clear()
         if hasattr(self, "welcome"):
-            self.welcome.set_recent_files(self.services.recent_files.existing_files())
+            self.welcome.set_recent_files(recent_paths)
 
-        if not self.services.recent_files.files:
+        if not recent_paths:
             empty_action = QAction(self._tr("action.no_recent"), self)
             empty_action.setEnabled(False)
             self._recent_menu.addAction(empty_action)
             return
 
-        for filename in self.services.recent_files.files:
+        for filename in recent_paths:
             action = QAction(filename, self)
             action.triggered.connect(
                 lambda checked=False, path=filename: self._open_recent_project(path)
@@ -2439,6 +2442,8 @@ class MainWindow(QMainWindow):
         try:
             project = load_project(path)
         except (UnsupportedProjectVersionError, OSError) as error:
+            self.services.recent_files.remove(path)
+            self._reload_recent_files_menu()
             QMessageBox.warning(self, self._tr("dialog.open_project"), str(error))
             return
 
