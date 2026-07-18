@@ -35,6 +35,13 @@ class SelectionController:
         """Select every bound piece item."""
         self.select_many([item.piece_id for item in self._items])
 
+    def invert_selection(self) -> None:
+        """Select unbound pieces and deselect currently selected ones."""
+        selected = self._selected_ids
+        self.select_many(
+            [item.piece_id for item in self._items if item.piece_id not in selected]
+        )
+
     def clear(self) -> None:
         self._selected_ids.clear()
 

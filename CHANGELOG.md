@@ -165,6 +165,7 @@
 - **Editar → Seleccionar todas las piezas** (Ctrl+A) en el Workspace.
 - **Editar → Deseleccionar piezas** (Escape) para limpiar la selección del
   canvas.
+- **Editar → Invertir selección** (Ctrl+Shift+I) en el Workspace.
 
 ### Cambiado
 
