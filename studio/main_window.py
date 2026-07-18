@@ -159,6 +159,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["delete_piece"])
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["select_all_pieces"])
+        self._menus["edit"].addAction(self._actions["deselect_pieces"])
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["preferences"])
 
@@ -223,6 +224,7 @@ class MainWindow(QMainWindow):
         )
         self._actions["delete_piece"].triggered.connect(self._delete_selected_piece)
         self._actions["select_all_pieces"].triggered.connect(self._select_all_pieces)
+        self._actions["deselect_pieces"].triggered.connect(self._deselect_pieces)
         self._actions["preferences"].triggered.connect(self._open_preferences)
         self._actions["fit_board"].triggered.connect(self._fit_board)
         self._actions["zoom_in"].triggered.connect(self._zoom_in)
@@ -1475,6 +1477,12 @@ class MainWindow(QMainWindow):
             self._status("status.pieces_selected", n=count)
         else:
             self._status("status.no_pieces_to_select")
+
+    def _deselect_pieces(self) -> None:
+        had_selection = bool(self.workspace.selection.selected())
+        self.workspace.clear_piece_selection()
+        if had_selection:
+            self._status("status.selection_cleared")
 
     def _fit_board(self) -> None:
         self.workspace.fit_board()
