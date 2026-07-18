@@ -101,10 +101,11 @@ Las piezas válidas quedan incorporadas al proyecto sin alterar la información 
 
 ## Observaciones
 
-En futuras versiones se admitirán plantillas de importación, formatos de
-terceros adicionales y reglas de validación configurables por el usuario.
-Excel `.xlsx` (primera hoja) ya está soportado. Si el auto-match de
-cabeceras falla, Studio ofrece un asistente de mapeo de columnas.
+Plantillas de mapeo de columnas ya están soportadas. En futuras versiones
+se admitirán formatos de terceros adicionales y reglas de validación
+configurables por el usuario. Excel `.xlsx` ya está soportado. Si el
+auto-match de cabeceras falla, Studio ofrece un asistente de mapeo (y
+puede reutilizar plantillas guardadas).
 
 ---
 
@@ -123,3 +124,7 @@ cabeceras falla, Studio ofrece un asistente de mapeo de columnas.
   (`ImportColumnMappingDialog`, `studio/import_headers.py`).
 - La importación confirmada es deshacible (Ctrl+Z) vía
   `ImportBoardsCommand` / `ImportPiecesCommand`.
+- Plantillas de mapeo de columnas (`ImportTemplatesManager`,
+  `~/.boardcomposer/import_templates.json`): se reutilizan automáticamente
+  cuando cubren las columnas obligatorias; si no, el asistente permite
+  elegirlas y guardar un mapeo nuevo.

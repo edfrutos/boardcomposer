@@ -124,6 +124,8 @@
   muestra el id aunque la fila sea inválida.
 - Importación CSV/Excel de tableros y piezas deshacible (Ctrl+Z) con
   `ImportBoardsCommand` / `ImportPiecesCommand`.
+- Plantillas de mapeo de columnas al importar CSV/Excel: se guardan y
+  reaplican automáticamente cuando el archivo trae las mismas cabeceras.
 
 ### Cambiado
 
