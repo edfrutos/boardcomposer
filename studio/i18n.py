@@ -279,6 +279,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.board_added": "Tablero añadido",
         "status.boards_imported": "{n} tablero(s) importado(s)",
         "status.pieces_imported": "{n} pieza(s) importada(s)",
+        "status.import_template_applied": "Mapeo aplicado desde plantilla «{name}»",
+        "status.import_template_saved": "Plantilla de importación «{name}» guardada",
         "status.piece_id_empty": "El identificador de la pieza no puede estar vacío",
         "status.piece_id_exists": "Ya existe una pieza con id {id}",
         "status.pieces_added": "{n} piezas añadidas",
@@ -387,6 +389,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "import.mapping_incomplete": (
             "Siguen faltando columnas obligatorias: {fields}"
         ),
+        "import.mapping_template": "Plantilla:",
+        "import.mapping_save_title": "Guardar plantilla de importación",
+        "import.mapping_save_prompt": (
+            "¿Guardar este mapeo de columnas como plantilla reutilizable?"
+        ),
+        "import.mapping_save_name": "Nombre de la plantilla:",
         "import.mapping.field.board_id": "Id tablero",
         "import.mapping.field.piece_id": "Id pieza",
         "import.mapping.field.length_mm": "Largo",
@@ -719,6 +727,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.board_added": "Board added",
         "status.boards_imported": "{n} board(s) imported",
         "status.pieces_imported": "{n} piece(s) imported",
+        "status.import_template_applied": "Mapping applied from template “{name}”",
+        "status.import_template_saved": "Import template “{name}” saved",
         "status.piece_id_empty": "The piece id cannot be empty",
         "status.piece_id_exists": "A piece with id {id} already exists",
         "status.pieces_added": "{n} pieces added",
@@ -825,6 +835,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "import.mapping_none": "(none)",
         "import.mapping_incomplete": ("Required columns are still missing: {fields}"),
+        "import.mapping_template": "Template:",
+        "import.mapping_save_title": "Save import template",
+        "import.mapping_save_prompt": (
+            "Save this column mapping as a reusable template?"
+        ),
+        "import.mapping_save_name": "Template name:",
         "import.mapping.field.board_id": "Board id",
         "import.mapping.field.piece_id": "Piece id",
         "import.mapping.field.length_mm": "Length",

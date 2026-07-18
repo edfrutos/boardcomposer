@@ -6,6 +6,7 @@ from studio.recent_files import RecentFilesManager
 from studio.commands import CommandManager
 from studio.events import EventBus
 from studio.export_templates import ExportTemplatesManager
+from studio.import_templates import ImportTemplatesManager
 from studio.project import ProjectManager
 from studio.project_templates import ProjectTemplatesManager
 from studio.selection import SelectionManager
@@ -27,6 +28,9 @@ class StudioServices:
     preferences: PreferencesManager = field(default_factory=PreferencesManager)
     export_templates: ExportTemplatesManager = field(
         default_factory=ExportTemplatesManager
+    )
+    import_templates: ImportTemplatesManager = field(
+        default_factory=ImportTemplatesManager
     )
     project_templates: ProjectTemplatesManager = field(
         default_factory=ProjectTemplatesManager

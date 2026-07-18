@@ -69,6 +69,7 @@ from studio.import_headers import (
     PIECE_REQUIRED_FIELDS,
     missing_required_fields,
     resolve_header_map,
+    sanitize_header_map,
 )
 from studio.tabular_file import list_xlsx_sheets, load_tabular_file
 from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
@@ -732,7 +733,15 @@ class MainWindow(QMainWindow):
         header_map = resolve_header_map(loaded.fieldnames, BOARD_HEADER_ALIASES)
         missing = missing_required_fields(header_map, BOARD_REQUIRED_FIELDS)
         if missing:
+            header_map, missing = self._apply_import_template(
+                kind="boards",
+                fieldnames=loaded.fieldnames,
+                header_map=header_map,
+                required_fields=BOARD_REQUIRED_FIELDS,
+            )
+        if missing:
             mapped = self._prompt_column_mapping(
+                kind="boards",
                 fieldnames=loaded.fieldnames,
                 field_order=BOARD_FIELD_ORDER,
                 required_fields=BOARD_REQUIRED_FIELDS,
@@ -817,7 +826,15 @@ class MainWindow(QMainWindow):
         header_map = resolve_header_map(loaded.fieldnames, PIECE_HEADER_ALIASES)
         missing = missing_required_fields(header_map, PIECE_REQUIRED_FIELDS)
         if missing:
+            header_map, missing = self._apply_import_template(
+                kind="pieces",
+                fieldnames=loaded.fieldnames,
+                header_map=header_map,
+                required_fields=PIECE_REQUIRED_FIELDS,
+            )
+        if missing:
             mapped = self._prompt_column_mapping(
+                kind="pieces",
                 fieldnames=loaded.fieldnames,
                 field_order=PIECE_FIELD_ORDER,
                 required_fields=PIECE_REQUIRED_FIELDS,
@@ -904,9 +921,41 @@ class MainWindow(QMainWindow):
             return False
         return choice
 
+    def _apply_import_template(
+        self,
+        *,
+        kind: str,
+        fieldnames: list[str] | tuple[str, ...],
+        header_map: dict[str, str],
+        required_fields: tuple[str, ...],
+    ) -> tuple[dict[str, str], list[str]]:
+        """Merge a saved mapping template when it covers required fields."""
+        template = self.services.import_templates.find_applicable(
+            kind,
+            fieldnames,
+            required_fields,
+        )
+        if template is None:
+            missing = missing_required_fields(header_map, required_fields)
+            return header_map, missing
+
+        merged = {
+            **header_map,
+            **sanitize_header_map(template.header_map, fieldnames),
+        }
+        missing = missing_required_fields(merged, required_fields)
+        if not missing:
+            self._status(
+                "status.import_template_applied",
+                5000,
+                name=template.name,
+            )
+        return merged, missing
+
     def _prompt_column_mapping(
         self,
         *,
+        kind: str,
         fieldnames: list[str] | tuple[str, ...],
         field_order: tuple[str, ...],
         required_fields: tuple[str, ...],
@@ -920,6 +969,7 @@ class MainWindow(QMainWindow):
             required_fields=required_fields,
             initial_map=initial_map,
             missing_fields=missing_fields,
+            templates=self.services.import_templates.for_kind(kind),
             language=self._ui_language(),
             parent=self,
         )
@@ -937,7 +987,43 @@ class MainWindow(QMainWindow):
                 ),
             )
             return None
+        self._maybe_save_import_template(kind, mapped)
         return mapped
+
+    def _maybe_save_import_template(
+        self, kind: str, header_map: dict[str, str]
+    ) -> None:
+        """Offer to persist the confirmed mapping as a reusable template."""
+        answer = QMessageBox.question(
+            self,
+            self._tr("import.mapping_save_title"),
+            self._tr("import.mapping_save_prompt"),
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+        if answer != QMessageBox.StandardButton.Yes:
+            return
+        name, ok = QInputDialog.getText(
+            self,
+            self._tr("import.mapping_save_title"),
+            self._tr("import.mapping_save_name"),
+        )
+        if not ok or not name.strip():
+            return
+        try:
+            template = self.services.import_templates.save_template(
+                kind,
+                name,
+                header_map,
+            )
+        except ValueError as exc:
+            QMessageBox.warning(
+                self,
+                self._tr("import.mapping_save_title"),
+                str(exc),
+            )
+            return
+        self._status("status.import_template_saved", 5000, name=template.name)
 
     def _add_piece(self):
         project = self.services.projects.current_project
