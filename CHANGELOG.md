@@ -128,6 +128,8 @@
   reaplican automáticamente cuando el archivo trae las mismas cabeceras.
 - Tras exportar una solución, diálogo para abrir el archivo o mostrar su
   carpeta; eventos `ExportStarted` / `ExportFailed` en el Timeline (FLW-005).
+- Eliminar plantillas de mapeo de columnas desde el asistente de
+  importación CSV/Excel.
 
 ### Cambiado
 

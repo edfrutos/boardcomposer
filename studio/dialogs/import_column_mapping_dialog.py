@@ -9,12 +9,14 @@ from PySide6.QtWidgets import (
     QFormLayout,
     QHBoxLayout,
     QLabel,
+    QMessageBox,
+    QPushButton,
     QVBoxLayout,
 )
 
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.import_headers import sanitize_header_map
-from studio.import_templates import ImportMappingTemplate
+from studio.import_templates import ImportMappingTemplate, ImportTemplatesManager
 
 _UNMAPPED = ""
 
@@ -31,6 +33,8 @@ class ImportColumnMappingDialog(QDialog):
         initial_map: dict[str, str],
         missing_fields: list[str] | tuple[str, ...],
         templates: list[ImportMappingTemplate] | tuple[ImportMappingTemplate, ...] = (),
+        templates_manager: ImportTemplatesManager | None = None,
+        kind: str = "boards",
         language: str = DEFAULT_LANGUAGE,
         parent=None,
     ) -> None:
@@ -39,7 +43,13 @@ class ImportColumnMappingDialog(QDialog):
         self._fieldnames = list(fieldnames)
         self._field_order = field_order
         self._required = set(required_fields)
-        self._templates = list(templates)
+        self._templates_manager = templates_manager
+        self._kind = kind
+        self._templates = (
+            list(templates_manager.for_kind(kind))
+            if templates_manager is not None
+            else list(templates)
+        )
         self._combos: dict[str, QComboBox] = {}
 
         self.setWindowTitle(tr("import.mapping_title", language))
@@ -55,20 +65,27 @@ class ImportColumnMappingDialog(QDialog):
         intro.setWordWrap(True)
         layout.addWidget(intro)
 
-        if self._templates:
+        self._template_combo: QComboBox | None = None
+        self._delete_template_button: QPushButton | None = None
+        if self._templates or self._templates_manager is not None:
             template_row = QHBoxLayout()
             template_row.addWidget(QLabel(tr("import.mapping_template", language)))
             self._template_combo = QComboBox()
-            self._template_combo.addItem(tr("import.mapping_none", language), None)
-            for template in self._templates:
-                self._template_combo.addItem(template.name, template)
-            self._template_combo.currentIndexChanged.connect(
-                self._apply_selected_template
-            )
+            self._reload_template_combo()
+            self._template_combo.currentIndexChanged.connect(self._on_template_changed)
             template_row.addWidget(self._template_combo, stretch=1)
+
+            if self._templates_manager is not None:
+                self._delete_template_button = QPushButton(
+                    tr("import.mapping_delete", language)
+                )
+                self._delete_template_button.clicked.connect(
+                    self._delete_selected_template
+                )
+                template_row.addWidget(self._delete_template_button)
+                self._update_delete_button()
+
             layout.addLayout(template_row)
-        else:
-            self._template_combo = None
 
         form = QFormLayout()
         for canonical in field_order:
@@ -95,6 +112,48 @@ class ImportColumnMappingDialog(QDialog):
         buttons.accepted.connect(self.accept)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
+
+    def _reload_template_combo(self) -> None:
+        if self._template_combo is None:
+            return
+        if self._templates_manager is not None:
+            self._templates = list(self._templates_manager.for_kind(self._kind))
+        self._template_combo.blockSignals(True)
+        self._template_combo.clear()
+        self._template_combo.addItem(tr("import.mapping_none", self._language), None)
+        for template in self._templates:
+            self._template_combo.addItem(template.name, template)
+        self._template_combo.setCurrentIndex(0)
+        self._template_combo.blockSignals(False)
+        self._update_delete_button()
+
+    def _on_template_changed(self) -> None:
+        self._update_delete_button()
+        self._apply_selected_template()
+
+    def _update_delete_button(self) -> None:
+        if self._delete_template_button is None or self._template_combo is None:
+            return
+        template = self._template_combo.currentData()
+        self._delete_template_button.setEnabled(
+            isinstance(template, ImportMappingTemplate)
+        )
+
+    def _delete_selected_template(self) -> None:
+        if self._templates_manager is None or self._template_combo is None:
+            return
+        template = self._template_combo.currentData()
+        if not isinstance(template, ImportMappingTemplate):
+            return
+        answer = QMessageBox.question(
+            self,
+            tr("import.mapping_delete_title", self._language),
+            tr("import.mapping_delete_confirm", self._language, name=template.name),
+        )
+        if answer != QMessageBox.StandardButton.Yes:
+            return
+        self._templates_manager.delete(template.kind, template.name)
+        self._reload_template_combo()
 
     def _apply_selected_template(self) -> None:
         if self._template_combo is None:
