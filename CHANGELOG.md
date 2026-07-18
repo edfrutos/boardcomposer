@@ -132,6 +132,9 @@
   importación CSV/Excel.
 - Duplicar la pieza seleccionada (`Editar → Duplicar pieza`, Ctrl+D) con
   undo/redo.
+- Diálogo de cambios sin guardar con nombre del proyecto, ruta o aviso de
+  «aún no guardado», botones traducidos y error explícito si falla el
+  guardado.
 
 ### Cambiado
 

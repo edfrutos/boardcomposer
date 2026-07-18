@@ -115,7 +115,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.export_timeline": "Exportar historial del Timeline",
         "dialog.filter_timeline": "JSON (*.json);;CSV (*.csv)",
         "status.timeline_exported": "Historial del Timeline exportado: {path}",
-        "status.timeline_export_empty": "No hay eventos en el Timeline para exportar",
+        "status.timeline_export_empty": ("No hay eventos en el Timeline para exportar"),
         "status.timeline_export_failed": "No se pudo exportar el Timeline: {error}",
         "timeline.empty": "Sin eventos todavía. Las acciones del Studio aparecerán aquí.",
         "timeline.detail.count": "{n} ítem(s)",
@@ -318,7 +318,18 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.open_project": "Abrir proyecto",
         "dialog.save_project": "Guardar proyecto",
         "dialog.unsaved_title": "Cambios sin guardar",
-        "dialog.unsaved_body": "El proyecto tiene cambios sin guardar.\n\n¿Quieres guardarlos antes de continuar?",
+        "dialog.unsaved_body": (
+            "El proyecto «{name}» tiene cambios sin guardar.\n"
+            "{location}\n\n"
+            "¿Quieres guardarlos antes de continuar?"
+        ),
+        "dialog.unsaved_unnamed": "Sin nombre",
+        "dialog.unsaved_location_file": "Archivo: {path}",
+        "dialog.unsaved_location_new": "Todavía no se ha guardado en un archivo.",
+        "dialog.unsaved_save": "Guardar",
+        "dialog.unsaved_discard": "Descartar",
+        "dialog.unsaved_cancel": "Cancelar",
+        "dialog.save_failed_title": "No se pudo guardar",
         "dialog.import_boards": "Importar inventario de tableros (CSV/Excel)",
         "dialog.import_boards_short": "Importar inventario de tableros",
         "dialog.import_pieces": "Importar piezas (CSV/Excel)",
@@ -575,7 +586,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.export_timeline": "Export Timeline history",
         "dialog.filter_timeline": "JSON (*.json);;CSV (*.csv)",
         "status.timeline_exported": "Timeline history exported: {path}",
-        "status.timeline_export_empty": "No Timeline events to export",
+        "status.timeline_export_empty": ("No Timeline events to export"),
         "status.timeline_export_failed": "Could not export Timeline: {error}",
         "timeline.empty": "No events yet. Studio actions will appear here.",
         "timeline.detail.count": "{n} item(s)",
@@ -778,7 +789,18 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.open_project": "Open project",
         "dialog.save_project": "Save project",
         "dialog.unsaved_title": "Unsaved changes",
-        "dialog.unsaved_body": "The project has unsaved changes.\n\nDo you want to save them before continuing?",
+        "dialog.unsaved_body": (
+            "The project “{name}” has unsaved changes.\n"
+            "{location}\n\n"
+            "Do you want to save them before continuing?"
+        ),
+        "dialog.unsaved_unnamed": "Untitled",
+        "dialog.unsaved_location_file": "File: {path}",
+        "dialog.unsaved_location_new": "It has not been saved to a file yet.",
+        "dialog.unsaved_save": "Save",
+        "dialog.unsaved_discard": "Discard",
+        "dialog.unsaved_cancel": "Cancel",
+        "dialog.save_failed_title": "Could not save",
         "dialog.import_boards": "Import board inventory (CSV/Excel)",
         "dialog.import_boards_short": "Import board inventory",
         "dialog.import_pieces": "Import pieces (CSV/Excel)",
