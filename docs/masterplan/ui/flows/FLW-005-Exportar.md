@@ -103,8 +103,20 @@ El usuario obtiene un archivo fiel a la solución seleccionada, acompañado de l
 
 ---
 
+## Estado de implementación (2026-07-18)
+
+- Diálogo SCR-007 con formatos, plantillas/perfiles y vista previa.
+- Tras guardar el archivo, Studio ofrece **Abrir archivo** o **Mostrar en
+  carpeta** (`studio/file_reveal.py`).
+- Eventos Timeline: `ExportStarted`, `ExportCompleted`, `ExportFailed`.
+
+---
+
 ## Observaciones
 
-En futuras versiones este flujo incorporará exportación por lotes, perfiles reutilizables, envío directo a servicios externos, integración con sistemas CAD/CAM y ERP, firma digital, colas de exportación y automatizaciones basadas en reglas.
+En futuras versiones este flujo incorporará exportación por lotes, envío
+directo a servicios externos, integración con sistemas CAD/CAM y ERP, firma
+digital, colas de exportación y automatizaciones basadas en reglas. Los
+perfiles reutilizables de exportación ya están disponibles en SCR-007.
 
 Asimismo, cada exportación podrá incluir metadatos como el identificador del proyecto, la versión de BoardComposer, el algoritmo empleado, la fecha de generación y una huella de integridad para facilitar auditorías y la reproducción exacta de los resultados.

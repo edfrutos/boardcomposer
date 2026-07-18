@@ -2029,6 +2029,11 @@ class MainWindow(QMainWindow):
         if not path:
             return
 
+        self._emit(
+            events.EXPORT_STARTED,
+            format=options.label,
+            path=path,
+        )
         try:
             payload = render_export(
                 solution,
@@ -2042,6 +2047,12 @@ class MainWindow(QMainWindow):
             else:
                 Path(path).write_text(payload, encoding="utf-8")
         except OSError as exc:
+            self._emit(
+                events.EXPORT_FAILED,
+                format=options.label,
+                path=path,
+                error=str(exc),
+            )
             self._status(
                 "status.export_failed",
                 5000,
@@ -2065,6 +2076,35 @@ class MainWindow(QMainWindow):
             path=path,
         )
         self._status("status.exported", 5000, format=options.label, path=path)
+        self._offer_open_exported_path(path)
+
+    def _offer_open_exported_path(self, path: str | Path) -> None:
+        """After a successful export, offer to open the file or its folder."""
+        from studio.file_reveal import open_local_path, reveal_in_file_manager
+
+        box = QMessageBox(self)
+        box.setIcon(QMessageBox.Icon.Information)
+        box.setWindowTitle(self._tr("export.done_title"))
+        box.setText(self._tr("export.done_message", path=str(path)))
+        open_button = box.addButton(
+            self._tr("export.open_file"),
+            QMessageBox.ButtonRole.AcceptRole,
+        )
+        reveal_button = box.addButton(
+            self._tr("export.reveal_folder"),
+            QMessageBox.ButtonRole.ActionRole,
+        )
+        box.addButton(QMessageBox.StandardButton.Close)
+        box.exec()
+
+        clicked = box.clickedButton()
+        if clicked is open_button:
+            if not open_local_path(path):
+                self._status("status.export_open_failed", 5000, path=path)
+            return
+        if clicked is reveal_button:
+            if not reveal_in_file_manager(path):
+                self._status("status.export_reveal_failed", 5000, path=path)
 
     def _save_project(self):
         project = self.services.projects.current_project

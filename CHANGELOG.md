@@ -126,6 +126,8 @@
   `ImportBoardsCommand` / `ImportPiecesCommand`.
 - Plantillas de mapeo de columnas al importar CSV/Excel: se guardan y
   reaplican automáticamente cuando el archivo trae las mismas cabeceras.
+- Tras exportar una solución, diálogo para abrir el archivo o mostrar su
+  carpeta; eventos `ExportStarted` / `ExportFailed` en el Timeline (FLW-005).
 
 ### Cambiado
 
