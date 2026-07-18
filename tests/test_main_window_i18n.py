@@ -34,6 +34,45 @@ def test_main_window_menus_and_inspector_follow_language(qapp, tmp_path):
     assert "Preferences saved" in window.statusBar().currentMessage()
 
 
+def test_clear_recent_files_updates_menu_and_welcome(qapp, tmp_path, monkeypatch):
+    del qapp
+    from PySide6.QtWidgets import QMessageBox
+
+    from studio.recent_files import RecentFilesManager
+
+    project = tmp_path / "demo.bcproj"
+    project.write_text("{}", encoding="utf-8")
+    recent = RecentFilesManager(path=tmp_path / "recent.json")
+    recent.add(str(project))
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json"),
+        recent_files=recent,
+    )
+    window = MainWindow(services)
+    window._reload_recent_files_menu()
+
+    assert any(
+        action.text() == window._tr("action.clear_recent")
+        for action in window._recent_menu.actions()
+    )
+    assert window.welcome.clear_recent_button.isEnabled()
+
+    monkeypatch.setattr(
+        QMessageBox,
+        "question",
+        lambda *args, **kwargs: QMessageBox.StandardButton.Yes,
+    )
+    window._clear_recent_files()
+
+    assert services.recent_files.files == []
+    assert not window.welcome.clear_recent_button.isEnabled()
+    assert any(
+        action.text() == window._tr("action.no_recent")
+        for action in window._recent_menu.actions()
+    )
+
+
 def test_view_menu_fit_and_grid_toggle(qapp, tmp_path):
     del qapp
     from studio.models import StudioBoard, StudioProject

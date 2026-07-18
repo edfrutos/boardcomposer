@@ -150,6 +150,8 @@
   y preferencias además de undo/redo/rotar/duplicar/eliminar.
 - Menú **Ver**: Ajustar al tablero (Ctrl+0) y Mostrar cuadrícula (Ctrl+G),
   persistiendo `show_grid` sin resetear el zoom.
+- Vaciar lista de proyectos recientes desde **Archivo → Abrir recientes**
+  o la pantalla de bienvenida (confirma; no borra ficheros).
 
 ### Cambiado
 
