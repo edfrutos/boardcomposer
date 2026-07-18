@@ -1,7 +1,7 @@
 """Main window for BoardComposer Studio."""
 
 from pathlib import Path
-from PySide6.QtCore import QSize, Qt
+from PySide6.QtCore import QPoint, QSize, Qt
 from PySide6.QtGui import QAction, QCloseEvent, QIcon
 from PySide6.QtWidgets import (
     QAbstractItemView,
@@ -15,6 +15,7 @@ from PySide6.QtWidgets import (
     QListWidget,
     QListWidgetItem,
     QMainWindow,
+    QMenu,
     QMenuBar,
     QMessageBox,
     QPushButton,
@@ -78,6 +79,7 @@ from studio.import_headers import (
 )
 from studio.tabular_file import list_xlsx_sheets, load_tabular_file
 from studio.piece_ids import allocate_unique_piece_id
+from studio.explorer_actions import explorer_context_actions, parse_explorer_role
 from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
 from studio.solution_diff import (
     compare_solutions,
@@ -253,9 +255,10 @@ class MainWindow(QMainWindow):
     def _build_panels(self):
         self.explorer = QTreeWidget()
         self.explorer.setHeaderHidden(True)
+        self.explorer.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.explorer.itemSelectionChanged.connect(self._on_explorer_selection_changed)
-
         self.explorer.itemDoubleClicked.connect(self._on_explorer_item_double_clicked)
+        self.explorer.customContextMenuRequested.connect(self._on_explorer_context_menu)
 
         self.explorer_dock = QDockWidget("", self)
         self.explorer_dock.setAllowedAreas(Qt.DockWidgetArea.LeftDockWidgetArea)
@@ -429,8 +432,11 @@ class MainWindow(QMainWindow):
 
             root = QTreeWidgetItem([project.name])
             boards_root = QTreeWidgetItem([self._tr("explorer.boards")])
+            boards_root.setData(0, Qt.ItemDataRole.UserRole, "category:boards")
             pieces_root = QTreeWidgetItem([self._tr("explorer.pieces")])
+            pieces_root.setData(0, Qt.ItemDataRole.UserRole, "category:pieces")
             solutions_root = QTreeWidgetItem([self._tr("explorer.solutions")])
+            solutions_root.setData(0, Qt.ItemDataRole.UserRole, "category:solutions")
             selected_solution_item = None
 
             for board in project.boards:
@@ -516,7 +522,15 @@ class MainWindow(QMainWindow):
             self.inspector.setText(f"{self._tr('inspector.title')}\n\n{item.text(0)}")
             return
 
-        kind, object_id = data.split(":", 1)
+        parsed = parse_explorer_role(data)
+        if parsed is None:
+            self.inspector.setText(f"{self._tr('inspector.title')}\n\n{item.text(0)}")
+            return
+        kind, object_id = parsed
+
+        if kind == "category":
+            self.inspector.setText(f"{self._tr('inspector.title')}\n\n{item.text(0)}")
+            return
 
         if kind == "solution":
             self._select_layout_solution(int(object_id))
@@ -2427,13 +2441,67 @@ class MainWindow(QMainWindow):
         """Handle the Qt window close event."""
         self._close_event(event)
 
-    def _on_explorer_item_double_clicked(self, item, _column):
-        data = item.data(0, Qt.ItemDataRole.UserRole)
-
-        if not data:
+    def _on_explorer_context_menu(self, position: QPoint) -> None:
+        item = self.explorer.itemAt(position)
+        if item is None:
+            return
+        role = item.data(0, Qt.ItemDataRole.UserRole)
+        actions = explorer_context_actions(role)
+        if not actions:
             return
 
-        kind, object_id = data.split(":", 1)
+        self.explorer.setCurrentItem(item)
+        menu = QMenu(self)
+        triggered: dict[QAction, str] = {}
+        for key in actions:
+            action = menu.addAction(self._tr(f"explorer.context.{key}"))
+            triggered[action] = key
+        chosen = menu.exec(self.explorer.viewport().mapToGlobal(position))
+        if chosen is None:
+            return
+        action_key = triggered.get(chosen)
+        if action_key is None:
+            return
+        self._run_explorer_context_action(action_key, role)
+
+    def _run_explorer_context_action(self, action_key: str, role: object) -> None:
+        parsed = parse_explorer_role(role)
+        if parsed is None:
+            return
+        kind, object_id = parsed
+
+        if action_key == "add_board":
+            self._add_board()
+            return
+        if action_key == "add_piece":
+            self._add_piece()
+            return
+        if action_key == "preview_solution" and kind == "solution":
+            try:
+                index = int(object_id)
+            except ValueError:
+                return
+            self._select_layout_solution(index)
+            return
+        if kind == "piece":
+            self.workspace.select_piece(object_id)
+            self.services.selection.select_one(object_id)
+            if action_key == "edit":
+                self._edit_piece(object_id)
+            elif action_key == "duplicate":
+                self._duplicate_selected_piece()
+            elif action_key == "delete":
+                self._delete_selected_piece()
+            return
+        if kind == "board" and action_key == "edit":
+            self._edit_board(object_id)
+
+    def _on_explorer_item_double_clicked(self, item, _column):
+        data = item.data(0, Qt.ItemDataRole.UserRole)
+        parsed = parse_explorer_role(data)
+        if parsed is None:
+            return
+        kind, object_id = parsed
 
         if kind == "board":
             self._edit_board(object_id)

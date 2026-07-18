@@ -139,6 +139,8 @@
   evento `WorkspaceOpened` al abrir el Workspace (FLW-001).
 - Editar pieza o tablero con undo/redo (`EditPieceCommand` /
   `EditBoardCommand`), actualizando ids en colocaciones.
+- Menú contextual en el Explorador: editar/duplicar/eliminar pieza,
+  editar tablero, añadir en categorías y vista previa de solución.
 
 ### Cambiado
 
