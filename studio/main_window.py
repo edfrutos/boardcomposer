@@ -2885,6 +2885,10 @@ class MainWindow(QMainWindow):
                 return
             self._select_layout_solution(index)
             return
+        if action_key == "copy_id" and kind in {"piece", "board"}:
+            self._copy_text_to_clipboard(object_id)
+            self._status("status.id_copied", id=object_id)
+            return
         if kind == "piece":
             self.workspace.select_piece(object_id)
             self.services.selection.select_one(object_id)
@@ -2902,6 +2906,13 @@ class MainWindow(QMainWindow):
                 self._duplicate_board(object_id)
             elif action_key == "delete":
                 self._delete_board(object_id)
+
+    def _copy_text_to_clipboard(self, text: str) -> None:
+        from PySide6.QtWidgets import QApplication
+
+        clipboard = QApplication.clipboard()
+        if clipboard is not None:
+            clipboard.setText(text)
 
     def _duplicate_board(self, board_id: str) -> None:
         project = self.services.projects.current_project
