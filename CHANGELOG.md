@@ -179,6 +179,8 @@
   al deseleccionar).
 - Selección desde el Explorador: Inspector de pieza completo (posición/panel) y
   al elegir un tablero se limpia la selección del canvas.
+- Confirmación al eliminar una pieza (menú, Backspace o Explorador), alineada
+  con la de tableros.
 
 ### Cambiado
 
