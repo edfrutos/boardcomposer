@@ -181,6 +181,7 @@
   al elegir un tablero se limpia la selección del canvas.
 - Confirmación al eliminar una pieza (menú, Backspace o Explorador), alineada
   con la de tableros.
+- Seleccionar un tablero en el Explorador lo resalta y centra en el Workspace.
 
 ### Cambiado
 

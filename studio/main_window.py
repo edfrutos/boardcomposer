@@ -680,6 +680,7 @@ class MainWindow(QMainWindow):
 
         if kind == "board":
             self.workspace.clear_piece_selection()
+            self.workspace.focus_board(object_id)
             board = next(
                 board for board in project.boards if board.board_id == object_id
             )
