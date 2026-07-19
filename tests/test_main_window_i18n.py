@@ -267,6 +267,35 @@ def test_window_layout_persists_geometry_and_toolbar_visibility(qapp, tmp_path):
     assert restored.restoreGeometry(saved_geometry) is True
 
 
+def test_view_menu_includes_dock_toggles(qapp, tmp_path):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+
+    view_actions = window._menus["view"].actions()
+    for key in ("explorer", "inspector", "timeline", "comparator"):
+        action = window._dock_toggles[key]
+        assert action in view_actions
+        assert action.isCheckable()
+        assert action.text() == window._tr(f"dock.{key}")
+
+    window.explorer_dock.setVisible(False)
+    assert window.explorer_dock.isHidden()
+    assert not window._dock_toggles["explorer"].isChecked()
+
+    window._dock_toggles["explorer"].trigger()
+    assert not window.explorer_dock.isHidden()
+    assert window._dock_toggles["explorer"].isChecked()
+
+    services.preferences.update(StudioPreferences(language="en"))
+    window._apply_preferences()
+    assert window._dock_toggles["inspector"].text() == "Inspector"
+    assert "Explorer" in window._dock_toggles["explorer"].statusTip()
+
+
 def test_main_toolbar_reuses_core_actions(qapp, tmp_path):
     del qapp
     services = StudioServices(
