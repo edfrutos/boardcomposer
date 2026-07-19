@@ -147,9 +147,7 @@ def test_explorer_board_focus_centers_and_clears_on_piece(qapp, tmp_path):
 
     assert window.workspace.focused_board_id() == "B2"
     b2_slots = [
-        slot
-        for slot in window.workspace._panel_slots.values()
-        if slot.board_id == "B2"
+        slot for slot in window.workspace._panel_slots.values() if slot.board_id == "B2"
     ]
     assert len(b2_slots) == 1
     expected_center = window.workspace._board_items[b2_slots[0].key].sceneBoundingRect()
