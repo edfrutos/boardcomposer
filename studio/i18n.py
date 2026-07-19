@@ -406,6 +406,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_opened": "Proyecto abierto: {path}",
         "status.board_updated": "Tablero actualizado",
         "status.board_deleted": "Tablero eliminado: {id}",
+        "status.piece_deleted": "Pieza eliminada: {id}",
         "status.piece_updated": "Pieza actualizada",
         "dialog.open_project": "Abrir proyecto",
         "dialog.save_project": "Guardar proyecto",
@@ -437,6 +438,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.delete_board_confirm_placements": (
             "¿Eliminar el tablero «{id}»?\n\n"
             "Se quitarán {n} colocación(es) de ese tablero; las piezas se conservan."
+        ),
+        "dialog.delete_piece_title": "Eliminar pieza",
+        "dialog.delete_piece_confirm": "¿Eliminar la pieza «{id}»?",
+        "dialog.delete_piece_confirm_placed": (
+            "¿Eliminar la pieza «{id}»?\n\n"
+            "También se quitará su colocación en el Workspace."
         ),
         "export.title": "Exportar solución",
         "export.intro": "Elige el formato y el contenido. La vista previa refleja las opciones seleccionadas.",
@@ -978,6 +985,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_opened": "Project opened: {path}",
         "status.board_updated": "Board updated",
         "status.board_deleted": "Board deleted: {id}",
+        "status.piece_deleted": "Piece deleted: {id}",
         "status.piece_updated": "Piece updated",
         "dialog.open_project": "Open project",
         "dialog.save_project": "Save project",
@@ -1009,6 +1017,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.delete_board_confirm_placements": (
             "Delete board “{id}”?\n\n"
             "{n} placement(s) on that board will be removed; pieces are kept."
+        ),
+        "dialog.delete_piece_title": "Delete piece",
+        "dialog.delete_piece_confirm": "Delete piece “{id}”?",
+        "dialog.delete_piece_confirm_placed": (
+            "Delete piece “{id}”?\n\n"
+            "Its placement on the Workspace will also be removed."
         ),
         "export.title": "Export solution",
         "export.intro": "Choose the format and content. The preview reflects the selected options.",

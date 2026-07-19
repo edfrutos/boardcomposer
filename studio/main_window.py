@@ -1487,6 +1487,23 @@ class MainWindow(QMainWindow):
         if piece_id is None:
             return
 
+        project = self.services.projects.current_project
+        if project is None:
+            return
+
+        placed = project.placement_by_piece_id(piece_id) is not None
+        if placed:
+            message = self._tr("dialog.delete_piece_confirm_placed", id=piece_id)
+        else:
+            message = self._tr("dialog.delete_piece_confirm", id=piece_id)
+        answer = QMessageBox.question(
+            self,
+            self._tr("dialog.delete_piece_title"),
+            message,
+        )
+        if answer != QMessageBox.StandardButton.Yes:
+            return
+
         command = DeletePieceCommand(self.services, piece_id)
 
         self.services.commands.execute(command)
@@ -1505,6 +1522,7 @@ class MainWindow(QMainWindow):
         self._refresh_solutions_outdated_banner()
         self.update_window_title()
         self.update_undo_redo()
+        self._status("status.piece_deleted", id=piece_id)
 
     def _duplicate_selected_piece(self) -> None:
         piece_id = self.workspace.selection.current()
