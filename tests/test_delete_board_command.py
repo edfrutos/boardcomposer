@@ -46,7 +46,7 @@ def _services() -> StudioServices:
 
 
 def test_explorer_board_context_includes_delete():
-    assert explorer_context_actions("board:B1") == ("edit", "delete")
+    assert explorer_context_actions("board:B1") == ("edit", "duplicate", "delete")
 
 
 def test_delete_board_removes_board_and_its_placements_keeps_pieces():

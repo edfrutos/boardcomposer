@@ -34,9 +34,11 @@ from PySide6.QtWidgets import (
 from boardcomposer.export import solution_to_svg
 from studio.export_options import render_export
 from dataclasses import replace as dataclass_replace
+from studio.board_ids import allocate_unique_board_id
 from studio.commands import (
     DeleteBoardCommand,
     DeletePieceCommand,
+    DuplicateBoardCommand,
     DuplicatePieceCommand,
     EditBoardCommand,
     EditPieceCommand,
@@ -2730,8 +2732,41 @@ class MainWindow(QMainWindow):
         if kind == "board":
             if action_key == "edit":
                 self._edit_board(object_id)
+            elif action_key == "duplicate":
+                self._duplicate_board(object_id)
             elif action_key == "delete":
                 self._delete_board(object_id)
+
+    def _duplicate_board(self, board_id: str) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        source = next(
+            (board for board in project.boards if board.board_id == board_id),
+            None,
+        )
+        if source is None:
+            return
+
+        existing_ids = {board.board_id.casefold() for board in project.boards}
+        new_id = allocate_unique_board_id(f"{source.board_id}-copy", existing_ids)
+        clone = StudioBoard(
+            board_id=new_id,
+            length_mm=source.length_mm,
+            width_mm=source.width_mm,
+            material=source.material,
+            thickness_mm=source.thickness_mm,
+            quantity=source.quantity,
+        )
+        command = DuplicateBoardCommand(self.services, clone)
+        self.services.commands.execute(command)
+
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._mark_project_modified(reason="board_duplicated")
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.board_duplicated", id=new_id)
 
     def _reveal_project_folder(self) -> None:
         from studio.file_reveal import reveal_in_file_manager

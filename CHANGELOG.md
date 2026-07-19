@@ -173,6 +173,7 @@
 - Persistencia de geometría de ventana y disposición de docks/toolbar en
   preferencias (se restaura al reabrir Studio).
 - Clic izquierdo en el canvas vacío (o fuera de una pieza) deselecciona.
+- Duplicar tablero desde el menú contextual del Explorador (con undo).
 
 ### Cambiado
 
