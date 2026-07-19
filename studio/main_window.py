@@ -3003,6 +3003,14 @@ class MainWindow(QMainWindow):
 
         if kind == "piece":
             self._edit_piece(object_id)
+            return
+
+        if kind == "solution":
+            try:
+                index = int(object_id)
+            except ValueError:
+                return
+            self._select_layout_solution(index)
 
     def _find_free_piece_position(
         self,
