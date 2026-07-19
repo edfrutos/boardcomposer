@@ -446,6 +446,20 @@ class MainWindow(QMainWindow):
             self.solutions_dock,
         )
 
+        self._menus["view"].addSeparator()
+        self._dock_toggles = {
+            "explorer": self.explorer_dock.toggleViewAction(),
+            "inspector": self.inspector_dock.toggleViewAction(),
+            "timeline": self.console_dock.toggleViewAction(),
+            "comparator": self.solutions_dock.toggleViewAction(),
+        }
+        for key, action in self._dock_toggles.items():
+            action.setText(self._tr(f"dock.{key}"))
+            tip_key = f"tip.toggle_{key}"
+            tip = self._tr(tip_key)
+            action.setStatusTip(tip if tip != tip_key else "")
+            self._menus["view"].addAction(action)
+
         self.clear_inspector()
 
     def _build_statusbar(self):
@@ -1743,6 +1757,12 @@ class MainWindow(QMainWindow):
             self._toolbar_toggle.setStatusTip(
                 tip if tip != "tip.toggle_toolbar" else ""
             )
+        if hasattr(self, "_dock_toggles"):
+            for key, action in self._dock_toggles.items():
+                action.setText(self._tr(f"dock.{key}"))
+                tip_key = f"tip.toggle_{key}"
+                tip = self._tr(tip_key)
+                action.setStatusTip(tip if tip != tip_key else "")
 
         self.explorer_dock.setWindowTitle(self._tr("dock.explorer"))
         self.inspector_dock.setWindowTitle(self._tr("dock.inspector"))
