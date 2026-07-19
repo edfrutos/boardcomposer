@@ -13,7 +13,7 @@ from PySide6.QtWidgets import (
 )
 
 from studio.i18n import DEFAULT_LANGUAGE, tr
-from studio.keyboard_shortcuts import STUDIO_SHORTCUTS
+from studio.keyboard_shortcuts import STUDIO_SHORTCUTS, format_shortcut_label
 from studio.whats_new import load_whats_new
 from studio.welcome_screen import STUDIO_VERSION
 
@@ -96,7 +96,11 @@ class ShortcutsDialog(QDialog):
                 0,
                 QTableWidgetItem(tr(f"action.{binding.action_key}", language)),
             )
-            table.setItem(row, 1, QTableWidgetItem(binding.sequence))
+            table.setItem(
+                row,
+                1,
+                QTableWidgetItem(format_shortcut_label(binding)),
+            )
         table.resizeColumnsToContents()
         table.horizontalHeader().setStretchLastSection(True)
         layout.addWidget(table)

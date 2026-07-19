@@ -25,7 +25,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("redo", "Ctrl+Shift+Z"),
     ShortcutBinding("rotate_piece", "R"),
     ShortcutBinding("duplicate_piece", "Ctrl+D"),
-    ShortcutBinding("delete_piece", "Backspace"),
+    ShortcutBinding("delete_piece", "Backspace", ("Delete",)),
     ShortcutBinding("select_all_pieces", "Ctrl+A"),
     ShortcutBinding("deselect_pieces", "Escape"),
     ShortcutBinding("invert_selection", "Ctrl+Shift+I"),
@@ -36,6 +36,13 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("zoom_out", "Ctrl+-"),
     ShortcutBinding("toggle_grid", "Ctrl+G"),
 )
+
+
+def format_shortcut_label(binding: ShortcutBinding) -> str:
+    """Human-readable shortcut list including alternates."""
+    if not binding.alternates:
+        return binding.sequence
+    return ", ".join((binding.sequence, *binding.alternates))
 
 
 def apply_shortcuts(actions: dict[str, QAction]) -> None:

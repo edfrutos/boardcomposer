@@ -187,6 +187,8 @@
 - Nivel de zoom del Workspace como porcentaje en la barra de estado.
 - Desplazar el Workspace con el botón medio del ratón (también sobre piezas).
 - Doble clic en una solución del Explorador para verla en vista previa.
+- Tecla Delete como atajo alternativo a Backspace para eliminar pieza;
+  Ayuda → Atajos muestra también las secuencias alternativas.
 
 ### Cambiado
 
