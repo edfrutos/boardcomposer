@@ -2894,6 +2894,8 @@ class MainWindow(QMainWindow):
             self.services.selection.select_one(object_id)
             if action_key == "edit":
                 self._edit_piece(object_id)
+            elif action_key == "rename":
+                self._rename_piece(object_id)
             elif action_key == "duplicate":
                 self._duplicate_selected_piece()
             elif action_key == "delete":
@@ -2902,6 +2904,8 @@ class MainWindow(QMainWindow):
         if kind == "board":
             if action_key == "edit":
                 self._edit_board(object_id)
+            elif action_key == "rename":
+                self._rename_board(object_id)
             elif action_key == "duplicate":
                 self._duplicate_board(object_id)
             elif action_key == "delete":
@@ -2989,6 +2993,115 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self.update_undo_redo()
         self._status("status.project_renamed", name=cleaned)
+
+    def _rename_piece(self, piece_id: str) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        try:
+            piece = project.piece_by_id(piece_id)
+        except KeyError:
+            return
+
+        name, ok = QInputDialog.getText(
+            self,
+            self._tr("dialog.rename_piece_title"),
+            self._tr("form.id"),
+            text=piece.piece_id,
+        )
+        if not ok:
+            return
+        new_piece_id = name.strip()
+        if not new_piece_id:
+            self._status("status.piece_id_empty")
+            return
+        if new_piece_id == piece_id:
+            return
+        if any(
+            existing.piece_id != piece_id
+            and existing.piece_id.strip().casefold() == new_piece_id.casefold()
+            for existing in project.pieces
+        ):
+            self._status("status.piece_id_exists", id=new_piece_id)
+            return
+
+        updated = StudioPiece(
+            piece_id=new_piece_id,
+            length_mm=piece.length_mm,
+            width_mm=piece.width_mm,
+            material=piece.material,
+            thickness_mm=piece.thickness_mm,
+        )
+        command = EditPieceCommand(self.services, piece, updated)
+        self.services.commands.execute(command)
+
+        self._mark_project_modified(reason="piece_renamed")
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self.services.selection.select_one(new_piece_id)
+        self.workspace.select_piece(new_piece_id)
+        self.refresh_inspector_for_piece(new_piece_id)
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.piece_renamed", id=new_piece_id)
+
+    def _rename_board(self, board_id: str) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        board = next(
+            (
+                candidate
+                for candidate in project.boards
+                if candidate.board_id == board_id
+            ),
+            None,
+        )
+        if board is None:
+            return
+
+        name, ok = QInputDialog.getText(
+            self,
+            self._tr("dialog.rename_board_title"),
+            self._tr("form.id"),
+            text=board.board_id,
+        )
+        if not ok:
+            return
+        new_board_id = name.strip()
+        if not new_board_id:
+            self._status("status.board_id_empty")
+            return
+        if new_board_id == board_id:
+            return
+        if any(
+            existing.board_id != board_id
+            and existing.board_id.strip().casefold() == new_board_id.casefold()
+            for existing in project.boards
+        ):
+            self._status("status.board_id_exists", id=new_board_id)
+            return
+
+        updated = StudioBoard(
+            board_id=new_board_id,
+            length_mm=board.length_mm,
+            width_mm=board.width_mm,
+            material=board.material,
+            thickness_mm=board.thickness_mm,
+            quantity=board.quantity,
+        )
+        command = EditBoardCommand(self.services, board, updated)
+        self.services.commands.execute(command)
+
+        self._mark_project_modified(reason="board_renamed")
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self.select_explorer_board(new_board_id)
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.board_renamed", id=new_board_id)
 
     def _delete_board(self, board_id: str) -> None:
         project = self.services.projects.current_project
