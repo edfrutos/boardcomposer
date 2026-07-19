@@ -65,7 +65,8 @@ class SelectionController:
                 window.clear_inspector()
             elif hasattr(window, "inspector"):
                 window.inspector.setText("Inspector\n\nSin selección")
-            return
-
-        if hasattr(window, "refresh_inspector_for_piece"):
+        elif hasattr(window, "refresh_inspector_for_piece"):
             window.refresh_inspector_for_piece(current)
+
+        if hasattr(window, "sync_explorer_piece_selection"):
+            window.sync_explorer_piece_selection()
