@@ -267,6 +267,43 @@ def test_window_layout_persists_geometry_and_toolbar_visibility(qapp, tmp_path):
     assert restored.restoreGeometry(saved_geometry) is True
 
 
+def test_status_bar_shows_workspace_zoom_percent(qapp, tmp_path):
+    del qapp
+    from studio.models import StudioBoard, StudioProject
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    services.projects.new_project(
+        StudioProject(
+            project_id="PRJ-Z",
+            name="Zoom",
+            boards=[StudioBoard("B1", 1000, 500, "Demo", 19, 1)],
+            pieces=[],
+            placements=[],
+        )
+    )
+    window = MainWindow(services)
+    window.workspace.resize(800, 600)
+    window.workspace.reload_project()
+
+    assert window._zoom_label.objectName() == "statusZoom"
+    assert window._zoom_label.text().endswith("%")
+    baseline = window.workspace.zoom
+    window.workspace.zoom_in()
+    assert window.workspace.zoom > baseline
+    assert window._zoom_label.text() == window._tr(
+        "status.zoom", n=int(round(window.workspace.zoom * 100))
+    )
+
+    window.workspace.zoom_out()
+    assert window._zoom_label.text() == window._tr(
+        "status.zoom", n=int(round(window.workspace.zoom * 100))
+    )
+    assert "zoom" in window._zoom_label.toolTip().casefold()
+
+
 def test_view_menu_includes_dock_toggles(qapp, tmp_path):
     del qapp
     services = StudioServices(

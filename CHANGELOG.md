@@ -184,6 +184,7 @@
 - Seleccionar un tablero en el Explorador lo resalta y centra en el Workspace.
 - Clic en un tablero del canvas lo enfoca y sincroniza Explorador e Inspector.
 - Menú Ver: mostrar/ocultar Explorador, Inspector, Timeline y Comparador.
+- Nivel de zoom del Workspace como porcentaje en la barra de estado.
 
 ### Cambiado
 

@@ -37,6 +37,7 @@ class BoardWorkspace(QGraphicsView):
     add_piece_requested = Signal()
     import_boards_requested = Signal()
     import_pieces_requested = Signal()
+    camera_changed = Signal(float)
 
     def __init__(self, services):
         super().__init__()
@@ -604,6 +605,12 @@ class BoardWorkspace(QGraphicsView):
         self.resetTransform()
         self.scale(self._camera.zoom, self._camera.zoom)
         self.centerOn(self._camera.center)
+        self.camera_changed.emit(self._camera.zoom)
+
+    @property
+    def zoom(self) -> float:
+        """Current Workspace camera zoom factor (1.0 = 100%)."""
+        return self._camera.zoom
 
     def piece_moved(self, piece_id: str, x: float, y: float) -> None:
         """Piece moved event."""
