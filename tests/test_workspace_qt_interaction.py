@@ -208,6 +208,46 @@ def test_select_all_pieces_selects_every_canvas_piece(qapp):
     assert all(item.isSelected() for item in workspace._piece_items)
 
 
+def test_left_click_empty_clears_piece_selection(qapp):
+    from PySide6.QtCore import QEvent, QPointF, Qt
+    from PySide6.QtGui import QMouseEvent
+
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.resize(800, 600)
+    workspace.reload_project()
+    workspace.select_piece("A")
+    assert workspace.selection.selected() == ["A"]
+
+    local = QPointF(20, 20)
+    press = QMouseEvent(
+        QEvent.Type.MouseButtonPress,
+        local,
+        local,
+        Qt.MouseButton.LeftButton,
+        Qt.MouseButton.LeftButton,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    release = QMouseEvent(
+        QEvent.Type.MouseButtonRelease,
+        local,
+        local,
+        Qt.MouseButton.LeftButton,
+        Qt.MouseButton.LeftButton,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    original_item_at = workspace.itemAt
+    workspace.itemAt = lambda _point: None  # type: ignore[method-assign]
+    try:
+        workspace.mousePressEvent(press)
+        workspace.mouseReleaseEvent(release)
+    finally:
+        workspace.itemAt = original_item_at  # type: ignore[method-assign]
+
+    assert workspace.selection.selected() == []
+    assert services.selection.selected_ids == ()
+
+
 def test_clear_piece_selection_after_select_all(qapp):
     services = _multipanel_services()
     project = services.projects.current_project

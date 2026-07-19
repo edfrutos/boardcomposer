@@ -379,6 +379,9 @@ class BoardWorkspace(QGraphicsView):
                 clicked_item.stock_panel_index,
             )
             self.select_piece(clicked_item.piece_id)
+        elif event.button() == Qt.MouseButton.LeftButton:
+            # Empty canvas / board / grid: clear selection (Escape equivalent).
+            self.clear_piece_selection()
 
         if event.button() == Qt.MouseButton.RightButton or clicked_item is None:
             self._start_pan(event.position().toPoint())
