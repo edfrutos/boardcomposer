@@ -239,6 +239,34 @@ def test_edit_menu_includes_select_all_pieces(qapp, tmp_path):
     }
 
 
+def test_window_layout_persists_geometry_and_toolbar_visibility(qapp, tmp_path):
+    del qapp
+    from PySide6.QtCore import QByteArray
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    window = MainWindow(services)
+    window.resize(1111, 777)
+    window._toolbar.setVisible(False)
+    saved_geometry = window.saveGeometry()
+    window._persist_window_layout()
+
+    prefs = PreferencesManager(tmp_path / "preferences.json").current
+    assert prefs.window_geometry
+    assert prefs.window_state
+    assert (
+        QByteArray.fromBase64(prefs.window_geometry.encode("ascii")) == saved_geometry
+    )
+
+    services2 = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    restored = MainWindow(services2)
+    assert restored._toolbar.isHidden()
+    assert restored.restoreGeometry(saved_geometry) is True
+
+
 def test_main_toolbar_reuses_core_actions(qapp, tmp_path):
     del qapp
     services = StudioServices(

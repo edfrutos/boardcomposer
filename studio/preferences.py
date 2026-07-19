@@ -73,6 +73,8 @@ class StudioPreferences:
     export_include_explanation: bool = True
     export_include_offcuts: bool = True
     max_solutions: int = DEFAULT_MAX_SOLUTIONS
+    window_geometry: str | None = None
+    window_state: str | None = None
 
     def resolved_strategy(self) -> OptimizationStrategy:
         """Return the OptimizationStrategy implied by these preferences."""
@@ -104,6 +106,12 @@ def _clamp_grid_size(value: int | float) -> int:
 def _clamp_max_solutions(value: int | float) -> int:
     size = int(value)
     return max(MIN_MAX_SOLUTIONS, min(MAX_MAX_SOLUTIONS, size))
+
+
+def _optional_base64_string(value: object) -> str | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    return value.strip()
 
 
 def default_preferences_path() -> Path:
@@ -193,6 +201,8 @@ class PreferencesManager:
             ),
             export_include_offcuts=bool(payload.get("export_include_offcuts", True)),
             max_solutions=max_solutions,
+            window_geometry=_optional_base64_string(payload.get("window_geometry")),
+            window_state=_optional_base64_string(payload.get("window_state")),
         )
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
@@ -213,6 +223,8 @@ class PreferencesManager:
             "export_include_explanation": preferences.export_include_explanation,
             "export_include_offcuts": preferences.export_include_offcuts,
             "max_solutions": preferences.max_solutions,
+            "window_geometry": preferences.window_geometry,
+            "window_state": preferences.window_state,
         }
         self.path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
