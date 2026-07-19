@@ -515,11 +515,22 @@ class MainWindow(QMainWindow):
 
             root = QTreeWidgetItem([project.name])
             root.setData(0, Qt.ItemDataRole.UserRole, "project:root")
-            boards_root = QTreeWidgetItem([self._tr("explorer.boards")])
+            boards_root = QTreeWidgetItem(
+                [self._tr("explorer.boards", n=len(project.boards))]
+            )
             boards_root.setData(0, Qt.ItemDataRole.UserRole, "category:boards")
-            pieces_root = QTreeWidgetItem([self._tr("explorer.pieces")])
+            pieces_root = QTreeWidgetItem(
+                [self._tr("explorer.pieces", n=len(project.pieces))]
+            )
             pieces_root.setData(0, Qt.ItemDataRole.UserRole, "category:pieces")
-            solutions_root = QTreeWidgetItem([self._tr("explorer.solutions")])
+            solutions_root = QTreeWidgetItem(
+                [
+                    self._tr(
+                        "explorer.solutions",
+                        n=len(self.services.layout.solutions),
+                    )
+                ]
+            )
             solutions_root.setData(0, Qt.ItemDataRole.UserRole, "category:solutions")
             selected_solution_item = None
 
