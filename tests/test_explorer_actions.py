@@ -9,12 +9,22 @@ def test_parse_explorer_role():
 
 
 def test_explorer_context_actions_for_piece():
-    assert explorer_context_actions("piece:A") == ("edit", "duplicate", "delete")
+    assert explorer_context_actions("piece:A") == (
+        "edit",
+        "duplicate",
+        "copy_id",
+        "delete",
+    )
 
 
 def test_explorer_context_actions_for_board_and_categories():
     assert explorer_context_actions("project:root") == ("rename", "reveal_folder")
-    assert explorer_context_actions("board:B1") == ("edit", "duplicate", "delete")
+    assert explorer_context_actions("board:B1") == (
+        "edit",
+        "duplicate",
+        "copy_id",
+        "delete",
+    )
     assert explorer_context_actions("category:boards") == ("add_board",)
     assert explorer_context_actions("category:pieces") == ("add_piece",)
     assert explorer_context_actions("category:solutions") == ()

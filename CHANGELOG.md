@@ -190,6 +190,7 @@
 - Tecla Delete como atajo alternativo a Backspace para eliminar pieza;
   Ayuda → Atajos muestra también las secuencias alternativas.
 - Menú Ver → Restablecer disposición de ventana (docks, toolbar y tamaño).
+- Copiar ID de pieza/tablero desde el menú contextual del Explorador.
 
 ### Cambiado
 
