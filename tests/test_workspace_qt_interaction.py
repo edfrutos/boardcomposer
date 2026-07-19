@@ -292,3 +292,60 @@ def test_rotating_a_piece_that_would_leave_the_panel_is_rejected(qapp):
 
     item = workspace.piece_item_by_id("A")
     assert workspace.can_rotate_item(item, 90) is False
+
+
+def test_middle_button_on_piece_pans_without_moving_placement(qapp):
+    from PySide6.QtCore import QEvent, QPoint, QPointF, Qt
+    from PySide6.QtGui import QMouseEvent
+
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.resize(800, 600)
+    workspace.reload_project()
+
+    piece = workspace.piece_item_by_id("A")
+    assert piece is not None
+    start = workspace.mapFromScene(piece.sceneBoundingRect().center())
+    end = start + QPoint(50, 30)
+    center_before = QPointF(workspace._camera.center)
+    placement = services.projects.current_project.placement_by_piece_id("A")
+    assert placement is not None
+    position_before = (placement.x_mm, placement.y_mm)
+
+    press = QMouseEvent(
+        QEvent.Type.MouseButtonPress,
+        QPointF(start),
+        QPointF(workspace.mapToGlobal(start)),
+        Qt.MouseButton.MiddleButton,
+        Qt.MouseButton.MiddleButton,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.mousePressEvent(press)
+    assert workspace._panning
+    assert workspace._drag.drag_start is None
+
+    move = QMouseEvent(
+        QEvent.Type.MouseMove,
+        QPointF(end),
+        QPointF(workspace.mapToGlobal(end)),
+        Qt.MouseButton.NoButton,
+        Qt.MouseButton.MiddleButton,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.mouseMoveEvent(move)
+
+    release = QMouseEvent(
+        QEvent.Type.MouseButtonRelease,
+        QPointF(end),
+        QPointF(workspace.mapToGlobal(end)),
+        Qt.MouseButton.MiddleButton,
+        Qt.MouseButton.NoButton,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.mouseReleaseEvent(release)
+
+    assert not workspace._panning
+    assert workspace._camera.center != center_before
+    placement_after = services.projects.current_project.placement_by_piece_id("A")
+    assert placement_after is not None
+    assert (placement_after.x_mm, placement_after.y_mm) == position_before

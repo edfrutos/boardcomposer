@@ -185,6 +185,7 @@
 - Clic en un tablero del canvas lo enfoca y sincroniza Explorador e Inspector.
 - Menú Ver: mostrar/ocultar Explorador, Inspector, Timeline y Comparador.
 - Nivel de zoom del Workspace como porcentaje en la barra de estado.
+- Desplazar el Workspace con el botón medio del ratón (también sobre piezas).
 
 ### Cambiado
 
