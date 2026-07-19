@@ -596,11 +596,56 @@ class MainWindow(QMainWindow):
             self.explorer.addTopLevelItem(root)
             self.explorer.expandAll()
 
-            if selected_solution_item is not None:
+            piece_ids = self.workspace.selection.selected()
+            if len(piece_ids) == 1:
+                piece_item = self._find_explorer_item_by_role(f"piece:{piece_ids[0]}")
+                if piece_item is not None:
+                    self.explorer.setCurrentItem(piece_item)
+            elif selected_solution_item is not None:
                 self.explorer.setCurrentItem(selected_solution_item)
 
         finally:
             self.explorer.blockSignals(previous_signal_state)
+
+    def _find_explorer_item_by_role(self, role: str) -> QTreeWidgetItem | None:
+        """Return the first explorer item whose UserRole matches ``role``."""
+
+        def walk(item: QTreeWidgetItem) -> QTreeWidgetItem | None:
+            if item.data(0, Qt.ItemDataRole.UserRole) == role:
+                return item
+            for index in range(item.childCount()):
+                found = walk(item.child(index))
+                if found is not None:
+                    return found
+            return None
+
+        for index in range(self.explorer.topLevelItemCount()):
+            found = walk(self.explorer.topLevelItem(index))
+            if found is not None:
+                return found
+        return None
+
+    def sync_explorer_piece_selection(self) -> None:
+        """Mirror the Workspace piece selection onto the Explorador tree."""
+        selected_ids = self.workspace.selection.selected()
+        blocked = self.explorer.blockSignals(True)
+        try:
+            if len(selected_ids) == 1:
+                item = self._find_explorer_item_by_role(f"piece:{selected_ids[0]}")
+                if item is not None:
+                    self.explorer.setCurrentItem(item)
+                    self.explorer.scrollToItem(item)
+                    return
+
+            current = self.explorer.currentItem()
+            if current is None:
+                return
+            parsed = parse_explorer_role(current.data(0, Qt.ItemDataRole.UserRole))
+            if parsed is not None and parsed[0] == "piece":
+                self.explorer.setCurrentItem(None)
+                self.explorer.clearSelection()
+        finally:
+            self.explorer.blockSignals(blocked)
 
     def _on_explorer_selection_changed(self):
         selected = self.explorer.selectedItems()
