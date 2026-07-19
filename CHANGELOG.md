@@ -177,6 +177,8 @@
 - Contadores en cabeceras del Explorador: Tableros/Piezas/Soluciones `(n)`.
 - Selección de pieza en el Workspace se refleja en el Explorador (y se limpia
   al deseleccionar).
+- Selección desde el Explorador: Inspector de pieza completo (posición/panel) y
+  al elegir un tablero se limpia la selección del canvas.
 
 ### Cambiado
 

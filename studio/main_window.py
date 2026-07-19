@@ -669,14 +669,17 @@ class MainWindow(QMainWindow):
         kind, object_id = parsed
 
         if kind in {"category", "project"}:
+            self.workspace.clear_piece_selection()
             self.inspector.setText(f"{self._tr('inspector.title')}\n\n{item.text(0)}")
             return
 
         if kind == "solution":
+            self.workspace.clear_piece_selection()
             self._select_layout_solution(int(object_id))
             return
 
         if kind == "board":
+            self.workspace.clear_piece_selection()
             board = next(
                 board for board in project.boards if board.board_id == object_id
             )
@@ -693,16 +696,8 @@ class MainWindow(QMainWindow):
             return
 
         if kind == "piece":
-            piece = project.piece_by_id(object_id)
-            self.services.selection.select_one(object_id)
+            # select_piece → sync_inspector → full piece Inspector (position/panel).
             self.workspace.select_piece(object_id)
-            self.inspector.setText(
-                f"{self._tr('inspector.title')}\n\n"
-                f"{self._tr('inspector.piece')}: {piece.piece_id}\n"
-                f"{self._tr('inspector.dimensions')}: "
-                f"{self._format_size(piece.length_mm, piece.width_mm)}\n"
-                f"{self._tr('inspector.material')}: {piece.material}"
-            )
 
     def _new_project(self):
         if not self._confirm_discard_unsaved_changes():
