@@ -120,6 +120,8 @@ class MainWindow(QMainWindow):
         self._build_workspace()
         self._build_panels()
         self._build_statusbar()
+        self._factory_window_geometry = bytes(self.saveGeometry())
+        self._factory_window_state = bytes(self.saveState())
         self._restore_window_layout()
         self._reload_explorer()
         self._reload_solution_table()
@@ -237,6 +239,9 @@ class MainWindow(QMainWindow):
         self._actions["zoom_in"].triggered.connect(self._zoom_in)
         self._actions["zoom_out"].triggered.connect(self._zoom_out)
         self._actions["toggle_grid"].toggled.connect(self._toggle_grid)
+        self._actions["reset_window_layout"].triggered.connect(
+            self._reset_window_layout
+        )
         self._actions["solve_layout"].triggered.connect(self._solve_layout)
         self._actions["previous_solution"].triggered.connect(
             self._previous_layout_solution
@@ -459,6 +464,9 @@ class MainWindow(QMainWindow):
             tip = self._tr(tip_key)
             action.setStatusTip(tip if tip != tip_key else "")
             self._menus["view"].addAction(action)
+
+        self._menus["view"].addSeparator()
+        self._menus["view"].addAction(self._actions["reset_window_layout"])
 
         self.clear_inspector()
 
@@ -2775,6 +2783,30 @@ class MainWindow(QMainWindow):
             )
             if not state.isEmpty():
                 self.restoreState(state)
+
+    def _reset_window_layout(self) -> None:
+        """Restore factory dock/toolbar layout and persist it."""
+        from PySide6.QtCore import QByteArray
+
+        factory_geometry = getattr(self, "_factory_window_geometry", None)
+        factory_state = getattr(self, "_factory_window_state", None)
+        if factory_geometry:
+            self.restoreGeometry(QByteArray(factory_geometry))
+        if factory_state:
+            self.restoreState(QByteArray(factory_state))
+
+        self._toolbar.setVisible(True)
+        for dock in (
+            self.explorer_dock,
+            self.inspector_dock,
+            self.console_dock,
+            self.solutions_dock,
+        ):
+            dock.setVisible(True)
+        self.console_dock.raise_()
+
+        self._persist_window_layout()
+        self._status("status.window_layout_reset")
 
     def _persist_window_layout(self) -> None:
         """Save geometry and dock/toolbar state into preferences."""
