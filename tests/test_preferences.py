@@ -52,6 +52,8 @@ def test_preferences_manager_round_trips_through_json(tmp_path):
         theme="dark",
         show_grid=False,
         grid_size_mm=50,
+        window_geometry="QUJDRA==",
+        window_state="U1RBVEU=",
     )
 
     manager.update(updated)
@@ -59,6 +61,17 @@ def test_preferences_manager_round_trips_through_json(tmp_path):
 
     assert reloaded == updated
     assert path.is_file()
+
+
+def test_preferences_manager_ignores_invalid_window_layout_payload(tmp_path):
+    path = tmp_path / "preferences.json"
+    path.write_text(
+        '{"strategy_name": "material", "window_geometry": 123, "window_state": ""}\n',
+        encoding="utf-8",
+    )
+    prefs = PreferencesManager(path).current
+    assert prefs.window_geometry is None
+    assert prefs.window_state is None
 
 
 def test_preferences_manager_falls_back_on_corrupt_or_missing_files(tmp_path):

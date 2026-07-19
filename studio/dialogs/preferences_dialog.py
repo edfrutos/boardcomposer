@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
+
 from PySide6.QtCore import QUrl
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtWidgets import (
@@ -268,7 +270,8 @@ class PreferencesDialog(QDialog):
         QDesktopServices.openUrl(QUrl.fromLocalFile(str(folder.resolve())))
 
     def preferences(self) -> StudioPreferences:
-        return StudioPreferences(
+        return replace(
+            self._preferences,
             strategy_name=self.strategy.currentData() or "material",
             use_custom_weights=self.use_custom_weights.isChecked(),
             weights=WeightPreferences(

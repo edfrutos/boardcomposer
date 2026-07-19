@@ -170,6 +170,8 @@
   tableros ni piezas (añadir/importar).
 - Barra de herramientas principal (archivo, undo, zoom, generar, comparar,
   exportar) con toggle en **Ver**.
+- Persistencia de geometría de ventana y disposición de docks/toolbar en
+  preferencias (se restaura al reabrir Studio).
 
 ### Cambiado
 

@@ -118,6 +118,7 @@ class MainWindow(QMainWindow):
         self._build_workspace()
         self._build_panels()
         self._build_statusbar()
+        self._restore_window_layout()
         self._reload_explorer()
         self._reload_solution_table()
         self.update_window_title()
@@ -330,6 +331,7 @@ class MainWindow(QMainWindow):
         self.explorer.customContextMenuRequested.connect(self._on_explorer_context_menu)
 
         self.explorer_dock = QDockWidget("", self)
+        self.explorer_dock.setObjectName("explorerDock")
         self.explorer_dock.setAllowedAreas(Qt.DockWidgetArea.LeftDockWidgetArea)
         self.explorer_dock.setWidget(self.explorer)
         self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.explorer_dock)
@@ -338,6 +340,7 @@ class MainWindow(QMainWindow):
         self.inspector.setReadOnly(True)
 
         self.inspector_dock = QDockWidget("", self)
+        self.inspector_dock.setObjectName("inspectorDock")
         self.inspector_dock.setAllowedAreas(Qt.DockWidgetArea.RightDockWidgetArea)
         self.inspector_dock.setWidget(self.inspector)
         self.addDockWidget(
@@ -355,6 +358,7 @@ class MainWindow(QMainWindow):
         self.console.export_requested.connect(self._export_timeline_history)
 
         self.console_dock = QDockWidget("", self)
+        self.console_dock.setObjectName("timelineDock")
         self.console_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
         self.console_dock.setWidget(self.console)
 
@@ -430,6 +434,7 @@ class MainWindow(QMainWindow):
         comparator_layout.addWidget(self.solution_differences)
 
         self.solutions_dock = QDockWidget("", self)
+        self.solutions_dock.setObjectName("comparatorDock")
         self.tabifyDockWidget(self.console_dock, self.solutions_dock)
         self.console_dock.raise_()
         self.solutions_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
@@ -2617,11 +2622,43 @@ class MainWindow(QMainWindow):
             return True
         return self._try_save_project()
 
+    def _restore_window_layout(self) -> None:
+        """Restore geometry and dock/toolbar state from preferences."""
+        from PySide6.QtCore import QByteArray
+
+        prefs = self.services.preferences.current
+        if prefs.window_geometry:
+            geometry = QByteArray.fromBase64(
+                prefs.window_geometry.encode("ascii", errors="ignore")
+            )
+            if not geometry.isEmpty():
+                self.restoreGeometry(geometry)
+        if prefs.window_state:
+            state = QByteArray.fromBase64(
+                prefs.window_state.encode("ascii", errors="ignore")
+            )
+            if not state.isEmpty():
+                self.restoreState(state)
+
+    def _persist_window_layout(self) -> None:
+        """Save geometry and dock/toolbar state into preferences."""
+        prefs = self.services.preferences.current
+        geometry = bytes(self.saveGeometry().toBase64()).decode("ascii")
+        state = bytes(self.saveState().toBase64()).decode("ascii")
+        self.services.preferences.update(
+            dataclass_replace(
+                prefs,
+                window_geometry=geometry,
+                window_state=state,
+            )
+        )
+
     def _close_event(self, event):
         if not self._confirm_discard_unsaved_changes():
             event.ignore()
-        else:
-            event.accept()
+            return
+        self._persist_window_layout()
+        event.accept()
 
     def closeEvent(  # pylint: disable=invalid-name
         self,
