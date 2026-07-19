@@ -429,6 +429,13 @@ class BoardWorkspace(QGraphicsView):
     def mousePressEvent(self, event: QMouseEvent) -> None:
         """Handle the mouse press event."""
         clicked_item = self.itemAt(event.position().toPoint())
+        button = event.button()
+
+        # Middle / right button: pan (even over a piece — never start a drag).
+        if button in (Qt.MouseButton.MiddleButton, Qt.MouseButton.RightButton):
+            self._start_pan(event.position().toPoint())
+            event.accept()
+            return
 
         if isinstance(clicked_item, BoardPieceItem):
             old_x, old_y = self._local_item_position(clicked_item)
@@ -441,13 +448,13 @@ class BoardWorkspace(QGraphicsView):
                 clicked_item.stock_panel_index,
             )
             self.select_piece(clicked_item.piece_id)
-        elif event.button() == Qt.MouseButton.LeftButton:
+        elif button == Qt.MouseButton.LeftButton:
             scene_pos = self.mapToScene(event.position().toPoint())
             if not self.select_board_at(scene_pos.x(), scene_pos.y()):
                 # Empty canvas / gap between panels: clear selection.
                 self.clear_piece_selection()
 
-        if event.button() == Qt.MouseButton.RightButton or clicked_item is None:
+        if clicked_item is None:
             self._start_pan(event.position().toPoint())
             event.accept()
             return
