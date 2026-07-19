@@ -470,9 +470,14 @@ class MainWindow(QMainWindow):
         self._project_path_label.setTextInteractionFlags(
             Qt.TextInteractionFlag.TextSelectableByMouse
         )
+        self._zoom_label = QLabel()
+        self._zoom_label.setObjectName("statusZoom")
         status.addPermanentWidget(self._project_path_label, 1)
+        status.addPermanentWidget(self._zoom_label)
         status.showMessage(self._tr("status.ready"))
+        self.workspace.camera_changed.connect(self._update_zoom_status)
         self._update_project_path_status()
+        self._update_zoom_status(self.workspace.zoom)
 
     def _load_empty_project(
         self,
@@ -1464,6 +1469,17 @@ class MainWindow(QMainWindow):
         if reveal is not None:
             reveal.setEnabled(bool(filename))
 
+    def _update_zoom_status(self, zoom: float | None = None) -> None:
+        """Refresh the permanent Workspace zoom widget."""
+        label = getattr(self, "_zoom_label", None)
+        if label is None:
+            return
+        factor = self.workspace.zoom if zoom is None else zoom
+        percent = max(1, int(round(factor * 100)))
+        label.setText(self._tr("status.zoom", n=percent))
+        tip = self._tr("tip.zoom_status")
+        label.setToolTip(tip if tip != "tip.zoom_status" else "")
+
     def update_undo_redo(self):
         """Refresh the enabled state of undo and redo actions."""
         self._actions["undo"].setEnabled(self.services.commands.can_undo())
@@ -1802,6 +1818,7 @@ class MainWindow(QMainWindow):
 
         self._reload_recent_files_menu()
         self._update_project_path_status()
+        self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
 
     def _apply_preferences(self) -> None:
