@@ -82,3 +82,36 @@ def test_reload_explorer_restores_selected_piece(qapp, tmp_path):
     window._reload_explorer()
 
     assert _current_explorer_role(window) == "piece:B"
+
+
+def _select_explorer_role(window: MainWindow, role: str) -> None:
+    item = window._find_explorer_item_by_role(role)
+    assert item is not None
+    window.explorer.setCurrentItem(item)
+
+
+def test_explorer_piece_selection_uses_full_inspector(qapp, tmp_path):
+    del qapp
+    window = _window_with_pieces(tmp_path)
+
+    _select_explorer_role(window, "piece:A")
+
+    text = window.inspector.toPlainText()
+    assert "A" in text
+    assert window._tr("inspector.position") in text
+    assert window._tr("inspector.board") in text
+    assert window.workspace.selection.selected() == ["A"]
+
+
+def test_explorer_board_selection_clears_canvas_pieces(qapp, tmp_path):
+    del qapp
+    window = _window_with_pieces(tmp_path)
+    window.workspace.select_piece("A")
+    assert window.workspace.selection.selected() == ["A"]
+
+    _select_explorer_role(window, "board:B1")
+
+    assert window.workspace.selection.selected() == []
+    assert _current_explorer_role(window) == "board:B1"
+    assert "B1" in window.inspector.toPlainText()
+    assert window._tr("inspector.quantity") in window.inspector.toPlainText()
