@@ -51,6 +51,7 @@ class BoardWorkspace(QGraphicsView):
         self._panel_slots: dict[tuple[int, int], PanelSlot] = {}
         self._validators: dict[tuple[int, int], PlacementValidator] = {}
         self._piece_items: list[BoardPieceItem] = []
+        self._focused_board_id: str | None = None
         self.selection = SelectionController(services)
         self._drag = DragController()
         self._drag_start: tuple[str, float, float] | None = None
@@ -94,6 +95,7 @@ class BoardWorkspace(QGraphicsView):
         self._board_items.clear()
         self._panel_slots.clear()
         self._validators.clear()
+        self._focused_board_id = None
         self._scene.setSceneRect(QRectF(-5000, -5000, 13000, 11000))
 
         preferences = getattr(self.services, "preferences", None)
@@ -304,23 +306,69 @@ class BoardWorkspace(QGraphicsView):
 
     def select_piece(self, piece_id: str) -> None:
         """Select the piece."""
+        self.clear_board_focus()
         self.selection.select(piece_id)
         self.selection.sync_inspector(self.window())
 
     def select_all_pieces(self) -> None:
         """Select every piece on the canvas."""
+        self.clear_board_focus()
         self.selection.select_all()
         self.selection.sync_inspector(self.window())
 
     def clear_piece_selection(self) -> None:
         """Clear the canvas piece selection."""
+        self.clear_board_focus()
         self.selection.clear()
         self.selection.sync_inspector(self.window())
 
     def invert_piece_selection(self) -> None:
         """Invert the current piece selection on the canvas."""
+        self.clear_board_focus()
         self.selection.invert_selection()
         self.selection.sync_inspector(self.window())
+
+    def focused_board_id(self) -> str | None:
+        """Return the board id currently highlighted from the Explorador."""
+        return self._focused_board_id
+
+    def clear_board_focus(self) -> None:
+        """Remove board highlight from the canvas."""
+        if self._focused_board_id is None:
+            return
+        self._focused_board_id = None
+        self._apply_board_highlights()
+
+    def focus_board(self, board_id: str) -> None:
+        """Highlight panels for ``board_id`` and center the camera on them."""
+        self._focused_board_id = board_id
+        self._apply_board_highlights()
+        self._center_on_board(board_id)
+
+    def _apply_board_highlights(self) -> None:
+        from studio.workspace.canvas_style import pen
+
+        for key, item in self._board_items.items():
+            slot = self._panel_slots[key]
+            if (
+                self._focused_board_id is not None
+                and slot.board_id == self._focused_board_id
+            ):
+                item.setPen(pen("selected_stroke", 8))
+            else:
+                item.setPen(pen("board_stroke", 4))
+
+    def _center_on_board(self, board_id: str) -> None:
+        rect = QRectF()
+        for key, slot in self._panel_slots.items():
+            if slot.board_id != board_id:
+                continue
+            board_rect = self._board_items[key].sceneBoundingRect()
+            rect = board_rect if rect.isNull() else rect.united(board_rect)
+        if rect.isNull():
+            return
+        self._camera.center = rect.center()
+        self._apply_camera()
 
     def fit_board(self) -> None:
         """Fit the board to the viewport."""
