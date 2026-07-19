@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (
     QTableWidget,
     QTableWidgetItem,
     QTextEdit,
+    QToolBar,
     QTreeWidget,
     QTreeWidgetItem,
     QVBoxLayout,
@@ -113,6 +114,7 @@ class MainWindow(QMainWindow):
         self.resize(1400, 900)
 
         self._build_menu()
+        self._build_toolbar()
         self._build_workspace()
         self._build_panels()
         self._build_statusbar()
@@ -250,6 +252,41 @@ class MainWindow(QMainWindow):
         self._actions["about"].triggered.connect(self._show_about)
 
         self._reload_recent_files_menu()
+
+    def _build_toolbar(self) -> None:
+        """Primary toolbar reusing existing menu actions (SCR-002)."""
+        toolbar = QToolBar(self._tr("toolbar.main"), self)
+        toolbar.setObjectName("mainToolbar")
+        toolbar.setMovable(False)
+        toolbar.setFloatable(False)
+        toolbar.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextOnly)
+
+        for key in ("new_project", "open", "save"):
+            toolbar.addAction(self._actions[key])
+        toolbar.addSeparator()
+        for key in ("undo", "redo"):
+            toolbar.addAction(self._actions[key])
+        toolbar.addSeparator()
+        for key in ("fit_board", "zoom_in", "zoom_out", "toggle_grid"):
+            toolbar.addAction(self._actions[key])
+        toolbar.addSeparator()
+        toolbar.addAction(self._actions["solve_layout"])
+        toolbar.addSeparator()
+        for key in ("previous_solution", "next_solution", "apply_layout"):
+            toolbar.addAction(self._actions[key])
+        toolbar.addSeparator()
+        toolbar.addAction(self._actions["export_selected"])
+
+        self.addToolBar(Qt.ToolBarArea.TopToolBarArea, toolbar)
+        self._toolbar = toolbar
+
+        self._menus["view"].addSeparator()
+        self._toolbar_toggle = toolbar.toggleViewAction()
+        self._toolbar_toggle.setText(self._tr("action.toggle_toolbar"))
+        tip = self._tr("tip.toggle_toolbar")
+        if tip != "tip.toggle_toolbar":
+            self._toolbar_toggle.setStatusTip(tip)
+        self._menus["view"].addAction(self._toolbar_toggle)
 
     def _build_workspace(self):
         self.workspace = BoardWorkspace(self.services)
@@ -1594,6 +1631,14 @@ class MainWindow(QMainWindow):
             tip = self._tr(tip_key)
             action.setStatusTip(tip if tip != tip_key else "")
         self._recent_menu.setTitle(self._tr("menu.recent"))
+        if hasattr(self, "_toolbar"):
+            self._toolbar.setWindowTitle(self._tr("toolbar.main"))
+        if hasattr(self, "_toolbar_toggle"):
+            self._toolbar_toggle.setText(self._tr("action.toggle_toolbar"))
+            tip = self._tr("tip.toggle_toolbar")
+            self._toolbar_toggle.setStatusTip(
+                tip if tip != "tip.toggle_toolbar" else ""
+            )
 
         self.explorer_dock.setWindowTitle(self._tr("dock.explorer"))
         self.inspector_dock.setWindowTitle(self._tr("dock.inspector"))
