@@ -349,3 +349,76 @@ def test_middle_button_on_piece_pans_without_moving_placement(qapp):
     placement_after = services.projects.current_project.placement_by_piece_id("A")
     assert placement_after is not None
     assert (placement_after.x_mm, placement_after.y_mm) == position_before
+
+
+def test_space_left_drag_on_piece_pans_without_moving_placement(qapp):
+    from PySide6.QtCore import QEvent, QPoint, QPointF, Qt
+    from PySide6.QtGui import QKeyEvent, QMouseEvent
+
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.resize(800, 600)
+    workspace.reload_project()
+
+    piece = workspace.piece_item_by_id("A")
+    assert piece is not None
+    start = workspace.mapFromScene(piece.sceneBoundingRect().center())
+    end = start + QPoint(40, 25)
+    center_before = QPointF(workspace._camera.center)
+    placement = services.projects.current_project.placement_by_piece_id("A")
+    assert placement is not None
+    position_before = (placement.x_mm, placement.y_mm)
+
+    space_press = QKeyEvent(
+        QEvent.Type.KeyPress,
+        Qt.Key.Key_Space,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.keyPressEvent(space_press)
+    assert workspace._space_held
+
+    press = QMouseEvent(
+        QEvent.Type.MouseButtonPress,
+        QPointF(start),
+        QPointF(workspace.mapToGlobal(start)),
+        Qt.MouseButton.LeftButton,
+        Qt.MouseButton.LeftButton,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.mousePressEvent(press)
+    assert workspace._panning
+    assert workspace._drag.drag_start is None
+
+    move = QMouseEvent(
+        QEvent.Type.MouseMove,
+        QPointF(end),
+        QPointF(workspace.mapToGlobal(end)),
+        Qt.MouseButton.NoButton,
+        Qt.MouseButton.LeftButton,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.mouseMoveEvent(move)
+
+    release = QMouseEvent(
+        QEvent.Type.MouseButtonRelease,
+        QPointF(end),
+        QPointF(workspace.mapToGlobal(end)),
+        Qt.MouseButton.LeftButton,
+        Qt.MouseButton.NoButton,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.mouseReleaseEvent(release)
+
+    space_release = QKeyEvent(
+        QEvent.Type.KeyRelease,
+        Qt.Key.Key_Space,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.keyReleaseEvent(space_release)
+
+    assert not workspace._panning
+    assert not workspace._space_held
+    assert workspace._camera.center != center_before
+    placement_after = services.projects.current_project.placement_by_piece_id("A")
+    assert placement_after is not None
+    assert (placement_after.x_mm, placement_after.y_mm) == position_before

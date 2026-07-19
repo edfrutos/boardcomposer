@@ -6,7 +6,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, cast
 
 from PySide6.QtCore import QPoint, QPointF, QRectF, Qt, Signal
-from PySide6.QtGui import QMouseEvent, QPainter, QResizeEvent, QWheelEvent
+from PySide6.QtGui import QKeyEvent, QMouseEvent, QPainter, QResizeEvent, QWheelEvent
 from PySide6.QtWidgets import (
     QGraphicsRectItem,
     QGraphicsScene,
@@ -46,6 +46,7 @@ class BoardWorkspace(QGraphicsView):
         self._scene = QGraphicsScene(self)
         self._camera = WorkspaceCamera(center=QPointF(1500, 500))
         self._panning = False
+        self._space_held = False
         self._last_pan_point = QPoint()
         self._board_item: QGraphicsRectItem | None = None
         self._board_items: dict[tuple[int, int], QGraphicsRectItem] = {}
@@ -431,8 +432,10 @@ class BoardWorkspace(QGraphicsView):
         clicked_item = self.itemAt(event.position().toPoint())
         button = event.button()
 
-        # Middle / right button: pan (even over a piece — never start a drag).
-        if button in (Qt.MouseButton.MiddleButton, Qt.MouseButton.RightButton):
+        # Middle / right / Space+left: pan (even over a piece — never start a drag).
+        if button in (Qt.MouseButton.MiddleButton, Qt.MouseButton.RightButton) or (
+            button == Qt.MouseButton.LeftButton and self._space_held
+        ):
             self._start_pan(event.position().toPoint())
             event.accept()
             return
@@ -460,6 +463,22 @@ class BoardWorkspace(QGraphicsView):
             return
 
         super().mousePressEvent(event)
+
+    def keyPressEvent(self, event: QKeyEvent) -> None:
+        """Arm temporary pan mode while Space is held."""
+        if event.key() == Qt.Key.Key_Space and not event.isAutoRepeat():
+            self._space_held = True
+            event.accept()
+            return
+        super().keyPressEvent(event)
+
+    def keyReleaseEvent(self, event: QKeyEvent) -> None:
+        """Disarm temporary pan mode when Space is released."""
+        if event.key() == Qt.Key.Key_Space and not event.isAutoRepeat():
+            self._space_held = False
+            event.accept()
+            return
+        super().keyReleaseEvent(event)
 
     def mouseMoveEvent(self, event: QMouseEvent) -> None:
         """Handle the mouse move event."""

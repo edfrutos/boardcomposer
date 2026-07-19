@@ -163,8 +163,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "help.shortcuts_intro": (
             "Atajos activos en BoardComposer Studio. "
             "Los mismos valores se aplican desde el menú y el teclado. "
-            "En el Workspace: botón medio o derecho para desplazar; "
-            "rueda para zoom."
+            "En el Workspace: Espacio+arrastre, botón medio o derecho para "
+            "desplazar; rueda para zoom."
         ),
         "help.shortcuts_col_action": "Acción",
         "help.shortcuts_col_keys": "Atajo",
@@ -763,7 +763,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "help.shortcuts_intro": (
             "Active shortcuts in BoardComposer Studio. "
             "The same bindings apply from the menu and the keyboard. "
-            "In the Workspace: middle or right button to pan; "
+            "In the Workspace: Space+drag, middle or right button to pan; "
             "mouse wheel to zoom."
         ),
         "help.shortcuts_col_action": "Action",
