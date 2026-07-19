@@ -192,6 +192,7 @@
 - Menú Ver → Restablecer disposición de ventana (docks, toolbar y tamaño).
 - Copiar ID de pieza/tablero desde el menú contextual del Explorador.
 - Renombrar pieza/tablero desde el menú contextual del Explorador (con undo).
+- Desplazar el Workspace con Espacio + arrastre (además de botón medio/derecho).
 
 ### Cambiado
 
