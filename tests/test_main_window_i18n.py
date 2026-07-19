@@ -239,6 +239,39 @@ def test_edit_menu_includes_select_all_pieces(qapp, tmp_path):
     }
 
 
+def test_reset_window_layout_restores_toolbar_and_docks(qapp, tmp_path):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+
+    assert window._actions["reset_window_layout"] in window._menus["view"].actions()
+    assert (
+        window._actions["reset_window_layout"].text()
+        == "Restablecer disposición de ventana"
+    )
+
+    window._toolbar.setVisible(False)
+    window.explorer_dock.setVisible(False)
+    window.inspector_dock.setVisible(False)
+    window._persist_window_layout()
+
+    window._reset_window_layout()
+
+    assert not window._toolbar.isHidden()
+    assert not window.explorer_dock.isHidden()
+    assert not window.inspector_dock.isHidden()
+    assert not window.console_dock.isHidden()
+    assert not window.solutions_dock.isHidden()
+    assert "restablecida" in window.statusBar().currentMessage().casefold()
+
+    prefs = PreferencesManager(tmp_path / "preferences.json").current
+    assert prefs.window_geometry
+    assert prefs.window_state
+
+
 def test_window_layout_persists_geometry_and_toolbar_visibility(qapp, tmp_path):
     del qapp
     from PySide6.QtCore import QByteArray

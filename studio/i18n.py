@@ -88,6 +88,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.zoom_in": "Acercar",
         "action.zoom_out": "Alejar",
         "action.toggle_grid": "Mostrar cuadrícula",
+        "action.reset_window_layout": "Restablecer disposición de ventana",
         "action.solve_layout": "Calcular layout",
         "action.previous_solution": "Solución anterior",
         "action.next_solution": "Solución siguiente",
@@ -137,6 +138,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.zoom_in": "Acercar el Workspace",
         "tip.zoom_out": "Alejar el Workspace",
         "tip.toggle_grid": "Mostrar u ocultar la cuadrícula del canvas",
+        "tip.reset_window_layout": (
+            "Volver a la disposición inicial de docks, toolbar y tamaño de ventana"
+        ),
+        "status.window_layout_reset": "Disposición de ventana restablecida",
         "tip.solve_layout": "Calcular soluciones de layout",
         "tip.previous_solution": "Seleccionar la solución anterior",
         "tip.next_solution": "Seleccionar la solución siguiente",
@@ -677,6 +682,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.zoom_in": "Zoom in",
         "action.zoom_out": "Zoom out",
         "action.toggle_grid": "Show grid",
+        "action.reset_window_layout": "Reset window layout",
         "action.solve_layout": "Calculate layout",
         "action.previous_solution": "Previous solution",
         "action.next_solution": "Next solution",
@@ -725,6 +731,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.zoom_in": "Zoom in on the Workspace",
         "tip.zoom_out": "Zoom out on the Workspace",
         "tip.toggle_grid": "Show or hide the canvas grid",
+        "tip.reset_window_layout": (
+            "Restore the default dock, toolbar and window size layout"
+        ),
+        "status.window_layout_reset": "Window layout reset",
         "tip.solve_layout": "Calculate layout solutions",
         "tip.previous_solution": "Select the previous solution",
         "tip.next_solution": "Select the next solution",
@@ -1222,6 +1232,7 @@ _ACTION_KEYS = (
     "zoom_in",
     "zoom_out",
     "toggle_grid",
+    "reset_window_layout",
     "solve_layout",
     "previous_solution",
     "next_solution",
