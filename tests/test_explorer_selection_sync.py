@@ -157,3 +157,47 @@ def test_explorer_board_focus_centers_and_clears_on_piece(qapp, tmp_path):
 
     assert window.workspace.focused_board_id() is None
     assert window.workspace.selection.selected() == ["A"]
+
+
+def test_click_board_on_canvas_focuses_and_syncs_explorer(qapp, tmp_path):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    services.projects.new_project(
+        StudioProject(
+            project_id="PRJ-3",
+            name="ClickBoard",
+            boards=[
+                StudioBoard("B1", 1000, 500, "Demo", 19, 1),
+                StudioBoard("B2", 800, 400, "Demo", 19, 1),
+            ],
+            pieces=[StudioPiece("A", 200, 150, "Demo", 19)],
+            placements=[
+                StudioPlacement("A", 10, 20, False, 0, "B1", 0, 0),
+            ],
+        )
+    )
+    window = MainWindow(services)
+    window.workspace.resize(800, 600)
+    window.workspace.reload_project()
+    window._reload_explorer()
+    window.workspace.select_piece("A")
+
+    b2_slot = next(
+        slot for slot in window.workspace._panel_slots.values() if slot.board_id == "B2"
+    )
+    hit = window.workspace.select_board_at(
+        b2_slot.x_mm + 40,
+        b2_slot.y_mm + 40,
+    )
+
+    assert hit is True
+    assert window.workspace.selection.selected() == []
+    assert window.workspace.focused_board_id() == "B2"
+    assert _current_explorer_role(window) == "board:B2"
+    assert "B2" in window.inspector.toPlainText()
+
+    miss = window.workspace.select_board_at(-1000, -1000)
+    assert miss is False

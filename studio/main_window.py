@@ -679,26 +679,53 @@ class MainWindow(QMainWindow):
             return
 
         if kind == "board":
-            self.workspace.clear_piece_selection()
-            self.workspace.focus_board(object_id)
-            board = next(
-                board for board in project.boards if board.board_id == object_id
-            )
-            self.inspector.setText(
-                f"{self._tr('inspector.title')}\n\n"
-                f"{self._tr('inspector.board')}: {board.board_id}\n"
-                f"{self._tr('inspector.dimensions')}: "
-                f"{self._format_size(board.length_mm, board.width_mm)}\n"
-                f"{self._tr('inspector.thickness')}: "
-                f"{self._format_length(board.thickness_mm)}\n"
-                f"{self._tr('inspector.quantity')}: {board.quantity}\n"
-                f"{self._tr('inspector.material')}: {board.material}"
-            )
+            self.select_explorer_board(object_id)
             return
 
         if kind == "piece":
             # select_piece → sync_inspector → full piece Inspector (position/panel).
             self.workspace.select_piece(object_id)
+
+    def select_explorer_board(self, board_id: str) -> None:
+        """Focus a board on the canvas and mirror it in Explorador + Inspector."""
+        self.workspace.clear_piece_selection()
+        self.workspace.focus_board(board_id)
+        self._show_board_inspector(board_id)
+
+        item = self._find_explorer_item_by_role(f"board:{board_id}")
+        if item is None:
+            return
+        blocked = self.explorer.blockSignals(True)
+        try:
+            self.explorer.setCurrentItem(item)
+            self.explorer.scrollToItem(item)
+        finally:
+            self.explorer.blockSignals(blocked)
+
+    def _show_board_inspector(self, board_id: str) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        board = next(
+            (
+                candidate
+                for candidate in project.boards
+                if candidate.board_id == board_id
+            ),
+            None,
+        )
+        if board is None:
+            return
+        self.inspector.setText(
+            f"{self._tr('inspector.title')}\n\n"
+            f"{self._tr('inspector.board')}: {board.board_id}\n"
+            f"{self._tr('inspector.dimensions')}: "
+            f"{self._format_size(board.length_mm, board.width_mm)}\n"
+            f"{self._tr('inspector.thickness')}: "
+            f"{self._format_length(board.thickness_mm)}\n"
+            f"{self._tr('inspector.quantity')}: {board.quantity}\n"
+            f"{self._tr('inspector.material')}: {board.material}"
+        )
 
     def _new_project(self):
         if not self._confirm_discard_unsaved_changes():

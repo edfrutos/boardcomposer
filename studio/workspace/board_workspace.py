@@ -345,6 +345,19 @@ class BoardWorkspace(QGraphicsView):
         self._apply_board_highlights()
         self._center_on_board(board_id)
 
+    def select_board_at(self, x_mm: float, y_mm: float) -> bool:
+        """Focus the board under a scene point; return True if a panel was hit."""
+        slot = slot_at_point(list(self._panel_slots.values()), x_mm, y_mm)
+        if slot is None:
+            return False
+        window = self.window()
+        if hasattr(window, "select_explorer_board"):
+            window.select_explorer_board(slot.board_id)
+        else:
+            self.clear_piece_selection()
+            self.focus_board(slot.board_id)
+        return True
+
     def _apply_board_highlights(self) -> None:
         from studio.workspace.canvas_style import pen
 
@@ -428,8 +441,10 @@ class BoardWorkspace(QGraphicsView):
             )
             self.select_piece(clicked_item.piece_id)
         elif event.button() == Qt.MouseButton.LeftButton:
-            # Empty canvas / board / grid: clear selection (Escape equivalent).
-            self.clear_piece_selection()
+            scene_pos = self.mapToScene(event.position().toPoint())
+            if not self.select_board_at(scene_pos.x(), scene_pos.y()):
+                # Empty canvas / gap between panels: clear selection.
+                self.clear_piece_selection()
 
         if event.button() == Qt.MouseButton.RightButton or clicked_item is None:
             self._start_pan(event.position().toPoint())
