@@ -57,11 +57,19 @@ def test_shortcuts_catalog_and_dialog(qapp):
         b.action_key == "duplicate_piece" and b.sequence == "Ctrl+D"
         for b in STUDIO_SHORTCUTS
     )
+    delete_binding = next(b for b in STUDIO_SHORTCUTS if b.action_key == "delete_piece")
+    assert delete_binding.sequence == "Backspace"
+    assert delete_binding.alternates == ("Delete",)
 
     actions = {binding.action_key: QAction("") for binding in STUDIO_SHORTCUTS}
     apply_shortcuts(actions)
     assert actions["save"].shortcut() == QKeySequence("Ctrl+S")
     assert actions["rotate_piece"].shortcut() == QKeySequence("R")
+    delete_shortcuts = {
+        sequence.toString() for sequence in actions["delete_piece"].shortcuts()
+    }
+    assert "Backspace" in delete_shortcuts
+    assert "Del" in delete_shortcuts or "Delete" in delete_shortcuts
 
     dialog = ShortcutsDialog(language="en")
     assert dialog.windowTitle() == "Keyboard shortcuts"
@@ -70,6 +78,22 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert table.rowCount() == len(STUDIO_SHORTCUTS)
     assert table.item(0, 0) is not None
     assert table.item(0, 1) is not None
+
+    delete_row = next(
+        i
+        for i, binding in enumerate(STUDIO_SHORTCUTS)
+        if binding.action_key == "delete_piece"
+    )
+    assert "Backspace" in table.item(delete_row, 1).text()
+    assert "Delete" in table.item(delete_row, 1).text()
+
+    zoom_row = next(
+        i
+        for i, binding in enumerate(STUDIO_SHORTCUTS)
+        if binding.action_key == "zoom_in"
+    )
+    assert "Ctrl+=" in table.item(zoom_row, 1).text()
+    assert "Ctrl++" in table.item(zoom_row, 1).text()
 
 
 def test_welcome_has_docs_and_whats_new_buttons(qapp):
