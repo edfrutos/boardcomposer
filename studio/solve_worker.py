@@ -95,9 +95,7 @@ def run_solve_with_progress(
         cancel.cancel()
 
     thread.started.connect(worker.run)
-    worker.finished.connect(
-        bridge.on_finished, Qt.ConnectionType.QueuedConnection
-    )
+    worker.finished.connect(bridge.on_finished, Qt.ConnectionType.QueuedConnection)
     worker.failed.connect(bridge.on_failed, Qt.ConnectionType.QueuedConnection)
     progress.canceled.connect(on_canceled)
 
