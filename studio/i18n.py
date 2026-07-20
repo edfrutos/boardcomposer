@@ -79,6 +79,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.redo": "Rehacer",
         "action.rotate_piece": "Rotar 90°",
         "action.rename_selection": "Renombrar…",
+        "action.edit_selection": "Editar…",
         "action.duplicate_piece": "Duplicar pieza",
         "action.delete_piece": "Eliminar pieza",
         "action.select_all_pieces": "Seleccionar todas las piezas",
@@ -129,6 +130,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.rename_selection": (
             "Renombrar la pieza, el tablero o el proyecto seleccionado"
         ),
+        "tip.edit_selection": "Editar la pieza o el tablero seleccionado",
         "tip.duplicate_piece": "Duplicar la pieza seleccionada",
         "tip.delete_piece": "Eliminar la pieza seleccionada (Backspace o Delete)",
         "tip.select_all_pieces": "Seleccionar todas las piezas del canvas",
@@ -424,6 +426,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_rename_selection": (
             "Selecciona una pieza, un tablero o el proyecto para renombrar"
         ),
+        "status.nothing_to_edit_selection": (
+            "Selecciona una pieza o un tablero para editar"
+        ),
         "status.save_failed": "No se pudo guardar: {error}",
         "status.project_renamed": "Proyecto renombrado: {name}",
         "status.piece_renamed": "Pieza renombrada: {id}",
@@ -688,6 +693,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.redo": "Redo",
         "action.rotate_piece": "Rotate 90°",
         "action.rename_selection": "Rename…",
+        "action.edit_selection": "Edit…",
         "action.duplicate_piece": "Duplicate piece",
         "action.delete_piece": "Delete piece",
         "action.select_all_pieces": "Select all pieces",
@@ -735,6 +741,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.redo": "Redo the last undone action",
         "tip.rotate_piece": "Rotate the selected piece by 90°",
         "tip.rename_selection": "Rename the selected piece, board, or project",
+        "tip.edit_selection": "Edit the selected piece or board",
         "tip.duplicate_piece": "Duplicate the selected piece",
         "tip.delete_piece": "Delete the selected piece (Backspace or Delete)",
         "tip.select_all_pieces": "Select every piece on the canvas",
@@ -1029,6 +1036,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_rename_selection": (
             "Select a piece, board, or the project to rename"
         ),
+        "status.nothing_to_edit_selection": "Select a piece or board to edit",
         "status.save_failed": "Could not save: {error}",
         "status.project_renamed": "Project renamed: {name}",
         "status.piece_renamed": "Piece renamed: {id}",
@@ -1251,6 +1259,7 @@ _ACTION_KEYS = (
     "redo",
     "rotate_piece",
     "rename_selection",
+    "edit_selection",
     "duplicate_piece",
     "delete_piece",
     "select_all_pieces",

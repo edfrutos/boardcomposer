@@ -25,6 +25,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("redo", "Ctrl+Shift+Z"),
     ShortcutBinding("rotate_piece", "R"),
     ShortcutBinding("rename_selection", "F2"),
+    ShortcutBinding("edit_selection", "Return"),
     ShortcutBinding("duplicate_piece", "Ctrl+D"),
     ShortcutBinding("delete_piece", "Backspace", ("Delete",)),
     ShortcutBinding("select_all_pieces", "Ctrl+A"),
