@@ -528,7 +528,27 @@ class BoardWorkspace(QGraphicsView):
         self._finish_piece_drag()
 
     def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
-        """Handle the mouse double click event."""
+        """Edit piece/board on double-click; otherwise fit the viewport."""
+        clicked_item = self.itemAt(event.position().toPoint())
+        window = self.window()
+
+        if isinstance(clicked_item, BoardPieceItem):
+            if hasattr(window, "_edit_piece"):
+                window._edit_piece(clicked_item.piece_id)
+            event.accept()
+            return
+
+        scene_pos = self.mapToScene(event.position().toPoint())
+        slot = slot_at_point(
+            list(self._panel_slots.values()),
+            scene_pos.x(),
+            scene_pos.y(),
+        )
+        if slot is not None and hasattr(window, "_edit_board"):
+            window._edit_board(slot.board_id)
+            event.accept()
+            return
+
         self.fit_board()
         event.accept()
 
