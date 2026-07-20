@@ -225,7 +225,9 @@ class WelcomeScreen(QWidget):
         for key in stale:
             del self._thumbnail_cache[key]
 
-    def _on_recent_activated(self, item: QListWidgetItem) -> None:
+    def _on_recent_activated(self, item: QListWidgetItem | None) -> None:
+        if item is None:
+            return
         path = item.data(Qt.ItemDataRole.UserRole)
         if path:
             self.open_recent_requested.emit(str(path))
