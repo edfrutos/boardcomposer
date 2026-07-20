@@ -168,6 +168,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["rotate_piece"])
         self._menus["edit"].addAction(self._actions["rename_selection"])
         self._menus["edit"].addAction(self._actions["edit_selection"])
+        self._menus["edit"].addAction(self._actions["copy_selection_id"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
         self._menus["edit"].addSeparator()
@@ -236,6 +237,7 @@ class MainWindow(QMainWindow):
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
         self._actions["rename_selection"].triggered.connect(self._rename_selection)
         self._actions["edit_selection"].triggered.connect(self._edit_selection)
+        self._actions["copy_selection_id"].triggered.connect(self._copy_selection_id)
         self._actions["duplicate_piece"].triggered.connect(
             self._duplicate_selected_piece
         )
@@ -3025,6 +3027,32 @@ class MainWindow(QMainWindow):
             return
 
         self._status("status.nothing_to_edit_selection")
+
+    def _copy_selection_id(self) -> None:
+        """Copy the selected piece or board id to the clipboard."""
+        item = self.explorer.currentItem()
+        if item is not None:
+            parsed = parse_explorer_role(item.data(0, Qt.ItemDataRole.UserRole))
+            if parsed is not None:
+                kind, object_id = parsed
+                if kind in {"piece", "board"}:
+                    self._copy_text_to_clipboard(object_id)
+                    self._status("status.id_copied", id=object_id)
+                    return
+
+        selected = self.workspace.selection.selected()
+        if len(selected) == 1:
+            self._copy_text_to_clipboard(selected[0])
+            self._status("status.id_copied", id=selected[0])
+            return
+
+        focused = self.workspace.focused_board_id()
+        if focused is not None:
+            self._copy_text_to_clipboard(focused)
+            self._status("status.id_copied", id=focused)
+            return
+
+        self._status("status.nothing_to_copy_id")
 
     def _rename_project(self) -> None:
         project = self.services.projects.current_project
