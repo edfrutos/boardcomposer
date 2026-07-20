@@ -82,7 +82,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.edit_selection": "Editar…",
         "action.copy_selection_id": "Copiar ID",
         "action.duplicate_piece": "Duplicar",
-        "action.delete_piece": "Eliminar pieza",
+        "action.delete_piece": "Eliminar",
         "action.select_all_pieces": "Seleccionar todas las piezas",
         "action.deselect_pieces": "Deseleccionar piezas",
         "action.invert_selection": "Invertir selección",
@@ -135,7 +135,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.edit_selection": "Editar la pieza o el tablero seleccionado",
         "tip.copy_selection_id": "Copiar al portapapeles el ID de la pieza o tablero",
         "tip.duplicate_piece": "Duplicar la pieza o el tablero seleccionado",
-        "tip.delete_piece": "Eliminar la pieza seleccionada (Backspace o Delete)",
+        "tip.delete_piece": (
+            "Eliminar la pieza o el tablero seleccionado (Backspace o Delete)"
+        ),
         "tip.select_all_pieces": "Seleccionar todas las piezas del canvas",
         "tip.deselect_pieces": "Quitar la selección de piezas del canvas",
         "tip.invert_selection": "Invertir la selección de piezas del canvas",
@@ -410,6 +412,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_duplicate": (
             "Selecciona una pieza o un tablero para duplicar"
         ),
+        "status.nothing_to_delete": ("Selecciona una pieza o un tablero para eliminar"),
         "status.cannot_rotate": "La pieza no puede rotarse en esa posición",
         "status.prefs_saved": "Preferencias guardadas",
         "status.layout_failed": "No se pudo calcular layout",
@@ -709,7 +712,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.edit_selection": "Edit…",
         "action.copy_selection_id": "Copy ID",
         "action.duplicate_piece": "Duplicate",
-        "action.delete_piece": "Delete piece",
+        "action.delete_piece": "Delete",
         "action.select_all_pieces": "Select all pieces",
         "action.deselect_pieces": "Deselect pieces",
         "action.invert_selection": "Invert selection",
@@ -759,7 +762,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.edit_selection": "Edit the selected piece or board",
         "tip.copy_selection_id": "Copy the selected piece or board ID to the clipboard",
         "tip.duplicate_piece": "Duplicate the selected piece or board",
-        "tip.delete_piece": "Delete the selected piece (Backspace or Delete)",
+        "tip.delete_piece": (
+            "Delete the selected piece or board (Backspace or Delete)"
+        ),
         "tip.select_all_pieces": "Select every piece on the canvas",
         "tip.deselect_pieces": "Clear the piece selection on the canvas",
         "tip.invert_selection": "Invert the piece selection on the canvas",
@@ -1029,6 +1034,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.id_copied": "ID copied: {id}",
         "status.select_piece_first": "Select a piece first",
         "status.nothing_to_duplicate": "Select a piece or board to duplicate",
+        "status.nothing_to_delete": "Select a piece or board to delete",
         "status.cannot_rotate": "The piece cannot be rotated in that position",
         "status.prefs_saved": "Preferences saved",
         "status.layout_failed": "Could not calculate layout",

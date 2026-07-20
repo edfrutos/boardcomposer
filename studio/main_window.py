@@ -1562,10 +1562,32 @@ class MainWindow(QMainWindow):
         self.update_undo_redo()
 
     def _delete_selected_piece(self):
+        """Delete the selected piece, or the focused/explorer board (Delete)."""
         piece_id = self.workspace.selection.current()
-        if piece_id is None:
+        if piece_id is not None:
+            self._delete_piece_by_id(piece_id)
             return
 
+        item = self.explorer.currentItem()
+        if item is not None:
+            parsed = parse_explorer_role(item.data(0, Qt.ItemDataRole.UserRole))
+            if parsed is not None:
+                kind, object_id = parsed
+                if kind == "piece":
+                    self._delete_piece_by_id(object_id)
+                    return
+                if kind == "board":
+                    self._delete_board(object_id)
+                    return
+
+        focused = self.workspace.focused_board_id()
+        if focused is not None:
+            self._delete_board(focused)
+            return
+
+        self._status("status.nothing_to_delete")
+
+    def _delete_piece_by_id(self, piece_id: str) -> None:
         project = self.services.projects.current_project
         if project is None:
             return
