@@ -198,6 +198,8 @@
 - Doble clic en pieza/tablero del canvas para editar (vacío ajusta la vista).
 - Mover la pieza seleccionada con las flechas (Shift = 10 mm).
 - Editar pieza/tablero seleccionado con Enter (Editar…).
+- Icono propio de BoardComposer Studio (ventana / Acerca de).
+- Ver → Ajustar a la selección (Ctrl+Shift+0).
 
 ### Cambiado
 

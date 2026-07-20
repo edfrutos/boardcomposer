@@ -179,6 +179,7 @@ class MainWindow(QMainWindow):
 
         self._actions["toggle_grid"].setCheckable(True)
         self._menus["view"].addAction(self._actions["fit_board"])
+        self._menus["view"].addAction(self._actions["fit_selection"])
         self._menus["view"].addAction(self._actions["zoom_in"])
         self._menus["view"].addAction(self._actions["zoom_out"])
         self._menus["view"].addSeparator()
@@ -244,6 +245,7 @@ class MainWindow(QMainWindow):
         self._actions["invert_selection"].triggered.connect(self._invert_selection)
         self._actions["preferences"].triggered.connect(self._open_preferences)
         self._actions["fit_board"].triggered.connect(self._fit_board)
+        self._actions["fit_selection"].triggered.connect(self._fit_selection)
         self._actions["zoom_in"].triggered.connect(self._zoom_in)
         self._actions["zoom_out"].triggered.connect(self._zoom_out)
         self._actions["toggle_grid"].toggled.connect(self._toggle_grid)
@@ -283,7 +285,7 @@ class MainWindow(QMainWindow):
         for key in ("undo", "redo"):
             toolbar.addAction(self._actions[key])
         toolbar.addSeparator()
-        for key in ("fit_board", "zoom_in", "zoom_out", "toggle_grid"):
+        for key in ("fit_board", "fit_selection", "zoom_in", "zoom_out", "toggle_grid"):
             toolbar.addAction(self._actions[key])
         toolbar.addSeparator()
         toolbar.addAction(self._actions["solve_layout"])
@@ -1688,6 +1690,10 @@ class MainWindow(QMainWindow):
 
     def _fit_board(self) -> None:
         self.workspace.fit_board()
+
+    def _fit_selection(self) -> None:
+        if not self.workspace.fit_selection():
+            self._status("status.nothing_to_fit_selection")
 
     def _zoom_in(self) -> None:
         self.workspace.zoom_in()
