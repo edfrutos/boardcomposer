@@ -35,6 +35,7 @@ from boardcomposer.export import solution_to_svg
 from studio.export_options import render_export
 from dataclasses import replace as dataclass_replace
 from studio.board_ids import allocate_unique_board_id
+from studio.branding import app_icon
 from studio.commands import (
     DeleteBoardCommand,
     DeletePieceCommand,
@@ -113,6 +114,9 @@ class MainWindow(QMainWindow):
         self._comparator_complete_only = False
         self._comparator_reference_index: int | None = None
         self.setWindowTitle("BoardComposer Studio")
+        icon = app_icon()
+        if not icon.isNull():
+            self.setWindowIcon(icon)
         self.resize(1400, 900)
 
         self._build_menu()

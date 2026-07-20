@@ -87,6 +87,7 @@ Observaciones:
 | IDE-0015 | Compatibilidad material pieza/panel | 🟢 | P0 |
 | IDE-0016 | Generador CP-SAT (un panel) | 🟢 | P1 |
 | IDE-0017 | Importación de piezas desde CSV/Excel | 🟢 | P1 |
+| IDE-0018 | Icono/logo propio de BoardComposer Studio | 🟢 | P1 |
 
 ---
 
@@ -101,7 +102,7 @@ Observaciones:
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión — implementación vinculada hasta IDE-0017
+**Estado actual:** 🟡 En revisión — implementación vinculada hasta IDE-0018
 
 Pendiente de:
 
