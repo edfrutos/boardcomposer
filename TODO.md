@@ -31,6 +31,9 @@ Backlog operativo de corto plazo. El registro de producto se mantiene en
 - [x] Exportación PDF/DXF/JSON/CSV con diálogo de opciones y vista previa.
 - [x] Preferencias de estrategia, pesos, tema, cuadrícula, idioma y unidades (SCR-006).
 - [x] Importación de piezas desde CSV; soporte Excel (.xlsx) incluido.
+- [x] Incorporar logo/icono propio de BoardComposer Studio que sustituya el
+  icono genérico de Python (ventana, dock, diálogo Acerca de). Asset:
+  `studio/assets/app_icon.jpg` (IDE-0018).
 
 ## Documentación
 

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QDialog,
     QDialogButtonBox,
@@ -12,6 +13,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from studio.branding import app_icon
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.keyboard_shortcuts import STUDIO_SHORTCUTS, format_shortcut_label
 from studio.whats_new import load_whats_new
@@ -50,15 +52,27 @@ class AboutDialog(QDialog):
         self.setWindowTitle(tr("help.about_title", language))
         self.setMinimumWidth(360)
 
+        icon = app_icon()
+        if not icon.isNull():
+            self.setWindowIcon(icon)
+
         layout = QVBoxLayout(self)
+        if not icon.isNull():
+            icon_label = QLabel()
+            icon_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+            icon_label.setPixmap(icon.pixmap(96, 96))
+            layout.addWidget(icon_label)
+
         brand = QLabel("BoardComposer Studio")
         brand.setObjectName("welcomeBrand")
+        brand.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         layout.addWidget(brand)
-        layout.addWidget(
-            QLabel(tr("help.about_version", language, version=STUDIO_VERSION))
-        )
+        version = QLabel(tr("help.about_version", language, version=STUDIO_VERSION))
+        version.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        layout.addWidget(version)
         blurb = QLabel(tr("help.about_blurb", language))
         blurb.setWordWrap(True)
+        blurb.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         layout.addWidget(blurb)
 
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
