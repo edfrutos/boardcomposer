@@ -205,6 +205,7 @@
 - Ctrl+D duplica la pieza o el tablero seleccionado/enfocado.
 - Delete/Backspace elimina la pieza o el tablero seleccionado/enfocado.
 - Re Pág / Av Pág navegan entre soluciones candidatas (Comparar).
+- Ctrl+Shift+Return aplica la solución candidata al proyecto.
 
 ### Cambiado
 
