@@ -85,3 +85,19 @@ def test_welcome_screen_brand_and_primary_object_names(qapp):
     assert brand.text() == "BoardComposer"
     assert screen.new_button.objectName() == "primaryButton"
     assert isinstance(screen.new_button, QPushButton)
+
+
+def test_welcome_recent_activation_ignores_null_item(qapp):
+    del qapp
+    screen = WelcomeScreen()
+    opened: list[str] = []
+    screen.open_recent_requested.connect(opened.append)
+
+    screen._on_recent_activated(None)
+    assert opened == []
+
+    screen.set_recent_files([])
+    empty = screen.recent_list.item(0)
+    assert empty is not None
+    screen._on_recent_activated(empty)
+    assert opened == []
