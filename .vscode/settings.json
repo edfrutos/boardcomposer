@@ -1,0 +1,32 @@
+{
+  "python.languageServer": "None",
+  "flake8.args": [
+    "--config=${workspaceFolder}/.flake8",
+    "--max-line-length=88",
+    "--extend-ignore=E203,W503"
+  ],
+  "pycodestyle.args": [
+    "--max-line-length=88"
+  ],
+  "python.linting.flake8Args": [
+    "--config=${workspaceFolder}/.flake8",
+    "--max-line-length=88",
+    "--extend-ignore=E203,W503"
+  ],
+  "python.linting.pycodestyleArgs": [
+    "--max-line-length=88"
+  ],
+  "cSpell.words": [
+    "advanced",
+    "bcproj",
+    "board",
+    "boardcomposer",
+    "boards",
+    "centers",
+    "cleared",
+    "dock",
+    "explorer",
+    "exported",
+    "qapp"
+  ]
+}
