@@ -452,11 +452,14 @@ def test_arrow_nudge_moves_selected_piece(qapp):
     assert services.commands.can_undo()
 
 
-def test_shift_arrow_nudge_moves_by_10mm(qapp):
+def test_shift_arrow_nudge_uses_grid_size(qapp):
     from PySide6.QtCore import QEvent, Qt
     from PySide6.QtGui import QKeyEvent
 
+    from studio.preferences import StudioPreferences
+
     services = _multipanel_services()
+    services.preferences.update(StudioPreferences(grid_size_mm=50))
     workspace = BoardWorkspace(services)
     workspace.resize(800, 600)
     workspace.reload_project()
@@ -475,7 +478,7 @@ def test_shift_arrow_nudge_moves_by_10mm(qapp):
 
     placement_after = services.projects.current_project.placement_by_piece_id("A")
     assert placement_after is not None
-    assert placement_after.y_mm == y_before + 10.0
+    assert placement_after.y_mm == y_before + 50.0
 
 
 def test_arrow_without_selection_is_ignored(qapp):

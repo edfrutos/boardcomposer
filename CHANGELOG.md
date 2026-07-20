@@ -201,6 +201,7 @@
 - Icono propio de BoardComposer Studio (ventana / Acerca de).
 - Ver → Ajustar a la selección (Ctrl+Shift+0).
 - Copiar ID de la pieza/tablero seleccionado (Ctrl+Shift+C).
+- Shift+flechas mueven la pieza según el tamaño de cuadrícula.
 
 ### Cambiado
 
