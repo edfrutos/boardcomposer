@@ -203,6 +203,7 @@
 - Copiar ID de la pieza/tablero seleccionado (Ctrl+Shift+C).
 - Shift+flechas mueven la pieza según el tamaño de cuadrícula.
 - Ctrl+D duplica la pieza o el tablero seleccionado/enfocado.
+- Delete/Backspace elimina la pieza o el tablero seleccionado/enfocado.
 
 ### Cambiado
 
