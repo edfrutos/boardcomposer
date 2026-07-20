@@ -206,6 +206,7 @@
 - Delete/Backspace elimina la pieza o el tablero seleccionado/enfocado.
 - Re Pág / Av Pág navegan entre soluciones candidatas (Comparar).
 - Ctrl+Shift+Return aplica la solución candidata al proyecto.
+- Ctrl+Shift+E exporta la solución seleccionada.
 
 ### Cambiado
 

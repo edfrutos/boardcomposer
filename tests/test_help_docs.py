@@ -69,6 +69,10 @@ def test_shortcuts_catalog_and_dialog(qapp):
         b.action_key == "apply_layout" and b.sequence == "Ctrl+Shift+Return"
         for b in STUDIO_SHORTCUTS
     )
+    assert any(
+        b.action_key == "export_selected" and b.sequence == "Ctrl+Shift+E"
+        for b in STUDIO_SHORTCUTS
+    )
     delete_binding = next(b for b in STUDIO_SHORTCUTS if b.action_key == "delete_piece")
     assert delete_binding.sequence == "Backspace"
     assert delete_binding.alternates == ("Delete",)
@@ -80,6 +84,7 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert actions["previous_solution"].shortcut() == QKeySequence("PgUp")
     assert actions["next_solution"].shortcut() == QKeySequence("PgDown")
     assert actions["apply_layout"].shortcut() == QKeySequence("Ctrl+Shift+Return")
+    assert actions["export_selected"].shortcut() == QKeySequence("Ctrl+Shift+E")
     delete_shortcuts = {
         sequence.toString() for sequence in actions["delete_piece"].shortcuts()
     }
