@@ -1604,11 +1604,32 @@ class MainWindow(QMainWindow):
         self._status("status.piece_deleted", id=piece_id)
 
     def _duplicate_selected_piece(self) -> None:
+        """Duplicate the selected piece, or the focused/explorer board (Ctrl+D)."""
         piece_id = self.workspace.selection.current()
-        if piece_id is None:
-            self._status("status.select_piece_first")
+        if piece_id is not None:
+            self._duplicate_piece_by_id(piece_id)
             return
 
+        item = self.explorer.currentItem()
+        if item is not None:
+            parsed = parse_explorer_role(item.data(0, Qt.ItemDataRole.UserRole))
+            if parsed is not None:
+                kind, object_id = parsed
+                if kind == "piece":
+                    self._duplicate_piece_by_id(object_id)
+                    return
+                if kind == "board":
+                    self._duplicate_board(object_id)
+                    return
+
+        focused = self.workspace.focused_board_id()
+        if focused is not None:
+            self._duplicate_board(focused)
+            return
+
+        self._status("status.nothing_to_duplicate")
+
+    def _duplicate_piece_by_id(self, piece_id: str) -> None:
         project = self.services.projects.current_project
         if project is None:
             return
@@ -2961,6 +2982,7 @@ class MainWindow(QMainWindow):
 
         self.workspace.reload_project()
         self._reload_explorer()
+        self.select_explorer_board(new_id)
         self._mark_project_modified(reason="board_duplicated")
         self.update_window_title()
         self.update_undo_redo()
