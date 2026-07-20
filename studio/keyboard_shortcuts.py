@@ -34,6 +34,8 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("invert_selection", "Ctrl+Shift+I"),
     ShortcutBinding("preferences", "Ctrl+,"),
     ShortcutBinding("solve_layout", "Ctrl+Return"),
+    ShortcutBinding("previous_solution", "PgUp"),
+    ShortcutBinding("next_solution", "PgDown"),
     ShortcutBinding("fit_board", "Ctrl+0"),
     ShortcutBinding("fit_selection", "Ctrl+Shift+0"),
     ShortcutBinding("zoom_in", "Ctrl+=", ("Ctrl++",)),
