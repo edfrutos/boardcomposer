@@ -1,7 +1,8 @@
 """Main window for BoardComposer Studio."""
 
 from pathlib import Path
-from PySide6.QtCore import QPoint, QSize, Qt
+
+from PySide6.QtCore import QByteArray, QPoint, QSize, Qt
 from PySide6.QtGui import QAction, QCloseEvent, QIcon
 from PySide6.QtWidgets import (
     QAbstractItemView,
@@ -102,6 +103,11 @@ from studio.timeline import TimelinePanel
 from studio.events import catalog as events
 
 
+def _qbytearray_to_bytes(value: QByteArray) -> bytes:
+    """Convert ``QByteArray`` to ``bytes`` for storage / typing stubs."""
+    return bytes(value.data())
+
+
 class MainWindow(QMainWindow):
     """Main application window."""
 
@@ -124,8 +130,8 @@ class MainWindow(QMainWindow):
         self._build_workspace()
         self._build_panels()
         self._build_statusbar()
-        self._factory_window_geometry = bytes(self.saveGeometry())
-        self._factory_window_state = bytes(self.saveState())
+        self._factory_window_geometry = _qbytearray_to_bytes(self.saveGeometry())
+        self._factory_window_state = _qbytearray_to_bytes(self.saveState())
         self._restore_window_layout()
         self._reload_explorer()
         self._reload_solution_table()
@@ -659,7 +665,10 @@ class MainWindow(QMainWindow):
             return None
 
         for index in range(self.explorer.topLevelItemCount()):
-            found = walk(self.explorer.topLevelItem(index))
+            top = self.explorer.topLevelItem(index)
+            if top is None:
+                continue
+            found = walk(top)
             if found is not None:
                 return found
         return None
@@ -681,8 +690,10 @@ class MainWindow(QMainWindow):
                 return
             parsed = parse_explorer_role(current.data(0, Qt.ItemDataRole.UserRole))
             if parsed is not None and parsed[0] == "piece":
-                self.explorer.setCurrentItem(None)
                 self.explorer.clearSelection()
+                selection_model = self.explorer.selectionModel()
+                if selection_model is not None:
+                    selection_model.clearCurrentIndex()
         finally:
             self.explorer.blockSignals(blocked)
 
@@ -1895,8 +1906,7 @@ class MainWindow(QMainWindow):
         from studio.theme import apply_theme
 
         app = QApplication.instance()
-        if app is not None:
-            # pyright: ignore[reportArgumentType]
+        if isinstance(app, QApplication):
             apply_theme(app, self.services.preferences.current.theme)
         self._retranslate_ui()
         self._sync_view_actions()
@@ -2828,8 +2838,6 @@ class MainWindow(QMainWindow):
 
     def _restore_window_layout(self) -> None:
         """Restore geometry and dock/toolbar state from preferences."""
-        from PySide6.QtCore import QByteArray
-
         prefs = self.services.preferences.current
         if prefs.window_geometry:
             geometry = QByteArray.fromBase64(
@@ -2846,8 +2854,6 @@ class MainWindow(QMainWindow):
 
     def _reset_window_layout(self) -> None:
         """Restore factory dock/toolbar layout and persist it."""
-        from PySide6.QtCore import QByteArray
-
         factory_geometry = getattr(self, "_factory_window_geometry", None)
         factory_state = getattr(self, "_factory_window_state", None)
         if factory_geometry:
@@ -2871,8 +2877,8 @@ class MainWindow(QMainWindow):
     def _persist_window_layout(self) -> None:
         """Save geometry and dock/toolbar state into preferences."""
         prefs = self.services.preferences.current
-        geometry = bytes(self.saveGeometry().toBase64()).decode("ascii")
-        state = bytes(self.saveState().toBase64()).decode("ascii")
+        geometry = _qbytearray_to_bytes(self.saveGeometry().toBase64()).decode("ascii")
+        state = _qbytearray_to_bytes(self.saveState().toBase64()).decode("ascii")
         self.services.preferences.update(
             dataclass_replace(
                 prefs,
