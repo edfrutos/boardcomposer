@@ -422,3 +422,72 @@ def test_space_left_drag_on_piece_pans_without_moving_placement(qapp):
     placement_after = services.projects.current_project.placement_by_piece_id("A")
     assert placement_after is not None
     assert (placement_after.x_mm, placement_after.y_mm) == position_before
+
+
+def test_arrow_nudge_moves_selected_piece(qapp):
+    from PySide6.QtCore import QEvent, Qt
+    from PySide6.QtGui import QKeyEvent
+
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.resize(800, 600)
+    workspace.reload_project()
+    workspace.select_piece("A")
+
+    placement = services.projects.current_project.placement_by_piece_id("A")
+    assert placement is not None
+    x_before, y_before = placement.x_mm, placement.y_mm
+
+    right = QKeyEvent(
+        QEvent.Type.KeyPress,
+        Qt.Key.Key_Right,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.keyPressEvent(right)
+
+    placement_after = services.projects.current_project.placement_by_piece_id("A")
+    assert placement_after is not None
+    assert placement_after.x_mm == x_before + 1.0
+    assert placement_after.y_mm == y_before
+    assert services.commands.can_undo()
+
+
+def test_shift_arrow_nudge_moves_by_10mm(qapp):
+    from PySide6.QtCore import QEvent, Qt
+    from PySide6.QtGui import QKeyEvent
+
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.resize(800, 600)
+    workspace.reload_project()
+    workspace.select_piece("A")
+
+    placement = services.projects.current_project.placement_by_piece_id("A")
+    assert placement is not None
+    y_before = placement.y_mm
+
+    down = QKeyEvent(
+        QEvent.Type.KeyPress,
+        Qt.Key.Key_Down,
+        Qt.KeyboardModifier.ShiftModifier,
+    )
+    workspace.keyPressEvent(down)
+
+    placement_after = services.projects.current_project.placement_by_piece_id("A")
+    assert placement_after is not None
+    assert placement_after.y_mm == y_before + 10.0
+
+
+def test_arrow_without_selection_is_ignored(qapp):
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.reload_project()
+    workspace.clear_piece_selection()
+
+    placement = services.projects.current_project.placement_by_piece_id("A")
+    assert placement is not None
+    before = (placement.x_mm, placement.y_mm)
+
+    handled = workspace.nudge_selected_piece(1.0, 0.0)
+    assert handled is False
+    assert (placement.x_mm, placement.y_mm) == before

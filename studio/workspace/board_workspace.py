@@ -29,6 +29,15 @@ from studio.workspace.workspace_camera import WorkspaceCamera
 if TYPE_CHECKING:
     from studio.main_window import MainWindow
 
+_NUDGE_STEP_MM = 1.0
+_NUDGE_LARGE_MM = 10.0
+_ARROW_NUDGE: dict[Qt.Key, tuple[float, float]] = {
+    Qt.Key.Key_Left: (-1.0, 0.0),
+    Qt.Key.Key_Right: (1.0, 0.0),
+    Qt.Key.Key_Up: (0.0, -1.0),
+    Qt.Key.Key_Down: (0.0, 1.0),
+}
+
 
 class BoardWorkspace(QGraphicsView):
     """Interactive board workspace for BoardComposer Studio."""
@@ -473,11 +482,23 @@ class BoardWorkspace(QGraphicsView):
         super().mousePressEvent(event)
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
-        """Arm temporary pan mode while Space is held."""
+        """Arm Space-pan mode, or nudge the selected piece with arrow keys."""
         if event.key() == Qt.Key.Key_Space and not event.isAutoRepeat():
             self._space_held = True
             event.accept()
             return
+
+        delta = _ARROW_NUDGE.get(event.key())
+        if delta is not None:
+            step = (
+                _NUDGE_LARGE_MM
+                if event.modifiers() & Qt.KeyboardModifier.ShiftModifier
+                else _NUDGE_STEP_MM
+            )
+            if self.nudge_selected_piece(delta[0] * step, delta[1] * step):
+                event.accept()
+                return
+
         super().keyPressEvent(event)
 
     def keyReleaseEvent(self, event: QKeyEvent) -> None:
@@ -643,6 +664,80 @@ class BoardWorkspace(QGraphicsView):
             return False
 
         return validator.can_rotate(item, angle)
+
+    def nudge_selected_piece(self, dx_mm: float, dy_mm: float) -> bool:
+        """Nudge the current piece by ``(dx_mm, dy_mm)``. Return True if handled."""
+        piece_id = self.selection.current()
+        if piece_id is None:
+            return False
+
+        item = self.piece_item_by_id(piece_id)
+        if item is None:
+            return False
+
+        old_x, old_y = self._local_item_position(item)
+        old_board_id = item.board_id
+        old_board_instance = item.board_instance
+        old_stock_panel_index = item.stock_panel_index
+
+        item.setPos(item.pos() + QPointF(dx_mm, dy_mm))
+
+        key = self._panel_key(item)
+        validator = self._validators.get(key) if key is not None else None
+        if validator is not None and not validator.can_place(item):
+            self._revert_item_to_panel(
+                item,
+                old_x,
+                old_y,
+                old_board_id,
+                old_board_instance,
+                old_stock_panel_index,
+            )
+            item.set_normal()
+            return True
+
+        project = self.services.projects.current_project
+        placement = project.placement_by_piece_id(piece_id) if project else None
+        if placement is None:
+            return False
+
+        panel_unchanged = (
+            placement.board_id == old_board_id
+            and placement.board_instance == old_board_instance
+            and placement.stock_panel_index == old_stock_panel_index
+        )
+        if placement.x_mm == old_x and placement.y_mm == old_y and panel_unchanged:
+            item.set_normal()
+            return True
+
+        command = MovePieceCommand(
+            self.services,
+            piece_id,
+            old_x,
+            old_y,
+            placement.x_mm,
+            placement.y_mm,
+            old_board_id=old_board_id,
+            old_board_instance=old_board_instance,
+            old_stock_panel_index=old_stock_panel_index,
+            new_board_id=placement.board_id,
+            new_board_instance=placement.board_instance,
+            new_stock_panel_index=placement.stock_panel_index,
+        )
+        self.services.commands.execute(command)
+
+        window = cast("MainWindow", self.window())
+        if hasattr(window, "_mark_project_modified"):
+            window._mark_project_modified(reason="piece_moved")
+        else:
+            self.services.mark_project_modified(reason="piece_moved")
+        if hasattr(window, "update_undo_redo"):
+            window.update_undo_redo()
+        if hasattr(window, "update_window_title"):
+            window.update_window_title()
+
+        item.set_normal()
+        return True
 
     def _start_pan(self, point: QPoint) -> None:
         self._panning = True
