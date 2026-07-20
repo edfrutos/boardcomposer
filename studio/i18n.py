@@ -78,6 +78,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.undo": "Deshacer",
         "action.redo": "Rehacer",
         "action.rotate_piece": "Rotar 90°",
+        "action.rename_selection": "Renombrar…",
         "action.duplicate_piece": "Duplicar pieza",
         "action.delete_piece": "Eliminar pieza",
         "action.select_all_pieces": "Seleccionar todas las piezas",
@@ -125,6 +126,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.undo": "Deshacer la última acción",
         "tip.redo": "Rehacer la última acción deshecha",
         "tip.rotate_piece": "Rotar 90° la pieza seleccionada",
+        "tip.rename_selection": (
+            "Renombrar la pieza, el tablero o el proyecto seleccionado"
+        ),
         "tip.duplicate_piece": "Duplicar la pieza seleccionada",
         "tip.delete_piece": "Eliminar la pieza seleccionada (Backspace o Delete)",
         "tip.select_all_pieces": "Seleccionar todas las piezas del canvas",
@@ -416,6 +420,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.export_reveal_failed": "No se pudo abrir la carpeta de: {path}",
         "status.nothing_to_save": "No hay proyecto para guardar",
         "status.nothing_to_rename": "No hay proyecto para renombrar",
+        "status.nothing_to_rename_selection": (
+            "Selecciona una pieza, un tablero o el proyecto para renombrar"
+        ),
         "status.save_failed": "No se pudo guardar: {error}",
         "status.project_renamed": "Proyecto renombrado: {name}",
         "status.piece_renamed": "Pieza renombrada: {id}",
@@ -679,6 +686,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.undo": "Undo",
         "action.redo": "Redo",
         "action.rotate_piece": "Rotate 90°",
+        "action.rename_selection": "Rename…",
         "action.duplicate_piece": "Duplicate piece",
         "action.delete_piece": "Delete piece",
         "action.select_all_pieces": "Select all pieces",
@@ -725,6 +733,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.undo": "Undo the last action",
         "tip.redo": "Redo the last undone action",
         "tip.rotate_piece": "Rotate the selected piece by 90°",
+        "tip.rename_selection": "Rename the selected piece, board, or project",
         "tip.duplicate_piece": "Duplicate the selected piece",
         "tip.delete_piece": "Delete the selected piece (Backspace or Delete)",
         "tip.select_all_pieces": "Select every piece on the canvas",
@@ -1015,6 +1024,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.export_reveal_failed": "Could not open the folder for: {path}",
         "status.nothing_to_save": "No project to save",
         "status.nothing_to_rename": "No project to rename",
+        "status.nothing_to_rename_selection": (
+            "Select a piece, board, or the project to rename"
+        ),
         "status.save_failed": "Could not save: {error}",
         "status.project_renamed": "Project renamed: {name}",
         "status.piece_renamed": "Piece renamed: {id}",
@@ -1236,6 +1248,7 @@ _ACTION_KEYS = (
     "undo",
     "redo",
     "rotate_piece",
+    "rename_selection",
     "duplicate_piece",
     "delete_piece",
     "select_all_pieces",
