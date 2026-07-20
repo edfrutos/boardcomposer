@@ -209,6 +209,7 @@
 - Ctrl+Shift+E exporta la solución seleccionada.
 - Ctrl+Shift+P abre el diálogo para añadir una pieza.
 - Ctrl+Shift+B abre el diálogo para añadir un tablero.
+- Ctrl+Shift+O importa piezas desde CSV o Excel.
 
 ### Cambiado
 
