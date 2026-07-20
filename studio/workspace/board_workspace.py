@@ -30,7 +30,7 @@ if TYPE_CHECKING:
     from studio.main_window import MainWindow
 
 _NUDGE_STEP_MM = 1.0
-_NUDGE_LARGE_MM = 10.0
+_NUDGE_LARGE_FALLBACK_MM = 10.0
 _ARROW_NUDGE: dict[Qt.Key, tuple[float, float]] = {
     Qt.Key.Key_Left: (-1.0, 0.0),
     Qt.Key.Key_Right: (1.0, 0.0),
@@ -522,7 +522,7 @@ class BoardWorkspace(QGraphicsView):
         delta = _ARROW_NUDGE.get(event.key())
         if delta is not None:
             step = (
-                _NUDGE_LARGE_MM
+                self._nudge_large_step_mm()
                 if event.modifiers() & Qt.KeyboardModifier.ShiftModifier
                 else _NUDGE_STEP_MM
             )
@@ -539,6 +539,19 @@ class BoardWorkspace(QGraphicsView):
             event.accept()
             return
         super().keyReleaseEvent(event)
+
+    def _nudge_large_step_mm(self) -> float:
+        """Shift+arrow step: preferences grid size, or 10 mm fallback."""
+        preferences = getattr(self.services, "preferences", None)
+        if preferences is None:
+            return _NUDGE_LARGE_FALLBACK_MM
+        current = getattr(preferences, "current", None)
+        if current is None:
+            return _NUDGE_LARGE_FALLBACK_MM
+        grid_size = getattr(current, "grid_size_mm", None)
+        if isinstance(grid_size, (int, float)) and grid_size > 0:
+            return float(grid_size)
+        return _NUDGE_LARGE_FALLBACK_MM
 
     def mouseMoveEvent(self, event: QMouseEvent) -> None:
         """Handle the mouse move event."""
