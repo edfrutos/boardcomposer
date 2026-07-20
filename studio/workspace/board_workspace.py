@@ -385,6 +385,14 @@ class BoardWorkspace(QGraphicsView):
         self._camera.center = rect.center()
         self._apply_camera()
 
+    def center_on_piece(self, piece_id: str) -> None:
+        """Center the camera on ``piece_id`` without changing zoom."""
+        item = self.piece_item_by_id(piece_id)
+        if item is None:
+            return
+        self._camera.center = item.sceneBoundingRect().center()
+        self._apply_camera()
+
     def fit_board(self) -> None:
         """Fit the board to the viewport."""
         if not self._board_items:

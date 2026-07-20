@@ -157,6 +157,9 @@ def test_explorer_board_focus_centers_and_clears_on_piece(qapp, tmp_path):
 
     assert window.workspace.focused_board_id() is None
     assert window.workspace.selection.selected() == ["A"]
+    piece = window.workspace.piece_item_by_id("A")
+    assert piece is not None
+    assert window.workspace._camera.center == piece.sceneBoundingRect().center()
 
 
 def test_click_board_on_canvas_focuses_and_syncs_explorer(qapp, tmp_path):

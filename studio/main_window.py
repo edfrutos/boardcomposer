@@ -712,6 +712,7 @@ class MainWindow(QMainWindow):
         if kind == "piece":
             # select_piece → sync_inspector → full piece Inspector (position/panel).
             self.workspace.select_piece(object_id)
+            self.workspace.center_on_piece(object_id)
 
     def select_explorer_board(self, board_id: str) -> None:
         """Focus a board on the canvas and mirror it in Explorador + Inspector."""
