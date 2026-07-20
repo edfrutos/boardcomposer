@@ -197,6 +197,7 @@
 - Renombrar con F2 la pieza, tablero o proyecto seleccionado.
 - Doble clic en pieza/tablero del canvas para editar (vacío ajusta la vista).
 - Mover la pieza seleccionada con las flechas (Shift = 10 mm).
+- Editar pieza/tablero seleccionado con Enter (Editar…).
 
 ### Cambiado
 
