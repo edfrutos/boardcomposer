@@ -195,6 +195,7 @@
 - Desplazar el Workspace con Espacio + arrastre (además de botón medio/derecho).
 - Centrar la cámara al seleccionar una pieza en el Explorador.
 - Renombrar con F2 la pieza, tablero o proyecto seleccionado.
+- Doble clic en pieza/tablero del canvas para editar (vacío ajusta la vista).
 
 ### Cambiado
 
