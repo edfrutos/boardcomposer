@@ -1,3 +1,6 @@
+# Flake8 config for BoardComposer.
+# Keep in sync with [tool.flake8] / [tool.ruff] / [tool.pylint.format]
+# in pyproject.toml (line length 88).
 [flake8]
 max-line-length = 88
 extend-ignore = E203, W503
