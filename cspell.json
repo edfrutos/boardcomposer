@@ -1,31 +1,7 @@
 {
-  "python.languageServer": "None",
-  "flake8.args": [
-    "--config=${workspaceFolder}/.flake8",
-    "--max-line-length=999",
-    "--extend-ignore=E203,W503,E501"
-  ],
-  "pycodestyle.args": [
-    "--max-line-length=999",
-    "--ignore=E501"
-  ],
-  "python.linting.flake8Args": [
-    "--config=${workspaceFolder}/.flake8",
-    "--max-line-length=999",
-    "--extend-ignore=E203,W503,E501"
-  ],
-  "python.linting.pycodestyleArgs": [
-    "--max-line-length=999",
-    "--ignore=E501"
-  ],
-  "pylint.args": [
-    "--rcfile=${workspaceFolder}/pyproject.toml",
-    "--max-line-length=999",
-    "--max-module-lines=9999",
-    "--disable=C0301,C0302"
-  ],
-  "cSpell.language": "en,es",
-  "cSpell.enabledDictionaries": [
+  "version": "0.2",
+  "language": "en,es",
+  "dictionaries": [
     "python",
     "python-common",
     "softwareTerms",
@@ -36,7 +12,23 @@
     "en_us",
     "es-es"
   ],
-  "cSpell.words": [
+  "ignorePaths": [
+    ".git",
+    ".venv",
+    "venv",
+    "**/__pycache__",
+    "**/*.pyc",
+    "**/node_modules",
+    "dist",
+    "build",
+    "*.egg-info",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    "coverage",
+    "htmlcov"
+  ],
+  "words": [
     "atajo",
     "atajos",
     "basedpyright",
