@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from PySide6.QtCore import QObject, QThread, Signal
+from PySide6.QtCore import QObject, QThread, Qt, Signal, Slot
 
 from boardcomposer.domain import AssemblySolution
 from boardcomposer.solver.cancel import CancellationToken
@@ -28,6 +28,34 @@ class SolveWorker(QObject):
         self.finished.emit(solution)
 
 
+class _SolveProgressBridge(QObject):
+    """Receives worker signals on the GUI thread and unblocks the event loop.
+
+    Plain Python callables connected with AutoConnection can run as
+    DirectConnection when the worker emits from another thread, which is
+    unsafe for ``QProgressDialog.close()`` and leaves the modal dialog hung.
+    """
+
+    def __init__(self, progress, loop: object) -> None:
+        super().__init__()
+        self._progress = progress
+        self._loop = loop
+        self.solution: AssemblySolution | None = None
+        self.error: str | None = None
+
+    @Slot(object)
+    def on_finished(self, solution: object) -> None:
+        self.solution = solution  # type: ignore[assignment]
+        self._progress.close()
+        self._loop.quit()
+
+    @Slot(str)
+    def on_failed(self, message: str) -> None:
+        self.error = message
+        self._progress.close()
+        self._loop.quit()
+
+
 def run_solve_with_progress(
     *,
     parent,
@@ -41,7 +69,7 @@ def run_solve_with_progress(
     Returns the selected solution, or ``None`` if none / cancelled / error.
     On cancel, ``layout_service.stats.cancelled`` is True.
     """
-    from PySide6.QtCore import QEventLoop, Qt
+    from PySide6.QtCore import QEventLoop
     from PySide6.QtWidgets import QProgressDialog
 
     cancel = CancellationToken()
@@ -58,38 +86,30 @@ def run_solve_with_progress(
     progress.setValue(0)
 
     loop = QEventLoop(parent)
-    result: dict[str, AssemblySolution | None | str] = {"solution": None, "error": None}
-
-    def cleanup() -> None:
-        thread.quit()
-        thread.wait(60_000)
-        worker.deleteLater()
-        thread.deleteLater()
-
-    def on_finished(solution: AssemblySolution | None) -> None:
-        result["solution"] = solution
-        progress.close()
-        loop.quit()
-
-    def on_failed(message: str) -> None:
-        result["error"] = message
-        progress.close()
-        loop.quit()
+    bridge = _SolveProgressBridge(progress, loop)
+    # Affinity: same thread as ``parent`` / the calling GUI thread.
+    if parent is not None:
+        bridge.moveToThread(parent.thread())
 
     def on_canceled() -> None:
         cancel.cancel()
 
     thread.started.connect(worker.run)
-    worker.finished.connect(on_finished)
-    worker.failed.connect(on_failed)
+    worker.finished.connect(bridge.on_finished, Qt.ConnectionType.QueuedConnection)
+    worker.failed.connect(bridge.on_failed, Qt.ConnectionType.QueuedConnection)
     progress.canceled.connect(on_canceled)
 
     thread.start()
     progress.show()
     loop.exec()
-    cleanup()
 
-    if result["error"] is not None:
-        raise RuntimeError(str(result["error"]))
+    thread.quit()
+    thread.wait(60_000)
+    worker.deleteLater()
+    thread.deleteLater()
+    bridge.deleteLater()
 
-    return result["solution"]  # type: ignore[return-value]
+    if bridge.error is not None:
+        raise RuntimeError(bridge.error)
+
+    return bridge.solution
