@@ -1,9 +1,8 @@
 # Flake8 config for BoardComposer.
-# Keep in sync with [tool.flake8] / [tool.ruff] / [tool.pylint.format]
-# in pyproject.toml (line length 88).
+# Line length is owned by Ruff format (88). Do not surface E501 in the IDE.
 [flake8]
-max-line-length = 88
-extend-ignore = E203, W503
+max-line-length = 999
+extend-ignore = E203, W503, E501
 exclude =
     .git,
     __pycache__,

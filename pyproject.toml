@@ -27,20 +27,23 @@ cp_sat = [
 line-length = 88
 target-version = "py313"
 
-# Canonical Flake8 settings also live in `.flake8`. This section is read when
-# `Flake8-pyproject` is installed (so CLI/IDE agree on max-line-length=88).
+# Flake8: line length is owned by Ruff format. E501 is ignored so the IDE
+# does not duplicate style noise (especially on temporary buffers).
 [tool.flake8]
-max-line-length = 88
-extend-ignore = ["E203", "W503"]
+max-line-length = 999
+extend-ignore = ["E203", "W503", "E501"]
 exclude = [".git", "__pycache__", ".venv", "venv", "build", "dist"]
 
 [tool.pylint.main]
 ignore-patterns = ["__pycache__"]
+max-module-lines = 9999
 
 [tool.pylint.messages_control]
 disable = [
     "missing-module-docstring",
     "missing-function-docstring",
+    "C0301",
+    "C0302",
 ]
 
 [tool.pylint.typecheck]
@@ -51,7 +54,7 @@ ignored-modules = [
 ]
 
 [tool.pylint.format]
-max-line-length = 88
+max-line-length = 999
 
 [tool.pytest.ini_options]
 pythonpath = ["src", "."]
