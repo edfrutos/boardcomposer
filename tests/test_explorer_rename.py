@@ -50,6 +50,39 @@ def test_rename_piece_from_explorer(qapp, tmp_path, monkeypatch):
     assert "A2" in window.statusBar().currentMessage()
 
 
+def test_f2_rename_selection_renames_explorer_piece(qapp, tmp_path, monkeypatch):
+    del qapp
+    window = _window(tmp_path)
+    item = window._find_explorer_item_by_role("piece:A")
+    assert item is not None
+    window.explorer.setCurrentItem(item)
+    monkeypatch.setattr(
+        QInputDialog,
+        "getText",
+        lambda *args, **kwargs: ("A2", True),
+    )
+
+    window._actions["rename_selection"].trigger()
+
+    project = window.services.projects.current_project
+    assert project is not None
+    assert [piece.piece_id for piece in project.pieces] == ["A2"]
+    assert window._actions["rename_selection"].shortcut().toString() == "F2"
+
+
+def test_f2_rename_selection_without_target_shows_status(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    window.explorer.setCurrentItem(None)
+    window.workspace.clear_piece_selection()
+
+    window._rename_selection()
+
+    assert window._tr("status.nothing_to_rename_selection") in (
+        window.statusBar().currentMessage()
+    )
+
+
 def test_rename_board_from_explorer(qapp, tmp_path, monkeypatch):
     del qapp
     window = _window(tmp_path)

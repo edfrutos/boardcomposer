@@ -162,6 +162,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["redo"])
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["rotate_piece"])
+        self._menus["edit"].addAction(self._actions["rename_selection"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
         self._menus["edit"].addSeparator()
@@ -227,6 +228,7 @@ class MainWindow(QMainWindow):
         self._actions["undo"].triggered.connect(self._undo)
         self._actions["redo"].triggered.connect(self._redo)
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
+        self._actions["rename_selection"].triggered.connect(self._rename_selection)
         self._actions["duplicate_piece"].triggered.connect(
             self._duplicate_selected_piece
         )
@@ -2961,6 +2963,30 @@ class MainWindow(QMainWindow):
             self._status("status.project_folder_failed")
             return
         self._status("status.project_folder_opened")
+
+    def _rename_selection(self) -> None:
+        """Rename the Explorador selection (piece, board, or project) via F2."""
+        item = self.explorer.currentItem()
+        if item is not None:
+            parsed = parse_explorer_role(item.data(0, Qt.ItemDataRole.UserRole))
+            if parsed is not None:
+                kind, object_id = parsed
+                if kind == "project":
+                    self._rename_project()
+                    return
+                if kind == "piece":
+                    self._rename_piece(object_id)
+                    return
+                if kind == "board":
+                    self._rename_board(object_id)
+                    return
+
+        selected = self.workspace.selection.selected()
+        if len(selected) == 1:
+            self._rename_piece(selected[0])
+            return
+
+        self._status("status.nothing_to_rename_selection")
 
     def _rename_project(self) -> None:
         project = self.services.projects.current_project

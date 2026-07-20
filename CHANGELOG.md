@@ -194,6 +194,7 @@
 - Renombrar pieza/tablero desde el menú contextual del Explorador (con undo).
 - Desplazar el Workspace con Espacio + arrastre (además de botón medio/derecho).
 - Centrar la cámara al seleccionar una pieza en el Explorador.
+- Renombrar con F2 la pieza, tablero o proyecto seleccionado.
 
 ### Cambiado
 
