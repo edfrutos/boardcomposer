@@ -485,6 +485,8 @@ class MainWindow(QMainWindow):
             tip = self._tr(tip_key)
             action.setStatusTip(tip if tip != tip_key else "")
             self._menus["view"].addAction(action)
+        self._actions["toggle_explorer"] = self._dock_toggles["explorer"]
+        apply_shortcuts(self._actions)
 
         self._menus["view"].addSeparator()
         self._menus["view"].addAction(self._actions["reset_window_layout"])
