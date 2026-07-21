@@ -57,7 +57,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] **Ctrl+D** duplica pieza o tablero enfocado.
 - [ ] **Delete/Backspace** elimina pieza o tablero enfocado (con confirmación).
 - [ ] **Ctrl+G** muestra/oculta cuadrícula.
-- [ ] Docks: Ver → Explorador / Inspector / Timeline / Comparador; barra de herramientas (**Ctrl+Shift+K**); restablecer disposición (**Ctrl+Shift+W**).
+- [ ] Docks: Ver → Explorador (**Ctrl+1**) / Inspector / Timeline / Comparador; barra de herramientas (**Ctrl+Shift+K**); restablecer disposición (**Ctrl+Shift+W**).
 
 ---
 
