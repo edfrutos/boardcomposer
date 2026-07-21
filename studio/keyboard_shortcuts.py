@@ -51,6 +51,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("save_as_template", "Ctrl+Shift+M"),
     ShortcutBinding("whats_new", "Ctrl+Shift+U"),
     ShortcutBinding("new_demo_project", "Ctrl+Shift+D"),
+    ShortcutBinding("open_docs", "Shift+F1"),
     ShortcutBinding("fit_board", "Ctrl+0"),
     ShortcutBinding("fit_selection", "Ctrl+Shift+0"),
     ShortcutBinding("zoom_in", "Ctrl+=", ("Ctrl++",)),
