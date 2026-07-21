@@ -313,6 +313,8 @@ class MainWindow(QMainWindow):
         tip = self._tr("tip.toggle_toolbar")
         if tip != "tip.toggle_toolbar":
             self._toolbar_toggle.setStatusTip(tip)
+        self._actions["toggle_toolbar"] = self._toolbar_toggle
+        apply_shortcuts(self._actions)
         self._menus["view"].addAction(self._toolbar_toggle)
 
     def _build_workspace(self):
