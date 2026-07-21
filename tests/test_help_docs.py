@@ -101,6 +101,9 @@ def test_shortcuts_catalog_and_dialog(qapp):
         b.action_key == "reveal_project_folder" and b.sequence == "Ctrl+Shift+R"
         for b in STUDIO_SHORTCUTS
     )
+    assert any(
+        b.action_key == "shortcuts" and b.sequence == "F1" for b in STUDIO_SHORTCUTS
+    )
     delete_binding = next(b for b in STUDIO_SHORTCUTS if b.action_key == "delete_piece")
     assert delete_binding.sequence == "Backspace"
     assert delete_binding.alternates == ("Delete",)
@@ -120,6 +123,7 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert actions["export_timeline"].shortcut() == QKeySequence("Ctrl+Shift+L")
     assert actions["show_welcome"].shortcut() == QKeySequence("Ctrl+Shift+H")
     assert actions["reveal_project_folder"].shortcut() == QKeySequence("Ctrl+Shift+R")
+    assert actions["shortcuts"].shortcut() == QKeySequence("F1")
     delete_shortcuts = {
         sequence.toString() for sequence in actions["delete_piece"].shortcuts()
     }
