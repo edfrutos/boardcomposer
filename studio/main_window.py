@@ -488,6 +488,7 @@ class MainWindow(QMainWindow):
         self._actions["toggle_explorer"] = self._dock_toggles["explorer"]
         self._actions["toggle_inspector"] = self._dock_toggles["inspector"]
         self._actions["toggle_timeline"] = self._dock_toggles["timeline"]
+        self._actions["toggle_comparator"] = self._dock_toggles["comparator"]
         apply_shortcuts(self._actions)
 
         self._menus["view"].addSeparator()

@@ -229,6 +229,7 @@
 - Ctrl+1 muestra u oculta el Explorador.
 - Ctrl+2 muestra u oculta el Inspector.
 - Ctrl+3 muestra u oculta el Timeline.
+- Ctrl+4 muestra u oculta el Comparador de soluciones.
 
 ### Cambiado
 

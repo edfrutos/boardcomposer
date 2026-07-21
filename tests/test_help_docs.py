@@ -159,6 +159,10 @@ def test_shortcuts_catalog_and_dialog(qapp):
         b.action_key == "toggle_timeline" and b.sequence == "Ctrl+3"
         for b in STUDIO_SHORTCUTS
     )
+    assert any(
+        b.action_key == "toggle_comparator" and b.sequence == "Ctrl+4"
+        for b in STUDIO_SHORTCUTS
+    )
     delete_binding = next(b for b in STUDIO_SHORTCUTS if b.action_key == "delete_piece")
     assert delete_binding.sequence == "Backspace"
     assert delete_binding.alternates == ("Delete",)
@@ -193,6 +197,7 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert actions["toggle_explorer"].shortcut() == QKeySequence("Ctrl+1")
     assert actions["toggle_inspector"].shortcut() == QKeySequence("Ctrl+2")
     assert actions["toggle_timeline"].shortcut() == QKeySequence("Ctrl+3")
+    assert actions["toggle_comparator"].shortcut() == QKeySequence("Ctrl+4")
     delete_shortcuts = {
         sequence.toString() for sequence in actions["delete_piece"].shortcuts()
     }
