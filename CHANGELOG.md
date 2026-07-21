@@ -223,6 +223,7 @@
 - Shift+F1 abre la documentación local.
 - Ctrl+Shift+A abre Acerca de BoardComposer.
 - Ctrl+Shift+F2 renombra el proyecto actual.
+- Ctrl+Q cierra BoardComposer Studio.
 
 ### Cambiado
 
