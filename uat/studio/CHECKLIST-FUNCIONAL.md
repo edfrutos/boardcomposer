@@ -24,7 +24,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] **Añadir tablero** (**Ctrl+Shift+B**) y **añadir pieza** (**Ctrl+Shift+P**) (menú / Explorador / CTA vacío).
 - [ ] **Guardar** / **Abrir** `.bcproj`; ruta visible en la barra de estado; **Ctrl+Shift+R** abre la carpeta.
 - [ ] **Recientes** en inicio y menú; quitar fantasma / vaciar lista si aplica.
-- [ ] **Plantilla de proyecto**: guardar y crear desde plantilla.
+- [ ] **Plantilla de proyecto**: guardar y crear desde plantilla (**Ctrl+Shift+N**).
 - [ ] Cerrar con cambios sin guardar → diálogo claro (nombre/ruta/botones).
 - [ ] **Renombrar proyecto** (menú o clic derecho en raíz del Explorador / F2).
 
