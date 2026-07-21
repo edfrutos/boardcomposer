@@ -211,6 +211,7 @@
 - Ctrl+Shift+B abre el diálogo para añadir un tablero.
 - Ctrl+Shift+O importa piezas desde CSV o Excel.
 - Ctrl+Shift+T importa inventario de tableros desde CSV o Excel.
+- Ctrl+Shift+L exporta el historial del Timeline.
 
 ### Cambiado
 
