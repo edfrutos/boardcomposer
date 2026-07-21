@@ -780,8 +780,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.zoom_out": "Zoom out on the Workspace",
         "tip.toggle_grid": "Show or hide the canvas grid",
         "tip.reset_window_layout": (
-            "Restore the default dock, toolbar and window size layout"
-            " (Ctrl+Shift+W)"
+            "Restore the default dock, toolbar and window size layout (Ctrl+Shift+W)"
         ),
         "status.window_layout_reset": "Window layout reset",
         "tip.solve_layout": "Calculate layout solutions",
