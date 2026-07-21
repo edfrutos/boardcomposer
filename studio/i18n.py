@@ -162,7 +162,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             " (Ctrl+Shift+W)"
         ),
         "status.window_layout_reset": "Disposición de ventana restablecida",
-        "tip.solve_layout": "Calcular soluciones de layout",
+        "tip.solve_layout": "Calcular soluciones de layout (Ctrl+Return)",
         "tip.previous_solution": "Seleccionar la solución anterior (Re Pág)",
         "tip.next_solution": "Seleccionar la solución siguiente (Av Pág)",
         "tip.apply_layout": "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return)",
@@ -791,7 +791,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Restore the default dock, toolbar and window size layout (Ctrl+Shift+W)"
         ),
         "status.window_layout_reset": "Window layout reset",
-        "tip.solve_layout": "Calculate layout solutions",
+        "tip.solve_layout": "Calculate layout solutions (Ctrl+Return)",
         "tip.previous_solution": "Select the previous solution (Page Up)",
         "tip.next_solution": "Select the next solution (Page Down)",
         "tip.apply_layout": "Apply the selected solution to the project (Ctrl+Shift+Return)",

@@ -63,7 +63,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 
 ## 4. Layout / Comparar / Exportar (flujo estrella)
 
-- [ ] **Ctrl+Return** calcula layout (progreso + Cancelar funcionan).
+- [ ] **Ctrl+Return** calcula layout (progreso + Cancelar funcionan; tip de estado menciona el atajo).
 - [ ] Aparecen soluciones en Comparador + Explorador.
 - [ ] **Re Pág / Av Pág** recorren candidatas (preview en canvas + status).
 - [ ] **Ctrl+Shift+Return** aplica la solución al proyecto.

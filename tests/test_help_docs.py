@@ -235,3 +235,10 @@ def test_welcome_has_docs_and_whats_new_buttons(qapp):
     screen.apply_language("en")
     assert screen.docs_button.text() == "Documentation…"
     assert screen.whats_new_button.text() == "What’s new…"
+
+
+def test_solve_layout_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Return" in tr("tip.solve_layout", "es")
+    assert "Ctrl+Return" in tr("tip.solve_layout", "en")
