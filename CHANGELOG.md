@@ -218,6 +218,7 @@
 - Ctrl+Shift+W restablece la disposición de docks, toolbar y ventana.
 - Ctrl+Shift+N crea un proyecto desde una plantilla.
 - Ctrl+Shift+M guarda el proyecto actual como plantilla.
+- Ctrl+Shift+U abre las novedades del CHANGELOG.
 
 ### Cambiado
 
