@@ -221,6 +221,7 @@
 - Ctrl+Shift+U abre las novedades del CHANGELOG.
 - Ctrl+Shift+D abre el proyecto de ejemplo.
 - Shift+F1 abre la documentación local.
+- Ctrl+Shift+A abre Acerca de BoardComposer.
 
 ### Cambiado
 
