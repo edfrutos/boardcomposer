@@ -76,7 +76,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 
 ## 5. Importación (FLW-002)
 
-- [ ] Importar **tableros** CSV/Excel con vista previa.
+- [ ] Importar **tableros** CSV/Excel (**Ctrl+Shift+T**) con vista previa.
 - [ ] Importar **piezas** CSV/Excel (**Ctrl+Shift+O**; cantidad expandida si aplica).
 - [ ] Excel multi-hoja: selector de hoja.
 - [ ] Si fallan columnas: asistente de mapeo + guardar/reaplicar/eliminar plantilla.
