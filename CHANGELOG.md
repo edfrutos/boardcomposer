@@ -228,6 +228,7 @@
 - Ctrl+Shift+K muestra u oculta la barra de herramientas.
 - Ctrl+1 muestra u oculta el Explorador.
 - Ctrl+2 muestra u oculta el Inspector.
+- Ctrl+3 muestra u oculta el Timeline.
 
 ### Cambiado
 
