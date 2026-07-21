@@ -249,3 +249,10 @@ def test_save_status_tip_includes_shortcut():
 
     assert "Ctrl+S" in tr("tip.save", "es")
     assert "Ctrl+S" in tr("tip.save", "en")
+
+
+def test_toggle_grid_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+G" in tr("tip.toggle_grid", "es")
+    assert "Ctrl+G" in tr("tip.toggle_grid", "en")

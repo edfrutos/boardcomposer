@@ -232,6 +232,7 @@
 - Ctrl+4 muestra u oculta el Comparador de soluciones.
 - Tip de estado de Calcular layout incluye Ctrl+Return.
 - Tip de estado de Guardar incluye Ctrl+S.
+- Tip de estado de Mostrar cuadrícula incluye Ctrl+G.
 
 ### Cambiado
 
