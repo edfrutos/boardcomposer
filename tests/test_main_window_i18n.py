@@ -81,14 +81,18 @@ def test_menu_actions_have_status_tips(qapp, tmp_path):
     services.preferences.update(StudioPreferences(language="en"))
     window = MainWindow(services)
 
-    assert window._actions["solve_layout"].statusTip() == "Calculate layout solutions"
+    assert (
+        window._actions["solve_layout"].statusTip()
+        == "Calculate layout solutions (Ctrl+Return)"
+    )
     assert window._actions["fit_board"].statusTip() == "Zoom to fit all boards"
 
     services.preferences.update(StudioPreferences(language="es"))
     window._apply_preferences()
 
     assert (
-        window._actions["solve_layout"].statusTip() == "Calcular soluciones de layout"
+        window._actions["solve_layout"].statusTip()
+        == "Calcular soluciones de layout (Ctrl+Return)"
     )
     assert window._actions["zoom_in"].statusTip() == "Acercar el Workspace"
 
