@@ -216,6 +216,7 @@
 - Ctrl+Shift+R abre la carpeta del archivo `.bcproj`.
 - F1 abre el catálogo de atajos de teclado.
 - Ctrl+Shift+W restablece la disposición de docks, toolbar y ventana.
+- Ctrl+Shift+N crea un proyecto desde una plantilla.
 
 ### Cambiado
 
