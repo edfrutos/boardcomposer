@@ -486,6 +486,7 @@ class MainWindow(QMainWindow):
             action.setStatusTip(tip if tip != tip_key else "")
             self._menus["view"].addAction(action)
         self._actions["toggle_explorer"] = self._dock_toggles["explorer"]
+        self._actions["toggle_inspector"] = self._dock_toggles["inspector"]
         apply_shortcuts(self._actions)
 
         self._menus["view"].addSeparator()
