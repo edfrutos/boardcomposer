@@ -214,6 +214,7 @@
 - Ctrl+Shift+L exporta el historial del Timeline.
 - Ctrl+Shift+H vuelve a la pantalla de inicio.
 - Ctrl+Shift+R abre la carpeta del archivo `.bcproj`.
+- F1 abre el catálogo de atajos de teclado.
 
 ### Cambiado
 
