@@ -213,6 +213,7 @@
 - Ctrl+Shift+T importa inventario de tableros desde CSV o Excel.
 - Ctrl+Shift+L exporta el historial del Timeline.
 - Ctrl+Shift+H vuelve a la pantalla de inicio.
+- Ctrl+Shift+R abre la carpeta del archivo `.bcproj`.
 
 ### Cambiado
 
