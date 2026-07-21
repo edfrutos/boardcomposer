@@ -242,3 +242,10 @@ def test_solve_layout_status_tip_includes_shortcut():
 
     assert "Ctrl+Return" in tr("tip.solve_layout", "es")
     assert "Ctrl+Return" in tr("tip.solve_layout", "en")
+
+
+def test_save_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+S" in tr("tip.save", "es")
+    assert "Ctrl+S" in tr("tip.save", "en")
