@@ -26,7 +26,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] **Recientes** en inicio y menú; quitar fantasma / vaciar lista si aplica.
 - [ ] **Plantilla de proyecto**: guardar (**Ctrl+Shift+M**) y crear desde plantilla (**Ctrl+Shift+N**).
 - [ ] Cerrar con cambios sin guardar → diálogo claro (nombre/ruta/botones).
-- [ ] **Renombrar proyecto** (menú o clic derecho en raíz del Explorador / F2).
+- [ ] **Renombrar proyecto** (menú, clic derecho en raíz del Explorador, **F2** o **Ctrl+Shift+F2**).
 
 ---
 

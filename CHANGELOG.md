@@ -222,6 +222,7 @@
 - Ctrl+Shift+D abre el proyecto de ejemplo.
 - Shift+F1 abre la documentación local.
 - Ctrl+Shift+A abre Acerca de BoardComposer.
+- Ctrl+Shift+F2 renombra el proyecto actual.
 
 ### Cambiado
 
