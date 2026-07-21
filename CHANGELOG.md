@@ -227,6 +227,7 @@
 - Ctrl+Shift+X vacía la lista de proyectos recientes.
 - Ctrl+Shift+K muestra u oculta la barra de herramientas.
 - Ctrl+1 muestra u oculta el Explorador.
+- Ctrl+2 muestra u oculta el Inspector.
 
 ### Cambiado
 
