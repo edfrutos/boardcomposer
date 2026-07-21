@@ -220,6 +220,7 @@ class MainWindow(QMainWindow):
         self._actions["save"].triggered.connect(self._save_project)
         self._actions["save_as"].triggered.connect(self._save_project_as)
         self._actions["exit"].triggered.connect(self.close)
+        self._actions["clear_recent"].triggered.connect(self._clear_recent_files)
         self._actions["new_project"].triggered.connect(self._new_project)
         self._actions["new_from_template"].triggered.connect(self._new_from_template)
         self._actions["new_demo_project"].triggered.connect(self._new_demo_project)
@@ -2747,12 +2748,7 @@ class MainWindow(QMainWindow):
             self._recent_menu.addAction(action)
 
         self._recent_menu.addSeparator()
-        clear_action = QAction(self._tr("action.clear_recent"), self)
-        clear_tip = self._tr("tip.clear_recent")
-        if clear_tip != "tip.clear_recent":
-            clear_action.setStatusTip(clear_tip)
-        clear_action.triggered.connect(self._clear_recent_files)
-        self._recent_menu.addAction(clear_action)
+        self._recent_menu.addAction(self._actions["clear_recent"])
 
     def _clear_recent_files(self) -> None:
         if not self.services.recent_files.files:

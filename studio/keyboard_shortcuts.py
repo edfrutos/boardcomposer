@@ -55,6 +55,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("about", "Ctrl+Shift+A"),
     ShortcutBinding("rename_project", "Ctrl+Shift+F2"),
     ShortcutBinding("exit", "Ctrl+Q"),
+    ShortcutBinding("clear_recent", "Ctrl+Shift+X"),
     ShortcutBinding("fit_board", "Ctrl+0"),
     ShortcutBinding("fit_selection", "Ctrl+Shift+0"),
     ShortcutBinding("zoom_in", "Ctrl+=", ("Ctrl++",)),

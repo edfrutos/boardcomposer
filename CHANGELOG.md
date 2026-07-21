@@ -224,6 +224,7 @@
 - Ctrl+Shift+A abre Acerca de BoardComposer.
 - Ctrl+Shift+F2 renombra el proyecto actual.
 - Ctrl+Q cierra BoardComposer Studio.
+- Ctrl+Shift+X vacía la lista de proyectos recientes.
 
 ### Cambiado
 
