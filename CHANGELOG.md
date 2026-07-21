@@ -219,6 +219,7 @@
 - Ctrl+Shift+N crea un proyecto desde una plantilla.
 - Ctrl+Shift+M guarda el proyecto actual como plantilla.
 - Ctrl+Shift+U abre las novedades del CHANGELOG.
+- Ctrl+Shift+D abre el proyecto de ejemplo.
 
 ### Cambiado
 
