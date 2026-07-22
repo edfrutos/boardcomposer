@@ -319,3 +319,10 @@ def test_fit_selection_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+0" in tr("tip.fit_selection", "es")
     assert "Ctrl+Shift+0" in tr("tip.fit_selection", "en")
+
+
+def test_zoom_in_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+=" in tr("tip.zoom_in", "es")
+    assert "Ctrl+=" in tr("tip.zoom_in", "en")

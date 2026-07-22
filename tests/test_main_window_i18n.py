@@ -94,7 +94,7 @@ def test_menu_actions_have_status_tips(qapp, tmp_path):
         window._actions["solve_layout"].statusTip()
         == "Calcular soluciones de layout (Ctrl+Return)"
     )
-    assert window._actions["zoom_in"].statusTip() == "Acercar el Workspace"
+    assert window._actions["zoom_in"].statusTip() == "Acercar el Workspace (Ctrl+=)"
 
 
 def test_generate_and_compare_menus_are_populated(qapp, tmp_path):
