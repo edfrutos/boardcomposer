@@ -85,7 +85,7 @@ def test_menu_actions_have_status_tips(qapp, tmp_path):
         window._actions["solve_layout"].statusTip()
         == "Calculate layout solutions (Ctrl+Return)"
     )
-    assert window._actions["fit_board"].statusTip() == "Zoom to fit all boards"
+    assert window._actions["fit_board"].statusTip() == "Zoom to fit all boards (Ctrl+0)"
 
     services.preferences.update(StudioPreferences(language="es"))
     window._apply_preferences()

@@ -305,3 +305,10 @@ def test_preferences_status_tip_includes_shortcut():
 
     assert "Ctrl+," in tr("tip.preferences", "es")
     assert "Ctrl+," in tr("tip.preferences", "en")
+
+
+def test_fit_board_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+0" in tr("tip.fit_board", "es")
+    assert "Ctrl+0" in tr("tip.fit_board", "en")
