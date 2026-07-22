@@ -270,3 +270,10 @@ def test_redo_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+Z" in tr("tip.redo", "es")
     assert "Ctrl+Shift+Z" in tr("tip.redo", "en")
+
+
+def test_rotate_piece_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "(R)" in tr("tip.rotate_piece", "es")
+    assert "(R)" in tr("tip.rotate_piece", "en")

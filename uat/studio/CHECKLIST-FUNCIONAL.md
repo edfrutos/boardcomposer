@@ -51,7 +51,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] Pan: botón medio, botón derecho, **Espacio + arrastre**.
 - [ ] Clic en vacío deselecciona; **Ctrl+A** / **Esc** / **Ctrl+Shift+I**.
 - [ ] **Flechas** mueven 1 mm; **Shift+flechas** = tamaño de cuadrícula (prefs).
-- [ ] **R** rota si cabe; si no, se rechaza.
+- [ ] **R** rota si cabe (tip de estado); si no, se rechaza.
 - [ ] Doble clic pieza/tablero → editar; vacío → ajustar vista.
 - [ ] **Enter** edita selección; **F2** renombra; **Ctrl+Shift+C** copia ID.
 - [ ] **Ctrl+D** duplica pieza o tablero enfocado.
