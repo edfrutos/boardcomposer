@@ -236,6 +236,7 @@
 - Tip de estado de Deshacer incluye Ctrl+Z.
 - Tip de estado de Rehacer incluye Ctrl+Shift+Z.
 - Tip de estado de Rotar pieza incluye R.
+- Importación CSV de piezas ya no apila todas en la misma esquina.
 
 ### Cambiado
 
