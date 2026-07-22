@@ -235,6 +235,7 @@
 - Tip de estado de Mostrar cuadrícula incluye Ctrl+G.
 - Tip de estado de Deshacer incluye Ctrl+Z.
 - Tip de estado de Rehacer incluye Ctrl+Shift+Z.
+- Tip de estado de Rotar pieza incluye R.
 
 ### Cambiado
 

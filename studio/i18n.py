@@ -132,7 +132,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.exit": "Cerrar BoardComposer Studio (Ctrl+Q)",
         "tip.undo": "Deshacer la última acción (Ctrl+Z)",
         "tip.redo": "Rehacer la última acción deshecha (Ctrl+Shift+Z)",
-        "tip.rotate_piece": "Rotar 90° la pieza seleccionada",
+        "tip.rotate_piece": "Rotar 90° la pieza seleccionada (R)",
         "tip.rename_selection": (
             "Renombrar la pieza, el tablero o el proyecto seleccionado"
         ),
@@ -766,7 +766,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.exit": "Quit BoardComposer Studio (Ctrl+Q)",
         "tip.undo": "Undo the last action (Ctrl+Z)",
         "tip.redo": "Redo the last undone action (Ctrl+Shift+Z)",
-        "tip.rotate_piece": "Rotate the selected piece by 90°",
+        "tip.rotate_piece": "Rotate the selected piece by 90° (R)",
         "tip.rename_selection": "Rename the selected piece, board, or project",
         "tip.edit_selection": "Edit the selected piece or board",
         "tip.copy_selection_id": "Copy the selected piece or board ID to the clipboard",
