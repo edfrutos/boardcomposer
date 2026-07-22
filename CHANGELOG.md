@@ -240,6 +240,7 @@
 - Tip de estado de Abrir incluye Ctrl+O.
 - Cierre de Studio tolera Ctrl+C / SIGINT sin traceback en closeEvent.
 - Tip de estado de Nuevo proyecto incluye Ctrl+N.
+- Tip de estado de Guardar como incluye Ctrl+Shift+S.
 
 ### Cambiado
 
