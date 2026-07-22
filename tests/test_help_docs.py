@@ -277,3 +277,10 @@ def test_rotate_piece_status_tip_includes_shortcut():
 
     assert "(R)" in tr("tip.rotate_piece", "es")
     assert "(R)" in tr("tip.rotate_piece", "en")
+
+
+def test_open_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+O" in tr("tip.open", "es")
+    assert "Ctrl+O" in tr("tip.open", "en")
