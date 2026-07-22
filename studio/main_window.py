@@ -1157,10 +1157,14 @@ class MainWindow(QMainWindow):
             return
 
         placements: list[StudioPlacement] = []
+        piece_lookup = {piece.piece_id: piece for piece in project.pieces}
+        piece_lookup.update({piece.piece_id: piece for piece in pieces})
         for piece in pieces:
             x_mm, y_mm = self._find_free_piece_position(
                 piece.length_mm,
                 piece.width_mm,
+                extra_placements=placements,
+                piece_lookup=piece_lookup,
             )
             placements.append(
                 StudioPlacement(
@@ -3326,6 +3330,9 @@ class MainWindow(QMainWindow):
         self,
         length_mm: float,
         width_mm: float,
+        *,
+        extra_placements: list[StudioPlacement] | None = None,
+        piece_lookup: dict[str, StudioPiece] | None = None,
     ) -> tuple[float, float]:
         project = self.services.projects.current_project
 
@@ -3337,9 +3344,21 @@ class MainWindow(QMainWindow):
         x = margin
         y = margin
         row_height = 0.0
+        known_pieces = piece_lookup or {}
 
-        for placement in project.placements:
-            piece = project.piece_by_id(placement.piece_id)
+        def _piece_for(piece_id: str) -> StudioPiece | None:
+            piece = known_pieces.get(piece_id)
+            if piece is not None:
+                return piece
+            try:
+                return project.piece_by_id(piece_id)
+            except KeyError:
+                return None
+
+        for placement in (*project.placements, *(extra_placements or ())):
+            piece = _piece_for(placement.piece_id)
+            if piece is None:
+                continue
 
             placed_width = (
                 piece.width_mm if placement.rotation in (90, 270) else piece.length_mm
@@ -3359,9 +3378,6 @@ class MainWindow(QMainWindow):
         if x + length_mm > board.length_mm - margin:
             x = margin
             y += row_height + margin
-
-        if y + width_mm > board.width_mm - margin:
-            return margin, margin
 
         return x, y
 
