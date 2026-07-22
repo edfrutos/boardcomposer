@@ -20,7 +20,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 
 ## 1. Proyecto (SCR-005 / FLW-001)
 
-- [ ] **Nuevo proyecto** pide nombre y unidades; aparece workspace vacío con CTAs.
+- [ ] **Nuevo proyecto** (**Ctrl+N**, tip de estado) pide nombre y unidades; aparece workspace vacío con CTAs.
 - [ ] **Añadir tablero** (**Ctrl+Shift+B**) y **añadir pieza** (**Ctrl+Shift+P**) (menú / Explorador / CTA vacío).
 - [ ] **Guardar** (**Ctrl+S**, tip de estado) / **Abrir** (**Ctrl+O**, tip de estado) `.bcproj`; ruta visible en la barra de estado; **Ctrl+Shift+R** abre la carpeta.
 - [ ] **Recientes** en inicio y menú; quitar fantasma / vaciar lista (**Ctrl+Shift+X**) si aplica.

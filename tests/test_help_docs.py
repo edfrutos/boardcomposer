@@ -284,3 +284,10 @@ def test_open_status_tip_includes_shortcut():
 
     assert "Ctrl+O" in tr("tip.open", "es")
     assert "Ctrl+O" in tr("tip.open", "en")
+
+
+def test_new_project_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+N" in tr("tip.new_project", "es")
+    assert "Ctrl+N" in tr("tip.new_project", "en")
