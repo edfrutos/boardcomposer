@@ -263,3 +263,10 @@ def test_undo_status_tip_includes_shortcut():
 
     assert "Ctrl+Z" in tr("tip.undo", "es")
     assert "Ctrl+Z" in tr("tip.undo", "en")
+
+
+def test_redo_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+Z" in tr("tip.redo", "es")
+    assert "Ctrl+Shift+Z" in tr("tip.redo", "en")

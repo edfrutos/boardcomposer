@@ -234,6 +234,7 @@
 - Tip de estado de Guardar incluye Ctrl+S.
 - Tip de estado de Mostrar cuadrícula incluye Ctrl+G.
 - Tip de estado de Deshacer incluye Ctrl+Z.
+- Tip de estado de Rehacer incluye Ctrl+Shift+Z.
 
 ### Cambiado
 
