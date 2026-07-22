@@ -47,7 +47,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] Arrastrar pieza dentro del panel; soltar en **otro panel** reasigna instancia.
 - [ ] Solape inválido revierte el movimiento.
 - [ ] Zoom: rueda / **Ctrl+=** / **Ctrl+-**; % en barra de estado.
-- [ ] **Ctrl+0** ajusta a todos los tableros (tip de estado); **Ctrl+Shift+0** a la selección.
+- [ ] **Ctrl+0** ajusta a todos los tableros (tip de estado); **Ctrl+Shift+0** a la selección (tip de estado).
 - [ ] Pan: botón medio, botón derecho, **Espacio + arrastre**.
 - [ ] Clic en vacío deselecciona; **Ctrl+A** / **Esc** / **Ctrl+Shift+I**.
 - [ ] **Flechas** mueven 1 mm; **Shift+flechas** = tamaño de cuadrícula (prefs).

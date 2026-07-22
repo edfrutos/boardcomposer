@@ -243,6 +243,7 @@
 - Tip de estado de Guardar como incluye Ctrl+Shift+S.
 - Tip de estado de Preferencias incluye Ctrl+,.
 - Tip de estado de Ajustar al tablero incluye Ctrl+0.
+- Tip de estado de Ajustar a la selección incluye Ctrl+Shift+0.
 
 ### Cambiado
 
