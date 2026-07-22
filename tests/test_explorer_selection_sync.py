@@ -204,3 +204,35 @@ def test_click_board_on_canvas_focuses_and_syncs_explorer(qapp, tmp_path):
 
     miss = window.workspace.select_board_at(-1000, -1000)
     assert miss is False
+
+
+def test_undo_reloads_explorer_so_stale_piece_roles_disappear(qapp, tmp_path):
+    """Undo must refresh Explorador; otherwise piece:ID clicks KeyError."""
+    del qapp
+    from studio.commands.duplicate_piece_command import DuplicatePieceCommand
+
+    window = _window_with_pieces(tmp_path)
+    project = window.services.projects.current_project
+    assert project is not None
+    source = next(piece for piece in project.pieces if piece.piece_id == "A")
+    clone = StudioPiece(
+        "A1",
+        source.length_mm,
+        source.width_mm,
+        source.material,
+        source.thickness_mm,
+    )
+    placement = StudioPlacement("A1", 50, 50, False, 0, "B1", 0, 0)
+    window.services.commands.execute(
+        DuplicatePieceCommand(window.services, clone, placement)
+    )
+    window.workspace.reload_project()
+    window._reload_explorer()
+    assert window._find_explorer_item_by_role("piece:A1") is not None
+
+    window._undo()
+
+    assert window._find_explorer_item_by_role("piece:A1") is None
+    assert {piece.piece_id for piece in project.pieces} == {"A", "B"}
+    window.refresh_inspector_for_piece("A1")
+    assert window._tr("inspector.none") in window.inspector.toPlainText()

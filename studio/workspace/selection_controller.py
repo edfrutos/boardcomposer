@@ -12,6 +12,16 @@ class SelectionController:
 
     def bind_items(self, items: list[BoardPieceItem]) -> None:
         self._items = items
+        valid_ids = {item.piece_id for item in items}
+        self._selected_ids &= valid_ids
+        if len(self._selected_ids) == 1:
+            self.services.selection.select_one(next(iter(self._selected_ids)))
+        elif not self._selected_ids:
+            self.services.selection.clear()
+        else:
+            self.services.selection.clear()
+            for piece_id in self._selected_ids:
+                self.services.selection.add(piece_id)
 
     def select(self, piece_id: str) -> None:
         self.select_many([piece_id])
