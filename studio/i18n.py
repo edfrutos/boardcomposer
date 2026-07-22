@@ -130,7 +130,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_selected": "Exportar la solución seleccionada (Ctrl+Shift+E)",
         "tip.export_timeline": "Exportar el historial del Timeline (Ctrl+Shift+L)",
         "tip.exit": "Cerrar BoardComposer Studio (Ctrl+Q)",
-        "tip.undo": "Deshacer la última acción",
+        "tip.undo": "Deshacer la última acción (Ctrl+Z)",
         "tip.redo": "Rehacer la última acción deshecha",
         "tip.rotate_piece": "Rotar 90° la pieza seleccionada",
         "tip.rename_selection": (
@@ -764,7 +764,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_selected": "Export the selected solution (Ctrl+Shift+E)",
         "tip.export_timeline": "Export the Timeline history (Ctrl+Shift+L)",
         "tip.exit": "Quit BoardComposer Studio (Ctrl+Q)",
-        "tip.undo": "Undo the last action",
+        "tip.undo": "Undo the last action (Ctrl+Z)",
         "tip.redo": "Redo the last undone action",
         "tip.rotate_piece": "Rotate the selected piece by 90°",
         "tip.rename_selection": "Rename the selected piece, board, or project",

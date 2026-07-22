@@ -80,7 +80,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] Importar **piezas** CSV/Excel (**Ctrl+Shift+O**; cantidad expandida si aplica).
 - [ ] Excel multi-hoja: selector de hoja.
 - [ ] Si fallan columnas: asistente de mapeo + guardar/reaplicar/eliminar plantilla.
-- [ ] Importación **deshacible** (Ctrl+Z).
+- [ ] Importación **deshacible** (**Ctrl+Z**, tip de estado en Deshacer).
 
 ---
 
