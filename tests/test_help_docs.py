@@ -256,3 +256,10 @@ def test_toggle_grid_status_tip_includes_shortcut():
 
     assert "Ctrl+G" in tr("tip.toggle_grid", "es")
     assert "Ctrl+G" in tr("tip.toggle_grid", "en")
+
+
+def test_undo_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Z" in tr("tip.undo", "es")
+    assert "Ctrl+Z" in tr("tip.undo", "en")
