@@ -298,3 +298,10 @@ def test_save_as_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+S" in tr("tip.save_as", "es")
     assert "Ctrl+Shift+S" in tr("tip.save_as", "en")
+
+
+def test_preferences_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+," in tr("tip.preferences", "es")
+    assert "Ctrl+," in tr("tip.preferences", "en")

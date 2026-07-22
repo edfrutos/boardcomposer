@@ -14,7 +14,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] La app abre con icono propio (no el genérico de Python).
 - [ ] Pantalla de inicio (SCR-001): hero, CTAs, recientes, plantilla, docs/novedades; volver con **Ctrl+Shift+H**; demo con **Ctrl+Shift+D**.
 - [ ] Tema «Industrial madera» se ve coherente (claro/oscuro vía Preferencias).
-- [ ] Idioma es/en cambia menús y tip de estado (`Editar → Preferencias…`).
+- [ ] Idioma es/en cambia menús y tip de estado (`Editar → Preferencias…`, **Ctrl+,**).
 
 ---
 

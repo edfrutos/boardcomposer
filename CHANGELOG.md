@@ -241,6 +241,7 @@
 - Cierre de Studio tolera Ctrl+C / SIGINT sin traceback en closeEvent.
 - Tip de estado de Nuevo proyecto incluye Ctrl+N.
 - Tip de estado de Guardar como incluye Ctrl+Shift+S.
+- Tip de estado de Preferencias incluye Ctrl+,.
 
 ### Cambiado
 
