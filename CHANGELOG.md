@@ -242,6 +242,7 @@
 - Tip de estado de Nuevo proyecto incluye Ctrl+N.
 - Tip de estado de Guardar como incluye Ctrl+Shift+S.
 - Tip de estado de Preferencias incluye Ctrl+,.
+- Tip de estado de Ajustar al tablero incluye Ctrl+0.
 
 ### Cambiado
 
