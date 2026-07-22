@@ -1445,7 +1445,13 @@ class MainWindow(QMainWindow):
         if project is None:
             return
 
-        piece = project.piece_by_id(piece_id)
+        try:
+            piece = project.piece_by_id(piece_id)
+        except KeyError:
+            # Stale explorer/canvas selection after undo without a tree reload.
+            self.clear_inspector()
+            return
+
         placement = next(
             (
                 placement
@@ -1529,11 +1535,13 @@ class MainWindow(QMainWindow):
     def _undo(self):
         self.services.commands.undo()
         self.workspace.reload_project()
+        self._reload_explorer()
         self.update_undo_redo()
 
     def _redo(self):
         self.services.commands.redo()
         self.workspace.reload_project()
+        self._reload_explorer()
         self.update_undo_redo()
 
     def _rotate_selected_piece(self):
