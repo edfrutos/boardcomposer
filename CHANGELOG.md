@@ -239,6 +239,7 @@
 - Importación CSV de piezas ya no apila todas en la misma esquina.
 - Tip de estado de Abrir incluye Ctrl+O.
 - Cierre de Studio tolera Ctrl+C / SIGINT sin traceback en closeEvent.
+- Tip de estado de Nuevo proyecto incluye Ctrl+N.
 
 ### Cambiado
 
