@@ -291,3 +291,10 @@ def test_new_project_status_tip_includes_shortcut():
 
     assert "Ctrl+N" in tr("tip.new_project", "es")
     assert "Ctrl+N" in tr("tip.new_project", "en")
+
+
+def test_save_as_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+S" in tr("tip.save_as", "es")
+    assert "Ctrl+Shift+S" in tr("tip.save_as", "en")
