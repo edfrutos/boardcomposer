@@ -2894,20 +2894,32 @@ class MainWindow(QMainWindow):
         prefs = self.services.preferences.current
         geometry = _qbytearray_to_bytes(self.saveGeometry().toBase64()).decode("ascii")
         state = _qbytearray_to_bytes(self.saveState().toBase64()).decode("ascii")
-        self.services.preferences.update(
-            dataclass_replace(
-                prefs,
-                window_geometry=geometry,
-                window_state=state,
+        try:
+            self.services.preferences.update(
+                dataclass_replace(
+                    prefs,
+                    window_geometry=geometry,
+                    window_state=state,
+                )
             )
-        )
+        except OSError:
+            # Prefer closing over failing if preferences.json is unreachable.
+            pass
 
     def _close_event(self, event):
-        if not self._confirm_discard_unsaved_changes():
-            event.ignore()
-            return
-        self._persist_window_layout()
-        event.accept()
+        try:
+            if not self._confirm_discard_unsaved_changes():
+                event.ignore()
+                return
+            self._persist_window_layout()
+            event.accept()
+        except KeyboardInterrupt:
+            # Ctrl+C while a modal dialog/persist runs — still quit cleanly.
+            try:
+                self._persist_window_layout()
+            except OSError:
+                pass
+            event.accept()
 
     def closeEvent(  # pylint: disable=invalid-name
         self,
