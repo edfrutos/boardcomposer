@@ -312,3 +312,10 @@ def test_fit_board_status_tip_includes_shortcut():
 
     assert "Ctrl+0" in tr("tip.fit_board", "es")
     assert "Ctrl+0" in tr("tip.fit_board", "en")
+
+
+def test_fit_selection_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+0" in tr("tip.fit_selection", "es")
+    assert "Ctrl+Shift+0" in tr("tip.fit_selection", "en")
