@@ -237,6 +237,7 @@
 - Tip de estado de Rehacer incluye Ctrl+Shift+Z.
 - Tip de estado de Rotar pieza incluye R.
 - Importación CSV de piezas ya no apila todas en la misma esquina.
+- Tip de estado de Abrir incluye Ctrl+O.
 
 ### Cambiado
 
