@@ -155,7 +155,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.fit_board": "Ajustar el zoom para ver todos los tableros (Ctrl+0)",
         "tip.fit_selection": "Ajustar el zoom a la pieza o tablero seleccionado (Ctrl+Shift+0)",
         "tip.zoom_in": "Acercar el Workspace (Ctrl+=)",
-        "tip.zoom_out": "Alejar el Workspace",
+        "tip.zoom_out": "Alejar el Workspace (Ctrl+-)",
         "tip.toggle_grid": "Mostrar u ocultar la cuadrícula del canvas (Ctrl+G)",
         "tip.reset_window_layout": (
             "Volver a la disposición inicial de docks, toolbar y tamaño de ventana"
@@ -785,7 +785,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.fit_board": "Zoom to fit all boards (Ctrl+0)",
         "tip.fit_selection": "Zoom to fit the selected piece or board (Ctrl+Shift+0)",
         "tip.zoom_in": "Zoom in on the Workspace (Ctrl+=)",
-        "tip.zoom_out": "Zoom out on the Workspace",
+        "tip.zoom_out": "Zoom out on the Workspace (Ctrl+-)",
         "tip.toggle_grid": "Show or hide the canvas grid (Ctrl+G)",
         "tip.reset_window_layout": (
             "Restore the default dock, toolbar and window size layout (Ctrl+Shift+W)"
