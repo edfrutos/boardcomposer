@@ -49,7 +49,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] Zoom: rueda / **Ctrl+=** / **Ctrl+-** (tips de estado); % en barra de estado.
 - [ ] **Ctrl+0** ajusta a todos los tableros (tip de estado); **Ctrl+Shift+0** a la selección (tip de estado).
 - [ ] Pan: botón medio, botón derecho, **Espacio + arrastre**.
-- [ ] Clic en vacío deselecciona; **Ctrl+A** / **Esc** / **Ctrl+Shift+I**.
+- [ ] Clic en vacío deselecciona; **Ctrl+A** / **Esc** / **Ctrl+Shift+I** (tips de estado en selección).
 - [ ] **Flechas** mueven 1 mm; **Shift+flechas** = tamaño de cuadrícula (prefs).
 - [ ] **R** rota si cabe (tip de estado); si no, se rechaza.
 - [ ] Doble clic pieza/tablero → editar; vacío → ajustar vista.

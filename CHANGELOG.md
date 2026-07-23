@@ -246,6 +246,7 @@
 - Tip de estado de Ajustar a la selección incluye Ctrl+Shift+0.
 - Tip de estado de Acercar incluye Ctrl+=.
 - Tip de estado de Alejar incluye Ctrl+-.
+- Tip de estado de Seleccionar todas las piezas incluye Ctrl+A.
 
 ### Cambiado
 
