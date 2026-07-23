@@ -375,3 +375,10 @@ def test_rename_selection_status_tip_includes_shortcut():
 
     assert "F2" in tr("tip.rename_selection", "es")
     assert "F2" in tr("tip.rename_selection", "en")
+
+
+def test_copy_selection_id_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+C" in tr("tip.copy_selection_id", "es")
+    assert "Ctrl+Shift+C" in tr("tip.copy_selection_id", "en")

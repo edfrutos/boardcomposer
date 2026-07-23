@@ -53,7 +53,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] **Flechas** mueven 1 mm; **Shift+flechas** = tamaño de cuadrícula (prefs).
 - [ ] **R** rota si cabe (tip de estado); si no, se rechaza.
 - [ ] Doble clic pieza/tablero → editar; vacío → ajustar vista.
-- [ ] **Enter/Return** edita selección (tip de estado); **F2** renombra (tip de estado); **Ctrl+Shift+C** copia ID.
+- [ ] **Enter/Return** edita selección (tip de estado); **F2** renombra (tip de estado); **Ctrl+Shift+C** copia ID (tip de estado).
 - [ ] **Ctrl+D** duplica pieza o tablero enfocado (tip de estado).
 - [ ] **Delete/Backspace** elimina pieza o tablero enfocado (con confirmación).
 - [ ] **Ctrl+G** muestra/oculta cuadrícula (tip de estado menciona el atajo).
