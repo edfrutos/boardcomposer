@@ -263,6 +263,7 @@
 - Tip de estado de Restablecer disposición de ventana incluye Ctrl+Shift+W.
 - Tip de estado de Atajos de teclado incluye F1.
 - Tip de estado de Novedades incluye Ctrl+Shift+U.
+- Tip de estado de Documentación incluye Shift+F1.
 - CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
 ### Cambiado
