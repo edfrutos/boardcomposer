@@ -361,3 +361,10 @@ def test_duplicate_piece_status_tip_includes_shortcut():
 
     assert "Ctrl+D" in tr("tip.duplicate_piece", "es")
     assert "Ctrl+D" in tr("tip.duplicate_piece", "en")
+
+
+def test_edit_selection_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Return" in tr("tip.edit_selection", "es")
+    assert "Return" in tr("tip.edit_selection", "en")

@@ -250,6 +250,7 @@
 - Tip de estado de Deseleccionar piezas incluye Escape.
 - Tip de estado de Invertir selección incluye Ctrl+Shift+I.
 - Tip de estado de Duplicar incluye Ctrl+D.
+- Tip de estado de Editar selección incluye Return.
 
 ### Cambiado
 
