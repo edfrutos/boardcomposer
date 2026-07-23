@@ -254,6 +254,7 @@
 - Tip de estado de Renombrar selección incluye F2.
 - Tip de estado de Copiar ID de selección incluye Ctrl+Shift+C.
 - Tip de estado de Eliminar incluye Backspace o Delete.
+- Tip de estado de Solución anterior incluye Re Pág / Page Up.
 
 ### Cambiado
 
