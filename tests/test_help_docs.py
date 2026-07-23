@@ -405,3 +405,10 @@ def test_next_solution_status_tip_includes_shortcut():
 
     assert "Av Pág" in tr("tip.next_solution", "es")
     assert "Page Down" in tr("tip.next_solution", "en")
+
+
+def test_apply_layout_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+Return" in tr("tip.apply_layout", "es")
+    assert "Ctrl+Shift+Return" in tr("tip.apply_layout", "en")

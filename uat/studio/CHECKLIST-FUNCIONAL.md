@@ -66,7 +66,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] **Ctrl+Return** calcula layout (progreso + Cancelar funcionan; tip de estado menciona el atajo).
 - [ ] Aparecen soluciones en Comparador + Explorador.
 - [ ] **Re Pág** / **Av Pág** (tips de estado) recorren candidatas (preview en canvas + status).
-- [ ] **Ctrl+Shift+Return** aplica la solución al proyecto.
+- [ ] **Ctrl+Shift+Return** aplica la solución al proyecto (tip de estado).
 - [ ] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**.
 - [ ] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia + diff.
 - [ ] **Ctrl+Shift+E** abre exportar solución (SVG/PDF/DXF/JSON/CSV + preview).
