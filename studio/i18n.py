@@ -142,7 +142,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.delete_piece": (
             "Eliminar la pieza o el tablero seleccionado (Backspace o Delete)"
         ),
-        "tip.select_all_pieces": "Seleccionar todas las piezas del canvas",
+        "tip.select_all_pieces": "Seleccionar todas las piezas del canvas (Ctrl+A)",
         "tip.deselect_pieces": "Quitar la selección de piezas del canvas",
         "tip.invert_selection": "Invertir la selección de piezas del canvas",
         "tip.preferences": "Abrir las preferencias de Studio (Ctrl+,)",
@@ -774,7 +774,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.delete_piece": (
             "Delete the selected piece or board (Backspace or Delete)"
         ),
-        "tip.select_all_pieces": "Select every piece on the canvas",
+        "tip.select_all_pieces": "Select every piece on the canvas (Ctrl+A)",
         "tip.deselect_pieces": "Clear the piece selection on the canvas",
         "tip.invert_selection": "Invert the piece selection on the canvas",
         "tip.preferences": "Open Studio preferences (Ctrl+,)",

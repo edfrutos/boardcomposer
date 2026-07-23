@@ -333,3 +333,10 @@ def test_zoom_out_status_tip_includes_shortcut():
 
     assert "Ctrl+-" in tr("tip.zoom_out", "es")
     assert "Ctrl+-" in tr("tip.zoom_out", "en")
+
+
+def test_select_all_pieces_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+A" in tr("tip.select_all_pieces", "es")
+    assert "Ctrl+A" in tr("tip.select_all_pieces", "en")
