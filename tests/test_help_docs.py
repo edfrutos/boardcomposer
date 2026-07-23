@@ -398,3 +398,10 @@ def test_previous_solution_status_tip_includes_shortcut():
 
     assert "Re Pág" in tr("tip.previous_solution", "es")
     assert "Page Up" in tr("tip.previous_solution", "en")
+
+
+def test_next_solution_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Av Pág" in tr("tip.next_solution", "es")
+    assert "Page Down" in tr("tip.next_solution", "en")
