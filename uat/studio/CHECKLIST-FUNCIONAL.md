@@ -90,7 +90,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] Replay colocaciones / fases (no muta el proyecto).
 - [ ] Filtros por algoritmo / periodo; marcador de usuario.
 - [ ] Clic en hecho → busca contexto.
-- [ ] Exportar historial Timeline JSON/CSV (**Ctrl+Shift+L**).
+- [ ] Exportar historial Timeline JSON/CSV (**Ctrl+Shift+L**; tip de estado).
 
 ---
 
