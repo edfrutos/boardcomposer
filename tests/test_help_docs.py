@@ -382,3 +382,12 @@ def test_copy_selection_id_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+C" in tr("tip.copy_selection_id", "es")
     assert "Ctrl+Shift+C" in tr("tip.copy_selection_id", "en")
+
+
+def test_delete_piece_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Backspace" in tr("tip.delete_piece", "es")
+    assert "Delete" in tr("tip.delete_piece", "es")
+    assert "Backspace" in tr("tip.delete_piece", "en")
+    assert "Delete" in tr("tip.delete_piece", "en")
