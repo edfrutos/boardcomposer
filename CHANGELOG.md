@@ -252,6 +252,7 @@
 - Tip de estado de Duplicar incluye Ctrl+D.
 - Tip de estado de Editar selección incluye Return.
 - Tip de estado de Renombrar selección incluye F2.
+- Tip de estado de Copiar ID de selección incluye Ctrl+Shift+C.
 
 ### Cambiado
 
