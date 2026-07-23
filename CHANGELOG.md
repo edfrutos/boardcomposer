@@ -257,6 +257,7 @@
 - Tip de estado de Solución anterior incluye Re Pág / Page Up.
 - Tip de estado de Solución siguiente incluye Av Pág / Page Down.
 - Tip de estado de Aplicar layout incluye Ctrl+Shift+Return.
+- Tip de estado de Exportar solución incluye Ctrl+Shift+E.
 
 ### Cambiado
 

@@ -69,7 +69,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] **Ctrl+Shift+Return** aplica la solución al proyecto (tip de estado).
 - [ ] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**.
 - [ ] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia + diff.
-- [ ] **Ctrl+Shift+E** abre exportar solución (SVG/PDF/DXF/JSON/CSV + preview).
+- [ ] **Ctrl+Shift+E** abre exportar solución (SVG/PDF/DXF/JSON/CSV + preview; tip de estado).
 - [ ] Tras exportar, opción de abrir archivo/carpeta.
 
 ---

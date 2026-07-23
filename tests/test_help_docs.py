@@ -412,3 +412,10 @@ def test_apply_layout_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+Return" in tr("tip.apply_layout", "es")
     assert "Ctrl+Shift+Return" in tr("tip.apply_layout", "en")
+
+
+def test_export_selected_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+E" in tr("tip.export_selected", "es")
+    assert "Ctrl+Shift+E" in tr("tip.export_selected", "en")
