@@ -54,7 +54,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] **R** rota si cabe (tip de estado); si no, se rechaza.
 - [ ] Doble clic pieza/tablero → editar; vacío → ajustar vista.
 - [ ] **Enter** edita selección; **F2** renombra; **Ctrl+Shift+C** copia ID.
-- [ ] **Ctrl+D** duplica pieza o tablero enfocado.
+- [ ] **Ctrl+D** duplica pieza o tablero enfocado (tip de estado).
 - [ ] **Delete/Backspace** elimina pieza o tablero enfocado (con confirmación).
 - [ ] **Ctrl+G** muestra/oculta cuadrícula (tip de estado menciona el atajo).
 - [ ] Docks: Ver → Explorador (**Ctrl+1**) / Inspector (**Ctrl+2**) / Timeline (**Ctrl+3**) / Comparador (**Ctrl+4**); barra de herramientas (**Ctrl+Shift+K**); restablecer disposición (**Ctrl+Shift+W**).
