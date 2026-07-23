@@ -391,3 +391,10 @@ def test_delete_piece_status_tip_includes_shortcut():
     assert "Delete" in tr("tip.delete_piece", "es")
     assert "Backspace" in tr("tip.delete_piece", "en")
     assert "Delete" in tr("tip.delete_piece", "en")
+
+
+def test_previous_solution_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Re Pág" in tr("tip.previous_solution", "es")
+    assert "Page Up" in tr("tip.previous_solution", "en")
