@@ -368,3 +368,10 @@ def test_edit_selection_status_tip_includes_shortcut():
 
     assert "Return" in tr("tip.edit_selection", "es")
     assert "Return" in tr("tip.edit_selection", "en")
+
+
+def test_rename_selection_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "F2" in tr("tip.rename_selection", "es")
+    assert "F2" in tr("tip.rename_selection", "en")

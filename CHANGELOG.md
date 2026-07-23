@@ -251,6 +251,7 @@
 - Tip de estado de Invertir selección incluye Ctrl+Shift+I.
 - Tip de estado de Duplicar incluye Ctrl+D.
 - Tip de estado de Editar selección incluye Return.
+- Tip de estado de Renombrar selección incluye F2.
 
 ### Cambiado
 
