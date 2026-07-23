@@ -260,6 +260,8 @@
 - Tip de estado de Exportar solución incluye Ctrl+Shift+E.
 - Tip de estado de Exportar Timeline incluye Ctrl+Shift+L.
 - Tip de estado de Salir incluye Ctrl+Q.
+- Tip de estado de Restablecer disposición de ventana incluye Ctrl+Shift+W.
+- CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
 ### Cambiado
 
