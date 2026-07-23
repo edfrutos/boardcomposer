@@ -259,6 +259,7 @@
 - Tip de estado de Aplicar layout incluye Ctrl+Shift+Return.
 - Tip de estado de Exportar solución incluye Ctrl+Shift+E.
 - Tip de estado de Exportar Timeline incluye Ctrl+Shift+L.
+- Tip de estado de Salir incluye Ctrl+Q.
 
 ### Cambiado
 
