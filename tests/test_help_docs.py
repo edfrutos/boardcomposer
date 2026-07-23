@@ -326,3 +326,10 @@ def test_zoom_in_status_tip_includes_shortcut():
 
     assert "Ctrl+=" in tr("tip.zoom_in", "es")
     assert "Ctrl+=" in tr("tip.zoom_in", "en")
+
+
+def test_zoom_out_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+-" in tr("tip.zoom_out", "es")
+    assert "Ctrl+-" in tr("tip.zoom_out", "en")
