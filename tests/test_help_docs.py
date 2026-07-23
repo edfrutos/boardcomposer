@@ -419,3 +419,10 @@ def test_export_selected_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+E" in tr("tip.export_selected", "es")
     assert "Ctrl+Shift+E" in tr("tip.export_selected", "en")
+
+
+def test_export_timeline_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+L" in tr("tip.export_timeline", "es")
+    assert "Ctrl+Shift+L" in tr("tip.export_timeline", "en")
