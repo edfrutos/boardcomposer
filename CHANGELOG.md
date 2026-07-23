@@ -256,6 +256,7 @@
 - Tip de estado de Eliminar incluye Backspace o Delete.
 - Tip de estado de Solución anterior incluye Re Pág / Page Up.
 - Tip de estado de Solución siguiente incluye Av Pág / Page Down.
+- Tip de estado de Aplicar layout incluye Ctrl+Shift+Return.
 
 ### Cambiado
 
