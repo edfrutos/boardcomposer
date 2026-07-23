@@ -347,3 +347,10 @@ def test_deselect_pieces_status_tip_includes_shortcut():
 
     assert "Escape" in tr("tip.deselect_pieces", "es")
     assert "Escape" in tr("tip.deselect_pieces", "en")
+
+
+def test_invert_selection_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+I" in tr("tip.invert_selection", "es")
+    assert "Ctrl+Shift+I" in tr("tip.invert_selection", "en")

@@ -248,6 +248,7 @@
 - Tip de estado de Alejar incluye Ctrl+-.
 - Tip de estado de Seleccionar todas las piezas incluye Ctrl+A.
 - Tip de estado de Deseleccionar piezas incluye Escape.
+- Tip de estado de Invertir selección incluye Ctrl+Shift+I.
 
 ### Cambiado
 
