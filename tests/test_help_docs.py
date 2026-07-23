@@ -461,3 +461,10 @@ def test_open_docs_status_tip_includes_shortcut():
 
     assert "Shift+F1" in tr("tip.open_docs", "es")
     assert "Shift+F1" in tr("tip.open_docs", "en")
+
+
+def test_about_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+A" in tr("tip.about", "es")
+    assert "Ctrl+Shift+A" in tr("tip.about", "en")
