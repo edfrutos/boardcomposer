@@ -433,3 +433,10 @@ def test_exit_status_tip_includes_shortcut():
 
     assert "Ctrl+Q" in tr("tip.exit", "es")
     assert "Ctrl+Q" in tr("tip.exit", "en")
+
+
+def test_reset_window_layout_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+W" in tr("tip.reset_window_layout", "es")
+    assert "Ctrl+Shift+W" in tr("tip.reset_window_layout", "en")

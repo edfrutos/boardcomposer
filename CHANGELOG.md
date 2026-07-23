@@ -260,6 +260,7 @@
 - Tip de estado de Exportar solución incluye Ctrl+Shift+E.
 - Tip de estado de Exportar Timeline incluye Ctrl+Shift+L.
 - Tip de estado de Salir incluye Ctrl+Q.
+- Tip de estado de Restablecer disposición de ventana incluye Ctrl+Shift+W.
 
 ### Cambiado
 
