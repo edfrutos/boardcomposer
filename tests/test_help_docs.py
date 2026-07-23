@@ -447,3 +447,10 @@ def test_shortcuts_status_tip_includes_shortcut():
 
     assert "F1" in tr("tip.shortcuts", "es")
     assert "F1" in tr("tip.shortcuts", "en")
+
+
+def test_whats_new_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+U" in tr("tip.whats_new", "es")
+    assert "Ctrl+Shift+U" in tr("tip.whats_new", "en")
