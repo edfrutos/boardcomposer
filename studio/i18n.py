@@ -767,9 +767,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.undo": "Undo the last action (Ctrl+Z)",
         "tip.redo": "Redo the last undone action (Ctrl+Shift+Z)",
         "tip.rotate_piece": "Rotate the selected piece by 90° (R)",
-        "tip.rename_selection": (
-            "Rename the selected piece, board, or project (F2)"
-        ),
+        "tip.rename_selection": ("Rename the selected piece, board, or project (F2)"),
         "tip.edit_selection": "Edit the selected piece or board (Return)",
         "tip.copy_selection_id": "Copy the selected piece or board ID to the clipboard",
         "tip.duplicate_piece": "Duplicate the selected piece or board (Ctrl+D)",
