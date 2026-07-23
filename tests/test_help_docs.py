@@ -354,3 +354,10 @@ def test_invert_selection_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+I" in tr("tip.invert_selection", "es")
     assert "Ctrl+Shift+I" in tr("tip.invert_selection", "en")
+
+
+def test_duplicate_piece_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+D" in tr("tip.duplicate_piece", "es")
+    assert "Ctrl+D" in tr("tip.duplicate_piece", "en")

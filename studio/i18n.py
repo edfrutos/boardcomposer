@@ -138,7 +138,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.edit_selection": "Editar la pieza o el tablero seleccionado",
         "tip.copy_selection_id": "Copiar al portapapeles el ID de la pieza o tablero",
-        "tip.duplicate_piece": "Duplicar la pieza o el tablero seleccionado",
+        "tip.duplicate_piece": "Duplicar la pieza o el tablero seleccionado (Ctrl+D)",
         "tip.delete_piece": (
             "Eliminar la pieza o el tablero seleccionado (Backspace o Delete)"
         ),
@@ -770,7 +770,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.rename_selection": "Rename the selected piece, board, or project",
         "tip.edit_selection": "Edit the selected piece or board",
         "tip.copy_selection_id": "Copy the selected piece or board ID to the clipboard",
-        "tip.duplicate_piece": "Duplicate the selected piece or board",
+        "tip.duplicate_piece": "Duplicate the selected piece or board (Ctrl+D)",
         "tip.delete_piece": (
             "Delete the selected piece or board (Backspace or Delete)"
         ),
