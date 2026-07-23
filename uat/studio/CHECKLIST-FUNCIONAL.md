@@ -98,7 +98,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 
 - [ ] Tema, idioma, unidades, grid, estrategia/pesos, máx. soluciones, defaults export.
 - [ ] Geometría de ventana/docks se recuerda al reiniciar.
-- [ ] **Ayuda → Atajos de teclado…** (**F1**) lista el catálogo (incl. PgUp/PgDown, Ctrl+Shift+Return/E).
+- [ ] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo (incl. PgUp/PgDown, Ctrl+Shift+Return/E).
 - [ ] Ayuda → Novedades (**Ctrl+Shift+U**) / Documentación (**Shift+F1**) / Acerca de (**Ctrl+Shift+A**, icono correcto).
 
 ---
