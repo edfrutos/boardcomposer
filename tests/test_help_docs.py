@@ -340,3 +340,10 @@ def test_select_all_pieces_status_tip_includes_shortcut():
 
     assert "Ctrl+A" in tr("tip.select_all_pieces", "es")
     assert "Ctrl+A" in tr("tip.select_all_pieces", "en")
+
+
+def test_deselect_pieces_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Escape" in tr("tip.deselect_pieces", "es")
+    assert "Escape" in tr("tip.deselect_pieces", "en")
