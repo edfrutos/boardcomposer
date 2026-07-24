@@ -280,6 +280,7 @@
 - Tip de estado de Añadir tablero incluye Ctrl+Shift+B.
 - Tip de estado de Añadir pieza incluye Ctrl+Shift+P.
 - Tip de estado de Importar inventario de tableros incluye Ctrl+Shift+T.
+- Tip de estado de Importar piezas incluye Ctrl+Shift+O.
 - CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
 ### Cambiado
