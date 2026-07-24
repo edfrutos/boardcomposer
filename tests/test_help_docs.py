@@ -503,3 +503,10 @@ def test_toggle_timeline_status_tip_includes_shortcut():
 
     assert "Ctrl+3" in tr("tip.toggle_timeline", "es")
     assert "Ctrl+3" in tr("tip.toggle_timeline", "en")
+
+
+def test_toggle_comparator_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+4" in tr("tip.toggle_comparator", "es")
+    assert "Ctrl+4" in tr("tip.toggle_comparator", "en")
