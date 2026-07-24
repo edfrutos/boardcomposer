@@ -278,6 +278,7 @@
 - Tip de estado de Renombrar proyecto incluye Ctrl+Shift+F2.
 - Tip de estado de Abrir carpeta del proyecto incluye Ctrl+Shift+R.
 - Tip de estado de Añadir tablero incluye Ctrl+Shift+B.
+- Tip de estado de Añadir pieza incluye Ctrl+Shift+P.
 - CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
 ### Cambiado
