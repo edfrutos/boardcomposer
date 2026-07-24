@@ -274,6 +274,7 @@
 - Tip de estado de Nuevo proyecto demo incluye Ctrl+Shift+D.
 - Tip de estado de Pantalla de inicio incluye Ctrl+Shift+H.
 - Tip de estado de Nuevo desde plantilla incluye Ctrl+Shift+N.
+- Tip de estado de Guardar como plantilla incluye Ctrl+Shift+M.
 - CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
 ### Cambiado

@@ -531,3 +531,10 @@ def test_new_from_template_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+N" in tr("tip.new_from_template", "es")
     assert "Ctrl+Shift+N" in tr("tip.new_from_template", "en")
+
+
+def test_save_as_template_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+M" in tr("tip.save_as_template", "es")
+    assert "Ctrl+Shift+M" in tr("tip.save_as_template", "en")
