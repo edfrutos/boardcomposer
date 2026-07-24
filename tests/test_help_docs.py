@@ -566,3 +566,10 @@ def test_add_piece_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+P" in tr("tip.add_piece", "es")
     assert "Ctrl+Shift+P" in tr("tip.add_piece", "en")
+
+
+def test_import_boards_csv_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+T" in tr("tip.import_boards_csv", "es")
+    assert "Ctrl+Shift+T" in tr("tip.import_boards_csv", "en")
