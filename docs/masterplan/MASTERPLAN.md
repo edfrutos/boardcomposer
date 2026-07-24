@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-07-16.
+Última revisión: 2026-07-24.
 
 ## Estado actual
 
@@ -8,7 +8,8 @@
 - Versión de desarrollo: `0.4.0.dev0`.
 - Core base consolidado y cubierto por tests.
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación.
-- Primera vertical multipanel implementada sobre MaxRects.
+- Vertical multipanel MaxRects con material + espesor, Workspace interactivo y
+  suite Qt de arrastre/reasignación.
 
 ## Último bloque consolidado
 
@@ -16,35 +17,39 @@
 
 - `StockPanel` con cantidad.
 - `PanelReference` por tipo e instancia física.
-- MaxRects multipanel con compatibilidad de espesor.
+- MaxRects multipanel con compatibilidad de **espesor y material**.
 - Validación, completitud, deduplicación y scoring por panel.
-- Persistencia Studio versión 2 compatible con versión 1.
-- Workspace y SVG con paneles dispuestos lado a lado.
-- ADR-014 y documentación técnica actualizada.
+- Persistencia Studio versionada (migraciones ADR-015).
+- Workspace y SVG con paneles físicos lado a lado.
+- Movimiento y reasignación interactiva de piezas entre paneles (arrastre en
+  Workspace, con undo; solape o incompatibilidad revierten el movimiento).
+- ADR-014 / ADR-016 y documentación técnica alineada en README, backlog y UAT.
 
 ## Próxima tarea única
 
-Ejecutar y documentar un UAT visual completo de Studio con:
+Cerrar la deuda de documentación de usuario frente al Studio real:
 
-- dos tipos de tablero;
-- varias unidades de un tipo;
-- piezas de espesores compatibles e incompatibles;
-- generación, comparación, aplicación, guardado, reapertura y exportación SVG.
+- SCR-002 y guías de flujo reflejan arrastre/reasignación y atajos.
+- UAT visual multipanel registrado cuando se ejecute de punta a punta.
 
 ## Criterio de finalización del próximo bloque
 
-- El flujo se completa sin errores ni pérdida de asignación física.
+- Docs de pantalla (SCR) no contradicen el Studio implementado.
+- El flujo UAT se completa sin errores ni pérdida de asignación física.
 - Inspector y Workspace identifican correctamente panel e instancia.
-- Los defectos encontrados tienen test de regresión cuando sea viable.
-- Ruff, Mypy y Pytest limpios.
-- Resultado del UAT registrado en documentación.
+- Defectos encontrados tienen test de regresión cuando sea viable.
+- Ruff y Pytest limpios en CI.
 
 ## Límites conocidos
 
-- Solo MaxRects implementa por ahora el contrato multipanel.
-- El movimiento interactivo entre paneles todavía no está habilitado.
-- La compatibilidad de material no existe en el Core; se valida espesor.
-- La cobertura automatizada de interacción Qt sigue siendo reducida.
+- Solo MaxRects implementa por ahora el contrato multipanel completo
+  (CP-SAT exacto sigue siendo un solo panel, opcional).
+- Una sola candidata tras «Calcular layout» es válida: el pipeline puede
+  deduplicar a una solución única según inventario y heurísticas.
+- No hay acción «intercambiar dos piezas»; la reasignación es arrastrar y
+  soltar sobre otro panel físico compatible.
+- No existe aún un manual de usuario final aparte de Ayuda in-app
+  (F1 / Shift+F1), UAT y docs del masterplan.
 
 ## Normas de trabajo
 
