@@ -482,3 +482,10 @@ def test_toggle_toolbar_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+K" in tr("tip.toggle_toolbar", "es")
     assert "Ctrl+Shift+K" in tr("tip.toggle_toolbar", "en")
+
+
+def test_toggle_explorer_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+1" in tr("tip.toggle_explorer", "es")
+    assert "Ctrl+1" in tr("tip.toggle_explorer", "en")
