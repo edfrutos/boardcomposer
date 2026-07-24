@@ -271,6 +271,7 @@
 - Tip de estado de Inspector incluye Ctrl+2.
 - Tip de estado de Timeline incluye Ctrl+3.
 - Tip de estado de Comparador de soluciones incluye Ctrl+4.
+- Tip de estado de Nuevo proyecto demo incluye Ctrl+Shift+D.
 - CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
 ### Cambiado
