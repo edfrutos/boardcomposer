@@ -265,6 +265,7 @@
 - Tip de estado de Novedades incluye Ctrl+Shift+U.
 - Tip de estado de Documentación incluye Shift+F1.
 - Tip de estado de Acerca de incluye Ctrl+Shift+A.
+- Tip de estado de Vaciar lista de recientes incluye Ctrl+Shift+X.
 - CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
 ### Cambiado
