@@ -517,3 +517,10 @@ def test_new_demo_project_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+D" in tr("tip.new_demo_project", "es")
     assert "Ctrl+Shift+D" in tr("tip.new_demo_project", "en")
+
+
+def test_show_welcome_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+H" in tr("tip.show_welcome", "es")
+    assert "Ctrl+Shift+H" in tr("tip.show_welcome", "en")
