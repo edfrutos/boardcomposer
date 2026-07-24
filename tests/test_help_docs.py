@@ -489,3 +489,10 @@ def test_toggle_explorer_status_tip_includes_shortcut():
 
     assert "Ctrl+1" in tr("tip.toggle_explorer", "es")
     assert "Ctrl+1" in tr("tip.toggle_explorer", "en")
+
+
+def test_toggle_inspector_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+2" in tr("tip.toggle_inspector", "es")
+    assert "Ctrl+2" in tr("tip.toggle_inspector", "en")
