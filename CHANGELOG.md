@@ -283,6 +283,8 @@
 
 ### Cambiado
 
+- MASTERPLAN y SCR-002 alineados con el Workspace real (arrastre entre
+  paneles, material/espesor, límites de candidatas).
 - El pipeline utiliza MaxRects cuando el proyecto declara inventario físico.
 - El scoring de aprovechamiento usa el área de panel consumida.
 - La deduplicación incluye la asignación física de panel.
