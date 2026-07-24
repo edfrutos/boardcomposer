@@ -524,3 +524,10 @@ def test_show_welcome_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+H" in tr("tip.show_welcome", "es")
     assert "Ctrl+Shift+H" in tr("tip.show_welcome", "en")
+
+
+def test_new_from_template_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+N" in tr("tip.new_from_template", "es")
+    assert "Ctrl+Shift+N" in tr("tip.new_from_template", "en")
