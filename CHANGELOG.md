@@ -276,6 +276,7 @@
 - Tip de estado de Nuevo desde plantilla incluye Ctrl+Shift+N.
 - Tip de estado de Guardar como plantilla incluye Ctrl+Shift+M.
 - Tip de estado de Renombrar proyecto incluye Ctrl+Shift+F2.
+- Tip de estado de Abrir carpeta del proyecto incluye Ctrl+Shift+R.
 - CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
 ### Cambiado

@@ -22,7 +22,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 
 - [ ] **Nuevo proyecto** (**Ctrl+N**, tip de estado) pide nombre y unidades; aparece workspace vacío con CTAs.
 - [ ] **Añadir tablero** (**Ctrl+Shift+B**) y **añadir pieza** (**Ctrl+Shift+P**) (menú / Explorador / CTA vacío).
-- [ ] **Guardar** (**Ctrl+S**) / **Guardar como** (**Ctrl+Shift+S**) / **Abrir** (**Ctrl+O**) `.bcproj` (tips de estado); ruta visible en la barra de estado; **Ctrl+Shift+R** abre la carpeta.
+- [ ] **Guardar** (**Ctrl+S**) / **Guardar como** (**Ctrl+Shift+S**) / **Abrir** (**Ctrl+O**) `.bcproj` (tips de estado); ruta visible en la barra de estado; **Ctrl+Shift+R** abre la carpeta (tip de estado).
 - [ ] **Recientes** en inicio y menú; quitar fantasma / vaciar lista (**Ctrl+Shift+X**; tip de estado) si aplica.
 - [ ] **Plantilla de proyecto**: guardar (**Ctrl+Shift+M**; tip de estado) y crear desde plantilla (**Ctrl+Shift+N**; tip de estado).
 - [ ] Cerrar / **Salir** (**Ctrl+Q**; tip de estado) con cambios sin guardar → diálogo claro (nombre/ruta/botones).
