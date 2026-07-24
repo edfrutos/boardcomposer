@@ -559,3 +559,10 @@ def test_add_board_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+B" in tr("tip.add_board", "es")
     assert "Ctrl+Shift+B" in tr("tip.add_board", "en")
+
+
+def test_add_piece_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+P" in tr("tip.add_piece", "es")
+    assert "Ctrl+Shift+P" in tr("tip.add_piece", "en")
