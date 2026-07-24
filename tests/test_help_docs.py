@@ -510,3 +510,10 @@ def test_toggle_comparator_status_tip_includes_shortcut():
 
     assert "Ctrl+4" in tr("tip.toggle_comparator", "es")
     assert "Ctrl+4" in tr("tip.toggle_comparator", "en")
+
+
+def test_new_demo_project_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+D" in tr("tip.new_demo_project", "es")
+    assert "Ctrl+Shift+D" in tr("tip.new_demo_project", "en")
