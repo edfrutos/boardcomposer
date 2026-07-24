@@ -496,3 +496,10 @@ def test_toggle_inspector_status_tip_includes_shortcut():
 
     assert "Ctrl+2" in tr("tip.toggle_inspector", "es")
     assert "Ctrl+2" in tr("tip.toggle_inspector", "en")
+
+
+def test_toggle_timeline_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+3" in tr("tip.toggle_timeline", "es")
+    assert "Ctrl+3" in tr("tip.toggle_timeline", "en")

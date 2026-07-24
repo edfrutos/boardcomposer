@@ -269,6 +269,7 @@
 - Tip de estado de Barra de herramientas incluye Ctrl+Shift+K.
 - Tip de estado de Explorador incluye Ctrl+1.
 - Tip de estado de Inspector incluye Ctrl+2.
+- Tip de estado de Timeline incluye Ctrl+3.
 - CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
 ### Cambiado
