@@ -279,6 +279,7 @@
 - Tip de estado de Abrir carpeta del proyecto incluye Ctrl+Shift+R.
 - Tip de estado de Añadir tablero incluye Ctrl+Shift+B.
 - Tip de estado de Añadir pieza incluye Ctrl+Shift+P.
+- Tip de estado de Importar inventario de tableros incluye Ctrl+Shift+T.
 - CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
 ### Cambiado
