@@ -545,3 +545,10 @@ def test_rename_project_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+F2" in tr("tip.rename_project", "es")
     assert "Ctrl+Shift+F2" in tr("tip.rename_project", "en")
+
+
+def test_reveal_project_folder_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+R" in tr("tip.reveal_project_folder", "es")
+    assert "Ctrl+Shift+R" in tr("tip.reveal_project_folder", "en")
