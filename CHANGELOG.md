@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- SCR-004 Inspector alineado con el Studio real (texto contextual RO,
+  pieza/tablero/solución, retales, diagnóstico y sync).
 - SCR-005 Proyecto alineado con el Studio real (ciclo `.bcproj`, plantillas,
   import CSV/Excel, Explorador y atajos).
 - SCR-003 Comparador alineado con el Studio real (tabla, miniaturas, sort,
