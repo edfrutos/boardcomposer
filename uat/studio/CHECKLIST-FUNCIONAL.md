@@ -57,7 +57,7 @@ Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable*
 - [ ] **Ctrl+D** duplica pieza o tablero enfocado (tip de estado).
 - [ ] **Delete/Backspace** elimina pieza o tablero enfocado (con confirmación; tip de estado).
 - [ ] **Ctrl+G** muestra/oculta cuadrícula (tip de estado menciona el atajo).
-- [ ] Docks: Ver → Explorador (**Ctrl+1**; tip de estado) / Inspector (**Ctrl+2**; tip de estado) / Timeline (**Ctrl+3**) / Comparador (**Ctrl+4**); barra de herramientas (**Ctrl+Shift+K**; tip de estado); restablecer disposición (**Ctrl+Shift+W**; tip de estado).
+- [ ] Docks: Ver → Explorador (**Ctrl+1**; tip de estado) / Inspector (**Ctrl+2**; tip de estado) / Timeline (**Ctrl+3**; tip de estado) / Comparador (**Ctrl+4**); barra de herramientas (**Ctrl+Shift+K**; tip de estado); restablecer disposición (**Ctrl+Shift+W**; tip de estado).
 
 ---
 
