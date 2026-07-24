@@ -552,3 +552,10 @@ def test_reveal_project_folder_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+R" in tr("tip.reveal_project_folder", "es")
     assert "Ctrl+Shift+R" in tr("tip.reveal_project_folder", "en")
+
+
+def test_add_board_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+B" in tr("tip.add_board", "es")
+    assert "Ctrl+Shift+B" in tr("tip.add_board", "en")
