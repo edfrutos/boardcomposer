@@ -2,139 +2,151 @@
 
 **Módulo:** BoardComposer Studio
 
-**Código:** SCR-005
-**Versión:** 1.0.0
-**Estado:** En revisión
-**Última revisión:** 01/07/2026
+**Código:** SCR-005  
+**Versión:** 1.1.0  
+**Estado:** Alineado con Studio  
+**Última revisión:** 24/07/2026
 
 ---
 
 ## Objetivo
 
-La pantalla de Proyecto centraliza toda la información general del trabajo en curso. Desde ella el usuario define los datos básicos, materiales, restricciones y configuración antes de generar o revisar soluciones.
+La gestión del proyecto cubre el ciclo de vida del `.bcproj`: crear, abrir,
+guardar, renombrar, plantillas, inventario de tableros/piezas (manual o
+CSV/Excel) y el Explorador como árbol del trabajo en curso. No es una pantalla
+única: se reparte entre menús **Archivo** / **Proyecto**, la pantalla de inicio
+(SCR-001) y el dock Explorador.
 
 ---
 
 ## Filosofía
 
-Un proyecto debe ser una unidad de trabajo completa y reproducible. Cualquier usuario deberá poder abrir un proyecto meses después y obtener exactamente el mismo contexto, configuración y resultados.
+Un proyecto es una unidad reproducible en disco (`.bcproj` v2, con migraciones).
+El usuario debe poder retomarlo meses después con el mismo inventario,
+colocaciones y contexto. La configuración de solver/tema vive en Preferencias
+(SCR-006), no en un formulario monolítico de «Proyecto».
 
 ---
 
-## Distribución conceptual
+## Dónde vive en Studio
 
 ```text
-┌──────────────────────────────────────────────────────────────┐
-│ Proyecto                                                     │
-├───────────────────────┬──────────────────────────────────────┤
-│ Información general   │ Nombre                               │
-│                       │ Cliente                              │
-│                       │ Descripción                          │
-├───────────────────────┼──────────────────────────────────────┤
-│ Materiales            │ Tableros │ Espesores │ Vetas         │
-├───────────────────────┼──────────────────────────────────────┤
-│ Restricciones         │ Giro │ Márgenes │ Cortes │ Kerf      │
-├───────────────────────┼──────────────────────────────────────┤
-│ Algoritmos            │ Skyline │ MaxRects │ Beam            │
-├───────────────────────┴──────────────────────────────────────┤
-│ Resumen del proyecto                                     │
-└──────────────────────────────────────────────────────────────┘
+Archivo          Proyecto              Explorador (Ctrl+1)
+────────         ────────              ────────────────────
+Nuevo            Renombrar…            Raíz: nombre proyecto
+Desde plantilla  Abrir carpeta         ├ Tableros (n)
+Demo             Añadir tablero…       ├ Piezas (n)
+Inicio           Añadir pieza…         └ Soluciones (n)
+Abrir / Recientes Importar tableros…
+Guardar / Como   Importar piezas…
+Plantilla…
+Salir
 ```
 
----
-
-## Componentes principales
-
-### Información general
-
-- Nombre del proyecto.
-- Cliente.
-- Referencia.
-- Descripción.
-- Fecha de creación y modificación.
-
-### Materiales
-
-- Catálogo de tableros.
-- Espesores.
-- Dirección de veta.
-- Material principal y alternativos.
-
-### Restricciones
-
-- Permitir rotación.
-- Ancho del corte (kerf).
-- Márgenes de seguridad.
-- Restricciones de orientación.
-- Restricciones definidas por el usuario.
-
-### Algoritmos disponibles
-
-- Selección de algoritmos.
-- Parámetros específicos.
-- Estrategia de evaluación.
-- Número máximo de soluciones.
-
-### Resumen
-
-Vista consolidada con las características principales del proyecto y un diagnóstico rápido antes de iniciar la optimización.
+La barra de estado muestra la ruta del `.bcproj` cuando el proyecto está
+guardado.
 
 ---
 
-## Flujo principal
+## Flujos implementados
 
-1. Crear un nuevo proyecto.
-2. Definir materiales y tableros.
-3. Importar piezas.
-4. Configurar restricciones.
-5. Seleccionar algoritmos.
-6. Guardar.
-7. Abrir el Workspace para generar soluciones.
+### Ciclo de archivo
+
+| Acción | Atajo | Notas |
+|--------|-------|--------|
+| Nuevo | **Ctrl+N** | Diálogo nombre + unidades; untitled |
+| Abrir | **Ctrl+O** | `.bcproj`; migra v1→v2; rechaza versión futura |
+| Guardar | **Ctrl+S** | Si no hay ruta → Guardar como |
+| Guardar como | **Ctrl+Shift+S** | Filtro `.bcproj` |
+| Salir | **Ctrl+Q** | Diálogo si hay cambios sin guardar |
+| Recientes | menú / inicio | Máx. 10; poda fantasmas |
+| Vaciar recientes | **Ctrl+Shift+X** | Confirmación |
+
+### Identidad y ubicación
+
+| Acción | Atajo | Notas |
+|--------|-------|--------|
+| Renombrar proyecto | **Ctrl+Shift+F2** (también **F2** en raíz) | Undoable; menú y ctx Explorador |
+| Abrir carpeta | **Ctrl+Shift+R** | Solo si hay archivo en disco |
+
+### Plantillas y demo
+
+| Acción | Atajo | Notas |
+|--------|-------|--------|
+| Guardar como plantilla | **Ctrl+Shift+M** | `~/.boardcomposer/project_templates/`; opcional incluir placements |
+| Nuevo desde plantilla | **Ctrl+Shift+N** | Instancia **sin** placements |
+| Proyecto demo | **Ctrl+Shift+D** | Inventario de ejemplo; untitled modificado |
+| Pantalla de inicio | **Ctrl+Shift+H** | SCR-001 |
+
+### Inventario
+
+| Acción | Atajo | Notas |
+|--------|-------|--------|
+| Añadir tablero | **Ctrl+Shift+B** | Diálogo; mutación directa (sin undo) |
+| Añadir pieza | **Ctrl+Shift+P** | Qty → varios IDs; sin undo |
+| Importar tableros CSV/Excel | **Ctrl+Shift+T** | Preview + mapeo; con undo |
+| Importar piezas CSV/Excel | **Ctrl+Shift+O** | Preview; qty expandida; con undo |
+
+Entradas alternativas: menú contextual del Explorador, CTAs del canvas vacío,
+botones de la pantalla de inicio (piezas / plantilla / demo).
 
 ---
 
-## Principios de interacción
+## Explorador
 
-- Validación inmediata de datos.
-- Guardado automático configurable.
-- Cambios siempre reversibles.
-- Configuración organizada por bloques temáticos.
-- Resumen permanente del estado del proyecto.
+- Árbol: proyecto → Tableros / Piezas / Soluciones (conteos).
+- Clic pieza → Inspector + selección en Workspace.
+- Clic tablero → centra/resalta paneles.
+- Doble clic / ctx solución → preview de candidata.
+- Ctx pieza/tablero: editar, renombrar, duplicar, copiar ID, eliminar.
+
+---
+
+## Flujo principal recomendado
+
+1. Nuevo, demo, plantilla o abrir reciente.
+2. Añadir o importar tableros y piezas.
+3. Guardar `.bcproj`.
+4. Calcular layout (flujo Generar / SCR-002 / SCR-003).
+5. Aplicar, ajustar en Workspace, exportar (SCR-007).
 
 ---
 
 ## Criterios de aceptación
 
-- Crear un proyecto completo sin abandonar la pantalla.
-- Detectar configuraciones incompletas o inconsistentes.
-- Acceder al Workspace con un solo clic.
-- Mantener la trazabilidad de todos los cambios.
+- Crear / abrir / guardar / guardar como un `.bcproj` sin perder inventario.
+- Renombrar y revelar carpeta cuando el archivo existe en disco.
+- Importar CSV/Excel de tableros y piezas con vista previa.
+- El Explorador refleja conteos y permite editar elementos.
+- Cambios sin guardar bloquean el cierre con diálogo claro.
 
 ---
 
 ## Relación con otras pantallas
 
-- SCR-001 — Inicio.
+- SCR-001 — Inicio (CTAs y recientes).
 - SCR-002 — Workspace.
-- SCR-006 — Preferencias.
+- SCR-003 — Comparador (nodo Soluciones).
+- SCR-004 — Inspector.
+- SCR-006 — Preferencias (estrategia, idioma, tema; no sustituye al `.bcproj`).
 - SCR-007 — Exportación.
+- FLW-002 — Importar CSV/Excel.
+
+---
+
+## Límites conocidos (Studio actual)
+
+- No hay UI para borrar plantillas de proyecto (sí API interna).
+- «Nuevo desde plantilla» no restaura placements aunque la plantilla los tenga.
+- Añadir tablero/pieza a mano no entra en la pila undo (import sí).
+- No existe aún un formulario único con cliente/kerf/vetas como en la visión
+  antigua de esta pantalla; esos datos viven en piezas/tableros y preferencias.
 
 ---
 
 ## Evolución prevista
 
-Versiones futuras podrán incorporar:
-
-- historial completo de cambios;
-- versiones y revisiones del proyecto;
-- sincronización en la nube;
-- colaboración multiusuario;
-- firma digital y auditoría de proyectos.
-
----
-
-## Estado de implementación (2026-07-17)
-
-- Nuevo / abrir / guardar / guardar como y recientes.
-- Plantillas de proyecto: `Archivo → Guardar como plantilla…` y
-  `Nuevo desde plantilla…` (también en pantalla de inicio).
+- Formulario de metadatos de proyecto (cliente, referencia, notas).
+- Gestión UI de plantillas (borrar/renombrar).
+- Undo unificado para altas manuales de inventario.
+- Versionado / auditoría de `.bcproj`.
