@@ -475,3 +475,10 @@ def test_clear_recent_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+X" in tr("tip.clear_recent", "es")
     assert "Ctrl+Shift+X" in tr("tip.clear_recent", "en")
+
+
+def test_toggle_toolbar_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+K" in tr("tip.toggle_toolbar", "es")
+    assert "Ctrl+Shift+K" in tr("tip.toggle_toolbar", "en")
