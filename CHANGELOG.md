@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- SCR-006 Preferencias alineada con el Studio real (grupos, campos,
+  `preferences.json`, apply al OK y límites).
 - SCR-001 Pantalla de inicio alineada con el Studio real (hero brand-first,
   CTAs, recientes con miniatura y vuelta con Ctrl+Shift+H).
 - SCR-004 Inspector alineado con el Studio real (texto contextual RO,

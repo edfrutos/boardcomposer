@@ -2,188 +2,158 @@
 
 **Módulo:** BoardComposer Studio
 
-**Código:** SCR-006
-**Versión:** 1.0.0
-**Estado:** En revisión
-**Última revisión:** 01/07/2026
+**Código:** SCR-006  
+**Versión:** 1.1.0  
+**Estado:** Alineado con Studio  
+**Última revisión:** 24/07/2026
 
 ---
 
 ## Objetivo
 
-La pantalla de Preferencias permite personalizar el comportamiento general de BoardComposer Studio sin modificar la configuración específica de ningún proyecto.
-
-Las preferencias representan el entorno de trabajo habitual del usuario y se aplican automáticamente a todos los proyectos, salvo que estos definan explícitamente un comportamiento diferente.
+Preferencias del **usuario** (entorno habitual), independientes del `.bcproj`.
+No sustituyen la configuración de inventario ni colocaciones del proyecto.
 
 ---
 
 ## Filosofía
 
-Las preferencias pertenecen al usuario.
-
+Las preferencias pertenecen al usuario.  
 Los proyectos pertenecen al trabajo.
 
-Esta separación garantiza que un proyecto pueda compartirse entre distintos usuarios sin alterar sus configuraciones personales.
+Así un `.bcproj` se puede compartir sin arrastrar tema, idioma o pesos de
+scoring personales.
 
 ---
 
-## Distribución conceptual
+## Acceso
+
+- **Editar → Preferencias…**
+- Botón en pantalla de inicio (SCR-001)
+- Atajo **Ctrl+,**
+
+Persistencia: `~/.boardcomposer/preferences.json` (fuera del proyecto).
+
+---
+
+## Distribución actual
+
+Diálogo modal **sin pestañas**: cinco grupos apilados + OK / Cancelar /
+Restaurar valores por defecto.
 
 ```text
-┌────────────────────────────────────────────────────────────────────┐
-│ Preferencias                                                      │
-├────────────────────┬───────────────────────────────────────────────┤
-│ General            │ Idioma                                       │
-│                    │ Tema                                         │
-│                    │ Unidades                                     │
-├────────────────────┼───────────────────────────────────────────────┤
-│ Workspace          │ Zoom                                         │
-│                    │ Cuadrícula                                   │
-│                    │ Guías                                        │
-├────────────────────┼───────────────────────────────────────────────┤
-│ Algoritmos         │ Valores por defecto                          │
-│                    │ Beam Width                                   │
-│                    │ Rotación                                     │
-├────────────────────┼───────────────────────────────────────────────┤
-│ Exportación        │ PDF                                          │
-│                    │ SVG                                          │
-│                    │ DXF                                          │
-├────────────────────┼───────────────────────────────────────────────┤
-│ Avanzado           │ Caché                                        │
-│                    │ Logs                                         │
-│                    │ Desarrollo                                   │
-└────────────────────┴───────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────┐
+│ Preferencias                                               │
+├────────────────────────────────────────────────────────────┤
+│ General        idioma · tema · unidades                    │
+│ Workspace      cuadrícula on/off · tamaño (mm)             │
+│ Algoritmos     estrategia · pesos custom (4)               │
+│ Exportación    formato default · métricas/explicación/     │
+│                retales                                     │
+│ Avanzado       máx. soluciones · abrir ~/.boardcomposer/   │
+├────────────────────────────────────────────────────────────┤
+│              [Restaurar]  [Cancelar]  [OK]                 │
+└────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Componentes principales
+## Campos implementados
 
 ### General
 
-- Idioma.
-- Tema claro / oscuro.
-- Sistema de unidades.
-- Formato de fechas.
-- Formato numérico.
+| Campo | Valores |
+|-------|---------|
+| Idioma | `es` / `en` |
+| Tema | sistema / claro / oscuro |
+| Unidades | `mm` / `cm` / `in` (almacenamiento interno siempre mm) |
 
 ### Workspace
 
-- Nivel de zoom inicial.
-- Mostrar cuadrícula.
-- Mostrar reglas.
-- Mostrar cotas.
-- Mostrar vetas.
-- Mostrar desperdicio.
-- Mostrar etiquetas.
+| Campo | Notas |
+|-------|--------|
+| Mostrar cuadrícula | También conmutable en vista (**Ctrl+G**; ese toggle sí persiste al instante) |
+| Tamaño de cuadrícula | 10–500 mm (paso 10) |
 
 ### Algoritmos
 
-- Algoritmo preferido.
-- Beam Width por defecto.
-- Rotación permitida.
-- Estrategia de evaluación.
-- Número máximo de soluciones.
+| Campo | Notas |
+|-------|--------|
+| Estrategia | `balanced` / `material` / `compact` / `exact` |
+| Pesos custom | Checkbox; 4 spins 0–100: material, placed, compactness, rotation_penalty |
+| Sin custom | Spins deshabilitados; usan preset de la estrategia |
 
-### Exportación
+### Exportación (defaults SCR-007)
 
-- Formato preferido.
-- Carpeta por defecto.
-- Calidad de imágenes.
-- Incluir métricas.
-- Incluir explicación.
-- Plantillas de exportación.
+| Campo | Notas |
+|-------|--------|
+| Formato | `svg` / `dxf` / `pdf` / `json` / `csv` |
+| Incluir métricas / explicación / retales | Checkboxes |
 
-### Rendimiento
+### Avanzado
 
-- Uso máximo de memoria.
-- Número de hilos.
-- Caché de soluciones.
-- Precálculo.
-- Optimización automática.
+| Campo | Notas |
+|-------|--------|
+| Máx. soluciones | 1–100 (default 20); trunca ranking tras calcular |
+| Abrir carpeta de datos | Revela `~/.boardcomposer/` |
 
-### Desarrollo
+No implementados (visión antigua): zoom inicial, guías/reglas/cotas, beam
+width, caché, hilos, logs de depuración, búsqueda de preferencias.
 
-- Registro de eventos.
-- Consola avanzada.
-- Información de depuración.
-- Estadísticas internas.
-- Funciones experimentales.
+---
+
+## Comportamiento al aplicar
+
+- **OK:** escribe `preferences.json` y aplica tema, i18n de UI, recarga
+  workspace/explorador/soluciones afectadas.
+- **Cancelar:** descarta cambios del diálogo.
+- **Restaurar valores por defecto:** solo reinicia widgets; hace falta OK para
+  persistir.
+- Cambio de idioma **dentro** del diálogo: retraduce el propio diálogo; el
+  resto de la app al confirmar OK.
 
 ---
 
 ## Flujo principal
 
-1. Abrir Preferencias.
-2. Modificar la configuración.
-3. Aplicar cambios.
-4. Guardar automáticamente.
-5. Refrescar únicamente los elementos afectados.
-
----
-
-## Principios de interacción
-
-- Cambios inmediatos cuando sea posible.
-- Vista previa antes de aplicar cambios visuales.
-- Restaurar valores por defecto.
-- Búsqueda global de preferencias.
-- Organización por categorías.
+1. Abrir Preferencias (**Ctrl+,**).
+2. Ajustar grupos necesarios.
+3. OK → persistir y refrescar UI afectada.
+4. Calcular / exportar usando estrategia, `max_solutions` y defaults de export.
 
 ---
 
 ## Criterios de aceptación
 
-- Localizar cualquier preferencia en menos de diez segundos.
-- No mezclar preferencias con configuración del proyecto.
-- Sin necesidad de reiniciar Studio tras la mayoría de cambios.
-- Preferencias sincronizables en futuras versiones.
+- Preferencias no se mezclan con el `.bcproj`.
+- Tema e idioma se reflejan tras OK sin reiniciar Studio.
+- Unidades afectan Inspector / Explorador / formularios de tablero y pieza.
+- `max_solutions` limita candidatas conservadas tras el ranking.
+- Defaults de exportación alimentan SCR-007.
 
 ---
 
 ## Relación con otras pantallas
 
-- SCR-001 — Inicio.
-- SCR-002 — Workspace.
-- SCR-005 — Proyecto.
-- SCR-007 — Exportación.
+- SCR-001 — Inicio (acceso al diálogo).
+- SCR-002 — Workspace (cuadrícula / unidades).
+- SCR-003 — Comparador (`max_solutions`, scoring).
+- SCR-005 — Proyecto (inventario ajeno a prefs).
+- SCR-007 — Exportación (formato y flags por defecto).
+- FLW-003 — Generar (progreso + cancelación; estrategia desde prefs).
+
+---
+
+## Límites conocidos (Studio actual)
+
+- Varios labels del diálogo siguen hardcodeados en español (i18n parcial).
+- Sin pestañas ni búsqueda de preferencias.
+- Sin perfiles / sync en la nube / import-export del JSON de prefs.
 
 ---
 
 ## Evolución prevista
 
-Versiones futuras podrán incorporar:
-
-- perfiles de usuario;
-- sincronización en la nube;
-- importación y exportación de preferencias;
-- preferencias por espacio de trabajo;
-- personalización completa de paneles;
-- temas desarrollados por la comunidad.
-
----
-
-## Nota de diseño
-
-Las preferencias deberán almacenarse de forma independiente a los proyectos y ser compatibles entre versiones de BoardComposer Studio.
-
-En el futuro podrán asociarse a una cuenta de usuario para sincronizar automáticamente la configuración entre distintos equipos.
-
----
-
-## Estado de implementación (2026-07-17)
-
-- Persistencia en `~/.boardcomposer/preferences.json` (fuera de `.bcproj`).
-- Diálogo `Editar → Preferencias…` con General, Workspace, Algoritmos y Exportación.
-- Tema: sistema / claro / oscuro (aplicado al instante).
-- Idioma: es / en (bienvenida, preferencias, menús, docks, Inspector,
-  comparador incluido panel de diferencias, diálogos de export/import,
-  formularios de tablero/pieza y mensajes de estado).
-- Unidades: mm / cm / in (inspector, explorador y formularios de tablero/pieza; almacenamiento interno en mm).
-- Workspace: mostrar cuadrícula y tamaño en mm.
-- Algoritmos: estrategia y pesos de scoring.
-- Exportación: formato y flags por defecto recordados.
-- Avanzado / rendimiento: máximo de soluciones a conservar tras el ranking
-  y acceso a la carpeta `~/.boardcomposer/`.
-- Generar soluciones (FLW-003): diálogo de progreso modal con Cancelar
-  (cancelación cooperativa del solver en segundo plano).
+- i18n completo de todos los labels del diálogo.
+- Perfiles de preferencias e import/export.
+- Controles de rendimiento / depuración si hacen falta operativamente.
