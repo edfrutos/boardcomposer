@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- SCR-001 Pantalla de inicio alineada con el Studio real (hero brand-first,
+  CTAs, recientes con miniatura y vuelta con Ctrl+Shift+H).
 - SCR-004 Inspector alineado con el Studio real (texto contextual RO,
   pieza/tablero/solución, retales, diagnóstico y sync).
 - SCR-005 Proyecto alineado con el Studio real (ciclo `.bcproj`, plantillas,

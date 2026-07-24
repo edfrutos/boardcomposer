@@ -2,127 +2,133 @@
 
 ## SCR-001 — Pantalla de Inicio
 
-**Código:** SCR-001
-**Versión:** 1.0.0
-**Estado:** En revisión
-**Última revisión:** 01/07/2026
+**Código:** SCR-001  
+**Versión:** 1.1.0  
+**Estado:** Alineado con Studio  
+**Última revisión:** 24/07/2026
 
 ---
 
 ## Objetivo
 
-La pantalla de inicio constituye el punto de entrada a BoardComposer Studio. Debe permitir al usuario comenzar a trabajar en pocos segundos, recuperar proyectos recientes y acceder rápidamente a las funciones principales.
+Punto de entrada a BoardComposer Studio: comenzar en segundos, recuperar
+recientes y alcanzar las acciones principales sin pasar por el Workspace.
 
 ---
 
 ## Principios de diseño
 
-- La pantalla debe transmitir claridad y profesionalidad.
-- El usuario nunca debe sentirse perdido.
-- Las acciones principales deben estar visibles sin desplazamiento.
-- El acceso a un proyecto reciente debe requerir un solo clic.
+- Brand-first: el nombre del producto domina el primer viewport.
+- Una composición clara (hero + columna de recientes), no un dashboard.
+- Acciones principales visibles sin scroll en desktop típico.
+- Tema visual «Industrial madera» (tokens + QSS; tipografías Archivo / Source
+  Sans 3).
 
 ---
 
-## Distribución conceptual
+## Distribución actual
 
 ```text
-┌──────────────────────────────────────────────────────────────┐
-│ BoardComposer Studio                                         │
-├──────────────────────────────────────────────────────────────┤
-│ Nuevo Proyecto                                               │
-│ Abrir Proyecto                                               │
-│ Importar CSV                                                 │
-│                                                              │
-├──────────────────────────────────────────────────────────────┤
-│ Proyectos recientes                                          │
-│                                                              │
-│ • Proyecto Cocina.pdf                                        │
-│ • Armario Dormitorio                                         │
-│ • Oficina Cliente A                                          │
-│                                                              │
-├──────────────────────────────────────────────────────────────┤
-│ Documentación │ Ejemplos │ Preferencias │ Novedades │ Ayuda  │
-└──────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ welcomeRoot                                                                  │
+├────────────────────────────────────────────┬─────────────────────────────────┤
+│ Hero (brand-first)                         │ Proyectos recientes             │
+│   BoardComposer                            │  [Vaciar lista]                 │
+│   Studio 0.4.0.dev0                        │  · miniatura · nombre · fecha   │
+│   tagline i18n                             │  · ruta completa                │
+│                                            │  (doble clic / Enter → abrir)   │
+│ CTAs:                                      │                                 │
+│   Nuevo proyecto                           │                                 │
+│   Abrir proyecto…                          │                                 │
+│   Importar piezas (CSV/Excel)…             │                                 │
+│   Proyecto de ejemplo                      │                                 │
+│   Desde plantilla…                         │                                 │
+│   Documentación…                           │                                 │
+│   Novedades…                               │                                 │
+│   Preferencias…                            │                                 │
+└────────────────────────────────────────────┴─────────────────────────────────┘
 ```
+
+Al arrancar, el stack central muestra el welcome delante del Workspace.
+Volver: **Archivo → Pantalla de inicio** (**Ctrl+Shift+H**).
 
 ---
 
 ## Componentes
 
-## Barra superior
+### Hero
 
-- Nombre y versión del producto.
-- Acceso al menú principal.
-- Selector de tema (futuro).
+- Marca `BoardComposer` (señal dominante).
+- Subtítulo con versión de desarrollo.
+- Tagline localizada (es/en).
 
-## Acciones principales
+### Acciones principales (CTAs)
 
-- Nuevo proyecto.
-- Abrir proyecto.
-- Importar piezas desde CSV.
+| Botón | Efecto |
+|-------|--------|
+| Nuevo proyecto | Diálogo nuevo (SCR-005) |
+| Abrir proyecto… | Diálogo `.bcproj` |
+| Importar piezas (CSV/Excel)… | Flujo FLW-002 (piezas) |
+| Proyecto de ejemplo | Demo (**Ctrl+Shift+D**) |
+| Desde plantilla… | Picker de plantillas; info si el catálogo está vacío |
+| Documentación… | Abre índice masterplan / README local |
+| Novedades… | Diálogo CHANGELOG (Unreleased) |
+| Preferencias… | SCR-006 |
 
-## Proyectos recientes
+No hay CTA «Ayuda / Atajos / Acerca de» en el welcome (sí en menú Ayuda:
+**F1**, **Shift+F1**, **Ctrl+Shift+A**).
 
-Lista cronológica con miniatura, nombre, fecha de modificación y acceso directo.
+### Proyectos recientes
 
-## Accesos secundarios
-
-- Documentación.
-- Ejemplos.
-- Preferencias.
-- Registro de novedades.
-- Ayuda.
+- Persistencia: `~/.boardcomposer/recent_files.json` (máx. 10).
+- Por entrada: miniatura SVG del layout guardado, nombre, fecha
+  `YYYY-MM-DD HH:MM`, ruta completa.
+- Abrir: **doble clic** o **Enter** (no clic simple).
+- Vaciar lista: botón en cabecera + confirmación (también
+  **Ctrl+Shift+X** / menú Archivo).
+- Fantasmas: se podan al refrescar o al fallar la apertura; no hay botón
+  «quitar» por fila.
 
 ---
 
 ## Flujo principal
 
-1. Abrir BoardComposer Studio.
-2. Elegir un proyecto reciente o crear uno nuevo.
-3. Acceder al Workspace (SCR-002).
+1. Abrir Studio → welcome.
+2. Elegir reciente, nuevo, demo, plantilla o importar piezas.
+3. Pasar al Workspace (SCR-002) con el proyecto activo.
 
 ---
 
 ## Criterios de aceptación
 
-- Inicio en menos de cinco segundos.
-- Navegación intuitiva.
-- Todas las acciones principales visibles.
-- Acceso a proyectos recientes con un clic.
+- Arranque muestra welcome sin wizard extra.
+- Brand legible como señal principal del primer viewport.
+- Recientes con miniatura y fecha; abrir en un gesto (doble clic / Enter).
+- Volver al welcome desde el Workspace con **Ctrl+Shift+H**.
+- Tema claro/oscuro/sistema se aplica vía Preferencias (no selector en welcome).
 
 ---
 
 ## Relación con otras pantallas
 
 - SCR-002 — Workspace.
-- SCR-005 — Proyecto.
+- SCR-005 — Proyecto (nuevo/abrir/plantillas/import).
 - SCR-006 — Preferencias.
+- SCR-007 — Exportación (no desde welcome).
+- Ayuda — Documentación / Novedades / Atajos / Acerca de.
+
+---
+
+## Límites conocidos (Studio actual)
+
+- Abrir reciente exige doble clic o Enter (no clic único).
+- Sin quitar individual de la lista de recientes en UI.
+- Sin anclaje / cloud / búsqueda global en welcome.
 
 ---
 
 ## Evolución prevista
 
-Versiones futuras podrán incorporar:
-
-- proyectos anclados;
-- sincronización en la nube;
-- panel de actividad reciente;
-- búsqueda global.
-
----
-
-## Estado de implementación (2026-07-17)
-
-- `WelcomeScreen` al arrancar Studio (stack central antes del Workspace).
-- Acciones: nuevo, abrir, importar piezas, ejemplo, preferencias.
-- Lista de proyectos recientes (persistidos en
-  `~/.boardcomposer/recent_files.json`); solo se muestran los que existen.
-- Miniatura SVG del layout guardado (tableros/piezas) y fecha de
-  modificación por entrada.
-- Menú `Archivo → Pantalla de inicio` para volver.
-- Plantillas de proyecto: guardar el abierto como plantilla y crear nuevo
-  desde plantilla (welcome + menú Archivo); catálogo en
-  `~/.boardcomposer/project_templates/`.
-- Accesos a documentación (índice masterplan / README) y novedades
-  (CHANGELOG Unreleased) desde welcome y menú Ayuda.
+- Clic único o botón Abrir por fila.
+- Quitar / anclar recientes.
+- Acceso directo a Atajos / Acerca de desde welcome.
