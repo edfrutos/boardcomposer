@@ -538,3 +538,10 @@ def test_save_as_template_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+M" in tr("tip.save_as_template", "es")
     assert "Ctrl+Shift+M" in tr("tip.save_as_template", "en")
+
+
+def test_rename_project_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+F2" in tr("tip.rename_project", "es")
+    assert "Ctrl+Shift+F2" in tr("tip.rename_project", "en")
