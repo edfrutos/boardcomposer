@@ -468,3 +468,10 @@ def test_about_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+A" in tr("tip.about", "es")
     assert "Ctrl+Shift+A" in tr("tip.about", "en")
+
+
+def test_clear_recent_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+X" in tr("tip.clear_recent", "es")
+    assert "Ctrl+Shift+X" in tr("tip.clear_recent", "en")
