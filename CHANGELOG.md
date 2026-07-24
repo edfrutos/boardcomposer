@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- SCR-003 Comparador alineado con el Studio real (tabla, miniaturas, sort,
+  filtro, highlights, diff vs referencia y límites con 0/1 candidata).
 - MASTERPLAN y SCR-002 alineados con el Workspace real (arrastre entre
   paneles, material/espesor, límites de candidatas).
 - El pipeline utiliza MaxRects cuando el proyecto declara inventario físico.
