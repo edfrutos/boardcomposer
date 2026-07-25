@@ -1,17 +1,19 @@
-# FLW-002 — Importar CSV
+# FLW-002 — Importar CSV/Excel
 
 **Módulo:** BoardComposer Studio
 
-**Código:** FLW-002
-**Versión:** 1.0.0
-**Estado:** En revisión
-**Última revisión:** 01/07/2026
+**Código:** FLW-002  
+**Versión:** 1.1.0  
+**Estado:** Alineado con Studio  
+**Última revisión:** 25/07/2026
 
 ---
 
 ## Objetivo
 
-Describir el flujo completo para importar piezas desde un archivo CSV, validando su contenido antes de incorporarlo al proyecto y garantizando la trazabilidad del proceso.
+Describir cómo el usuario importa **inventario de tableros** o **piezas**
+desde CSV o Excel (`.xlsx` / `.xlsm`), con resolución de cabeceras,
+plantillas de mapeo, vista previa y commit deshacible.
 
 ---
 
@@ -23,108 +25,145 @@ Describir el flujo completo para importar piezas desde un archivo CSV, validando
 
 ## Precondiciones
 
-- Existe un proyecto abierto.
-- El usuario dispone de un archivo CSV compatible.
+- No hace falta proyecto previo: si no hay uno abierto, Studio crea un
+  proyecto vacío al iniciar la importación.
+- Archivo CSV o Excel con al menos las columnas obligatorias (o un mapeo /
+  plantilla que las cubra).
 
 ---
 
-## Flujo principal
+## Trigger
 
-1. El usuario selecciona **Importar CSV**.
-2. Studio abre el selector de archivos.
-3. Se elige el archivo CSV.
-4. Studio analiza automáticamente su estructura.
-5. Se muestra una vista previa de los datos.
-6. El usuario confirma la importación.
-7. Las piezas se incorporan al proyecto.
-8. El Workspace se actualiza automáticamente.
+| Acción | Atajo / menú / CTA |
+|--------|---------------------|
+| Importar inventario de tableros (CSV/Excel)… | **Ctrl+Shift+T** · menú Proyecto · overlay vacío Workspace |
+| Importar piezas (CSV/Excel)… | **Ctrl+Shift+O** · menú Proyecto · overlay vacío · Welcome |
+
+Filtro de archivo: CSV y Excel (`dialog.filter_csv_excel`).
 
 ---
 
-## Flujo alternativo A — Archivo inválido
+## Flujo principal — tableros o piezas
 
-1. El formato no puede interpretarse.
-2. Studio informa del problema indicando la causa.
-3. El usuario puede seleccionar otro archivo.
+1. El usuario dispara la acción correspondiente (menú, atajo o CTA).
+2. Si no hay proyecto, Studio carga uno vacío.
+3. Selector de archivo (CSV / `.xlsx` / `.xlsm`).
+4. Si es Excel con **más de una hoja**, Studio pide cuál usar
+   (`_prompt_xlsx_sheet`); una sola hoja → primera por defecto.
+5. `load_tabular_file` lee cabeceras y filas (`studio/tabular_file.py`).
+6. Auto-match de cabeceras (`resolve_header_map` + aliases en
+   `studio/import_headers.py`).
+7. Si faltan obligatorias: intenta plantilla guardada
+   (`ImportTemplatesManager`, `~/.boardcomposer/import_templates.json`);
+   si sigue faltando → `ImportColumnMappingDialog` (guardar / reutilizar /
+   eliminar plantilla).
+8. Parseo por filas: `import_boards_from_rows` o `import_pieces_from_rows`.
+9. Vista previa modal (`ImportBoardsPreviewDialog` /
+   `ImportPiecesPreviewDialog`): filas válidas + errores por fila.
+10. Al confirmar: comando undoable (`ImportBoardsCommand` /
+    `ImportPiecesCommand`), reload Workspace/Explorer, tip de estado,
+    evento Timeline `CsvImported` (`kind` + `count`).
+
+Piezas: `quantity` > 1 expande a ids correlativos; cada pieza nueva recibe
+placement inicial en el primer tablero (si existe) vía
+`_find_free_piece_position`. La importación de piezas fuerza mostrar el
+Workspace.
 
 ---
 
-## Flujo alternativo B — Errores en los datos
+## Flujo alternativo A — Cancelación
 
-1. Se detectan filas con errores.
-2. Studio resalta únicamente las filas afectadas.
-3. El usuario decide continuar, corregir o cancelar.
+1. Cancelar en selector, hoja Excel, mapeo o vista previa.
+2. No se modifica el proyecto.
 
 ---
 
-## Validaciones
+## Flujo alternativo B — Archivo ilegible / errores de archivo
 
-- Cabeceras reconocidas.
-- Campos obligatorios presentes.
-- Valores numéricos válidos.
-- Dimensiones positivas.
-- Referencias duplicadas.
-- Compatibilidad con la unidad del proyecto.
+1. `load_tabular_file` o `file_errors` del importer fallan.
+2. `QMessageBox.warning` con el mensaje; no se abre la vista previa.
+
+---
+
+## Flujo alternativo C — Filas inválidas en vista previa
+
+1. Algunas filas fallan (dims, duplicados, ids ya en proyecto, etc.).
+2. Preview resalta errores; el usuario puede **aceptar** solo las válidas
+   o cancelar. Cero válidas → status con `n=0`, sin comando.
+
+---
+
+## Columnas
+
+| Kind | Obligatorias | Opcionales |
+|------|--------------|------------|
+| Tableros | `board_id`, `length_mm`, `width_mm` | `thickness_mm`, `quantity`, `material` |
+| Piezas | `piece_id`, `length_mm`, `width_mm` | `thickness_mm`, `quantity`, `material` |
+
+Aliases aceptados (p. ej. `id`, `largo`, `ancho`, `cantidad`) en
+`BOARD_HEADER_ALIASES` / `PIECE_HEADER_ALIASES`.
+
+Samples: `data/samples/studio_boards_inventory.{csv,xlsx}`,
+`data/samples/studio_pieces.{csv,xlsx}`, `data/samples/basic_boards.csv`.
+
+---
+
+## Validaciones (Studio actual)
+
+- Cabeceras vía aliases o mapeo/plantilla.
+- Campos obligatorios presentes tras el mapeo.
+- Valores numéricos y dimensiones positivas.
+- Ids duplicados dentro del CSV y contra el inventario actual
+  (`existing_ids`, casefold).
+- Excel: hoja elegida o primera.
+
+---
+
+## Eventos relevantes
+
+- `CsvImported` (`kind=boards|pieces`, `count=N`)
+
+(No hay eventos separados `PiecesValidated` / `PiecesAdded` /
+`WorkspaceUpdated` en el catálogo actual; el reload de UI es efecto
+directo del comando + `_mark_project_modified`.)
 
 ---
 
 ## Resultado esperado
 
-Las piezas válidas quedan incorporadas al proyecto sin alterar la información existente y con un registro completo de la operación.
-
----
-
-## Eventos generados
-
-- CsvImported
-- PiecesValidated
-- PiecesAdded
-- WorkspaceUpdated
+Tableros o piezas válidos **añadidos** al proyecto (append, no reemplazo),
+con undo (Ctrl+Z), Workspace/Explorer actualizados y registro en Timeline.
 
 ---
 
 ## Criterios de aceptación
 
-- Vista previa antes de importar.
-- Mensajes de error claros y accionables.
-- Posibilidad de cancelar en cualquier momento.
-- Importación reproducible y registrada.
+- Dos entradas claras: tableros vs piezas.
+- CSV y Excel (`.xlsx` / `.xlsm`).
+- Vista previa antes de confirmar.
+- Mapeo + plantillas cuando falla el auto-match.
+- Errores por fila visibles; cancelable en cada paso.
+- Importación deshacible.
+- Samples reproducibles en `data/samples/`.
 
 ---
 
 ## Pantallas implicadas
 
-- SCR-002 — Workspace.
-- SCR-005 — Proyecto.
+- SCR-001 — Pantalla de inicio (CTA piezas).
+- SCR-002 — Workspace (overlay vacío + canvas tras import).
+- SCR-005 — Proyecto (menú).
+- FLW-001 — Crear proyecto (proyecto vacío si no había uno).
+- FLW-006 — Editar proyecto (modificación / soluciones outdated).
 
 ---
 
-## Observaciones
+## Límites conocidos
 
-Plantillas de mapeo de columnas ya están soportadas. En futuras versiones
-se admitirán formatos de terceros adicionales y reglas de validación
-configurables por el usuario. Excel `.xlsx` ya está soportado. Si el
-auto-match de cabeceras falla, Studio ofrece un asistente de mapeo (y
-puede reutilizar plantillas guardadas).
-
----
-
-## Estado de implementación (2026-07-17)
-
-- Inventario de tableros: `Proyecto → Importar inventario de tableros (CSV/Excel)…`
-  (`studio/board_csv_importer.py`, `ImportBoardsPreviewDialog`).
-- Piezas: `Proyecto → Importar piezas (CSV/Excel)…`
-  (`studio/piece_csv_importer.py`, `ImportPiecesPreviewDialog`), con
-  expansión de cantidad a ids correlativos y colocación inicial en el
-  Workspace.
-- Formatos: CSV y Excel `.xlsx` (primera hoja por defecto) vía
-  `studio/tabular_file.py`. Si el libro tiene varias hojas, Studio pide
-  cuál usar. Samples: `data/samples/studio_*.csv` y `data/samples/studio_*.xlsx`.
-- Asistente de mapeo de columnas cuando fallan las obligatorias
-  (`ImportColumnMappingDialog`, `studio/import_headers.py`).
-- La importación confirmada es deshacible (Ctrl+Z) vía
-  `ImportBoardsCommand` / `ImportPiecesCommand`.
-- Plantillas de mapeo de columnas (`ImportTemplatesManager`,
-  `~/.boardcomposer/import_templates.json`): se reutilizan automáticamente
-  cuando cubren las columnas obligatorias; si no, el asistente permite
-  elegirlas, guardar un mapeo nuevo o eliminar una plantilla existente.
+- Sin `.xls` legacy ni CSV con delimitadores no detectados de forma
+  configurable por el usuario.
+- Welcome solo ofrece import de **piezas** (tableros: menú / atajo /
+  overlay).
+- Sin reglas de validación custom por usuario más allá de aliases +
+  plantillas de mapeo.
+- No sustituye inventario existente; solo añade.
