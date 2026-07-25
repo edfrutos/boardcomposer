@@ -2,16 +2,20 @@
 
 **Módulo:** BoardComposer Studio
 
-**Código:** FLW-006
-**Versión:** 1.1.0
-**Estado:** En revisión
-**Última revisión:** 17/07/2026
+**Código:** FLW-006  
+**Versión:** 1.2.0  
+**Estado:** Alineado con Studio  
+**Última revisión:** 25/07/2026
 
 ---
 
 ## Objetivo
 
-Describir el flujo mediante el cual el usuario modifica un proyecto existente, manteniendo la coherencia de la información, la trazabilidad de los cambios y la reproducibilidad de las soluciones generadas.
+Describir cómo el usuario **modifica** un proyecto abierto (inventario,
+colocaciones, nombre) con dirty flag, undo donde aplica, y marcado de
+soluciones desactualizadas cuando el cambio afecta al layout.
+
+Crear proyecto: FLW-001. Import CSV/Excel: FLW-002. Abrir/guardar: SCR-005.
 
 ---
 
@@ -23,108 +27,167 @@ Describir el flujo mediante el cual el usuario modifica un proyecto existente, m
 
 ## Precondiciones
 
-- Existe un proyecto abierto.
-- El usuario dispone de permisos para modificarlo.
+- Hay un proyecto en memoria (abierto, nuevo o creado al añadir/importar).
+- Sin asistente modal bloqueante.
 
 ---
 
-## Flujo principal
+## Trigger (edición habitual)
 
-1. El usuario abre un proyecto existente.
-2. Accede a la pantalla SCR-005 — Proyecto o modifica elementos desde el Workspace.
-3. Realiza los cambios necesarios (materiales, piezas, tableros, restricciones o parámetros).
-4. Studio valida automáticamente las modificaciones.
-5. Los cambios quedan registrados en el historial del proyecto.
-6. Si las modificaciones afectan a las soluciones existentes, Studio las marca como "pendientes de regeneración".
-7. El usuario guarda el proyecto o continúa trabajando.
+| Acción | Atajo / UI |
+|--------|------------|
+| Añadir tablero | **Ctrl+Shift+B** · Proyecto · overlay vacío |
+| Añadir pieza | **Ctrl+Shift+P** · Proyecto · overlay vacío |
+| Editar selección | **Return** · doble clic canvas/Explorer · contexto |
+| Renombrar selección | **F2** |
+| Duplicar pieza | **Ctrl+D** |
+| Eliminar pieza | **Backspace** / **Delete** |
+| Copiar ID | **Ctrl+Shift+C** |
+| Renombrar proyecto | **Ctrl+Shift+F2** · Proyecto · raíz Explorer |
+| Deshacer / Rehacer | **Ctrl+Z** / **Ctrl+Shift+Z** |
+| Mover pieza (panel) | Arrastre en Workspace · flechas (nudge) |
 
----
-
-## Flujo alternativo A — Cambios no válidos
-
-1. Studio detecta inconsistencias.
-2. Informa de los elementos afectados.
-3. El usuario corrige los datos antes de continuar.
-
----
-
-## Flujo alternativo B — Descartar cambios
-
-1. El usuario cancela la edición.
-2. Studio ofrece conservar o descartar las modificaciones no guardadas.
-3. El proyecto recupera el último estado confirmado si así se solicita.
+Inspector (SCR-004) refleja selección; edición de dims/material suele ir por
+diálogos `NewBoardDialog` / `NewPieceDialog` (modo add vs edit).
 
 ---
 
-## Validaciones
+## Flujo principal — editar inventario / colocación
 
-- Coherencia de dimensiones.
-- Restricciones compatibles.
-- Materiales existentes.
-- Integridad de referencias.
-- Consistencia entre piezas y tableros.
+1. Usuario elige elemento (Explorer, canvas o menú).
+2. Abre diálogo o mueve en el Workspace.
+3. Studio valida campos del formulario (dims positivas, ids, etc.).
+4. Aplica el cambio (comando undoable cuando existe; ver límites).
+5. `mark_project_modified(affects_layout=…)`:
+   - siempre → dirty + evento `ProjectModified`
+   - si `affects_layout` → flag `solutions_outdated` + `SolutionsMarkedOutdated`
+     (banner Comparador; aviso al aplicar layout)
+6. Usuario guarda (**Ctrl+S**) o sigue; al salir/reemplazar proyecto → diálogo
+   unsaved (`unsaved_changes_message`: nombre, ruta o «aún no guardado»).
+
+Regenerar layout (FLW-003) limpia el aviso outdated.
 
 ---
 
-## Eventos generados
+## Operaciones concretas
 
-- ProjectModified
-- ProjectValidated
-- ProjectSaved
-- SolutionsMarkedOutdated
-- ProjectHistoryUpdated
+### Tableros
+
+- Añadir: `NewBoardDialog` (id, largo, ancho, espesor, material, cantidad).
+- Editar: mismo diálogo; `EditBoardCommand` (undo; renombre id actualiza
+  colocaciones).
+- Eliminar: `DeleteBoardCommand` desde Explorer; piezas se conservan;
+  colocaciones de ese tablero se quitan.
+- Duplicar tablero: acción Explorer / handler `_duplicate_board`.
+
+### Piezas
+
+- Añadir: `NewPieceDialog` con cantidad → ids correlativos + placements
+  iniciales.
+- Editar: diálogo sin campo cantidad; `EditPieceCommand`.
+- Duplicar: `DuplicatePieceCommand` — id `*-copy`, offset ~20 mm.
+- Eliminar: selección / id.
+- Mover entre paneles físicos: drag-drop en Workspace; material/espesor deben
+  compatir; drop inválido revierte; `MovePieceCommand` (también nudge).
+  No hay botón «swap».
+
+### Proyecto
+
+- Renombrar: `RenameProjectCommand` con `affects_layout=False` (no marca
+  outdated).
+- Revelar carpeta `.bcproj`: **Ctrl+Shift+R** (no edita datos).
+
+---
+
+## Flujo alternativo A — Validación de formulario
+
+1. Campos inválidos en diálogo add/edit.
+2. Warning / no se acepta; proyecto intacto.
+
+---
+
+## Flujo alternativo B — Descartar / guardar al cambiar de contexto
+
+1. Nuevo / abrir / demo / plantilla / cerrar app con dirty.
+2. Diálogo Guardar / Descartar / Cancelar.
+3. Fallo al guardar → mensaje; no continúa la acción destructiva.
+4. Cancelar «Guardar como» → no continúa.
+
+---
+
+## Dirty y soluciones outdated
+
+| Cambio típico | Dirty | Outdated |
+|---------------|-------|----------|
+| Add/edit/delete board/piece, move, import, duplicate | Sí | Sí |
+| Rename project | Sí | No |
+| Preferencias UI sin tocar inventario | No (vía prefs) | No |
+
+Banner en Comparador mientras `solutions_outdated`. Apply (FLW-004) avisa si
+está outdated.
+
+---
+
+## Undo / redo
+
+Pila `CommandManager`. Comandos: edit/delete/duplicate board|piece,
+`MovePieceCommand`, `RenameProjectCommand`, imports (FLW-002).
+
+**Límite:** `_add_board` / `_add_piece` mutan directo (sin `Add*Command`);
+deshacer esos adds no pasa por la pila de comandos de add.
+
+---
+
+## Eventos relevantes
+
+- `ProjectModified`
+- `SolutionsMarkedOutdated`
+- `ProjectSaved` (al persistir; SCR-005)
+
+No existen en el catálogo actual: `ProjectValidated`, `ProjectHistoryUpdated`,
+ni un evento bus `PieceMoved` (solo reason/`piece_moved` interno + comando).
+
+Timeline refleja hechos publicados en el Event Bus (ADR-005); no es un
+historial de revisiones del `.bcproj`.
 
 ---
 
 ## Resultado esperado
 
-El proyecto refleja los cambios realizados manteniendo su integridad y permitiendo regenerar las soluciones cuando sea necesario.
+Proyecto dirty coherente; soluciones marcadas stale si el layout puede
+cambiar; undo en las ops con comando; regeneración (FLW-003) para volver a
+candidatas válidas.
 
 ---
 
 ## Criterios de aceptación
 
-- Validación inmediata de cambios.
-- Historial completo de modificaciones.
-- Posibilidad de deshacer cambios en futuras versiones.
-- Detección automática de soluciones obsoletas.
+- Edición de tableros/piezas desde menú, Explorer y canvas.
+- Drag entre paneles con validación material/espesor.
+- Outdated automático en cambios de layout; rename no invalida.
+- Diálogo unsaved claro al salir/reemplazar.
+- Undo/redo en ops con comando.
 
 ---
 
 ## Pantallas implicadas
 
 - SCR-002 — Workspace.
+- SCR-003 — Comparador (banner outdated).
 - SCR-004 — Inspector.
 - SCR-005 — Proyecto.
+- FLW-001 — Crear.
+- FLW-002 — Importar.
+- FLW-003 — Generar.
+- FLW-004 — Comparar / apply.
 
 ---
 
-## Observaciones
+## Límites conocidos
 
-**Estado 2026-07-17:** Studio marca las soluciones calculadas como
-desactualizadas cuando el proyecto cambia (banner en el Comparador, aviso al
-aplicar, eventos `ProjectModified` / `SolutionsMarkedOutdated`). Regenerar el
-layout limpia el aviso.
-
-**Estado 2026-07-18:** duplicar la pieza seleccionada (`Editar → Duplicar pieza`,
-Ctrl+D) con `DuplicatePieceCommand` (deshacible); el clon usa id `*-copy` y
-desplaza la colocación 20 mm.
-
-**Estado 2026-07-18 (b):** diálogo de cambios sin guardar con nombre del
-proyecto, ubicación (archivo o «aún no guardado»), botones i18n y aviso
-explícito si falla el guardado; cancelar «Guardar como» no continúa la acción.
-
-**Estado 2026-07-18 (c):** editar pieza/tablero es deshacible
-(`EditPieceCommand` / `EditBoardCommand`), incluyendo renombrado de ids en
-colocaciones.
-
-**Estado 2026-07-18 (d):** eliminar tablero (`DeleteBoardCommand`) desde el
-Explorador; las piezas se conservan y las colocaciones del tablero se quitan
-(deshacible).
-
-**Estado 2026-07-18 (e):** renombrar proyecto (`RenameProjectCommand`) sin
-invalidar soluciones; menú Proyecto y contexto en la raíz del Explorador.
-
-En futuras versiones este flujo incorporará control de versiones del proyecto, diferencias visuales entre revisiones, edición colaborativa, bloqueo de recursos durante la edición, recuperación automática tras fallos y un sistema de deshacer/rehacer ilimitado basado en el historial de eventos.
-
-Asimismo, cada modificación significativa podrá registrarse como una revisión identificable, facilitando auditorías, comparaciones entre estados del proyecto y reproducción exacta de cualquier versión anterior.
+- Sin control de versiones / diffs entre revisiones del `.bcproj`.
+- Sin edición colaborativa ni bloqueo de recursos.
+- Add board/piece aún sin comando undo dedicado.
+- Sin evento bus `PieceMoved` / `ProjectValidated` / `ProjectHistoryUpdated`.
+- Historial = Timeline de eventos + pila undo de sesión, no auditoría
+  persistente de revisiones.
