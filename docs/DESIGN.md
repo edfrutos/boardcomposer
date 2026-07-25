@@ -34,8 +34,10 @@ tipografía de marca hasta elegir light/dark).
 ## Accesibilidad (chrome)
 
 - Focus visible en `QPushButton` / toolbar / listas (`border` acento).
-- CTAs Welcome primarios ≥44px; secundarios ≥36px; vaciar recientes ≥32px.
+- CTAs Welcome y empty Workspace: primario ≥44px; secundarios ≥36px;
+  vaciar recientes ≥32px.
 - Banner outdated usa fondo `window` para contraste del danger en dark.
+- Docks: título con `panel` + SemiBold; splitter handle con `border`.
 
 ## Canvas / workspace
 
@@ -68,6 +70,9 @@ Fuentes OFL en `studio/assets/fonts/`.
 - Welcome: marca hero + tagline + CTAs; recientes en columna secundaria;
   `welcomeClearRecent` con hover/focus propios.
 - Workspace: tableros/piezas/grid/selección con tokens Industrial madera
-  (sin azul Tailwind legacy).
+  (sin azul Tailwind legacy); empty overlay `workspaceEmptyOverlay` con
+  CTAs alineados a Welcome.
+- Docks (Explorer/Inspector/Timeline/Comparador): `QDockWidget::title`
+  Industrial madera.
 - SVG de exportación y miniaturas (inicio, comparador, preview) usan
   `DEFAULT_SVG_PALETTE` alineada a `LIGHT_CANVAS`.

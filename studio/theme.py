@@ -97,6 +97,26 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         color: {tokens.muted};
         border-top: 1px solid {tokens.border};
     }}
+    QDockWidget {{
+        color: {tokens.text};
+    }}
+    QDockWidget::title {{
+        background-color: {tokens.panel};
+        color: {tokens.text};
+        text-align: left;
+        padding: 7px 10px;
+        border-bottom: 1px solid {tokens.border};
+        font-family: "{_UI_SEMIBOLD_FAMILY}";
+    }}
+    QSplitter::handle {{
+        background-color: {tokens.border};
+    }}
+    QSplitter::handle:horizontal {{
+        width: 2px;
+    }}
+    QSplitter::handle:vertical {{
+        height: 2px;
+    }}
     QToolTip {{
         background-color: {tokens.panel};
         color: {tokens.tooltip};
@@ -149,7 +169,8 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         background: transparent;
         border: 1px solid transparent;
         border-radius: 4px;
-        padding: 4px 8px;
+        padding: 5px 10px;
+        min-height: 28px;
         font-family: "{ui}";
         font-size: 12px;
     }}
@@ -332,6 +353,9 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         border: 1px solid {tokens.border};
         border-radius: 8px;
     }}
+    QWidget#workspaceEmptyOverlay QPushButton {{
+        text-align: center;
+    }}
     QLabel#workspaceEmptyTitle {{
         font-family: "{_UI_SEMIBOLD_FAMILY}";
         font-size: 18px;
@@ -342,6 +366,7 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         font-family: "{ui}";
         font-size: 13px;
         color: {tokens.muted};
+        margin-bottom: 4px;
     }}
     QListWidget#welcomeRecentList {{
         background-color: {tokens.base};
