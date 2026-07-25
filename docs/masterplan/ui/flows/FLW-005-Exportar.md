@@ -2,16 +2,17 @@
 
 **Módulo:** BoardComposer Studio
 
-**Código:** FLW-005
-**Versión:** 1.0.0
-**Estado:** En revisión
-**Última revisión:** 01/07/2026
+**Código:** FLW-005  
+**Versión:** 1.1.0  
+**Estado:** Alineado con Studio  
+**Última revisión:** 25/07/2026
 
 ---
 
 ## Objetivo
 
-Describir el flujo mediante el cual el usuario transforma una solución de BoardComposer en documentación o datos preparados para fabricación, intercambio o archivo, garantizando la trazabilidad y la fidelidad del resultado exportado.
+Describir cómo el usuario exporta la **solución seleccionada** (o, aparte, el
+historial del Timeline) a un archivo. Detalle de UI: SCR-007.
 
 ---
 
@@ -21,77 +22,106 @@ Describir el flujo mediante el cual el usuario transforma una solución de Board
 
 ---
 
-## Precondiciones
+## Precondiciones (solución)
 
-- Existe una solución seleccionada.
-- La solución ha sido validada.
-- El formato de exportación está disponible.
+- Hay una candidata seleccionada en el servicio de layout (tras FLW-003 /
+  FLW-004). Sin ella, el tip de estado pide calcular layout primero.
+- Ruta de destino con permisos de escritura (el diálogo de guardar lo valida).
 
 ---
 
-## Flujo principal
+## Trigger
 
-1. El usuario selecciona **Exportar** desde el Workspace o el Comparador.
-2. Studio abre la pantalla SCR-007 — Exportación.
-3. El usuario elige el formato de salida.
-4. Configura las opciones de exportación.
-5. Studio genera una vista previa.
-6. El usuario confirma la operación.
-7. Se genera el archivo correspondiente.
-8. La exportación queda registrada en el historial del proyecto.
-9. Studio informa del resultado y ofrece abrir el archivo o su carpeta de destino.
+| Acción | Atajo / menú |
+|--------|----------------|
+| Exportar solución seleccionada… | **Ctrl+Shift+E** · menú Exportar · toolbar |
+| Exportar historial del Timeline… | **Ctrl+Shift+L** · menú Exportar · Timeline |
+
+Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.
+
+---
+
+## Flujo principal — solución
+
+1. El usuario tiene una candidata activa (Comparador / Re-Av Pág / post-cálculo).
+2. Dispara **Exportar solución seleccionada…** (**Ctrl+Shift+E**).
+3. Se abre `ExportDialog` (SCR-007) con última elección o defaults.
+4. Elige formato: SVG / DXF / PDF / JSON / CSV.
+5. Ajusta opciones: métricas y explicación (solo JSON), retales (todos).
+6. Opcional: aplica o guarda una plantilla / perfil por cliente.
+7. Revisa la vista previa (SVG + texto/resumen).
+8. Confirma y elige ruta en el diálogo de archivo.
+9. Studio escribe el archivo; emite eventos Timeline; ofrece **Abrir archivo**
+   o **Mostrar en carpeta**.
+10. Persiste formato + flags en `preferences.json`.
 
 ---
 
 ## Flujo alternativo A — Cancelación
 
-1. El usuario cancela la operación antes de finalizar.
-2. No se genera ningún archivo.
-3. El proyecto permanece sin cambios.
+1. Cancelar en el diálogo de opciones o en el de guardar.
+2. No se genera archivo; prefs de última elección no se actualizan.
 
 ---
 
-## Flujo alternativo B — Error de exportación
+## Flujo alternativo B — Error de escritura / export
 
-1. Se detecta un problema durante la generación.
-2. Studio muestra un mensaje descriptivo.
-3. El usuario puede corregir la configuración o volver a intentarlo.
-
----
-
-## Validaciones
-
-- Formato soportado.
-- Ruta de destino válida.
-- Solución íntegra.
-- Recursos gráficos disponibles.
-- Permisos de escritura.
+1. Fallo al generar o guardar.
+2. Evento `ExportFailed` (cuando aplique) y mensaje al usuario.
+3. Puede reintentar con otra ruta u opciones.
 
 ---
 
-## Eventos generados
+## Flujo alternativo C — Sin solución
 
-- ExportStarted
-- ExportPreviewGenerated
-- ExportCompleted
-- ExportFailed
-- ProjectHistoryUpdated
+1. No hay `selected_solution`.
+2. No se abre un export útil; tip/status indica calcular layout primero.
+
+---
+
+## Flujo paralelo — Timeline
+
+1. **Ctrl+Shift+L** (no usa `ExportDialog`).
+2. `QFileDialog` → JSON o CSV del historial filtrado del Timeline.
+3. Código: `studio/timeline/export.py`.
+
+---
+
+## Validaciones (Studio actual)
+
+- Formato ∈ {svg, dxf, pdf, json, csv}.
+- Solución seleccionada presente para el flujo principal.
+- Diálogo de sistema para ruta/permisos.
+- Opciones inconsistentes con el formato: métricas/explicación deshabilitadas
+  fuera de JSON.
+
+---
+
+## Eventos relevantes
+
+- `ExportStarted`
+- `ExportCompleted`
+- `ExportFailed`
+
+(No hay `ExportPreviewGenerated` ni registro aparte de «historial de proyecto»
+más allá del Timeline.)
 
 ---
 
 ## Resultado esperado
 
-El usuario obtiene un archivo fiel a la solución seleccionada, acompañado de la información necesaria para identificar su origen y reproducirlo posteriormente.
+Archivo fiel a la candidata seleccionada (o al Timeline filtrado), con
+posibilidad de abrir/revelar al terminar y de reutilizar plantillas/defaults.
 
 ---
 
 ## Criterios de aceptación
 
-- Vista previa antes de exportar.
-- Exportación reproducible.
-- Registro automático en el historial.
-- Conservación de la trazabilidad de la solución.
-- Confirmación clara del resultado.
+- Exporta la candidata activa, no otra.
+- Vista previa antes de confirmar la ruta.
+- Plantillas y última elección persistentes.
+- Post-export: abrir archivo o carpeta.
+- Timeline exportable sin mezclarse con el diálogo de solución.
 
 ---
 
@@ -99,24 +129,16 @@ El usuario obtiene un archivo fiel a la solución seleccionada, acompañado de l
 
 - SCR-002 — Workspace.
 - SCR-003 — Comparador.
+- SCR-006 — Preferencias.
 - SCR-007 — Exportación.
+- FLW-003 — Generar.
+- FLW-004 — Comparar.
+- ADR-016 — Retales.
 
 ---
 
-## Estado de implementación (2026-07-18)
+## Límites conocidos
 
-- Diálogo SCR-007 con formatos, plantillas/perfiles y vista previa.
-- Tras guardar el archivo, Studio ofrece **Abrir archivo** o **Mostrar en
-  carpeta** (`studio/file_reveal.py`).
-- Eventos Timeline: `ExportStarted`, `ExportCompleted`, `ExportFailed`.
-
----
-
-## Observaciones
-
-En futuras versiones este flujo incorporará exportación por lotes, envío
-directo a servicios externos, integración con sistemas CAD/CAM y ERP, firma
-digital, colas de exportación y automatizaciones basadas en reglas. Los
-perfiles reutilizables de exportación ya están disponibles en SCR-007.
-
-Asimismo, cada exportación podrá incluir metadatos como el identificador del proyecto, la versión de BoardComposer, el algoritmo empleado, la fecha de generación y una huella de integridad para facilitar auditorías y la reproducción exacta de los resultados.
+- Sin PNG/JPEG ni opciones de papel/escala/márgenes.
+- CSV solo placements.
+- Sin lotes ni publicación a la nube.
