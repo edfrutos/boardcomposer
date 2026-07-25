@@ -38,9 +38,7 @@ def test_add_board_redo_and_undo():
 def test_add_board_redo_skips_if_id_already_present():
     services, project = _empty_project_services()
     project.boards.append(StudioBoard("B1", 1000, 500, "MDF", 19, 1))
-    command = AddBoardCommand(
-        services, StudioBoard("B1", 2800, 2070, "MDF", 16, 1)
-    )
+    command = AddBoardCommand(services, StudioBoard("B1", 2800, 2070, "MDF", 16, 1))
 
     command.redo()
     assert len(project.boards) == 1
