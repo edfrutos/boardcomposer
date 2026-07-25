@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.piece_csv_importer import ImportPiecesResult
 
@@ -75,6 +76,7 @@ class ImportPiecesPreviewDialog(QDialog):
         buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
         )
+        polish_dialog_button_box(buttons)
         buttons.accepted.connect(self.accept)
         buttons.rejected.connect(self.reject)
         buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(

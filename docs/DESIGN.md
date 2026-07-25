@@ -70,8 +70,8 @@ Fuentes OFL en `studio/assets/fonts/`.
 ## Componentes clave
 
 - `QPushButton#primaryButton` — CTA principal (ámbar + `accent_text` tinta).
-- `polish_dialog_button_box` — OK primario en formularios (tablero, pieza,
-  proyecto, export, preferencias).
+- `polish_dialog_button_box` — OK primario en todos los `QDialogButtonBox`
+  de Studio (formularios, import/preview, plantillas, ayuda).
 - Welcome: marca hero + tagline + CTAs; recientes en columna secundaria;
   `welcomeClearRecent` con hover/focus propios.
 - Inspector: `#inspectorPanel`; export preview: `#exportGraphicPreview`
