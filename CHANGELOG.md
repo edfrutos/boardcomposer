@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- FLW-005 Exportar alineado con el Studio real (Ctrl+Shift+E, diálogo
+  SCR-007, Timeline Ctrl+Shift+L y post-export abrir/revelar).
 - FLW-004 Comparar alineado con el Studio real (navegación de candidatas,
   diffs ≥2, referencia, apply/export y banner outdated).
 - FLW-003 Generar soluciones alineado con el Studio real (progreso
