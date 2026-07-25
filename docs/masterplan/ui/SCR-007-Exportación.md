@@ -2,156 +2,165 @@
 
 **Módulo:** BoardComposer Studio
 
-**Código:** SCR-007
-**Versión:** 1.0.0
-**Estado:** En revisión
-**Última revisión:** 01/07/2026
+**Código:** SCR-007  
+**Versión:** 1.1.0  
+**Estado:** Alineado con Studio  
+**Última revisión:** 25/07/2026
 
 ---
 
 ## Objetivo
 
-La pantalla de Exportación permite generar la documentación final del proyecto en distintos formatos, garantizando que la información técnica, gráfica y de producción sea consistente, reproducible y adecuada para cada destinatario.
+Exportar la **solución seleccionada** (candidata activa del layout) a un
+archivo útil para fabricación, documentación o intercambio, con opciones de
+contenido, vista previa y plantillas reutilizables.
 
 ---
 
 ## Filosofía
 
-Exportar no consiste únicamente en guardar un archivo. Significa transformar una solución en un resultado útil para fabricación, documentación, archivo o intercambio con otros sistemas.
-
-La exportación debe ser sencilla para el usuario y extremadamente flexible en sus posibilidades.
+Exportar no es solo «guardar». Es transformar la candidata elegida en un
+artefacto reproducible. La solución de origen es la del Comparador /
+servicio de layout (`selected_solution`), no un snapshot arbitrario del
+canvas sin calcular.
 
 ---
 
-## Distribución conceptual
+## Acceso
+
+| Acción | Atajo / menú |
+|--------|----------------|
+| Exportar solución seleccionada… | **Ctrl+Shift+E** · Exportar · toolbar |
+| Exportar historial del Timeline… | **Ctrl+Shift+L** · Exportar · Timeline (flujo aparte) |
+
+Sin solución calculada/seleccionada: el tip de estado pide calcular layout
+antes.
+
+Defaults de formato y flags: SCR-006 → `preferences.json`.
+
+---
+
+## Distribución actual (solución)
 
 ```text
 ┌────────────────────────────────────────────────────────────────────┐
-│ Exportación                                                       │
-├────────────────────────────────────────────────────────────────────┤
-│ Solución seleccionada                                              │
+│ Exportar solución seleccionada                                     │
 ├────────────────────┬───────────────────────────────────────────────┤
-│ Formato            │ PDF │ SVG │ DXF │ JSON │ CSV │ Imagen         │
-├────────────────────┼───────────────────────────────────────────────┤
-│ Opciones           │ Escala │ Márgenes │ Calidad │ Plantilla       │
-├────────────────────┼───────────────────────────────────────────────┤
-│ Contenido          │ Planos │ Métricas │ Explicaciones │ Listados   │
+│ Formato            │ SVG │ DXF │ PDF │ JSON │ CSV                  │
+│ Opciones           │ ☐ Métricas  ☐ Explicación  ☐ Retales          │
+│ Plantillas         │ cliente · guardar/aplicar/borrar · pack JSON  │
 ├────────────────────┴───────────────────────────────────────────────┤
-│ Vista previa                                                   │
+│ Vista previa (SVG rasterizado + texto/resumen según formato)       │
 ├────────────────────────────────────────────────────────────────────┤
-│ Exportar │ Guardar plantilla │ Compartir │ Cancelar               │
+│                         [Cancelar]  [Exportar…]                    │
 └────────────────────────────────────────────────────────────────────┘
 ```
 
----
-
-## Componentes principales
-
-### Selección de solución
-
-- Solución activa.
-- Algoritmo.
-- Fecha de generación.
-- Resumen de métricas.
-
-### Formatos disponibles
-
-- PDF.
-- SVG.
-- DXF.
-- JSON.
-- CSV.
-- PNG y JPEG.
-
-La arquitectura permitirá incorporar nuevos formatos mediante extensiones.
-
-### Opciones de exportación
-
-- Escala.
-- Orientación.
-- Tamaño de papel.
-- Márgenes.
-- Calidad gráfica.
-- Inclusión de cotas.
-- Inclusión de desperdicio.
-- Inclusión de explicaciones.
-- Inclusión de métricas.
-
-### Vista previa
-
-Representación aproximada del resultado final antes de exportar.
+Tras exportar OK: opción de abrir el archivo o revelar la carpeta.
 
 ---
 
-## Flujo principal
+## Formatos
 
-1. Seleccionar una solución.
-2. Elegir el formato.
-3. Configurar las opciones.
-4. Revisar la vista previa.
-5. Exportar.
-6. Registrar la operación en el historial del proyecto.
+| Formato | Contenido principal |
+|--------|---------------------|
+| SVG / DXF / PDF | Planos de paneles; retales opcionales |
+| JSON | Documento estructurado; métricas / explicación / retales opcionales |
+| CSV | Filas de placements (sin omitted/metrics/explanation) |
+
+No implementados: PNG/JPEG, escala, márgenes, papel, calidad, cotas como
+opciones del diálogo.
+
+### Opciones de contenido
+
+- **Métricas / explicación:** solo activas para **JSON** (UI deshabilitada
+  en el resto).
+- **Retales:** aplican a todos los formatos vía preparación de la solución
+  (omiten `offcuts` cuando están desmarcados).
 
 ---
 
-## Principios de interacción
+## Vista previa
 
-- Vista previa inmediata.
-- Configuración organizada por categorías.
-- Plantillas reutilizables.
-- Validación antes de exportar.
-- Recordar las últimas opciones utilizadas.
+- Gráfica: SVG de la solución (misma lógica de retales que el export).
+- Texto: resumen y, según formato, payload truncado (JSON/CSV) o notas de
+  tamaño (SVG/DXF/PDF).
+- Se refresca al cambiar formato u opciones.
+
+---
+
+## Plantillas y perfiles por cliente
+
+- Plantillas nombradas en `~/.boardcomposer/export_templates.json`.
+- Campo **cliente** + filtro (todos / general / cliente).
+- Guardar / aplicar / eliminar plantilla.
+- Compartir: exportar/importar pack JSON (fusión o reemplazo).
+
+---
+
+## Memoria de última elección
+
+Tras un export correcto se guardan en `preferences.json`:
+
+- formato
+- incluir métricas / explicación / retales
+
+También editables en Preferencias (SCR-006).
+
+---
+
+## Exportación del Timeline (aparte)
+
+No usa `ExportDialog`. Flujo propio:
+
+1. **Ctrl+Shift+L** (o menú / botón Timeline).
+2. `QFileDialog` → JSON o CSV del historial filtrado del Timeline.
+3. Código: `studio/timeline/export.py`.
+
+---
+
+## Flujo principal (solución)
+
+1. Calcular layout y seleccionar candidata (SCR-003).
+2. **Ctrl+Shift+E**.
+3. Elegir formato / opciones / plantilla.
+4. Revisar vista previa.
+5. Exportar y, si se desea, abrir o revelar el archivo.
 
 ---
 
 ## Criterios de aceptación
 
-- Exportación en un único paso para configuraciones habituales.
-- Resultados reproducibles.
-- Integridad de la información exportada.
-- Compatibilidad con futuras extensiones.
+- Exporta la candidata seleccionada, no otra.
+- SVG/DXF/PDF/JSON/CSV cubiertos desde el mismo diálogo.
+- Vista previa coherente con retales y formato.
+- Plantillas y última elección persistentes.
+- Timeline exportable sin mezclarse con el diálogo de solución.
 
 ---
 
 ## Relación con otras pantallas
 
-- SCR-002 — Workspace.
-- SCR-003 — Comparador.
+- SCR-002 — Workspace (contexto visual).
+- SCR-003 — Comparador (selección de candidata).
 - SCR-005 — Proyecto.
-- SCR-006 — Preferencias.
+- SCR-006 — Preferencias (defaults).
+- FLW-005 — Exportar (flujo).
+- ADR-016 — Retales informativos.
+
+---
+
+## Límites conocidos (Studio actual)
+
+- Sin PNG/JPEG ni controles de papel/escala/márgenes.
+- Métricas/explicación solo en JSON.
+- CSV limitado a placements.
+- Sin exportación por lotes ni publicación a la nube.
 
 ---
 
 ## Evolución prevista
 
-Versiones futuras podrán incorporar:
-
-- exportación por lotes;
-- publicación directa en servicios en la nube;
-- generación automática de documentación técnica;
-- integración con sistemas ERP y CAD/CAM;
-- firma digital de documentos;
-- perfiles de exportación específicos por cliente.
-
----
-
-## Nota de diseño
-
-Toda exportación deberá conservar la trazabilidad de la solución de origen, incluyendo el identificador del proyecto, la versión de BoardComposer, el algoritmo utilizado y la fecha de generación cuando el formato lo permita.
-
----
-
-## Estado de implementación (2026-07-17)
-
-- Menú `Exportar → Exportar solución seleccionada…` abre un diálogo con
-  formato (SVG/DXF/PDF/JSON/CSV), opciones de contenido y vista previa.
-- Vista previa gráfica SVG embebida (respeta retales) más resumen/texto
-  del contenido según formato.
-- JSON admite incluir/omitir métricas, explicación y retales.
-- SVG/DXF/PDF respetan la opción de retales.
-- Las últimas opciones se guardan en `preferences.json`.
-- Plantillas de exportación nombradas (guardar / aplicar / eliminar) en
-  `~/.boardcomposer/export_templates.json`, con perfiles por cliente
-  (mismo nombre de plantilla permitido en clientes distintos).
-- Compartir plantillas entre equipos: exportar/importar pack JSON
-  (fusión o reemplazo) desde el diálogo de exportación.
+- Más formatos de imagen y opciones de página.
+- Lotes / perfiles CAD-CAM avanzados.
+- Trazabilidad explícita (versión app, algoritmo, fecha) en más formatos.
