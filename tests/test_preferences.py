@@ -133,9 +133,17 @@ def test_apply_theme_switches_palette(qapp):
     apply_theme(qapp, "light")
     light_window = qapp.palette().color(qapp.palette().ColorRole.Window)
     light_accent = qapp.palette().color(qapp.palette().ColorRole.Highlight)
+    light_highlight_text = qapp.palette().color(
+        qapp.palette().ColorRole.HighlightedText
+    )
     assert light_window.name() == QColor(LIGHT.window).name()
     assert light_accent.name() == QColor(LIGHT.accent).name()
-    assert "primaryButton" in qapp.styleSheet()
+    assert light_highlight_text.name() == QColor(LIGHT.accent_text).name()
+    assert LIGHT.accent_text == "#1a1410"
+    sheet = qapp.styleSheet()
+    assert "primaryButton" in sheet
+    assert "QPushButton:focus" in sheet
+    assert "welcomeClearRecent" in sheet
     assert dark_window.lightness() < light_window.lightness()
 
     apply_theme(qapp, "system")

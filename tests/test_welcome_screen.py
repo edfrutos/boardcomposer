@@ -85,6 +85,11 @@ def test_welcome_screen_brand_and_primary_object_names(qapp):
     assert brand.text() == "BoardComposer"
     assert screen.new_button.objectName() == "primaryButton"
     assert isinstance(screen.new_button, QPushButton)
+    assert screen.new_button.minimumHeight() >= 44
+    assert screen.open_button.minimumHeight() >= 44
+    assert screen.demo_button.minimumHeight() >= 36
+    assert screen.clear_recent_button.minimumHeight() >= 32
+    assert screen.clear_recent_button.objectName() == "welcomeClearRecent"
 
 
 def test_welcome_recent_activation_ignores_null_item(qapp):

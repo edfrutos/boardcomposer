@@ -285,6 +285,9 @@
 
 ### Cambiado
 
+- Tema Industrial madera: CTA light con tinta sobre ámbar (WCAG AA), focus
+  visible en botones/listas, targets Welcome y banner outdated con mejor
+  contraste en dark.
 - DOC-003 Roadmap v1.2 alineado con Studio (Fase 2 núcleo operativo; Fase 3
   como siguiente bloque; prioridades P0/P1 actualizadas).
 - ROADMAP Fase 2, checklist UAT Studio y DOC-004 (IDE-0002/0005) alineados

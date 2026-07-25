@@ -22,9 +22,20 @@ Neutros cálidos tintados + acento ámbar herramienta ≤10% del chrome.
 | muted | `#6b5c4d` | `#a89480` |
 | border | `#c9b8a4` | `#4a3f34` |
 | accent | `#c47a1a` | `#d4922a` |
+| accent_text | `#1a1410` | `#1a1410` |
+
+CTA primario: tinta oscura sobre ámbar (WCAG AA ≥4.5:1). Evitar crema
+sobre ámbar en light (quedaba ~3.2:1).
 
 Fuente de verdad: `studio/theme_tokens.py`. Aplicación: `studio/theme.py`
-(`QPalette` + QSS). Preferencia `system` limpia el stylesheet.
+(`QPalette` + QSS). Preferencia `system` limpia el stylesheet (Welcome pierde
+tipografía de marca hasta elegir light/dark).
+
+## Accesibilidad (chrome)
+
+- Focus visible en `QPushButton` / toolbar / listas (`border` acento).
+- CTAs Welcome primarios ≥44px; secundarios ≥36px; vaciar recientes ≥32px.
+- Banner outdated usa fondo `window` para contraste del danger en dark.
 
 ## Canvas / workspace
 
@@ -53,8 +64,9 @@ Fuentes OFL en `studio/assets/fonts/`.
 
 ## Componentes clave
 
-- `QPushButton#primaryButton` — CTA principal (ámbar).
-- Welcome: marca hero + tagline + CTAs; recientes en columna secundaria.
+- `QPushButton#primaryButton` — CTA principal (ámbar + `accent_text` tinta).
+- Welcome: marca hero + tagline + CTAs; recientes en columna secundaria;
+  `welcomeClearRecent` con hover/focus propios.
 - Workspace: tableros/piezas/grid/selección con tokens Industrial madera
   (sin azul Tailwind legacy).
 - SVG de exportación y miniaturas (inicio, comparador, preview) usan
