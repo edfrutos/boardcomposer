@@ -2,16 +2,18 @@
 
 **Módulo:** BoardComposer Studio
 
-**Código:** FLW-003
-**Versión:** 1.1.0
-**Estado:** En revisión
-**Última revisión:** 17/07/2026
+**Código:** FLW-003  
+**Versión:** 1.2.0  
+**Estado:** Alineado con Studio  
+**Última revisión:** 25/07/2026
 
 ---
 
 ## Objetivo
 
-Describir el flujo mediante el cual BoardComposer genera una o varias soluciones de optimización a partir de un proyecto, permitiendo al usuario explorar alternativas en lugar de recibir un único resultado.
+Describir cómo Studio calcula candidatas de layout a partir del proyecto
+actual, con progreso cancelable, ranking truncado y actualización del
+Comparador / Inspector.
 
 ---
 
@@ -23,75 +25,120 @@ Describir el flujo mediante el cual BoardComposer genera una o varias soluciones
 
 ## Precondiciones
 
-- Existe un proyecto válido.
-- Hay al menos un tablero y una pieza.
-- Las restricciones han sido validadas.
+- Hay un proyecto cargado (nuevo, abierto o demo).
+- Idealmente hay tableros y piezas; el flujo no bloquea con un wizard de
+  validación previa — un inventario vacío o incompatible acaba en 0
+  candidatas + diagnóstico.
+
+---
+
+## Trigger
+
+| Control | Atajo |
+|---------|--------|
+| Generar → Calcular layout | **Ctrl+Return** |
+| Botón toolbar «Calcular layout» | igual |
+
+Preferencias que afectan el cálculo (SCR-006):
+
+- estrategia (`balanced` / `material` / `compact` / `exact`)
+- pesos custom (opcional)
+- `max_solutions` (1–100; trunca el ranking final)
 
 ---
 
 ## Flujo principal
 
-1. El usuario pulsa **Generar soluciones**.
-2. Studio recopila la configuración activa del proyecto.
-3. El Core valida los datos de entrada.
-4. Se muestra un diálogo de progreso modal; el cálculo corre en segundo plano.
-5. Se ejecutan los algoritmos seleccionados (con cancelación cooperativa entre generadores y candidatas).
-6. Cada solución es evaluada y puntuada.
-7. Las soluciones se ordenan según el perfil de evaluación activo.
-8. Studio actualiza el Workspace y el Comparador.
-9. El usuario comienza la exploración de resultados.
+1. El usuario dispara **Calcular layout**.
+2. Studio abre un diálogo modal de progreso (indeterminado) con **Cancelar**.
+3. Un worker en hilo secundario convierte el proyecto Studio → Core y ejecuta
+   el pipeline (`GeometrySolver` / MaxRects multipanel según inventario).
+4. Generación → deduplicación → evaluación → ranking.
+5. Se conservan como máximo `max_solutions` candidatas; la seleccionada pasa
+   a ser la de índice 0 (mejor score).
+6. Se limpia el flag «soluciones desactualizadas».
+7. Studio actualiza Comparador (tabla + miniaturas) e Inspector (métricas /
+   diagnóstico). El preview en Workspace ocurre al seleccionar candidata
+   (clic / **Re Pág** / **Av Pág**), no automáticamente al terminar el
+   cálculo.
+8. El usuario explora (FLW-004), aplica (**Ctrl+Shift+Return**) o exporta
+   (FLW-005).
+
+Una sola candidata tras el ranking es un resultado **válido** (dedupe /
+inventario restringido).
 
 ---
 
-## Flujo alternativo A — Configuración incompleta
+## Flujo alternativo A — Sin candidatas
 
-1. Se detecta una restricción o dato obligatorio ausente.
-2. Studio muestra el problema y ofrece acceder directamente a la pantalla correspondiente.
-3. La generación no comienza hasta resolver la incidencia.
-
----
-
-## Flujo alternativo B — Sin solución válida
-
-1. Ningún algoritmo encuentra una solución aceptable.
-2. Studio informa del motivo.
-3. Se sugieren posibles acciones (permitir rotación, cambiar tableros, revisar restricciones, etc.).
+1. El pipeline termina con lista vacía (incompatible, no cabe, etc.).
+2. Comparador vacío; Inspector muestra diagnóstico
+   (`stats_summary_lines`: generadas / únicas / aceptadas / rechazadas +
+   motivos).
+3. Status: no se pudo calcular layout.
+4. El usuario ajusta inventario/material/espesor y vuelve a calcular.
 
 ---
 
-## Flujo alternativo C — Cancelación del cálculo
+## Flujo alternativo B — Cancelación
 
-1. El usuario pulsa **Cancelar** en el diálogo de progreso.
-2. Studio marca el token de cancelación cooperativa.
-3. El pipeline interrumpe entre generadores o candidatas y no aplica resultados parciales.
-4. El Workspace/Comparador se limpian de soluciones previas del cálculo y se informa del cancelado.
+1. El usuario pulsa **Cancelar** en el progreso.
+2. Se marca el token de cancelación cooperativa; el pipeline corta entre
+   generadores/candidatas.
+3. **No** se conservan resultados parciales: la lista de soluciones queda
+   vacía.
+4. Inspector / status informan del cálculo cancelado.
 
 ---
 
-## Eventos generados
+## Flujo alternativo C — Error
 
-- SolutionGenerationStarted
-- AlgorithmStarted
-- SolutionGenerated
-- SolutionEvaluated
-- SolutionRankingUpdated
-- WorkspaceUpdated
+1. Excepción en el worker.
+2. Evento `SolutionGenerated` con `status=error`.
+3. Status muestra el mensaje; no se aplica layout.
+
+---
+
+## Soluciones desactualizadas
+
+- Editar el proyecto con impacto en layout marca `solutions_outdated`.
+- Banner en el Comparador: el proyecto cambió; conviene volver a generar.
+- **Aplicar** con outdated pide confirmación.
+- Un cálculo nuevo limpia el flag.
+
+---
+
+## Eventos relevantes (Timeline)
+
+Emitidos en la práctica:
+
+- `SolutionGenerationStarted` (strategy)
+- Traza de algoritmos: `AlgorithmStarted` / `AlgorithmFinished`,
+  `EvaluationFinished`, `PlacementFailed` / resumen
+- `SolutionGenerated` (`ok` | `partial` | `none` | `cancelled` | `error`,
+  + `count` cuando aplica)
+- `SolutionsMarkedOutdated` al editar con impacto
+
+`WorkspaceUpdated` aparece al **aplicar** layout, no al terminar el cálculo.
 
 ---
 
 ## Resultado esperado
 
-El usuario dispone de una colección de soluciones clasificadas, explicadas y listas para inspección, comparación o exportación.
+El usuario dispone de 0…N candidatas rankeadas (tope `max_solutions`), con
+métricas/explicación cuando existen, listas para comparar, aplicar o
+exportar. El Timeline registra inicio/fin y fases del solver.
 
 ---
 
 ## Criterios de aceptación
 
-- La generación muestra progreso cuando el cálculo supera un tiempo apreciable.
-- El usuario puede cancelar el cálculo en curso; el solver responde de forma cooperativa.
-- El usuario puede identificar qué algoritmos han participado.
-- Cada solución conserva su explicación y métricas.
-- El proceso queda registrado en el historial del proyecto.
+- Progreso modal con Cancelar cooperativo.
+- Cancelar no deja candidatas a medias.
+- 0 candidatas → diagnóstico usable en Inspector.
+- ≥1 candidata → Comparador e Inspector actualizados.
+- `max_solutions` y estrategia salen de Preferencias.
+- Timeline refleja el cálculo y permite replay de fases/colocaciones.
 
 ---
 
@@ -100,12 +147,15 @@ El usuario dispone de una colección de soluciones clasificadas, explicadas y li
 - SCR-002 — Workspace.
 - SCR-003 — Comparador.
 - SCR-004 — Inspector.
+- SCR-006 — Preferencias.
+- FLW-004 — Comparar.
+- FLW-005 — Exportar.
+- ADR-005 — Timeline.
 
 ---
 
-## Observaciones
+## Límites conocidos
 
-En versiones futuras este flujo incorporará ejecución en paralelo y
-generación incremental de soluciones. El Timeline (ADR-005) ya registra el
-inicio/fin del cálculo y permite reproducir las colocaciones de la solución
-seleccionada; el Timeline registra las fases de cada algoritmo (`AlgorithmStarted`/`Finished` con duración), permite filtrar por algoritmo/periodo y muestra los fallos de colocación MaxRects/Skyline (`PlacementFailed` / resumen).
+- Sin validación previa amigable «faltan tableros/piezas» antes de lanzar.
+- Preview del canvas no se fuerza al acabar el solve (hay que seleccionar).
+- Solo MaxRects cubre el contrato multipanel completo (`exact` = un panel).

@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- FLW-003 Generar soluciones alineado con el Studio real (progreso
+  cancelable, ranking/`max_solutions`, 0/1/N candidatas y eventos Timeline).
 - SCR-007 Exportación alineada con el Studio real (diálogo de solución,
   formatos SVG/DXF/PDF/JSON/CSV, plantillas, Timeline aparte).
 - SCR-006 Preferencias alineada con el Studio real (grupos, campos,
