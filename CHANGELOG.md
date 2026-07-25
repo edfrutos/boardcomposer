@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- FLW-004 Comparar alineado con el Studio real (navegación de candidatas,
+  diffs ≥2, referencia, apply/export y banner outdated).
 - FLW-003 Generar soluciones alineado con el Studio real (progreso
   cancelable, ranking/`max_solutions`, 0/1/N candidatas y eventos Timeline).
 - SCR-007 Exportación alineada con el Studio real (diálogo de solución,
