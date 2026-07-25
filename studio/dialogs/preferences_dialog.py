@@ -21,6 +21,7 @@ from PySide6.QtWidgets import (
 )
 
 from boardcomposer.solver.strategies import strategy_by_name
+from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.export_options import VALID_EXPORT_FORMATS, format_label
 from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES, tr
 from studio.preferences import (
@@ -177,6 +178,7 @@ class PreferencesDialog(QDialog):
             | QDialogButtonBox.StandardButton.Ok
             | QDialogButtonBox.StandardButton.Cancel
         )
+        polish_dialog_button_box(buttons)
         buttons.accepted.connect(self.accept)
         buttons.rejected.connect(self.reject)
         buttons.button(QDialogButtonBox.StandardButton.RestoreDefaults).clicked.connect(

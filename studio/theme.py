@@ -189,6 +189,47 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
     QPushButton#primaryButton:hover {{
         background-color: {tokens.accent_hover};
     }}
+    QDialogButtonBox QPushButton {{
+        min-height: 36px;
+        min-width: 80px;
+    }}
+    QCheckBox {{
+        color: {tokens.text};
+        spacing: 8px;
+    }}
+    QCheckBox:focus {{
+        color: {tokens.text};
+    }}
+    QCheckBox::indicator {{
+        width: 16px;
+        height: 16px;
+        border: 1px solid {tokens.border};
+        border-radius: 3px;
+        background-color: {tokens.base};
+    }}
+    QCheckBox::indicator:checked {{
+        background-color: {tokens.accent};
+        border-color: {tokens.accent_hover};
+    }}
+    QCheckBox::indicator:focus {{
+        border: 2px solid {tokens.accent};
+    }}
+    QTextEdit#inspectorPanel {{
+        background-color: {tokens.base};
+        color: {tokens.text};
+        border: none;
+        padding: 8px 10px;
+        font-family: "{ui}";
+        font-size: 13px;
+        selection-background-color: {tokens.accent};
+        selection-color: {tokens.accent_text};
+    }}
+    QLabel#exportGraphicPreview {{
+        background-color: {tokens.alternate};
+        color: {tokens.muted};
+        border: 1px solid {tokens.border};
+        border-radius: 4px;
+    }}
     QLineEdit, QSpinBox, QDoubleSpinBox, QComboBox, QTextEdit, QPlainTextEdit {{
         background-color: {tokens.base};
         color: {tokens.text};

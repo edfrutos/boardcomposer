@@ -1,9 +1,10 @@
 """Tests for NewBoard / NewPiece form i18n (SCR-006)."""
 
-from PySide6.QtWidgets import QFormLayout
+from PySide6.QtWidgets import QDialogButtonBox, QFormLayout
 
 from studio.dialogs.new_board_dialog import NewBoardDialog
 from studio.dialogs.new_piece_dialog import NewPieceDialog
+from studio.dialogs.new_project_dialog import NewProjectDialog
 
 
 def _label_texts(dialog) -> list[str]:
@@ -46,3 +47,18 @@ def test_new_board_dialog_spanish_defaults(qapp):
 
     assert dialog.windowTitle() == "Nuevo tablero"
     assert "Identificador:" in _label_texts(dialog)
+
+
+def test_form_dialogs_mark_ok_as_primary_button(qapp):
+    del qapp
+    for dialog in (
+        NewBoardDialog(),
+        NewPieceDialog(),
+        NewProjectDialog(),
+    ):
+        box = dialog.findChild(QDialogButtonBox)
+        assert box is not None
+        ok = box.button(QDialogButtonBox.StandardButton.Ok)
+        assert ok is not None
+        assert ok.objectName() == "primaryButton"
+        assert ok.minimumHeight() >= 36
