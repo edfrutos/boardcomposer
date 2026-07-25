@@ -33,9 +33,13 @@ arquitectónica y funcional está consolidada.
 - [x] Modelo, persistencia y representación básica multipanel.
 - [x] UAT visual multipanel completo.
 - [x] Movimiento interactivo de piezas entre paneles.
-- [x] Comparador visual con resaltado por métrica (SCR-003); ordenación y
-      filtrado avanzado quedan como siguiente iteración.
-- [x] Importación de inventario multipanel desde CSV (Excel queda pendiente).
+- [x] Comparador visual SCR-003 (resaltado, ordenar/filtrar, miniaturas, diff).
+- [x] Importación tableros/piezas CSV y Excel (`.xlsx`), con mapeo y plantillas.
+- [x] Exportación SVG/DXF/PDF/JSON/CSV con diálogo, preview y plantillas.
+- [x] Preferencias (tema, idioma, unidades, grid, estrategia, export defaults).
+- [x] Pantalla de inicio / bienvenida (SCR-001).
+- [x] Docs UI SCR-001…007 y FLW-001…006 alineados con Studio
+      (`docs/masterplan/ui/REVIEW-2026-07-17.md`).
 
 ## Fase 3 — Plataforma — Planificada
 

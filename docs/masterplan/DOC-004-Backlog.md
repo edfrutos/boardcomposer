@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.1.0
+**Versión:** 1.1.1
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 16/07/2026
+**Última revisión:** 25/07/2026
 
 ---
 
@@ -71,10 +71,10 @@ Observaciones:
 | ID | Título | Estado | Prioridad |
 |----|--------|--------|-----------|
 | IDE-0001 | Workspace interactivo | 🟢 | P0 |
-| IDE-0002 | Comparador de algoritmos | 🟡 | P0 |
+| IDE-0002 | Comparador de algoritmos | 🟢 | P0 |
 | IDE-0003 | Inspector de piezas | 🟢 | P0 |
 | IDE-0004 | Gestión de proyectos | 🟢 | P1 |
-| IDE-0005 | Exportación PDF/SVG | 🟡 | P1 |
+| IDE-0005 | Exportación PDF/SVG | 🟢 | P1 |
 | IDE-0006 | API pública | ⚪ | P2 |
 | IDE-0007 | Asistente IA | ⚪ | P2 |
 | IDE-0008 | Sistema de plugins | ⚪ | P3 |
@@ -102,10 +102,12 @@ Observaciones:
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión — implementación vinculada hasta IDE-0018
+**Estado actual:** 🟡 En revisión — IDE-0001…0018 en Studio/Core; IDE-0002 y
+IDE-0005 marcados 🟢 (comparador completo + export multi-formato).
 
 Pendiente de:
 
 - incorporar las primeras Épicas (EP);
 - enlazar el Roadmap con el Backlog;
-- definir el flujo completo Idea → Épica → Sprint → Implementación → Liberación.
+- definir el flujo completo Idea → Épica → Sprint → Implementación → Liberación;
+- Fase 3 (API / automatización) como siguiente bloque de producto.
