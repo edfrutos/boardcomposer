@@ -107,6 +107,11 @@ def test_empty_workspace_overlay_shows_for_blank_project():
     assert not workspace.empty_overlay.isHidden()
     assert workspace.empty_overlay.title.text() == "Start your project"
     assert workspace.empty_overlay.add_board_button.text() == "Add board…"
+    assert workspace.empty_overlay.add_board_button.objectName() == "primaryButton"
+    assert workspace.empty_overlay.add_board_button.minimumHeight() >= 44
+    assert workspace.empty_overlay.add_piece_button.minimumHeight() >= 36
+    assert workspace.empty_overlay.import_boards_button.minimumHeight() >= 36
+    assert workspace.empty_overlay.import_pieces_button.minimumHeight() >= 36
 
 
 def test_reload_project_creates_a_slot_per_physical_panel_instance():

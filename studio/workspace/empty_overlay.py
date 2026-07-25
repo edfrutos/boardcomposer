@@ -22,8 +22,8 @@ class EmptyWorkspaceOverlay(QWidget):
         self._language = DEFAULT_LANGUAGE
 
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(28, 24, 28, 24)
-        layout.setSpacing(12)
+        layout.setContentsMargins(32, 28, 32, 28)
+        layout.setSpacing(10)
 
         self.title = QLabel()
         self.title.setObjectName("workspaceEmptyTitle")
@@ -37,24 +37,31 @@ class EmptyWorkspaceOverlay(QWidget):
         self.blurb.setWordWrap(True)
         layout.addWidget(self.blurb)
 
+        layout.addSpacing(8)
+
         self.add_board_button = QPushButton()
         self.add_board_button.setObjectName("primaryButton")
+        self.add_board_button.setMinimumHeight(44)
         self.add_board_button.clicked.connect(self.add_board_requested.emit)
         layout.addWidget(self.add_board_button)
 
         self.add_piece_button = QPushButton()
+        self.add_piece_button.setMinimumHeight(36)
         self.add_piece_button.clicked.connect(self.add_piece_requested.emit)
         layout.addWidget(self.add_piece_button)
 
         self.import_boards_button = QPushButton()
+        self.import_boards_button.setMinimumHeight(36)
         self.import_boards_button.clicked.connect(self.import_boards_requested.emit)
         layout.addWidget(self.import_boards_button)
 
         self.import_pieces_button = QPushButton()
+        self.import_pieces_button.setMinimumHeight(36)
         self.import_pieces_button.clicked.connect(self.import_pieces_requested.emit)
         layout.addWidget(self.import_pieces_button)
 
-        self.setMinimumWidth(320)
+        self.setMinimumWidth(340)
+        self.setMaximumWidth(420)
         self.apply_language(DEFAULT_LANGUAGE)
 
     def apply_language(self, language: str) -> None:

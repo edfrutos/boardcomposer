@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- Workspace empty overlay + chrome docks/toolbar alineados a Industrial
+  madera (targets CTA, títulos de dock, splitter).
 - Tema Industrial madera: CTA light con tinta sobre ámbar (WCAG AA), focus
   visible en botones/listas, targets Welcome y banner outdated con mejor
   contraste en dark.
