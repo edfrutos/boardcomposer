@@ -285,8 +285,8 @@
 
 ### Cambiado
 
-- FLW-006 Editar proyecto alineado con el Studio real (inventario, DnD
-  paneles, dirty/outdated, undo y unsaved).
+- ROADMAP Fase 2, checklist UAT Studio y DOC-004 (IDE-0002/0005) alineados
+  con el Studio tras el sync SCR/FLW.
 - FLW-001 Crear proyecto alineado con el Studio real (Ctrl+N, diálogo
   nombre/unidades, demo/plantilla y `ProjectCreated`).
 - FLW-002 Importar CSV/Excel alineado con el Studio real (Ctrl+Shift+T/O,

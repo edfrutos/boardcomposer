@@ -1,11 +1,14 @@
-# Checklist humana — funcionalidad Studio (post polish bt)
+# Checklist humana — funcionalidad Studio
 
-**Fecha:** 2026-07-20  
-**Base:** `main` tras PR #121 (`Ctrl+Shift+E` exportar)  
+**Fecha:** 2026-07-25  
+**Base:** `main` tras sync docs SCR-001…007 + FLW-001…006  
 **Versión:** `0.4.0.dev0` (Unreleased)  
 **Cómo arrancar:** `make run` o `.venv/bin/python -m studio.app`
 
 Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable**, no buscar bugs de borde.
+
+Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
+`docs/masterplan/ui/`.
 
 ---
 
