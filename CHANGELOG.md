@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- DOC-003 Roadmap v1.2 alineado con Studio (Fase 2 núcleo operativo; Fase 3
+  como siguiente bloque; prioridades P0/P1 actualizadas).
 - ROADMAP Fase 2, checklist UAT Studio y DOC-004 (IDE-0002/0005) alineados
   con el Studio tras el sync SCR/FLW.
 - FLW-001 Crear proyecto alineado con el Studio real (Ctrl+N, diálogo
