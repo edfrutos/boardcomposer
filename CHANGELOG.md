@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- SCR-007 Exportación alineada con el Studio real (diálogo de solución,
+  formatos SVG/DXF/PDF/JSON/CSV, plantillas, Timeline aparte).
 - SCR-006 Preferencias alineada con el Studio real (grupos, campos,
   `preferences.json`, apply al OK y límites).
 - SCR-001 Pantalla de inicio alineada con el Studio real (hero brand-first,
