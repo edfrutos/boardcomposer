@@ -115,6 +115,10 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         background-color: {tokens.alternate};
         border-color: {tokens.accent};
     }}
+    QPushButton:focus {{
+        border: 2px solid {tokens.accent};
+        padding: 5px 13px;
+    }}
     QPushButton:pressed {{
         background-color: {tokens.border};
     }}
@@ -128,6 +132,10 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         border: 1px solid {tokens.accent_hover};
         font-family: "{_UI_SEMIBOLD_FAMILY}";
         font-weight: 600;
+    }}
+    QPushButton#primaryButton:focus {{
+        border: 2px solid {tokens.text};
+        padding: 5px 13px;
     }}
     QToolBar#mainToolbar {{
         background-color: {tokens.window};
@@ -152,6 +160,10 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
     QToolBar#mainToolbar QToolButton:checked {{
         background-color: {tokens.alternate};
         border: 1px solid {tokens.accent};
+    }}
+    QToolBar#mainToolbar QToolButton:focus {{
+        border: 1px solid {tokens.accent};
+        background-color: {tokens.alternate};
     }}
     QPushButton#primaryButton:hover {{
         background-color: {tokens.accent_hover};
@@ -186,7 +198,9 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         color: {tokens.text};
         border: 1px solid {tokens.border};
         border-radius: 4px;
-        outline: none;
+    }}
+    QListWidget:focus, QTreeWidget:focus, QTableWidget:focus, QTableView:focus {{
+        border: 1px solid {tokens.accent};
     }}
     QListWidget::item:selected, QTreeWidget::item:selected,
     QTableWidget::item:selected, QTableView::item:selected {{
@@ -286,7 +300,7 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         text-transform: uppercase;
     }}
     QLabel#solutionsOutdatedBanner {{
-        background-color: {tokens.alternate};
+        background-color: {tokens.window};
         color: {tokens.danger};
         border: 1px solid {tokens.danger};
         border-radius: 4px;
@@ -296,6 +310,22 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
     }}
     QWidget#welcomeRoot {{
         background-color: {tokens.window};
+    }}
+    QPushButton#welcomeClearRecent {{
+        color: {tokens.muted};
+        background: transparent;
+        border: 1px solid transparent;
+        min-height: 32px;
+        padding: 4px 8px;
+    }}
+    QPushButton#welcomeClearRecent:hover {{
+        color: {tokens.text};
+        border: 1px solid {tokens.border};
+        background-color: {tokens.alternate};
+    }}
+    QPushButton#welcomeClearRecent:focus {{
+        border: 2px solid {tokens.accent};
+        padding: 3px 7px;
     }}
     QWidget#workspaceEmptyOverlay {{
         background-color: {tokens.base};

@@ -37,10 +37,10 @@ LIGHT = ThemeTokens(
     text="#2c241c",
     muted="#6b5c4d",
     border="#c9b8a4",
-    # Tool amber accent ≤10% of chrome
+    # Tool amber accent ≤10% of chrome; ink on amber for WCAG AA (≥4.5:1)
     accent="#c47a1a",
     accent_hover="#a86512",
-    accent_text="#fff8f0",
+    accent_text="#1a1410",
     danger="#b42318",
     tooltip="#2c241c",
     scroll="#e8ddd0",
