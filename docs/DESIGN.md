@@ -38,6 +38,9 @@ tipografía de marca hasta elegir light/dark).
   vaciar recientes ≥32px.
 - Banner outdated usa fondo `window` para contraste del danger en dark.
 - Docks: título con `panel` + SemiBold; splitter handle con `border`.
+- Inspector: `QTextEdit#inspectorPanel` (padding + tokens, sin borde).
+- Diálogos: OK = `primaryButton` vía `polish_dialog_button_box`;
+  `QDialogButtonBox` min-height 36; checkbox con indicador tokenizado.
 
 ## Canvas / workspace
 
@@ -67,8 +70,12 @@ Fuentes OFL en `studio/assets/fonts/`.
 ## Componentes clave
 
 - `QPushButton#primaryButton` — CTA principal (ámbar + `accent_text` tinta).
+- `polish_dialog_button_box` — OK primario en formularios (tablero, pieza,
+  proyecto, export, preferencias).
 - Welcome: marca hero + tagline + CTAs; recientes en columna secundaria;
   `welcomeClearRecent` con hover/focus propios.
+- Inspector: `#inspectorPanel`; export preview: `#exportGraphicPreview`
+  (tokens QSS, no stylesheet inline).
 - Workspace: tableros/piezas/grid/selección con tokens Industrial madera
   (sin azul Tailwind legacy); empty overlay `workspaceEmptyOverlay` con
   CTAs alineados a Welcome.

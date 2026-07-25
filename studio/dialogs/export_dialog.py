@@ -22,7 +22,7 @@ from PySide6.QtWidgets import (
 )
 
 from boardcomposer.domain import AssemblySolution, Project
-from boardcomposer.export import DEFAULT_SVG_PALETTE
+from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.export_options import (
     VALID_EXPORT_FORMATS,
     ExportOptions,
@@ -148,11 +148,6 @@ class ExportDialog(QDialog):
         self.graphic_preview.setMinimumHeight(200)
         self.graphic_preview.setFrameShape(QFrame.Shape.StyledPanel)
         self.graphic_preview.setObjectName("exportGraphicPreview")
-        palette = DEFAULT_SVG_PALETTE
-        self.graphic_preview.setStyleSheet(
-            f"QLabel#exportGraphicPreview {{ background: {palette.background}; "
-            f"color: {palette.piece_label}; }}"
-        )
         graphic_scroll = QScrollArea()
         graphic_scroll.setWidgetResizable(True)
         graphic_scroll.setFrameShape(QFrame.Shape.NoFrame)
@@ -169,6 +164,7 @@ class ExportDialog(QDialog):
         buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
         )
+        polish_dialog_button_box(buttons)
         buttons.button(QDialogButtonBox.StandardButton.Ok).setText(
             self._tr("export.export_btn")
         )

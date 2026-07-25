@@ -367,6 +367,7 @@ class MainWindow(QMainWindow):
         self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.explorer_dock)
 
         self.inspector = QTextEdit()
+        self.inspector.setObjectName("inspectorPanel")
         self.inspector.setReadOnly(True)
 
         self.inspector_dock = QDockWidget("", self)

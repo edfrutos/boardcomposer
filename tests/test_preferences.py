@@ -146,6 +146,9 @@ def test_apply_theme_switches_palette(qapp):
     assert "welcomeClearRecent" in sheet
     assert "QDockWidget::title" in sheet
     assert "workspaceEmptyOverlay" in sheet
+    assert "inspectorPanel" in sheet
+    assert "QDialogButtonBox QPushButton" in sheet
+    assert "exportGraphicPreview" in sheet
     assert dark_window.lightness() < light_window.lightness()
 
     apply_theme(qapp, "system")
