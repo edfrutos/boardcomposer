@@ -285,6 +285,8 @@
 
 ### Cambiado
 
+- FLW-001 Crear proyecto alineado con el Studio real (Ctrl+N, diálogo
+  nombre/unidades, demo/plantilla y `ProjectCreated`).
 - FLW-002 Importar CSV/Excel alineado con el Studio real (Ctrl+Shift+T/O,
   mapeo/plantillas, preview, undo y `CsvImported`).
 - FLW-005 Exportar alineado con el Studio real (Ctrl+Shift+E, diálogo
