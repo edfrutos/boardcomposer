@@ -38,6 +38,8 @@ from dataclasses import replace as dataclass_replace
 from studio.board_ids import allocate_unique_board_id
 from studio.branding import app_icon
 from studio.commands import (
+    AddBoardCommand,
+    AddPieceCommand,
     DeleteBoardCommand,
     DeletePieceCommand,
     DuplicateBoardCommand,
@@ -965,21 +967,21 @@ class MainWindow(QMainWindow):
             self._status("status.board_id_exists", id=data["board_id"])
             return
 
-        project.boards.append(
-            StudioBoard(
-                board_id=data["board_id"],
-                length_mm=data["length_mm"],
-                width_mm=data["width_mm"],
-                material=data["material"],
-                thickness_mm=data["thickness_mm"],
-                quantity=data["quantity"],
-            )
+        board = StudioBoard(
+            board_id=data["board_id"],
+            length_mm=data["length_mm"],
+            width_mm=data["width_mm"],
+            material=data["material"],
+            thickness_mm=data["thickness_mm"],
+            quantity=data["quantity"],
         )
+        self.services.commands.execute(AddBoardCommand(self.services, board))
 
         self._mark_project_modified()
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
+        self.update_undo_redo()
 
         self._status("status.board_added")
 
@@ -1350,23 +1352,26 @@ class MainWindow(QMainWindow):
             self._status("status.piece_id_exists", id=new_piece_id)
             return
 
+        pieces: list[StudioPiece] = []
+        placements: list[StudioPlacement] = []
+        piece_lookup = {piece.piece_id: piece for piece in project.pieces}
         for piece_id in piece_ids:
-            project.pieces.append(
-                StudioPiece(
-                    piece_id=piece_id,
-                    length_mm=data["length_mm"],
-                    width_mm=data["width_mm"],
-                    material=data["material"],
-                    thickness_mm=data["thickness_mm"],
-                )
+            piece = StudioPiece(
+                piece_id=piece_id,
+                length_mm=data["length_mm"],
+                width_mm=data["width_mm"],
+                material=data["material"],
+                thickness_mm=data["thickness_mm"],
             )
-
+            pieces.append(piece)
+            piece_lookup[piece_id] = piece
             x_mm, y_mm = self._find_free_piece_position(
                 data["length_mm"],
                 data["width_mm"],
+                extra_placements=placements,
+                piece_lookup=piece_lookup,
             )
-
-            project.placements.append(
+            placements.append(
                 StudioPlacement(
                     piece_id=piece_id,
                     x_mm=x_mm,
@@ -1379,10 +1384,15 @@ class MainWindow(QMainWindow):
                 )
             )
 
+        self.services.commands.execute(
+            AddPieceCommand(self.services, pieces, placements)
+        )
+
         self._mark_project_modified()
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
+        self.update_undo_redo()
 
         if len(piece_ids) > 1:
             self._status("status.pieces_added", n=len(piece_ids))

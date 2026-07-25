@@ -1,5 +1,7 @@
 """Studio command system."""
 
+from studio.commands.add_board_command import AddBoardCommand
+from studio.commands.add_piece_command import AddPieceCommand
 from studio.commands.command import Command
 from studio.commands.command_manager import CommandManager
 from studio.commands.delete_board_command import DeleteBoardCommand
@@ -15,6 +17,8 @@ from studio.commands.rename_project_command import RenameProjectCommand
 from studio.commands.rotate_piece_command import RotatePieceCommand
 
 __all__ = [
+    "AddBoardCommand",
+    "AddPieceCommand",
     "Command",
     "CommandManager",
     "DeleteBoardCommand",

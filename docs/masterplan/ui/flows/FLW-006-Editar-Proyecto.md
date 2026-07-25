@@ -130,11 +130,9 @@ está outdated.
 
 ## Undo / redo
 
-Pila `CommandManager`. Comandos: edit/delete/duplicate board|piece,
-`MovePieceCommand`, `RenameProjectCommand`, imports (FLW-002).
-
-**Límite:** `_add_board` / `_add_piece` mutan directo (sin `Add*Command`);
-deshacer esos adds no pasa por la pila de comandos de add.
+Pila `CommandManager`. Comandos: `AddBoardCommand` / `AddPieceCommand`,
+edit/delete/duplicate board|piece, `MovePieceCommand`,
+`RenameProjectCommand`, imports (FLW-002).
 
 ---
 
@@ -187,7 +185,6 @@ candidatas válidas.
 
 - Sin control de versiones / diffs entre revisiones del `.bcproj`.
 - Sin edición colaborativa ni bloqueo de recursos.
-- Add board/piece aún sin comando undo dedicado.
 - Sin evento bus `PieceMoved` / `ProjectValidated` / `ProjectHistoryUpdated`.
 - Historial = Timeline de eventos + pila undo de sesión, no auditoría
   persistente de revisiones.
