@@ -90,7 +90,6 @@ Entregables principales (alcanzados):
 
 Deuda / evolución dentro de Fase 2 (no bloquea uso diario):
 
-- `AddBoard` / `AddPiece` aún sin Command dedicado (undo vía otros caminos).
 - Sin control de versiones / diffs de revisiones del `.bcproj`.
 - Pulido UAT humano continuo sobre la checklist.
 
@@ -154,7 +153,7 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Fase 3: API pública y automatización (alcance a descomponer en EP).
-- Cierre de deuda menor Fase 2 (p. ej. Add*Command).
+- Pulido menor Fase 2 y UAT humano continuo.
 
 ### Prioridad P2
 

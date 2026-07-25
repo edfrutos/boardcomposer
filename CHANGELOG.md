@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- `AddBoardCommand` / `AddPieceCommand`: añadir tablero o pieza(s) es
+  deshacible (Ctrl+Z), cerrando la deuda de FLW-006 / ADR-008.
 - `StockPanel.quantity` como inventario de unidades físicas.
 - `PanelReference` para asignar colocaciones a tipo e instancia de panel.
 - Packing MaxRects sobre múltiples paneles y tipos de espesor compatible.
@@ -285,6 +287,7 @@
 
 ### Cambiado
 
+- FLW-006 / DOC-003: añadir tablero/pieza pasa por Command (undo dedicado).
 - Workspace empty overlay + chrome docks/toolbar alineados a Industrial
   madera (targets CTA, títulos de dock, splitter).
 - Tema Industrial madera: CTA light con tinta sobre ámbar (WCAG AA), focus
