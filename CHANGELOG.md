@@ -287,6 +287,8 @@
 
 ### Cambiado
 
+- `polish_dialog_button_box` también en import/preview, mapeo, plantillas y
+  ayuda (What's New / About / Atajos).
 - Inspector + diálogos: `#inspectorPanel`, OK primario en formularios,
   checkbox/button-box tokenizados; preview export sin QSS inline.
 - FLW-006 / DOC-003: añadir tablero/pieza pasa por Command (undo dedicado).
