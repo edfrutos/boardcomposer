@@ -6,7 +6,7 @@ backlog (`DOC-004`).
 | ID | Título | Fase | Estado | Prioridad |
 |----|--------|------|--------|-----------|
 | EP-001 | API pública y contratos | 3 | 🟢 Python `v1` (SPR-001…003) | P1 |
-| EP-002 | Automatización y batch | 3 | 🟡 En curso (SPR-001 🟢) | P1 |
+| EP-002 | Automatización y batch | 3 | 🟡 En curso (SPR-001/003 🟢; SPR-002 🔵) | P1 |
 | EP-003 | Integraciones y servicios remotos | 3 | 🔵 Planificada | P2 |
 
 Orden sugerido: **EP-001 → EP-002 → EP-003**.

@@ -15,6 +15,8 @@
 
 ### Añadido
 
+- Batch `--list` / `--dry-run` (EP-002 / SPR-003): lista explícita de
+  paths + manifiesto sin solver; sample `data/samples/batch_jobs.list`.
 - Batch headless `boardcomposer-batch` (EP-002 / SPR-001): carpeta CSV /
   `.bcproj` → exports + `manifest.json`, perfil JSON, exit 0/1/2;
   `scripts/batch_samples.sh` y `data/samples/batch_inbox/`.

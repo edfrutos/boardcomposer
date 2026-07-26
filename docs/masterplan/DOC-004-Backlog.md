@@ -120,6 +120,6 @@ EP (001…003) creadas para Fase 3; IDE-0006 → 🔵 P1.
 
 Pendiente de:
 
-- completar SPR-002/003 bajo EP-002 (perfiles nombrados / dry-run);
+- completar SPR-002 bajo EP-002 (perfiles nombrados / plantillas export Studio);
 - completar el flujo Idea → Épica → Sprint → Implementación → Liberación;
 - estimar esfuerzo por épica.

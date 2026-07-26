@@ -21,8 +21,16 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--input",
         "-i",
-        required=True,
         help="Input file (.csv / .bcproj) or directory containing them",
+    )
+    parser.add_argument(
+        "--list",
+        "-L",
+        dest="list_path",
+        help=(
+            "Text file with explicit project paths (one per line; "
+            "# comments allowed). Can combine with --input."
+        ),
     )
     parser.add_argument(
         "--output",
@@ -49,6 +57,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--formats",
         help="Override export formats, comma-separated: json,csv,svg",
     )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="List planned jobs and write manifest only (no solve/export)",
+    )
     return parser
 
 
@@ -67,7 +80,14 @@ def _resolve_profile(args: argparse.Namespace) -> BatchProfile:
 
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
-    args = parser.parse_args(argv)
+    try:
+        args = parser.parse_args(argv)
+        if not args.input and not args.list_path:
+            parser.error("Provide --input and/or --list")
+    except SystemExit as exc:
+        code = 0 if exc.code is None else int(exc.code)
+        return code
+
     try:
         profile = _resolve_profile(args)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
@@ -76,14 +96,24 @@ def main(argv: list[str] | None = None) -> int:
 
     report = run_batch(
         input_path=args.input,
+        list_path=args.list_path,
         output_dir=args.output,
         profile=profile,
+        dry_run=args.dry_run,
     )
     manifest = Path(args.output) / "manifest.json"
-    print(
-        f"batch done: ok={report.ok} error={report.error} "
-        f"skipped={report.skipped} total={report.total}"
-    )
+    if args.dry_run:
+        print(
+            f"batch dry-run: planned={report.planned} error={report.error} "
+            f"skipped={report.skipped} total={report.total}"
+        )
+        for job in report.jobs:
+            print(f"  {job.status}: {job.source} -> {job.output_dir}")
+    else:
+        print(
+            f"batch done: ok={report.ok} error={report.error} "
+            f"skipped={report.skipped} total={report.total}"
+        )
     print(f"manifest: {manifest}")
     return report.exit_code()
 
