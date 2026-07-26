@@ -59,7 +59,6 @@ from studio.project_serializer import (
 )
 from studio.i18n import action_keys, menu_keys, tr
 from studio.workspace.board_workspace import BoardWorkspace
-from studio.workspace.board_piece_item import BoardPieceItem
 from studio.dialogs import (
     AboutDialog,
     ExportDialog,
@@ -325,6 +324,9 @@ class MainWindow(QMainWindow):
         self.workspace.add_piece_requested.connect(self._add_piece)
         self.workspace.import_boards_requested.connect(self._import_boards_from_csv)
         self.workspace.import_pieces_requested.connect(self._import_pieces_from_csv)
+        self.workspace.rotate_requested.connect(self._rotate_selected_piece)
+        # Ensure Edit→Rotar / R is available while the canvas has focus.
+        self.workspace.addAction(self._actions["rotate_piece"])
         self.welcome = WelcomeScreen()
         self.welcome.new_project_requested.connect(self._new_project)
         self.welcome.open_project_requested.connect(self._open_project)
@@ -1560,19 +1562,15 @@ class MainWindow(QMainWindow):
         self.update_undo_redo()
 
     def _rotate_selected_piece(self):
-        selected = self.workspace.scene().selectedItems()
-
-        if len(selected) != 1:
+        piece_id = self.workspace.selection.current()
+        if piece_id is None:
             return
 
-        item = selected[0]
-
-        if not isinstance(item, BoardPieceItem):
+        item = self.workspace.piece_item_by_id(piece_id)
+        if item is None:
             return
 
-        piece_id = item.piece_id
         project = self.services.projects.current_project
-
         if project is None:
             return
 
@@ -1581,7 +1579,7 @@ class MainWindow(QMainWindow):
             return
 
         old_rotation = placement.rotation
-        new_rotation = 90 if old_rotation == 0 else 0
+        new_rotation = 90 if old_rotation % 180 == 0 else 0
 
         if not self.workspace.can_rotate_item(item, new_rotation):
             self._status("status.cannot_rotate")
@@ -1602,6 +1600,7 @@ class MainWindow(QMainWindow):
         self._mark_project_modified()
         self.update_window_title()
         self.update_undo_redo()
+        self._status("status.piece_rotated")
 
     def _delete_selected_piece(self):
         """Delete the selected piece, or the focused/explorer board (Delete)."""
