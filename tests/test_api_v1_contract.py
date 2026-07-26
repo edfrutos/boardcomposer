@@ -18,6 +18,7 @@ from boardcomposer.api import v1
 
 
 SAMPLE_CSV = "data/samples/basic_boards.csv"
+SAMPLE_BCPROJ = "data/samples/multipanel_demo.bcproj"
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = REPO_ROOT / "src"
 
@@ -33,7 +34,7 @@ EXPECTED_PUBLIC = {
 
 
 def test_api_version_is_semver_v1():
-    assert v1.API_VERSION == "1.0.0"
+    assert v1.API_VERSION == "1.1.0"
     assert v1.API_VERSION.startswith("1.")
 
 
@@ -113,3 +114,13 @@ def test_solve_rejects_unknown_strategy():
     project = v1.load_project(SAMPLE_CSV)
     with pytest.raises(ValueError):
         v1.solve(project, strategy="not-a-strategy")
+
+
+def test_load_and_solve_bcproj_multipanel():
+    project, solutions = v1.run(SAMPLE_BCPROJ, strategy="balanced", top=3)
+
+    assert len(project.stock_panels) == 1
+    assert project.stock_panels[0].quantity == 2
+    assert len(project.boards) == 2
+    assert solutions, "expected at least one multipanel layout"
+    assert any(sol.is_complete for sol in solutions) or solutions[0].placements

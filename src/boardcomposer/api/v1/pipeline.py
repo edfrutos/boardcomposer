@@ -1,4 +1,4 @@
-"""v1 pipeline: load CSV → solve → export (no Studio / Qt)."""
+"""v1 pipeline: load CSV/``.bcproj`` → solve → export (no Studio / Qt)."""
 
 from __future__ import annotations
 
@@ -6,13 +6,20 @@ from pathlib import Path
 
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.export import solution_to_csv, solution_to_json, solution_to_svg
-from boardcomposer.io import load_project_from_csv
+from boardcomposer.io import load_project_from_bcproj, load_project_from_csv
 from boardcomposer.solver import GeometrySolver
 from boardcomposer.solver.strategies import strategy_by_name
 
 
 def load_project(path: str | Path) -> Project:
-    """Load a project from a boards CSV (same format as the CLI ``--csv``)."""
+    """Load a Core project from CSV pieces or a ``.bcproj`` file.
+
+    - ``*.bcproj`` — Studio project JSON (stock panels + pieces; ADR-015).
+    - otherwise — boards CSV (same format as the CLI ``--csv``).
+    """
+    path = Path(path)
+    if path.suffix.lower() == ".bcproj":
+        return load_project_from_bcproj(path)
     return load_project_from_csv(path)
 
 
@@ -72,6 +79,6 @@ def run(
     strategy: str = "balanced",
     top: int | None = None,
 ) -> tuple[Project, list[AssemblySolution]]:
-    """Load a CSV project and solve it in one call."""
+    """Load a CSV or ``.bcproj`` project and solve it in one call."""
     project = load_project(path)
     return project, solve(project, strategy=strategy, top=top)

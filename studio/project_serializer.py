@@ -5,92 +5,31 @@ older than `CURRENT_VERSION` runs it through a chain of migration functions
 (one per version step, see ADR-015) before building the in-memory model.
 Files newer than `CURRENT_VERSION` are rejected explicitly rather than
 silently truncated or guessed at.
+
+Version migrations live in Core (`boardcomposer.io.bcproj`) so API `v1` and
+Studio share one chain (EP-001 / SPR-003).
 """
 
 from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Callable
 
+from boardcomposer.io.bcproj import (
+    CURRENT_VERSION,
+    UnsupportedProjectVersionError,
+    migrate_bcproj_dict,
+)
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 
-CURRENT_VERSION = 2
-
-
-class UnsupportedProjectVersionError(Exception):
-    """Raised when a `.bcproj` file declares a version this build can't read."""
-
-    def __init__(self, file_version: int) -> None:
-        self.file_version = file_version
-        super().__init__(
-            f"El proyecto usa la versión {file_version}, pero esta versión de "
-            f"BoardComposer solo admite hasta la versión {CURRENT_VERSION}. "
-            "Actualiza la aplicación para abrir este archivo."
-        )
-
-
-def _migrate_v1_to_v2(data: dict) -> dict:
-    """v1 -> v2: introduces per-board material/thickness/quantity, per-piece
-    material/thickness, and per-placement physical-panel assignment
-    (`board_id`, `board_instance`, `stock_panel_index`). Older files simply
-    lack these keys, so migrating just means filling in their defaults
-    explicitly (matching ADR-014's "Studio y persistencia" section).
-    """
-    migrated = dict(data)
-
-    migrated["boards"] = [
-        {
-            "material": "Demo",
-            "thickness_mm": 19,
-            "quantity": 1,
-            **board,
-        }
-        for board in data.get("boards", [])
-    ]
-    migrated["pieces"] = [
-        {
-            "material": "Demo",
-            "thickness_mm": 19,
-            **piece,
-        }
-        for piece in data.get("pieces", [])
-    ]
-    migrated["placements"] = [
-        {
-            "rotated": False,
-            "rotation": 0,
-            "board_id": None,
-            "board_instance": 0,
-            "stock_panel_index": None,
-            **placement,
-        }
-        for placement in data.get("placements", [])
-    ]
-    migrated["version"] = 2
-
-    return migrated
-
-
-_MIGRATIONS: dict[int, Callable[[dict], dict]] = {
-    1: _migrate_v1_to_v2,
-}
-
-
-def _migrate_to_current_version(data: dict) -> dict:
-    file_version = data.get("version", 1)
-
-    if file_version > CURRENT_VERSION:
-        raise UnsupportedProjectVersionError(file_version)
-
-    migrated = data
-    version = file_version
-    while version < CURRENT_VERSION:
-        migration = _MIGRATIONS[version]
-        migrated = migration(migrated)
-        version += 1
-
-    return migrated
+__all__ = [
+    "CURRENT_VERSION",
+    "UnsupportedProjectVersionError",
+    "load_project",
+    "project_from_dict",
+    "project_to_dict",
+    "save_project",
+]
 
 
 def project_to_dict(project: StudioProject) -> dict:
@@ -136,7 +75,7 @@ def project_to_dict(project: StudioProject) -> dict:
 
 
 def project_from_dict(data: dict) -> StudioProject:
-    data = _migrate_to_current_version(data)
+    data = migrate_bcproj_dict(data)
 
     return StudioProject(
         project_id=data["project_id"],

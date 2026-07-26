@@ -13,4 +13,5 @@ out/
 exportaciones/
 proyectos/
 *.bcproj
+!data/samples/*.bcproj
 *.svg

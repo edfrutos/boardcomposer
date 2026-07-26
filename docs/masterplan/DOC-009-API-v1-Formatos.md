@@ -8,7 +8,7 @@
 **Fecha de creación:** 26/07/2026  
 **Última revisión:** 26/07/2026  
 **Épica / sprint:** EP-001 / SPR-002  
-**API:** `boardcomposer.api.v1` (`API_VERSION = 1.0.0`)
+**API:** `boardcomposer.api.v1` (`API_VERSION = 1.1.0`)
 
 ---
 
@@ -27,7 +27,7 @@ Fuente de verdad del comportamiento: código en `src/boardcomposer/` y tests
 
 | Función `v1` | Formato |
 |--------------|---------|
-| `load_project(path)` | CSV de piezas → `Project` |
+| `load_project(path)` | `*.bcproj` o CSV de piezas → `Project` |
 | `solve` / `run` | — (objetos Core en memoria) |
 | `export_json` | documento JSON de una solución |
 | `export_csv` | tabla CSV de placements |
@@ -66,14 +66,35 @@ B,1000,300,20
 C,800,250,20
 ```
 
-### Límites del corte `v1` (SPR-001/002)
+### Límites del CSV
 
 - Este CSV describe **piezas a colocar** (`Board` en Core), no inventario
   de tableros stock.
-- Inventario multipanel / `.bcproj` **no** entra por `load_project` aún
-  (SPR-003).
-- Restricciones (`ProjectConstraints`: rotación, máximos, …) se fijan en
-  código sobre el `Project` cargado, no en el CSV.
+- Restricciones (`ProjectConstraints`) se pueden fijar en código tras
+  cargar; el CSV no las incluye.
+
+---
+
+## 1b. Proyecto de entrada — ``.bcproj`` (SPR-003)
+
+Usado por `load_project` cuando la extensión es `.bcproj`.
+
+### Ejemplo
+
+`data/samples/multipanel_demo.bcproj`
+
+### Forma (versión 2)
+
+| Campo | Rol en Core |
+|-------|-------------|
+| `version` | Migraciones ADR-015 (`boardcomposer.io.bcproj`) |
+| `boards[]` | → `StockPanel` (inventario; `quantity`, `material`, …) |
+| `pieces[]` | → `Board` (piezas a colocar) |
+| `placements[]` | **Ignorados** en carga API (el solver regenera layout) |
+| `project_id`, `name` | Metadatos Studio; no se exponen en `Project` Core |
+
+Implementación: `load_project_from_bcproj` / `core_project_from_bcproj_dict`.
+Studio reutiliza `migrate_bcproj_dict` en su serializer.
 
 ---
 
@@ -210,13 +231,13 @@ válido», no pixel-perfect entre versiones menores.
 
 ---
 
-## Fuera de alcance (siguientes sprints)
+## Fuera de alcance (siguientes)
 
-| Tema | Sprint / épica |
+| Tema | Épica / nota |
 |------|----------------|
-| Carga `.bcproj` / stock multipanel vía API | SPR-003 |
 | HTTP / OpenAPI | EP-003 |
 | Guía larga de integrador (más allá del ejemplo) | evolución DOC-008 |
+| Aplicar placements del `.bcproj` sin resolver | no en `v1`; Studio sí los usa |
 
 Ejemplo mínimo de código: `examples/api_v1_minimal.py`.
 
