@@ -10,6 +10,7 @@ def test_parse_explorer_role():
 
 def test_explorer_context_actions_for_piece():
     assert explorer_context_actions("piece:A") == (
+        "place_on_board",
         "edit",
         "rename",
         "duplicate",

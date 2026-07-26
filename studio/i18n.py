@@ -309,6 +309,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.context.add_board": "Añadir tablero…",
         "explorer.context.add_piece": "Añadir pieza…",
         "explorer.context.preview_solution": "Vista previa",
+        "explorer.context.place_on_board": "Colocar en tablero enfocado",
+        "explorer.unplaced_mark": "sin colocar",
         "inspector.title": "Inspector",
         "inspector.none": "Sin selección",
         "inspector.board": "Tablero",
@@ -319,6 +321,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "inspector.material": "Material",
         "inspector.position": "Posición",
         "inspector.unplaced": "Sin colocar en el Workspace",
+        "inspector.place_hint": (
+            "Consejo: enfoca un tablero en el Explorador y usa "
+            "«Colocar en tablero enfocado» (o doble clic)."
+        ),
         "inspector.no_panel": "Sin tablero asignado",
         "inspector.panel_instance": "{board} · instancia {instance}/{quantity}",
         "inspector.layout_title": "Layout calculado",
@@ -424,6 +430,25 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_delete": ("Selecciona una pieza o un tablero para eliminar"),
         "status.cannot_rotate": "La pieza no puede rotarse en esa posición",
         "status.piece_rotated": "Pieza rotada 90°",
+        "status.piece_placed": "Pieza {piece} colocada en {board}",
+        "status.piece_already_placed": "La pieza {id} ya está colocada",
+        "status.place_needs_board_focus": (
+            "Selecciona un tablero en el Explorador para colocar la pieza"
+        ),
+        "status.place_no_space": "No cabe {piece} en {board}",
+        "status.place_incompatible_thickness": (
+            "Espesor incompatible: {piece} ({piece_thickness}) ≠ "
+            "{board} ({board_thickness}). Edita la pieza o el tablero."
+        ),
+        "status.place_incompatible_material": (
+            "Material incompatible: {piece} («{piece_material}») ≠ "
+            "{board} («{board_material}»). Edita la pieza o el tablero."
+        ),
+        "status.place_incompatible_both": (
+            "Material/espesor incompatibles: {piece} "
+            "({piece_thickness}, «{piece_material}») ≠ {board} "
+            "({board_thickness}, «{board_material}»)."
+        ),
         "status.prefs_saved": "Preferencias guardadas",
         "status.layout_failed": "No se pudo calcular layout",
         "status.layout_partial": "Layout parcial: {omitted} pieza(s) sin colocar de {total} soluciones",
@@ -943,6 +968,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.context.add_board": "Add board…",
         "explorer.context.add_piece": "Add piece…",
         "explorer.context.preview_solution": "Preview",
+        "explorer.context.place_on_board": "Place on focused board",
+        "explorer.unplaced_mark": "unplaced",
         "inspector.title": "Inspector",
         "inspector.none": "No selection",
         "inspector.board": "Board",
@@ -953,6 +980,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "inspector.material": "Material",
         "inspector.position": "Position",
         "inspector.unplaced": "Not placed in the Workspace",
+        "inspector.place_hint": (
+            "Tip: focus a board in the Explorer, then use "
+            "“Place on focused board” (or double-click)."
+        ),
         "inspector.no_panel": "No board assigned",
         "inspector.panel_instance": "{board} · instance {instance}/{quantity}",
         "inspector.layout_title": "Calculated layout",
@@ -1055,6 +1086,25 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_delete": "Select a piece or board to delete",
         "status.cannot_rotate": "The piece cannot be rotated in that position",
         "status.piece_rotated": "Piece rotated 90°",
+        "status.piece_placed": "Piece {piece} placed on {board}",
+        "status.piece_already_placed": "Piece {id} is already placed",
+        "status.place_needs_board_focus": (
+            "Select a board in the Explorer to place the piece"
+        ),
+        "status.place_no_space": "{piece} does not fit on {board}",
+        "status.place_incompatible_thickness": (
+            "Incompatible thickness: {piece} ({piece_thickness}) ≠ "
+            "{board} ({board_thickness}). Edit the piece or board."
+        ),
+        "status.place_incompatible_material": (
+            "Incompatible material: {piece} (“{piece_material}”) ≠ "
+            "{board} (“{board_material}”). Edit the piece or board."
+        ),
+        "status.place_incompatible_both": (
+            "Incompatible material/thickness: {piece} "
+            "({piece_thickness}, “{piece_material}”) ≠ {board} "
+            "({board_thickness}, “{board_material}”)."
+        ),
         "status.prefs_saved": "Preferences saved",
         "status.layout_failed": "Could not calculate layout",
         "status.layout_partial": "Partial layout: {omitted} unplaced piece(s) across {total} solutions",

@@ -48,9 +48,11 @@ from studio.commands import (
     EditPieceCommand,
     ImportBoardsCommand,
     ImportPiecesCommand,
+    PlacePieceCommand,
     RenameProjectCommand,
     RotatePieceCommand,
 )
+from studio.panel_compatibility import incompatibility_reason
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import (
     UnsupportedProjectVersionError,
@@ -610,10 +612,15 @@ class MainWindow(QMainWindow):
                 boards_root.addChild(item)
 
             for piece in project.pieces:
+                placed = project.placement_by_piece_id(piece.piece_id) is not None
                 piece_label = (
                     f"{piece.piece_id} — "
-                    f"{self._format_size(piece.length_mm, piece.width_mm)}"
+                    f"{self._format_size(piece.length_mm, piece.width_mm, thickness_mm=piece.thickness_mm)}"
                 )
+                if not placed:
+                    piece_label = (
+                        f"{piece_label} — {self._tr('explorer.unplaced_mark')}"
+                    )
                 item = QTreeWidgetItem([piece_label])
                 item.setData(
                     0,
@@ -1487,8 +1494,11 @@ class MainWindow(QMainWindow):
                 f"{self._tr('inspector.piece')}: {piece.piece_id}\n"
                 f"{self._tr('inspector.dimensions')}: "
                 f"{self._format_size(piece.length_mm, piece.width_mm)}\n"
+                f"{self._tr('inspector.thickness')}: "
+                f"{self._format_length(piece.thickness_mm)}\n"
                 f"{self._tr('inspector.material')}: {piece.material}\n"
-                f"{self._tr('inspector.unplaced')}"
+                f"{self._tr('inspector.unplaced')}\n"
+                f"{self._tr('inspector.place_hint')}"
             )
             return
 
@@ -1497,6 +1507,8 @@ class MainWindow(QMainWindow):
             f"{self._tr('inspector.piece')}: {piece.piece_id}\n"
             f"{self._tr('inspector.dimensions')}: "
             f"{self._format_size(piece.length_mm, piece.width_mm)}\n"
+            f"{self._tr('inspector.thickness')}: "
+            f"{self._format_length(piece.thickness_mm)}\n"
             f"{self._tr('inspector.position')}: "
             f"{self._format_length(placement.x_mm)}, "
             f"{self._format_length(placement.y_mm)}\n"
@@ -2955,10 +2967,22 @@ class MainWindow(QMainWindow):
         self.explorer.setCurrentItem(item)
         menu = QMenu(self)
         triggered: dict[QAction, str] = {}
+        project = self.services.projects.current_project
         for key in actions:
             action = menu.addAction(self._tr(f"explorer.context.{key}"))
             if key == "reveal_folder" and not self.services.projects.filename:
                 action.setEnabled(False)
+            if key == "place_on_board":
+                parsed = parse_explorer_role(role)
+                can_place = False
+                if (
+                    parsed is not None
+                    and parsed[0] == "piece"
+                    and project is not None
+                    and self.workspace.focused_board_id() is not None
+                ):
+                    can_place = project.placement_by_piece_id(parsed[1]) is None
+                action.setEnabled(can_place)
             triggered[action] = key
         chosen = menu.exec(self.explorer.viewport().mapToGlobal(position))
         if chosen is None:
@@ -3000,7 +3024,9 @@ class MainWindow(QMainWindow):
         if kind == "piece":
             self.workspace.select_piece(object_id)
             self.services.selection.select_one(object_id)
-            if action_key == "edit":
+            if action_key == "place_on_board":
+                self._place_piece_on_focused_board(object_id)
+            elif action_key == "edit":
                 self._edit_piece(object_id)
             elif action_key == "rename":
                 self._rename_piece(object_id)
@@ -3344,6 +3370,14 @@ class MainWindow(QMainWindow):
             return
 
         if kind == "piece":
+            project = self.services.projects.current_project
+            if (
+                project is not None
+                and project.placement_by_piece_id(object_id) is None
+                and self.workspace.focused_board_id() is not None
+            ):
+                self._place_piece_on_focused_board(object_id)
+                return
             self._edit_piece(object_id)
             return
 
@@ -3353,6 +3387,175 @@ class MainWindow(QMainWindow):
             except ValueError:
                 return
             self._select_layout_solution(index)
+
+    def _place_piece_on_focused_board(self, piece_id: str) -> None:
+        """Place an unplaced piece on the Explorador-focused board panel."""
+        project = self.services.projects.current_project
+        if project is None:
+            return
+
+        if project.placement_by_piece_id(piece_id) is not None:
+            self._status("status.piece_already_placed", id=piece_id)
+            return
+
+        board_id = self.workspace.focused_board_id()
+        if board_id is None:
+            self._status("status.place_needs_board_focus")
+            return
+
+        try:
+            piece = project.piece_by_id(piece_id)
+        except KeyError:
+            return
+
+        board = next((b for b in project.boards if b.board_id == board_id), None)
+        if board is None:
+            return
+
+        reason = incompatibility_reason(piece, board)
+        if reason is not None:
+            self._status(
+                f"status.place_incompatible_{reason}",
+                piece=piece_id,
+                board=board_id,
+                piece_thickness=self._format_length(piece.thickness_mm),
+                board_thickness=self._format_length(board.thickness_mm),
+                piece_material=piece.material,
+                board_material=board.material,
+            )
+            return
+
+        stock_panel_index = next(
+            (
+                index
+                for index, candidate in enumerate(project.boards)
+                if candidate.board_id == board_id
+            ),
+            None,
+        )
+        if stock_panel_index is None:
+            return
+
+        x_mm, y_mm, fits = self._find_free_piece_position_on_panel(
+            board,
+            piece.length_mm,
+            piece.width_mm,
+            board_id=board_id,
+            board_instance=0,
+            stock_panel_index=stock_panel_index,
+        )
+        if not fits:
+            self._status(
+                "status.place_no_space",
+                piece=piece_id,
+                board=board_id,
+            )
+            return
+
+        placement = StudioPlacement(
+            piece_id=piece_id,
+            x_mm=x_mm,
+            y_mm=y_mm,
+            rotated=False,
+            rotation=0,
+            board_id=board_id,
+            board_instance=0,
+            stock_panel_index=stock_panel_index,
+        )
+        self.services.commands.execute(PlacePieceCommand(self.services, placement))
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self.workspace.focus_board(board_id)
+        self.workspace.select_piece(piece_id)
+        self.refresh_inspector_for_piece(piece_id)
+        self._mark_project_modified(reason="piece_placed")
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.piece_placed", piece=piece_id, board=board_id)
+
+    def _find_free_piece_position_on_panel(
+        self,
+        board: StudioBoard,
+        length_mm: float,
+        width_mm: float,
+        *,
+        board_id: str,
+        board_instance: int,
+        stock_panel_index: int,
+        extra_placements: list[StudioPlacement] | None = None,
+        piece_lookup: dict[str, StudioPiece] | None = None,
+    ) -> tuple[float, float, bool]:
+        """Return ``(x, y, fits)`` for a free slot on one physical panel."""
+        project = self.services.projects.current_project
+        if project is None:
+            return 0.0, 0.0, False
+
+        margin = 20.0
+        if (
+            length_mm + 2 * margin > board.length_mm
+            or width_mm + 2 * margin > board.width_mm
+        ):
+            # Try without margins if piece is large but still fits the panel.
+            if length_mm > board.length_mm or width_mm > board.width_mm:
+                return 0.0, 0.0, False
+            margin = 0.0
+
+        known_pieces = piece_lookup or {}
+
+        def _piece_for(piece_id: str) -> StudioPiece | None:
+            piece = known_pieces.get(piece_id)
+            if piece is not None:
+                return piece
+            try:
+                return project.piece_by_id(piece_id)
+            except KeyError:
+                return None
+
+        occupied: list[tuple[float, float, float, float]] = []
+        for placement in (*project.placements, *(extra_placements or ())):
+            same_panel = (
+                placement.board_id == board_id
+                and placement.board_instance == board_instance
+                and placement.stock_panel_index == stock_panel_index
+            )
+            if not same_panel:
+                continue
+            other = _piece_for(placement.piece_id)
+            if other is None:
+                continue
+            placed_w = (
+                other.width_mm if placement.rotation in (90, 270) else other.length_mm
+            )
+            placed_h = (
+                other.length_mm if placement.rotation in (90, 270) else other.width_mm
+            )
+            occupied.append((placement.x_mm, placement.y_mm, placed_w, placed_h))
+
+        def _overlaps(x: float, y: float) -> bool:
+            for ox, oy, ow, oh in occupied:
+                if not (
+                    x + length_mm <= ox
+                    or ox + ow <= x
+                    or y + width_mm <= oy
+                    or oy + oh <= y
+                ):
+                    return True
+            return False
+
+        step = max(10.0, margin)
+        y = margin
+        while y + width_mm <= board.width_mm - margin + 1e-6:
+            x = margin
+            while x + length_mm <= board.length_mm - margin + 1e-6:
+                if not _overlaps(x, y):
+                    return x, y, True
+                x += step
+            y += step
+
+        # Last chance: origin if empty and fits.
+        if not occupied and length_mm <= board.length_mm and width_mm <= board.width_mm:
+            return 0.0, 0.0, True
+        return 0.0, 0.0, False
 
     def _find_free_piece_position(
         self,
@@ -3368,45 +3571,16 @@ class MainWindow(QMainWindow):
             return 0.0, 0.0
 
         board = project.boards[0]
-        margin = 20.0
-        x = margin
-        y = margin
-        row_height = 0.0
-        known_pieces = piece_lookup or {}
-
-        def _piece_for(piece_id: str) -> StudioPiece | None:
-            piece = known_pieces.get(piece_id)
-            if piece is not None:
-                return piece
-            try:
-                return project.piece_by_id(piece_id)
-            except KeyError:
-                return None
-
-        for placement in (*project.placements, *(extra_placements or ())):
-            piece = _piece_for(placement.piece_id)
-            if piece is None:
-                continue
-
-            placed_width = (
-                piece.width_mm if placement.rotation in (90, 270) else piece.length_mm
-            )
-            placed_height = (
-                piece.length_mm if placement.rotation in (90, 270) else piece.width_mm
-            )
-
-            if x + placed_width > board.length_mm - margin:
-                x = margin
-                y += row_height + margin
-                row_height = 0.0
-
-            x += placed_width + margin
-            row_height = max(row_height, placed_height)
-
-        if x + length_mm > board.length_mm - margin:
-            x = margin
-            y += row_height + margin
-
+        x, y, _fits = self._find_free_piece_position_on_panel(
+            board,
+            length_mm,
+            width_mm,
+            board_id=board.board_id,
+            board_instance=0,
+            stock_panel_index=0,
+            extra_placements=extra_placements,
+            piece_lookup=piece_lookup,
+        )
         return x, y
 
     def _refresh_explorer_solution_markers(self) -> None:
