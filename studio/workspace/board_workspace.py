@@ -47,6 +47,7 @@ class BoardWorkspace(QGraphicsView):
     import_boards_requested = Signal()
     import_pieces_requested = Signal()
     camera_changed = Signal(float)
+    rotate_requested = Signal()
 
     def __init__(self, services):
         super().__init__()
@@ -513,9 +514,20 @@ class BoardWorkspace(QGraphicsView):
         super().mousePressEvent(event)
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
-        """Arm Space-pan mode, or nudge the selected piece with arrow keys."""
+        """Arm Space-pan, nudge with arrows, or rotate with R."""
         if event.key() == Qt.Key.Key_Space and not event.isAutoRepeat():
             self._space_held = True
+            event.accept()
+            return
+
+        # Bare R: QAction shortcuts often miss inside QGraphicsView focus.
+        if (
+            event.key() == Qt.Key.Key_R
+            and not event.isAutoRepeat()
+            and event.modifiers() == Qt.KeyboardModifier.NoModifier
+            and self.selection.current() is not None
+        ):
+            self.rotate_requested.emit()
             event.accept()
             return
 

@@ -324,6 +324,44 @@ def test_rotating_a_piece_that_would_leave_the_panel_is_rejected():
     assert workspace.can_rotate_item(item, 90) is False
 
 
+def test_r_key_emits_rotate_requested_when_piece_selected():
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.reload_project()
+    workspace.select_piece("A")
+
+    seen: list[bool] = []
+    workspace.rotate_requested.connect(lambda: seen.append(True))
+
+    event = QKeyEvent(
+        QEvent.Type.KeyPress,
+        Qt.Key.Key_R,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.keyPressEvent(event)
+
+    assert seen == [True]
+    assert event.isAccepted()
+
+
+def test_r_key_ignored_without_selection():
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.reload_project()
+
+    seen: list[bool] = []
+    workspace.rotate_requested.connect(lambda: seen.append(True))
+
+    event = QKeyEvent(
+        QEvent.Type.KeyPress,
+        Qt.Key.Key_R,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    workspace.keyPressEvent(event)
+
+    assert seen == []
+
+
 def test_middle_button_on_piece_pans_without_moving_placement():
     services = _multipanel_services()
     workspace = BoardWorkspace(services)
