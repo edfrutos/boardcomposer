@@ -2,12 +2,13 @@
 
 **Épica:** EP-002  
 **Fase:** 3 — Plataforma  
-**Estado:** 🔵 Planificada  
+**Estado:** 🟡 En curso  
 **Prioridad:** P1  
 **Ideas:** IDE-0006 (soporte), CLI existente  
-**Docs:** DOC-003, DOC-008, EP-001  
+**Docs:** DOC-003, DOC-008, DOC-009, EP-001  
 
 **Creada:** 26/07/2026  
+**Última actualización:** 26/07/2026  
 
 ---
 
@@ -43,11 +44,20 @@ estrategia/export y salidas en carpetas, aptos para CI o scripts de taller.
 
 ---
 
+## Sprints
+
+| ID | Título | Estado | Notas |
+|----|--------|--------|-------|
+| SPR-001 | CLI `boardcomposer-batch` + perfil JSON | 🟢 | `batch.py` / `batch_cli.py`; formats json/csv/svg; `manifest.json`; exit 0/1/2; `scripts/batch_samples.sh` |
+| SPR-002 | Perfiles nombrados / plantillas export Studio | 🔵 | opcional: leer templates headless |
+| SPR-003 | Lista explícita de paths + dry-run | 🔵 | manifiesto |
+
+---
+
 ## Dependencias
 
-- EP-001 (contratos `v1`) idealmente primero; puede arrancar sobre CLI
-  actual si el contrato se congela en paralelo.
-- Import CSV/Excel y exporters ya en Core/Studio.
+- EP-001 (`boardcomposer.api.v1`) — load CSV/`.bcproj`, solve, export.
+- Import CSV/Excel y exporters ya en Core.
 
 ---
 
@@ -59,7 +69,26 @@ estrategia/export y salidas en carpetas, aptos para CI o scripts de taller.
 
 ---
 
+## Uso (SPR-001)
+
+```bash
+boardcomposer-batch \
+  --input data/samples/batch_inbox \
+  --output out/batch \
+  --profile data/samples/batch_profile.json
+
+# o
+python -m boardcomposer.batch_cli -i data/samples/batch_inbox -o out/batch \
+  --strategy balanced --formats json,csv,svg
+```
+
+Salida por proyecto: `out/batch/<stem>/solution.json` (+ csv/svg).  
+Resumen: `out/batch/manifest.json`.  
+Exit: `0` todo ok, `1` mixto, `2` ningún ok (o perfil inválido).
+
+---
+
 ## Notas de diseño
 
-Maximizar reuso del CLI y de `boardcomposer` como librería. Studio sigue
-siendo la UI; el batch no duplica el solver.
+Maximizar reuso de `boardcomposer.api.v1`. Studio sigue siendo la UI; el
+batch no duplica el solver.

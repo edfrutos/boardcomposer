@@ -96,7 +96,7 @@ Observaciones:
 | ID | Título | Estado | Prioridad | Ideas |
 |----|--------|--------|-----------|-------|
 | EP-001 | API pública y contratos | 🟢 | P1 | IDE-0006 |
-| EP-002 | Automatización y batch | 🔵 | P1 | IDE-0006 |
+| EP-002 | Automatización y batch | 🟡 | P1 | IDE-0006 |
 | EP-003 | Integraciones remotas | 🔵 | P2 | IDE-0006 |
 
 Detalle: `docs/masterplan/epics/`.
@@ -120,6 +120,6 @@ EP (001…003) creadas para Fase 3; IDE-0006 → 🔵 P1.
 
 Pendiente de:
 
-- abrir sprints bajo EP-002 (batch);
+- completar SPR-002/003 bajo EP-002 (perfiles nombrados / dry-run);
 - completar el flujo Idea → Épica → Sprint → Implementación → Liberación;
 - estimar esfuerzo por épica.
