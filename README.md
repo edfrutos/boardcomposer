@@ -10,6 +10,7 @@ conserva la decisión final.
 - Python 3.13.
 - Core independiente de la interfaz.
 - CLI con entrada CSV y salida texto/JSON.
+- Batch headless (`boardcomposer-batch`) sobre CSV / `.bcproj` (EP-002).
 - Studio en PySide6 con workspace, proyectos, inspector y soluciones.
 - Generadores horizontal, vertical, free-space, Skyline y MaxRects.
 - Beam Search, estrategias adaptativas, validación, scoring y diagnósticos.
@@ -69,6 +70,11 @@ make demo                 # ejemplo CLI
 make json                 # ejemplo CLI en JSON
 make benchmark-multipanel # benchmarks reproducibles del packing multipanel
 python -m studio.app
+
+# Batch sin Studio/Qt (EP-002)
+boardcomposer-batch -i data/samples/batch_inbox -o out/batch \
+  -p data/samples/batch_profile.json
+# o: scripts/batch_samples.sh
 ```
 
 ## CSV de entrada (CLI)

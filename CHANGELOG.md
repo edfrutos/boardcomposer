@@ -15,6 +15,9 @@
 
 ### Añadido
 
+- Batch headless `boardcomposer-batch` (EP-002 / SPR-001): carpeta CSV /
+  `.bcproj` → exports + `manifest.json`, perfil JSON, exit 0/1/2;
+  `scripts/batch_samples.sh` y `data/samples/batch_inbox/`.
 - API `v1.1.0` (EP-001 / SPR-003): `load_project` / `run` aceptan `.bcproj`
   (stock + piezas); migraciones ADR-015 en Core (`boardcomposer.io.bcproj`),
   compartidas con Studio; sample `data/samples/multipanel_demo.bcproj`.

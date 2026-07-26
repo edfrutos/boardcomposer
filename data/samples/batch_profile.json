@@ -1,0 +1,5 @@
+{
+  "strategy": "balanced",
+  "top": 1,
+  "formats": ["json", "csv", "svg"]
+}
