@@ -79,11 +79,14 @@ def test_batch_profile_load(tmp_path):
 
 
 def test_batch_cli_main_success(tmp_path):
+    # Prefer tracked sample under data/samples/ (not only batch_inbox copy).
+    bcproj = SAMPLES / "multipanel_demo.bcproj"
+    assert bcproj.is_file(), f"missing sample {bcproj}"
     out = tmp_path / "cli-out"
     code = batch_main(
         [
             "--input",
-            str(BATCH_INBOX / "multipanel_demo.bcproj"),
+            str(bcproj),
             "--output",
             str(out),
             "--formats",
