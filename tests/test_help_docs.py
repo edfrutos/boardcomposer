@@ -4,7 +4,12 @@ from PySide6.QtGui import QAction, QKeySequence
 from PySide6.QtWidgets import QTableWidget
 
 from studio.dialogs.help_dialogs import AboutDialog, ShortcutsDialog, WhatsNewDialog
-from studio.keyboard_shortcuts import STUDIO_SHORTCUTS, apply_shortcuts
+from studio.keyboard_shortcuts import (
+    STUDIO_SHORTCUTS,
+    apply_shortcuts,
+    format_shortcut_label,
+    native_sequence_label,
+)
 from studio.welcome_screen import WelcomeScreen
 from studio.whats_new import documentation_paths, load_whats_new, repo_root
 
@@ -217,16 +222,20 @@ def test_shortcuts_catalog_and_dialog(qapp):
         for i, binding in enumerate(STUDIO_SHORTCUTS)
         if binding.action_key == "delete_piece"
     )
-    assert "Backspace" in table.item(delete_row, 1).text()
-    assert "Delete" in table.item(delete_row, 1).text()
+    delete_binding = STUDIO_SHORTCUTS[delete_row]
+    assert table.item(delete_row, 1).text() == format_shortcut_label(delete_binding)
+    assert native_sequence_label("Backspace") in table.item(delete_row, 1).text()
+    assert native_sequence_label("Delete") in table.item(delete_row, 1).text()
 
     zoom_row = next(
         i
         for i, binding in enumerate(STUDIO_SHORTCUTS)
         if binding.action_key == "zoom_in"
     )
-    assert "Ctrl+=" in table.item(zoom_row, 1).text()
-    assert "Ctrl++" in table.item(zoom_row, 1).text()
+    zoom_binding = STUDIO_SHORTCUTS[zoom_row]
+    assert table.item(zoom_row, 1).text() == format_shortcut_label(zoom_binding)
+    assert native_sequence_label("Ctrl+=") in table.item(zoom_row, 1).text()
+    assert native_sequence_label("Ctrl++") in table.item(zoom_row, 1).text()
 
 
 def test_welcome_has_docs_and_whats_new_buttons(qapp):

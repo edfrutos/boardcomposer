@@ -73,7 +73,7 @@ from studio.dialogs import (
     ShortcutsDialog,
     WhatsNewDialog,
 )
-from studio.keyboard_shortcuts import apply_shortcuts
+from studio.keyboard_shortcuts import apply_shortcuts, with_native_shortcuts
 from studio.project_ids import new_project_id
 from studio.board_csv_importer import import_boards_from_rows
 from studio.piece_csv_importer import import_pieces_from_rows
@@ -486,7 +486,7 @@ class MainWindow(QMainWindow):
             action.setText(self._tr(f"dock.{key}"))
             tip_key = f"tip.toggle_{key}"
             tip = self._tr(tip_key)
-            action.setStatusTip(tip if tip != tip_key else "")
+            action.setStatusTip(with_native_shortcuts(tip) if tip != tip_key else "")
             self._menus["view"].addAction(action)
         self._actions["toggle_explorer"] = self._dock_toggles["explorer"]
         self._actions["toggle_inspector"] = self._dock_toggles["inspector"]
@@ -1873,7 +1873,7 @@ class MainWindow(QMainWindow):
             action.setText(self._tr(f"action.{key}"))
             tip_key = f"tip.{key}"
             tip = self._tr(tip_key)
-            action.setStatusTip(tip if tip != tip_key else "")
+            action.setStatusTip(with_native_shortcuts(tip) if tip != tip_key else "")
         self._recent_menu.setTitle(self._tr("menu.recent"))
         if hasattr(self, "_toolbar"):
             self._toolbar.setWindowTitle(self._tr("toolbar.main"))
@@ -1881,14 +1881,16 @@ class MainWindow(QMainWindow):
             self._toolbar_toggle.setText(self._tr("action.toggle_toolbar"))
             tip = self._tr("tip.toggle_toolbar")
             self._toolbar_toggle.setStatusTip(
-                tip if tip != "tip.toggle_toolbar" else ""
+                with_native_shortcuts(tip) if tip != "tip.toggle_toolbar" else ""
             )
         if hasattr(self, "_dock_toggles"):
             for key, action in self._dock_toggles.items():
                 action.setText(self._tr(f"dock.{key}"))
                 tip_key = f"tip.toggle_{key}"
                 tip = self._tr(tip_key)
-                action.setStatusTip(tip if tip != tip_key else "")
+                action.setStatusTip(
+                    with_native_shortcuts(tip) if tip != tip_key else ""
+                )
 
         self.explorer_dock.setWindowTitle(self._tr("dock.explorer"))
         self.inspector_dock.setWindowTitle(self._tr("dock.inspector"))
