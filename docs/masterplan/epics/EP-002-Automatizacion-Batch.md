@@ -2,7 +2,7 @@
 
 **Épica:** EP-002  
 **Fase:** 3 — Plataforma  
-**Estado:** 🟡 En curso  
+**Estado:** 🟢 Completada (SPR-001…003)  
 **Prioridad:** P1  
 **Ideas:** IDE-0006 (soporte), CLI existente  
 **Docs:** DOC-003, DOC-008, DOC-009, EP-001  
@@ -49,7 +49,7 @@ estrategia/export y salidas en carpetas, aptos para CI o scripts de taller.
 | ID | Título | Estado | Notas |
 |----|--------|--------|-------|
 | SPR-001 | CLI `boardcomposer-batch` + perfil JSON | 🟢 | `batch.py` / `batch_cli.py`; formats json/csv/svg; `manifest.json`; exit 0/1/2; `scripts/batch_samples.sh` |
-| SPR-002 | Perfiles nombrados / plantillas export Studio | 🔵 | opcional: leer templates headless |
+| SPR-002 | Perfiles nombrados / plantillas export Studio | 🟢 | `--template` / `--client` + Core `io.export_templates`; sample `data/samples/export_templates.json` |
 | SPR-003 | Lista explícita de paths + dry-run | 🟢 | `--list` / `-L` + `--dry-run`; sample `data/samples/batch_jobs.list` |
 
 ---
@@ -106,6 +106,21 @@ en blanco y comentarios `#…`. En dry-run el manifiesto marca jobs
 `planned` y no escribe exports.
 
 ---
+
+### Plantillas nombradas (SPR-002)
+
+Lee el catálogo Studio (`~/.boardcomposer/export_templates.json`) o un pack /
+sample sin Qt:
+
+```bash
+boardcomposer-batch -i data/samples/batch_inbox -o out/batch \
+  --template "SVG sin retales" --client Demo \
+  --templates-file data/samples/export_templates.json
+```
+
+También en perfil JSON: `"template"`, `"client"`, `"templates_file"`.
+Formato de la plantilla + flags `include_*`; `--formats` puede sobrescribir
+el formato. Batch acepta `json,csv,svg,dxf,pdf`.
 
 ## Notas de diseño
 
