@@ -287,6 +287,8 @@
 
 ### Cambiado
 
+- Preview import CSV: filas con error usan `invalid_fill` del tema canvas
+  (Industrial madera light/dark) en vez de un rosa fijo.
 - `polish_dialog_button_box` también en import/preview, mapeo, plantillas y
   ayuda (What's New / About / Atajos).
 - Inspector + diálogos: `#inspectorPanel`, OK primario en formularios,

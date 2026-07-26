@@ -76,6 +76,8 @@ Fuentes OFL en `studio/assets/fonts/`.
   `welcomeClearRecent` con hover/focus propios.
 - Inspector: `#inspectorPanel`; export preview: `#exportGraphicPreview`
   (tokens QSS, no stylesheet inline).
+- Import preview: filas inválidas usan `invalid_fill` del canvas activo
+  (light/dark), no hex fijo.
 - Workspace: tableros/piezas/grid/selección con tokens Industrial madera
   (sin azul Tailwind legacy); empty overlay `workspaceEmptyOverlay` con
   CTAs alineados a Welcome.
