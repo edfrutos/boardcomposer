@@ -75,26 +75,30 @@ def test_project_path_status_and_reveal_action(qapp, tmp_path, monkeypatch):
 
 def test_menu_actions_have_status_tips(qapp, tmp_path):
     del qapp
+    from studio.keyboard_shortcuts import with_native_shortcuts
+
     services = StudioServices(
         preferences=PreferencesManager(tmp_path / "preferences.json")
     )
     services.preferences.update(StudioPreferences(language="en"))
     window = MainWindow(services)
 
-    assert (
-        window._actions["solve_layout"].statusTip()
-        == "Calculate layout solutions (Ctrl+Return)"
+    assert window._actions["solve_layout"].statusTip() == with_native_shortcuts(
+        "Calculate layout solutions (Ctrl+Return)"
     )
-    assert window._actions["fit_board"].statusTip() == "Zoom to fit all boards (Ctrl+0)"
+    assert window._actions["fit_board"].statusTip() == with_native_shortcuts(
+        "Zoom to fit all boards (Ctrl+0)"
+    )
 
     services.preferences.update(StudioPreferences(language="es"))
     window._apply_preferences()
 
-    assert (
-        window._actions["solve_layout"].statusTip()
-        == "Calcular soluciones de layout (Ctrl+Return)"
+    assert window._actions["solve_layout"].statusTip() == with_native_shortcuts(
+        "Calcular soluciones de layout (Ctrl+Return)"
     )
-    assert window._actions["zoom_in"].statusTip() == "Acercar el Workspace (Ctrl+=)"
+    assert window._actions["zoom_in"].statusTip() == with_native_shortcuts(
+        "Acercar el Workspace (Ctrl+=)"
+    )
 
 
 def test_generate_and_compare_menus_are_populated(qapp, tmp_path):

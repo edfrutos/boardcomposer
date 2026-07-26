@@ -185,6 +185,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "help.shortcuts_intro": (
             "Atajos activos en BoardComposer Studio. "
             "Los mismos valores se aplican desde el menú y el teclado. "
+            "En macOS, ⌘ (Command) es el modificador principal "
+            "(no la tecla Control ⌃). "
             "En el Workspace: Espacio+arrastre, botón medio o derecho para "
             "desplazar; flechas (Shift = tamaño de cuadrícula) para mover "
             "la pieza; rueda para zoom."
@@ -816,6 +818,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "help.shortcuts_intro": (
             "Active shortcuts in BoardComposer Studio. "
             "The same bindings apply from the menu and the keyboard. "
+            "On macOS, ⌘ (Command) is the primary modifier "
+            "(not the Control ⌃ key). "
             "In the Workspace: Space+drag, middle or right button to pan; "
             "arrow keys (Shift = grid size) to nudge a piece; "
             "mouse wheel to zoom."

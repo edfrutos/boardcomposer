@@ -1,9 +1,16 @@
-"""Central keyboard shortcut bindings for BoardComposer Studio."""
+"""Central keyboard shortcut bindings for BoardComposer Studio.
+
+Portable sequences use Qt's ``Ctrl+…`` notation. On macOS Qt maps that
+modifier to the Command key (⌘), not the physical Control key (⌃). UI
+labels should always go through ``format_shortcut_label`` /
+``with_native_shortcuts`` so Mac users see ⌘.
+"""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 
+from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction, QKeySequence
 
 
@@ -69,11 +76,35 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
 )
 
 
+def native_sequence_label(sequence: str) -> str:
+    """Platform-native label for a portable shortcut (⌘N on macOS)."""
+    return QKeySequence(sequence).toString(QKeySequence.SequenceFormat.NativeText)
+
+
 def format_shortcut_label(binding: ShortcutBinding) -> str:
-    """Human-readable shortcut list including alternates."""
-    if not binding.alternates:
-        return binding.sequence
-    return ", ".join((binding.sequence, *binding.alternates))
+    """Human-readable shortcut list including alternates (native glyphs)."""
+    labels = [native_sequence_label(binding.sequence)]
+    labels.extend(native_sequence_label(alt) for alt in binding.alternates)
+    return ", ".join(labels)
+
+
+def with_native_shortcuts(text: str) -> str:
+    """Replace portable ``Ctrl+…`` tokens in tip/help text with native labels."""
+    replacements: list[tuple[str, str]] = []
+    for binding in STUDIO_SHORTCUTS:
+        for sequence in (binding.sequence, *binding.alternates):
+            portable = QKeySequence(sequence).toString(
+                QKeySequence.SequenceFormat.PortableText
+            )
+            native = native_sequence_label(sequence)
+            if portable and portable != native:
+                replacements.append((portable, native))
+            if sequence != portable and sequence != native:
+                replacements.append((sequence, native))
+    replacements.sort(key=lambda item: len(item[0]), reverse=True)
+    for portable, native in replacements:
+        text = text.replace(portable, native)
+    return text
 
 
 def apply_shortcuts(actions: dict[str, QAction]) -> None:
@@ -89,3 +120,5 @@ def apply_shortcuts(actions: dict[str, QAction]) -> None:
             )
         else:
             action.setShortcut(binding.sequence)
+        # Application-wide: still fire when focus is in Workspace/docks.
+        action.setShortcutContext(Qt.ShortcutContext.ApplicationShortcut)

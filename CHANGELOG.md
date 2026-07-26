@@ -2,6 +2,12 @@
 
 ## Unreleased — 0.4.0.dev0 — 2026-07-16
 
+### Corregido
+
+- Atajos en macOS: tips y Ayuda → Atajos muestran ⌘ (Command) en vez de
+  texto `Ctrl+…` (Qt ya mapeaba `Ctrl`→⌘; la UI inducía a pulsar Control ⌃).
+  Contexto `ApplicationShortcut` para que disparen con foco en Workspace.
+
 ### Añadido
 
 - API Python pública `boardcomposer.api.v1` (EP-001 / SPR-001):
