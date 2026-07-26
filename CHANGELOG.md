@@ -4,6 +4,9 @@
 
 ### Corregido
 
+- Explorador: vista previa de solución (doble clic / Enter) — ya no se
+  reconstruye el árbol al seleccionar (borraba el ítem y mataba el segundo
+  clic del doble clic).
 - Atajos en macOS: tips y Ayuda → Atajos muestran ⌘ (Command) en vez de
   texto `Ctrl+…` (Qt ya mapeaba `Ctrl`→⌘; la UI inducía a pulsar Control ⌃).
   Contexto `ApplicationShortcut` para que disparen con foco en Workspace.
