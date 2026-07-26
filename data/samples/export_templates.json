@@ -1,0 +1,25 @@
+[
+  {
+    "name": "JSON completo",
+    "format": "json",
+    "include_metrics": true,
+    "include_explanation": true,
+    "include_offcuts": true
+  },
+  {
+    "name": "SVG sin retales",
+    "client": "Demo",
+    "format": "svg",
+    "include_metrics": true,
+    "include_explanation": false,
+    "include_offcuts": false
+  },
+  {
+    "name": "PDF cliente",
+    "client": "Demo",
+    "format": "pdf",
+    "include_metrics": true,
+    "include_explanation": true,
+    "include_offcuts": true
+  }
+]

@@ -15,6 +15,10 @@
 
 ### Añadido
 
+- Batch plantillas export nombradas (EP-002 / SPR-002): `--template` /
+  `--client` / `--templates-file`; Core lee catálogo Studio sin Qt;
+  sample `data/samples/export_templates.json`; formatos batch
+  `json,csv,svg,dxf,pdf` + flags `include_*`.
 - Batch `--list` / `--dry-run` (EP-002 / SPR-003): lista explícita de
   paths + manifiesto sin solver; sample `data/samples/batch_jobs.list`.
 - Batch headless `boardcomposer-batch` (EP-002 / SPR-001): carpeta CSV /

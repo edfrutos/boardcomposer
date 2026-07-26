@@ -126,6 +126,69 @@ def test_batch_profile_load(tmp_path):
     assert profile.formats == ("json", "svg")
 
 
+def test_batch_profile_from_named_template():
+    profile = BatchProfile.from_named_template(
+        "SVG sin retales",
+        client="Demo",
+        templates_path=SAMPLES / "export_templates.json",
+        strategy="compact",
+    )
+    assert profile.strategy == "compact"
+    assert profile.formats == ("svg",)
+    assert profile.include_offcuts is False
+    assert profile.include_explanation is False
+
+
+def test_batch_profile_json_references_template(tmp_path):
+    path = tmp_path / "profile.json"
+    path.write_text(
+        json.dumps(
+            {
+                "strategy": "balanced",
+                "template": "JSON completo",
+                "templates_file": str((SAMPLES / "export_templates.json").resolve()),
+            }
+        ),
+        encoding="utf-8",
+    )
+    profile = BatchProfile.load(path)
+    assert profile.formats == ("json",)
+    assert profile.include_metrics is True
+
+
+def test_run_batch_named_template_writes_svg(tmp_path):
+    out = tmp_path / "tpl-out"
+    report = run_batch(
+        input_path=BATCH_INBOX / "basic_boards.csv",
+        output_dir=out,
+        profile=BatchProfile.from_named_template(
+            "SVG sin retales",
+            client="Demo",
+            templates_path=SAMPLES / "export_templates.json",
+        ),
+    )
+    assert report.exit_code() == 0
+    assert (out / "basic_boards" / "solution.svg").is_file()
+
+
+def test_batch_cli_named_template(tmp_path):
+    out = tmp_path / "cli-tpl"
+    code = batch_main(
+        [
+            "--input",
+            str(BATCH_INBOX / "basic_boards.csv"),
+            "--output",
+            str(out),
+            "--template",
+            "JSON completo",
+            "--templates-file",
+            str(SAMPLES / "export_templates.json"),
+        ]
+    )
+    assert code == 0
+    assert (out / "basic_boards" / "solution.json").is_file()
+
+
 def test_batch_cli_main_success(tmp_path):
     # Prefer tracked sample under data/samples/ (not only batch_inbox copy).
     bcproj = SAMPLES / "multipanel_demo.bcproj"
