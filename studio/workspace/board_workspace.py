@@ -64,6 +64,9 @@ class BoardWorkspace(QGraphicsView):
         self._validators: dict[tuple[int, int], PlacementValidator] = {}
         self._piece_items: list[BoardPieceItem] = []
         self._focused_board_id: str | None = None
+        # Last board chosen in Explorador/canvas; survives piece selection so
+        # "place on focused board" still has a target after clicking a piece.
+        self._sticky_board_id: str | None = None
         self.selection = SelectionController(services)
         self._drag = DragController()
         self._drag_start: tuple[str, float, float] | None = None
@@ -108,6 +111,7 @@ class BoardWorkspace(QGraphicsView):
         self._panel_slots.clear()
         self._validators.clear()
         self._focused_board_id = None
+        self._sticky_board_id = None
         self._scene.setSceneRect(QRectF(-5000, -5000, 13000, 11000))
 
         preferences = getattr(self.services, "preferences", None)
@@ -317,26 +321,35 @@ class BoardWorkspace(QGraphicsView):
             self._position_empty_overlay()
 
     def select_piece(self, piece_id: str) -> None:
-        """Select the piece."""
-        self.clear_board_focus()
+        """Select the piece.
+
+        Unplaced pieces keep the board highlight/sticky target so the user can
+        still place them on the last focused tablero.
+        """
+        project = self.services.projects.current_project
+        unplaced = (
+            project is not None and project.placement_by_piece_id(piece_id) is None
+        )
+        if not unplaced:
+            self.clear_board_focus(clear_sticky=False)
         self.selection.select(piece_id)
         self.selection.sync_inspector(self.window())
 
     def select_all_pieces(self) -> None:
         """Select every piece on the canvas."""
-        self.clear_board_focus()
+        self.clear_board_focus(clear_sticky=False)
         self.selection.select_all()
         self.selection.sync_inspector(self.window())
 
     def clear_piece_selection(self) -> None:
         """Clear the canvas piece selection."""
-        self.clear_board_focus()
+        self.clear_board_focus(clear_sticky=False)
         self.selection.clear()
         self.selection.sync_inspector(self.window())
 
     def invert_piece_selection(self) -> None:
         """Invert the current piece selection on the canvas."""
-        self.clear_board_focus()
+        self.clear_board_focus(clear_sticky=False)
         self.selection.invert_selection()
         self.selection.sync_inspector(self.window())
 
@@ -344,16 +357,28 @@ class BoardWorkspace(QGraphicsView):
         """Return the board id currently highlighted from the Explorador."""
         return self._focused_board_id
 
-    def clear_board_focus(self) -> None:
-        """Remove board highlight from the canvas."""
-        if self._focused_board_id is None:
-            return
+    def placement_target_board_id(self) -> str | None:
+        """Board to receive unplaced pieces (highlight or last focused)."""
+        return self._focused_board_id or self._sticky_board_id
+
+    def clear_board_focus(self, *, clear_sticky: bool = True) -> None:
+        """Remove board highlight from the canvas.
+
+        By default also clears the sticky placement target. Pass
+        ``clear_sticky=False`` when selecting pieces so place-on-board still
+        remembers the last focused tablero.
+        """
+        changed = self._focused_board_id is not None
         self._focused_board_id = None
-        self._apply_board_highlights()
+        if clear_sticky:
+            self._sticky_board_id = None
+        if changed:
+            self._apply_board_highlights()
 
     def focus_board(self, board_id: str) -> None:
         """Highlight panels for ``board_id`` and center the camera on them."""
         self._focused_board_id = board_id
+        self._sticky_board_id = board_id
         self._apply_board_highlights()
         self._center_on_board(board_id)
 
