@@ -15,6 +15,8 @@
 
 ### Añadido
 
+- DOC-009 — formatos de intercambio API `v1` (EP-001 / SPR-002): CSV de
+  piezas, JSON/CSV/SVG de solución alineados a Core.
 - API Python pública `boardcomposer.api.v1` (EP-001 / SPR-001):
   `load_project` → `solve` → `export_json|svg|csv`, `run`, `API_VERSION=1.0.0`;
   tests de contrato y `examples/api_v1_minimal.py` (sin Studio/Qt).

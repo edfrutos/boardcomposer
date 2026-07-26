@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Minimal integrator example for ``boardcomposer.api.v1`` (EP-001).
 
+Exchange formats: ``docs/masterplan/DOC-009-API-v1-Formatos.md``.
+
 Run from the repo root (with ``src`` on ``PYTHONPATH``, e.g. via pytest
 ``pythonpath`` or ``pip install -e .``)::
 
