@@ -15,6 +15,9 @@
 
 ### Añadido
 
+- Adaptador HTTP opcional `boardcomposer-serve` (EP-003 / SPR-001):
+  Flask sobre `api.v1` — `/health`, `/v1/run`, `/v1/openapi.json`;
+  auth por `BOARDCOMPOSER_API_KEY`.
 - Batch `--list` / `--dry-run` (EP-002 / SPR-003): lista explícita de
   paths + manifiesto sin solver; sample `data/samples/batch_jobs.list`.
 - Batch headless `boardcomposer-batch` (EP-002 / SPR-001): carpeta CSV /
