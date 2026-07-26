@@ -2,13 +2,16 @@
 
 from pathlib import Path
 
+from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QDialogButtonBox
 
-from studio.board_csv_importer import ImportBoardsResult
+from studio.board_csv_importer import ImportBoardsResult, ImportedBoardRow
 from studio.dialogs.help_dialogs import AboutDialog, ShortcutsDialog, WhatsNewDialog
 from studio.dialogs.import_boards_preview_dialog import ImportBoardsPreviewDialog
 from studio.dialogs.project_template_dialog import ProjectTemplatePickerDialog
 from studio.project_templates import ProjectTemplateInfo
+from studio.theme_tokens import LIGHT_CANVAS
+from studio.workspace.canvas_style import set_active_canvas_theme
 
 
 def _assert_primary_ok(dialog) -> None:
@@ -40,3 +43,23 @@ def test_import_preview_and_template_mark_ok_as_primary(qapp):
         language="en",
     )
     _assert_primary_ok(picker)
+
+
+def test_import_preview_error_rows_use_canvas_invalid_fill(qapp):
+    del qapp
+    set_active_canvas_theme("light")
+    result = ImportBoardsResult(
+        rows=(
+            ImportedBoardRow(
+                row_number=2,
+                raw={},
+                board=None,
+                display_id="BAD",
+                errors=("Dimensión inválida",),
+            ),
+        )
+    )
+    dialog = ImportBoardsPreviewDialog(result, language="en")
+    item = dialog.table.item(0, 0)
+    assert item is not None
+    assert item.background().color().name() == QColor(LIGHT_CANVAS.invalid_fill).name()

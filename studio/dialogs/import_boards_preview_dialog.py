@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from PySide6.QtGui import QColor
 from PySide6.QtWidgets import (
     QDialog,
     QDialogButtonBox,
@@ -16,8 +15,8 @@ from PySide6.QtWidgets import (
 from studio.board_csv_importer import ImportBoardsResult
 from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.i18n import DEFAULT_LANGUAGE, tr
+from studio.workspace.canvas_style import color as canvas_color
 
-_ERROR_BACKGROUND = QColor(255, 214, 214)
 _COLUMN_KEYS = (
     "import.col.row",
     "import.col.id",
@@ -114,5 +113,5 @@ class ImportBoardsPreviewDialog(QDialog):
         for column, value in enumerate(values):
             item = QTableWidgetItem(value)
             if not row.is_valid:
-                item.setBackground(_ERROR_BACKGROUND)
+                item.setBackground(canvas_color("invalid_fill"))
             self.table.setItem(row_index, column, item)
