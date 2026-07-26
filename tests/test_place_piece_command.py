@@ -101,3 +101,47 @@ def test_main_window_rejects_incompatible_piece():
     project = services.projects.current_project
     assert project is not None
     assert project.placement_by_piece_id("T2") is None
+
+
+def test_selecting_unplaced_piece_keeps_placement_target():
+    from studio.main_window import MainWindow
+
+    services = _services_with_project()
+    window = MainWindow(services)
+    window.workspace.reload_project()
+    window.workspace.focus_board("TAB-T01")
+    assert window.workspace.focused_board_id() == "TAB-T01"
+
+    # Same as Explorador click / context menu: select piece after board focus.
+    window.workspace.select_piece("T1")
+    assert window.workspace.placement_target_board_id() == "TAB-T01"
+    # Highlight may remain for unplaced pieces.
+    assert window.workspace.focused_board_id() == "TAB-T01"
+
+    window._place_piece_on_focused_board("T1")
+    project = services.projects.current_project
+    assert project is not None
+    assert project.placement_by_piece_id("T1") is not None
+
+
+def test_context_menu_place_after_set_current_item():
+    """Regression: setCurrentItem used to clear board focus before Place."""
+    from studio.main_window import MainWindow
+
+    services = _services_with_project()
+    window = MainWindow(services)
+    window.workspace.reload_project()
+    window._reload_explorer()
+    window.workspace.focus_board("TAB-T01")
+
+    item = window._find_explorer_item_by_role("piece:T1")
+    assert item is not None
+    window.explorer.setCurrentItem(item)
+    assert window.workspace.placement_target_board_id() == "TAB-T01"
+
+    window._run_explorer_context_action("place_on_board", "piece:T1")
+    project = services.projects.current_project
+    assert project is not None
+    placed = project.placement_by_piece_id("T1")
+    assert placed is not None
+    assert placed.board_id == "TAB-T01"

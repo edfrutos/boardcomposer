@@ -7,6 +7,8 @@
 - Piezas sin colocar (p. ej. T* omitidas del layout) se pueden pegar/colocar
   en el tablero enfocado del Explorador (menú contextual o doble clic);
   valida material/espesor y muestra el motivo si no caben.
+- Colocar en tablero: el destino sobrevive al seleccionar la pieza (antes el
+  clic en T* borraba el foco del tablero y deshabilitaba la acción).
 - Explorador: vista previa de solución (doble clic / Enter) — ya no se
   reconstruye el árbol al seleccionar (borraba el ítem y mataba el segundo
   clic del doble clic).

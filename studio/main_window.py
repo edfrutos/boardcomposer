@@ -2979,7 +2979,7 @@ class MainWindow(QMainWindow):
                     parsed is not None
                     and parsed[0] == "piece"
                     and project is not None
-                    and self.workspace.focused_board_id() is not None
+                    and self.workspace.placement_target_board_id() is not None
                 ):
                     can_place = project.placement_by_piece_id(parsed[1]) is None
                 action.setEnabled(can_place)
@@ -3022,11 +3022,14 @@ class MainWindow(QMainWindow):
             self._status("status.id_copied", id=object_id)
             return
         if kind == "piece":
+            if action_key == "place_on_board":
+                # Do not select_piece first: it clears the red highlight even
+                # though sticky target remains; place, then select.
+                self._place_piece_on_focused_board(object_id)
+                return
             self.workspace.select_piece(object_id)
             self.services.selection.select_one(object_id)
-            if action_key == "place_on_board":
-                self._place_piece_on_focused_board(object_id)
-            elif action_key == "edit":
+            if action_key == "edit":
                 self._edit_piece(object_id)
             elif action_key == "rename":
                 self._rename_piece(object_id)
@@ -3374,7 +3377,7 @@ class MainWindow(QMainWindow):
             if (
                 project is not None
                 and project.placement_by_piece_id(object_id) is None
-                and self.workspace.focused_board_id() is not None
+                and self.workspace.placement_target_board_id() is not None
             ):
                 self._place_piece_on_focused_board(object_id)
                 return
@@ -3398,7 +3401,7 @@ class MainWindow(QMainWindow):
             self._status("status.piece_already_placed", id=piece_id)
             return
 
-        board_id = self.workspace.focused_board_id()
+        board_id = self.workspace.placement_target_board_id()
         if board_id is None:
             self._status("status.place_needs_board_focus")
             return
