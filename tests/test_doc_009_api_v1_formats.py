@@ -10,7 +10,7 @@ DOC = Path("docs/masterplan/DOC-009-API-v1-Formatos.md")
 def test_doc_009_exists_and_pins_key_contract_fields():
     text = DOC.read_text(encoding="utf-8")
     assert "DOC-009" in text
-    assert "API_VERSION" in text or "`1.0.0`" in text
+    assert "1.1.0" in text or "API_VERSION" in text
 
     for field in (
         "length_mm",
@@ -25,6 +25,8 @@ def test_doc_009_exists_and_pins_key_contract_fields():
         "waste_ratio",
         "export_json",
         "load_project",
+        ".bcproj",
+        "StockPanel",
     ):
         assert field in text, f"DOC-009 missing field/token: {field}"
 

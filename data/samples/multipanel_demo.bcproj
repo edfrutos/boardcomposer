@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "project_id": "PRJ-SAMPLE-MP",
+  "name": "Multipanel demo",
+  "boards": [
+    {
+      "board_id": "P1",
+      "length_mm": 1000,
+      "width_mm": 500,
+      "material": "Melamina",
+      "thickness_mm": 19,
+      "quantity": 2
+    }
+  ],
+  "pieces": [
+    {
+      "piece_id": "A",
+      "length_mm": 400,
+      "width_mm": 300,
+      "material": "Melamina",
+      "thickness_mm": 19
+    },
+    {
+      "piece_id": "B",
+      "length_mm": 350,
+      "width_mm": 200,
+      "material": "Melamina",
+      "thickness_mm": 19
+    }
+  ],
+  "placements": []
+}

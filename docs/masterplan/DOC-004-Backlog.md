@@ -75,7 +75,7 @@ Observaciones:
 | IDE-0003 | Inspector de piezas | 🟢 | P0 |
 | IDE-0004 | Gestión de proyectos | 🟢 | P1 |
 | IDE-0005 | Exportación PDF/SVG | 🟢 | P1 |
-| IDE-0006 | API pública | 🟡 | P1 |
+| IDE-0006 | API pública | 🟢 | P1 |
 | IDE-0007 | Asistente IA | ⚪ | P2 |
 | IDE-0008 | Sistema de plugins | ⚪ | P3 |
 | IDE-0009 | Packing multipanel MaxRects | 🟢 | P0 |
@@ -95,7 +95,7 @@ Observaciones:
 
 | ID | Título | Estado | Prioridad | Ideas |
 |----|--------|--------|-----------|-------|
-| EP-001 | API pública y contratos | 🟡 | P1 | IDE-0006 |
+| EP-001 | API pública y contratos | 🟢 | P1 | IDE-0006 |
 | EP-002 | Automatización y batch | 🔵 | P1 | IDE-0006 |
 | EP-003 | Integraciones remotas | 🔵 | P2 | IDE-0006 |
 
@@ -120,6 +120,6 @@ EP (001…003) creadas para Fase 3; IDE-0006 → 🔵 P1.
 
 Pendiente de:
 
-- SPR-003 bajo EP-001 (carga `.bcproj` / multipanel vía API);
+- abrir sprints bajo EP-002 (batch);
 - completar el flujo Idea → Épica → Sprint → Implementación → Liberación;
 - estimar esfuerzo por épica.

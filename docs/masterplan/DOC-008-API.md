@@ -68,7 +68,7 @@ Se adoptará versionado semántico para la API.
 
 Ejemplos:
 
-- Paquete Python: `boardcomposer.api.v1` (`API_VERSION`, p. ej. `1.0.0`)
+- Paquete Python: `boardcomposer.api.v1` (`API_VERSION`, p. ej. `1.1.0`)
 - HTTP futuro: `/api/v1/`, `/api/v2/` (EP-003)
 
 Los cambios incompatibles requerirán una nueva versión mayor
@@ -80,7 +80,7 @@ Superficie estable sin Qt ni `studio.*`:
 
 | Función | Rol |
 |---------|-----|
-| `load_project(path)` | CSV de piezas → `Project` |
+| `load_project(path)` | CSV o `.bcproj` → `Project` |
 | `solve(project, strategy=…, top=…)` | candidatas rankeadas |
 | `export_json` / `export_svg` / `export_csv` | artefactos de solución |
 | `run(path, …)` | load + solve |
@@ -89,8 +89,8 @@ Superficie estable sin Qt ni `studio.*`:
 Ejemplo: `examples/api_v1_minimal.py`. Tests de contrato:
 `tests/test_api_v1_contract.py`.
 
-Formatos de intercambio (CSV entrada, JSON/CSV/SVG solución):
-[DOC-009](DOC-009-API-v1-Formatos.md) (SPR-002).
+Formatos de intercambio (CSV / `.bcproj` entrada, JSON/CSV/SVG solución):
+[DOC-009](DOC-009-API-v1-Formatos.md) (SPR-002/003).
 
 ---
 
@@ -129,10 +129,9 @@ La especificación definitiva contemplará:
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión — SPR-001/002 entregados (`v1` + DOC-009)
+**Estado actual:** 🟡 En revisión — EP-001 Python `v1` entregada (SPR-001…003)
 
-Pendiente de (ejecución vía [EP-001](epics/EP-001-API-Publica-Contratos.md)):
+Pendiente de:
 
-- ampliar carga de proyecto (`.bcproj` / multipanel) vía API (SPR-003);
 - especificar recursos HTTP si un piloto lo exige (EP-003);
 - elaborar una guía para desarrolladores e integradores.

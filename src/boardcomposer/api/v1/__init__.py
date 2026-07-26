@@ -2,7 +2,7 @@
 
 Minimal surface for integrators that must not depend on Studio or Qt:
 
-1. ``load_project`` — CSV → ``Project``
+1. ``load_project`` — CSV or ``.bcproj`` → ``Project``
 2. ``solve`` — layout candidates
 3. ``export_json`` / ``export_svg`` / ``export_csv`` — solution artifacts
 4. ``run`` — load + solve convenience
@@ -20,7 +20,7 @@ from boardcomposer.api.v1.pipeline import (
     solve,
 )
 
-API_VERSION = "1.0.0"
+API_VERSION = "1.1.0"
 
 __all__ = [
     "API_VERSION",

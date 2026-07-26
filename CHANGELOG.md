@@ -15,10 +15,13 @@
 
 ### Añadido
 
+- API `v1.1.0` (EP-001 / SPR-003): `load_project` / `run` aceptan `.bcproj`
+  (stock + piezas); migraciones ADR-015 en Core (`boardcomposer.io.bcproj`),
+  compartidas con Studio; sample `data/samples/multipanel_demo.bcproj`.
 - DOC-009 — formatos de intercambio API `v1` (EP-001 / SPR-002): CSV de
   piezas, JSON/CSV/SVG de solución alineados a Core.
 - API Python pública `boardcomposer.api.v1` (EP-001 / SPR-001):
-  `load_project` → `solve` → `export_json|svg|csv`, `run`, `API_VERSION=1.0.0`;
+  `load_project` → `solve` → `export_json|svg|csv`, `run`;
   tests de contrato y `examples/api_v1_minimal.py` (sin Studio/Qt).
 - `AddBoardCommand` / `AddPieceCommand`: añadir tablero o pieza(s) es
   deshacible (Ctrl+Z), cerrando la deuda de FLW-006 / ADR-008.
