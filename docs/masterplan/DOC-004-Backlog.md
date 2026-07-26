@@ -121,6 +121,6 @@ EP (001…003) creadas para Fase 3; IDE-0006 → 🔵 P1.
 Pendiente de:
 
 - Diff `.bcproj` Core/CLI 🟢 (`boardcomposer-diff`); UI revisiones aún no;
-- EP-002 cerrado (SPR-001…003); siguiente plataforma: EP-003 si hay piloto;
+- Fase 3 EP-001…003 🟢; siguiente: UAT humano / Fase 4 IA bajo demanda;
 - completar el flujo Idea → Épica → Sprint → Implementación → Liberación;
 - estimar esfuerzo por épica.

@@ -2,7 +2,7 @@
 
 **Épica:** EP-003  
 **Fase:** 3 — Plataforma  
-**Estado:** 🟡 En curso  
+**Estado:** 🟢 Completada (SPR-001…003)
 **Prioridad:** P2  
 **Ideas:** IDE-0006 (extensión), exportadores avanzados  
 **Docs:** DOC-008, EP-001, EP-002  
@@ -50,7 +50,7 @@ Core a un vendor concreto.
 |----|--------|--------|-------|
 | SPR-001 | Adaptador HTTP Flask + OpenAPI + API key | 🟢 | `boardcomposer.api.http` / `boardcomposer-serve`; `GET /health`, `POST /v1/run`, `GET /v1/openapi.json`; env `BOARDCOMPOSER_API_KEY` |
 | SPR-002 | Hooks post-job (webhook / carpeta) | 🟢 | `boardcomposer.integration.hooks`; env `BOARDCOMPOSER_HOOK_DIR` / `WEBHOOK_URL` / `SECRET`; batch `--hook-dir` |
-| SPR-003 | Contenedor de referencia + amenazas | 🔵 | opcional |
+| SPR-003 | Contenedor de referencia + amenazas | 🟢 | `Dockerfile` / `docker-compose.yml`; [DOC-010](../DOC-010-HTTP-Amenazas.md); `scripts/serve_docker.sh` |
 
 ---
 
@@ -103,8 +103,18 @@ boardcomposer-batch -i data/samples/batch_inbox -o out/batch \
   --hook-dir out/hooks --no-hooks   # --no-hooks desactiva
 ```
 
+### Contenedor (SPR-003)
+
+```bash
+export BOARDCOMPOSER_API_KEY=dev-secret
+docker compose up --build
+# o: scripts/serve_docker.sh
+```
+
+Imagen: Core + Flask (sin PySide6). Amenazas: [DOC-010](../DOC-010-HTTP-Amenazas.md).
+
 ## Notas de diseño
 
 Capa fina sobre `boardcomposer.api.v1` — sin lógica de packing en Flask.
-SPR-003 (contenedor) permanece 🔵 hasta demanda de despliegue.
+EP-003 cerrada en el corte de referencia; ampliar rate-limit/mTLS solo con piloto.
 No inventar cloud por inercia.

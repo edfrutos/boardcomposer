@@ -29,6 +29,7 @@ Las discrepancias deben corregirse, no mantenerse como conocimiento implícito.
 | `DOC-007-UX-Studio.md` | Principios UX | En revisión |
 | `DOC-008-API.md` | API y extensibilidad futura | En revisión |
 | `DOC-009-API-v1-Formatos.md` | Formatos intercambio API `v1` | En revisión |
+| `DOC-010-HTTP-Amenazas.md` | Amenazas/mitigaciones HTTP + Docker | Referencia |
 
 `DOC-001-Manifiesto.md` se conserva como documento histórico duplicado; la
 referencia oficial del manifiesto es `DOC-000-Manifiesto.md`.

@@ -1,0 +1,23 @@
+# Reference pilot stack for boardcomposer-serve (EP-003 SPR-003).
+# Usage:
+#   export BOARDCOMPOSER_API_KEY=dev-secret
+#   docker compose up --build
+services:
+  boardcomposer-http:
+    build: .
+    image: boardcomposer-http:local
+    ports:
+      - "${BOARDCOMPOSER_HTTP_PORT:-8080}:8080"
+    environment:
+      BOARDCOMPOSER_API_KEY: ${BOARDCOMPOSER_API_KEY:-}
+      BOARDCOMPOSER_MAX_UPLOAD_BYTES: ${BOARDCOMPOSER_MAX_UPLOAD_BYTES:-5242880}
+      BOARDCOMPOSER_HOOK_DIR: ${BOARDCOMPOSER_HOOK_DIR:-}
+      BOARDCOMPOSER_WEBHOOK_URL: ${BOARDCOMPOSER_WEBHOOK_URL:-}
+      BOARDCOMPOSER_WEBHOOK_SECRET: ${BOARDCOMPOSER_WEBHOOK_SECRET:-}
+      BOARDCOMPOSER_WEBHOOK_TIMEOUT: ${BOARDCOMPOSER_WEBHOOK_TIMEOUT:-5}
+    # Optional durable hook drop folder (host path).
+    # volumes:
+    #   - ./out/hooks:/hooks
+    # environment:
+    #   BOARDCOMPOSER_HOOK_DIR: /hooks
+    restart: unless-stopped

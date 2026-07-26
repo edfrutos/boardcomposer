@@ -16,3 +16,7 @@ proyectos/
 !data/samples/*.bcproj
 !data/samples/**/*.bcproj
 *.svg
+
+.env
+.env.*
+!.env.example

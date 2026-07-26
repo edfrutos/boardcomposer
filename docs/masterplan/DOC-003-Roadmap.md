@@ -103,8 +103,8 @@ Deuda / evolución dentro de Fase 2 (no bloquea uso diario):
 | Épica | Título | Prioridad | Dependencias |
 |-------|--------|-----------|--------------|
 | [EP-001](epics/EP-001-API-Publica-Contratos.md) | API pública y contratos `v1` (SPR-001…003 🟢) | P1 | Core / DOC-008 / DOC-009 |
-| [EP-002](epics/EP-002-Automatizacion-Batch.md) | Automatización y batch (SPR-001/003 🟢) | P1 | EP-001 |
-| [EP-003](epics/EP-003-Integraciones-Remotas.md) | Integraciones / remoto (SPR-001/002 🟢) | P2 | EP-001, EP-002 |
+| [EP-002](epics/EP-002-Automatizacion-Batch.md) | Automatización y batch (SPR-001…003 🟢) | P1 | EP-001 |
+| [EP-003](epics/EP-003-Integraciones-Remotas.md) | Integraciones / remoto (SPR-001…003 🟢) | P2 | EP-001, EP-002 |
 
 Orden de ataque: EP-001 → EP-002 → EP-003. Índice: [epics/README.md](epics/README.md).
 
@@ -184,6 +184,6 @@ descompuesta en EP-001…003 (`docs/masterplan/epics/`).
 
 Pendiente de:
 
-- avanzar EP-002 (batch) sobre contratos `v1`;
+- Fase 3 EP-001…003 entregadas en corte plataforma; UAT humano continuo;
 - incorporar estimaciones y dependencias finas por sprint;
 - aprobar como hoja de ruta oficial del proyecto.

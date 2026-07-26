@@ -15,6 +15,8 @@
 
 ### Añadido
 
+- Contenedor HTTP de referencia (EP-003 / SPR-003): `Dockerfile`,
+  `docker-compose.yml`, `scripts/serve_docker.sh`; amenazas en DOC-010.
 - Diff estructural `.bcproj` (FLW-006): `boardcomposer-diff` / `diff_bcproj` — meta, tableros, piezas, placements.
 - Adaptador HTTP opcional `boardcomposer-serve` (EP-003 / SPR-001):
   Flask sobre `api.v1` — `/health`, `/v1/run`, `/v1/openapi.json`;
