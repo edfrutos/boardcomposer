@@ -4,6 +4,9 @@
 
 ### Corregido
 
+- Piezas sin colocar (p. ej. T* omitidas del layout) se pueden pegar/colocar
+  en el tablero enfocado del Explorador (menú contextual o doble clic);
+  valida material/espesor y muestra el motivo si no caben.
 - Explorador: vista previa de solución (doble clic / Enter) — ya no se
   reconstruye el árbol al seleccionar (borraba el ítem y mataba el segundo
   clic del doble clic).

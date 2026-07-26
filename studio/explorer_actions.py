@@ -22,7 +22,14 @@ def explorer_context_actions(role: object) -> tuple[str, ...]:
     if kind == "project":
         return ("rename", "reveal_folder")
     if kind == "piece":
-        return ("edit", "rename", "duplicate", "copy_id", "delete")
+        return (
+            "place_on_board",
+            "edit",
+            "rename",
+            "duplicate",
+            "copy_id",
+            "delete",
+        )
     if kind == "board":
         return ("edit", "rename", "duplicate", "copy_id", "delete")
     if kind == "category" and object_id == "boards":
