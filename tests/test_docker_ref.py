@@ -12,7 +12,10 @@ def test_dockerfile_is_http_only_reference():
     assert "python:3.13-slim" in text
     assert "boardcomposer.http_cli" in text
     assert "pip install" in text and "flask" in text.lower()
-    assert "pip install" in text and "pyside6" not in text.split("pip install", 1)[1].lower()
+    assert (
+        "pip install" in text
+        and "pyside6" not in text.split("pip install", 1)[1].lower()
+    )
     assert "USER app" in text
     assert "HEALTHCHECK" in text
 
