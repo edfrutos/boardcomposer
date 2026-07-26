@@ -7,7 +7,7 @@
 **Versión:** 1.0.0
 **Estado:** En revisión
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 26/07/2026 (SPR-001 Python `v1`)
+**Última revisión:** 26/07/2026 (EP-003 HTTP SPR-001)
 
 ---
 
@@ -69,10 +69,23 @@ Se adoptará versionado semántico para la API.
 Ejemplos:
 
 - Paquete Python: `boardcomposer.api.v1` (`API_VERSION`, p. ej. `1.1.0`)
-- HTTP futuro: `/api/v1/`, `/api/v2/` (EP-003)
+- HTTP opcional: `boardcomposer-serve` → `/health`, `/v1/run`, `/v1/openapi.json` (EP-003 SPR-001)
 
 Los cambios incompatibles requerirán una nueva versión mayor
 (`boardcomposer.api.v2` / `/api/v2/`), no mutar `v1` in-place.
+
+### Adaptador HTTP (SPR-001 / EP-003)
+
+Opcional, sobre Flask (ya en dependencias):
+
+- Entry: `boardcomposer-serve` / `python -m boardcomposer.http_cli`
+- `GET /health` — liveness + `api_version`
+- `POST /v1/run` — multipart `file` (CSV/`.bcproj`) + `strategy`/`top`/`format`
+- `GET /v1/openapi.json` — contrato mínimo
+- Auth: si `BOARDCOMPOSER_API_KEY` está definida, exigir `X-API-Key` o `Bearer`
+- Límite: `BOARDCOMPOSER_MAX_UPLOAD_BYTES` (default 5 MiB)
+
+No sustituye la API Python; es un canal de transporte.
 
 ### Primer corte Python (SPR-001 / EP-001)
 

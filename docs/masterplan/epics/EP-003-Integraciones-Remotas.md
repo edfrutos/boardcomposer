@@ -2,12 +2,13 @@
 
 **Épica:** EP-003  
 **Fase:** 3 — Plataforma  
-**Estado:** 🔵 Planificada  
+**Estado:** 🟡 En curso  
 **Prioridad:** P2  
 **Ideas:** IDE-0006 (extensión), exportadores avanzados  
 **Docs:** DOC-008, EP-001, EP-002  
 
 **Creada:** 26/07/2026  
+**Última actualización:** 26/07/2026  
 
 ---
 
@@ -43,6 +44,16 @@ Core a un vendor concreto.
 
 ---
 
+## Sprints
+
+| ID | Título | Estado | Notas |
+|----|--------|--------|-------|
+| SPR-001 | Adaptador HTTP Flask + OpenAPI + API key | 🟢 | `boardcomposer.api.http` / `boardcomposer-serve`; `GET /health`, `POST /v1/run`, `GET /v1/openapi.json`; env `BOARDCOMPOSER_API_KEY` |
+| SPR-002 | Hooks post-job (webhook / carpeta) | 🔵 | pendiente piloto |
+| SPR-003 | Contenedor de referencia + amenazas | 🔵 | opcional |
+
+---
+
 ## Dependencias
 
 - EP-001 obligatorio.
@@ -59,7 +70,26 @@ Core a un vendor concreto.
 
 ---
 
+## Uso (SPR-001)
+
+```bash
+export BOARDCOMPOSER_API_KEY=dev-secret   # opcional pero recomendado
+boardcomposer-serve --host 127.0.0.1 --port 8080
+
+curl -s http://127.0.0.1:8080/health
+curl -s -H "X-API-Key: $BOARDCOMPOSER_API_KEY" \
+  -F file=@data/samples/batch_inbox/basic_boards.csv \
+  -F strategy=balanced -F format=json \
+  http://127.0.0.1:8080/v1/run
+```
+
+OpenAPI: `GET /v1/openapi.json`.  
+Límite upload: `BOARDCOMPOSER_MAX_UPLOAD_BYTES` (default 5 MiB).
+
+---
+
 ## Notas de diseño
 
-Si no hay piloto externo concreto, esta épica permanece 🔵 hasta que
-EP-001/002 estén estables. No inventar cloud por inercia.
+Capa fina sobre `boardcomposer.api.v1` — sin lógica de packing en Flask.
+Si no hay piloto externo concreto, SPR-002/003 permanecen 🔵.
+No inventar cloud por inercia.

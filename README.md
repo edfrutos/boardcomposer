@@ -81,6 +81,9 @@ boardcomposer-batch -i data/samples/batch_inbox -o out/batch \
   --template "SVG sin retales" --client Demo \
   --templates-file data/samples/export_templates.json
 # o: scripts/batch_samples.sh
+
+# HTTP opcional (EP-003; API key recomendada)
+# BOARDCOMPOSER_API_KEY=dev-secret boardcomposer-serve --port 8080
 ```
 
 ## CSV de entrada (CLI)
