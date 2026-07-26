@@ -8,7 +8,7 @@
 **Docs:** DOC-008, DOC-002, ADR-001, ADR-003  
 
 **Creada:** 26/07/2026  
-**Última actualización:** 26/07/2026  
+**Última actualización:** 26/07/2026 (SPR-002 🟢)  
 
 ---
 
@@ -51,7 +51,7 @@ de detalles internos del solver.
 | ID | Título | Estado | Notas |
 |----|--------|--------|-------|
 | SPR-001 | Facade Python `boardcomposer.api.v1` | 🟢 | load CSV → solve → export JSON/SVG/CSV; `API_VERSION=1.0.0`; tests contrato; `examples/api_v1_minimal.py` |
-| SPR-002 | Formatos de intercambio documentados | 🔵 | payload proyecto/solución alineado a Core |
+| SPR-002 | Formatos de intercambio documentados | 🟢 | [DOC-009](../DOC-009-API-v1-Formatos.md) — CSV entrada + JSON/CSV/SVG solución |
 | SPR-003 | Carga `.bcproj` / inventario multipanel vía API | 🔵 | hoy CSV CLI; Studio serializer fuera de Core |
 
 ---

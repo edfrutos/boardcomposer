@@ -120,6 +120,6 @@ EP (001…003) creadas para Fase 3; IDE-0006 → 🔵 P1.
 
 Pendiente de:
 
-- SPR-002/003 bajo EP-001 (formatos + carga `.bcproj`);
+- SPR-003 bajo EP-001 (carga `.bcproj` / multipanel vía API);
 - completar el flujo Idea → Épica → Sprint → Implementación → Liberación;
 - estimar esfuerzo por épica.

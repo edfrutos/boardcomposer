@@ -5,7 +5,7 @@ backlog (`DOC-004`).
 
 | ID | Título | Fase | Estado | Prioridad |
 |----|--------|------|--------|-----------|
-| EP-001 | API pública y contratos | 3 | 🟡 En curso (SPR-001 🟢) | P1 |
+| EP-001 | API pública y contratos | 3 | 🟡 En curso (SPR-001…002 🟢) | P1 |
 | EP-002 | Automatización y batch | 3 | 🔵 Planificada | P1 |
 | EP-003 | Integraciones y servicios remotos | 3 | 🔵 Planificada | P2 |
 

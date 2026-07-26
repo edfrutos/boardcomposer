@@ -1,6 +1,6 @@
 # Índice documental de BoardComposer
 
-Última revisión: 2026-07-16.
+Última revisión: 2026-07-26.
 
 ## Precedencia
 
@@ -23,11 +23,12 @@ Las discrepancias deben corregirse, no mantenerse como conocimiento implícito.
 | `DOC-002-Arquitectura.md` | Arquitectura objetivo | En revisión |
 | `DOC-003-Roadmap.md` | Fases del producto | Actualizado |
 | `DOC-004-Backlog.md` | Iniciativas priorizadas | Actualizado |
-| `epics/` | Épicas Fase 3 (EP-001…003) | Planificadas |
+| `epics/` | Épicas Fase 3 (EP-001…003) | En curso / planificadas |
 | `DOC-005-Decisiones.md` | Índice de decisiones | En revisión |
 | `DOC-006-DeudaTecnica.md` | Registro de deuda | Actualizado |
 | `DOC-007-UX-Studio.md` | Principios UX | En revisión |
 | `DOC-008-API.md` | API y extensibilidad futura | En revisión |
+| `DOC-009-API-v1-Formatos.md` | Formatos intercambio API `v1` | En revisión |
 
 `DOC-001-Manifiesto.md` se conserva como documento histórico duplicado; la
 referencia oficial del manifiesto es `DOC-000-Manifiesto.md`.

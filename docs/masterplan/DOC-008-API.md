@@ -89,6 +89,9 @@ Superficie estable sin Qt ni `studio.*`:
 Ejemplo: `examples/api_v1_minimal.py`. Tests de contrato:
 `tests/test_api_v1_contract.py`.
 
+Formatos de intercambio (CSV entrada, JSON/CSV/SVG solución):
+[DOC-009](DOC-009-API-v1-Formatos.md) (SPR-002).
+
 ---
 
 ## Extensibilidad
@@ -126,11 +129,10 @@ La especificación definitiva contemplará:
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión — SPR-001 (Python `v1`) entregado
+**Estado actual:** 🟡 En revisión — SPR-001/002 entregados (`v1` + DOC-009)
 
 Pendiente de (ejecución vía [EP-001](epics/EP-001-API-Publica-Contratos.md)):
 
-- documentar formatos de intercambio (SPR-002);
 - ampliar carga de proyecto (`.bcproj` / multipanel) vía API (SPR-003);
 - especificar recursos HTTP si un piloto lo exige (EP-003);
 - elaborar una guía para desarrolladores e integradores.
