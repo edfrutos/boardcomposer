@@ -4,13 +4,16 @@ from __future__ import annotations
 
 import json
 import traceback
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
 
 from boardcomposer.api import v1
+from boardcomposer.export import solution_to_dxf, solution_to_pdf
+from boardcomposer.io.export_templates import find_export_template
 
 _INPUT_SUFFIXES = {".csv", ".bcproj"}
 _DEFAULT_FORMATS = ("json",)
+_BATCH_FORMATS = {"json", "csv", "svg", "dxf", "pdf"}
 
 
 @dataclass(frozen=True)
@@ -20,23 +23,79 @@ class BatchProfile:
     strategy: str = "balanced"
     top: int = 1
     formats: tuple[str, ...] = _DEFAULT_FORMATS
+    include_metrics: bool = True
+    include_explanation: bool = True
+    include_offcuts: bool = True
 
     @classmethod
     def from_dict(cls, data: dict) -> BatchProfile:
         formats = data.get("formats", list(_DEFAULT_FORMATS))
         if isinstance(formats, str):
             formats = [part.strip() for part in formats.split(",") if part.strip()]
-        return cls(
+
+        profile = cls(
             strategy=str(data.get("strategy", "balanced")),
             top=int(data.get("top", 1)),
             formats=tuple(formats) or _DEFAULT_FORMATS,
+            include_metrics=bool(data.get("include_metrics", True)),
+            include_explanation=bool(data.get("include_explanation", True)),
+            include_offcuts=bool(data.get("include_offcuts", True)),
+        )
+
+        template_name = str(data.get("template", "")).strip()
+        if not template_name:
+            return profile
+        return cls.from_named_template(
+            template_name,
+            client=str(data.get("client", "")),
+            templates_path=data.get("templates_file"),
+            strategy=profile.strategy,
+            top=profile.top,
+            formats_override=profile.formats if "formats" in data else None,
+        )
+
+    @classmethod
+    def from_named_template(
+        cls,
+        name: str,
+        *,
+        client: str = "",
+        templates_path: str | Path | None = None,
+        strategy: str = "balanced",
+        top: int = 1,
+        formats_override: tuple[str, ...] | None = None,
+    ) -> BatchProfile:
+        """Build a profile from a Studio/Core named export template."""
+        template = find_export_template(name, client=client, path=templates_path)
+        if template is None:
+            scope = f"client={client!r}" if client else "general"
+            raise ValueError(f"Export template not found: {name!r} ({scope})")
+        formats = formats_override or (template.format,)
+        return cls(
+            strategy=strategy,
+            top=top,
+            formats=tuple(formats) or _DEFAULT_FORMATS,
+            include_metrics=template.include_metrics,
+            include_explanation=template.include_explanation,
+            include_offcuts=template.include_offcuts,
         )
 
     @classmethod
     def load(cls, path: str | Path) -> BatchProfile:
-        payload = json.loads(Path(path).read_text(encoding="utf-8"))
+        profile_path = Path(path)
+        payload = json.loads(profile_path.read_text(encoding="utf-8"))
         if not isinstance(payload, dict):
             raise ValueError("Batch profile must be a JSON object")
+        templates_file = payload.get("templates_file")
+        if templates_file:
+            templates_path = Path(str(templates_file))
+            if not templates_path.is_absolute():
+                payload = {
+                    **payload,
+                    "templates_file": str(
+                        (profile_path.parent / templates_path).resolve()
+                    ),
+                }
         return cls.from_dict(payload)
 
 
@@ -168,13 +227,18 @@ def resolve_inputs(
     return found
 
 
+def _prepare_solution(solution, *, include_offcuts: bool):
+    if include_offcuts:
+        return solution
+    return replace(solution, offcuts=())
+
+
 def _write_exports(
     *,
     output_dir: Path,
     project,
     solutions: list,
-    strategy: str,
-    formats: tuple[str, ...],
+    profile: BatchProfile,
 ) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     if not solutions:
@@ -184,16 +248,21 @@ def _write_exports(
         )
         return
 
-    best = solutions[0]
-    for fmt in formats:
+    best = _prepare_solution(solutions[0], include_offcuts=profile.include_offcuts)
+    for fmt in profile.formats:
         name = fmt.lower().strip()
+        if name not in _BATCH_FORMATS:
+            raise ValueError(f"Unsupported export format: {fmt}")
         if name == "json":
             (output_dir / "solution.json").write_text(
                 v1.export_json(
                     best,
                     project,
-                    strategy_name=strategy,
+                    strategy_name=profile.strategy,
                     solution_index=0,
+                    include_metrics=profile.include_metrics,
+                    include_explanation=profile.include_explanation,
+                    include_offcuts=profile.include_offcuts,
                 ),
                 encoding="utf-8",
             )
@@ -207,8 +276,13 @@ def _write_exports(
                 v1.export_svg(best, project),
                 encoding="utf-8",
             )
-        else:
-            raise ValueError(f"Unsupported export format: {fmt}")
+        elif name == "dxf":
+            (output_dir / "solution.dxf").write_text(
+                solution_to_dxf(best, project),
+                encoding="utf-8",
+            )
+        elif name == "pdf":
+            (output_dir / "solution.pdf").write_bytes(solution_to_pdf(best, project))
 
 
 def run_batch(
@@ -282,8 +356,7 @@ def run_batch(
                 output_dir=job_out,
                 project=project,
                 solutions=solutions,
-                strategy=profile.strategy,
-                formats=profile.formats,
+                profile=profile,
             )
             report.jobs.append(
                 BatchJobResult(

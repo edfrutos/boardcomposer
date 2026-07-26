@@ -76,6 +76,10 @@ boardcomposer-batch -i data/samples/batch_inbox -o out/batch \
   -p data/samples/batch_profile.json
 # Lista explícita + dry-run:
 boardcomposer-batch -L data/samples/batch_jobs.list -o out/batch --dry-run
+# Plantilla export Studio (por nombre / cliente):
+boardcomposer-batch -i data/samples/batch_inbox -o out/batch \
+  --template "SVG sin retales" --client Demo \
+  --templates-file data/samples/export_templates.json
 # o: scripts/batch_samples.sh
 ```
 

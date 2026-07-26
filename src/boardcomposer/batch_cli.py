@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from boardcomposer.batch import BatchProfile, run_batch
+from boardcomposer.io.export_templates import default_export_templates_path
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -41,7 +42,23 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--profile",
         "-p",
-        help="Optional JSON profile (strategy, top, formats)",
+        help="Optional JSON profile (strategy, top, formats, template, …)",
+    )
+    parser.add_argument(
+        "--template",
+        "-t",
+        help="Named Studio export template (format + include_* flags)",
+    )
+    parser.add_argument(
+        "--client",
+        help="Client scope for --template (default: general / empty client)",
+    )
+    parser.add_argument(
+        "--templates-file",
+        help=(
+            "Path to export_templates.json or share pack "
+            f"(default: {default_export_templates_path()})"
+        ),
     )
     parser.add_argument(
         "--strategy",
@@ -55,7 +72,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--formats",
-        help="Override export formats, comma-separated: json,csv,svg",
+        help="Override export formats, comma-separated: json,csv,svg,dxf,pdf",
     )
     parser.add_argument(
         "--dry-run",
@@ -66,7 +83,28 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def _resolve_profile(args: argparse.Namespace) -> BatchProfile:
-    profile = BatchProfile.load(args.profile) if args.profile else BatchProfile()
+    if args.profile:
+        profile = BatchProfile.load(args.profile)
+    elif args.template:
+        profile = BatchProfile.from_named_template(
+            args.template,
+            client=args.client or "",
+            templates_path=args.templates_file,
+        )
+    else:
+        profile = BatchProfile()
+
+    if args.template and args.profile:
+        # CLI --template wins over bare profile fields for export options.
+        named = BatchProfile.from_named_template(
+            args.template,
+            client=args.client or "",
+            templates_path=args.templates_file,
+            strategy=profile.strategy,
+            top=profile.top,
+        )
+        profile = named
+
     strategy = args.strategy or profile.strategy
     top = profile.top if args.top is None else args.top
     if args.formats:
@@ -75,7 +113,14 @@ def _resolve_profile(args: argparse.Namespace) -> BatchProfile:
         )
     else:
         formats = profile.formats
-    return BatchProfile(strategy=strategy, top=top, formats=formats or ("json",))
+    return BatchProfile(
+        strategy=strategy,
+        top=top,
+        formats=formats or ("json",),
+        include_metrics=profile.include_metrics,
+        include_explanation=profile.include_explanation,
+        include_offcuts=profile.include_offcuts,
+    )
 
 
 def main(argv: list[str] | None = None) -> int:

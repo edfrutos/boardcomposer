@@ -50,6 +50,9 @@ def export_json(
     *,
     strategy_name: str | None = None,
     solution_index: int | None = None,
+    include_metrics: bool = True,
+    include_explanation: bool = True,
+    include_offcuts: bool = True,
 ) -> str:
     """Serialize one solution as a JSON document string."""
     return solution_to_json(
@@ -57,6 +60,9 @@ def export_json(
         project,
         strategy_name=strategy_name,
         solution_index=solution_index,
+        include_metrics=include_metrics,
+        include_explanation=include_explanation,
+        include_offcuts=include_offcuts,
     )
 
 
