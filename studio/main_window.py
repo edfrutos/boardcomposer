@@ -357,9 +357,12 @@ class MainWindow(QMainWindow):
     def _build_panels(self):
         self.explorer = QTreeWidget()
         self.explorer.setHeaderHidden(True)
+        # Keep items stable: expand-on-double-click fights leaf activation.
+        self.explorer.setExpandsOnDoubleClick(False)
         self.explorer.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.explorer.itemSelectionChanged.connect(self._on_explorer_selection_changed)
-        self.explorer.itemDoubleClicked.connect(self._on_explorer_item_double_clicked)
+        # Prefer activated (double-click or Enter) over double-clicked alone.
+        self.explorer.itemActivated.connect(self._on_explorer_item_activated)
         self.explorer.customContextMenuRequested.connect(self._on_explorer_context_menu)
 
         self.explorer_dock = QDockWidget("", self)
@@ -2421,9 +2424,8 @@ class MainWindow(QMainWindow):
             return
 
         self.workspace.preview_solution(solution)
-        self._reload_solution_table()
         self._show_layout_solution(solution)
-        self._reload_explorer()
+        self._refresh_explorer_solution_markers()
         self._reload_solution_table()
 
         index = self.services.layout.selected_solution_index + 1
@@ -2446,7 +2448,8 @@ class MainWindow(QMainWindow):
 
         self.workspace.preview_solution(solution)
         self._show_layout_solution(solution)
-        self._reload_explorer()
+        self._refresh_explorer_solution_markers()
+        self._reload_solution_table()
 
         index = self.services.layout.selected_solution_index + 1
         total = len(self.services.layout.solutions)
@@ -3328,7 +3331,8 @@ class MainWindow(QMainWindow):
         self.update_undo_redo()
         self._status("status.board_deleted", id=board_id)
 
-    def _on_explorer_item_double_clicked(self, item, _column):
+    def _on_explorer_item_activated(self, item, _column):
+        """Double-click or Enter/Return on an Explorador row."""
         data = item.data(0, Qt.ItemDataRole.UserRole)
         parsed = parse_explorer_role(data)
         if parsed is None:
@@ -3405,6 +3409,38 @@ class MainWindow(QMainWindow):
 
         return x, y
 
+    def _refresh_explorer_solution_markers(self) -> None:
+        """Update ✓ markers without rebuilding the tree.
+
+        A full ``_reload_explorer`` mid double-click deletes the
+        ``QTreeWidgetItem`` and drops ``itemDoubleClicked``/``itemActivated``.
+        """
+        selected = self.services.layout.selected_solution_index
+        for index, solution in enumerate(self.services.layout.solutions):
+            item = self._find_explorer_item_by_role(f"solution:{index}")
+            if item is None:
+                continue
+            prefix = "✓ " if index == selected else ""
+            item.setText(
+                0,
+                f"{prefix}"
+                + self._tr(
+                    "explorer.solution",
+                    n=index + 1,
+                    pieces=len(solution.placements),
+                    waste=f"{solution.waste_ratio:.1%}",
+                ),
+            )
+        selected_item = self._find_explorer_item_by_role(f"solution:{selected}")
+        if selected_item is None:
+            return
+        blocked = self.explorer.blockSignals(True)
+        try:
+            self.explorer.setCurrentItem(selected_item)
+            self.explorer.scrollToItem(selected_item)
+        finally:
+            self.explorer.blockSignals(blocked)
+
     def _select_layout_solution(self, index: int) -> None:
         solution = self.services.layout.select_solution(index)
 
@@ -3413,7 +3449,7 @@ class MainWindow(QMainWindow):
 
         self.workspace.preview_solution(solution)
         self._show_layout_solution(solution)
-        self._reload_explorer()
+        self._refresh_explorer_solution_markers()
         self._reload_solution_table()
 
         selected_index = self.services.layout.selected_solution_index + 1
