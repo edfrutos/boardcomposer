@@ -6,9 +6,11 @@ changing the meaning of an export without a version bump should fail CI.
 
 from __future__ import annotations
 
-import importlib
 import json
+import os
+import subprocess
 import sys
+from pathlib import Path
 
 import pytest
 
@@ -16,6 +18,8 @@ from boardcomposer.api import v1
 
 
 SAMPLE_CSV = "data/samples/basic_boards.csv"
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SRC_ROOT = REPO_ROOT / "src"
 
 EXPECTED_PUBLIC = {
     "API_VERSION",
@@ -40,17 +44,34 @@ def test_public_exports_are_stable():
 
 
 def test_v1_does_not_import_studio():
-    # Fresh import path: drop cached modules that tests may have loaded.
-    for key in list(sys.modules):
-        if key == "studio" or key.startswith("studio."):
-            del sys.modules[key]
+    """Isolate in a subprocess so we never purge ``studio.*`` mid-suite.
 
-    importlib.reload(importlib.import_module("boardcomposer.api.v1"))
-    importlib.reload(importlib.import_module("boardcomposer.api.v1.pipeline"))
+    Deleting cached Studio modules in-process breaks later Qt tests
+    (duplicate class identities, theme globals, monkeypatches).
+    """
+    script = """
+import sys
+from boardcomposer.api import v1
 
-    assert not any(
-        name == "studio" or name.startswith("studio.") for name in sys.modules
+assert v1.API_VERSION.startswith("1.")
+assert not any(name == "studio" or name.startswith("studio.") for name in sys.modules)
+assert "PySide6" not in sys.modules
+assert not any(name.startswith("PySide6.") for name in sys.modules)
+"""
+    env = os.environ.copy()
+    existing = env.get("PYTHONPATH", "")
+    env["PYTHONPATH"] = (
+        str(SRC_ROOT) if not existing else f"{SRC_ROOT}{os.pathsep}{existing}"
     )
+    completed = subprocess.run(
+        [sys.executable, "-c", script],
+        check=False,
+        capture_output=True,
+        text=True,
+        cwd=REPO_ROOT,
+        env=env,
+    )
+    assert completed.returncode == 0, completed.stderr or completed.stdout
 
 
 def test_load_solve_export_roundtrip_without_qt():
