@@ -2,12 +2,13 @@
 
 **Épica:** EP-001  
 **Fase:** 3 — Plataforma  
-**Estado:** 🔵 Planificada  
+**Estado:** 🟡 En curso  
 **Prioridad:** P1  
 **Ideas:** IDE-0006  
 **Docs:** DOC-008, DOC-002, ADR-001, ADR-003  
 
 **Creada:** 26/07/2026  
+**Última actualización:** 26/07/2026  
 
 ---
 
@@ -45,6 +46,16 @@ de detalles internos del solver.
 
 ---
 
+## Sprints
+
+| ID | Título | Estado | Notas |
+|----|--------|--------|-------|
+| SPR-001 | Facade Python `boardcomposer.api.v1` | 🟢 | load CSV → solve → export JSON/SVG/CSV; `API_VERSION=1.0.0`; tests contrato; `examples/api_v1_minimal.py` |
+| SPR-002 | Formatos de intercambio documentados | 🔵 | payload proyecto/solución alineado a Core |
+| SPR-003 | Carga `.bcproj` / inventario multipanel vía API | 🔵 | hoy CSV CLI; Studio serializer fuera de Core |
+
+---
+
 ## Dependencias
 
 - Core inmutable (ADR-001) y CLI/exportadores existentes.
@@ -66,3 +77,15 @@ de detalles internos del solver.
 Preferir primero **API Python empaquetada** (reutiliza Core/CLI) y dejar
 HTTP como adaptador opcional en EP-003, salvo que un piloto concreto
 exija REST desde el día uno.
+
+### Superficie SPR-001
+
+```text
+from boardcomposer.api import v1
+
+project, solutions = v1.run("data/samples/basic_boards.csv", strategy="balanced", top=1)
+print(v1.API_VERSION)
+print(v1.export_json(solutions[0], project, strategy_name="balanced"))
+```
+
+Módulo: `src/boardcomposer/api/v1/`. Tests: `tests/test_api_v1_contract.py`.

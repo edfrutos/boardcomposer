@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- API Python pública `boardcomposer.api.v1` (EP-001 / SPR-001):
+  `load_project` → `solve` → `export_json|svg|csv`, `run`, `API_VERSION=1.0.0`;
+  tests de contrato y `examples/api_v1_minimal.py` (sin Studio/Qt).
 - `AddBoardCommand` / `AddPieceCommand`: añadir tablero o pieza(s) es
   deshacible (Ctrl+Z), cerrando la deuda de FLW-006 / ADR-008.
 - `StockPanel.quantity` como inventario de unidades físicas.

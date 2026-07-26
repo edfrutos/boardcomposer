@@ -7,7 +7,7 @@
 **Versión:** 1.0.0
 **Estado:** En revisión
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 26/07/2026
+**Última revisión:** 26/07/2026 (SPR-001 Python `v1`)
 
 ---
 
@@ -68,10 +68,26 @@ Se adoptará versionado semántico para la API.
 
 Ejemplos:
 
-- /api/v1/
-- /api/v2/
+- Paquete Python: `boardcomposer.api.v1` (`API_VERSION`, p. ej. `1.0.0`)
+- HTTP futuro: `/api/v1/`, `/api/v2/` (EP-003)
 
-Los cambios incompatibles requerirán una nueva versión mayor.
+Los cambios incompatibles requerirán una nueva versión mayor
+(`boardcomposer.api.v2` / `/api/v2/`), no mutar `v1` in-place.
+
+### Primer corte Python (SPR-001 / EP-001)
+
+Superficie estable sin Qt ni `studio.*`:
+
+| Función | Rol |
+|---------|-----|
+| `load_project(path)` | CSV de piezas → `Project` |
+| `solve(project, strategy=…, top=…)` | candidatas rankeadas |
+| `export_json` / `export_svg` / `export_csv` | artefactos de solución |
+| `run(path, …)` | load + solve |
+| `API_VERSION` | semver del contrato |
+
+Ejemplo: `examples/api_v1_minimal.py`. Tests de contrato:
+`tests/test_api_v1_contract.py`.
 
 ---
 
@@ -110,11 +126,11 @@ La especificación definitiva contemplará:
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión
+**Estado actual:** 🟡 En revisión — SPR-001 (Python `v1`) entregado
 
 Pendiente de (ejecución vía [EP-001](epics/EP-001-API-Publica-Contratos.md)):
 
-- definir los contratos públicos de la API;
-- especificar los recursos principales;
-- documentar los formatos de intercambio;
+- documentar formatos de intercambio (SPR-002);
+- ampliar carga de proyecto (`.bcproj` / multipanel) vía API (SPR-003);
+- especificar recursos HTTP si un piloto lo exige (EP-003);
 - elaborar una guía para desarrolladores e integradores.
