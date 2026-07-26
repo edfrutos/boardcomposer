@@ -87,6 +87,7 @@ boardcomposer-batch -i data/samples/batch_inbox -o out/batch \
 
 # HTTP opcional (EP-003; API key recomendada)
 # BOARDCOMPOSER_API_KEY=dev-secret boardcomposer-serve --port 8080
+# Hooks post-job: BOARDCOMPOSER_HOOK_DIR / BOARDCOMPOSER_WEBHOOK_URL
 ```
 
 ## CSV de entrada (CLI)

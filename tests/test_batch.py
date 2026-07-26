@@ -13,6 +13,9 @@ from boardcomposer.batch import (
     run_batch,
 )
 from boardcomposer.batch_cli import main as batch_main
+from boardcomposer.integration.hooks import HookConfig
+
+_NO_HOOKS = HookConfig()
 
 
 SAMPLES = Path("data/samples")
@@ -55,6 +58,7 @@ def test_run_batch_writes_exports_and_manifest(tmp_path):
         input_path=BATCH_INBOX / "basic_boards.csv",
         output_dir=out,
         profile=BatchProfile(strategy="balanced", top=1, formats=("json", "csv")),
+        hooks=_NO_HOOKS,
     )
 
     assert report.ok == 1
@@ -74,6 +78,7 @@ def test_run_batch_dry_run_plans_without_exports(tmp_path):
         list_path=BATCH_LIST,
         output_dir=out,
         dry_run=True,
+        hooks=_NO_HOOKS,
     )
 
     assert report.dry_run is True
@@ -105,6 +110,7 @@ def test_run_batch_continues_after_error(tmp_path):
         input_path=inbox,
         output_dir=out,
         profile=BatchProfile(formats=("json",)),
+        hooks=_NO_HOOKS,
     )
 
     assert report.ok == 1
@@ -166,6 +172,7 @@ def test_run_batch_named_template_writes_svg(tmp_path):
             client="Demo",
             templates_path=SAMPLES / "export_templates.json",
         ),
+        hooks=_NO_HOOKS,
     )
     assert report.exit_code() == 0
     assert (out / "basic_boards" / "solution.svg").is_file()
@@ -183,6 +190,7 @@ def test_batch_cli_named_template(tmp_path):
             "JSON completo",
             "--templates-file",
             str(SAMPLES / "export_templates.json"),
+            "--no-hooks",
         ]
     )
     assert code == 0
@@ -202,6 +210,7 @@ def test_batch_cli_main_success(tmp_path):
             str(out),
             "--formats",
             "json",
+            "--no-hooks",
         ]
     )
     assert code == 0
@@ -217,6 +226,7 @@ def test_batch_cli_list_and_dry_run(tmp_path):
             "--output",
             str(out),
             "--dry-run",
+            "--no-hooks",
         ]
     )
     assert code == 0
