@@ -7,9 +7,11 @@
 - Explorador: vista previa de solución (doble clic / Enter) — ya no se
   reconstruye el árbol al seleccionar (borraba el ítem y mataba el segundo
   clic del doble clic).
+- **R** rota la pieza seleccionada en el Workspace (el atajo QAction no
+  llegaba con foco en el canvas); `rotated`/`rotation` quedan sincronizados.
 - Atajos en macOS: tips y Ayuda → Atajos muestran ⌘ (Command) en vez de
   texto `Ctrl+…` (Qt ya mapeaba `Ctrl`→⌘; la UI inducía a pulsar Control ⌃).
-  Contexto `ApplicationShortcut` para que disparen con foco en Workspace.
+  Acordes `Ctrl+…` usan `ApplicationShortcut`; teclas sueltas (R, F2…) no.
 
 ### Añadido
 

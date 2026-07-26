@@ -107,6 +107,12 @@ def with_native_shortcuts(text: str) -> str:
     return text
 
 
+def _has_command_modifier(sequence: str) -> bool:
+    """True for portable Ctrl/Meta/Alt chords (⌘ on macOS via Ctrl)."""
+    text = sequence.upper()
+    return "CTRL+" in text or "META+" in text or "ALT+" in text
+
+
 def apply_shortcuts(actions: dict[str, QAction]) -> None:
     """Assign configured shortcuts to existing QAction instances."""
     for binding in STUDIO_SHORTCUTS:
@@ -120,5 +126,12 @@ def apply_shortcuts(actions: dict[str, QAction]) -> None:
             )
         else:
             action.setShortcut(binding.sequence)
-        # Application-wide: still fire when focus is in Workspace/docks.
-        action.setShortcutContext(Qt.ShortcutContext.ApplicationShortcut)
+        # Chord shortcuts stay app-wide so they work with Workspace focus.
+        # Bare keys (R, F2, Return, …) stay window-scoped: ApplicationShortcut
+        # steals typing in fields and still fails inside QGraphicsView.
+        if _has_command_modifier(binding.sequence) or any(
+            _has_command_modifier(alt) for alt in binding.alternates
+        ):
+            action.setShortcutContext(Qt.ShortcutContext.ApplicationShortcut)
+        else:
+            action.setShortcutContext(Qt.ShortcutContext.WindowShortcut)

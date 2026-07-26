@@ -41,9 +41,12 @@ def test_format_shortcut_label_includes_alternates_natively():
     assert native_sequence_label("Delete") in label
 
 
-def test_apply_shortcuts_uses_application_context(qapp):
+def test_apply_shortcuts_contexts_for_chords_vs_bare_keys(qapp):
     del qapp
     actions = {binding.action_key: QAction("") for binding in STUDIO_SHORTCUTS}
     apply_shortcuts(actions)
     assert actions["save"].shortcut() == QKeySequence("Ctrl+S")
     assert actions["save"].shortcutContext() == Qt.ShortcutContext.ApplicationShortcut
+    assert (
+        actions["rotate_piece"].shortcutContext() == Qt.ShortcutContext.WindowShortcut
+    )

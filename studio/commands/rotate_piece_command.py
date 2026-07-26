@@ -32,3 +32,4 @@ class RotatePieceCommand(Command):
         placement = project.placement_by_piece_id(self.piece_id)
         if placement is not None:
             placement.rotation = rotation
+            placement.rotated = rotation % 180 == 90
