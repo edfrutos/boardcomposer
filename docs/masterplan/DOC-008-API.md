@@ -7,7 +7,7 @@
 **Versión:** 1.0.0
 **Estado:** En revisión
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 01/07/2026
+**Última revisión:** 26/07/2026
 
 ---
 
@@ -112,7 +112,7 @@ La especificación definitiva contemplará:
 
 **Estado actual:** 🟡 En revisión
 
-Pendiente de:
+Pendiente de (ejecución vía [EP-001](epics/EP-001-API-Publica-Contratos.md)):
 
 - definir los contratos públicos de la API;
 - especificar los recursos principales;

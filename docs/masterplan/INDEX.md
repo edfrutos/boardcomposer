@@ -23,6 +23,7 @@ Las discrepancias deben corregirse, no mantenerse como conocimiento implícito.
 | `DOC-002-Arquitectura.md` | Arquitectura objetivo | En revisión |
 | `DOC-003-Roadmap.md` | Fases del producto | Actualizado |
 | `DOC-004-Backlog.md` | Iniciativas priorizadas | Actualizado |
+| `epics/` | Épicas Fase 3 (EP-001…003) | Planificadas |
 | `DOC-005-Decisiones.md` | Índice de decisiones | En revisión |
 | `DOC-006-DeudaTecnica.md` | Registro de deuda | Actualizado |
 | `DOC-007-UX-Studio.md` | Principios UX | En revisión |
