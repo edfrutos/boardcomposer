@@ -43,9 +43,11 @@ arquitectónica y funcional está consolidada.
 
 ## Fase 3 — Plataforma — Planificada
 
-- API pública y contratos versionados.
-- Automatización e integraciones.
-- Exportadores avanzados y servicios remotos.
+Detalle: `docs/masterplan/epics/` (EP-001 → EP-002 → EP-003).
+
+- [ ] EP-001 API pública y contratos `v1`.
+- [ ] EP-002 Automatización y batch (CLI/lotes).
+- [ ] EP-003 Integraciones / servicios remotos.
 
 ## Fase 4 — Inteligencia — Visión
 

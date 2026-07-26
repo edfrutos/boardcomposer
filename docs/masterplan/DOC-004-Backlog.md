@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.1.1
-**Estado:** En revisión — actualizado
-**Fecha de creación:** 01/07/2026
-**Última revisión:** 25/07/2026
+**Versión:** 1.2.0  
+**Estado:** En revisión — actualizado  
+**Fecha de creación:** 01/07/2026  
+**Última revisión:** 26/07/2026
 
 ---
 
@@ -75,7 +75,7 @@ Observaciones:
 | IDE-0003 | Inspector de piezas | 🟢 | P0 |
 | IDE-0004 | Gestión de proyectos | 🟢 | P1 |
 | IDE-0005 | Exportación PDF/SVG | 🟢 | P1 |
-| IDE-0006 | API pública | ⚪ | P2 |
+| IDE-0006 | API pública | 🔵 | P1 |
 | IDE-0007 | Asistente IA | ⚪ | P2 |
 | IDE-0008 | Sistema de plugins | ⚪ | P3 |
 | IDE-0009 | Packing multipanel MaxRects | 🟢 | P0 |
@@ -91,10 +91,23 @@ Observaciones:
 
 ---
 
+## Épicas (Fase 3)
+
+| ID | Título | Estado | Prioridad | Ideas |
+|----|--------|--------|-----------|-------|
+| EP-001 | API pública y contratos | 🔵 | P1 | IDE-0006 |
+| EP-002 | Automatización y batch | 🔵 | P1 | IDE-0006 |
+| EP-003 | Integraciones remotas | 🔵 | P2 | IDE-0006 |
+
+Detalle: `docs/masterplan/epics/`.
+
+---
+
 ## Reglas de mantenimiento
 
 - Cada nueva idea comienza como **IDE**.
-- Cuando una idea se aprueba para desarrollo, se vinculará a una Épica (EP) y posteriormente a uno o varios Sprints (SPR).
+- Cuando una idea se aprueba para desarrollo, se vincula a una Épica (EP) y
+  posteriormente a uno o varios Sprints (SPR).
 - Las funcionalidades completadas permanecerán en este documento como histórico.
 - Ninguna entrada se elimina; únicamente cambia de estado.
 
@@ -102,12 +115,11 @@ Observaciones:
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión — IDE-0001…0018 en Studio/Core; IDE-0002 y
-IDE-0005 marcados 🟢 (comparador completo + export multi-formato).
+**Estado actual:** 🟡 En revisión — IDE-0001…0018 en Studio/Core; primeras
+EP (001…003) creadas para Fase 3; IDE-0006 → 🔵 P1.
 
 Pendiente de:
 
-- incorporar las primeras Épicas (EP);
-- enlazar el Roadmap con el Backlog;
-- definir el flujo completo Idea → Épica → Sprint → Implementación → Liberación;
-- Fase 3 (API / automatización) como siguiente bloque de producto.
+- abrir el primer SPR bajo EP-001;
+- completar el flujo Idea → Épica → Sprint → Implementación → Liberación;
+- estimar esfuerzo por épica.

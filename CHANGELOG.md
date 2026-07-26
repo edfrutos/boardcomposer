@@ -287,6 +287,8 @@
 
 ### Cambiado
 
+- Fase 3 descompuesta en EP-001…003 (API, batch, integraciones);
+  DOC-003/004, INDEX y ROADMAP enlazados; IDE-0006 → 🔵 P1.
 - Preview import CSV: filas con error usan `invalid_fill` del tema canvas
   (Industrial madera light/dark) en vez de un rosa fijo.
 - `polish_dialog_button_box` también en import/preview, mapeo, plantillas y

@@ -3,10 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.2.0  
+**Versión:** 1.3.0  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 25/07/2026
+**Última revisión:** 26/07/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
@@ -97,13 +97,16 @@ Deuda / evolución dentro de Fase 2 (no bloquea uso diario):
 
 # Fase 3 — Plataforma
 
-**Estado:** ⚪ Planificada — **siguiente bloque de producto**
+**Estado:** 🔵 Planificada — **siguiente bloque de producto**  
+**Última descomposición:** 26/07/2026 → `docs/masterplan/epics/`
 
-Incluye:
+| Épica | Título | Prioridad | Dependencias |
+|-------|--------|-----------|--------------|
+| [EP-001](epics/EP-001-API-Publica-Contratos.md) | API pública y contratos `v1` | P1 | Core / DOC-008 |
+| [EP-002](epics/EP-002-Automatizacion-Batch.md) | Automatización y batch | P1 | EP-001 (ideal) |
+| [EP-003](epics/EP-003-Integraciones-Remotas.md) | Integraciones / remoto | P2 | EP-001, EP-002 |
 
-- API pública y contratos versionados.
-- Automatización e integraciones.
-- Exportadores / servicios remotos avanzados.
+Orden de ataque: EP-001 → EP-002 → EP-003. Índice: [epics/README.md](epics/README.md).
 
 ---
 
@@ -152,7 +155,7 @@ Objetivos:
 
 ### Prioridad P1 — Siguiente (producto)
 
-- Fase 3: API pública y automatización (alcance a descomponer en EP).
+- Fase 3 descompuesta: EP-001 (API `v1`) → EP-002 (batch) → EP-003 (remoto).
 - Pulido menor Fase 2 y UAT humano continuo.
 
 ### Prioridad P2
@@ -176,12 +179,11 @@ Toda modificación deberá:
 
 ## Estado
 
-**Estado actual:** 🟡 Fase 2 con núcleo operativo entregado; documento
-alineado con `ROADMAP.md` y DOC-004 (IDE-0001…0018).
+**Estado actual:** 🟡 Fase 2 con núcleo operativo entregado; Fase 3
+descompuesta en EP-001…003 (`docs/masterplan/epics/`).
 
 Pendiente de:
 
-- descomponer Fase 3 en épicas (EP);
-- vincular sprints;
-- incorporar estimaciones y dependencias;
+- vincular sprints (SPR) a EP-001;
+- incorporar estimaciones y dependencias finas por sprint;
 - aprobar como hoja de ruta oficial del proyecto.
