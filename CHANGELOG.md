@@ -15,9 +15,7 @@
 
 ### Añadido
 
-- Hooks post-job (EP-003 / SPR-002): carpeta drop + webhook JSON;
-  env `BOARDCOMPOSER_HOOK_DIR` / `WEBHOOK_URL` / `SECRET`; batch
-  `--hook-dir` / `--webhook-url` / `--no-hooks`.
+- Diff estructural `.bcproj` (FLW-006): `boardcomposer-diff` / `diff_bcproj` — meta, tableros, piezas, placements.
 - Adaptador HTTP opcional `boardcomposer-serve` (EP-003 / SPR-001):
   Flask sobre `api.v1` — `/health`, `/v1/run`, `/v1/openapi.json`;
   auth por `BOARDCOMPOSER_API_KEY`.

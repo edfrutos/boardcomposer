@@ -11,6 +11,7 @@ dependencies = [
 boardcomposer = "boardcomposer.cli:main"
 boardcomposer-batch = "boardcomposer.batch_cli:main"
 boardcomposer-serve = "boardcomposer.http_cli:main"
+boardcomposer-diff = "boardcomposer.diff_cli:main"
 
 [project.optional-dependencies]
 dev = [
