@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from boardcomposer.batch import BatchProfile, run_batch
+from boardcomposer.integration.hooks import HookConfig, load_hook_config
 from boardcomposer.io.export_templates import default_export_templates_path
 
 
@@ -79,6 +80,19 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="List planned jobs and write manifest only (no solve/export)",
     )
+    parser.add_argument(
+        "--hook-dir",
+        help="Post-job drop folder (overrides BOARDCOMPOSER_HOOK_DIR)",
+    )
+    parser.add_argument(
+        "--webhook-url",
+        help="Post-job webhook URL (overrides BOARDCOMPOSER_WEBHOOK_URL)",
+    )
+    parser.add_argument(
+        "--no-hooks",
+        action="store_true",
+        help="Disable folder/webhook hooks for this run",
+    )
     return parser
 
 
@@ -139,12 +153,21 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Profile error: {exc}", file=sys.stderr)
         return 2
 
+    if args.no_hooks:
+        hooks = HookConfig()
+    else:
+        hooks = load_hook_config(
+            hook_dir=args.hook_dir,
+            webhook_url=args.webhook_url,
+        )
+
     report = run_batch(
         input_path=args.input,
         list_path=args.list_path,
         output_dir=args.output,
         profile=profile,
         dry_run=args.dry_run,
+        hooks=hooks,
     )
     manifest = Path(args.output) / "manifest.json"
     if args.dry_run:

@@ -9,6 +9,13 @@ from pathlib import Path
 
 from boardcomposer.api import v1
 from boardcomposer.export import solution_to_dxf, solution_to_pdf
+from boardcomposer.integration.hooks import (
+    HookConfig,
+    JobHookPayload,
+    dispatch_job_hooks,
+    list_export_files,
+    load_hook_config,
+)
 from boardcomposer.io.export_templates import find_export_template
 
 _INPUT_SUFFIXES = {".csv", ".bcproj"}
@@ -106,6 +113,7 @@ class BatchJobResult:
     output_dir: str | None = None
     solutions: int = 0
     error: str | None = None
+    hooks: dict | None = None
 
 
 @dataclass
@@ -285,6 +293,30 @@ def _write_exports(
             (output_dir / "solution.pdf").write_bytes(solution_to_pdf(best, project))
 
 
+def _dispatch_batch_hooks(
+    job: BatchJobResult,
+    *,
+    profile: BatchProfile,
+    hooks: HookConfig | None,
+) -> None:
+    if hooks is None or not hooks.enabled:
+        return
+    if job.status not in {"ok", "error"}:
+        return
+    payload = JobHookPayload(
+        source=job.source,
+        status=job.status,
+        channel="batch",
+        strategy=profile.strategy,
+        formats=list(profile.formats),
+        solutions=job.solutions,
+        output_dir=job.output_dir,
+        export_files=list_export_files(job.output_dir),
+        error=job.error,
+    )
+    job.hooks = dispatch_job_hooks(payload, config=hooks).to_dict()
+
+
 def run_batch(
     *,
     input_path: str | Path | None = None,
@@ -292,13 +324,18 @@ def run_batch(
     output_dir: str | Path,
     profile: BatchProfile | None = None,
     dry_run: bool = False,
+    hooks: HookConfig | None = None,
 ) -> BatchReport:
     """Solve every discovered project and write exports under ``output_dir``.
 
     With ``dry_run=True``, only lists inputs and writes a planned
     ``manifest.json`` (no solve / no exports).
+
+    When ``hooks`` is omitted, env-based ``load_hook_config()`` is used.
+    Pass ``HookConfig()`` (empty) to disable hooks for a call.
     """
     profile = profile or BatchProfile()
+    hook_config = load_hook_config() if hooks is None else hooks
     out_root = Path(output_dir)
     out_root.mkdir(parents=True, exist_ok=True)
 
@@ -358,23 +395,21 @@ def run_batch(
                 solutions=solutions,
                 profile=profile,
             )
-            report.jobs.append(
-                BatchJobResult(
-                    source=str(source),
-                    status="ok",
-                    output_dir=str(job_out),
-                    solutions=len(solutions),
-                )
+            job = BatchJobResult(
+                source=str(source),
+                status="ok",
+                output_dir=str(job_out),
+                solutions=len(solutions),
             )
+            _dispatch_batch_hooks(job, profile=profile, hooks=hook_config)
+            report.jobs.append(job)
             report.ok += 1
         except Exception as exc:  # noqa: BLE001 — batch must continue
-            report.jobs.append(
-                BatchJobResult(
-                    source=str(source),
-                    status="error",
-                    output_dir=str(job_out),
-                    error=f"{exc}\n{traceback.format_exc()}",
-                )
+            job = BatchJobResult(
+                source=str(source),
+                status="error",
+                output_dir=str(job_out),
+                error=f"{exc}\n{traceback.format_exc()}",
             )
             report.error += 1
             job_out.mkdir(parents=True, exist_ok=True)
@@ -382,6 +417,8 @@ def run_batch(
                 f"{exc}\n\n{traceback.format_exc()}",
                 encoding="utf-8",
             )
+            _dispatch_batch_hooks(job, profile=profile, hooks=hook_config)
+            report.jobs.append(job)
 
     _write_manifest(out_root, report)
     return report

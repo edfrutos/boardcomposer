@@ -49,7 +49,7 @@ Core a un vendor concreto.
 | ID | Título | Estado | Notas |
 |----|--------|--------|-------|
 | SPR-001 | Adaptador HTTP Flask + OpenAPI + API key | 🟢 | `boardcomposer.api.http` / `boardcomposer-serve`; `GET /health`, `POST /v1/run`, `GET /v1/openapi.json`; env `BOARDCOMPOSER_API_KEY` |
-| SPR-002 | Hooks post-job (webhook / carpeta) | 🔵 | pendiente piloto |
+| SPR-002 | Hooks post-job (webhook / carpeta) | 🟢 | `boardcomposer.integration.hooks`; env `BOARDCOMPOSER_HOOK_DIR` / `WEBHOOK_URL` / `SECRET`; batch `--hook-dir` |
 | SPR-003 | Contenedor de referencia + amenazas | 🔵 | opcional |
 
 ---
@@ -88,8 +88,23 @@ Límite upload: `BOARDCOMPOSER_MAX_UPLOAD_BYTES` (default 5 MiB).
 
 ---
 
+### Hooks post-job (SPR-002)
+
+Tras cada job ok/error (batch o HTTP):
+
+- Carpeta: `BOARDCOMPOSER_HOOK_DIR` → `job.json` + copia de exports.
+- Webhook: `BOARDCOMPOSER_WEBHOOK_URL` POST JSON; opcional
+  `BOARDCOMPOSER_WEBHOOK_SECRET` → header `X-BoardComposer-Secret`.
+- Timeout: `BOARDCOMPOSER_WEBHOOK_TIMEOUT` (default 5s).
+- Fallo del hook **no** tumba el job.
+
+```bash
+boardcomposer-batch -i data/samples/batch_inbox -o out/batch \
+  --hook-dir out/hooks --no-hooks   # --no-hooks desactiva
+```
+
 ## Notas de diseño
 
 Capa fina sobre `boardcomposer.api.v1` — sin lógica de packing en Flask.
-Si no hay piloto externo concreto, SPR-002/003 permanecen 🔵.
+SPR-003 (contenedor) permanece 🔵 hasta demanda de despliegue.
 No inventar cloud por inercia.

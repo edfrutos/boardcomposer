@@ -10,6 +10,7 @@ from flask import Flask, Response, jsonify, request
 
 from boardcomposer.api import v1
 from boardcomposer.api.http.auth import ENV_API_KEY, configured_api_key, require_api_key
+from boardcomposer.integration.hooks import JobHookPayload, dispatch_job_hooks
 
 ENV_MAX_UPLOAD = "BOARDCOMPOSER_MAX_UPLOAD_BYTES"
 _DEFAULT_MAX_UPLOAD = 5 * 1024 * 1024
@@ -107,22 +108,67 @@ def create_app() -> Flask:
                     strategy_name=strategy,
                     solution_index=0,
                 )
+                _fire_http_hooks(
+                    source=upload.filename,
+                    status="ok",
+                    strategy=strategy,
+                    fmt=fmt,
+                    solutions=len(solutions),
+                )
                 return Response(body, mimetype="application/json")
             if fmt == "csv":
+                body = v1.export_csv(best)
+                _fire_http_hooks(
+                    source=upload.filename,
+                    status="ok",
+                    strategy=strategy,
+                    fmt=fmt,
+                    solutions=len(solutions),
+                )
                 return Response(
-                    v1.export_csv(best),
+                    body,
                     mimetype="text/csv",
                     headers={
                         "Content-Disposition": "attachment; filename=placements.csv"
                     },
                 )
+            body = v1.export_svg(best, project)
+            _fire_http_hooks(
+                source=upload.filename,
+                status="ok",
+                strategy=strategy,
+                fmt=fmt,
+                solutions=len(solutions),
+            )
             return Response(
-                v1.export_svg(best, project),
+                body,
                 mimetype="image/svg+xml",
                 headers={"Content-Disposition": "attachment; filename=solution.svg"},
             )
 
     return app
+
+
+def _fire_http_hooks(
+    *,
+    source: str,
+    status: str,
+    strategy: str,
+    fmt: str,
+    solutions: int,
+    error: str | None = None,
+) -> None:
+    dispatch_job_hooks(
+        JobHookPayload(
+            source=source,
+            status=status,
+            channel="http",
+            strategy=strategy,
+            formats=[fmt],
+            solutions=solutions,
+            error=error,
+        )
+    )
 
 
 def _openapi_document() -> dict:
