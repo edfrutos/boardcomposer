@@ -1,0 +1,4 @@
+# Explicit batch job list (EP-002 SPR-003)
+# Paths relative to this file's directory.
+batch_inbox/basic_boards.csv
+multipanel_demo.bcproj

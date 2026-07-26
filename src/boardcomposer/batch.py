@@ -43,7 +43,7 @@ class BatchProfile:
 @dataclass
 class BatchJobResult:
     source: str
-    status: str  # ok | error | skipped
+    status: str  # ok | error | skipped | planned
     output_dir: str | None = None
     solutions: int = 0
     error: str | None = None
@@ -54,6 +54,8 @@ class BatchReport:
     ok: int = 0
     error: int = 0
     skipped: int = 0
+    planned: int = 0
+    dry_run: bool = False
     jobs: list[BatchJobResult] = field(default_factory=list)
 
     @property
@@ -61,7 +63,15 @@ class BatchReport:
         return len(self.jobs)
 
     def exit_code(self) -> int:
-        """0 = all ok; 1 = mixed; 2 = none ok (and at least one error)."""
+        """0 = all ok (or dry-run with plans); 1 = mixed; 2 = none ok."""
+        if self.dry_run:
+            if self.planned > 0 and self.error == 0:
+                return 0
+            if self.error > 0 and self.planned == 0:
+                return 2
+            if self.error > 0:
+                return 1
+            return 2
         if self.error == 0 and self.skipped == 0:
             return 0
         if self.ok == 0 and self.error > 0:
@@ -75,6 +85,8 @@ class BatchReport:
             "ok": self.ok,
             "error": self.error,
             "skipped": self.skipped,
+            "planned": self.planned,
+            "dry_run": self.dry_run,
             "total": self.total,
             "jobs": [asdict(job) for job in self.jobs],
         }
@@ -95,6 +107,64 @@ def discover_inputs(input_path: str | Path) -> list[Path]:
         for candidate in sorted(path.iterdir())
         if candidate.is_file() and candidate.suffix.lower() in _INPUT_SUFFIXES
     ]
+    return found
+
+
+def load_path_list(list_path: str | Path) -> list[Path]:
+    """Load explicit project paths from a text file (one path per line).
+
+    Blank lines and ``#`` comments are ignored. Relative paths resolve against
+    the list file's parent directory.
+    """
+    path = Path(list_path)
+    if not path.is_file():
+        raise FileNotFoundError(f"Path list not found: {path}")
+
+    base = path.parent
+    found: list[Path] = []
+    seen: set[Path] = set()
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        candidate = Path(line)
+        if not candidate.is_absolute():
+            candidate = (base / candidate).resolve()
+        else:
+            candidate = candidate.resolve()
+        if candidate.suffix.lower() not in _INPUT_SUFFIXES:
+            raise ValueError(f"Unsupported input type in list: {candidate}")
+        if not candidate.is_file():
+            raise FileNotFoundError(f"Listed input not found: {candidate}")
+        if candidate not in seen:
+            seen.add(candidate)
+            found.append(candidate)
+    return found
+
+
+def resolve_inputs(
+    *,
+    input_path: str | Path | None = None,
+    list_path: str | Path | None = None,
+) -> list[Path]:
+    """Union of directory/file discovery and an optional explicit path list."""
+    if input_path is None and list_path is None:
+        raise ValueError("Provide --input and/or --list")
+
+    found: list[Path] = []
+    seen: set[Path] = set()
+    if input_path is not None:
+        for path in discover_inputs(input_path):
+            resolved = path.resolve()
+            if resolved not in seen:
+                seen.add(resolved)
+                found.append(resolved)
+    if list_path is not None:
+        for path in load_path_list(list_path):
+            resolved = path.resolve()
+            if resolved not in seen:
+                seen.add(resolved)
+                found.append(resolved)
     return found
 
 
@@ -143,21 +213,31 @@ def _write_exports(
 
 def run_batch(
     *,
-    input_path: str | Path,
+    input_path: str | Path | None = None,
+    list_path: str | Path | None = None,
     output_dir: str | Path,
     profile: BatchProfile | None = None,
+    dry_run: bool = False,
 ) -> BatchReport:
-    """Solve every discovered project and write exports under ``output_dir``."""
+    """Solve every discovered project and write exports under ``output_dir``.
+
+    With ``dry_run=True``, only lists inputs and writes a planned
+    ``manifest.json`` (no solve / no exports).
+    """
     profile = profile or BatchProfile()
     out_root = Path(output_dir)
     out_root.mkdir(parents=True, exist_ok=True)
 
-    report = BatchReport()
+    report = BatchReport(dry_run=dry_run)
     try:
-        inputs = discover_inputs(input_path)
+        inputs = resolve_inputs(input_path=input_path, list_path=list_path)
     except (OSError, ValueError) as exc:
         report.jobs.append(
-            BatchJobResult(source=str(input_path), status="error", error=str(exc))
+            BatchJobResult(
+                source=str(input_path or list_path),
+                status="error",
+                error=str(exc),
+            )
         )
         report.error = 1
         _write_manifest(out_root, report)
@@ -166,12 +246,26 @@ def run_batch(
     if not inputs:
         report.jobs.append(
             BatchJobResult(
-                source=str(input_path),
+                source=str(input_path or list_path),
                 status="skipped",
                 error="No .csv or .bcproj files found",
             )
         )
         report.skipped = 1
+        _write_manifest(out_root, report)
+        return report
+
+    if dry_run:
+        for source in inputs:
+            job_out = out_root / source.stem
+            report.jobs.append(
+                BatchJobResult(
+                    source=str(source),
+                    status="planned",
+                    output_dir=str(job_out),
+                )
+            )
+            report.planned += 1
         _write_manifest(out_root, report)
         return report
 

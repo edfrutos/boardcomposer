@@ -74,6 +74,8 @@ python -m studio.app
 # Batch sin Studio/Qt (EP-002)
 boardcomposer-batch -i data/samples/batch_inbox -o out/batch \
   -p data/samples/batch_profile.json
+# Lista explícita + dry-run:
+boardcomposer-batch -L data/samples/batch_jobs.list -o out/batch --dry-run
 # o: scripts/batch_samples.sh
 ```
 

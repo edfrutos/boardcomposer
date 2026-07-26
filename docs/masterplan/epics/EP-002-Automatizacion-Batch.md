@@ -50,7 +50,7 @@ estrategia/export y salidas en carpetas, aptos para CI o scripts de taller.
 |----|--------|--------|-------|
 | SPR-001 | CLI `boardcomposer-batch` + perfil JSON | 🟢 | `batch.py` / `batch_cli.py`; formats json/csv/svg; `manifest.json`; exit 0/1/2; `scripts/batch_samples.sh` |
 | SPR-002 | Perfiles nombrados / plantillas export Studio | 🔵 | opcional: leer templates headless |
-| SPR-003 | Lista explícita de paths + dry-run | 🔵 | manifiesto |
+| SPR-003 | Lista explícita de paths + dry-run | 🟢 | `--list` / `-L` + `--dry-run`; sample `data/samples/batch_jobs.list` |
 
 ---
 
@@ -85,6 +85,25 @@ python -m boardcomposer.batch_cli -i data/samples/batch_inbox -o out/batch \
 Salida por proyecto: `out/batch/<stem>/solution.json` (+ csv/svg).  
 Resumen: `out/batch/manifest.json`.  
 Exit: `0` todo ok, `1` mixto, `2` ningún ok (o perfil inválido).
+
+### Lista explícita + dry-run (SPR-003)
+
+```bash
+# Inventario sin solver
+boardcomposer-batch -L data/samples/batch_jobs.list -o out/batch --dry-run
+
+# Ejecutar solo los paths del listado
+boardcomposer-batch -L data/samples/batch_jobs.list -o out/batch \
+  -p data/samples/batch_profile.json
+
+# Combinar carpeta + lista (unión, sin duplicados)
+boardcomposer-batch -i data/samples/batch_inbox -L data/samples/batch_jobs.list \
+  -o out/batch --dry-run
+```
+
+El listado admite rutas relativas (respecto al `.list`), absolutas, líneas
+en blanco y comentarios `#…`. En dry-run el manifiesto marca jobs
+`planned` y no escribe exports.
 
 ---
 

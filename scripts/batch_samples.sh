@@ -6,7 +6,7 @@ OUT="${1:-$ROOT/out/batch-samples}"
 cd "$ROOT"
 mkdir -p "$OUT"
 python -m boardcomposer.batch_cli \
-  --input "$ROOT/data/samples/batch_inbox" \
+  --list "$ROOT/data/samples/batch_jobs.list" \
   --output "$OUT" \
   --profile "$ROOT/data/samples/batch_profile.json"
 echo "Wrote $OUT/manifest.json"
