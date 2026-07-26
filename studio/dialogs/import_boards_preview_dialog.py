@@ -14,6 +14,7 @@ from PySide6.QtWidgets import (
 )
 
 from studio.board_csv_importer import ImportBoardsResult
+from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.i18n import DEFAULT_LANGUAGE, tr
 
 _ERROR_BACKGROUND = QColor(255, 214, 214)
@@ -75,6 +76,7 @@ class ImportBoardsPreviewDialog(QDialog):
         self.buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
         )
+        polish_dialog_button_box(self.buttons)
         self.buttons.accepted.connect(self.accept)
         self.buttons.rejected.connect(self.reject)
         self.buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(

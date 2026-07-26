@@ -14,6 +14,7 @@ from PySide6.QtWidgets import (
 )
 
 from studio.branding import app_icon
+from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.keyboard_shortcuts import STUDIO_SHORTCUTS, format_shortcut_label
 from studio.whats_new import load_whats_new
@@ -40,6 +41,7 @@ class WhatsNewDialog(QDialog):
         layout.addWidget(body)
 
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
+        polish_dialog_button_box(buttons)
         buttons.accepted.connect(self.accept)
         layout.addWidget(buttons)
 
@@ -76,6 +78,7 @@ class AboutDialog(QDialog):
         layout.addWidget(blurb)
 
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
+        polish_dialog_button_box(buttons)
         buttons.accepted.connect(self.accept)
         layout.addWidget(buttons)
 
@@ -120,5 +123,6 @@ class ShortcutsDialog(QDialog):
         layout.addWidget(table)
 
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
+        polish_dialog_button_box(buttons)
         buttons.accepted.connect(self.accept)
         layout.addWidget(buttons)
