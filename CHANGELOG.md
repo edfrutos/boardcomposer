@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Tema «Sistema»: ya no fuerza la familia ficticia `Sans Serif` (warning
+  Qt/`qt.qpa.fonts` en macOS y CI offscreen); usa Source Sans 3 bundled.
 - Comparador: «Fijar como referencia» solo con >=2 candidatas; tips de
   Aplicar/Exportar/Re-Av Pág explican por qué están deshabilitados.
 - Acciones sin candidata útil quedan deshabilitadas: `Aplicar layout` y

@@ -18,7 +18,7 @@ _FONTS_DIR = Path(__file__).resolve().parent / "assets" / "fonts"
 # Families reported by QFontDatabase for the bundled static TTFs.
 _UI_FAMILY = "Source Sans 3"
 _UI_SEMIBOLD_FAMILY = "Source Sans 3 SemiBold"
-_BRAND_CANDIDATES = ("Archivo ExtraBold", "Archivo SemiBold", "Archivo")
+_BRAND_CANDIDATES = ("Archivo SemiBold", "Archivo")
 
 
 def _register_bundled_fonts() -> None:
@@ -434,7 +434,13 @@ def apply_theme(app: QApplication, theme: str) -> None:
     if name == "system":
         app.setStyleSheet("")
         app.setPalette(app.style().standardPalette())
-        app.setFont(QFont())
+        # QFont() resolves to the fictional "Sans Serif" family on many
+        # platforms (esp. offscreen CI) and spams qt.qpa.fonts warnings.
+        # Prefer the bundled UI face when registered; otherwise keep the
+        # platform default without forcing that alias.
+        families = set(QFontDatabase.families())
+        if _UI_FAMILY in families:
+            app.setFont(QFont(_UI_FAMILY, 13))
         return
 
     tokens = tokens_for(name)
