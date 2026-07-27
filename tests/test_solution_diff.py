@@ -107,7 +107,8 @@ def test_format_diff_unavailable_translates():
 
     lines = format_diff_unavailable("diff.need_two", "en")
     assert lines[0] == "Differences"
-    assert "At least two solutions" in lines[2]
+    assert "At least 2 solutions" in lines[2]
+    assert "Ctrl+Shift+D" in lines[2]
 
 
 def test_compare_solutions_identical_content_is_flagged():

@@ -35,7 +35,8 @@ def test_layout_ok_status_mentions_export(qapp, tmp_path):
     message = window.statusBar().currentMessage()
     assert "5 soluciones" in message
     assert "Ctrl+Shift+E" in message
-    assert "Ctrl+4" in message
+    assert "Re/Av Pág" in message
+    assert "Fijar referencia" in message
 
 
 def test_calculate_layout_first_mentions_export_path():
@@ -47,3 +48,10 @@ def test_calculate_layout_first_mentions_export_path():
     en = tr("status.calculate_layout_first", "en")
     assert "Ctrl+Return" in en
     assert "Ctrl+Shift+E" in en
+
+
+def test_pin_reference_button_has_tooltip(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    tip = window.pin_reference_button.toolTip()
+    assert "≥2" in tip or "2" in tip

@@ -4,6 +4,9 @@
 
 ### Corregido
 
+- Tips del Comparador con ≥2 candidatas: post-solve menciona Re/Av Pág y
+  «Fijar referencia»; con 1 sola, apunta al demo; tooltip del botón pin;
+  `diff.need_two` indica Ctrl+Shift+D.
 - Tras Calcular layout, el **Comparador** sale al frente (Ctrl+4) y el tip
   menciona **Exportar Ctrl+Shift+E**; sin layout, el tip de export/aplicar
   indica el camino Ctrl+Return → Exportar/Aplicar.
