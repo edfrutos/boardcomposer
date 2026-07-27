@@ -856,11 +856,38 @@ class MainWindow(QMainWindow):
         if not self._confirm_discard_unsaved_changes():
             return
 
+        raised_limit = self._ensure_demo_multi_solution_prefs()
         self._load_demo_project()
         self.services.layout.clear_solutions()
         self._show_workspace()
         self._emit(events.PROJECT_CREATED, kind="demo")
-        self._status("status.demo_created")
+        if raised_limit:
+            self._status(
+                "status.demo_created_max_solutions_raised",
+                n=self.services.preferences.current.max_solutions,
+            )
+        else:
+            self._status("status.demo_created")
+
+    def _ensure_demo_multi_solution_prefs(self) -> bool:
+        """Ensure demo can show the comparator (≥2 candidatas).
+
+        UAT often stalls with ``max_solutions=1``: Calcular layout keeps only
+        one candidate and PgUp/Comparador look broken. Demo raises the floor
+        back to the default when the preference is too low.
+        """
+        from studio.preferences import DEFAULT_MAX_SOLUTIONS
+
+        prefs = self.services.preferences.current
+        if prefs.max_solutions >= 2:
+            return False
+        try:
+            self.services.preferences.update(
+                dataclass_replace(prefs, max_solutions=DEFAULT_MAX_SOLUTIONS)
+            )
+        except OSError:
+            return False
+        return True
 
     def _new_from_template(self):
         if not self._confirm_discard_unsaved_changes():

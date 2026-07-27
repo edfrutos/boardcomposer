@@ -449,7 +449,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.new_empty": "Nuevo proyecto vacío creado",
         "status.new_project_created": "Proyecto «{name}» creado",
         "project.untitled": "Proyecto sin título",
-        "status.demo_created": "Proyecto demo creado",
+        "status.demo_created": "Proyecto demo creado — Ctrl+Return calcula varias candidatas",
+        "status.demo_created_max_solutions_raised": (
+            "Proyecto demo creado — Máx. soluciones era 1; restaurado a {n} "
+            "para el Comparador (Ctrl+Return)"
+        ),
         "status.template_saved": "Plantilla «{name}» guardada",
         "status.template_loaded": "Proyecto creado desde «{name}»",
         "status.template_empty": "No hay plantillas de proyecto guardadas",
@@ -1177,7 +1181,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.new_empty": "Empty project created",
         "status.new_project_created": "Project “{name}” created",
         "project.untitled": "Untitled project",
-        "status.demo_created": "Demo project created",
+        "status.demo_created": "Demo project created — Ctrl+Return computes several candidates",
+        "status.demo_created_max_solutions_raised": (
+            "Demo project created — Max solutions was 1; restored to {n} "
+            "for the Comparator (Ctrl+Return)"
+        ),
         "status.template_saved": "Template “{name}” saved",
         "status.template_loaded": "Project created from “{name}”",
         "status.template_empty": "No project templates saved yet",

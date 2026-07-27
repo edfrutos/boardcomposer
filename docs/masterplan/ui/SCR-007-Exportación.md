@@ -46,11 +46,11 @@ Defaults de formato y flags: SCR-006 → `preferences.json`.
 ┌────────────────────────────────────────────────────────────────────┐
 │ Exportar solución seleccionada                                     │
 ├────────────────────┬───────────────────────────────────────────────┤
-│ Formato            │ SVG │ DXF │ PDF │ JSON │ CSV                  │
+│ Formato            │ SVG │ PNG │ JPEG │ DXF │ PDF │ JSON │ CSV     │
 │ Opciones           │ ☐ Métricas  ☐ Explicación  ☐ Retales          │
 │ Plantillas         │ cliente · guardar/aplicar/borrar · pack JSON  │
 ├────────────────────┴───────────────────────────────────────────────┤
-│ Vista previa (SVG rasterizado + texto/resumen según formato)       │
+│ Vista previa (SVG/raster + texto/resumen según formato)            │
 ├────────────────────────────────────────────────────────────────────┤
 │                         [Cancelar]  [Exportar…]                    │
 └────────────────────────────────────────────────────────────────────┘
