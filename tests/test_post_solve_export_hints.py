@@ -1,7 +1,5 @@
 """After solve, Comparador comes forward and status points to export."""
 
-from boardcomposer.domain import AssemblySolution, BoardPlacement
-
 from studio.main_window import MainWindow
 from studio.preferences import PreferencesManager, StudioPreferences
 from studio.services import StudioServices
