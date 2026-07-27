@@ -40,7 +40,8 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] Clic en **tablero** → centra cámara y resalta en Workspace.
 - [x] Menú contextual pieza: editar / duplicar / eliminar / copiar ID / renombrar.
 - [x] Menú contextual tablero: editar / duplicar / eliminar / copiar ID / renombrar.
-- [ ] Doble clic en **solución** del Explorador → vista previa.
+- [x] Clic / doble clic / Enter en **solución** del Explorador → vista previa
+  (tip de estado con índice).
 
 ---
 

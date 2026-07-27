@@ -2593,6 +2593,36 @@ class MainWindow(QMainWindow):
     def _step_layout_solution(self, delta: int) -> None:
         """Move selection along the comparator display order (SCR-003)."""
         display = self._ensure_solution_display_indexes()
+        if not display:
+            if self.services.layout.solutions:
+                self._status("status.no_solutions_match_filter")
+            else:
+                self._status("status.no_solutions")
+            return
+
+        if len(display) == 1:
+            only = display[0]
+            if self.services.layout.selected_solution_index != only:
+                solution = self.services.layout.select_solution(only)
+                if solution is not None:
+                    self.workspace.preview_solution(solution)
+                    self._show_layout_solution(solution)
+                    self._refresh_explorer_solution_markers()
+                    self._reload_solution_table()
+            accepted = int(self.services.layout.stats.accepted)
+            cached = len(self.services.layout.solutions)
+            if accepted > cached:
+                limit = int(self.services.preferences.current.max_solutions)
+                self._status(
+                    "status.only_one_visible_truncated",
+                    5000,
+                    accepted=accepted,
+                    limit=limit,
+                )
+            else:
+                self._status("status.only_one_visible_solution", 5000)
+            return
+
         next_index = step_display_index(
             display,
             self.services.layout.selected_solution_index,

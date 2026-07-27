@@ -543,6 +543,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.calculate_layout_first": "Primero calcula un layout",
         "status.solution_applied": "Solución {current}/{total} aplicada al proyecto",
         "status.no_solutions": "No hay soluciones calculadas",
+        "status.no_solutions_match_filter": (
+            "Ninguna candidata coincide con el filtro del Comparador "
+            "(quita «solo completas» o cambia el orden)"
+        ),
+        "status.only_one_visible_solution": (
+            "Solo hay 1 candidata visible — Re Pág / Av Pág no tienen otra a la que ir"
+        ),
+        "status.only_one_visible_truncated": (
+            "Solo 1 visible de {accepted} aceptadas (límite Preferencias: {limit}). "
+            "Sube «Máx. soluciones» para recorrer más con Re/Av Pág"
+        ),
         "status.previewing_solution": "Previsualizando solución {current}/{total}. Pulsa 'Aplicar layout calculado' para conservarla.",
         "status.export_failed": "No se pudo exportar {format}: {error}",
         "status.exported": "{format} exportado: {path}",
@@ -1276,6 +1287,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.calculate_layout_first": "Calculate a layout first",
         "status.solution_applied": "Solution {current}/{total} applied to the project",
         "status.no_solutions": "No calculated solutions",
+        "status.no_solutions_match_filter": (
+            "No candidates match the Comparator filter "
+            "(clear “complete only” or change the sort)"
+        ),
+        "status.only_one_visible_solution": (
+            "Only 1 visible candidate — Page Up / Page Down have nowhere else to go"
+        ),
+        "status.only_one_visible_truncated": (
+            "Only 1 visible of {accepted} accepted (Preferences limit: {limit}). "
+            "Raise “Max solutions” to browse more with Page Up/Down"
+        ),
         "status.previewing_solution": "Previewing solution {current}/{total}. Press 'Apply calculated layout' to keep it.",
         "status.export_failed": "Could not export {format}: {error}",
         "status.exported": "{format} exported: {path}",

@@ -4,6 +4,9 @@
 
 ### Corregido
 
+- **Re Pág / Av Pág** con una sola candidata visible: tip claro («solo hay 1…
+  no tienen otra») en vez de «No hay soluciones calculadas»; si el filtro del
+  Comparador deja la lista vacía, lo dice.
 - Tras Calcular layout con **1 sola** candidata aceptada, el status lo dice
   claro («única candidata… no hay más distintas») con generadas/únicas —
   no se confunde con el límite de Preferencias.
