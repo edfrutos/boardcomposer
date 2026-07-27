@@ -183,7 +183,8 @@ candidatas válidas.
 
 ## Límites conocidos
 
-- Diff estructural Core/CLI entre dos `.bcproj` (`boardcomposer-diff` / `diff_bcproj`); sin historial persistente ni UI de revisiones aún.
+- Diff estructural Core/CLI + UI Studio (`boardcomposer-diff` / diálogo
+  **Comparar revisiones .bcproj…**); sin historial persistente de revisiones aún.
 - Sin edición colaborativa ni bloqueo de recursos.
 - Sin evento bus `PieceMoved` / `ProjectValidated` / `ProjectHistoryUpdated`.
 - Historial = Timeline de eventos + pila undo de sesión, no auditoría

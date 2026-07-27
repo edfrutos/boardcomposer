@@ -72,10 +72,29 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.save_as": "Guardar como…",
         "action.rename_project": "Renombrar proyecto…",
         "action.reveal_project_folder": "Abrir carpeta del proyecto",
+        "action.diff_bcproj": "Comparar revisiones .bcproj…",
         "action.add_board": "Añadir tablero…",
         "action.add_piece": "Añadir pieza…",
         "action.import_boards_csv": "Importar inventario de tableros (CSV/Excel)…",
         "action.import_pieces_csv": "Importar piezas (CSV/Excel)…",
+        "diff_bcproj.title": "Comparar revisiones .bcproj",
+        "diff_bcproj.intro": (
+            "Diff estructural (meta, tableros, piezas, colocaciones). "
+            "No es un historial persistente: elige dos archivos o el "
+            "proyecto abierto frente a otro .bcproj."
+        ),
+        "diff_bcproj.left": "Izquierda (antes)",
+        "diff_bcproj.right": "Derecha (después)",
+        "diff_bcproj.browse": "Examinar…",
+        "diff_bcproj.use_current": "Usar proyecto abierto como izquierda",
+        "diff_bcproj.current_project": "(proyecto abierto)",
+        "diff_bcproj.compare": "Comparar",
+        "diff_bcproj.placeholder": "El resultado del diff aparecerá aquí.",
+        "diff_bcproj.open_title": "Abrir .bcproj",
+        "diff_bcproj.file_filter": "Proyectos BoardComposer (*.bcproj);;Todos (*.*)",
+        "diff_bcproj.need_left": "Elige el .bcproj de la izquierda.",
+        "diff_bcproj.need_right": "Elige el .bcproj de la derecha.",
+        "diff_bcproj.error_title": "No se pudo comparar",
         "action.export_selected": "Exportar solución seleccionada…",
         "action.export_timeline": "Exportar historial del Timeline…",
         "action.exit": "Salir",
@@ -123,6 +142,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.save_as": "Guardar el proyecto con otro nombre o ruta (Ctrl+Shift+S)",
         "tip.rename_project": "Cambiar el nombre del proyecto (Ctrl+Shift+F2)",
         "tip.reveal_project_folder": "Abrir la carpeta del archivo .bcproj (Ctrl+Shift+R)",
+        "tip.diff_bcproj": (
+            "Comparar dos revisiones .bcproj o el proyecto abierto vs un archivo "
+            "(Ctrl+Shift+Y)"
+        ),
         "tip.add_board": "Añadir un tablero al inventario (Ctrl+Shift+B)",
         "tip.add_piece": "Añadir una pieza al proyecto (Ctrl+Shift+P)",
         "tip.import_boards_csv": "Importar inventario de tableros desde CSV o Excel (Ctrl+Shift+T)",
@@ -737,10 +760,29 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.save_as": "Save as…",
         "action.rename_project": "Rename project…",
         "action.reveal_project_folder": "Open project folder",
+        "action.diff_bcproj": "Compare .bcproj revisions…",
         "action.add_board": "Add board…",
         "action.add_piece": "Add piece…",
         "action.import_boards_csv": "Import board inventory (CSV/Excel)…",
         "action.import_pieces_csv": "Import pieces (CSV/Excel)…",
+        "diff_bcproj.title": "Compare .bcproj revisions",
+        "diff_bcproj.intro": (
+            "Structural diff (meta, boards, pieces, placements). "
+            "Not a persistent history: pick two files or the open "
+            "project against another .bcproj."
+        ),
+        "diff_bcproj.left": "Left (before)",
+        "diff_bcproj.right": "Right (after)",
+        "diff_bcproj.browse": "Browse…",
+        "diff_bcproj.use_current": "Use open project as left",
+        "diff_bcproj.current_project": "(open project)",
+        "diff_bcproj.compare": "Compare",
+        "diff_bcproj.placeholder": "Diff output will appear here.",
+        "diff_bcproj.open_title": "Open .bcproj",
+        "diff_bcproj.file_filter": "BoardComposer projects (*.bcproj);;All (*.*)",
+        "diff_bcproj.need_left": "Choose the left .bcproj.",
+        "diff_bcproj.need_right": "Choose the right .bcproj.",
+        "diff_bcproj.error_title": "Could not compare",
         "action.export_selected": "Export selected solution…",
         "action.export_timeline": "Export Timeline history…",
         "action.exit": "Quit",
@@ -787,6 +829,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.save_as": "Save the project under another name or path (Ctrl+Shift+S)",
         "tip.rename_project": "Rename the current project (Ctrl+Shift+F2)",
         "tip.reveal_project_folder": "Open the folder that contains the .bcproj file (Ctrl+Shift+R)",
+        "tip.diff_bcproj": (
+            "Compare two .bcproj revisions or the open project vs a file (Ctrl+Shift+Y)"
+        ),
         "tip.add_board": "Add a board to the inventory (Ctrl+Shift+B)",
         "tip.add_piece": "Add a piece to the project (Ctrl+Shift+P)",
         "tip.import_boards_csv": "Import board inventory from CSV or Excel (Ctrl+Shift+T)",
@@ -1343,6 +1388,7 @@ _ACTION_KEYS = (
     "save_as",
     "rename_project",
     "reveal_project_folder",
+    "diff_bcproj",
     "add_board",
     "add_piece",
     "import_boards_csv",

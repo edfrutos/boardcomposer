@@ -22,6 +22,8 @@
 
 ### Añadido
 
+- Studio: **Proyecto → Comparar revisiones .bcproj…** (`Ctrl+Shift+Y`) —
+  UI sobre `diff_bcproj` (proyecto abierto vs archivo, o dos archivos).
 - Contenedor HTTP de referencia (EP-003 / SPR-003): `Dockerfile`,
   `docker-compose.yml`, `scripts/serve_docker.sh`; amenazas en DOC-010.
 - Diff estructural `.bcproj` (FLW-006): `boardcomposer-diff` / `diff_bcproj` — meta, tableros, piezas, placements.

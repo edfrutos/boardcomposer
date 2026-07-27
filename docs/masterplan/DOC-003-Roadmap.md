@@ -97,7 +97,7 @@ Deuda / evolución dentro de Fase 2 (no bloquea uso diario):
 
 # Fase 3 — Plataforma
 
-**Estado:** 🔵 Planificada — **siguiente bloque de producto**  
+**Estado:** 🟢 Entregada (EP-001…003)  
 **Última descomposición:** 26/07/2026 → `docs/masterplan/epics/`
 
 | Épica | Título | Prioridad | Dependencias |
@@ -155,8 +155,9 @@ Objetivos:
 
 ### Prioridad P1 — Siguiente (producto)
 
-- Fase 3 descompuesta: EP-001 (API `v1`) → EP-002 (batch) → EP-003 (remoto).
 - Pulido menor Fase 2 y UAT humano continuo.
+- Diff `.bcproj` en Studio (sobre Core CLI); historial persistente / revisiones = deuda.
+- Fase 4 IA bajo demanda.
 
 ### Prioridad P2
 
@@ -179,8 +180,8 @@ Toda modificación deberá:
 
 ## Estado
 
-**Estado actual:** 🟡 Fase 2 con núcleo operativo entregado; Fase 3
-descompuesta en EP-001…003 (`docs/masterplan/epics/`).
+**Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; pulido Studio / UAT
+humano y Fase 4 IA bajo demanda.
 
 Pendiente de:
 
