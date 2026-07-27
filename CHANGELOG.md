@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Acciones sin candidata útil quedan deshabilitadas: `Aplicar layout` y
+  `Exportar` solo con >=1 solución; `Re/Av Pág` solo con >=2.
 - Exportar historial del **Timeline**: tras guardar, mismo diálogo
   «Abrir archivo» / «Mostrar en carpeta» que al exportar una solución.
 - Tips del Comparador con ≥2 candidatas: post-solve menciona Re/Av Pág y
