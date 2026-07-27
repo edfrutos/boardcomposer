@@ -4,6 +4,9 @@
 
 ### Corregido
 
+- Export Timeline deshabilitado sin eventos (menú + botón del dock); tip
+  explica el vacío. Arranque: `bootstrap_ui_font` evita warning `Sans Serif`
+  antes de construir widgets.
 - Tema «Sistema»: ya no fuerza la familia ficticia `Sans Serif` (warning
   Qt/`qt.qpa.fonts` en macOS y CI offscreen); usa Source Sans 3 bundled.
 - Comparador: «Fijar como referencia» solo con >=2 candidatas; tips de

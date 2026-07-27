@@ -418,6 +418,19 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
     """
 
 
+def bootstrap_ui_font(app: QApplication) -> None:
+    """Register bundled fonts and set UI face before widgets are built.
+
+    Calling this right after ``QApplication(...)`` avoids the transient
+    ``Sans Serif`` alias warning that Qt emits while the default font is still
+    the fictional family name.
+    """
+    _register_bundled_fonts()
+    families = set(QFontDatabase.families())
+    if _UI_FAMILY in families:
+        app.setFont(QFont(_UI_FAMILY, 13))
+
+
 def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 

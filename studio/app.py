@@ -11,7 +11,7 @@ from PySide6.QtWidgets import QApplication
 from studio.branding import app_icon
 from studio.main_window import MainWindow
 from studio.services import StudioServices
-from studio.theme import apply_theme
+from studio.theme import apply_theme, bootstrap_ui_font
 
 
 def _install_sigint_handler(app: QApplication) -> QTimer:
@@ -33,6 +33,7 @@ def _install_sigint_handler(app: QApplication) -> QTimer:
 def main() -> int:
     """Run BoardComposer Studio."""
     app = QApplication(sys.argv)
+    bootstrap_ui_font(app)
     app.setApplicationName("BoardComposer Studio")
     app.setOrganizationName("EDF Developer")
     _install_sigint_handler(app)

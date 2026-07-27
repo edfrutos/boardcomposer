@@ -134,7 +134,9 @@ class TimelinePanel(QWidget):
         self.retranslate(language)
         self._rebuild()
         self._update_replay_controls()
+        self._sync_export_enabled()
         self._store.add_listener(self._on_entry)
+        self._store.add_changed_listener(self._sync_export_enabled)
 
     def retranslate(self, language: str) -> None:
         self._language = language
@@ -145,6 +147,7 @@ class TimelinePanel(QWidget):
         self._clear.setText(tr("timeline.clear", language))
         self._mark.setText(tr("timeline.mark", language))
         self._export.setText(tr("timeline.export", language))
+        self._sync_export_enabled()
         self._replay_reset.setText(tr("timeline.replay_reset", language))
         self._replay_back.setText(tr("timeline.replay_back", language))
         self._replay_forward.setText(tr("timeline.replay_forward", language))
@@ -274,6 +277,16 @@ class TimelinePanel(QWidget):
 
     def _on_export_clicked(self) -> None:
         self.export_requested.emit()
+
+    def _sync_export_enabled(self) -> None:
+        has_events = bool(self._store.entries)
+        self._export.setEnabled(has_events)
+        tip = tr(
+            "tip.export_timeline" if has_events else "status.timeline_export_empty",
+            self._language,
+        )
+        self._export.setToolTip(tip)
+        self._export.setStatusTip(tip)
 
     def _on_mark_clicked(self) -> None:
         note, ok = QInputDialog.getText(
