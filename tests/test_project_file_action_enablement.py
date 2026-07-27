@@ -39,3 +39,25 @@ def test_project_file_actions_enabled_with_project(qapp, tmp_path):
     assert "Ctrl+S" in window._actions["save"].statusTip() or "⌘S" in (
         window._actions["save"].statusTip()
     )
+    assert not window._actions["reveal_project_folder"].isEnabled()
+    assert (
+        "guarda" in window._actions["reveal_project_folder"].statusTip().lower()
+        or "carpeta" in window._actions["reveal_project_folder"].statusTip().lower()
+    )
+
+
+def test_reveal_project_folder_tip_when_saved(qapp, tmp_path):
+    del qapp
+    from studio.project_serializer import save_project
+
+    path = tmp_path / "demo.bcproj"
+    project = StudioProject(project_id="PRJ-1", name="Demo")
+    save_project(project, path)
+    window = _window(tmp_path)
+    window.services.projects.open_project(project, str(path))
+    window.update_window_title()
+
+    reveal = window._actions["reveal_project_folder"]
+    assert reveal.isEnabled()
+    tip = reveal.statusTip()
+    assert "Ctrl+Shift+R" in tip or "⇧⌘R" in tip
