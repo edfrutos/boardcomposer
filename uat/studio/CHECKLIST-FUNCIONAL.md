@@ -14,104 +14,110 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 
 ## 0. Arranque y entorno
 
-- [ ] La app abre con icono propio (no el genérico de Python).
-- [ ] Pantalla de inicio (SCR-001): hero, CTAs, recientes, plantilla, docs/novedades; volver con **Ctrl+Shift+H** (tip de estado); demo con **Ctrl+Shift+D** (tip de estado).
-- [ ] Tema «Industrial madera» se ve coherente (claro/oscuro vía Preferencias).
-- [ ] Idioma es/en cambia menús y tip de estado (`Editar → Preferencias…`, **Ctrl+,**).
+- [x] La app abre con icono propio (no el genérico de Python).
+- [x] Pantalla de inicio (SCR-001): hero, CTAs, recientes, plantilla, docs/novedades; volver con **Ctrl+Shift+H** (tip de estado); demo con **Ctrl+Shift+D** (tip de estado).
+- [x] Tema «Industrial madera» se ve coherente (claro/oscuro vía Preferencias).
+- [x] Idioma es/en cambia menús y tip de estado (`Editar → Preferencias…`, **Ctrl+,**).
 
 ---
 
 ## 1. Proyecto (SCR-005 / FLW-001)
 
-- [ ] **Nuevo proyecto** (**Ctrl+N**, tip de estado) pide nombre y unidades; aparece workspace vacío con CTAs.
-- [ ] **Añadir tablero** (**Ctrl+Shift+B**; tip de estado) y **añadir pieza** (**Ctrl+Shift+P**; tip de estado) (menú / Explorador / CTA vacío).
-- [ ] **Guardar** (**Ctrl+S**) / **Guardar como** (**Ctrl+Shift+S**) / **Abrir** (**Ctrl+O**) `.bcproj` (tips de estado); ruta visible en la barra de estado; **Ctrl+Shift+R** abre la carpeta (tip de estado).
-- [ ] **Recientes** en inicio y menú; quitar fantasma / vaciar lista (**Ctrl+Shift+X**; tip de estado) si aplica.
-- [ ] **Plantilla de proyecto**: guardar (**Ctrl+Shift+M**; tip de estado) y crear desde plantilla (**Ctrl+Shift+N**; tip de estado).
-- [ ] Cerrar / **Salir** (**Ctrl+Q**; tip de estado) con cambios sin guardar → diálogo claro (nombre/ruta/botones).
-- [ ] **Renombrar proyecto** (menú, clic derecho en raíz del Explorador, **F2** o **Ctrl+Shift+F2**; tip de estado).
+- [x] **Nuevo proyecto** (**Ctrl+N**, tip de estado) pide nombre y unidades; aparece workspace vacío con CTAs.
+- [x] **Añadir tablero** (**Ctrl+Shift+B**; tip de estado) y **añadir pieza** (**Ctrl+Shift+P**; tip de estado) (menú / Explorador / CTA vacío).
+- [x] **Guardar** (**Ctrl+S**) / **Guardar como** (**Ctrl+Shift+S**) / **Abrir** (**Ctrl+O**) `.bcproj` (tips de estado); ruta visible en la barra de estado; **Ctrl+Shift+R** abre la carpeta (tip de estado).
+- [x] **Recientes** en inicio y menú; quitar fantasma / vaciar lista (**Ctrl+Shift+X**; tip de estado) si aplica.
+- [x] **Plantilla de proyecto**: guardar (**Ctrl+Shift+M**; tip de estado) y crear desde plantilla (**Ctrl+Shift+N**; tip de estado).
+- [x] Cerrar / **Salir** (**Ctrl+Q**; tip de estado) con cambios sin guardar → diálogo claro (nombre/ruta/botones).
+- [x] **Renombrar proyecto** (menú, clic derecho en raíz del Explorador, **F2** o **Ctrl+Shift+F2**; tip de estado).
 
 ---
 
 ## 2. Explorador e Inspector
 
-- [ ] Contadores `Tableros (n)`, `Piezas (n)`, `Soluciones (n)`.
-- [ ] Clic en **pieza** → Inspector completo + selección en canvas.
-- [ ] Clic en **tablero** → centra cámara y resalta en Workspace.
-- [ ] Menú contextual pieza: editar / duplicar / eliminar / copiar ID / renombrar.
-- [ ] Menú contextual tablero: editar / duplicar / eliminar / copiar ID / renombrar.
+- [x] Contadores `Tableros (n)`, `Piezas (n)`, `Soluciones (n)`.
+- [x] Clic en **pieza** → Inspector completo + selección en canvas.
+- [x] Clic en **tablero** → centra cámara y resalta en Workspace.
+- [x] Menú contextual pieza: editar / duplicar / eliminar / copiar ID / renombrar.
+- [x] Menú contextual tablero: editar / duplicar / eliminar / copiar ID / renombrar.
 - [ ] Doble clic en **solución** del Explorador → vista previa.
 
 ---
 
 ## 3. Workspace (SCR-002)
 
-- [ ] Paneles físicos lado a lado (cantidad > 1 en un tablero).
-- [ ] Arrastrar pieza dentro del panel; soltar en **otro panel** reasigna instancia.
-- [ ] Solape inválido revierte el movimiento.
-- [ ] Zoom: rueda / **Ctrl+=** / **Ctrl+-** (tips de estado); % en barra de estado.
-- [ ] **Ctrl+0** ajusta a todos los tableros (tip de estado); **Ctrl+Shift+0** a la selección (tip de estado).
-- [ ] Pan: botón medio, botón derecho, **Espacio + arrastre**.
-- [ ] Clic en vacío deselecciona; **Ctrl+A** / **Esc** / **Ctrl+Shift+I** (tips de estado en selección).
-- [ ] **Flechas** mueven 1 mm; **Shift+flechas** = tamaño de cuadrícula (prefs).
-- [ ] **R** rota si cabe (tip de estado); si no, se rechaza.
-- [ ] Doble clic pieza/tablero → editar; vacío → ajustar vista.
-- [ ] **Enter/Return** edita selección (tip de estado); **F2** renombra (tip de estado); **Ctrl+Shift+C** copia ID (tip de estado).
-- [ ] **Ctrl+D** duplica pieza o tablero enfocado (tip de estado).
-- [ ] **Delete/Backspace** elimina pieza o tablero enfocado (con confirmación; tip de estado).
-- [ ] **Ctrl+G** muestra/oculta cuadrícula (tip de estado menciona el atajo).
-- [ ] Docks: Ver → Explorador (**Ctrl+1**; tip de estado) / Inspector (**Ctrl+2**; tip de estado) / Timeline (**Ctrl+3**; tip de estado) / Comparador (**Ctrl+4**; tip de estado); barra de herramientas (**Ctrl+Shift+K**; tip de estado); restablecer disposición (**Ctrl+Shift+W**; tip de estado).
+- [x] Paneles físicos lado a lado (cantidad > 1 en un tablero).
+- [x] Arrastrar pieza dentro del panel; soltar en **otro panel** reasigna instancia.
+- [x] Solape inválido revierte el movimiento.
+- [x] Zoom: rueda / **Ctrl+=** / **Ctrl+-** (tips de estado); % en barra de estado.
+- [x] **Ctrl+0** ajusta a todos los tableros (tip de estado); **Ctrl+Shift+0** a la selección (tip de estado).
+- [x] Pan: botón medio, botón derecho, **Espacio + arrastre**.
+- [x] Clic en vacío deselecciona; **Ctrl+A** / **Esc** / **Ctrl+Shift+I** (tips de estado en selección).
+- [x] **Flechas** mueven 1 mm; **Shift+flechas** = tamaño de cuadrícula (prefs).
+- [x] **R** rota si cabe (tip de estado); si no, se rechaza.
+- [x] Doble clic pieza/tablero → editar; vacío → ajustar vista.
+- [x] **Enter/Return** edita selección (tip de estado); **F2** renombra (tip de estado); **Ctrl+Shift+C** copia ID (tip de estado).
+- [x] **Ctrl+D** duplica pieza o tablero enfocado (tip de estado).
+- [x] **Delete/Backspace** elimina pieza o tablero enfocado (con confirmación; tip de estado).
+- [x] **Ctrl+G** muestra/oculta cuadrícula (tip de estado menciona el atajo).
+- [x] Docks: Ver → Explorador (**Ctrl+1**; tip de estado) / Inspector (**Ctrl+2**; tip de estado) / Timeline (**Ctrl+3**; tip de estado) / Comparador (**Ctrl+4**; tip de estado); barra de herramientas (**Ctrl+Shift+K**; tip de estado); restablecer disposición (**Ctrl+Shift+W**; tip de estado).
 
 ---
 
 ## 4. Layout / Comparar / Exportar (flujo estrella)
 
-- [ ] **Ctrl+Return** calcula layout (progreso + Cancelar funcionan; tip de estado menciona el atajo).
-- [ ] Aparecen soluciones en Comparador + Explorador.
-- [ ] **Re Pág** / **Av Pág** (tips de estado) recorren candidatas (preview en canvas + status).
-- [ ] **Ctrl+Shift+Return** aplica la solución al proyecto (tip de estado).
-- [ ] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**.
-- [ ] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia + diff.
-- [ ] **Ctrl+Shift+E** abre exportar solución (SVG/PDF/DXF/JSON/CSV + preview; tip de estado).
+Precondición para checks de comparador multi-candidata:
+
+- En Preferencias, `Máx. soluciones a conservar` > 1 (recomendado 20).
+- Dataset que produzca >=2 candidatas únicas/aceptadas.
+- Confirmar en Inspector diagnóstico: `Candidatas únicas` y `Aceptadas`.
+
+- [x] **Ctrl+Return** calcula layout (progreso + Cancelar funcionan; tip de estado menciona el atajo).
+- [ ] Aparecen >=2 soluciones en Comparador + Explorador (si el dataset y preferencias lo permiten).
+- [ ] **Re Pág** / **Av Pág** (tips de estado) recorren candidatas (preview + status) cuando hay >=2 visibles.
+- [x] **Ctrl+Shift+Return** aplica la solución al proyecto (tip de estado).
+- [x] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**.
+- [ ] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia visible + diff (requiere >=2).
+- [ ] **Ctrl+Shift+E** abre exportar solución (SVG/PNG/JPEG/PDF/DXF/JSON/CSV + preview; tip de estado).
 - [ ] Tras exportar, opción de abrir archivo/carpeta.
 
 ---
 
 ## 5. Importación (FLW-002)
 
-- [ ] Importar **tableros** CSV/Excel (**Ctrl+Shift+T**; tip de estado) con vista previa.
-- [ ] Importar **piezas** CSV/Excel (**Ctrl+Shift+O**; tip de estado; cantidad expandida si aplica).
-- [ ] Excel multi-hoja: selector de hoja.
-- [ ] Si fallan columnas: asistente de mapeo + guardar/reaplicar/eliminar plantilla.
-- [ ] Importación **deshacible** (**Ctrl+Z** / **Ctrl+Shift+Z**, tips de Deshacer/Rehacer).
+- [x] Importar **tableros** CSV/Excel (**Ctrl+Shift+T**; tip de estado) con vista previa.
+- [x] Importar **piezas** CSV/Excel (**Ctrl+Shift+O**; tip de estado; cantidad expandida si aplica).
+- [x] Excel multi-hoja: selector de hoja.
+- [x] Si fallan columnas: asistente de mapeo + guardar/reaplicar/eliminar plantilla.
+- [x] Importación **deshacible** (**Ctrl+Z** / **Ctrl+Shift+Z**, tips de Deshacer/Rehacer).
 
 ---
 
 ## 6. Timeline (ADR-005)
 
-- [ ] Eventos del cálculo aparecen en el dock.
-- [ ] Replay colocaciones / fases (no muta el proyecto).
-- [ ] Filtros por algoritmo / periodo; marcador de usuario.
-- [ ] Clic en hecho → busca contexto.
-- [ ] Exportar historial Timeline JSON/CSV (**Ctrl+Shift+L**; tip de estado).
+- [x] Eventos del cálculo aparecen en el dock.
+- [x] Replay colocaciones / fases (no muta el proyecto).
+- [x] Filtros por algoritmo / periodo; marcador de usuario.
+- [x] Clic en hecho → busca contexto.
+- [x] Exportar historial Timeline JSON/CSV (**Ctrl+Shift+L**; tip de estado).
 
 ---
 
 ## 7. Preferencias y ayuda (SCR-006)
 
-- [ ] Tema, idioma, unidades, grid, estrategia/pesos, máx. soluciones, defaults export.
-- [ ] Geometría de ventana/docks se recuerda al reiniciar.
-- [ ] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo (incl. PgUp/PgDown, Ctrl+Shift+Return/E).
-- [ ] Ayuda → Novedades (**Ctrl+Shift+U**; tip de estado) / Documentación (**Shift+F1**; tip de estado) / Acerca de (**Ctrl+Shift+A**; tip de estado, icono correcto).
+- [x] Tema, idioma, unidades, grid, estrategia/pesos, máx. soluciones, defaults export.
+- [x] Geometría de ventana/docks se recuerda al reiniciar.
+- [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo (incl. PgUp/PgDown, Ctrl+Shift+Return/E).
+- [x] Ayuda → Novedades (**Ctrl+Shift+U**; tip de estado) / Documentación (**Shift+F1**; tip de estado) / Acerca de (**Ctrl+Shift+A**; tip de estado, icono correcto).
 
 ---
 
 ## 8. Multipanel / Core (smoke)
 
-- [ ] Proyecto con 2+ tipos o cantidades: solver usa paneles físicos.
-- [ ] Material/espesor incompatible → pieza omitida o fallo visible (parcial).
-- [ ] Inspector muestra panel + instancia; retales informativos si hay.
-- [ ] Guardar/reabrir `.bcproj` conserva colocaciones e inventario.
+- [x] Proyecto con 2+ tipos o cantidades: solver usa paneles físicos.
+- [x] Material/espesor incompatible → pieza omitida o fallo visible (parcial).
+- [x] Inspector muestra panel + instancia; retales informativos si hay.
+- [x] Guardar/reabrir `.bcproj` conserva colocaciones e inventario.
 
 ---
 
@@ -130,6 +136,6 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 | 7 Preferencias/Ayuda | | |
 | 8 Multipanel | | |
 
-**Veredicto:** □ Listo para uso diario de estudio  □ Faltan huecos (anotar arriba)  □ Solo regresión automatizada
+**Veredicto:** □ Listo para uso diario de estudio  x  Faltan huecos (anotar arriba)  □ Solo regresión automatizada
 
 **Regresión auto (opcional):** `make test` → 562+ passed.
