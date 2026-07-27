@@ -198,6 +198,37 @@ def test_moving_a_piece_between_panels_pushes_an_undoable_command():
     assert (placement.x_mm, placement.y_mm) == (0, 0)
 
 
+def test_drag_rejects_incompatible_thickness_and_material():
+    """18 mm Melamina piece must not land on a 5 mm Tablex panel."""
+    services = StudioServices()
+    services.projects.new_project(
+        StudioProject(
+            project_id="PRJ-MIX",
+            name="Mix",
+            boards=[
+                StudioBoard("MEL", 1000, 500, "Melamina", 18, 1),
+                StudioBoard("TAB", 1000, 500, "Tablex", 5, 1),
+            ],
+            pieces=[StudioPiece("A", 400, 300, "Melamina", 18)],
+            placements=[
+                StudioPlacement("A", 0, 0, False, 0, "MEL", 0, 0),
+            ],
+        )
+    )
+    workspace = BoardWorkspace(services)
+    workspace.reload_project()
+
+    tablex = workspace._panel_slots[(1, 0)]
+    _drag_to(workspace, "A", tablex.x_mm + 50, tablex.y_mm + 30)
+
+    placement = _require_placement(services, "A")
+    assert placement.board_id == "MEL"
+    assert placement.stock_panel_index == 0
+    assert placement.board_id != "TAB"
+    assert (placement.x_mm, placement.y_mm) == (0, 0)
+    assert not services.commands.can_undo()
+
+
 def test_dropping_a_piece_on_top_of_another_reverts_the_move():
     services = _multipanel_services()
     project = _require_project(services)

@@ -67,6 +67,7 @@ class BoardWorkspace(QGraphicsView):
         # Last board chosen in Explorador/canvas; survives piece selection so
         # "place on focused board" still has a target after clicking a piece.
         self._sticky_board_id: str | None = None
+        self._rejected_drop_slot: PanelSlot | None = None
         self.selection = SelectionController(services)
         self._drag = DragController()
         self._drag_start: tuple[str, float, float] | None = None
@@ -232,14 +233,23 @@ class BoardWorkspace(QGraphicsView):
         self, item: BoardPieceItem, new_pos: QPointF
     ) -> QPointF:
         """Constrain the piece position, reassigning it to whichever
-        physical panel the drag is currently hovering over (DT-0003)."""
+        physical panel the drag is currently hovering over (DT-0003).
+
+        Cross-panel drops require matching thickness + material (same as the
+        Core solver / place-on-board).
+        """
         center = QPointF(
             new_pos.x() + item.rect().width() / 2,
             new_pos.y() + item.rect().height() / 2,
         )
         candidate_slot = self._slot_at_point(center)
         if candidate_slot is not None:
-            self._assign_item_to_slot(item, candidate_slot)
+            if self._item_compatible_with_slot(item, candidate_slot):
+                self._assign_item_to_slot(item, candidate_slot)
+                self._rejected_drop_slot = None
+            else:
+                # Remember for status feedback; keep piece on its current panel.
+                self._rejected_drop_slot = candidate_slot
 
         key = self._panel_key(item)
         validator = self._validators.get(key) if key is not None else None
@@ -247,6 +257,48 @@ class BoardWorkspace(QGraphicsView):
             return new_pos
 
         return validator.constrain_position(item, new_pos)
+
+    def _board_for_slot(self, slot: PanelSlot):
+        project = self.services.projects.current_project
+        if project is None:
+            return None
+        if slot.stock_panel_index < 0 or slot.stock_panel_index >= len(project.boards):
+            return None
+        return project.boards[slot.stock_panel_index]
+
+    def _item_compatible_with_slot(self, item: BoardPieceItem, slot: PanelSlot) -> bool:
+        from studio.panel_compatibility import piece_compatible_with_board
+
+        project = self.services.projects.current_project
+        if project is None:
+            return False
+        try:
+            piece = project.piece_by_id(item.piece_id)
+        except KeyError:
+            return False
+        board = self._board_for_slot(slot)
+        if board is None:
+            return False
+        return piece_compatible_with_board(piece, board)
+
+    def _incompatibility_for_item(self, item: BoardPieceItem) -> str | None:
+        from studio.panel_compatibility import incompatibility_reason
+
+        project = self.services.projects.current_project
+        if project is None:
+            return None
+        key = self._panel_key(item)
+        slot = self._panel_slots.get(key) if key is not None else None
+        if slot is None:
+            return None
+        try:
+            piece = project.piece_by_id(item.piece_id)
+        except KeyError:
+            return None
+        board = self._board_for_slot(slot)
+        if board is None:
+            return None
+        return incompatibility_reason(piece, board)
 
     def _slot_at_point(self, scene_pos: QPointF) -> PanelSlot | None:
         """Return the panel slot under `scene_pos`, if any."""
@@ -516,6 +568,7 @@ class BoardWorkspace(QGraphicsView):
 
         if isinstance(clicked_item, BoardPieceItem):
             old_x, old_y = self._local_item_position(clicked_item)
+            self._rejected_drop_slot = None
             self._drag.begin(
                 clicked_item.piece_id,
                 old_x,
@@ -673,9 +726,13 @@ class BoardWorkspace(QGraphicsView):
         if item is None:
             return
 
+        rejected_slot = self._rejected_drop_slot
+        self._rejected_drop_slot = None
+
         key = self._panel_key(item)
         validator = self._validators.get(key) if key is not None else None
-        if validator is not None and not validator.can_place(item):
+        incompatible = self._incompatibility_for_item(item)
+        if (validator is not None and not validator.can_place(item)) or incompatible:
             self._revert_item_to_panel(
                 item,
                 old_x,
@@ -684,7 +741,15 @@ class BoardWorkspace(QGraphicsView):
                 old_board_instance,
                 old_stock_panel_index,
             )
+            self.piece_moved(piece_id, item.pos().x(), item.pos().y())
             item.set_normal()
+            board_id = (
+                rejected_slot.board_id
+                if rejected_slot is not None
+                else (item.board_id or "")
+            )
+            if incompatible and board_id:
+                self._status_incompatible_drop(piece_id, board_id, incompatible)
             return
 
         project = self.services.projects.current_project
@@ -697,6 +762,34 @@ class BoardWorkspace(QGraphicsView):
             and placement.board_instance == old_board_instance
             and placement.stock_panel_index == old_stock_panel_index
         )
+        # Aimed at an incompatible panel: do not keep a same-panel nudge that
+        # only happened because the piece was clamped to the source board edge.
+        if rejected_slot is not None and panel_unchanged:
+            from studio.panel_compatibility import incompatibility_reason
+
+            self._revert_item_to_panel(
+                item,
+                old_x,
+                old_y,
+                old_board_id,
+                old_board_instance,
+                old_stock_panel_index,
+            )
+            self.piece_moved(piece_id, item.pos().x(), item.pos().y())
+            item.set_normal()
+            try:
+                piece = project.piece_by_id(piece_id)
+                board = self._board_for_slot(rejected_slot)
+                if board is not None:
+                    reason = incompatibility_reason(piece, board)
+                    if reason:
+                        self._status_incompatible_drop(
+                            piece_id, rejected_slot.board_id, reason
+                        )
+            except KeyError:
+                pass
+            return
+
         if placement.x_mm == old_x and placement.y_mm == old_y and panel_unchanged:
             return
 
@@ -729,6 +822,33 @@ class BoardWorkspace(QGraphicsView):
             window.update_window_title()
 
         item.set_normal()
+
+    def _status_incompatible_drop(
+        self, piece_id: str, board_id: str, reason: str
+    ) -> None:
+        window = cast("MainWindow", self.window())
+        if not hasattr(window, "_status"):
+            return
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        try:
+            piece = project.piece_by_id(piece_id)
+        except KeyError:
+            return
+        board = next((b for b in project.boards if b.board_id == board_id), None)
+        if board is None:
+            return
+        format_length = getattr(window, "_format_length", lambda value: str(value))
+        window._status(
+            f"status.place_incompatible_{reason}",
+            piece=piece_id,
+            board=board.board_id,
+            piece_thickness=format_length(piece.thickness_mm),
+            board_thickness=format_length(board.thickness_mm),
+            piece_material=piece.material,
+            board_material=board.material,
+        )
 
     def piece_item_by_id(self, piece_id: str) -> BoardPieceItem | None:
         """Get the piece item by ID."""
