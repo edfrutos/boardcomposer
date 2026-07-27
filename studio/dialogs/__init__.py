@@ -1,3 +1,4 @@
+from .bcproj_diff_dialog import BcprojDiffDialog as BcprojDiffDialog
 from .export_dialog import ExportDialog as ExportDialog
 from .import_boards_preview_dialog import (
     ImportBoardsPreviewDialog as ImportBoardsPreviewDialog,
@@ -18,6 +19,7 @@ from .project_template_dialog import (
 
 __all__ = [
     "AboutDialog",
+    "BcprojDiffDialog",
     "ExportDialog",
     "ImportBoardsPreviewDialog",
     "ImportPiecesPreviewDialog",

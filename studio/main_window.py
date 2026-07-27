@@ -57,12 +57,14 @@ from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProje
 from studio.project_serializer import (
     UnsupportedProjectVersionError,
     load_project,
+    project_to_dict,
     save_project,
 )
 from studio.i18n import action_keys, menu_keys, tr
 from studio.workspace.board_workspace import BoardWorkspace
 from studio.dialogs import (
     AboutDialog,
+    BcprojDiffDialog,
     ExportDialog,
     ImportBoardsPreviewDialog,
     ImportPiecesPreviewDialog,
@@ -197,6 +199,7 @@ class MainWindow(QMainWindow):
 
         self._menus["project"].addAction(self._actions["rename_project"])
         self._menus["project"].addAction(self._actions["reveal_project_folder"])
+        self._menus["project"].addAction(self._actions["diff_bcproj"])
         self._menus["project"].addSeparator()
         self._menus["project"].addAction(self._actions["add_board"])
         self._menus["project"].addAction(self._actions["add_piece"])
@@ -233,6 +236,7 @@ class MainWindow(QMainWindow):
         self._actions["reveal_project_folder"].triggered.connect(
             self._reveal_project_folder
         )
+        self._actions["diff_bcproj"].triggered.connect(self._diff_bcproj)
         self._actions["add_board"].triggered.connect(self._add_board)
         self._actions["add_piece"].triggered.connect(self._add_piece)
         self._actions["import_boards_csv"].triggered.connect(
@@ -3098,6 +3102,24 @@ class MainWindow(QMainWindow):
             self._status("status.project_folder_failed")
             return
         self._status("status.project_folder_opened")
+
+    def _diff_bcproj(self) -> None:
+        """Open structural .bcproj diff dialog (FLW-006 / Core ``diff_bcproj``)."""
+        project = self.services.projects.current_project
+        current = project_to_dict(project) if project is not None else None
+        filename = self.services.projects.filename
+        start_dir = str(Path(filename).parent) if filename else str(Path.home())
+        label = filename or (
+            self._tr("diff_bcproj.current_project") if current is not None else None
+        )
+        dialog = BcprojDiffDialog(
+            self,
+            language=self._ui_language(),
+            current_project=current,
+            current_label=label,
+            start_dir=start_dir,
+        )
+        dialog.exec()
 
     def _rename_selection(self) -> None:
         """Rename the Explorador selection (piece, board, or project) via F2."""

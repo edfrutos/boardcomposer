@@ -97,7 +97,7 @@ Observaciones:
 |----|--------|--------|-----------|-------|
 | EP-001 | API pública y contratos | 🟢 | P1 | IDE-0006 |
 | EP-002 | Automatización y batch | 🟢 | P1 | IDE-0006 |
-| EP-003 | Integraciones remotas | 🔵 | P2 | IDE-0006 |
+| EP-003 | Integraciones remotas | 🟢 | P2 | IDE-0006 |
 
 Detalle: `docs/masterplan/epics/`.
 
@@ -120,7 +120,7 @@ EP (001…003) creadas para Fase 3; IDE-0006 → 🔵 P1.
 
 Pendiente de:
 
-- Diff `.bcproj` Core/CLI 🟢 (`boardcomposer-diff`); UI revisiones aún no;
+- Diff `.bcproj` Core/CLI + UI Studio 🟢; historial persistente de revisiones aún no;
 - Fase 3 EP-001…003 🟢; siguiente: UAT humano / Fase 4 IA bajo demanda;
 - completar el flujo Idea → Épica → Sprint → Implementación → Liberación;
 - estimar esfuerzo por épica.
