@@ -399,6 +399,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "comparator.sort_by": "Ordenar por:",
         "comparator.complete_only": "Solo soluciones completas",
         "comparator.pin_reference": "Fijar como referencia",
+        "tip.pin_reference": (
+            "Fija la candidata seleccionada como referencia del diff "
+            "(hace falta ≥2 soluciones)"
+        ),
         "comparator.reference_mark": "Ref {n}",
         "comparator.reference_thumb": "#{n} · ref",
         "comparator.reference_tooltip": "Referencia fijada (solución {n})",
@@ -528,15 +532,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.layout_failed": "No se pudo calcular layout",
         "status.layout_partial": "Layout parcial: {omitted} pieza(s) sin colocar de {total} soluciones",
         "status.layout_ok": (
-            "Layout calculado: {n} soluciones — Comparador (Ctrl+4) · "
-            "Exportar Ctrl+Shift+E"
+            "Layout calculado: {n} soluciones — Re/Av Pág · "
+            "Fijar referencia · Exportar Ctrl+Shift+E"
         ),
         "status.layout_ok_single": (
             "Layout calculado: 1 única candidata (no hay más distintas; "
-            "generadas {generated}, únicas {unique}) — Exportar Ctrl+Shift+E"
+            "generadas {generated}, únicas {unique}). "
+            "Varias candidatas: demo Ctrl+Shift+D → Calcular · Exportar Ctrl+Shift+E"
         ),
         "status.layout_truncated_by_limit": (
-            "Mostrando {shown}/{accepted} soluciones (límite en Preferencias: {limit})."
+            "Mostrando {shown}/{accepted} soluciones (límite en Preferencias: {limit}). "
+            "Re/Av Pág recorre las visibles."
         ),
         "status.layout_computing": "Calculando layout…",
         "status.layout_cancelled": "Cálculo de layout cancelado",
@@ -750,8 +756,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff.none": "Sin diferencias relevantes en métricas ni colocaciones.",
         "diff.better_here": "  ↑ mejor aquí",
         "diff.better_reference": "  ↑ mejor en referencia",
-        "diff.need_two": "Se necesitan al menos dos soluciones para comparar diferencias.",
-        "diff.select_solution": "Selecciona una solución en el comparador.",
+        "diff.need_two": (
+            "Se necesitan ≥2 soluciones para el diff. "
+            "Prueba demo Ctrl+Shift+D → Calcular layout."
+        ),
+        "diff.select_solution": "Selecciona una solución en el Comparador.",
         "diff.metric.pieces": "Piezas colocadas",
         "diff.metric.omitted": "Piezas omitidas",
         "diff.metric.waste": "Huecos internos",
@@ -1156,6 +1165,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "comparator.sort_by": "Sort by:",
         "comparator.complete_only": "Complete solutions only",
         "comparator.pin_reference": "Pin as reference",
+        "tip.pin_reference": (
+            "Pin the selected candidate as the diff reference "
+            "(needs ≥2 solutions)"
+        ),
         "comparator.reference_mark": "Ref {n}",
         "comparator.reference_thumb": "#{n} · ref",
         "comparator.reference_tooltip": "Pinned reference (solution {n})",
@@ -1281,15 +1294,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.layout_failed": "Could not calculate layout",
         "status.layout_partial": "Partial layout: {omitted} unplaced piece(s) across {total} solutions",
         "status.layout_ok": (
-            "Layout calculated: {n} solutions — Comparator (Ctrl+4) · "
-            "Export Ctrl+Shift+E"
+            "Layout calculated: {n} solutions — Page Up/Down · "
+            "Pin reference · Export Ctrl+Shift+E"
         ),
         "status.layout_ok_single": (
             "Layout calculated: 1 unique candidate (no more distinct ones; "
-            "generated {generated}, unique {unique}) — Export Ctrl+Shift+E"
+            "generated {generated}, unique {unique}). "
+            "Multiple candidates: demo Ctrl+Shift+D → Calculate · Export Ctrl+Shift+E"
         ),
         "status.layout_truncated_by_limit": (
-            "Showing {shown}/{accepted} solutions (Preferences limit: {limit})."
+            "Showing {shown}/{accepted} solutions (Preferences limit: {limit}). "
+            "Page Up/Down browse the visible ones."
         ),
         "status.layout_computing": "Calculating layout…",
         "status.layout_cancelled": "Layout calculation cancelled",
@@ -1495,8 +1510,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff.none": "No relevant differences in metrics or placements.",
         "diff.better_here": "  ↑ better here",
         "diff.better_reference": "  ↑ better in reference",
-        "diff.need_two": "At least two solutions are needed to compare differences.",
-        "diff.select_solution": "Select a solution in the comparator.",
+        "diff.need_two": (
+            "At least 2 solutions are needed for the diff. "
+            "Try demo Ctrl+Shift+D → Calculate layout."
+        ),
+        "diff.select_solution": "Select a solution in the Comparator.",
         "diff.metric.pieces": "Pieces placed",
         "diff.metric.omitted": "Omitted pieces",
         "diff.metric.waste": "Internal gaps",

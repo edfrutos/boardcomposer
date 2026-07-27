@@ -1986,6 +1986,8 @@ class MainWindow(QMainWindow):
         self.comparator_sort_label.setText(self._tr("comparator.sort_by"))
         self.comparator_complete_only.setText(self._tr("comparator.complete_only"))
         self.pin_reference_button.setText(self._tr("comparator.pin_reference"))
+        self.pin_reference_button.setToolTip(self._tr("tip.pin_reference"))
+        self.pin_reference_button.setStatusTip(self._tr("tip.pin_reference"))
         self.comparator_diff_label.setText(self._tr("comparator.diff_title"))
         self._refresh_solutions_outdated_banner()
         self.solution_differences.setPlaceholderText(
