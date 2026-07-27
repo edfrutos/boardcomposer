@@ -68,8 +68,9 @@ Columnas: `#`, Piezas (con sufijo de omitidas si incompleta), Huecos
 
 ### Resaltado «mejor en métrica»
 
-Solo con **≥ 2** soluciones. Criterios actuales: más piezas, menos huecos,
-mayor score. La fila/thumb va en negrita y el tooltip lista las métricas.
+Solo con **≥ 2** soluciones. Criterios: más piezas, menos huecos internos,
+mayor score, menos tablero libre, menor largo y menor ancho. La fila/thumb
+va en negrita y el tooltip lista las métricas.
 
 ### Panel de diferencias
 
@@ -124,12 +125,10 @@ en sync con el replay del Timeline (diff parcial por paso).
 
 ## Límites conocidos (Studio actual)
 
-- El resaltado «mejor en» no incluye tablero libre / largo / ancho (sí
-  ordenables en la tabla).
+_(Ninguno prioritario en highlights / navegación del Comparador.)_
 
 ---
 
 ## Evolución prevista
 
-- Highlights ampliados a más métricas de la tabla.
 - Gráficos históricos y recomendaciones asistidas.
