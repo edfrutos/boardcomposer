@@ -100,7 +100,11 @@ from studio.solution_diff import (
     compare_solutions_at_step,
     format_diff_unavailable,
 )
-from studio.solution_ordering import SORT_LABELS, ordered_solution_indexes
+from studio.solution_ordering import (
+    SORT_LABELS,
+    ordered_solution_indexes,
+    step_display_index,
+)
 from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
 from studio.units import format_length, format_size
 from studio.welcome_screen import WelcomeScreen
@@ -2499,31 +2503,36 @@ class MainWindow(QMainWindow):
         )
 
     def _previous_layout_solution(self):
-        solution = self.services.layout.select_previous_solution()
+        self._step_layout_solution(-1)
 
-        if solution is None:
+    def _next_layout_solution(self):
+        self._step_layout_solution(1)
+
+    def _ensure_solution_display_indexes(self) -> list[int]:
+        """Refresh visible comparator order when the cache is empty."""
+        if self._solution_display_indexes:
+            return self._solution_display_indexes
+        self._solution_display_indexes = ordered_solution_indexes(
+            self.services.layout.solutions,
+            sort_by=self._comparator_sort_by,
+            complete_only=self._comparator_complete_only,
+            board_waste=self.services.layout.board_waste_ratio,
+        )
+        return self._solution_display_indexes
+
+    def _step_layout_solution(self, delta: int) -> None:
+        """Move selection along the comparator display order (SCR-003)."""
+        display = self._ensure_solution_display_indexes()
+        next_index = step_display_index(
+            display,
+            self.services.layout.selected_solution_index,
+            delta=delta,
+        )
+        if next_index is None:
             self._status("status.no_solutions")
             return
 
-        self.workspace.preview_solution(solution)
-        self._show_layout_solution(solution)
-        self._refresh_explorer_solution_markers()
-        self._reload_solution_table()
-
-        index = self.services.layout.selected_solution_index + 1
-        total = len(self.services.layout.solutions)
-
-        self._status(
-            "status.previewing_solution",
-            5000,
-            current=index,
-            total=total,
-        )
-        self._emit(events.SOLUTION_SELECTED, index=index, total=total)
-
-    def _next_layout_solution(self):
-        solution = self.services.layout.select_next_solution()
-
+        solution = self.services.layout.select_solution(next_index)
         if solution is None:
             self._status("status.no_solutions")
             return
