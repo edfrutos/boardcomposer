@@ -7,6 +7,7 @@ from PySide6.QtWidgets import (
     QDialog,
     QDialogButtonBox,
     QHBoxLayout,
+    QInputDialog,
     QLabel,
     QListWidget,
     QListWidgetItem,
@@ -46,6 +47,12 @@ class ProjectTemplatePickerDialog(QDialog):
         layout.addWidget(self.list)
 
         row = QHBoxLayout()
+        self.rename_button = QPushButton(tr("template.rename", language))
+        self.rename_button.setEnabled(False)
+        self.rename_button.clicked.connect(self._rename_selected)
+        if manager is None:
+            self.rename_button.hide()
+        row.addWidget(self.rename_button)
         self.delete_button = QPushButton(tr("template.delete", language))
         self.delete_button.setEnabled(False)
         self.delete_button.clicked.connect(self._delete_selected)
@@ -94,9 +101,44 @@ class ProjectTemplatePickerDialog(QDialog):
         self._update_delete_enabled()
 
     def _update_delete_enabled(self, *_args) -> None:
-        self.delete_button.setEnabled(
-            self._manager is not None and self.list.currentItem() is not None
+        enabled = self._manager is not None and self.list.currentItem() is not None
+        self.rename_button.setEnabled(enabled)
+        self.delete_button.setEnabled(enabled)
+
+    def _rename_selected(self) -> None:
+        if self._manager is None:
+            return
+        current = self.selected_name()
+        if not current:
+            return
+        new_name, ok = QInputDialog.getText(
+            self,
+            tr("template.rename_title", self._language),
+            tr("template.rename_prompt", self._language),
+            text=current,
         )
+        if not ok:
+            return
+        new_name = new_name.strip()
+        if not new_name:
+            QMessageBox.warning(
+                self,
+                tr("template.rename_title", self._language),
+                tr("template.empty_name", self._language),
+            )
+            return
+        if not self._manager.rename(current, new_name):
+            QMessageBox.warning(
+                self,
+                tr("template.rename_title", self._language),
+                tr("template.rename_failed", self._language, name=new_name),
+            )
+            return
+        self._reload_list(self._manager.list())
+        for row in range(self.list.count()):
+            if self.list.item(row).data(Qt.ItemDataRole.UserRole) == new_name:
+                self.list.setCurrentRow(row)
+                break
 
     def _delete_selected(self) -> None:
         if self._manager is None:

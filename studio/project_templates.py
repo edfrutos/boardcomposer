@@ -175,6 +175,38 @@ class ProjectTemplatesManager:
         self.refresh()
         return True
 
+    def rename(self, current_name: str, new_name: str) -> bool:
+        """Rename a template display name (and path when needed)."""
+        template = self.get(current_name)
+        if template is None:
+            return False
+        cleaned = new_name.strip()
+        if not cleaned:
+            return False
+        if cleaned.casefold() == template.name.casefold():
+            return True
+        if self.get(cleaned) is not None:
+            return False
+
+        source = load_project(template.path)
+        source.name = cleaned
+
+        stem = slugify_template_name(cleaned)
+        target = template.path.with_name(f"{stem}.bcproj")
+        counter = 2
+        while target.exists() and target != template.path:
+            target = template.path.with_name(f"{stem}-{counter}.bcproj")
+            counter += 1
+
+        save_project(source, target)
+        if target != template.path:
+            try:
+                template.path.unlink(missing_ok=True)
+            except OSError:
+                pass
+        self.refresh()
+        return True
+
     def instantiate(
         self,
         name: str,
