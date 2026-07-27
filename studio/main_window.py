@@ -2063,6 +2063,7 @@ class MainWindow(QMainWindow):
         self._show_layout_solution(solution)
         self._reload_explorer()
         self._refresh_solutions_outdated_banner()
+        self._reveal_comparator_after_solve()
 
         solution_count = len(self.services.layout.solutions)
         self._emit(
@@ -2083,18 +2084,26 @@ class MainWindow(QMainWindow):
 
         self._announce_layout_ok(solution_count)
 
+    def _reveal_comparator_after_solve(self) -> None:
+        """Bring Comparador forward so multi-candidate UAT is not buried under Timeline."""
+        dock = getattr(self, "solutions_dock", None)
+        if dock is None:
+            return
+        dock.show()
+        self._raise_dock(dock)
+
     def _announce_layout_ok(self, shown: int) -> None:
         """Status after a complete solve: count + why there aren't more."""
         if shown <= 1 and int(self.services.layout.stats.accepted) <= 1:
             stats = self.services.layout.stats
             self._status(
                 "status.layout_ok_single",
-                7000,
+                8000,
                 generated=int(stats.generated),
                 unique=int(stats.unique),
             )
             return
-        self._status("status.layout_ok", n=shown)
+        self._status("status.layout_ok", 8000, n=shown)
         self._maybe_warn_solution_truncated_by_limit(shown)
 
     def _maybe_warn_solution_truncated_by_limit(self, shown: int) -> None:

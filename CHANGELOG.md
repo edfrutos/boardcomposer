@@ -4,6 +4,9 @@
 
 ### Corregido
 
+- Tras Calcular layout, el **Comparador** sale al frente (Ctrl+4) y el tip
+  menciona **Exportar Ctrl+Shift+E**; sin layout, el tip de export/aplicar
+  indica el camino Ctrl+Return → Exportar/Aplicar.
 - **Re Pág / Av Pág** con una sola candidata visible: tip claro («solo hay 1…
   no tienen otra») en vez de «No hay soluciones calculadas»; si el filtro del
   Comparador deja la lista vacía, lo dice.
