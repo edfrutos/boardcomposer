@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Proyecto demo (**Ctrl+Shift+D**): si `Máx. soluciones` era 1, se restaura
+  al default (20) para que Calcular layout muestre el Comparador / PgUp.
 - Crash macOS (SIGSEGV en `QDockWidget::raise`): Timeline/Comparador se
   tabifican **después** de `addDockWidget`; `raise_()` va diferido y no
   toca docks ocultos/destruidos.

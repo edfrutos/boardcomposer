@@ -69,7 +69,9 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 Precondición para checks de comparador multi-candidata:
 
 - En Preferencias, `Máx. soluciones a conservar` > 1 (recomendado 20).
-- Dataset que produzca >=2 candidatas únicas/aceptadas.
+- Atajo rápido: **Ctrl+Shift+D** (proyecto demo). Si el máx. era 1, Studio
+  lo restaura a 20 y el tip de estado lo dice. Luego **Ctrl+Return**.
+- Dataset que produzca >=2 candidatas únicas/aceptadas (el demo basta).
 - Confirmar en Inspector diagnóstico: `Candidatas únicas` y `Aceptadas`.
 
 - [x] **Ctrl+Return** calcula layout (progreso + Cancelar funcionan; tip de estado menciona el atajo).
