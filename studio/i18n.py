@@ -403,6 +403,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Fija la candidata seleccionada como referencia del diff "
             "(hace falta ≥2 soluciones)"
         ),
+        "tip.comparator_sort": "Ordena las candidatas del Comparador",
+        "tip.comparator_complete_only": (
+            "Oculta candidatas parciales en el Comparador"
+        ),
         "comparator.reference_mark": "Ref {n}",
         "comparator.reference_thumb": "#{n} · ref",
         "comparator.reference_tooltip": "Referencia fijada (solución {n})",
@@ -1168,6 +1172,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.pin_reference": (
             "Pin the selected candidate as the diff reference (needs ≥2 solutions)"
         ),
+        "tip.comparator_sort": "Sort Comparator candidates",
+        "tip.comparator_complete_only": "Hide partial candidates in the Comparator",
         "comparator.reference_mark": "Ref {n}",
         "comparator.reference_thumb": "#{n} · ref",
         "comparator.reference_tooltip": "Pinned reference (solution {n})",

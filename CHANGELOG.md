@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Comparador: ordenar y «solo completas» deshabilitados sin candidatas; tip
+  pide Ctrl+Return. Tip del pin distingue 0 / 1 / ≥2 soluciones.
 - Export Timeline deshabilitado sin eventos (menú + botón del dock); tip
   explica el vacío. Arranque: `bootstrap_ui_font` evita warning `Sans Serif`
   antes de construir widgets.
