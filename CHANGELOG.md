@@ -22,6 +22,9 @@
 
 ### Añadido
 
+- Anillo de revisiones locales al guardar `.bcproj` (carpeta
+  `.<nombre>.bcproj.revs/`, máx. 5); el diálogo de diff ofrece la última
+  revisión vs el proyecto abierto.
 - Studio: **Proyecto → Comparar revisiones .bcproj…** (`Ctrl+Shift+Y`) —
   UI sobre `diff_bcproj` (proyecto abierto vs archivo, o dos archivos).
 - Contenedor HTTP de referencia (EP-003 / SPR-003): `Dockerfile`,

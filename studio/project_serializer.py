@@ -20,6 +20,7 @@ from boardcomposer.io.bcproj import (
     UnsupportedProjectVersionError,
     migrate_bcproj_dict,
 )
+from boardcomposer.io.bcproj_revisions import snapshot_before_overwrite
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 
 __all__ = [
@@ -118,7 +119,9 @@ def project_from_dict(data: dict) -> StudioProject:
 
 
 def save_project(project: StudioProject, path: str | Path) -> None:
-    Path(path).write_text(
+    target = Path(path)
+    snapshot_before_overwrite(target)
+    target.write_text(
         json.dumps(project_to_dict(project), indent=2, ensure_ascii=False),
         encoding="utf-8",
     )

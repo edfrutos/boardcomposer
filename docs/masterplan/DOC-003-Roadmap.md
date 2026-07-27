@@ -156,7 +156,8 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Pulido menor Fase 2 y UAT humano continuo.
-- Diff `.bcproj` en Studio (sobre Core CLI); historial persistente / revisiones = deuda.
+- Diff `.bcproj` en Studio + anillo local de revisiones al guardar;
+  historial cloud / multi-usuario = deuda.
 - Fase 4 IA bajo demanda.
 
 ### Prioridad P2

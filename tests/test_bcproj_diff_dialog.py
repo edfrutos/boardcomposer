@@ -5,11 +5,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from boardcomposer.io.bcproj_revisions import snapshot_before_overwrite
 from studio.dialogs.bcproj_diff_dialog import BcprojDiffDialog
 from studio.i18n import tr
 from studio.keyboard_shortcuts import STUDIO_SHORTCUTS
-from studio.project_serializer import project_to_dict
 from studio.models import StudioBoard, StudioPiece, StudioProject
+from studio.project_serializer import project_to_dict
 
 SAMPLES = Path("data/samples")
 BASE = SAMPLES / "multipanel_demo.bcproj"
@@ -59,7 +60,8 @@ def test_bcproj_diff_dialog_compares_current_vs_file(qapp, tmp_path):
         current_project=project_to_dict(project),
         current_label="(open)",
     )
-    dialog.use_current.setChecked(True)
+    dialog.use_current_left.setChecked(True)
+    dialog.use_current_right.setChecked(False)
     dialog.right_path.setText(str(right_path))
     dialog._run_diff()
 
@@ -67,3 +69,37 @@ def test_bcproj_diff_dialog_compares_current_vs_file(qapp, tmp_path):
     assert "diff:" in text
     assert "name" in text
     assert "changes:" in text
+
+
+def test_bcproj_diff_dialog_defaults_to_revision_vs_current(qapp, tmp_path):
+    path = tmp_path / "live.bcproj"
+    saved = {
+        "version": 2,
+        "project_id": "ui-rev",
+        "name": "Live",
+        "boards": [],
+        "pieces": [],
+        "placements": [],
+    }
+    path.write_text(json.dumps(saved), encoding="utf-8")
+    snapshot_before_overwrite(path)
+
+    dirty = StudioProject(
+        project_id="ui-rev",
+        name="Dirty",
+        boards=[],
+        pieces=[],
+        placements=[],
+    )
+    dialog = BcprojDiffDialog(
+        language="es",
+        current_project=project_to_dict(dirty),
+        current_label="(open)",
+        project_path=str(path),
+    )
+    assert dialog.use_current_right.isChecked()
+    assert dialog.revision_combo.currentIndex() == 1
+    dialog._run_diff()
+    text = dialog.result.toPlainText()
+    assert "diff:" in text
+    assert "name" in text

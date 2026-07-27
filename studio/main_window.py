@@ -3117,6 +3117,7 @@ class MainWindow(QMainWindow):
             language=self._ui_language(),
             current_project=current,
             current_label=label,
+            project_path=filename,
             start_dir=start_dir,
         )
         dialog.exec()
