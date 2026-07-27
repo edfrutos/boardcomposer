@@ -1883,6 +1883,16 @@ class MainWindow(QMainWindow):
         if pin is not None:
             pin.setEnabled(has_multiple)
 
+        sort = getattr(self, "comparator_sort", None)
+        sort_label = getattr(self, "comparator_sort_label", None)
+        complete_only = getattr(self, "comparator_complete_only", None)
+        if sort is not None:
+            sort.setEnabled(has_any)
+        if sort_label is not None:
+            sort_label.setEnabled(has_any)
+        if complete_only is not None:
+            complete_only.setEnabled(has_any)
+
         need_layout = with_native_shortcuts(self._tr("status.calculate_layout_first"))
         only_one = with_native_shortcuts(self._tr("status.only_one_visible_solution"))
         apply = self._actions["apply_layout"]
@@ -1910,8 +1920,23 @@ class MainWindow(QMainWindow):
             else only_one
         )
         if pin is not None:
-            pin.setToolTip(self._tr("tip.pin_reference"))
-            pin.setStatusTip(self._tr("tip.pin_reference"))
+            pin_tip = (
+                self._tr("tip.pin_reference")
+                if has_multiple
+                else (only_one if has_any else need_layout)
+            )
+            pin.setToolTip(pin_tip)
+            pin.setStatusTip(pin_tip)
+        if sort is not None:
+            sort_tip = self._tr("tip.comparator_sort") if has_any else need_layout
+            sort.setToolTip(sort_tip)
+            sort.setStatusTip(sort_tip)
+        if complete_only is not None:
+            filter_tip = (
+                self._tr("tip.comparator_complete_only") if has_any else need_layout
+            )
+            complete_only.setToolTip(filter_tip)
+            complete_only.setStatusTip(filter_tip)
 
     def _sync_timeline_actions(self) -> None:
         """Enable Timeline export only when there are events to export."""
