@@ -1877,6 +1877,40 @@ class MainWindow(QMainWindow):
         self._actions["previous_solution"].setEnabled(has_multiple)
         self._actions["next_solution"].setEnabled(has_multiple)
 
+        pin = getattr(self, "pin_reference_button", None)
+        if pin is not None:
+            pin.setEnabled(has_multiple)
+
+        need_layout = with_native_shortcuts(self._tr("status.calculate_layout_first"))
+        only_one = with_native_shortcuts(self._tr("status.only_one_visible_solution"))
+        apply = self._actions["apply_layout"]
+        export = self._actions["export_selected"]
+        previous = self._actions["previous_solution"]
+        next_action = self._actions["next_solution"]
+        apply.setStatusTip(
+            with_native_shortcuts(self._tr("tip.apply_layout"))
+            if has_any
+            else need_layout
+        )
+        export.setStatusTip(
+            with_native_shortcuts(self._tr("tip.export_selected"))
+            if has_any
+            else need_layout
+        )
+        previous.setStatusTip(
+            with_native_shortcuts(self._tr("tip.previous_solution"))
+            if has_multiple
+            else only_one
+        )
+        next_action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.next_solution"))
+            if has_multiple
+            else only_one
+        )
+        if pin is not None:
+            pin.setToolTip(self._tr("tip.pin_reference"))
+            pin.setStatusTip(self._tr("tip.pin_reference"))
+
     def _open_preferences(self) -> None:
         dialog = PreferencesDialog(self.services.preferences.current, self)
         if dialog.exec() != PreferencesDialog.DialogCode.Accepted:
@@ -2008,6 +2042,7 @@ class MainWindow(QMainWindow):
         self._update_project_path_status()
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
+        self._sync_solution_actions()
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication

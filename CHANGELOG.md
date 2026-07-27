@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Comparador: «Fijar como referencia» solo con >=2 candidatas; tips de
+  Aplicar/Exportar/Re-Av Pág explican por qué están deshabilitados.
 - Acciones sin candidata útil quedan deshabilitadas: `Aplicar layout` y
   `Exportar` solo con >=1 solución; `Re/Av Pág` solo con >=2.
 - Exportar historial del **Timeline**: tras guardar, mismo diálogo
