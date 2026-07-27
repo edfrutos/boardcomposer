@@ -32,8 +32,10 @@ def test_timeline_export_disabled_when_empty(qapp, tmp_path):
     assert not window.services.timeline.entries
     assert not window._actions["export_timeline"].isEnabled()
     assert not window.console._export.isEnabled()
+    assert not window.console._clear.isEnabled()
     tip = window._actions["export_timeline"].statusTip()
     assert "Timeline" in tip or "eventos" in tip.lower()
+    assert "vaciar" in window.console._clear.statusTip().lower()
 
 
 def test_timeline_export_enabled_after_event(qapp, tmp_path):
@@ -42,11 +44,13 @@ def test_timeline_export_enabled_after_event(qapp, tmp_path):
     window.services.events.publish(PROJECT_CREATED, {"kind": "demo"})
     assert window._actions["export_timeline"].isEnabled()
     assert window.console._export.isEnabled()
+    assert window.console._clear.isEnabled()
     assert (
         "Ctrl+Shift+L" in window._actions["export_timeline"].statusTip()
         or "⇧⌘L" in window._actions["export_timeline"].statusTip()
         or "Timeline" in window._actions["export_timeline"].statusTip()
     )
+    assert "Vaciar" in window.console._clear.statusTip()
 
 
 def test_timeline_export_disabled_after_clear(qapp, tmp_path):
@@ -56,3 +60,4 @@ def test_timeline_export_disabled_after_clear(qapp, tmp_path):
     window.services.timeline.clear()
     assert not window._actions["export_timeline"].isEnabled()
     assert not window.console._export.isEnabled()
+    assert not window.console._clear.isEnabled()

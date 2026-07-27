@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Timeline: «Vaciar» deshabilitado sin eventos; tip explica el vacío (mismo
+  patrón que Exportar).
 - Comparador: ordenar y «solo completas» deshabilitados sin candidatas; tip
   pide Ctrl+Return. Tip del pin distingue 0 / 1 / ≥2 soluciones.
 - Export Timeline deshabilitado sin eventos (menú + botón del dock); tip
