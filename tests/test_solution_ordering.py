@@ -6,7 +6,11 @@ from boardcomposer.domain import (
     SolutionExplanation,
     SolutionScore,
 )
-from studio.solution_ordering import SORT_LABELS, ordered_solution_indexes
+from studio.solution_ordering import (
+    SORT_LABELS,
+    ordered_solution_indexes,
+    step_display_index,
+)
 
 
 def _solution(
@@ -119,3 +123,14 @@ def test_unknown_sort_key_falls_back_to_ranking():
 def test_sort_labels_cover_every_supported_key():
     keys = {key for key, _label in SORT_LABELS}
     assert keys == {"ranking", "pieces", "waste", "board_waste", "score"}
+
+
+def test_step_display_index_wraps_and_skips_filtered():
+    display = [2, 0, 1]
+    assert step_display_index(display, 2, delta=1) == 0
+    assert step_display_index(display, 1, delta=1) == 2
+    assert step_display_index(display, 2, delta=-1) == 1
+    # Current filtered out → jump to edge in travel direction.
+    assert step_display_index([1, 2], 0, delta=1) == 1
+    assert step_display_index([1, 2], 0, delta=-1) == 2
+    assert step_display_index([], 0, delta=1) is None

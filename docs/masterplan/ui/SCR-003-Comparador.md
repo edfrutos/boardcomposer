@@ -85,7 +85,7 @@ en sync con el replay del Timeline (diff parcial por paso).
 | Acción | Atajo / control | Efecto |
 |--------|-----------------|--------|
 | Seleccionar candidata | clic fila o miniatura | Preview en Workspace + Inspector |
-| Solución anterior / siguiente | **Re Pág** / **Av Pág** | Cambia candidata en el servicio de layout |
+| Solución anterior / siguiente | **Re Pág** / **Av Pág** | Sigue orden/filtro visibles del Comparador |
 | Aplicar al proyecto | **Ctrl+Shift+Return** | Confirma si las soluciones están desactualizadas |
 | Exportar seleccionada | **Ctrl+Shift+E** | Diálogo SCR-007 |
 | Mostrar/ocultar dock | **Ctrl+4** | Toggle Comparador |
@@ -126,13 +126,10 @@ en sync con el replay del Timeline (diff parcial por paso).
 
 - El resaltado «mejor en» no incluye tablero libre / largo / ancho (sí
   ordenables en la tabla).
-- **Re Pág / Av Pág** navegan la lista del solver; el orden del combo de
-  ordenación es solo de visualización.
 
 ---
 
 ## Evolución prevista
 
 - Highlights ampliados a más métricas de la tabla.
-- Navegación PgUp/PgDown respetando el orden/filtro de la UI.
 - Gráficos históricos y recomendaciones asistidas.

@@ -93,3 +93,23 @@ def ordered_solution_indexes(
         key=lambda index: criterion.value(solutions[index]),
         reverse=criterion.higher_is_better,
     )
+
+
+def step_display_index(
+    display_indexes: list[int],
+    current: int,
+    *,
+    delta: int,
+) -> int | None:
+    """Next/previous index in the visible comparator order (wraps).
+
+    If ``current`` is filtered out of the display list, jump to the first
+    visible row when moving forward, or the last when moving backward.
+    """
+    if not display_indexes:
+        return None
+    if current in display_indexes:
+        position = display_indexes.index(current)
+    else:
+        return display_indexes[0 if delta > 0 else -1]
+    return display_indexes[(position + delta) % len(display_indexes)]

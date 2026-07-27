@@ -22,6 +22,8 @@
 
 ### Añadido
 
+- Comparador: **Re Pág / Av Pág** siguen el orden y filtro visibles de la
+  tabla (no solo el ranking del solver).
 - Comparador: la referencia fijada se marca en la tabla y miniaturas
   (`Ref n` / fondo; SCR-003).
 - Anillo de revisiones locales al guardar `.bcproj` (carpeta
