@@ -22,6 +22,8 @@
 
 ### Añadido
 
+- Comparador: highlights «mejor en» incluyen tablero libre, largo y ancho
+  (además de piezas / huecos / score).
 - Comparador: **Re Pág / Av Pág** siguen el orden y filtro visibles de la
   tabla (no solo el ranking del solver).
 - Comparador: la referencia fijada se marca en la tabla y miniaturas

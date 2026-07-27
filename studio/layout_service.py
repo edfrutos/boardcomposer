@@ -257,7 +257,10 @@ class LayoutService:
     @property
     def solution_highlights(self) -> dict[int, list[str]]:
         """Return, per solution index, which metrics it wins at (SCR-003)."""
-        return solution_highlights(self.solutions)
+        return solution_highlights(
+            self.solutions,
+            board_waste=self.board_waste_ratio,
+        )
 
     def stats_summary_lines(self, language: str = "es") -> list[str]:
         """Return human-readable solver statistics."""
