@@ -13,11 +13,13 @@ from boardcomposer.export import (
     solution_to_svg,
 )
 
-VALID_EXPORT_FORMATS = ("svg", "dxf", "pdf", "json", "csv")
+VALID_EXPORT_FORMATS = ("svg", "png", "jpeg", "dxf", "pdf", "json", "csv")
 DEFAULT_EXPORT_FORMAT = "svg"
 
 _FORMAT_LABELS = {
     "svg": "SVG",
+    "png": "PNG",
+    "jpeg": "JPEG",
     "dxf": "DXF",
     "pdf": "PDF",
     "json": "JSON",
@@ -26,6 +28,8 @@ _FORMAT_LABELS = {
 
 _FORMAT_FILTERS = {
     "svg": "SVG (*.svg)",
+    "png": "PNG (*.png)",
+    "jpeg": "JPEG (*.jpg *.jpeg)",
     "dxf": "DXF (*.dxf)",
     "pdf": "PDF (*.pdf)",
     "json": "JSON (*.json)",
@@ -94,6 +98,9 @@ def render_export(
     prepared = prepare_solution(solution, options)
 
     if options.format == "svg":
+        return solution_to_svg(prepared, project)
+    if options.format in {"png", "jpeg"}:
+        # Raster export is generated in Studio from this SVG payload.
         return solution_to_svg(prepared, project)
     if options.format == "dxf":
         return solution_to_dxf(prepared, project)

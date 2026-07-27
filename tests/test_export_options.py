@@ -70,6 +70,15 @@ def test_preview_text_includes_format_summary():
     assert "Piezas colocadas: 1" in text
 
 
+def test_render_export_png_and_jpeg_return_svg_payload():
+    svg_png = render_export(_solution(), None, ExportOptions(format="png"))
+    svg_jpeg = render_export(_solution(), None, ExportOptions(format="jpeg"))
+    assert isinstance(svg_png, str)
+    assert isinstance(svg_jpeg, str)
+    assert "<svg" in svg_png
+    assert "<svg" in svg_jpeg
+
+
 def test_preview_svg_respects_offcuts_option():
     from boardcomposer.export import DEFAULT_SVG_PALETTE
 
@@ -97,3 +106,14 @@ def test_export_dialog_embeds_graphic_preview(qapp):
     dialog.include_offcuts.setChecked(False)
     dialog._refresh_preview()
     assert "Retales: 0" in dialog.preview.toPlainText()
+
+
+def test_svg_to_raster_bytes_supports_png_and_jpeg(qapp):
+    del qapp
+    from studio.solution_thumbnail import svg_to_raster_bytes
+
+    svg = preview_svg(_solution(), None, ExportOptions(format="svg"))
+    png = svg_to_raster_bytes(svg, image_format="PNG")
+    jpeg = svg_to_raster_bytes(svg, image_format="JPEG")
+    assert png.startswith(b"\x89PNG")
+    assert jpeg[:2] == b"\xff\xd8"
