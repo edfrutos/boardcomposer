@@ -1867,6 +1867,16 @@ class MainWindow(QMainWindow):
         action.setChecked(self.services.preferences.current.show_grid)
         action.blockSignals(False)
 
+    def _sync_solution_actions(self) -> None:
+        """Enable solution actions only when they can do useful work."""
+        total = len(self.services.layout.solutions)
+        has_any = total > 0
+        has_multiple = total > 1
+        self._actions["apply_layout"].setEnabled(has_any)
+        self._actions["export_selected"].setEnabled(has_any)
+        self._actions["previous_solution"].setEnabled(has_multiple)
+        self._actions["next_solution"].setEnabled(has_multiple)
+
     def _open_preferences(self) -> None:
         dialog = PreferencesDialog(self.services.preferences.current, self)
         if dialog.exec() != PreferencesDialog.DialogCode.Accepted:
@@ -2222,6 +2232,7 @@ class MainWindow(QMainWindow):
 
         self._decorate_comparator_reference()
         self._reload_solution_differences()
+        self._sync_solution_actions()
 
     def _reference_row_brush(self) -> QBrush:
         from studio.theme_tokens import tokens_for
