@@ -83,8 +83,10 @@ Precondición para checks de comparador multi-candidata:
 - [x] **Ctrl+Shift+Return** aplica la solución al proyecto (tip de estado).
 - [x] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**.
 - [ ] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia visible + diff (requiere >=2).
-- [ ] **Ctrl+Shift+E** abre exportar solución (SVG/PNG/JPEG/PDF/DXF/JSON/CSV + preview; tip de estado).
-- [ ] Tras exportar, opción de abrir archivo/carpeta.
+- [ ] **Ctrl+Shift+E** (menú **Exportar** / toolbar) abre exportar solución
+  (SVG/PNG/JPEG/PDF/DXF/JSON/CSV + preview). Tras Calcular, el tip de estado
+  lo recuerda; sin layout: tip pide Ctrl+Return primero.
+- [ ] Tras exportar OK: diálogo «Abrir archivo» / «Mostrar en carpeta».
 
 ---
 

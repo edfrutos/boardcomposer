@@ -173,7 +173,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.add_piece": "Añadir una pieza al proyecto (Ctrl+Shift+P)",
         "tip.import_boards_csv": "Importar inventario de tableros desde CSV o Excel (Ctrl+Shift+T)",
         "tip.import_pieces_csv": "Importar piezas desde CSV o Excel (Ctrl+Shift+O)",
-        "tip.export_selected": "Exportar la solución seleccionada (Ctrl+Shift+E)",
+        "tip.export_selected": (
+            "Exportar la solución del Comparador (Ctrl+Shift+E): "
+            "SVG/PNG/JPEG/PDF/DXF/JSON/CSV — menú Exportar"
+        ),
         "tip.export_timeline": "Exportar el historial del Timeline (Ctrl+Shift+L)",
         "tip.exit": "Cerrar BoardComposer Studio (Ctrl+Q)",
         "tip.undo": "Deshacer la última acción (Ctrl+Z)",
@@ -524,10 +527,13 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.prefs_saved": "Preferencias guardadas",
         "status.layout_failed": "No se pudo calcular layout",
         "status.layout_partial": "Layout parcial: {omitted} pieza(s) sin colocar de {total} soluciones",
-        "status.layout_ok": "Layout calculado: {n} soluciones",
+        "status.layout_ok": (
+            "Layout calculado: {n} soluciones — Comparador (Ctrl+4) · "
+            "Exportar Ctrl+Shift+E"
+        ),
         "status.layout_ok_single": (
             "Layout calculado: 1 única candidata (no hay más distintas; "
-            "generadas {generated}, únicas {unique})"
+            "generadas {generated}, únicas {unique}) — Exportar Ctrl+Shift+E"
         ),
         "status.layout_truncated_by_limit": (
             "Mostrando {shown}/{accepted} soluciones (límite en Preferencias: {limit})."
@@ -540,7 +546,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "progress.layout_cancel": "Cancelar",
         "status.select_solution_first": "Primero selecciona una solución",
         "status.reference_pinned": "Referencia fijada en solución #{n}",
-        "status.calculate_layout_first": "Primero calcula un layout",
+        "status.calculate_layout_first": (
+            "Primero calcula un layout (Ctrl+Return). "
+            "Luego Exportar (Ctrl+Shift+E) o Aplicar (Ctrl+Shift+Return)"
+        ),
         "status.solution_applied": "Solución {current}/{total} aplicada al proyecto",
         "status.no_solutions": "No hay soluciones calculadas",
         "status.no_solutions_match_filter": (
@@ -926,7 +935,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.add_piece": "Add a piece to the project (Ctrl+Shift+P)",
         "tip.import_boards_csv": "Import board inventory from CSV or Excel (Ctrl+Shift+T)",
         "tip.import_pieces_csv": "Import pieces from CSV or Excel (Ctrl+Shift+O)",
-        "tip.export_selected": "Export the selected solution (Ctrl+Shift+E)",
+        "tip.export_selected": (
+            "Export the Comparator solution (Ctrl+Shift+E): "
+            "SVG/PNG/JPEG/PDF/DXF/JSON/CSV — Export menu"
+        ),
         "tip.export_timeline": "Export the Timeline history (Ctrl+Shift+L)",
         "tip.exit": "Quit BoardComposer Studio (Ctrl+Q)",
         "tip.undo": "Undo the last action (Ctrl+Z)",
@@ -1268,10 +1280,13 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.prefs_saved": "Preferences saved",
         "status.layout_failed": "Could not calculate layout",
         "status.layout_partial": "Partial layout: {omitted} unplaced piece(s) across {total} solutions",
-        "status.layout_ok": "Layout calculated: {n} solutions",
+        "status.layout_ok": (
+            "Layout calculated: {n} solutions — Comparator (Ctrl+4) · "
+            "Export Ctrl+Shift+E"
+        ),
         "status.layout_ok_single": (
             "Layout calculated: 1 unique candidate (no more distinct ones; "
-            "generated {generated}, unique {unique})"
+            "generated {generated}, unique {unique}) — Export Ctrl+Shift+E"
         ),
         "status.layout_truncated_by_limit": (
             "Showing {shown}/{accepted} solutions (Preferences limit: {limit})."
@@ -1284,7 +1299,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "progress.layout_cancel": "Cancel",
         "status.select_solution_first": "Select a solution first",
         "status.reference_pinned": "Reference pinned to solution #{n}",
-        "status.calculate_layout_first": "Calculate a layout first",
+        "status.calculate_layout_first": (
+            "Calculate a layout first (Ctrl+Return). "
+            "Then Export (Ctrl+Shift+E) or Apply (Ctrl+Shift+Return)"
+        ),
         "status.solution_applied": "Solution {current}/{total} applied to the project",
         "status.no_solutions": "No calculated solutions",
         "status.no_solutions_match_filter": (
