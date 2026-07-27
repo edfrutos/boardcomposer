@@ -525,6 +525,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.layout_failed": "No se pudo calcular layout",
         "status.layout_partial": "Layout parcial: {omitted} pieza(s) sin colocar de {total} soluciones",
         "status.layout_ok": "Layout calculado: {n} soluciones",
+        "status.layout_ok_single": (
+            "Layout calculado: 1 única candidata (no hay más distintas; "
+            "generadas {generated}, únicas {unique})"
+        ),
         "status.layout_truncated_by_limit": (
             "Mostrando {shown}/{accepted} soluciones (límite en Preferencias: {limit})."
         ),
@@ -1254,6 +1258,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.layout_failed": "Could not calculate layout",
         "status.layout_partial": "Partial layout: {omitted} unplaced piece(s) across {total} solutions",
         "status.layout_ok": "Layout calculated: {n} solutions",
+        "status.layout_ok_single": (
+            "Layout calculated: 1 unique candidate (no more distinct ones; "
+            "generated {generated}, unique {unique})"
+        ),
         "status.layout_truncated_by_limit": (
             "Showing {shown}/{accepted} solutions (Preferences limit: {limit})."
         ),

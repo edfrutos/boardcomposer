@@ -4,6 +4,9 @@
 
 ### Corregido
 
+- Tras Calcular layout con **1 sola** candidata aceptada, el status lo dice
+  claro («única candidata… no hay más distintas») con generadas/únicas —
+  no se confunde con el límite de Preferencias.
 - Proyecto demo (**Ctrl+Shift+D**): si `Máx. soluciones` era 1, se restaura
   al default (20) para que Calcular layout muestre el Comparador / PgUp.
 - Crash macOS (SIGSEGV en `QDockWidget::raise`): Timeline/Comparador se
