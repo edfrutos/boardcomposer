@@ -405,6 +405,8 @@ class MainWindow(QMainWindow):
         self.console.phase_step_changed.connect(self._on_timeline_phase_step)
         self.console.entry_selected.connect(self._on_timeline_entry_selected)
         self.console.export_requested.connect(self._export_timeline_history)
+        self.services.timeline.add_changed_listener(self._sync_timeline_actions)
+        self._sync_timeline_actions()
 
         self.console_dock = QDockWidget("", self)
         self.console_dock.setObjectName("timelineDock")
@@ -1911,6 +1913,19 @@ class MainWindow(QMainWindow):
             pin.setToolTip(self._tr("tip.pin_reference"))
             pin.setStatusTip(self._tr("tip.pin_reference"))
 
+    def _sync_timeline_actions(self) -> None:
+        """Enable Timeline export only when there are events to export."""
+        action = self._actions.get("export_timeline")
+        if action is None:
+            return
+        has_events = bool(self.services.timeline.entries)
+        action.setEnabled(has_events)
+        tip_key = (
+            "tip.export_timeline" if has_events else "status.timeline_export_empty"
+        )
+        tip = self._tr(tip_key)
+        action.setStatusTip(with_native_shortcuts(tip) if tip != tip_key else tip)
+
     def _open_preferences(self) -> None:
         dialog = PreferencesDialog(self.services.preferences.current, self)
         if dialog.exec() != PreferencesDialog.DialogCode.Accepted:
@@ -2043,6 +2058,7 @@ class MainWindow(QMainWindow):
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
         self._sync_solution_actions()
+        self._sync_timeline_actions()
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication

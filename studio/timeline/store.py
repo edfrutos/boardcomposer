@@ -21,6 +21,7 @@ class TimelineEntry:
 
 
 Listener = Callable[[TimelineEntry], None]
+ChangedListener = Callable[[], None]
 
 
 @dataclass
@@ -31,6 +32,9 @@ class TimelineStore:
     max_entries: int = 500
     _entries: list[TimelineEntry] = field(default_factory=list, init=False, repr=False)
     _listeners: list[Listener] = field(default_factory=list, init=False, repr=False)
+    _changed_listeners: list[ChangedListener] = field(
+        default_factory=list, init=False, repr=False
+    )
     _sequence: int = field(default=0, init=False, repr=False)
 
     def __post_init__(self) -> None:
@@ -47,8 +51,16 @@ class TimelineStore:
         if listener in self._listeners:
             self._listeners.remove(listener)
 
+    def add_changed_listener(self, listener: ChangedListener) -> None:
+        self._changed_listeners.append(listener)
+
+    def remove_changed_listener(self, listener: ChangedListener) -> None:
+        if listener in self._changed_listeners:
+            self._changed_listeners.remove(listener)
+
     def clear(self) -> None:
         self._entries.clear()
+        self._notify_changed()
 
     def algorithms(self) -> tuple[str, ...]:
         """Return distinct algorithm names seen in entry payloads."""
@@ -105,3 +117,8 @@ class TimelineStore:
 
         for listener in list(self._listeners):
             listener(entry)
+        self._notify_changed()
+
+    def _notify_changed(self) -> None:
+        for listener in list(self._changed_listeners):
+            listener()
