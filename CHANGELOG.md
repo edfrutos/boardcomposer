@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Exportar historial del **Timeline**: tras guardar, mismo diálogo
+  «Abrir archivo» / «Mostrar en carpeta» que al exportar una solución.
 - Tips del Comparador con ≥2 candidatas: post-solve menciona Re/Av Pág y
   «Fijar referencia»; con 1 sola, apunta al demo; tooltip del botón pin;
   `diff.need_two` indica Ctrl+Shift+D.
