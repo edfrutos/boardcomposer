@@ -64,12 +64,13 @@ Tras exportar OK: opción de abrir el archivo o revelar la carpeta.
 
 | Formato | Contenido principal |
 |--------|---------------------|
+| PNG / JPEG | Raster del layout (misma geometría que SVG preview) |
 | SVG / DXF / PDF | Planos de paneles; retales opcionales |
 | JSON | Documento estructurado; métricas / explicación / retales opcionales |
 | CSV | Filas de placements (sin omitted/metrics/explanation) |
 
-No implementados: PNG/JPEG, escala, márgenes, papel, calidad, cotas como
-opciones del diálogo.
+No implementados: escala, márgenes, papel, calidad, cotas como opciones del
+diálogo.
 
 ### Opciones de contenido
 
@@ -152,7 +153,7 @@ No usa `ExportDialog`. Flujo propio:
 
 ## Límites conocidos (Studio actual)
 
-- Sin PNG/JPEG ni controles de papel/escala/márgenes.
+- Sin controles de papel/escala/márgenes.
 - Métricas/explicación solo en JSON.
 - CSV limitado a placements.
 - Sin exportación por lotes ni publicación a la nube.

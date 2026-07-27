@@ -100,6 +100,7 @@ from studio.solution_diff import (
     compare_solutions_at_step,
     format_diff_unavailable,
 )
+from studio.solution_thumbnail import svg_to_raster_bytes
 from studio.solution_ordering import (
     SORT_LABELS,
     ordered_solution_indexes,
@@ -2683,7 +2684,13 @@ class MainWindow(QMainWindow):
                 strategy_name=self.services.layout.strategy_name,
                 solution_index=self.services.layout.selected_solution_index,
             )
-            if isinstance(payload, bytes):
+            if options.format in {"png", "jpeg"}:
+                assert isinstance(payload, str)
+                image_format = "PNG" if options.format == "png" else "JPEG"
+                Path(path).write_bytes(
+                    svg_to_raster_bytes(payload, image_format=image_format)
+                )
+            elif isinstance(payload, bytes):
                 Path(path).write_bytes(payload)
             else:
                 Path(path).write_text(payload, encoding="utf-8")

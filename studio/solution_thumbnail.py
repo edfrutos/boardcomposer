@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from PySide6.QtCore import QByteArray, QSize
+from PySide6.QtCore import QBuffer, QByteArray, QIODevice, QSize
 from PySide6.QtGui import QColor, QImage, QPainter, QPixmap
 from PySide6.QtSvg import QSvgRenderer
 
@@ -80,3 +80,16 @@ def solution_thumbnails(
     sizes = [svg_default_size(svg) for svg in svgs]
     scale = shared_fit_scale(sizes, box)
     return [svg_to_pixmap(svg, box=box, scale=scale) for svg in svgs]
+
+
+def svg_to_raster_bytes(svg: str, *, image_format: str) -> bytes:
+    """Render SVG into PNG/JPEG bytes at intrinsic size."""
+    pixmap = svg_to_pixmap(svg, box=svg_default_size(svg))
+    buffer = QBuffer()
+    buffer.open(QIODevice.OpenModeFlag.WriteOnly)
+    ok = pixmap.save(buffer, image_format.upper())
+    data = bytes(buffer.data())
+    buffer.close()
+    if not ok or not data:
+        raise ValueError(f"No se pudo generar imagen {image_format}")
+    return data

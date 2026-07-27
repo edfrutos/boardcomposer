@@ -22,6 +22,7 @@
 
 ### Añadido
 
+- Exportación SCR-007: formatos **PNG/JPEG** desde el mismo diálogo.
 - Plantillas de proyecto: restaurar colocaciones al crear desde plantilla
   (si las hay) y eliminar plantilla desde el diálogo de elección (SCR-005).
 - Preferencias: i18n completo del diálogo (pesos, export, temas, estrategias;
