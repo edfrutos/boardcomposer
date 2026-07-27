@@ -87,7 +87,8 @@ Precondición para checks de comparador multi-candidata:
 - [ ] **Ctrl+Shift+E** (menú **Exportar** / toolbar) abre exportar solución
   (SVG/PNG/JPEG/PDF/DXF/JSON/CSV + preview). Tras Calcular, el tip de estado
   lo recuerda; sin layout: tip pide Ctrl+Return primero.
-- [ ] Tras exportar OK: diálogo «Abrir archivo» / «Mostrar en carpeta».
+- [ ] Tras exportar OK (solución **o** Timeline): diálogo «Abrir archivo» /
+  «Mostrar en carpeta».
 
 ---
 

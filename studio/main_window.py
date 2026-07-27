@@ -2733,6 +2733,7 @@ class MainWindow(QMainWindow):
             return
 
         self._status("status.timeline_exported", 5000, path=path)
+        self._offer_open_exported_path(path)
 
     def _export_selected_solution(self):
         solution = self.services.layout.selected_solution
