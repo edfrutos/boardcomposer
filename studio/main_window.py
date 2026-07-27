@@ -2048,9 +2048,25 @@ class MainWindow(QMainWindow):
                 omitted=len(solution.omitted_piece_ids),
                 total=solution_count,
             )
+            self._maybe_warn_solution_truncated_by_limit(solution_count)
             return
 
         self._status("status.layout_ok", n=solution_count)
+        self._maybe_warn_solution_truncated_by_limit(solution_count)
+
+    def _maybe_warn_solution_truncated_by_limit(self, shown: int) -> None:
+        """Hint when more accepted candidates exist than currently shown."""
+        accepted = int(self.services.layout.stats.accepted)
+        if accepted <= shown:
+            return
+        limit = int(self.services.preferences.current.max_solutions)
+        self._status(
+            "status.layout_truncated_by_limit",
+            7000,
+            shown=shown,
+            accepted=accepted,
+            limit=limit,
+        )
 
     def _publish_solve_trace(self) -> None:
         from studio.solve_trace_publisher import publish_solve_trace
