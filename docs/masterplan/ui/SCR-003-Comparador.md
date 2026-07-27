@@ -124,8 +124,6 @@ en sync con el replay del Timeline (diff parcial por paso).
 
 ## Límites conocidos (Studio actual)
 
-- Sin marca visual explícita de «esta fila es la referencia» (solo status +
-  texto del panel).
 - El resaltado «mejor en» no incluye tablero libre / largo / ancho (sí
   ordenables en la tabla).
 - **Re Pág / Av Pág** navegan la lista del solver; el orden del combo de
@@ -135,7 +133,6 @@ en sync con el replay del Timeline (diff parcial por paso).
 
 ## Evolución prevista
 
-- Indicador visual de la referencia fijada.
 - Highlights ampliados a más métricas de la tabla.
 - Navegación PgUp/PgDown respetando el orden/filtro de la UI.
 - Gráficos históricos y recomendaciones asistidas.

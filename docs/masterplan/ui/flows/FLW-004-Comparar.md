@@ -162,5 +162,5 @@ candidatas) y aplica o exporta la elegida de forma consciente.
 
 - **Re Pág / Av Pág** navegan la lista del solver; el orden del combo es solo
   de visualización.
-- Sin marca visual fuerte de «esta fila es la referencia».
+- Referencia fijada marcada en tabla/miniaturas (`Ref n` / fondo).
 - Diff inútil con menos de dos candidatas.

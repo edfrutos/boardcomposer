@@ -3,7 +3,7 @@
 from pathlib import Path
 
 from PySide6.QtCore import QByteArray, QPoint, QSize, Qt
-from PySide6.QtGui import QAction, QCloseEvent, QIcon
+from PySide6.QtGui import QAction, QBrush, QCloseEvent, QColor, QIcon
 from PySide6.QtWidgets import (
     QAbstractItemView,
     QCheckBox,
@@ -124,6 +124,7 @@ class MainWindow(QMainWindow):
         self._comparator_sort_by = "ranking"
         self._comparator_complete_only = False
         self._comparator_reference_index: int | None = None
+        self._comparator_reference_pinned = False
         self.setWindowTitle("BoardComposer Studio")
         icon = app_icon()
         if not icon.isNull():
@@ -1995,6 +1996,7 @@ class MainWindow(QMainWindow):
             return
 
         self._comparator_reference_index = None
+        self._comparator_reference_pinned = False
         self._publish_solve_trace()
 
         if self.services.layout.stats.cancelled:
@@ -2133,7 +2135,69 @@ class MainWindow(QMainWindow):
             self.solutions_table.selectRow(display_row)
             self.solution_thumbnails.setCurrentRow(display_row)
 
+        self._decorate_comparator_reference()
         self._reload_solution_differences()
+
+    def _reference_row_brush(self) -> QBrush:
+        from studio.theme_tokens import tokens_for
+
+        theme = self.services.preferences.current.theme
+        name = "light" if theme == "system" else theme
+        tokens = tokens_for(name)
+        color = QColor(tokens.alternate if tokens is not None else "#ebe1d4")
+        return QBrush(color)
+
+    def _decorate_comparator_reference(self) -> None:
+        """Mark the pinned reference row/thumbnail (SCR-003)."""
+        ref = self._comparator_reference_index
+        pinned = self._comparator_reference_pinned and ref is not None
+        brush = self._reference_row_brush() if pinned else QBrush()
+        clear = QBrush()
+        highlights = self.services.layout.solution_highlights
+
+        for row, solution_index in enumerate(self._solution_display_indexes):
+            is_ref = pinned and solution_index == ref
+            number = str(solution_index + 1)
+            label = (
+                self._tr("comparator.reference_mark", n=number) if is_ref else number
+            )
+            row_highlights = highlights.get(solution_index, [])
+            highlight_tip = (
+                self._tr(
+                    "comparator.best_in",
+                    items=", ".join(self._tr(key) for key in row_highlights),
+                )
+                if row_highlights
+                else ""
+            )
+            for column in range(self.solutions_table.columnCount()):
+                item = self.solutions_table.item(row, column)
+                if item is None:
+                    continue
+                if column == 0:
+                    item.setText(label)
+                item.setBackground(brush if is_ref else clear)
+                if is_ref:
+                    tip = self._tr("comparator.reference_tooltip", n=number)
+                    item.setToolTip(f"{tip}\n{highlight_tip}" if highlight_tip else tip)
+                else:
+                    item.setToolTip(highlight_tip)
+
+            thumb = self.solution_thumbnails.item(row)
+            if thumb is not None:
+                thumb.setText(
+                    self._tr("comparator.reference_thumb", n=solution_index + 1)
+                    if is_ref
+                    else f"#{solution_index + 1}"
+                )
+                thumb.setToolTip(
+                    (
+                        self._tr("comparator.reference_tooltip", n=number)
+                        + (f"\n{highlight_tip}" if highlight_tip else "")
+                    )
+                    if is_ref
+                    else highlight_tip
+                )
 
     def _pin_selected_as_reference(self) -> None:
         solutions = self.services.layout.solutions
@@ -2142,6 +2206,8 @@ class MainWindow(QMainWindow):
             self._status("status.select_solution_first")
             return
         self._comparator_reference_index = selected
+        self._comparator_reference_pinned = True
+        self._decorate_comparator_reference()
         self._reload_solution_differences()
         self._status("status.reference_pinned", n=selected + 1)
 
