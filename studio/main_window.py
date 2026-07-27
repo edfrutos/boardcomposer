@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from PySide6.QtCore import QByteArray, QPoint, QSize, Qt
+from PySide6.QtCore import QByteArray, QPoint, QSize, Qt, QTimer
 from PySide6.QtGui import QAction, QBrush, QCloseEvent, QColor, QIcon
 from PySide6.QtWidgets import (
     QAbstractItemView,
@@ -31,6 +31,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+from shiboken6 import isValid as _qt_is_valid
 
 from boardcomposer.export import solution_to_svg
 from studio.export_options import render_export
@@ -483,14 +484,16 @@ class MainWindow(QMainWindow):
 
         self.solutions_dock = QDockWidget("", self)
         self.solutions_dock.setObjectName("comparatorDock")
-        self.tabifyDockWidget(self.console_dock, self.solutions_dock)
-        self.console_dock.raise_()
         self.solutions_dock.setAllowedAreas(Qt.DockWidgetArea.BottomDockWidgetArea)
         self.solutions_dock.setWidget(comparator_panel)
         self.addDockWidget(
             Qt.DockWidgetArea.BottomDockWidgetArea,
             self.solutions_dock,
         )
+        # tabify only after both docks are added — otherwise Qt 6.11/macOS
+        # can leave a dangling dock layout and SIGSEGV on raise_().
+        self.tabifyDockWidget(self.console_dock, self.solutions_dock)
+        self._raise_dock(self.console_dock)
 
         self._menus["view"].addSeparator()
         self._dock_toggles = {
@@ -2493,7 +2496,7 @@ class MainWindow(QMainWindow):
             language=language,
         )
         self.solution_differences.setPlainText("\n".join(lines))
-        self.solutions_dock.raise_()
+        self._raise_dock(self.solutions_dock)
 
     def _apply_layout(self):
         if self.services.layout.solutions_outdated:
@@ -3005,6 +3008,21 @@ class MainWindow(QMainWindow):
             )
             if not state.isEmpty():
                 self.restoreState(state)
+        self._ensure_bottom_docks_tabified()
+
+    def _ensure_bottom_docks_tabified(self) -> None:
+        """Re-tabify Timeline/Comparator if restoreState left them ungrouped."""
+        console = getattr(self, "console_dock", None)
+        solutions = getattr(self, "solutions_dock", None)
+        if console is None or solutions is None:
+            return
+        if not _qt_is_valid(console) or not _qt_is_valid(solutions):
+            return
+        if solutions in self.tabifiedDockWidgets(console):
+            return
+        if console.isFloating() or solutions.isFloating():
+            return
+        self.tabifyDockWidget(console, solutions)
 
     def _reset_window_layout(self) -> None:
         """Restore factory dock/toolbar layout and persist it."""
@@ -3023,10 +3041,27 @@ class MainWindow(QMainWindow):
             self.solutions_dock,
         ):
             dock.setVisible(True)
-        self.console_dock.raise_()
+        self._raise_dock(self.console_dock)
 
         self._persist_window_layout()
         self._status("status.window_layout_reset")
+
+    def _raise_dock(self, dock: QDockWidget) -> None:
+        """Raise a dock tab/window safely (deferred; avoids macOS SIGSEGV).
+
+        Calling ``QWidget.raise_()`` synchronously from a QAction slot while
+        QDockWidget is mid-layout update can crash Qt 6.11 on macOS
+        (``QDockWidget::event`` / pointer auth failure). Defer to next tick
+        and skip destroyed or hidden docks.
+        """
+        if dock is None:
+            return
+        QTimer.singleShot(0, lambda d=dock: self._raise_dock_now(d))
+
+    def _raise_dock_now(self, dock: QDockWidget) -> None:
+        if not _qt_is_valid(dock) or not dock.isVisible():
+            return
+        dock.raise_()
 
     def _persist_window_layout(self) -> None:
         """Save geometry and dock/toolbar state into preferences."""
