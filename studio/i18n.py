@@ -830,8 +830,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.rename_project": "Rename the current project (Ctrl+Shift+F2)",
         "tip.reveal_project_folder": "Open the folder that contains the .bcproj file (Ctrl+Shift+R)",
         "tip.diff_bcproj": (
-            "Compare two .bcproj revisions or the open project vs a file "
-            "(Ctrl+Shift+Y)"
+            "Compare two .bcproj revisions or the open project vs a file (Ctrl+Shift+Y)"
         ),
         "tip.add_board": "Add a board to the inventory (Ctrl+Shift+B)",
         "tip.add_piece": "Add a piece to the project (Ctrl+Shift+P)",
