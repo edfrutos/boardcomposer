@@ -455,8 +455,20 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.template_empty": "No hay plantillas de proyecto guardadas",
         "status.template_missing_project": "No hay un proyecto abierto para guardar como plantilla",
         "template.pick_title": "Nuevo desde plantilla",
-        "template.pick_intro": "Elige una plantilla. Se creará un proyecto nuevo con sus tableros y piezas (sin colocaciones).",
+        "template.pick_intro": (
+            "Elige una plantilla. Se creará un proyecto nuevo con sus "
+            "tableros y piezas; si guarda colocaciones, podrás restaurarlas."
+        ),
         "template.pick_item": "{name} — {boards} tablero(s), {pieces} pieza(s)",
+        "template.pick_item_with_placements": (
+            "{name} — {boards} tablero(s), {pieces} pieza(s), "
+            "{placements} colocación(es)"
+        ),
+        "template.load_placements": "¿Restaurar también las colocaciones de la plantilla?",
+        "template.delete": "Eliminar…",
+        "template.delete_title": "Eliminar plantilla",
+        "template.delete_confirm": "¿Eliminar la plantilla «{name}»?",
+        "template.delete_failed": "No se pudo eliminar «{name}».",
         "template.save_title": "Guardar como plantilla",
         "template.save_prompt": "Nombre de la plantilla:",
         "template.save_placements": "¿Incluir también las colocaciones actuales?",
@@ -1164,8 +1176,19 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.template_empty": "No project templates saved yet",
         "status.template_missing_project": "No open project to save as a template",
         "template.pick_title": "New from template",
-        "template.pick_intro": "Choose a template. A new project will be created with its boards and pieces (no placements).",
+        "template.pick_intro": (
+            "Choose a template. A new project will be created with its boards "
+            "and pieces; if it stores placements, you can restore them."
+        ),
         "template.pick_item": "{name} — {boards} board(s), {pieces} piece(s)",
+        "template.pick_item_with_placements": (
+            "{name} — {boards} board(s), {pieces} piece(s), {placements} placement(s)"
+        ),
+        "template.load_placements": "Also restore the template placements?",
+        "template.delete": "Delete…",
+        "template.delete_title": "Delete template",
+        "template.delete_confirm": "Delete template “{name}”?",
+        "template.delete_failed": "Could not delete “{name}”.",
         "template.save_title": "Save as template",
         "template.save_prompt": "Template name:",
         "template.save_placements": "Also include the current placements?",

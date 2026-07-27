@@ -29,21 +29,26 @@ class ProjectTemplateInfo:
     name: str
     path: Path
 
+    def _load(self) -> StudioProject | None:
+        try:
+            return load_project(self.path)
+        except Exception:
+            return None
+
     @property
     def board_count(self) -> int:
-        try:
-            project = load_project(self.path)
-        except Exception:
-            return 0
-        return len(project.boards)
+        project = self._load()
+        return 0 if project is None else len(project.boards)
 
     @property
     def piece_count(self) -> int:
-        try:
-            project = load_project(self.path)
-        except Exception:
-            return 0
-        return len(project.pieces)
+        project = self._load()
+        return 0 if project is None else len(project.pieces)
+
+    @property
+    def placement_count(self) -> int:
+        project = self._load()
+        return 0 if project is None else len(project.placements)
 
 
 @dataclass

@@ -50,8 +50,51 @@ def test_save_can_include_placements(tmp_path):
         _sample_project(),
         include_placements=True,
     )
+    assert manager.list()[0].placement_count == 1
     project = manager.instantiate("Con layout", include_placements=True)
     assert len(project.placements) == 1
+
+
+def test_template_picker_lists_placements_and_deletes(qapp, tmp_path, monkeypatch):
+    del qapp
+    from PySide6.QtCore import Qt
+    from PySide6.QtWidgets import QMessageBox
+
+    from studio.dialogs.project_template_dialog import ProjectTemplatePickerDialog
+
+    manager = ProjectTemplatesManager(directory=tmp_path, autoload=False)
+    manager.save_from_project(
+        "Con layout",
+        _sample_project(),
+        include_placements=True,
+    )
+    manager.save_from_project("Solo inventario", _sample_project())
+
+    dialog = ProjectTemplatePickerDialog(
+        manager.list(),
+        manager=manager,
+        language="es",
+    )
+    assert dialog.list.count() == 2
+    labels = [dialog.list.item(i).text() for i in range(dialog.list.count())]
+    assert any("colocación" in label for label in labels)
+
+    for row in range(dialog.list.count()):
+        if dialog.list.item(row).data(Qt.ItemDataRole.UserRole) == "Con layout":
+            dialog.list.setCurrentRow(row)
+            break
+
+    assert dialog.selected_name() == "Con layout"
+    assert dialog.selected_placement_count() == 1
+
+    monkeypatch.setattr(
+        QMessageBox,
+        "question",
+        lambda *args, **kwargs: QMessageBox.StandardButton.Yes,
+    )
+    dialog._delete_selected()
+    assert manager.get("Con layout") is None
+    assert dialog.list.count() == 1
 
 
 def test_replace_same_name_updates_file(tmp_path):

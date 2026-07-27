@@ -136,9 +136,6 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
 
 ## Límites conocidos (Studio actual)
 
-- No hay UI para borrar plantillas de proyecto (sí API interna).
-- «Nuevo desde plantilla» no restaura placements aunque la plantilla los tenga.
-- Añadir tablero/pieza a mano no entra en la pila undo (import sí).
 - No existe aún un formulario único con cliente/kerf/vetas como en la visión
   antigua de esta pantalla; esos datos viven en piezas/tableros y preferencias.
 
@@ -147,6 +144,5 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
 ## Evolución prevista
 
 - Formulario de metadatos de proyecto (cliente, referencia, notas).
-- Gestión UI de plantillas (borrar/renombrar).
-- Undo unificado para altas manuales de inventario.
+- Renombrar plantillas desde UI.
 - Versionado / auditoría de `.bcproj`.

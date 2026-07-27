@@ -876,6 +876,7 @@ class MainWindow(QMainWindow):
 
         dialog = ProjectTemplatePickerDialog(
             templates,
+            manager=manager,
             language=self._ui_language(),
             parent=self,
         )
@@ -885,7 +886,16 @@ class MainWindow(QMainWindow):
         if not name:
             return
 
-        project = manager.instantiate(name, include_placements=False)
+        include_placements = False
+        if dialog.selected_placement_count() > 0:
+            answer = QMessageBox.question(
+                self,
+                self._tr("template.pick_title"),
+                self._tr("template.load_placements"),
+            )
+            include_placements = answer == QMessageBox.StandardButton.Yes
+
+        project = manager.instantiate(name, include_placements=include_placements)
         self.services.projects.new_project(project)
         self.services.layout.clear_solutions()
         self.workspace.reload_project()
