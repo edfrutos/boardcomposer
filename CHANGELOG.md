@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Guardar / Guardar como / Guardar plantilla / Renombrar proyecto
+  deshabilitados sin proyecto abierto; tips honestos.
 - Timeline: «Vaciar» deshabilitado sin eventos; tip explica el vacío (mismo
   patrón que Exportar).
 - Comparador: ordenar y «solo completas» deshabilitados sin candidatas; tip
