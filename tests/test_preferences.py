@@ -117,6 +117,28 @@ def test_preferences_dialog_exposes_advanced_max_solutions(qapp):
     assert dialog.preferences().max_solutions == 8
 
 
+def test_preferences_dialog_labels_follow_language(qapp):
+    del qapp
+    from studio.dialogs.preferences_dialog import PreferencesDialog
+
+    dialog = PreferencesDialog(StudioPreferences(language="en"))
+    assert dialog.use_custom_weights.text() == "Use custom weights"
+    assert dialog._weight_material_label.text() == "Material utilization:"
+    assert dialog.export_include_offcuts.text() == "Include offcuts"
+    assert "Material first" in [
+        dialog.strategy.itemText(i) for i in range(dialog.strategy.count())
+    ]
+    assert "System" in [dialog.theme.itemText(i) for i in range(dialog.theme.count())]
+
+    dialog.language.setCurrentIndex(dialog.language.findData("es"))
+    assert dialog.use_custom_weights.text() == "Usar pesos personalizados"
+    assert dialog._weight_material_label.text() == "Aprovechamiento de material:"
+    assert dialog.export_include_offcuts.text() == "Incluir retales"
+    assert "Material primero" in [
+        dialog.strategy.itemText(i) for i in range(dialog.strategy.count())
+    ]
+
+
 def test_apply_theme_switches_palette(qapp):
     from PySide6.QtGui import QColor
 

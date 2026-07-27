@@ -39,19 +39,6 @@ from studio.preferences import (
 from studio.theme import DEFAULT_THEME, VALID_THEMES
 from studio.units import DEFAULT_UNITS, VALID_UNITS
 
-_STRATEGY_LABELS = {
-    "balanced": "Equilibrada",
-    "material": "Material primero",
-    "compact": "Compacta primero",
-    "exact": "Exacta (MaxRects + CP-SAT)",
-}
-
-_THEME_LABELS = {
-    "system": "Sistema",
-    "light": "Claro",
-    "dark": "Oscuro",
-}
-
 
 class PreferencesDialog(QDialog):
     """Edit user-level Studio preferences."""
@@ -65,6 +52,7 @@ class PreferencesDialog(QDialog):
 
         layout = QVBoxLayout(self)
         self._intro = QLabel()
+        self._intro.setWordWrap(True)
         layout.addWidget(self._intro)
 
         self.general = QGroupBox()
@@ -76,21 +64,24 @@ class PreferencesDialog(QDialog):
         language_index = self.language.findData(preferences.language)
         self.language.setCurrentIndex(language_index if language_index >= 0 else 0)
         self.language.currentIndexChanged.connect(self._on_language_changed)
-        general_form.addRow(tr("prefs.language", preferences.language), self.language)
+        self._language_label = QLabel()
+        general_form.addRow(self._language_label, self.language)
 
         self.theme = QComboBox()
         for key in VALID_THEMES:
-            self.theme.addItem(_THEME_LABELS[key], key)
+            self.theme.addItem(tr(f"theme.{key}", preferences.language), key)
         theme_index = self.theme.findData(preferences.theme)
         self.theme.setCurrentIndex(theme_index if theme_index >= 0 else 0)
-        general_form.addRow(tr("prefs.theme", preferences.language), self.theme)
+        self._theme_label = QLabel()
+        general_form.addRow(self._theme_label, self.theme)
 
         self.units = QComboBox()
         for key in VALID_UNITS:
             self.units.addItem(tr(f"units.{key}", preferences.language), key)
         units_index = self.units.findData(preferences.units)
         self.units.setCurrentIndex(units_index if units_index >= 0 else 0)
-        general_form.addRow(tr("prefs.units", preferences.language), self.units)
+        self._units_label = QLabel()
+        general_form.addRow(self._units_label, self.units)
         layout.addWidget(self.general)
 
         self.workspace = QGroupBox()
@@ -103,36 +94,40 @@ class PreferencesDialog(QDialog):
         self.grid_size_mm.setSuffix(" mm")
         self.grid_size_mm.setSingleStep(10)
         self.grid_size_mm.setValue(preferences.grid_size_mm)
-        workspace_form.addRow(
-            tr("prefs.grid_size", preferences.language), self.grid_size_mm
-        )
+        self._grid_size_label = QLabel()
+        workspace_form.addRow(self._grid_size_label, self.grid_size_mm)
         layout.addWidget(self.workspace)
 
         self.algorithms = QGroupBox()
-        form = QFormLayout(self.algorithms)
+        algorithms_form = QFormLayout(self.algorithms)
 
         self.strategy = QComboBox()
         for key in VALID_STRATEGIES:
-            self.strategy.addItem(_STRATEGY_LABELS[key], key)
+            self.strategy.addItem(tr(f"strategy.{key}", preferences.language), key)
         index = self.strategy.findData(preferences.strategy_name)
         self.strategy.setCurrentIndex(index if index >= 0 else 0)
         self.strategy.currentIndexChanged.connect(self._on_strategy_changed)
-        form.addRow(tr("prefs.strategy", preferences.language), self.strategy)
+        self._strategy_label = QLabel()
+        algorithms_form.addRow(self._strategy_label, self.strategy)
 
-        self.use_custom_weights = QCheckBox("Usar pesos personalizados")
+        self.use_custom_weights = QCheckBox()
         self.use_custom_weights.setChecked(preferences.use_custom_weights)
         self.use_custom_weights.toggled.connect(self._on_custom_weights_toggled)
-        form.addRow("", self.use_custom_weights)
+        algorithms_form.addRow("", self.use_custom_weights)
 
         self.material_utilization = self._weight_spin()
         self.placed_boards = self._weight_spin()
         self.compactness = self._weight_spin()
         self.rotation_penalty = self._weight_spin()
 
-        form.addRow("Aprovechamiento de material:", self.material_utilization)
-        form.addRow("Piezas colocadas:", self.placed_boards)
-        form.addRow("Compacidad:", self.compactness)
-        form.addRow("Penalización por rotación:", self.rotation_penalty)
+        self._weight_material_label = QLabel()
+        self._weight_placed_label = QLabel()
+        self._weight_compactness_label = QLabel()
+        self._weight_rotation_label = QLabel()
+        algorithms_form.addRow(self._weight_material_label, self.material_utilization)
+        algorithms_form.addRow(self._weight_placed_label, self.placed_boards)
+        algorithms_form.addRow(self._weight_compactness_label, self.compactness)
+        algorithms_form.addRow(self._weight_rotation_label, self.rotation_penalty)
         layout.addWidget(self.algorithms)
 
         self.export_group = QGroupBox()
@@ -142,18 +137,17 @@ class PreferencesDialog(QDialog):
             self.export_format.addItem(format_label(key), key)
         export_index = self.export_format.findData(preferences.export_format)
         self.export_format.setCurrentIndex(export_index if export_index >= 0 else 0)
-        export_form.addRow(
-            tr("prefs.export_format", preferences.language), self.export_format
-        )
-        self.export_include_metrics = QCheckBox("Incluir métricas (JSON)")
+        self._export_format_label = QLabel()
+        export_form.addRow(self._export_format_label, self.export_format)
+        self.export_include_metrics = QCheckBox()
         self.export_include_metrics.setChecked(preferences.export_include_metrics)
         export_form.addRow("", self.export_include_metrics)
-        self.export_include_explanation = QCheckBox("Incluir explicación (JSON)")
+        self.export_include_explanation = QCheckBox()
         self.export_include_explanation.setChecked(
             preferences.export_include_explanation
         )
         export_form.addRow("", self.export_include_explanation)
-        self.export_include_offcuts = QCheckBox("Incluir retales")
+        self.export_include_offcuts = QCheckBox()
         self.export_include_offcuts.setChecked(preferences.export_include_offcuts)
         export_form.addRow("", self.export_include_offcuts)
         layout.addWidget(self.export_group)
@@ -163,28 +157,25 @@ class PreferencesDialog(QDialog):
         self.max_solutions = QSpinBox()
         self.max_solutions.setRange(MIN_MAX_SOLUTIONS, MAX_MAX_SOLUTIONS)
         self.max_solutions.setValue(preferences.max_solutions)
-        advanced_form.addRow(
-            tr("prefs.max_solutions", preferences.language), self.max_solutions
-        )
-        self.open_config_folder = QPushButton(
-            tr("prefs.open_config_folder", preferences.language)
-        )
+        self._max_solutions_label = QLabel()
+        advanced_form.addRow(self._max_solutions_label, self.max_solutions)
+        self.open_config_folder = QPushButton()
         self.open_config_folder.clicked.connect(self._open_config_folder)
         advanced_form.addRow("", self.open_config_folder)
         layout.addWidget(self.advanced)
 
-        buttons = QDialogButtonBox(
+        self._buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.RestoreDefaults
             | QDialogButtonBox.StandardButton.Ok
             | QDialogButtonBox.StandardButton.Cancel
         )
-        polish_dialog_button_box(buttons)
-        buttons.accepted.connect(self.accept)
-        buttons.rejected.connect(self.reject)
-        buttons.button(QDialogButtonBox.StandardButton.RestoreDefaults).clicked.connect(
-            self._restore_defaults
-        )
-        layout.addWidget(buttons)
+        polish_dialog_button_box(self._buttons)
+        self._buttons.accepted.connect(self.accept)
+        self._buttons.rejected.connect(self.reject)
+        self._buttons.button(
+            QDialogButtonBox.StandardButton.RestoreDefaults
+        ).clicked.connect(self._restore_defaults)
+        layout.addWidget(self._buttons)
 
         self._apply_weights_to_spins(preferences.weights)
         self._on_custom_weights_toggled(preferences.use_custom_weights)
@@ -194,13 +185,7 @@ class PreferencesDialog(QDialog):
         language = self.language.currentData() or DEFAULT_LANGUAGE
         self._language = language
         self.setWindowTitle(tr("prefs.title", language))
-        self._intro.setText(
-            "Estas opciones se aplican a todos los proyectos y no forman "
-            "parte del fichero `.bcproj`."
-            if language == "es"
-            else "These options apply to all projects and are not part of "
-            "the `.bcproj` file."
-        )
+        self._intro.setText(tr("prefs.intro", language))
         self.general.setTitle(tr("prefs.general", language))
         self.workspace.setTitle(tr("prefs.workspace", language))
         self.algorithms.setTitle(tr("prefs.algorithms", language))
@@ -208,11 +193,37 @@ class PreferencesDialog(QDialog):
         self.advanced.setTitle(tr("prefs.advanced", language))
         self.show_grid.setText(tr("prefs.show_grid", language))
         self.open_config_folder.setText(tr("prefs.open_config_folder", language))
+        self.use_custom_weights.setText(tr("prefs.use_custom_weights", language))
+        self.export_include_metrics.setText(tr("prefs.export_metrics", language))
+        self.export_include_explanation.setText(
+            tr("prefs.export_explanation", language)
+        )
+        self.export_include_offcuts.setText(tr("prefs.export_offcuts", language))
+
+        self._language_label.setText(tr("prefs.language", language))
+        self._theme_label.setText(tr("prefs.theme", language))
+        self._units_label.setText(tr("prefs.units", language))
+        self._grid_size_label.setText(tr("prefs.grid_size", language))
+        self._strategy_label.setText(tr("prefs.strategy", language))
+        self._weight_material_label.setText(tr("prefs.weight_material", language))
+        self._weight_placed_label.setText(tr("prefs.weight_placed", language))
+        self._weight_compactness_label.setText(tr("prefs.weight_compactness", language))
+        self._weight_rotation_label.setText(tr("prefs.weight_rotation", language))
+        self._export_format_label.setText(tr("prefs.export_format", language))
+        self._max_solutions_label.setText(tr("prefs.max_solutions", language))
 
         for index, key in enumerate(VALID_LANGUAGES):
             self.language.setItemText(index, tr(f"language.{key}", language))
+        for index, key in enumerate(VALID_THEMES):
+            self.theme.setItemText(index, tr(f"theme.{key}", language))
         for index, key in enumerate(VALID_UNITS):
             self.units.setItemText(index, tr(f"units.{key}", language))
+        for index, key in enumerate(VALID_STRATEGIES):
+            self.strategy.setItemText(index, tr(f"strategy.{key}", language))
+
+        restore = self._buttons.button(QDialogButtonBox.StandardButton.RestoreDefaults)
+        if restore is not None:
+            restore.setText(tr("prefs.restore_defaults", language))
 
     def _on_language_changed(self, _index: int) -> None:
         self._retranslate()

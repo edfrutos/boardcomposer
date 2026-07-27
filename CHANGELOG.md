@@ -22,6 +22,8 @@
 
 ### Añadido
 
+- Preferencias: i18n completo del diálogo (pesos, export, temas, estrategias;
+  SCR-006).
 - Comparador: highlights «mejor en» incluyen tablero libre, largo y ancho
   (además de piezas / huecos / score).
 - Comparador: **Re Pág / Av Pág** siguen el orden y filtro visibles de la
