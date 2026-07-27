@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- «Abrir carpeta del proyecto» tip pide guardar cuando aún no hay `.bcproj`
+  en disco (antes repetía el tip de abrir carpeta estando deshabilitado).
 - Guardar / Guardar como / Guardar plantilla / Renombrar proyecto
   deshabilitados sin proyecto abierto; tips honestos.
 - Timeline: «Vaciar» deshabilitado sin eventos; tip explica el vacío (mismo

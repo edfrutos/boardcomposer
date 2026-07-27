@@ -1623,7 +1623,14 @@ class MainWindow(QMainWindow):
                 label.setToolTip("")
         reveal = self._actions.get("reveal_project_folder")
         if reveal is not None:
-            reveal.setEnabled(bool(filename))
+            has_file = bool(filename)
+            reveal.setEnabled(has_file)
+            tip = (
+                with_native_shortcuts(self._tr("tip.reveal_project_folder"))
+                if has_file
+                else self._tr("status.project_folder_unavailable")
+            )
+            reveal.setStatusTip(tip)
 
     def _update_zoom_status(self, zoom: float | None = None) -> None:
         """Refresh the permanent Workspace zoom widget."""
