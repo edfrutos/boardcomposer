@@ -7,6 +7,7 @@ from typing import Any
 
 from PySide6.QtWidgets import (
     QCheckBox,
+    QComboBox,
     QDialog,
     QDialogButtonBox,
     QFileDialog,
@@ -21,6 +22,7 @@ from PySide6.QtWidgets import (
 )
 
 from boardcomposer.io.bcproj_diff import diff_bcproj
+from boardcomposer.io.bcproj_revisions import list_revisions
 from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.i18n import DEFAULT_LANGUAGE, tr
 
@@ -35,6 +37,7 @@ class BcprojDiffDialog(QDialog):
         language: str = DEFAULT_LANGUAGE,
         current_project: dict[str, Any] | None = None,
         current_label: str | None = None,
+        project_path: str | None = None,
         start_dir: str | None = None,
     ) -> None:
         super().__init__(parent)
@@ -43,10 +46,12 @@ class BcprojDiffDialog(QDialog):
         self._current_label = current_label or tr(
             "diff_bcproj.current_project", language
         )
+        self._project_path = project_path
         self._start_dir = start_dir or str(Path.home())
+        self._revisions = list_revisions(project_path) if project_path else []
 
         self.setWindowTitle(tr("diff_bcproj.title", language))
-        self.setMinimumSize(640, 420)
+        self.setMinimumSize(640, 460)
 
         intro = QLabel(tr("diff_bcproj.intro", language))
         intro.setWordWrap(True)
@@ -69,11 +74,30 @@ class BcprojDiffDialog(QDialog):
         form.addRow(tr("diff_bcproj.left", language), left_row)
         form.addRow(tr("diff_bcproj.right", language), right_row)
 
-        self.use_current = QCheckBox(tr("diff_bcproj.use_current", language))
-        self.use_current.setEnabled(current_project is not None)
-        self.use_current.toggled.connect(self._on_use_current_toggled)
-        if current_project is not None:
-            self.use_current.setChecked(True)
+        self.revision_combo = QComboBox()
+        self.revision_combo.addItem(tr("diff_bcproj.revision_none", language), None)
+        for rev in self._revisions:
+            self.revision_combo.addItem(rev.name, str(rev))
+        self.revision_combo.setEnabled(bool(self._revisions))
+        self.revision_combo.currentIndexChanged.connect(self._on_revision_chosen)
+        form.addRow(tr("diff_bcproj.revision", language), self.revision_combo)
+
+        self.use_current_left = QCheckBox(tr("diff_bcproj.use_current", language))
+        self.use_current_left.setEnabled(current_project is not None)
+        self.use_current_left.toggled.connect(self._on_use_current_left_toggled)
+
+        self.use_current_right = QCheckBox(
+            tr("diff_bcproj.use_current_right", language)
+        )
+        self.use_current_right.setEnabled(current_project is not None)
+        self.use_current_right.toggled.connect(self._on_use_current_right_toggled)
+
+        # Prefer: last revision (left) vs open project (right) when available.
+        if self._revisions and current_project is not None:
+            self.revision_combo.setCurrentIndex(1)
+            self.use_current_right.setChecked(True)
+        elif current_project is not None:
+            self.use_current_left.setChecked(True)
 
         self.result = QTextEdit()
         self.result.setReadOnly(True)
@@ -91,15 +115,36 @@ class BcprojDiffDialog(QDialog):
         layout = QVBoxLayout(self)
         layout.addWidget(intro)
         layout.addLayout(form)
-        layout.addWidget(self.use_current)
+        layout.addWidget(self.use_current_left)
+        layout.addWidget(self.use_current_right)
         layout.addWidget(compare_btn)
         layout.addWidget(self.result, stretch=1)
         layout.addWidget(buttons)
 
-    def _on_use_current_toggled(self, checked: bool) -> None:
+        # Compat alias for existing tests.
+        self.use_current = self.use_current_left
+
+    def _on_revision_chosen(self, index: int) -> None:
+        path = self.revision_combo.itemData(index)
+        if not path:
+            return
+        self.use_current_left.setChecked(False)
+        self.left_path.setText(str(path))
+
+    def _on_use_current_left_toggled(self, checked: bool) -> None:
         self.left_path.setEnabled(not checked)
         if checked:
+            self.use_current_right.setChecked(False)
             self.left_path.setText(self._current_label)
+            self.revision_combo.blockSignals(True)
+            self.revision_combo.setCurrentIndex(0)
+            self.revision_combo.blockSignals(False)
+
+    def _on_use_current_right_toggled(self, checked: bool) -> None:
+        self.right_path.setEnabled(not checked)
+        if checked:
+            self.use_current_left.setChecked(False)
+            self.right_path.setText(self._current_label)
 
     def _browse(self, target: QLineEdit) -> None:
         path, _ = QFileDialog.getOpenFileName(
@@ -112,7 +157,7 @@ class BcprojDiffDialog(QDialog):
             target.setText(path)
 
     def _resolve_left(self) -> tuple[Any, str]:
-        if self.use_current.isChecked() and self._current_project is not None:
+        if self.use_current_left.isChecked() and self._current_project is not None:
             return self._current_project, self._current_label
         path = self.left_path.text().strip()
         if not path:
@@ -120,6 +165,8 @@ class BcprojDiffDialog(QDialog):
         return path, path
 
     def _resolve_right(self) -> tuple[Any, str]:
+        if self.use_current_right.isChecked() and self._current_project is not None:
+            return self._current_project, self._current_label
         path = self.right_path.text().strip()
         if not path:
             raise ValueError(tr("diff_bcproj.need_right", self._language))

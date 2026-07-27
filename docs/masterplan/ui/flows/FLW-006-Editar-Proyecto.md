@@ -184,8 +184,10 @@ candidatas válidas.
 ## Límites conocidos
 
 - Diff estructural Core/CLI + UI Studio (`boardcomposer-diff` / diálogo
-  **Comparar revisiones .bcproj…**); sin historial persistente de revisiones aún.
+  **Comparar revisiones .bcproj…**); anillo local de hasta 5 revisiones al
+  guardar (`.<nombre>.bcproj.revs/`). Sin historial cloud ni auditoría
+  multi-usuario.
 - Sin edición colaborativa ni bloqueo de recursos.
 - Sin evento bus `PieceMoved` / `ProjectValidated` / `ProjectHistoryUpdated`.
-- Historial = Timeline de eventos + pila undo de sesión, no auditoría
-  persistente de revisiones.
+- Historial local = anillo `.bcproj.revs` + Timeline de eventos + pila undo
+  de sesión; no auditoría cloud multi-usuario.

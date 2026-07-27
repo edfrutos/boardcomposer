@@ -80,13 +80,16 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.title": "Comparar revisiones .bcproj",
         "diff_bcproj.intro": (
             "Diff estructural (meta, tableros, piezas, colocaciones). "
-            "No es un historial persistente: elige dos archivos o el "
-            "proyecto abierto frente a otro .bcproj."
+            "Al guardar se conserva un anillo de revisiones locales "
+            "(carpeta oculta junto al .bcproj)."
         ),
         "diff_bcproj.left": "Izquierda (antes)",
         "diff_bcproj.right": "Derecha (después)",
         "diff_bcproj.browse": "Examinar…",
         "diff_bcproj.use_current": "Usar proyecto abierto como izquierda",
+        "diff_bcproj.use_current_right": "Usar proyecto abierto como derecha",
+        "diff_bcproj.revision": "Revisión guardada (izquierda)",
+        "diff_bcproj.revision_none": "— (elegir archivo)",
         "diff_bcproj.current_project": "(proyecto abierto)",
         "diff_bcproj.compare": "Comparar",
         "diff_bcproj.placeholder": "El resultado del diff aparecerá aquí.",
@@ -768,13 +771,16 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.title": "Compare .bcproj revisions",
         "diff_bcproj.intro": (
             "Structural diff (meta, boards, pieces, placements). "
-            "Not a persistent history: pick two files or the open "
-            "project against another .bcproj."
+            "Saving keeps a local revision ring (hidden folder next to the "
+            ".bcproj)."
         ),
         "diff_bcproj.left": "Left (before)",
         "diff_bcproj.right": "Right (after)",
         "diff_bcproj.browse": "Browse…",
         "diff_bcproj.use_current": "Use open project as left",
+        "diff_bcproj.use_current_right": "Use open project as right",
+        "diff_bcproj.revision": "Saved revision (left)",
+        "diff_bcproj.revision_none": "— (pick a file)",
         "diff_bcproj.current_project": "(open project)",
         "diff_bcproj.compare": "Compare",
         "diff_bcproj.placeholder": "Diff output will appear here.",
