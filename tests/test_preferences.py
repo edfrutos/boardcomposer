@@ -52,6 +52,7 @@ def test_preferences_manager_round_trips_through_json(tmp_path):
         theme="dark",
         show_grid=False,
         grid_size_mm=50,
+        last_export_directory="/tmp/exports",
         window_geometry="QUJDRA==",
         window_state="U1RBVEU=",
     )
@@ -61,6 +62,28 @@ def test_preferences_manager_round_trips_through_json(tmp_path):
 
     assert reloaded == updated
     assert path.is_file()
+
+
+def test_preferences_manager_ignores_blank_last_export_directory(tmp_path):
+    path = tmp_path / "preferences.json"
+    path.write_text(
+        '{"strategy_name": "material", "last_export_directory": "  "}\n',
+        encoding="utf-8",
+    )
+    prefs = PreferencesManager(path).current
+    assert prefs.last_export_directory is None
+
+
+def test_preferences_dialog_preserves_last_export_directory(qapp):
+    del qapp
+    from studio.dialogs.preferences_dialog import PreferencesDialog
+
+    dialog = PreferencesDialog(
+        StudioPreferences(language="es", last_export_directory="/exports")
+    )
+    dialog.max_solutions.setValue(12)
+    assert dialog.preferences().last_export_directory == "/exports"
+    assert dialog.preferences().max_solutions == 12
 
 
 def test_preferences_manager_ignores_invalid_window_layout_payload(tmp_path):

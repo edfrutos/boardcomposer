@@ -2761,7 +2761,7 @@ class MainWindow(QMainWindow):
         path, selected_filter = QFileDialog.getSaveFileName(
             self,
             self._tr("dialog.export_timeline"),
-            "boardcomposer-timeline.json",
+            self._suggested_export_path("boardcomposer-timeline.json"),
             self._tr("dialog.filter_timeline"),
         )
         if not path:
@@ -2794,6 +2794,7 @@ class MainWindow(QMainWindow):
             self._status("status.timeline_export_failed", 5000, error=exc)
             return
 
+        self._remember_export_directory(path)
         self._status("status.timeline_exported", 5000, path=path)
         self._offer_open_exported_path(path)
 
@@ -2828,7 +2829,7 @@ class MainWindow(QMainWindow):
             # pyright: ignore[reportArgumentType]
             self,
             self._tr("dialog.export_selected"),
-            default_filename,
+            self._suggested_export_path(default_filename),
             options.file_filter,
         )
         if not path:
@@ -2878,6 +2879,7 @@ class MainWindow(QMainWindow):
             export_include_metrics=options.include_metrics,
             export_include_explanation=options.include_explanation,
             export_include_offcuts=options.include_offcuts,
+            last_export_directory=str(Path(path).expanduser().resolve().parent),
         )
         self.services.preferences.update(updated)
 
@@ -2888,6 +2890,25 @@ class MainWindow(QMainWindow):
         )
         self._status("status.exported", 5000, format=options.label, path=path)
         self._offer_open_exported_path(path)
+
+    def _suggested_export_path(self, default_filename: str) -> str:
+        """Prefer last successful export folder when it still exists."""
+        directory = self.services.preferences.current.last_export_directory
+        if directory:
+            folder = Path(directory).expanduser()
+            if folder.is_dir():
+                return str(folder / default_filename)
+        return default_filename
+
+    def _remember_export_directory(self, path: str | Path) -> None:
+        """Persist the folder of a successful export for the next dialog."""
+        folder = str(Path(path).expanduser().resolve().parent)
+        prefs = self.services.preferences.current
+        if prefs.last_export_directory == folder:
+            return
+        self.services.preferences.update(
+            dataclass_replace(prefs, last_export_directory=folder)
+        )
 
     def _offer_open_exported_path(self, path: str | Path) -> None:
         """After a successful export, offer to open the file or its folder."""

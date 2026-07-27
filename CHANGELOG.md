@@ -52,6 +52,9 @@
 
 ### Añadido
 
+- Exportación: recuerda la última carpeta de destino (`last_export_directory`
+  en `preferences.json`); el diálogo de guardar (solución y Timeline) reabre
+  ahí si la carpeta sigue existiendo.
 - Plantillas de proyecto: renombrar desde el diálogo **Nuevo desde plantilla**
   (SCR-005).
 - Plantillas de proyecto: restaurar colocaciones al crear desde plantilla

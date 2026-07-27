@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.1.0  
+**Versión:** 1.2.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 25/07/2026
+**Última revisión:** 27/07/2026
 
 ---
 
@@ -105,8 +105,12 @@ Tras un export correcto se guardan en `preferences.json`:
 
 - formato
 - incluir métricas / explicación / retales
+- carpeta de destino (`last_export_directory`) — sin UI en Preferencias;
+  el siguiente `QFileDialog` (solución **o** Timeline) abre ahí si sigue
+  existiendo
 
-También editables en Preferencias (SCR-006).
+También editables en Preferencias (SCR-006), salvo la carpeta (solo
+persistencia silenciosa).
 
 ---
 
