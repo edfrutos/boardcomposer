@@ -2081,8 +2081,21 @@ class MainWindow(QMainWindow):
             self._maybe_warn_solution_truncated_by_limit(solution_count)
             return
 
-        self._status("status.layout_ok", n=solution_count)
-        self._maybe_warn_solution_truncated_by_limit(solution_count)
+        self._announce_layout_ok(solution_count)
+
+    def _announce_layout_ok(self, shown: int) -> None:
+        """Status after a complete solve: count + why there aren't more."""
+        if shown <= 1 and int(self.services.layout.stats.accepted) <= 1:
+            stats = self.services.layout.stats
+            self._status(
+                "status.layout_ok_single",
+                7000,
+                generated=int(stats.generated),
+                unique=int(stats.unique),
+            )
+            return
+        self._status("status.layout_ok", n=shown)
+        self._maybe_warn_solution_truncated_by_limit(shown)
 
     def _maybe_warn_solution_truncated_by_limit(self, shown: int) -> None:
         """Hint when more accepted candidates exist than currently shown."""

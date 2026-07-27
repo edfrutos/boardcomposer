@@ -72,6 +72,8 @@ Precondición para checks de comparador multi-candidata:
 - Atajo rápido: **Ctrl+Shift+D** (proyecto demo). Si el máx. era 1, Studio
   lo restaura a 20 y el tip de estado lo dice. Luego **Ctrl+Return**.
 - Dataset que produzca >=2 candidatas únicas/aceptadas (el demo basta).
+- Si tras Calcular solo hay 1, el tip de estado dirá «única candidata… no
+  hay más distintas» (no es fallo del límite).
 - Confirmar en Inspector diagnóstico: `Candidatas únicas` y `Aceptadas`.
 
 - [x] **Ctrl+Return** calcula layout (progreso + Cancelar funcionan; tip de estado menciona el atajo).
