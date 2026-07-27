@@ -1166,8 +1166,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "comparator.complete_only": "Complete solutions only",
         "comparator.pin_reference": "Pin as reference",
         "tip.pin_reference": (
-            "Pin the selected candidate as the diff reference "
-            "(needs ≥2 solutions)"
+            "Pin the selected candidate as the diff reference (needs ≥2 solutions)"
         ),
         "comparator.reference_mark": "Ref {n}",
         "comparator.reference_thumb": "#{n} · ref",
