@@ -22,6 +22,8 @@
 
 ### Añadido
 
+- Comparador: la referencia fijada se marca en la tabla y miniaturas
+  (`Ref n` / fondo; SCR-003).
 - Anillo de revisiones locales al guardar `.bcproj` (carpeta
   `.<nombre>.bcproj.revs/`, máx. 5); el diálogo de diff ofrece la última
   revisión vs el proyecto abierto.

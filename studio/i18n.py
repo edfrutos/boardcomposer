@@ -376,6 +376,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "comparator.sort_by": "Ordenar por:",
         "comparator.complete_only": "Solo soluciones completas",
         "comparator.pin_reference": "Fijar como referencia",
+        "comparator.reference_mark": "Ref {n}",
+        "comparator.reference_thumb": "#{n} · ref",
+        "comparator.reference_tooltip": "Referencia fijada (solución {n})",
         "comparator.diff_title": "Diferencias vs referencia",
         "comparator.diff_placeholder": (
             "Diferencias respecto a la solución de referencia"
@@ -1060,6 +1063,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "comparator.sort_by": "Sort by:",
         "comparator.complete_only": "Complete solutions only",
         "comparator.pin_reference": "Pin as reference",
+        "comparator.reference_mark": "Ref {n}",
+        "comparator.reference_thumb": "#{n} · ref",
+        "comparator.reference_tooltip": "Pinned reference (solution {n})",
         "comparator.diff_title": "Differences vs reference",
         "comparator.diff_placeholder": (
             "Differences relative to the reference solution"
