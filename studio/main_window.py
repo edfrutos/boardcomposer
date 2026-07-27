@@ -1579,6 +1579,32 @@ class MainWindow(QMainWindow):
         else:
             self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
         self._update_project_path_status()
+        self._sync_project_file_actions()
+
+    def _sync_project_file_actions(self) -> None:
+        """Enable save/rename/template only when a project is open."""
+        has_project = self.services.projects.current_project is not None
+        need_project = self._tr("status.nothing_to_save")
+        need_rename = self._tr("status.nothing_to_rename")
+        need_template = self._tr("status.template_missing_project")
+
+        pairs = (
+            ("save", "tip.save", need_project),
+            ("save_as", "tip.save_as", need_project),
+            ("save_as_template", "tip.save_as_template", need_template),
+            ("rename_project", "tip.rename_project", need_rename),
+        )
+        for key, tip_key, disabled_tip in pairs:
+            action = self._actions.get(key)
+            if action is None:
+                continue
+            action.setEnabled(has_project)
+            tip = (
+                with_native_shortcuts(self._tr(tip_key))
+                if has_project
+                else disabled_tip
+            )
+            action.setStatusTip(tip)
 
     def _update_project_path_status(self) -> None:
         """Refresh the permanent project-path widget and reveal action."""
@@ -2082,6 +2108,7 @@ class MainWindow(QMainWindow):
         self._update_project_path_status()
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
+        self._sync_project_file_actions()
         self._sync_solution_actions()
         self._sync_timeline_actions()
 
