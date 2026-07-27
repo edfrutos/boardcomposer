@@ -13,6 +13,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "units.cm": "Centímetros (cm)",
         "units.in": "Pulgadas (in)",
         "prefs.title": "Preferencias",
+        "prefs.intro": (
+            "Estas opciones se aplican a todos los proyectos y no forman "
+            "parte del fichero `.bcproj`."
+        ),
         "prefs.general": "General",
         "prefs.workspace": "Workspace",
         "prefs.algorithms": "Algoritmos",
@@ -24,9 +28,25 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.show_grid": "Mostrar cuadrícula",
         "prefs.grid_size": "Tamaño de cuadrícula:",
         "prefs.strategy": "Estrategia:",
+        "prefs.use_custom_weights": "Usar pesos personalizados",
+        "prefs.weight_material": "Aprovechamiento de material:",
+        "prefs.weight_placed": "Piezas colocadas:",
+        "prefs.weight_compactness": "Compacidad:",
+        "prefs.weight_rotation": "Penalización por rotación:",
         "prefs.export_format": "Formato por defecto:",
+        "prefs.export_metrics": "Incluir métricas (JSON)",
+        "prefs.export_explanation": "Incluir explicación (JSON)",
+        "prefs.export_offcuts": "Incluir retales",
         "prefs.max_solutions": "Máx. soluciones a conservar:",
         "prefs.open_config_folder": "Abrir carpeta de configuración…",
+        "prefs.restore_defaults": "Restaurar valores",
+        "theme.system": "Sistema",
+        "theme.light": "Claro",
+        "theme.dark": "Oscuro",
+        "strategy.balanced": "Equilibrada",
+        "strategy.material": "Material primero",
+        "strategy.compact": "Compacta primero",
+        "strategy.exact": "Exacta (MaxRects + CP-SAT)",
         "welcome.tagline": (
             "Optimiza el corte de tableros. Crea un proyecto, abre uno reciente "
             "o importa piezas para empezar."
@@ -710,6 +730,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "units.cm": "Centimetres (cm)",
         "units.in": "Inches (in)",
         "prefs.title": "Preferences",
+        "prefs.intro": (
+            "These options apply to all projects and are not part of "
+            "the `.bcproj` file."
+        ),
         "prefs.general": "General",
         "prefs.workspace": "Workspace",
         "prefs.algorithms": "Algorithms",
@@ -721,9 +745,25 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.show_grid": "Show grid",
         "prefs.grid_size": "Grid size:",
         "prefs.strategy": "Strategy:",
+        "prefs.use_custom_weights": "Use custom weights",
+        "prefs.weight_material": "Material utilization:",
+        "prefs.weight_placed": "Pieces placed:",
+        "prefs.weight_compactness": "Compactness:",
+        "prefs.weight_rotation": "Rotation penalty:",
         "prefs.export_format": "Default format:",
+        "prefs.export_metrics": "Include metrics (JSON)",
+        "prefs.export_explanation": "Include explanation (JSON)",
+        "prefs.export_offcuts": "Include offcuts",
         "prefs.max_solutions": "Max solutions to keep:",
         "prefs.open_config_folder": "Open settings folder…",
+        "prefs.restore_defaults": "Restore defaults",
+        "theme.system": "System",
+        "theme.light": "Light",
+        "theme.dark": "Dark",
+        "strategy.balanced": "Balanced",
+        "strategy.material": "Material first",
+        "strategy.compact": "Compact first",
+        "strategy.exact": "Exact (MaxRects + CP-SAT)",
         "welcome.tagline": (
             "Optimise panel cutting. Create a project, open a recent one, "
             "or import pieces to get started."

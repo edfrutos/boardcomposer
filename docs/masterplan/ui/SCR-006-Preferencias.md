@@ -146,7 +146,6 @@ width, caché, hilos, logs de depuración, búsqueda de preferencias.
 
 ## Límites conocidos (Studio actual)
 
-- Varios labels del diálogo siguen hardcodeados en español (i18n parcial).
 - Sin pestañas ni búsqueda de preferencias.
 - Sin perfiles / sync en la nube / import-export del JSON de prefs.
 
@@ -154,6 +153,5 @@ width, caché, hilos, logs de depuración, búsqueda de preferencias.
 
 ## Evolución prevista
 
-- i18n completo de todos los labels del diálogo.
 - Perfiles de preferencias e import/export.
 - Controles de rendimiento / depuración si hacen falta operativamente.
