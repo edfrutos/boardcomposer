@@ -465,6 +465,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "{placements} colocación(es)"
         ),
         "template.load_placements": "¿Restaurar también las colocaciones de la plantilla?",
+        "template.rename": "Renombrar…",
+        "template.rename_title": "Renombrar plantilla",
+        "template.rename_prompt": "Nuevo nombre:",
+        "template.rename_failed": "No se pudo renombrar a «{name}».",
         "template.delete": "Eliminar…",
         "template.delete_title": "Eliminar plantilla",
         "template.delete_confirm": "¿Eliminar la plantilla «{name}»?",
@@ -1185,6 +1189,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "{name} — {boards} board(s), {pieces} piece(s), {placements} placement(s)"
         ),
         "template.load_placements": "Also restore the template placements?",
+        "template.rename": "Rename…",
+        "template.rename_title": "Rename template",
+        "template.rename_prompt": "New name:",
+        "template.rename_failed": "Could not rename to “{name}”.",
         "template.delete": "Delete…",
         "template.delete_title": "Delete template",
         "template.delete_confirm": "Delete template “{name}”?",

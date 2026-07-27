@@ -22,6 +22,8 @@
 
 ### Añadido
 
+- Plantillas de proyecto: renombrar desde el diálogo **Nuevo desde plantilla**
+  (SCR-005).
 - Plantillas de proyecto: restaurar colocaciones al crear desde plantilla
   (si las hay) y eliminar plantilla desde el diálogo de elección (SCR-005).
 - Preferencias: i18n completo del diálogo (pesos, export, temas, estrategias;

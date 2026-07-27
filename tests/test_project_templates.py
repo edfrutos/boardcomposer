@@ -116,6 +116,16 @@ def test_delete_template(tmp_path):
     assert manager.delete("X") is False
 
 
+def test_rename_template(tmp_path):
+    manager = ProjectTemplatesManager(directory=tmp_path, autoload=False)
+    manager.save_from_project("Original", _sample_project())
+    assert manager.rename("Original", "Renombrada") is True
+    assert manager.get("Original") is None
+    renamed = manager.get("Renombrada")
+    assert renamed is not None
+    assert renamed.name == "Renombrada"
+
+
 def test_welcome_has_from_template_button(qapp):
     del qapp
     screen = WelcomeScreen()

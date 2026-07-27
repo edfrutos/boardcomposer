@@ -144,5 +144,4 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
 ## Evolución prevista
 
 - Formulario de metadatos de proyecto (cliente, referencia, notas).
-- Renombrar plantillas desde UI.
 - Versionado / auditoría de `.bcproj`.
