@@ -521,6 +521,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.layout_failed": "No se pudo calcular layout",
         "status.layout_partial": "Layout parcial: {omitted} pieza(s) sin colocar de {total} soluciones",
         "status.layout_ok": "Layout calculado: {n} soluciones",
+        "status.layout_truncated_by_limit": (
+            "Mostrando {shown}/{accepted} soluciones (límite en Preferencias: {limit})."
+        ),
         "status.layout_computing": "Calculando layout…",
         "status.layout_cancelled": "Cálculo de layout cancelado",
         "status.layout_error": "Error al calcular layout: {error}",
@@ -1243,6 +1246,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.layout_failed": "Could not calculate layout",
         "status.layout_partial": "Partial layout: {omitted} unplaced piece(s) across {total} solutions",
         "status.layout_ok": "Layout calculated: {n} solutions",
+        "status.layout_truncated_by_limit": (
+            "Showing {shown}/{accepted} solutions (Preferences limit: {limit})."
+        ),
         "status.layout_computing": "Calculating layout…",
         "status.layout_cancelled": "Layout calculation cancelled",
         "status.layout_error": "Layout calculation error: {error}",

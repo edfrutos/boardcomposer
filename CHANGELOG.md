@@ -4,6 +4,11 @@
 
 ### Corregido
 
+- Crash macOS (SIGSEGV en `QDockWidget::raise`): Timeline/Comparador se
+  tabifican **después** de `addDockWidget`; `raise_()` va diferido y no
+  toca docks ocultos/destruidos.
+- Cuando hay más candidatas aceptadas que visibles por `Máx. soluciones`,
+  Studio avisa en status (`mostrando n/m`) para evitar confusión en UAT.
 - Piezas sin colocar (p. ej. T* omitidas del layout) se pueden pegar/colocar
   en el tablero enfocado del Explorador (menú contextual o doble clic);
   valida material/espesor y muestra el motivo si no caben.
