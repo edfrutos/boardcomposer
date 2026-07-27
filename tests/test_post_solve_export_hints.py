@@ -52,6 +52,14 @@ def test_calculate_layout_first_mentions_export_path():
 
 def test_pin_reference_button_has_tooltip(qapp, tmp_path):
     del qapp
+    from boardcomposer.domain import AssemblySolution, BoardPlacement
+
     window = _window(tmp_path)
+    empty_tip = window.pin_reference_button.toolTip()
+    assert "calcula un layout" in empty_tip.lower()
+
+    sol = AssemblySolution(placements=[BoardPlacement("A", 0, 0, 10, 10)])
+    window.services.layout.solutions = [sol, sol]
+    window._sync_solution_actions()
     tip = window.pin_reference_button.toolTip()
     assert "≥2" in tip or "2" in tip
