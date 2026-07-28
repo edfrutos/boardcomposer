@@ -115,3 +115,43 @@ def test_fit_selection_action_and_status(qapp, tmp_path):
     piece = window.workspace.piece_item_by_id("A")
     assert piece is not None
     assert window.workspace._camera.center == piece.sceneBoundingRect().center()
+
+
+def test_fit_board_without_boards_returns_false(qapp):
+    services = StudioServices()
+    services.projects.new_project(
+        StudioProject(project_id="PRJ-EMPTY", name="Empty", boards=[], pieces=[])
+    )
+    workspace = BoardWorkspace(services)
+    workspace.resize(800, 600)
+    workspace.reload_project()
+
+    assert workspace.fit_board() is False
+
+
+def test_fit_board_action_status_without_boards(qapp, tmp_path):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    services.projects.new_project(
+        StudioProject(project_id="PRJ-EMPTY", name="Empty", boards=[], pieces=[])
+    )
+    window = MainWindow(services)
+    window.workspace.resize(800, 600)
+    window.workspace.reload_project()
+
+    window._fit_board()
+    assert window._tr("status.nothing_to_fit_board") in (
+        window.statusBar().currentMessage()
+    )
+
+
+def test_fit_board_returns_true_with_boards(qapp):
+    services = _multipanel_services()
+    workspace = BoardWorkspace(services)
+    workspace.resize(800, 600)
+    workspace.reload_project()
+
+    assert workspace.fit_board() is True

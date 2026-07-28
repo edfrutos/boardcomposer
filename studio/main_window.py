@@ -1978,7 +1978,8 @@ class MainWindow(QMainWindow):
             self._status("status.selection_cleared")
 
     def _fit_board(self) -> None:
-        self.workspace.fit_board()
+        if not self.workspace.fit_board():
+            self._status("status.nothing_to_fit_board")
 
     def _fit_selection(self) -> None:
         if not self.workspace.fit_selection():

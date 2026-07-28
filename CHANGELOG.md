@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- «Ajustar al tablero» muestra status honesto si no hay tableros (paridad con
+  «Ajustar a la selección»; antes no-op silencioso si se invocaba).
 - «Pantalla de inicio» deshabilitada si ya estás en Welcome; tip
   `already_on_welcome` (evita no-op de Ctrl+Shift+H).
 - «Nuevo desde plantilla» (menú + Welcome) deshabilitado sin plantillas
