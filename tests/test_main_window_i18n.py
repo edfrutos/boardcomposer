@@ -230,6 +230,7 @@ def test_clear_recent_files_updates_menu_and_welcome(qapp, tmp_path, monkeypatch
         action.text() == window._tr("action.clear_recent")
         for action in window._recent_menu.actions()
     )
+    assert window._actions["clear_recent"].isEnabled()
     assert window.welcome.clear_recent_button.isEnabled()
 
     monkeypatch.setattr(
@@ -245,6 +246,23 @@ def test_clear_recent_files_updates_menu_and_welcome(qapp, tmp_path, monkeypatch
         action.text() == window._tr("action.no_recent")
         for action in window._recent_menu.actions()
     )
+    assert not window._actions["clear_recent"].isEnabled()
+    tip = window._actions["clear_recent"].statusTip().lower()
+    assert "proyectos recientes" in tip or "recent projects" in tip
+
+
+def test_clear_recent_shortcut_shows_honest_status_when_empty(qapp, tmp_path):
+    del qapp
+    from studio.recent_files import RecentFilesManager
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json"),
+        recent_files=RecentFilesManager(path=tmp_path / "recent.json"),
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+    window._clear_recent_files()
+    assert "no hay proyectos recientes" in window.statusBar().currentMessage().lower()
 
 
 def test_edit_menu_includes_select_all_pieces(qapp, tmp_path):
