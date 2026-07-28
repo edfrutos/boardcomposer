@@ -1695,18 +1695,22 @@ class MainWindow(QMainWindow):
     def _rotate_selected_piece(self):
         piece_id = self.workspace.selection.current()
         if piece_id is None:
+            self._status("status.select_piece_first")
             return
 
         item = self.workspace.piece_item_by_id(piece_id)
         if item is None:
+            self._status("status.select_piece_first")
             return
 
         project = self.services.projects.current_project
         if project is None:
+            self._status("status.select_piece_first")
             return
 
         placement = project.placement_by_piece_id(piece_id)
         if placement is None:
+            self._status("status.select_piece_first")
             return
 
         old_rotation = placement.rotation
@@ -1929,7 +1933,13 @@ class MainWindow(QMainWindow):
         action = self._actions.get("toggle_grid")
         fit_board = self._actions.get("fit_board")
         fit_selection = self._actions.get("fit_selection")
-        if action is None or fit_board is None or fit_selection is None:
+        rotate_piece = self._actions.get("rotate_piece")
+        if (
+            action is None
+            or fit_board is None
+            or fit_selection is None
+            or rotate_piece is None
+        ):
             return
         action.blockSignals(True)
         action.setChecked(self.services.preferences.current.show_grid)
@@ -1951,6 +1961,18 @@ class MainWindow(QMainWindow):
             with_native_shortcuts(self._tr("tip.fit_selection"))
             if can_fit_selection
             else self._tr("status.nothing_to_fit_selection")
+        )
+        piece_id = self.workspace.selection.current()
+        can_rotate = bool(
+            piece_id is not None
+            and project is not None
+            and project.placement_by_piece_id(piece_id) is not None
+        )
+        rotate_piece.setEnabled(can_rotate)
+        rotate_piece.setStatusTip(
+            with_native_shortcuts(self._tr("tip.rotate_piece"))
+            if can_rotate
+            else self._tr("status.select_piece_first")
         )
 
     def _sync_solution_actions(self) -> None:
