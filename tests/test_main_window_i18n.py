@@ -457,6 +457,40 @@ def test_fit_board_action_gated_without_boards(qapp, tmp_path):
     assert "Ctrl+0" in tip or "⌘0" in tip
 
 
+def test_fit_selection_action_gated_until_selection_or_focus(qapp, tmp_path):
+    del qapp
+    from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    services.projects.new_project(
+        StudioProject(
+            project_id="PRJ-SEL",
+            name="Sel",
+            boards=[StudioBoard("B1", 1000, 500, "Demo", 19, 1)],
+            pieces=[StudioPiece("P1", 200, 100, "Demo", 19)],
+            placements=[StudioPlacement("P1", 0, 0, False, 0, "B1", 0, 0)],
+        )
+    )
+    window = MainWindow(services)
+    window.workspace.resize(800, 600)
+    window.workspace.reload_project()
+    window.workspace.clear_piece_selection()
+    window._sync_view_actions()
+
+    assert not window._actions["fit_selection"].isEnabled()
+    assert (
+        "selecciona una pieza" in window._actions["fit_selection"].statusTip().lower()
+    )
+
+    window.workspace.focus_board("B1")
+    assert window._actions["fit_selection"].isEnabled()
+    tip = window._actions["fit_selection"].statusTip()
+    assert "Ctrl+Shift+0" in tip or "⇧⌘0" in tip
+
+
 def test_solve_layout_action_enabled_with_project(qapp, tmp_path):
     del qapp
     from studio.models import StudioProject
