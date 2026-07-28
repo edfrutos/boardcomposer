@@ -406,6 +406,7 @@ class MainWindow(QMainWindow):
         self.console.phase_step_changed.connect(self._on_timeline_phase_step)
         self.console.entry_selected.connect(self._on_timeline_entry_selected)
         self.console.export_requested.connect(self._export_timeline_history)
+        self.console.filters_changed.connect(self._sync_timeline_actions)
         self.services.timeline.add_changed_listener(self._sync_timeline_actions)
         self._sync_timeline_actions()
 

@@ -73,7 +73,7 @@ def test_timeline_export_disabled_when_filters_hide_events(qapp, tmp_path):
     # Simulate active filter set with no matches.
     window.console._filter_event = "__missing_event__"
     window.console._sync_event_actions()
-    window._sync_timeline_actions()
+    window.console.filters_changed.emit()
 
     assert not window._actions["export_timeline"].isEnabled()
     assert not window.console._export.isEnabled()
