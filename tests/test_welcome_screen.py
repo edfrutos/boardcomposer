@@ -61,6 +61,8 @@ def test_welcome_screen_lists_recent_paths(qapp):
     assert screen.recent_list.count() == 2
     assert "proyecto-a.bcproj" in screen.recent_list.item(0).text()
     assert screen.clear_recent_button.isEnabled()
+    tip = screen.clear_recent_button.toolTip()
+    assert "Ctrl+Shift+X" in tip or "⇧⌘X" in tip
 
 
 def test_welcome_screen_shows_empty_state(qapp):
@@ -71,6 +73,7 @@ def test_welcome_screen_shows_empty_state(qapp):
     assert screen.recent_list.count() == 1
     assert "Sin proyectos recientes" in screen.recent_list.item(0).text()
     assert not screen.clear_recent_button.isEnabled()
+    assert "Sin proyectos recientes" in screen.clear_recent_button.toolTip()
 
 
 def test_welcome_screen_brand_and_primary_object_names(qapp):

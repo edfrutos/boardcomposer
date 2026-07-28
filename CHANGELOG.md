@@ -14,6 +14,8 @@
   candidata visible» incluso con 0).
 - Export Timeline ahora respeta filtros activos para enablement (si filtro
   deja 0 eventos, menú/botón quedan deshabilitados).
+- Welcome: botón «Vaciar lista» ahora muestra tip/shortcut cuando hay
+  recientes y mensaje honesto cuando está deshabilitado.
 - Undo / Redo: con historial vacío quedan deshabilitados y su tip explica
   «no hay acciones para deshacer/rehacer» (antes mantenían tip genérico).
 - «Abrir carpeta del proyecto» tip pide guardar cuando aún no hay `.bcproj`
