@@ -324,12 +324,35 @@ class MainWindow(QMainWindow):
         self._menus["view"].addSeparator()
         self._toolbar_toggle = toolbar.toggleViewAction()
         self._toolbar_toggle.setText(self._tr("action.toggle_toolbar"))
-        tip = self._tr("tip.toggle_toolbar")
-        if tip != "tip.toggle_toolbar":
-            self._toolbar_toggle.setStatusTip(tip)
         self._actions["toggle_toolbar"] = self._toolbar_toggle
         apply_shortcuts(self._actions)
+        self._toolbar_toggle.toggled.connect(self._on_toolbar_toggled)
+        self._sync_toolbar_toggle_tip()
         self._menus["view"].addAction(self._toolbar_toggle)
+
+    def _on_toolbar_toggled(self, checked: bool) -> None:
+        """Announce toolbar visibility changes in the status bar."""
+        if not _qt_is_valid(self):
+            return
+        self._sync_toolbar_toggle_tip()
+        self._status(
+            "status.toolbar_shown" if checked else "status.toolbar_hidden",
+        )
+
+    def _sync_toolbar_toggle_tip(self) -> None:
+        """Tip Mostrar/Ocultar según visibilidad de la barra principal."""
+        action = getattr(self, "_toolbar_toggle", None)
+        if action is None or not _qt_is_valid(action):
+            return
+        tip_key = (
+            "tip.toggle_toolbar_hide"
+            if action.isChecked()
+            else "tip.toggle_toolbar_show"
+        )
+        tip = self._tr(tip_key)
+        if tip == tip_key:
+            tip = self._tr("tip.toggle_toolbar")
+        action.setStatusTip(with_native_shortcuts(tip) if tip else "")
 
     def _build_workspace(self):
         self.workspace = BoardWorkspace(self.services)
@@ -2342,10 +2365,7 @@ class MainWindow(QMainWindow):
             self._toolbar.setWindowTitle(self._tr("toolbar.main"))
         if hasattr(self, "_toolbar_toggle"):
             self._toolbar_toggle.setText(self._tr("action.toggle_toolbar"))
-            tip = self._tr("tip.toggle_toolbar")
-            self._toolbar_toggle.setStatusTip(
-                with_native_shortcuts(tip) if tip != "tip.toggle_toolbar" else ""
-            )
+            self._sync_toolbar_toggle_tip()
         if hasattr(self, "_dock_toggles"):
             for key, action in self._dock_toggles.items():
                 action.setText(self._tr(f"dock.{key}"))
@@ -2404,6 +2424,7 @@ class MainWindow(QMainWindow):
         self._sync_welcome_action()
         self._sync_view_actions()
         self._sync_dock_toggle_tips()
+        self._sync_toolbar_toggle_tip()
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication
