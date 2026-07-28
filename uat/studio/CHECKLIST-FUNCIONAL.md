@@ -76,18 +76,20 @@ Precondición para checks de comparador multi-candidata:
 - Si tras Calcular solo hay 1, el tip de estado dirá «única candidata… no
   hay más distintas» (no es fallo del límite).
 - Confirmar en Inspector diagnóstico: `Candidatas únicas` y `Aceptadas`.
+- Regresión auto: `pytest tests/test_uat_multi_candidate_flow.py`
+  (demo→solve≥2, Re/Av Pág, pin/diff, export+open-after).
 
 - [x] **Ctrl+Return** calcula layout (progreso + Cancelar funcionan; tip de estado menciona el atajo).
-- [ ] Aparecen >=2 soluciones en Comparador + Explorador (si el dataset y preferencias lo permiten).
-- [ ] **Re Pág** / **Av Pág** (tips de estado) recorren candidatas (preview + status) cuando hay >=2 visibles; con 1 quedan deshabilitados.
+- [x] Aparecen >=2 soluciones en Comparador + Explorador (si el dataset y preferencias lo permiten).
+- [x] **Re Pág** / **Av Pág** (tips de estado) recorren candidatas (preview + status) cuando hay >=2 visibles; con 1 quedan deshabilitados.
 - [x] **Ctrl+Shift+Return** aplica la solución al proyecto (tip de estado).
 - [x] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**.
-- [ ] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia
+- [x] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia
   visible + diff (requiere >=2; botón pin deshabilitado con 1; tip post-solve).
-- [ ] **Ctrl+Shift+E** (menú **Exportar** / toolbar) abre exportar solución
+- [x] **Ctrl+Shift+E** (menú **Exportar** / toolbar) abre exportar solución
   (SVG/PNG/JPEG/PDF/DXF/JSON/CSV + preview). Tras Calcular, el tip de estado
   lo recuerda; sin layout: tip pide Ctrl+Return primero.
-- [ ] Tras exportar OK (solución **o** Timeline): diálogo «Abrir archivo» /
+- [x] Tras exportar OK (solución **o** Timeline): diálogo «Abrir archivo» /
   «Mostrar en carpeta».
 
 ---
@@ -145,6 +147,7 @@ Precondición para checks de comparador multi-candidata:
 | 7 Preferencias/Ayuda | | |
 | 8 Multipanel | | |
 
-**Veredicto:** □ Listo para uso diario de estudio  x  Faltan huecos (anotar arriba)  □ Solo regresión automatizada
+**Veredicto:** □ Listo para uso diario de estudio  □ Faltan huecos (anotar arriba)  x Solo regresión automatizada (multi-candidata §4)
 
-**Regresión auto (opcional):** `make test` → 562+ passed.
+**Regresión auto (opcional):** `make test` → 562+ passed; multi-candidata:
+`pytest tests/test_uat_multi_candidate_flow.py`.

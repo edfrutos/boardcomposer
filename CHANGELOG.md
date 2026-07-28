@@ -2,6 +2,12 @@
 
 ## Unreleased — 0.4.0.dev0 — 2026-07-16
 
+### Añadido
+
+- Regresión UAT multi-candidata: `tests/test_uat_multi_candidate_flow.py`
+  (demo→≥2 en Comparador/Explorador, Re/Av Pág, pin/diff, export solución
+  con open-after). Checklist §4 marcado con enlace a esa suite.
+
 ### Corregido
 
 - Toggle cuadrícula (Ctrl+G): tip dinámico Mostrar/Ocultar según estado +
