@@ -52,6 +52,8 @@ class TimelinePanel(QWidget):
 
     export_requested = Signal()
     """Ask the main window to run the Timeline history export dialog."""
+    filters_changed = Signal()
+    """Notify parent UI that filter-dependent actions should refresh."""
 
     def __init__(self, store: TimelineStore, language: str = "es", parent=None) -> None:
         super().__init__(parent)
@@ -260,18 +262,21 @@ class TimelinePanel(QWidget):
         self._filter_event = None if data == ALL_EVENTS else data
         self._rebuild()
         self._sync_event_actions()
+        self.filters_changed.emit()
 
     def _on_algo_filter_changed(self, _index: int) -> None:
         data = self._algo_filter.currentData()
         self._filter_algorithm = None if data == _ALL_ALGORITHMS else data
         self._rebuild()
         self._sync_event_actions()
+        self.filters_changed.emit()
 
     def _on_period_changed(self, _index: int) -> None:
         data = self._period_filter.currentData()
         self._filter_period_seconds = data if isinstance(data, int) else None
         self._rebuild()
         self._sync_event_actions()
+        self.filters_changed.emit()
 
     def _on_clear(self) -> None:
         self._store.clear()

@@ -20,6 +20,8 @@
   muestra estado honesto (evita no-op silencioso).
 - Timeline filtrado a 0 eventos: Exportar se deshabilita, pero «Vaciar» sigue
   activo si existe historial global.
+- Menú/atajo `Exportar Timeline` ahora se resincroniza al cambiar filtros del
+  panel Timeline (antes podía quedar stale hasta nuevo evento).
 - Undo / Redo: con historial vacío quedan deshabilitados y su tip explica
   «no hay acciones para deshacer/rehacer» (antes mantenían tip genérico).
 - «Abrir carpeta del proyecto» tip pide guardar cuando aún no hay `.bcproj`
