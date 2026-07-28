@@ -2026,7 +2026,12 @@ class MainWindow(QMainWindow):
         action = self._actions.get("export_timeline")
         if action is None:
             return
-        has_events = bool(self.services.timeline.entries)
+        entries = self.services.timeline.filtered(
+            self.console.current_filter_event(),
+            algorithm=self.console.current_filter_algorithm(),
+            since=self.console.current_filter_since(),
+        )
+        has_events = bool(entries)
         action.setEnabled(has_events)
         tip_key = (
             "tip.export_timeline" if has_events else "status.timeline_export_empty"

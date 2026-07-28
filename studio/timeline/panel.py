@@ -259,16 +259,19 @@ class TimelinePanel(QWidget):
         data = self._filter.currentData()
         self._filter_event = None if data == ALL_EVENTS else data
         self._rebuild()
+        self._sync_event_actions()
 
     def _on_algo_filter_changed(self, _index: int) -> None:
         data = self._algo_filter.currentData()
         self._filter_algorithm = None if data == _ALL_ALGORITHMS else data
         self._rebuild()
+        self._sync_event_actions()
 
     def _on_period_changed(self, _index: int) -> None:
         data = self._period_filter.currentData()
         self._filter_period_seconds = data if isinstance(data, int) else None
         self._rebuild()
+        self._sync_event_actions()
 
     def _on_clear(self) -> None:
         self._store.clear()
@@ -280,7 +283,13 @@ class TimelinePanel(QWidget):
 
     def _sync_event_actions(self) -> None:
         """Enable Export/Clear only when the Timeline has events."""
-        has_events = bool(self._store.entries)
+        has_events = bool(
+            self._store.filtered(
+                self._filter_event,
+                algorithm=self._filter_algorithm,
+                since=self._filter_since(),
+            )
+        )
         self._export.setEnabled(has_events)
         export_tip = tr(
             "tip.export_timeline" if has_events else "status.timeline_export_empty",
