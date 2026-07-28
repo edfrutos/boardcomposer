@@ -1,6 +1,6 @@
 # UAT multipanel — checklist
 
-**Fecha:** 2026-07-16  
+**Fecha:** 2026-07-28  
 **Estado:** Completado (sesión Studio + reconstrucción verificada en tests)
 
 ## Escenarios cubiertos
@@ -15,13 +15,15 @@
 - [x] Importación de inventario CSV con vista previa.
 - [x] Persistencia `.bcproj` v2 y carga de proyectos v1.
 
+## Cubierto también en UAT Studio
+
+- Ordenar / filtrar soluciones en el Comparador (SCR-003) — ver
+  `uat/studio/CHECKLIST-FUNCIONAL.md` §4 + `tests/test_uat_multi_candidate_flow.py`.
+- Importación de piezas CSV/Excel — ver §5 del checklist Studio.
+
 ## Regresión automatizada
 
 - `tests/test_workspace_qt_interaction.py` (Qt offscreen).
 - `tests/test_multi_panel_validation.py`, `tests/test_maxrects_generator.py`.
 - `scripts/benchmark_multipanel_maxrects.py`.
-
-## Pendiente de UAT futuro
-
-- Ordenar / filtrar soluciones en el comparador (SCR-003).
-- Importación de piezas (no solo tableros) y Excel.
+- `tests/test_uat_multi_candidate_flow.py` (Comparador multi-candidata).
