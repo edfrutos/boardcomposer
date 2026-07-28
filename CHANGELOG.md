@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- «Nuevo desde plantilla» (menú + Welcome) deshabilitado sin plantillas
+  guardadas; tip `template_empty` en vez de atajo genérico + diálogo vacío.
 - Zoom +/- deshabilitado al llegar al máximo/mínimo de cámara; tip honesto
   (antes el atajo seguía activo sin efecto visible).
 - Seleccionar todas / Invertir deshabilitados sin piezas en canvas; Deseleccionar
