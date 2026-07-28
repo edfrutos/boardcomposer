@@ -283,24 +283,27 @@ class TimelinePanel(QWidget):
 
     def _sync_event_actions(self) -> None:
         """Enable Export/Clear only when the Timeline has events."""
-        has_events = bool(
+        has_visible_events = bool(
             self._store.filtered(
                 self._filter_event,
                 algorithm=self._filter_algorithm,
                 since=self._filter_since(),
             )
         )
-        self._export.setEnabled(has_events)
+        self._export.setEnabled(has_visible_events)
         export_tip = tr(
-            "tip.export_timeline" if has_events else "status.timeline_export_empty",
+            "tip.export_timeline"
+            if has_visible_events
+            else "status.timeline_export_empty",
             self._language,
         )
         self._export.setToolTip(export_tip)
         self._export.setStatusTip(export_tip)
 
-        self._clear.setEnabled(has_events)
+        has_any_events = bool(self._store.entries)
+        self._clear.setEnabled(has_any_events)
         clear_tip = tr(
-            "tip.timeline_clear" if has_events else "status.timeline_clear_empty",
+            "tip.timeline_clear" if has_any_events else "status.timeline_clear_empty",
             self._language,
         )
         self._clear.setToolTip(clear_tip)

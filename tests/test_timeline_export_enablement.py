@@ -77,5 +77,6 @@ def test_timeline_export_disabled_when_filters_hide_events(qapp, tmp_path):
 
     assert not window._actions["export_timeline"].isEnabled()
     assert not window.console._export.isEnabled()
+    assert window.console._clear.isEnabled()
     tip = window._actions["export_timeline"].statusTip().lower()
     assert "timeline" in tip or "eventos" in tip

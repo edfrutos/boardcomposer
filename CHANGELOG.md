@@ -18,6 +18,8 @@
   recientes y mensaje honesto cuando está deshabilitado.
 - Atajo/acción «Vaciar recientes» también queda deshabilitado sin recientes y
   muestra estado honesto (evita no-op silencioso).
+- Timeline filtrado a 0 eventos: Exportar se deshabilita, pero «Vaciar» sigue
+  activo si existe historial global.
 - Undo / Redo: con historial vacío quedan deshabilitados y su tip explica
   «no hay acciones para deshacer/rehacer» (antes mantenían tip genérico).
 - «Abrir carpeta del proyecto» tip pide guardar cuando aún no hay `.bcproj`
