@@ -12,6 +12,8 @@
   activa al seleccionar pieza o enfocar tablero.
 - Re/Av Pág sin soluciones: tip vuelve a «calcula layout» (antes decía «1
   candidata visible» incluso con 0).
+- Export Timeline ahora respeta filtros activos para enablement (si filtro
+  deja 0 eventos, menú/botón quedan deshabilitados).
 - Undo / Redo: con historial vacío quedan deshabilitados y su tip explica
   «no hay acciones para deshacer/rehacer» (antes mantenían tip genérico).
 - «Abrir carpeta del proyecto» tip pide guardar cuando aún no hay `.bcproj`

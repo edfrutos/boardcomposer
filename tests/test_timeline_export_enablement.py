@@ -61,3 +61,21 @@ def test_timeline_export_disabled_after_clear(qapp, tmp_path):
     assert not window._actions["export_timeline"].isEnabled()
     assert not window.console._export.isEnabled()
     assert not window.console._clear.isEnabled()
+
+
+def test_timeline_export_disabled_when_filters_hide_events(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    window.services.events.publish(PROJECT_CREATED, {"kind": "demo"})
+    assert window._actions["export_timeline"].isEnabled()
+    assert window.console._export.isEnabled()
+
+    # Simulate active filter set with no matches.
+    window.console._filter_event = "__missing_event__"
+    window.console._sync_event_actions()
+    window._sync_timeline_actions()
+
+    assert not window._actions["export_timeline"].isEnabled()
+    assert not window.console._export.isEnabled()
+    tip = window._actions["export_timeline"].statusTip().lower()
+    assert "timeline" in tip or "eventos" in tip
