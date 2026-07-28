@@ -4,6 +4,9 @@
 
 ### Corregido
 
+- Seleccionar todas / Invertir deshabilitados sin piezas en canvas; Deseleccionar
+  deshabilitado sin selección; tips honestos (antes Escape podía ser no-op
+  silencioso).
 - Acciones Edit (Eliminar / Duplicar / Editar / Renombrar / Copiar ID)
   deshabilitadas sin pieza, tablero o proyecto seleccionable; tips honestos
   en vez de atajo genérico con no-op vía menú.
