@@ -1657,13 +1657,34 @@ class MainWindow(QMainWindow):
     def _update_zoom_status(self, zoom: float | None = None) -> None:
         """Refresh the permanent Workspace zoom widget."""
         label = getattr(self, "_zoom_label", None)
-        if label is None:
+        if label is not None:
+            factor = self.workspace.zoom if zoom is None else zoom
+            percent = max(1, int(round(factor * 100)))
+            label.setText(self._tr("status.zoom", n=percent))
+            tip = self._tr("tip.zoom_status")
+            label.setToolTip(tip if tip != "tip.zoom_status" else "")
+        self._sync_zoom_actions()
+
+    def _sync_zoom_actions(self) -> None:
+        """Enable zoom actions only while the camera can still move."""
+        zoom_in = self._actions.get("zoom_in")
+        zoom_out = self._actions.get("zoom_out")
+        if zoom_in is None or zoom_out is None:
             return
-        factor = self.workspace.zoom if zoom is None else zoom
-        percent = max(1, int(round(factor * 100)))
-        label.setText(self._tr("status.zoom", n=percent))
-        tip = self._tr("tip.zoom_status")
-        label.setToolTip(tip if tip != "tip.zoom_status" else "")
+        can_in = self.workspace.can_zoom_in
+        can_out = self.workspace.can_zoom_out
+        zoom_in.setEnabled(can_in)
+        zoom_out.setEnabled(can_out)
+        zoom_in.setStatusTip(
+            with_native_shortcuts(self._tr("tip.zoom_in"))
+            if can_in
+            else self._tr("status.zoom_at_maximum")
+        )
+        zoom_out.setStatusTip(
+            with_native_shortcuts(self._tr("tip.zoom_out"))
+            if can_out
+            else self._tr("status.zoom_at_minimum")
+        )
 
     def update_undo_redo(self):
         """Refresh enabled state and honest status tips for undo/redo."""
@@ -1924,9 +1945,15 @@ class MainWindow(QMainWindow):
             self._status("status.nothing_to_fit_selection")
 
     def _zoom_in(self) -> None:
+        if not self.workspace.can_zoom_in:
+            self._status("status.zoom_at_maximum")
+            return
         self.workspace.zoom_in()
 
     def _zoom_out(self) -> None:
+        if not self.workspace.can_zoom_out:
+            self._status("status.zoom_at_minimum")
+            return
         self.workspace.zoom_out()
 
     def _toggle_grid(self, checked: bool) -> None:
@@ -2295,6 +2322,7 @@ class MainWindow(QMainWindow):
         self._sync_solution_actions()
         self._sync_timeline_actions()
         self._sync_edit_selection_actions()
+        self._sync_zoom_actions()
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication

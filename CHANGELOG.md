@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Zoom +/- deshabilitado al llegar al máximo/mínimo de cámara; tip honesto
+  (antes el atajo seguía activo sin efecto visible).
 - Seleccionar todas / Invertir deshabilitados sin piezas en canvas; Deseleccionar
   deshabilitado sin selección; tips honestos (antes Escape podía ser no-op
   silencioso).
