@@ -1995,12 +1995,12 @@ class MainWindow(QMainWindow):
         previous.setStatusTip(
             with_native_shortcuts(self._tr("tip.previous_solution"))
             if has_multiple
-            else only_one
+            else (only_one if has_any else need_layout)
         )
         next_action.setStatusTip(
             with_native_shortcuts(self._tr("tip.next_solution"))
             if has_multiple
-            else only_one
+            else (only_one if has_any else need_layout)
         )
         if pin is not None:
             pin_tip = (
