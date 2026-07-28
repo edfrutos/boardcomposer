@@ -364,6 +364,7 @@ class MainWindow(QMainWindow):
 
     def _show_welcome_screen(self) -> None:
         self.welcome.set_recent_files(self.services.recent_files.existing_files())
+        self._sync_template_actions()
         self._central_stack.setCurrentWidget(self.welcome)
         self._status("status.welcome", 2000)
 
@@ -919,7 +920,9 @@ class MainWindow(QMainWindow):
             language=self._ui_language(),
             parent=self,
         )
-        if dialog.exec() != dialog.DialogCode.Accepted:
+        result = dialog.exec()
+        self._sync_template_actions()
+        if result != dialog.DialogCode.Accepted:
             return
         name = dialog.selected_name()
         if not name:
@@ -982,6 +985,7 @@ class MainWindow(QMainWindow):
             project,
             include_placements=include,
         )
+        self._sync_template_actions()
         self._status("status.template_saved", name=name)
 
     def _show_whats_new(self) -> None:
@@ -1589,6 +1593,7 @@ class MainWindow(QMainWindow):
         self._sync_generate_actions()
         self._sync_view_actions()
         self._sync_edit_selection_actions()
+        self._sync_template_actions()
 
     def _sync_project_file_actions(self) -> None:
         """Enable save/rename/template only when a project is open."""
@@ -1614,6 +1619,22 @@ class MainWindow(QMainWindow):
                 else disabled_tip
             )
             action.setStatusTip(tip)
+
+    def _sync_template_actions(self) -> None:
+        """Enable «Nuevo desde plantilla» only when templates exist."""
+        manager = self.services.project_templates
+        manager.refresh()
+        has_templates = bool(manager.list())
+        action = self._actions.get("new_from_template")
+        if action is not None:
+            action.setEnabled(has_templates)
+            action.setStatusTip(
+                with_native_shortcuts(self._tr("tip.new_from_template"))
+                if has_templates
+                else self._tr("status.template_empty")
+            )
+        if hasattr(self, "welcome"):
+            self.welcome.set_has_templates(has_templates)
 
     def _sync_generate_actions(self) -> None:
         """Enable layout calculation only when a project is open."""
@@ -2323,6 +2344,7 @@ class MainWindow(QMainWindow):
         self._sync_timeline_actions()
         self._sync_edit_selection_actions()
         self._sync_zoom_actions()
+        self._sync_template_actions()
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication

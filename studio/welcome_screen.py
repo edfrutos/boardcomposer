@@ -45,6 +45,7 @@ class WelcomeScreen(QWidget):
 
         self._language = DEFAULT_LANGUAGE
         self._recent_paths: list[str] = []
+        self._has_templates = False
         self._thumbnail_cache: dict[tuple[str, float], QIcon] = {}
 
         root = QHBoxLayout(self)
@@ -185,6 +186,19 @@ class WelcomeScreen(QWidget):
         self.whats_new_button.setText(tr("welcome.whats_new", language))
         self.preferences_button.setText(tr("welcome.preferences", language))
         self.set_recent_files(self._recent_paths)
+        self.set_has_templates(self._has_templates)
+
+    def set_has_templates(self, has_templates: bool) -> None:
+        """Enable or disable the from-template button with an honest tip."""
+        self._has_templates = has_templates
+        self.template_button.setEnabled(has_templates)
+        tip = (
+            with_native_shortcuts(tr("tip.new_from_template", self._language))
+            if has_templates
+            else tr("status.template_empty", self._language)
+        )
+        self.template_button.setToolTip(tip)
+        self.template_button.setStatusTip(tip)
 
     def set_recent_files(self, paths: list[str]) -> None:
         """Populate the recent-projects list with name, date and thumbnail."""
