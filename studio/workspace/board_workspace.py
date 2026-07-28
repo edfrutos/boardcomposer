@@ -47,6 +47,7 @@ class BoardWorkspace(QGraphicsView):
     import_boards_requested = Signal()
     import_pieces_requested = Signal()
     camera_changed = Signal(float)
+    selection_or_focus_changed = Signal()
     rotate_requested = Signal()
 
     def __init__(self, services):
@@ -386,24 +387,28 @@ class BoardWorkspace(QGraphicsView):
             self.clear_board_focus(clear_sticky=False)
         self.selection.select(piece_id)
         self.selection.sync_inspector(self.window())
+        self.selection_or_focus_changed.emit()
 
     def select_all_pieces(self) -> None:
         """Select every piece on the canvas."""
         self.clear_board_focus(clear_sticky=False)
         self.selection.select_all()
         self.selection.sync_inspector(self.window())
+        self.selection_or_focus_changed.emit()
 
     def clear_piece_selection(self) -> None:
         """Clear the canvas piece selection."""
         self.clear_board_focus(clear_sticky=False)
         self.selection.clear()
         self.selection.sync_inspector(self.window())
+        self.selection_or_focus_changed.emit()
 
     def invert_piece_selection(self) -> None:
         """Invert the current piece selection on the canvas."""
         self.clear_board_focus(clear_sticky=False)
         self.selection.invert_selection()
         self.selection.sync_inspector(self.window())
+        self.selection_or_focus_changed.emit()
 
     def focused_board_id(self) -> str | None:
         """Return the board id currently highlighted from the Explorador."""
@@ -426,6 +431,7 @@ class BoardWorkspace(QGraphicsView):
             self._sticky_board_id = None
         if changed:
             self._apply_board_highlights()
+            self.selection_or_focus_changed.emit()
 
     def focus_board(self, board_id: str) -> None:
         """Highlight panels for ``board_id`` and center the camera on them."""
@@ -433,6 +439,7 @@ class BoardWorkspace(QGraphicsView):
         self._sticky_board_id = board_id
         self._apply_board_highlights()
         self._center_on_board(board_id)
+        self.selection_or_focus_changed.emit()
 
     def select_board_at(self, x_mm: float, y_mm: float) -> bool:
         """Focus the board under a scene point; return True if a panel was hit."""

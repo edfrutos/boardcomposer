@@ -338,6 +338,7 @@ class MainWindow(QMainWindow):
         self.workspace.import_boards_requested.connect(self._import_boards_from_csv)
         self.workspace.import_pieces_requested.connect(self._import_pieces_from_csv)
         self.workspace.rotate_requested.connect(self._rotate_selected_piece)
+        self.workspace.selection_or_focus_changed.connect(self._sync_view_actions)
         # Ensure Edit→Rotar / R is available while the canvas has focus.
         self.workspace.addAction(self._actions["rotate_piece"])
         self.welcome = WelcomeScreen()
@@ -1926,7 +1927,8 @@ class MainWindow(QMainWindow):
     def _sync_view_actions(self) -> None:
         action = self._actions.get("toggle_grid")
         fit_board = self._actions.get("fit_board")
-        if action is None or fit_board is None:
+        fit_selection = self._actions.get("fit_selection")
+        if action is None or fit_board is None or fit_selection is None:
             return
         action.blockSignals(True)
         action.setChecked(self.services.preferences.current.show_grid)
@@ -1939,6 +1941,15 @@ class MainWindow(QMainWindow):
             with_native_shortcuts(self._tr("tip.fit_board"))
             if has_boards
             else self._tr("status.nothing_to_fit_board")
+        )
+        can_fit_selection = bool(self.workspace.selection.selected()) or (
+            self.workspace.focused_board_id() is not None
+        )
+        fit_selection.setEnabled(can_fit_selection)
+        fit_selection.setStatusTip(
+            with_native_shortcuts(self._tr("tip.fit_selection"))
+            if can_fit_selection
+            else self._tr("status.nothing_to_fit_selection")
         )
 
     def _sync_solution_actions(self) -> None:

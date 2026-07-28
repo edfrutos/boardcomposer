@@ -8,6 +8,8 @@
   atajo genérico sin contexto).
 - «Ajustar al tablero» deshabilitado sin tableros/proyecto; tip honesto en vez
   de atajo genérico.
+- «Ajustar a la selección» deshabilitado sin selección/foco de tablero; se
+  activa al seleccionar pieza o enfocar tablero.
 - Undo / Redo: con historial vacío quedan deshabilitados y su tip explica
   «no hay acciones para deshacer/rehacer» (antes mantenían tip genérico).
 - «Abrir carpeta del proyecto» tip pide guardar cuando aún no hay `.bcproj`
