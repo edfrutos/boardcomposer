@@ -500,6 +500,8 @@ def test_toggle_explorer_status_tip_includes_shortcut():
 
     assert "Ctrl+1" in tr("tip.toggle_explorer", "es")
     assert "Ctrl+1" in tr("tip.toggle_explorer", "en")
+    assert "Ctrl+1" in tr("tip.toggle_explorer_show", "es")
+    assert "Ctrl+1" in tr("tip.toggle_explorer_hide", "en")
 
 
 def test_toggle_inspector_status_tip_includes_shortcut():

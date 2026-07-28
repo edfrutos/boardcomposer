@@ -137,17 +137,17 @@ Precondición para checks de comparador multi-candidata:
 | Bloque | ¿OK? | Notas |
 
 |--------|------|-------|
-| 0 Arranque | | |
-| 1 Proyecto | | |
-| 2 Explorador/Inspector | | |
-| 3 Workspace | | |
-| 4 Layout→Export | | |
-| 5 Importación | | |
-| 6 Timeline | | |
-| 7 Preferencias/Ayuda | | |
-| 8 Multipanel | | |
+| 0 Arranque | OK | Welcome + tip/gates |
+| 1 Proyecto | OK | Save/reveal/template |
+| 2 Explorador/Inspector | OK | Edit selection gates |
+| 3 Workspace | OK | Zoom/grid/fit/rotate |
+| 4 Layout→Export | OK | Regresión multi-candidata |
+| 5 Importación | OK | CSV/Excel + undo |
+| 6 Timeline | OK | Export/clear/filters |
+| 7 Preferencias/Ayuda | OK | Atajos/docs/tema |
+| 8 Multipanel | OK | Ver `uat/multipanel/` |
 
-**Veredicto:** □ Listo para uso diario de estudio  □ Faltan huecos (anotar arriba)  x Solo regresión automatizada (multi-candidata §4)
+**Veredicto:** x Listo para uso diario de estudio  □ Faltan huecos (anotar arriba)  □ Solo regresión automatizada
 
 **Regresión auto (opcional):** `make test` → 562+ passed; multi-candidata:
 `pytest tests/test_uat_multi_candidate_flow.py`.

@@ -535,17 +535,49 @@ class MainWindow(QMainWindow):
             tip_key = f"tip.toggle_{key}"
             tip = self._tr(tip_key)
             action.setStatusTip(with_native_shortcuts(tip) if tip != tip_key else "")
+            action.toggled.connect(
+                lambda checked, dock_key=key: self._on_dock_toggled(dock_key, checked)
+            )
             self._menus["view"].addAction(action)
         self._actions["toggle_explorer"] = self._dock_toggles["explorer"]
         self._actions["toggle_inspector"] = self._dock_toggles["inspector"]
         self._actions["toggle_timeline"] = self._dock_toggles["timeline"]
         self._actions["toggle_comparator"] = self._dock_toggles["comparator"]
         apply_shortcuts(self._actions)
+        self._sync_dock_toggle_tips()
 
         self._menus["view"].addSeparator()
         self._menus["view"].addAction(self._actions["reset_window_layout"])
 
         self.clear_inspector()
+
+    def _on_dock_toggled(self, key: str, checked: bool) -> None:
+        """Announce dock visibility changes in the status bar."""
+        if not _qt_is_valid(self):
+            return
+        self._sync_dock_toggle_tips()
+        name = self._tr(f"dock.{key}")
+        self._status(
+            "status.dock_shown" if checked else "status.dock_hidden",
+            name=name,
+        )
+
+    def _sync_dock_toggle_tips(self) -> None:
+        """Tip Mostrar/Ocultar según visibilidad actual de cada dock."""
+        if not _qt_is_valid(self):
+            return
+        toggles = getattr(self, "_dock_toggles", None)
+        if not toggles:
+            return
+        for key, action in toggles.items():
+            if not _qt_is_valid(action):
+                continue
+            visible = action.isChecked()
+            tip_key = f"tip.toggle_{key}_{'hide' if visible else 'show'}"
+            tip = self._tr(tip_key)
+            if tip == tip_key:
+                tip = self._tr(f"tip.toggle_{key}")
+            action.setStatusTip(with_native_shortcuts(tip) if tip else "")
 
     def _build_statusbar(self):
         status = QStatusBar(self)
@@ -2317,11 +2349,7 @@ class MainWindow(QMainWindow):
         if hasattr(self, "_dock_toggles"):
             for key, action in self._dock_toggles.items():
                 action.setText(self._tr(f"dock.{key}"))
-                tip_key = f"tip.toggle_{key}"
-                tip = self._tr(tip_key)
-                action.setStatusTip(
-                    with_native_shortcuts(tip) if tip != tip_key else ""
-                )
+            self._sync_dock_toggle_tips()
 
         self.explorer_dock.setWindowTitle(self._tr("dock.explorer"))
         self.inspector_dock.setWindowTitle(self._tr("dock.inspector"))
@@ -2375,6 +2403,7 @@ class MainWindow(QMainWindow):
         self._sync_template_actions()
         self._sync_welcome_action()
         self._sync_view_actions()
+        self._sync_dock_toggle_tips()
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication
