@@ -969,6 +969,16 @@ class BoardWorkspace(QGraphicsView):
         """Current Workspace camera zoom factor (1.0 = 100%)."""
         return self._camera.zoom
 
+    @property
+    def can_zoom_in(self) -> bool:
+        """True when zoom can still increase before max."""
+        return self._camera.zoom < self._camera.max_zoom
+
+    @property
+    def can_zoom_out(self) -> bool:
+        """True when zoom can still decrease before min."""
+        return self._camera.zoom > self._camera.min_zoom
+
     def piece_moved(self, piece_id: str, x: float, y: float) -> None:
         """Piece moved event."""
         project = self.services.projects.current_project
