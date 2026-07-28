@@ -2003,6 +2003,8 @@ class MainWindow(QMainWindow):
             return
         self.services.preferences.update(dataclass_replace(prefs, show_grid=checked))
         self.workspace.reload_project(fit=False)
+        self._sync_view_actions()
+        self._status("status.grid_shown" if checked else "status.grid_hidden")
 
     def _sync_view_actions(self) -> None:
         action = self._actions.get("toggle_grid")
@@ -2019,6 +2021,12 @@ class MainWindow(QMainWindow):
         action.blockSignals(True)
         action.setChecked(self.services.preferences.current.show_grid)
         action.blockSignals(False)
+        grid_on = self.services.preferences.current.show_grid
+        action.setStatusTip(
+            with_native_shortcuts(
+                self._tr("tip.toggle_grid_hide" if grid_on else "tip.toggle_grid_show")
+            )
+        )
 
         project = self.services.projects.current_project
         has_boards = bool(project and project.boards)
@@ -2366,6 +2374,7 @@ class MainWindow(QMainWindow):
         self._sync_zoom_actions()
         self._sync_template_actions()
         self._sync_welcome_action()
+        self._sync_view_actions()
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication
