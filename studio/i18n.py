@@ -536,6 +536,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "({board_thickness}, «{board_material}»)."
         ),
         "status.prefs_saved": "Preferencias guardadas",
+        "status.nothing_to_solve": "No hay proyecto para calcular layout",
         "status.layout_failed": "No se pudo calcular layout",
         "status.layout_partial": "Layout parcial: {omitted} pieza(s) sin colocar de {total} soluciones",
         "status.layout_ok": (
@@ -1304,6 +1305,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "({board_thickness}, “{board_material}”)."
         ),
         "status.prefs_saved": "Preferences saved",
+        "status.nothing_to_solve": "No project to calculate layout",
         "status.layout_failed": "Could not calculate layout",
         "status.layout_partial": "Partial layout: {omitted} unplaced piece(s) across {total} solutions",
         "status.layout_ok": (
