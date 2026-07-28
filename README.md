@@ -131,6 +131,8 @@ error) antes de incorporar los tableros al proyecto. Ver
 
 ## Documentación
 
+- [`docs/README.md`](docs/README.md): mapa (usuario final vs proyecto).
+- [`docs/user/GUIA-RAPIDA.md`](docs/user/GUIA-RAPIDA.md): guía rápida Studio.
 - [`docs/masterplan/INDEX.md`](docs/masterplan/INDEX.md): índice y precedencia.
 - [`docs/masterplan/DOC-000-Manifiesto.md`](docs/masterplan/DOC-000-Manifiesto.md): propósito.
 - [`docs/masterplan/DOC-003-Roadmap.md`](docs/masterplan/DOC-003-Roadmap.md): fases.
@@ -139,4 +141,5 @@ error) antes de incorporar los tableros al proyecto. Ver
 - [`docs/masterplan/adr/ADR-014-Multi-Panel-Packing.md`](docs/masterplan/adr/ADR-014-Multi-Panel-Packing.md): contrato multipanel (referencia de panel, validación, desperdicio).
 - [`docs/masterplan/adr/ADR-015-Migraciones-Bcproj.md`](docs/masterplan/adr/ADR-015-Migraciones-Bcproj.md): migraciones explícitas de proyectos `.bcproj`.
 - [`docs/masterplan/adr/ADR-016-Retales-Informativos.md`](docs/masterplan/adr/ADR-016-Retales-Informativos.md): retales como información, no como inventario.
-- [`TODO.md`](TODO.md) y [`CHANGELOG.md`](CHANGELOG.md): backlog operativo e histórico de versiones.
+- [`uat/studio/CHECKLIST-VISUAL.md`](uat/studio/CHECKLIST-VISUAL.md): pasada visual humana.
+- [`docs/masterplan/DOC-004-Backlog.md`](docs/masterplan/DOC-004-Backlog.md) y [`CHANGELOG.md`](CHANGELOG.md): backlog e histórico de versiones.

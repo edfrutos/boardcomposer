@@ -22,6 +22,8 @@ def test_repo_root_contains_changelog():
 
 def test_documentation_paths_exist():
     paths = documentation_paths()
+    assert paths["user_guide"].is_file()
+    assert paths["docs_index"].is_file()
     assert paths["readme"].is_file()
     assert paths["masterplan"].is_file()
     assert paths["changelog"].is_file()

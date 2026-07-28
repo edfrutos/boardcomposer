@@ -1,5 +1,7 @@
-
 # NOTEBOOK - BoardComposer
+
+> **Archivo histórico.** Decisiones vivas → `docs/masterplan/DOC-005-Decisiones.md`
+> y ADR. Mapa docs → `docs/README.md`.
 
 Cuaderno de ingeniería del proyecto.
 

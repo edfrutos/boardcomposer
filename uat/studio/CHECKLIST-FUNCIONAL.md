@@ -5,6 +5,9 @@
 **Versión:** `0.4.0.dev0` (Unreleased)  
 **Cómo arrancar:** `make run` o `.venv/bin/python -m studio.app`
 
+> Pasada visual fresca (sin marcar): [`CHECKLIST-VISUAL.md`](CHECKLIST-VISUAL.md).  
+> Índice UAT: [`../README.md`](../README.md).
+
 Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable**, no buscar bugs de borde.
 
 Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en

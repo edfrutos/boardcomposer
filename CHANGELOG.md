@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Mapa docs (`docs/README.md`), guía rápida usuario (`docs/user/GUIA-RAPIDA.md`)
+  y checklist visual UAT (`uat/studio/CHECKLIST-VISUAL.md`). Ayuda →
+  Documentación abre la guía de usuario.
 - Tip dinámico Mostrar/Ocultar + status al toggle de la barra (Ctrl+Shift+K).
 - Tip dinámico Mostrar/Ocultar + status al toggle de docks (Ctrl+1…4).
 - Regresión UAT multi-candidata: `tests/test_uat_multi_candidate_flow.py`
@@ -11,6 +14,12 @@
   con open-after). Checklist §4 marcado con enlace a esa suite.
 - UAT Studio/multipanel: Resultado § cerrado; pendiente multipanel absorbido
   por checklist Studio.
+
+### Cambiado
+
+- Raíz docs limpia: `TODO.md` / `DECISIONS.md` stubs → masterplan;
+  `docs/estructura.md` redirige; `NOTEBOOK.md` marcado histórico.
+  Ayuda → Documentación prioriza guía usuario sobre masterplan.
 
 ### Corregido
 

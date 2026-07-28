@@ -1080,9 +1080,15 @@ class MainWindow(QMainWindow):
 
         from studio.whats_new import documentation_paths
 
-        path = documentation_paths()["masterplan"]
-        if not path.is_file():
-            path = documentation_paths()["readme"]
+        paths = documentation_paths()
+        path = next(
+            (
+                candidate
+                for key in ("user_guide", "docs_index", "masterplan", "readme")
+                if (candidate := paths[key]).is_file()
+            ),
+            paths["readme"],
+        )
         if not path.is_file():
             QMessageBox.warning(
                 self,
