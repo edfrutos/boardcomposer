@@ -19,6 +19,7 @@ from PySide6.QtWidgets import (
 )
 
 from studio.i18n import DEFAULT_LANGUAGE, tr
+from studio.keyboard_shortcuts import with_native_shortcuts
 from studio.project_thumbnail import RECENT_THUMBNAIL_SIZE, project_file_thumbnail
 
 STUDIO_VERSION = "0.4.0.dev0"
@@ -188,7 +189,15 @@ class WelcomeScreen(QWidget):
     def set_recent_files(self, paths: list[str]) -> None:
         """Populate the recent-projects list with name, date and thumbnail."""
         self._recent_paths = list(paths)
-        self.clear_recent_button.setEnabled(bool(paths))
+        has_recent = bool(paths)
+        self.clear_recent_button.setEnabled(has_recent)
+        clear_tip = (
+            with_native_shortcuts(tr("tip.clear_recent", self._language))
+            if has_recent
+            else tr("welcome.empty_recent", self._language)
+        )
+        self.clear_recent_button.setToolTip(clear_tip)
+        self.clear_recent_button.setStatusTip(clear_tip)
         self.recent_list.clear()
         if not paths:
             empty = QListWidgetItem(tr("welcome.empty_recent", self._language))
