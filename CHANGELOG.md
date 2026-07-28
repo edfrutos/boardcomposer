@@ -4,6 +4,7 @@
 
 ### Añadido
 
+- Tip dinámico Mostrar/Ocultar + status al toggle de la barra (Ctrl+Shift+K).
 - Tip dinámico Mostrar/Ocultar + status al toggle de docks (Ctrl+1…4).
 - Regresión UAT multi-candidata: `tests/test_uat_multi_candidate_flow.py`
   (demo→≥2 en Comparador/Explorador, Re/Av Pág, pin/diff, export solución

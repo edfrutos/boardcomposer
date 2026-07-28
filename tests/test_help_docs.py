@@ -493,6 +493,8 @@ def test_toggle_toolbar_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+K" in tr("tip.toggle_toolbar", "es")
     assert "Ctrl+Shift+K" in tr("tip.toggle_toolbar", "en")
+    assert "Ctrl+Shift+K" in tr("tip.toggle_toolbar_show", "es")
+    assert "Ctrl+Shift+K" in tr("tip.toggle_toolbar_hide", "en")
 
 
 def test_toggle_explorer_status_tip_includes_shortcut():
