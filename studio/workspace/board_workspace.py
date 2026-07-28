@@ -487,22 +487,23 @@ class BoardWorkspace(QGraphicsView):
         self._camera.center = item.sceneBoundingRect().center()
         self._apply_camera()
 
-    def fit_board(self) -> None:
-        """Fit the board to the viewport."""
+    def fit_board(self) -> bool:
+        """Fit all boards to the viewport. Return True if fitted."""
         if not self._board_items:
-            return
+            return False
 
         viewport_rect = self.viewport().rect()
         board_rect = self._all_boards_rect()
 
         if viewport_rect.width() <= 0 or viewport_rect.height() <= 0:
-            return
+            return False
 
         x_zoom = viewport_rect.width() / board_rect.width()
         y_zoom = viewport_rect.height() / board_rect.height()
         self._camera.zoom = self._camera.clamp_zoom(min(x_zoom, y_zoom) * 0.75)
         self._camera.center = board_rect.center()
         self._apply_camera()
+        return True
 
     def fit_selection(self) -> bool:
         """Zoom to selected pieces or the focused board. Return True if fitted."""
