@@ -1905,6 +1905,8 @@ class MainWindow(QMainWindow):
         self.workspace.clear_piece_selection()
         if had_selection:
             self._status("status.selection_cleared")
+        else:
+            self._status("status.nothing_to_deselect")
 
     def _invert_selection(self) -> None:
         self.workspace.invert_piece_selection()
@@ -1993,9 +1995,13 @@ class MainWindow(QMainWindow):
         """Enable Edit selection actions only when they have a usable target."""
         explorer_kind = self._explorer_selection_kind()
         has_piece = self.workspace.selection.current() is not None
-        single_piece = len(self.workspace.selection.selected()) == 1
+        selected = self.workspace.selection.selected()
+        single_piece = len(selected) == 1
+        has_selection = bool(selected)
         has_focus_board = self.workspace.focused_board_id() is not None
         explorer_piece_or_board = explorer_kind in {"piece", "board"}
+        project = self.services.projects.current_project
+        has_canvas_pieces = bool(project and project.placements)
 
         can_delete_or_duplicate = (
             has_piece or explorer_piece_or_board or has_focus_board
@@ -2034,6 +2040,24 @@ class MainWindow(QMainWindow):
                 can_copy,
                 "tip.copy_selection_id",
                 "status.nothing_to_copy_id",
+            ),
+            (
+                "select_all_pieces",
+                has_canvas_pieces,
+                "tip.select_all_pieces",
+                "status.no_pieces_to_select",
+            ),
+            (
+                "deselect_pieces",
+                has_selection,
+                "tip.deselect_pieces",
+                "status.nothing_to_deselect",
+            ),
+            (
+                "invert_selection",
+                has_canvas_pieces,
+                "tip.invert_selection",
+                "status.no_pieces_to_select",
             ),
         )
         for key, enabled, tip_key, disabled_tip in pairs:

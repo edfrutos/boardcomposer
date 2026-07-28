@@ -199,6 +199,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.preferences": "Abrir las preferencias de Studio (Ctrl+,)",
         "status.pieces_selected": "{n} piezas seleccionadas",
         "status.no_pieces_to_select": "No hay piezas para seleccionar",
+        "status.nothing_to_deselect": "No hay piezas seleccionadas",
         "status.selection_cleared": "Selección eliminada",
         "status.nothing_to_fit_selection": (
             "Selecciona una pieza o un tablero para ajustar la vista"
@@ -979,6 +980,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.preferences": "Open Studio preferences (Ctrl+,)",
         "status.pieces_selected": "{n} pieces selected",
         "status.no_pieces_to_select": "No pieces to select",
+        "status.nothing_to_deselect": "No pieces are selected",
         "status.selection_cleared": "Selection cleared",
         "status.nothing_to_fit_selection": ("Select a piece or board to fit the view"),
         "status.nothing_to_fit_board": "No boards to fit the view",
