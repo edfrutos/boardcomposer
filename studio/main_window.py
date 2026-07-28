@@ -363,14 +363,33 @@ class MainWindow(QMainWindow):
         self._show_welcome_screen()
 
     def _show_welcome_screen(self) -> None:
+        if self._central_stack.currentWidget() is self.welcome:
+            self._status("status.already_on_welcome")
+            self._sync_welcome_action()
+            return
         self.welcome.set_recent_files(self.services.recent_files.existing_files())
         self._sync_template_actions()
         self._central_stack.setCurrentWidget(self.welcome)
+        self._sync_welcome_action()
         self._status("status.welcome", 2000)
 
     def _show_workspace(self) -> None:
         self._central_stack.setCurrentWidget(self.workspace)
+        self._sync_welcome_action()
         self._emit(events.WORKSPACE_OPENED)
+
+    def _sync_welcome_action(self) -> None:
+        """Disable «Pantalla de inicio» while already on Welcome."""
+        action = self._actions.get("show_welcome")
+        if action is None or not hasattr(self, "welcome"):
+            return
+        on_welcome = self._central_stack.currentWidget() is self.welcome
+        action.setEnabled(not on_welcome)
+        action.setStatusTip(
+            self._tr("status.already_on_welcome")
+            if on_welcome
+            else with_native_shortcuts(self._tr("tip.show_welcome"))
+        )
 
     def _build_panels(self):
         self.explorer = QTreeWidget()
@@ -2345,6 +2364,7 @@ class MainWindow(QMainWindow):
         self._sync_edit_selection_actions()
         self._sync_zoom_actions()
         self._sync_template_actions()
+        self._sync_welcome_action()
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication
