@@ -213,6 +213,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.zoom_at_maximum": "Zoom al máximo",
         "status.zoom_at_minimum": "Zoom al mínimo",
         "tip.toggle_grid": "Mostrar u ocultar la cuadrícula del canvas (Ctrl+G)",
+        "tip.toggle_grid_show": "Mostrar la cuadrícula del canvas (Ctrl+G)",
+        "tip.toggle_grid_hide": "Ocultar la cuadrícula del canvas (Ctrl+G)",
+        "status.grid_shown": "Cuadrícula visible",
+        "status.grid_hidden": "Cuadrícula oculta",
         "tip.reset_window_layout": (
             "Volver a la disposición inicial de docks, toolbar y tamaño de ventana"
             " (Ctrl+Shift+W)"
@@ -995,6 +999,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.zoom_at_maximum": "Already at maximum zoom",
         "status.zoom_at_minimum": "Already at minimum zoom",
         "tip.toggle_grid": "Show or hide the canvas grid (Ctrl+G)",
+        "tip.toggle_grid_show": "Show the canvas grid (Ctrl+G)",
+        "tip.toggle_grid_hide": "Hide the canvas grid (Ctrl+G)",
+        "status.grid_shown": "Grid visible",
+        "status.grid_hidden": "Grid hidden",
         "tip.reset_window_layout": (
             "Restore the default dock, toolbar and window size layout (Ctrl+Shift+W)"
         ),

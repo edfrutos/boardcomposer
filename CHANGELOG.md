@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Toggle cuadrícula (Ctrl+G): tip dinámico Mostrar/Ocultar según estado +
+  status «Cuadrícula visible/oculta» al cambiar.
 - «Ajustar al tablero» muestra status honesto si no hay tableros (paridad con
   «Ajustar a la selección»; antes no-op silencioso si se invocaba).
 - «Pantalla de inicio» deshabilitada si ya estás en Welcome; tip

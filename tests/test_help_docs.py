@@ -265,6 +265,8 @@ def test_toggle_grid_status_tip_includes_shortcut():
 
     assert "Ctrl+G" in tr("tip.toggle_grid", "es")
     assert "Ctrl+G" in tr("tip.toggle_grid", "en")
+    assert "Ctrl+G" in tr("tip.toggle_grid_show", "es")
+    assert "Ctrl+G" in tr("tip.toggle_grid_hide", "en")
 
 
 def test_undo_status_tip_includes_shortcut():
