@@ -9,7 +9,7 @@ import pytest
 from studio.commands import RotatePieceCommand
 from studio.main_window import MainWindow
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
-from studio.preferences import PreferencesManager
+from studio.preferences import PreferencesManager, StudioPreferences
 from studio.services import StudioServices
 
 pytestmark = pytest.mark.usefixtures("qapp")
@@ -75,3 +75,41 @@ def test_rotate_piece_command_keeps_rotated_in_sync():
     command.undo()
     assert placement.rotation == 0
     assert placement.rotated is False
+
+
+def test_rotate_action_gated_until_piece_selected(tmp_path):
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    services.projects.new_project(
+        StudioProject(
+            project_id="PRJ-1",
+            name="RotateGate",
+            boards=[StudioBoard("P1", 1000, 500, "Demo", 19, 1)],
+            pieces=[StudioPiece("A", 400, 300, "Demo", 19)],
+            placements=[StudioPlacement("A", 0, 0, False, 0, "P1", 0, 0)],
+        )
+    )
+    window = MainWindow(services)
+    window._show_workspace()
+    window.workspace.reload_project()
+    window.workspace.clear_piece_selection()
+    window._sync_view_actions()
+
+    assert not window._actions["rotate_piece"].isEnabled()
+    assert window._actions["rotate_piece"].statusTip() == window._tr(
+        "status.select_piece_first"
+    )
+
+    window._rotate_selected_piece()
+    assert window._tr("status.select_piece_first") in (
+        window.statusBar().currentMessage()
+    )
+
+    window.workspace.select_piece("A")
+    window._sync_view_actions()
+    assert window._actions["rotate_piece"].isEnabled()
+    tip = window._actions["rotate_piece"].statusTip()
+    assert "(R)" in tip
+    assert "Rotar" in tip or "Rotate" in tip

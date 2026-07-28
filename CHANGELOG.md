@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- «Rotar» (R) deshabilitado sin pieza seleccionada (con placement); tip pide
+  seleccionar pieza en vez de no-op silencioso.
 - «Calcular layout» deshabilitado sin proyecto; tip honesto (antes mostraba
   atajo genérico sin contexto).
 - «Ajustar al tablero» deshabilitado sin tableros/proyecto; tip honesto en vez
