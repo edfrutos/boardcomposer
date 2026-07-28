@@ -86,9 +86,8 @@ def test_menu_actions_have_status_tips(qapp, tmp_path):
     assert window._actions["solve_layout"].statusTip() == with_native_shortcuts(
         "Calculate layout solutions (Ctrl+Return)"
     )
-    assert window._actions["fit_board"].statusTip() == with_native_shortcuts(
-        "Zoom to fit all boards (Ctrl+0)"
-    )
+    assert not window._actions["fit_board"].isEnabled()
+    assert window._actions["fit_board"].statusTip() == "No boards to fit the view"
 
     services.preferences.update(StudioPreferences(language="es"))
     window._apply_preferences()
@@ -426,6 +425,34 @@ def test_view_menu_includes_zoom_actions(qapp, tmp_path):
     assert "Zoom in" in texts
     assert "Zoom out" in texts
     assert "Fit to board" in texts
+
+
+def test_fit_board_action_gated_without_boards(qapp, tmp_path):
+    del qapp
+    from studio.models import StudioBoard, StudioProject
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+
+    assert not window._actions["fit_board"].isEnabled()
+    assert "no hay tableros" in window._actions["fit_board"].statusTip().lower()
+
+    services.projects.new_project(
+        StudioProject(
+            project_id="PRJ-FIT",
+            name="Fit",
+            boards=[StudioBoard("B1", 1000, 500, "Demo", 19, 1)],
+            pieces=[],
+            placements=[],
+        )
+    )
+    window.update_window_title()
+    assert window._actions["fit_board"].isEnabled()
+    tip = window._actions["fit_board"].statusTip()
+    assert "Ctrl+0" in tip or "⌘0" in tip
 
 
 def test_view_menu_fit_and_grid_toggle(qapp, tmp_path):

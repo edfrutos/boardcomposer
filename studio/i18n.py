@@ -203,6 +203,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_fit_selection": (
             "Selecciona una pieza o un tablero para ajustar la vista"
         ),
+        "status.nothing_to_fit_board": "No hay tableros para ajustar la vista",
         "tip.fit_board": "Ajustar el zoom para ver todos los tableros (Ctrl+0)",
         "tip.fit_selection": "Ajustar el zoom a la pieza o tablero seleccionado (Ctrl+Shift+0)",
         "tip.zoom_in": "Acercar el Workspace (Ctrl+=)",
@@ -978,6 +979,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.no_pieces_to_select": "No pieces to select",
         "status.selection_cleared": "Selection cleared",
         "status.nothing_to_fit_selection": ("Select a piece or board to fit the view"),
+        "status.nothing_to_fit_board": "No boards to fit the view",
         "tip.fit_board": "Zoom to fit all boards (Ctrl+0)",
         "tip.fit_selection": "Zoom to fit the selected piece or board (Ctrl+Shift+0)",
         "tip.zoom_in": "Zoom in on the Workspace (Ctrl+=)",
