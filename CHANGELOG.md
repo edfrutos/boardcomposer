@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- «Pantalla de inicio» deshabilitada si ya estás en Welcome; tip
+  `already_on_welcome` (evita no-op de Ctrl+Shift+H).
 - «Nuevo desde plantilla» (menú + Welcome) deshabilitado sin plantillas
   guardadas; tip `template_empty` en vez de atajo genérico + diálogo vacío.
 - Zoom +/- deshabilitado al llegar al máximo/mínimo de cámara; tip honesto
