@@ -1580,6 +1580,7 @@ class MainWindow(QMainWindow):
             self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
         self._update_project_path_status()
         self._sync_project_file_actions()
+        self._sync_generate_actions()
         self._sync_view_actions()
 
     def _sync_project_file_actions(self) -> None:
@@ -1606,6 +1607,19 @@ class MainWindow(QMainWindow):
                 else disabled_tip
             )
             action.setStatusTip(tip)
+
+    def _sync_generate_actions(self) -> None:
+        """Enable layout calculation only when a project is open."""
+        has_project = self.services.projects.current_project is not None
+        solve = self._actions.get("solve_layout")
+        if solve is None:
+            return
+        solve.setEnabled(has_project)
+        solve.setStatusTip(
+            with_native_shortcuts(self._tr("tip.solve_layout"))
+            if has_project
+            else self._tr("status.nothing_to_solve")
+        )
 
     def _update_project_path_status(self) -> None:
         """Refresh the permanent project-path widget and reveal action."""
@@ -2142,6 +2156,7 @@ class MainWindow(QMainWindow):
         self.workspace.retranslate(self._ui_language())
         self.update_undo_redo()
         self._sync_project_file_actions()
+        self._sync_generate_actions()
         self._sync_solution_actions()
         self._sync_timeline_actions()
 

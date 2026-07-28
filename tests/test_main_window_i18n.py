@@ -83,8 +83,9 @@ def test_menu_actions_have_status_tips(qapp, tmp_path):
     services.preferences.update(StudioPreferences(language="en"))
     window = MainWindow(services)
 
-    assert window._actions["solve_layout"].statusTip() == with_native_shortcuts(
-        "Calculate layout solutions (Ctrl+Return)"
+    assert not window._actions["solve_layout"].isEnabled()
+    assert (
+        window._actions["solve_layout"].statusTip() == "No project to calculate layout"
     )
     assert not window._actions["fit_board"].isEnabled()
     assert window._actions["fit_board"].statusTip() == "No boards to fit the view"
@@ -92,8 +93,9 @@ def test_menu_actions_have_status_tips(qapp, tmp_path):
     services.preferences.update(StudioPreferences(language="es"))
     window._apply_preferences()
 
-    assert window._actions["solve_layout"].statusTip() == with_native_shortcuts(
-        "Calcular soluciones de layout (Ctrl+Return)"
+    assert (
+        window._actions["solve_layout"].statusTip()
+        == "No hay proyecto para calcular layout"
     )
     assert window._actions["zoom_in"].statusTip() == with_native_shortcuts(
         "Acercar el Workspace (Ctrl+=)"
@@ -453,6 +455,24 @@ def test_fit_board_action_gated_without_boards(qapp, tmp_path):
     assert window._actions["fit_board"].isEnabled()
     tip = window._actions["fit_board"].statusTip()
     assert "Ctrl+0" in tip or "⌘0" in tip
+
+
+def test_solve_layout_action_enabled_with_project(qapp, tmp_path):
+    del qapp
+    from studio.models import StudioProject
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="en"))
+    window = MainWindow(services)
+    assert not window._actions["solve_layout"].isEnabled()
+
+    services.projects.new_project(StudioProject(project_id="PRJ-SOLVE", name="Solve"))
+    window.update_window_title()
+    assert window._actions["solve_layout"].isEnabled()
+    tip = window._actions["solve_layout"].statusTip()
+    assert "Ctrl+Return" in tip or "⌘↵" in tip
 
 
 def test_view_menu_fit_and_grid_toggle(qapp, tmp_path):

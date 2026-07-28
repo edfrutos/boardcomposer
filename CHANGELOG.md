@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- «Calcular layout» deshabilitado sin proyecto; tip honesto (antes mostraba
+  atajo genérico sin contexto).
 - «Ajustar al tablero» deshabilitado sin tableros/proyecto; tip honesto en vez
   de atajo genérico.
 - Undo / Redo: con historial vacío quedan deshabilitados y su tip explica
