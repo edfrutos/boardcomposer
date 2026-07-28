@@ -87,7 +87,7 @@ Estado
 | ID | Categoría | Descripción | Estado |
 
 |----|-----------|-------------|--------|
-| DT-0001 | DT-D | Contrastar flujos y pantallas documentados con el Studio real. | 🟡 En curso |
+| DT-0001 | DT-D | Contrastar flujos y pantallas documentados con el Studio real. | 🟢 Controlado (UAT visual 2026-07-28) |
 | DT-0002 | DT-A | Documentar arquitectura interna y contrato multipanel del Solver. | 🟢 Controlado |
 | DT-0003 | DT-T | Mantener la cobertura de pruebas por encima del objetivo definido. | 🟢 Controlado |
 | DT-0004 | DT-T | Añadir cobertura automatizada de interacción Qt y Workspace. | 🟢 Resuelto (`tests/conftest.py`, `tests/test_workspace_qt_interaction.py`) |

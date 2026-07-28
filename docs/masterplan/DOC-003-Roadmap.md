@@ -90,8 +90,10 @@ Entregables principales (alcanzados):
 
 Deuda / evolución dentro de Fase 2 (no bloquea uso diario):
 
-- Sin control de versiones / diffs de revisiones del `.bcproj`.
-- Pulido UAT humano continuo sobre la checklist.
+- Diff `.bcproj` + anillo local de revisiones al guardar: entregado
+  (`bcproj_diff` / `bcproj_revisions`); historial cloud / multi-usuario = deuda.
+- Pulido UAT humano continuo (`uat/studio/CHECKLIST-VISUAL.md` cerrado
+  2026-07-28).
 
 ---
 
@@ -155,9 +157,8 @@ Objetivos:
 
 ### Prioridad P1 — Siguiente (producto)
 
-- Pulido menor Fase 2 y UAT humano continuo.
-- Diff `.bcproj` en Studio + anillo local de revisiones al guardar;
-  historial cloud / multi-usuario = deuda.
+- Pulido menor Fase 2 (feedback honesto, UAT residual).
+- Historial cloud / multi-usuario de `.bcproj` (anillo local ya existe).
 - Fase 4 IA bajo demanda.
 
 ### Prioridad P2

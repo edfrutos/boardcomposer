@@ -474,6 +474,10 @@ def test_open_docs_status_tip_includes_shortcut():
 
     assert "Shift+F1" in tr("tip.open_docs", "es")
     assert "Shift+F1" in tr("tip.open_docs", "en")
+    assert "guía" in tr("tip.open_docs", "es").lower()
+    assert "guide" in tr("tip.open_docs", "en").lower()
+    assert "guía" in tr("status.docs_opened", "es").lower()
+    assert "guide" in tr("status.docs_opened", "en").lower()
 
 
 def test_about_status_tip_includes_shortcut():

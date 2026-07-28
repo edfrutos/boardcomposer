@@ -4,7 +4,7 @@ Pruebas humanas (y enlace a regresión automatizada).
 
 | Checklist | Estado típico | Uso |
 |---|---|---|
-| [`studio/CHECKLIST-VISUAL.md`](studio/CHECKLIST-VISUAL.md) | Sin marcar | Pasada visual completa fresca |
+| [`studio/CHECKLIST-VISUAL.md`](studio/CHECKLIST-VISUAL.md) | Cerrada 2026-07-28 | Pasada visual completa |
 | [`studio/CHECKLIST-FUNCIONAL.md`](studio/CHECKLIST-FUNCIONAL.md) | Marcada (histórico) | Funcionalidad Studio ya verificada |
 | [`multipanel/CHECKLIST.md`](multipanel/CHECKLIST.md) | Cerrada | Multipanel absorbido por Studio |
 

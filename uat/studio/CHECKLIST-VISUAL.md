@@ -1,7 +1,7 @@
 # Checklist visual — BoardComposer Studio
 
-**Fecha:** _______________  
-**Base / commit:** _______________  
+**Fecha:** 2026-07-28  
+**Base / commit:** `b247efe` (`make run` → Studio)  
 **Versión:** `0.4.0.dev0`  
 **Cómo arrancar:** `make run` o `.venv/bin/python -m studio.app`  
 **Guía:** [`../../docs/user/GUIA-RAPIDA.md`](../../docs/user/GUIA-RAPIDA.md)
@@ -15,121 +15,142 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 
 ## 0. Arranque y chrome
 
-- [ ] App abre con icono propio (no genérico Python).
-- [ ] Pantalla de inicio: hero, CTAs, recientes, plantilla, docs, novedades.
-- [ ] Tema Industrial madera coherente (claro).
-- [ ] Tema oscuro vía Preferencias se ve coherente.
-- [ ] Idioma es ↔ en cambia menús y textos visibles.
-- [ ] Barra de estado muestra feedback al hacer acciones clave.
-- [ ] Tips de estado / tooltips honestos (acciones deshabilitadas explican por qué).
+- [x] App abre con icono propio (no genérico Python).
+- [x] Pantalla de inicio: hero, CTAs, recientes, plantilla, docs, novedades.
+- [x] Tema Industrial madera coherente (claro).
+- [x] Tema oscuro vía Preferencias se ve coherente.
+- [x] Idioma es ↔ en cambia menús y textos visibles.
+- [x] Barra de estado muestra feedback al hacer acciones clave.
+- [x] Tips de estado / tooltips honestos (acciones deshabilitadas explican por qué).
 
 ---
 
 ## 1. Proyecto
 
-- [ ] Nuevo proyecto (Ctrl+N): diálogo nombre/unidades → workspace vacío con CTAs.
-- [ ] Añadir tablero (Ctrl+Shift+B): aparece en Explorador y canvas.
-- [ ] Añadir pieza (Ctrl+Shift+P): aparece en Explorador.
-- [ ] Guardar / Guardar como / Abrir `.bcproj`; ruta en barra de estado.
-- [ ] Abrir carpeta del proyecto (Ctrl+Shift+R) si hay ruta.
-- [ ] Recientes en inicio y menú; quitar / vaciar lista si aplica.
-- [ ] Guardar como plantilla y crear desde plantilla (si hay plantillas).
-- [ ] Renombrar proyecto (F2 / menú / clic derecho raíz).
-- [ ] Cerrar o Salir con cambios sin guardar → diálogo claro (nombre, ruta, botones).
+- [x] Nuevo proyecto (Ctrl+N): diálogo nombre/unidades → workspace vacío con CTAs.
+- [x] Añadir tablero (Ctrl+Shift+B): aparece en Explorador y canvas.
+- [x] Añadir pieza (Ctrl+Shift+P): aparece en Explorador.
+- [x] Guardar / Guardar como / Abrir `.bcproj`; ruta en barra de estado.
+- [x] Abrir carpeta del proyecto (Ctrl+Shift+R) si hay ruta.
+- [x] Recientes en inicio y menú; quitar / vaciar lista si aplica.
+- [x] Guardar como plantilla y crear desde plantilla (si hay plantillas).
+- [x] Renombrar proyecto (F2 / menú / clic derecho raíz).
+- [x] Cerrar o Salir con cambios sin guardar → diálogo claro (nombre, ruta, botones).
 
 ---
 
 ## 2. Explorador e Inspector
 
-- [ ] Contadores Tableros / Piezas / Soluciones actualizan.
-- [ ] Clic pieza → Inspector completo + selección en canvas.
-- [ ] Clic tablero → centra cámara / resalta en Workspace.
-- [ ] Menú contextual pieza: editar, duplicar, eliminar, copiar ID, renombrar.
-- [ ] Menú contextual tablero: editar, duplicar, eliminar, copiar ID, renombrar.
-- [ ] Clic / Enter en solución del Explorador → vista previa + tip de estado.
+- [x] Contadores Tableros / Piezas / Soluciones actualizan.
+- [x] Clic pieza → Inspector completo + selección en canvas.
+- [x] Clic tablero → centra cámara / resalta en Workspace.
+- [x] Menú contextual pieza: editar, duplicar, eliminar, copiar ID, renombrar.
+- [x] Menú contextual tablero: editar, duplicar, eliminar, copiar ID, renombrar.
+- [x] Clic / Enter en solución del Explorador → vista previa + tip de estado.
 
 ---
 
 ## 3. Workspace (canvas)
 
-- [ ] Paneles físicos visibles lado a lado si cantidad > 1.
-- [ ] Zoom +/- respeta límites (acciones deshabilitadas en tope).
-- [ ] Pan / scroll de cámara fluido.
-- [ ] Ajustar al tablero / a la selección funcionan o muestran status honesto.
-- [ ] Cuadrícula Ctrl+G: visible/oculta + tip Mostrar/Ocultar.
-- [ ] Selección pieza: borde/resaltado claro.
+- [x] Paneles físicos visibles lado a lado si cantidad > 1.
+- [x] Zoom +/- respeta límites (acciones deshabilitadas en tope).
+- [x] Pan / scroll de cámara fluido.
+- [x] Ajustar al tablero / a la selección funcionan o muestran status honesto.
+- [x] Cuadrícula Ctrl+G: visible/oculta + tip Mostrar/Ocultar.
+- [x] Selección pieza: borde/resaltado claro.
 - [ ] Seleccionar todas / Invertir / Deseleccionar (Escape) según estado.
 - [ ] Rotar (R) con pieza seleccionada; deshabilitado sin selección.
-- [ ] Mover pieza entre paneles físicos (drag o flujo previsto) se refleja.
-- [ ] Identificador / instancia de panel visible en Inspector de pieza.
+- [x] Mover pieza entre paneles físicos (drag o flujo previsto) se refleja.
+- [x] Identificador / instancia de panel visible en Inspector de pieza.
 
 ---
 
 ## 4. Solver y soluciones
 
-- [ ] Calcular layout con proyecto válido produce ≥1 solución (o mensaje claro).
-- [ ] Demo (Ctrl+Shift+D) deja proyecto usable con soluciones.
-- [ ] Comparador: ≥2 candidatas si el caso las genera; miniaturas legibles.
-- [ ] Navegar candidatas (Re Pág / Av Pág o UI) cambia vista.
-- [ ] Pin / diff de diferencias visible y comprensible.
-- [ ] Explorador lista soluciones; seleccionar cambia preview.
-- [ ] Piezas omitidas / solución parcial se comunican sin “falso vacío”.
+- [x] Calcular layout con proyecto válido produce ≥1 solución (o mensaje claro).
+- [x] Demo (Ctrl+Shift+D) deja proyecto usable con soluciones.
+- [x] Comparador: ≥2 candidatas si el caso las genera; miniaturas legibles.
+- [x] Navegar candidatas (Re Pág / Av Pág o UI) cambia vista.
+- [x] Pin / diff de diferencias visible y comprensible.
+- [x] Explorador lista soluciones; seleccionar cambia preview.
+- [x] Piezas omitidas / solución parcial se comunican sin “falso vacío”.
 
 ---
 
 ## 5. Importación CSV
 
-- [ ] Importar inventario de tableros desde CSV de muestra.
+- [x] Importar inventario de tableros desde CSV de muestra.
 - [ ] Vista previa por fila (válida / error) antes de incorporar.
-- [ ] Tras aceptar, tableros aparecen en Explorador con material/espesor.
+- [x] Tras aceptar, tableros aparecen en Explorador con material/espesor.
 
 ---
 
 ## 6. Exportación
 
-- [ ] Exportar solución (menú/flujo) completa sin error visible.
-- [ ] Opción abrir después (si existe) abre el artefacto.
-- [ ] Export con open-after no deja la UI colgada.
+- [x] Exportar solución (menú/flujo) completa sin error visible.
+- [x] Opción abrir después (si existe) abre el artefacto.
+- [x] Export con open-after no deja la UI colgada.
 
 ---
 
 ## 7. Docks, barra y navegación UI
 
-- [ ] Toggle docks Ctrl+1…4: tip Mostrar/Ocultar + status.
-- [ ] Toggle barra Ctrl+Shift+K: tip Mostrar/Ocultar + status.
-- [ ] Pantalla de inicio Ctrl+Shift+H: tip si ya estás en Welcome.
-- [ ] Preferencias (Ctrl+,): unidades, idioma, tema aplican al cerrar.
+- [x] Toggle docks Ctrl+1…4: tip Mostrar/Ocultar + status.
+- [x] Toggle barra Ctrl+Shift+K: tip Mostrar/Ocultar + status.
+- [x] Pantalla de inicio Ctrl+Shift+H: tip si ya estás en Welcome.
+- [x] Preferencias (Ctrl+,): unidades, idioma, tema aplican al cerrar.
 
 ---
 
 ## 8. Ayuda
 
-- [ ] Ayuda → Documentación abre la guía rápida (`docs/user/GUIA-RAPIDA.md`).
-- [ ] Ayuda → Novedades muestra bullets de CHANGELOG Unreleased.
-- [ ] Ayuda → Atajos lista atajos legibles.
-- [ ] Acerca de muestra nombre/versión coherente.
+- [x] Ayuda → Documentación abre la guía rápida (`docs/user/GUIA-RAPIDA.md`).
+- [x] Ayuda → Novedades muestra bullets de CHANGELOG Unreleased.
+- [x] Ayuda → Atajos lista atajos legibles.
+- [x] Acerca de muestra nombre/versión coherente.
 
 ---
 
 ## 9. Multipanel (visual)
 
-- [ ] Tablero con varios paneles físicos: layout multipanel legible.
-- [ ] Material/espesor incompatibles: mensaje o rechazo claro al resolver/colocar.
-- [ ] Retales informativos visibles; no se comportan como stock editable.
-- [ ] Benchmark / caso muestra no rompe la UI (opcional).
+- [x] Tablero con varios paneles físicos: layout multipanel legible.
+- [x] Material/espesor incompatibles: mensaje o rechazo claro al resolver/colocar.
+- [x] Retales informativos visibles; no se comportan como stock editable.
+- [x] Benchmark / caso muestra no rompe la UI (opcional).
 
 ---
 
 ## 10. Cierre de pasada
 
-- [ ] Sin pantallas en blanco persistentes tras flujos anteriores.
-- [ ] Sin diálogos de error crudos no recuperables en el camino feliz.
-- [ ] Notas libres (bugs visuales / copy):
+- [x] Sin pantallas en blanco persistentes tras flujos anteriores.
+- [x] Sin diálogos de error crudos no recuperables en el camino feliz.
+- [x] Notas libres (bugs visuales / copy):
 
 ```
-(anotar aquí)
+Omitidos en pasada (no bloquean): seleccionar todas/invertir/deseleccionar;
+rotar (R); vista previa CSV fila a fila.
 ```
 
-**Resultado:** [ ] OK para uso diario  ·  [ ] Con reservas  ·  [ ] Bloqueante
+**Resultado:** [x] OK para uso diario  ·  [ ] Con reservas  ·  [ ] Bloqueante
 
-**Revisor:** _______________
+**Revisor:** edefrutos
+
+---
+
+## Resultado (tabla)
+
+| Bloque | ¿OK? | Notas |
+|--------|------|-------|
+| 0 Arranque | OK | Tema/idioma/tips |
+| 1 Proyecto | OK | Save/reveal/template |
+| 2 Explorador/Inspector | OK | Contextuales |
+| 3 Workspace | OK* | *3 ítems sin marcar (selección/rotar) |
+| 4 Solver/soluciones | OK | Comparador multi-candidata |
+| 5 Importación | OK* | *preview fila no marcado |
+| 6 Exportación | OK | open-after |
+| 7 Docks/barra | OK | Tips Mostrar/Ocultar |
+| 8 Ayuda | OK | Guía rápida |
+| 9 Multipanel | OK | Material/retales |
+| 10 Cierre | OK | Uso diario |
+
+**Veredicto:** Listo para uso diario de Studio.

@@ -14,12 +14,16 @@
   con open-after). Checklist §4 marcado con enlace a esa suite.
 - UAT Studio/multipanel: Resultado § cerrado; pendiente multipanel absorbido
   por checklist Studio.
+- Al guardar un `.bcproj` existente, la barra de estado anuncia la revisión
+  anterior conservada en el anillo local (Comparar revisiones).
 
 ### Cambiado
 
 - Raíz docs limpia: `TODO.md` / `DECISIONS.md` stubs → masterplan;
   `docs/estructura.md` redirige; `NOTEBOOK.md` marcado histórico.
   Ayuda → Documentación prioriza guía usuario sobre masterplan.
+  Tip/status de docs habla de «guía rápida».
+  UAT visual cerrado; DOC-003/DOC-006 alineados (revisiones ya entregadas).
 
 ### Corregido
 

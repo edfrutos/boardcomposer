@@ -75,8 +75,9 @@ def test_save_project_snapshots_previous(tmp_path):
     assert list_revisions(path) == []
 
     project.name = "Two"
-    save_project(project, path)
+    snapshot = save_project(project, path)
     revs = list_revisions(path)
     assert len(revs) == 1
+    assert snapshot == revs[0]
     assert json.loads(revs[0].read_text(encoding="utf-8"))["name"] == "One"
     assert project_to_dict(project)["name"] == "Two"
