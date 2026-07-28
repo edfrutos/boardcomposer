@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- «Ajustar al tablero» deshabilitado sin tableros/proyecto; tip honesto en vez
+  de atajo genérico.
 - Undo / Redo: con historial vacío quedan deshabilitados y su tip explica
   «no hay acciones para deshacer/rehacer» (antes mantenían tip genérico).
 - «Abrir carpeta del proyecto» tip pide guardar cuando aún no hay `.bcproj`

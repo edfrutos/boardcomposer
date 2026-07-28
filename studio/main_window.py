@@ -1580,6 +1580,7 @@ class MainWindow(QMainWindow):
             self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
         self._update_project_path_status()
         self._sync_project_file_actions()
+        self._sync_view_actions()
 
     def _sync_project_file_actions(self) -> None:
         """Enable save/rename/template only when a project is open."""
@@ -1910,11 +1911,21 @@ class MainWindow(QMainWindow):
 
     def _sync_view_actions(self) -> None:
         action = self._actions.get("toggle_grid")
-        if action is None:
+        fit_board = self._actions.get("fit_board")
+        if action is None or fit_board is None:
             return
         action.blockSignals(True)
         action.setChecked(self.services.preferences.current.show_grid)
         action.blockSignals(False)
+
+        project = self.services.projects.current_project
+        has_boards = bool(project and project.boards)
+        fit_board.setEnabled(has_boards)
+        fit_board.setStatusTip(
+            with_native_shortcuts(self._tr("tip.fit_board"))
+            if has_boards
+            else self._tr("status.nothing_to_fit_board")
+        )
 
     def _sync_solution_actions(self) -> None:
         """Enable solution actions only when they can do useful work."""
