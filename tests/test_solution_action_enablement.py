@@ -36,6 +36,10 @@ def test_solution_actions_disabled_without_solutions(qapp, tmp_path):
     tip = window._actions["export_selected"].statusTip()
     assert "calcula un layout" in tip.lower() or "Calcula" in tip or "calcula" in tip
     assert "Exportar" in tip
+    assert (
+        "calcula un layout" in window._actions["previous_solution"].statusTip().lower()
+    )
+    assert "calcula un layout" in window._actions["next_solution"].statusTip().lower()
     assert "calcula un layout" in window.comparator_sort.statusTip().lower()
 
 

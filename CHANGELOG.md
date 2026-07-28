@@ -10,6 +10,8 @@
   de atajo genérico.
 - «Ajustar a la selección» deshabilitado sin selección/foco de tablero; se
   activa al seleccionar pieza o enfocar tablero.
+- Re/Av Pág sin soluciones: tip vuelve a «calcula layout» (antes decía «1
+  candidata visible» incluso con 0).
 - Undo / Redo: con historial vacío quedan deshabilitados y su tip explica
   «no hay acciones para deshacer/rehacer» (antes mantenían tip genérico).
 - «Abrir carpeta del proyecto» tip pide guardar cuando aún no hay `.bcproj`
