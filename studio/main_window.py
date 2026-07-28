@@ -339,6 +339,9 @@ class MainWindow(QMainWindow):
         self.workspace.import_pieces_requested.connect(self._import_pieces_from_csv)
         self.workspace.rotate_requested.connect(self._rotate_selected_piece)
         self.workspace.selection_or_focus_changed.connect(self._sync_view_actions)
+        self.workspace.selection_or_focus_changed.connect(
+            self._sync_edit_selection_actions
+        )
         # Ensure Edit→Rotar / R is available while the canvas has focus.
         self.workspace.addAction(self._actions["rotate_piece"])
         self.welcome = WelcomeScreen()
@@ -375,6 +378,7 @@ class MainWindow(QMainWindow):
         self.explorer.setExpandsOnDoubleClick(False)
         self.explorer.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.explorer.itemSelectionChanged.connect(self._on_explorer_selection_changed)
+        self.explorer.itemSelectionChanged.connect(self._sync_edit_selection_actions)
         # Prefer activated (double-click or Enter) over double-clicked alone.
         self.explorer.itemActivated.connect(self._on_explorer_item_activated)
         self.explorer.customContextMenuRequested.connect(self._on_explorer_context_menu)
@@ -1584,6 +1588,7 @@ class MainWindow(QMainWindow):
         self._sync_project_file_actions()
         self._sync_generate_actions()
         self._sync_view_actions()
+        self._sync_edit_selection_actions()
 
     def _sync_project_file_actions(self) -> None:
         """Enable save/rename/template only when a project is open."""
@@ -1975,6 +1980,73 @@ class MainWindow(QMainWindow):
             else self._tr("status.select_piece_first")
         )
 
+    def _explorer_selection_kind(self) -> str | None:
+        item = self.explorer.currentItem()
+        if item is None:
+            return None
+        parsed = parse_explorer_role(item.data(0, Qt.ItemDataRole.UserRole))
+        if parsed is None:
+            return None
+        return parsed[0]
+
+    def _sync_edit_selection_actions(self) -> None:
+        """Enable Edit selection actions only when they have a usable target."""
+        explorer_kind = self._explorer_selection_kind()
+        has_piece = self.workspace.selection.current() is not None
+        single_piece = len(self.workspace.selection.selected()) == 1
+        has_focus_board = self.workspace.focused_board_id() is not None
+        explorer_piece_or_board = explorer_kind in {"piece", "board"}
+
+        can_delete_or_duplicate = (
+            has_piece or explorer_piece_or_board or has_focus_board
+        )
+        can_edit = explorer_piece_or_board or single_piece or has_focus_board
+        can_rename = explorer_kind in {"piece", "board", "project"} or single_piece
+        can_copy = explorer_piece_or_board or single_piece or has_focus_board
+
+        pairs = (
+            (
+                "delete_piece",
+                can_delete_or_duplicate,
+                "tip.delete_piece",
+                "status.nothing_to_delete",
+            ),
+            (
+                "duplicate_piece",
+                can_delete_or_duplicate,
+                "tip.duplicate_piece",
+                "status.nothing_to_duplicate",
+            ),
+            (
+                "edit_selection",
+                can_edit,
+                "tip.edit_selection",
+                "status.nothing_to_edit_selection",
+            ),
+            (
+                "rename_selection",
+                can_rename,
+                "tip.rename_selection",
+                "status.nothing_to_rename_selection",
+            ),
+            (
+                "copy_selection_id",
+                can_copy,
+                "tip.copy_selection_id",
+                "status.nothing_to_copy_id",
+            ),
+        )
+        for key, enabled, tip_key, disabled_tip in pairs:
+            action = self._actions.get(key)
+            if action is None:
+                continue
+            action.setEnabled(enabled)
+            action.setStatusTip(
+                with_native_shortcuts(self._tr(tip_key))
+                if enabled
+                else self._tr(disabled_tip)
+            )
+
     def _sync_solution_actions(self) -> None:
         """Enable solution actions only when they can do useful work."""
         total = len(self.services.layout.solutions)
@@ -2198,6 +2270,7 @@ class MainWindow(QMainWindow):
         self._sync_generate_actions()
         self._sync_solution_actions()
         self._sync_timeline_actions()
+        self._sync_edit_selection_actions()
 
     def _apply_preferences(self) -> None:
         from PySide6.QtWidgets import QApplication
@@ -2209,6 +2282,7 @@ class MainWindow(QMainWindow):
             apply_theme(app, self.services.preferences.current.theme)
         self._retranslate_ui()
         self._sync_view_actions()
+        self._sync_edit_selection_actions()
         self.welcome.apply_language(self.services.preferences.current.language)
         self.workspace.reload_project()
         self._reload_explorer()
