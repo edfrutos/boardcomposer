@@ -101,6 +101,28 @@ def test_menu_actions_have_status_tips(qapp, tmp_path):
     )
 
 
+def test_undo_redo_show_honest_tips_without_history(qapp, tmp_path):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+
+    assert not window._actions["undo"].isEnabled()
+    assert not window._actions["redo"].isEnabled()
+    assert (
+        "no hay acciones para deshacer" in window._actions["undo"].statusTip().lower()
+    )
+    assert "no hay acciones para rehacer" in window._actions["redo"].statusTip().lower()
+
+    services.preferences.update(StudioPreferences(language="en"))
+    window._apply_preferences()
+
+    assert window._actions["undo"].statusTip() == "No actions to undo"
+    assert window._actions["redo"].statusTip() == "No actions to redo"
+
+
 def test_generate_and_compare_menus_are_populated(qapp, tmp_path):
     del qapp
     services = StudioServices(

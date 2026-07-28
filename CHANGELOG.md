@@ -4,6 +4,8 @@
 
 ### Corregido
 
+- Undo / Redo: con historial vacío quedan deshabilitados y su tip explica
+  «no hay acciones para deshacer/rehacer» (antes mantenían tip genérico).
 - «Abrir carpeta del proyecto» tip pide guardar cuando aún no hay `.bcproj`
   en disco (antes repetía el tip de abrir carpeta estando deshabilitado).
 - Guardar / Guardar como / Guardar plantilla / Renombrar proyecto

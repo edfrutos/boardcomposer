@@ -1644,9 +1644,23 @@ class MainWindow(QMainWindow):
         label.setToolTip(tip if tip != "tip.zoom_status" else "")
 
     def update_undo_redo(self):
-        """Refresh the enabled state of undo and redo actions."""
-        self._actions["undo"].setEnabled(self.services.commands.can_undo())
-        self._actions["redo"].setEnabled(self.services.commands.can_redo())
+        """Refresh enabled state and honest status tips for undo/redo."""
+        can_undo = self.services.commands.can_undo()
+        can_redo = self.services.commands.can_redo()
+        undo = self._actions["undo"]
+        redo = self._actions["redo"]
+        undo.setEnabled(can_undo)
+        redo.setEnabled(can_redo)
+        undo.setStatusTip(
+            with_native_shortcuts(self._tr("tip.undo"))
+            if can_undo
+            else self._tr("status.nothing_to_undo")
+        )
+        redo.setStatusTip(
+            with_native_shortcuts(self._tr("tip.redo"))
+            if can_redo
+            else self._tr("status.nothing_to_redo")
+        )
         apply_shortcuts(self._actions)
 
     def _undo(self):
@@ -2115,6 +2129,7 @@ class MainWindow(QMainWindow):
         self._update_project_path_status()
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
+        self.update_undo_redo()
         self._sync_project_file_actions()
         self._sync_solution_actions()
         self._sync_timeline_actions()
