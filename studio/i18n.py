@@ -595,6 +595,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_id": (
             "Selecciona una pieza o un tablero para copiar su ID"
         ),
+        "status.no_recent_to_clear": "No hay proyectos recientes para vaciar",
         "status.save_failed": "No se pudo guardar: {error}",
         "status.project_renamed": "Proyecto renombrado: {name}",
         "status.piece_renamed": "Pieza renombrada: {id}",
@@ -1360,6 +1361,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_edit_selection": "Select a piece or board to edit",
         "status.nothing_to_copy_id": "Select a piece or board to copy its ID",
+        "status.no_recent_to_clear": "No recent projects to clear",
         "status.save_failed": "Could not save: {error}",
         "status.project_renamed": "Project renamed: {name}",
         "status.piece_renamed": "Piece renamed: {id}",

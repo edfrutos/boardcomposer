@@ -3171,6 +3171,15 @@ class MainWindow(QMainWindow):
     def _reload_recent_files_menu(self):
         self.services.recent_files.prune_missing()
         recent_paths = self.services.recent_files.files
+        clear_recent = self._actions.get("clear_recent")
+        if clear_recent is not None:
+            has_recent = bool(recent_paths)
+            clear_recent.setEnabled(has_recent)
+            clear_recent.setStatusTip(
+                with_native_shortcuts(self._tr("tip.clear_recent"))
+                if has_recent
+                else self._tr("status.no_recent_to_clear")
+            )
 
         self._recent_menu.clear()
         if hasattr(self, "welcome"):
@@ -3194,6 +3203,7 @@ class MainWindow(QMainWindow):
 
     def _clear_recent_files(self) -> None:
         if not self.services.recent_files.files:
+            self._status("status.no_recent_to_clear")
             return
         answer = QMessageBox.question(
             self,
