@@ -23,6 +23,8 @@
 
 ### Corregido
 
+- `make run` arranca Studio (`python -m studio.app`); antes lanzaba la CLI
+  y salía al instante. CLI corta: `make run-cli` / `make demo`.
 - Toggle cuadrícula (Ctrl+G): tip dinámico Mostrar/Ocultar según estado +
   status «Cuadrícula visible/oculta» al cambiar.
 - «Ajustar al tablero» muestra status honesto si no hay tableros (paridad con

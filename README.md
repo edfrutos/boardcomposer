@@ -64,12 +64,14 @@ pip install -e ".[dev]"
 ## Comandos
 
 ```bash
+make run                  # BoardComposer Studio (GUI)
 make test                 # suite completa
 make check                # validación de proyecto, Ruff y Pytest
 make demo                 # ejemplo CLI
+make run-cli              # CLI sin argumentos (demo corta)
 make json                 # ejemplo CLI en JSON
 make benchmark-multipanel # benchmarks reproducibles del packing multipanel
-python -m studio.app
+# equivalente: python -m studio.app
 
 # Batch sin Studio/Qt (EP-002)
 boardcomposer-batch -i data/samples/batch_inbox -o out/batch \
