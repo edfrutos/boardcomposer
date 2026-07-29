@@ -11,11 +11,10 @@ from pathlib import Path
 
 from studio.models.piece import StudioPiece
 from studio.import_headers import (
+    EMPTY_DATA_ROWS_ERROR,
     PIECE_HEADER_ALIASES,
     PIECE_REQUIRED_FIELDS,
-    missing_required_fields,
-    resolve_header_map,
-    sanitize_header_map,
+    prepare_import_header_map,
 )
 from studio.tabular_file import load_tabular_file
 from studio.import_parse import (
@@ -71,10 +70,6 @@ class ImportPiecesResult:
     @property
     def has_errors(self) -> bool:
         return bool(self.file_errors) or bool(self.invalid_rows)
-
-
-def _resolve_header_map(fieldnames: list[str] | tuple[str, ...]) -> dict[str, str]:
-    return resolve_header_map(fieldnames, _HEADER_ALIASES)
 
 
 def _parse_row(
@@ -160,17 +155,12 @@ def import_pieces_from_rows(
 ) -> ImportPiecesResult:
     """Parse already-loaded tabular rows into an `ImportPiecesResult`."""
     reserved = {piece_id.casefold() for piece_id in (existing_ids or set())}
-    resolved = (
-        sanitize_header_map(header_map, fieldnames)
-        if header_map is not None
-        else _resolve_header_map(fieldnames)
+    resolved, header_error = prepare_import_header_map(
+        fieldnames, _HEADER_ALIASES, _REQUIRED_FIELDS, header_map
     )
-    missing = missing_required_fields(resolved, _REQUIRED_FIELDS)
-    if missing:
+    if resolved is None:
         return ImportPiecesResult(
-            file_errors=(
-                f"No se reconocen las columnas obligatorias: {', '.join(missing)}",
-            )
+            file_errors=(header_error or "Columnas obligatorias no reconocidas",)
         )
 
     rows = [
@@ -178,9 +168,7 @@ def import_pieces_from_rows(
         for index, raw_row in enumerate(data_rows, start=2)
     ]
     if not rows:
-        return ImportPiecesResult(
-            file_errors=("El archivo no contiene filas de datos",)
-        )
+        return ImportPiecesResult(file_errors=(EMPTY_DATA_ROWS_ERROR,))
     return ImportPiecesResult(rows=tuple(rows))
 
 
