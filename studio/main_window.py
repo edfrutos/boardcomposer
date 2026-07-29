@@ -92,7 +92,7 @@ from studio.import_headers import (
     resolve_header_map,
     sanitize_header_map,
 )
-from studio.tabular_file import list_xlsx_sheets, load_tabular_file
+from studio.tabular_file import TabularLoadResult, list_xlsx_sheets, load_tabular_file
 from studio.piece_ids import allocate_unique_piece_id
 from studio.unique_ids import expand_ids_for_quantity
 from studio.explorer_actions import explorer_context_actions, parse_explorer_role
@@ -1141,68 +1141,123 @@ class MainWindow(QMainWindow):
 
         self._status("status.board_added")
 
-    def _import_boards_from_csv(self) -> None:
+    def _ensure_project_for_import(self) -> StudioProject | None:
+        """Return current project, creating an empty one when needed."""
         project = self.services.projects.current_project
-
         if project is None:
             self._load_empty_project()
             project = self.services.projects.current_project
+        return project
 
-        if project is None:
-            return
-
+    def _open_tabular_import(
+        self,
+        *,
+        dialog_key: str,
+        short_key: str,
+    ) -> TabularLoadResult | None:
+        """Pick CSV/Excel, optional sheet, and load rows; None if cancelled/failed."""
         file_path, _ = QFileDialog.getOpenFileName(
             self,
-            self._tr("dialog.import_boards"),
+            self._tr(dialog_key),
             "",
             self._tr("dialog.filter_csv_excel"),
         )
-
         if not file_path:
-            return
+            return None
 
-        existing_ids = {board.board_id.casefold() for board in project.boards}
         sheet = self._prompt_xlsx_sheet(file_path)
         if sheet is False:
-            return
+            return None
+
         loaded = load_tabular_file(file_path, sheet=sheet)
         if not loaded.ok:
             QMessageBox.warning(
                 self,
-                self._tr("dialog.import_boards_short"),
+                self._tr(short_key),
                 "\n".join(loaded.errors),
             )
-            return
+            return None
+        return loaded
 
-        header_map = resolve_header_map(loaded.fieldnames, BOARD_HEADER_ALIASES)
-        missing = missing_required_fields(header_map, BOARD_REQUIRED_FIELDS)
+    def _resolve_import_headers_interactive(
+        self,
+        *,
+        kind: str,
+        fieldnames: list[str] | tuple[str, ...],
+        aliases: dict[str, tuple[str, ...]],
+        required_fields: tuple[str, ...],
+        field_order: tuple[str, ...],
+    ) -> dict[str, str] | None:
+        """Resolve headers via aliases, templates, then manual mapping if needed."""
+        header_map = resolve_header_map(fieldnames, aliases)
+        missing = missing_required_fields(header_map, required_fields)
         if missing:
             header_map, missing = self._apply_import_template(
-                kind="boards",
-                fieldnames=loaded.fieldnames,
+                kind=kind,
+                fieldnames=fieldnames,
                 header_map=header_map,
-                required_fields=BOARD_REQUIRED_FIELDS,
+                required_fields=required_fields,
             )
         if missing:
             mapped = self._prompt_column_mapping(
-                kind="boards",
-                fieldnames=loaded.fieldnames,
-                field_order=BOARD_FIELD_ORDER,
-                required_fields=BOARD_REQUIRED_FIELDS,
+                kind=kind,
+                fieldnames=fieldnames,
+                field_order=field_order,
+                required_fields=required_fields,
                 initial_map=header_map,
                 missing_fields=missing,
             )
             if mapped is None:
-                return
+                return None
             header_map = mapped
+        return header_map
 
+    def _finish_csv_import(
+        self,
+        *,
+        kind: str,
+        count: int,
+        reason: str,
+        status_key: str,
+    ) -> None:
+        """Reload UI and announce a completed CSV/Excel import."""
+        self._mark_project_modified(reason=reason)
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self.update_window_title()
+        self.update_undo_redo()
+        self._emit(events.CSV_IMPORTED, kind=kind, count=count)
+        self._status(status_key, 5000, n=count)
+
+    def _import_boards_from_csv(self) -> None:
+        project = self._ensure_project_for_import()
+        if project is None:
+            return
+
+        loaded = self._open_tabular_import(
+            dialog_key="dialog.import_boards",
+            short_key="dialog.import_boards_short",
+        )
+        if loaded is None:
+            return
+
+        header_map = self._resolve_import_headers_interactive(
+            kind="boards",
+            fieldnames=loaded.fieldnames,
+            aliases=BOARD_HEADER_ALIASES,
+            required_fields=BOARD_REQUIRED_FIELDS,
+            field_order=BOARD_FIELD_ORDER,
+        )
+        if header_map is None:
+            return
+
+        existing_ids = {board.board_id.casefold() for board in project.boards}
         result = import_boards_from_rows(
             loaded.fieldnames,
             loaded.rows,
             existing_ids=existing_ids,
             header_map=header_map,
         )
-
         if result.file_errors:
             QMessageBox.warning(
                 self,
@@ -1212,7 +1267,6 @@ class MainWindow(QMainWindow):
             return
 
         dialog = ImportBoardsPreviewDialog(result, self, language=self._ui_language())
-
         if dialog.exec() != dialog.DialogCode.Accepted:
             return
 
@@ -1221,81 +1275,45 @@ class MainWindow(QMainWindow):
             self._status("status.boards_imported", 5000, n=0)
             return
 
-        command = ImportBoardsCommand(self.services, boards)
-        self.services.commands.execute(command)
-
-        self._mark_project_modified(reason="boards_imported")
-        self.workspace.reload_project()
-        self._reload_explorer()
-        self.update_window_title()
-        self.update_undo_redo()
-        self._emit(events.CSV_IMPORTED, kind="boards", count=len(boards))
-        self._status("status.boards_imported", 5000, n=len(boards))
+        self.services.commands.execute(ImportBoardsCommand(self.services, boards))
+        self._finish_csv_import(
+            kind="boards",
+            count=len(boards),
+            reason="boards_imported",
+            status_key="status.boards_imported",
+        )
 
     def _import_pieces_from_csv(self) -> None:
-        project = self.services.projects.current_project
-
-        if project is None:
-            self._load_empty_project()
-            project = self.services.projects.current_project
-
+        project = self._ensure_project_for_import()
         if project is None:
             return
 
         self._show_workspace()
 
-        file_path, _ = QFileDialog.getOpenFileName(
-            self,
-            self._tr("dialog.import_pieces"),
-            "",
-            self._tr("dialog.filter_csv_excel"),
+        loaded = self._open_tabular_import(
+            dialog_key="dialog.import_pieces",
+            short_key="dialog.import_pieces_short",
         )
+        if loaded is None:
+            return
 
-        if not file_path:
+        header_map = self._resolve_import_headers_interactive(
+            kind="pieces",
+            fieldnames=loaded.fieldnames,
+            aliases=PIECE_HEADER_ALIASES,
+            required_fields=PIECE_REQUIRED_FIELDS,
+            field_order=PIECE_FIELD_ORDER,
+        )
+        if header_map is None:
             return
 
         existing_ids = {piece.piece_id.casefold() for piece in project.pieces}
-        sheet = self._prompt_xlsx_sheet(file_path)
-        if sheet is False:
-            return
-        loaded = load_tabular_file(file_path, sheet=sheet)
-        if not loaded.ok:
-            QMessageBox.warning(
-                self,
-                self._tr("dialog.import_pieces_short"),
-                "\n".join(loaded.errors),
-            )
-            return
-
-        header_map = resolve_header_map(loaded.fieldnames, PIECE_HEADER_ALIASES)
-        missing = missing_required_fields(header_map, PIECE_REQUIRED_FIELDS)
-        if missing:
-            header_map, missing = self._apply_import_template(
-                kind="pieces",
-                fieldnames=loaded.fieldnames,
-                header_map=header_map,
-                required_fields=PIECE_REQUIRED_FIELDS,
-            )
-        if missing:
-            mapped = self._prompt_column_mapping(
-                kind="pieces",
-                fieldnames=loaded.fieldnames,
-                field_order=PIECE_FIELD_ORDER,
-                required_fields=PIECE_REQUIRED_FIELDS,
-                initial_map=header_map,
-                missing_fields=missing,
-            )
-            if mapped is None:
-                return
-            header_map = mapped
-
         result = import_pieces_from_rows(
             loaded.fieldnames,
             loaded.rows,
             existing_ids=existing_ids,
             header_map=header_map,
         )
-
         if result.file_errors:
             QMessageBox.warning(
                 self,
@@ -1305,7 +1323,6 @@ class MainWindow(QMainWindow):
             return
 
         dialog = ImportPiecesPreviewDialog(result, self, language=self._ui_language())
-
         if dialog.exec() != dialog.DialogCode.Accepted:
             return
 
@@ -1337,16 +1354,15 @@ class MainWindow(QMainWindow):
                 )
             )
 
-        command = ImportPiecesCommand(self.services, pieces, placements)
-        self.services.commands.execute(command)
-
-        self._mark_project_modified(reason="pieces_imported")
-        self.workspace.reload_project()
-        self._reload_explorer()
-        self.update_window_title()
-        self.update_undo_redo()
-        self._emit(events.CSV_IMPORTED, kind="pieces", count=len(pieces))
-        self._status("status.pieces_imported", 5000, n=len(pieces))
+        self.services.commands.execute(
+            ImportPiecesCommand(self.services, pieces, placements)
+        )
+        self._finish_csv_import(
+            kind="pieces",
+            count=len(pieces),
+            reason="pieces_imported",
+            status_key="status.pieces_imported",
+        )
 
     def _prompt_xlsx_sheet(self, file_path: str) -> str | None | bool:
         """Return sheet name, None for default/first, or False if cancelled."""

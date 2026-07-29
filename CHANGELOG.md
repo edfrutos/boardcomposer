@@ -50,6 +50,8 @@
   unificados en `optional_positive_*` / `optional_string`.
 - Resolución de cabeceras de import (`prepare_import_header_map` + mensaje
   de archivo vacío) compartida entre importers de tablero y pieza.
+- Pipeline UI de import CSV/Excel en Studio: helpers compartidos para abrir
+  archivo, resolver cabeceras (plantilla/mapeo) y refrescar tras importar.
 
 ### Corregido
 
