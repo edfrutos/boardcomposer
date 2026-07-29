@@ -19,7 +19,6 @@ Los principios definidos en este documento son aplicables a todo el ecosistema B
 ## Historial
 
 | Versión | Fecha | Descripción |
-
 |---------|--------|-------------|
 | 1.0.0 | 01/07/2026 | Versión fundacional del manifiesto. |
 

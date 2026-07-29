@@ -56,7 +56,6 @@ Documentos relacionados
 ## Registro inicial
 
 | ID | Título | Estado |
-
 |----|--------|--------|
 | DEC-0001 | El Core será independiente de cualquier interfaz | ✅ Vigente |
 | DEC-0002 | BoardComposer será una plataforma multiplataforma | ✅ Vigente |

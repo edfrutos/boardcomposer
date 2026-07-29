@@ -1,7 +1,6 @@
 # ADR-006 — Identidad permanente de los artefactos
 
 | Campo | Valor |
-
 |--------|-------|
 | Estado | ✅ Aceptado |
 | Fecha | 01/07/2026 |
