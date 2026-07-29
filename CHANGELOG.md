@@ -44,6 +44,8 @@
   También reserva el id base tras expandir (evita colisión `LAT×3` + `LAT`).
 - Strip de retales en export unificado: `prepare_solution_for_export` en Core;
   Studio y batch lo reutilizan (SCR-007 / EP-002).
+- Parsers numéricos de import CSV/XLSX (`parse_positive_float` /
+  `parse_positive_int`) compartidos en `studio/import_parse.py`.
 
 ### Corregido
 
