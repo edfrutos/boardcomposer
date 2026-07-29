@@ -1,7 +1,6 @@
 # ADR-002 — Las soluciones son inmutables
 
 | Campo | Valor |
-
 |--------|-------|
 | Estado | ✅ Aceptado |
 | Fecha | 01/07/2026 |

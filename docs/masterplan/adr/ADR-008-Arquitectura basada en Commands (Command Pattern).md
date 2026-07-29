@@ -1,7 +1,6 @@
 # ADR-008 — Arquitectura basada en Commands (Command Pattern)
 
 | Campo | Valor |
-
 |--------|-------|
 | Estado | ✅ Aceptado |
 | Fecha | 01/07/2026 |

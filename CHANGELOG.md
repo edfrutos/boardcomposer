@@ -35,6 +35,8 @@
   evitar ruido de lint en docs UAT.
 - `DOC-004-Backlog` y comentario en `solution_validator.py` actualizados para
   reflejar estado post-Fase 3 y eliminar referencias al `TODO.md` ya stub.
+- Tablas Markdown en `docs/` y `uat/`: eliminada línea vacía entre cabecera y
+  separador (rompe render en GitHub/previewers).
 
 ### Corregido
 

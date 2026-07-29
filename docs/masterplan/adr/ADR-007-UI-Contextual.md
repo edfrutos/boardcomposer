@@ -1,7 +1,6 @@
 # ADR-007 — La interfaz es contextual
 
 | Campo | Valor |
-
 |--------|-------|
 | Estado | ✅ Aceptado |
 | Fecha | 01/07/2026 |

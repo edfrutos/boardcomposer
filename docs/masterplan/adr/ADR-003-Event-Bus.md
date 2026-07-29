@@ -1,7 +1,6 @@
 # ADR-003 — Arquitectura basada en eventos (Event Bus)
 
 | Campo | Valor |
-
 |--------|-------|
 
 | Estado | ✅ Aceptado |

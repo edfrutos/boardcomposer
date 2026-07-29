@@ -85,7 +85,6 @@ Estado
 ## Registro inicial
 
 | ID | Categoría | Descripción | Estado |
-
 |----|-----------|-------------|--------|
 | DT-0001 | DT-D | Contrastar flujos y pantallas documentados con el Studio real. | 🟢 Controlado (UAT visual 2026-07-28) |
 | DT-0002 | DT-A | Documentar arquitectura interna y contrato multipanel del Solver. | 🟢 Controlado |

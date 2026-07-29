@@ -138,7 +138,6 @@ Precondición para checks de comparador multi-candidata:
 ## Resultado
 
 | Bloque | ¿OK? | Notas |
-
 |--------|------|-------|
 | 0 Arranque | OK | Welcome + tip/gates |
 | 1 Proyecto | OK | Save/reveal/template |

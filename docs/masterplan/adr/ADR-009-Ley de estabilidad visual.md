@@ -1,7 +1,6 @@
 # ADR-009 — Ley de estabilidad visual
 
 | Campo | Valor |
-
 |--------|-------|
 | Estado | ✅ Aceptado |
 | Fecha | 01/07/2026 |
