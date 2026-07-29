@@ -1,8 +1,21 @@
 """Shared panel layout for exporters (SVG / DXF / PDF)."""
 
+from dataclasses import replace
+
 from boardcomposer.domain import AssemblySolution, PanelReference, Project
 
 PANEL_GAP_MM = 50.0
+
+
+def prepare_solution_for_export(
+    solution: AssemblySolution,
+    *,
+    include_offcuts: bool = True,
+) -> AssemblySolution:
+    """Return ``solution``, optionally stripping informative offcuts."""
+    if include_offcuts:
+        return solution
+    return replace(solution, offcuts=())
 
 
 def panel_offsets(

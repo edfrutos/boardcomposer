@@ -4,11 +4,15 @@ from __future__ import annotations
 
 import json
 import traceback
-from dataclasses import asdict, dataclass, field, replace
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 from boardcomposer.api import v1
-from boardcomposer.export import solution_to_dxf, solution_to_pdf
+from boardcomposer.export import (
+    prepare_solution_for_export,
+    solution_to_dxf,
+    solution_to_pdf,
+)
 from boardcomposer.integration.hooks import (
     HookConfig,
     JobHookPayload,
@@ -235,12 +239,6 @@ def resolve_inputs(
     return found
 
 
-def _prepare_solution(solution, *, include_offcuts: bool):
-    if include_offcuts:
-        return solution
-    return replace(solution, offcuts=())
-
-
 def _write_exports(
     *,
     output_dir: Path,
@@ -256,7 +254,9 @@ def _write_exports(
         )
         return
 
-    best = _prepare_solution(solutions[0], include_offcuts=profile.include_offcuts)
+    best = prepare_solution_for_export(
+        solutions[0], include_offcuts=profile.include_offcuts
+    )
     for fmt in profile.formats:
         name = fmt.lower().strip()
         if name not in _BATCH_FORMATS:

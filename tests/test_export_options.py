@@ -10,6 +10,7 @@ from boardcomposer.domain import (
     SolutionExplanation,
     SolutionScore,
 )
+from boardcomposer.export import prepare_solution_for_export
 from studio.export_options import (
     ExportOptions,
     prepare_solution,
@@ -39,6 +40,13 @@ def test_prepare_solution_can_drop_offcuts():
 
     assert solution.offcuts
     assert without.offcuts == ()
+
+
+def test_prepare_solution_for_export_core_helper():
+    solution = _solution()
+    assert prepare_solution_for_export(solution).offcuts == solution.offcuts
+    assert prepare_solution_for_export(solution, include_offcuts=False).offcuts == ()
+    assert prepare_solution_for_export(solution, include_offcuts=True) is solution
 
 
 def test_render_export_json_respects_content_flags():
