@@ -118,13 +118,19 @@ def project_from_dict(data: dict) -> StudioProject:
     )
 
 
-def save_project(project: StudioProject, path: str | Path) -> None:
+def save_project(project: StudioProject, path: str | Path) -> Path | None:
+    """Persist ``project`` to ``path``.
+
+    Returns the path of the previous-revision snapshot when one was created
+    (file already existed), otherwise ``None``.
+    """
     target = Path(path)
-    snapshot_before_overwrite(target)
+    snapshot = snapshot_before_overwrite(target)
     target.write_text(
         json.dumps(project_to_dict(project), indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
+    return snapshot
 
 
 def load_project(path: str | Path) -> StudioProject:

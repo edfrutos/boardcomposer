@@ -16,6 +16,8 @@ def documentation_paths() -> dict[str, Path]:
     """Known local documentation entry points."""
     root = repo_root()
     return {
+        "user_guide": root / "docs" / "user" / "GUIA-RAPIDA.md",
+        "docs_index": root / "docs" / "README.md",
         "readme": root / "README.md",
         "masterplan": root / "docs" / "masterplan" / "INDEX.md",
         "changelog": root / "CHANGELOG.md",

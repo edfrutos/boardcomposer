@@ -22,6 +22,8 @@ def test_repo_root_contains_changelog():
 
 def test_documentation_paths_exist():
     paths = documentation_paths()
+    assert paths["user_guide"].is_file()
+    assert paths["docs_index"].is_file()
     assert paths["readme"].is_file()
     assert paths["masterplan"].is_file()
     assert paths["changelog"].is_file()
@@ -472,6 +474,10 @@ def test_open_docs_status_tip_includes_shortcut():
 
     assert "Shift+F1" in tr("tip.open_docs", "es")
     assert "Shift+F1" in tr("tip.open_docs", "en")
+    assert "guía" in tr("tip.open_docs", "es").lower()
+    assert "guide" in tr("tip.open_docs", "en").lower()
+    assert "guía" in tr("status.docs_opened", "es").lower()
+    assert "guide" in tr("status.docs_opened", "en").lower()
 
 
 def test_about_status_tip_includes_shortcut():

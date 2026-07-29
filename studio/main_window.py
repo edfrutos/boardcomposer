@@ -1080,9 +1080,15 @@ class MainWindow(QMainWindow):
 
         from studio.whats_new import documentation_paths
 
-        path = documentation_paths()["masterplan"]
-        if not path.is_file():
-            path = documentation_paths()["readme"]
+        paths = documentation_paths()
+        path = next(
+            (
+                candidate
+                for key in ("user_guide", "docs_index", "masterplan", "readme")
+                if (candidate := paths[key]).is_file()
+            ),
+            paths["readme"],
+        )
         if not path.is_file():
             QMessageBox.warning(
                 self,
@@ -3334,12 +3340,12 @@ class MainWindow(QMainWindow):
             return self._try_save_project_as()
 
         try:
-            save_project(project, filename)
+            revision = save_project(project, filename)
         except OSError as exc:
             self._report_save_failure(exc)
             return False
 
-        self._after_successful_save(filename)
+        self._after_successful_save(filename, revision=revision)
         return True
 
     def _try_save_project_as(self) -> bool:
@@ -3359,22 +3365,35 @@ class MainWindow(QMainWindow):
             return False
 
         try:
-            save_project(project, path)
+            revision = save_project(project, path)
         except OSError as exc:
             self._report_save_failure(exc)
             return False
 
-        self._after_successful_save(path)
+        self._after_successful_save(path, revision=revision)
         return True
 
-    def _after_successful_save(self, path: str | Path) -> None:
+    def _after_successful_save(
+        self,
+        path: str | Path,
+        *,
+        revision: Path | None = None,
+    ) -> None:
         saved = str(path)
         self.services.projects.mark_saved(saved)
         self._reload_recent_files_menu()
         self.services.recent_files.add(saved)
         self.update_window_title()
         self._emit(events.PROJECT_SAVED, path=saved)
-        self._status("status.project_saved", 5000, path=saved)
+        if revision is not None:
+            self._status(
+                "status.project_saved_with_revision",
+                5000,
+                path=saved,
+                revision=revision.name,
+            )
+        else:
+            self._status("status.project_saved", 5000, path=saved)
 
     def _report_save_failure(self, error: OSError) -> None:
         message = self._tr("status.save_failed", error=error)

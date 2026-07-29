@@ -3,12 +3,15 @@ PYTEST := .venv/bin/pytest
 RUFF := .venv/bin/ruff
 BOARDCOMPOSER := .venv/bin/boardcomposer
 
-.PHONY: test run demo json status check lint format benchmark-multipanel
+.PHONY: test run run-cli demo json status check lint format benchmark-multipanel
 
 test:
 	$(PYTEST)
 
 run:
+	$(PYTHON) -m studio.app
+
+run-cli:
 	$(BOARDCOMPOSER)
 
 demo:

@@ -5,7 +5,7 @@
 - `pyproject.toml`: configuración Python.
 - `Makefile`: comandos frecuentes.
 - `README.md`: descripción general.
-- `TODO.md`: tareas pendientes.
+- `TODO.md`: stub → `docs/masterplan/DOC-004-Backlog.md`.
 - `CHANGELOG.md`: historial de cambios.
 
 ## Código

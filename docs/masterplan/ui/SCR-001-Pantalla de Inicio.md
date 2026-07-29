@@ -71,7 +71,7 @@ Volver: **Archivo → Pantalla de inicio** (**Ctrl+Shift+H**).
 | Importar piezas (CSV/Excel)… | Flujo FLW-002 (piezas) |
 | Proyecto de ejemplo | Demo (**Ctrl+Shift+D**) |
 | Desde plantilla… | Picker de plantillas; info si el catálogo está vacío |
-| Documentación… | Abre índice masterplan / README local |
+| Documentación… | Abre guía rápida usuario (`docs/user/GUIA-RAPIDA.md`) |
 | Novedades… | Diálogo CHANGELOG (Unreleased) |
 | Preferencias… | SCR-006 |
 

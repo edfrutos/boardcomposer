@@ -1,6 +1,6 @@
 # Índice documental de BoardComposer
 
-Última revisión: 2026-07-26.
+Última revisión: 2026-07-28.
 
 ## Precedencia
 
@@ -13,6 +13,13 @@ Cuando dos documentos discrepen, usar este orden:
 5. Resúmenes operativos de la raíz.
 
 Las discrepancias deben corregirse, no mantenerse como conocimiento implícito.
+
+## Mapa docs (proyecto vs usuario)
+
+Índice legible: [`../README.md`](../README.md).
+
+- **Usuario final:** [`../user/GUIA-RAPIDA.md`](../user/GUIA-RAPIDA.md)
+- **UAT visual:** [`../../uat/studio/CHECKLIST-VISUAL.md`](../../uat/studio/CHECKLIST-VISUAL.md)
 
 ## Dirección del proyecto
 
@@ -60,13 +67,16 @@ referencia oficial del manifiesto es `DOC-000-Manifiesto.md`.
 especificaciones de Inicio, Workspace, Comparador, Inspector, Proyecto,
 Preferencias y Exportación. El UAT multipanel del 2026-07-16 contrastó el
 Workspace real; la revisión del 2026-07-17 está en
-`ui/REVIEW-2026-07-17.md`.
+`ui/REVIEW-2026-07-17.md`. Pasada visual fresca: `uat/studio/CHECKLIST-VISUAL.md`.
 
 ## Documentación técnica viva
 
+- `../README.md` — mapa docs (usuario vs proyecto)
+- `../user/GUIA-RAPIDA.md` — guía usuario Studio
 - `../architecture.md`
 - `../data_model.md`
 - `../algorithms.md`
 - `../scoring.md`
 - `../../README.md`
 - `../../CHANGELOG.md`
+- `../../uat/README.md` — índice UAT
