@@ -13,8 +13,7 @@ from boardcomposer.solver.validation_result import (
 # Reasons that describe a partial (but otherwise geometrically sound)
 # solution. A solution missing pieces because they don't fit is still a
 # usable result — only broken geometry (overlaps, duplicates, ...) rejects a
-# solution outright. See TODO.md "Decidir si se muestran soluciones
-# parciales..." and the corresponding entry in CHANGELOG.md.
+# solution outright. See DOC-004 backlog and ADR-016 (retales informativos).
 _SOFT_REASONS = frozenset({ValidationReason.MISSING_BOARD})
 
 

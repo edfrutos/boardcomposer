@@ -33,6 +33,8 @@
   «sin marcar», y `CHECKLIST-VISUAL` fija base en `main@3430698`.
 - `uat/README.md`: separador de tabla en estilo markdownlint (`MD060`) para
   evitar ruido de lint en docs UAT.
+- `DOC-004-Backlog` y comentario en `solution_validator.py` actualizados para
+  reflejar estado post-Fase 3 y eliminar referencias al `TODO.md` ya stub.
 
 ### Corregido
 

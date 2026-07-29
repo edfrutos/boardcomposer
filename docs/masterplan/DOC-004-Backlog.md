@@ -115,13 +115,11 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión — IDE-0001…0018 en Studio/Core; primeras
-EP (001…003) creadas para Fase 3; IDE-0006 → 🔵 P1.
+**Estado actual:** 🟢 Actualizado — IDE-0001…0018 en Studio/Core completadas;
+EP (001…003) Fase 3 entregadas. Última revisión: 29/07/2026.
 
-Pendiente de:
+Próximo foco:
 
-- Diff `.bcproj` Core/CLI + UI Studio + anillo local de revisiones 🟢;
-  historial cloud / multi-usuario aún no;
-- Fase 3 EP-001…003 🟢; siguiente: UAT humano / Fase 4 IA bajo demanda;
-- completar el flujo Idea → Épica → Sprint → Implementación → Liberación;
-- estimar esfuerzo por épica.
+- Historial cloud / multi-usuario `.bcproj` (anillo local ya existe; ver `DT-0006`);
+- Fase 4 IA bajo demanda (IDE-0007);
+- Refinar flujo Idea → Épica → Sprint con estimaciones de esfuerzo por épica.
