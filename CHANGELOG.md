@@ -52,6 +52,8 @@
   de archivo vacío) compartida entre importers de tablero y pieza.
 - Pipeline UI de import CSV/Excel en Studio: helpers compartidos para abrir
   archivo, resolver cabeceras (plantilla/mapeo) y refrescar tras importar.
+- Export SVG reutiliza `panel_offsets` / `canvas_size_mm` de `export/common`
+  (misma geometría que DXF/PDF); tests dedicados en `test_export_common.py`.
 
 ### Corregido
 
