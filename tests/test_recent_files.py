@@ -2,7 +2,6 @@
 
 import json
 
-import pytest
 
 from studio.recent_files import RecentFilesManager
 
