@@ -29,6 +29,8 @@
 - `DOC-006-DeudaTecnica` actualizado a `1.2.0` (29/07/2026): estado en verde,
   deuda abierta explícita `DT-0006` (historial cloud/multi-usuario) y próximos
   focos concretos por release.
+- Sincronía UAT post-cierre: `CHECKLIST-FUNCIONAL` ya no describe la visual como
+  «sin marcar», y `CHECKLIST-VISUAL` fija base en `main@3430698`.
 
 ### Corregido
 
