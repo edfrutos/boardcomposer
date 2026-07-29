@@ -18,6 +18,7 @@ from studio.import_headers import (
     sanitize_header_map,
 )
 from studio.tabular_file import load_tabular_file
+from studio.unique_ids import expand_ids_for_quantity
 
 _DEFAULT_THICKNESS_MM = 19.0
 _DEFAULT_QUANTITY = 1
@@ -96,29 +97,6 @@ def _parse_positive_int(raw_value: str, label: str, errors: list[str]) -> int | 
     return value
 
 
-def _expand_piece_ids(
-    base_id: str,
-    quantity: int,
-    reserved: set[str],
-) -> list[str] | None:
-    if base_id.casefold() in reserved:
-        return None
-    if quantity <= 1:
-        reserved.add(base_id.casefold())
-        return [base_id]
-
-    generated: list[str] = []
-    suffix = 1
-    while len(generated) < quantity:
-        candidate = f"{base_id}-{suffix}"
-        suffix += 1
-        if candidate.casefold() in reserved:
-            continue
-        reserved.add(candidate.casefold())
-        generated.append(candidate)
-    return generated
-
-
 def _parse_row(
     row_number: int,
     raw_row: dict[str, str],
@@ -169,7 +147,7 @@ def _parse_row(
             errors=tuple(errors),
         )
 
-    piece_ids = _expand_piece_ids(piece_id, quantity, reserved_ids)
+    piece_ids = expand_ids_for_quantity(piece_id, quantity, reserved_ids)
     if piece_ids is None:
         return ImportedPieceRow(
             row_number=row_number,

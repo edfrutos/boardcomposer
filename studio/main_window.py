@@ -94,6 +94,7 @@ from studio.import_headers import (
 )
 from studio.tabular_file import list_xlsx_sheets, load_tabular_file
 from studio.piece_ids import allocate_unique_piece_id
+from studio.unique_ids import expand_ids_for_quantity
 from studio.explorer_actions import explorer_context_actions, parse_explorer_role
 from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
 from studio.solution_diff import (
@@ -1501,7 +1502,7 @@ class MainWindow(QMainWindow):
         existing_ids = {piece.piece_id.strip().casefold() for piece in project.pieces}
 
         quantity = data.get("quantity", 1)
-        piece_ids = self._generate_piece_ids(new_piece_id, quantity, existing_ids)
+        piece_ids = expand_ids_for_quantity(new_piece_id, quantity, existing_ids)
 
         if piece_ids is None:
             self._status("status.piece_id_exists", id=new_piece_id)
@@ -1553,39 +1554,6 @@ class MainWindow(QMainWindow):
             self._status("status.pieces_added", n=len(piece_ids))
         else:
             self._status("status.piece_added")
-
-    @staticmethod
-    def _generate_piece_ids(
-        base_id: str,
-        quantity: int,
-        existing_ids: set[str],
-    ) -> list[str] | None:
-        """Generate `quantity` unique piece ids derived from `base_id`.
-
-        For quantity 1, `base_id` is used verbatim (and must be free).
-        For quantity > 1, ids are suffixed as `base-1`, `base-2`, etc.,
-        skipping any suffix that collides with an existing id.
-        Returns None if `base_id` itself already collides with an existing id.
-        """
-        if base_id.casefold() in existing_ids:
-            return None
-
-        if quantity <= 1:
-            return [base_id]
-
-        generated_ids: list[str] = []
-        reserved = set(existing_ids)
-        suffix = 1
-
-        while len(generated_ids) < quantity:
-            candidate = f"{base_id}-{suffix}"
-            suffix += 1
-            if candidate.casefold() in reserved:
-                continue
-            reserved.add(candidate.casefold())
-            generated_ids.append(candidate)
-
-        return generated_ids
 
     def _panel_info_text(self, project, placement) -> str:
         """Return a human-readable label for a placement's physical panel."""
