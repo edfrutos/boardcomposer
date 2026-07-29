@@ -1,6 +1,5 @@
 """Tests for studio.panel_compatibility — piece ↔ board material/thickness logic."""
 
-
 from studio.models import StudioBoard, StudioPiece
 from studio.panel_compatibility import (
     incompatibility_reason,
