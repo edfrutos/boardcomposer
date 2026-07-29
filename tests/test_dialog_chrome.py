@@ -8,6 +8,7 @@ from PySide6.QtWidgets import QDialogButtonBox
 from studio.board_csv_importer import ImportBoardsResult, ImportedBoardRow
 from studio.dialogs.help_dialogs import AboutDialog, ShortcutsDialog, WhatsNewDialog
 from studio.dialogs.import_boards_preview_dialog import ImportBoardsPreviewDialog
+from studio.models import StudioBoard
 from studio.dialogs.project_template_dialog import ProjectTemplatePickerDialog
 from studio.project_templates import ProjectTemplateInfo
 from studio.theme_tokens import LIGHT_CANVAS
@@ -63,3 +64,30 @@ def test_import_preview_error_rows_use_canvas_invalid_fill(qapp):
     item = dialog.table.item(0, 0)
     assert item is not None
     assert item.background().color().name() == QColor(LIGHT_CANVAS.invalid_fill).name()
+
+
+def test_import_preview_shows_row_level_valid_and_error_status(qapp):
+    del qapp
+    result = ImportBoardsResult(
+        rows=(
+            ImportedBoardRow(
+                row_number=2,
+                raw={},
+                board=StudioBoard("B-OK", 2000, 1000, "MDF", 19, 1),
+                display_id="B-OK",
+                errors=(),
+            ),
+            ImportedBoardRow(
+                row_number=3,
+                raw={},
+                board=None,
+                display_id="B-BAD",
+                errors=("Dimensión inválida",),
+            ),
+        )
+    )
+    dialog = ImportBoardsPreviewDialog(result, language="es")
+    status_col = dialog.table.columnCount() - 1
+
+    assert dialog.table.item(0, status_col).text() == "OK"
+    assert "Dimensión inválida" in dialog.table.item(1, status_col).text()

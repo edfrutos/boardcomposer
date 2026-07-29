@@ -16,6 +16,8 @@
   por checklist Studio.
 - Al guardar un `.bcproj` existente, la barra de estado anuncia la revisión
   anterior conservada en el anillo local (Comparar revisiones).
+- Regresión UI importación: `tests/test_dialog_chrome.py` valida preview por
+  fila (estado `OK` y error visible), cerrando hueco residual de checklist visual.
 
 ### Cambiado
 
