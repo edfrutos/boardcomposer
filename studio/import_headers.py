@@ -75,3 +75,27 @@ def sanitize_header_map(
         for canonical, header in header_map.items()
         if header in allowed
     }
+
+
+EMPTY_DATA_ROWS_ERROR = "El archivo no contiene filas de datos"
+
+
+def prepare_import_header_map(
+    fieldnames: list[str] | tuple[str, ...],
+    aliases: dict[str, tuple[str, ...]],
+    required: tuple[str, ...] | list[str],
+    header_map: dict[str, str] | None = None,
+) -> tuple[dict[str, str] | None, str | None]:
+    """Resolve or sanitize headers; return ``(map, None)`` or ``(None, error)``."""
+    resolved = (
+        sanitize_header_map(header_map, fieldnames)
+        if header_map is not None
+        else resolve_header_map(fieldnames, aliases)
+    )
+    missing = missing_required_fields(resolved, required)
+    if missing:
+        return (
+            None,
+            f"No se reconocen las columnas obligatorias: {', '.join(missing)}",
+        )
+    return resolved, None

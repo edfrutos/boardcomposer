@@ -4,7 +4,9 @@ from studio.board_csv_importer import import_boards_from_rows
 from studio.import_headers import (
     BOARD_HEADER_ALIASES,
     BOARD_REQUIRED_FIELDS,
+    EMPTY_DATA_ROWS_ERROR,
     missing_required_fields,
+    prepare_import_header_map,
     resolve_header_map,
     sanitize_header_map,
 )
@@ -73,3 +75,50 @@ def test_sanitize_header_map_drops_unknown_headers():
         ["SKU", "Largo"],
     )
     assert cleaned == {"board_id": "SKU"}
+
+
+def test_prepare_import_header_map_auto_resolves_aliases():
+    resolved, error = prepare_import_header_map(
+        ["Identificador", "Largo", "Ancho"],
+        BOARD_HEADER_ALIASES,
+        BOARD_REQUIRED_FIELDS,
+    )
+    assert error is None
+    assert resolved is not None
+    assert resolved["board_id"] == "Identificador"
+    assert resolved["length_mm"] == "Largo"
+    assert resolved["width_mm"] == "Ancho"
+
+
+def test_prepare_import_header_map_reports_missing_required():
+    resolved, error = prepare_import_header_map(
+        ["Largo", "Ancho"],
+        BOARD_HEADER_ALIASES,
+        BOARD_REQUIRED_FIELDS,
+    )
+    assert resolved is None
+    assert error is not None
+    assert "columnas obligatorias" in error
+    assert "board_id" in error
+
+
+def test_prepare_import_header_map_sanitizes_manual_map():
+    resolved, error = prepare_import_header_map(
+        ["SKU", "Largo", "Ancho"],
+        BOARD_HEADER_ALIASES,
+        BOARD_REQUIRED_FIELDS,
+        header_map={
+            "board_id": "SKU",
+            "length_mm": "Largo",
+            "width_mm": "Ancho",
+            "thickness_mm": "ghost",
+        },
+    )
+    assert error is None
+    assert resolved is not None
+    assert "thickness_mm" not in resolved
+    assert resolved["board_id"] == "SKU"
+
+
+def test_empty_data_rows_error_constant():
+    assert EMPTY_DATA_ROWS_ERROR == "El archivo no contiene filas de datos"

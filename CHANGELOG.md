@@ -48,6 +48,8 @@
   `parse_positive_int`) compartidos en `studio/import_parse.py`.
 - Campos opcionales de import (espesor / cantidad / material + defaults)
   unificados en `optional_positive_*` / `optional_string`.
+- Resolución de cabeceras de import (`prepare_import_header_map` + mensaje
+  de archivo vacío) compartida entre importers de tablero y pieza.
 
 ### Corregido
 
