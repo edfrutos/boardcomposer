@@ -31,6 +31,8 @@
   focos concretos por release.
 - Sincronía UAT post-cierre: `CHECKLIST-FUNCIONAL` ya no describe la visual como
   «sin marcar», y `CHECKLIST-VISUAL` fija base en `main@3430698`.
+- `uat/README.md`: separador de tabla en estilo markdownlint (`MD060`) para
+  evitar ruido de lint en docs UAT.
 
 ### Corregido
 
