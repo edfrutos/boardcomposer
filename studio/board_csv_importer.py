@@ -19,6 +19,7 @@ from studio.import_headers import (
     sanitize_header_map,
 )
 from studio.tabular_file import load_tabular_file
+from studio.import_parse import parse_positive_float, parse_positive_int
 
 _DEFAULT_THICKNESS_MM = 19.0
 _DEFAULT_QUANTITY = 1
@@ -72,36 +73,6 @@ def _resolve_header_map(fieldnames: list[str] | tuple[str, ...]) -> dict[str, st
     return resolve_header_map(fieldnames, _HEADER_ALIASES)
 
 
-def _parse_positive_float(
-    raw_value: str, label: str, errors: list[str]
-) -> float | None:
-    try:
-        value = float(raw_value.strip().replace(",", "."))
-    except (ValueError, AttributeError):
-        errors.append(f"{label} no es un número válido: {raw_value!r}")
-        return None
-
-    if value <= 0:
-        errors.append(f"{label} debe ser mayor que cero")
-        return None
-
-    return value
-
-
-def _parse_positive_int(raw_value: str, label: str, errors: list[str]) -> int | None:
-    try:
-        value = int(float(raw_value.strip()))
-    except (ValueError, AttributeError):
-        errors.append(f"{label} no es un número entero válido: {raw_value!r}")
-        return None
-
-    if value <= 0:
-        errors.append(f"{label} debe ser mayor que cero")
-        return None
-
-    return value
-
-
 def _parse_row(
     row_number: int,
     raw_row: dict[str, str],
@@ -134,10 +105,10 @@ def _parse_row(
     if normalized_id and normalized_id in existing_ids:
         errors.append(f"Ya existe un tablero con id {board_id} en el proyecto")
 
-    length_mm = _parse_positive_float(
+    length_mm = parse_positive_float(
         raw_row.get(header_map["length_mm"], ""), "Largo", errors
     )
-    width_mm = _parse_positive_float(
+    width_mm = parse_positive_float(
         raw_row.get(header_map["width_mm"], ""), "Ancho", errors
     )
 
@@ -145,7 +116,7 @@ def _parse_row(
     if "thickness_mm" in header_map:
         raw_thickness = raw_row.get(header_map["thickness_mm"], "").strip()
         if raw_thickness:
-            parsed = _parse_positive_float(raw_thickness, "Espesor", errors)
+            parsed = parse_positive_float(raw_thickness, "Espesor", errors)
             if parsed is not None:
                 thickness_mm = parsed
 
@@ -153,7 +124,7 @@ def _parse_row(
     if "quantity" in header_map:
         raw_quantity = raw_row.get(header_map["quantity"], "").strip()
         if raw_quantity:
-            parsed_qty = _parse_positive_int(raw_quantity, "Cantidad", errors)
+            parsed_qty = parse_positive_int(raw_quantity, "Cantidad", errors)
             if parsed_qty is not None:
                 quantity = parsed_qty
 
