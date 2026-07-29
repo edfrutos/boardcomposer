@@ -37,6 +37,8 @@
   reflejar estado post-Fase 3 y eliminar referencias al `TODO.md` ya stub.
 - Tablas Markdown en `docs/` y `uat/`: eliminada línea vacía entre cabecera y
   separador (rompe render en GitHub/previewers).
+- `board_ids` / `piece_ids` delegan en helper compartido `studio/unique_ids.py`
+  (misma lógica casefold + sufijos `-2`, `-3`, …).
 
 ### Corregido
 
