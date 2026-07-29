@@ -36,7 +36,7 @@ from shiboken6 import isValid as _qt_is_valid
 from boardcomposer.export import solution_to_svg
 from studio.export_options import render_export
 from dataclasses import replace as dataclass_replace
-from studio.board_ids import allocate_unique_board_id
+from studio.board_ids import allocate_unique_board_id, casefolded_board_ids
 from studio.branding import app_icon
 from studio.commands import (
     AddBoardCommand,
@@ -93,7 +93,7 @@ from studio.import_headers import (
     sanitize_header_map,
 )
 from studio.tabular_file import TabularLoadResult, list_xlsx_sheets, load_tabular_file
-from studio.piece_ids import allocate_unique_piece_id
+from studio.piece_ids import allocate_unique_piece_id, casefolded_piece_ids
 from studio.unique_ids import expand_ids_for_quantity
 from studio.explorer_actions import explorer_context_actions, parse_explorer_role
 from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
@@ -1251,7 +1251,7 @@ class MainWindow(QMainWindow):
         if header_map is None:
             return
 
-        existing_ids = {board.board_id.casefold() for board in project.boards}
+        existing_ids = casefolded_board_ids(project)
         result = import_boards_from_rows(
             loaded.fieldnames,
             loaded.rows,
@@ -1307,7 +1307,7 @@ class MainWindow(QMainWindow):
         if header_map is None:
             return
 
-        existing_ids = {piece.piece_id.casefold() for piece in project.pieces}
+        existing_ids = casefolded_piece_ids(project)
         result = import_pieces_from_rows(
             loaded.fieldnames,
             loaded.rows,
@@ -1515,7 +1515,7 @@ class MainWindow(QMainWindow):
             self._status("status.piece_id_empty")
             return
 
-        existing_ids = {piece.piece_id.strip().casefold() for piece in project.pieces}
+        existing_ids = casefolded_piece_ids(project, strip=True)
 
         quantity = data.get("quantity", 1)
         piece_ids = expand_ids_for_quantity(new_piece_id, quantity, existing_ids)
@@ -1948,7 +1948,7 @@ class MainWindow(QMainWindow):
         except KeyError:
             return
 
-        existing_ids = {piece.piece_id.casefold() for piece in project.pieces}
+        existing_ids = casefolded_piece_ids(project)
         new_id = allocate_unique_piece_id(f"{source.piece_id}-copy", existing_ids)
         clone = StudioPiece(
             piece_id=new_id,
@@ -3758,7 +3758,7 @@ class MainWindow(QMainWindow):
         if source is None:
             return
 
-        existing_ids = {board.board_id.casefold() for board in project.boards}
+        existing_ids = casefolded_board_ids(project)
         new_id = allocate_unique_board_id(f"{source.board_id}-copy", existing_ids)
         clone = StudioBoard(
             board_id=new_id,

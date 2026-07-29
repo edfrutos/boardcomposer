@@ -54,6 +54,8 @@
   archivo, resolver cabeceras (plantilla/mapeo) y refrescar tras importar.
 - Export SVG reutiliza `panel_offsets` / `canvas_size_mm` de `export/common`
   (misma geometría que DXF/PDF); tests dedicados en `test_export_common.py`.
+- Sets de IDs casefold (`casefolded_piece_ids` / `casefolded_board_ids`)
+  compartidos entre commands y MainWindow.
 
 ### Corregido
 

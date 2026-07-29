@@ -1,7 +1,9 @@
 """Tests for studio.unique_ids — shared board/piece id allocation."""
 
-from studio.board_ids import allocate_unique_board_id
-from studio.piece_ids import allocate_unique_piece_id
+from types import SimpleNamespace
+
+from studio.board_ids import allocate_unique_board_id, casefolded_board_ids
+from studio.piece_ids import allocate_unique_piece_id, casefolded_piece_ids
 from studio.unique_ids import allocate_unique_id, expand_ids_for_quantity
 
 
@@ -27,6 +29,23 @@ def test_wrappers_delegate_to_shared_helper():
     existing = {"x-copy", "x-copy-2"}
     assert allocate_unique_board_id("X-copy", existing) == "X-copy-3"
     assert allocate_unique_piece_id("X-copy", existing) == "X-copy-3"
+
+
+def test_casefolded_piece_and_board_ids():
+    project = SimpleNamespace(
+        pieces=[SimpleNamespace(piece_id="A"), SimpleNamespace(piece_id="b")],
+        boards=[SimpleNamespace(board_id="TAB-1"), SimpleNamespace(board_id="tab-2")],
+    )
+    assert casefolded_piece_ids(project) == {"a", "b"}
+    assert casefolded_board_ids(project) == {"tab-1", "tab-2"}
+
+
+def test_casefolded_piece_ids_strip_option():
+    project = SimpleNamespace(
+        pieces=[SimpleNamespace(piece_id="  LAT  "), SimpleNamespace(piece_id="X")],
+    )
+    assert casefolded_piece_ids(project, strip=True) == {"lat", "x"}
+    assert "  lat  " in casefolded_piece_ids(project)
 
 
 def test_expand_ids_qty_one_reserves_base():
