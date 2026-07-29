@@ -50,11 +50,16 @@ def test_incompatible_different_material():
 
 
 def test_incompatible_different_thickness():
-    assert piece_compatible_with_board(_piece(thickness=19.0), _board(thickness=18.0)) is False
+    assert (
+        piece_compatible_with_board(_piece(thickness=19.0), _board(thickness=18.0))
+        is False
+    )
 
 
 def test_incompatible_both_differ():
-    assert piece_compatible_with_board(_piece("MDF", 19.0), _board("Oak", 18.0)) is False
+    assert (
+        piece_compatible_with_board(_piece("MDF", 19.0), _board("Oak", 18.0)) is False
+    )
 
 
 def test_compatible_case_insensitive_material():
@@ -83,7 +88,10 @@ def test_reason_material_only():
 
 
 def test_reason_thickness_only():
-    assert incompatibility_reason(_piece(thickness=19.0), _board(thickness=18.0)) == "thickness"
+    assert (
+        incompatibility_reason(_piece(thickness=19.0), _board(thickness=18.0))
+        == "thickness"
+    )
 
 
 def test_reason_both():

@@ -119,7 +119,9 @@ def test_load_tolerates_non_list_json(tmp_path):
 
 def test_load_skips_non_string_entries(tmp_path):
     path = tmp_path / "recent.json"
-    path.write_text(json.dumps(["/ok.bcproj", 42, None, "/also-ok.bcproj"]), encoding="utf-8")
+    path.write_text(
+        json.dumps(["/ok.bcproj", 42, None, "/also-ok.bcproj"]), encoding="utf-8"
+    )
     mgr = RecentFilesManager(path=path)
     assert mgr.files == ["/ok.bcproj", "/also-ok.bcproj"]
 
