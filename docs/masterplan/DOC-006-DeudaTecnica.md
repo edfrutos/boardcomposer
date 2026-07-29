@@ -3,10 +3,10 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.1.0
-**Estado:** En revisión — actualizado
+**Versión:** 1.2.0
+**Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 16/07/2026
+**Última revisión:** 29/07/2026
 
 ---
 
@@ -92,6 +92,7 @@ Estado
 | DT-0003 | DT-T | Mantener la cobertura de pruebas por encima del objetivo definido. | 🟢 Controlado |
 | DT-0004 | DT-T | Añadir cobertura automatizada de interacción Qt y Workspace. | 🟢 Resuelto (`tests/conftest.py`, `tests/test_workspace_qt_interaction.py`) |
 | DT-0005 | DT-UX | Habilitar movimiento y reasignación interactiva entre paneles. | 🟢 Resuelto (arrastre entre paneles físicos en el Workspace) |
+| DT-0006 | DT-A | Historial cloud/multi-usuario de revisiones `.bcproj` (el anillo local ya está entregado). | ⚪ Planificada |
 
 ---
 
@@ -116,10 +117,10 @@ Estado
 
 ## Estado
 
-**Estado actual:** 🟡 En revisión — revisado para `0.4.0.dev0`
+**Estado actual:** 🟢 Actualizado — revisado para `0.4.0.dev0`
 
-Pendiente de:
+Próximo foco:
 
-- definir métricas de deuda técnica;
-- establecer umbrales de aceptación por versión;
-- integrar este documento en el proceso de cierre de Sprint.
+- definir métricas mínimas de deuda por release (conteo y antigüedad por categoría);
+- fijar umbrales de aceptación por versión (bloqueante / advertencia);
+- vincular revisión DOC-006 al cierre de sprint y release notes.

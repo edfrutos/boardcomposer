@@ -24,6 +24,9 @@
   Ayuda → Documentación prioriza guía usuario sobre masterplan.
   Tip/status de docs habla de «guía rápida».
   UAT visual cerrado; DOC-003/DOC-006 alineados (revisiones ya entregadas).
+- `DOC-006-DeudaTecnica` actualizado a `1.2.0` (29/07/2026): estado en verde,
+  deuda abierta explícita `DT-0006` (historial cloud/multi-usuario) y próximos
+  focos concretos por release.
 
 ### Corregido
 
