@@ -38,8 +38,12 @@ def test_export_templates_same_name_allowed_for_different_clients(tmp_path):
     manager.save_template("PDF", ExportOptions(format="pdf"), client="A")
     manager.save_template("PDF", ExportOptions(format="svg"), client="B")
 
-    assert manager.get("PDF", client="A").options.format == "pdf"
-    assert manager.get("PDF", client="B").options.format == "svg"
+    tmpl_a = manager.get("PDF", client="A")
+    tmpl_b = manager.get("PDF", client="B")
+    assert tmpl_a is not None
+    assert tmpl_b is not None
+    assert tmpl_a.options.format == "pdf"
+    assert tmpl_b.options.format == "svg"
 
 
 def test_export_templates_manager_replaces_same_client_and_name(tmp_path):
@@ -51,7 +55,9 @@ def test_export_templates_manager_replaces_same_client_and_name(tmp_path):
     )
 
     assert manager.names(client="Acme") == ["Demo"]
-    assert manager.get("Demo", client="Acme").options.format == "csv"
+    demo = manager.get("Demo", client="Acme")
+    assert demo is not None
+    assert demo.options.format == "csv"
 
 
 def test_export_templates_manager_delete(tmp_path):
@@ -183,7 +189,9 @@ def test_export_pack_and_import_merge(tmp_path):
 
     assert imported == 2
     assert total == 2
-    assert target.get("SVG", client="").options.format == "svg"
+    svg = target.get("SVG", client="")
+    assert svg is not None
+    assert svg.options.format == "svg"
     assert target.get("PDF", client="Acme") is not None
 
 
@@ -200,7 +208,9 @@ def test_import_pack_replace_and_legacy_list(tmp_path):
     assert imported == 1
     assert total == 1
     assert manager.get("Keep") is None
-    assert manager.get("Solo", client="Beta").options.format == "dxf"
+    solo = manager.get("Solo", client="Beta")
+    assert solo is not None
+    assert solo.options.format == "dxf"
 
 
 def test_export_dialog_shows_share_buttons(qapp):
