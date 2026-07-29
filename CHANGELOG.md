@@ -46,6 +46,8 @@
   Studio y batch lo reutilizan (SCR-007 / EP-002).
 - Parsers numéricos de import CSV/XLSX (`parse_positive_float` /
   `parse_positive_int`) compartidos en `studio/import_parse.py`.
+- Campos opcionales de import (espesor / cantidad / material + defaults)
+  unificados en `optional_positive_*` / `optional_string`.
 
 ### Corregido
 

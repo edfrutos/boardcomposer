@@ -19,11 +19,15 @@ from studio.import_headers import (
     sanitize_header_map,
 )
 from studio.tabular_file import load_tabular_file
-from studio.import_parse import parse_positive_float, parse_positive_int
-
-_DEFAULT_THICKNESS_MM = 19.0
-_DEFAULT_QUANTITY = 1
-_DEFAULT_MATERIAL = "Generico"
+from studio.import_parse import (
+    DEFAULT_IMPORT_MATERIAL,
+    DEFAULT_IMPORT_QUANTITY,
+    DEFAULT_IMPORT_THICKNESS_MM,
+    optional_positive_float,
+    optional_positive_int,
+    optional_string,
+    parse_positive_float,
+)
 
 _REQUIRED_FIELDS = BOARD_REQUIRED_FIELDS
 _HEADER_ALIASES = BOARD_HEADER_ALIASES
@@ -111,28 +115,23 @@ def _parse_row(
     width_mm = parse_positive_float(
         raw_row.get(header_map["width_mm"], ""), "Ancho", errors
     )
-
-    thickness_mm = _DEFAULT_THICKNESS_MM
-    if "thickness_mm" in header_map:
-        raw_thickness = raw_row.get(header_map["thickness_mm"], "").strip()
-        if raw_thickness:
-            parsed = parse_positive_float(raw_thickness, "Espesor", errors)
-            if parsed is not None:
-                thickness_mm = parsed
-
-    quantity = _DEFAULT_QUANTITY
-    if "quantity" in header_map:
-        raw_quantity = raw_row.get(header_map["quantity"], "").strip()
-        if raw_quantity:
-            parsed_qty = parse_positive_int(raw_quantity, "Cantidad", errors)
-            if parsed_qty is not None:
-                quantity = parsed_qty
-
-    material = _DEFAULT_MATERIAL
-    if "material" in header_map:
-        raw_material = raw_row.get(header_map["material"], "").strip()
-        if raw_material:
-            material = raw_material
+    thickness_mm = optional_positive_float(
+        raw_row,
+        header_map,
+        "thickness_mm",
+        "Espesor",
+        DEFAULT_IMPORT_THICKNESS_MM,
+        errors,
+    )
+    quantity = optional_positive_int(
+        raw_row,
+        header_map,
+        "quantity",
+        "Cantidad",
+        DEFAULT_IMPORT_QUANTITY,
+        errors,
+    )
+    material = optional_string(raw_row, header_map, "material", DEFAULT_IMPORT_MATERIAL)
 
     if errors:
         return ImportedBoardRow(
