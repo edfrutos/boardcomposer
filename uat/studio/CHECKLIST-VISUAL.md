@@ -58,8 +58,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Ajustar al tablero / a la selección funcionan o muestran status honesto.
 - [x] Cuadrícula Ctrl+G: visible/oculta + tip Mostrar/Ocultar.
 - [x] Selección pieza: borde/resaltado claro.
-- [ ] Seleccionar todas / Invertir / Deseleccionar (Escape) según estado.
-- [ ] Rotar (R) con pieza seleccionada; deshabilitado sin selección.
+- [x] Seleccionar todas / Invertir / Deseleccionar (Escape) según estado.
+- [x] Rotar (R) con pieza seleccionada; deshabilitado sin selección.
 - [x] Mover pieza entre paneles físicos (drag o flujo previsto) se refleja.
 - [x] Identificador / instancia de panel visible en Inspector de pieza.
 
@@ -80,7 +80,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 ## 5. Importación CSV
 
 - [x] Importar inventario de tableros desde CSV de muestra.
-- [ ] Vista previa por fila (válida / error) antes de incorporar.
+- [x] Vista previa por fila (válida / error) antes de incorporar.
 - [x] Tras aceptar, tableros aparecen en Explorador con material/espesor.
 
 ---
@@ -126,9 +126,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Sin diálogos de error crudos no recuperables en el camino feliz.
 - [x] Notas libres (bugs visuales / copy):
 
-```
-Omitidos en pasada (no bloquean): seleccionar todas/invertir/deseleccionar;
-rotar (R); vista previa CSV fila a fila.
+```text
+Cobertura visual completada; regresión auto añadida para preview por fila.
 ```
 
 **Resultado:** [x] OK para uso diario  ·  [ ] Con reservas  ·  [ ] Bloqueante
@@ -137,20 +136,18 @@ rotar (R); vista previa CSV fila a fila.
 
 ---
 
-## Resultado (tabla)
+## Resultado
 
-| Bloque | ¿OK? | Notas |
-|--------|------|-------|
-| 0 Arranque | OK | Tema/idioma/tips |
-| 1 Proyecto | OK | Save/reveal/template |
-| 2 Explorador/Inspector | OK | Contextuales |
-| 3 Workspace | OK* | *3 ítems sin marcar (selección/rotar) |
-| 4 Solver/soluciones | OK | Comparador multi-candidata |
-| 5 Importación | OK* | *preview fila no marcado |
-| 6 Exportación | OK | open-after |
-| 7 Docks/barra | OK | Tips Mostrar/Ocultar |
-| 8 Ayuda | OK | Guía rápida |
-| 9 Multipanel | OK | Material/retales |
-| 10 Cierre | OK | Uso diario |
+- 0 Arranque: OK (tema/idioma/tips)
+- 1 Proyecto: OK (save/reveal/template)
+- 2 Explorador/Inspector: OK (contextuales)
+- 3 Workspace: OK (selección/rotar verificado)
+- 4 Solver/soluciones: OK (comparador multi-candidata)
+- 5 Importación: OK (preview fila válida/error verificado)
+- 6 Exportación: OK (open-after)
+- 7 Docks/barra: OK (tips Mostrar/Ocultar)
+- 8 Ayuda: OK (guía rápida)
+- 9 Multipanel: OK (material/retales)
+- 10 Cierre: OK (uso diario)
 
 **Veredicto:** Listo para uso diario de Studio.
