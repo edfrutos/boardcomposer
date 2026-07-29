@@ -27,6 +27,7 @@ def test_documentation_paths_exist():
     assert paths["readme"].is_file()
     assert paths["masterplan"].is_file()
     assert paths["changelog"].is_file()
+    assert paths["design"].is_file()
 
 
 def test_load_whats_new_from_changelog(tmp_path):
@@ -41,10 +42,44 @@ def test_load_whats_new_from_changelog(tmp_path):
     assert bullets == ["Primera novedad", "Segunda novedad"]
 
 
+def test_load_whats_new_reads_english_added_section(tmp_path):
+    changelog = tmp_path / "CHANGELOG.md"
+    changelog.write_text(
+        "# CHANGELOG\n\n## Unreleased\n\n### Added\n\n- First item\n\n### Changed\n\n- Skip\n",
+        encoding="utf-8",
+    )
+    title, bullets = load_whats_new(changelog_path=changelog)
+    assert "Unreleased" in title
+    assert bullets == ["First item"]
+
+
+def test_load_whats_new_respects_max_items(tmp_path):
+    bullets_src = "\n".join(f"- Item {i}" for i in range(1, 8))
+    changelog = tmp_path / "CHANGELOG.md"
+    changelog.write_text(
+        f"# CHANGELOG\n\n## Unreleased\n\n### Añadido\n\n{bullets_src}\n",
+        encoding="utf-8",
+    )
+    _title, bullets = load_whats_new(changelog_path=changelog, max_items=3)
+    assert bullets == ["Item 1", "Item 2", "Item 3"]
+
+
+def test_load_whats_new_fallback_when_unreleased_has_no_added_bullets(tmp_path):
+    changelog = tmp_path / "CHANGELOG.md"
+    changelog.write_text(
+        "# CHANGELOG\n\n## Unreleased\n\n### Cambiado\n\n- Solo cambios\n",
+        encoding="utf-8",
+    )
+    title, bullets = load_whats_new(changelog_path=changelog)
+    assert "Unreleased" in title
+    assert len(bullets) == 1
+    assert "CHANGELOG.md" in bullets[0]
+
+
 def test_load_whats_new_missing_file(tmp_path):
     title, bullets = load_whats_new(changelog_path=tmp_path / "missing.md")
-    assert title
-    assert bullets
+    assert title == "BoardComposer Studio"
+    assert bullets == ["No hay notas de versión disponibles."]
 
 
 def test_whats_new_and_about_dialogs(qapp):
