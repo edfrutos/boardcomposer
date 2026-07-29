@@ -56,6 +56,8 @@
   (misma geometría que DXF/PDF); tests dedicados en `test_export_common.py`.
 - Sets de IDs casefold (`casefolded_piece_ids` / `casefolded_board_ids`)
   compartidos entre commands y MainWindow.
+- Test de contrato: `DEFAULT_SVG_PALETTE` refleja `LIGHT_CANVAS` (export /
+  thumbnails alineados con el workspace claro).
 
 ### Corregido
 
