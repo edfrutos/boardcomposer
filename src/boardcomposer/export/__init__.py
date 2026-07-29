@@ -1,3 +1,4 @@
+from .common import prepare_solution_for_export
 from .csv_exporter import solution_to_csv
 from .dxf_exporter import solution_to_dxf
 from .json_exporter import solution_to_json
@@ -8,6 +9,7 @@ from .svg_palette import DEFAULT_SVG_PALETTE, SvgPalette
 __all__ = [
     "DEFAULT_SVG_PALETTE",
     "SvgPalette",
+    "prepare_solution_for_export",
     "solution_to_csv",
     "solution_to_dxf",
     "solution_to_json",

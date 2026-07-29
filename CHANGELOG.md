@@ -42,6 +42,8 @@
 - Expansión por cantidad (`qty>1` → `base-1`…) unificada en
   `expand_ids_for_quantity`; diálogo Nuevo pieza e import CSV/XLSX la comparten.
   También reserva el id base tras expandir (evita colisión `LAT×3` + `LAT`).
+- Strip de retales en export unificado: `prepare_solution_for_export` en Core;
+  Studio y batch lo reutilizan (SCR-007 / EP-002).
 
 ### Corregido
 

@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass
 
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.export import (
+    prepare_solution_for_export,
     solution_to_csv,
     solution_to_dxf,
     solution_to_json,
@@ -80,9 +81,9 @@ def prepare_solution(
     solution: AssemblySolution, options: ExportOptions
 ) -> AssemblySolution:
     """Return a solution filtered according to export options."""
-    if options.include_offcuts:
-        return solution
-    return replace(solution, offcuts=())
+    return prepare_solution_for_export(
+        solution, include_offcuts=options.include_offcuts
+    )
 
 
 def render_export(
