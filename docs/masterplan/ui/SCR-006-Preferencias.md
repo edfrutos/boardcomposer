@@ -63,37 +63,37 @@ Restaurar valores por defecto.
 ### General
 
 | Campo | Valores |
-|-------|---------|
+| --- | --- |
 | Idioma | `es` / `en` |
 | Tema | sistema / claro / oscuro |
-| Unidades | `mm` / `cm` / `in` (almacenamiento interno siempre mm) |
+| Unidades | `mm` / `cm` / `in` (interno siempre mm) |
 
 ### Workspace
 
 | Campo | Notas |
-|-------|--------|
-| Mostrar cuadrícula | También conmutable en vista (**Ctrl+G**; ese toggle sí persiste al instante) |
+| --- | --- |
+| Mostrar cuadrícula | Toggle en vista (**Ctrl+G**); persiste al instante |
 | Tamaño de cuadrícula | 10–500 mm (paso 10) |
 
 ### Algoritmos
 
 | Campo | Notas |
-|-------|--------|
+| --- | --- |
 | Estrategia | `balanced` / `material` / `compact` / `exact` |
-| Pesos custom | Checkbox; 4 spins 0–100: material, placed, compactness, rotation_penalty |
+| Pesos custom | Spins 0–100: material, placed, compactness, rotation_penalty |
 | Sin custom | Spins deshabilitados; usan preset de la estrategia |
 
 ### Exportación (defaults SCR-007)
 
 | Campo | Notas |
-|-------|--------|
+| --- | --- |
 | Formato | `svg` / `dxf` / `pdf` / `json` / `csv` |
 | Incluir métricas / explicación / retales | Checkboxes |
 
 ### Avanzado
 
 | Campo | Notas |
-|-------|--------|
+| --- | --- |
 | Máx. soluciones | 1–100 (default 20); trunca ranking tras calcular |
 | Abrir carpeta de datos | Revela `~/.boardcomposer/` |
 
