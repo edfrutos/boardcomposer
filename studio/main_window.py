@@ -94,7 +94,7 @@ from studio.import_headers import (
 )
 from studio.tabular_file import TabularLoadResult, list_xlsx_sheets, load_tabular_file
 from studio.piece_ids import allocate_unique_piece_id, casefolded_piece_ids
-from studio.unique_ids import expand_ids_for_quantity
+from studio.unique_ids import expand_ids_for_quantity, id_taken
 from studio.explorer_actions import explorer_context_actions, parse_explorer_role
 from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
 from studio.solution_diff import (
@@ -3942,10 +3942,10 @@ class MainWindow(QMainWindow):
             return
         if new_piece_id == piece_id:
             return
-        if any(
-            existing.piece_id != piece_id
-            and existing.piece_id.strip().casefold() == new_piece_id.casefold()
-            for existing in project.pieces
+        if id_taken(
+            new_piece_id,
+            (existing.piece_id for existing in project.pieces),
+            excluding=piece_id,
         ):
             self._status("status.piece_id_exists", id=new_piece_id)
             return
@@ -4000,10 +4000,10 @@ class MainWindow(QMainWindow):
             return
         if new_board_id == board_id:
             return
-        if any(
-            existing.board_id != board_id
-            and existing.board_id.strip().casefold() == new_board_id.casefold()
-            for existing in project.boards
+        if id_taken(
+            new_board_id,
+            (existing.board_id for existing in project.boards),
+            excluding=board_id,
         ):
             self._status("status.board_id_exists", id=new_board_id)
             return
@@ -4438,12 +4438,10 @@ class MainWindow(QMainWindow):
             self._status("status.piece_id_empty")
             return
 
-        normalized_id = new_piece_id.casefold()
-
-        if any(
-            existing.piece_id != piece_id
-            and existing.piece_id.strip().casefold() == normalized_id
-            for existing in project.pieces
+        if id_taken(
+            new_piece_id,
+            (existing.piece_id for existing in project.pieces),
+            excluding=piece_id,
         ):
             self._status("status.piece_id_exists", id=new_piece_id)
             return

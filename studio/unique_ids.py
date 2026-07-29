@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
+
 
 def allocate_unique_id(base_id: str, existing_ids: set[str]) -> str:
     """Return ``base_id`` or ``base_id-2``, ``base_id-3``, … until free.
@@ -16,6 +18,25 @@ def allocate_unique_id(base_id: str, existing_ids: set[str]) -> str:
         if candidate.casefold() not in existing_ids:
             return candidate
         suffix += 1
+
+
+def id_taken(
+    candidate: str,
+    existing_ids: Iterable[str],
+    *,
+    excluding: str | None = None,
+) -> bool:
+    """Return True if ``candidate`` collides with another id (strip + casefold).
+
+    ``excluding`` skips one exact existing id (the object being renamed/edited).
+    """
+    folded = candidate.strip().casefold()
+    for existing in existing_ids:
+        if excluding is not None and existing == excluding:
+            continue
+        if existing.strip().casefold() == folded:
+            return True
+    return False
 
 
 def expand_ids_for_quantity(

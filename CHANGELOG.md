@@ -58,6 +58,8 @@
   compartidos entre commands y MainWindow.
 - Test de contrato: `DEFAULT_SVG_PALETTE` refleja `LIGHT_CANVAS` (export /
   thumbnails alineados con el workspace claro).
+- Colisión de IDs al renombrar/editar (`id_taken`) unificada en
+  `studio/unique_ids.py` y usada desde MainWindow.
 
 ### Corregido
 
