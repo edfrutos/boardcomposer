@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from studio.commands.command import Command
 from studio.models import StudioPiece, StudioPlacement
+from studio.piece_ids import casefolded_piece_ids
 
 
 class ImportPiecesCommand(Command):
@@ -26,7 +27,7 @@ class ImportPiecesCommand(Command):
         project = self.services.projects.current_project
         if project is None or not self.pieces:
             return
-        existing = {piece.piece_id.casefold() for piece in project.pieces}
+        existing = casefolded_piece_ids(project)
         for piece in self.pieces:
             if piece.piece_id.casefold() not in existing:
                 project.pieces.append(piece)

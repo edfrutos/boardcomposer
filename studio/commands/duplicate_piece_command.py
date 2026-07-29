@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from studio.commands.command import Command
 from studio.models import StudioPiece, StudioPlacement
+from studio.piece_ids import casefolded_piece_ids
 
 
 class DuplicatePieceCommand(Command):
@@ -26,7 +27,7 @@ class DuplicatePieceCommand(Command):
         project = self.services.projects.current_project
         if project is None:
             return
-        existing = {piece.piece_id.casefold() for piece in project.pieces}
+        existing = casefolded_piece_ids(project)
         if self._piece_id.casefold() not in existing:
             project.pieces.append(self.piece)
         placed = {placement.piece_id for placement in project.placements}

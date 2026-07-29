@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from studio.board_ids import casefolded_board_ids
 from studio.commands.command import Command
 from studio.models import StudioBoard
 
@@ -20,7 +21,7 @@ class ImportBoardsCommand(Command):
         project = self.services.projects.current_project
         if project is None or not self.boards:
             return
-        existing = {board.board_id.casefold() for board in project.boards}
+        existing = casefolded_board_ids(project)
         for board in self.boards:
             if board.board_id.casefold() not in existing:
                 project.boards.append(board)
