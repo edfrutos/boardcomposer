@@ -42,6 +42,23 @@ def test_import_pieces_from_csv_expands_quantity_into_correlative_ids(tmp_path):
     ]
 
 
+def test_import_pieces_from_csv_blocks_bare_id_after_quantity_expansion(tmp_path):
+    csv_path = _write_csv(
+        tmp_path,
+        "piece_id,length_mm,width_mm,quantity\nLAT,700,300,3\nLAT,100,50,1\n",
+    )
+
+    result = import_pieces_from_csv(csv_path)
+
+    assert [piece.piece_id for piece in result.valid_pieces] == [
+        "LAT-1",
+        "LAT-2",
+        "LAT-3",
+    ]
+    assert len(result.invalid_rows) == 1
+    assert "ya existe" in result.invalid_rows[0].errors[0].casefold()
+
+
 def test_import_pieces_from_csv_flags_existing_ids(tmp_path):
     csv_path = _write_csv(
         tmp_path,

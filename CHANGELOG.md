@@ -39,6 +39,9 @@
   separador (rompe render en GitHub/previewers).
 - `board_ids` / `piece_ids` delegan en helper compartido `studio/unique_ids.py`
   (misma lógica casefold + sufijos `-2`, `-3`, …).
+- Expansión por cantidad (`qty>1` → `base-1`…) unificada en
+  `expand_ids_for_quantity`; diálogo Nuevo pieza e import CSV/XLSX la comparten.
+  También reserva el id base tras expandir (evita colisión `LAT×3` + `LAT`).
 
 ### Corregido
 
