@@ -1,6 +1,7 @@
 """Render an `AssemblySolution` as a self-contained SVG document."""
 
 from boardcomposer.domain import AssemblySolution, Offcut, PanelReference, Project
+from boardcomposer.export.common import canvas_size_mm, panel_offsets
 from boardcomposer.export.svg_palette import DEFAULT_SVG_PALETTE, SvgPalette
 
 # Vertical space reserved above each panel row for its label, so it never
@@ -13,21 +14,18 @@ def _panel_layout(
     solution: AssemblySolution,
     project: Project | None,
 ) -> tuple[dict[PanelReference, float], list[tuple[PanelReference, float, float, str]]]:
-    offsets: dict[PanelReference, float] = {}
+    offsets = panel_offsets(solution, project)
     panel_rows: list[tuple[PanelReference, float, float, str]] = []
 
-    if project is None or not solution.panel_references:
+    if project is None:
         return offsets, panel_rows
 
-    next_x = 0.0
-    for reference in solution.panel_references:
+    for reference, offset_x in offsets.items():
         panel = project.stock_panel_for(reference)
         if panel is None:
             continue
-        offsets[reference] = next_x
         label = panel.id or f"panel-{reference.stock_panel_index + 1}"
-        panel_rows.append((reference, next_x, panel.width_mm, label))
-        next_x += panel.length_mm + 50
+        panel_rows.append((reference, offset_x, panel.width_mm, label))
 
     return offsets, panel_rows
 
@@ -35,20 +33,9 @@ def _panel_layout(
 def _canvas_size(
     solution: AssemblySolution,
     project: Project | None,
-    panel_rows: list[tuple[PanelReference, float, float, str]],
+    offsets: dict[PanelReference, float],
 ) -> tuple[float, float]:
-    if project is not None and panel_rows:
-        width = 0.0
-        for reference, offset_x, _panel_width, _label in panel_rows:
-            panel = project.stock_panel_for(reference)
-            if panel is None:
-                continue
-            width = max(width, offset_x + panel.length_mm)
-        height = max((row[2] for row in panel_rows), default=0.0)
-    else:
-        width = solution.total_length_mm
-        height = solution.total_width_mm
-
+    width, height = canvas_size_mm(solution, project, offsets)
     return width, height + _PANEL_LABEL_MARGIN
 
 
@@ -161,7 +148,7 @@ def solution_to_svg(
     """
     colors = palette or DEFAULT_SVG_PALETTE
     offsets, panel_rows = _panel_layout(solution, project)
-    width, height = _canvas_size(solution, project, panel_rows)
+    width, height = _canvas_size(solution, project, offsets)
 
     legend_parts = _legend_svg_parts(solution, height + _LEGEND_LINE_HEIGHT, colors)
     if legend_parts:
