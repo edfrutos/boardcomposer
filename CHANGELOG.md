@@ -91,6 +91,8 @@
   activos).
 - Vaciar Timeline pide confirmación (con recuento de eventos) antes de
   borrar el historial.
+- Timeline: menú contextual / Ctrl+C copia la línea del evento (o el payload
+  JSON) al portapapeles.
 
 ### Corregido
 

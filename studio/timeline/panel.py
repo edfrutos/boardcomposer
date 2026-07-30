@@ -2,17 +2,20 @@
 
 from __future__ import annotations
 
+import json
 from datetime import datetime, timedelta, timezone
 
 from PySide6.QtCore import QEvent, Qt, QTimer, Signal
 from PySide6.QtGui import QKeyEvent
 from PySide6.QtWidgets import (
+    QApplication,
     QComboBox,
     QHBoxLayout,
     QInputDialog,
     QLabel,
     QListWidget,
     QListWidgetItem,
+    QMenu,
     QMessageBox,
     QPushButton,
     QVBoxLayout,
@@ -62,6 +65,8 @@ class TimelinePanel(QWidget):
     """Ask the main window to run the Timeline history export dialog."""
     filters_changed = Signal()
     """Notify parent UI that filter-dependent actions should refresh."""
+    status_requested = Signal(str)
+    """Ask the main window to show a short status-bar message."""
 
     def __init__(self, store: TimelineStore, language: str = "es", parent=None) -> None:
         super().__init__(parent)
@@ -150,7 +155,9 @@ class TimelinePanel(QWidget):
 
         self._list = QListWidget()
         self._list.setUniformItemSizes(True)
+        self._list.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self._list.itemClicked.connect(self._on_item_clicked)
+        self._list.customContextMenuRequested.connect(self._on_list_context_menu)
         self._list.installEventFilter(self)
 
         layout = QVBoxLayout(self)
@@ -208,6 +215,11 @@ class TimelinePanel(QWidget):
         return super().eventFilter(watched, event)
 
     def _handle_replay_shortcut(self, event: QKeyEvent) -> bool:
+        if (
+            event.key() == Qt.Key.Key_C
+            and event.modifiers() == Qt.KeyboardModifier.ControlModifier
+        ):
+            return self._copy_selected_event_line()
         if event.modifiers() != Qt.KeyboardModifier.NoModifier:
             return False
         key = event.key()
@@ -638,6 +650,45 @@ class TimelinePanel(QWidget):
         if entry is None:
             return
         self.entry_selected.emit(entry)
+
+    def _entry_from_item(self, item: QListWidgetItem | None) -> TimelineEntry | None:
+        if item is None:
+            return None
+        sequence = item.data(Qt.ItemDataRole.UserRole)
+        if not isinstance(sequence, int):
+            return None
+        return self._store.entry_by_sequence(sequence)
+
+    def _on_list_context_menu(self, pos) -> None:
+        item = self._list.itemAt(pos)
+        entry = self._entry_from_item(item)
+        if entry is None or item is None:
+            return
+        menu = QMenu(self)
+        copy_line = menu.addAction(tr("timeline.copy_line", self._language))
+        copy_payload = menu.addAction(tr("timeline.copy_payload", self._language))
+        chosen = menu.exec(self._list.mapToGlobal(pos))
+        if chosen is copy_line:
+            self._copy_text_to_clipboard(item.text())
+        elif chosen is copy_payload:
+            self._copy_text_to_clipboard(
+                json.dumps(entry.payload, ensure_ascii=False, indent=2)
+            )
+
+    def _copy_selected_event_line(self) -> bool:
+        item = self._list.currentItem()
+        entry = self._entry_from_item(item)
+        if entry is None or item is None:
+            return False
+        self._copy_text_to_clipboard(item.text())
+        return True
+
+    def _copy_text_to_clipboard(self, text: str) -> None:
+        clipboard = QApplication.clipboard()
+        if clipboard is None:
+            return
+        clipboard.setText(text)
+        self.status_requested.emit(tr("status.timeline_copied", self._language))
 
     def _matches_filters(self, entry: TimelineEntry) -> bool:
         if self._filter_event and entry.event_name != self._filter_event:
