@@ -89,6 +89,8 @@
   ←/→ paso, Inicio reset).
 - Timeline muestra contador de eventos visibles (y total si hay filtros
   activos).
+- Vaciar Timeline pide confirmación (con recuento de eventos) antes de
+  borrar el historial.
 
 ### Corregido
 

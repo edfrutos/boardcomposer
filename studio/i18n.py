@@ -290,6 +290,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.count_filtered": "{visible} de {total} eventos",
         "timeline.detail.duration_ms": "{n} ms",
         "timeline.clear": "Vaciar",
+        "timeline.clear_confirm_title": "Vaciar Timeline",
+        "timeline.clear_confirm": (
+            "¿Vaciar el historial del Timeline ({n} eventos)? Esta acción no se puede deshacer."
+        ),
         "tip.timeline_clear": "Vaciar el historial del Timeline",
         "tip.timeline_replay_reset": "Inicio de la reproducción (Inicio)",
         "tip.timeline_replay_back": "Paso atrás (←)",
@@ -1107,6 +1111,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.count_filtered": "{visible} of {total} events",
         "timeline.detail.duration_ms": "{n} ms",
         "timeline.clear": "Clear",
+        "timeline.clear_confirm_title": "Clear Timeline",
+        "timeline.clear_confirm": (
+            "Clear the Timeline history ({n} events)? This cannot be undone."
+        ),
         "tip.timeline_clear": "Clear the Timeline history",
         "tip.timeline_replay_reset": "Restart replay (Home)",
         "tip.timeline_replay_back": "Step back (←)",
