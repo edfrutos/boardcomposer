@@ -75,6 +75,8 @@
 - Panel Timeline añade filtro rápido “Solo movimientos” para alternar
   `PieceMoved` ↔ todos los eventos sin abrir el combo de filtros.
 - Filtros de Timeline (evento, algoritmo, periodo) persisten en preferencias
+- Modo de reproducción del Timeline (colocaciones / fases) persiste en
+  preferencias entre reinicios.
   de usuario y se restauran al reiniciar Studio.
 
 ### Corregido

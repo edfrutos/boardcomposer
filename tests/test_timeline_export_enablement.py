@@ -145,3 +145,23 @@ def test_timeline_filters_persist_in_preferences(qapp, tmp_path):
     assert restored.console.current_filter_event() == PIECE_MOVED
     assert restored.console.current_filter_algorithm() is None
     assert restored.console.current_filter_period_seconds() == 300
+
+
+def test_timeline_replay_mode_persists_in_preferences(qapp, tmp_path):
+    del qapp
+    prefs_path = tmp_path / "preferences.json"
+    services = StudioServices(preferences=PreferencesManager(prefs_path))
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+
+    assert window.console.current_replay_mode() == "placements"
+    window.console.set_replay_mode("phases")
+    assert window.console.current_replay_mode() == "phases"
+    assert services.preferences.current.timeline_replay_mode == "phases"
+
+    services2 = StudioServices(preferences=PreferencesManager(prefs_path))
+    services2.preferences.update(
+        dataclass_replace(services2.preferences.current, language="es")
+    )
+    restored = MainWindow(services2)
+    assert restored.console.current_replay_mode() == "phases"

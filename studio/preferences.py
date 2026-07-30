@@ -79,6 +79,7 @@ class StudioPreferences:
     timeline_event_filter: str | None = None
     timeline_algorithm_filter: str | None = None
     timeline_period_seconds: int | None = None
+    timeline_replay_mode: str = "placements"
 
     def resolved_strategy(self) -> OptimizationStrategy:
         """Return the OptimizationStrategy implied by these preferences."""
@@ -138,6 +139,16 @@ def _optional_period_seconds(value: object) -> int | None:
     except (TypeError, ValueError):
         return None
     return parsed if parsed > 0 else None
+
+
+_VALID_TIMELINE_REPLAY_MODES = frozenset({"placements", "phases"})
+_DEFAULT_TIMELINE_REPLAY_MODE = "placements"
+
+
+def _timeline_replay_mode(value: object) -> str:
+    if isinstance(value, str) and value in _VALID_TIMELINE_REPLAY_MODES:
+        return value
+    return _DEFAULT_TIMELINE_REPLAY_MODE
 
 
 def default_preferences_path() -> Path:
@@ -241,6 +252,9 @@ class PreferencesManager:
             timeline_period_seconds=_optional_period_seconds(
                 payload.get("timeline_period_seconds")
             ),
+            timeline_replay_mode=_timeline_replay_mode(
+                payload.get("timeline_replay_mode")
+            ),
         )
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
@@ -267,6 +281,7 @@ class PreferencesManager:
             "timeline_event_filter": preferences.timeline_event_filter,
             "timeline_algorithm_filter": preferences.timeline_algorithm_filter,
             "timeline_period_seconds": preferences.timeline_period_seconds,
+            "timeline_replay_mode": preferences.timeline_replay_mode,
         }
         self.path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
