@@ -63,6 +63,8 @@
 - Cobertura de revisiones `.bcproj`: checklist UAT funcional/visual ahora
   incluye `Ctrl+Shift+Y`, y test de integración valida que MainWindow abre
   `BcprojDiffDialog` con contexto de proyecto/ruta.
+- Nuevo checklist UAT de plataforma (`uat/plataforma/CHECKLIST.md`) para
+  operación sin UI: batch CLI, API HTTP, auth y smoke de regresión.
 
 ### Corregido
 
