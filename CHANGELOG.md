@@ -87,6 +87,8 @@
   en el diálogo de guardar.
 - Timeline: atajos de reproducción con la lista enfocada (Espacio play/pausa,
   ←/→ paso, Inicio reset).
+- Timeline muestra contador de eventos visibles (y total si hay filtros
+  activos).
 
 ### Corregido
 

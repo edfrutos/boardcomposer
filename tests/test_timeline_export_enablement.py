@@ -114,6 +114,26 @@ def test_timeline_quick_filter_piece_moves(qapp, tmp_path):
     assert window.console.current_filter_event() is None
 
 
+def test_timeline_event_count_label(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    assert window.console.total_event_count() == 0
+    assert window.console.visible_event_count() == 0
+    assert "0" in window.console._count_label.text()
+
+    window.services.events.publish(PROJECT_CREATED, {"kind": "demo"})
+    window.services.events.publish(TIMELINE_MARKED, {"note": "a"})
+    assert window.console.total_event_count() == 2
+    assert window.console.visible_event_count() == 2
+    assert "2" in window.console._count_label.text()
+
+    window.console._markers.click()
+    assert window.console.visible_event_count() == 1
+    assert window.console.total_event_count() == 2
+    label = window.console._count_label.text()
+    assert "1" in label and "2" in label
+
+
 def test_timeline_quick_filter_markers(qapp, tmp_path):
     del qapp
     window = _window(tmp_path)

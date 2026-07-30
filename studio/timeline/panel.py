@@ -100,6 +100,7 @@ class TimelinePanel(QWidget):
         self._follow.setCheckable(True)
         self._follow.setChecked(True)
         self._follow.clicked.connect(self._on_follow_clicked)
+        self._count_label = QLabel()
 
         filters = QHBoxLayout()
         filters.addWidget(self._filter_label)
@@ -110,6 +111,7 @@ class TimelinePanel(QWidget):
         filters.addWidget(self._period_filter, stretch=1)
 
         actions = QHBoxLayout()
+        actions.addWidget(self._count_label)
         actions.addStretch(1)
         actions.addWidget(self._piece_moves)
         actions.addWidget(self._markers)
@@ -395,14 +397,13 @@ class TimelinePanel(QWidget):
             self._filter.setCurrentIndex(index)
 
     def _sync_event_actions(self) -> None:
-        """Enable Export/Clear only when the Timeline has events."""
-        has_visible_events = bool(
-            self._store.filtered(
-                self._filter_event,
-                algorithm=self._filter_algorithm,
-                since=self._filter_since(),
-            )
+        """Enable Export/Clear and refresh the visible-event count."""
+        visible_entries = self._store.filtered(
+            self._filter_event,
+            algorithm=self._filter_algorithm,
+            since=self._filter_since(),
         )
+        has_visible_events = bool(visible_entries)
         self._export.setEnabled(has_visible_events)
         export_tip = tr(
             "tip.export_timeline"
@@ -433,6 +434,35 @@ class TimelinePanel(QWidget):
         follow_tip = tr("timeline.follow_latest", self._language)
         self._follow.setToolTip(follow_tip)
         self._follow.setStatusTip(follow_tip)
+        self._update_count_label(len(visible_entries), len(self._store.entries))
+
+    def visible_event_count(self) -> int:
+        """Return how many events match the active Timeline filters."""
+        return len(
+            self._store.filtered(
+                self._filter_event,
+                algorithm=self._filter_algorithm,
+                since=self._filter_since(),
+            )
+        )
+
+    def total_event_count(self) -> int:
+        """Return the unfiltered Timeline event count."""
+        return len(self._store.entries)
+
+    def _update_count_label(self, visible: int, total: int) -> None:
+        if total == 0:
+            text = tr("timeline.count_empty", self._language)
+        elif visible == total:
+            text = tr("timeline.count_all", self._language, n=total)
+        else:
+            text = tr(
+                "timeline.count_filtered",
+                self._language,
+                visible=visible,
+                total=total,
+            )
+        self._count_label.setText(text)
 
     def _on_follow_clicked(self) -> None:
         self._follow_latest = self._follow.isChecked()
