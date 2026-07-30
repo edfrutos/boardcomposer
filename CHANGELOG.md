@@ -77,7 +77,8 @@
 - Filtros de Timeline (evento, algoritmo, periodo) persisten en preferencias
 - Modo de reproducción del Timeline (colocaciones / fases) persiste en
   preferencias entre reinicios.
-  de usuario y se restauran al reiniciar Studio.
+- Velocidad de autoplay del Timeline (lenta / normal / rápida) con selector
+  en el dock y persistencia en preferencias.
 
 ### Corregido
 

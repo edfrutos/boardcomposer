@@ -165,3 +165,24 @@ def test_timeline_replay_mode_persists_in_preferences(qapp, tmp_path):
     )
     restored = MainWindow(services2)
     assert restored.console.current_replay_mode() == "phases"
+
+
+def test_timeline_replay_speed_persists_in_preferences(qapp, tmp_path):
+    del qapp
+    prefs_path = tmp_path / "preferences.json"
+    services = StudioServices(preferences=PreferencesManager(prefs_path))
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+
+    assert window.console.current_replay_interval_ms() == 450
+    window.console.set_replay_interval_ms(200)
+    assert window.console.current_replay_interval_ms() == 200
+    assert services.preferences.current.timeline_replay_interval_ms == 200
+
+    services2 = StudioServices(preferences=PreferencesManager(prefs_path))
+    services2.preferences.update(
+        dataclass_replace(services2.preferences.current, language="es")
+    )
+    restored = MainWindow(services2)
+    assert restored.console.current_replay_interval_ms() == 200
+    assert restored.console._play_timer.interval() == 200
