@@ -32,6 +32,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Añadir pieza (Ctrl+Shift+P): aparece en Explorador.
 - [x] Guardar / Guardar como / Abrir `.bcproj`; ruta en barra de estado.
 - [x] Abrir carpeta del proyecto (Ctrl+Shift+R) si hay ruta.
+- [x] Comparar revisiones `.bcproj` (Ctrl+Shift+Y): diálogo abre con proyecto actual y muestra diff textual comprensible.
 - [x] Recientes en inicio y menú; quitar / vaciar lista si aplica.
 - [x] Guardar como plantilla y crear desde plantilla (si hay plantillas).
 - [x] Renombrar proyecto (F2 / menú / clic derecho raíz).

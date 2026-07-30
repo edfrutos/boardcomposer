@@ -60,6 +60,9 @@
   thumbnails alineados con el workspace claro).
 - Colisión de IDs al renombrar/editar (`id_taken`) unificada en
   `studio/unique_ids.py` y usada desde MainWindow.
+- Cobertura de revisiones `.bcproj`: checklist UAT funcional/visual ahora
+  incluye `Ctrl+Shift+Y`, y test de integración valida que MainWindow abre
+  `BcprojDiffDialog` con contexto de proyecto/ruta.
 
 ### Corregido
 
