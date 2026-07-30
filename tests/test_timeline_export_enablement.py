@@ -2,7 +2,7 @@
 
 from PySide6.QtWidgets import QApplication
 
-from studio.events.catalog import PROJECT_CREATED
+from studio.events.catalog import PIECE_MOVED, PROJECT_CREATED
 from studio.main_window import MainWindow
 from studio.preferences import PreferencesManager, StudioPreferences
 from studio.services import StudioServices
@@ -80,3 +80,33 @@ def test_timeline_export_disabled_when_filters_hide_events(qapp, tmp_path):
     assert window.console._clear.isEnabled()
     tip = window._actions["export_timeline"].statusTip().lower()
     assert "timeline" in tip or "eventos" in tip
+
+
+def test_timeline_quick_filter_piece_moves(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    window.services.events.publish(PROJECT_CREATED, {"kind": "demo"})
+
+    # Toggle quick filter -> only PieceMoved should remain visible.
+    window.console._piece_moves.click()
+    assert window.console.current_filter_event() == PIECE_MOVED
+    assert not window._actions["export_timeline"].isEnabled()
+    assert not window.console._export.isEnabled()
+
+    window.services.events.publish(
+        PIECE_MOVED,
+        {
+            "piece": "A",
+            "kind": "moved",
+            "from_x": 0.0,
+            "from_y": 0.0,
+            "to_x": 10.0,
+            "to_y": 10.0,
+        },
+    )
+    assert window._actions["export_timeline"].isEnabled()
+    assert window.console._export.isEnabled()
+
+    # Second click returns to all events.
+    window.console._piece_moves.click()
+    assert window.console.current_filter_event() is None

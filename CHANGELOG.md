@@ -72,6 +72,8 @@
 - Export CSV del Timeline incluye columnas específicas para `PieceMoved`
   (`piece`, `kind`, `from_*`, `to_*`, panel origen/destino) además de
   `payload_json`.
+- Panel Timeline añade filtro rápido “Solo movimientos” para alternar
+  `PieceMoved` ↔ todos los eventos sin abrir el combo de filtros.
 
 ### Corregido
 

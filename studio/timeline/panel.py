@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (
 
 from boardcomposer.domain import AssemblySolution
 from boardcomposer.solver.solve_trace import SolveTrace
-from studio.events.catalog import ALL_EVENTS, CATALOG, TIMELINE_MARKED
+from studio.events.catalog import ALL_EVENTS, CATALOG, PIECE_MOVED, TIMELINE_MARKED
 from studio.i18n import tr
 from studio.timeline.phase_replay import SolvePhaseReplay
 from studio.timeline.replay import SolutionReplay
@@ -81,6 +81,9 @@ class TimelinePanel(QWidget):
         self._mark.clicked.connect(self._on_mark_clicked)
         self._export = QPushButton()
         self._export.clicked.connect(self._on_export_clicked)
+        self._piece_moves = QPushButton()
+        self._piece_moves.setCheckable(True)
+        self._piece_moves.clicked.connect(self._on_piece_moves_clicked)
 
         filters = QHBoxLayout()
         filters.addWidget(self._filter_label)
@@ -92,6 +95,7 @@ class TimelinePanel(QWidget):
 
         actions = QHBoxLayout()
         actions.addStretch(1)
+        actions.addWidget(self._piece_moves)
         actions.addWidget(self._mark)
         actions.addWidget(self._export)
         actions.addWidget(self._clear)
@@ -149,6 +153,7 @@ class TimelinePanel(QWidget):
         self._clear.setText(tr("timeline.clear", language))
         self._mark.setText(tr("timeline.mark", language))
         self._export.setText(tr("timeline.export", language))
+        self._piece_moves.setText(tr("timeline.filter_piece_moves", language))
         self._sync_event_actions()
         self._replay_reset.setText(tr("timeline.replay_reset", language))
         self._replay_back.setText(tr("timeline.replay_back", language))
@@ -286,6 +291,12 @@ class TimelinePanel(QWidget):
     def _on_export_clicked(self) -> None:
         self.export_requested.emit()
 
+    def _on_piece_moves_clicked(self) -> None:
+        target = ALL_EVENTS if self._filter_event == PIECE_MOVED else PIECE_MOVED
+        index = self._filter.findData(target)
+        if index >= 0:
+            self._filter.setCurrentIndex(index)
+
     def _sync_event_actions(self) -> None:
         """Enable Export/Clear only when the Timeline has events."""
         has_visible_events = bool(
@@ -313,6 +324,11 @@ class TimelinePanel(QWidget):
         )
         self._clear.setToolTip(clear_tip)
         self._clear.setStatusTip(clear_tip)
+        self._piece_moves.setChecked(self._filter_event == PIECE_MOVED)
+        self._piece_moves.setToolTip(tr("timeline.filter_piece_moves", self._language))
+        self._piece_moves.setStatusTip(
+            tr("timeline.filter_piece_moves", self._language)
+        )
 
     def _on_mark_clicked(self) -> None:
         note, ok = QInputDialog.getText(
