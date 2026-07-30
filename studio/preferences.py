@@ -81,6 +81,7 @@ class StudioPreferences:
     timeline_period_seconds: int | None = None
     timeline_replay_mode: str = "placements"
     timeline_replay_interval_ms: int = 450
+    timeline_follow_latest: bool = True
 
     def resolved_strategy(self) -> OptimizationStrategy:
         """Return the OptimizationStrategy implied by these preferences."""
@@ -271,6 +272,11 @@ class PreferencesManager:
             timeline_replay_interval_ms=_timeline_replay_interval_ms(
                 payload.get("timeline_replay_interval_ms")
             ),
+            timeline_follow_latest=(
+                True
+                if "timeline_follow_latest" not in payload
+                else bool(payload.get("timeline_follow_latest"))
+            ),
         )
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
@@ -299,6 +305,7 @@ class PreferencesManager:
             "timeline_period_seconds": preferences.timeline_period_seconds,
             "timeline_replay_mode": preferences.timeline_replay_mode,
             "timeline_replay_interval_ms": preferences.timeline_replay_interval_ms,
+            "timeline_follow_latest": preferences.timeline_follow_latest,
         }
         self.path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",

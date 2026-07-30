@@ -81,6 +81,8 @@
   preferencias entre reinicios.
 - Velocidad de autoplay del Timeline (lenta / normal / rápida) con selector
   en el dock y persistencia en preferencias.
+- Timeline: toggle «Seguir» para auto-scroll a eventos nuevos (desactivable;
+  persistido en preferencias).
 
 ### Corregido
 
