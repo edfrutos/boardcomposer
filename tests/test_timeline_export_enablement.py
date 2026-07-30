@@ -4,7 +4,7 @@ from dataclasses import replace as dataclass_replace
 
 from PySide6.QtWidgets import QApplication
 
-from studio.events.catalog import PIECE_MOVED, PROJECT_CREATED
+from studio.events.catalog import PIECE_MOVED, PROJECT_CREATED, TIMELINE_MARKED
 from studio.main_window import MainWindow
 from studio.preferences import PreferencesManager, StudioPreferences
 from studio.services import StudioServices
@@ -112,6 +112,35 @@ def test_timeline_quick_filter_piece_moves(qapp, tmp_path):
     # Second click returns to all events.
     window.console._piece_moves.click()
     assert window.console.current_filter_event() is None
+
+
+def test_timeline_quick_filter_markers(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    window.services.events.publish(PROJECT_CREATED, {"kind": "demo"})
+
+    window.console._markers.click()
+    assert window.console.current_filter_event() == TIMELINE_MARKED
+    assert window.console._markers.isChecked()
+    assert not window.console._piece_moves.isChecked()
+    assert not window._actions["export_timeline"].isEnabled()
+    assert not window.console._export.isEnabled()
+
+    window.services.events.publish(TIMELINE_MARKED, {"note": "checkpoint"})
+    assert window._actions["export_timeline"].isEnabled()
+    assert window.console._export.isEnabled()
+
+    # Switching to piece-moves clears the markers toggle.
+    window.console._piece_moves.click()
+    assert window.console.current_filter_event() == PIECE_MOVED
+    assert window.console._piece_moves.isChecked()
+    assert not window.console._markers.isChecked()
+
+    window.console._markers.click()
+    assert window.console.current_filter_event() == TIMELINE_MARKED
+    window.console._markers.click()
+    assert window.console.current_filter_event() is None
+    assert not window.console._markers.isChecked()
 
 
 def test_timeline_filters_persist_in_preferences(qapp, tmp_path):

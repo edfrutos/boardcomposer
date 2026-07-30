@@ -91,6 +91,9 @@ class TimelinePanel(QWidget):
         self._piece_moves = QPushButton()
         self._piece_moves.setCheckable(True)
         self._piece_moves.clicked.connect(self._on_piece_moves_clicked)
+        self._markers = QPushButton()
+        self._markers.setCheckable(True)
+        self._markers.clicked.connect(self._on_markers_clicked)
 
         filters = QHBoxLayout()
         filters.addWidget(self._filter_label)
@@ -103,6 +106,7 @@ class TimelinePanel(QWidget):
         actions = QHBoxLayout()
         actions.addStretch(1)
         actions.addWidget(self._piece_moves)
+        actions.addWidget(self._markers)
         actions.addWidget(self._mark)
         actions.addWidget(self._export)
         actions.addWidget(self._clear)
@@ -167,6 +171,7 @@ class TimelinePanel(QWidget):
         self._mark.setText(tr("timeline.mark", language))
         self._export.setText(tr("timeline.export", language))
         self._piece_moves.setText(tr("timeline.filter_piece_moves", language))
+        self._markers.setText(tr("timeline.filter_markers", language))
         self._sync_event_actions()
         self._replay_reset.setText(tr("timeline.replay_reset", language))
         self._replay_back.setText(tr("timeline.replay_back", language))
@@ -335,6 +340,12 @@ class TimelinePanel(QWidget):
         if index >= 0:
             self._filter.setCurrentIndex(index)
 
+    def _on_markers_clicked(self) -> None:
+        target = ALL_EVENTS if self._filter_event == TIMELINE_MARKED else TIMELINE_MARKED
+        index = self._filter.findData(target)
+        if index >= 0:
+            self._filter.setCurrentIndex(index)
+
     def _sync_event_actions(self) -> None:
         """Enable Export/Clear only when the Timeline has events."""
         has_visible_events = bool(
@@ -367,6 +378,9 @@ class TimelinePanel(QWidget):
         self._piece_moves.setStatusTip(
             tr("timeline.filter_piece_moves", self._language)
         )
+        self._markers.setChecked(self._filter_event == TIMELINE_MARKED)
+        self._markers.setToolTip(tr("timeline.filter_markers", self._language))
+        self._markers.setStatusTip(tr("timeline.filter_markers", self._language))
 
     def _on_mark_clicked(self) -> None:
         note, ok = QInputDialog.getText(

@@ -74,6 +74,8 @@
   `payload_json`.
 - Panel Timeline añade filtro rápido “Solo movimientos” para alternar
   `PieceMoved` ↔ todos los eventos sin abrir el combo de filtros.
+- Panel Timeline añade filtro rápido “Solo marcadores” para alternar
+  `TimelineMarked` ↔ todos los eventos.
 - Filtros de Timeline (evento, algoritmo, periodo) persisten en preferencias
 - Modo de reproducción del Timeline (colocaciones / fases) persiste en
   preferencias entre reinicios.
