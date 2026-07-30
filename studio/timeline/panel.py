@@ -341,7 +341,9 @@ class TimelinePanel(QWidget):
             self._filter.setCurrentIndex(index)
 
     def _on_markers_clicked(self) -> None:
-        target = ALL_EVENTS if self._filter_event == TIMELINE_MARKED else TIMELINE_MARKED
+        target = (
+            ALL_EVENTS if self._filter_event == TIMELINE_MARKED else TIMELINE_MARKED
+        )
         index = self._filter.findData(target)
         if index >= 0:
             self._filter.setCurrentIndex(index)
