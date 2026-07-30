@@ -82,6 +82,7 @@ class StudioPreferences:
     timeline_replay_mode: str = "placements"
     timeline_replay_interval_ms: int = 450
     timeline_follow_latest: bool = True
+    timeline_export_format: str = "json"
 
     def resolved_strategy(self) -> OptimizationStrategy:
         """Return the OptimizationStrategy implied by these preferences."""
@@ -147,6 +148,8 @@ _VALID_TIMELINE_REPLAY_MODES = frozenset({"placements", "phases"})
 _DEFAULT_TIMELINE_REPLAY_MODE = "placements"
 _VALID_TIMELINE_REPLAY_INTERVALS = frozenset({200, 450, 900})
 _DEFAULT_TIMELINE_REPLAY_INTERVAL_MS = 450
+_VALID_TIMELINE_EXPORT_FORMATS = frozenset({"json", "csv"})
+_DEFAULT_TIMELINE_EXPORT_FORMAT = "json"
 
 
 def _timeline_replay_mode(value: object) -> str:
@@ -163,6 +166,15 @@ def _timeline_replay_interval_ms(value: object) -> int:
     if parsed in _VALID_TIMELINE_REPLAY_INTERVALS:
         return parsed
     return _DEFAULT_TIMELINE_REPLAY_INTERVAL_MS
+
+
+def _timeline_export_format(value: object) -> str:
+    if (
+        isinstance(value, str)
+        and value.strip().lower() in _VALID_TIMELINE_EXPORT_FORMATS
+    ):
+        return value.strip().lower()
+    return _DEFAULT_TIMELINE_EXPORT_FORMAT
 
 
 def default_preferences_path() -> Path:
@@ -277,6 +289,9 @@ class PreferencesManager:
                 if "timeline_follow_latest" not in payload
                 else bool(payload.get("timeline_follow_latest"))
             ),
+            timeline_export_format=_timeline_export_format(
+                payload.get("timeline_export_format")
+            ),
         )
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
@@ -306,6 +321,7 @@ class PreferencesManager:
             "timeline_replay_mode": preferences.timeline_replay_mode,
             "timeline_replay_interval_ms": preferences.timeline_replay_interval_ms,
             "timeline_follow_latest": preferences.timeline_follow_latest,
+            "timeline_export_format": preferences.timeline_export_format,
         }
         self.path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",

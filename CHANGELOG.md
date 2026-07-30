@@ -83,6 +83,8 @@
   en el dock y persistencia en preferencias.
 - Timeline: toggle «Seguir» para auto-scroll a eventos nuevos (desactivable;
   persistido en preferencias).
+- Export Timeline recuerda el último formato (JSON/CSV) y lo preselecciona
+  en el diálogo de guardar.
 
 ### Corregido
 
