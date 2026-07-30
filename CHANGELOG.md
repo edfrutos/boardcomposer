@@ -74,6 +74,8 @@
   `payload_json`.
 - Panel Timeline añade filtro rápido “Solo movimientos” para alternar
   `PieceMoved` ↔ todos los eventos sin abrir el combo de filtros.
+- Filtros de Timeline (evento, algoritmo, periodo) persisten en preferencias
+  de usuario y se restauran al reiniciar Studio.
 
 ### Corregido
 

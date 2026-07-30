@@ -367,6 +367,54 @@ class TimelinePanel(QWidget):
         """Return the active period length in seconds, or None for all time."""
         return self._filter_period_seconds
 
+    def set_filters(
+        self,
+        *,
+        event_name: str | None,
+        algorithm: str | None,
+        period_seconds: int | None,
+    ) -> None:
+        """Restore filter controls without emitting user-change side effects."""
+        event_data = event_name or ALL_EVENTS
+        event_index = self._filter.findData(event_data)
+        if event_index < 0:
+            event_index = 0
+        self._filter.blockSignals(True)
+        self._filter.setCurrentIndex(event_index)
+        self._filter.blockSignals(False)
+        self._filter_event = (
+            None
+            if self._filter.currentData() == ALL_EVENTS
+            else self._filter.currentData()
+        )
+
+        algo_data = algorithm or _ALL_ALGORITHMS
+        algo_index = self._algo_filter.findData(algo_data)
+        if algo_index < 0:
+            algo_index = 0
+        self._algo_filter.blockSignals(True)
+        self._algo_filter.setCurrentIndex(algo_index)
+        self._algo_filter.blockSignals(False)
+        self._filter_algorithm = (
+            None
+            if self._algo_filter.currentData() == _ALL_ALGORITHMS
+            else self._algo_filter.currentData()
+        )
+
+        period_data = period_seconds if period_seconds is not None else None
+        period_index = self._period_filter.findData(period_data)
+        if period_index < 0:
+            period_index = 0
+        self._period_filter.blockSignals(True)
+        self._period_filter.setCurrentIndex(period_index)
+        self._period_filter.blockSignals(False)
+        data = self._period_filter.currentData()
+        self._filter_period_seconds = data if isinstance(data, int) else None
+
+        self._rebuild()
+        self._sync_event_actions()
+        self.filters_changed.emit()
+
     @property
     def phase_replay_total(self) -> int:
         """Number of solver phases available for algorithm-level replay."""
