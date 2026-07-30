@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
     QLabel,
     QListWidget,
     QListWidgetItem,
+    QMessageBox,
     QPushButton,
     QVBoxLayout,
     QWidget,
@@ -375,6 +376,16 @@ class TimelinePanel(QWidget):
         self.filters_changed.emit()
 
     def _on_clear(self) -> None:
+        total = len(self._store.entries)
+        if total == 0:
+            return
+        answer = QMessageBox.question(
+            self,
+            tr("timeline.clear_confirm_title", self._language),
+            tr("timeline.clear_confirm", self._language, n=total),
+        )
+        if answer != QMessageBox.StandardButton.Yes:
+            return
         self._store.clear()
         self._rebuild_algorithm_items()
         self._rebuild()

@@ -2,7 +2,7 @@
 
 from dataclasses import replace as dataclass_replace
 
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication, QMessageBox
 
 from studio.events.catalog import PIECE_MOVED, PROJECT_CREATED, TIMELINE_MARKED
 from studio.main_window import MainWindow
@@ -62,6 +62,31 @@ def test_timeline_export_disabled_after_clear(qapp, tmp_path):
     window.services.timeline.clear()
     assert not window._actions["export_timeline"].isEnabled()
     assert not window.console._export.isEnabled()
+    assert not window.console._clear.isEnabled()
+
+
+def test_timeline_clear_confirms_before_wiping(qapp, tmp_path, monkeypatch):
+    del qapp
+    window = _window(tmp_path)
+    window.services.events.publish(PROJECT_CREATED, {"kind": "demo"})
+    window.services.events.publish(TIMELINE_MARKED, {"note": "keep"})
+    assert window.console.total_event_count() == 2
+
+    monkeypatch.setattr(
+        QMessageBox,
+        "question",
+        lambda *args, **kwargs: QMessageBox.StandardButton.No,
+    )
+    window.console._clear.click()
+    assert window.console.total_event_count() == 2
+
+    monkeypatch.setattr(
+        QMessageBox,
+        "question",
+        lambda *args, **kwargs: QMessageBox.StandardButton.Yes,
+    )
+    window.console._clear.click()
+    assert window.console.total_event_count() == 0
     assert not window.console._clear.isEnabled()
 
 
