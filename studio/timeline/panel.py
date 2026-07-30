@@ -209,6 +209,7 @@ class TimelinePanel(QWidget):
             )
         else:
             self.replay_step_changed.emit(self._replay.solution, self._replay.step)
+        self.filters_changed.emit()
 
     def _rebuild_filter_items(self) -> None:
         current = self._filter.currentData()
@@ -366,6 +367,27 @@ class TimelinePanel(QWidget):
     def current_filter_period_seconds(self) -> int | None:
         """Return the active period length in seconds, or None for all time."""
         return self._filter_period_seconds
+
+    def current_replay_mode(self) -> str:
+        """Return active replay mode (`placements` or `phases`)."""
+        return self._replay_mode
+
+    def set_replay_mode(self, mode: str) -> None:
+        """Restore replay mode without emitting user-change side effects twice."""
+        target = mode if mode in {_MODE_PLACEMENTS, _MODE_PHASES} else _MODE_PLACEMENTS
+        index = self._mode.findData(target)
+        if index < 0:
+            index = 0
+        self._mode.blockSignals(True)
+        self._mode.setCurrentIndex(index)
+        self._mode.blockSignals(False)
+        data = self._mode.currentData()
+        self._replay_mode = data if isinstance(data, str) else _MODE_PLACEMENTS
+        self._play_timer.stop()
+        self._replay.stop()
+        self._phase_replay.stop()
+        self._update_replay_controls()
+        self.filters_changed.emit()
 
     def set_filters(
         self,
