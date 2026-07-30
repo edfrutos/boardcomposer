@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 from studio.board_ids import allocate_unique_board_id, casefolded_board_ids
 from studio.piece_ids import allocate_unique_piece_id, casefolded_piece_ids
-from studio.unique_ids import allocate_unique_id, expand_ids_for_quantity
+from studio.unique_ids import allocate_unique_id, expand_ids_for_quantity, id_taken
 
 
 def test_allocate_unique_id_returns_base_when_free():
@@ -46,6 +46,19 @@ def test_casefolded_piece_ids_strip_option():
     )
     assert casefolded_piece_ids(project, strip=True) == {"lat", "x"}
     assert "  lat  " in casefolded_piece_ids(project)
+
+
+def test_id_taken_detects_casefold_and_strip_collisions():
+    existing = ["A", "B"]
+    assert id_taken("a", existing) is True
+    assert id_taken("  b  ", existing) is True
+    assert id_taken("C", existing) is False
+
+
+def test_id_taken_excluding_skips_exact_current_id():
+    existing = ["Panel-1", "Panel-2"]
+    assert id_taken("panel-1", existing, excluding="Panel-1") is False
+    assert id_taken("panel-2", existing, excluding="Panel-1") is True
 
 
 def test_expand_ids_qty_one_reserves_base():
