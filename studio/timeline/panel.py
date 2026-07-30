@@ -107,6 +107,8 @@ class TimelinePanel(QWidget):
         self._follow.setChecked(True)
         self._follow.clicked.connect(self._on_follow_clicked)
         self._count_label = QLabel()
+        self._clear_filters = QPushButton()
+        self._clear_filters.clicked.connect(self._on_clear_filters)
 
         filters = QHBoxLayout()
         filters.addWidget(self._filter_label)
@@ -118,6 +120,7 @@ class TimelinePanel(QWidget):
 
         actions = QHBoxLayout()
         actions.addWidget(self._count_label)
+        actions.addWidget(self._clear_filters)
         actions.addStretch(1)
         actions.addWidget(self._piece_moves)
         actions.addWidget(self._markers)
@@ -191,6 +194,7 @@ class TimelinePanel(QWidget):
         self._piece_moves.setText(tr("timeline.filter_piece_moves", language))
         self._markers.setText(tr("timeline.filter_markers", language))
         self._follow.setText(tr("timeline.follow_latest", language))
+        self._clear_filters.setText(tr("timeline.clear_filters", language))
         self._sync_event_actions()
         self._replay_reset.setText(tr("timeline.replay_reset", language))
         self._replay_back.setText(tr("timeline.replay_back", language))
@@ -457,7 +461,30 @@ class TimelinePanel(QWidget):
         follow_tip = tr("timeline.follow_latest", self._language)
         self._follow.setToolTip(follow_tip)
         self._follow.setStatusTip(follow_tip)
+        filters_active = self.has_active_filters()
+        self._clear_filters.setEnabled(filters_active)
+        clear_filters_tip = tr(
+            "tip.timeline_clear_filters"
+            if filters_active
+            else "status.timeline_clear_filters_idle",
+            self._language,
+        )
+        self._clear_filters.setToolTip(clear_filters_tip)
+        self._clear_filters.setStatusTip(clear_filters_tip)
         self._update_count_label(len(visible_entries), len(self._store.entries))
+
+    def has_active_filters(self) -> bool:
+        """Return True when event, algorithm, or period filters are set."""
+        return bool(
+            self._filter_event
+            or self._filter_algorithm
+            or self._filter_period_seconds is not None
+        )
+
+    def _on_clear_filters(self) -> None:
+        if not self.has_active_filters():
+            return
+        self.set_filters(event_name=None, algorithm=None, period_seconds=None)
 
     def visible_event_count(self) -> int:
         """Return how many events match the active Timeline filters."""
