@@ -1,9 +1,11 @@
 """Tests for Timeline history export (ADR-005)."""
 
 import json
+import csv
+from io import StringIO
 
 from studio.events import EventBus
-from studio.events.catalog import PROJECT_CREATED, PROJECT_SAVED
+from studio.events.catalog import PIECE_MOVED, PROJECT_CREATED, PROJECT_SAVED
 from studio.timeline.export import timeline_to_csv, timeline_to_json
 from studio.timeline.store import TimelineStore
 
@@ -23,7 +25,7 @@ def test_timeline_to_json_and_csv_include_events():
 
     csv_text = timeline_to_csv(store)
     lines = csv_text.strip().splitlines()
-    assert lines[0] == "sequence,timestamp,event,payload_json"
+    assert lines[0].startswith("sequence,timestamp,event,payload_json,piece,kind,")
     assert PROJECT_CREATED in lines[1]
     assert PROJECT_SAVED in lines[2]
 
@@ -84,3 +86,46 @@ def test_timeline_export_respects_since_filter():
     assert document["since"] is not None
     assert document["events"][0]["event"] == PROJECT_SAVED
     assert PROJECT_CREATED not in timeline_to_csv(store, since=since)
+
+
+def test_timeline_csv_exports_piece_moved_columns():
+    bus = EventBus()
+    store = TimelineStore(bus)
+    bus.publish(
+        PIECE_MOVED,
+        {
+            "piece": "A",
+            "kind": "reassigned",
+            "from_x": 10.0,
+            "from_y": 20.0,
+            "to_x": 30.0,
+            "to_y": 40.0,
+            "from_board": "P1",
+            "to_board": "P2",
+            "from_board_instance": 0,
+            "to_board_instance": 1,
+            "from_stock_panel_index": 0,
+            "to_stock_panel_index": 1,
+        },
+    )
+    bus.publish(PROJECT_SAVED, {"path": "demo.bcproj"})
+
+    rows = list(csv.DictReader(StringIO(timeline_to_csv(store))))
+    assert len(rows) == 2
+
+    moved = rows[0]
+    assert moved["event"] == PIECE_MOVED
+    assert moved["piece"] == "A"
+    assert moved["kind"] == "reassigned"
+    assert moved["from_x"] == "10.0"
+    assert moved["to_x"] == "30.0"
+    assert moved["from_board"] == "P1"
+    assert moved["to_board"] == "P2"
+    assert moved["from_board_instance"] == "0"
+    assert moved["to_board_instance"] == "1"
+
+    saved = rows[1]
+    assert saved["event"] == PROJECT_SAVED
+    assert saved["piece"] == ""
+    assert saved["from_x"] == ""
+    assert saved["to_board"] == ""

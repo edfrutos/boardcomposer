@@ -69,6 +69,9 @@
   (pieza, origen/destino y panel) para trazabilidad de edición en Workspace.
 - Timeline muestra `PieceMoved` en formato legible (`pieza: panel origen→destino,
   (x,y)→(x,y)`) y conserva metadatos adicionales en el detalle.
+- Export CSV del Timeline incluye columnas específicas para `PieceMoved`
+  (`piece`, `kind`, `from_*`, `to_*`, panel origen/destino) además de
+  `payload_json`.
 
 ### Corregido
 
