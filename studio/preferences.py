@@ -80,6 +80,7 @@ class StudioPreferences:
     timeline_algorithm_filter: str | None = None
     timeline_period_seconds: int | None = None
     timeline_replay_mode: str = "placements"
+    timeline_replay_interval_ms: int = 450
 
     def resolved_strategy(self) -> OptimizationStrategy:
         """Return the OptimizationStrategy implied by these preferences."""
@@ -143,12 +144,24 @@ def _optional_period_seconds(value: object) -> int | None:
 
 _VALID_TIMELINE_REPLAY_MODES = frozenset({"placements", "phases"})
 _DEFAULT_TIMELINE_REPLAY_MODE = "placements"
+_VALID_TIMELINE_REPLAY_INTERVALS = frozenset({200, 450, 900})
+_DEFAULT_TIMELINE_REPLAY_INTERVAL_MS = 450
 
 
 def _timeline_replay_mode(value: object) -> str:
     if isinstance(value, str) and value in _VALID_TIMELINE_REPLAY_MODES:
         return value
     return _DEFAULT_TIMELINE_REPLAY_MODE
+
+
+def _timeline_replay_interval_ms(value: object) -> int:
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        return _DEFAULT_TIMELINE_REPLAY_INTERVAL_MS
+    if parsed in _VALID_TIMELINE_REPLAY_INTERVALS:
+        return parsed
+    return _DEFAULT_TIMELINE_REPLAY_INTERVAL_MS
 
 
 def default_preferences_path() -> Path:
@@ -255,6 +268,9 @@ class PreferencesManager:
             timeline_replay_mode=_timeline_replay_mode(
                 payload.get("timeline_replay_mode")
             ),
+            timeline_replay_interval_ms=_timeline_replay_interval_ms(
+                payload.get("timeline_replay_interval_ms")
+            ),
         )
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
@@ -282,6 +298,7 @@ class PreferencesManager:
             "timeline_algorithm_filter": preferences.timeline_algorithm_filter,
             "timeline_period_seconds": preferences.timeline_period_seconds,
             "timeline_replay_mode": preferences.timeline_replay_mode,
+            "timeline_replay_interval_ms": preferences.timeline_replay_interval_ms,
         }
         self.path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",

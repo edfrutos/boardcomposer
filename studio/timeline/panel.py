@@ -25,10 +25,16 @@ from studio.timeline.phase_replay import SolvePhaseReplay
 from studio.timeline.replay import SolutionReplay
 from studio.timeline.store import TimelineEntry, TimelineStore
 
-_PLAY_INTERVAL_MS = 450
+_DEFAULT_PLAY_INTERVAL_MS = 450
 _ALL_ALGORITHMS = "__all_algorithms__"
 _MODE_PLACEMENTS = "placements"
 _MODE_PHASES = "phases"
+_SPEED_OPTIONS: tuple[tuple[int, str], ...] = (
+    (900, "timeline.replay_speed_slow"),
+    (_DEFAULT_PLAY_INTERVAL_MS, "timeline.replay_speed_normal"),
+    (200, "timeline.replay_speed_fast"),
+)
+_VALID_PLAY_INTERVALS = frozenset(ms for ms, _ in _SPEED_OPTIONS)
 _PERIOD_OPTIONS: tuple[tuple[int | None, str], ...] = (
     (None, "timeline.filter_period_all"),
     (60, "timeline.filter_period_1m"),
@@ -63,6 +69,7 @@ class TimelinePanel(QWidget):
         self._filter_algorithm: str | None = None
         self._filter_period_seconds: int | None = None
         self._replay_mode = _MODE_PLACEMENTS
+        self._replay_interval_ms = _DEFAULT_PLAY_INTERVAL_MS
         self._replay = SolutionReplay()
         self._phase_replay = SolvePhaseReplay()
 
@@ -103,6 +110,9 @@ class TimelinePanel(QWidget):
         self._mode_label = QLabel()
         self._mode = QComboBox()
         self._mode.currentIndexChanged.connect(self._on_mode_changed)
+        self._speed_label = QLabel()
+        self._speed = QComboBox()
+        self._speed.currentIndexChanged.connect(self._on_speed_changed)
         self._replay_label = QLabel()
         self._replay_reset = QPushButton()
         self._replay_back = QPushButton()
@@ -116,6 +126,8 @@ class TimelinePanel(QWidget):
         replay_row = QHBoxLayout()
         replay_row.addWidget(self._mode_label)
         replay_row.addWidget(self._mode)
+        replay_row.addWidget(self._speed_label)
+        replay_row.addWidget(self._speed)
         replay_row.addWidget(self._replay_label, stretch=1)
         replay_row.addWidget(self._replay_reset)
         replay_row.addWidget(self._replay_back)
@@ -134,7 +146,7 @@ class TimelinePanel(QWidget):
         layout.addWidget(self._list)
 
         self._play_timer = QTimer(self)
-        self._play_timer.setInterval(_PLAY_INTERVAL_MS)
+        self._play_timer.setInterval(self._replay_interval_ms)
         self._play_timer.timeout.connect(self._on_play_tick)
 
         self.retranslate(language)
@@ -150,6 +162,7 @@ class TimelinePanel(QWidget):
         self._algo_label.setText(tr("timeline.filter_algorithm", language))
         self._period_label.setText(tr("timeline.filter_period", language))
         self._mode_label.setText(tr("timeline.replay_mode", language))
+        self._speed_label.setText(tr("timeline.replay_speed", language))
         self._clear.setText(tr("timeline.clear", language))
         self._mark.setText(tr("timeline.mark", language))
         self._export.setText(tr("timeline.export", language))
@@ -162,6 +175,7 @@ class TimelinePanel(QWidget):
         self._rebuild_algorithm_items()
         self._rebuild_period_items()
         self._rebuild_mode_items()
+        self._rebuild_speed_items()
         self._rebuild()
         self._update_replay_controls()
 
@@ -195,6 +209,21 @@ class TimelinePanel(QWidget):
         data = self._mode.currentData()
         self._replay_mode = data if isinstance(data, str) else _MODE_PLACEMENTS
 
+    def _rebuild_speed_items(self) -> None:
+        current = self._replay_interval_ms
+        self._speed.blockSignals(True)
+        self._speed.clear()
+        for interval_ms, key in _SPEED_OPTIONS:
+            self._speed.addItem(tr(key, self._language), interval_ms)
+        index = self._speed.findData(current)
+        self._speed.setCurrentIndex(index if index >= 0 else 1)
+        self._speed.blockSignals(False)
+        data = self._speed.currentData()
+        self._replay_interval_ms = (
+            data if isinstance(data, int) else _DEFAULT_PLAY_INTERVAL_MS
+        )
+        self._play_timer.setInterval(self._replay_interval_ms)
+
     def _on_mode_changed(self, _index: int) -> None:
         data = self._mode.currentData()
         self._replay_mode = data if isinstance(data, str) else _MODE_PLACEMENTS
@@ -209,6 +238,14 @@ class TimelinePanel(QWidget):
             )
         else:
             self.replay_step_changed.emit(self._replay.solution, self._replay.step)
+        self.filters_changed.emit()
+
+    def _on_speed_changed(self, _index: int) -> None:
+        data = self._speed.currentData()
+        self._replay_interval_ms = (
+            data if isinstance(data, int) else _DEFAULT_PLAY_INTERVAL_MS
+        )
+        self._play_timer.setInterval(self._replay_interval_ms)
         self.filters_changed.emit()
 
     def _rebuild_filter_items(self) -> None:
@@ -372,6 +409,10 @@ class TimelinePanel(QWidget):
         """Return active replay mode (`placements` or `phases`)."""
         return self._replay_mode
 
+    def current_replay_interval_ms(self) -> int:
+        """Return active autoplay interval in milliseconds."""
+        return self._replay_interval_ms
+
     def set_replay_mode(self, mode: str) -> None:
         """Restore replay mode without emitting user-change side effects twice."""
         target = mode if mode in {_MODE_PLACEMENTS, _MODE_PHASES} else _MODE_PLACEMENTS
@@ -387,6 +428,26 @@ class TimelinePanel(QWidget):
         self._replay.stop()
         self._phase_replay.stop()
         self._update_replay_controls()
+        self.filters_changed.emit()
+
+    def set_replay_interval_ms(self, interval_ms: int) -> None:
+        """Restore autoplay speed without emitting Qt user-change signals twice."""
+        target = (
+            interval_ms
+            if interval_ms in _VALID_PLAY_INTERVALS
+            else _DEFAULT_PLAY_INTERVAL_MS
+        )
+        index = self._speed.findData(target)
+        if index < 0:
+            index = 1
+        self._speed.blockSignals(True)
+        self._speed.setCurrentIndex(index)
+        self._speed.blockSignals(False)
+        data = self._speed.currentData()
+        self._replay_interval_ms = (
+            data if isinstance(data, int) else _DEFAULT_PLAY_INTERVAL_MS
+        )
+        self._play_timer.setInterval(self._replay_interval_ms)
         self.filters_changed.emit()
 
     def set_filters(
