@@ -70,6 +70,7 @@ class TimelinePanel(QWidget):
         self._filter_period_seconds: int | None = None
         self._replay_mode = _MODE_PLACEMENTS
         self._replay_interval_ms = _DEFAULT_PLAY_INTERVAL_MS
+        self._follow_latest = True
         self._replay = SolutionReplay()
         self._phase_replay = SolvePhaseReplay()
 
@@ -94,6 +95,10 @@ class TimelinePanel(QWidget):
         self._markers = QPushButton()
         self._markers.setCheckable(True)
         self._markers.clicked.connect(self._on_markers_clicked)
+        self._follow = QPushButton()
+        self._follow.setCheckable(True)
+        self._follow.setChecked(True)
+        self._follow.clicked.connect(self._on_follow_clicked)
 
         filters = QHBoxLayout()
         filters.addWidget(self._filter_label)
@@ -107,6 +112,7 @@ class TimelinePanel(QWidget):
         actions.addStretch(1)
         actions.addWidget(self._piece_moves)
         actions.addWidget(self._markers)
+        actions.addWidget(self._follow)
         actions.addWidget(self._mark)
         actions.addWidget(self._export)
         actions.addWidget(self._clear)
@@ -172,6 +178,7 @@ class TimelinePanel(QWidget):
         self._export.setText(tr("timeline.export", language))
         self._piece_moves.setText(tr("timeline.filter_piece_moves", language))
         self._markers.setText(tr("timeline.filter_markers", language))
+        self._follow.setText(tr("timeline.follow_latest", language))
         self._sync_event_actions()
         self._replay_reset.setText(tr("timeline.replay_reset", language))
         self._replay_back.setText(tr("timeline.replay_back", language))
@@ -383,6 +390,16 @@ class TimelinePanel(QWidget):
         self._markers.setChecked(self._filter_event == TIMELINE_MARKED)
         self._markers.setToolTip(tr("timeline.filter_markers", self._language))
         self._markers.setStatusTip(tr("timeline.filter_markers", self._language))
+        self._follow.setChecked(self._follow_latest)
+        follow_tip = tr("timeline.follow_latest", self._language)
+        self._follow.setToolTip(follow_tip)
+        self._follow.setStatusTip(follow_tip)
+
+    def _on_follow_clicked(self) -> None:
+        self._follow_latest = self._follow.isChecked()
+        if self._follow_latest and self._list.count() > 0:
+            self._list.scrollToBottom()
+        self.filters_changed.emit()
 
     def _on_mark_clicked(self) -> None:
         note, ok = QInputDialog.getText(
@@ -428,6 +445,20 @@ class TimelinePanel(QWidget):
     def current_replay_interval_ms(self) -> int:
         """Return active autoplay interval in milliseconds."""
         return self._replay_interval_ms
+
+    def follows_latest(self) -> bool:
+        """Return whether the list auto-scrolls to new events."""
+        return self._follow_latest
+
+    def set_follow_latest(self, follow: bool) -> None:
+        """Restore follow-latest without emitting Qt user-change signals twice."""
+        self._follow_latest = bool(follow)
+        self._follow.blockSignals(True)
+        self._follow.setChecked(self._follow_latest)
+        self._follow.blockSignals(False)
+        if self._follow_latest and self._list.count() > 0:
+            self._list.scrollToBottom()
+        self.filters_changed.emit()
 
     def set_replay_mode(self, mode: str) -> None:
         """Restore replay mode without emitting user-change side effects twice."""
@@ -547,7 +578,8 @@ class TimelinePanel(QWidget):
         if not self._matches_filters(entry):
             return
         self._list.addItem(self._item_for(entry))
-        self._list.scrollToBottom()
+        if self._follow_latest:
+            self._list.scrollToBottom()
 
     def _rebuild(self) -> None:
         self._list.clear()
@@ -561,7 +593,7 @@ class TimelinePanel(QWidget):
             empty = QListWidgetItem(tr("timeline.empty", self._language))
             empty.setFlags(Qt.ItemFlag.NoItemFlags)
             self._list.addItem(empty)
-        else:
+        elif self._follow_latest:
             self._list.scrollToBottom()
 
     def _item_for(self, entry: TimelineEntry) -> QListWidgetItem:

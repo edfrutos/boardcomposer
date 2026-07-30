@@ -215,3 +215,30 @@ def test_timeline_replay_speed_persists_in_preferences(qapp, tmp_path):
     restored = MainWindow(services2)
     assert restored.console.current_replay_interval_ms() == 200
     assert restored.console._play_timer.interval() == 200
+
+
+def test_timeline_follow_latest_persists_and_skips_scroll(qapp, tmp_path):
+    del qapp
+    prefs_path = tmp_path / "preferences.json"
+    services = StudioServices(preferences=PreferencesManager(prefs_path))
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+
+    assert window.console.follows_latest() is True
+    window.console.set_follow_latest(False)
+    assert window.console.follows_latest() is False
+    assert services.preferences.current.timeline_follow_latest is False
+
+    window.services.events.publish(PROJECT_CREATED, {"kind": "demo"})
+    window.services.events.publish(TIMELINE_MARKED, {"note": "keep"})
+    # With follow off, programmatic scroll-to-bottom is skipped on rebuild path;
+    # toggle remains off after new events.
+    assert window.console.follows_latest() is False
+
+    services2 = StudioServices(preferences=PreferencesManager(prefs_path))
+    services2.preferences.update(
+        dataclass_replace(services2.preferences.current, language="es")
+    )
+    restored = MainWindow(services2)
+    assert restored.console.follows_latest() is False
+    assert restored.console._follow.isChecked() is False

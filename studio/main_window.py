@@ -459,6 +459,7 @@ class MainWindow(QMainWindow):
         prefs = self.services.preferences.current
         self.console.set_replay_mode(prefs.timeline_replay_mode)
         self.console.set_replay_interval_ms(prefs.timeline_replay_interval_ms)
+        self.console.set_follow_latest(prefs.timeline_follow_latest)
         self.console.set_filters(
             event_name=prefs.timeline_event_filter,
             algorithm=prefs.timeline_algorithm_filter,
@@ -2298,6 +2299,7 @@ class MainWindow(QMainWindow):
             timeline_period_seconds=self.console.current_filter_period_seconds(),
             timeline_replay_mode=self.console.current_replay_mode(),
             timeline_replay_interval_ms=self.console.current_replay_interval_ms(),
+            timeline_follow_latest=self.console.follows_latest(),
         )
         if updated != prefs:
             self.services.preferences.update(updated)
