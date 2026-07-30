@@ -37,6 +37,10 @@ referencia. No cubre Studio/Qt ni un SaaS multi-tenant.
 - Multi-tenant aislamiento.
 - Firma HMAC del body del webhook (solo secreto compartido en header).
 
+**Decisión 2026-07-30:** rate-limit / mTLS permanecen **diferidos hasta
+piloto nombrado**. Sin piloto no se implementan (alineado con EP-003:
+«no inventar cloud por inercia»).
+
 ---
 
 ## Checklist de despliegue piloto

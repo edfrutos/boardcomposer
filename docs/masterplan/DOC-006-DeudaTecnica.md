@@ -6,7 +6,7 @@
 **Versión:** 1.2.0
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 29/07/2026
+**Última revisión:** 30/07/2026
 
 ---
 
@@ -91,7 +91,7 @@ Estado
 | DT-0003 | DT-T | Mantener la cobertura de pruebas por encima del objetivo definido. | 🟢 Controlado |
 | DT-0004 | DT-T | Añadir cobertura automatizada de interacción Qt y Workspace. | 🟢 Resuelto (`tests/conftest.py`, `tests/test_workspace_qt_interaction.py`) |
 | DT-0005 | DT-UX | Habilitar movimiento y reasignación interactiva entre paneles. | 🟢 Resuelto (arrastre entre paneles físicos en el Workspace) |
-| DT-0006 | DT-A | Historial cloud/multi-usuario de revisiones `.bcproj` (el anillo local ya está entregado). | ⚪ Planificada |
+| DT-0006 | DT-A | Historial cloud/multi-usuario de revisiones `.bcproj` (el anillo local ya está entregado). Spike: `spikes/SPIKE-DT-0006-historial-cloud.md`. | ⚪ Planificada (spike 2026-07-30) |
 
 ---
 
@@ -120,6 +120,8 @@ Estado
 
 Próximo foco:
 
+- Spike DT-0006 documentado (`spikes/SPIKE-DT-0006-historial-cloud.md`):
+  **no implementar cloud** hasta piloto; opciones A/C/D evaluadas.
 - definir métricas mínimas de deuda por release (conteo y antigüedad por categoría);
 - fijar umbrales de aceptación por versión (bloqueante / advertencia);
 - vincular revisión DOC-006 al cierre de sprint y release notes.
