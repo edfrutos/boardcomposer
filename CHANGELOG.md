@@ -65,6 +65,8 @@
   `BcprojDiffDialog` con contexto de proyecto/ruta.
 - Nuevo checklist UAT de plataforma (`uat/plataforma/CHECKLIST.md`) para
   operación sin UI: batch CLI, API HTTP, auth y smoke de regresión.
+- Timeline registra `PieceMoved` con payload de movimiento/reasignación
+  (pieza, origen/destino y panel) para trazabilidad de edición en Workspace.
 
 ### Corregido
 

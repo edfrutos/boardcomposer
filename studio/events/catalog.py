@@ -12,6 +12,7 @@ PROJECT_SAVED = "ProjectSaved"
 PROJECT_OPENED = "ProjectOpened"
 WORKSPACE_OPENED = "WorkspaceOpened"
 CSV_IMPORTED = "CsvImported"
+PIECE_MOVED = "PieceMoved"
 SOLUTION_GENERATION_STARTED = "SolutionGenerationStarted"
 SOLUTION_GENERATED = "SolutionGenerated"
 SOLUTION_SELECTED = "SolutionSelected"
@@ -34,6 +35,7 @@ CATALOG: tuple[str, ...] = (
     PROJECT_OPENED,
     WORKSPACE_OPENED,
     CSV_IMPORTED,
+    PIECE_MOVED,
     SOLUTION_GENERATION_STARTED,
     SOLUTION_GENERATED,
     SOLUTION_SELECTED,

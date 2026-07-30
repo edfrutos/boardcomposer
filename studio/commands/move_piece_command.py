@@ -3,6 +3,7 @@
 from typing import TYPE_CHECKING
 
 from studio.commands.command import Command
+from studio.events import catalog as events
 
 if TYPE_CHECKING:
     from studio.services import StudioServices
@@ -49,6 +50,11 @@ class MovePieceCommand(Command):
             self.new_board_id,
             self.new_board_instance,
             self.new_stock_panel_index,
+            from_x=self.old_x,
+            from_y=self.old_y,
+            from_board_id=self.old_board_id,
+            from_board_instance=self.old_board_instance,
+            from_stock_panel_index=self.old_stock_panel_index,
         )
 
     def undo(self) -> None:
@@ -58,6 +64,11 @@ class MovePieceCommand(Command):
             self.old_board_id,
             self.old_board_instance,
             self.old_stock_panel_index,
+            from_x=self.new_x,
+            from_y=self.new_y,
+            from_board_id=self.new_board_id,
+            from_board_instance=self.new_board_instance,
+            from_stock_panel_index=self.new_stock_panel_index,
         )
 
     def _move_to(
@@ -67,6 +78,12 @@ class MovePieceCommand(Command):
         board_id: str | None,
         board_instance: int,
         stock_panel_index: int | None,
+        *,
+        from_x: float,
+        from_y: float,
+        from_board_id: str | None,
+        from_board_instance: int,
+        from_stock_panel_index: int | None,
     ) -> None:
         project = self.services.projects.current_project
         if project is None:
@@ -81,3 +98,29 @@ class MovePieceCommand(Command):
         placement.board_id = board_id
         placement.board_instance = board_instance
         placement.stock_panel_index = stock_panel_index
+
+        self.services.events.publish(
+            events.PIECE_MOVED,
+            {
+                "piece": self.piece_id,
+                "kind": (
+                    "reassigned"
+                    if (
+                        from_board_id != board_id
+                        or from_board_instance != board_instance
+                        or from_stock_panel_index != stock_panel_index
+                    )
+                    else "moved"
+                ),
+                "from_x": from_x,
+                "from_y": from_y,
+                "to_x": x,
+                "to_y": y,
+                "from_board": from_board_id,
+                "to_board": board_id,
+                "from_board_instance": from_board_instance,
+                "to_board_instance": board_instance,
+                "from_stock_panel_index": from_stock_panel_index,
+                "to_stock_panel_index": stock_panel_index,
+            },
+        )
