@@ -7,8 +7,23 @@ import json
 from datetime import datetime
 from io import StringIO
 
-from studio.events.catalog import ALL_EVENTS
+from studio.events.catalog import ALL_EVENTS, PIECE_MOVED
 from studio.timeline.store import TimelineEntry, TimelineStore
+
+_PIECE_MOVED_FIELDS: tuple[str, ...] = (
+    "piece",
+    "kind",
+    "from_x",
+    "from_y",
+    "to_x",
+    "to_y",
+    "from_board",
+    "to_board",
+    "from_board_instance",
+    "to_board_instance",
+    "from_stock_panel_index",
+    "to_stock_panel_index",
+)
 
 
 def _serialize_payload(payload: dict) -> dict:
@@ -92,7 +107,7 @@ def timeline_to_csv(
     algorithm: str | None = None,
     since: datetime | None = None,
 ) -> str:
-    """Return a CSV table with sequence, timestamp, event and payload JSON."""
+    """Return a CSV table with payload JSON plus key PieceMoved fields."""
     entries = timeline_entries(
         store,
         event_name=event_name,
@@ -101,14 +116,31 @@ def timeline_to_csv(
     )
     buffer = StringIO()
     writer = csv.writer(buffer)
-    writer.writerow(["sequence", "timestamp", "event", "payload_json"])
+    writer.writerow(
+        [
+            "sequence",
+            "timestamp",
+            "event",
+            "payload_json",
+            *_PIECE_MOVED_FIELDS,
+        ]
+    )
     for entry in entries:
+        payload = _serialize_payload(entry.payload)
+        moved_columns = _piece_moved_columns(entry.event_name, payload)
         writer.writerow(
             [
                 entry.sequence,
                 entry.timestamp.isoformat(),
                 entry.event_name,
-                json.dumps(_serialize_payload(entry.payload), ensure_ascii=False),
+                json.dumps(payload, ensure_ascii=False),
+                *moved_columns,
             ]
         )
     return buffer.getvalue()
+
+
+def _piece_moved_columns(event_name: str, payload: dict) -> list[object]:
+    if event_name != PIECE_MOVED:
+        return ["" for _ in _PIECE_MOVED_FIELDS]
+    return [payload.get(field, "") for field in _PIECE_MOVED_FIELDS]
