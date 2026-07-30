@@ -40,20 +40,34 @@ arquitectónica y funcional está consolidada.
 - [x] Pantalla de inicio / bienvenida (SCR-001).
 - [x] Docs UI SCR-001…007 y FLW-001…006 alineados con Studio
       (`docs/masterplan/ui/REVIEW-2026-07-17.md`).
+- [x] Timeline (ADR-005): filtros, replay, export, preferencias de UI.
 
-## Fase 3 — Plataforma — Planificada
+Núcleo usable; evolución continua (pulido tips/enablement, deuda DT-0006).
 
-Detalle: `docs/masterplan/epics/` (EP-001 → EP-002 → EP-003).
+## Fase 3 — Plataforma — Entregada
 
-- [ ] EP-001 API pública y contratos `v1`.
-- [ ] EP-002 Automatización y batch (CLI/lotes).
-- [ ] EP-003 Integraciones / servicios remotos.
+Detalle: `docs/masterplan/epics/` (EP-001 → EP-002 → EP-003). Alineado con
+`DOC-003` / `DOC-004` (corte 2026-07).
+
+- [x] EP-001 API pública y contratos `v1`.
+- [x] EP-002 Automatización y batch (CLI/lotes).
+- [x] EP-003 Integraciones / servicios remotos.
+
+Post-corte (solo con piloto): rate-limit / mTLS — ver `DOC-010`.
+Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial-cloud.md`.
 
 ## Fase 4 — Inteligencia — Visión
 
-- Asistencia y explicaciones mediante IA.
+- Asistencia y explicaciones mediante IA (IDE-0007).
 - Recomendación de estrategias y análisis avanzado.
 
 ## Fase 5 — Ecosistema — Visión futura
 
-- Plugins, marketplace, biblioteca de materiales y comunidad.
+- Plugins (IDE-0008), marketplace, biblioteca de materiales y comunidad.
+
+## Próximo foco (operativo)
+
+1. Pulido menor Fase 2 (tips/enablement residuales).
+2. Spike DT-0006 — historial cloud / multi-usuario `.bcproj`
+   (`docs/masterplan/spikes/SPIKE-DT-0006-historial-cloud.md`).
+3. Fase 4 IA solo bajo demanda con caso de uso claro.

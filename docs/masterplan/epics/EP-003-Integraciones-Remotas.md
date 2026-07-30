@@ -116,5 +116,6 @@ Imagen: Core + Flask (sin PySide6). Amenazas: [DOC-010](../DOC-010-HTTP-Amenazas
 ## Notas de diseño
 
 Capa fina sobre `boardcomposer.api.v1` — sin lógica de packing en Flask.
-EP-003 cerrada en el corte de referencia; ampliar rate-limit/mTLS solo con piloto.
+EP-003 cerrada en el corte de referencia; ampliar rate-limit/mTLS solo con piloto
+(**diferido 2026-07-30** hasta piloto nombrado; ver DOC-010).
 No inventar cloud por inercia.

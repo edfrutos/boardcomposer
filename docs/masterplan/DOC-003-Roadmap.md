@@ -157,8 +157,9 @@ Objetivos:
 
 ### Prioridad P1 — Siguiente (producto)
 
-- Pulido menor Fase 2 (feedback honesto, UAT residual).
-- Historial cloud / multi-usuario de `.bcproj` (anillo local ya existe).
+- Pulido menor Fase 2 (tips/enablement residuales; UAT Studio ya cerrado).
+- Historial cloud `.bcproj`: spike DT-0006 documentado — **sin implementación**
+  hasta piloto (`spikes/SPIKE-DT-0006-historial-cloud.md`).
 - Fase 4 IA bajo demanda.
 
 ### Prioridad P2

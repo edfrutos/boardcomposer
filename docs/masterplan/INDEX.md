@@ -73,10 +73,12 @@ Workspace real; la revisión del 2026-07-17 está en
 
 - `../README.md` — mapa docs (usuario vs proyecto)
 - `../user/GUIA-RAPIDA.md` — guía usuario Studio
+- `spikes/` — spikes de deuda / alcance (p. ej. DT-0006)
 - `../architecture.md`
 - `../data_model.md`
 - `../algorithms.md`
 - `../scoring.md`
 - `../../README.md`
 - `../../CHANGELOG.md`
+- `../../ROADMAP.md` — resumen operativo (alineado con DOC-003)
 - `../../uat/README.md` — índice UAT

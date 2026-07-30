@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- Spike DT-0006 (`docs/masterplan/spikes/SPIKE-DT-0006-historial-cloud.md`):
+  opciones Git / sync / API / export; **sin cloud** hasta piloto.
 - Mapa docs (`docs/README.md`), guía rápida usuario (`docs/user/GUIA-RAPIDA.md`)
   y checklist visual UAT (`uat/studio/CHECKLIST-VISUAL.md`). Ayuda →
   Documentación abre la guía de usuario.
@@ -21,6 +23,14 @@
 
 ### Cambiado
 
+- `ROADMAP.md` raíz alineado con DOC-003/004: Fase 3 EP-001…003 marcadas
+  entregadas; próximo foco DT-0006 / IA bajo demanda.
+- UAT plataforma (`uat/plataforma/CHECKLIST.md`) marcado OK operativo
+  (smoke batch+HTTP + 21 tests, 2026-07-30).
+- Comparador: Re/Av Pág y Pin respetan el filtro visible (tips/enablement).
+- Rotar: tip honesto si la pieza está seleccionada pero aún no colocada.
+- Menú contextual Explorador: tip al deshabilitar Colocar / Abrir carpeta.
+- DOC-010 / EP-003: rate-limit y mTLS diferidos hasta piloto nombrado.
 - Raíz docs limpia: `TODO.md` / `DECISIONS.md` stubs → masterplan;
   `docs/estructura.md` redirige; `NOTEBOOK.md` marcado histórico.
   Ayuda → Documentación prioriza guía usuario sobre masterplan.

@@ -557,6 +557,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.board_duplicated": "Tablero duplicado: {id}",
         "status.id_copied": "ID copiado: {id}",
         "status.select_piece_first": "Selecciona una pieza primero",
+        "status.place_piece_before_rotate": (
+            "Coloca la pieza en un tablero antes de rotarla"
+        ),
         "status.nothing_to_duplicate": (
             "Selecciona una pieza o un tablero para duplicar"
         ),
@@ -1379,6 +1382,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.board_duplicated": "Board duplicated: {id}",
         "status.id_copied": "ID copied: {id}",
         "status.select_piece_first": "Select a piece first",
+        "status.place_piece_before_rotate": (
+            "Place the piece on a board before rotating it"
+        ),
         "status.nothing_to_duplicate": "Select a piece or board to duplicate",
         "status.nothing_to_delete": "Select a piece or board to delete",
         "status.cannot_rotate": "The piece cannot be rotated in that position",

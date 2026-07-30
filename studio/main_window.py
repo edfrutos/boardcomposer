@@ -1821,7 +1821,7 @@ class MainWindow(QMainWindow):
 
         item = self.workspace.piece_item_by_id(piece_id)
         if item is None:
-            self._status("status.select_piece_first")
+            self._status("status.place_piece_before_rotate")
             return
 
         project = self.services.projects.current_project
@@ -1831,7 +1831,7 @@ class MainWindow(QMainWindow):
 
         placement = project.placement_by_piece_id(piece_id)
         if placement is None:
-            self._status("status.select_piece_first")
+            self._status("status.place_piece_before_rotate")
             return
 
         old_rotation = placement.rotation
@@ -2101,17 +2101,20 @@ class MainWindow(QMainWindow):
             else self._tr("status.nothing_to_fit_selection")
         )
         piece_id = self.workspace.selection.current()
+        project = self.services.projects.current_project
         can_rotate = bool(
             piece_id is not None
             and project is not None
             and project.placement_by_piece_id(piece_id) is not None
         )
         rotate_piece.setEnabled(can_rotate)
-        rotate_piece.setStatusTip(
-            with_native_shortcuts(self._tr("tip.rotate_piece"))
-            if can_rotate
-            else self._tr("status.select_piece_first")
-        )
+        if can_rotate:
+            rotate_tip = with_native_shortcuts(self._tr("tip.rotate_piece"))
+        elif piece_id is not None:
+            rotate_tip = self._tr("status.place_piece_before_rotate")
+        else:
+            rotate_tip = self._tr("status.select_piece_first")
+        rotate_piece.setStatusTip(rotate_tip)
 
     def _explorer_selection_kind(self) -> str | None:
         item = self.explorer.currentItem()
@@ -2205,16 +2208,19 @@ class MainWindow(QMainWindow):
     def _sync_solution_actions(self) -> None:
         """Enable solution actions only when they can do useful work."""
         total = len(self.services.layout.solutions)
+        display = self._ensure_solution_display_indexes()
+        visible = len(display)
         has_any = total > 0
-        has_multiple = total > 1
+        has_visible = visible > 0
+        has_multiple_visible = visible > 1
         self._actions["apply_layout"].setEnabled(has_any)
         self._actions["export_selected"].setEnabled(has_any)
-        self._actions["previous_solution"].setEnabled(has_multiple)
-        self._actions["next_solution"].setEnabled(has_multiple)
+        self._actions["previous_solution"].setEnabled(has_multiple_visible)
+        self._actions["next_solution"].setEnabled(has_multiple_visible)
 
         pin = getattr(self, "pin_reference_button", None)
         if pin is not None:
-            pin.setEnabled(has_multiple)
+            pin.setEnabled(has_multiple_visible)
 
         sort = getattr(self, "comparator_sort", None)
         sort_label = getattr(self, "comparator_sort_label", None)
@@ -2228,6 +2234,7 @@ class MainWindow(QMainWindow):
 
         need_layout = with_native_shortcuts(self._tr("status.calculate_layout_first"))
         only_one = with_native_shortcuts(self._tr("status.only_one_visible_solution"))
+        no_match = with_native_shortcuts(self._tr("status.no_solutions_match_filter"))
         apply = self._actions["apply_layout"]
         export = self._actions["export_selected"]
         previous = self._actions["previous_solution"]
@@ -2242,21 +2249,27 @@ class MainWindow(QMainWindow):
             if has_any
             else need_layout
         )
+        if not has_any:
+            nav_disabled_tip = need_layout
+        elif not has_visible:
+            nav_disabled_tip = no_match
+        else:
+            nav_disabled_tip = only_one
         previous.setStatusTip(
             with_native_shortcuts(self._tr("tip.previous_solution"))
-            if has_multiple
-            else (only_one if has_any else need_layout)
+            if has_multiple_visible
+            else nav_disabled_tip
         )
         next_action.setStatusTip(
             with_native_shortcuts(self._tr("tip.next_solution"))
-            if has_multiple
-            else (only_one if has_any else need_layout)
+            if has_multiple_visible
+            else nav_disabled_tip
         )
         if pin is not None:
             pin_tip = (
                 self._tr("tip.pin_reference")
-                if has_multiple
-                else (only_one if has_any else need_layout)
+                if has_multiple_visible
+                else nav_disabled_tip
             )
             pin.setToolTip(pin_tip)
             pin.setStatusTip(pin_tip)
@@ -3717,6 +3730,7 @@ class MainWindow(QMainWindow):
             action = menu.addAction(self._tr(f"explorer.context.{key}"))
             if key == "reveal_folder" and not self.services.projects.filename:
                 action.setEnabled(False)
+                action.setStatusTip(self._tr("status.project_unsaved"))
             if key == "place_on_board":
                 parsed = parse_explorer_role(role)
                 can_place = False
@@ -3728,6 +3742,8 @@ class MainWindow(QMainWindow):
                 ):
                     can_place = project.placement_by_piece_id(parsed[1]) is None
                 action.setEnabled(can_place)
+                if not can_place:
+                    action.setStatusTip(self._tr("status.place_needs_board_focus"))
             triggered[action] = key
         chosen = menu.exec(self.explorer.viewport().mapToGlobal(position))
         if chosen is None:

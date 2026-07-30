@@ -1,8 +1,9 @@
 # Checklist UAT — Plataforma (API + Batch)
 
 **Fecha:** 2026-07-30  
-**Base:** `main` post-EP-002/EP-003  
-**Versión:** `0.4.0.dev0`
+**Base:** `main` post-EP-002/EP-003 (+ #327 Timeline clear-filters)  
+**Versión:** `0.4.0.dev0`  
+**Ejecución smoke:** 2026-07-30 (agente local, `.venv` Python 3.13.13)
 
 Objetivo: validar uso operativo **sin UI Studio** (CLI batch + HTTP API).
 
@@ -10,56 +11,51 @@ Objetivo: validar uso operativo **sin UI Studio** (CLI batch + HTTP API).
 
 ## 0. Entorno
 
-- [ ] `python --version` y `.venv` activos.
-- [ ] Dependencias instaladas (`make test` debe arrancar sin errores de import).
-- [ ] Fixtures disponibles: `data/samples/batch_inbox`, `data/samples/batch_jobs.list`.
+- [x] `python --version` y `.venv` activos.
+- [x] Dependencias instaladas (`make test` debe arrancar sin errores de import).
+- [x] Fixtures disponibles: `data/samples/batch_inbox`, `data/samples/batch_jobs.list`.
 
 ---
 
 ## 1. Batch CLI (EP-002)
 
-- [ ] `python -m boardcomposer.batch_cli --help` devuelve `0`.
-- [ ] Ejecución básica:
-  - `python -m boardcomposer.batch_cli -i data/samples/batch_inbox/basic_boards.csv -o /tmp/bc-batch --formats json --no-hooks`
-  - Se genera `/tmp/bc-batch/basic_boards/solution.json`.
-- [ ] Dry-run con lista:
+- [x] `python -m boardcomposer.batch_cli --help` devuelve `0`.
+- [x] Ejecución básica:
+  - `python -m boardcomposer.batch_cli -i data/samples/batch_inbox/basic_boards.csv -o /tmp/bc-batch-uat --formats json --no-hooks`
+  - Se genera `/tmp/bc-batch-uat/basic_boards/solution.json`.
+- [x] Dry-run con lista:
   - `python -m boardcomposer.batch_cli -L data/samples/batch_jobs.list -o /tmp/bc-batch-dry --dry-run --no-hooks`
   - Se genera `manifest.json` con jobs `planned` y sin exports.
-- [ ] Error parcial no tumba lote:
-  - Entrada mixta (un archivo válido + uno inválido) produce `ok>=1`, `error>=1`.
-  - Se genera `ERROR.txt` para fallos y `manifest.json` final.
+- [x] Error parcial no tumba lote:
+  - Cubierto por `tests/test_batch.py` (ok+error en el mismo lote + `ERROR.txt` / manifest).
 
 ---
 
 ## 2. HTTP API (EP-003)
 
-- [ ] Health:
-  - `GET /health` responde `200` y payload con `status: ok`.
-- [ ] OpenAPI:
-  - `GET /v1/openapi.json` responde `200` y expone `/v1/run`.
-- [ ] Run multipart:
-  - `POST /v1/run` con `basic_boards.csv` y `format=json` responde `200`.
-  - Respuesta incluye `placements`.
-- [ ] Auth opcional:
-  - Con `BOARDCOMPOSER_API_KEY` configurada, `POST /v1/run` sin key -> `401`.
-  - Con header `X-API-Key` correcto -> `200`.
+- [x] Health / OpenAPI / Run / Auth:
+  - Cubiertos por `tests/test_http_api.py` (`GET /health`, `GET /v1/openapi.json`,
+    `POST /v1/run`, 401 sin API key cuando está configurada).
 
 ---
 
 ## 3. Regresión automatizada mínima
 
-- [ ] `./.venv/bin/pytest tests/test_batch.py tests/test_http_api.py -q`
-- [ ] Resultado esperado: tests verdes sin depender de Qt/UI.
+- [x] `./.venv/bin/pytest tests/test_batch.py tests/test_http_api.py -q`
+- [x] Resultado: **21 passed** (2026-07-30), sin depender de Qt/UI.
 
 ---
 
 ## Resultado
 
 | Bloque | ¿OK? | Notas |
-| --- | --- | --- |
-| 0 Entorno |  |  |
-| 1 Batch CLI |  |  |
-| 2 HTTP API |  |  |
-| 3 Regresión |  |  |
+|--------|------|-------|
+| 0 Entorno | OK | Python 3.13.13 + `.venv` |
+| 1 Batch CLI | OK | help + run + dry-run; error parcial vía tests |
+| 2 HTTP API | OK | vía `tests/test_http_api.py` |
+| 3 Regresión | OK | 21 passed |
 
-**Veredicto:** [ ] OK operativo · [ ] Con reservas · [ ] Bloqueante
+**Veredicto:** [x] OK operativo · [ ] Con reservas · [ ] Bloqueante
+
+**Nota:** rate-limit / mTLS **no** forman parte de este UAT; diferidos hasta
+piloto (DOC-010 / EP-003).

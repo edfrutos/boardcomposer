@@ -120,6 +120,7 @@ EP (001…003) Fase 3 entregadas. Última revisión: 29/07/2026.
 
 Próximo foco:
 
-- Historial cloud / multi-usuario `.bcproj` (anillo local ya existe; ver `DT-0006`);
+- Historial cloud / multi-usuario `.bcproj`: **spike cerrado sin build** —
+  ver `spikes/SPIKE-DT-0006-historial-cloud.md` y `DT-0006` (esperar piloto);
 - Fase 4 IA bajo demanda (IDE-0007);
 - Refinar flujo Idea → Épica → Sprint con estimaciones de esfuerzo por épica.
