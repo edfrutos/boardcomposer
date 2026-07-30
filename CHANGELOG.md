@@ -85,6 +85,8 @@
   persistido en preferencias).
 - Export Timeline recuerda el último formato (JSON/CSV) y lo preselecciona
   en el diálogo de guardar.
+- Timeline: atajos de reproducción con la lista enfocada (Espacio play/pausa,
+  ←/→ paso, Inicio reset).
 
 ### Corregido
 

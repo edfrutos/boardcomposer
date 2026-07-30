@@ -4,7 +4,8 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 
-from PySide6.QtCore import Qt, QTimer, Signal
+from PySide6.QtCore import QEvent, Qt, QTimer, Signal
+from PySide6.QtGui import QKeyEvent
 from PySide6.QtWidgets import (
     QComboBox,
     QHBoxLayout,
@@ -147,6 +148,7 @@ class TimelinePanel(QWidget):
         self._list = QListWidget()
         self._list.setUniformItemSizes(True)
         self._list.itemClicked.connect(self._on_item_clicked)
+        self._list.installEventFilter(self)
 
         layout = QVBoxLayout(self)
         layout.setContentsMargins(4, 4, 4, 4)
@@ -190,6 +192,43 @@ class TimelinePanel(QWidget):
         self._rebuild_speed_items()
         self._rebuild()
         self._update_replay_controls()
+
+    def eventFilter(self, watched, event) -> bool:  # noqa: N802 — Qt API
+        """Replay shortcuts when the Timeline list has keyboard focus."""
+        if (
+            watched is self._list
+            and event.type() == QEvent.Type.KeyPress
+            and isinstance(event, QKeyEvent)
+            and self._handle_replay_shortcut(event)
+        ):
+            return True
+        return super().eventFilter(watched, event)
+
+    def _handle_replay_shortcut(self, event: QKeyEvent) -> bool:
+        if event.modifiers() != Qt.KeyboardModifier.NoModifier:
+            return False
+        key = event.key()
+        if key == Qt.Key.Key_Space:
+            if event.isAutoRepeat() or not self._replay_play.isEnabled():
+                return False
+            self._on_replay_play()
+            return True
+        if key == Qt.Key.Key_Left:
+            if not self._replay_back.isEnabled():
+                return False
+            self._on_replay_back()
+            return True
+        if key == Qt.Key.Key_Right:
+            if not self._replay_forward.isEnabled():
+                return False
+            self._on_replay_forward()
+            return True
+        if key == Qt.Key.Key_Home:
+            if not self._replay_reset.isEnabled():
+                return False
+            self._on_replay_reset()
+            return True
+        return False
 
     def set_replay_solution(self, solution: AssemblySolution | None) -> None:
         """Bind the selected layout solution for placement walkthrough."""
@@ -675,6 +714,15 @@ class TimelinePanel(QWidget):
         self._update_replay_controls()
         self.phase_step_changed.emit(self._phase_replay.current, step)
 
+    def _sync_replay_shortcut_tips(self) -> None:
+        """Advertise list-focused replay shortcuts on the transport buttons."""
+        self._replay_reset.setToolTip(tr("tip.timeline_replay_reset", self._language))
+        self._replay_back.setToolTip(tr("tip.timeline_replay_back", self._language))
+        self._replay_forward.setToolTip(
+            tr("tip.timeline_replay_forward", self._language)
+        )
+        self._replay_play.setToolTip(tr("tip.timeline_replay_play", self._language))
+
     def _update_replay_controls(self) -> None:
         if self._replay_mode == _MODE_PHASES:
             self._update_phase_controls()
@@ -690,6 +738,7 @@ class TimelinePanel(QWidget):
             "timeline.replay_pause" if self._replay.playing else "timeline.replay_play"
         )
         self._replay_play.setText(tr(play_key, self._language))
+        self._sync_replay_shortcut_tips()
         if available:
             algorithm = self._replay.algorithm or tr(
                 "timeline.replay_algorithm_unknown",
@@ -734,6 +783,7 @@ class TimelinePanel(QWidget):
             else "timeline.replay_play"
         )
         self._replay_play.setText(tr(play_key, self._language))
+        self._sync_replay_shortcut_tips()
         if not available:
             self._replay_label.setText(tr("timeline.phase_none", self._language))
             return
