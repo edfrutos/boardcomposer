@@ -67,6 +67,8 @@
   operación sin UI: batch CLI, API HTTP, auth y smoke de regresión.
 - Timeline registra `PieceMoved` con payload de movimiento/reasignación
   (pieza, origen/destino y panel) para trazabilidad de edición en Workspace.
+- Timeline muestra `PieceMoved` en formato legible (`pieza: panel origen→destino,
+  (x,y)→(x,y)`) y conserva metadatos adicionales en el detalle.
 
 ### Corregido
 

@@ -582,6 +582,9 @@ def _format_payload(payload: dict, language: str) -> str:
     if not payload:
         return ""
     parts: list[str] = []
+    piece_move = _format_piece_move_payload(payload)
+    if piece_move:
+        parts.append(piece_move)
     if "path" in payload:
         parts.append(str(payload["path"]))
     if "name" in payload:
@@ -596,13 +599,13 @@ def _format_payload(payload: dict, language: str) -> str:
         parts.append(tr("timeline.detail.step", language, n=payload["step"]))
     if "status" in payload:
         parts.append(str(payload["status"]))
-    if "kind" in payload:
+    if "kind" in payload and not piece_move:
         parts.append(str(payload["kind"]))
     if "strategy" in payload:
         parts.append(str(payload["strategy"]))
     if "algorithm" in payload:
         parts.append(str(payload["algorithm"]))
-    if "piece" in payload:
+    if "piece" in payload and not piece_move:
         parts.append(str(payload["piece"]))
     if "note" in payload:
         parts.append(str(payload["note"]))
@@ -626,3 +629,33 @@ def _format_payload(payload: dict, language: str) -> str:
     if "rejected" in payload:
         parts.append(tr("timeline.detail.rejected", language, n=payload["rejected"]))
     return ", ".join(parts)
+
+
+def _format_piece_move_payload(payload: dict) -> str:
+    required = {"piece", "from_x", "from_y", "to_x", "to_y"}
+    if not required.issubset(payload):
+        return ""
+
+    piece = str(payload["piece"])
+    from_xy = f"({float(payload['from_x']):g},{float(payload['from_y']):g})"
+    to_xy = f"({float(payload['to_x']):g},{float(payload['to_y']):g})"
+
+    from_board = payload.get("from_board")
+    to_board = payload.get("to_board")
+    from_instance = payload.get("from_board_instance")
+    to_instance = payload.get("to_board_instance")
+
+    panel_changed = (
+        from_board != to_board
+        or from_instance != to_instance
+        or payload.get("from_stock_panel_index") != payload.get("to_stock_panel_index")
+    )
+
+    if panel_changed:
+        from_panel = (
+            f"{from_board or '-'}#{from_instance if from_instance is not None else 0}"
+        )
+        to_panel = f"{to_board or '-'}#{to_instance if to_instance is not None else 0}"
+        return f"{piece}: {from_panel}→{to_panel}, {from_xy}→{to_xy}"
+
+    return f"{piece}: {from_xy}→{to_xy}"
