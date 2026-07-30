@@ -455,6 +455,7 @@ class MainWindow(QMainWindow):
         self.console.entry_selected.connect(self._on_timeline_entry_selected)
         self.console.export_requested.connect(self._export_timeline_history)
         self.console.filters_changed.connect(self._on_timeline_filters_changed)
+        self.console.status_requested.connect(self._on_timeline_status_requested)
         self.services.timeline.add_changed_listener(self._sync_timeline_actions)
         prefs = self.services.preferences.current
         self.console.set_replay_mode(prefs.timeline_replay_mode)
@@ -2303,6 +2304,11 @@ class MainWindow(QMainWindow):
         )
         if updated != prefs:
             self.services.preferences.update(updated)
+
+    def _on_timeline_status_requested(self, message: str) -> None:
+        """Show a Timeline panel status string in the main status bar."""
+        if message:
+            self.statusBar().showMessage(message, 3000)
 
     def _open_preferences(self) -> None:
         dialog = PreferencesDialog(self.services.preferences.current, self)

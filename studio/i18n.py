@@ -294,6 +294,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.clear_confirm": (
             "¿Vaciar el historial del Timeline ({n} eventos)? Esta acción no se puede deshacer."
         ),
+        "timeline.copy_line": "Copiar línea",
+        "timeline.copy_payload": "Copiar payload JSON",
+        "status.timeline_copied": "Evento del Timeline copiado al portapapeles",
         "tip.timeline_clear": "Vaciar el historial del Timeline",
         "tip.timeline_replay_reset": "Inicio de la reproducción (Inicio)",
         "tip.timeline_replay_back": "Paso atrás (←)",
@@ -1115,6 +1118,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.clear_confirm": (
             "Clear the Timeline history ({n} events)? This cannot be undone."
         ),
+        "timeline.copy_line": "Copy line",
+        "timeline.copy_payload": "Copy payload JSON",
+        "status.timeline_copied": "Timeline event copied to clipboard",
         "tip.timeline_clear": "Clear the Timeline history",
         "tip.timeline_replay_reset": "Restart replay (Home)",
         "tip.timeline_replay_back": "Step back (←)",
