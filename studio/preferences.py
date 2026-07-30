@@ -76,6 +76,9 @@ class StudioPreferences:
     max_solutions: int = DEFAULT_MAX_SOLUTIONS
     window_geometry: str | None = None
     window_state: str | None = None
+    timeline_event_filter: str | None = None
+    timeline_algorithm_filter: str | None = None
+    timeline_period_seconds: int | None = None
 
     def resolved_strategy(self) -> OptimizationStrategy:
         """Return the OptimizationStrategy implied by these preferences."""
@@ -119,6 +122,22 @@ def _optional_directory(value: object) -> str | None:
     if not isinstance(value, str) or not value.strip():
         return None
     return value.strip()
+
+
+def _optional_string(value: object) -> str | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    return value.strip()
+
+
+def _optional_period_seconds(value: object) -> int | None:
+    if value is None:
+        return None
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        return None
+    return parsed if parsed > 0 else None
 
 
 def default_preferences_path() -> Path:
@@ -213,6 +232,15 @@ class PreferencesManager:
             max_solutions=max_solutions,
             window_geometry=_optional_base64_string(payload.get("window_geometry")),
             window_state=_optional_base64_string(payload.get("window_state")),
+            timeline_event_filter=_optional_string(
+                payload.get("timeline_event_filter")
+            ),
+            timeline_algorithm_filter=_optional_string(
+                payload.get("timeline_algorithm_filter")
+            ),
+            timeline_period_seconds=_optional_period_seconds(
+                payload.get("timeline_period_seconds")
+            ),
         )
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
@@ -236,6 +264,9 @@ class PreferencesManager:
             "max_solutions": preferences.max_solutions,
             "window_geometry": preferences.window_geometry,
             "window_state": preferences.window_state,
+            "timeline_event_filter": preferences.timeline_event_filter,
+            "timeline_algorithm_filter": preferences.timeline_algorithm_filter,
+            "timeline_period_seconds": preferences.timeline_period_seconds,
         }
         self.path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",

@@ -1,5 +1,7 @@
 """Timeline export gated until events exist; UI font bootstrapped early."""
 
+from dataclasses import replace as dataclass_replace
+
 from PySide6.QtWidgets import QApplication
 
 from studio.events.catalog import PIECE_MOVED, PROJECT_CREATED
@@ -110,3 +112,36 @@ def test_timeline_quick_filter_piece_moves(qapp, tmp_path):
     # Second click returns to all events.
     window.console._piece_moves.click()
     assert window.console.current_filter_event() is None
+
+
+def test_timeline_filters_persist_in_preferences(qapp, tmp_path):
+    del qapp
+    prefs_path = tmp_path / "preferences.json"
+    services = StudioServices(preferences=PreferencesManager(prefs_path))
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+
+    window.services.events.publish(PROJECT_CREATED, {"kind": "demo"})
+    window.services.events.publish(
+        PIECE_MOVED,
+        {
+            "piece": "A",
+            "kind": "moved",
+            "from_x": 0.0,
+            "from_y": 0.0,
+            "to_x": 1.0,
+            "to_y": 1.0,
+        },
+    )
+    window.console.set_filters(
+        event_name=PIECE_MOVED, algorithm=None, period_seconds=300
+    )
+
+    services2 = StudioServices(preferences=PreferencesManager(prefs_path))
+    services2.preferences.update(
+        dataclass_replace(services2.preferences.current, language="es")
+    )
+    restored = MainWindow(services2)
+    assert restored.console.current_filter_event() == PIECE_MOVED
+    assert restored.console.current_filter_algorithm() is None
+    assert restored.console.current_filter_period_seconds() == 300

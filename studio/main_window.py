@@ -454,8 +454,14 @@ class MainWindow(QMainWindow):
         self.console.phase_step_changed.connect(self._on_timeline_phase_step)
         self.console.entry_selected.connect(self._on_timeline_entry_selected)
         self.console.export_requested.connect(self._export_timeline_history)
-        self.console.filters_changed.connect(self._sync_timeline_actions)
+        self.console.filters_changed.connect(self._on_timeline_filters_changed)
         self.services.timeline.add_changed_listener(self._sync_timeline_actions)
+        prefs = self.services.preferences.current
+        self.console.set_filters(
+            event_name=prefs.timeline_event_filter,
+            algorithm=prefs.timeline_algorithm_filter,
+            period_seconds=prefs.timeline_period_seconds,
+        )
         self._sync_timeline_actions()
 
         self.console_dock = QDockWidget("", self)
@@ -2278,6 +2284,19 @@ class MainWindow(QMainWindow):
         )
         tip = self._tr(tip_key)
         action.setStatusTip(with_native_shortcuts(tip) if tip != tip_key else tip)
+
+    def _on_timeline_filters_changed(self) -> None:
+        """Sync UI state and persist Timeline filters in user preferences."""
+        self._sync_timeline_actions()
+        prefs = self.services.preferences.current
+        updated = dataclass_replace(
+            prefs,
+            timeline_event_filter=self.console.current_filter_event(),
+            timeline_algorithm_filter=self.console.current_filter_algorithm(),
+            timeline_period_seconds=self.console.current_filter_period_seconds(),
+        )
+        if updated != prefs:
+            self.services.preferences.update(updated)
 
     def _open_preferences(self) -> None:
         dialog = PreferencesDialog(self.services.preferences.current, self)
