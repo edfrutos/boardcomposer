@@ -139,6 +139,29 @@ def test_timeline_quick_filter_piece_moves(qapp, tmp_path):
     assert window.console.current_filter_event() is None
 
 
+def test_timeline_clear_filters_button(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    assert not window.console.has_active_filters()
+    assert not window.console._clear_filters.isEnabled()
+
+    window.console.set_filters(
+        event_name=PIECE_MOVED, algorithm=None, period_seconds=300
+    )
+    assert window.console.has_active_filters()
+    assert window.console._clear_filters.isEnabled()
+    assert window.console.current_filter_event() == PIECE_MOVED
+    assert window.console.current_filter_period_seconds() == 300
+
+    window.console._clear_filters.click()
+    assert not window.console.has_active_filters()
+    assert window.console.current_filter_event() is None
+    assert window.console.current_filter_algorithm() is None
+    assert window.console.current_filter_period_seconds() is None
+    assert not window.console._clear_filters.isEnabled()
+    assert not window.console._piece_moves.isChecked()
+
+
 def test_timeline_event_count_label(qapp, tmp_path):
     del qapp
     window = _window(tmp_path)

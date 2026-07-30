@@ -93,6 +93,8 @@
   borrar el historial.
 - Timeline: menú contextual / Ctrl+C copia la línea del evento (o el payload
   JSON) al portapapeles.
+- Timeline: botón «Limpiar filtros» restaura evento/algoritmo/periodo de un
+  clic (habilitado solo con filtros activos).
 
 ### Corregido
 
