@@ -1,4 +1,5 @@
 from studio.commands import MovePieceCommand
+from studio.events.catalog import PIECE_MOVED
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.services import StudioServices
 
@@ -33,6 +34,8 @@ def _services_with_piece_on_panel(panel_index: int, instance: int) -> StudioServ
 
 def test_redo_moves_the_piece_to_the_new_position():
     services = _services_with_piece_on_panel(0, 0)
+    seen: list[dict] = []
+    services.events.subscribe(PIECE_MOVED, lambda _name, payload: seen.append(payload))
     command = MovePieceCommand(
         services,
         "A",
@@ -52,10 +55,17 @@ def test_redo_moves_the_piece_to_the_new_position():
 
     placement = services.projects.current_project.placement_by_piece_id("A")
     assert (placement.x_mm, placement.y_mm) == (200, 150)
+    assert len(seen) == 1
+    assert seen[0]["piece"] == "A"
+    assert seen[0]["kind"] == "moved"
+    assert seen[0]["from_x"] == 0
+    assert seen[0]["to_x"] == 200
 
 
 def test_undo_restores_the_original_position():
     services = _services_with_piece_on_panel(0, 0)
+    seen: list[dict] = []
+    services.events.subscribe(PIECE_MOVED, lambda _name, payload: seen.append(payload))
     command = MovePieceCommand(
         services,
         "A",
@@ -76,10 +86,16 @@ def test_undo_restores_the_original_position():
 
     placement = services.projects.current_project.placement_by_piece_id("A")
     assert (placement.x_mm, placement.y_mm) == (0, 0)
+    assert len(seen) == 2
+    assert seen[1]["kind"] == "moved"
+    assert seen[1]["from_x"] == 200
+    assert seen[1]["to_x"] == 0
 
 
 def test_redo_reassigns_the_piece_to_a_different_physical_panel():
     services = _services_with_piece_on_panel(0, 0)
+    seen: list[dict] = []
+    services.events.subscribe(PIECE_MOVED, lambda _name, payload: seen.append(payload))
     command = MovePieceCommand(
         services,
         "A",
@@ -101,6 +117,10 @@ def test_redo_reassigns_the_piece_to_a_different_physical_panel():
     assert placement.board_id == "P2"
     assert placement.board_instance == 1
     assert placement.stock_panel_index == 1
+    assert len(seen) == 1
+    assert seen[0]["kind"] == "reassigned"
+    assert seen[0]["from_board"] == "P1"
+    assert seen[0]["to_board"] == "P2"
 
 
 def test_undo_restores_the_original_physical_panel_assignment():
