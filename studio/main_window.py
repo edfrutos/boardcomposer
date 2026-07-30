@@ -3140,11 +3140,15 @@ class MainWindow(QMainWindow):
             self._status("status.timeline_export_empty")
             return
 
+        preferred_format = self.services.preferences.current.timeline_export_format
+        if preferred_format not in {"json", "csv"}:
+            preferred_format = "json"
+        default_name = f"boardcomposer-timeline.{preferred_format}"
         path, selected_filter = QFileDialog.getSaveFileName(
             self,
             self._tr("dialog.export_timeline"),
-            self._suggested_export_path("boardcomposer-timeline.json"),
-            self._tr("dialog.filter_timeline"),
+            self._suggested_export_path(default_name),
+            self._timeline_export_file_filter(preferred_format),
         )
         if not path:
             return
@@ -3177,8 +3181,26 @@ class MainWindow(QMainWindow):
             return
 
         self._remember_export_directory(path)
+        self._remember_timeline_export_format("csv" if use_csv else "json")
         self._status("status.timeline_exported", 5000, path=path)
         self._offer_open_exported_path(path)
+
+    def _timeline_export_file_filter(self, preferred_format: str) -> str:
+        """Put the last-used Timeline export format first in the dialog filter."""
+        json_filter = "JSON (*.json)"
+        csv_filter = "CSV (*.csv)"
+        if preferred_format == "csv":
+            return f"{csv_filter};;{json_filter}"
+        return f"{json_filter};;{csv_filter}"
+
+    def _remember_timeline_export_format(self, fmt: str) -> None:
+        """Persist the last successful Timeline export format."""
+        prefs = self.services.preferences.current
+        if prefs.timeline_export_format == fmt:
+            return
+        self.services.preferences.update(
+            dataclass_replace(prefs, timeline_export_format=fmt)
+        )
 
     def _export_selected_solution(self):
         solution = self.services.layout.selected_solution
