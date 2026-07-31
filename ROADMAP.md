@@ -67,6 +67,7 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 ## Próximo foco (operativo)
 
-1. Gate demo/release: `uat/RELEASE-SMOKE.md`.
+1. Gate demo/release cerrado (`uat/RELEASE-SMOKE.md` — OK 2026-07-31).
 2. DT-0006 — esperar piloto (`docs/masterplan/spikes/SPIKE-DT-0006-historial-cloud.md`).
 3. Fase 4 IA solo bajo demanda con caso de uso claro (IDE-0007, L–XL).
+4. Pulido residual Studio (tips/status honestos) bajo demanda.

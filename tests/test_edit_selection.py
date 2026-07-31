@@ -73,3 +73,68 @@ def test_edit_selection_without_target_shows_status(qapp, tmp_path):
     assert window._tr("status.nothing_to_edit_selection") in (
         window.statusBar().currentMessage()
     )
+
+
+class _AcceptSameBoard:
+    DialogCode = type("DialogCode", (), {"Accepted": 1})()
+
+    def __init__(self, *args, **kwargs):
+        del args, kwargs
+
+    def exec(self):
+        return self.DialogCode.Accepted
+
+    def board_data(self):
+        return {
+            "board_id": "B1",
+            "length_mm": 1000,
+            "width_mm": 500,
+            "thickness_mm": 19,
+            "quantity": 1,
+            "material": "Demo",
+        }
+
+
+class _AcceptSamePiece:
+    DialogCode = type("DialogCode", (), {"Accepted": 1})()
+
+    def __init__(self, *args, **kwargs):
+        del args, kwargs
+
+    def exec(self):
+        return self.DialogCode.Accepted
+
+    def piece_data(self):
+        return {
+            "piece_id": "A",
+            "length_mm": 200,
+            "width_mm": 100,
+            "thickness_mm": 19,
+            "quantity": 1,
+            "material": "Demo",
+            "rotatable": True,
+        }
+
+
+def test_edit_board_unchanged_shows_status(qapp, tmp_path, monkeypatch):
+    del qapp
+    import studio.main_window as mw
+
+    window = _window(tmp_path)
+    monkeypatch.setattr(mw, "NewBoardDialog", _AcceptSameBoard)
+
+    window._edit_board("B1")
+
+    assert window._tr("status.edit_unchanged") in window.statusBar().currentMessage()
+
+
+def test_edit_piece_unchanged_shows_status(qapp, tmp_path, monkeypatch):
+    del qapp
+    import studio.main_window as mw
+
+    window = _window(tmp_path)
+    monkeypatch.setattr(mw, "NewPieceDialog", _AcceptSamePiece)
+
+    window._edit_piece("A")
+
+    assert window._tr("status.edit_unchanged") in window.statusBar().currentMessage()

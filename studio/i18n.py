@@ -574,6 +574,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.place_piece_missing": "No se encuentra la pieza «{id}»",
         "status.place_board_missing": "No se encuentra el tablero «{id}»",
         "status.rename_unchanged": "El nombre no cambió",
+        "status.edit_unchanged": "Sin cambios que aplicar",
         "status.place_no_space": "No cabe {piece} en {board}",
         "status.place_incompatible_thickness": (
             "Espesor incompatible: {piece} ({piece_thickness}) ≠ "
@@ -1400,6 +1401,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.place_piece_missing": "Piece “{id}” was not found",
         "status.place_board_missing": "Board “{id}” was not found",
         "status.rename_unchanged": "Name unchanged",
+        "status.edit_unchanged": "No changes to apply",
         "status.place_no_space": "{piece} does not fit on {board}",
         "status.place_incompatible_thickness": (
             "Incompatible thickness: {piece} ({piece_thickness}) ≠ "
