@@ -483,8 +483,14 @@ class TimelinePanel(QWidget):
 
     def _on_clear_filters(self) -> None:
         if not self.has_active_filters():
+            self.status_requested.emit(
+                tr("status.timeline_clear_filters_idle", self._language)
+            )
             return
         self.set_filters(event_name=None, algorithm=None, period_seconds=None)
+        self.status_requested.emit(
+            tr("status.timeline_filters_cleared", self._language)
+        )
 
     def visible_event_count(self) -> int:
         """Return how many events match the active Timeline filters."""

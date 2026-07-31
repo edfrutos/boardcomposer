@@ -160,6 +160,9 @@ def test_timeline_clear_filters_button(qapp, tmp_path):
     assert window.console.current_filter_period_seconds() is None
     assert not window.console._clear_filters.isEnabled()
     assert not window.console._piece_moves.isChecked()
+    assert window._tr("status.timeline_filters_cleared") in (
+        window.statusBar().currentMessage()
+    )
 
 
 def test_timeline_event_count_label(qapp, tmp_path):
