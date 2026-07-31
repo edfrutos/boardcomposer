@@ -4,7 +4,8 @@
 
 ### Añadido
 
-- _(ciclo post-`0.4.0` — vacío al corte)_
+- Proyecto → **Restaurar última revisión local…** (`Ctrl+Alt+Y`): atajo y
+  enablement honesto sobre el anillo `.bcproj.revs/`.
 
 ### Cambiado
 

@@ -34,7 +34,7 @@ from PySide6.QtWidgets import (
 from shiboken6 import isValid as _qt_is_valid
 
 from boardcomposer.export import solution_to_svg
-from boardcomposer.io.bcproj_revisions import list_revisions
+from boardcomposer.io.bcproj_revisions import latest_revision, list_revisions
 from studio.export_options import render_export
 from dataclasses import replace as dataclass_replace
 from studio.board_ids import allocate_unique_board_id, casefolded_board_ids
@@ -209,6 +209,7 @@ class MainWindow(QMainWindow):
         self._menus["project"].addAction(self._actions["rename_project"])
         self._menus["project"].addAction(self._actions["reveal_project_folder"])
         self._menus["project"].addAction(self._actions["diff_bcproj"])
+        self._menus["project"].addAction(self._actions["restore_local_revision"])
         self._menus["project"].addSeparator()
         self._menus["project"].addAction(self._actions["add_board"])
         self._menus["project"].addAction(self._actions["add_piece"])
@@ -246,6 +247,9 @@ class MainWindow(QMainWindow):
             self._reveal_project_folder
         )
         self._actions["diff_bcproj"].triggered.connect(self._diff_bcproj)
+        self._actions["restore_local_revision"].triggered.connect(
+            self._restore_latest_local_revision
+        )
         self._actions["add_board"].triggered.connect(self._add_board)
         self._actions["add_piece"].triggered.connect(self._add_piece)
         self._actions["import_boards_csv"].triggered.connect(
@@ -1749,6 +1753,17 @@ class MainWindow(QMainWindow):
                 else self._tr("status.project_folder_unavailable")
             )
             reveal.setStatusTip(tip)
+        restore = self._actions.get("restore_local_revision")
+        if restore is not None:
+            has_revs = bool(filename and list_revisions(filename))
+            restore.setEnabled(has_revs)
+            if has_revs:
+                tip = with_native_shortcuts(self._tr("tip.restore_local_revision"))
+            elif filename:
+                tip = self._tr("status.revision_restore_empty")
+            else:
+                tip = self._tr("status.revision_restore_no_file")
+            restore.setStatusTip(tip)
 
     def _update_zoom_status(self, zoom: float | None = None) -> None:
         """Refresh the permanent Workspace zoom widget."""
@@ -3928,6 +3943,18 @@ class MainWindow(QMainWindow):
             return
         if dialog.restore_path is not None:
             self._restore_local_revision(Path(dialog.restore_path))
+
+    def _restore_latest_local_revision(self) -> None:
+        """Restore the newest local ring snapshot (Project menu / shortcut)."""
+        filename = self.services.projects.filename
+        if not filename:
+            self._status("status.revision_restore_no_file")
+            return
+        revision = latest_revision(filename)
+        if revision is None:
+            self._status("status.revision_restore_empty")
+            return
+        self._restore_local_revision(revision)
 
     def _restore_local_revision(self, revision_path: Path) -> None:
         """Load a ring snapshot into memory while keeping the live .bcproj path."""

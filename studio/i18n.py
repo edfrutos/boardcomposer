@@ -107,6 +107,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.rename_project": "Renombrar proyecto…",
         "action.reveal_project_folder": "Abrir carpeta del proyecto",
         "action.diff_bcproj": "Comparar revisiones .bcproj…",
+        "action.restore_local_revision": "Restaurar última revisión local…",
         "action.add_board": "Añadir tablero…",
         "action.add_piece": "Añadir pieza…",
         "action.import_boards_csv": "Importar inventario de tableros (CSV/Excel)…",
@@ -156,6 +157,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.revision_restore_no_file": (
             "Guarda el proyecto antes de restaurar una revisión local"
+        ),
+        "status.revision_restore_empty": (
+            "No hay revisiones locales; guarda el proyecto al menos una vez "
+            "más para crear el anillo"
         ),
         "status.revision_restore_failed": "No se pudo restaurar la revisión: {error}",
         "action.export_selected": "Exportar solución seleccionada…",
@@ -209,6 +214,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.diff_bcproj": (
             "Comparar dos revisiones .bcproj o el proyecto abierto vs un archivo "
             "(Ctrl+Shift+Y)"
+        ),
+        "tip.restore_local_revision": (
+            "Cargar la última revisión del anillo local en memoria "
+            "(Ctrl+Alt+Y); Guardar para escribir en disco"
         ),
         "tip.add_board": "Añadir un tablero al inventario (Ctrl+Shift+B)",
         "tip.add_piece": "Añadir una pieza al proyecto (Ctrl+Shift+P)",
@@ -978,6 +987,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.rename_project": "Rename project…",
         "action.reveal_project_folder": "Open project folder",
         "action.diff_bcproj": "Compare .bcproj revisions…",
+        "action.restore_local_revision": "Restore latest local revision…",
         "action.add_board": "Add board…",
         "action.add_piece": "Add piece…",
         "action.import_boards_csv": "Import board inventory (CSV/Excel)…",
@@ -1026,6 +1036,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.revision_restore_no_file": (
             "Save the project before restoring a local revision"
+        ),
+        "status.revision_restore_empty": (
+            "No local revisions yet; save the project at least once more to "
+            "create the ring"
         ),
         "status.revision_restore_failed": "Could not restore revision: {error}",
         "action.export_selected": "Export selected solution…",
@@ -1077,6 +1091,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.reveal_project_folder": "Open the folder that contains the .bcproj file (Ctrl+Shift+R)",
         "tip.diff_bcproj": (
             "Compare two .bcproj revisions or the open project vs a file (Ctrl+Shift+Y)"
+        ),
+        "tip.restore_local_revision": (
+            "Load the latest local ring revision into memory (Ctrl+Alt+Y); "
+            "Save to write to disk"
         ),
         "tip.add_board": "Add a board to the inventory (Ctrl+Shift+B)",
         "tip.add_piece": "Add a piece to the project (Ctrl+Shift+P)",
@@ -1750,6 +1768,7 @@ _ACTION_KEYS = (
     "rename_project",
     "reveal_project_folder",
     "diff_bcproj",
+    "restore_local_revision",
     "add_board",
     "add_piece",
     "import_boards_csv",
