@@ -1,8 +1,8 @@
 # Release / demo smoke — BoardComposer
 
-**Versión:** `0.4.0.dev0`  
+**Versión:** `0.4.0`  
 **Fecha:** 2026-07-31  
-**Base:** `main` (post #329)
+**Base:** `main` @ release `0.4.0` (2026-07-31)
 
 Checklist corta para validar «listo para demo / uso diario» sin sustituir UAT
 completo (`uat/studio/`, `uat/plataforma/`).

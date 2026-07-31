@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-07-28  
 **Base / commit:** `main@3430698` (incluye cierre de huecos residuales)  
-**Versión:** `0.4.0.dev0`  
+**Versión:** `0.4.0`  
 **Cómo arrancar:** `make run` o `.venv/bin/python -m studio.app`  
 **Guía:** [`../../docs/user/GUIA-RAPIDA.md`](../../docs/user/GUIA-RAPIDA.md)
 

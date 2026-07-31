@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-07-25  
 **Base:** `main` tras sync docs SCR-001…007 + FLW-001…006  
-**Versión:** `0.4.0.dev0` (Unreleased)  
+**Versión:** `0.4.0`  
 **Cómo arrancar:** `make run` o `.venv/bin/python -m studio.app`
 
 > Pasada visual cerrada (2026-07-28): [`CHECKLIST-VISUAL.md`](CHECKLIST-VISUAL.md).  
