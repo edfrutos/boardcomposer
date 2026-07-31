@@ -71,6 +71,6 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 2. Arco tips/status residual Studio: cerrado (Welcome, overlay vacío, explorer,
    timeline, undo/redo, edit/rename unchanged).
 3. DT-0006 — esperar piloto (`docs/masterplan/spikes/SPIKE-DT-0006-historial-cloud.md`).
-4. Producto desbloqueado (elegir): restaurar revisión local `.bcproj.revs/` ·
-   cortar release `0.4.0`.
+4. Producto desbloqueado (elegir): pulir restore revisión local · cortar
+   release `0.4.0`.
 5. Fase 4 IA solo bajo demanda (IDE-0007, L–XL).

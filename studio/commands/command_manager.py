@@ -38,3 +38,8 @@ class CommandManager:
 
     def can_redo(self) -> bool:
         return bool(self.redo_stack)
+
+    def clear(self) -> None:
+        """Drop undo/redo history (e.g. after open or restore)."""
+        self.undo_stack.clear()
+        self.redo_stack.clear()

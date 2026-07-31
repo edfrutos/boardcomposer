@@ -34,6 +34,7 @@ from PySide6.QtWidgets import (
 from shiboken6 import isValid as _qt_is_valid
 
 from boardcomposer.export import solution_to_svg
+from boardcomposer.io.bcproj_revisions import list_revisions
 from studio.export_options import render_export
 from dataclasses import replace as dataclass_replace
 from studio.board_ids import allocate_unique_board_id, casefolded_board_ids
@@ -3923,7 +3924,70 @@ class MainWindow(QMainWindow):
             project_path=filename,
             start_dir=start_dir,
         )
-        dialog.exec()
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+        if dialog.restore_path is not None:
+            self._restore_local_revision(Path(dialog.restore_path))
+
+    def _restore_local_revision(self, revision_path: Path) -> None:
+        """Load a ring snapshot into memory while keeping the live .bcproj path."""
+        filename = self.services.projects.filename
+        if not filename:
+            self._status("status.revision_restore_no_file")
+            return
+
+        allowed = {path.resolve() for path in list_revisions(filename)}
+        try:
+            resolved = revision_path.resolve()
+        except OSError:
+            self._status("status.revision_restore_failed", error="path")
+            return
+        if resolved not in allowed:
+            QMessageBox.warning(
+                self,
+                self._tr("diff_bcproj.restore_error_title"),
+                self._tr("diff_bcproj.restore_not_in_ring"),
+            )
+            return
+
+        reply = QMessageBox.question(
+            self,
+            self._tr("diff_bcproj.restore_confirm_title"),
+            self._tr(
+                "diff_bcproj.restore_confirm",
+                name=revision_path.name,
+                path=filename,
+            ),
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+        if reply != QMessageBox.StandardButton.Yes:
+            return
+
+        try:
+            project = load_project(revision_path)
+        except (UnsupportedProjectVersionError, OSError, ValueError) as error:
+            QMessageBox.warning(
+                self,
+                self._tr("diff_bcproj.restore_error_title"),
+                str(error),
+            )
+            self._status("status.revision_restore_failed", error=str(error))
+            return
+
+        self.services.projects.open_project(project, filename)
+        self.services.projects.mark_modified()
+        self.services.commands.clear()
+        self.services.layout.clear_solutions()
+
+        self._show_workspace()
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self._reload_solution_table()
+        self.update_undo_redo()
+        self.update_window_title()
+
+        self._status("status.revision_restored", name=revision_path.name)
 
     def _rename_selection(self) -> None:
         """Rename the Explorador selection (piece, board, or project) via F2."""

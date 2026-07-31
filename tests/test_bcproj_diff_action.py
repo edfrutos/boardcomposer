@@ -37,10 +37,14 @@ def test_diff_action_opens_dialog_with_current_project_context(
         def __init__(self, parent, **kwargs):
             captured["parent"] = parent
             captured["kwargs"] = kwargs
+            self.restore_path = None
 
         def exec(self):
             captured["exec_called"] = True
-            return 1
+            return 0
+
+        class DialogCode:
+            Accepted = 1
 
     monkeypatch.setattr("studio.main_window.BcprojDiffDialog", _FakeDiffDialog)
 

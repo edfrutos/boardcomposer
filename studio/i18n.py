@@ -115,7 +115,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.intro": (
             "Diff estructural (meta, tableros, piezas, colocaciones). "
             "Al guardar se conserva un anillo de revisiones locales "
-            "(carpeta oculta junto al .bcproj)."
+            "(carpeta oculta junto al .bcproj). Puedes restaurar una "
+            "revisión del anillo en memoria (queda pendiente de Guardar)."
         ),
         "diff_bcproj.left": "Izquierda (antes)",
         "diff_bcproj.right": "Derecha (después)",
@@ -126,12 +127,37 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.revision_none": "— (elegir archivo)",
         "diff_bcproj.current_project": "(proyecto abierto)",
         "diff_bcproj.compare": "Comparar",
+        "diff_bcproj.restore": "Restaurar esta revisión…",
+        "diff_bcproj.restore_tip": (
+            "Cargar la revisión seleccionada en memoria (misma ruta; Guardar "
+            "para escribir en disco)"
+        ),
+        "diff_bcproj.restore_idle": "Elige una revisión del anillo local",
+        "diff_bcproj.restore_confirm_title": "Restaurar revisión local",
+        "diff_bcproj.restore_confirm": (
+            "¿Cargar la revisión «{name}» en el proyecto abierto?\n\n"
+            "Se reemplaza el inventario en memoria. La ruta del archivo "
+            "sigue siendo:\n{path}\n\n"
+            "Los cambios sin guardar se pierden. Usa Guardar para escribir "
+            "esta revisión en disco (el anillo conservará el archivo actual)."
+        ),
+        "diff_bcproj.restore_error_title": "No se pudo restaurar",
+        "diff_bcproj.restore_not_in_ring": (
+            "Solo se pueden restaurar snapshots del anillo local de este proyecto."
+        ),
         "diff_bcproj.placeholder": "El resultado del diff aparecerá aquí.",
         "diff_bcproj.open_title": "Abrir .bcproj",
         "diff_bcproj.file_filter": "Proyectos BoardComposer (*.bcproj);;Todos (*.*)",
         "diff_bcproj.need_left": "Elige el .bcproj de la izquierda.",
         "diff_bcproj.need_right": "Elige el .bcproj de la derecha.",
         "diff_bcproj.error_title": "No se pudo comparar",
+        "status.revision_restored": (
+            "Revisión «{name}» cargada en memoria (pendiente de Guardar)"
+        ),
+        "status.revision_restore_no_file": (
+            "Guarda el proyecto antes de restaurar una revisión local"
+        ),
+        "status.revision_restore_failed": "No se pudo restaurar la revisión: {error}",
         "action.export_selected": "Exportar solución seleccionada…",
         "action.export_timeline": "Exportar historial del Timeline…",
         "action.exit": "Salir",
@@ -960,7 +986,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.intro": (
             "Structural diff (meta, boards, pieces, placements). "
             "Saving keeps a local revision ring (hidden folder next to the "
-            ".bcproj)."
+            ".bcproj). You can restore a ring revision into memory (Save to "
+            "write it to disk)."
         ),
         "diff_bcproj.left": "Left (before)",
         "diff_bcproj.right": "Right (after)",
@@ -971,12 +998,36 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.revision_none": "— (pick a file)",
         "diff_bcproj.current_project": "(open project)",
         "diff_bcproj.compare": "Compare",
+        "diff_bcproj.restore": "Restore this revision…",
+        "diff_bcproj.restore_tip": (
+            "Load the selected revision into memory (same path; Save to write to disk)"
+        ),
+        "diff_bcproj.restore_idle": "Pick a revision from the local ring",
+        "diff_bcproj.restore_confirm_title": "Restore local revision",
+        "diff_bcproj.restore_confirm": (
+            "Load revision “{name}” into the open project?\n\n"
+            "Inventory in memory will be replaced. The file path stays:\n"
+            "{path}\n\n"
+            "Unsaved changes are discarded. Use Save to write this revision "
+            "to disk (the ring will keep the current file)."
+        ),
+        "diff_bcproj.restore_error_title": "Could not restore",
+        "diff_bcproj.restore_not_in_ring": (
+            "Only snapshots from this project’s local revision ring can be restored."
+        ),
         "diff_bcproj.placeholder": "Diff output will appear here.",
         "diff_bcproj.open_title": "Open .bcproj",
         "diff_bcproj.file_filter": "BoardComposer projects (*.bcproj);;All (*.*)",
         "diff_bcproj.need_left": "Choose the left .bcproj.",
         "diff_bcproj.need_right": "Choose the right .bcproj.",
         "diff_bcproj.error_title": "Could not compare",
+        "status.revision_restored": (
+            "Revision “{name}” loaded into memory (pending Save)"
+        ),
+        "status.revision_restore_no_file": (
+            "Save the project before restoring a local revision"
+        ),
+        "status.revision_restore_failed": "Could not restore revision: {error}",
         "action.export_selected": "Export selected solution…",
         "action.export_timeline": "Export Timeline history…",
         "action.exit": "Quit",

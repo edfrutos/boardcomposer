@@ -49,6 +49,7 @@ class BcprojDiffDialog(QDialog):
         self._project_path = project_path
         self._start_dir = start_dir or str(Path.home())
         self._revisions = list_revisions(project_path) if project_path else []
+        self.restore_path: Path | None = None
 
         self.setWindowTitle(tr("diff_bcproj.title", language))
         self.setMinimumSize(640, 460)
@@ -79,7 +80,6 @@ class BcprojDiffDialog(QDialog):
         for rev in self._revisions:
             self.revision_combo.addItem(rev.name, str(rev))
         self.revision_combo.setEnabled(bool(self._revisions))
-        self.revision_combo.currentIndexChanged.connect(self._on_revision_chosen)
         form.addRow(tr("diff_bcproj.revision", language), self.revision_combo)
 
         self.use_current_left = QCheckBox(tr("diff_bcproj.use_current", language))
@@ -107,6 +107,19 @@ class BcprojDiffDialog(QDialog):
         compare_btn.setDefault(True)
         compare_btn.clicked.connect(self._run_diff)
 
+        self.restore_button = QPushButton(tr("diff_bcproj.restore", language))
+        self.restore_button.setToolTip(tr("diff_bcproj.restore_tip", language))
+        self.restore_button.setStatusTip(tr("diff_bcproj.restore_tip", language))
+        self.restore_button.clicked.connect(self._request_restore)
+        self.left_path.textChanged.connect(self._sync_restore_enabled)
+        self.use_current_left.toggled.connect(self._sync_restore_enabled)
+        self.revision_combo.currentIndexChanged.connect(self._on_revision_chosen)
+
+        actions_row = QHBoxLayout()
+        actions_row.addWidget(compare_btn)
+        actions_row.addWidget(self.restore_button)
+        actions_row.addStretch(1)
+
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
         polish_dialog_button_box(buttons)
         buttons.rejected.connect(self.reject)
@@ -117,19 +130,51 @@ class BcprojDiffDialog(QDialog):
         layout.addLayout(form)
         layout.addWidget(self.use_current_left)
         layout.addWidget(self.use_current_right)
-        layout.addWidget(compare_btn)
+        layout.addLayout(actions_row)
         layout.addWidget(self.result, stretch=1)
         layout.addWidget(buttons)
 
         # Compat alias for existing tests.
         self.use_current = self.use_current_left
+        if self.revision_combo.currentIndex() > 0:
+            path = self.revision_combo.currentData()
+            if path:
+                self.use_current_left.setChecked(False)
+                self.left_path.setText(str(path))
+        self._sync_restore_enabled()
+
+    def selected_revision_path(self) -> Path | None:
+        """Return the ring snapshot currently selected for restore, if any."""
+        data = self.revision_combo.currentData()
+        if data:
+            return Path(str(data))
+        return None
+
+    def _sync_restore_enabled(self) -> None:
+        enabled = self.selected_revision_path() is not None
+        self.restore_button.setEnabled(enabled)
+        tip = tr(
+            "diff_bcproj.restore_tip" if enabled else "diff_bcproj.restore_idle",
+            self._language,
+        )
+        self.restore_button.setToolTip(tip)
+        self.restore_button.setStatusTip(tip)
+
+    def _request_restore(self) -> None:
+        path = self.selected_revision_path()
+        if path is None:
+            return
+        self.restore_path = path
+        self.accept()
 
     def _on_revision_chosen(self, index: int) -> None:
         path = self.revision_combo.itemData(index)
         if not path:
+            self._sync_restore_enabled()
             return
         self.use_current_left.setChecked(False)
         self.left_path.setText(str(path))
+        self._sync_restore_enabled()
 
     def _on_use_current_left_toggled(self, checked: bool) -> None:
         self.left_path.setEnabled(not checked)
@@ -139,6 +184,7 @@ class BcprojDiffDialog(QDialog):
             self.revision_combo.blockSignals(True)
             self.revision_combo.setCurrentIndex(0)
             self.revision_combo.blockSignals(False)
+        self._sync_restore_enabled()
 
     def _on_use_current_right_toggled(self, checked: bool) -> None:
         self.right_path.setEnabled(not checked)
