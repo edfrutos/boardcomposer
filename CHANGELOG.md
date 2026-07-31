@@ -24,6 +24,7 @@
 
 ### Cambiado
 
+- Timeline «Limpiar filtros» anuncia status al vaciar filtros activos.
 - Deshacer/Rehacer anuncian status (`status.undone` / `status.redone`); sin pila,
   reutilizan tips idle existentes.
 - Editar tablero/pieza sin diffs anuncia status (`status.edit_unchanged`).
