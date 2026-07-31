@@ -24,6 +24,7 @@
 
 ### Cambiado
 
+- Overlay vacío del Workspace: tips/tooltips en CTAs (paridad con Welcome).
 - Menú contextual Explorador: tips de status en Editar / Duplicar / Eliminar /
   Renombrar / Copiar ID / Añadir / Vista previa (además de Colocar / carpeta).
 - Timeline «Limpiar filtros» anuncia status al vaciar filtros activos.
