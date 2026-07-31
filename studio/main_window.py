@@ -1802,16 +1802,24 @@ class MainWindow(QMainWindow):
         apply_shortcuts(self._actions)
 
     def _undo(self):
+        if not self.services.commands.can_undo():
+            self._status("status.nothing_to_undo")
+            return
         self.services.commands.undo()
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_undo_redo()
+        self._status("status.undone")
 
     def _redo(self):
+        if not self.services.commands.can_redo():
+            self._status("status.nothing_to_redo")
+            return
         self.services.commands.redo()
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_undo_redo()
+        self._status("status.redone")
 
     def _rotate_selected_piece(self):
         piece_id = self.workspace.selection.current()
