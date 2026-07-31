@@ -24,6 +24,8 @@
 
 ### Cambiado
 
+- Deshacer/Rehacer anuncian status (`status.undone` / `status.redone`); sin pila,
+  reutilizan tips idle existentes.
 - Editar tablero/pieza sin diffs anuncia status (`status.edit_unchanged`).
 - Gate demo/release cerrado en `uat/RELEASE-SMOKE.md` (Studio manual OK).
 - Welcome: tips/status en CTAs principales (nuevo, abrir, importar, demo, docs…).

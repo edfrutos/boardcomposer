@@ -638,6 +638,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.export_reveal_failed": "No se pudo abrir la carpeta de: {path}",
         "status.nothing_to_undo": "No hay acciones para deshacer",
         "status.nothing_to_redo": "No hay acciones para rehacer",
+        "status.undone": "Acción deshecha",
+        "status.redone": "Acción rehecha",
         "status.nothing_to_save": "No hay proyecto para guardar",
         "status.nothing_to_rename": "No hay proyecto para renombrar",
         "status.nothing_to_rename_selection": (
@@ -1465,6 +1467,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.export_reveal_failed": "Could not open the folder for: {path}",
         "status.nothing_to_undo": "No actions to undo",
         "status.nothing_to_redo": "No actions to redo",
+        "status.undone": "Undone",
+        "status.redone": "Redone",
         "status.nothing_to_save": "No project to save",
         "status.nothing_to_rename": "No project to rename",
         "status.nothing_to_rename_selection": (
