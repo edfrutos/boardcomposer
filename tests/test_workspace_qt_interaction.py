@@ -112,6 +112,17 @@ def test_empty_workspace_overlay_shows_for_blank_project():
     assert workspace.empty_overlay.add_piece_button.minimumHeight() >= 36
     assert workspace.empty_overlay.import_boards_button.minimumHeight() >= 36
     assert workspace.empty_overlay.import_pieces_button.minimumHeight() >= 36
+    board_tip = workspace.empty_overlay.add_board_button.statusTip()
+    assert board_tip
+    assert "board" in board_tip.lower()
+    assert workspace.empty_overlay.add_board_button.toolTip() == board_tip
+    assert workspace.empty_overlay.add_piece_button.statusTip()
+    assert workspace.empty_overlay.import_boards_button.statusTip()
+    assert workspace.empty_overlay.import_pieces_button.statusTip()
+    assert (
+        workspace.empty_overlay.import_pieces_button.toolTip()
+        == workspace.empty_overlay.import_pieces_button.statusTip()
+    )
 
 
 def test_reload_project_creates_a_slot_per_physical_panel_instance():

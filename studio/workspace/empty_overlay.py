@@ -6,6 +6,7 @@ from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget
 
 from studio.i18n import DEFAULT_LANGUAGE, tr
+from studio.keyboard_shortcuts import with_native_shortcuts
 
 
 class EmptyWorkspaceOverlay(QWidget):
@@ -73,3 +74,13 @@ class EmptyWorkspaceOverlay(QWidget):
         self.add_piece_button.setText(tr("action.add_piece", language))
         self.import_boards_button.setText(tr("action.import_boards_csv", language))
         self.import_pieces_button.setText(tr("action.import_pieces_csv", language))
+        tip_pairs = (
+            (self.add_board_button, "tip.add_board"),
+            (self.add_piece_button, "tip.add_piece"),
+            (self.import_boards_button, "tip.import_boards_csv"),
+            (self.import_pieces_button, "tip.import_pieces_csv"),
+        )
+        for button, tip_key in tip_pairs:
+            tip = with_native_shortcuts(tr(tip_key, language))
+            button.setToolTip(tip)
+            button.setStatusTip(tip)
