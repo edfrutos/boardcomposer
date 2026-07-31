@@ -6,7 +6,7 @@ conserva la decisión final.
 
 ## Estado actual
 
-- Versión: `0.4.0`.
+- Versión de desarrollo: `0.4.1.dev0` (última estable: `0.4.0`).
 - Python 3.13.
 - Core independiente de la interfaz.
 - CLI con entrada CSV y salida texto/JSON.
