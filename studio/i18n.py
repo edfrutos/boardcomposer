@@ -143,8 +143,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "diff_bcproj.restore_error_title": "No se pudo restaurar",
         "diff_bcproj.restore_not_in_ring": (
-            "Solo se pueden restaurar snapshots del anillo local de este "
-            "proyecto."
+            "Solo se pueden restaurar snapshots del anillo local de este proyecto."
         ),
         "diff_bcproj.placeholder": "El resultado del diff aparecerá aquí.",
         "diff_bcproj.open_title": "Abrir .bcproj",
@@ -1001,8 +1000,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.compare": "Compare",
         "diff_bcproj.restore": "Restore this revision…",
         "diff_bcproj.restore_tip": (
-            "Load the selected revision into memory (same path; Save to "
-            "write to disk)"
+            "Load the selected revision into memory (same path; Save to write to disk)"
         ),
         "diff_bcproj.restore_idle": "Pick a revision from the local ring",
         "diff_bcproj.restore_confirm_title": "Restore local revision",
@@ -1015,8 +1013,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "diff_bcproj.restore_error_title": "Could not restore",
         "diff_bcproj.restore_not_in_ring": (
-            "Only snapshots from this project’s local revision ring can be "
-            "restored."
+            "Only snapshots from this project’s local revision ring can be restored."
         ),
         "diff_bcproj.placeholder": "Diff output will appear here.",
         "diff_bcproj.open_title": "Open .bcproj",
