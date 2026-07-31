@@ -1,6 +1,6 @@
 # Índice documental de BoardComposer
 
-Última revisión: 2026-07-28.
+Última revisión: 2026-07-31.
 
 ## Precedencia
 
@@ -20,6 +20,7 @@ Las discrepancias deben corregirse, no mantenerse como conocimiento implícito.
 
 - **Usuario final:** [`../user/GUIA-RAPIDA.md`](../user/GUIA-RAPIDA.md)
 - **UAT visual:** [`../../uat/studio/CHECKLIST-VISUAL.md`](../../uat/studio/CHECKLIST-VISUAL.md)
+- **Release/demo smoke:** [`../../uat/RELEASE-SMOKE.md`](../../uat/RELEASE-SMOKE.md)
 
 ## Dirección del proyecto
 
@@ -30,7 +31,7 @@ Las discrepancias deben corregirse, no mantenerse como conocimiento implícito.
 | `DOC-002-Arquitectura.md` | Arquitectura objetivo | En revisión |
 | `DOC-003-Roadmap.md` | Fases del producto | Actualizado |
 | `DOC-004-Backlog.md` | Iniciativas priorizadas | Actualizado |
-| `epics/` | Épicas Fase 3 (EP-001…003) | En curso / planificadas |
+| `epics/` | Épicas Fase 3 (EP-001…003) | Entregadas |
 | `DOC-005-Decisiones.md` | Índice de decisiones | En revisión |
 | `DOC-006-DeudaTecnica.md` | Registro de deuda | Actualizado |
 | `DOC-007-UX-Studio.md` | Principios UX | En revisión |

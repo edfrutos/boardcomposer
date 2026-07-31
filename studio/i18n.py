@@ -571,6 +571,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.place_needs_board_focus": (
             "Selecciona un tablero en el Explorador para colocar la pieza"
         ),
+        "status.place_piece_missing": "No se encuentra la pieza «{id}»",
+        "status.place_board_missing": "No se encuentra el tablero «{id}»",
+        "status.rename_unchanged": "El nombre no cambió",
         "status.place_no_space": "No cabe {piece} en {board}",
         "status.place_incompatible_thickness": (
             "Espesor incompatible: {piece} ({piece_thickness}) ≠ "
@@ -1394,6 +1397,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.place_needs_board_focus": (
             "Select a board in the Explorer to place the piece"
         ),
+        "status.place_piece_missing": "Piece “{id}” was not found",
+        "status.place_board_missing": "Board “{id}” was not found",
+        "status.rename_unchanged": "Name unchanged",
         "status.place_no_space": "{piece} does not fit on {board}",
         "status.place_incompatible_thickness": (
             "Incompatible thickness: {piece} ({piece_thickness}) ≠ "

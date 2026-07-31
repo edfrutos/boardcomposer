@@ -6,7 +6,7 @@
 **Versión:** 1.2.0
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 30/07/2026
+**Última revisión:** 31/07/2026
 
 ---
 
@@ -95,12 +95,38 @@ Estado
 
 ---
 
+## Métricas mínimas por release
+
+Revisar este documento en cada corte de release (`0.x.y` o RC). Anotar fecha y
+conteo en «Estado» o en las notas de release.
+
+| Métrica | Cómo contar | Umbral |
+|---------|-------------|--------|
+| Abiertas ⚪/🔵 | Filas del registro con estado no resuelto/controlado | Advertencia si **> 5**; bloquear release mayor si **> 0 críticas sin plan** |
+| Antigüedad máxima | Días desde última revisión del ítem abierto más viejo | Advertencia si **> 90 días** sin actualización de estado |
+| Por categoría | Conteo DT-A / C / T / D / P / UX abiertas | Flag si DT-A o DT-T abiertas crecen respecto al release anterior |
+| Resueltas en el ciclo | Ítems que pasaron a 🟢 Resuelto/Controlado desde el release previo | Informativo (tendencia) |
+
+**Severidad:**
+
+- **Bloqueante (release mayor):** deuda DT-A o seguridad sin mitigación documentada
+  y sin decisión en DOC-005.
+- **Advertencia:** umbrales de la tabla; no bloquea patch/`dev0` si hay plan
+  explícito en «Próximo foco».
+
+**Corte 2026-07-31 (`0.4.0.dev0`):** abiertas = **1** (DT-0006, planificada +
+spike); antigüedad aceptable (spike el 30/07); sin críticas sin plan.
+
+---
+
 ## Política de gestión
 
-- La deuda técnica deberá revisarse al cierre de cada Sprint.
+- La deuda técnica deberá revisarse al cierre de cada Sprint **y** en el
+  checklist de release (`uat/RELEASE-SMOKE.md`).
 - Ninguna versión mayor del producto se publicará sin revisar este documento.
 - Las deudas resueltas permanecerán registradas como histórico.
 - La prioridad podrá modificarse, pero nunca desaparecerá el registro.
+- Vincular cambios de estado a una línea en CHANGELOG / notas de release.
 
 ---
 
@@ -122,6 +148,5 @@ Próximo foco:
 
 - Spike DT-0006 documentado (`spikes/SPIKE-DT-0006-historial-cloud.md`):
   **no implementar cloud** hasta piloto; opciones A/C/D evaluadas.
-- definir métricas mínimas de deuda por release (conteo y antigüedad por categoría);
-- fijar umbrales de aceptación por versión (bloqueante / advertencia);
-- vincular revisión DOC-006 al cierre de sprint y release notes.
+- Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
+- Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

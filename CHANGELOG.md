@@ -4,6 +4,7 @@
 
 ### Añadido
 
+- Gate corto demo/release: `uat/RELEASE-SMOKE.md`.
 - Spike DT-0006 (`docs/masterplan/spikes/SPIKE-DT-0006-historial-cloud.md`):
   opciones Git / sync / API / export; **sin cloud** hasta piloto.
 - Mapa docs (`docs/README.md`), guía rápida usuario (`docs/user/GUIA-RAPIDA.md`)
@@ -23,6 +24,13 @@
 
 ### Cambiado
 
+- Welcome: tips/status en CTAs principales (nuevo, abrir, importar, demo, docs…).
+- Explorador: tip honesto «Colocar» (ya colocada vs falta tablero); revelar
+  carpeta usa `project_folder_unavailable`.
+- Renombrar sin cambio de nombre anuncia status; colocar pieza sin returns mudos.
+- Menú Recientes vacío muestra tip + Vaciar deshabilitado.
+- DOC-006: métricas/umbrales por release; DOC-004: estimaciones IDE-0007/0008
+  y DT-0006.
 - `ROADMAP.md` raíz alineado con DOC-003/004: Fase 3 EP-001…003 marcadas
   entregadas; próximo foco DT-0006 / IA bajo demanda.
 - UAT plataforma (`uat/plataforma/CHECKLIST.md`) marcado OK operativo
