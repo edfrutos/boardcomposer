@@ -103,3 +103,43 @@ def test_bcproj_diff_dialog_defaults_to_revision_vs_current(qapp, tmp_path):
     text = dialog.result.toPlainText()
     assert "diff:" in text
     assert "name" in text
+
+
+def test_bcproj_diff_dialog_restore_enabled_for_revision(qapp, tmp_path):
+    path = tmp_path / "live.bcproj"
+    saved = {
+        "version": 2,
+        "project_id": "ui-rev",
+        "name": "Live",
+        "boards": [],
+        "pieces": [],
+        "placements": [],
+    }
+    path.write_text(json.dumps(saved), encoding="utf-8")
+    snapshot = snapshot_before_overwrite(path)
+    assert snapshot is not None
+
+    dirty = StudioProject(
+        project_id="ui-rev",
+        name="Dirty",
+        boards=[],
+        pieces=[],
+        placements=[],
+    )
+    dialog = BcprojDiffDialog(
+        language="es",
+        current_project=project_to_dict(dirty),
+        current_label="(open)",
+        project_path=str(path),
+    )
+    assert dialog.restore_button.isEnabled()
+    assert dialog.selected_revision_path() == snapshot
+    assert dialog.restore_path is None
+
+    dialog.revision_combo.setCurrentIndex(0)
+    assert not dialog.restore_button.isEnabled()
+    assert dialog.selected_revision_path() is None
+
+    dialog.revision_combo.setCurrentIndex(1)
+    dialog._request_restore()
+    assert dialog.restore_path == snapshot

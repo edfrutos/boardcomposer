@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- Restaurar revisión local desde Comparar revisiones (anillo `.bcproj.revs/`):
+  carga en memoria, misma ruta, dirty hasta Guardar; vacía undo/redo.
 - Gate corto demo/release: `uat/RELEASE-SMOKE.md`.
 - Spike DT-0006 (`docs/masterplan/spikes/SPIKE-DT-0006-historial-cloud.md`):
   opciones Git / sync / API / export; **sin cloud** hasta piloto.
