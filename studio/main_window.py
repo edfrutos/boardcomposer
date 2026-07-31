@@ -3724,6 +3724,25 @@ class MainWindow(QMainWindow):
         """Handle the Qt window close event."""
         self._close_event(event)
 
+    def _explorer_context_tip_key(self, key: str, role: object) -> str | None:
+        """Return i18n tip key for an Explorador context action (or None)."""
+        if key == "rename":
+            parsed = parse_explorer_role(role)
+            if parsed is not None and parsed[0] == "project":
+                return "tip.rename_project"
+            return "tip.rename_selection"
+        tips = {
+            "edit": "tip.edit_selection",
+            "duplicate": "tip.duplicate_piece",
+            "delete": "tip.delete_piece",
+            "copy_id": "tip.copy_selection_id",
+            "add_board": "tip.add_board",
+            "add_piece": "tip.add_piece",
+            "preview_solution": "tip.preview_solution",
+            "reveal_folder": "tip.reveal_project_folder",
+        }
+        return tips.get(key)
+
     def _on_explorer_context_menu(self, position: QPoint) -> None:
         item = self.explorer.itemAt(position)
         if item is None:
@@ -3742,7 +3761,7 @@ class MainWindow(QMainWindow):
             if key == "reveal_folder" and not self.services.projects.filename:
                 action.setEnabled(False)
                 action.setStatusTip(self._tr("status.project_folder_unavailable"))
-            if key == "place_on_board":
+            elif key == "place_on_board":
                 parsed = parse_explorer_role(role)
                 can_place = False
                 already_placed = False
@@ -3764,6 +3783,13 @@ class MainWindow(QMainWindow):
                     )
                 else:
                     action.setStatusTip(self._tr("status.place_needs_board_focus"))
+            else:
+                tip_key = self._explorer_context_tip_key(key, role)
+                if tip_key is not None:
+                    tip = self._tr(tip_key)
+                    action.setStatusTip(
+                        with_native_shortcuts(tip) if tip != tip_key else tip
+                    )
             triggered[action] = key
         chosen = menu.exec(self.explorer.viewport().mapToGlobal(position))
         if chosen is None:

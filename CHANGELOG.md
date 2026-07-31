@@ -24,6 +24,8 @@
 
 ### Cambiado
 
+- Menú contextual Explorador: tips de status en Editar / Duplicar / Eliminar /
+  Renombrar / Copiar ID / Añadir / Vista previa (además de Colocar / carpeta).
 - Timeline «Limpiar filtros» anuncia status al vaciar filtros activos.
 - Deshacer/Rehacer anuncian status (`status.undone` / `status.redone`); sin pila,
   reutilizan tips idle existentes.
