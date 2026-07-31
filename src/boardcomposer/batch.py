@@ -404,7 +404,7 @@ def run_batch(
             _dispatch_batch_hooks(job, profile=profile, hooks=hook_config)
             report.jobs.append(job)
             report.ok += 1
-        except Exception as exc:  # noqa: BLE001 — batch must continue
+        except Exception as exc:  # noqa: BLE001  # pylint: disable=broad-exception-caught # noqa: BLE001 — batch must continue
             job = BatchJobResult(
                 source=str(source),
                 status="error",
