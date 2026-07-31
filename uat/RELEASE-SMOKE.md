@@ -2,7 +2,7 @@
 
 **Versión:** `0.4.0.dev0`  
 **Fecha:** 2026-07-31  
-**Base:** `main` (post #328 + este corte de pulido)
+**Base:** `main` (post #329)
 
 Checklist corta para validar «listo para demo / uso diario» sin sustituir UAT
 completo (`uat/studio/`, `uat/plataforma/`).
@@ -17,10 +17,10 @@ completo (`uat/studio/`, `uat/plataforma/`).
 
 ## 2. Studio (manual ligero, 5–10 min)
 
-- [ ] `make run` → Welcome con tips en CTAs
-- [ ] Nuevo demo → calcular layout → Comparador con ≥1 candidata
-- [ ] Timeline visible (Ctrl+3); filtros / Seguir / Limpiar filtros
-- [ ] Guardar `.bcproj` → status menciona revisión local si aplica
+- [x] `make run` → Welcome con tips en CTAs
+- [x] Nuevo demo → calcular layout → Comparador con ≥1 candidata
+- [x] Timeline visible (Ctrl+3); filtros / Seguir / Limpiar filtros
+- [x] Guardar `.bcproj` → status menciona revisión local si aplica
 
 ## 3. Docs / deuda
 
@@ -33,9 +33,7 @@ completo (`uat/studio/`, `uat/plataforma/`).
 | Bloque | ¿OK? | Notas |
 |--------|------|-------|
 | 1 Automatizado | OK | `make check` + `make demo` 2026-07-31 |
-| 2 Studio | Pendiente | Checklist visual 5–10 min en máquina operador |
+| 2 Studio | OK | Operador 2026-07-31 |
 | 3 Docs / deuda | OK | DOC-004 estimaciones; DOC-006 métricas |
 
-**Veredicto:** [x] OK demo (automatizado + docs) · [ ] Con reservas · [ ] Bloqueante
-
-Reserva: paso 2 Studio manual aún sin tick en esta máquina CI-local.
+**Veredicto:** [x] OK demo · [ ] Con reservas · [ ] Bloqueante

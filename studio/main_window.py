@@ -4480,6 +4480,7 @@ class MainWindow(QMainWindow):
             quantity=data["quantity"],
         )
         if updated_board == board:
+            self._status("status.edit_unchanged")
             return
 
         command = EditBoardCommand(self.services, board, updated_board)
@@ -4542,6 +4543,7 @@ class MainWindow(QMainWindow):
             thickness_mm=data["thickness_mm"],
         )
         if updated_piece == piece:
+            self._status("status.edit_unchanged")
             return
 
         command = EditPieceCommand(self.services, piece, updated_piece)
