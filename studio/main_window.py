@@ -3508,7 +3508,10 @@ class MainWindow(QMainWindow):
         if not recent_paths:
             empty_action = QAction(self._tr("action.no_recent"), self)
             empty_action.setEnabled(False)
+            empty_action.setStatusTip(self._tr("welcome.empty_recent"))
             self._recent_menu.addAction(empty_action)
+            self._recent_menu.addSeparator()
+            self._recent_menu.addAction(self._actions["clear_recent"])
             return
 
         for filename in recent_paths:
@@ -3730,19 +3733,28 @@ class MainWindow(QMainWindow):
             action = menu.addAction(self._tr(f"explorer.context.{key}"))
             if key == "reveal_folder" and not self.services.projects.filename:
                 action.setEnabled(False)
-                action.setStatusTip(self._tr("status.project_unsaved"))
+                action.setStatusTip(self._tr("status.project_folder_unavailable"))
             if key == "place_on_board":
                 parsed = parse_explorer_role(role)
                 can_place = False
-                if (
-                    parsed is not None
-                    and parsed[0] == "piece"
-                    and project is not None
-                    and self.workspace.placement_target_board_id() is not None
-                ):
-                    can_place = project.placement_by_piece_id(parsed[1]) is None
+                already_placed = False
+                if parsed is not None and parsed[0] == "piece" and project is not None:
+                    already_placed = (
+                        project.placement_by_piece_id(parsed[1]) is not None
+                    )
+                    if (
+                        not already_placed
+                        and self.workspace.placement_target_board_id() is not None
+                    ):
+                        can_place = True
                 action.setEnabled(can_place)
-                if not can_place:
+                if can_place:
+                    action.setStatusTip(self._tr("explorer.context.place_on_board"))
+                elif already_placed:
+                    action.setStatusTip(
+                        self._tr("status.piece_already_placed", id=parsed[1])
+                    )
+                else:
                     action.setStatusTip(self._tr("status.place_needs_board_focus"))
             triggered[action] = key
         chosen = menu.exec(self.explorer.viewport().mapToGlobal(position))
@@ -3978,6 +3990,7 @@ class MainWindow(QMainWindow):
             )
             return
         if cleaned == project.name:
+            self._status("status.rename_unchanged")
             return
 
         command = RenameProjectCommand(self.services, project.name, cleaned)
@@ -4010,6 +4023,7 @@ class MainWindow(QMainWindow):
             self._status("status.piece_id_empty")
             return
         if new_piece_id == piece_id:
+            self._status("status.rename_unchanged")
             return
         if id_taken(
             new_piece_id,
@@ -4068,6 +4082,7 @@ class MainWindow(QMainWindow):
             self._status("status.board_id_empty")
             return
         if new_board_id == board_id:
+            self._status("status.rename_unchanged")
             return
         if id_taken(
             new_board_id,
@@ -4175,6 +4190,7 @@ class MainWindow(QMainWindow):
         """Place an unplaced piece on the Explorador-focused board panel."""
         project = self.services.projects.current_project
         if project is None:
+            self._status("status.nothing_to_edit_selection")
             return
 
         if project.placement_by_piece_id(piece_id) is not None:
@@ -4189,10 +4205,12 @@ class MainWindow(QMainWindow):
         try:
             piece = project.piece_by_id(piece_id)
         except KeyError:
+            self._status("status.place_piece_missing", id=piece_id)
             return
 
         board = next((b for b in project.boards if b.board_id == board_id), None)
         if board is None:
+            self._status("status.place_board_missing", id=board_id)
             return
 
         reason = incompatibility_reason(piece, board)
@@ -4217,6 +4235,7 @@ class MainWindow(QMainWindow):
             None,
         )
         if stock_panel_index is None:
+            self._status("status.place_board_missing", id=board_id)
             return
 
         x_mm, y_mm, fits = self._find_free_piece_position_on_panel(

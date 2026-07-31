@@ -185,6 +185,19 @@ class WelcomeScreen(QWidget):
         self.docs_button.setText(tr("welcome.docs", language))
         self.whats_new_button.setText(tr("welcome.whats_new", language))
         self.preferences_button.setText(tr("welcome.preferences", language))
+        tip_pairs = (
+            (self.new_button, "tip.new_project"),
+            (self.open_button, "tip.open"),
+            (self.import_button, "tip.import_pieces_csv"),
+            (self.demo_button, "tip.new_demo_project"),
+            (self.docs_button, "tip.open_docs"),
+            (self.whats_new_button, "tip.whats_new"),
+            (self.preferences_button, "tip.preferences"),
+        )
+        for button, tip_key in tip_pairs:
+            tip = with_native_shortcuts(tr(tip_key, language))
+            button.setToolTip(tip)
+            button.setStatusTip(tip)
         self.set_recent_files(self._recent_paths)
         self.set_has_templates(self._has_templates)
 

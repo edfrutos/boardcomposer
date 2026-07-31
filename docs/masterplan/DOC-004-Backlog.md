@@ -7,7 +7,7 @@
 **Versión:** 1.2.0  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 26/07/2026
+**Última revisión:** 31/07/2026
 
 ---
 
@@ -89,6 +89,17 @@ Observaciones:
 | IDE-0017 | Importación de piezas desde CSV/Excel | 🟢 | P1 |
 | IDE-0018 | Icono/logo propio de BoardComposer Studio | 🟢 | P1 |
 
+### Estimaciones de esfuerzo (ideas abiertas)
+
+Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL** > 2 meses
+(equipo pequeño / 1–2 personas). Son órdenes de magnitud, no compromisos.
+
+| ID | Esfuerzo | Dependencias | Notas |
+|----|----------|--------------|-------|
+| IDE-0007 | L–XL | Caso de uso claro; política de datos | Fase 4; no empezar sin prompt/eval plan |
+| IDE-0008 | XL | ADR-004; contratos de extensión | Fase 5; marketplace fuera del MVP plugin |
+| DT-0006 | M (opción D/A) · L–XL (opción C) | Piloto nombrado; DOC-005 | Spike: `spikes/SPIKE-DT-0006-historial-cloud.md` |
+
 ---
 
 ## Épicas (Fase 3)
@@ -116,11 +127,11 @@ Detalle: `docs/masterplan/epics/`.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — IDE-0001…0018 en Studio/Core completadas;
-EP (001…003) Fase 3 entregadas. Última revisión: 29/07/2026.
+EP (001…003) Fase 3 entregadas. Última revisión: 31/07/2026.
 
 Próximo foco:
 
 - Historial cloud / multi-usuario `.bcproj`: **spike cerrado sin build** —
   ver `spikes/SPIKE-DT-0006-historial-cloud.md` y `DT-0006` (esperar piloto);
-- Fase 4 IA bajo demanda (IDE-0007);
-- Refinar flujo Idea → Épica → Sprint con estimaciones de esfuerzo por épica.
+- Fase 4 IA bajo demanda (IDE-0007) — esfuerzo L–XL (tabla estimaciones);
+- Plugins (IDE-0008) — esfuerzo XL; no priorizar sin ADR-004 operativo.
