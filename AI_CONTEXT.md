@@ -20,7 +20,7 @@ alternativas comprensibles para que el usuario decida.
   de piezas entre paneles físicos desde el Workspace.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`.
-- Versión de desarrollo: `0.4.0.dev0`.
+- Versión: `0.4.0`.
 
 ## Fuentes de verdad
 
