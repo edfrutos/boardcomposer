@@ -184,7 +184,7 @@ candidatas válidas.
 ## Límites conocidos
 
 - Diff estructural Core/CLI + UI Studio (`boardcomposer-diff` / diálogo
-  **Comparar revisiones .bcproj…**, **Ctrl+Shift+Y**); anillo local de hasta 5
+  **Comparar revisiones .bcproj…**, **Ctrl+Shift+Y**); anillo local de hasta 10
   revisiones al guardar (`.<nombre>.bcproj.revs/`). Sin historial cloud ni
   auditoría multi-usuario.
 - **Restaurar** una revisión del anillo: botón en el diálogo de comparar, o

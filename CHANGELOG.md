@@ -9,6 +9,8 @@
 
 ### Cambiado
 
+- Anillo local `.bcproj.revs/`: `MAX_REVISIONS` 5 → **10**; FLW-005 deja de
+  negar PNG/JPEG (ya soportados en export).
 - Guía rápida alineada con atajos diarios (solve, export, import Excel, zoom,
   undo, docks) y nota ⌘ en macOS; MASTERPLAN apunta a la guía.
 - Calcular layout exige ≥1 tablero y ≥1 pieza (tip/status honestos; no lanza

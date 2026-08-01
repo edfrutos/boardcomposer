@@ -13,7 +13,7 @@ Studio ya persiste un **anillo local** de revisiones al guardar:
 
 - Módulo: `boardcomposer.io.bcproj_revisions`
 - Sidecar: `.<nombre>.bcproj.revs/` junto al `.bcproj`
-- Capacidad: `MAX_REVISIONS = 5`
+- Capacidad: `MAX_REVISIONS = 10` (subido desde 5 en ciclo `0.4.1.dev0`)
 - UI: comparar revisiones / diff local (FLW-006)
 
 **DT-0006** pide historial **cloud / multi-usuario**. El anillo local cubre
@@ -62,7 +62,8 @@ mono-usuario offline; no cubre colaboración ni auditoría remota.
 ## Fuera de alcance de este spike
 
 - Implementación de sync, OAuth, CRDT o merge de layouts.
-- Cambiar `MAX_REVISIONS` del anillo local (ajuste aparte si hace falta).
+- Cambiar `MAX_REVISIONS` del anillo local — **hecho** (10 en `0.4.1.dev0`);
+  seguir ajustable si un piloto lo pide.
 
 ---
 

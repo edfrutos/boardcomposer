@@ -12,7 +12,7 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
-MAX_REVISIONS = 5
+MAX_REVISIONS = 10
 
 
 def revisions_dir(path: str | Path) -> Path:
