@@ -15,13 +15,16 @@ Pantalla de inicio: nuevo proyecto, abrir, recientes, demo, plantilla, docs y no
 
 ## Flujo típico
 
-1. **Nuevo proyecto** (Ctrl+N) — nombre y unidades (mm / pulgadas).
-2. **Añadir tableros** (Ctrl+Shift+B) y **piezas** (Ctrl+Shift+P), o importar CSV.
-3. **Calcular layout** — genera soluciones candidatas.
+1. **Nuevo proyecto** (**Ctrl+N**) — nombre y unidades (mm / pulgadas).
+2. **Añadir tableros** (**Ctrl+Shift+B**) y **piezas** (**Ctrl+Shift+P**), o
+   importar CSV/Excel (**Ctrl+Shift+T** / **Ctrl+Shift+O**).
+3. **Calcular layout** (**Ctrl+Return**) — hace falta ≥1 tablero y ≥1 pieza;
+   genera soluciones candidatas.
 4. Revisar en **Workspace** (paneles, piezas, cámara).
-5. Comparar en **Comparador** / **Explorador de soluciones**.
-6. **Exportar** la solución elegida (imagen / datos según menú).
-7. **Guardar** (Ctrl+S) el proyecto `.bcproj`.
+5. Comparar en **Comparador** (**Ctrl+4**): **Re Pág** / **Av Pág** entre
+   candidatas; **Ctrl+Shift+Return** aplica la elegida.
+6. **Exportar** (**Ctrl+Shift+E**): SVG / PNG / JPEG / PDF / DXF / JSON / CSV.
+7. **Guardar** (**Ctrl+S**) el proyecto `.bcproj`.
 
 ## Revisiones locales del `.bcproj`
 
@@ -46,27 +49,37 @@ vacía al restaurar o al abrir otro proyecto.
 | Guardar como | Ctrl+Shift+S |
 | Preferencias | Ctrl+, |
 | Añadir tablero / pieza | Ctrl+Shift+B / Ctrl+Shift+P |
+| Importar tableros / piezas (CSV/Excel) | Ctrl+Shift+T / Ctrl+Shift+O |
+| Calcular layout | Ctrl+Return |
+| Aplicar layout del Comparador | Ctrl+Shift+Return |
+| Candidata anterior / siguiente | Re Pág / Av Pág |
+| Exportar solución | Ctrl+Shift+E |
 | Comparar revisiones `.bcproj` | Ctrl+Shift+Y |
 | Restaurar última revisión local | Ctrl+Alt+Y |
-| Calcular layout | (menú Solucionar / barra) |
+| Deshacer / Rehacer | Ctrl+Z / Ctrl+Shift+Z |
 | Rotar pieza | R |
+| Renombrar selección | F2 |
+| Duplicar / Eliminar | Ctrl+D / Backspace |
 | Cuadrícula | Ctrl+G |
-| Ajustar al tablero / selección | menú Vista |
+| Ajustar al tablero / selección | Ctrl+0 / Ctrl+Shift+0 |
+| Zoom + / − | Ctrl+= / Ctrl+- |
 | Pantalla de inicio | Ctrl+Shift+H |
 | Demo | Ctrl+Shift+D |
 | Mostrar/ocultar docks | Ctrl+1…4 |
 | Mostrar/ocultar barra | Ctrl+Shift+K |
-| Documentación | Ayuda → Documentación |
-| Novedades | Ayuda → Novedades |
-| Atajos | Ayuda → Atajos de teclado |
+| Documentación | Shift+F1 (o Ayuda → Documentación) |
+| Atajos / Novedades | F1 / Ctrl+Shift+U |
 
-Lista completa: **Ayuda → Atajos de teclado**.
+Lista completa: **Ayuda → Atajos de teclado** (**F1**).
 
-## Importar CSV de tableros
+## Importar CSV/Excel
 
-Formato típico: id, largo, ancho, espesor, cantidad, material.
-Ejemplo: `data/samples/studio_boards_inventory.csv`.
-Tras importar, Studio muestra vista previa fila a fila antes de incorporar.
+- **Tableros:** **Ctrl+Shift+T** — id, largo, ancho, espesor, cantidad, material.
+  Ejemplo: `data/samples/studio_boards_inventory.csv`.
+- **Piezas:** **Ctrl+Shift+O** — mismos campos habituales; la cantidad puede
+  expandirse a varios IDs.
+- Formatos: `.csv` y `.xlsx`. Tras elegir archivo, Studio muestra vista previa
+  fila a fila (OK / error) antes de incorporar.
 
 ## Consejos
 
@@ -76,6 +89,7 @@ Tras importar, Studio muestra vista previa fila a fila antes de incorporar.
 - Tema claro/oscuro e idioma: **Editar → Preferencias**.
 - Si te arrepientes tras varios Guardar: **Ctrl+Alt+Y** restaura la última
   copia del anillo local (luego Guardar otra vez).
+- En macOS, **Ctrl** de los atajos es la tecla **⌘** (Command).
 
 ## Comprobar que todo se ve bien
 

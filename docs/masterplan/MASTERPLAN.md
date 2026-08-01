@@ -48,8 +48,8 @@ Cerrar la deuda de documentación de usuario frente al Studio real:
   deduplicar a una solución única según inventario y heurísticas.
 - No hay acción «intercambiar dos piezas»; la reasignación es arrastrar y
   soltar sobre otro panel físico compatible.
-- No existe aún un manual de usuario final aparte de Ayuda in-app
-  (F1 / Shift+F1), UAT y docs del masterplan.
+- Guía de usuario final: [`docs/user/GUIA-RAPIDA.md`](../user/GUIA-RAPIDA.md)
+  (también **Ayuda → Documentación**, Shift+F1). UAT y masterplan complementan.
 
 ## Normas de trabajo
 

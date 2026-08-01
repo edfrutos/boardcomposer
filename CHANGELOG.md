@@ -9,6 +9,8 @@
 
 ### Cambiado
 
+- Guía rápida alineada con atajos diarios (solve, export, import Excel, zoom,
+  undo, docks) y nota ⌘ en macOS; MASTERPLAN apunta a la guía.
 - Calcular layout exige ≥1 tablero y ≥1 pieza (tip/status honestos; no lanza
   solver vacío).
 - Al abrir / nuevo / demo / plantilla / restaurar se vacía la pila undo/redo
