@@ -1720,17 +1720,28 @@ class MainWindow(QMainWindow):
             self.welcome.set_has_templates(has_templates)
 
     def _sync_generate_actions(self) -> None:
-        """Enable layout calculation only when a project is open."""
-        has_project = self.services.projects.current_project is not None
+        """Enable layout calculation when project has boards and pieces."""
+        project = self.services.projects.current_project
         solve = self._actions.get("solve_layout")
         if solve is None:
             return
-        solve.setEnabled(has_project)
-        solve.setStatusTip(
-            with_native_shortcuts(self._tr("tip.solve_layout"))
-            if has_project
-            else self._tr("status.nothing_to_solve")
-        )
+        if project is None:
+            solve.setEnabled(False)
+            solve.setStatusTip(self._tr("status.nothing_to_solve"))
+            return
+        has_boards = bool(project.boards)
+        has_pieces = bool(project.pieces)
+        can_solve = has_boards and has_pieces
+        solve.setEnabled(can_solve)
+        if can_solve:
+            tip = with_native_shortcuts(self._tr("tip.solve_layout"))
+        elif not has_boards and not has_pieces:
+            tip = self._tr("status.solve_needs_inventory")
+        elif not has_boards:
+            tip = self._tr("status.solve_needs_boards")
+        else:
+            tip = self._tr("status.solve_needs_pieces")
+        solve.setStatusTip(tip)
 
     def _update_project_path_status(self) -> None:
         """Refresh the permanent project-path widget and reveal action."""
@@ -2516,6 +2527,20 @@ class MainWindow(QMainWindow):
 
     def _solve_layout(self):
         from studio.solve_worker import run_solve_with_progress
+
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.nothing_to_solve")
+            return
+        if not project.boards and not project.pieces:
+            self._status("status.solve_needs_inventory")
+            return
+        if not project.boards:
+            self._status("status.solve_needs_boards")
+            return
+        if not project.pieces:
+            self._status("status.solve_needs_pieces")
+            return
 
         self._status("status.layout_computing", 0)
         self._emit(
