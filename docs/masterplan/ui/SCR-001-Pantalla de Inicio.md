@@ -34,7 +34,7 @@ recientes y alcanzar las acciones principales sin pasar por el Workspace.
 ├────────────────────────────────────────────┬─────────────────────────────────┤
 │ Hero (brand-first)                         │ Proyectos recientes             │
 │   BoardComposer                            │  [Vaciar lista]                 │
-│   Studio 0.4.0                        │  · miniatura · nombre · fecha   │
+│   Studio 0.4.1                        │  · miniatura · nombre · fecha   │
 │   tagline i18n                             │  · ruta completa                │
 │                                            │  (doble clic / Enter → abrir)   │
 │ CTAs:                                      │                                 │

@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-07-30  
 **Base:** `main` post-EP-002/EP-003 (+ #327 Timeline clear-filters)  
-**Versión:** `0.4.0`  
+**Versión:** `0.4.1`  
 **Ejecución smoke:** 2026-07-30 (agente local, `.venv` Python 3.13.13)
 
 Objetivo: validar uso operativo **sin UI Studio** (CLI batch + HTTP API).

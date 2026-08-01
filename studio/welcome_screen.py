@@ -22,7 +22,7 @@ from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.keyboard_shortcuts import with_native_shortcuts
 from studio.project_thumbnail import RECENT_THUMBNAIL_SIZE, project_file_thumbnail
 
-STUDIO_VERSION = "0.4.1.dev0"
+STUDIO_VERSION = "0.4.1"
 
 
 class WelcomeScreen(QWidget):
