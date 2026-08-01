@@ -76,6 +76,58 @@ def test_load_whats_new_fallback_when_unreleased_has_no_added_bullets(tmp_path):
     assert "CHANGELOG.md" in bullets[0]
 
 
+def test_load_whats_new_skips_empty_cycle_placeholder(tmp_path):
+    changelog = tmp_path / "CHANGELOG.md"
+    changelog.write_text(
+        "# CHANGELOG\n\n## Unreleased — 0.4.2.dev0\n\n### Añadido\n\n"
+        "- _(ciclo post-`0.4.1` — vacío al corte)_\n\n"
+        "## 0.4.1 — 2026-08-01\n\n### Añadido\n\n"
+        "- Restaurar última revisión local\n\n### Cambiado\n\n"
+        "- Anillo local a 10 revisiones\n",
+        encoding="utf-8",
+    )
+    title, bullets = load_whats_new(changelog_path=changelog, max_items=10)
+    assert title.startswith("0.4.1")
+    assert "Restaurar última revisión local" in bullets
+    assert "Anillo local a 10 revisiones" in bullets
+    assert not any("vacío al corte" in b for b in bullets)
+
+
+def test_load_whats_new_prefers_real_unreleased_over_release(tmp_path):
+    changelog = tmp_path / "CHANGELOG.md"
+    changelog.write_text(
+        "# CHANGELOG\n\n## Unreleased — 0.4.2.dev0\n\n### Añadido\n\n"
+        "- Novedad del ciclo\n\n"
+        "## 0.4.1 — 2026-08-01\n\n### Añadido\n\n- De la release\n",
+        encoding="utf-8",
+    )
+    title, bullets = load_whats_new(changelog_path=changelog)
+    assert "Unreleased" in title
+    assert bullets == ["Novedad del ciclo"]
+
+
+def test_load_whats_new_falls_back_to_release_when_unreleased_only_changed(
+    tmp_path,
+):
+    changelog = tmp_path / "CHANGELOG.md"
+    changelog.write_text(
+        "# CHANGELOG\n\n## Unreleased\n\n### Cambiado\n\n- Solo WIP\n\n"
+        "## 0.4.1\n\n### Añadido\n\n- Highlight de release\n",
+        encoding="utf-8",
+    )
+    title, bullets = load_whats_new(changelog_path=changelog)
+    assert title.startswith("0.4.1")
+    assert bullets == ["Highlight de release"]
+
+
+def test_load_whats_new_repo_changelog_has_no_placeholder_bullets():
+    title, bullets = load_whats_new(max_items=12)
+    assert title
+    assert bullets
+    assert not any("vacío al corte" in b.lower() for b in bullets)
+    assert not any(b.startswith("_(") and b.endswith(")_") for b in bullets)
+
+
 def test_load_whats_new_missing_file(tmp_path):
     title, bullets = load_whats_new(changelog_path=tmp_path / "missing.md")
     assert title == "BoardComposer Studio"

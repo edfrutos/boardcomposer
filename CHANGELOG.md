@@ -4,7 +4,7 @@
 
 ### Añadido
 
-- _(ciclo post-`0.4.1` — vacío al corte)_
+- Ayuda → Novedades cae a highlights de la última release si Unreleased está vacío.
 
 ### Cambiado
 
