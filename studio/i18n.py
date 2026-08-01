@@ -282,6 +282,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.clear_recent": "Vaciar la lista de proyectos recientes (Ctrl+Shift+X)",
         "help.whats_new_title": "Novedades",
         "help.whats_new_heading": "Cambios recientes ({section})",
+        "help.whats_new_unavailable": "No hay notas de versión disponibles.",
+        "help.whats_new_read_error": "No se pudo leer CHANGELOG.md.",
+        "help.whats_new_see_changelog": (
+            "Consulta CHANGELOG.md para el detalle completo de la versión."
+        ),
         "help.about_title": "Acerca de",
         "help.about_version": "Versión {version}",
         "help.about_blurb": (
@@ -1167,6 +1172,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.clear_recent": "Clear the list of recent projects (Ctrl+Shift+X)",
         "help.whats_new_title": "What’s new",
         "help.whats_new_heading": "Recent changes ({section})",
+        "help.whats_new_unavailable": "No release notes available.",
+        "help.whats_new_read_error": "Could not read CHANGELOG.md.",
+        "help.whats_new_see_changelog": (
+            "See CHANGELOG.md for the full version details."
+        ),
         "help.about_title": "About",
         "help.about_version": "Version {version}",
         "help.about_blurb": (
