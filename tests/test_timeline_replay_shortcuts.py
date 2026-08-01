@@ -68,3 +68,33 @@ def test_timeline_replay_shortcuts_ignored_without_solution(qapp):
     _press(panel, Qt.Key.Key_Right)
     assert panel._replay.step == 0
     assert not panel._replay.available
+
+
+def test_timeline_replay_transport_status_tips_match_tooltips(qapp):
+    panel = _panel(qapp)
+    for button in (
+        panel._replay_reset,
+        panel._replay_back,
+        panel._replay_forward,
+        panel._replay_play,
+    ):
+        assert button.toolTip()
+        assert button.statusTip() == button.toolTip()
+    assert "Inicio" in panel._replay_reset.statusTip()
+    assert panel._mark.toolTip()
+    assert panel._mark.statusTip() == panel._mark.toolTip()
+    assert "marcador" in panel._mark.statusTip().lower()
+
+
+def test_timeline_replay_transport_idle_tips_without_solution(qapp):
+    del qapp
+    panel = TimelinePanel(TimelineStore(EventBus()), language="es")
+    idle = "Calcula un layout"
+    for button in (
+        panel._replay_reset,
+        panel._replay_back,
+        panel._replay_forward,
+        panel._replay_play,
+    ):
+        assert idle in button.statusTip()
+        assert button.statusTip() == button.toolTip()
