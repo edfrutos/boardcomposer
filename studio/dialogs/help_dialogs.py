@@ -29,7 +29,7 @@ class WhatsNewDialog(QDialog):
         self.setWindowTitle(tr("help.whats_new_title", language))
         self.setMinimumSize(520, 420)
 
-        title, bullets = load_whats_new()
+        title, bullets = load_whats_new(language=language)
         layout = QVBoxLayout(self)
         heading = QLabel(tr("help.whats_new_heading", language, section=title))
         heading.setWordWrap(True)

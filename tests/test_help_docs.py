@@ -70,10 +70,13 @@ def test_load_whats_new_fallback_when_unreleased_has_no_added_bullets(tmp_path):
         "# CHANGELOG\n\n## Unreleased\n\n### Cambiado\n\n- Solo cambios\n",
         encoding="utf-8",
     )
-    title, bullets = load_whats_new(changelog_path=changelog)
+    title, bullets = load_whats_new(changelog_path=changelog, language="es")
     assert "Unreleased" in title
     assert len(bullets) == 1
     assert "CHANGELOG.md" in bullets[0]
+
+    _title_en, bullets_en = load_whats_new(changelog_path=changelog, language="en")
+    assert "See CHANGELOG.md" in bullets_en[0]
 
 
 def test_load_whats_new_skips_empty_cycle_placeholder(tmp_path):
@@ -129,9 +132,16 @@ def test_load_whats_new_repo_changelog_has_no_placeholder_bullets():
 
 
 def test_load_whats_new_missing_file(tmp_path):
-    title, bullets = load_whats_new(changelog_path=tmp_path / "missing.md")
+    title, bullets = load_whats_new(
+        changelog_path=tmp_path / "missing.md", language="es"
+    )
     assert title == "BoardComposer Studio"
     assert bullets == ["No hay notas de versión disponibles."]
+
+    _title_en, bullets_en = load_whats_new(
+        changelog_path=tmp_path / "missing.md", language="en"
+    )
+    assert bullets_en == ["No release notes available."]
 
 
 def test_whats_new_and_about_dialogs(qapp):

@@ -4,8 +4,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from studio.i18n import DEFAULT_LANGUAGE, tr
+
 _REPO_ROOT = Path(__file__).resolve().parents[1]
-_GENERIC_FALLBACK = ["Consulta CHANGELOG.md para el detalle completo de la versión."]
 
 
 def repo_root() -> Path:
@@ -95,21 +96,30 @@ def load_whats_new(
     *,
     changelog_path: Path | None = None,
     max_items: int = 12,
+    language: str = DEFAULT_LANGUAGE,
 ) -> tuple[str, list[str]]:
     """Return ``(section_title, bullet_lines)`` for Ayuda → Novedades.
 
     Prefers Unreleased **Añadido** (ignoring empty-cycle placeholders). When
     Unreleased has nothing useful, falls back to the latest released section
     (Añadido, then Cambiado) so the dialog stays useful mid-cycle.
+
+    Missing-file / read-error / empty-generic messages follow ``language``.
     """
     path = changelog_path or documentation_paths()["changelog"]
     if not path.is_file():
-        return ("BoardComposer Studio", ["No hay notas de versión disponibles."])
+        return (
+            "BoardComposer Studio",
+            [tr("help.whats_new_unavailable", language)],
+        )
 
     try:
         text = path.read_text(encoding="utf-8")
     except OSError:
-        return ("BoardComposer Studio", ["No se pudo leer CHANGELOG.md."])
+        return (
+            "BoardComposer Studio",
+            [tr("help.whats_new_read_error", language)],
+        )
 
     lines = text.splitlines()
 
@@ -131,4 +141,7 @@ def load_whats_new(
     if bullets:
         return title or "BoardComposer Studio", bullets
 
-    return title or "Unreleased", list(_GENERIC_FALLBACK)
+    return (
+        title or "Unreleased",
+        [tr("help.whats_new_see_changelog", language)],
+    )
