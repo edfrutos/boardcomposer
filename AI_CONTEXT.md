@@ -8,7 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-07-28
+## Estado actual — 2026-08-01
 
 - Fase de producto: Fase 2, BoardComposer Studio.
 - Core base completado y en evolución controlada.
@@ -20,7 +20,7 @@ alternativas comprensibles para que el usuario decida.
   de piezas entre paneles físicos desde el Workspace.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`.
-- Versión: `0.4.1`.
+- Versión de desarrollo: `0.4.2.dev0` (última estable: `0.4.1`).
 
 ## Fuentes de verdad
 

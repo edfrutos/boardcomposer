@@ -5,7 +5,7 @@
 **Código:** SCR-001  
 **Versión:** 1.1.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 24/07/2026
+**Última revisión:** 01/08/2026
 
 ---
 
@@ -34,7 +34,7 @@ recientes y alcanzar las acciones principales sin pasar por el Workspace.
 ├────────────────────────────────────────────┬─────────────────────────────────┤
 │ Hero (brand-first)                         │ Proyectos recientes             │
 │   BoardComposer                            │  [Vaciar lista]                 │
-│   Studio 0.4.1                        │  · miniatura · nombre · fecha   │
+│   Studio {pyproject version}              │  · miniatura · nombre · fecha   │
 │   tagline i18n                             │  · ruta completa                │
 │                                            │  (doble clic / Enter → abrir)   │
 │ CTAs:                                      │                                 │

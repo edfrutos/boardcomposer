@@ -68,8 +68,8 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 ## Próximo foco (operativo)
 
 1. Release **`0.4.1`** cortado y etiquetado (`v0.4.1`, 2026-08-01).
-2. Ciclo `0.4.2.dev0` abierto — slices QoL bajo demanda (backlog grande bloqueado).
-3. Restore / gate inventario / guía / anillo×10 / tips residual — cerrado.
+2. Ciclo `0.4.2.dev0` — QoL: Novedades fallback/i18n, versión única, Timeline tips.
+3. Docs ciclo (`AI_CONTEXT` / MASTERPLAN / SCR-001) alineados con `pyproject`.
 4. Gate demo/release (`uat/RELEASE-SMOKE.md`) — activo en cada corte.
 5. DT-0006 — esperar piloto (`docs/masterplan/spikes/SPIKE-DT-0006-historial-cloud.md`).
 6. Fase 4 IA solo bajo demanda (IDE-0007, L–XL).
