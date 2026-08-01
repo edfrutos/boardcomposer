@@ -5,7 +5,7 @@
 **Código:** FLW-006  
 **Versión:** 1.2.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 25/07/2026
+**Última revisión:** 01/08/2026
 
 ---
 
@@ -184,9 +184,12 @@ candidatas válidas.
 ## Límites conocidos
 
 - Diff estructural Core/CLI + UI Studio (`boardcomposer-diff` / diálogo
-  **Comparar revisiones .bcproj…**); anillo local de hasta 5 revisiones al
-  guardar (`.<nombre>.bcproj.revs/`). Sin historial cloud ni auditoría
-  multi-usuario.
+  **Comparar revisiones .bcproj…**, **Ctrl+Shift+Y**); anillo local de hasta 5
+  revisiones al guardar (`.<nombre>.bcproj.revs/`). Sin historial cloud ni
+  auditoría multi-usuario.
+- **Restaurar** una revisión del anillo: botón en el diálogo de comparar, o
+  **Proyecto → Restaurar última revisión local…** (**Ctrl+Alt+Y**). Carga en
+  memoria (misma ruta); dirty hasta Guardar; vacía la pila undo/redo de sesión.
 - Sin edición colaborativa ni bloqueo de recursos.
 - Sin evento bus `PieceMoved` / `ProjectValidated` / `ProjectHistoryUpdated`.
 - Historial local = anillo `.bcproj.revs` + Timeline de eventos + pila undo

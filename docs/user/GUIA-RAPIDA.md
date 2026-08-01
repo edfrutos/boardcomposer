@@ -23,6 +23,21 @@ Pantalla de inicio: nuevo proyecto, abrir, recientes, demo, plantilla, docs y no
 6. **Exportar** la solución elegida (imagen / datos según menú).
 7. **Guardar** (Ctrl+S) el proyecto `.bcproj`.
 
+## Revisiones locales del `.bcproj`
+
+Al **Guardar** sobre un archivo ya existente, Studio copia la versión anterior
+en una carpeta oculta junto al proyecto (`.<nombre>.bcproj.revs/`, máx. 5).
+
+| Acción | Cómo |
+|---|---|
+| Comparar | **Proyecto → Comparar revisiones .bcproj…** (**Ctrl+Shift+Y**) |
+| Restaurar la última | **Proyecto → Restaurar última revisión local…** (**Ctrl+Alt+Y**) |
+| Restaurar una concreta | En el diálogo de comparar, elige revisión → **Restaurar esta revisión…** |
+
+La restauración carga el snapshot **en memoria** (misma ruta del archivo).
+Queda pendiente de **Guardar** para escribirlo en disco. La pila Deshacer se
+vacía al restaurar o al abrir otro proyecto.
+
 ## Atajos útiles
 
 | Acción | Atajo |
@@ -31,6 +46,8 @@ Pantalla de inicio: nuevo proyecto, abrir, recientes, demo, plantilla, docs y no
 | Guardar como | Ctrl+Shift+S |
 | Preferencias | Ctrl+, |
 | Añadir tablero / pieza | Ctrl+Shift+B / Ctrl+Shift+P |
+| Comparar revisiones `.bcproj` | Ctrl+Shift+Y |
+| Restaurar última revisión local | Ctrl+Alt+Y |
 | Calcular layout | (menú Solucionar / barra) |
 | Rotar pieza | R |
 | Cuadrícula | Ctrl+G |
@@ -57,6 +74,8 @@ Tras importar, Studio muestra vista previa fila a fila antes de incorporar.
 - Varias soluciones = alternativas puntuadas; tú eliges.
 - Retales en Inspector son **informativos**, no inventario reutilizable automático.
 - Tema claro/oscuro e idioma: **Editar → Preferencias**.
+- Si te arrepientes tras varios Guardar: **Ctrl+Alt+Y** restaura la última
+  copia del anillo local (luego Guardar otra vez).
 
 ## Comprobar que todo se ve bien
 

@@ -34,6 +34,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] Cerrar / **Salir** (**Ctrl+Q**; tip de estado) con cambios sin guardar → diálogo claro (nombre/ruta/botones).
 - [x] **Renombrar proyecto** (menú, clic derecho en raíz del Explorador, **F2** o **Ctrl+Shift+F2**; tip de estado).
 - [x] **Comparar revisiones `.bcproj`** (**Ctrl+Shift+Y**; tip de estado): tras guardar varias veces, abre diff con cambios estructurales legibles (`diff:` / `changes:`).
+- [x] **Restaurar última revisión local** (**Ctrl+Alt+Y** / menú Proyecto; tip idle si no hay anillo): tras ≥2 guardados, confirma → inventario en memoria vuelve al snapshot; título dirty; Guardar escribe en disco.
 
 ---
 

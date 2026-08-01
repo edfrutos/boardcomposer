@@ -68,7 +68,7 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 ## Próximo foco (operativo)
 
 1. Release **`0.4.0`** cortado y etiquetado (`v0.4.0`, 2026-07-31).
-2. Ciclo `0.4.1.dev0`: pulido restore (menú Proyecto + `Ctrl+Alt+Y`).
+2. Restore local cerrado en código + guía/UAT (menú, `Ctrl+Alt+Y`, docs).
 3. Gate demo/release cerrado (`uat/RELEASE-SMOKE.md`).
 4. Arco tips/status residual Studio: cerrado.
 5. DT-0006 — esperar piloto (`docs/masterplan/spikes/SPIKE-DT-0006-historial-cloud.md`).
