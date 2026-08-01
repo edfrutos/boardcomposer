@@ -8,6 +8,8 @@
 
 ### Cambiado
 
+- Versión de Studio (Welcome / About) se lee de `pyproject.toml` — una sola fuente.
+
 ## 0.4.1 — 2026-08-01
 
 ### Añadido

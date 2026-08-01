@@ -17,8 +17,8 @@ from studio.branding import app_icon
 from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.keyboard_shortcuts import STUDIO_SHORTCUTS, format_shortcut_label
+from studio.version import STUDIO_VERSION
 from studio.whats_new import load_whats_new
-from studio.welcome_screen import STUDIO_VERSION
 
 
 class WhatsNewDialog(QDialog):
