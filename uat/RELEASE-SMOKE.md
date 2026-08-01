@@ -1,8 +1,8 @@
 # Release / demo smoke — BoardComposer
 
-**Versión:** `0.4.0`  
-**Fecha:** 2026-07-31  
-**Base:** `main` @ release `0.4.0` (2026-07-31)
+**Versión:** `0.4.1`  
+**Fecha:** 2026-08-01  
+**Base:** `main` @ release `0.4.1`
 
 Checklist corta para validar «listo para demo / uso diario» sin sustituir UAT
 completo (`uat/studio/`, `uat/plataforma/`).
@@ -11,29 +11,29 @@ completo (`uat/studio/`, `uat/plataforma/`).
 
 ## 1. Automatizado
 
-- [x] `make check` (project check + ruff + pytest) → OK (875 passed, 2026-07-31)
-- [x] `make demo` → OK (`free_space`, 1 solución, sin crash)
-- [x] Cubierto por `make check` (`test_batch` + `test_http_api`)
+- [ ] `make check` (project check + ruff + pytest) → OK
+- [ ] `make demo` → sale con layout / JSON sin crash
+- [ ] Cubierto por `make check` (`test_batch` + `test_http_api`)
 
 ## 2. Studio (manual ligero, 5–10 min)
 
-- [x] `make run` → Welcome con tips en CTAs
-- [x] Nuevo demo → calcular layout → Comparador con ≥1 candidata
-- [x] Timeline visible (Ctrl+3); filtros / Seguir / Limpiar filtros
-- [x] Guardar `.bcproj` → status menciona revisión local si aplica
+- [ ] `make run` → Welcome / About muestran `0.4.1`
+- [ ] Nuevo demo → calcular layout → Comparador con ≥1 candidata
+- [ ] Restore: guardar 2× → Ctrl+Alt+Y → confirm → dirty
+- [ ] Calcular layout deshabilitado en proyecto vacío (sin tablero/pieza)
 
 ## 3. Docs / deuda
 
-- [x] `ROADMAP.md` alineado con DOC-003 (Fase 3 entregada)
-- [x] DOC-006: métricas release revisadas (abiertas = 1 DT-0006 ≤ umbral)
+- [x] `ROADMAP.md` / CHANGELOG 0.4.1
+- [x] DOC-006: deuda abierta = DT-0006 (≤ umbral)
 - [x] UAT plataforma marcado OK (`uat/plataforma/CHECKLIST.md`)
 
 ## Resultado (rellenar al ejecutar)
 
 | Bloque | ¿OK? | Notas |
 |--------|------|-------|
-| 1 Automatizado | OK | `make check` + `make demo` 2026-07-31 |
-| 2 Studio | OK | Operador 2026-07-31 |
-| 3 Docs / deuda | OK | DOC-004 estimaciones; DOC-006 métricas |
+| 1 Automatizado |  |  |
+| 2 Studio |  |  |
+| 3 Docs / deuda | OK | Corte 0.4.1 |
 
-**Veredicto:** [x] OK demo · [ ] Con reservas · [ ] Bloqueante
+**Veredicto:** [ ] OK demo · [ ] Con reservas · [ ] Bloqueante

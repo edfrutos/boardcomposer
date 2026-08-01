@@ -67,12 +67,12 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 ## Próximo foco (operativo)
 
-1. Release **`0.4.0`** cortado y etiquetado (`v0.4.0`, 2026-07-31).
-2. Restore local cerrado (código + guía/UAT).
+1. Release **`0.4.1`** cortado (`v0.4.1`, 2026-08-01) — ciclo post-`0.4.0`.
+2. Restore local + guía/UAT — cerrado.
 3. Gate inventario antes de Calcular layout — cerrado.
-4. Guía rápida alineada con atajos diarios de Studio.
+4. Guía rápida / atajos diarios — cerrado.
 5. Anillo local `MAX_REVISIONS=10` — cerrado.
-6. Gate demo/release cerrado (`uat/RELEASE-SMOKE.md`).
-7. Arco tips/status residual Studio: cerrado.
+6. Gate demo/release (`uat/RELEASE-SMOKE.md`) — activo en cada corte.
+7. Arco tips/status residual Studio — cerrado.
 8. DT-0006 — esperar piloto (`docs/masterplan/spikes/SPIKE-DT-0006-historial-cloud.md`).
 9. Fase 4 IA solo bajo demanda (IDE-0007, L–XL).

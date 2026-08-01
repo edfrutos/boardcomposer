@@ -5,7 +5,7 @@
 ## Estado actual
 
 - Fase de producto: **Fase 2 — BoardComposer Studio**.
-- Versión: `0.4.0`.
+- Versión: `0.4.1`.
 - Core base consolidado y cubierto por tests.
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación.
 - Vertical multipanel MaxRects con material + espesor, Workspace interactivo y

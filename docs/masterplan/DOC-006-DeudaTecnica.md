@@ -114,7 +114,7 @@ conteo en «Estado» o en las notas de release.
 - **Advertencia:** umbrales de la tabla; no bloquea patch/`dev0` si hay plan
   explícito en «Próximo foco».
 
-**Corte 2026-07-31 (`0.4.0`):** abiertas = **1** (DT-0006, planificada +
+**Corte 2026-08-01 (`0.4.1`):** abiertas = **1** (DT-0006, planificada +
 spike); antigüedad aceptable (spike el 30/07); sin críticas sin plan.
 
 ---
@@ -142,7 +142,7 @@ spike); antigüedad aceptable (spike el 30/07); sin críticas sin plan.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — revisado para `0.4.0`
+**Estado actual:** 🟢 Actualizado — revisado para `0.4.1`
 
 Próximo foco:
 
