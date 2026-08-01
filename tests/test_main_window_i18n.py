@@ -511,7 +511,7 @@ def test_fit_selection_action_gated_until_selection_or_focus(qapp, tmp_path):
 
 def test_solve_layout_action_enabled_with_project(qapp, tmp_path):
     del qapp
-    from studio.models import StudioProject
+    from studio.models import StudioBoard, StudioPiece, StudioProject
 
     services = StudioServices(
         preferences=PreferencesManager(tmp_path / "preferences.json")
@@ -521,6 +521,18 @@ def test_solve_layout_action_enabled_with_project(qapp, tmp_path):
     assert not window._actions["solve_layout"].isEnabled()
 
     services.projects.new_project(StudioProject(project_id="PRJ-SOLVE", name="Solve"))
+    window.update_window_title()
+    assert not window._actions["solve_layout"].isEnabled()
+    assert "board" in window._actions["solve_layout"].statusTip().lower()
+
+    project = services.projects.current_project
+    assert project is not None
+    project.boards.append(StudioBoard("B1", 1000, 500, "Demo", 19, 1))
+    window.update_window_title()
+    assert not window._actions["solve_layout"].isEnabled()
+    assert "piece" in window._actions["solve_layout"].statusTip().lower()
+
+    project.pieces.append(StudioPiece("A", 200, 100, "Demo", 19))
     window.update_window_title()
     assert window._actions["solve_layout"].isEnabled()
     tip = window._actions["solve_layout"].statusTip()

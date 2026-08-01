@@ -156,6 +156,8 @@ exportar. El Timeline registra inicio/fin y fases del solver.
 
 ## Límites conocidos
 
-- Sin validación previa amigable «faltan tableros/piezas» antes de lanzar.
+- Sin validación previa amigable «faltan tableros/piezas» antes de lanzar
+  → **cerrado:** Calcular layout deshabilitado + tip/status honestos hasta
+  haber ≥1 tablero y ≥1 pieza.
 - Preview del canvas no se fuerza al acabar el solve (hay que seleccionar).
 - Solo MaxRects cubre el contrato multipanel completo (`exact` = un panel).

@@ -9,6 +9,8 @@
 
 ### Cambiado
 
+- Calcular layout exige ≥1 tablero y ≥1 pieza (tip/status honestos; no lanza
+  solver vacío).
 - Al abrir / nuevo / demo / plantilla / restaurar se vacía la pila undo/redo
   (evita deshacer comandos de otro proyecto).
 - Guía rápida, FLW-006, SCR-005 y UAT documentan comparar/restaurar revisiones
