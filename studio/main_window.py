@@ -651,6 +651,7 @@ class MainWindow(QMainWindow):
 
         self.services.projects.new_project(project)
         self.services.layout.clear_solutions()
+        self._clear_command_history()
         self.workspace.reload_project()
         self._reload_explorer()
         self._reload_solution_table()
@@ -674,6 +675,8 @@ class MainWindow(QMainWindow):
         )
 
         self.services.projects.new_project(project)
+        self.services.layout.clear_solutions()
+        self._clear_command_history()
         self.workspace.reload_project()
         self._reload_explorer()
         self.update_window_title()
@@ -1030,6 +1033,7 @@ class MainWindow(QMainWindow):
         project = manager.instantiate(name, include_placements=include_placements)
         self.services.projects.new_project(project)
         self.services.layout.clear_solutions()
+        self._clear_command_history()
         self.workspace.reload_project()
         self._reload_explorer()
         self._reload_solution_table()
@@ -1816,6 +1820,11 @@ class MainWindow(QMainWindow):
             else self._tr("status.nothing_to_redo")
         )
         apply_shortcuts(self._actions)
+
+    def _clear_command_history(self) -> None:
+        """Drop undo/redo stacks after replacing the open project."""
+        self.services.commands.clear()
+        self.update_undo_redo()
 
     def _undo(self):
         if not self.services.commands.can_undo():
@@ -3502,6 +3511,7 @@ class MainWindow(QMainWindow):
         self.services.recent_files.add(path)
         self._reload_recent_files_menu()
         self.services.layout.clear_solutions()
+        self._clear_command_history()
 
         self._show_workspace()
         self.workspace.reload_project()
@@ -3581,6 +3591,7 @@ class MainWindow(QMainWindow):
         self.services.recent_files.add(path)
         self._reload_recent_files_menu()
         self.services.layout.clear_solutions()
+        self._clear_command_history()
 
         self._show_workspace()
         self.workspace.reload_project()
@@ -4004,14 +4015,13 @@ class MainWindow(QMainWindow):
 
         self.services.projects.open_project(project, filename)
         self.services.projects.mark_modified()
-        self.services.commands.clear()
+        self._clear_command_history()
         self.services.layout.clear_solutions()
 
         self._show_workspace()
         self.workspace.reload_project()
         self._reload_explorer()
         self._reload_solution_table()
-        self.update_undo_redo()
         self.update_window_title()
 
         self._status("status.revision_restored", name=revision_path.name)
