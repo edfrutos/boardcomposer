@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-005  
-**Versión:** 1.1.0  
+**Versión:** 1.2.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 25/07/2026
+**Última revisión:** 01/08/2026
 
 ---
 
@@ -139,6 +139,7 @@ posibilidad de abrir/revelar al terminar y de reutilizar plantillas/defaults.
 
 ## Límites conocidos
 
-- Sin PNG/JPEG ni opciones de papel/escala/márgenes.
+- PNG/JPEG/PDF/DXF/SVG/JSON/CSV vía diálogo de export (SCR-007).
+- Opciones de papel/escala/márgenes limitadas (defaults del exportador).
 - CSV solo placements.
 - Sin lotes ni publicación a la nube.

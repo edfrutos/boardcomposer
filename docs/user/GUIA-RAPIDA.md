@@ -29,7 +29,7 @@ Pantalla de inicio: nuevo proyecto, abrir, recientes, demo, plantilla, docs y no
 ## Revisiones locales del `.bcproj`
 
 Al **Guardar** sobre un archivo ya existente, Studio copia la versión anterior
-en una carpeta oculta junto al proyecto (`.<nombre>.bcproj.revs/`, máx. 5).
+en una carpeta oculta junto al proyecto (`.<nombre>.bcproj.revs/`, máx. 10).
 
 | Acción | Cómo |
 |---|---|
