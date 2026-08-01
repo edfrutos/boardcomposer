@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-005  
-**Versión:** 1.1.0  
+**Versión:** 1.2.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 24/07/2026
+**Última revisión:** 01/08/2026
 
 ---
 
@@ -35,12 +35,12 @@ Archivo          Proyecto              Explorador (Ctrl+1)
 ────────         ────────              ────────────────────
 Nuevo            Renombrar…            Raíz: nombre proyecto
 Desde plantilla  Abrir carpeta         ├ Tableros (n)
-Demo             Añadir tablero…       ├ Piezas (n)
-Inicio           Añadir pieza…         └ Soluciones (n)
-Abrir / Recientes Importar tableros…
-Guardar / Como   Importar piezas…
-Plantilla…
-Salir
+Demo             Comparar revisiones…  ├ Piezas (n)
+Inicio           Restaurar revisión…   └ Soluciones (n)
+Abrir / Recientes Añadir tablero…
+Guardar / Como   Añadir pieza…
+Plantilla…       Importar tableros…
+Salir            Importar piezas…
 ```
 
 La barra de estado muestra la ruta del `.bcproj` cuando el proyecto está
@@ -68,6 +68,8 @@ guardado.
 |--------|-------|--------|
 | Renombrar proyecto | **Ctrl+Shift+F2** (también **F2** en raíz) | Undoable; menú y ctx Explorador |
 | Abrir carpeta | **Ctrl+Shift+R** | Solo si hay archivo en disco |
+| Comparar revisiones | **Ctrl+Shift+Y** | Diff vs anillo local / archivos |
+| Restaurar última revisión | **Ctrl+Alt+Y** | Snapshot más reciente del anillo; dirty hasta Guardar; vacía undo |
 
 ### Plantillas y demo
 
@@ -82,8 +84,8 @@ guardado.
 
 | Acción | Atajo | Notas |
 |--------|-------|--------|
-| Añadir tablero | **Ctrl+Shift+B** | Diálogo; mutación directa (sin undo) |
-| Añadir pieza | **Ctrl+Shift+P** | Qty → varios IDs; sin undo |
+| Añadir tablero | **Ctrl+Shift+B** | Diálogo; `AddBoardCommand` (undo) |
+| Añadir pieza | **Ctrl+Shift+P** | Qty → varios IDs; `AddPieceCommand` (undo) |
 | Importar tableros CSV/Excel | **Ctrl+Shift+T** | Preview + mapeo; con undo |
 | Importar piezas CSV/Excel | **Ctrl+Shift+O** | Preview; qty expandida; con undo |
 
@@ -144,4 +146,4 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
 ## Evolución prevista
 
 - Formulario de metadatos de proyecto (cliente, referencia, notas).
-- Versionado / auditoría de `.bcproj`.
+- Historial cloud / multi-usuario (DT-0006; esperar piloto).
