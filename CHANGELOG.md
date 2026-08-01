@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- _(ciclo post-`0.4.1` — vacío al corte)_
+
 ### Cambiado
 
 ## 0.4.1 — 2026-08-01
