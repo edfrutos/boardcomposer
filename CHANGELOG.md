@@ -9,6 +9,9 @@
 
 ### Cambiado
 
+- Al abrir / nuevo / demo / plantilla / restaurar se vacía la pila undo/redo
+  (evita deshacer comandos de otro proyecto).
+
 ## 0.4.0 — 2026-07-31
 
 ### Añadido
