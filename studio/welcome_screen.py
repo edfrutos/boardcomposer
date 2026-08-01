@@ -21,8 +21,7 @@ from PySide6.QtWidgets import (
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.keyboard_shortcuts import with_native_shortcuts
 from studio.project_thumbnail import RECENT_THUMBNAIL_SIZE, project_file_thumbnail
-
-STUDIO_VERSION = "0.4.2.dev0"
+from studio.version import STUDIO_VERSION
 
 
 class WelcomeScreen(QWidget):
