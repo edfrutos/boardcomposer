@@ -11,6 +11,7 @@
 - Versión de Studio (Welcome / About) se lee de `pyproject.toml` — una sola fuente.
 - Timeline: transport de replay y Marcador llevan statusTip (idle honesto sin solución).
 - Fallbacks de Ayuda → Novedades (fichero ausente / vacío) respetan idioma UI.
+- Docs ciclo (`AI_CONTEXT`, MASTERPLAN, SCR-001, ROADMAP) alineados con `0.4.2.dev0`.
 
 ## 0.4.1 — 2026-08-01
 

@@ -1,11 +1,11 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-07-24.
+Última revisión: 2026-08-01.
 
 ## Estado actual
 
 - Fase de producto: **Fase 2 — BoardComposer Studio**.
-- Versión: `0.4.1`.
+- Versión de desarrollo: `0.4.2.dev0` (última estable: `0.4.1`).
 - Core base consolidado y cubierto por tests.
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación.
 - Vertical multipanel MaxRects con material + espesor, Workspace interactivo y
@@ -27,10 +27,12 @@
 
 ## Próxima tarea única
 
-Cerrar la deuda de documentación de usuario frente al Studio real:
+Ciclo `0.4.2.dev0`: pulido QoL bajo demanda. Backlog grande bloqueado hasta
+demanda real:
 
-- SCR-002 y guías de flujo reflejan arrastre/reasignación y atajos.
-- UAT visual multipanel registrado cuando se ejecute de punta a punta.
+- DT-0006 historial cloud — esperar piloto (`spikes/SPIKE-DT-0006-historial-cloud.md`).
+- IDE-0007 IA — L–XL, solo bajo demanda.
+- IDE-0008 plugins — XL; no priorizar sin ADR-004 operativo.
 
 ## Criterio de finalización del próximo bloque
 
