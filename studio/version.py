@@ -47,15 +47,9 @@ def _read_installed_version() -> str | None:
 def read_package_version(pyproject_path: Path | None = None) -> str:
     """Return BoardComposer version string for UI and docs surfaces."""
     path = (
-        pyproject_path
-        if pyproject_path is not None
-        else _REPO_ROOT / "pyproject.toml"
+        pyproject_path if pyproject_path is not None else _REPO_ROOT / "pyproject.toml"
     )
-    return (
-        _read_pyproject_version(path)
-        or _read_installed_version()
-        or "0.0.0+unknown"
-    )
+    return _read_pyproject_version(path) or _read_installed_version() or "0.0.0+unknown"
 
 
 # Resolved once at import for Welcome / About.
