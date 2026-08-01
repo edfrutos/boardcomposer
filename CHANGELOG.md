@@ -9,6 +9,7 @@
 ### Cambiado
 
 - Versión de Studio (Welcome / About) se lee de `pyproject.toml` — una sola fuente.
+- Timeline: transport de replay y Marcador llevan statusTip (idle honesto sin solución).
 
 ## 0.4.1 — 2026-08-01
 

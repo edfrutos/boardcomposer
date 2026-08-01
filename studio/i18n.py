@@ -341,6 +341,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_replay_back": "Paso atrás (←)",
         "tip.timeline_replay_forward": "Paso adelante (→)",
         "tip.timeline_replay_play": "Play / Pausa (Espacio)",
+        "status.timeline_replay_idle": (
+            "Calcula un layout para reproducir la solución en el Timeline"
+        ),
+        "tip.timeline_mark": "Añadir un marcador en el Timeline",
         "timeline.export": "Exportar…",
         "timeline.mark": "Marcador…",
         "timeline.mark_dialog_title": "Añadir marcador",
@@ -1222,6 +1226,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_replay_back": "Step back (←)",
         "tip.timeline_replay_forward": "Step forward (→)",
         "tip.timeline_replay_play": "Play / Pause (Space)",
+        "status.timeline_replay_idle": (
+            "Calculate a layout to replay the solution in the Timeline"
+        ),
+        "tip.timeline_mark": "Add a marker to the Timeline",
         "timeline.export": "Export…",
         "timeline.mark": "Marker…",
         "timeline.mark_dialog_title": "Add marker",

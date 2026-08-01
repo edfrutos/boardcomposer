@@ -471,6 +471,9 @@ class TimelinePanel(QWidget):
         )
         self._clear_filters.setToolTip(clear_filters_tip)
         self._clear_filters.setStatusTip(clear_filters_tip)
+        mark_tip = tr("tip.timeline_mark", self._language)
+        self._mark.setToolTip(mark_tip)
+        self._mark.setStatusTip(mark_tip)
         self._update_count_label(len(visible_entries), len(self._store.entries))
 
     def has_active_filters(self) -> bool:
@@ -839,14 +842,19 @@ class TimelinePanel(QWidget):
         self._update_replay_controls()
         self.phase_step_changed.emit(self._phase_replay.current, step)
 
-    def _sync_replay_shortcut_tips(self) -> None:
+    def _sync_replay_shortcut_tips(self, *, available: bool) -> None:
         """Advertise list-focused replay shortcuts on the transport buttons."""
-        self._replay_reset.setToolTip(tr("tip.timeline_replay_reset", self._language))
-        self._replay_back.setToolTip(tr("tip.timeline_replay_back", self._language))
-        self._replay_forward.setToolTip(
-            tr("tip.timeline_replay_forward", self._language)
-        )
-        self._replay_play.setToolTip(tr("tip.timeline_replay_play", self._language))
+        idle = tr("status.timeline_replay_idle", self._language)
+
+        def _apply(button, tip_key: str) -> None:
+            tip = tr(tip_key, self._language) if available else idle
+            button.setToolTip(tip)
+            button.setStatusTip(tip)
+
+        _apply(self._replay_reset, "tip.timeline_replay_reset")
+        _apply(self._replay_back, "tip.timeline_replay_back")
+        _apply(self._replay_forward, "tip.timeline_replay_forward")
+        _apply(self._replay_play, "tip.timeline_replay_play")
 
     def _update_replay_controls(self) -> None:
         if self._replay_mode == _MODE_PHASES:
@@ -863,7 +871,7 @@ class TimelinePanel(QWidget):
             "timeline.replay_pause" if self._replay.playing else "timeline.replay_play"
         )
         self._replay_play.setText(tr(play_key, self._language))
-        self._sync_replay_shortcut_tips()
+        self._sync_replay_shortcut_tips(available=available)
         if available:
             algorithm = self._replay.algorithm or tr(
                 "timeline.replay_algorithm_unknown",
@@ -908,7 +916,7 @@ class TimelinePanel(QWidget):
             else "timeline.replay_play"
         )
         self._replay_play.setText(tr(play_key, self._language))
-        self._sync_replay_shortcut_tips()
+        self._sync_replay_shortcut_tips(available=available)
         if not available:
             self._replay_label.setText(tr("timeline.phase_none", self._language))
             return
