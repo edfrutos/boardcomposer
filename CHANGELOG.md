@@ -19,6 +19,8 @@
 - `make check` / `make lint` incluyen `ruff format --check` (mismo gate que CI).
 - UAT / SCR-003 / SCR-005 / FLW-006 documentan backup (**Ctrl+Alt+B**) y
   Explicar candidata (**Ctrl+Alt+E**).
+- Tip backup menciona carpeta recordada; piloto DT-0006 + SCR-007 alineados
+  con open-after / `last_backup_directory`.
 
 ## 0.4.2 — 2026-08-02
 

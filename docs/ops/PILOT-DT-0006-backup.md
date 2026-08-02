@@ -48,8 +48,17 @@ usa el `.bcproj` y avisa en stderr. `--force` copia el path tal cual.
 
 ## Studio
 
-**Proyecto → Exportar backup de revisiones…** — elige carpeta destino (mismo
-comportamiento que el CLI). Requiere proyecto ya guardado en disco.
+**Proyecto → Exportar backup de revisiones…** (**Ctrl+Alt+B**) — elige carpeta
+destino (mismo layout que el CLI). Requiere proyecto ya guardado en disco.
+
+Tras éxito:
+
+1. Status bar confirma la carpeta stamped.
+2. Diálogo **Carpeta creada** / **Abrir carpeta**.
+3. Studio recuerda el destino en `last_backup_directory` (siguiente diálogo
+   reabre ahí si la carpeta sigue existiendo).
+
+Alternativa CLI: `boardcomposer-backup` (arriba).
 
 ## Cron / ops (ejemplo)
 
