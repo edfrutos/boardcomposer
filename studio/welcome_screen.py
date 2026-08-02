@@ -18,6 +18,10 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from studio.dialogs.dialog_chrome import (
+    polish_primary_button,
+    polish_secondary_button,
+)
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.keyboard_shortcuts import with_native_shortcuts
 from studio.project_thumbnail import RECENT_THUMBNAIL_SIZE, project_file_thumbnail
@@ -74,20 +78,16 @@ class WelcomeScreen(QWidget):
         actions = QHBoxLayout()
         actions.setSpacing(10)
 
-        self.new_button = QPushButton()
-        self.new_button.setObjectName("primaryButton")
-        self.new_button.setMinimumHeight(44)
+        self.new_button = polish_primary_button(QPushButton())
         self.new_button.setMinimumWidth(140)
         self.new_button.clicked.connect(self.new_project_requested.emit)
         actions.addWidget(self.new_button)
 
-        self.open_button = QPushButton()
-        self.open_button.setMinimumHeight(44)
+        self.open_button = polish_secondary_button(QPushButton(), min_height=44)
         self.open_button.clicked.connect(self.open_project_requested.emit)
         actions.addWidget(self.open_button)
 
-        self.import_button = QPushButton()
-        self.import_button.setMinimumHeight(44)
+        self.import_button = polish_secondary_button(QPushButton(), min_height=44)
         self.import_button.clicked.connect(self.import_pieces_requested.emit)
         actions.addWidget(self.import_button)
 
@@ -98,28 +98,23 @@ class WelcomeScreen(QWidget):
 
         secondary = QHBoxLayout()
         secondary.setSpacing(10)
-        self.demo_button = QPushButton()
-        self.demo_button.setMinimumHeight(36)
+        self.demo_button = polish_secondary_button(QPushButton())
         self.demo_button.clicked.connect(self.demo_project_requested.emit)
         secondary.addWidget(self.demo_button)
 
-        self.template_button = QPushButton()
-        self.template_button.setMinimumHeight(36)
+        self.template_button = polish_secondary_button(QPushButton())
         self.template_button.clicked.connect(self.from_template_requested.emit)
         secondary.addWidget(self.template_button)
 
-        self.docs_button = QPushButton()
-        self.docs_button.setMinimumHeight(36)
+        self.docs_button = polish_secondary_button(QPushButton())
         self.docs_button.clicked.connect(self.docs_requested.emit)
         secondary.addWidget(self.docs_button)
 
-        self.whats_new_button = QPushButton()
-        self.whats_new_button.setMinimumHeight(36)
+        self.whats_new_button = polish_secondary_button(QPushButton())
         self.whats_new_button.clicked.connect(self.whats_new_requested.emit)
         secondary.addWidget(self.whats_new_button)
 
-        self.preferences_button = QPushButton()
-        self.preferences_button.setMinimumHeight(36)
+        self.preferences_button = polish_secondary_button(QPushButton())
         self.preferences_button.clicked.connect(self.preferences_requested.emit)
         secondary.addWidget(self.preferences_button)
         secondary.addStretch(1)
@@ -143,10 +138,9 @@ class WelcomeScreen(QWidget):
         self.recent_label = QLabel()
         self.recent_label.setObjectName("welcomeRecentLabel")
         recent_header.addWidget(self.recent_label, stretch=1)
-        self.clear_recent_button = QPushButton()
+        self.clear_recent_button = polish_secondary_button(QPushButton(), min_height=32)
         self.clear_recent_button.setObjectName("welcomeClearRecent")
         self.clear_recent_button.setFlat(True)
-        self.clear_recent_button.setMinimumHeight(32)
         self.clear_recent_button.clicked.connect(self.clear_recent_requested.emit)
         recent_header.addWidget(self.clear_recent_button)
         recent_col.addLayout(recent_header)

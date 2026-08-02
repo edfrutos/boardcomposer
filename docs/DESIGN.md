@@ -34,8 +34,8 @@ tipografía de marca hasta elegir light/dark).
 ## Accesibilidad (chrome)
 
 - Focus visible en `QPushButton` / toolbar / listas (`border` acento).
-- CTAs Welcome y empty Workspace: primario ≥44px; secundarios ≥36px;
-  vaciar recientes ≥32px.
+- CTAs Welcome y empty Workspace: primario ≥44 vía `polish_primary_button`;
+  secundarios ≥36 / vaciar recientes ≥32 vía `polish_secondary_button`.
 - Banner outdated usa fondo `window` para contraste del danger en dark.
 - Docks: título con `panel` + SemiBold; splitter handle con `border`.
 - Inspector: `QTextEdit#inspectorPanel` (padding + tokens, sin borde).

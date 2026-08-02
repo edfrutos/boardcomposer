@@ -1,6 +1,12 @@
 """Tests for recent-files persistence and the welcome screen (SCR-001)."""
 
+from PySide6.QtWidgets import QApplication
+
+from studio.main_window import MainWindow
+from studio.preferences import PreferencesManager, StudioPreferences
 from studio.recent_files import RecentFilesManager
+from studio.services import StudioServices
+from studio.theme import apply_theme
 from studio.welcome_screen import WelcomeScreen
 
 
@@ -93,6 +99,27 @@ def test_welcome_screen_brand_and_primary_object_names(qapp):
     assert screen.demo_button.minimumHeight() >= 36
     assert screen.clear_recent_button.minimumHeight() >= 32
     assert screen.clear_recent_button.objectName() == "welcomeClearRecent"
+
+
+def test_welcome_and_empty_ctas_survive_theme_switch(qapp, tmp_path):
+    """light → system must not wipe Welcome / empty-overlay CTA heights."""
+    del qapp
+    app = QApplication.instance()
+    assert app is not None
+    apply_theme(app, "light")
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+    assert window.welcome.new_button.minimumHeight() >= 44
+    assert window.welcome.open_button.minimumHeight() >= 44
+    assert window.welcome.demo_button.minimumHeight() >= 36
+    assert window.welcome.clear_recent_button.minimumHeight() >= 32
+    overlay = window.workspace.empty_overlay
+    assert overlay.add_board_button.minimumHeight() >= 44
+    assert overlay.add_piece_button.minimumHeight() >= 36
+    assert overlay.import_boards_button.minimumHeight() >= 36
 
 
 def test_welcome_recent_activation_ignores_null_item(qapp):
