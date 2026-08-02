@@ -14,7 +14,10 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
-from studio.dialogs.dialog_chrome import polish_dialog_button_box
+from studio.dialogs.dialog_chrome import (
+    polish_dialog_button_box,
+    polish_secondary_button,
+)
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.import_headers import sanitize_header_map
 from studio.import_templates import ImportMappingTemplate, ImportTemplatesManager
@@ -77,8 +80,9 @@ class ImportColumnMappingDialog(QDialog):
             template_row.addWidget(self._template_combo, stretch=1)
 
             if self._templates_manager is not None:
-                self._delete_template_button = QPushButton(
-                    tr("import.mapping_delete", language)
+                self._delete_template_button = polish_secondary_button(
+                    QPushButton(tr("import.mapping_delete", language)),
+                    tip=tr("tip.import_mapping_delete", language),
                 )
                 self._delete_template_button.clicked.connect(
                     self._delete_selected_template
