@@ -15,6 +15,8 @@
   layout** (mismo flujo que Ctrl+Return).
 - UAT / FLW-006 / RELEASE-SMOKE alineados con CTA banner outdated y ciclo
   `0.4.3.dev0`.
+- Aplicar layout con soluciones desactualizadas: tip y diálogo recomiendan
+  recalcular (banner / Ctrl+Return); guía rápida documenta el banner.
 
 ### Cambiado
 
