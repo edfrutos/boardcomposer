@@ -25,6 +25,7 @@ from boardcomposer.io.bcproj_diff import diff_bcproj
 from boardcomposer.io.bcproj_revisions import list_revisions
 from studio.dialogs.dialog_chrome import (
     polish_dialog_button_box,
+    polish_primary_button,
     polish_secondary_button,
 )
 from studio.i18n import DEFAULT_LANGUAGE, tr
@@ -115,12 +116,11 @@ class BcprojDiffDialog(QDialog):
         self.result.setReadOnly(True)
         self.result.setPlaceholderText(tr("diff_bcproj.placeholder", language))
 
-        compare_btn = QPushButton(tr("diff_bcproj.compare", language))
-        compare_btn.setObjectName("primaryButton")
-        compare_btn.setMinimumHeight(36)
-        compare_tip = tr("diff_bcproj.compare_tip", language)
-        compare_btn.setToolTip(compare_tip)
-        compare_btn.setStatusTip(compare_tip)
+        compare_btn = polish_primary_button(
+            QPushButton(tr("diff_bcproj.compare", language)),
+            tip=tr("diff_bcproj.compare_tip", language),
+            min_height=36,
+        )
         compare_btn.setDefault(True)
         compare_btn.clicked.connect(self._run_diff)
         self.compare_button = compare_btn

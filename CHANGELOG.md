@@ -36,6 +36,7 @@
   secundarios (evita wipe light/dark → `system`).
 - Welcome + empty Workspace: CTAs vía `polish_primary_button` /
   `polish_secondary_button` (sobreviven cambio de tema).
+- Diff `.bcproj`: **Comparar** usa `polish_primary_button` (altura durable).
 
 ## 0.4.2 — 2026-08-02
 
