@@ -16,6 +16,7 @@
 - Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con `0.4.3.dev0`.
 - Diálogo post-export: si destino es carpeta, copy «Carpeta creada» + **Abrir
   carpeta** (sin «Mostrar en carpeta» redundante).
+- `make check` / `make lint` incluyen `ruff format --check` (mismo gate que CI).
 
 ## 0.4.2 — 2026-08-02
 

@@ -25,10 +25,12 @@ status:
 
 check:
 	$(PYTHON) scripts/check_project.py
+	$(RUFF) format --check .
 	$(RUFF) check .
 	$(PYTEST)
 
 lint:
+	$(RUFF) format --check .
 	$(RUFF) check .
 
 format:
