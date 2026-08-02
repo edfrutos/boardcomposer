@@ -190,6 +190,9 @@ candidatas válidas.
 - **Restaurar** una revisión del anillo: botón en el diálogo de comparar, o
   **Proyecto → Restaurar última revisión local…** (**Ctrl+Alt+Y**). Carga en
   memoria (misma ruta); dirty hasta Guardar; vacía la pila undo/redo de sesión.
+- **Backup** del anillo: **Proyecto → Exportar backup de revisiones…**
+  (**Ctrl+Alt+B**) o CLI `boardcomposer-backup`; destino recordado y diálogo
+  Abrir carpeta tras éxito.
 - Sin edición colaborativa ni bloqueo de recursos.
 - Sin evento bus `PieceMoved` / `ProjectValidated` / `ProjectHistoryUpdated`.
 - Historial local = anillo `.bcproj.revs` + Timeline de eventos + pila undo

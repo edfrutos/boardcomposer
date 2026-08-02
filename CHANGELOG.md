@@ -17,6 +17,8 @@
 - Diálogo post-export: si destino es carpeta, copy «Carpeta creada» + **Abrir
   carpeta** (sin «Mostrar en carpeta» redundante).
 - `make check` / `make lint` incluyen `ruff format --check` (mismo gate que CI).
+- UAT / SCR-003 / SCR-005 / FLW-006 documentan backup (**Ctrl+Alt+B**) y
+  Explicar candidata (**Ctrl+Alt+E**).
 
 ## 0.4.2 — 2026-08-02
 
