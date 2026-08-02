@@ -64,3 +64,4 @@ def test_explain_solution_requires_candidate(qapp, tmp_path):
     assert explain.isEnabled()
     tip = explain.statusTip().lower()
     assert "fortaleza" in tip or "candidata" in tip or "debilidades" in tip
+    assert "copiar" in tip

@@ -288,7 +288,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.apply_layout": "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return)",
         "tip.whats_new": "Ver las novedades del CHANGELOG (Ctrl+Shift+U)",
         "tip.explain_solution": (
-            "Mostrar fortalezas, debilidades y notas de la candidata seleccionada"
+            "Mostrar fortalezas, debilidades y notas de la candidata; "
+            "en el diálogo podés Copiar al portapapeles"
         ),
         "help.explain_solution_title": "Explicar candidata",
         "help.explain_solution_heading": (
@@ -1202,7 +1203,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.apply_layout": "Apply the selected solution to the project (Ctrl+Shift+Return)",
         "tip.whats_new": "Show CHANGELOG highlights (Ctrl+Shift+U)",
         "tip.explain_solution": (
-            "Show strengths, weaknesses, and notes for the selected candidate"
+            "Show strengths, weaknesses, and notes for the selected candidate; "
+            "Copy is available in the dialog"
         ),
         "help.explain_solution_title": "Explain candidate",
         "help.explain_solution_heading": (
