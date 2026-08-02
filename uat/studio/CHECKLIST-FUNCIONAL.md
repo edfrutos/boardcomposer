@@ -127,6 +127,7 @@ Precondición para checks de comparador multi-candidata:
 - [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo (incl. PgUp/PgDown, Ctrl+Shift+Return/E, Ctrl+Alt+B/E).
 - [x] Ayuda → Novedades (**Ctrl+Shift+U**; tip de estado) / Documentación (**Shift+F1**; tip de estado) / Acerca de (**Ctrl+Shift+A**; tip de estado, icono correcto).
 - [x] **Ayuda → Explicar candidata…** (**Ctrl+Alt+E**; tip idle sin layout): tras Calcular, diálogo con fortalezas/debilidades/notas + **Copiar** (status bar confirma).
+  Eval humana 5 candidatas: [`CHECKLIST-EXPLAIN-EVAL.md`](CHECKLIST-EXPLAIN-EVAL.md).
 
 ---
 

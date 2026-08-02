@@ -69,7 +69,6 @@ Colores de tablero, pieza, selección, válido/inválido y grid viven en
 | Rol | Familia | Notas |
 |---|---|---|
 | Marca | Archivo (bundled) | Hero `QLabel#welcomeBrand` |
-
 | UI | Source Sans 3 (bundled) | Cuerpo y controles |
 | Énfasis | Source Sans 3 SemiBold | Headers, primario |
 
