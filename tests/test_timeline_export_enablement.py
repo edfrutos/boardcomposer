@@ -28,6 +28,23 @@ def test_bootstrap_ui_font_avoids_sans_serif(qapp):
     assert app.font().family() != "Sans Serif"
 
 
+def test_timeline_action_row_secondary_targets(qapp, tmp_path):
+    del qapp
+    console = _window(tmp_path).console
+    for button in (
+        console._export,
+        console._clear,
+        console._mark,
+        console._clear_filters,
+        console._piece_moves,
+        console._markers,
+        console._follow,
+    ):
+        assert button.minimumHeight() >= 36
+    # Replay transport stays compact (dense row).
+    assert console._replay_play.minimumHeight() < 36
+
+
 def test_timeline_export_disabled_when_empty(qapp, tmp_path):
     del qapp
     window = _window(tmp_path)

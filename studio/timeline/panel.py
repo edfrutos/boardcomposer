@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (
 
 from boardcomposer.domain import AssemblySolution
 from boardcomposer.solver.solve_trace import SolveTrace
+from studio.dialogs.dialog_chrome import polish_secondary_button
 from studio.events.catalog import ALL_EVENTS, CATALOG, PIECE_MOVED, TIMELINE_MARKED
 from studio.i18n import tr
 from studio.timeline.phase_replay import SolvePhaseReplay
@@ -90,24 +91,25 @@ class TimelinePanel(QWidget):
         self._period_label = QLabel()
         self._period_filter = QComboBox()
         self._period_filter.currentIndexChanged.connect(self._on_period_changed)
-        self._clear = QPushButton()
+        # Labeled action-row CTAs ≥36px; replay transport stays compact.
+        self._clear = polish_secondary_button(QPushButton())
         self._clear.clicked.connect(self._on_clear)
-        self._mark = QPushButton()
+        self._mark = polish_secondary_button(QPushButton())
         self._mark.clicked.connect(self._on_mark_clicked)
-        self._export = QPushButton()
+        self._export = polish_secondary_button(QPushButton())
         self._export.clicked.connect(self._on_export_clicked)
-        self._piece_moves = QPushButton()
+        self._piece_moves = polish_secondary_button(QPushButton())
         self._piece_moves.setCheckable(True)
         self._piece_moves.clicked.connect(self._on_piece_moves_clicked)
-        self._markers = QPushButton()
+        self._markers = polish_secondary_button(QPushButton())
         self._markers.setCheckable(True)
         self._markers.clicked.connect(self._on_markers_clicked)
-        self._follow = QPushButton()
+        self._follow = polish_secondary_button(QPushButton())
         self._follow.setCheckable(True)
         self._follow.setChecked(True)
         self._follow.clicked.connect(self._on_follow_clicked)
         self._count_label = QLabel()
-        self._clear_filters = QPushButton()
+        self._clear_filters = polish_secondary_button(QPushButton())
         self._clear_filters.clicked.connect(self._on_clear_filters)
 
         filters = QHBoxLayout()
