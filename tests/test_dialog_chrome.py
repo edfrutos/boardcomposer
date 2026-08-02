@@ -3,13 +3,16 @@
 from pathlib import Path
 
 from PySide6.QtGui import QColor
-from PySide6.QtWidgets import QDialogButtonBox
+from PySide6.QtWidgets import QDialogButtonBox, QPushButton
 
 from studio.board_csv_importer import ImportBoardsResult, ImportedBoardRow
+from studio.dialogs.dialog_chrome import polish_secondary_button
 from studio.dialogs.help_dialogs import AboutDialog, ShortcutsDialog, WhatsNewDialog
 from studio.dialogs.import_boards_preview_dialog import ImportBoardsPreviewDialog
+from studio.dialogs.preferences_dialog import PreferencesDialog
 from studio.models import StudioBoard
 from studio.dialogs.project_template_dialog import ProjectTemplatePickerDialog
+from studio.preferences import StudioPreferences
 from studio.project_templates import ProjectTemplateInfo
 from studio.theme_tokens import LIGHT_CANVAS
 from studio.workspace.canvas_style import set_active_canvas_theme
@@ -22,6 +25,35 @@ def _assert_primary_ok(dialog) -> None:
     assert ok is not None
     assert ok.objectName() == "primaryButton"
     assert ok.minimumHeight() >= 36
+
+
+def test_polish_secondary_button_sets_height_and_tip(qapp):
+    del qapp
+    button = QPushButton("Go")
+    polish_secondary_button(button, tip="Do the thing")
+    assert button.minimumHeight() >= 36
+    assert button.toolTip() == "Do the thing"
+    assert button.statusTip() == "Do the thing"
+
+
+def test_preferences_open_config_folder_is_polished(qapp):
+    del qapp
+    dialog = PreferencesDialog(StudioPreferences(language="es"))
+    assert dialog.open_config_folder.minimumHeight() >= 36
+    tip = dialog.open_config_folder.toolTip().lower()
+    assert "preferences" in tip or "configuración" in tip or "configuracion" in tip
+
+
+def test_template_picker_secondary_buttons_polished(qapp):
+    del qapp
+    picker = ProjectTemplatePickerDialog(
+        [ProjectTemplateInfo(name="Demo", path=Path("/tmp/demo.bcproj"))],
+        language="es",
+    )
+    assert picker.rename_button.minimumHeight() >= 36
+    assert picker.delete_button.minimumHeight() >= 36
+    assert "renombr" in picker.rename_button.toolTip().lower()
+    assert "elimin" in picker.delete_button.toolTip().lower()
 
 
 def test_help_dialogs_mark_ok_as_primary(qapp):

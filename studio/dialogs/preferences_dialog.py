@@ -21,7 +21,10 @@ from PySide6.QtWidgets import (
 )
 
 from boardcomposer.solver.strategies import strategy_by_name
-from studio.dialogs.dialog_chrome import polish_dialog_button_box
+from studio.dialogs.dialog_chrome import (
+    polish_dialog_button_box,
+    polish_secondary_button,
+)
 from studio.export_options import VALID_EXPORT_FORMATS, format_label
 from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES, tr
 from studio.preferences import (
@@ -159,7 +162,7 @@ class PreferencesDialog(QDialog):
         self.max_solutions.setValue(preferences.max_solutions)
         self._max_solutions_label = QLabel()
         advanced_form.addRow(self._max_solutions_label, self.max_solutions)
-        self.open_config_folder = QPushButton()
+        self.open_config_folder = polish_secondary_button(QPushButton())
         self.open_config_folder.clicked.connect(self._open_config_folder)
         advanced_form.addRow("", self.open_config_folder)
         layout.addWidget(self.advanced)
@@ -193,6 +196,9 @@ class PreferencesDialog(QDialog):
         self.advanced.setTitle(tr("prefs.advanced", language))
         self.show_grid.setText(tr("prefs.show_grid", language))
         self.open_config_folder.setText(tr("prefs.open_config_folder", language))
+        config_tip = tr("tip.open_config_folder", language)
+        self.open_config_folder.setToolTip(config_tip)
+        self.open_config_folder.setStatusTip(config_tip)
         self.use_custom_weights.setText(tr("prefs.use_custom_weights", language))
         self.export_include_metrics.setText(tr("prefs.export_metrics", language))
         self.export_include_explanation.setText(

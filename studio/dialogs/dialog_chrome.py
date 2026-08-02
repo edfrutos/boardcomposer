@@ -5,6 +5,20 @@ from __future__ import annotations
 from PySide6.QtWidgets import QDialogButtonBox, QPushButton
 
 
+def polish_secondary_button(
+    button: QPushButton,
+    *,
+    tip: str | None = None,
+    min_height: int = 36,
+) -> QPushButton:
+    """Ensure a usable secondary CTA target (and optional tip)."""
+    button.setMinimumHeight(min_height)
+    if tip:
+        button.setToolTip(tip)
+        button.setStatusTip(tip)
+    return button
+
+
 def polish_dialog_button_box(buttons: QDialogButtonBox) -> None:
     """Mark OK as primary CTA and ensure usable button targets."""
     ok = buttons.button(QDialogButtonBox.StandardButton.Ok)
@@ -18,4 +32,4 @@ def polish_dialog_button_box(buttons: QDialogButtonBox) -> None:
     ):
         button = buttons.button(role)
         if isinstance(button, QPushButton):
-            button.setMinimumHeight(36)
+            polish_secondary_button(button)

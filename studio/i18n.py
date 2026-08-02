@@ -39,6 +39,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.export_offcuts": "Incluir retales",
         "prefs.max_solutions": "Máx. soluciones a conservar:",
         "prefs.open_config_folder": "Abrir carpeta de configuración…",
+        "tip.open_config_folder": (
+            "Abrir la carpeta de preferences.json en el explorador de archivos"
+        ),
+        "tip.template_rename": "Renombrar la plantilla seleccionada",
+        "tip.template_delete": "Eliminar la plantilla seleccionada del catálogo",
         "prefs.restore_defaults": "Restaurar valores",
         "theme.system": "Sistema",
         "theme.light": "Claro",
@@ -123,6 +128,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.left": "Izquierda (antes)",
         "diff_bcproj.right": "Derecha (después)",
         "diff_bcproj.browse": "Examinar…",
+        "diff_bcproj.browse_tip": "Elegir un archivo .bcproj en disco",
         "diff_bcproj.use_current": "Usar proyecto abierto como izquierda",
         "diff_bcproj.use_current_right": "Usar proyecto abierto como derecha",
         "diff_bcproj.revision": "Revisión guardada (izquierda)",
@@ -969,6 +975,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.export_offcuts": "Include offcuts",
         "prefs.max_solutions": "Max solutions to keep:",
         "prefs.open_config_folder": "Open settings folder…",
+        "tip.open_config_folder": (
+            "Open the preferences.json folder in the file manager"
+        ),
+        "tip.template_rename": "Rename the selected template",
+        "tip.template_delete": "Delete the selected template from the catalog",
         "prefs.restore_defaults": "Restore defaults",
         "theme.system": "System",
         "theme.light": "Light",
@@ -1053,6 +1064,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.left": "Left (before)",
         "diff_bcproj.right": "Right (after)",
         "diff_bcproj.browse": "Browse…",
+        "diff_bcproj.browse_tip": "Choose a .bcproj file on disk",
         "diff_bcproj.use_current": "Use open project as left",
         "diff_bcproj.use_current_right": "Use open project as right",
         "diff_bcproj.revision": "Saved revision (left)",
