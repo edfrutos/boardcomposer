@@ -19,6 +19,7 @@ completo (`uat/studio/`, `uat/plataforma/`).
 
 - [ ] `make run` → Welcome / About muestran `0.4.2`
 - [ ] Nuevo demo → calcular layout → Comparador → **Ctrl+Alt+E** Explicar candidata → Copiar
+  (eval 5 candidatas: [`studio/CHECKLIST-EXPLAIN-EVAL.md`](studio/CHECKLIST-EXPLAIN-EVAL.md))
 - [ ] Proyecto guardado → **Ctrl+Alt+B** Exportar backup → Abrir carpeta (o CLI `boardcomposer-backup`)
 - [ ] Restore: guardar 2× → Ctrl+Alt+Y → confirm → dirty
 

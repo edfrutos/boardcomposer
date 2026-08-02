@@ -29,7 +29,8 @@
 - [x] Ayuda → **Explicar candidata…** (enablement si hay solución seleccionada;
   atajo **Ctrl+Alt+E**).
 - [x] Botón **Copiar** + confirmación en status bar; tip en el botón.
-- [ ] Eval humana: 5 candidatas demo → explicación útil vs ruido (checklist UAT).
+- [ ] Eval humana: 5 candidatas demo → explicación útil vs ruido
+  ([checklist UAT](../../../uat/studio/CHECKLIST-EXPLAIN-EVAL.md)).
 - [ ] LLM: ADR + política datos + prompt/eval plan antes de cablear proveedor.
 
 ---
