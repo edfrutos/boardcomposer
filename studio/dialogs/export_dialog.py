@@ -22,7 +22,10 @@ from PySide6.QtWidgets import (
 )
 
 from boardcomposer.domain import AssemblySolution, Project
-from studio.dialogs.dialog_chrome import polish_dialog_button_box
+from studio.dialogs.dialog_chrome import (
+    polish_dialog_button_box,
+    polish_secondary_button,
+)
 from studio.export_options import (
     VALID_EXPORT_FORMATS,
     ExportOptions,
@@ -99,20 +102,32 @@ class ExportDialog(QDialog):
         self.template.currentIndexChanged.connect(self._on_template_selected)
         template_row.addWidget(self.template, stretch=1)
 
-        self.save_template_button = QPushButton(self._tr("export.save"))
+        self.save_template_button = polish_secondary_button(
+            QPushButton(self._tr("export.save")),
+            tip=self._tr("tip.export_save_template"),
+        )
         self.save_template_button.clicked.connect(self._save_template)
         template_row.addWidget(self.save_template_button)
 
-        self.delete_template_button = QPushButton(self._tr("export.delete"))
+        self.delete_template_button = polish_secondary_button(
+            QPushButton(self._tr("export.delete")),
+            tip=self._tr("tip.export_delete_template"),
+        )
         self.delete_template_button.clicked.connect(self._delete_template)
         template_row.addWidget(self.delete_template_button)
         form.addRow(self._tr("export.template"), template_row)
 
         share_row = QHBoxLayout()
-        self.export_templates_button = QPushButton(self._tr("export.share_export"))
+        self.export_templates_button = polish_secondary_button(
+            QPushButton(self._tr("export.share_export")),
+            tip=self._tr("tip.export_share_export"),
+        )
         self.export_templates_button.clicked.connect(self._export_templates_pack)
         share_row.addWidget(self.export_templates_button)
-        self.import_templates_button = QPushButton(self._tr("export.share_import"))
+        self.import_templates_button = polish_secondary_button(
+            QPushButton(self._tr("export.share_import")),
+            tip=self._tr("tip.export_share_import"),
+        )
         self.import_templates_button.clicked.connect(self._import_templates_pack)
         share_row.addWidget(self.import_templates_button)
         share_row.addStretch(1)

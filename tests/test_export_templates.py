@@ -81,6 +81,26 @@ def test_export_template_from_dict_rejects_empty_name():
     assert ExportTemplate.from_dict({"name": "  ", "format": "svg"}) is None
 
 
+def test_export_dialog_secondary_buttons_polished(qapp):
+    del qapp
+    dialog = ExportDialog(
+        AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)]),
+        None,
+        ExportOptions(format="svg"),
+        language="es",
+    )
+    for button in (
+        dialog.save_template_button,
+        dialog.delete_template_button,
+        dialog.export_templates_button,
+        dialog.import_templates_button,
+    ):
+        assert button.minimumHeight() >= 36
+        assert button.toolTip()
+        assert button.statusTip() == button.toolTip()
+    assert "plantilla" in dialog.save_template_button.toolTip().lower()
+
+
 def test_export_dialog_applies_selected_template(qapp, tmp_path):
     del qapp
     manager = ExportTemplatesManager(path=tmp_path / "templates.json")

@@ -26,6 +26,8 @@
 - Diff `.bcproj`: botón **Comparar** como CTA primario (altura ≥36 + tip).
 - Helper `polish_secondary_button`: Examinar (diff), carpeta de config (prefs),
   renombrar/eliminar plantilla (altura ≥36 + tip).
+- Export / mapeo CSV: Guardar·Eliminar·pack plantillas e Eliminar mapeo con
+  `polish_secondary_button`.
 
 ## 0.4.2 — 2026-08-02
 

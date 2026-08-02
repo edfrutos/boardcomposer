@@ -132,6 +132,32 @@ def test_import_mapping_template_from_dict_rejects_bad_kind():
     )
 
 
+def test_mapping_dialog_delete_button_polished(qapp, tmp_path):
+    del qapp
+    from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
+
+    path = tmp_path / "import_templates.json"
+    manager = ImportTemplatesManager(path=path)
+    manager.save_template(
+        "boards",
+        "ERP",
+        {"board_id": "Codigo", "length_mm": "L", "width_mm": "A"},
+    )
+    dialog = ImportColumnMappingDialog(
+        fieldnames=["Codigo", "L", "A"],
+        field_order=("board_id", "length_mm", "width_mm"),
+        required_fields=("board_id", "length_mm", "width_mm"),
+        initial_map={},
+        missing_fields=["board_id", "length_mm", "width_mm"],
+        templates_manager=manager,
+        language="es",
+    )
+    assert dialog._delete_template_button is not None
+    assert dialog._delete_template_button.minimumHeight() >= 36
+    tip = dialog._delete_template_button.toolTip().lower()
+    assert "mapeo" in tip or "plantilla" in tip
+
+
 def test_mapping_dialog_applies_selected_template(qapp):
     del qapp
     from studio.dialogs.import_column_mapping_dialog import ImportColumnMappingDialog
