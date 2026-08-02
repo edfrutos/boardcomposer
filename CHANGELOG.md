@@ -12,6 +12,7 @@
 - `boardcomposer-backup`: epilog venv, aviso `.bcstudio.json` → sibling `.bcproj`.
 - Explicar candidata: botón **Copiar** al portapapeles; guía rápida documenta
   backup + explicar.
+- Explicar candidata: tras Copiar, status bar confirma «copiada al portapapeles».
 
 ### Cambiado
 
