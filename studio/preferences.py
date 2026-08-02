@@ -73,6 +73,7 @@ class StudioPreferences:
     export_include_explanation: bool = True
     export_include_offcuts: bool = True
     last_export_directory: str | None = None
+    last_backup_directory: str | None = None
     max_solutions: int = DEFAULT_MAX_SOLUTIONS
     window_geometry: str | None = None
     window_state: str | None = None
@@ -266,6 +267,9 @@ class PreferencesManager:
             last_export_directory=_optional_directory(
                 payload.get("last_export_directory")
             ),
+            last_backup_directory=_optional_directory(
+                payload.get("last_backup_directory")
+            ),
             max_solutions=max_solutions,
             window_geometry=_optional_base64_string(payload.get("window_geometry")),
             window_state=_optional_base64_string(payload.get("window_state")),
@@ -312,6 +316,7 @@ class PreferencesManager:
             "export_include_explanation": preferences.export_include_explanation,
             "export_include_offcuts": preferences.export_include_offcuts,
             "last_export_directory": preferences.last_export_directory,
+            "last_backup_directory": preferences.last_backup_directory,
             "max_solutions": preferences.max_solutions,
             "window_geometry": preferences.window_geometry,
             "window_state": preferences.window_state,

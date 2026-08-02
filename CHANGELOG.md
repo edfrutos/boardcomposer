@@ -6,6 +6,8 @@
 
 - Tras **Exportar backup de revisiones…**, diálogo Abrir / Mostrar en carpeta
   (mismo patrón que export solución y Timeline).
+- Backup de revisiones recuerda la última carpeta de destino
+  (`last_backup_directory`).
 
 ### Cambiado
 

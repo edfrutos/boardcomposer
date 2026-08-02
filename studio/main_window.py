@@ -4058,7 +4058,7 @@ class MainWindow(QMainWindow):
         dest = QFileDialog.getExistingDirectory(
             self,
             self._tr("dialog.export_revision_backup"),
-            str(Path(filename).parent),
+            self._suggested_backup_directory(filename),
         )
         if not dest:
             return
@@ -4071,8 +4071,30 @@ class MainWindow(QMainWindow):
                 self._tr("status.revision_backup_failed", error=str(exc)),
             )
             return
+        self._remember_backup_directory(dest)
         self._status("status.revision_backup_done", path=str(folder))
         self._offer_open_exported_path(folder)
+
+    def _suggested_backup_directory(self, project_path: str | Path) -> str:
+        """Prefer last successful backup folder when it still exists."""
+        directory = self.services.preferences.current.last_backup_directory
+        if directory:
+            folder = Path(directory).expanduser()
+            if folder.is_dir():
+                return str(folder)
+        return str(Path(project_path).expanduser().resolve().parent)
+
+    def _remember_backup_directory(self, path: str | Path) -> None:
+        """Persist the destination chosen for a successful revision backup."""
+        folder = str(Path(path).expanduser().resolve())
+        if not Path(folder).is_dir():
+            return
+        prefs = self.services.preferences.current
+        if prefs.last_backup_directory == folder:
+            return
+        self.services.preferences.update(
+            dataclass_replace(prefs, last_backup_directory=folder)
+        )
 
     def _restore_local_revision(self, revision_path: Path) -> None:
         """Load a ring snapshot into memory while keeping the live .bcproj path."""
