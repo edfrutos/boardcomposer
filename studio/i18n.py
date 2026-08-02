@@ -417,6 +417,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Soluciones desactualizadas: el proyecto cambió. "
             "Vuelve a generar el layout para actualizarlas."
         ),
+        "comparator.recalculate_layout": "Calcular layout",
         "inspector.solutions_outdated": (
             "⚠ Soluciones pendientes de regeneración (proyecto modificado)."
         ),
@@ -1350,6 +1351,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Outdated solutions: the project changed. "
             "Regenerate the layout to refresh them."
         ),
+        "comparator.recalculate_layout": "Calculate layout",
         "inspector.solutions_outdated": (
             "⚠ Solutions pending regeneration (project modified)."
         ),

@@ -33,7 +33,7 @@ Visible/ocultable con **Ver → Comparador de soluciones** (**Ctrl+4**).
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│ [banner soluciones desactualizadas, si el proyecto cambió tras calcular]     │
+│ [banner desactualizadas + CTA Calcular layout]                               │
 ├──────────────────────────────────────────────────────────────────────────────┤
 │ Ordenar por…  ☐ Solo completas  [Fijar como referencia]                      │
 ├──────────────────────────────────────────────────────────────────────────────┤
@@ -55,6 +55,8 @@ Visible/ocultable con **Ver → Comparador de soluciones** (**Ctrl+4**).
 - **Solo completas:** oculta soluciones parciales (con piezas omitidas).
 - **Fijar como referencia:** usa la candidata seleccionada como base del panel
   de diferencias (se reinicia tras un nuevo cálculo).
+- **Banner desactualizadas:** si el proyecto cambió tras calcular, muestra
+  aviso + CTA **Calcular layout** (mismo flujo / tip que Ctrl+Return).
 
 ### Miniaturas
 

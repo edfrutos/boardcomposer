@@ -11,6 +11,8 @@
 - Atajos **Ctrl+Alt+B** (Exportar backup de revisiones) y **Ctrl+Alt+E**
   (Explicar candidata).
 - Explicar candidata: tip en botón **Copiar**.
+- Comparador: banner de soluciones desactualizadas incluye CTA **Calcular
+  layout** (mismo flujo que Ctrl+Return).
 
 ### Cambiado
 

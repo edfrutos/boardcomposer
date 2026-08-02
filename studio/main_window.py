@@ -84,6 +84,7 @@ from studio.dialogs import (
     WhatsNewDialog,
 )
 from studio.dialogs.dialog_chrome import (
+    polish_primary_button,
     polish_secondary_button,
     repolish_secondary_buttons,
 )
@@ -528,10 +529,21 @@ class MainWindow(QMainWindow):
         self.pin_reference_button.clicked.connect(self._pin_selected_as_reference)
         controls.addWidget(self.pin_reference_button)
 
+        self.solutions_outdated_row = QWidget()
+        outdated_row = QHBoxLayout(self.solutions_outdated_row)
+        outdated_row.setContentsMargins(0, 0, 0, 0)
+        outdated_row.setSpacing(8)
         self.solutions_outdated_banner = QLabel()
         self.solutions_outdated_banner.setWordWrap(True)
         self.solutions_outdated_banner.setObjectName("solutionsOutdatedBanner")
-        self.solutions_outdated_banner.hide()
+        outdated_row.addWidget(self.solutions_outdated_banner, stretch=1)
+        self.solutions_outdated_recalculate = polish_primary_button(
+            QPushButton(),
+            min_height=36,
+        )
+        self.solutions_outdated_recalculate.clicked.connect(self._solve_layout)
+        outdated_row.addWidget(self.solutions_outdated_recalculate)
+        self.solutions_outdated_row.hide()
 
         self.solution_thumbnails = QListWidget()
         self.solution_thumbnails.setViewMode(QListWidget.ViewMode.IconMode)
@@ -556,7 +568,7 @@ class MainWindow(QMainWindow):
         comparator_panel = QWidget()
         comparator_layout = QVBoxLayout(comparator_panel)
         comparator_layout.setContentsMargins(0, 0, 0, 0)
-        comparator_layout.addWidget(self.solutions_outdated_banner)
+        comparator_layout.addWidget(self.solutions_outdated_row)
         comparator_layout.addLayout(controls)
         comparator_layout.addWidget(self.solution_thumbnails)
         comparator_layout.addWidget(self.solutions_table)
@@ -2464,11 +2476,17 @@ class MainWindow(QMainWindow):
     def _refresh_solutions_outdated_banner(self) -> None:
         outdated = self.services.layout.solutions_outdated
         banner = self.solutions_outdated_banner
+        row = self.solutions_outdated_row
         if outdated:
             banner.setText(self._tr("comparator.solutions_outdated"))
-            banner.show()
+            recalc = self.solutions_outdated_recalculate
+            recalc.setText(self._tr("comparator.recalculate_layout"))
+            tip = with_native_shortcuts(self._tr("tip.solve_layout"))
+            recalc.setToolTip(tip)
+            recalc.setStatusTip(tip)
+            row.show()
         else:
-            banner.hide()
+            row.hide()
             banner.clear()
 
     def _status(self, key: str, timeout: int = 3000, **kwargs: object) -> None:
