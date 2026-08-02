@@ -61,11 +61,12 @@ diálogos `NewBoardDialog` / `NewPieceDialog` (modo add vs edit).
 5. `mark_project_modified(affects_layout=…)`:
    - siempre → dirty + evento `ProjectModified`
    - si `affects_layout` → flag `solutions_outdated` + `SolutionsMarkedOutdated`
-     (banner Comparador; aviso al aplicar layout)
+     (banner Comparador con CTA **Calcular layout**; aviso al aplicar layout)
 6. Usuario guarda (**Ctrl+S**) o sigue; al salir/reemplazar proyecto → diálogo
    unsaved (`unsaved_changes_message`: nombre, ruta o «aún no guardado»).
 
-Regenerar layout (FLW-003) limpia el aviso outdated.
+Regenerar layout (FLW-003 / CTA del banner / **Ctrl+Return**) limpia el aviso
+outdated.
 
 ---
 
