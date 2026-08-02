@@ -5,7 +5,7 @@
 **Código:** SCR-007  
 **Versión:** 1.2.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 27/07/2026
+**Última revisión:** 02/08/2026
 
 ---
 
@@ -111,6 +111,10 @@ Tras un export correcto se guardan en `preferences.json`:
 
 También editables en Preferencias (SCR-006), salvo la carpeta (solo
 persistencia silenciosa).
+
+**Backup de revisiones** (menú Proyecto / **Ctrl+Alt+B**, no `ExportDialog`)
+usa `last_backup_directory` por separado: mismo patrón silencioso; tras éxito
+ofrece Abrir carpeta. Detalle operativo: `docs/ops/PILOT-DT-0006-backup.md`.
 
 ---
 

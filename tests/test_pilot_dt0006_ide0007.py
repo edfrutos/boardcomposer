@@ -46,6 +46,7 @@ def test_export_revision_backup_requires_saved_file(qapp, tmp_path):
     tip = action.statusTip().lower()
     assert "backup" in tip or ".revs" in tip
     assert "ctrl+alt+b" in tip or "⌥" in tip or "alt" in tip
+    assert "recuerd" in tip or "remember" in tip or "última" in tip or "last" in tip
 
 
 def test_explain_solution_requires_candidate(qapp, tmp_path):

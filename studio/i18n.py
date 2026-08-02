@@ -222,7 +222,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "(Ctrl+Alt+Y); Guardar para escribir en disco"
         ),
         "tip.export_revision_backup": (
-            "Copia el .bcproj y el anillo .revs/ a una carpeta de backup (Ctrl+Alt+B)"
+            "Copia el .bcproj y el anillo .revs/ a una carpeta de backup "
+            "(Ctrl+Alt+B); recuerda la última carpeta"
         ),
         "status.revision_backup_no_file": (
             "Guarda el proyecto en disco para exportar un backup de revisiones"
@@ -1144,7 +1145,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Save to write to disk"
         ),
         "tip.export_revision_backup": (
-            "Copy the .bcproj and .revs/ ring to a backup folder (Ctrl+Alt+B)"
+            "Copy the .bcproj and .revs/ ring to a backup folder (Ctrl+Alt+B); "
+            "remembers the last folder"
         ),
         "status.revision_backup_no_file": (
             "Save the project to disk to export a revisions backup"
