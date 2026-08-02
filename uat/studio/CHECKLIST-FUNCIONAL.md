@@ -2,10 +2,10 @@
 
 **Fecha:** 2026-07-25  
 **Base:** `main` tras sync docs SCR-001…007 + FLW-001…006  
-**Versión:** `0.4.1`  
+**Versión:** `0.4.2`  
 **Cómo arrancar:** `make run` o `.venv/bin/python -m studio.app`
 
-> Pasada visual cerrada (2026-07-28): [`CHECKLIST-VISUAL.md`](CHECKLIST-VISUAL.md).  
+> Pasada visual cerrada (2026-07-28): [`CHECKLIST-VISUAL.md`](CHECKLIST-VISUAL.md).
 > Índice UAT: [`../README.md`](../README.md).
 
 Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable**, no buscar bugs de borde.

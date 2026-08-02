@@ -8,7 +8,7 @@ Pruebas humanas (y enlace a regresión automatizada).
 | [`studio/CHECKLIST-FUNCIONAL.md`](studio/CHECKLIST-FUNCIONAL.md) | Marcada (histórico) | Funcionalidad Studio ya verificada |
 | [`multipanel/CHECKLIST.md`](multipanel/CHECKLIST.md) | Cerrada | Multipanel absorbido por Studio |
 | [`plataforma/CHECKLIST.md`](plataforma/CHECKLIST.md) | OK operativo 2026-07-30 | Smoke batch+HTTP (+ 21 tests) |
-| [`RELEASE-SMOKE.md`](RELEASE-SMOKE.md) | Activa | Gate corto demo / release `0.4.1` |
+| [`RELEASE-SMOKE.md`](RELEASE-SMOKE.md) | Activa | Gate corto demo / release `0.4.2` |
 
 Arranque: `make run` o `.venv/bin/python -m studio.app`.
 
