@@ -89,6 +89,13 @@ class ExplainSolutionDialog(QDialog):
         clipboard = QApplication.clipboard()
         if clipboard is not None:
             clipboard.setText(self._body_text)
+        message = tr("status.explain_copied", self._language)
+        parent = self.parent()
+        status_bar = getattr(parent, "statusBar", None)
+        if callable(status_bar):
+            bar = status_bar()
+            if bar is not None:
+                bar.showMessage(message, 3000)
 
 
 class AboutDialog(QDialog):
