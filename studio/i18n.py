@@ -296,6 +296,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.previous_solution": "Seleccionar la solución anterior (Re Pág)",
         "tip.next_solution": "Seleccionar la solución siguiente (Av Pág)",
         "tip.apply_layout": "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return)",
+        "tip.apply_layout_outdated": (
+            "Soluciones desactualizadas: recalcula con el CTA del Comparador "
+            "o Ctrl+Return antes de aplicar (Ctrl+Shift+Return)"
+        ),
         "tip.whats_new": "Ver las novedades del CHANGELOG (Ctrl+Shift+U)",
         "tip.explain_solution": (
             "Mostrar fortalezas, debilidades y notas de la candidata "
@@ -425,7 +429,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.outdated_solutions_title": "Soluciones desactualizadas",
         "dialog.outdated_solutions_apply": (
             "Las soluciones ya no coinciden con el proyecto actual. "
-            "¿Aplicar de todos modos la solución seleccionada?"
+            "Mejor recalcular con el botón del banner del Comparador "
+            "(o Ctrl+Return). ¿Aplicar de todos modos la solución seleccionada?"
         ),
         "timeline.replay_none": "Reproducción: sin solución",
         "timeline.replay_mode": "Modo:",
@@ -1230,6 +1235,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.previous_solution": "Select the previous solution (Page Up)",
         "tip.next_solution": "Select the next solution (Page Down)",
         "tip.apply_layout": "Apply the selected solution to the project (Ctrl+Shift+Return)",
+        "tip.apply_layout_outdated": (
+            "Solutions outdated: recalculate via the Comparator banner CTA "
+            "or Ctrl+Return before applying (Ctrl+Shift+Return)"
+        ),
         "tip.whats_new": "Show CHANGELOG highlights (Ctrl+Shift+U)",
         "tip.explain_solution": (
             "Show strengths, weaknesses, and notes for the selected candidate "
@@ -1359,7 +1368,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.outdated_solutions_title": "Outdated solutions",
         "dialog.outdated_solutions_apply": (
             "Solutions no longer match the current project. "
-            "Apply the selected solution anyway?"
+            "Prefer recalculating with the Comparator banner button "
+            "(or Ctrl+Return). Apply the selected solution anyway?"
         ),
         "timeline.replay_none": "Replay: no solution",
         "timeline.replay_mode": "Mode:",

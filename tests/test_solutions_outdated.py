@@ -86,3 +86,7 @@ def test_outdated_banner_shows_recalculate_cta(qapp, tmp_path):
     assert "Calcular" in window.solutions_outdated_recalculate.text()
     tip = window.solutions_outdated_recalculate.toolTip()
     assert "Ctrl+Return" in tip or "⌘↩" in tip or "layout" in tip.lower()
+
+    apply_tip = window._actions["apply_layout"].statusTip().lower()
+    assert "desactualiz" in apply_tip or "recalcul" in apply_tip
+    assert "banner" in window._tr("dialog.outdated_solutions_apply").lower()

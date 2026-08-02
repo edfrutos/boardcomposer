@@ -2338,11 +2338,13 @@ class MainWindow(QMainWindow):
         export = self._actions["export_selected"]
         previous = self._actions["previous_solution"]
         next_action = self._actions["next_solution"]
-        apply.setStatusTip(
-            with_native_shortcuts(self._tr("tip.apply_layout"))
-            if has_any
-            else need_layout
-        )
+        if not has_any:
+            apply_tip = need_layout
+        elif self.services.layout.solutions_outdated:
+            apply_tip = with_native_shortcuts(self._tr("tip.apply_layout_outdated"))
+        else:
+            apply_tip = with_native_shortcuts(self._tr("tip.apply_layout"))
+        apply.setStatusTip(apply_tip)
         export.setStatusTip(
             with_native_shortcuts(self._tr("tip.export_selected"))
             if has_any
@@ -2470,6 +2472,7 @@ class MainWindow(QMainWindow):
     def _mark_project_modified(self, **payload: object) -> None:
         marked = self.services.mark_project_modified(**payload)
         self._refresh_solutions_outdated_banner()
+        self._sync_solution_actions()
         if marked:
             self._status("status.solutions_outdated", 5000)
 
