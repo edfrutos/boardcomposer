@@ -11,25 +11,50 @@
 Copiar el `.bcproj` actual y el anillo local `.<nombre>.bcproj.revs/` a una
 carpeta de destino (disco montado, NAS, sync folder). No hay servidor propio.
 
-## CLI
+## Requisitos
+
+- Proyecto guardado como **`.bcproj`** (no `.bcstudio.json`).
+- Tras actualizar el repo: reinstalar entry points del venv:
 
 ```bash
-boardcomposer-backup ruta/al/proyecto.bcproj --dest /mnt/backup/boardcomposer
+cd /ruta/al/boardcomposer
+.venv/bin/pip install -e .
+```
+
+## CLI
+
+Desde el venv del repo (recomendado — el comando no está en el PATH global):
+
+```bash
+.venv/bin/boardcomposer-backup \
+  /ruta/al/proyecto.bcproj \
+  --dest /mnt/backup/boardcomposer
+```
+
+Equivalente:
+
+```bash
+.venv/bin/python -m boardcomposer.backup_cli \
+  /ruta/al/proyecto.bcproj \
+  --dest /mnt/backup/boardcomposer
 ```
 
 Crea `/mnt/backup/boardcomposer/<stem>-<UTC>/` con el archivo y, si existe, el
 sidecar de revisiones.
 
+Si pasás un `.bcstudio.json` y existe el `.bcproj` hermano (mismo stem), el CLI
+usa el `.bcproj` y avisa en stderr. `--force` copia el path tal cual.
+
 ## Studio
 
 **Proyecto → Exportar backup de revisiones…** — elige carpeta destino (mismo
-comportamiento que el CLI).
+comportamiento que el CLI). Requiere proyecto ya guardado en disco.
 
 ## Cron / ops (ejemplo)
 
 ```bash
-# Diario 02:15 — ajustar rutas
-15 2 * * * /path/to/.venv/bin/boardcomposer-backup \
+# Diario 02:15 — ajustar rutas; usar el bin del venv, no el PATH del shell
+15 2 * * * /path/to/boardcomposer/.venv/bin/boardcomposer-backup \
   /data/jobs/actual.bcproj --dest /mnt/backup/bcproj >>/var/log/bc-backup.log 2>&1
 ```
 

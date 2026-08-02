@@ -9,6 +9,7 @@
   de revisiones… (`docs/ops/PILOT-DT-0006-backup.md`, DEC-0010).
 - IDE-0007 MVP: Ayuda → **Explicar candidata…** (explicación determinista; spike
   `SPIKE-IDE-0007`, DEC-0011).
+- `boardcomposer-backup`: epilog venv, aviso `.bcstudio.json` → sibling `.bcproj`.
 
 ### Cambiado
 
