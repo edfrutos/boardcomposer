@@ -5,7 +5,7 @@
 ## Estado actual
 
 - Fase de producto: **Fase 2 — BoardComposer Studio**.
-- Versión: `0.4.2`.
+- Versión de desarrollo: `0.4.3.dev0` (última estable: `0.4.2`).
 - Core base consolidado y cubierto por tests.
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación.
 - Vertical multipanel MaxRects con material + espesor, Workspace interactivo y
@@ -27,8 +27,8 @@
 
 ## Próxima tarea única
 
-Piloto **DT-0006 opción D** (backup revisiones) y **IDE-0007 MVP** local
-entregados. Siguiente bajo demanda:
+Ciclo `0.4.3.dev0`: pulido QoL bajo demanda. Backlog grande bloqueado hasta
+demanda real:
 
 - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
 - IDE-0007 LLM opt-in — tras política de datos / eval (DEC-0011).

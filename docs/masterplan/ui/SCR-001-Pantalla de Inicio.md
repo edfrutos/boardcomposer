@@ -5,7 +5,7 @@
 **Código:** SCR-001  
 **Versión:** 1.1.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 01/08/2026
+**Última revisión:** 02/08/2026
 
 ---
 
