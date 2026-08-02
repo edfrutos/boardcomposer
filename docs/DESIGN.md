@@ -39,6 +39,8 @@ tipografía de marca hasta elegir light/dark).
 - Banner outdated usa fondo `window` para contraste del danger en dark.
 - Docks: título con `panel` + SemiBold; splitter handle con `border`.
 - Inspector: `QTextEdit#inspectorPanel` (padding + tokens, sin borde).
+- Diff `.bcproj`: **Comparar** = `primaryButton` vía `polish_primary_button`
+  (≥36 + tip durable).
 - Diálogos: OK = `primaryButton` vía `polish_dialog_button_box`;
   secundarios ≥36 vía `polish_secondary_button` (tip opcional);
   `QDialogButtonBox` min-height 36; checkbox con indicador tokenizado.
