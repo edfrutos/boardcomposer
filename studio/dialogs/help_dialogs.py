@@ -14,7 +14,10 @@ from PySide6.QtWidgets import (
 )
 
 from studio.branding import app_icon
-from studio.dialogs.dialog_chrome import polish_dialog_button_box
+from studio.dialogs.dialog_chrome import (
+    polish_dialog_button_box,
+    polish_secondary_button,
+)
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.keyboard_shortcuts import STUDIO_SHORTCUTS, format_shortcut_label
 from studio.version import STUDIO_VERSION
@@ -77,10 +80,10 @@ class ExplainSolutionDialog(QDialog):
             tr("help.explain_copy", language),
             QDialogButtonBox.ButtonRole.ActionRole,
         )
-        copy_button.setMinimumHeight(36)
-        copy_tip = tr("tip.explain_copy", language)
-        copy_button.setToolTip(copy_tip)
-        copy_button.setStatusTip(copy_tip)
+        polish_secondary_button(
+            copy_button,
+            tip=tr("tip.explain_copy", language),
+        )
         copy_button.clicked.connect(self._copy_to_clipboard)
         polish_dialog_button_box(buttons)
         buttons.accepted.connect(self.accept)

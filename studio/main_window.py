@@ -83,6 +83,7 @@ from studio.dialogs import (
     ShortcutsDialog,
     WhatsNewDialog,
 )
+from studio.dialogs.dialog_chrome import polish_secondary_button
 from studio.keyboard_shortcuts import apply_shortcuts, with_native_shortcuts
 from studio.project_ids import new_project_id
 from studio.board_csv_importer import import_boards_from_rows
@@ -520,7 +521,7 @@ class MainWindow(QMainWindow):
         controls.addWidget(self.comparator_complete_only)
         controls.addStretch(1)
 
-        self.pin_reference_button = QPushButton()
+        self.pin_reference_button = polish_secondary_button(QPushButton())
         self.pin_reference_button.clicked.connect(self._pin_selected_as_reference)
         controls.addWidget(self.pin_reference_button)
 

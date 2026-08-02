@@ -54,3 +54,4 @@ def test_explain_solution_dialog_copy_has_tip(qapp):
     tip = (copy.toolTip() or "").lower()
     assert "portapapeles" in tip
     assert copy.statusTip() == copy.toolTip()
+    assert copy.minimumHeight() >= 36

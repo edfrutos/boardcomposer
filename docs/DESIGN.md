@@ -40,6 +40,7 @@ tipografía de marca hasta elegir light/dark).
 - Docks: título con `panel` + SemiBold; splitter handle con `border`.
 - Inspector: `QTextEdit#inspectorPanel` (padding + tokens, sin borde).
 - Diálogos: OK = `primaryButton` vía `polish_dialog_button_box`;
+  secundarios ≥36 vía `polish_secondary_button` (tip opcional);
   `QDialogButtonBox` min-height 36; checkbox con indicador tokenizado.
 
 ## Canvas / workspace

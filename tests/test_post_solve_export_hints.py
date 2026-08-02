@@ -55,6 +55,7 @@ def test_pin_reference_button_has_tooltip(qapp, tmp_path):
     from boardcomposer.domain import AssemblySolution, BoardPlacement
 
     window = _window(tmp_path)
+    assert window.pin_reference_button.minimumHeight() >= 36
     empty_tip = window.pin_reference_button.toolTip()
     assert "calcula un layout" in empty_tip.lower()
 
