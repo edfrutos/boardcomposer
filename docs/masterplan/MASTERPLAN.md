@@ -1,11 +1,11 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-08-01.
+Última revisión: 2026-08-02.
 
 ## Estado actual
 
 - Fase de producto: **Fase 2 — BoardComposer Studio**.
-- Versión de desarrollo: `0.4.2.dev0` (última estable: `0.4.1`).
+- Versión: `0.4.2`.
 - Core base consolidado y cubierto por tests.
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación.
 - Vertical multipanel MaxRects con material + espesor, Workspace interactivo y

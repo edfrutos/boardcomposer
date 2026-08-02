@@ -67,8 +67,8 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 ## Próximo foco (operativo)
 
-1. Release **`0.4.1`** cortado y etiquetado (`v0.4.1`, 2026-08-01).
-2. Ciclo `0.4.2.dev0` — QoL + **piloto DT-0006 D** + **IDE-0007 MVP** local.
+1. Release **`0.4.2`** cortado y etiquetado (`v0.4.2`, 2026-08-02).
+2. Piloto DT-0006 D + IDE-0007 MVP local — cerrados en este corte.
 3. DT-0006 opción C (cloud multi-usuario) — solo con demanda real + DOC-010.
 4. IDE-0007 LLM opt-in — tras eval/política (DEC-0011).
 5. Gate demo/release (`uat/RELEASE-SMOKE.md`) — activo en cada corte.
