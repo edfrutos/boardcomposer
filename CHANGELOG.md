@@ -13,6 +13,7 @@
 - Explicar candidata: botón **Copiar** al portapapeles; guía rápida documenta
   backup + explicar.
 - Explicar candidata: tras Copiar, status bar confirma «copiada al portapapeles».
+- Tip de Explicar candidata menciona Copiar; piloto DT-0006 D marcado validado.
 
 ### Cambiado
 

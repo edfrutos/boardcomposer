@@ -2,7 +2,8 @@
 
 **Piloto:** mono-equipo / backup operativo (sin multi-usuario cloud).  
 **Decisión:** DEC-0010 · Spike: `SPIKE-DT-0006-historial-cloud.md`  
-**Fecha:** 2026-08-02
+**Fecha:** 2026-08-02  
+**Estado:** ✅ Validado (2026-08-02) — CLI con sibling `.bcproj` + anillo `.revs/`
 
 ---
 
