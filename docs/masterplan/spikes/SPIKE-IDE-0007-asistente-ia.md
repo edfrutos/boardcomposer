@@ -26,7 +26,9 @@
 ## Criterios de aceptación MVP
 
 - [x] Formateo de fortalezas / debilidades / notas reutilizable.
-- [x] Ayuda → **Explicar candidata…** (enablement si hay solución seleccionada).
+- [x] Ayuda → **Explicar candidata…** (enablement si hay solución seleccionada;
+  atajo **Ctrl+Alt+E**).
+- [x] Botón **Copiar** + confirmación en status bar; tip en el botón.
 - [ ] Eval humana: 5 candidatas demo → explicación útil vs ruido (checklist UAT).
 - [ ] LLM: ADR + política datos + prompt/eval plan antes de cablear proveedor.
 
