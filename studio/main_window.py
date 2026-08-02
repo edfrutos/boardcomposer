@@ -4062,6 +4062,7 @@ class MainWindow(QMainWindow):
             )
             return
         self._status("status.revision_backup_done", path=str(folder))
+        self._offer_open_exported_path(folder)
 
     def _restore_local_revision(self, revision_path: Path) -> None:
         """Load a ring snapshot into memory while keeping the live .bcproj path."""

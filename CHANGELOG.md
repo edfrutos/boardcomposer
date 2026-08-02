@@ -4,7 +4,8 @@
 
 ### Añadido
 
-- _(ciclo post-`0.4.2` — vacío al corte)_
+- Tras **Exportar backup de revisiones…**, diálogo Abrir / Mostrar en carpeta
+  (mismo patrón que export solución y Timeline).
 
 ### Cambiado
 
