@@ -104,10 +104,17 @@ class BcprojDiffDialog(QDialog):
         self.result.setPlaceholderText(tr("diff_bcproj.placeholder", language))
 
         compare_btn = QPushButton(tr("diff_bcproj.compare", language))
+        compare_btn.setObjectName("primaryButton")
+        compare_btn.setMinimumHeight(36)
+        compare_tip = tr("diff_bcproj.compare_tip", language)
+        compare_btn.setToolTip(compare_tip)
+        compare_btn.setStatusTip(compare_tip)
         compare_btn.setDefault(True)
         compare_btn.clicked.connect(self._run_diff)
+        self.compare_button = compare_btn
 
         self.restore_button = QPushButton(tr("diff_bcproj.restore", language))
+        self.restore_button.setMinimumHeight(36)
         self.restore_button.setToolTip(tr("diff_bcproj.restore_tip", language))
         self.restore_button.setStatusTip(tr("diff_bcproj.restore_tip", language))
         self.restore_button.clicked.connect(self._request_restore)

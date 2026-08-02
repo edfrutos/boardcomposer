@@ -25,6 +25,17 @@ def test_diff_bcproj_shortcut_registered():
     assert "Ctrl+Shift+Y" in tr("tip.diff_bcproj", "en")
 
 
+def test_bcproj_diff_dialog_compare_is_primary(qapp):
+    del qapp
+    dialog = BcprojDiffDialog(language="es")
+    assert dialog.compare_button.objectName() == "primaryButton"
+    assert dialog.compare_button.minimumHeight() >= 36
+    tip = dialog.compare_button.toolTip().lower()
+    assert "diff" in tip or "estructural" in tip
+    assert dialog.compare_button.statusTip() == dialog.compare_button.toolTip()
+    assert dialog.restore_button.minimumHeight() >= 36
+
+
 def test_bcproj_diff_dialog_compares_current_vs_file(qapp, tmp_path):
     project = StudioProject(
         project_id="ui-diff",

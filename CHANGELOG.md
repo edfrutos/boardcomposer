@@ -23,6 +23,7 @@
 - Tip backup menciona carpeta recordada; piloto DT-0006 + SCR-007 alineados
   con open-after / `last_backup_directory`.
 - Spike IDE-0007: MVP marca Copiar / atajo Ctrl+Alt+E.
+- Diff `.bcproj`: botón **Comparar** como CTA primario (altura ≥36 + tip).
 
 ## 0.4.2 — 2026-08-02
 
