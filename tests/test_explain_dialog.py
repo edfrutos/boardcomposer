@@ -1,6 +1,6 @@
 """Tests for Ayuda → Explicar candidata dialog (IDE-0007)."""
 
-from PySide6.QtWidgets import QApplication, QDialogButtonBox, QPushButton
+from PySide6.QtWidgets import QApplication, QDialogButtonBox, QMainWindow, QPushButton
 
 from studio.dialogs.help_dialogs import ExplainSolutionDialog
 
@@ -22,6 +22,17 @@ def test_explain_solution_dialog_copy_writes_clipboard(qapp):
     assert copy is not None
     copy.click()
     assert QApplication.clipboard().text() == text
+
+
+def test_explain_solution_dialog_copy_updates_status_bar(qapp):
+    del qapp
+    window = QMainWindow()
+    dialog = ExplainSolutionDialog("body", language="es", parent=window)
+    box = dialog.findChild(QDialogButtonBox)
+    assert box is not None
+    copy = next(button for button in box.buttons() if button.text() == "Copiar")
+    copy.click()
+    assert "portapapeles" in window.statusBar().currentMessage().lower()
 
 
 def test_explain_solution_dialog_marks_ok_primary(qapp):
