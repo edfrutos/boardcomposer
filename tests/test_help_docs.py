@@ -206,6 +206,14 @@ def test_shortcuts_catalog_and_dialog(qapp):
         for b in STUDIO_SHORTCUTS
     )
     assert any(
+        b.action_key == "export_revision_backup" and b.sequence == "Ctrl+Alt+B"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
+        b.action_key == "explain_solution" and b.sequence == "Ctrl+Alt+E"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
         b.action_key == "shortcuts" and b.sequence == "F1" for b in STUDIO_SHORTCUTS
     )
     assert any(

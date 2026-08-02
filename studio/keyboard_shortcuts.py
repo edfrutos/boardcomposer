@@ -54,6 +54,8 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("reveal_project_folder", "Ctrl+Shift+R"),
     ShortcutBinding("diff_bcproj", "Ctrl+Shift+Y"),
     ShortcutBinding("restore_local_revision", "Ctrl+Alt+Y"),
+    ShortcutBinding("export_revision_backup", "Ctrl+Alt+B"),
+    ShortcutBinding("explain_solution", "Ctrl+Alt+E"),
     ShortcutBinding("shortcuts", "F1"),
     ShortcutBinding("reset_window_layout", "Ctrl+Shift+W"),
     ShortcutBinding("new_from_template", "Ctrl+Shift+N"),

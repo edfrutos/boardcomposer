@@ -43,7 +43,9 @@ def test_export_revision_backup_requires_saved_file(qapp, tmp_path):
     window = _window(tmp_path, with_file=True)
     action = window._actions["export_revision_backup"]
     assert action.isEnabled()
-    assert "backup" in action.statusTip().lower() or ".revs" in action.statusTip()
+    tip = action.statusTip().lower()
+    assert "backup" in tip or ".revs" in tip
+    assert "ctrl+alt+b" in tip or "⌥" in tip or "alt" in tip
 
 
 def test_explain_solution_requires_candidate(qapp, tmp_path):
@@ -65,3 +67,17 @@ def test_explain_solution_requires_candidate(qapp, tmp_path):
     tip = explain.statusTip().lower()
     assert "fortaleza" in tip or "candidata" in tip or "debilidades" in tip
     assert "copiar" in tip
+    assert "ctrl+alt+e" in tip or "⌥" in tip or "alt" in tip
+
+
+def test_backup_and_explain_shortcuts_registered():
+    from studio.keyboard_shortcuts import STUDIO_SHORTCUTS
+
+    assert any(
+        b.action_key == "export_revision_backup" and b.sequence == "Ctrl+Alt+B"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
+        b.action_key == "explain_solution" and b.sequence == "Ctrl+Alt+E"
+        for b in STUDIO_SHORTCUTS
+    )
