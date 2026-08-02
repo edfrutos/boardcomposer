@@ -34,6 +34,8 @@
   `polish_secondary_button` (transporte replay sigue compacto).
 - Tras cambio de tema, `repolish_secondary_buttons` restaura alturas de
   secundarios (evita wipe light/dark → `system`).
+- Welcome + empty Workspace: CTAs vía `polish_primary_button` /
+  `polish_secondary_button` (sobreviven cambio de tema).
 
 ## 0.4.2 — 2026-08-02
 

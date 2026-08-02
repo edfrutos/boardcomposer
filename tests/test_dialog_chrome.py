@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
 
 from studio.board_csv_importer import ImportBoardsResult, ImportedBoardRow
 from studio.dialogs.dialog_chrome import (
+    polish_primary_button,
     polish_secondary_button,
     repolish_secondary_buttons,
 )
@@ -44,6 +45,13 @@ def test_polish_secondary_button_sets_height_and_tip(qapp):
     assert button.minimumHeight() >= 36
     assert button.toolTip() == "Do the thing"
     assert button.statusTip() == "Do the thing"
+
+
+def test_polish_primary_button_sets_object_name_and_height(qapp):
+    del qapp
+    button = polish_primary_button(QPushButton("Go"))
+    assert button.objectName() == "primaryButton"
+    assert button.minimumHeight() >= 44
 
 
 def test_repolish_secondary_buttons_after_theme_switch(qapp):

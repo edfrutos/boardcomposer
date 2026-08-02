@@ -5,6 +5,10 @@ from __future__ import annotations
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget
 
+from studio.dialogs.dialog_chrome import (
+    polish_primary_button,
+    polish_secondary_button,
+)
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.keyboard_shortcuts import with_native_shortcuts
 
@@ -40,24 +44,19 @@ class EmptyWorkspaceOverlay(QWidget):
 
         layout.addSpacing(8)
 
-        self.add_board_button = QPushButton()
-        self.add_board_button.setObjectName("primaryButton")
-        self.add_board_button.setMinimumHeight(44)
+        self.add_board_button = polish_primary_button(QPushButton())
         self.add_board_button.clicked.connect(self.add_board_requested.emit)
         layout.addWidget(self.add_board_button)
 
-        self.add_piece_button = QPushButton()
-        self.add_piece_button.setMinimumHeight(36)
+        self.add_piece_button = polish_secondary_button(QPushButton())
         self.add_piece_button.clicked.connect(self.add_piece_requested.emit)
         layout.addWidget(self.add_piece_button)
 
-        self.import_boards_button = QPushButton()
-        self.import_boards_button.setMinimumHeight(36)
+        self.import_boards_button = polish_secondary_button(QPushButton())
         self.import_boards_button.clicked.connect(self.import_boards_requested.emit)
         layout.addWidget(self.import_boards_button)
 
-        self.import_pieces_button = QPushButton()
-        self.import_pieces_button.setMinimumHeight(36)
+        self.import_pieces_button = polish_secondary_button(QPushButton())
         self.import_pieces_button.clicked.connect(self.import_pieces_requested.emit)
         layout.addWidget(self.import_pieces_button)
 

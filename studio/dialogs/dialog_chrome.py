@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from PySide6.QtWidgets import QDialogButtonBox, QPushButton, QWidget
 
-_SECONDARY_MIN_HEIGHT_PROP = "bcSecondaryMinHeight"
+_CTA_MIN_HEIGHT_PROP = "bcSecondaryMinHeight"  # durable across theme switches
 
 
 def polish_secondary_button(
@@ -19,7 +19,7 @@ def polish_secondary_button(
     :func:`repolish_secondary_buttons` can restore it after a theme switch
     (light/dark → ``system`` clears QSS and can wipe ``minimumHeight``).
     """
-    button.setProperty(_SECONDARY_MIN_HEIGHT_PROP, int(min_height))
+    button.setProperty(_CTA_MIN_HEIGHT_PROP, int(min_height))
     button.setMinimumHeight(min_height)
     if tip:
         button.setToolTip(tip)
@@ -27,10 +27,21 @@ def polish_secondary_button(
     return button
 
 
+def polish_primary_button(
+    button: QPushButton,
+    *,
+    tip: str | None = None,
+    min_height: int = 44,
+) -> QPushButton:
+    """Mark a primary CTA (``#primaryButton``) with a durable min-height."""
+    button.setObjectName("primaryButton")
+    return polish_secondary_button(button, tip=tip, min_height=min_height)
+
+
 def repolish_secondary_buttons(root: QWidget) -> None:
-    """Re-apply secondary min-heights under ``root`` after theme changes."""
+    """Re-apply polished CTA min-heights under ``root`` after theme changes."""
     for button in root.findChildren(QPushButton):
-        height = button.property(_SECONDARY_MIN_HEIGHT_PROP)
+        height = button.property(_CTA_MIN_HEIGHT_PROP)
         if height is None:
             continue
         try:
@@ -43,8 +54,7 @@ def polish_dialog_button_box(buttons: QDialogButtonBox) -> None:
     """Mark OK as primary CTA and ensure usable button targets."""
     ok = buttons.button(QDialogButtonBox.StandardButton.Ok)
     if ok is not None:
-        ok.setObjectName("primaryButton")
-        ok.setMinimumHeight(36)
+        polish_primary_button(ok, min_height=36)
     for role in (
         QDialogButtonBox.StandardButton.Cancel,
         QDialogButtonBox.StandardButton.Close,
