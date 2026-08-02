@@ -3442,18 +3442,28 @@ class MainWindow(QMainWindow):
         """After a successful export, offer to open the file or its folder."""
         from studio.file_reveal import open_local_path, reveal_in_file_manager
 
+        target = Path(path)
+        is_folder = target.is_dir()
         box = QMessageBox(self)
         box.setIcon(QMessageBox.Icon.Information)
         box.setWindowTitle(self._tr("export.done_title"))
-        box.setText(self._tr("export.done_message", path=str(path)))
+        box.setText(
+            self._tr(
+                "export.done_message_folder" if is_folder else "export.done_message",
+                path=str(path),
+            )
+        )
         open_button = box.addButton(
-            self._tr("export.open_file"),
+            self._tr("export.open_folder" if is_folder else "export.open_file"),
             QMessageBox.ButtonRole.AcceptRole,
         )
-        reveal_button = box.addButton(
-            self._tr("export.reveal_folder"),
-            QMessageBox.ButtonRole.ActionRole,
-        )
+        # Reveal duplicates Open for directories (both open the folder itself).
+        reveal_button = None
+        if not is_folder:
+            reveal_button = box.addButton(
+                self._tr("export.reveal_folder"),
+                QMessageBox.ButtonRole.ActionRole,
+            )
         box.addButton(QMessageBox.StandardButton.Close)
         box.exec()
 
@@ -3462,7 +3472,7 @@ class MainWindow(QMainWindow):
             if not open_local_path(path):
                 self._status("status.export_open_failed", 5000, path=path)
             return
-        if clicked is reveal_button:
+        if reveal_button is not None and clicked is reveal_button:
             if not reveal_in_file_manager(path):
                 self._status("status.export_reveal_failed", 5000, path=path)
 
