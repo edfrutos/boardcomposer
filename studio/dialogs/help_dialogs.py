@@ -59,6 +59,8 @@ class ExplainSolutionDialog(QDialog):
         super().__init__(parent)
         self.setWindowTitle(tr("help.explain_solution_title", language))
         self.setMinimumSize(480, 360)
+        self._body_text = body_text
+        self._language = language
 
         layout = QVBoxLayout(self)
         heading = QLabel(tr("help.explain_solution_heading", language))
@@ -71,9 +73,22 @@ class ExplainSolutionDialog(QDialog):
         layout.addWidget(body)
 
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
+        copy_button = buttons.addButton(
+            tr("help.explain_copy", language),
+            QDialogButtonBox.ButtonRole.ActionRole,
+        )
+        copy_button.setMinimumHeight(36)
+        copy_button.clicked.connect(self._copy_to_clipboard)
         polish_dialog_button_box(buttons)
         buttons.accepted.connect(self.accept)
         layout.addWidget(buttons)
+
+    def _copy_to_clipboard(self) -> None:
+        from PySide6.QtWidgets import QApplication
+
+        clipboard = QApplication.clipboard()
+        if clipboard is not None:
+            clipboard.setText(self._body_text)
 
 
 class AboutDialog(QDialog):
