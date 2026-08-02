@@ -75,6 +75,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Comparador: ≥2 candidatas si el caso las genera; miniaturas legibles.
 - [x] Navegar candidatas (Re Pág / Av Pág o UI) cambia vista.
 - [x] Pin / diff de diferencias visible y comprensible.
+- [x] Tras editar inventario con soluciones: banner desactualizadas + CTA
+  **Calcular layout**.
 - [x] Explorador lista soluciones; seleccionar cambia preview.
 - [x] Piezas omitidas / solución parcial se comunican sin “falso vacío”.
 

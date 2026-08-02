@@ -13,6 +13,8 @@
 - Explicar candidata: tip en botón **Copiar**.
 - Comparador: banner de soluciones desactualizadas incluye CTA **Calcular
   layout** (mismo flujo que Ctrl+Return).
+- UAT / FLW-006 / RELEASE-SMOKE alineados con CTA banner outdated y ciclo
+  `0.4.3.dev0`.
 
 ### Cambiado
 

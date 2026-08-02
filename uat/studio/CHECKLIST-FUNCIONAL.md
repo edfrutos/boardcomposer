@@ -89,7 +89,8 @@ Precondición para checks de comparador multi-candidata:
 - [x] Aparecen >=2 soluciones en Comparador + Explorador (si el dataset y preferencias lo permiten).
 - [x] **Re Pág** / **Av Pág** (tips de estado) recorren candidatas (preview + status) cuando hay >=2 visibles; con 1 quedan deshabilitados.
 - [x] **Ctrl+Shift+Return** aplica la solución al proyecto (tip de estado).
-- [x] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**.
+- [x] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**
+  (banner Comparador + CTA **Calcular layout**).
 - [x] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia
   visible + diff (requiere >=2; botón pin deshabilitado con 1; tip post-solve).
 - [x] **Ctrl+Shift+E** (menú **Exportar** / toolbar) abre exportar solución
