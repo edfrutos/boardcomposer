@@ -43,3 +43,14 @@ def test_explain_solution_dialog_marks_ok_primary(qapp):
     ok = box.button(QDialogButtonBox.StandardButton.Ok)
     assert ok is not None
     assert ok.objectName() == "primaryButton"
+
+
+def test_explain_solution_dialog_copy_has_tip(qapp):
+    del qapp
+    dialog = ExplainSolutionDialog("body", language="es")
+    box = dialog.findChild(QDialogButtonBox)
+    assert box is not None
+    copy = next(button for button in box.buttons() if button.text() == "Copiar")
+    tip = (copy.toolTip() or "").lower()
+    assert "portapapeles" in tip
+    assert copy.statusTip() == copy.toolTip()

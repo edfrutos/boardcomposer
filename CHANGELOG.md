@@ -10,6 +10,7 @@
   (`last_backup_directory`).
 - Atajos **Ctrl+Alt+B** (Exportar backup de revisiones) y **Ctrl+Alt+E**
   (Explicar candidata).
+- Explicar candidata: tip en botón **Copiar**.
 
 ### Cambiado
 
@@ -21,6 +22,7 @@
   Explicar candidata (**Ctrl+Alt+E**).
 - Tip backup menciona carpeta recordada; piloto DT-0006 + SCR-007 alineados
   con open-after / `last_backup_directory`.
+- Spike IDE-0007: MVP marca Copiar / atajo Ctrl+Alt+E.
 
 ## 0.4.2 — 2026-08-02
 

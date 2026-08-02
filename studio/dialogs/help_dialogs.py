@@ -78,6 +78,9 @@ class ExplainSolutionDialog(QDialog):
             QDialogButtonBox.ButtonRole.ActionRole,
         )
         copy_button.setMinimumHeight(36)
+        copy_tip = tr("tip.explain_copy", language)
+        copy_button.setToolTip(copy_tip)
+        copy_button.setStatusTip(copy_tip)
         copy_button.clicked.connect(self._copy_to_clipboard)
         polish_dialog_button_box(buttons)
         buttons.accepted.connect(self.accept)
