@@ -108,6 +108,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.reveal_project_folder": "Abrir carpeta del proyecto",
         "action.diff_bcproj": "Comparar revisiones .bcproj…",
         "action.restore_local_revision": "Restaurar última revisión local…",
+        "action.export_revision_backup": "Exportar backup de revisiones…",
         "action.add_board": "Añadir tablero…",
         "action.add_piece": "Añadir pieza…",
         "action.import_boards_csv": "Importar inventario de tableros (CSV/Excel)…",
@@ -197,6 +198,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Los archivos del disco no se eliminan."
         ),
         "status.recent_cleared": "Lista de recientes vaciada",
+        "action.explain_solution": "Explicar candidata…",
         "action.shortcuts": "Atajos de teclado…",
         "action.open_docs": "Documentación…",
         "action.about": "Acerca de BoardComposer…",
@@ -219,6 +221,15 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Cargar la última revisión del anillo local en memoria "
             "(Ctrl+Alt+Y); Guardar para escribir en disco"
         ),
+        "tip.export_revision_backup": (
+            "Copia el .bcproj y el anillo .revs/ a una carpeta de backup"
+        ),
+        "status.revision_backup_no_file": (
+            "Guarda el proyecto en disco para exportar un backup de revisiones"
+        ),
+        "status.revision_backup_done": "Backup de revisiones exportado: {path}",
+        "status.revision_backup_failed": "No se pudo exportar el backup: {error}",
+        "dialog.export_revision_backup": "Carpeta de backup de revisiones",
         "tip.add_board": "Añadir un tablero al inventario (Ctrl+Shift+B)",
         "tip.add_piece": "Añadir una pieza al proyecto (Ctrl+Shift+P)",
         "tip.import_boards_csv": "Importar inventario de tableros desde CSV o Excel (Ctrl+Shift+T)",
@@ -276,6 +287,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.next_solution": "Seleccionar la solución siguiente (Av Pág)",
         "tip.apply_layout": "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return)",
         "tip.whats_new": "Ver las novedades del CHANGELOG (Ctrl+Shift+U)",
+        "tip.explain_solution": (
+            "Mostrar fortalezas, debilidades y notas de la candidata seleccionada"
+        ),
+        "help.explain_solution_title": "Explicar candidata",
+        "help.explain_solution_heading": (
+            "Explicación determinista (sin IA en red). IDE-0007 MVP."
+        ),
+        "help.explain_strengths": "Fortalezas",
+        "help.explain_weaknesses": "Debilidades",
+        "help.explain_notes": "Notas",
+        "help.explain_empty": "Sin explicación disponible para esta candidata.",
         "tip.shortcuts": "Ver los atajos de teclado activos (F1)",
         "tip.open_docs": "Abrir la guía rápida de usuario (Shift+F1)",
         "tip.about": "Información sobre BoardComposer Studio (Ctrl+Shift+A)",
@@ -1006,6 +1028,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.reveal_project_folder": "Open project folder",
         "action.diff_bcproj": "Compare .bcproj revisions…",
         "action.restore_local_revision": "Restore latest local revision…",
+        "action.export_revision_backup": "Export revisions backup…",
         "action.add_board": "Add board…",
         "action.add_piece": "Add piece…",
         "action.import_boards_csv": "Import board inventory (CSV/Excel)…",
@@ -1093,6 +1116,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Clear the list of recent projects?\nFiles on disk are not deleted."
         ),
         "status.recent_cleared": "Recent list cleared",
+        "action.explain_solution": "Explain candidate…",
         "action.shortcuts": "Keyboard shortcuts…",
         "action.open_docs": "Documentation…",
         "action.about": "About BoardComposer…",
@@ -1114,6 +1138,15 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Load the latest local ring revision into memory (Ctrl+Alt+Y); "
             "Save to write to disk"
         ),
+        "tip.export_revision_backup": (
+            "Copy the .bcproj and .revs/ ring to a backup folder"
+        ),
+        "status.revision_backup_no_file": (
+            "Save the project to disk to export a revisions backup"
+        ),
+        "status.revision_backup_done": "Revisions backup exported: {path}",
+        "status.revision_backup_failed": "Could not export backup: {error}",
+        "dialog.export_revision_backup": "Revisions backup folder",
         "tip.add_board": "Add a board to the inventory (Ctrl+Shift+B)",
         "tip.add_piece": "Add a piece to the project (Ctrl+Shift+P)",
         "tip.import_boards_csv": "Import board inventory from CSV or Excel (Ctrl+Shift+T)",
@@ -1166,6 +1199,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.next_solution": "Select the next solution (Page Down)",
         "tip.apply_layout": "Apply the selected solution to the project (Ctrl+Shift+Return)",
         "tip.whats_new": "Show CHANGELOG highlights (Ctrl+Shift+U)",
+        "tip.explain_solution": (
+            "Show strengths, weaknesses, and notes for the selected candidate"
+        ),
+        "help.explain_solution_title": "Explain candidate",
+        "help.explain_solution_heading": (
+            "Deterministic explanation (no cloud AI). IDE-0007 MVP."
+        ),
+        "help.explain_strengths": "Strengths",
+        "help.explain_weaknesses": "Weaknesses",
+        "help.explain_notes": "Notes",
+        "help.explain_empty": "No explanation available for this candidate.",
         "tip.shortcuts": "Show active keyboard shortcuts (F1)",
         "tip.open_docs": "Open the end-user quick guide (Shift+F1)",
         "tip.about": "About BoardComposer Studio (Ctrl+Shift+A)",
@@ -1805,6 +1849,7 @@ _ACTION_KEYS = (
     "reveal_project_folder",
     "diff_bcproj",
     "restore_local_revision",
+    "export_revision_backup",
     "add_board",
     "add_piece",
     "import_boards_csv",
@@ -1836,6 +1881,7 @@ _ACTION_KEYS = (
     "next_solution",
     "apply_layout",
     "whats_new",
+    "explain_solution",
     "shortcuts",
     "open_docs",
     "about",

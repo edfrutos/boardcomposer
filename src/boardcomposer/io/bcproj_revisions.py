@@ -71,3 +71,39 @@ def _prune(folder: Path, *, keep: int) -> None:
             stale.unlink()
         except OSError:
             pass
+
+
+def export_project_backup(
+    project_path: str | Path,
+    destination_dir: str | Path,
+) -> Path:
+    """Copy ``.bcproj`` and its local revision ring into a stamped backup folder.
+
+    Layout::
+
+        destination_dir/<stem>-<UTC>/
+            <name>.bcproj
+            .<name>.bcproj.revs/   # only if the sidecar exists
+
+    Returns the created backup folder. Raises ``FileNotFoundError`` if the
+    project file is missing, ``NotADirectoryError`` if destination cannot be
+    used as a directory.
+    """
+    source = Path(project_path)
+    if not source.is_file():
+        raise FileNotFoundError(f"Project file not found: {source}")
+
+    dest_root = Path(destination_dir)
+    dest_root.mkdir(parents=True, exist_ok=True)
+    if not dest_root.is_dir():
+        raise NotADirectoryError(f"Backup destination is not a directory: {dest_root}")
+
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    folder = dest_root / f"{source.stem}-{stamp}"
+    folder.mkdir(parents=False, exist_ok=False)
+
+    shutil.copy2(source, folder / source.name)
+    ring = revisions_dir(source)
+    if ring.is_dir():
+        shutil.copytree(ring, folder / ring.name)
+    return folder

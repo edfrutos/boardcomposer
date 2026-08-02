@@ -76,7 +76,7 @@ Observaciones:
 | IDE-0004 | Gestión de proyectos | 🟢 | P1 |
 | IDE-0005 | Exportación PDF/SVG | 🟢 | P1 |
 | IDE-0006 | API pública | 🟢 | P1 |
-| IDE-0007 | Asistente IA | ⚪ | P2 |
+| IDE-0007 | Asistente IA | 🟡 MVP local | P2 |
 | IDE-0008 | Sistema de plugins | ⚪ | P3 |
 | IDE-0009 | Packing multipanel MaxRects | 🟢 | P0 |
 | IDE-0010 | Tests de interacción Qt | 🟢 | P1 |
