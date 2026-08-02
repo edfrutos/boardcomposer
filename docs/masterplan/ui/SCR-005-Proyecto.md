@@ -5,7 +5,7 @@
 **Código:** SCR-005  
 **Versión:** 1.2.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 01/08/2026
+**Última revisión:** 02/08/2026
 
 ---
 
@@ -70,6 +70,7 @@ guardado.
 | Abrir carpeta | **Ctrl+Shift+R** | Solo si hay archivo en disco |
 | Comparar revisiones | **Ctrl+Shift+Y** | Diff vs anillo local / archivos |
 | Restaurar última revisión | **Ctrl+Alt+Y** | Snapshot más reciente del anillo; dirty hasta Guardar; vacía undo |
+| Exportar backup de revisiones | **Ctrl+Alt+B** | Copia `.bcproj` + anillo a carpeta; diálogo Abrir carpeta; recuerda destino |
 
 ### Plantillas y demo
 

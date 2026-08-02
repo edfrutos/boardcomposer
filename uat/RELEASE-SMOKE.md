@@ -18,8 +18,8 @@ completo (`uat/studio/`, `uat/plataforma/`).
 ## 2. Studio (manual ligero, 5–10 min)
 
 - [ ] `make run` → Welcome / About muestran `0.4.2`
-- [ ] Nuevo demo → calcular layout → Comparador → Ayuda → Explicar candidata → Copiar
-- [ ] Proyecto guardado → Exportar backup de revisiones… (o CLI `boardcomposer-backup`)
+- [ ] Nuevo demo → calcular layout → Comparador → **Ctrl+Alt+E** Explicar candidata → Copiar
+- [ ] Proyecto guardado → **Ctrl+Alt+B** Exportar backup → Abrir carpeta (o CLI `boardcomposer-backup`)
 - [ ] Restore: guardar 2× → Ctrl+Alt+Y → confirm → dirty
 
 ## 3. Docs / deuda

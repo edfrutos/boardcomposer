@@ -89,6 +89,7 @@ en sync con el replay del Timeline (diff parcial por paso).
 | Solución anterior / siguiente | **Re Pág** / **Av Pág** | Sigue orden/filtro visibles del Comparador |
 | Aplicar al proyecto | **Ctrl+Shift+Return** | Confirma si las soluciones están desactualizadas |
 | Exportar seleccionada | **Ctrl+Shift+E** | Diálogo SCR-007 |
+| Explicar candidata | **Ctrl+Alt+E** | Ayuda → diálogo determinista + Copiar |
 | Mostrar/ocultar dock | **Ctrl+4** | Toggle Comparador |
 
 ---

@@ -34,6 +34,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Abrir carpeta del proyecto (Ctrl+Shift+R) si hay ruta.
 - [x] Comparar revisiones `.bcproj` (Ctrl+Shift+Y): diálogo abre con proyecto actual y muestra diff textual comprensible.
 - [x] Restaurar última revisión (Ctrl+Alt+Y / menú Proyecto): confirmación clara; status y dirty tras restaurar.
+- [x] Exportar backup de revisiones (Ctrl+Alt+B): diálogo carpeta → «Carpeta creada» / Abrir carpeta.
 - [x] Recientes en inicio y menú; quitar / vaciar lista si aplica.
 - [x] Guardar como plantilla y crear desde plantilla (si hay plantillas).
 - [x] Renombrar proyecto (F2 / menú / clic derecho raíz).
@@ -108,7 +109,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 
 - [x] Ayuda → Documentación abre la guía rápida (`docs/user/GUIA-RAPIDA.md`).
 - [x] Ayuda → Novedades muestra bullets de CHANGELOG Unreleased.
-- [x] Ayuda → Atajos lista atajos legibles.
+- [x] Ayuda → Atajos lista atajos legibles (incl. Ctrl+Alt+B / Ctrl+Alt+E).
+- [x] Ayuda → Explicar candidata (Ctrl+Alt+E): texto + Copiar tras Calcular layout.
 - [x] Acerca de muestra nombre/versión coherente.
 
 ---

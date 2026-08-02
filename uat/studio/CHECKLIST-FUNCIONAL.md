@@ -35,6 +35,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] **Renombrar proyecto** (menú, clic derecho en raíz del Explorador, **F2** o **Ctrl+Shift+F2**; tip de estado).
 - [x] **Comparar revisiones `.bcproj`** (**Ctrl+Shift+Y**; tip de estado): tras guardar varias veces, abre diff con cambios estructurales legibles (`diff:` / `changes:`).
 - [x] **Restaurar última revisión local** (**Ctrl+Alt+Y** / menú Proyecto; tip idle si no hay anillo): tras ≥2 guardados, confirma → inventario en memoria vuelve al snapshot; título dirty; Guardar escribe en disco.
+- [x] **Exportar backup de revisiones…** (**Ctrl+Alt+B**; tip idle sin archivo): elige carpeta → copia `.bcproj` + anillo; diálogo «Carpeta creada» / **Abrir carpeta**; recuerda destino (`last_backup_directory`).
 
 ---
 
@@ -123,8 +124,9 @@ Precondición para checks de comparador multi-candidata:
 
 - [x] Tema, idioma, unidades, grid, estrategia/pesos, máx. soluciones, defaults export.
 - [x] Geometría de ventana/docks se recuerda al reiniciar.
-- [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo (incl. PgUp/PgDown, Ctrl+Shift+Return/E).
+- [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo (incl. PgUp/PgDown, Ctrl+Shift+Return/E, Ctrl+Alt+B/E).
 - [x] Ayuda → Novedades (**Ctrl+Shift+U**; tip de estado) / Documentación (**Shift+F1**; tip de estado) / Acerca de (**Ctrl+Shift+A**; tip de estado, icono correcto).
+- [x] **Ayuda → Explicar candidata…** (**Ctrl+Alt+E**; tip idle sin layout): tras Calcular, diálogo con fortalezas/debilidades/notas + **Copiar** (status bar confirma).
 
 ---
 
