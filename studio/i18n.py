@@ -129,6 +129,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.revision_none": "— (elegir archivo)",
         "diff_bcproj.current_project": "(proyecto abierto)",
         "diff_bcproj.compare": "Comparar",
+        "diff_bcproj.compare_tip": (
+            "Calcular el diff estructural entre izquierda y derecha"
+        ),
         "diff_bcproj.restore": "Restaurar esta revisión…",
         "diff_bcproj.restore_tip": (
             "Cargar la revisión seleccionada en memoria (misma ruta; Guardar "
@@ -1056,6 +1059,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "diff_bcproj.revision_none": "— (pick a file)",
         "diff_bcproj.current_project": "(open project)",
         "diff_bcproj.compare": "Compare",
+        "diff_bcproj.compare_tip": (
+            "Compute the structural diff between left and right"
+        ),
         "diff_bcproj.restore": "Restore this revision…",
         "diff_bcproj.restore_tip": (
             "Load the selected revision into memory (same path; Save to write to disk)"
