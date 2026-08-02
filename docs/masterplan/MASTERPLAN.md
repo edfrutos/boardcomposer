@@ -27,11 +27,11 @@
 
 ## Próxima tarea única
 
-Ciclo `0.4.2.dev0`: pulido QoL bajo demanda. Backlog grande bloqueado hasta
-demanda real:
+Piloto **DT-0006 opción D** (backup revisiones) y **IDE-0007 MVP** local
+entregados. Siguiente bajo demanda:
 
-- DT-0006 historial cloud — esperar piloto (`spikes/SPIKE-DT-0006-historial-cloud.md`).
-- IDE-0007 IA — L–XL, solo bajo demanda.
+- DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
+- IDE-0007 LLM opt-in — tras política de datos / eval (DEC-0011).
 - IDE-0008 plugins — XL; no priorizar sin ADR-004 operativo.
 
 ## Criterio de finalización del próximo bloque

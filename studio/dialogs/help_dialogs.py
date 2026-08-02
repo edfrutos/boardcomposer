@@ -46,6 +46,36 @@ class WhatsNewDialog(QDialog):
         layout.addWidget(buttons)
 
 
+class ExplainSolutionDialog(QDialog):
+    """Show the deterministic explanation for the selected candidate (IDE-0007 MVP)."""
+
+    def __init__(
+        self,
+        body_text: str,
+        *,
+        language: str = DEFAULT_LANGUAGE,
+        parent=None,
+    ) -> None:
+        super().__init__(parent)
+        self.setWindowTitle(tr("help.explain_solution_title", language))
+        self.setMinimumSize(480, 360)
+
+        layout = QVBoxLayout(self)
+        heading = QLabel(tr("help.explain_solution_heading", language))
+        heading.setWordWrap(True)
+        layout.addWidget(heading)
+
+        body = QTextEdit()
+        body.setReadOnly(True)
+        body.setPlainText(body_text)
+        layout.addWidget(body)
+
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
+        polish_dialog_button_box(buttons)
+        buttons.accepted.connect(self.accept)
+        layout.addWidget(buttons)
+
+
 class AboutDialog(QDialog):
     """Simple About box for BoardComposer Studio."""
 

@@ -91,7 +91,7 @@ Estado
 | DT-0003 | DT-T | Mantener la cobertura de pruebas por encima del objetivo definido. | 🟢 Controlado |
 | DT-0004 | DT-T | Añadir cobertura automatizada de interacción Qt y Workspace. | 🟢 Resuelto (`tests/conftest.py`, `tests/test_workspace_qt_interaction.py`) |
 | DT-0005 | DT-UX | Habilitar movimiento y reasignación interactiva entre paneles. | 🟢 Resuelto (arrastre entre paneles físicos en el Workspace) |
-| DT-0006 | DT-A | Historial cloud/multi-usuario de revisiones `.bcproj` (el anillo local ya está entregado). Spike: `spikes/SPIKE-DT-0006-historial-cloud.md`. | ⚪ Planificada (spike 2026-07-30) |
+| DT-0006 | DT-A | Historial cloud/multi-usuario de revisiones `.bcproj` (el anillo local ya está entregado). Spike: `spikes/SPIKE-DT-0006-historial-cloud.md`. Piloto opción D: `docs/ops/PILOT-DT-0006-backup.md` + `boardcomposer-backup`. | 🟡 En piloto (D) |
 
 ---
 
@@ -147,6 +147,9 @@ spike); antigüedad aceptable (spike el 30/07); sin críticas sin plan.
 Próximo foco:
 
 - Spike DT-0006 documentado (`spikes/SPIKE-DT-0006-historial-cloud.md`):
-  **no implementar cloud** hasta piloto; opciones A/C/D evaluadas.
+  piloto **opción D** activo (`docs/ops/PILOT-DT-0006-backup.md`); **C** solo
+  con multi-usuario real.
+- IDE-0007: MVP explicación local (`spikes/SPIKE-IDE-0007-asistente-ia.md`);
+  LLM diferido (DEC-0011).
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

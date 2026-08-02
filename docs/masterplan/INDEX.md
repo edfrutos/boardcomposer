@@ -74,7 +74,8 @@ Workspace real; la revisión del 2026-07-17 está en
 
 - `../README.md` — mapa docs (usuario vs proyecto)
 - `../user/GUIA-RAPIDA.md` — guía usuario Studio
-- `spikes/` — spikes de deuda / alcance (p. ej. DT-0006)
+- `spikes/` — spikes de deuda / alcance (DT-0006, IDE-0007)
+- `../ops/PILOT-DT-0006-backup.md` — piloto backup revisiones (opción D)
 - `../architecture.md`
 - `../data_model.md`
 - `../algorithms.md`

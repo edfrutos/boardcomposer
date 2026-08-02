@@ -34,7 +34,11 @@ from PySide6.QtWidgets import (
 from shiboken6 import isValid as _qt_is_valid
 
 from boardcomposer.export import solution_to_svg
-from boardcomposer.io.bcproj_revisions import latest_revision, list_revisions
+from boardcomposer.io.bcproj_revisions import (
+    export_project_backup,
+    latest_revision,
+    list_revisions,
+)
 from studio.export_options import render_export
 from dataclasses import replace as dataclass_replace
 from studio.board_ids import allocate_unique_board_id, casefolded_board_ids
@@ -68,6 +72,7 @@ from studio.dialogs import (
     AboutDialog,
     BcprojDiffDialog,
     ExportDialog,
+    ExplainSolutionDialog,
     ImportBoardsPreviewDialog,
     ImportPiecesPreviewDialog,
     NewBoardDialog,
@@ -210,6 +215,7 @@ class MainWindow(QMainWindow):
         self._menus["project"].addAction(self._actions["reveal_project_folder"])
         self._menus["project"].addAction(self._actions["diff_bcproj"])
         self._menus["project"].addAction(self._actions["restore_local_revision"])
+        self._menus["project"].addAction(self._actions["export_revision_backup"])
         self._menus["project"].addSeparator()
         self._menus["project"].addAction(self._actions["add_board"])
         self._menus["project"].addAction(self._actions["add_piece"])
@@ -227,6 +233,7 @@ class MainWindow(QMainWindow):
         self._menus["export"].addAction(self._actions["export_timeline"])
 
         self._menus["help"].addAction(self._actions["whats_new"])
+        self._menus["help"].addAction(self._actions["explain_solution"])
         self._menus["help"].addAction(self._actions["shortcuts"])
         self._menus["help"].addAction(self._actions["open_docs"])
         self._menus["help"].addSeparator()
@@ -249,6 +256,9 @@ class MainWindow(QMainWindow):
         self._actions["diff_bcproj"].triggered.connect(self._diff_bcproj)
         self._actions["restore_local_revision"].triggered.connect(
             self._restore_latest_local_revision
+        )
+        self._actions["export_revision_backup"].triggered.connect(
+            self._export_revision_backup
         )
         self._actions["add_board"].triggered.connect(self._add_board)
         self._actions["add_piece"].triggered.connect(self._add_piece)
@@ -294,6 +304,7 @@ class MainWindow(QMainWindow):
             self._export_timeline_history
         )
         self._actions["whats_new"].triggered.connect(self._show_whats_new)
+        self._actions["explain_solution"].triggered.connect(self._show_explain_solution)
         self._actions["shortcuts"].triggered.connect(self._show_shortcuts)
         self._actions["open_docs"].triggered.connect(self._open_documentation)
         self._actions["about"].triggered.connect(self._show_about)
@@ -1086,6 +1097,24 @@ class MainWindow(QMainWindow):
         dialog = WhatsNewDialog(language=self._ui_language(), parent=self)
         dialog.exec()
 
+    def _show_explain_solution(self) -> None:
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            self._status("status.calculate_layout_first")
+            return
+        from boardcomposer.domain.explain_text import format_solution_explanation
+
+        language = self._ui_language()
+        text = format_solution_explanation(
+            solution,
+            strengths_label=self._tr("help.explain_strengths"),
+            weaknesses_label=self._tr("help.explain_weaknesses"),
+            notes_label=self._tr("help.explain_notes"),
+            empty_message=self._tr("help.explain_empty"),
+        )
+        dialog = ExplainSolutionDialog(text, language=language, parent=self)
+        dialog.exec()
+
     def _show_about(self) -> None:
         dialog = AboutDialog(language=self._ui_language(), parent=self)
         dialog.exec()
@@ -1779,6 +1808,16 @@ class MainWindow(QMainWindow):
             else:
                 tip = self._tr("status.revision_restore_no_file")
             restore.setStatusTip(tip)
+        backup = self._actions.get("export_revision_backup")
+        if backup is not None:
+            has_file = bool(filename)
+            backup.setEnabled(has_file)
+            tip = (
+                with_native_shortcuts(self._tr("tip.export_revision_backup"))
+                if has_file
+                else self._tr("status.revision_backup_no_file")
+            )
+            backup.setStatusTip(tip)
 
     def _update_zoom_status(self, zoom: float | None = None) -> None:
         """Refresh the permanent Workspace zoom widget."""
@@ -2293,6 +2332,14 @@ class MainWindow(QMainWindow):
             if has_any
             else need_layout
         )
+        explain = self._actions.get("explain_solution")
+        if explain is not None:
+            explain.setEnabled(has_any)
+            explain.setStatusTip(
+                with_native_shortcuts(self._tr("tip.explain_solution"))
+                if has_any
+                else need_layout
+            )
         if not has_any:
             nav_disabled_tip = need_layout
         elif not has_visible:
@@ -3991,6 +4038,30 @@ class MainWindow(QMainWindow):
             self._status("status.revision_restore_empty")
             return
         self._restore_local_revision(revision)
+
+    def _export_revision_backup(self) -> None:
+        """Copy .bcproj + revision ring to a user-chosen folder (DT-0006 D)."""
+        filename = self.services.projects.filename
+        if not filename:
+            self._status("status.revision_backup_no_file")
+            return
+        dest = QFileDialog.getExistingDirectory(
+            self,
+            self._tr("dialog.export_revision_backup"),
+            str(Path(filename).parent),
+        )
+        if not dest:
+            return
+        try:
+            folder = export_project_backup(filename, dest)
+        except OSError as exc:
+            QMessageBox.warning(
+                self,
+                self._tr("action.export_revision_backup"),
+                self._tr("status.revision_backup_failed", error=str(exc)),
+            )
+            return
+        self._status("status.revision_backup_done", path=str(folder))
 
     def _restore_local_revision(self, revision_path: Path) -> None:
         """Load a ring snapshot into memory while keeping the live .bcproj path."""

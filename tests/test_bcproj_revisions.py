@@ -81,3 +81,35 @@ def test_save_project_snapshots_previous(tmp_path):
     assert snapshot == revs[0]
     assert json.loads(revs[0].read_text(encoding="utf-8"))["name"] == "One"
     assert project_to_dict(project)["name"] == "Two"
+
+
+def test_export_project_backup_copies_file_and_ring(tmp_path):
+    from boardcomposer.io.bcproj_revisions import export_project_backup
+
+    path = tmp_path / "demo.bcproj"
+    path.write_text(BASE.read_text(encoding="utf-8"), encoding="utf-8")
+    snapshot_before_overwrite(path)
+    path.write_text('{"version": 2, "name": "v2"}', encoding="utf-8")
+    snapshot_before_overwrite(path)
+
+    dest = tmp_path / "backups"
+    folder = export_project_backup(path, dest)
+    assert folder.is_dir()
+    assert folder.parent == dest
+    assert (folder / "demo.bcproj").is_file()
+    assert (folder / "demo.bcproj").read_text(encoding="utf-8") == path.read_text(
+        encoding="utf-8"
+    )
+    ring_copy = folder / ".demo.bcproj.revs"
+    assert ring_copy.is_dir()
+    assert len(list(ring_copy.glob("*.bcproj"))) == 2
+
+
+def test_export_project_backup_without_ring(tmp_path):
+    from boardcomposer.io.bcproj_revisions import export_project_backup
+
+    path = tmp_path / "solo.bcproj"
+    path.write_text("{}", encoding="utf-8")
+    folder = export_project_backup(path, tmp_path / "out")
+    assert (folder / "solo.bcproj").is_file()
+    assert not (folder / ".solo.bcproj.revs").exists()

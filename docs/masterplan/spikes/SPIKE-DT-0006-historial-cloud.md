@@ -3,7 +3,7 @@
 **Código:** SPIKE-DT-0006  
 **Deuda:** [DT-0006](../DOC-006-DeudaTecnica.md)  
 **Fecha:** 2026-07-30  
-**Estado:** Spike documentado (sin implementación)
+**Estado:** Spike cerrado para corto plazo · **piloto opción D** (2026-08-02)
 
 ---
 
@@ -40,22 +40,24 @@ mono-usuario offline; no cubre colaboración ni auditoría remota.
 
 ## Recomendación
 
-**Corto plazo (ahora):** **no implementar cloud**. Mantener DT-0006 ⚪ Planificada.
-
-**Si hay piloto mono-equipo con backup:** empezar por **D** o **A** (ops, no código Core).
+**Corto plazo (ahora):** **piloto opción D** — backup periódico del `.bcproj` +
+anillo local (`boardcomposer-backup`, Studio, runbook
+`docs/ops/PILOT-DT-0006-backup.md`). Decisión: **DEC-0010**.
 
 **Si hay piloto multi-usuario real:** abrir épica dedicada con **C** (identidad + ACL), no extender el anillo local a “falso cloud”.
 
 **Evitar B** salvo backup personal: mezcla peor de A y C (conflictos sin UX).
 
+**Opción A (Git)** sigue válida como disciplina ops alternativa a D.
+
 ---
 
 ## Criterios para salir de “Planificada”
 
-1. Piloto nombrado (quién escribe concurrente, cuántos puestos).
-2. Decisión A/C/D registrada en DOC-005.
-3. Amenazas HTTP/ACL actualizadas en DOC-010 si se elige C.
-4. Spike cerrado → IDE + EP o se descarta explícitamente.
+1. ~~Piloto nombrado~~ → mono-equipo / backup (2026-08-02).
+2. ~~Decisión A/C/D~~ → **D** en DOC-005 (DEC-0010); C diferida.
+3. Amenazas HTTP/ACL actualizadas en DOC-010 **si** se elige C.
+4. Spike corto plazo cerrado con runbook ops; C sigue pendiente de demanda.
 
 ---
 
