@@ -30,6 +30,10 @@
   `polish_secondary_button`.
 - Comparador: **Fijar como referencia** ≥36px; Explicar **Copiar** usa
   `polish_secondary_button`; DESIGN documenta el helper.
+- Timeline: botones etiquetados de la fila de acciones ≥36 vía
+  `polish_secondary_button` (transporte replay sigue compacto).
+- Tras cambio de tema, `repolish_secondary_buttons` restaura alturas de
+  secundarios (evita wipe light/dark → `system`).
 
 ## 0.4.2 — 2026-08-02
 

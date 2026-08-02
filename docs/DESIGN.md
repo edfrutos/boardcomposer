@@ -42,6 +42,10 @@ tipografía de marca hasta elegir light/dark).
 - Diálogos: OK = `primaryButton` vía `polish_dialog_button_box`;
   secundarios ≥36 vía `polish_secondary_button` (tip opcional);
   `QDialogButtonBox` min-height 36; checkbox con indicador tokenizado.
+- Tras cambio de tema, `repolish_secondary_buttons` restaura alturas
+  (light/dark → `system` limpia QSS y puede borrar `minimumHeight`).
+- Timeline: fila de acciones etiquetadas (export/marcador/vaciar/filtros)
+  ≥36 vía helper; transporte de replay (Inicio/◀/▶/Play) queda compacto.
 
 ## Canvas / workspace
 
@@ -63,6 +67,7 @@ Colores de tablero, pieza, selección, válido/inválido y grid viven en
 | Rol | Familia | Notas |
 |---|---|---|
 | Marca | Archivo (bundled) | Hero `QLabel#welcomeBrand` |
+
 | UI | Source Sans 3 (bundled) | Cuerpo y controles |
 | Énfasis | Source Sans 3 SemiBold | Headers, primario |
 

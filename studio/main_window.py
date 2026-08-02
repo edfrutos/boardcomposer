@@ -83,7 +83,10 @@ from studio.dialogs import (
     ShortcutsDialog,
     WhatsNewDialog,
 )
-from studio.dialogs.dialog_chrome import polish_secondary_button
+from studio.dialogs.dialog_chrome import (
+    polish_secondary_button,
+    repolish_secondary_buttons,
+)
 from studio.keyboard_shortcuts import apply_shortcuts, with_native_shortcuts
 from studio.project_ids import new_project_id
 from studio.board_csv_importer import import_boards_from_rows
@@ -2560,6 +2563,8 @@ class MainWindow(QMainWindow):
         app = QApplication.instance()
         if isinstance(app, QApplication):
             apply_theme(app, self.services.preferences.current.theme)
+        # Theme switch (esp. light/dark → system) can wipe QWidget min-heights.
+        repolish_secondary_buttons(self)
         self._retranslate_ui()
         self._sync_view_actions()
         self._sync_edit_selection_actions()

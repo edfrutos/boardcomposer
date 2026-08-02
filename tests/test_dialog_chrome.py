@@ -3,10 +3,19 @@
 from pathlib import Path
 
 from PySide6.QtGui import QColor
-from PySide6.QtWidgets import QDialogButtonBox, QPushButton
+from PySide6.QtWidgets import (
+    QApplication,
+    QDialogButtonBox,
+    QPushButton,
+    QVBoxLayout,
+    QWidget,
+)
 
 from studio.board_csv_importer import ImportBoardsResult, ImportedBoardRow
-from studio.dialogs.dialog_chrome import polish_secondary_button
+from studio.dialogs.dialog_chrome import (
+    polish_secondary_button,
+    repolish_secondary_buttons,
+)
 from studio.dialogs.help_dialogs import AboutDialog, ShortcutsDialog, WhatsNewDialog
 from studio.dialogs.import_boards_preview_dialog import ImportBoardsPreviewDialog
 from studio.dialogs.preferences_dialog import PreferencesDialog
@@ -14,6 +23,7 @@ from studio.models import StudioBoard
 from studio.dialogs.project_template_dialog import ProjectTemplatePickerDialog
 from studio.preferences import StudioPreferences
 from studio.project_templates import ProjectTemplateInfo
+from studio.theme import apply_theme
 from studio.theme_tokens import LIGHT_CANVAS
 from studio.workspace.canvas_style import set_active_canvas_theme
 
@@ -34,6 +44,24 @@ def test_polish_secondary_button_sets_height_and_tip(qapp):
     assert button.minimumHeight() >= 36
     assert button.toolTip() == "Do the thing"
     assert button.statusTip() == "Do the thing"
+
+
+def test_repolish_secondary_buttons_after_theme_switch(qapp):
+    """light → system can wipe minimumHeight; repolish restores it."""
+    del qapp
+    app = QApplication.instance()
+    assert app is not None
+    host = QWidget()
+    button = polish_secondary_button(QPushButton("Go"), min_height=36)
+    QVBoxLayout(host).addWidget(button)
+    apply_theme(app, "light")
+    host.show()
+    app.processEvents()
+    apply_theme(app, "system")
+    app.processEvents()
+    assert button.minimumHeight() == 0
+    repolish_secondary_buttons(host)
+    assert button.minimumHeight() >= 36
 
 
 def test_preferences_open_config_folder_is_polished(qapp):
