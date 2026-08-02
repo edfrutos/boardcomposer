@@ -8,6 +8,8 @@
   (mismo patrón que export solución y Timeline).
 - Backup de revisiones recuerda la última carpeta de destino
   (`last_backup_directory`).
+- Atajos **Ctrl+Alt+B** (Exportar backup de revisiones) y **Ctrl+Alt+E**
+  (Explicar candidata).
 
 ### Cambiado
 

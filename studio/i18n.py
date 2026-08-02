@@ -222,7 +222,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "(Ctrl+Alt+Y); Guardar para escribir en disco"
         ),
         "tip.export_revision_backup": (
-            "Copia el .bcproj y el anillo .revs/ a una carpeta de backup"
+            "Copia el .bcproj y el anillo .revs/ a una carpeta de backup "
+            "(Ctrl+Alt+B)"
         ),
         "status.revision_backup_no_file": (
             "Guarda el proyecto en disco para exportar un backup de revisiones"
@@ -288,8 +289,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.apply_layout": "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return)",
         "tip.whats_new": "Ver las novedades del CHANGELOG (Ctrl+Shift+U)",
         "tip.explain_solution": (
-            "Mostrar fortalezas, debilidades y notas de la candidata; "
-            "en el diálogo podés Copiar al portapapeles"
+            "Mostrar fortalezas, debilidades y notas de la candidata "
+            "(Ctrl+Alt+E); en el diálogo podés Copiar al portapapeles"
         ),
         "help.explain_solution_title": "Explicar candidata",
         "help.explain_solution_heading": (
@@ -1144,7 +1145,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Save to write to disk"
         ),
         "tip.export_revision_backup": (
-            "Copy the .bcproj and .revs/ ring to a backup folder"
+            "Copy the .bcproj and .revs/ ring to a backup folder (Ctrl+Alt+B)"
         ),
         "status.revision_backup_no_file": (
             "Save the project to disk to export a revisions backup"
@@ -1205,8 +1206,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.apply_layout": "Apply the selected solution to the project (Ctrl+Shift+Return)",
         "tip.whats_new": "Show CHANGELOG highlights (Ctrl+Shift+U)",
         "tip.explain_solution": (
-            "Show strengths, weaknesses, and notes for the selected candidate; "
-            "Copy is available in the dialog"
+            "Show strengths, weaknesses, and notes for the selected candidate "
+            "(Ctrl+Alt+E); Copy is available in the dialog"
         ),
         "help.explain_solution_title": "Explain candidate",
         "help.explain_solution_heading": (
