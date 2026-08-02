@@ -2,6 +2,9 @@
 
 from boardcomposer.domain import AssemblySolution, BoardPlacement
 from studio.events.catalog import PROJECT_MODIFIED, SOLUTIONS_MARKED_OUTDATED
+from studio.main_window import MainWindow
+from studio.models import StudioBoard, StudioPiece, StudioProject
+from studio.preferences import PreferencesManager, StudioPreferences
 from studio.services import StudioServices
 
 
@@ -56,3 +59,30 @@ def test_solve_clears_outdated_flag():
     services.layout.solutions_outdated = True
     services.layout.clear_solutions()
     assert services.layout.solutions_outdated is False
+
+
+def test_outdated_banner_shows_recalculate_cta(qapp, tmp_path):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    project = StudioProject(
+        project_id="PRJ-O",
+        name="Outdated",
+        boards=[StudioBoard("B1", 1000, 500, "Demo", 19, 1)],
+        pieces=[StudioPiece("A", 100, 50, "Demo", 19)],
+        placements=[],
+    )
+    services.projects.new_project(project)
+    window = MainWindow(services)
+    assert window.solutions_outdated_row.isHidden()
+
+    services.layout.solutions = [_fake_solution()]
+    window._mark_project_modified(reason="edit")
+    assert not window.solutions_outdated_row.isHidden()
+    assert window.solutions_outdated_recalculate.objectName() == "primaryButton"
+    assert window.solutions_outdated_recalculate.minimumHeight() >= 36
+    assert "Calcular" in window.solutions_outdated_recalculate.text()
+    tip = window.solutions_outdated_recalculate.toolTip()
+    assert "Ctrl+Return" in tip or "⌘↩" in tip or "layout" in tip.lower()
