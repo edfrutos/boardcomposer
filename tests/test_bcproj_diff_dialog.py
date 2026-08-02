@@ -34,6 +34,9 @@ def test_bcproj_diff_dialog_compare_is_primary(qapp):
     assert "diff" in tip or "estructural" in tip
     assert dialog.compare_button.statusTip() == dialog.compare_button.toolTip()
     assert dialog.restore_button.minimumHeight() >= 36
+    assert dialog.left_browse_button.minimumHeight() >= 36
+    assert "bcproj" in dialog.left_browse_button.toolTip().lower()
+    assert dialog.right_browse_button.statusTip() == dialog.left_browse_button.toolTip()
 
 
 def test_bcproj_diff_dialog_compares_current_vs_file(qapp, tmp_path):

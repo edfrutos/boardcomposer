@@ -23,7 +23,10 @@ from PySide6.QtWidgets import (
 
 from boardcomposer.io.bcproj_diff import diff_bcproj
 from boardcomposer.io.bcproj_revisions import list_revisions
-from studio.dialogs.dialog_chrome import polish_dialog_button_box
+from studio.dialogs.dialog_chrome import (
+    polish_dialog_button_box,
+    polish_secondary_button,
+)
 from studio.i18n import DEFAULT_LANGUAGE, tr
 
 
@@ -59,10 +62,19 @@ class BcprojDiffDialog(QDialog):
 
         self.left_path = QLineEdit()
         self.right_path = QLineEdit()
-        left_browse = QPushButton(tr("diff_bcproj.browse", language))
-        right_browse = QPushButton(tr("diff_bcproj.browse", language))
+        browse_tip = tr("diff_bcproj.browse_tip", language)
+        left_browse = polish_secondary_button(
+            QPushButton(tr("diff_bcproj.browse", language)),
+            tip=browse_tip,
+        )
+        right_browse = polish_secondary_button(
+            QPushButton(tr("diff_bcproj.browse", language)),
+            tip=browse_tip,
+        )
         left_browse.clicked.connect(lambda: self._browse(self.left_path))
         right_browse.clicked.connect(lambda: self._browse(self.right_path))
+        self.left_browse_button = left_browse
+        self.right_browse_button = right_browse
 
         left_row = QHBoxLayout()
         left_row.addWidget(self.left_path)
@@ -113,10 +125,10 @@ class BcprojDiffDialog(QDialog):
         compare_btn.clicked.connect(self._run_diff)
         self.compare_button = compare_btn
 
-        self.restore_button = QPushButton(tr("diff_bcproj.restore", language))
-        self.restore_button.setMinimumHeight(36)
-        self.restore_button.setToolTip(tr("diff_bcproj.restore_tip", language))
-        self.restore_button.setStatusTip(tr("diff_bcproj.restore_tip", language))
+        self.restore_button = polish_secondary_button(
+            QPushButton(tr("diff_bcproj.restore", language)),
+            tip=tr("diff_bcproj.restore_tip", language),
+        )
         self.restore_button.clicked.connect(self._request_restore)
         self.left_path.textChanged.connect(self._sync_restore_enabled)
         self.use_current_left.toggled.connect(self._sync_restore_enabled)

@@ -24,6 +24,8 @@
   con open-after / `last_backup_directory`.
 - Spike IDE-0007: MVP marca Copiar / atajo Ctrl+Alt+E.
 - Diff `.bcproj`: botón **Comparar** como CTA primario (altura ≥36 + tip).
+- Helper `polish_secondary_button`: Examinar (diff), carpeta de config (prefs),
+  renombrar/eliminar plantilla (altura ≥36 + tip).
 
 ## 0.4.2 — 2026-08-02
 

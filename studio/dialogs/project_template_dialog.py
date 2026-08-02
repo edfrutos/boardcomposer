@@ -16,7 +16,10 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
-from studio.dialogs.dialog_chrome import polish_dialog_button_box
+from studio.dialogs.dialog_chrome import (
+    polish_dialog_button_box,
+    polish_secondary_button,
+)
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.project_templates import ProjectTemplateInfo, ProjectTemplatesManager
 
@@ -47,13 +50,19 @@ class ProjectTemplatePickerDialog(QDialog):
         layout.addWidget(self.list)
 
         row = QHBoxLayout()
-        self.rename_button = QPushButton(tr("template.rename", language))
+        self.rename_button = polish_secondary_button(
+            QPushButton(tr("template.rename", language)),
+            tip=tr("tip.template_rename", language),
+        )
         self.rename_button.setEnabled(False)
         self.rename_button.clicked.connect(self._rename_selected)
         if manager is None:
             self.rename_button.hide()
         row.addWidget(self.rename_button)
-        self.delete_button = QPushButton(tr("template.delete", language))
+        self.delete_button = polish_secondary_button(
+            QPushButton(tr("template.delete", language)),
+            tip=tr("tip.template_delete", language),
+        )
         self.delete_button.setEnabled(False)
         self.delete_button.clicked.connect(self._delete_selected)
         if manager is None:
