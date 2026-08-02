@@ -222,8 +222,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "(Ctrl+Alt+Y); Guardar para escribir en disco"
         ),
         "tip.export_revision_backup": (
-            "Copia el .bcproj y el anillo .revs/ a una carpeta de backup "
-            "(Ctrl+Alt+B)"
+            "Copia el .bcproj y el anillo .revs/ a una carpeta de backup (Ctrl+Alt+B)"
         ),
         "status.revision_backup_no_file": (
             "Guarda el proyecto en disco para exportar un backup de revisiones"

@@ -19,9 +19,7 @@ def _window(tmp_path, *, backup_dir: Path | None = None) -> MainWindow:
     )
     prefs = StudioPreferences(language="es")
     if backup_dir is not None:
-        prefs = StudioPreferences(
-            language="es", last_backup_directory=str(backup_dir)
-        )
+        prefs = StudioPreferences(language="es", last_backup_directory=str(backup_dir))
     services.preferences.update(prefs)
     project = StudioProject(
         project_id="PRJ-B",
