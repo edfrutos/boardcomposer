@@ -47,7 +47,8 @@ Filtro de archivo: CSV y Excel (`dialog.filter_csv_excel`).
 
 1. El usuario dispara la acción correspondiente (menú, atajo o CTA).
 2. Si no hay proyecto, Studio carga uno vacío.
-3. Selector de archivo (CSV / `.xlsx` / `.xlsm`).
+3. Selector de archivo (CSV / `.xlsx` / `.xlsm`); recuerda la última carpeta
+   de importación exitosa (`last_import_directory`).
 4. Si es Excel con **más de una hoja**, Studio pide cuál usar
    (`_prompt_xlsx_sheet`); una sola hoja → primera por defecto.
 5. `load_tabular_file` lee cabeceras y filas (`studio/tabular_file.py`).
