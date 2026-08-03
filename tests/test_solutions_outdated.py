@@ -89,9 +89,16 @@ def test_outdated_banner_shows_recalculate_cta(qapp, tmp_path):
 
     apply_tip = window._actions["apply_layout"].statusTip().lower()
     assert "desactualiz" in apply_tip or "recalcul" in apply_tip
+    export_tip = window._actions["export_selected"].statusTip().lower()
+    assert "desactualiz" in export_tip or "recalcul" in export_tip
     body = window._tr("dialog.outdated_solutions_apply").lower()
     assert "recalcul" in body or "segura" in body
     assert "todos modos" in window._tr("dialog.outdated_solutions_apply_anyway").lower()
+    export_body = window._tr("dialog.outdated_solutions_export").lower()
+    assert "recalcul" in export_body or "segura" in export_body
+    assert (
+        "todos modos" in window._tr("dialog.outdated_solutions_export_anyway").lower()
+    )
 
 
 def test_apply_while_outdated_recalculate_choice(qapp, tmp_path, monkeypatch):
@@ -133,3 +140,69 @@ def test_apply_while_outdated_recalculate_choice(qapp, tmp_path, monkeypatch):
     monkeypatch.setattr(window, "_confirm_apply_while_outdated", lambda: "apply")
     window._apply_layout()
     assert calls == ["apply"]
+
+
+def test_export_while_outdated_recalculate_choice(qapp, tmp_path, monkeypatch):
+    from PySide6.QtWidgets import QDialog
+
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    project = StudioProject(
+        project_id="PRJ-E",
+        name="Export",
+        boards=[StudioBoard("B1", 1000, 500, "Demo", 19, 1)],
+        pieces=[StudioPiece("A", 100, 50, "Demo", 19)],
+        placements=[],
+    )
+    services.projects.new_project(project)
+    window = MainWindow(services)
+    services.layout.solutions = [_fake_solution()]
+    services.layout.selected_solution_index = 0
+    window._mark_project_modified(reason="edit")
+
+    calls: list[str] = []
+    opened: list[str] = []
+
+    class _NoDialog:
+        DialogCode = QDialog.DialogCode
+
+        def __init__(self, *args, **kwargs):
+            del args, kwargs
+            opened.append("dialog")
+
+        def exec(self):
+            return QDialog.DialogCode.Rejected
+
+    monkeypatch.setattr("studio.main_window.ExportDialog", _NoDialog)
+    monkeypatch.setattr(
+        window,
+        "_confirm_while_outdated",
+        lambda **kwargs: calls.append("confirm") or "recalculate",
+    )
+    monkeypatch.setattr(window, "_solve_layout", lambda: calls.append("solve"))
+    window._export_selected_solution()
+    assert calls == ["confirm", "solve"]
+    assert opened == []
+
+    calls.clear()
+    monkeypatch.setattr(
+        window,
+        "_confirm_while_outdated",
+        lambda **kwargs: calls.append("confirm") or "cancel",
+    )
+    window._export_selected_solution()
+    assert calls == ["confirm"]
+    assert opened == []
+
+    calls.clear()
+    monkeypatch.setattr(
+        window,
+        "_confirm_while_outdated",
+        lambda **kwargs: calls.append("confirm") or "proceed",
+    )
+    window._export_selected_solution()
+    assert calls == ["confirm"]
+    assert opened == ["dialog"]

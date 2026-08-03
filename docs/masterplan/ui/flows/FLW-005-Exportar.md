@@ -45,15 +45,17 @@ Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.
 
 1. El usuario tiene una candidata activa (Comparador / Re-Av Pág / post-cálculo).
 2. Dispara **Exportar solución seleccionada…** (**Ctrl+Shift+E**).
-3. Se abre `ExportDialog` (SCR-007) con última elección o defaults.
-4. Elige formato: SVG / DXF / PDF / JSON / CSV.
-5. Ajusta opciones: métricas y explicación (solo JSON), retales (todos).
-6. Opcional: aplica o guarda una plantilla / perfil por cliente.
-7. Revisa la vista previa (SVG + texto/resumen).
-8. Confirma y elige ruta en el diálogo de archivo.
-9. Studio escribe el archivo; emite eventos Timeline; ofrece **Abrir archivo**
-   o **Mostrar en carpeta**.
-10. Persiste formato + flags en `preferences.json`.
+3. Si `solutions_outdated`: diálogo **Calcular layout** (default) /
+   Exportar de todos modos / Cancelar. Recalcular o cancelar no abre SCR-007.
+4. Se abre `ExportDialog` (SCR-007) con última elección o defaults.
+5. Elige formato: SVG / DXF / PDF / JSON / CSV.
+6. Ajusta opciones: métricas y explicación (solo JSON), retales (todos).
+7. Opcional: aplica o guarda una plantilla / perfil por cliente.
+8. Revisa la vista previa (SVG + texto/resumen).
+9. Confirma y elige ruta en el diálogo de archivo.
+10. Studio escribe el archivo; emite eventos Timeline; ofrece **Abrir archivo**
+    o **Mostrar en carpeta**.
+11. Persiste formato + flags en `preferences.json`.
 
 ---
 

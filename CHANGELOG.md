@@ -19,6 +19,8 @@
   recalcular (banner / Ctrl+Return); guía rápida documenta el banner.
 - Diálogo Aplicar outdated: **Calcular layout** (default) / Aplicar de todos
   modos / Cancelar.
+- Exportar solución con outdated: tip honesto + diálogo **Calcular layout**
+  (default) / Exportar de todos modos / Cancelar (mismo patrón que Aplicar).
 
 ### Cambiado
 

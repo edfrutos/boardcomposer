@@ -248,6 +248,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Exportar la solución del Comparador (Ctrl+Shift+E): "
             "SVG/PNG/JPEG/PDF/DXF/JSON/CSV — menú Exportar"
         ),
+        "tip.export_selected_outdated": (
+            "Soluciones desactualizadas: recalcula con el CTA del Comparador "
+            "o Ctrl+Return antes de exportar (Ctrl+Shift+E)"
+        ),
         "tip.export_timeline": "Exportar el historial del Timeline (Ctrl+Shift+L)",
         "tip.exit": "Cerrar BoardComposer Studio (Ctrl+Q)",
         "tip.undo": "Deshacer la última acción (Ctrl+Z)",
@@ -432,6 +436,11 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Recalcular es la opción segura; aplicar usa la candidata vieja."
         ),
         "dialog.outdated_solutions_apply_anyway": "Aplicar de todos modos",
+        "dialog.outdated_solutions_export": (
+            "Las soluciones ya no coinciden con el proyecto actual. "
+            "Recalcular es la opción segura; exportar usa la candidata vieja."
+        ),
+        "dialog.outdated_solutions_export_anyway": "Exportar de todos modos",
         "timeline.replay_none": "Reproducción: sin solución",
         "timeline.replay_mode": "Modo:",
         "timeline.replay_mode_placements": "Colocaciones",
@@ -1192,6 +1201,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Export the Comparator solution (Ctrl+Shift+E): "
             "SVG/PNG/JPEG/PDF/DXF/JSON/CSV — Export menu"
         ),
+        "tip.export_selected_outdated": (
+            "Solutions outdated: recalculate via the Comparator banner CTA "
+            "or Ctrl+Return before exporting (Ctrl+Shift+E)"
+        ),
         "tip.export_timeline": "Export the Timeline history (Ctrl+Shift+L)",
         "tip.exit": "Quit BoardComposer Studio (Ctrl+Q)",
         "tip.undo": "Undo the last action (Ctrl+Z)",
@@ -1371,6 +1384,11 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Recalculating is the safe option; apply uses the stale candidate."
         ),
         "dialog.outdated_solutions_apply_anyway": "Apply anyway",
+        "dialog.outdated_solutions_export": (
+            "Solutions no longer match the current project. "
+            "Recalculating is the safe option; export uses the stale candidate."
+        ),
+        "dialog.outdated_solutions_export_anyway": "Export anyway",
         "timeline.replay_none": "Replay: no solution",
         "timeline.replay_mode": "Mode:",
         "timeline.replay_mode_placements": "Placements",

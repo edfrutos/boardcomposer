@@ -103,7 +103,8 @@ inventario restringido).
 
 - Editar el proyecto con impacto en layout marca `solutions_outdated`.
 - Banner en el Comparador: el proyecto cambió; conviene volver a generar.
-- **Aplicar** con outdated pide confirmación.
+- **Aplicar** / **Exportar** con outdated piden confirmación
+  (recalcular / continuar / cancelar).
 - Un cálculo nuevo limpia el flag.
 
 ---

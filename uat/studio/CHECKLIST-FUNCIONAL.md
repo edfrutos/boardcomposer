@@ -91,6 +91,8 @@ Precondición para checks de comparador multi-candidata:
 - [x] **Ctrl+Shift+Return** aplica la solución al proyecto (tip de estado).
 - [x] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**
   (banner Comparador + CTA **Calcular layout**).
+- [x] Aplicar / Exportar con outdated: tip honesto + diálogo **Calcular layout**
+  / continuar de todos modos / Cancelar.
 - [x] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia
   visible + diff (requiere >=2; botón pin deshabilitado con 1; tip post-solve).
 - [x] **Ctrl+Shift+E** (menú **Exportar** / toolbar) abre exportar solución
