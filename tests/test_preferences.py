@@ -114,6 +114,16 @@ def test_preferences_manager_ignores_blank_last_diff_directory(tmp_path):
     assert prefs.last_diff_directory is None
 
 
+def test_preferences_manager_ignores_blank_last_export_templates_directory(tmp_path):
+    path = tmp_path / "preferences.json"
+    path.write_text(
+        '{"strategy_name": "material", "last_export_templates_directory": "  "}\n',
+        encoding="utf-8",
+    )
+    prefs = PreferencesManager(path).current
+    assert prefs.last_export_templates_directory is None
+
+
 def test_preferences_dialog_preserves_last_export_directory(qapp):
     del qapp
     from studio.dialogs.preferences_dialog import PreferencesDialog
@@ -172,6 +182,20 @@ def test_preferences_dialog_preserves_last_diff_directory(qapp):
     dialog.max_solutions.setValue(11)
     assert dialog.preferences().last_diff_directory == "/diffs"
     assert dialog.preferences().max_solutions == 11
+
+
+def test_preferences_dialog_preserves_last_export_templates_directory(qapp):
+    del qapp
+    from studio.dialogs.preferences_dialog import PreferencesDialog
+
+    dialog = PreferencesDialog(
+        StudioPreferences(
+            language="es", last_export_templates_directory="/template-packs"
+        )
+    )
+    dialog.max_solutions.setValue(12)
+    assert dialog.preferences().last_export_templates_directory == "/template-packs"
+    assert dialog.preferences().max_solutions == 12
 
 
 def test_preferences_manager_ignores_invalid_window_layout_payload(tmp_path):

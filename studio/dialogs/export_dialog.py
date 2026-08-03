@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
+from pathlib import Path
+
 from PySide6.QtCore import QSize, Qt
 from PySide6.QtWidgets import (
     QCheckBox,
@@ -67,6 +70,8 @@ class ExportDialog(QDialog):
         strategy_name: str | None = None,
         solution_index: int | None = None,
         language: str = DEFAULT_LANGUAGE,
+        templates_directory: str | None = None,
+        on_templates_directory: Callable[[str | Path], None] | None = None,
         parent=None,
     ) -> None:
         super().__init__(parent)
@@ -76,6 +81,8 @@ class ExportDialog(QDialog):
         self._project = project
         self._strategy_name = strategy_name
         self._solution_index = solution_index
+        self._templates_directory = templates_directory or ""
+        self._on_templates_directory = on_templates_directory
         self._templates = (
             templates
             if templates is not None
@@ -385,12 +392,30 @@ class ExportDialog(QDialog):
         self._reload_clients(selected=self.client.currentData())
         self._reload_templates(selected_key=_NO_TEMPLATE)
 
+    def _suggested_templates_path(self, default_filename: str = "") -> str:
+        """Prefer last pack folder when it still exists."""
+        directory = self._templates_directory.strip()
+        if directory:
+            folder = Path(directory).expanduser()
+            if folder.is_dir():
+                if default_filename:
+                    return str(folder / default_filename)
+                return str(folder)
+        return default_filename
+
+    def _remember_templates_directory(self, path: str | Path) -> None:
+        if self._on_templates_directory is None:
+            return
+        folder = str(Path(path).expanduser().resolve().parent)
+        self._templates_directory = folder
+        self._on_templates_directory(path)
+
     def _export_templates_pack(self) -> None:
         client_filter = self._client_filter()
         path, _ = QFileDialog.getSaveFileName(
             self,
             self._tr("export.share_export_title"),
-            "boardcomposer-export-templates.json",
+            self._suggested_templates_path("boardcomposer-export-templates.json"),
             self._tr("export.share_filter"),
         )
         if not path:
@@ -404,6 +429,7 @@ class ExportDialog(QDialog):
                 self._tr("export.share_error", error=str(exc)),
             )
             return
+        self._remember_templates_directory(path)
         QMessageBox.information(
             self,
             self._tr("export.share_export_title"),
@@ -414,7 +440,7 @@ class ExportDialog(QDialog):
         path, _ = QFileDialog.getOpenFileName(
             self,
             self._tr("export.share_import_title"),
-            "",
+            self._suggested_templates_path(),
             self._tr("export.share_filter"),
         )
         if not path:
@@ -442,6 +468,7 @@ class ExportDialog(QDialog):
             )
             return
 
+        self._remember_templates_directory(path)
         self._reload_clients(selected=_ALL_CLIENTS)
         self._reload_templates(selected_key=_NO_TEMPLATE)
         QMessageBox.information(
