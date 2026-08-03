@@ -78,7 +78,7 @@ def test_outdated_banner_shows_recalculate_cta(qapp, tmp_path):
     window = MainWindow(services)
     assert window.solutions_outdated_row.isHidden()
 
-    services.layout.solutions = [_fake_solution()]
+    services.layout.solutions = [_fake_solution(), _fake_solution()]
     window._mark_project_modified(reason="edit")
     assert not window.solutions_outdated_row.isHidden()
     assert window.solutions_outdated_recalculate.objectName() == "primaryButton"
@@ -94,6 +94,12 @@ def test_outdated_banner_shows_recalculate_cta(qapp, tmp_path):
     explain = window._actions["explain_solution"]
     explain_tip = explain.statusTip().lower()
     assert "desactualiz" in explain_tip or "vieja" in explain_tip
+    prev_tip = window._actions["previous_solution"].statusTip().lower()
+    assert "desactualiz" in prev_tip or "viejas" in prev_tip
+    next_tip = window._actions["next_solution"].statusTip().lower()
+    assert "desactualiz" in next_tip or "viejas" in next_tip
+    pin_tip = window.pin_reference_button.statusTip().lower()
+    assert "desactualiz" in pin_tip or "viejas" in pin_tip
     body = window._tr("dialog.outdated_solutions_apply").lower()
     assert "recalcul" in body or "segura" in body
     assert "todos modos" in window._tr("dialog.outdated_solutions_apply_anyway").lower()

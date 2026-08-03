@@ -94,6 +94,7 @@ Precondición para checks de comparador multi-candidata:
 - [x] Aplicar / Exportar con outdated: tip honesto + diálogo **Calcular layout**
   / continuar de todos modos / Cancelar.
 - [x] Explicar candidata con outdated: tip + cabecera avisan (sin bloquear).
+- [x] Re/Av Pág y Fijar referencia con outdated: tips avisan candidatas viejas.
 - [x] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia
   visible + diff (requiere >=2; botón pin deshabilitado con 1; tip post-solve).
 - [x] **Ctrl+Shift+E** (menú **Exportar** / toolbar) abre exportar solución

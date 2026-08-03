@@ -23,6 +23,8 @@
   (default) / Exportar de todos modos / Cancelar (mismo patrón que Aplicar).
 - Explicar candidata con outdated: tip honesto + cabecera del diálogo avisa
   que describe la candidata vieja (sin bloquear; solo lectura).
+- Comparador con outdated: tips de Re/Av Pág y Fijar referencia avisan que
+  se navega/diff sobre candidatas viejas.
 
 ### Cambiado
 

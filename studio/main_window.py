@@ -2375,22 +2375,24 @@ class MainWindow(QMainWindow):
             nav_disabled_tip = no_match
         else:
             nav_disabled_tip = only_one
-        previous.setStatusTip(
-            with_native_shortcuts(self._tr("tip.previous_solution"))
-            if has_multiple_visible
-            else nav_disabled_tip
-        )
-        next_action.setStatusTip(
-            with_native_shortcuts(self._tr("tip.next_solution"))
-            if has_multiple_visible
-            else nav_disabled_tip
-        )
-        if pin is not None:
-            pin_tip = (
-                self._tr("tip.pin_reference")
-                if has_multiple_visible
-                else nav_disabled_tip
+        outdated = self.services.layout.solutions_outdated
+        if has_multiple_visible and outdated:
+            previous_tip = with_native_shortcuts(
+                self._tr("tip.previous_solution_outdated")
             )
+            next_tip = with_native_shortcuts(self._tr("tip.next_solution_outdated"))
+            pin_tip = with_native_shortcuts(self._tr("tip.pin_reference_outdated"))
+        elif has_multiple_visible:
+            previous_tip = with_native_shortcuts(self._tr("tip.previous_solution"))
+            next_tip = with_native_shortcuts(self._tr("tip.next_solution"))
+            pin_tip = self._tr("tip.pin_reference")
+        else:
+            previous_tip = nav_disabled_tip
+            next_tip = nav_disabled_tip
+            pin_tip = nav_disabled_tip
+        previous.setStatusTip(previous_tip)
+        next_action.setStatusTip(next_tip)
+        if pin is not None:
             pin.setToolTip(pin_tip)
             pin.setStatusTip(pin_tip)
         if sort is not None:

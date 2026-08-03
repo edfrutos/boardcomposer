@@ -298,7 +298,15 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.window_layout_reset": "Disposición de ventana restablecida",
         "tip.solve_layout": "Calcular soluciones de layout (Ctrl+Return)",
         "tip.previous_solution": "Seleccionar la solución anterior (Re Pág)",
+        "tip.previous_solution_outdated": (
+            "Soluciones desactualizadas: navegas candidatas viejas (Re Pág); "
+            "recalcula con el CTA del Comparador o Ctrl+Return"
+        ),
         "tip.next_solution": "Seleccionar la solución siguiente (Av Pág)",
+        "tip.next_solution_outdated": (
+            "Soluciones desactualizadas: navegas candidatas viejas (Av Pág); "
+            "recalcula con el CTA del Comparador o Ctrl+Return"
+        ),
         "tip.apply_layout": "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return)",
         "tip.apply_layout_outdated": (
             "Soluciones desactualizadas: recalcula con el CTA del Comparador "
@@ -559,6 +567,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.pin_reference": (
             "Fija la candidata seleccionada como referencia del diff "
             "(hace falta ≥2 soluciones)"
+        ),
+        "tip.pin_reference_outdated": (
+            "Soluciones desactualizadas: el diff usa candidatas viejas; "
+            "recalcula con el CTA del Comparador o Ctrl+Return"
         ),
         "tip.comparator_sort": "Ordena las candidatas del Comparador",
         "tip.comparator_complete_only": (
@@ -1256,7 +1268,15 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.window_layout_reset": "Window layout reset",
         "tip.solve_layout": "Calculate layout solutions (Ctrl+Return)",
         "tip.previous_solution": "Select the previous solution (Page Up)",
+        "tip.previous_solution_outdated": (
+            "Solutions outdated: browsing stale candidates (Page Up); "
+            "recalculate via the Comparator banner CTA or Ctrl+Return"
+        ),
         "tip.next_solution": "Select the next solution (Page Down)",
+        "tip.next_solution_outdated": (
+            "Solutions outdated: browsing stale candidates (Page Down); "
+            "recalculate via the Comparator banner CTA or Ctrl+Return"
+        ),
         "tip.apply_layout": "Apply the selected solution to the project (Ctrl+Shift+Return)",
         "tip.apply_layout_outdated": (
             "Solutions outdated: recalculate via the Comparator banner CTA "
@@ -1516,6 +1536,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "comparator.pin_reference": "Pin as reference",
         "tip.pin_reference": (
             "Pin the selected candidate as the diff reference (needs ≥2 solutions)"
+        ),
+        "tip.pin_reference_outdated": (
+            "Solutions outdated: the diff uses stale candidates; "
+            "recalculate via the Comparator banner CTA or Ctrl+Return"
         ),
         "tip.comparator_sort": "Sort Comparator candidates",
         "tip.comparator_complete_only": "Hide partial candidates in the Comparator",
