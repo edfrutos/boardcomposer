@@ -33,6 +33,8 @@
   sobre canvas taller aunque la OS sea dark).
 - Tema `system`: banner outdated usa danger/window LIGHT (aviso visible sin
   QSS Industrial completo).
+- Tema `system`: `#welcomeClearRecent` conserva hover/focus LIGHT (anillo
+  acento + tipografía UI) sin QSS Industrial completo.
 - About reusa `#welcomeSubtitle` / `#welcomeTagline` para versión y blurb
   (misma jerarquía tipográfica que Welcome bajo system/light/dark).
 - Import CSV/Excel recuerda la última carpeta de origen

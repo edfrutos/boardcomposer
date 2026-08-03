@@ -428,10 +428,11 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     """Minimal Welcome/About typography + empty-overlay + outdated banner
-    under ``system``.
+    + Clear Recent under ``system``.
 
-    Empty overlay and outdated banner sit on light (taller) surfaces even when
-    the OS palette is dark, so ink/background use LIGHT tokens for contrast.
+    Empty overlay, outdated banner, and Clear Recent sit on light (taller)
+    surfaces even when the OS palette is dark, so ink/background use LIGHT
+    tokens for contrast.
     """
     parts: list[str] = []
     if brand:
@@ -503,6 +504,30 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         f" font-size: 12px;"
         f" }}"
     )
+    clear_font = f' font-family: "{ui}";' if ui else ""
+    parts.append(
+        f"QPushButton#welcomeClearRecent {{"
+        f" color: {LIGHT.muted};"
+        f" background: transparent;"
+        f" border: 1px solid transparent;"
+        f" min-height: 32px;"
+        f" padding: 4px 8px;"
+        f"{clear_font}"
+        f" }}"
+    )
+    parts.append(
+        f"QPushButton#welcomeClearRecent:hover {{"
+        f" color: {LIGHT.text};"
+        f" border: 1px solid {LIGHT.border};"
+        f" background-color: {LIGHT.alternate};"
+        f" }}"
+    )
+    parts.append(
+        f"QPushButton#welcomeClearRecent:focus {{"
+        f" border: 2px solid {LIGHT.accent};"
+        f" padding: 3px 7px;"
+        f" }}"
+    )
     return "\n".join(parts)
 
 
@@ -523,9 +548,9 @@ def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
     ``system`` restores the platform palette and keeps Welcome/About brand
-    typography plus empty-workspace and outdated-banner surface/ink on LIGHT
-    tokens (canvas is always taller-diurno under system; no full Industrial
-    chrome).
+    typography plus empty-workspace, outdated-banner, and Clear Recent
+    surface/ink on LIGHT tokens (canvas is always taller-diurno under system;
+    no full Industrial chrome).
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
 
@@ -543,7 +568,7 @@ def apply_theme(app: QApplication, theme: str) -> None:
         ui, brand = _resolved_ui_and_brand_families()
         if ui:
             app.setFont(QFont(ui, 13))
-        # Keep Welcome brand + empty-overlay type without full light/dark QSS.
+        # Keep Welcome brand + empty-overlay + Clear Recent without full QSS.
         app.setStyleSheet(_welcome_typography_qss(brand=brand, ui=ui))
         return
 
