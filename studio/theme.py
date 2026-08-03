@@ -427,10 +427,11 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
-    """Minimal Welcome/About typography + empty-overlay surface under ``system``.
+    """Minimal Welcome/About typography + empty-overlay + outdated banner
+    under ``system``.
 
-    Empty overlay sits on the light (taller) canvas even when the OS palette
-    is dark, so ink/background use LIGHT tokens for contrast.
+    Empty overlay and outdated banner sit on light (taller) surfaces even when
+    the OS palette is dark, so ink/background use LIGHT tokens for contrast.
     """
     parts: list[str] = []
     if brand:
@@ -490,6 +491,18 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         f" }}"
     )
     parts.append("QWidget#workspaceEmptyOverlay QPushButton { text-align: center; }")
+    banner_font = f' font-family: "{ui}";' if ui else ""
+    parts.append(
+        f"QLabel#solutionsOutdatedBanner {{"
+        f" background-color: {LIGHT.window};"
+        f" color: {LIGHT.danger};"
+        f" border: 1px solid {LIGHT.danger};"
+        f" border-radius: 4px;"
+        f" padding: 6px 8px;"
+        f"{banner_font}"
+        f" font-size: 12px;"
+        f" }}"
+    )
     return "\n".join(parts)
 
 
@@ -510,8 +523,9 @@ def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
     ``system`` restores the platform palette and keeps Welcome/About brand
-    typography plus empty-workspace surface/ink on LIGHT tokens (canvas is
-    always taller-diurno under system; no full Industrial chrome).
+    typography plus empty-workspace and outdated-banner surface/ink on LIGHT
+    tokens (canvas is always taller-diurno under system; no full Industrial
+    chrome).
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
 

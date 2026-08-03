@@ -30,15 +30,16 @@ sobre ámbar en light (quedaba ~3.2:1).
 Fuente de verdad: `studio/theme_tokens.py`. Aplicación: `studio/theme.py`
 (`QPalette` + QSS). Preferencia `system` restaura la paleta de plataforma y conserva tipografía
 de marca Welcome/About (`#welcomeBrand` / `#welcomeSubtitle` / `#welcomeTagline`)
-más empty Workspace con superficie/tinta LIGHT (canvas taller diurno); el resto
-del chrome Industrial queda en light/dark.
+más empty Workspace con superficie/tinta LIGHT (canvas taller diurno) y banner
+outdated con danger LIGHT; el resto del chrome Industrial queda en light/dark.
 
 ## Accesibilidad (chrome)
 
 - Focus visible en `QPushButton` / toolbar / listas (`border` acento).
 - CTAs Welcome y empty Workspace: primario ≥44 vía `polish_primary_button`;
   secundarios ≥36 / vaciar recientes ≥32 vía `polish_secondary_button`.
-- Banner outdated usa fondo `window` para contraste del danger en dark.
+- Banner outdated usa fondo `window` para contraste del danger (también bajo
+  `system`, con tokens LIGHT).
 - Docks: título con `panel` + SemiBold; splitter handle con `border`.
 - Inspector: `QTextEdit#inspectorPanel` (padding + tokens, sin borde).
 - Diff `.bcproj`: **Comparar** = `primaryButton` vía `polish_primary_button`
