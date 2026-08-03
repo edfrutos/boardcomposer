@@ -187,8 +187,9 @@ candidatas válidas.
 
 - Diff estructural Core/CLI + UI Studio (`boardcomposer-diff` / diálogo
   **Comparar revisiones .bcproj…**, **Ctrl+Shift+Y**); anillo local de hasta 10
-  revisiones al guardar (`.<nombre>.bcproj.revs/`). Sin historial cloud ni
-  auditoría multi-usuario.
+  revisiones al guardar (`.<nombre>.bcproj.revs/`). Recuerda la última carpeta
+  examinada (`last_diff_directory`). Sin historial cloud ni auditoría
+  multi-usuario.
 - **Restaurar** una revisión del anillo: botón en el diálogo de comparar, o
   **Proyecto → Restaurar última revisión local…** (**Ctrl+Alt+Y**). Carga en
   memoria (misma ruta); dirty hasta Guardar; vacía la pila undo/redo de sesión.

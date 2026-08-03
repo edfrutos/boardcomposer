@@ -33,7 +33,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] **Plantilla de proyecto**: guardar (**Ctrl+Shift+M**; tip de estado) y crear desde plantilla (**Ctrl+Shift+N**; tip de estado).
 - [x] Cerrar / **Salir** (**Ctrl+Q**; tip de estado) con cambios sin guardar → diálogo claro (nombre/ruta/botones).
 - [x] **Renombrar proyecto** (menú, clic derecho en raíz del Explorador, **F2** o **Ctrl+Shift+F2**; tip de estado).
-- [x] **Comparar revisiones `.bcproj`** (**Ctrl+Shift+Y**; tip de estado): tras guardar varias veces, abre diff con cambios estructurales legibles (`diff:` / `changes:`).
+- [x] **Comparar revisiones `.bcproj`** (**Ctrl+Shift+Y**; tip de estado): tras guardar varias veces, abre diff con cambios estructurales legibles (`diff:` / `changes:`); recuerda carpeta examinada (`last_diff_directory`).
 - [x] **Restaurar última revisión local** (**Ctrl+Alt+Y** / menú Proyecto; tip idle si no hay anillo): tras ≥2 guardados, confirma → inventario en memoria vuelve al snapshot; título dirty; Guardar escribe en disco.
 - [x] **Exportar backup de revisiones…** (**Ctrl+Alt+B**; tip idle sin archivo): elige carpeta → copia `.bcproj` + anillo; diálogo «Carpeta creada» / **Abrir carpeta**; recuerda destino (`last_backup_directory`).
 
@@ -110,6 +110,7 @@ Precondición para checks de comparador multi-candidata:
 - [x] Importar **tableros** CSV/Excel (**Ctrl+Shift+T**; tip de estado) con vista previa.
 - [x] Importar **piezas** CSV/Excel (**Ctrl+Shift+O**; tip de estado; cantidad expandida si aplica).
 - [x] Import recuerda última carpeta (`last_import_directory`).
+- [x] Diff `.bcproj` recuerda última carpeta (`last_diff_directory`).
 - [x] Excel multi-hoja: selector de hoja.
 - [x] Si fallan columnas: asistente de mapeo + guardar/reaplicar/eliminar plantilla.
 - [x] Importación **deshacible** (**Ctrl+Z** / **Ctrl+Shift+Z**, tips de Deshacer/Rehacer).

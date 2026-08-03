@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -43,6 +44,7 @@ class BcprojDiffDialog(QDialog):
         current_label: str | None = None,
         project_path: str | None = None,
         start_dir: str | None = None,
+        on_path_chosen: Callable[[str | Path], None] | None = None,
     ) -> None:
         super().__init__(parent)
         self._language = language
@@ -52,6 +54,7 @@ class BcprojDiffDialog(QDialog):
         )
         self._project_path = project_path
         self._start_dir = start_dir or str(Path.home())
+        self._on_path_chosen = on_path_chosen
         self._revisions = list_revisions(project_path) if project_path else []
         self.restore_path: Path | None = None
 
@@ -220,6 +223,8 @@ class BcprojDiffDialog(QDialog):
         )
         if path:
             target.setText(path)
+            if self._on_path_chosen is not None:
+                self._on_path_chosen(path)
 
     def _resolve_left(self) -> tuple[Any, str]:
         if self.use_current_left.isChecked() and self._current_project is not None:

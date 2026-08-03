@@ -68,7 +68,7 @@ guardado.
 |--------|-------|--------|
 | Renombrar proyecto | **Ctrl+Shift+F2** (también **F2** en raíz) | Undoable; menú y ctx Explorador |
 | Abrir carpeta | **Ctrl+Shift+R** | Solo si hay archivo en disco |
-| Comparar revisiones | **Ctrl+Shift+Y** | Diff vs anillo local / archivos |
+| Comparar revisiones | **Ctrl+Shift+Y** | Diff vs anillo local / archivos; recuerda carpeta (`last_diff_directory`) |
 | Restaurar última revisión | **Ctrl+Alt+Y** | Snapshot más reciente del anillo; dirty hasta Guardar; vacía undo |
 | Exportar backup de revisiones | **Ctrl+Alt+B** | Copia `.bcproj` + anillo a carpeta; diálogo Abrir carpeta; recuerda destino |
 

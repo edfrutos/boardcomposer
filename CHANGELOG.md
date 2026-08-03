@@ -39,6 +39,8 @@
   (`last_import_directory`; mismo patrón silencioso que export/backup).
 - Abrir / Guardar como / recientes recuerdan carpeta de proyecto
   (`last_project_directory`).
+- Comparar revisiones `.bcproj` recuerda la última carpeta examinada
+  (`last_diff_directory`; mismo patrón silencioso que import/proyecto).
 
 ### Cambiado
 
