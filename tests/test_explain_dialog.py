@@ -55,3 +55,17 @@ def test_explain_solution_dialog_copy_has_tip(qapp):
     assert "portapapeles" in tip
     assert copy.statusTip() == copy.toolTip()
     assert copy.minimumHeight() >= 36
+
+
+def test_explain_solution_dialog_custom_heading(qapp):
+    from PySide6.QtWidgets import QLabel
+
+    del qapp
+    dialog = ExplainSolutionDialog(
+        "body",
+        language="es",
+        heading="Soluciones desactualizadas: aviso",
+    )
+    label = dialog.findChild(QLabel, "explainSolutionHeading")
+    assert label is not None
+    assert "desactualizadas" in label.text().lower()

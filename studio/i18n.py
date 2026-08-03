@@ -309,8 +309,18 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Mostrar fortalezas, debilidades y notas de la candidata "
             "(Ctrl+Alt+E); en el diálogo podés Copiar al portapapeles"
         ),
+        "tip.explain_solution_outdated": (
+            "Soluciones desactualizadas: la explicación describe la candidata "
+            "vieja; recalcula con el CTA del Comparador o Ctrl+Return "
+            "(Ctrl+Alt+E)"
+        ),
         "help.explain_solution_title": "Explicar candidata",
         "help.explain_solution_heading": (
+            "Explicación determinista (sin IA en red). IDE-0007 MVP."
+        ),
+        "help.explain_solution_outdated_heading": (
+            "Soluciones desactualizadas: esta explicación describe la "
+            "candidata calculada antes de editar el proyecto. "
             "Explicación determinista (sin IA en red). IDE-0007 MVP."
         ),
         "help.explain_strengths": "Fortalezas",
@@ -1257,8 +1267,18 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Show strengths, weaknesses, and notes for the selected candidate "
             "(Ctrl+Alt+E); Copy is available in the dialog"
         ),
+        "tip.explain_solution_outdated": (
+            "Solutions outdated: explanation describes the stale candidate; "
+            "recalculate via the Comparator banner CTA or Ctrl+Return "
+            "(Ctrl+Alt+E)"
+        ),
         "help.explain_solution_title": "Explain candidate",
         "help.explain_solution_heading": (
+            "Deterministic explanation (no cloud AI). IDE-0007 MVP."
+        ),
+        "help.explain_solution_outdated_heading": (
+            "Solutions outdated: this explanation describes the candidate "
+            "computed before the project edit. "
             "Deterministic explanation (no cloud AI). IDE-0007 MVP."
         ),
         "help.explain_strengths": "Strengths",

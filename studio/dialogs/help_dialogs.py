@@ -57,6 +57,7 @@ class ExplainSolutionDialog(QDialog):
         body_text: str,
         *,
         language: str = DEFAULT_LANGUAGE,
+        heading: str | None = None,
         parent=None,
     ) -> None:
         super().__init__(parent)
@@ -66,9 +67,11 @@ class ExplainSolutionDialog(QDialog):
         self._language = language
 
         layout = QVBoxLayout(self)
-        heading = QLabel(tr("help.explain_solution_heading", language))
-        heading.setWordWrap(True)
-        layout.addWidget(heading)
+        heading_text = heading or tr("help.explain_solution_heading", language)
+        heading_label = QLabel(heading_text)
+        heading_label.setObjectName("explainSolutionHeading")
+        heading_label.setWordWrap(True)
+        layout.addWidget(heading_label)
 
         body = QTextEdit()
         body.setReadOnly(True)

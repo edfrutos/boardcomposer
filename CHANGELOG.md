@@ -21,6 +21,8 @@
   modos / Cancelar.
 - Exportar solución con outdated: tip honesto + diálogo **Calcular layout**
   (default) / Exportar de todos modos / Cancelar (mismo patrón que Aplicar).
+- Explicar candidata con outdated: tip honesto + cabecera del diálogo avisa
+  que describe la candidata vieja (sin bloquear; solo lectura).
 
 ### Cambiado
 
