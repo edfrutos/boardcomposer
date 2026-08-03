@@ -1297,6 +1297,25 @@ class MainWindow(QMainWindow):
             dataclass_replace(prefs, last_project_directory=folder)
         )
 
+    def _suggested_diff_directory(self) -> str:
+        """Prefer last browsed diff folder when it still exists."""
+        directory = self.services.preferences.current.last_diff_directory
+        if directory:
+            folder = Path(directory).expanduser()
+            if folder.is_dir():
+                return str(folder)
+        return ""
+
+    def _remember_diff_directory(self, path: str | Path) -> None:
+        """Persist the folder of a browsed .bcproj for the next diff dialog."""
+        folder = str(Path(path).expanduser().resolve().parent)
+        prefs = self.services.preferences.current
+        if prefs.last_diff_directory == folder:
+            return
+        self.services.preferences.update(
+            dataclass_replace(prefs, last_diff_directory=folder)
+        )
+
     def _resolve_import_headers_interactive(
         self,
         *,
@@ -4159,7 +4178,9 @@ class MainWindow(QMainWindow):
         project = self.services.projects.current_project
         current = project_to_dict(project) if project is not None else None
         filename = self.services.projects.filename
-        start_dir = str(Path(filename).parent) if filename else str(Path.home())
+        start_dir = self._suggested_diff_directory()
+        if not start_dir:
+            start_dir = str(Path(filename).parent) if filename else str(Path.home())
         label = filename or (
             self._tr("diff_bcproj.current_project") if current is not None else None
         )
@@ -4170,6 +4191,7 @@ class MainWindow(QMainWindow):
             current_label=label,
             project_path=filename,
             start_dir=start_dir,
+            on_path_chosen=self._remember_diff_directory,
         )
         if dialog.exec() != dialog.DialogCode.Accepted:
             return

@@ -158,3 +158,24 @@ def test_bcproj_diff_dialog_restore_enabled_for_revision(qapp, tmp_path):
     dialog.revision_combo.setCurrentIndex(1)
     dialog._request_restore()
     assert dialog.restore_path == snapshot
+
+
+def test_bcproj_diff_dialog_browse_notifies_path_chosen(qapp, tmp_path, monkeypatch):
+    del qapp
+    chosen: list[str] = []
+    target = tmp_path / "peer.bcproj"
+    target.write_text("{}", encoding="utf-8")
+
+    dialog = BcprojDiffDialog(
+        language="es",
+        on_path_chosen=lambda path: chosen.append(str(path)),
+    )
+    monkeypatch.setattr(
+        "studio.dialogs.bcproj_diff_dialog.QFileDialog.getOpenFileName",
+        lambda *args, **kwargs: (str(target), "bcproj"),
+    )
+
+    dialog._browse(dialog.right_path)
+
+    assert dialog.right_path.text() == str(target)
+    assert chosen == [str(target)]

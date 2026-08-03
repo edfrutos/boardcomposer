@@ -57,3 +57,47 @@ def test_diff_action_opens_dialog_with_current_project_context(
     assert kwargs["language"] == "es"
     assert kwargs["start_dir"] == str(tmp_path)
     assert kwargs["current_project"]["name"] == "Demo"
+    assert kwargs["on_path_chosen"] == window._remember_diff_directory
+
+
+def test_diff_action_prefers_last_diff_directory(qapp, tmp_path, monkeypatch):
+    del qapp
+    diff_dir = tmp_path / "other_revs"
+    diff_dir.mkdir()
+    path = tmp_path / "demo.bcproj"
+    project = StudioProject(
+        project_id="PRJ-DIFF",
+        name="Demo",
+        boards=[StudioBoard("B1", 1000, 500, "Demo", 19, 1)],
+        pieces=[],
+        placements=[],
+    )
+    save_project(project, path)
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(
+        StudioPreferences(language="es", last_diff_directory=str(diff_dir))
+    )
+    services.projects.open_project(project, str(path))
+
+    window = MainWindow(services)
+    captured: dict[str, object] = {}
+
+    class _FakeDiffDialog:
+        def __init__(self, parent, **kwargs):
+            captured["kwargs"] = kwargs
+            self.restore_path = None
+
+        def exec(self):
+            return 0
+
+        class DialogCode:
+            Accepted = 1
+
+    monkeypatch.setattr("studio.main_window.BcprojDiffDialog", _FakeDiffDialog)
+
+    window._actions["diff_bcproj"].trigger()
+
+    assert captured["kwargs"]["start_dir"] == str(diff_dir)
