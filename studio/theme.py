@@ -427,7 +427,7 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
-    """Minimal Welcome/About brand typography (used under ``system`` theme)."""
+    """Minimal Welcome/About + empty-overlay typography under ``system``."""
     parts: list[str] = []
     if brand:
         parts.append(
@@ -444,6 +444,22 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         )
         parts.append(
             f'QLabel#welcomeTagline {{ font-family: "{ui}"; font-size: 16px; }}'
+        )
+        families = set(QFontDatabase.families())
+        title_family = _UI_SEMIBOLD_FAMILY if _UI_SEMIBOLD_FAMILY in families else ui
+        parts.append(
+            f"QLabel#workspaceEmptyTitle {{"
+            f' font-family: "{title_family}";'
+            f" font-size: 18px;"
+            f" font-weight: 600;"
+            f" }}"
+        )
+        parts.append(
+            f"QLabel#workspaceEmptyBlurb {{"
+            f' font-family: "{ui}";'
+            f" font-size: 13px;"
+            f" margin-bottom: 4px;"
+            f" }}"
         )
     return "\n".join(parts)
 
@@ -464,9 +480,9 @@ def bootstrap_ui_font(app: QApplication) -> None:
 def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
-    ``system`` restores the platform palette and keeps only Welcome/About
-    brand typography QSS (no full Industrial chrome). Canvas colors follow
-    light/dark; ``system`` uses the light (taller) canvas.
+    ``system`` restores the platform palette and keeps Welcome/About brand
+    typography plus empty-workspace title/blurb QSS (no full Industrial chrome).
+    Canvas colors follow light/dark; ``system`` uses the light (taller) canvas.
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
 
@@ -484,7 +500,7 @@ def apply_theme(app: QApplication, theme: str) -> None:
         ui, brand = _resolved_ui_and_brand_families()
         if ui:
             app.setFont(QFont(ui, 13))
-        # Keep #welcomeBrand hero type without full light/dark QSS.
+        # Keep Welcome brand + empty-overlay type without full light/dark QSS.
         app.setStyleSheet(_welcome_typography_qss(brand=brand, ui=ui))
         return
 

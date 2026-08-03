@@ -27,6 +27,8 @@
   se navega/diff sobre candidatas viejas.
 - Tema `system`: conserva tipografía de marca Welcome/About (`#welcomeBrand`
   Archivo 42px) sin cargar el QSS Industrial completo.
+- Tema `system`: también conserva tipografía del empty Workspace
+  (`#workspaceEmptyTitle` / `#workspaceEmptyBlurb`).
 
 ### Cambiado
 
