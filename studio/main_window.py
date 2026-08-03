@@ -1271,6 +1271,32 @@ class MainWindow(QMainWindow):
             dataclass_replace(prefs, last_import_directory=folder)
         )
 
+    def _suggested_project_directory(self) -> str:
+        """Prefer last successful project folder when it still exists."""
+        directory = self.services.preferences.current.last_project_directory
+        if directory:
+            folder = Path(directory).expanduser()
+            if folder.is_dir():
+                return str(folder)
+        return ""
+
+    def _suggested_project_path(self, default_filename: str) -> str:
+        """Prefer last project folder for Save As when it still exists."""
+        directory = self._suggested_project_directory()
+        if directory:
+            return str(Path(directory) / default_filename)
+        return default_filename
+
+    def _remember_project_directory(self, path: str | Path) -> None:
+        """Persist the folder of a successful open/save for the next dialog."""
+        folder = str(Path(path).expanduser().resolve().parent)
+        prefs = self.services.preferences.current
+        if prefs.last_project_directory == folder:
+            return
+        self.services.preferences.update(
+            dataclass_replace(prefs, last_project_directory=folder)
+        )
+
     def _resolve_import_headers_interactive(
         self,
         *,
@@ -3632,7 +3658,7 @@ class MainWindow(QMainWindow):
         path, _selected_filter = QFileDialog.getSaveFileName(
             self,
             self._tr("dialog.save_project"),
-            "boardcomposer-project.bcproj",
+            self._suggested_project_path("boardcomposer-project.bcproj"),
             self._tr("dialog.filter_bcproj"),
         )
 
@@ -3656,6 +3682,7 @@ class MainWindow(QMainWindow):
     ) -> None:
         saved = str(path)
         self.services.projects.mark_saved(saved)
+        self._remember_project_directory(saved)
         self._reload_recent_files_menu()
         self.services.recent_files.add(saved)
         self.update_window_title()
@@ -3686,7 +3713,7 @@ class MainWindow(QMainWindow):
         path, _selected_filter = QFileDialog.getOpenFileName(
             self,
             self._tr("dialog.open_project"),
-            "",
+            self._suggested_project_directory(),
             self._tr("dialog.filter_bcproj"),
         )
 
@@ -3700,6 +3727,7 @@ class MainWindow(QMainWindow):
             return
 
         self.services.projects.open_project(project, path)
+        self._remember_project_directory(path)
         self.services.recent_files.add(path)
         self._reload_recent_files_menu()
         self.services.layout.clear_solutions()
@@ -3780,6 +3808,7 @@ class MainWindow(QMainWindow):
             return
 
         self.services.projects.open_project(project, path)
+        self._remember_project_directory(path)
         self.services.recent_files.add(path)
         self._reload_recent_files_menu()
         self.services.layout.clear_solutions()
