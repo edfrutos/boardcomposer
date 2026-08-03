@@ -55,9 +55,9 @@ guardado.
 | Acción | Atajo | Notas |
 |--------|-------|--------|
 | Nuevo | **Ctrl+N** | Diálogo nombre + unidades; untitled |
-| Abrir | **Ctrl+O** | `.bcproj`; migra v1→v2; rechaza versión futura |
+| Abrir | **Ctrl+O** | `.bcproj`; migra v1→v2; rechaza versión futura; recuerda carpeta |
 | Guardar | **Ctrl+S** | Si no hay ruta → Guardar como |
-| Guardar como | **Ctrl+Shift+S** | Filtro `.bcproj` |
+| Guardar como | **Ctrl+Shift+S** | Filtro `.bcproj`; recuerda carpeta (`last_project_directory`) |
 | Salir | **Ctrl+Q** | Diálogo si hay cambios sin guardar |
 | Recientes | menú / inicio | Máx. 10; poda fantasmas |
 | Vaciar recientes | **Ctrl+Shift+X** | Confirmación |
