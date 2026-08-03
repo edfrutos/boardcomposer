@@ -418,6 +418,36 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
     """
 
 
+def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
+    """Return bundled UI / brand family names when registered, else None."""
+    families = set(QFontDatabase.families())
+    ui = _UI_FAMILY if _UI_FAMILY in families else None
+    brand = next((name for name in _BRAND_CANDIDATES if name in families), None)
+    return ui, brand
+
+
+def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
+    """Minimal Welcome/About brand typography (used under ``system`` theme)."""
+    parts: list[str] = []
+    if brand:
+        parts.append(
+            f"QLabel#welcomeBrand {{"
+            f' font-family: "{brand}";'
+            f" font-size: 42px;"
+            f" font-weight: 800;"
+            f" letter-spacing: -1px;"
+            f" }}"
+        )
+    if ui:
+        parts.append(
+            f'QLabel#welcomeSubtitle {{ font-family: "{ui}"; font-size: 13px; }}'
+        )
+        parts.append(
+            f'QLabel#welcomeTagline {{ font-family: "{ui}"; font-size: 16px; }}'
+        )
+    return "\n".join(parts)
+
+
 def bootstrap_ui_font(app: QApplication) -> None:
     """Register bundled fonts and set UI face before widgets are built.
 
@@ -426,16 +456,17 @@ def bootstrap_ui_font(app: QApplication) -> None:
     the fictional family name.
     """
     _register_bundled_fonts()
-    families = set(QFontDatabase.families())
-    if _UI_FAMILY in families:
-        app.setFont(QFont(_UI_FAMILY, 13))
+    ui, _brand = _resolved_ui_and_brand_families()
+    if ui:
+        app.setFont(QFont(ui, 13))
 
 
 def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
-    `system` restores the platform default style/palette and clears QSS.
-    Canvas colors follow light/dark; `system` uses the light (taller) canvas.
+    ``system`` restores the platform palette and keeps only Welcome/About
+    brand typography QSS (no full Industrial chrome). Canvas colors follow
+    light/dark; ``system`` uses the light (taller) canvas.
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
 
@@ -445,15 +476,16 @@ def apply_theme(app: QApplication, theme: str) -> None:
     set_active_canvas_theme(name)
 
     if name == "system":
-        app.setStyleSheet("")
         app.setPalette(app.style().standardPalette())
         # QFont() resolves to the fictional "Sans Serif" family on many
         # platforms (esp. offscreen CI) and spams qt.qpa.fonts warnings.
         # Prefer the bundled UI face when registered; otherwise keep the
         # platform default without forcing that alias.
-        families = set(QFontDatabase.families())
-        if _UI_FAMILY in families:
-            app.setFont(QFont(_UI_FAMILY, 13))
+        ui, brand = _resolved_ui_and_brand_families()
+        if ui:
+            app.setFont(QFont(ui, 13))
+        # Keep #welcomeBrand hero type without full light/dark QSS.
+        app.setStyleSheet(_welcome_typography_qss(brand=brand, ui=ui))
         return
 
     tokens = tokens_for(name)

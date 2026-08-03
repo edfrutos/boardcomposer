@@ -28,8 +28,9 @@ CTA primario: tinta oscura sobre ámbar (WCAG AA ≥4.5:1). Evitar crema
 sobre ámbar en light (quedaba ~3.2:1).
 
 Fuente de verdad: `studio/theme_tokens.py`. Aplicación: `studio/theme.py`
-(`QPalette` + QSS). Preferencia `system` limpia el stylesheet (Welcome pierde
-tipografía de marca hasta elegir light/dark).
+(`QPalette` + QSS). Preferencia `system` restaura la paleta de plataforma y conserva tipografía
+de marca Welcome/About (`#welcomeBrand`); el resto del chrome Industrial
+queda en light/dark.
 
 ## Accesibilidad (chrome)
 
