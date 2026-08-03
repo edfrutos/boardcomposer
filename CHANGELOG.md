@@ -25,6 +25,8 @@
   que describe la candidata vieja (sin bloquear; solo lectura).
 - Comparador con outdated: tips de Re/Av Pág y Fijar referencia avisan que
   se navega/diff sobre candidatas viejas.
+- Tema `system`: conserva tipografía de marca Welcome/About (`#welcomeBrand`
+  Archivo 42px) sin cargar el QSS Industrial completo.
 
 ### Cambiado
 

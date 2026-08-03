@@ -2,7 +2,7 @@
 
 from PySide6.QtWidgets import QApplication
 
-from studio.theme import apply_theme, _UI_FAMILY
+from studio.theme import _BRAND_CANDIDATES, _UI_FAMILY, apply_theme
 
 
 def test_system_theme_uses_bundled_ui_font_when_available(qapp):
@@ -23,3 +23,17 @@ def test_light_theme_keeps_source_sans(qapp):
 
     apply_theme(app, "light")
     assert app.font().family() == _UI_FAMILY
+
+
+def test_system_theme_keeps_welcome_brand_typography(qapp):
+    del qapp
+    app = QApplication.instance()
+    assert app is not None
+
+    apply_theme(app, "system")
+    sheet = app.styleSheet()
+    assert "welcomeBrand" in sheet
+    assert "42px" in sheet
+    assert any(name in sheet for name in _BRAND_CANDIDATES)
+    assert "welcomeSubtitle" in sheet
+    assert "welcomeTagline" in sheet

@@ -219,7 +219,10 @@ def test_apply_theme_switches_palette(qapp):
     assert dark_window.lightness() < light_window.lightness()
 
     apply_theme(qapp, "system")
-    assert qapp.styleSheet() == ""
+    system_sheet = qapp.styleSheet()
+    assert "welcomeBrand" in system_sheet
+    assert "primaryButton" not in system_sheet
+    assert "QDockWidget::title" not in system_sheet
 
 
 def test_layout_service_uses_preferences_strategy(tmp_path):
