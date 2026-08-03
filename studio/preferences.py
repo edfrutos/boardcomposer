@@ -77,6 +77,7 @@ class StudioPreferences:
     last_import_directory: str | None = None
     last_project_directory: str | None = None
     last_diff_directory: str | None = None
+    last_export_templates_directory: str | None = None
     max_solutions: int = DEFAULT_MAX_SOLUTIONS
     window_geometry: str | None = None
     window_state: str | None = None
@@ -280,6 +281,9 @@ class PreferencesManager:
                 payload.get("last_project_directory")
             ),
             last_diff_directory=_optional_directory(payload.get("last_diff_directory")),
+            last_export_templates_directory=_optional_directory(
+                payload.get("last_export_templates_directory")
+            ),
             max_solutions=max_solutions,
             window_geometry=_optional_base64_string(payload.get("window_geometry")),
             window_state=_optional_base64_string(payload.get("window_state")),
@@ -330,6 +334,9 @@ class PreferencesManager:
             "last_import_directory": preferences.last_import_directory,
             "last_project_directory": preferences.last_project_directory,
             "last_diff_directory": preferences.last_diff_directory,
+            "last_export_templates_directory": (
+                preferences.last_export_templates_directory
+            ),
             "max_solutions": preferences.max_solutions,
             "window_geometry": preferences.window_geometry,
             "window_state": preferences.window_state,

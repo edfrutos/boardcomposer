@@ -246,3 +246,59 @@ def test_export_dialog_shows_share_buttons(qapp):
     )
     assert dialog.export_templates_button.text() == "Export pack…"
     assert dialog.import_templates_button.text() == "Import pack…"
+
+
+def test_export_dialog_templates_path_uses_remembered_directory(qapp, tmp_path):
+    del qapp
+    pack_dir = tmp_path / "packs"
+    pack_dir.mkdir()
+    solution = AssemblySolution(
+        placements=[BoardPlacement("A", 0, 0, 100, 50)],
+    )
+    dialog = ExportDialog(
+        solution,
+        None,
+        ExportOptions(format="svg"),
+        language="en",
+        templates_directory=str(pack_dir),
+    )
+    assert dialog._suggested_templates_path(
+        "boardcomposer-export-templates.json"
+    ) == str(pack_dir / "boardcomposer-export-templates.json")
+    assert dialog._suggested_templates_path() == str(pack_dir)
+
+
+def test_export_dialog_export_pack_remembers_directory(qapp, tmp_path, monkeypatch):
+    del qapp
+    chosen: list[str] = []
+    pack_dir = tmp_path / "out"
+    pack_dir.mkdir()
+    target = pack_dir / "pack.json"
+    manager = ExportTemplatesManager(path=tmp_path / "templates.json", autoload=False)
+    manager.save_template("SVG", ExportOptions(format="svg"))
+
+    solution = AssemblySolution(
+        placements=[BoardPlacement("A", 0, 0, 100, 50)],
+    )
+    dialog = ExportDialog(
+        solution,
+        None,
+        ExportOptions(format="svg"),
+        language="en",
+        templates=manager,
+        on_templates_directory=lambda path: chosen.append(str(path)),
+    )
+    monkeypatch.setattr(
+        "studio.dialogs.export_dialog.QFileDialog.getSaveFileName",
+        lambda *args, **kwargs: (str(target), "json"),
+    )
+    monkeypatch.setattr(
+        "studio.dialogs.export_dialog.QMessageBox.information",
+        lambda *args, **kwargs: None,
+    )
+
+    dialog._export_templates_pack()
+
+    assert target.is_file()
+    assert chosen == [str(target)]
+    assert dialog._templates_directory == str(pack_dir.resolve())

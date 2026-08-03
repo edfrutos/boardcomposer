@@ -109,8 +109,10 @@ Tras un export correcto se guardan en `preferences.json`:
 - carpeta de destino (`last_export_directory`) — sin UI en Preferencias;
   el siguiente `QFileDialog` (solución **o** Timeline) abre ahí si sigue
   existiendo
+- carpeta del pack de plantillas (`last_export_templates_directory`) — al
+  exportar/importar el JSON compartido desde `ExportDialog`
 
-También editables en Preferencias (SCR-006), salvo la carpeta (solo
+También editables en Preferencias (SCR-006), salvo las carpetas (solo
 persistencia silenciosa).
 
 **Backup de revisiones** (menú Proyecto / **Ctrl+Alt+B**, no `ExportDialog`)

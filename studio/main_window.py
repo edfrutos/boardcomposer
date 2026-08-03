@@ -1316,6 +1316,25 @@ class MainWindow(QMainWindow):
             dataclass_replace(prefs, last_diff_directory=folder)
         )
 
+    def _suggested_export_templates_directory(self) -> str:
+        """Prefer last successful export-templates pack folder when it exists."""
+        directory = self.services.preferences.current.last_export_templates_directory
+        if directory:
+            folder = Path(directory).expanduser()
+            if folder.is_dir():
+                return str(folder)
+        return ""
+
+    def _remember_export_templates_directory(self, path: str | Path) -> None:
+        """Persist the folder of a successful templates pack for the next dialog."""
+        folder = str(Path(path).expanduser().resolve().parent)
+        prefs = self.services.preferences.current
+        if prefs.last_export_templates_directory == folder:
+            return
+        self.services.preferences.update(
+            dataclass_replace(prefs, last_export_templates_directory=folder)
+        )
+
     def _resolve_import_headers_interactive(
         self,
         *,
@@ -3497,6 +3516,8 @@ class MainWindow(QMainWindow):
             strategy_name=self.services.layout.strategy_name,
             solution_index=self.services.layout.selected_solution_index,
             language=self._ui_language(),
+            templates_directory=self._suggested_export_templates_directory(),
+            on_templates_directory=self._remember_export_templates_directory,
             parent=self,
         )
         if dialog.exec() != ExportDialog.DialogCode.Accepted:

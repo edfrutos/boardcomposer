@@ -41,6 +41,8 @@
   (`last_project_directory`).
 - Comparar revisiones `.bcproj` recuerda la última carpeta examinada
   (`last_diff_directory`; mismo patrón silencioso que import/proyecto).
+- Pack de plantillas de exportación (exportar/importar JSON) recuerda la
+  última carpeta (`last_export_templates_directory`).
 
 ### Cambiado
 
