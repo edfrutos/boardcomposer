@@ -1231,7 +1231,7 @@ class MainWindow(QMainWindow):
         file_path, _ = QFileDialog.getOpenFileName(
             self,
             self._tr(dialog_key),
-            "",
+            self._suggested_import_directory(),
             self._tr("dialog.filter_csv_excel"),
         )
         if not file_path:
@@ -1249,7 +1249,27 @@ class MainWindow(QMainWindow):
                 "\n".join(loaded.errors),
             )
             return None
+        self._remember_import_directory(file_path)
         return loaded
+
+    def _suggested_import_directory(self) -> str:
+        """Prefer last successful import folder when it still exists."""
+        directory = self.services.preferences.current.last_import_directory
+        if directory:
+            folder = Path(directory).expanduser()
+            if folder.is_dir():
+                return str(folder)
+        return ""
+
+    def _remember_import_directory(self, path: str | Path) -> None:
+        """Persist the folder of a successful file load for the next import dialog."""
+        folder = str(Path(path).expanduser().resolve().parent)
+        prefs = self.services.preferences.current
+        if prefs.last_import_directory == folder:
+            return
+        self.services.preferences.update(
+            dataclass_replace(prefs, last_import_directory=folder)
+        )
 
     def _resolve_import_headers_interactive(
         self,

@@ -31,6 +31,8 @@
   (`#workspaceEmptyTitle` / `#workspaceEmptyBlurb`).
 - About reusa `#welcomeSubtitle` / `#welcomeTagline` para versión y blurb
   (misma jerarquía tipográfica que Welcome bajo system/light/dark).
+- Import CSV/Excel recuerda la última carpeta de origen
+  (`last_import_directory`; mismo patrón silencioso que export/backup).
 
 ### Cambiado
 

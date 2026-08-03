@@ -109,6 +109,7 @@ Precondición para checks de comparador multi-candidata:
 
 - [x] Importar **tableros** CSV/Excel (**Ctrl+Shift+T**; tip de estado) con vista previa.
 - [x] Importar **piezas** CSV/Excel (**Ctrl+Shift+O**; tip de estado; cantidad expandida si aplica).
+- [x] Import recuerda última carpeta (`last_import_directory`).
 - [x] Excel multi-hoja: selector de hoja.
 - [x] Si fallan columnas: asistente de mapeo + guardar/reaplicar/eliminar plantilla.
 - [x] Importación **deshacible** (**Ctrl+Z** / **Ctrl+Shift+Z**, tips de Deshacer/Rehacer).

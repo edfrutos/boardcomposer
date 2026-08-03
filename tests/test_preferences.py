@@ -84,6 +84,16 @@ def test_preferences_manager_ignores_blank_last_backup_directory(tmp_path):
     assert prefs.last_backup_directory is None
 
 
+def test_preferences_manager_ignores_blank_last_import_directory(tmp_path):
+    path = tmp_path / "preferences.json"
+    path.write_text(
+        '{"strategy_name": "material", "last_import_directory": "  "}\n',
+        encoding="utf-8",
+    )
+    prefs = PreferencesManager(path).current
+    assert prefs.last_import_directory is None
+
+
 def test_preferences_dialog_preserves_last_export_directory(qapp):
     del qapp
     from studio.dialogs.preferences_dialog import PreferencesDialog
@@ -106,6 +116,18 @@ def test_preferences_dialog_preserves_last_backup_directory(qapp):
     dialog.max_solutions.setValue(8)
     assert dialog.preferences().last_backup_directory == "/backups"
     assert dialog.preferences().max_solutions == 8
+
+
+def test_preferences_dialog_preserves_last_import_directory(qapp):
+    del qapp
+    from studio.dialogs.preferences_dialog import PreferencesDialog
+
+    dialog = PreferencesDialog(
+        StudioPreferences(language="es", last_import_directory="/imports")
+    )
+    dialog.max_solutions.setValue(9)
+    assert dialog.preferences().last_import_directory == "/imports"
+    assert dialog.preferences().max_solutions == 9
 
 
 def test_preferences_manager_ignores_invalid_window_layout_payload(tmp_path):
