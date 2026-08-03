@@ -358,6 +358,10 @@ def test_solve_layout_status_tip_includes_shortcut():
 
     assert "Ctrl+Return" in tr("tip.solve_layout", "es")
     assert "Ctrl+Return" in tr("tip.solve_layout", "en")
+    assert "desactualiz" in tr("tip.solve_layout_outdated", "es").lower()
+    assert "outdated" in tr("tip.solve_layout_outdated", "en").lower()
+    assert "Ctrl+Return" in tr("tip.solve_layout_outdated", "es")
+    assert "Ctrl+Return" in tr("tip.solve_layout_outdated", "en")
 
 
 def test_save_status_tip_includes_shortcut():

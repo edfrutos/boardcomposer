@@ -85,7 +85,11 @@ def test_outdated_banner_shows_recalculate_cta(qapp, tmp_path):
     assert window.solutions_outdated_recalculate.minimumHeight() >= 36
     assert "Calcular" in window.solutions_outdated_recalculate.text()
     tip = window.solutions_outdated_recalculate.toolTip()
-    assert "Ctrl+Return" in tip or "⌘↩" in tip or "layout" in tip.lower()
+    tip_lower = tip.lower()
+    assert "Ctrl+Return" in tip or "⌘↩" in tip or "⌘↵" in tip or "recalcul" in tip_lower
+    assert "desactualiz" in tip_lower or "recalcul" in tip_lower
+    solve_tip = window._actions["solve_layout"].statusTip().lower()
+    assert "desactualiz" in solve_tip or "recalcul" in solve_tip
 
     apply_tip = window._actions["apply_layout"].statusTip().lower()
     assert "desactualiz" in apply_tip or "recalcul" in apply_tip

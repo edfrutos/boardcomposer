@@ -56,7 +56,8 @@ Visible/ocultable con **Ver → Comparador de soluciones** (**Ctrl+4**).
 - **Fijar como referencia:** usa la candidata seleccionada como base del panel
   de diferencias (se reinicia tras un nuevo cálculo).
 - **Banner desactualizadas:** si el proyecto cambió tras calcular, muestra
-  aviso + CTA **Calcular layout** (mismo flujo / tip que Ctrl+Return).
+  aviso + CTA **Calcular layout** (mismo flujo que Ctrl+Return; tip
+  `tip.solve_layout_outdated` si hay candidatas viejas).
 
 ### Miniaturas
 

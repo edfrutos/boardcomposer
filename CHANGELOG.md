@@ -35,6 +35,8 @@
   QSS Industrial completo).
 - Tema `system`: `#welcomeClearRecent` conserva hover/focus LIGHT (anillo
   acento + tipografía UI) sin QSS Industrial completo.
+- Calcular layout / CTA banner outdated: tip honesto
+  (`tip.solve_layout_outdated`; mismo atajo Ctrl+Return).
 - About reusa `#welcomeSubtitle` / `#welcomeTagline` para versión y blurb
   (misma jerarquía tipográfica que Welcome bajo system/light/dark).
 - Import CSV/Excel recuerda la última carpeta de origen

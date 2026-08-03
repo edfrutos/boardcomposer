@@ -93,6 +93,8 @@ Precondición para checks de comparador multi-candidata:
   (banner Comparador + CTA **Calcular layout**).
 - [x] Aplicar / Exportar con outdated: tip honesto + diálogo **Calcular layout**
   / continuar de todos modos / Cancelar.
+- [x] Calcular layout / CTA banner con outdated: tip honesto
+  (`tip.solve_layout_outdated`).
 - [x] Explicar candidata con outdated: tip + cabecera avisan (sin bloquear).
 - [x] Re/Av Pág y Fijar referencia con outdated: tips avisan candidatas viejas.
 - [x] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia
