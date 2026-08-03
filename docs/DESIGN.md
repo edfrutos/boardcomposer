@@ -29,8 +29,8 @@ sobre ámbar en light (quedaba ~3.2:1).
 
 Fuente de verdad: `studio/theme_tokens.py`. Aplicación: `studio/theme.py`
 (`QPalette` + QSS). Preferencia `system` restaura la paleta de plataforma y conserva tipografía
-de marca Welcome/About (`#welcomeBrand`); el resto del chrome Industrial
-queda en light/dark.
+de marca Welcome/About (`#welcomeBrand`) más título/blurb del empty Workspace;
+el resto del chrome Industrial queda en light/dark.
 
 ## Accesibilidad (chrome)
 

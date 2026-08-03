@@ -37,3 +37,6 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert any(name in sheet for name in _BRAND_CANDIDATES)
     assert "welcomeSubtitle" in sheet
     assert "welcomeTagline" in sheet
+    assert "workspaceEmptyTitle" in sheet
+    assert "18px" in sheet
+    assert "workspaceEmptyBlurb" in sheet
