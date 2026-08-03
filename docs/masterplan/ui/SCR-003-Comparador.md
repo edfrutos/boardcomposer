@@ -88,10 +88,11 @@ en sync con el replay del Timeline (diff parcial por paso).
 | Acción | Atajo / control | Efecto |
 |--------|-----------------|--------|
 | Seleccionar candidata | clic fila o miniatura | Preview en Workspace + Inspector |
-| Solución anterior / siguiente | **Re Pág** / **Av Pág** | Sigue orden/filtro visibles del Comparador |
+| Solución anterior / siguiente | **Re Pág** / **Av Pág** | Sigue orden/filtro visibles; si outdated, tip avisa candidatas viejas |
 | Aplicar al proyecto | **Ctrl+Shift+Return** | Si outdated: diálogo **Calcular layout** / Aplicar de todos modos / Cancelar |
 | Exportar seleccionada | **Ctrl+Shift+E** | Si outdated: diálogo **Calcular layout** / Exportar de todos modos / Cancelar; luego SCR-007 |
 | Explicar candidata | **Ctrl+Alt+E** | Ayuda → diálogo determinista + Copiar; si outdated, tip/cabecera avisan |
+| Fijar referencia | botón pin | Si outdated, tip avisa que el diff usa candidatas viejas |
 | Mostrar/ocultar dock | **Ctrl+4** | Toggle Comparador |
 
 ---
