@@ -91,7 +91,7 @@ en sync con el replay del Timeline (diff parcial por paso).
 | Solución anterior / siguiente | **Re Pág** / **Av Pág** | Sigue orden/filtro visibles del Comparador |
 | Aplicar al proyecto | **Ctrl+Shift+Return** | Si outdated: diálogo **Calcular layout** / Aplicar de todos modos / Cancelar |
 | Exportar seleccionada | **Ctrl+Shift+E** | Si outdated: diálogo **Calcular layout** / Exportar de todos modos / Cancelar; luego SCR-007 |
-| Explicar candidata | **Ctrl+Alt+E** | Ayuda → diálogo determinista + Copiar |
+| Explicar candidata | **Ctrl+Alt+E** | Ayuda → diálogo determinista + Copiar; si outdated, tip/cabecera avisan |
 | Mostrar/ocultar dock | **Ctrl+4** | Toggle Comparador |
 
 ---

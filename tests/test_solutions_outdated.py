@@ -91,6 +91,9 @@ def test_outdated_banner_shows_recalculate_cta(qapp, tmp_path):
     assert "desactualiz" in apply_tip or "recalcul" in apply_tip
     export_tip = window._actions["export_selected"].statusTip().lower()
     assert "desactualiz" in export_tip or "recalcul" in export_tip
+    explain = window._actions["explain_solution"]
+    explain_tip = explain.statusTip().lower()
+    assert "desactualiz" in explain_tip or "vieja" in explain_tip
     body = window._tr("dialog.outdated_solutions_apply").lower()
     assert "recalcul" in body or "segura" in body
     assert "todos modos" in window._tr("dialog.outdated_solutions_apply_anyway").lower()

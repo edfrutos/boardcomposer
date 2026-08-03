@@ -1128,7 +1128,15 @@ class MainWindow(QMainWindow):
             notes_label=self._tr("help.explain_notes"),
             empty_message=self._tr("help.explain_empty"),
         )
-        dialog = ExplainSolutionDialog(text, language=language, parent=self)
+        heading = None
+        if self.services.layout.solutions_outdated:
+            heading = self._tr("help.explain_solution_outdated_heading")
+        dialog = ExplainSolutionDialog(
+            text,
+            language=language,
+            heading=heading,
+            parent=self,
+        )
         dialog.exec()
 
     def _show_about(self) -> None:
@@ -2352,11 +2360,15 @@ class MainWindow(QMainWindow):
         explain = self._actions.get("explain_solution")
         if explain is not None:
             explain.setEnabled(has_any)
-            explain.setStatusTip(
-                with_native_shortcuts(self._tr("tip.explain_solution"))
-                if has_any
-                else need_layout
-            )
+            if not has_any:
+                explain_tip = need_layout
+            elif self.services.layout.solutions_outdated:
+                explain_tip = with_native_shortcuts(
+                    self._tr("tip.explain_solution_outdated")
+                )
+            else:
+                explain_tip = with_native_shortcuts(self._tr("tip.explain_solution"))
+            explain.setStatusTip(explain_tip)
         if not has_any:
             nav_disabled_tip = need_layout
         elif not has_visible:
