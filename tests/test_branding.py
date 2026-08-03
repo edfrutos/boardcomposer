@@ -19,3 +19,18 @@ def test_about_dialog_shows_app_icon(qapp):
     del qapp
     dialog = AboutDialog(language="es")
     assert not dialog.windowIcon().isNull()
+
+
+def test_about_dialog_reuses_welcome_typography_ids(qapp):
+    from PySide6.QtWidgets import QLabel
+
+    del qapp
+    dialog = AboutDialog(language="es")
+    brand = dialog.findChild(QLabel, "welcomeBrand")
+    version = dialog.findChild(QLabel, "welcomeSubtitle")
+    blurb = dialog.findChild(QLabel, "welcomeTagline")
+    assert brand is not None
+    assert "BoardComposer" in brand.text()
+    assert version is not None
+    assert blurb is not None
+    assert blurb.wordWrap()
