@@ -3,6 +3,7 @@
 from PySide6.QtWidgets import QApplication
 
 from studio.theme import _BRAND_CANDIDATES, _UI_FAMILY, apply_theme
+from studio.theme_tokens import LIGHT
 
 
 def test_system_theme_uses_bundled_ui_font_when_available(qapp):
@@ -40,3 +41,8 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert "workspaceEmptyTitle" in sheet
     assert "18px" in sheet
     assert "workspaceEmptyBlurb" in sheet
+    assert "workspaceEmptyOverlay" in sheet
+    assert LIGHT.text in sheet
+    assert LIGHT.muted in sheet
+    assert LIGHT.base in sheet
+    assert LIGHT.border in sheet

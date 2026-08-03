@@ -7,7 +7,7 @@ from pathlib import Path
 from PySide6.QtGui import QColor, QFont, QFontDatabase, QPalette
 from PySide6.QtWidgets import QApplication
 
-from studio.theme_tokens import ThemeTokens, tokens_for
+from studio.theme_tokens import LIGHT, ThemeTokens, tokens_for
 
 VALID_THEMES = ("system", "light", "dark")
 DEFAULT_THEME = "system"
@@ -427,7 +427,11 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
-    """Minimal Welcome/About + empty-overlay typography under ``system``."""
+    """Minimal Welcome/About typography + empty-overlay surface under ``system``.
+
+    Empty overlay sits on the light (taller) canvas even when the OS palette
+    is dark, so ink/background use LIGHT tokens for contrast.
+    """
     parts: list[str] = []
     if brand:
         parts.append(
@@ -452,15 +456,40 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
             f' font-family: "{title_family}";'
             f" font-size: 18px;"
             f" font-weight: 600;"
+            f" color: {LIGHT.text};"
             f" }}"
         )
         parts.append(
             f"QLabel#workspaceEmptyBlurb {{"
             f' font-family: "{ui}";'
             f" font-size: 13px;"
+            f" color: {LIGHT.muted};"
             f" margin-bottom: 4px;"
             f" }}"
         )
+    else:
+        parts.append(
+            f"QLabel#workspaceEmptyTitle {{"
+            f" font-size: 18px;"
+            f" font-weight: 600;"
+            f" color: {LIGHT.text};"
+            f" }}"
+        )
+        parts.append(
+            f"QLabel#workspaceEmptyBlurb {{"
+            f" font-size: 13px;"
+            f" color: {LIGHT.muted};"
+            f" margin-bottom: 4px;"
+            f" }}"
+        )
+    parts.append(
+        f"QWidget#workspaceEmptyOverlay {{"
+        f" background-color: {LIGHT.base};"
+        f" border: 1px solid {LIGHT.border};"
+        f" border-radius: 8px;"
+        f" }}"
+    )
+    parts.append("QWidget#workspaceEmptyOverlay QPushButton { text-align: center; }")
     return "\n".join(parts)
 
 
@@ -481,8 +510,8 @@ def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
     ``system`` restores the platform palette and keeps Welcome/About brand
-    typography plus empty-workspace title/blurb QSS (no full Industrial chrome).
-    Canvas colors follow light/dark; ``system`` uses the light (taller) canvas.
+    typography plus empty-workspace surface/ink on LIGHT tokens (canvas is
+    always taller-diurno under system; no full Industrial chrome).
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
 
