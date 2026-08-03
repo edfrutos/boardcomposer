@@ -90,7 +90,7 @@ en sync con el replay del Timeline (diff parcial por paso).
 | Seleccionar candidata | clic fila o miniatura | Preview en Workspace + Inspector |
 | Solución anterior / siguiente | **Re Pág** / **Av Pág** | Sigue orden/filtro visibles del Comparador |
 | Aplicar al proyecto | **Ctrl+Shift+Return** | Si outdated: diálogo **Calcular layout** / Aplicar de todos modos / Cancelar |
-| Exportar seleccionada | **Ctrl+Shift+E** | Diálogo SCR-007 |
+| Exportar seleccionada | **Ctrl+Shift+E** | Si outdated: diálogo **Calcular layout** / Exportar de todos modos / Cancelar; luego SCR-007 |
 | Explicar candidata | **Ctrl+Alt+E** | Ayuda → diálogo determinista + Copiar |
 | Mostrar/ocultar dock | **Ctrl+4** | Toggle Comparador |
 

@@ -143,7 +143,7 @@ candidatas) y aplica o exporta la elegida de forma consciente.
 - Diffs y highlights solo cuando ≥ 2; mensaje claro con 0/1.
 - Fijar referencia sin regenerar.
 - Aplicar / exportar usan la candidata seleccionada.
-- Banner outdated visible y apply confirmado si aplica.
+- Banner outdated visible; apply/export confirman si aplica.
 
 ---
 

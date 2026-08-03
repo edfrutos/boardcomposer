@@ -20,7 +20,8 @@ completo (`uat/studio/`, `uat/plataforma/`).
 - [ ] `make run` → Welcome / About muestran `0.4.3.dev0`
 - [ ] Nuevo demo → calcular layout → Comparador → **Ctrl+Alt+E** Explicar candidata → Copiar
   (eval 5 candidatas: [`studio/CHECKLIST-EXPLAIN-EVAL.md`](studio/CHECKLIST-EXPLAIN-EVAL.md))
-- [ ] Editar pieza tras calcular → banner desactualizadas + CTA **Calcular layout**
+- [ ] Editar pieza tras calcular → banner desactualizadas + CTA **Calcular layout**;
+  Aplicar/Exportar muestran diálogo recalcular / continuar / cancelar
 - [ ] Proyecto guardado → **Ctrl+Alt+B** Exportar backup → Abrir carpeta (o CLI `boardcomposer-backup`)
 - [ ] Restore: guardar 2× → Ctrl+Alt+Y → confirm → dirty
 

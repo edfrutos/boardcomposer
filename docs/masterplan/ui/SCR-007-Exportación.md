@@ -34,7 +34,8 @@ canvas sin calcular.
 | Exportar historial del Timeline… | **Ctrl+Shift+L** · Exportar · Timeline (flujo aparte) |
 
 Sin solución calculada/seleccionada: el tip de estado pide calcular layout
-antes.
+antes. Si `solutions_outdated`, tip/diálogo priorizan **Calcular layout**
+antes de abrir este diálogo.
 
 Defaults de formato y flags: SCR-006 → `preferences.json`.
 
@@ -131,7 +132,7 @@ No usa `ExportDialog`. Flujo propio:
 ## Flujo principal (solución)
 
 1. Calcular layout y seleccionar candidata (SCR-003).
-2. **Ctrl+Shift+E**.
+2. **Ctrl+Shift+E** (si outdated: confirmar recalcular / exportar / cancelar).
 3. Elegir formato / opciones / plantilla.
 4. Revisar vista previa.
 5. Exportar y, si se desea, abrir o revelar el archivo.

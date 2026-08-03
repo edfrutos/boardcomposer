@@ -125,8 +125,8 @@ outdated.
 | Rename project | Sí | No |
 | Preferencias UI sin tocar inventario | No (vía prefs) | No |
 
-Banner en Comparador mientras `solutions_outdated`. Apply (FLW-004) avisa si
-está outdated.
+Banner en Comparador mientras `solutions_outdated`. Apply (FLW-004) y Export
+(FLW-005) avisan si está outdated.
 
 ---
 

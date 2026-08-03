@@ -2340,16 +2340,15 @@ class MainWindow(QMainWindow):
         next_action = self._actions["next_solution"]
         if not has_any:
             apply_tip = need_layout
+            export_tip = need_layout
         elif self.services.layout.solutions_outdated:
             apply_tip = with_native_shortcuts(self._tr("tip.apply_layout_outdated"))
+            export_tip = with_native_shortcuts(self._tr("tip.export_selected_outdated"))
         else:
             apply_tip = with_native_shortcuts(self._tr("tip.apply_layout"))
+            export_tip = with_native_shortcuts(self._tr("tip.export_selected"))
         apply.setStatusTip(apply_tip)
-        export.setStatusTip(
-            with_native_shortcuts(self._tr("tip.export_selected"))
-            if has_any
-            else need_layout
-        )
+        export.setStatusTip(export_tip)
         explain = self._actions.get("explain_solution")
         if explain is not None:
             explain.setEnabled(has_any)
@@ -3144,21 +3143,26 @@ class MainWindow(QMainWindow):
         self.solution_differences.setPlainText("\n".join(lines))
         self._raise_dock(self.solutions_dock)
 
-    def _confirm_apply_while_outdated(self) -> str:
-        """Ask how to proceed when applying while solutions are stale.
+    def _confirm_while_outdated(
+        self,
+        *,
+        body_key: str,
+        proceed_key: str,
+    ) -> str:
+        """Ask how to proceed when acting on stale solutions.
 
-        Returns ``\"recalculate\"``, ``\"apply\"``, or ``\"cancel\"``.
+        Returns ``\"recalculate\"``, ``\"proceed\"``, or ``\"cancel\"``.
         """
         box = QMessageBox(self)
         box.setIcon(QMessageBox.Icon.Warning)
         box.setWindowTitle(self._tr("dialog.outdated_solutions_title"))
-        box.setText(self._tr("dialog.outdated_solutions_apply"))
+        box.setText(self._tr(body_key))
         recalc = box.addButton(
             self._tr("comparator.recalculate_layout"),
             QMessageBox.ButtonRole.AcceptRole,
         )
-        apply_anyway = box.addButton(
-            self._tr("dialog.outdated_solutions_apply_anyway"),
+        proceed = box.addButton(
+            self._tr(proceed_key),
             QMessageBox.ButtonRole.DestructiveRole,
         )
         box.addButton(QMessageBox.StandardButton.Cancel)
@@ -3167,9 +3171,17 @@ class MainWindow(QMainWindow):
         clicked = box.clickedButton()
         if clicked is recalc:
             return "recalculate"
-        if clicked is apply_anyway:
-            return "apply"
+        if clicked is proceed:
+            return "proceed"
         return "cancel"
+
+    def _confirm_apply_while_outdated(self) -> str:
+        """Compatibility wrapper used by apply flow / tests."""
+        choice = self._confirm_while_outdated(
+            body_key="dialog.outdated_solutions_apply",
+            proceed_key="dialog.outdated_solutions_apply_anyway",
+        )
+        return "apply" if choice == "proceed" else choice
 
     def _apply_layout(self):
         if self.services.layout.solutions_outdated:
@@ -3385,6 +3397,17 @@ class MainWindow(QMainWindow):
         if solution is None:
             self._status("status.calculate_layout_first")
             return
+
+        if self.services.layout.solutions_outdated:
+            choice = self._confirm_while_outdated(
+                body_key="dialog.outdated_solutions_export",
+                proceed_key="dialog.outdated_solutions_export_anyway",
+            )
+            if choice == "recalculate":
+                self._solve_layout()
+                return
+            if choice != "proceed":
+                return
 
         prefs = self.services.preferences.current
         dialog = ExportDialog(
