@@ -49,3 +49,6 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert "solutionsOutdatedBanner" in sheet
     assert LIGHT.danger in sheet
     assert LIGHT.window in sheet
+    assert "welcomeClearRecent" in sheet
+    assert LIGHT.accent in sheet
+    assert LIGHT.alternate in sheet
