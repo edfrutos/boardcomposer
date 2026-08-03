@@ -3144,14 +3144,40 @@ class MainWindow(QMainWindow):
         self.solution_differences.setPlainText("\n".join(lines))
         self._raise_dock(self.solutions_dock)
 
+    def _confirm_apply_while_outdated(self) -> str:
+        """Ask how to proceed when applying while solutions are stale.
+
+        Returns ``\"recalculate\"``, ``\"apply\"``, or ``\"cancel\"``.
+        """
+        box = QMessageBox(self)
+        box.setIcon(QMessageBox.Icon.Warning)
+        box.setWindowTitle(self._tr("dialog.outdated_solutions_title"))
+        box.setText(self._tr("dialog.outdated_solutions_apply"))
+        recalc = box.addButton(
+            self._tr("comparator.recalculate_layout"),
+            QMessageBox.ButtonRole.AcceptRole,
+        )
+        apply_anyway = box.addButton(
+            self._tr("dialog.outdated_solutions_apply_anyway"),
+            QMessageBox.ButtonRole.DestructiveRole,
+        )
+        box.addButton(QMessageBox.StandardButton.Cancel)
+        box.setDefaultButton(recalc)
+        box.exec()
+        clicked = box.clickedButton()
+        if clicked is recalc:
+            return "recalculate"
+        if clicked is apply_anyway:
+            return "apply"
+        return "cancel"
+
     def _apply_layout(self):
         if self.services.layout.solutions_outdated:
-            answer = QMessageBox.question(
-                self,
-                self._tr("dialog.outdated_solutions_title"),
-                self._tr("dialog.outdated_solutions_apply"),
-            )
-            if answer != QMessageBox.StandardButton.Yes:
+            choice = self._confirm_apply_while_outdated()
+            if choice == "recalculate":
+                self._solve_layout()
+                return
+            if choice != "apply":
                 return
 
         if not self.services.layout.apply_last_solution_to_current_project():

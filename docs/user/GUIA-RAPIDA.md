@@ -24,7 +24,8 @@ Pantalla de inicio: nuevo proyecto, abrir, recientes, demo, plantilla, docs y no
 5. Comparar en **Comparador** (**Ctrl+4**): **Re Pág** / **Av Pág** entre
    candidatas; **Ctrl+Shift+Return** aplica la elegida. Si editas el
    inventario después de calcular, el banner avisa y ofrece **Calcular
-   layout** para regenerar.
+   layout**; al aplicar con soluciones viejas, el diálogo prioriza
+   **Calcular layout** frente a aplicar de todos modos.
 6. **Exportar** (**Ctrl+Shift+E**): SVG / PNG / JPEG / PDF / DXF / JSON / CSV.
 7. **Guardar** (**Ctrl+S**) el proyecto `.bcproj`.
 

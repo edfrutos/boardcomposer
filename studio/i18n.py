@@ -429,9 +429,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.outdated_solutions_title": "Soluciones desactualizadas",
         "dialog.outdated_solutions_apply": (
             "Las soluciones ya no coinciden con el proyecto actual. "
-            "Mejor recalcular con el botón del banner del Comparador "
-            "(o Ctrl+Return). ¿Aplicar de todos modos la solución seleccionada?"
+            "Recalcular es la opción segura; aplicar usa la candidata vieja."
         ),
+        "dialog.outdated_solutions_apply_anyway": "Aplicar de todos modos",
         "timeline.replay_none": "Reproducción: sin solución",
         "timeline.replay_mode": "Modo:",
         "timeline.replay_mode_placements": "Colocaciones",
@@ -1368,9 +1368,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.outdated_solutions_title": "Outdated solutions",
         "dialog.outdated_solutions_apply": (
             "Solutions no longer match the current project. "
-            "Prefer recalculating with the Comparator banner button "
-            "(or Ctrl+Return). Apply the selected solution anyway?"
+            "Recalculating is the safe option; apply uses the stale candidate."
         ),
+        "dialog.outdated_solutions_apply_anyway": "Apply anyway",
         "timeline.replay_none": "Replay: no solution",
         "timeline.replay_mode": "Mode:",
         "timeline.replay_mode_placements": "Placements",
