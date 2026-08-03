@@ -89,4 +89,47 @@ def test_outdated_banner_shows_recalculate_cta(qapp, tmp_path):
 
     apply_tip = window._actions["apply_layout"].statusTip().lower()
     assert "desactualiz" in apply_tip or "recalcul" in apply_tip
-    assert "banner" in window._tr("dialog.outdated_solutions_apply").lower()
+    body = window._tr("dialog.outdated_solutions_apply").lower()
+    assert "recalcul" in body or "segura" in body
+    assert "todos modos" in window._tr("dialog.outdated_solutions_apply_anyway").lower()
+
+
+def test_apply_while_outdated_recalculate_choice(qapp, tmp_path, monkeypatch):
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    project = StudioProject(
+        project_id="PRJ-A",
+        name="Apply",
+        boards=[StudioBoard("B1", 1000, 500, "Demo", 19, 1)],
+        pieces=[StudioPiece("A", 100, 50, "Demo", 19)],
+        placements=[],
+    )
+    services.projects.new_project(project)
+    window = MainWindow(services)
+    services.layout.solutions = [_fake_solution()]
+    services.layout.selected_solution_index = 0
+    window._mark_project_modified(reason="edit")
+
+    calls: list[str] = []
+    monkeypatch.setattr(window, "_confirm_apply_while_outdated", lambda: "recalculate")
+    monkeypatch.setattr(window, "_solve_layout", lambda: calls.append("solve"))
+    monkeypatch.setattr(
+        services.layout,
+        "apply_last_solution_to_current_project",
+        lambda: calls.append("apply") or True,
+    )
+    window._apply_layout()
+    assert calls == ["solve"]
+
+    calls.clear()
+    monkeypatch.setattr(window, "_confirm_apply_while_outdated", lambda: "cancel")
+    window._apply_layout()
+    assert calls == []
+
+    calls.clear()
+    monkeypatch.setattr(window, "_confirm_apply_while_outdated", lambda: "apply")
+    window._apply_layout()
+    assert calls == ["apply"]

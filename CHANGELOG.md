@@ -17,6 +17,8 @@
   `0.4.3.dev0`.
 - Aplicar layout con soluciones desactualizadas: tip y diálogo recomiendan
   recalcular (banner / Ctrl+Return); guía rápida documenta el banner.
+- Diálogo Aplicar outdated: **Calcular layout** (default) / Aplicar de todos
+  modos / Cancelar.
 
 ### Cambiado
 
