@@ -31,6 +31,8 @@
   (`#workspaceEmptyTitle` / `#workspaceEmptyBlurb`).
 - Tema `system`: empty Workspace usa superficie/tinta LIGHT (contraste OK
   sobre canvas taller aunque la OS sea dark).
+- Tema `system`: banner outdated usa danger/window LIGHT (aviso visible sin
+  QSS Industrial completo).
 - About reusa `#welcomeSubtitle` / `#welcomeTagline` para versión y blurb
   (misma jerarquía tipográfica que Welcome bajo system/light/dark).
 - Import CSV/Excel recuerda la última carpeta de origen

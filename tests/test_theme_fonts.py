@@ -46,3 +46,6 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert LIGHT.muted in sheet
     assert LIGHT.base in sheet
     assert LIGHT.border in sheet
+    assert "solutionsOutdatedBanner" in sheet
+    assert LIGHT.danger in sheet
+    assert LIGHT.window in sheet
