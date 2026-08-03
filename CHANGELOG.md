@@ -29,6 +29,8 @@
   Archivo 42px) sin cargar el QSS Industrial completo.
 - Tema `system`: también conserva tipografía del empty Workspace
   (`#workspaceEmptyTitle` / `#workspaceEmptyBlurb`).
+- Tema `system`: empty Workspace usa superficie/tinta LIGHT (contraste OK
+  sobre canvas taller aunque la OS sea dark).
 - About reusa `#welcomeSubtitle` / `#welcomeTagline` para versión y blurb
   (misma jerarquía tipográfica que Welcome bajo system/light/dark).
 - Import CSV/Excel recuerda la última carpeta de origen
