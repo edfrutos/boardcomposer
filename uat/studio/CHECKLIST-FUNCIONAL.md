@@ -97,6 +97,8 @@ Precondición para checks de comparador multi-candidata:
   (`tip.solve_layout_outdated`).
 - [x] Explicar candidata con outdated: tip + cabecera avisan (sin bloquear).
 - [x] Re/Av Pág y Fijar referencia con outdated: tips avisan candidatas viejas.
+- [x] Vista previa Explorador con outdated: tip honesto
+  (`tip.preview_solution_outdated`).
 - [x] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia
   visible + diff (requiere >=2; botón pin deshabilitado con 1; tip post-solve).
 - [x] **Ctrl+Shift+E** (menú **Exportar** / toolbar) abre exportar solución

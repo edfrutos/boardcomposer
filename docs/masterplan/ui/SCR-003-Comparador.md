@@ -94,6 +94,7 @@ en sync con el replay del Timeline (diff parcial por paso).
 | Exportar seleccionada | **Ctrl+Shift+E** | Si outdated: diálogo **Calcular layout** / Exportar de todos modos / Cancelar; luego SCR-007 |
 | Explicar candidata | **Ctrl+Alt+E** | Ayuda → diálogo determinista + Copiar; si outdated, tip/cabecera avisan |
 | Fijar referencia | botón pin | Si outdated, tip avisa que el diff usa candidatas viejas |
+| Vista previa (Explorador) | menú contextual | Si outdated, tip avisa candidata vieja (sin bloquear) |
 | Mostrar/ocultar dock | **Ctrl+4** | Toggle Comparador |
 
 ---

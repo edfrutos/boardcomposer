@@ -527,6 +527,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.context.preview_solution": "Vista previa",
         "explorer.context.place_on_board": "Colocar en tablero enfocado",
         "tip.preview_solution": "Mostrar la solución en el Workspace sin aplicarla",
+        "tip.preview_solution_outdated": (
+            "Soluciones desactualizadas: la vista previa muestra una candidata "
+            "vieja; recalcula con el CTA del Comparador o Ctrl+Return"
+        ),
         "explorer.unplaced_mark": "sin colocar",
         "inspector.title": "Inspector",
         "inspector.none": "Sin selección",
@@ -1500,6 +1504,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.context.preview_solution": "Preview",
         "explorer.context.place_on_board": "Place on focused board",
         "tip.preview_solution": "Show the solution in the Workspace without applying it",
+        "tip.preview_solution_outdated": (
+            "Solutions outdated: preview shows a stale candidate; "
+            "recalculate via the Comparator banner CTA or Ctrl+Return"
+        ),
         "explorer.unplaced_mark": "unplaced",
         "inspector.title": "Inspector",
         "inspector.none": "No selection",
