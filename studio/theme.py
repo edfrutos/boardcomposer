@@ -428,13 +428,14 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     """Minimal Welcome/About typography + empty-overlay + outdated banner
-    + Clear Recent + recent column + Welcome root under ``system``.
+    + Clear Recent + recent column + Welcome root + scoped primary CTAs
+    under ``system``.
 
     Empty overlay, outdated banner, Clear Recent, recent label/list (ink +
     selection), and ``#welcomeRoot`` sit on light (taller) surfaces even when
     the OS palette is dark, so ink/background use LIGHT tokens for contrast.
-    Brand ink is scoped under ``#welcomeRoot`` so About (same object names,
-    platform dialog chrome) keeps palette colors.
+    Brand ink and amber ``#primaryButton`` are scoped under Welcome/empty
+    roots so About / dialogs keep platform chrome.
     """
     parts: list[str] = []
     if brand:

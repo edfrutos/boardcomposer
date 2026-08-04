@@ -43,6 +43,8 @@
   scoped al root (contraste OK si la OS es dark; About no hereda esa tinta).
 - Tema `system`: `#welcomeRecentList` usa tinta + selección LIGHT (filas
   legibles sobre superficie parchment si la OS es dark).
+- Tema `system`: CTAs `#primaryButton` de Welcome/empty usan ámbar LIGHT
+  scoped (sin chrome Industrial global; About/diálogos intactos).
 - Calcular layout / CTA banner outdated: tip honesto
   (`tip.solve_layout_outdated`; mismo atajo Ctrl+Return).
 - Vista previa de solución (Explorador) con outdated: tip honesto
