@@ -152,6 +152,7 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         border: 1px solid {tokens.accent_hover};
         font-family: "{_UI_SEMIBOLD_FAMILY}";
         font-weight: 600;
+        min-height: 44px;
     }}
     QPushButton#primaryButton:focus {{
         border: 2px solid {tokens.text};
@@ -616,6 +617,7 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
             f" border: 1px solid {LIGHT.accent_hover};"
             f"{primary_font}"
             f" font-weight: 600;"
+            f" min-height: 44px;"
             f" }}"
         )
         parts.append(
