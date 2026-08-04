@@ -26,6 +26,7 @@ def test_about_dialog_reuses_welcome_typography_ids(qapp):
 
     del qapp
     dialog = AboutDialog(language="es")
+    assert dialog.objectName() == "aboutRoot"
     brand = dialog.findChild(QLabel, "welcomeBrand")
     version = dialog.findChild(QLabel, "welcomeSubtitle")
     blurb = dialog.findChild(QLabel, "welcomeTagline")
