@@ -4018,6 +4018,7 @@ class MainWindow(QMainWindow):
         app = QApplication.instance()
         if app is not None:
             app.processEvents()
+            app.processEvents()
 
     def closeEvent(  # pylint: disable=invalid-name
         self,
