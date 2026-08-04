@@ -1,7 +1,8 @@
 """Activating a solution in the Explorador previews it."""
 
-from PySide6.QtCore import Qt
+from PySide6.QtCore import QPoint, Qt
 from PySide6.QtTest import QTest
+from PySide6.QtWidgets import QApplication
 
 from boardcomposer.domain import AssemblySolution, BoardPlacement
 from studio.main_window import MainWindow
@@ -61,19 +62,33 @@ def test_selecting_solution_keeps_tree_item_alive(qapp, tmp_path):
     """Regression: reload-on-select deleted the item and killed double-click."""
     del qapp
     window, services = _window_with_solutions(tmp_path)
+    window.resize(1100, 800)
+    window.explorer.setMinimumWidth(280)
     window.show()
+    QApplication.processEvents()
 
     item = window._find_explorer_item_by_role("solution:1")
     assert item is not None
     role_before = item.data(0, Qt.ItemDataRole.UserRole)
 
-    center = window.explorer.visualItemRect(item).center()
+    window.explorer.scrollToItem(item)
+    QApplication.processEvents()
+    rect = window.explorer.visualItemRect(item)
+    assert rect.isValid()
+    # Keep the click inside the viewport: column stretch + elided labels can
+    # still leave visualItemRect.center() past a narrow dock under offscreen CI.
+    viewport_width = window.explorer.viewport().width()
+    click_x = min(max(rect.left() + 8, 4), max(viewport_width - 4, 4))
+    click_pos = QPoint(click_x, rect.center().y())
+    assert window.explorer.itemAt(click_pos) is item
+
     QTest.mouseClick(
         window.explorer.viewport(),
         Qt.MouseButton.LeftButton,
         Qt.KeyboardModifier.NoModifier,
-        center,
+        click_pos,
     )
+    QApplication.processEvents()
 
     assert services.layout.selected_solution_index == 1
     # Same C++ item must still be valid after preview.

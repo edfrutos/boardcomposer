@@ -47,6 +47,8 @@
   scoped (sin chrome Industrial global; About/diálogos intactos).
 - Tema `system`: botones secundarios de Welcome/empty usan panel/borde LIGHT
   scoped (Open/Import/demo…; Clear Recent conserva reglas propias).
+- Explorador: columna estirada al ancho del dock (sin `resizeColumnToContents`
+  que sacaba el hit-test fuera del viewport en docks estrechos / CI offscreen).
 - Calcular layout / CTA banner outdated: tip honesto
   (`tip.solve_layout_outdated`; mismo atajo Ctrl+Return).
 - Vista previa de solución (Explorador) con outdated: tip honesto
