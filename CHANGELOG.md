@@ -41,6 +41,8 @@
   LIGHT (cabecera de la columna recientes).
 - Calcular layout / CTA banner outdated: tip honesto
   (`tip.solve_layout_outdated`; mismo atajo Ctrl+Return).
+- Vista previa de solución (Explorador) con outdated: tip honesto
+  (`tip.preview_solution_outdated`; candidata vieja, sin bloquear).
 - About reusa `#welcomeSubtitle` / `#welcomeTagline` para versión y blurb
   (misma jerarquía tipográfica que Welcome bajo system/light/dark).
 - Import CSV/Excel recuerda la última carpeta de origen

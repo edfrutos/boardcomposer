@@ -4022,6 +4022,10 @@ class MainWindow(QMainWindow):
             if parsed is not None and parsed[0] == "project":
                 return "tip.rename_project"
             return "tip.rename_selection"
+        if key == "preview_solution":
+            if self.services.layout.solutions_outdated:
+                return "tip.preview_solution_outdated"
+            return "tip.preview_solution"
         tips = {
             "edit": "tip.edit_selection",
             "duplicate": "tip.duplicate_piece",
@@ -4029,7 +4033,6 @@ class MainWindow(QMainWindow):
             "copy_id": "tip.copy_selection_id",
             "add_board": "tip.add_board",
             "add_piece": "tip.add_piece",
-            "preview_solution": "tip.preview_solution",
             "reveal_folder": "tip.reveal_project_folder",
         }
         return tips.get(key)

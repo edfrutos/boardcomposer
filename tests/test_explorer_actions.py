@@ -76,3 +76,33 @@ def test_explorer_context_tip_keys(qapp, tmp_path):
     )
     assert window._explorer_context_tip_key("place_on_board", "piece:A") is None
     assert window._tr("tip.preview_solution") != "tip.preview_solution"
+
+
+def test_explorer_preview_tip_outdated(qapp, tmp_path):
+    from boardcomposer.domain import AssemblySolution, BoardPlacement
+    from studio.models import StudioBoard, StudioPiece, StudioProject
+
+    del qapp
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    project = StudioProject(
+        project_id="PRJ-P",
+        name="Preview",
+        boards=[StudioBoard("B1", 1000, 500, "Demo", 19, 1)],
+        pieces=[StudioPiece("A", 100, 50, "Demo", 19)],
+        placements=[],
+    )
+    services.projects.new_project(project)
+    window = MainWindow(services)
+    services.layout.solutions = [
+        AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
+    ]
+    window._mark_project_modified(reason="edit")
+
+    assert window._explorer_context_tip_key("preview_solution", "solution:0") == (
+        "tip.preview_solution_outdated"
+    )
+    tip = window._tr("tip.preview_solution_outdated").lower()
+    assert "desactualiz" in tip or "vieja" in tip
