@@ -551,25 +551,13 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         f" padding: 6px;"
         f" }}"
     )
+    parts.append(f"QWidget#welcomeRoot {{ background-color: {LIGHT.window}; }}")
+    parts.append(f"QWidget#welcomeRoot QLabel#welcomeBrand {{ color: {LIGHT.text}; }}")
     parts.append(
-        f"QWidget#welcomeRoot {{"
-        f" background-color: {LIGHT.window};"
-        f" }}"
+        f"QWidget#welcomeRoot QLabel#welcomeSubtitle {{ color: {LIGHT.muted}; }}"
     )
     parts.append(
-        f"QWidget#welcomeRoot QLabel#welcomeBrand {{"
-        f" color: {LIGHT.text};"
-        f" }}"
-    )
-    parts.append(
-        f"QWidget#welcomeRoot QLabel#welcomeSubtitle {{"
-        f" color: {LIGHT.muted};"
-        f" }}"
-    )
-    parts.append(
-        f"QWidget#welcomeRoot QLabel#welcomeTagline {{"
-        f" color: {LIGHT.text};"
-        f" }}"
+        f"QWidget#welcomeRoot QLabel#welcomeTagline {{ color: {LIGHT.text}; }}"
     )
     return "\n".join(parts)
 
