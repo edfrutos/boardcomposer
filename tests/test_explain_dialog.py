@@ -66,6 +66,7 @@ def test_explain_solution_dialog_custom_heading(qapp):
         language="es",
         heading="Soluciones desactualizadas: aviso",
     )
-    label = dialog.findChild(QLabel, "explainSolutionHeading")
+    assert dialog.objectName() == "explainSolutionRoot"
+    label = dialog.findChild(QLabel, "helpDialogHeading")
     assert label is not None
     assert "desactualizadas" in label.text().lower()

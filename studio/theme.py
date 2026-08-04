@@ -429,17 +429,18 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     """Minimal Welcome/About/help typography + empty-overlay + outdated banner
-    + Clear Recent + recent column + Welcome/About/WhatsNew/Shortcuts roots +
-    scoped button chrome under ``system``.
+    + Clear Recent + recent column + Welcome/About/WhatsNew/Shortcuts/Explain
+    roots + scoped button chrome under ``system``.
 
     Empty overlay, outdated banner, Clear Recent, recent label/list (ink +
-    selection), ``#welcomeRoot``, ``#aboutRoot``, ``#whatsNewRoot``, and
-    ``#shortcutsRoot`` sit on light (taller) surfaces even when the OS palette
-    is dark, so ink/background use LIGHT tokens for contrast. Brand ink plus
-    primary buttons are scoped under Welcome/About/WhatsNew/Shortcuts/empty
-    roots; secondary chrome stays on Welcome/empty so Preferences / Explain
-    keep platform chrome. ``#welcomeClearRecent`` keeps its own
-    transparent/hover rules (more specific ID).
+    selection), ``#welcomeRoot``, ``#aboutRoot``, ``#whatsNewRoot``,
+    ``#shortcutsRoot``, and ``#explainSolutionRoot`` sit on light (taller)
+    surfaces even when the OS palette is dark, so ink/background use LIGHT
+    tokens for contrast. Brand ink plus primary buttons are scoped under
+    Welcome/About/WhatsNew/Shortcuts/Explain/empty roots; secondary chrome
+    stays on Welcome/empty/Explain so Preferences keep platform chrome.
+    ``#welcomeClearRecent`` keeps its own transparent/hover rules (more
+    specific ID).
     """
     parts: list[str] = []
     if brand:
@@ -582,7 +583,7 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     )
     parts.append(f"QWidget#aboutRoot QLabel#welcomeTagline {{ color: {LIGHT.text}; }}")
     heading_font = f' font-family: "{ui}";' if ui else ""
-    for root in ("whatsNewRoot", "shortcutsRoot"):
+    for root in ("whatsNewRoot", "shortcutsRoot", "explainSolutionRoot"):
         parts.append(f"QWidget#{root} {{ background-color: {LIGHT.window}; }}")
         parts.append(
             f"QWidget#{root} QLabel#helpDialogHeading {{"
@@ -590,20 +591,21 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
             f"{heading_font}"
             f" }}"
         )
-    parts.append(
-        f"QTextEdit#whatsNewBody {{"
-        f" background-color: {LIGHT.base};"
-        f" color: {LIGHT.text};"
-        f" border: 1px solid {LIGHT.border};"
-        f" border-radius: 4px;"
-        f" padding: 4px 8px;"
-        f" selection-background-color: {LIGHT.accent};"
-        f" selection-color: {LIGHT.accent_text};"
-        f" }}"
-    )
-    parts.append(
-        f"QTextEdit#whatsNewBody:focus {{ border: 1px solid {LIGHT.accent}; }}"
-    )
+    for body_id in ("whatsNewBody", "explainSolutionBody"):
+        parts.append(
+            f"QTextEdit#{body_id} {{"
+            f" background-color: {LIGHT.base};"
+            f" color: {LIGHT.text};"
+            f" border: 1px solid {LIGHT.border};"
+            f" border-radius: 4px;"
+            f" padding: 4px 8px;"
+            f" selection-background-color: {LIGHT.accent};"
+            f" selection-color: {LIGHT.accent_text};"
+            f" }}"
+        )
+        parts.append(
+            f"QTextEdit#{body_id}:focus {{ border: 1px solid {LIGHT.accent}; }}"
+        )
     parts.append(
         f"QTableWidget#shortcutsTable {{"
         f" background-color: {LIGHT.base};"
@@ -629,7 +631,7 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         f" }}"
     )
     primary_font = f' font-family: "{label_family}";' if label_family else ""
-    for root in ("welcomeRoot", "workspaceEmptyOverlay"):
+    for root in ("welcomeRoot", "workspaceEmptyOverlay", "explainSolutionRoot"):
         align = " text-align: center;" if root == "workspaceEmptyOverlay" else ""
         parts.append(
             f"QWidget#{root} QPushButton {{"
@@ -671,6 +673,7 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         "aboutRoot",
         "whatsNewRoot",
         "shortcutsRoot",
+        "explainSolutionRoot",
     ):
         parts.append(
             f"QWidget#{root} QPushButton#primaryButton {{"
@@ -713,9 +716,9 @@ def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
     ``system`` restores the platform palette and keeps Welcome/About brand
-    typography plus Welcome/About/WhatsNew/Shortcuts roots, empty-workspace,
-    outdated-banner, Clear Recent, recent label/list, and scoped
-    primary/secondary button chrome on LIGHT tokens (canvas is always
+    typography plus Welcome/About/WhatsNew/Shortcuts/Explain roots,
+    empty-workspace, outdated-banner, Clear Recent, recent label/list, and
+    scoped primary/secondary button chrome on LIGHT tokens (canvas is always
     taller-diurno under system; no full Industrial chrome).
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
