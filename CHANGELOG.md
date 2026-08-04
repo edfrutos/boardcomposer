@@ -48,7 +48,8 @@
 - Tema `system`: botones secundarios de Welcome/empty usan panel/borde LIGHT
   scoped (Open/Import/demo…; Clear Recent conserva reglas propias).
 - Tema `system`: `#aboutRoot` usa ventana LIGHT + tinta brand scoped; OK
-  (`#primaryButton`) ámbar LIGHT.- Explorador: columna estirada al ancho del dock (sin `resizeColumnToContents`
+  (`#primaryButton`) ámbar LIGHT.
+- Explorador: columna estirada al ancho del dock (sin `resizeColumnToContents`
   que sacaba el hit-test fuera del viewport en docks estrechos / CI offscreen).
 - Calcular layout / CTA banner outdated: tip honesto
   (`tip.solve_layout_outdated`; mismo atajo Ctrl+Return).
@@ -67,6 +68,9 @@
 
 ### Cambiado
 
+- Tips de Abrir / Guardar como / Import / Diff / Export solución·Timeline /
+  pack plantillas avisan «recuerda la última carpeta» (mismo honesty que
+  backup; prefs `last_*_directory` ya activas).
 - Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con `0.4.3.dev0`.
 - Diálogo post-export: si destino es carpeta, copy «Carpeta creada» + **Abrir
   carpeta** (sin «Mostrar en carpeta» redundante).

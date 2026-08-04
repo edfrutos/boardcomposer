@@ -217,14 +217,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.save_as_template": "Guardar el proyecto actual como plantilla (Ctrl+Shift+M)",
         "tip.show_welcome": "Volver a la pantalla de inicio (Ctrl+Shift+H)",
         "status.already_on_welcome": "Ya estás en la pantalla de inicio",
-        "tip.open": "Abrir un proyecto .bcproj (Ctrl+O)",
+        "tip.open": ("Abrir un proyecto .bcproj (Ctrl+O); recuerda la última carpeta"),
         "tip.save": "Guardar el proyecto actual (Ctrl+S)",
-        "tip.save_as": "Guardar el proyecto con otro nombre o ruta (Ctrl+Shift+S)",
+        "tip.save_as": (
+            "Guardar el proyecto con otro nombre o ruta (Ctrl+Shift+S); "
+            "recuerda la última carpeta"
+        ),
         "tip.rename_project": "Cambiar el nombre del proyecto (Ctrl+Shift+F2)",
         "tip.reveal_project_folder": "Abrir la carpeta del archivo .bcproj (Ctrl+Shift+R)",
         "tip.diff_bcproj": (
             "Comparar dos revisiones .bcproj o el proyecto abierto vs un archivo "
-            "(Ctrl+Shift+Y)"
+            "(Ctrl+Shift+Y); recuerda la última carpeta"
         ),
         "tip.restore_local_revision": (
             "Cargar la última revisión del anillo local en memoria "
@@ -242,17 +245,27 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.export_revision_backup": "Carpeta de backup de revisiones",
         "tip.add_board": "Añadir un tablero al inventario (Ctrl+Shift+B)",
         "tip.add_piece": "Añadir una pieza al proyecto (Ctrl+Shift+P)",
-        "tip.import_boards_csv": "Importar inventario de tableros desde CSV o Excel (Ctrl+Shift+T)",
-        "tip.import_pieces_csv": "Importar piezas desde CSV o Excel (Ctrl+Shift+O)",
+        "tip.import_boards_csv": (
+            "Importar inventario de tableros desde CSV o Excel (Ctrl+Shift+T); "
+            "recuerda la última carpeta"
+        ),
+        "tip.import_pieces_csv": (
+            "Importar piezas desde CSV o Excel (Ctrl+Shift+O); "
+            "recuerda la última carpeta"
+        ),
         "tip.export_selected": (
             "Exportar la solución del Comparador (Ctrl+Shift+E): "
-            "SVG/PNG/JPEG/PDF/DXF/JSON/CSV — menú Exportar"
+            "SVG/PNG/JPEG/PDF/DXF/JSON/CSV — menú Exportar; "
+            "recuerda la última carpeta"
         ),
         "tip.export_selected_outdated": (
             "Soluciones desactualizadas: recalcula con el CTA del Comparador "
             "o Ctrl+Return antes de exportar (Ctrl+Shift+E)"
         ),
-        "tip.export_timeline": "Exportar el historial del Timeline (Ctrl+Shift+L)",
+        "tip.export_timeline": (
+            "Exportar el historial del Timeline (Ctrl+Shift+L); "
+            "recuerda la última carpeta"
+        ),
         "tip.exit": "Cerrar BoardComposer Studio (Ctrl+Q)",
         "tip.undo": "Deshacer la última acción (Ctrl+Z)",
         "tip.redo": "Rehacer la última acción deshecha (Ctrl+Shift+Z)",
@@ -847,8 +860,13 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.delete": "Eliminar",
         "tip.export_save_template": "Guardar la configuración actual como plantilla de exportación",
         "tip.export_delete_template": "Eliminar la plantilla de exportación seleccionada",
-        "tip.export_share_export": "Exportar el catálogo de plantillas a un archivo",
-        "tip.export_share_import": "Importar un pack de plantillas de exportación",
+        "tip.export_share_export": (
+            "Exportar el catálogo de plantillas a un archivo; "
+            "recuerda la última carpeta"
+        ),
+        "tip.export_share_import": (
+            "Importar un pack de plantillas de exportación; recuerda la última carpeta"
+        ),
         "export.format": "Formato:",
         "export.metrics": "Incluir métricas (JSON)",
         "export.explanation": "Incluir explicación (JSON)",
@@ -1200,13 +1218,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.save_as_template": "Save the current project as a template (Ctrl+Shift+M)",
         "tip.show_welcome": "Return to the home screen (Ctrl+Shift+H)",
         "status.already_on_welcome": "You are already on the home screen",
-        "tip.open": "Open a .bcproj project (Ctrl+O)",
+        "tip.open": "Open a .bcproj project (Ctrl+O); remembers the last folder",
         "tip.save": "Save the current project (Ctrl+S)",
-        "tip.save_as": "Save the project under another name or path (Ctrl+Shift+S)",
+        "tip.save_as": (
+            "Save the project under another name or path (Ctrl+Shift+S); "
+            "remembers the last folder"
+        ),
         "tip.rename_project": "Rename the current project (Ctrl+Shift+F2)",
         "tip.reveal_project_folder": "Open the folder that contains the .bcproj file (Ctrl+Shift+R)",
         "tip.diff_bcproj": (
-            "Compare two .bcproj revisions or the open project vs a file (Ctrl+Shift+Y)"
+            "Compare two .bcproj revisions or the open project vs a file "
+            "(Ctrl+Shift+Y); remembers the last folder"
         ),
         "tip.restore_local_revision": (
             "Load the latest local ring revision into memory (Ctrl+Alt+Y); "
@@ -1224,17 +1246,25 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.export_revision_backup": "Revisions backup folder",
         "tip.add_board": "Add a board to the inventory (Ctrl+Shift+B)",
         "tip.add_piece": "Add a piece to the project (Ctrl+Shift+P)",
-        "tip.import_boards_csv": "Import board inventory from CSV or Excel (Ctrl+Shift+T)",
-        "tip.import_pieces_csv": "Import pieces from CSV or Excel (Ctrl+Shift+O)",
+        "tip.import_boards_csv": (
+            "Import board inventory from CSV or Excel (Ctrl+Shift+T); "
+            "remembers the last folder"
+        ),
+        "tip.import_pieces_csv": (
+            "Import pieces from CSV or Excel (Ctrl+Shift+O); remembers the last folder"
+        ),
         "tip.export_selected": (
             "Export the Comparator solution (Ctrl+Shift+E): "
-            "SVG/PNG/JPEG/PDF/DXF/JSON/CSV — Export menu"
+            "SVG/PNG/JPEG/PDF/DXF/JSON/CSV — Export menu; "
+            "remembers the last folder"
         ),
         "tip.export_selected_outdated": (
             "Solutions outdated: recalculate via the Comparator banner CTA "
             "or Ctrl+Return before exporting (Ctrl+Shift+E)"
         ),
-        "tip.export_timeline": "Export the Timeline history (Ctrl+Shift+L)",
+        "tip.export_timeline": (
+            "Export the Timeline history (Ctrl+Shift+L); remembers the last folder"
+        ),
         "tip.exit": "Quit BoardComposer Studio (Ctrl+Q)",
         "tip.undo": "Undo the last action (Ctrl+Z)",
         "tip.redo": "Redo the last undone action (Ctrl+Shift+Z)",
@@ -1813,8 +1843,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.delete": "Delete",
         "tip.export_save_template": "Save the current options as an export template",
         "tip.export_delete_template": "Delete the selected export template",
-        "tip.export_share_export": "Export the template catalog to a file",
-        "tip.export_share_import": "Import an export-templates pack",
+        "tip.export_share_export": (
+            "Export the template catalog to a file; remembers the last folder"
+        ),
+        "tip.export_share_import": (
+            "Import an export-templates pack; remembers the last folder"
+        ),
         "export.format": "Format:",
         "export.metrics": "Include metrics (JSON)",
         "export.explanation": "Include explanation (JSON)",
