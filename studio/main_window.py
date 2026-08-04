@@ -439,6 +439,10 @@ class MainWindow(QMainWindow):
     def _build_panels(self):
         self.explorer = QTreeWidget()
         self.explorer.setHeaderHidden(True)
+        # Stretch the single column to the dock width so item hit-rects stay
+        # inside the viewport (resizeColumnToContents made labels wider than
+        # a narrow dock and broke selection clicks under offscreen CI).
+        self.explorer.header().setStretchLastSection(True)
         # Keep items stable: expand-on-double-click fights leaf activation.
         self.explorer.setExpandsOnDoubleClick(False)
         self.explorer.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
@@ -816,8 +820,6 @@ class MainWindow(QMainWindow):
 
         finally:
             self.explorer.blockSignals(previous_signal_state)
-
-        self.explorer.resizeColumnToContents(0)
 
     def _find_explorer_item_by_role(self, role: str) -> QTreeWidgetItem | None:
         """Return the first explorer item whose UserRole matches ``role``."""
