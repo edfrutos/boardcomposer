@@ -53,3 +53,5 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert LIGHT.accent in sheet
     assert LIGHT.alternate in sheet
     assert "welcomeRecentList" in sheet
+    assert "welcomeRecentLabel" in sheet
+    assert "uppercase" in sheet

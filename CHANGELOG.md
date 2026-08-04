@@ -37,6 +37,8 @@
   acento + tipografía UI) sin QSS Industrial completo.
 - Tema `system`: `#welcomeRecentList` usa superficie/borde LIGHT (misma
   columna recientes que Clear Recent, contraste OK si la OS es dark).
+- Tema `system`: `#welcomeRecentLabel` conserva tipografía SemiBold + muted
+  LIGHT (cabecera de la columna recientes).
 - Calcular layout / CTA banner outdated: tip honesto
   (`tip.solve_layout_outdated`; mismo atajo Ctrl+Return).
 - About reusa `#welcomeSubtitle` / `#welcomeTagline` para versión y blurb
