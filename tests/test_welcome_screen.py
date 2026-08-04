@@ -97,8 +97,29 @@ def test_welcome_screen_brand_and_primary_object_names(qapp):
     assert screen.new_button.minimumHeight() >= 44
     assert screen.open_button.minimumHeight() >= 44
     assert screen.demo_button.minimumHeight() >= 36
+    assert screen.shortcuts_button.minimumHeight() >= 36
+    assert screen.about_button.minimumHeight() >= 36
     assert screen.clear_recent_button.minimumHeight() >= 32
     assert screen.clear_recent_button.objectName() == "welcomeClearRecent"
+    tip_shortcuts = screen.shortcuts_button.toolTip()
+    assert "F1" in tip_shortcuts
+    tip_about = screen.about_button.toolTip()
+    assert "Ctrl+Shift+A" in tip_about or "⇧⌘A" in tip_about
+
+
+def test_welcome_help_ctas_emit_signals(qapp):
+    del qapp
+    screen = WelcomeScreen()
+    shortcuts: list[int] = []
+    about: list[int] = []
+    screen.shortcuts_requested.connect(lambda: shortcuts.append(1))
+    screen.about_requested.connect(lambda: about.append(1))
+
+    screen.shortcuts_button.click()
+    screen.about_button.click()
+
+    assert shortcuts == [1]
+    assert about == [1]
 
 
 def test_welcome_and_empty_ctas_survive_theme_switch(qapp, tmp_path):
@@ -115,6 +136,8 @@ def test_welcome_and_empty_ctas_survive_theme_switch(qapp, tmp_path):
     assert window.welcome.new_button.minimumHeight() >= 44
     assert window.welcome.open_button.minimumHeight() >= 44
     assert window.welcome.demo_button.minimumHeight() >= 36
+    assert window.welcome.shortcuts_button.minimumHeight() >= 36
+    assert window.welcome.about_button.minimumHeight() >= 36
     assert window.welcome.clear_recent_button.minimumHeight() >= 32
     overlay = window.workspace.empty_overlay
     assert overlay.add_board_button.minimumHeight() >= 44

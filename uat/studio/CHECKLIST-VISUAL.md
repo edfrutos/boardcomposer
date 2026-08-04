@@ -16,7 +16,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 ## 0. Arranque y chrome
 
 - [x] App abre con icono propio (no genérico Python).
-- [x] Pantalla de inicio: hero, CTAs, recientes, plantilla, docs, novedades.
+- [x] Pantalla de inicio: hero, CTAs, recientes, plantilla, docs, novedades, atajos, acerca.
 - [x] Tema Industrial madera coherente (claro).
 - [x] Tema oscuro vía Preferencias se ve coherente.
 - [x] Idioma es ↔ en cambia menús y textos visibles.

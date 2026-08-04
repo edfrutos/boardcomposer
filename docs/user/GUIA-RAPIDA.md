@@ -11,7 +11,7 @@ make run
 .venv/bin/python -m studio.app
 ```
 
-Pantalla de inicio: nuevo proyecto, abrir, recientes, demo, plantilla, docs y novedades.
+Pantalla de inicio: nuevo proyecto, abrir, recientes, demo, plantilla, docs, novedades, atajos y acerca de.
 
 ## Flujo típico
 
