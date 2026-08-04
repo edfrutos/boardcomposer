@@ -59,3 +59,5 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert "QWidget#welcomeRoot QLabel#welcomeBrand" in sheet
     assert "QWidget#welcomeRoot QLabel#welcomeSubtitle" in sheet
     assert "QWidget#welcomeRoot QLabel#welcomeTagline" in sheet
+    assert "welcomeRecentList::item:selected" in sheet
+    assert LIGHT.accent_text in sheet
