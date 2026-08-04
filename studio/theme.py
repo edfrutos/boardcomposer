@@ -428,11 +428,11 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     """Minimal Welcome/About typography + empty-overlay + outdated banner
-    + Clear Recent under ``system``.
+    + Clear Recent + recent list under ``system``.
 
-    Empty overlay, outdated banner, and Clear Recent sit on light (taller)
-    surfaces even when the OS palette is dark, so ink/background use LIGHT
-    tokens for contrast.
+    Empty overlay, outdated banner, Clear Recent, and recent list sit on light
+    (taller) surfaces even when the OS palette is dark, so ink/background use
+    LIGHT tokens for contrast.
     """
     parts: list[str] = []
     if brand:
@@ -528,6 +528,14 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         f" padding: 3px 7px;"
         f" }}"
     )
+    parts.append(
+        f"QListWidget#welcomeRecentList {{"
+        f" background-color: {LIGHT.base};"
+        f" border: 1px solid {LIGHT.border};"
+        f" border-radius: 6px;"
+        f" padding: 6px;"
+        f" }}"
+    )
     return "\n".join(parts)
 
 
@@ -548,9 +556,9 @@ def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
     ``system`` restores the platform palette and keeps Welcome/About brand
-    typography plus empty-workspace, outdated-banner, and Clear Recent
-    surface/ink on LIGHT tokens (canvas is always taller-diurno under system;
-    no full Industrial chrome).
+    typography plus empty-workspace, outdated-banner, Clear Recent, and recent
+    list surface/ink on LIGHT tokens (canvas is always taller-diurno under
+    system; no full Industrial chrome).
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
 
@@ -568,7 +576,7 @@ def apply_theme(app: QApplication, theme: str) -> None:
         ui, brand = _resolved_ui_and_brand_families()
         if ui:
             app.setFont(QFont(ui, 13))
-        # Keep Welcome brand + empty-overlay + Clear Recent without full QSS.
+        # Keep Welcome brand chrome + empty-overlay without full Industrial QSS.
         app.setStyleSheet(_welcome_typography_qss(brand=brand, ui=ui))
         return
 
