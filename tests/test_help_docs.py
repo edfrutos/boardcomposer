@@ -408,6 +408,26 @@ def test_open_status_tip_includes_shortcut():
     assert "Ctrl+O" in tr("tip.open", "en")
 
 
+def test_folder_memory_status_tips_are_honest():
+    from studio.i18n import tr
+
+    keys = (
+        "tip.open",
+        "tip.save_as",
+        "tip.diff_bcproj",
+        "tip.import_boards_csv",
+        "tip.import_pieces_csv",
+        "tip.export_selected",
+        "tip.export_timeline",
+        "tip.export_share_export",
+        "tip.export_share_import",
+        "tip.export_revision_backup",
+    )
+    for key in keys:
+        assert "recuerda la última carpeta" in tr(key, "es")
+        assert "remembers the last folder" in tr(key, "en")
+
+
 def test_new_project_status_tip_includes_shortcut():
     from studio.i18n import tr
 
