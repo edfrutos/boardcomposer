@@ -429,15 +429,16 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     """Minimal Welcome/About typography + empty-overlay + outdated banner
-    + Clear Recent + recent column + Welcome root + scoped button chrome
-    under ``system``.
+    + Clear Recent + recent column + Welcome/About roots + scoped button
+    chrome under ``system``.
 
     Empty overlay, outdated banner, Clear Recent, recent label/list (ink +
-    selection), and ``#welcomeRoot`` sit on light (taller) surfaces even when
-    the OS palette is dark, so ink/background use LIGHT tokens for contrast.
-    Brand ink plus primary/secondary buttons are scoped under Welcome/empty
-    roots so About / dialogs keep platform chrome. ``#welcomeClearRecent``
-    keeps its own transparent/hover rules (more specific ID).
+    selection), ``#welcomeRoot``, and ``#aboutRoot`` sit on light (taller)
+    surfaces even when the OS palette is dark, so ink/background use LIGHT
+    tokens for contrast. Brand ink plus primary buttons are scoped under
+    Welcome/About/empty roots; secondary chrome stays on Welcome/empty so
+    other dialogs keep platform chrome. ``#welcomeClearRecent`` keeps its
+    own transparent/hover rules (more specific ID).
     """
     parts: list[str] = []
     if brand:
@@ -573,6 +574,12 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     parts.append(
         f"QWidget#welcomeRoot QLabel#welcomeTagline {{ color: {LIGHT.text}; }}"
     )
+    parts.append(f"QWidget#aboutRoot {{ background-color: {LIGHT.window}; }}")
+    parts.append(f"QWidget#aboutRoot QLabel#welcomeBrand {{ color: {LIGHT.text}; }}")
+    parts.append(
+        f"QWidget#aboutRoot QLabel#welcomeSubtitle {{ color: {LIGHT.muted}; }}"
+    )
+    parts.append(f"QWidget#aboutRoot QLabel#welcomeTagline {{ color: {LIGHT.text}; }}")
     primary_font = f' font-family: "{label_family}";' if label_family else ""
     for root in ("welcomeRoot", "workspaceEmptyOverlay"):
         align = " text-align: center;" if root == "workspaceEmptyOverlay" else ""
@@ -610,6 +617,7 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
             f" background-color: {LIGHT.alternate};"
             f" }}"
         )
+    for root in ("welcomeRoot", "workspaceEmptyOverlay", "aboutRoot"):
         parts.append(
             f"QWidget#{root} QPushButton#primaryButton {{"
             f" background-color: {LIGHT.accent};"

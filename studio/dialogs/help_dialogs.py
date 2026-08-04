@@ -112,6 +112,7 @@ class AboutDialog(QDialog):
 
     def __init__(self, *, language: str = DEFAULT_LANGUAGE, parent=None) -> None:
         super().__init__(parent)
+        self.setObjectName("aboutRoot")
         self.setWindowTitle(tr("help.about_title", language))
         self.setMinimumWidth(360)
 
