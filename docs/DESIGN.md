@@ -31,7 +31,7 @@ Fuente de verdad: `studio/theme_tokens.py`. Aplicación: `studio/theme.py`
 (`QPalette` + QSS). Preferencia `system` restaura la paleta de plataforma y conserva tipografía
 de marca Welcome/About (`#welcomeBrand` / `#welcomeSubtitle` / `#welcomeTagline`)
 más `#welcomeRoot` ventana LIGHT (tinta de marca scoped al root; About mantiene
-paleta de diálogo), CTAs `#primaryButton` ámbar LIGHT scoped a Welcome/empty,
+paleta de diálogo), botones primario/secundario LIGHT scoped a Welcome/empty,
 empty Workspace con superficie/tinta LIGHT (canvas taller diurno), banner
 outdated con danger LIGHT, `#welcomeClearRecent` hover/focus LIGHT,
 `#welcomeRecentLabel` muted LIGHT y `#welcomeRecentList` superficie +

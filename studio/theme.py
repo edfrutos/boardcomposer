@@ -152,6 +152,7 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
         border: 1px solid {tokens.accent_hover};
         font-family: "{_UI_SEMIBOLD_FAMILY}";
         font-weight: 600;
+        min-height: 44px;
     }}
     QPushButton#primaryButton:focus {{
         border: 2px solid {tokens.text};
@@ -428,14 +429,15 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     """Minimal Welcome/About typography + empty-overlay + outdated banner
-    + Clear Recent + recent column + Welcome root + scoped primary CTAs
+    + Clear Recent + recent column + Welcome root + scoped button chrome
     under ``system``.
 
     Empty overlay, outdated banner, Clear Recent, recent label/list (ink +
     selection), and ``#welcomeRoot`` sit on light (taller) surfaces even when
     the OS palette is dark, so ink/background use LIGHT tokens for contrast.
-    Brand ink and amber ``#primaryButton`` are scoped under Welcome/empty
-    roots so About / dialogs keep platform chrome.
+    Brand ink plus primary/secondary buttons are scoped under Welcome/empty
+    roots so About / dialogs keep platform chrome. ``#welcomeClearRecent``
+    keeps its own transparent/hover rules (more specific ID).
     """
     parts: list[str] = []
     if brand:
@@ -496,7 +498,6 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         f" border-radius: 8px;"
         f" }}"
     )
-    parts.append("QWidget#workspaceEmptyOverlay QPushButton { text-align: center; }")
     banner_font = f' font-family: "{ui}";' if ui else ""
     parts.append(
         f"QLabel#solutionsOutdatedBanner {{"
@@ -510,8 +511,10 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         f" }}"
     )
     clear_font = f' font-family: "{ui}";' if ui else ""
+    # More specific than scoped ``QWidget#welcomeRoot QPushButton`` so Clear
+    # Recent keeps transparent/flat chrome instead of panel secondary fill.
     parts.append(
-        f"QPushButton#welcomeClearRecent {{"
+        f"QWidget#welcomeRoot QPushButton#welcomeClearRecent {{"
         f" color: {LIGHT.muted};"
         f" background: transparent;"
         f" border: 1px solid transparent;"
@@ -521,14 +524,14 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         f" }}"
     )
     parts.append(
-        f"QPushButton#welcomeClearRecent:hover {{"
+        f"QWidget#welcomeRoot QPushButton#welcomeClearRecent:hover {{"
         f" color: {LIGHT.text};"
         f" border: 1px solid {LIGHT.border};"
         f" background-color: {LIGHT.alternate};"
         f" }}"
     )
     parts.append(
-        f"QPushButton#welcomeClearRecent:focus {{"
+        f"QWidget#welcomeRoot QPushButton#welcomeClearRecent:focus {{"
         f" border: 2px solid {LIGHT.accent};"
         f" padding: 3px 7px;"
         f" }}"
@@ -572,6 +575,41 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     )
     primary_font = f' font-family: "{label_family}";' if label_family else ""
     for root in ("welcomeRoot", "workspaceEmptyOverlay"):
+        align = " text-align: center;" if root == "workspaceEmptyOverlay" else ""
+        parts.append(
+            f"QWidget#{root} QPushButton {{"
+            f" background-color: {LIGHT.panel};"
+            f" color: {LIGHT.text};"
+            f" border: 1px solid {LIGHT.border};"
+            f" border-radius: 4px;"
+            f" padding: 6px 14px;"
+            f" min-height: 28px;"
+            f"{align}"
+            f" }}"
+        )
+        parts.append(
+            f"QWidget#{root} QPushButton:hover {{"
+            f" background-color: {LIGHT.alternate};"
+            f" border-color: {LIGHT.accent};"
+            f" }}"
+        )
+        parts.append(
+            f"QWidget#{root} QPushButton:focus {{"
+            f" border: 2px solid {LIGHT.accent};"
+            f" padding: 5px 13px;"
+            f" }}"
+        )
+        parts.append(
+            f"QWidget#{root} QPushButton:pressed {{"
+            f" background-color: {LIGHT.border};"
+            f" }}"
+        )
+        parts.append(
+            f"QWidget#{root} QPushButton:disabled {{"
+            f" color: {LIGHT.muted};"
+            f" background-color: {LIGHT.alternate};"
+            f" }}"
+        )
         parts.append(
             f"QWidget#{root} QPushButton#primaryButton {{"
             f" background-color: {LIGHT.accent};"
@@ -579,6 +617,7 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
             f" border: 1px solid {LIGHT.accent_hover};"
             f"{primary_font}"
             f" font-weight: 600;"
+            f" min-height: 44px;"
             f" }}"
         )
         parts.append(
@@ -613,8 +652,9 @@ def apply_theme(app: QApplication, theme: str) -> None:
 
     ``system`` restores the platform palette and keeps Welcome/About brand
     typography plus Welcome root, empty-workspace, outdated-banner, Clear
-    Recent, recent label/list, and scoped amber primary CTAs on LIGHT tokens
-    (canvas is always taller-diurno under system; no full Industrial chrome).
+    Recent, recent label/list, and scoped primary/secondary button chrome on
+    LIGHT tokens (canvas is always taller-diurno under system; no full
+    Industrial chrome).
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
 

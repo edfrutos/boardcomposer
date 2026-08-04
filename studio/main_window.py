@@ -817,6 +817,8 @@ class MainWindow(QMainWindow):
         finally:
             self.explorer.blockSignals(previous_signal_state)
 
+        self.explorer.resizeColumnToContents(0)
+
     def _find_explorer_item_by_role(self, role: str) -> QTreeWidgetItem | None:
         """Return the first explorer item whose UserRole matches ``role``."""
 
@@ -4007,6 +4009,15 @@ class MainWindow(QMainWindow):
             except OSError:
                 pass
             event.accept()
+
+    def showEvent(self, event) -> None:  # pylint: disable=invalid-name
+        """Process pending layout events so widgets have correct geometry."""
+        super().showEvent(event)
+        from PySide6.QtWidgets import QApplication
+
+        app = QApplication.instance()
+        if app is not None:
+            app.processEvents()
 
     def closeEvent(  # pylint: disable=invalid-name
         self,
