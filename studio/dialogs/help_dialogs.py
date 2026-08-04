@@ -29,16 +29,19 @@ class WhatsNewDialog(QDialog):
 
     def __init__(self, *, language: str = DEFAULT_LANGUAGE, parent=None) -> None:
         super().__init__(parent)
+        self.setObjectName("whatsNewRoot")
         self.setWindowTitle(tr("help.whats_new_title", language))
         self.setMinimumSize(520, 420)
 
         title, bullets = load_whats_new(language=language)
         layout = QVBoxLayout(self)
         heading = QLabel(tr("help.whats_new_heading", language, section=title))
+        heading.setObjectName("helpDialogHeading")
         heading.setWordWrap(True)
         layout.addWidget(heading)
 
         body = QTextEdit()
+        body.setObjectName("whatsNewBody")
         body.setReadOnly(True)
         body.setPlainText("\n".join(f"• {item}" for item in bullets))
         layout.addWidget(body)
@@ -152,15 +155,18 @@ class ShortcutsDialog(QDialog):
 
     def __init__(self, *, language: str = DEFAULT_LANGUAGE, parent=None) -> None:
         super().__init__(parent)
+        self.setObjectName("shortcutsRoot")
         self.setWindowTitle(tr("help.shortcuts_title", language))
         self.setMinimumSize(420, 360)
 
         layout = QVBoxLayout(self)
         intro = QLabel(tr("help.shortcuts_intro", language))
+        intro.setObjectName("helpDialogHeading")
         intro.setWordWrap(True)
         layout.addWidget(intro)
 
         table = QTableWidget(len(STUDIO_SHORTCUTS), 2)
+        table.setObjectName("shortcutsTable")
         table.setHorizontalHeaderLabels(
             [
                 tr("help.shortcuts_col_action", language),
