@@ -31,9 +31,9 @@ Fuente de verdad: `studio/theme_tokens.py`. Aplicación: `studio/theme.py`
 (`QPalette` + QSS). Preferencia `system` restaura la paleta de plataforma y conserva tipografía
 de marca Welcome/About (`#welcomeBrand` / `#welcomeSubtitle` / `#welcomeTagline`)
 más empty Workspace con superficie/tinta LIGHT (canvas taller diurno), banner
-outdated con danger LIGHT, `#welcomeClearRecent` hover/focus LIGHT y
-`#welcomeRecentList` superficie LIGHT; el resto del chrome Industrial queda
-en light/dark.
+outdated con danger LIGHT, `#welcomeClearRecent` hover/focus LIGHT,
+`#welcomeRecentLabel` muted LIGHT y `#welcomeRecentList` superficie LIGHT; el
+resto del chrome Industrial queda en light/dark.
 
 ## Accesibilidad (chrome)
 

@@ -428,11 +428,11 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     """Minimal Welcome/About typography + empty-overlay + outdated banner
-    + Clear Recent + recent list under ``system``.
+    + Clear Recent + recent column under ``system``.
 
-    Empty overlay, outdated banner, Clear Recent, and recent list sit on light
-    (taller) surfaces even when the OS palette is dark, so ink/background use
-    LIGHT tokens for contrast.
+    Empty overlay, outdated banner, Clear Recent, recent label, and recent
+    list sit on light (taller) surfaces even when the OS palette is dark, so
+    ink/background use LIGHT tokens for contrast.
     """
     parts: list[str] = []
     if brand:
@@ -469,6 +469,7 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
             f" margin-bottom: 4px;"
             f" }}"
         )
+        label_family = title_family
     else:
         parts.append(
             f"QLabel#workspaceEmptyTitle {{"
@@ -484,6 +485,7 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
             f" margin-bottom: 4px;"
             f" }}"
         )
+        label_family = None
     parts.append(
         f"QWidget#workspaceEmptyOverlay {{"
         f" background-color: {LIGHT.base};"
@@ -528,6 +530,17 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         f" padding: 3px 7px;"
         f" }}"
     )
+    label_font = f' font-family: "{label_family}";' if label_family else ""
+    parts.append(
+        f"QLabel#welcomeRecentLabel {{"
+        f"{label_font}"
+        f" font-size: 12px;"
+        f" font-weight: 600;"
+        f" color: {LIGHT.muted};"
+        f" letter-spacing: 0.6px;"
+        f" text-transform: uppercase;"
+        f" }}"
+    )
     parts.append(
         f"QListWidget#welcomeRecentList {{"
         f" background-color: {LIGHT.base};"
@@ -556,9 +569,9 @@ def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
     ``system`` restores the platform palette and keeps Welcome/About brand
-    typography plus empty-workspace, outdated-banner, Clear Recent, and recent
-    list surface/ink on LIGHT tokens (canvas is always taller-diurno under
-    system; no full Industrial chrome).
+    typography plus empty-workspace, outdated-banner, Clear Recent, recent
+    label/list surface/ink on LIGHT tokens (canvas is always taller-diurno
+    under system; no full Industrial chrome).
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
 
