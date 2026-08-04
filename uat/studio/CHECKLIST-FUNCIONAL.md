@@ -18,7 +18,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 ## 0. Arranque y entorno
 
 - [x] La app abre con icono propio (no el genérico de Python).
-- [x] Pantalla de inicio (SCR-001): hero, CTAs, recientes, plantilla, docs/novedades; volver con **Ctrl+Shift+H** (tip de estado); demo con **Ctrl+Shift+D** (tip de estado).
+- [x] Pantalla de inicio (SCR-001): hero, CTAs, recientes, plantilla, docs/novedades/atajos/acerca; volver con **Ctrl+Shift+H** (tip de estado); demo con **Ctrl+Shift+D** (tip de estado).
 - [x] Tema «Industrial madera» se ve coherente (claro/oscuro vía Preferencias).
 - [x] Idioma es/en cambia menús y tip de estado (`Editar → Preferencias…`, **Ctrl+,**).
 

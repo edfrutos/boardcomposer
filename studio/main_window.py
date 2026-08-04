@@ -400,6 +400,8 @@ class MainWindow(QMainWindow):
         self.welcome.from_template_requested.connect(self._new_from_template)
         self.welcome.docs_requested.connect(self._open_documentation)
         self.welcome.whats_new_requested.connect(self._show_whats_new)
+        self.welcome.shortcuts_requested.connect(self._show_shortcuts)
+        self.welcome.about_requested.connect(self._show_about)
 
         self._central_stack = QStackedWidget()
         self._central_stack.addWidget(self.welcome)

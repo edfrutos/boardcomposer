@@ -41,6 +41,8 @@ class WelcomeScreen(QWidget):
     from_template_requested = Signal()
     docs_requested = Signal()
     whats_new_requested = Signal()
+    shortcuts_requested = Signal()
+    about_requested = Signal()
 
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -120,6 +122,20 @@ class WelcomeScreen(QWidget):
         secondary.addStretch(1)
         hero.addLayout(secondary)
 
+        hero.addSpacing(12)
+
+        help_row = QHBoxLayout()
+        help_row.setSpacing(10)
+        self.shortcuts_button = polish_secondary_button(QPushButton())
+        self.shortcuts_button.clicked.connect(self.shortcuts_requested.emit)
+        help_row.addWidget(self.shortcuts_button)
+
+        self.about_button = polish_secondary_button(QPushButton())
+        self.about_button.clicked.connect(self.about_requested.emit)
+        help_row.addWidget(self.about_button)
+        help_row.addStretch(1)
+        hero.addLayout(help_row)
+
         hero.addStretch(1)
 
         hero_wrap = QWidget()
@@ -178,6 +194,8 @@ class WelcomeScreen(QWidget):
         self.docs_button.setText(tr("welcome.docs", language))
         self.whats_new_button.setText(tr("welcome.whats_new", language))
         self.preferences_button.setText(tr("welcome.preferences", language))
+        self.shortcuts_button.setText(tr("welcome.shortcuts", language))
+        self.about_button.setText(tr("welcome.about", language))
         tip_pairs = (
             (self.new_button, "tip.new_project"),
             (self.open_button, "tip.open"),
@@ -186,6 +204,8 @@ class WelcomeScreen(QWidget):
             (self.docs_button, "tip.open_docs"),
             (self.whats_new_button, "tip.whats_new"),
             (self.preferences_button, "tip.preferences"),
+            (self.shortcuts_button, "tip.shortcuts"),
+            (self.about_button, "tip.about"),
         )
         for button, tip_key in tip_pairs:
             tip = with_native_shortcuts(tr(tip_key, language))

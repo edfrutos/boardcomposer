@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- Welcome: CTAs **Atajos…** / **Acerca de…** (fila help; mismos flujos que F1 /
+  Ctrl+Shift+A).
 - Tras **Exportar backup de revisiones…**, diálogo Abrir / Mostrar en carpeta
   (mismo patrón que export solución y Timeline).
 - Backup de revisiones recuerda la última carpeta de destino

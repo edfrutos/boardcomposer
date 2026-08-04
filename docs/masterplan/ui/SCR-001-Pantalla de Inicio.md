@@ -46,6 +46,7 @@ recientes y alcanzar las acciones principales sin pasar por el Workspace.
 │   Documentación…                           │                                 │
 │   Novedades…                               │                                 │
 │   Preferencias…                            │                                 │
+│   Atajos… / Acerca de…                     │                                 │
 └────────────────────────────────────────────┴─────────────────────────────────┘
 ```
 
@@ -74,9 +75,10 @@ Volver: **Archivo → Pantalla de inicio** (**Ctrl+Shift+H**).
 | Documentación… | Abre guía rápida usuario (`docs/user/GUIA-RAPIDA.md`) |
 | Novedades… | Diálogo CHANGELOG (Unreleased) |
 | Preferencias… | SCR-006 |
+| Atajos… | Diálogo atajos (**F1**; misma entrada que Ayuda) |
+| Acerca de… | Diálogo About (**Ctrl+Shift+A**) |
 
-No hay CTA «Ayuda / Atajos / Acerca de» en el welcome (sí en menú Ayuda:
-**F1**, **Shift+F1**, **Ctrl+Shift+A**).
+Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 
 ### Proyectos recientes
 
@@ -131,4 +133,3 @@ No hay CTA «Ayuda / Atajos / Acerca de» en el welcome (sí en menú Ayuda:
 
 - Clic único o botón Abrir por fila.
 - Quitar / anclar recientes.
-- Acceso directo a Atajos / Acerca de desde welcome.
