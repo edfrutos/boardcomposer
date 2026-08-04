@@ -297,6 +297,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.window_layout_reset": "Disposición de ventana restablecida",
         "tip.solve_layout": "Calcular soluciones de layout (Ctrl+Return)",
+        "tip.solve_layout_outdated": (
+            "Soluciones desactualizadas: recalcula ahora (Ctrl+Return)"
+        ),
         "tip.previous_solution": "Seleccionar la solución anterior (Re Pág)",
         "tip.previous_solution_outdated": (
             "Soluciones desactualizadas: navegas candidatas viejas (Re Pág); "
@@ -1267,6 +1270,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.window_layout_reset": "Window layout reset",
         "tip.solve_layout": "Calculate layout solutions (Ctrl+Return)",
+        "tip.solve_layout_outdated": (
+            "Solutions outdated: recalculate now (Ctrl+Return)"
+        ),
         "tip.previous_solution": "Select the previous solution (Page Up)",
         "tip.previous_solution_outdated": (
             "Solutions outdated: browsing stale candidates (Page Up); "

@@ -1870,7 +1870,9 @@ class MainWindow(QMainWindow):
         has_pieces = bool(project.pieces)
         can_solve = has_boards and has_pieces
         solve.setEnabled(can_solve)
-        if can_solve:
+        if can_solve and self.services.layout.solutions_outdated:
+            tip = with_native_shortcuts(self._tr("tip.solve_layout_outdated"))
+        elif can_solve:
             tip = with_native_shortcuts(self._tr("tip.solve_layout"))
         elif not has_boards and not has_pieces:
             tip = self._tr("status.solve_needs_inventory")
@@ -2570,6 +2572,7 @@ class MainWindow(QMainWindow):
         marked = self.services.mark_project_modified(**payload)
         self._refresh_solutions_outdated_banner()
         self._sync_solution_actions()
+        self._sync_generate_actions()
         if marked:
             self._status("status.solutions_outdated", 5000)
 
@@ -2581,7 +2584,7 @@ class MainWindow(QMainWindow):
             banner.setText(self._tr("comparator.solutions_outdated"))
             recalc = self.solutions_outdated_recalculate
             recalc.setText(self._tr("comparator.recalculate_layout"))
-            tip = with_native_shortcuts(self._tr("tip.solve_layout"))
+            tip = with_native_shortcuts(self._tr("tip.solve_layout_outdated"))
             recalc.setToolTip(tip)
             recalc.setStatusTip(tip)
             row.show()
