@@ -39,6 +39,8 @@
   columna recientes que Clear Recent, contraste OK si la OS es dark).
 - Tema `system`: `#welcomeRecentLabel` conserva tipografía SemiBold + muted
   LIGHT (cabecera de la columna recientes).
+- Tema `system`: `#welcomeRoot` usa ventana LIGHT; tinta brand/subtitle/tagline
+  scoped al root (contraste OK si la OS es dark; About no hereda esa tinta).
 - Calcular layout / CTA banner outdated: tip honesto
   (`tip.solve_layout_outdated`; mismo atajo Ctrl+Return).
 - Vista previa de solución (Explorador) con outdated: tip honesto

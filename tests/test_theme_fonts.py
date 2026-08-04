@@ -55,3 +55,7 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert "welcomeRecentList" in sheet
     assert "welcomeRecentLabel" in sheet
     assert "uppercase" in sheet
+    assert "welcomeRoot" in sheet
+    assert "QWidget#welcomeRoot QLabel#welcomeBrand" in sheet
+    assert "QWidget#welcomeRoot QLabel#welcomeSubtitle" in sheet
+    assert "QWidget#welcomeRoot QLabel#welcomeTagline" in sheet

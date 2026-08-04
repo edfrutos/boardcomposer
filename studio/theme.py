@@ -428,11 +428,13 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     """Minimal Welcome/About typography + empty-overlay + outdated banner
-    + Clear Recent + recent column under ``system``.
+    + Clear Recent + recent column + Welcome root under ``system``.
 
-    Empty overlay, outdated banner, Clear Recent, recent label, and recent
-    list sit on light (taller) surfaces even when the OS palette is dark, so
-    ink/background use LIGHT tokens for contrast.
+    Empty overlay, outdated banner, Clear Recent, recent label/list, and
+    ``#welcomeRoot`` sit on light (taller) surfaces even when the OS palette
+    is dark, so ink/background use LIGHT tokens for contrast. Brand ink is
+    scoped under ``#welcomeRoot`` so About (same object names, platform
+    dialog chrome) keeps palette colors.
     """
     parts: list[str] = []
     if brand:
@@ -549,6 +551,26 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         f" padding: 6px;"
         f" }}"
     )
+    parts.append(
+        f"QWidget#welcomeRoot {{"
+        f" background-color: {LIGHT.window};"
+        f" }}"
+    )
+    parts.append(
+        f"QWidget#welcomeRoot QLabel#welcomeBrand {{"
+        f" color: {LIGHT.text};"
+        f" }}"
+    )
+    parts.append(
+        f"QWidget#welcomeRoot QLabel#welcomeSubtitle {{"
+        f" color: {LIGHT.muted};"
+        f" }}"
+    )
+    parts.append(
+        f"QWidget#welcomeRoot QLabel#welcomeTagline {{"
+        f" color: {LIGHT.text};"
+        f" }}"
+    )
     return "\n".join(parts)
 
 
@@ -569,9 +591,9 @@ def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
     ``system`` restores the platform palette and keeps Welcome/About brand
-    typography plus empty-workspace, outdated-banner, Clear Recent, recent
-    label/list surface/ink on LIGHT tokens (canvas is always taller-diurno
-    under system; no full Industrial chrome).
+    typography plus Welcome root, empty-workspace, outdated-banner, Clear
+    Recent, recent label/list surface/ink on LIGHT tokens (canvas is always
+    taller-diurno under system; no full Industrial chrome).
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
 
