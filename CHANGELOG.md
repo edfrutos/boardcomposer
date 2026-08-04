@@ -45,12 +45,14 @@
   scoped al root (contraste OK si la OS es dark).
 - Tema `system`: `#welcomeRecentList` usa tinta + selección LIGHT (filas
   legibles sobre superficie parchment si la OS es dark).
-- Tema `system`: CTAs `#primaryButton` de Welcome/empty/About usan ámbar LIGHT
-  scoped (sin chrome Industrial global; WhatsNew/Shortcuts siguen chrome OS).
+- Tema `system`: CTAs `#primaryButton` de Welcome/empty/About/WhatsNew/
+  Shortcuts usan ámbar LIGHT scoped (sin chrome Industrial global).
 - Tema `system`: botones secundarios de Welcome/empty usan panel/borde LIGHT
   scoped (Open/Import/demo…; Clear Recent conserva reglas propias).
 - Tema `system`: `#aboutRoot` usa ventana LIGHT + tinta brand scoped; OK
   (`#primaryButton`) ámbar LIGHT.
+- Tema `system`: `#whatsNewRoot` / `#shortcutsRoot` usan ventana LIGHT +
+  heading/body/tabla LIGHT; OK ámbar (Explain/Preferences siguen chrome OS).
 - Explorador: columna estirada al ancho del dock (sin `resizeColumnToContents`
   que sacaba el hit-test fuera del viewport en docks estrechos / CI offscreen).
 - Calcular layout / CTA banner outdated: tip honesto

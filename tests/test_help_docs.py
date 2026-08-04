@@ -147,8 +147,10 @@ def test_load_whats_new_missing_file(tmp_path):
 def test_whats_new_and_about_dialogs(qapp):
     del qapp
     whats = WhatsNewDialog(language="en")
+    assert whats.objectName() == "whatsNewRoot"
     assert whats.windowTitle() == "What’s new"
     about = AboutDialog(language="en")
+    assert about.objectName() == "aboutRoot"
     assert about.windowTitle() == "About"
 
 
@@ -317,9 +319,11 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert "Del" in delete_shortcuts or "Delete" in delete_shortcuts
 
     dialog = ShortcutsDialog(language="en")
+    assert dialog.objectName() == "shortcutsRoot"
     assert dialog.windowTitle() == "Keyboard shortcuts"
     table = dialog.findChild(QTableWidget)
     assert table is not None
+    assert table.objectName() == "shortcutsTable"
     assert table.rowCount() == len(STUDIO_SHORTCUTS)
     assert table.item(0, 0) is not None
     assert table.item(0, 1) is not None

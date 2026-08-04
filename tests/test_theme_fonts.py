@@ -62,12 +62,20 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert "QWidget#welcomeRoot QPushButton#primaryButton" in sheet
     assert "QWidget#workspaceEmptyOverlay QPushButton#primaryButton" in sheet
     assert "QWidget#aboutRoot QPushButton#primaryButton" in sheet
+    assert "QWidget#whatsNewRoot QPushButton#primaryButton" in sheet
+    assert "QWidget#shortcutsRoot QPushButton#primaryButton" in sheet
     assert "QWidget#welcomeRoot QPushButton {" in sheet
     assert "QWidget#workspaceEmptyOverlay QPushButton {" in sheet
     assert "aboutRoot" in sheet
     assert "QWidget#aboutRoot QLabel#welcomeBrand" in sheet
     assert "QWidget#aboutRoot QLabel#welcomeSubtitle" in sheet
     assert "QWidget#aboutRoot QLabel#welcomeTagline" in sheet
+    assert "whatsNewRoot" in sheet
+    assert "shortcutsRoot" in sheet
+    assert "whatsNewBody" in sheet
+    assert "shortcutsTable" in sheet
+    assert "helpDialogHeading" in sheet
+    assert "QWidget#shortcutsRoot QHeaderView::section" in sheet
     assert LIGHT.panel in sheet
     assert LIGHT.accent in sheet
     assert LIGHT.accent_text in sheet

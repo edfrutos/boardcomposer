@@ -30,10 +30,12 @@ sobre ámbar en light (quedaba ~3.2:1).
 Fuente de verdad: `studio/theme_tokens.py`. Aplicación: `studio/theme.py`
 (`QPalette` + QSS). Preferencia `system` restaura la paleta de plataforma y conserva tipografía
 de marca Welcome/About (`#welcomeBrand` / `#welcomeSubtitle` / `#welcomeTagline`)
-más `#welcomeRoot` / `#aboutRoot` ventana LIGHT (tinta de marca scoped a cada
-root), botones primario LIGHT scoped a Welcome/About/empty, secundarios LIGHT
-scoped a Welcome/empty, empty Workspace con superficie/tinta LIGHT (canvas
-taller diurno), banner outdated con danger LIGHT, `#welcomeClearRecent`
+más `#welcomeRoot` / `#aboutRoot` / `#whatsNewRoot` / `#shortcutsRoot`
+ventana LIGHT (tinta de marca o heading scoped a cada root), body/tabla
+WhatsNew·Shortcuts LIGHT, botones primario LIGHT scoped a
+Welcome/About/WhatsNew/Shortcuts/empty, secundarios LIGHT scoped a
+Welcome/empty, empty Workspace con superficie/tinta LIGHT (canvas taller
+diurno), banner outdated con danger LIGHT, `#welcomeClearRecent`
 hover/focus LIGHT, `#welcomeRecentLabel` muted LIGHT y `#welcomeRecentList`
 superficie + tinta/selección LIGHT; el resto del chrome Industrial queda en
 light/dark.
