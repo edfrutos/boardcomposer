@@ -49,7 +49,7 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert "solutionsOutdatedBanner" in sheet
     assert LIGHT.danger in sheet
     assert LIGHT.window in sheet
-    assert "welcomeClearRecent" in sheet
+    assert "QWidget#welcomeRoot QPushButton#welcomeClearRecent" in sheet
     assert LIGHT.accent in sheet
     assert LIGHT.alternate in sheet
     assert "welcomeRecentList" in sheet
@@ -61,6 +61,9 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert "QWidget#welcomeRoot QLabel#welcomeTagline" in sheet
     assert "QWidget#welcomeRoot QPushButton#primaryButton" in sheet
     assert "QWidget#workspaceEmptyOverlay QPushButton#primaryButton" in sheet
+    assert "QWidget#welcomeRoot QPushButton {" in sheet
+    assert "QWidget#workspaceEmptyOverlay QPushButton {" in sheet
+    assert LIGHT.panel in sheet
     assert LIGHT.accent in sheet
     assert LIGHT.accent_text in sheet
     assert LIGHT.accent_hover in sheet
