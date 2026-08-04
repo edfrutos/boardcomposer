@@ -311,8 +311,14 @@ def test_apply_theme_switches_palette(qapp):
     apply_theme(qapp, "system")
     system_sheet = qapp.styleSheet()
     assert "welcomeBrand" in system_sheet
-    assert "primaryButton" not in system_sheet
+    assert "QWidget#welcomeRoot QPushButton#primaryButton" in system_sheet
+    assert "QWidget#workspaceEmptyOverlay QPushButton#primaryButton" in system_sheet
     assert "QDockWidget::title" not in system_sheet
+    # No global Industrial primary rule — only scoped Welcome/empty CTAs.
+    for line in system_sheet.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("QPushButton#primaryButton"):
+            raise AssertionError(f"unscoped primaryButton rule: {stripped}")
 
 
 def test_layout_service_uses_preferences_strategy(tmp_path):

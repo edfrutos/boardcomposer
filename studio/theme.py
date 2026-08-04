@@ -428,13 +428,14 @@ def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
 
 def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     """Minimal Welcome/About typography + empty-overlay + outdated banner
-    + Clear Recent + recent column + Welcome root under ``system``.
+    + Clear Recent + recent column + Welcome root + scoped primary CTAs
+    under ``system``.
 
-    Empty overlay, outdated banner, Clear Recent, recent label/list, and
-    ``#welcomeRoot`` sit on light (taller) surfaces even when the OS palette
-    is dark, so ink/background use LIGHT tokens for contrast. Brand ink is
-    scoped under ``#welcomeRoot`` so About (same object names, platform
-    dialog chrome) keeps palette colors.
+    Empty overlay, outdated banner, Clear Recent, recent label/list (ink +
+    selection), and ``#welcomeRoot`` sit on light (taller) surfaces even when
+    the OS palette is dark, so ink/background use LIGHT tokens for contrast.
+    Brand ink and amber ``#primaryButton`` are scoped under Welcome/empty
+    roots so About / dialogs keep platform chrome.
     """
     parts: list[str] = []
     if brand:
@@ -546,9 +547,19 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     parts.append(
         f"QListWidget#welcomeRecentList {{"
         f" background-color: {LIGHT.base};"
+        f" color: {LIGHT.text};"
         f" border: 1px solid {LIGHT.border};"
         f" border-radius: 6px;"
         f" padding: 6px;"
+        f" }}"
+    )
+    parts.append(
+        f"QListWidget#welcomeRecentList:focus {{ border: 1px solid {LIGHT.accent}; }}"
+    )
+    parts.append(
+        f"QListWidget#welcomeRecentList::item:selected {{"
+        f" background-color: {LIGHT.accent};"
+        f" color: {LIGHT.accent_text};"
         f" }}"
     )
     parts.append(f"QWidget#welcomeRoot {{ background-color: {LIGHT.window}; }}")
@@ -559,6 +570,28 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     parts.append(
         f"QWidget#welcomeRoot QLabel#welcomeTagline {{ color: {LIGHT.text}; }}"
     )
+    primary_font = f' font-family: "{label_family}";' if label_family else ""
+    for root in ("welcomeRoot", "workspaceEmptyOverlay"):
+        parts.append(
+            f"QWidget#{root} QPushButton#primaryButton {{"
+            f" background-color: {LIGHT.accent};"
+            f" color: {LIGHT.accent_text};"
+            f" border: 1px solid {LIGHT.accent_hover};"
+            f"{primary_font}"
+            f" font-weight: 600;"
+            f" }}"
+        )
+        parts.append(
+            f"QWidget#{root} QPushButton#primaryButton:hover {{"
+            f" background-color: {LIGHT.accent_hover};"
+            f" }}"
+        )
+        parts.append(
+            f"QWidget#{root} QPushButton#primaryButton:focus {{"
+            f" border: 2px solid {LIGHT.text};"
+            f" padding: 5px 13px;"
+            f" }}"
+        )
     return "\n".join(parts)
 
 
@@ -580,8 +613,8 @@ def apply_theme(app: QApplication, theme: str) -> None:
 
     ``system`` restores the platform palette and keeps Welcome/About brand
     typography plus Welcome root, empty-workspace, outdated-banner, Clear
-    Recent, recent label/list surface/ink on LIGHT tokens (canvas is always
-    taller-diurno under system; no full Industrial chrome).
+    Recent, recent label/list, and scoped amber primary CTAs on LIGHT tokens
+    (canvas is always taller-diurno under system; no full Industrial chrome).
     """
     from studio.workspace.canvas_style import set_active_canvas_theme
 
