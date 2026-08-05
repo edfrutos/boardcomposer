@@ -3,10 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.0  
+**Versión:** 1.3.1  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 26/07/2026
+**Última revisión:** 05/08/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
@@ -157,16 +157,17 @@ Objetivos:
 
 ### Prioridad P1 — Siguiente (producto)
 
-- Pulido menor Fase 2 (tips/enablement residuales; UAT Studio ya cerrado).
-- Historial cloud `.bcproj`: spike DT-0006 documentado — **sin implementación**
-  hasta piloto (`spikes/SPIKE-DT-0006-historial-cloud.md`).
-- Fase 4 IA bajo demanda.
+- Eval humana IDE-0007 MVP (`uat/studio/CHECKLIST-EXPLAIN-EVAL.md`).
+- Piloto DT-0006 opción D (backup); C diferida.
+- Pulido / QoL Fase 2 bajo demanda (ciclo `0.4.3.dev0`).
+- Candidatos producto IDE-0019…0024 (ver revisión 2026-08-05) cuando haya
+  capacidad tras eval.
 
 ### Prioridad P2
 
-- IA (Fase 4).
+- IA LLM opt-in (Fase 4; tras política / eval).
 - Plugins / ecosistema (Fase 5).
-- Cloud.
+- Cloud multi-usuario (DT-0006 C).
 
 ---
 
@@ -183,11 +184,12 @@ Toda modificación deberá:
 
 ## Estado
 
-**Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; pulido Studio / UAT
-humano y Fase 4 IA bajo demanda.
+**Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
+ciclo `0.4.3.dev0` (QoL + candidatos IDE-0019…0024). Revisión:
+`REVIEW-2026-08-05-planificacion.md`.
 
 Pendiente de:
 
-- Fase 3 EP-001…003 entregadas en corte plataforma; UAT humano continuo;
-- incorporar estimaciones y dependencias finas por sprint;
+- Eval IDE-0007 + piloto DT-0006 D;
+- slices QoL / IDE-0019…0024 bajo demanda;
 - aprobar como hoja de ruta oficial del proyecto.

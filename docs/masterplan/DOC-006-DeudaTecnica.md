@@ -6,7 +6,7 @@
 **Versión:** 1.2.0
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 31/07/2026
+**Última revisión:** 05/08/2026
 
 ---
 
@@ -142,7 +142,8 @@ opción C diferida); sin críticas sin plan. IDE-0007 MVP local entregado.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — revisado para `0.4.2`
+**Estado actual:** 🟢 Actualizado — revisado para `0.4.2`; snapshot
+2026-08-05 en `REVIEW-2026-08-05-planificacion.md` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -150,6 +151,6 @@ Próximo foco:
   piloto **opción D** activo (`docs/ops/PILOT-DT-0006-backup.md`); **C** solo
   con multi-usuario real.
 - IDE-0007: MVP explicación local (`spikes/SPIKE-IDE-0007-asistente-ia.md`);
-  LLM diferido (DEC-0011).
+  eval humana abierta; LLM diferido (DEC-0011).
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

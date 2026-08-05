@@ -146,5 +146,7 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
 
 ## Evolución prevista
 
-- Formulario de metadatos de proyecto (cliente, referencia, notas).
-- Historial cloud / multi-usuario (DT-0006; esperar piloto).
+- Formulario de metadatos de proyecto (cliente, referencia, notas) —
+  backlog **IDE-0024**.
+- Kerf / veta: **IDE-0020** / **IDE-0021** (no mezclar con metadatos sueltos).
+- Historial cloud / multi-usuario (DT-0006; piloto D activo).
