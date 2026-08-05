@@ -159,3 +159,17 @@ def test_welcome_recent_activation_ignores_null_item(qapp):
     assert empty is not None
     screen._on_recent_activated(empty)
     assert opened == []
+
+
+def test_welcome_recent_single_click_opens(qapp):
+    del qapp
+    screen = WelcomeScreen()
+    opened: list[str] = []
+    screen.open_recent_requested.connect(opened.append)
+    screen.set_recent_files(["/tmp/proyecto-a.bcproj"])
+
+    item = screen.recent_list.item(0)
+    assert item is not None
+    screen.recent_list.itemClicked.emit(item)
+
+    assert opened == ["/tmp/proyecto-a.bcproj"]

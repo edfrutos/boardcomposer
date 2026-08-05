@@ -168,7 +168,7 @@ class WelcomeScreen(QWidget):
         self.recent_list.setIconSize(RECENT_THUMBNAIL_SIZE)
         self.recent_list.setSpacing(6)
         self.recent_list.itemActivated.connect(self._on_recent_activated)
-        self.recent_list.itemDoubleClicked.connect(self._on_recent_activated)
+        self.recent_list.itemClicked.connect(self._on_recent_activated)
         recent_col.addWidget(self.recent_list, stretch=1)
 
         recent_wrap = QWidget()

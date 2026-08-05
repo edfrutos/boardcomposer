@@ -4,6 +4,7 @@
 
 ### Añadido
 
+- Welcome: abrir proyecto reciente con un clic (Enter sigue activo).
 - Welcome: CTAs **Atajos…** / **Acerca de…** (fila help; mismos flujos que F1 /
   Ctrl+Shift+A).
 - Tras **Exportar backup de revisiones…**, diálogo Abrir / Mostrar en carpeta
