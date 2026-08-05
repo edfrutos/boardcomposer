@@ -6,12 +6,14 @@ from datetime import datetime
 from pathlib import Path
 
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QKeySequence, QShortcut
 from PySide6.QtWidgets import (
+    QApplication,
     QHBoxLayout,
     QLabel,
     QListWidget,
     QListWidgetItem,
+    QMenu,
     QPushButton,
     QSizePolicy,
     QVBoxLayout,
@@ -34,6 +36,7 @@ class WelcomeScreen(QWidget):
     new_project_requested = Signal()
     open_project_requested = Signal()
     open_recent_requested = Signal(str)
+    remove_recent_requested = Signal(str)
     clear_recent_requested = Signal()
     import_pieces_requested = Signal()
     preferences_requested = Signal()
@@ -168,7 +171,15 @@ class WelcomeScreen(QWidget):
         self.recent_list.setIconSize(RECENT_THUMBNAIL_SIZE)
         self.recent_list.setSpacing(6)
         self.recent_list.itemActivated.connect(self._on_recent_activated)
-        self.recent_list.itemClicked.connect(self._on_recent_activated)
+        self.recent_list.itemPressed.connect(self._on_recent_item_pressed)
+        self.recent_list.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+        self.recent_list.customContextMenuRequested.connect(
+            self._on_recent_context_menu
+        )
+        for sequence in (QKeySequence.StandardKey.Delete, QKeySequence("Backspace")):
+            shortcut = QShortcut(sequence, self.recent_list)
+            shortcut.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
+            shortcut.activated.connect(self._remove_selected_recent)
         recent_col.addWidget(self.recent_list, stretch=1)
 
         recent_wrap = QWidget()
@@ -280,9 +291,44 @@ class WelcomeScreen(QWidget):
         for key in stale:
             del self._thumbnail_cache[key]
 
+    def _on_recent_item_pressed(self, item: QListWidgetItem | None) -> None:
+        """Open on left press only (right-click is for the context menu)."""
+        if QApplication.mouseButtons() != Qt.MouseButton.LeftButton:
+            return
+        self._on_recent_activated(item)
+
     def _on_recent_activated(self, item: QListWidgetItem | None) -> None:
         if item is None:
             return
         path = item.data(Qt.ItemDataRole.UserRole)
         if path:
             self.open_recent_requested.emit(str(path))
+
+    def _selected_recent_path(self) -> str | None:
+        item = self.recent_list.currentItem()
+        if item is None:
+            return None
+        path = item.data(Qt.ItemDataRole.UserRole)
+        return str(path) if path else None
+
+    def _remove_selected_recent(self) -> None:
+        path = self._selected_recent_path()
+        if path:
+            self.remove_recent_requested.emit(path)
+
+    def _on_recent_context_menu(self, position) -> None:
+        item = self.recent_list.itemAt(position)
+        if item is None:
+            return
+        path = item.data(Qt.ItemDataRole.UserRole)
+        if not path:
+            return
+        self.recent_list.setCurrentItem(item)
+        menu = QMenu(self)
+        action = menu.addAction(tr("welcome.remove_recent", self._language))
+        tip = with_native_shortcuts(tr("tip.remove_recent", self._language))
+        action.setToolTip(tip)
+        action.setStatusTip(tip)
+        chosen = menu.exec(self.recent_list.mapToGlobal(position))
+        if chosen is action:
+            self.remove_recent_requested.emit(str(path))

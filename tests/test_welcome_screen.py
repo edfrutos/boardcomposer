@@ -162,6 +162,10 @@ def test_welcome_recent_activation_ignores_null_item(qapp):
 
 
 def test_welcome_recent_single_click_opens(qapp):
+    from unittest.mock import patch
+
+    from PySide6.QtCore import Qt
+
     del qapp
     screen = WelcomeScreen()
     opened: list[str] = []
@@ -170,6 +174,69 @@ def test_welcome_recent_single_click_opens(qapp):
 
     item = screen.recent_list.item(0)
     assert item is not None
-    screen.recent_list.itemClicked.emit(item)
+    with patch.object(
+        QApplication, "mouseButtons", return_value=Qt.MouseButton.LeftButton
+    ):
+        screen.recent_list.itemPressed.emit(item)
 
     assert opened == ["/tmp/proyecto-a.bcproj"]
+
+
+def test_welcome_recent_right_press_does_not_open(qapp):
+    from unittest.mock import patch
+
+    from PySide6.QtCore import Qt
+
+    del qapp
+    screen = WelcomeScreen()
+    opened: list[str] = []
+    screen.open_recent_requested.connect(opened.append)
+    screen.set_recent_files(["/tmp/proyecto-a.bcproj"])
+
+    item = screen.recent_list.item(0)
+    assert item is not None
+    with patch.object(
+        QApplication, "mouseButtons", return_value=Qt.MouseButton.RightButton
+    ):
+        screen.recent_list.itemPressed.emit(item)
+
+    assert opened == []
+
+
+def test_welcome_recent_remove_emits_without_open(qapp):
+    del qapp
+    screen = WelcomeScreen()
+    opened: list[str] = []
+    removed: list[str] = []
+    screen.open_recent_requested.connect(opened.append)
+    screen.remove_recent_requested.connect(removed.append)
+    screen.set_recent_files(["/tmp/proyecto-a.bcproj"])
+
+    item = screen.recent_list.item(0)
+    assert item is not None
+    screen.recent_list.setCurrentItem(item)
+    screen._remove_selected_recent()
+
+    assert removed == ["/tmp/proyecto-a.bcproj"]
+    assert opened == []
+
+
+def test_welcome_remove_recent_updates_main_window(qapp, tmp_path):
+    del qapp
+    existing = tmp_path / "demo.bcproj"
+    existing.write_text("{}", encoding="utf-8")
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json"),
+        recent_files=RecentFilesManager(path=tmp_path / "recent.json"),
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    services.recent_files.add(str(existing))
+    window = MainWindow(services)
+    window.welcome.set_recent_files(services.recent_files.files)
+
+    window._remove_recent_file(str(existing))
+
+    assert services.recent_files.files == []
+    assert window.welcome.recent_list.count() == 1
+    assert "Sin proyectos recientes" in window.welcome.recent_list.item(0).text()
+    assert "Quitado de recientes" in window.statusBar().currentMessage()
