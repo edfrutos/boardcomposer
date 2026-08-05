@@ -1,15 +1,17 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-08-02.
+Última revisión: 2026-08-05.
 
 ## Estado actual
 
-- Fase de producto: **Fase 2 — BoardComposer Studio**.
+- Fase de producto: **Fase 2 — BoardComposer Studio** (núcleo usable;
+  Fase 3 plataforma entregada).
 - Versión de desarrollo: `0.4.3.dev0` (última estable: `0.4.2`).
 - Core base consolidado y cubierto por tests.
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación.
 - Vertical multipanel MaxRects con material + espesor, Workspace interactivo y
   suite Qt de arrastre/reasignación.
+- Snapshot de planificación: `REVIEW-2026-08-05-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -27,12 +29,13 @@
 
 ## Próxima tarea única
 
-Ciclo `0.4.3.dev0`: pulido QoL bajo demanda. Backlog grande bloqueado hasta
-demanda real:
-
-- DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
-- IDE-0007 LLM opt-in — tras política de datos / eval (DEC-0011).
-- IDE-0008 plugins — XL; no priorizar sin ADR-004 operativo.
+1. Cerrar **eval humana** IDE-0007 (`uat/studio/CHECKLIST-EXPLAIN-EVAL.md`).
+2. Ciclo `0.4.3.dev0`: QoL o candidatos **IDE-0019…0024** (DOC-004) bajo
+   demanda.
+3. Backlog grande bloqueado hasta demanda real:
+   - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
+   - IDE-0007 LLM opt-in — tras política de datos / eval (DEC-0011).
+   - IDE-0008 plugins — XL; no priorizar sin ADR-004 operativo.
 
 ## Criterio de finalización del próximo bloque
 

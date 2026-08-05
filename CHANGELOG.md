@@ -77,6 +77,10 @@
 
 ### Cambiado
 
+- Docs planificación 2026-08-05: snapshot
+  `docs/masterplan/REVIEW-2026-08-05-planificacion.md`; backlog IDE-0019…0024
+  (swap, kerf, veta, Skyline multipanel, lista de corte, metadatos proyecto);
+  ROADMAP / DOC-003 / DOC-004 / MASTERPLAN / AI_CONTEXT / INDEX alineados.
 - Tips de Abrir / Guardar como / Import / Diff / Export solución·Timeline /
   pack plantillas avisan «recuerda la última carpeta» (mismo honesty que
   backup; prefs `last_*_directory` ya activas).
