@@ -86,6 +86,8 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 - Por entrada: miniatura SVG del layout guardado, nombre, fecha
   `YYYY-MM-DD HH:MM`, ruta completa.
 - Abrir: **clic** o **Enter**.
+- Anclar / desanclar: menú contextual (★ arriba; persiste en
+  `recent_files.json`).
 - Quitar uno: **Delete** / **Backspace** o menú contextual «Quitar de
   recientes» (sin confirmación; el archivo en disco no se borra).
 - Vaciar lista: botón en cabecera + confirmación (también
@@ -107,7 +109,7 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 - Arranque muestra welcome sin wizard extra.
 - Brand legible como señal principal del primer viewport.
 - Recientes con miniatura y fecha; abrir en un gesto (clic / Enter);
-  quitar uno con Delete / menú contextual.
+  anclar / quitar uno con menú contextual (Delete quita).
 - Volver al welcome desde el Workspace con **Ctrl+Shift+H**.
 - Tema claro/oscuro/sistema se aplica vía Preferencias (no selector en welcome).
 
@@ -125,10 +127,10 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 
 ## Límites conocidos (Studio actual)
 
-- Sin anclaje / cloud / búsqueda global en welcome.
+- Sin cloud / búsqueda global en welcome.
 
 ---
 
 ## Evolución prevista
 
-- Anclar recientes.
+- (ninguna abierta para Welcome; metadatos / cloud fuera de SCR-001).

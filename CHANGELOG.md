@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- Welcome: anclar / desanclar proyectos recientes (★ arriba; JSON v2
+  `files` + `pinned`).
 - Welcome: quitar un reciente (Delete / Backspace / menú contextual).
 - Welcome: abrir proyecto reciente con un clic (Enter sigue activo).
 - Welcome: CTAs **Atajos…** / **Acerca de…** (fila help; mismos flujos que F1 /

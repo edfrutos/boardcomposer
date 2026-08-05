@@ -395,6 +395,7 @@ class MainWindow(QMainWindow):
         self.welcome.open_recent_requested.connect(self._open_recent_project)
         self.welcome.clear_recent_requested.connect(self._clear_recent_files)
         self.welcome.remove_recent_requested.connect(self._remove_recent_file)
+        self.welcome.pin_recent_requested.connect(self._toggle_pin_recent_file)
         self.welcome.import_pieces_requested.connect(self._import_pieces_from_csv)
         self.welcome.preferences_requested.connect(self._open_preferences)
         self.welcome.demo_project_requested.connect(self._new_demo_project)
@@ -415,7 +416,10 @@ class MainWindow(QMainWindow):
             self._status("status.already_on_welcome")
             self._sync_welcome_action()
             return
-        self.welcome.set_recent_files(self.services.recent_files.existing_files())
+        self.welcome.set_recent_files(
+            self.services.recent_files.existing_ordered_files(),
+            pinned=list(self.services.recent_files.pinned),
+        )
         self._sync_template_actions()
         self._central_stack.setCurrentWidget(self.welcome)
         self._sync_welcome_action()
@@ -2699,7 +2703,10 @@ class MainWindow(QMainWindow):
         self.welcome.apply_language(self.services.preferences.current.language)
         self.workspace.reload_project()
         self._reload_explorer()
-        self.welcome.set_recent_files(self.services.recent_files.existing_files())
+        self.welcome.set_recent_files(
+            self.services.recent_files.existing_ordered_files(),
+            pinned=list(self.services.recent_files.pinned),
+        )
         if self.services.layout.selected_solution is not None:
             self._show_layout_solution(self.services.layout.selected_solution)
         else:
@@ -3794,7 +3801,8 @@ class MainWindow(QMainWindow):
 
     def _reload_recent_files_menu(self):
         self.services.recent_files.prune_missing()
-        recent_paths = self.services.recent_files.files
+        recent = self.services.recent_files
+        recent_paths = recent.ordered_files()
         clear_recent = self._actions.get("clear_recent")
         if clear_recent is not None:
             has_recent = bool(recent_paths)
@@ -3807,7 +3815,7 @@ class MainWindow(QMainWindow):
 
         self._recent_menu.clear()
         if hasattr(self, "welcome"):
-            self.welcome.set_recent_files(recent_paths)
+            self.welcome.set_recent_files(recent_paths, pinned=list(recent.pinned))
 
         if not recent_paths:
             empty_action = QAction(self._tr("action.no_recent"), self)
@@ -3819,7 +3827,10 @@ class MainWindow(QMainWindow):
             return
 
         for filename in recent_paths:
-            action = QAction(filename, self)
+            label = filename
+            if recent.is_pinned(filename):
+                label = f"★ {filename}"
+            action = QAction(label, self)
             action.triggered.connect(
                 lambda checked=False, path=filename: self._open_recent_project(path)
             )
@@ -3850,6 +3861,14 @@ class MainWindow(QMainWindow):
             return
         self._reload_recent_files_menu()
         self._status("status.recent_removed", path=path)
+
+    def _toggle_pin_recent_file(self, path: str) -> None:
+        if path not in self.services.recent_files.files:
+            return
+        pinned = self.services.recent_files.toggle_pin(path)
+        self._reload_recent_files_menu()
+        key = "status.recent_pinned" if pinned else "status.recent_unpinned"
+        self._status(key, path=path)
 
     def _open_recent_project(self, path: str):
         if not self._confirm_discard_unsaved_changes():

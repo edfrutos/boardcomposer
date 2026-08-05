@@ -41,8 +41,10 @@ def test_add_respects_max_items(tmp_path):
 def test_clear_empties_list(tmp_path):
     mgr = _manager(tmp_path)
     mgr.add("/a.bcproj")
+    mgr.toggle_pin("/a.bcproj")
     mgr.clear()
     assert mgr.files == []
+    assert mgr.pinned == []
 
 
 # ---------------------------------------------------------------------------
@@ -100,6 +102,61 @@ def test_save_and_reload(tmp_path):
 
     mgr2 = _manager(tmp_path)
     assert mgr2.files == ["/b.bcproj", "/a.bcproj"]
+    assert mgr2.pinned == []
+
+
+def test_pin_orders_before_unpinned_and_round_trips(tmp_path):
+    mgr = _manager(tmp_path)
+    mgr.add("/a.bcproj")
+    mgr.add("/b.bcproj")
+    mgr.add("/c.bcproj")
+    assert mgr.toggle_pin("/a.bcproj") is True
+    assert mgr.ordered_files() == ["/a.bcproj", "/c.bcproj", "/b.bcproj"]
+    assert mgr.is_pinned("/a.bcproj")
+
+    mgr2 = _manager(tmp_path)
+    assert mgr2.pinned == ["/a.bcproj"]
+    assert mgr2.ordered_files() == ["/a.bcproj", "/c.bcproj", "/b.bcproj"]
+    assert mgr2.toggle_pin("/a.bcproj") is False
+    assert mgr2.ordered_files() == ["/c.bcproj", "/b.bcproj", "/a.bcproj"]
+
+
+def test_trim_prefers_dropping_unpinned(tmp_path):
+    mgr = _manager(tmp_path, max_items=3)
+    mgr.add("/a.bcproj")
+    mgr.add("/b.bcproj")
+    mgr.add("/c.bcproj")
+    assert mgr.toggle_pin("/a.bcproj") is True
+    mgr.add("/d.bcproj")
+    assert "/a.bcproj" in mgr.files
+    assert mgr.is_pinned("/a.bcproj")
+    assert len(mgr.files) == 3
+    assert "/b.bcproj" not in mgr.files
+
+
+def test_remove_clears_pin(tmp_path):
+    mgr = _manager(tmp_path)
+    mgr.add("/a.bcproj")
+    mgr.toggle_pin("/a.bcproj")
+    assert mgr.remove("/a.bcproj") is True
+    assert mgr.pinned == []
+
+
+def test_load_v2_dict_payload(tmp_path):
+    path = tmp_path / "recent.json"
+    path.write_text(
+        json.dumps(
+            {
+                "files": ["/a.bcproj", "/b.bcproj"],
+                "pinned": ["/b.bcproj", "/missing.bcproj"],
+            }
+        ),
+        encoding="utf-8",
+    )
+    mgr = RecentFilesManager(path=path)
+    assert mgr.files == ["/a.bcproj", "/b.bcproj"]
+    assert mgr.pinned == ["/b.bcproj"]
+    assert mgr.ordered_files() == ["/b.bcproj", "/a.bcproj"]
 
 
 def test_load_tolerates_corrupt_json(tmp_path):
