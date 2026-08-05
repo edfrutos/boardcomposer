@@ -3828,9 +3828,9 @@ class MainWindow(QMainWindow):
             return
 
         for filename in recent_paths:
-            label = filename
+            label = Path(filename).name
             if recent.is_pinned(filename):
-                label = f"★ {filename}"
+                label = f"★ {label}"
             action = QAction(label, self)
             tip_key = (
                 "tip.recent_menu_pinned"
