@@ -86,3 +86,4 @@ def test_system_theme_keeps_welcome_brand_typography(qapp):
     assert LIGHT.accent_hover in sheet
     assert "welcomeRecentList::item:selected" in sheet
     assert LIGHT.accent_text in sheet
+    assert "preferencesRoot" not in sheet

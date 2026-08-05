@@ -38,7 +38,9 @@ scoped a Welcome/empty/Explain, empty Workspace con superficie/tinta LIGHT
 (canvas taller diurno), banner outdated con danger LIGHT,
 `#welcomeClearRecent` hover/focus LIGHT, `#welcomeRecentLabel` muted LIGHT y
 `#welcomeRecentList` superficie + tinta/selección LIGHT; el resto del chrome
-Industrial queda en light/dark.
+Industrial queda en light/dark. **Preferencias (SCR-006) no usan
+`#preferencesRoot` ni QSS LIGHT scoped**: bajo `system` el diálogo hereda el
+chrome de la plataforma (formulario denso; no espejo Welcome/help).
 
 ## Accesibilidad (chrome)
 

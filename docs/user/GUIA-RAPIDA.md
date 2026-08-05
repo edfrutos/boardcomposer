@@ -96,7 +96,7 @@ Lista completa: **Ayuda → Atajos de teclado** (**F1**).
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - Varias soluciones = alternativas puntuadas; tú eliges.
 - Retales en Inspector son **informativos**, no inventario reutilizable automático.
-- Tema claro/oscuro e idioma: **Editar → Preferencias**.
+- Tema **sistema**/claro/oscuro e idioma: **Editar → Preferencias**.
 - Si te arrepientes tras varios Guardar: **Ctrl+Alt+Y** restaura la última
   copia del anillo local (luego Guardar otra vez).
 - En macOS, **Ctrl** de los atajos es la tecla **⌘** (Command).
