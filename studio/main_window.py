@@ -394,6 +394,7 @@ class MainWindow(QMainWindow):
         self.welcome.open_project_requested.connect(self._open_project)
         self.welcome.open_recent_requested.connect(self._open_recent_project)
         self.welcome.clear_recent_requested.connect(self._clear_recent_files)
+        self.welcome.remove_recent_requested.connect(self._remove_recent_file)
         self.welcome.import_pieces_requested.connect(self._import_pieces_from_csv)
         self.welcome.preferences_requested.connect(self._open_preferences)
         self.welcome.demo_project_requested.connect(self._new_demo_project)
@@ -3843,6 +3844,12 @@ class MainWindow(QMainWindow):
         self.services.recent_files.clear()
         self._reload_recent_files_menu()
         self._status("status.recent_cleared")
+
+    def _remove_recent_file(self, path: str) -> None:
+        if not self.services.recent_files.remove(path):
+            return
+        self._reload_recent_files_menu()
+        self._status("status.recent_removed", path=path)
 
     def _open_recent_project(self, path: str):
         if not self._confirm_discard_unsaved_changes():
