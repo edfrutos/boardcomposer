@@ -36,7 +36,7 @@ recientes y alcanzar las acciones principales sin pasar por el Workspace.
 │   BoardComposer                            │  [Vaciar lista]                 │
 │   Studio {pyproject version}              │  · miniatura · nombre · fecha   │
 │   tagline i18n                             │  · ruta completa                │
-│                                            │  (doble clic / Enter → abrir)   │
+│                                            │  (clic / Enter → abrir)         │
 │ CTAs:                                      │                                 │
 │   Nuevo proyecto                           │                                 │
 │   Abrir proyecto…                          │                                 │
@@ -85,7 +85,7 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 - Persistencia: `~/.boardcomposer/recent_files.json` (máx. 10).
 - Por entrada: miniatura SVG del layout guardado, nombre, fecha
   `YYYY-MM-DD HH:MM`, ruta completa.
-- Abrir: **doble clic** o **Enter** (no clic simple).
+- Abrir: **clic** o **Enter**.
 - Vaciar lista: botón en cabecera + confirmación (también
   **Ctrl+Shift+X** / menú Archivo).
 - Fantasmas: se podan al refrescar o al fallar la apertura; no hay botón
@@ -105,7 +105,7 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 
 - Arranque muestra welcome sin wizard extra.
 - Brand legible como señal principal del primer viewport.
-- Recientes con miniatura y fecha; abrir en un gesto (doble clic / Enter).
+- Recientes con miniatura y fecha; abrir en un gesto (clic / Enter).
 - Volver al welcome desde el Workspace con **Ctrl+Shift+H**.
 - Tema claro/oscuro/sistema se aplica vía Preferencias (no selector en welcome).
 
@@ -123,7 +123,6 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 
 ## Límites conocidos (Studio actual)
 
-- Abrir reciente exige doble clic o Enter (no clic único).
 - Sin quitar individual de la lista de recientes en UI.
 - Sin anclaje / cloud / búsqueda global en welcome.
 
@@ -131,5 +130,4 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 
 ## Evolución prevista
 
-- Clic único o botón Abrir por fila.
 - Quitar / anclar recientes.
