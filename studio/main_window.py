@@ -3832,6 +3832,14 @@ class MainWindow(QMainWindow):
             if recent.is_pinned(filename):
                 label = f"★ {filename}"
             action = QAction(label, self)
+            tip_key = (
+                "tip.recent_menu_pinned"
+                if recent.is_pinned(filename)
+                else "tip.recent_menu"
+            )
+            tip = self._tr(tip_key, path=filename)
+            action.setToolTip(tip)
+            action.setStatusTip(tip)
             action.triggered.connect(
                 lambda checked=False, path=filename: self._open_recent_project(path)
             )
