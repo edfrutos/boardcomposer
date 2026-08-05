@@ -377,6 +377,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.recent_row_pinned": (
             "{path}\nClic abre · menú: desanclar / Mostrar en carpeta / quitar"
         ),
+        "tip.recent_menu": "Abrir {path}",
+        "tip.recent_menu_pinned": "Abrir {path} (anclado)",
         "help.whats_new_title": "Novedades",
         "help.whats_new_heading": "Cambios recientes ({section})",
         "help.whats_new_unavailable": "No hay notas de versión disponibles.",
@@ -1388,6 +1390,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.recent_row_pinned": (
             "{path}\nClick opens · menu: unpin / Show in folder / remove"
         ),
+        "tip.recent_menu": "Open {path}",
+        "tip.recent_menu_pinned": "Open {path} (pinned)",
         "help.whats_new_title": "What’s new",
         "help.whats_new_heading": "Recent changes ({section})",
         "help.whats_new_unavailable": "No release notes available.",

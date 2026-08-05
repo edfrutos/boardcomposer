@@ -4,6 +4,7 @@
 
 ### Añadido
 
+- Archivo → Abrir recientes: statusTip/tooltip con ruta (y «anclado» si pin).
 - Welcome: tooltip de fila reciente honesto (ruta + clic abre · menú
   anclar/carpeta/quitar).
 - Welcome: menú contextual de recientes → **Mostrar en carpeta** (sin abrir

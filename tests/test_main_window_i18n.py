@@ -173,6 +173,46 @@ def test_reload_recent_menu_prunes_missing_paths(qapp, tmp_path):
     assert menu_paths == [str(existing)]
     assert services.recent_files.files == [str(existing)]
     assert window.welcome.recent_list.count() == 1
+    recent_action = next(
+        action
+        for action in window._recent_menu.actions()
+        if action.isEnabled()
+        and not action.isSeparator()
+        and action.text() != clear_label
+    )
+    assert str(existing) in (recent_action.statusTip() or "")
+    assert str(existing) in (recent_action.toolTip() or "")
+    assert "Abrir" in (recent_action.statusTip() or "")
+
+
+def test_recent_menu_actions_use_pinned_status_tip(qapp, tmp_path):
+    del qapp
+    from studio.recent_files import RecentFilesManager
+
+    existing = tmp_path / "demo.bcproj"
+    existing.write_text("{}", encoding="utf-8")
+    recent = RecentFilesManager(path=tmp_path / "recent.json")
+    recent.add(str(existing))
+    recent.toggle_pin(str(existing))
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json"),
+        recent_files=recent,
+    )
+    window = MainWindow(services)
+    window._reload_recent_files_menu()
+
+    clear_label = window._tr("action.clear_recent")
+    recent_action = next(
+        action
+        for action in window._recent_menu.actions()
+        if action.isEnabled()
+        and not action.isSeparator()
+        and action.text() != clear_label
+    )
+    tip = recent_action.statusTip() or ""
+    assert str(existing) in tip
+    assert "anclado" in tip.lower()
 
 
 def test_failed_open_recent_removes_entry(qapp, tmp_path, monkeypatch):
