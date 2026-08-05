@@ -371,6 +371,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.pin_recent": "Anclar este proyecto arriba en la lista de recientes",
         "tip.unpin_recent": "Quitar el anclaje de este proyecto reciente",
         "tip.reveal_recent": "Mostrar el archivo .bcproj en el explorador de archivos",
+        "tip.recent_row": (
+            "{path}\nClic abre · menú: anclar / Mostrar en carpeta / quitar"
+        ),
+        "tip.recent_row_pinned": (
+            "{path}\nClic abre · menú: desanclar / Mostrar en carpeta / quitar"
+        ),
         "help.whats_new_title": "Novedades",
         "help.whats_new_heading": "Cambios recientes ({section})",
         "help.whats_new_unavailable": "No hay notas de versión disponibles.",
@@ -1378,6 +1384,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.pin_recent": "Pin this project to the top of the recent list",
         "tip.unpin_recent": "Unpin this recent project",
         "tip.reveal_recent": "Show the .bcproj file in the file manager",
+        "tip.recent_row": ("{path}\nClick opens · menu: pin / Show in folder / remove"),
+        "tip.recent_row_pinned": (
+            "{path}\nClick opens · menu: unpin / Show in folder / remove"
+        ),
         "help.whats_new_title": "What’s new",
         "help.whats_new_heading": "Recent changes ({section})",
         "help.whats_new_unavailable": "No release notes available.",

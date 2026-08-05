@@ -282,12 +282,12 @@ class WelcomeScreen(QWidget):
             lines.append(path)
             item = QListWidgetItem("\n".join(lines))
             item.setData(Qt.ItemDataRole.UserRole, path)
-            tip = (
-                tr("tip.unpin_recent", self._language)
+            tip_key = (
+                "tip.recent_row_pinned"
                 if path in self._pinned_paths
-                else tr("tip.pin_recent", self._language)
+                else "tip.recent_row"
             )
-            item.setToolTip(with_native_shortcuts(tip))
+            item.setToolTip(tr(tip_key, self._language, path=path))
 
             cache_key = (path, mtime)
             keep_keys.add(cache_key)

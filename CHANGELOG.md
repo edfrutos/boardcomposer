@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- Welcome: tooltip de fila reciente honesto (ruta + clic abre · menú
+  anclar/carpeta/quitar).
 - Welcome: menú contextual de recientes → **Mostrar en carpeta** (sin abrir
   el proyecto).
 - Welcome: anclar / desanclar proyectos recientes (★ arriba; JSON v2
