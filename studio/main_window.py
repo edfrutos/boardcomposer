@@ -3831,19 +3831,54 @@ class MainWindow(QMainWindow):
             label = Path(filename).name
             if recent.is_pinned(filename):
                 label = f"★ {label}"
-            action = QAction(label, self)
             tip_key = (
                 "tip.recent_menu_pinned"
                 if recent.is_pinned(filename)
                 else "tip.recent_menu"
             )
             tip = self._tr(tip_key, path=filename)
-            action.setToolTip(tip)
-            action.setStatusTip(tip)
-            action.triggered.connect(
+            submenu = QMenu(label, self._recent_menu)
+            submenu.setToolTipsVisible(True)
+            menu_action = self._recent_menu.addMenu(submenu)
+            menu_action.setToolTip(tip)
+            menu_action.setStatusTip(tip)
+
+            open_action = submenu.addAction(self._tr("action.open_recent"))
+            open_tip = self._tr("tip.recent_menu_open", path=filename)
+            open_action.setToolTip(open_tip)
+            open_action.setStatusTip(open_tip)
+            open_action.triggered.connect(
                 lambda checked=False, path=filename: self._open_recent_project(path)
             )
-            self._recent_menu.addAction(action)
+
+            pinned = recent.is_pinned(filename)
+            pin_action = submenu.addAction(
+                self._tr("welcome.unpin_recent" if pinned else "welcome.pin_recent")
+            )
+            pin_tip = with_native_shortcuts(
+                self._tr("tip.unpin_recent" if pinned else "tip.pin_recent")
+            )
+            pin_action.setToolTip(pin_tip)
+            pin_action.setStatusTip(pin_tip)
+            pin_action.triggered.connect(
+                lambda checked=False, path=filename: self._toggle_pin_recent_file(path)
+            )
+
+            reveal_action = submenu.addAction(self._tr("welcome.reveal_folder"))
+            reveal_tip = self._tr("tip.reveal_recent")
+            reveal_action.setToolTip(reveal_tip)
+            reveal_action.setStatusTip(reveal_tip)
+            reveal_action.triggered.connect(
+                lambda checked=False, path=filename: self._reveal_recent_file(path)
+            )
+
+            remove_action = submenu.addAction(self._tr("welcome.remove_recent"))
+            remove_tip = with_native_shortcuts(self._tr("tip.remove_recent"))
+            remove_action.setToolTip(remove_tip)
+            remove_action.setStatusTip(remove_tip)
+            remove_action.triggered.connect(
+                lambda checked=False, path=filename: self._remove_recent_file(path)
+            )
 
         self._recent_menu.addSeparator()
         self._recent_menu.addAction(self._actions["clear_recent"])
