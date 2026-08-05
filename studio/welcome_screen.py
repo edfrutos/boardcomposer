@@ -38,6 +38,7 @@ class WelcomeScreen(QWidget):
     open_recent_requested = Signal(str)
     remove_recent_requested = Signal(str)
     pin_recent_requested = Signal(str)
+    reveal_recent_requested = Signal(str)
     clear_recent_requested = Signal()
     import_pieces_requested = Signal()
     preferences_requested = Signal()
@@ -351,6 +352,11 @@ class WelcomeScreen(QWidget):
         pin_tip = with_native_shortcuts(tr(tip_key, self._language))
         pin_action.setToolTip(pin_tip)
         pin_action.setStatusTip(pin_tip)
+        reveal_action = menu.addAction(tr("welcome.reveal_folder", self._language))
+        reveal_tip = tr("tip.reveal_recent", self._language)
+        reveal_action.setToolTip(reveal_tip)
+        reveal_action.setStatusTip(reveal_tip)
+        menu.addSeparator()
         remove_action = menu.addAction(tr("welcome.remove_recent", self._language))
         remove_tip = with_native_shortcuts(tr("tip.remove_recent", self._language))
         remove_action.setToolTip(remove_tip)
@@ -358,5 +364,7 @@ class WelcomeScreen(QWidget):
         chosen = menu.exec(self.recent_list.mapToGlobal(position))
         if chosen is pin_action:
             self.pin_recent_requested.emit(str(path))
+        elif chosen is reveal_action:
+            self.reveal_recent_requested.emit(str(path))
         elif chosen is remove_action:
             self.remove_recent_requested.emit(str(path))

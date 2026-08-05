@@ -88,6 +88,8 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 - Abrir: **clic** o **Enter**.
 - Anclar / desanclar: menú contextual (★ arriba; persiste en
   `recent_files.json`).
+- Mostrar en carpeta: menú contextual (Finder / Explorador; no abre el
+  proyecto).
 - Quitar uno: **Delete** / **Backspace** o menú contextual «Quitar de
   recientes» (sin confirmación; el archivo en disco no se borra).
 - Vaciar lista: botón en cabecera + confirmación (también
