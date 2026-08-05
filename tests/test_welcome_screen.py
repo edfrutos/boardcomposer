@@ -221,6 +221,25 @@ def test_welcome_recent_remove_emits_without_open(qapp):
     assert opened == []
 
 
+def test_welcome_recent_row_tooltip_is_honest(qapp):
+    del qapp
+    screen = WelcomeScreen()
+    path = "/tmp/proyecto-a.bcproj"
+    screen.set_recent_files([path], pinned=[path])
+    tip = screen.recent_list.item(0).toolTip()
+    assert path in tip
+    assert "abre" in tip.lower()
+    assert "desanclar" in tip.lower()
+    assert "carpeta" in tip.lower()
+    assert "quitar" in tip.lower()
+
+    screen.set_recent_files([path])
+    tip = screen.recent_list.item(0).toolTip()
+    assert path in tip
+    assert "anclar" in tip.lower()
+    assert "desanclar" not in tip.lower()
+
+
 def test_welcome_recent_pin_emits_and_marks_star(qapp):
     del qapp
     screen = WelcomeScreen()
