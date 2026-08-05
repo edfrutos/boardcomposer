@@ -64,6 +64,7 @@ class ExplainSolutionDialog(QDialog):
         parent=None,
     ) -> None:
         super().__init__(parent)
+        self.setObjectName("explainSolutionRoot")
         self.setWindowTitle(tr("help.explain_solution_title", language))
         self.setMinimumSize(480, 360)
         self._body_text = body_text
@@ -72,11 +73,12 @@ class ExplainSolutionDialog(QDialog):
         layout = QVBoxLayout(self)
         heading_text = heading or tr("help.explain_solution_heading", language)
         heading_label = QLabel(heading_text)
-        heading_label.setObjectName("explainSolutionHeading")
+        heading_label.setObjectName("helpDialogHeading")
         heading_label.setWordWrap(True)
         layout.addWidget(heading_label)
 
         body = QTextEdit()
+        body.setObjectName("explainSolutionBody")
         body.setReadOnly(True)
         body.setPlainText(body_text)
         layout.addWidget(body)
