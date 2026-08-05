@@ -396,6 +396,7 @@ class MainWindow(QMainWindow):
         self.welcome.clear_recent_requested.connect(self._clear_recent_files)
         self.welcome.remove_recent_requested.connect(self._remove_recent_file)
         self.welcome.pin_recent_requested.connect(self._toggle_pin_recent_file)
+        self.welcome.reveal_recent_requested.connect(self._reveal_recent_file)
         self.welcome.import_pieces_requested.connect(self._import_pieces_from_csv)
         self.welcome.preferences_requested.connect(self._open_preferences)
         self.welcome.demo_project_requested.connect(self._new_demo_project)
@@ -3869,6 +3870,14 @@ class MainWindow(QMainWindow):
         self._reload_recent_files_menu()
         key = "status.recent_pinned" if pinned else "status.recent_unpinned"
         self._status(key, path=path)
+
+    def _reveal_recent_file(self, path: str) -> None:
+        from studio.file_reveal import reveal_in_file_manager
+
+        if not reveal_in_file_manager(path):
+            self._status("status.project_folder_failed")
+            return
+        self._status("status.project_folder_opened")
 
     def _open_recent_project(self, path: str):
         if not self._confirm_discard_unsaved_changes():

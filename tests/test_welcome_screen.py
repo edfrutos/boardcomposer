@@ -259,6 +259,53 @@ def test_welcome_pin_recent_updates_main_window(qapp, tmp_path):
     assert "Anclado en recientes" in window.statusBar().currentMessage()
 
 
+def test_welcome_reveal_recent_emits_without_open(qapp):
+    del qapp
+    screen = WelcomeScreen()
+    opened: list[str] = []
+    revealed: list[str] = []
+    screen.open_recent_requested.connect(opened.append)
+    screen.reveal_recent_requested.connect(revealed.append)
+    screen.set_recent_files(["/tmp/proyecto-a.bcproj"])
+    screen.reveal_recent_requested.emit("/tmp/proyecto-a.bcproj")
+    assert revealed == ["/tmp/proyecto-a.bcproj"]
+    assert opened == []
+
+
+def test_welcome_reveal_recent_updates_status(qapp, tmp_path, monkeypatch):
+    del qapp
+    existing = tmp_path / "demo.bcproj"
+    existing.write_text("{}", encoding="utf-8")
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json"),
+        recent_files=RecentFilesManager(path=tmp_path / "recent.json"),
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    services.recent_files.add(str(existing))
+    window = MainWindow(services)
+
+    calls: list[str] = []
+
+    def fake_reveal(path):
+        calls.append(str(path))
+        return True
+
+    monkeypatch.setattr(
+        "studio.file_reveal.reveal_in_file_manager",
+        fake_reveal,
+    )
+    window._reveal_recent_file(str(existing))
+    assert calls == [str(existing)]
+    assert "Carpeta del proyecto abierta" in window.statusBar().currentMessage()
+
+    monkeypatch.setattr(
+        "studio.file_reveal.reveal_in_file_manager",
+        lambda path: False,
+    )
+    window._reveal_recent_file(str(existing))
+    assert "No se pudo abrir la carpeta" in window.statusBar().currentMessage()
+
+
 def test_welcome_remove_recent_updates_main_window(qapp, tmp_path):
     del qapp
     existing = tmp_path / "demo.bcproj"

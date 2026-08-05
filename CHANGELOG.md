@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- Welcome: menú contextual de recientes → **Mostrar en carpeta** (sin abrir
+  el proyecto).
 - Welcome: anclar / desanclar proyectos recientes (★ arriba; JSON v2
   `files` + `pinned`).
 - Welcome: quitar un reciente (Delete / Backspace / menú contextual).
