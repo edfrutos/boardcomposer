@@ -148,6 +148,9 @@ width, caché, hilos, logs de depuración, búsqueda de preferencias.
 
 - Sin pestañas ni búsqueda de preferencias.
 - Sin perfiles / sync en la nube / import-export del JSON de prefs.
+- Tema **sistema**: el diálogo Preferencias sigue el chrome de la plataforma
+  (sin root LIGHT scoped; Industrial completo solo en claro/oscuro). Ver
+  `docs/DESIGN.md`.
 
 ---
 

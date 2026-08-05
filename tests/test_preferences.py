@@ -316,6 +316,7 @@ def test_apply_theme_switches_palette(qapp):
     assert "QWidget#welcomeRoot QPushButton {" in system_sheet
     assert "QWidget#workspaceEmptyOverlay QPushButton {" in system_sheet
     assert "QDockWidget::title" not in system_sheet
+    assert "preferencesRoot" not in system_sheet
     # No global Industrial button rules — only scoped Welcome/empty chrome.
     for line in system_sheet.splitlines():
         stripped = line.strip()
@@ -323,6 +324,16 @@ def test_apply_theme_switches_palette(qapp):
             raise AssertionError(f"unscoped primaryButton rule: {stripped}")
         if stripped.startswith("QPushButton {"):
             raise AssertionError(f"unscoped QPushButton rule: {stripped}")
+
+
+def test_preferences_dialog_has_no_system_light_root(qapp):
+    """Preferences stay on platform chrome under system (no #preferencesRoot)."""
+    del qapp
+    from studio.dialogs.preferences_dialog import PreferencesDialog
+
+    dialog = PreferencesDialog(StudioPreferences(language="es"))
+    assert dialog.objectName() != "preferencesRoot"
+    assert dialog.objectName() == ""
 
 
 def test_layout_service_uses_preferences_strategy(tmp_path):

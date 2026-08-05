@@ -438,7 +438,8 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     surfaces even when the OS palette is dark, so ink/background use LIGHT
     tokens for contrast. Brand ink plus primary buttons are scoped under
     Welcome/About/WhatsNew/Shortcuts/Explain/empty roots; secondary chrome
-    stays on Welcome/empty/Explain so Preferences keep platform chrome.
+    stays on Welcome/empty/Explain so Preferences keep platform chrome
+    (intentional: no ``#preferencesRoot`` / no LIGHT-scoped prefs form).
     ``#welcomeClearRecent`` keeps its own transparent/hover rules (more
     specific ID).
     """

@@ -19,6 +19,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Pantalla de inicio: hero, CTAs, recientes, plantilla, docs, novedades, atajos, acerca.
 - [x] Tema Industrial madera coherente (claro).
 - [x] Tema oscuro vía Preferencias se ve coherente.
+- [x] Tema **sistema**: Preferencias usan chrome OS (no parchment Welcome/help).
 - [x] Idioma es ↔ en cambia menús y textos visibles.
 - [x] Barra de estado muestra feedback al hacer acciones clave.
 - [x] Tips de estado / tooltips honestos (acciones deshabilitadas explican por qué).
