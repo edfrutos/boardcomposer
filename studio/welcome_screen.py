@@ -37,6 +37,7 @@ class WelcomeScreen(QWidget):
     open_project_requested = Signal()
     open_recent_requested = Signal(str)
     remove_recent_requested = Signal(str)
+    pin_recent_requested = Signal(str)
     clear_recent_requested = Signal()
     import_pieces_requested = Signal()
     preferences_requested = Signal()
@@ -53,6 +54,7 @@ class WelcomeScreen(QWidget):
 
         self._language = DEFAULT_LANGUAGE
         self._recent_paths: list[str] = []
+        self._pinned_paths: set[str] = set()
         self._has_templates = False
         self._thumbnail_cache: dict[tuple[str, float], QIcon] = {}
 
@@ -222,7 +224,7 @@ class WelcomeScreen(QWidget):
             tip = with_native_shortcuts(tr(tip_key, language))
             button.setToolTip(tip)
             button.setStatusTip(tip)
-        self.set_recent_files(self._recent_paths)
+        self.set_recent_files(self._recent_paths, pinned=sorted(self._pinned_paths))
         self.set_has_templates(self._has_templates)
 
     def set_has_templates(self, has_templates: bool) -> None:
@@ -237,9 +239,12 @@ class WelcomeScreen(QWidget):
         self.template_button.setToolTip(tip)
         self.template_button.setStatusTip(tip)
 
-    def set_recent_files(self, paths: list[str]) -> None:
+    def set_recent_files(
+        self, paths: list[str], *, pinned: list[str] | None = None
+    ) -> None:
         """Populate the recent-projects list with name, date and thumbnail."""
         self._recent_paths = list(paths)
+        self._pinned_paths = set(pinned or ())
         has_recent = bool(paths)
         self.clear_recent_button.setEnabled(has_recent)
         clear_tip = (
@@ -267,12 +272,21 @@ class WelcomeScreen(QWidget):
             except OSError:
                 pass
 
-            lines = [path_obj.name]
+            name = path_obj.name
+            if path in self._pinned_paths:
+                name = f"★ {name}"
+            lines = [name]
             if date_str:
                 lines.append(date_str)
             lines.append(path)
             item = QListWidgetItem("\n".join(lines))
             item.setData(Qt.ItemDataRole.UserRole, path)
+            tip = (
+                tr("tip.unpin_recent", self._language)
+                if path in self._pinned_paths
+                else tr("tip.pin_recent", self._language)
+            )
+            item.setToolTip(with_native_shortcuts(tip))
 
             cache_key = (path, mtime)
             keep_keys.add(cache_key)
@@ -325,10 +339,24 @@ class WelcomeScreen(QWidget):
             return
         self.recent_list.setCurrentItem(item)
         menu = QMenu(self)
-        action = menu.addAction(tr("welcome.remove_recent", self._language))
-        tip = with_native_shortcuts(tr("tip.remove_recent", self._language))
-        action.setToolTip(tip)
-        action.setStatusTip(tip)
+        pin_key = (
+            "welcome.unpin_recent"
+            if str(path) in self._pinned_paths
+            else "welcome.pin_recent"
+        )
+        tip_key = (
+            "tip.unpin_recent" if str(path) in self._pinned_paths else "tip.pin_recent"
+        )
+        pin_action = menu.addAction(tr(pin_key, self._language))
+        pin_tip = with_native_shortcuts(tr(tip_key, self._language))
+        pin_action.setToolTip(pin_tip)
+        pin_action.setStatusTip(pin_tip)
+        remove_action = menu.addAction(tr("welcome.remove_recent", self._language))
+        remove_tip = with_native_shortcuts(tr("tip.remove_recent", self._language))
+        remove_action.setToolTip(remove_tip)
+        remove_action.setStatusTip(remove_tip)
         chosen = menu.exec(self.recent_list.mapToGlobal(position))
-        if chosen is action:
+        if chosen is pin_action:
+            self.pin_recent_requested.emit(str(path))
+        elif chosen is remove_action:
             self.remove_recent_requested.emit(str(path))

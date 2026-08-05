@@ -221,6 +221,44 @@ def test_welcome_recent_remove_emits_without_open(qapp):
     assert opened == []
 
 
+def test_welcome_recent_pin_emits_and_marks_star(qapp):
+    del qapp
+    screen = WelcomeScreen()
+    pinned: list[str] = []
+    screen.pin_recent_requested.connect(pinned.append)
+    screen.set_recent_files(
+        ["/tmp/proyecto-a.bcproj", "/tmp/proyecto-b.bcproj"],
+        pinned=["/tmp/proyecto-a.bcproj"],
+    )
+
+    assert "★ proyecto-a.bcproj" in screen.recent_list.item(0).text()
+    screen.pin_recent_requested.emit("/tmp/proyecto-b.bcproj")
+    assert pinned == ["/tmp/proyecto-b.bcproj"]
+
+
+def test_welcome_pin_recent_updates_main_window(qapp, tmp_path):
+    del qapp
+    existing = tmp_path / "demo.bcproj"
+    existing.write_text("{}", encoding="utf-8")
+    other = tmp_path / "other.bcproj"
+    other.write_text("{}", encoding="utf-8")
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json"),
+        recent_files=RecentFilesManager(path=tmp_path / "recent.json"),
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    services.recent_files.add(str(existing))
+    services.recent_files.add(str(other))
+    window = MainWindow(services)
+
+    window._toggle_pin_recent_file(str(existing))
+
+    assert services.recent_files.is_pinned(str(existing))
+    assert services.recent_files.ordered_files()[0] == str(existing)
+    assert "★" in window.welcome.recent_list.item(0).text()
+    assert "Anclado en recientes" in window.statusBar().currentMessage()
+
+
 def test_welcome_remove_recent_updates_main_window(qapp, tmp_path):
     del qapp
     existing = tmp_path / "demo.bcproj"
