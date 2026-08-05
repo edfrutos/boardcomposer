@@ -634,14 +634,15 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
     primary_font = f' font-family: "{label_family}";' if label_family else ""
     for root in ("welcomeRoot", "workspaceEmptyOverlay", "explainSolutionRoot"):
         align = " text-align: center;" if root == "workspaceEmptyOverlay" else ""
+        # Color/border only — no min-height/padding so polish_* CTA heights
+        # (44/36/32) survive under system QSS (Linux offscreen reported 42 when
+        # generic min-height:28 + padding overrode the property).
         parts.append(
             f"QWidget#{root} QPushButton {{"
             f" background-color: {LIGHT.panel};"
             f" color: {LIGHT.text};"
             f" border: 1px solid {LIGHT.border};"
             f" border-radius: 4px;"
-            f" padding: 6px 14px;"
-            f" min-height: 28px;"
             f"{align}"
             f" }}"
         )
@@ -652,10 +653,7 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
             f" }}"
         )
         parts.append(
-            f"QWidget#{root} QPushButton:focus {{"
-            f" border: 2px solid {LIGHT.accent};"
-            f" padding: 5px 13px;"
-            f" }}"
+            f"QWidget#{root} QPushButton:focus {{ border: 2px solid {LIGHT.accent}; }}"
         )
         parts.append(
             f"QWidget#{root} QPushButton:pressed {{"
@@ -694,7 +692,6 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         parts.append(
             f"QWidget#{root} QPushButton#primaryButton:focus {{"
             f" border: 2px solid {LIGHT.text};"
-            f" padding: 5px 13px;"
             f" }}"
         )
     return "\n".join(parts)
