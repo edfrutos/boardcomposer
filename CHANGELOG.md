@@ -4,6 +4,7 @@
 
 ### Añadido
 
+- Archivo → Abrir recientes: etiqueta = basename (★ si pin); tip sigue con ruta.
 - Archivo → Abrir recientes: statusTip/tooltip con ruta (y «anclado» si pin).
 - Welcome: tooltip de fila reciente honesto (ruta + clic abre · menú
   anclar/carpeta/quitar).

@@ -59,7 +59,7 @@ guardado.
 | Guardar | **Ctrl+S** | Si no hay ruta → Guardar como |
 | Guardar como | **Ctrl+Shift+S** | Filtro `.bcproj`; recuerda carpeta (`last_project_directory`) |
 | Salir | **Ctrl+Q** | Diálogo si hay cambios sin guardar |
-| Recientes | menú / inicio | Máx. 10; poda fantasmas |
+| Recientes | menú / inicio | Máx. 10; poda fantasmas; menú label = basename (★ pin); tip = ruta |
 | Vaciar recientes | **Ctrl+Shift+X** | Confirmación |
 
 ### Identidad y ubicación

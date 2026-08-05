@@ -163,14 +163,14 @@ def test_reload_recent_menu_prunes_missing_paths(qapp, tmp_path):
     window._reload_recent_files_menu()
 
     clear_label = window._tr("action.clear_recent")
-    menu_paths = [
+    menu_labels = [
         action.text()
         for action in window._recent_menu.actions()
         if action.isEnabled()
         and not action.isSeparator()
         and action.text() != clear_label
     ]
-    assert menu_paths == [str(existing)]
+    assert menu_labels == [existing.name]
     assert services.recent_files.files == [str(existing)]
     assert window.welcome.recent_list.count() == 1
     recent_action = next(
@@ -180,6 +180,7 @@ def test_reload_recent_menu_prunes_missing_paths(qapp, tmp_path):
         and not action.isSeparator()
         and action.text() != clear_label
     )
+    assert recent_action.text() == existing.name
     assert str(existing) in (recent_action.statusTip() or "")
     assert str(existing) in (recent_action.toolTip() or "")
     assert "Abrir" in (recent_action.statusTip() or "")
@@ -210,6 +211,7 @@ def test_recent_menu_actions_use_pinned_status_tip(qapp, tmp_path):
         and not action.isSeparator()
         and action.text() != clear_label
     )
+    assert recent_action.text() == f"★ {existing.name}"
     tip = recent_action.statusTip() or ""
     assert str(existing) in tip
     assert "anclado" in tip.lower()
