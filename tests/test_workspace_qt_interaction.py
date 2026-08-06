@@ -87,7 +87,13 @@ def test_reload_project_creates_one_item_per_placement():
     assert not workspace.empty_overlay.isVisible()
 
 
-def test_empty_workspace_overlay_shows_for_blank_project():
+def test_empty_workspace_overlay_shows_for_blank_project(qapp):
+    from studio.dialogs.dialog_chrome import repolish_secondary_buttons
+    from studio.theme import apply_theme
+
+    # System QSS must not shrink polish_* CTA heights (CI Linux once saw 42).
+    apply_theme(qapp, "system")
+
     services = StudioServices()
     services.projects.new_project(
         StudioProject(
@@ -102,6 +108,7 @@ def test_empty_workspace_overlay_shows_for_blank_project():
     workspace.resize(800, 600)
     workspace.retranslate("en")
     workspace.reload_project()
+    repolish_secondary_buttons(workspace.empty_overlay)
 
     assert workspace._project_is_empty()
     assert not workspace.empty_overlay.isHidden()

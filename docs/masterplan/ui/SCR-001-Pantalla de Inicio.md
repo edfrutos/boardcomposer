@@ -94,6 +94,9 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
   recientes» (sin confirmación; el archivo en disco no se borra).
 - Vaciar lista: botón en cabecera + confirmación (también
   **Ctrl+Shift+X** / menú Archivo).
+- Paridad **Archivo → Abrir recientes**: submenú por proyecto con Abrir /
+  anclar / Mostrar en carpeta / quitar (mismas acciones que el menú
+  contextual de Welcome).
 - Fantasmas: se podan al refrescar o al fallar la apertura.
 
 ---

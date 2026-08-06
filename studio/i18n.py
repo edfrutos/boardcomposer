@@ -113,6 +113,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.save_as_template": "Guardar como plantilla…",
         "action.show_welcome": "Pantalla de inicio",
         "action.open": "Abrir…",
+        "action.open_recent": "Abrir",
         "action.save": "Guardar",
         "action.save_as": "Guardar como…",
         "action.rename_project": "Renombrar proyecto…",
@@ -377,8 +378,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.recent_row_pinned": (
             "{path}\nClic abre · menú: desanclar / Mostrar en carpeta / quitar"
         ),
-        "tip.recent_menu": "Abrir {path}",
-        "tip.recent_menu_pinned": "Abrir {path} (anclado)",
+        "tip.recent_menu": ("{path} — Abrir · anclar · carpeta · quitar"),
+        "tip.recent_menu_pinned": (
+            "{path} (anclado) — Abrir · desanclar · carpeta · quitar"
+        ),
+        "tip.recent_menu_open": "Abrir {path}",
         "help.whats_new_title": "Novedades",
         "help.whats_new_heading": "Cambios recientes ({section})",
         "help.whats_new_unavailable": "No hay notas de versión disponibles.",
@@ -1137,6 +1141,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.save_as_template": "Save as template…",
         "action.show_welcome": "Home screen",
         "action.open": "Open…",
+        "action.open_recent": "Open",
         "action.save": "Save",
         "action.save_as": "Save as…",
         "action.rename_project": "Rename project…",
@@ -1390,8 +1395,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.recent_row_pinned": (
             "{path}\nClick opens · menu: unpin / Show in folder / remove"
         ),
-        "tip.recent_menu": "Open {path}",
-        "tip.recent_menu_pinned": "Open {path} (pinned)",
+        "tip.recent_menu": "{path} — Open · pin · folder · remove",
+        "tip.recent_menu_pinned": ("{path} (pinned) — Open · unpin · folder · remove"),
+        "tip.recent_menu_open": "Open {path}",
         "help.whats_new_title": "What’s new",
         "help.whats_new_heading": "Recent changes ({section})",
         "help.whats_new_unavailable": "No release notes available.",

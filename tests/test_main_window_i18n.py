@@ -215,6 +215,82 @@ def test_recent_menu_actions_use_pinned_status_tip(qapp, tmp_path):
     tip = recent_action.statusTip() or ""
     assert str(existing) in tip
     assert "anclado" in tip.lower()
+    submenu = recent_action.menu()
+    assert submenu is not None
+    labels = [action.text() for action in submenu.actions()]
+    assert window._tr("action.open_recent") in labels
+    assert window._tr("welcome.unpin_recent") in labels
+    assert window._tr("welcome.reveal_folder") in labels
+    assert window._tr("welcome.remove_recent") in labels
+
+
+def test_recent_menu_submenu_pin_reveal_remove(qapp, tmp_path, monkeypatch):
+    del qapp
+    from studio.recent_files import RecentFilesManager
+
+    existing = tmp_path / "demo.bcproj"
+    existing.write_text("{}", encoding="utf-8")
+    recent = RecentFilesManager(path=tmp_path / "recent.json")
+    recent.add(str(existing))
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json"),
+        recent_files=recent,
+    )
+    window = MainWindow(services)
+    window._reload_recent_files_menu()
+
+    clear_label = window._tr("action.clear_recent")
+    recent_action = next(
+        action
+        for action in window._recent_menu.actions()
+        if action.isEnabled()
+        and not action.isSeparator()
+        and action.text() != clear_label
+    )
+    submenu = recent_action.menu()
+    assert submenu is not None
+
+    pin_action = next(
+        action
+        for action in submenu.actions()
+        if action.text() == window._tr("welcome.pin_recent")
+    )
+    pin_action.trigger()
+    assert services.recent_files.is_pinned(str(existing))
+
+    window._reload_recent_files_menu()
+    recent_action = next(
+        action
+        for action in window._recent_menu.actions()
+        if action.isEnabled()
+        and not action.isSeparator()
+        and action.text() != clear_label
+    )
+    submenu = recent_action.menu()
+    assert submenu is not None
+
+    revealed: list[str] = []
+    monkeypatch.setattr(
+        window,
+        "_reveal_recent_file",
+        lambda path: revealed.append(path),
+    )
+    reveal_action = next(
+        action
+        for action in submenu.actions()
+        if action.text() == window._tr("welcome.reveal_folder")
+    )
+    reveal_action.trigger()
+    assert revealed == [str(existing)]
+
+    remove_action = next(
+        action
+        for action in submenu.actions()
+        if action.text() == window._tr("welcome.remove_recent")
+    )
+    remove_action.trigger()
+    assert services.recent_files.files == []
 
 
 def test_failed_open_recent_removes_entry(qapp, tmp_path, monkeypatch):
