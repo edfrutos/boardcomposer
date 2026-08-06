@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: barra de estado (basename, clic → carpeta, tip sin guardar,
+  zoom) y atajo **Ctrl+Shift+R**.
 - Tip del basename en barra de estado sin guardar: indica Guardar (Ctrl+S)
   para poder abrir la carpeta.
 - Tip del % de zoom en barra de estado: incluye rueda y atajos

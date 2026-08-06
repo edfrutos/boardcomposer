@@ -55,6 +55,7 @@ en red; podés **Copiar**).
 |---|---|
 | Nuevo / Abrir / Guardar | Ctrl+N / Ctrl+O / Ctrl+S |
 | Guardar como | Ctrl+Shift+S |
+| Abrir carpeta del proyecto | Ctrl+Shift+R |
 | Preferencias | Ctrl+, |
 | Añadir tablero / pieza | Ctrl+Shift+B / Ctrl+Shift+P |
 | Importar tableros / piezas (CSV/Excel) | Ctrl+Shift+T / Ctrl+Shift+O |
@@ -93,6 +94,11 @@ Lista completa: **Ayuda → Atajos de teclado** (**F1**).
 
 ## Consejos
 
+- **Barra de estado:** con proyecto guardado muestra el nombre del `.bcproj`
+  (tooltip = ruta completa); **clic** abre la carpeta (igual que
+  **Ctrl+Shift+R**). Sin guardar: «Proyecto aún no guardado» — tip pide
+  **Ctrl+S** antes de poder abrir carpeta. El **%** es el zoom del Workspace
+  (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**).
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - Varias soluciones = alternativas puntuadas; tú eliges.
 - Retales en Inspector son **informativos**, no inventario reutilizable automático.
