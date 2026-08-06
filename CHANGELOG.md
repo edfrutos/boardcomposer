@@ -92,6 +92,10 @@
 
 - Docs: Preferencias bajo tema `system` = chrome OS (sin `#preferencesRoot`);
   DESIGN / SCR-006 / guía rápida + asserts.
+- Docs planificación 2026-08-06: snapshot
+  `docs/masterplan/REVIEW-2026-08-06-planificacion.md`; cola IDE-0019…0024
+  vigente (sin IDE nuevas: residuales + backlog abierto); ROADMAP / DOC-003 /
+  DOC-004 / DOC-006 / MASTERPLAN / AI_CONTEXT / INDEX alineados.
 - Docs planificación 2026-08-05: snapshot
   `docs/masterplan/REVIEW-2026-08-05-planificacion.md`; backlog IDE-0019…0024
   (swap, kerf, veta, Skyline multipanel, lista de corte, metadatos proyecto);
