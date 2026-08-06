@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from PySide6.QtCore import QByteArray, QPoint, QSize, Qt, QTimer
+from PySide6.QtCore import QByteArray, QEvent, QPoint, QSize, Qt, QTimer
 from PySide6.QtGui import QAction, QBrush, QCloseEvent, QColor, QIcon
 from PySide6.QtWidgets import (
     QAbstractItemView,
@@ -662,9 +662,7 @@ class MainWindow(QMainWindow):
         self.setStatusBar(status)
         self._project_path_label = QLabel()
         self._project_path_label.setObjectName("statusProjectPath")
-        self._project_path_label.setTextInteractionFlags(
-            Qt.TextInteractionFlag.TextSelectableByMouse
-        )
+        self._project_path_label.installEventFilter(self)
         self._zoom_label = QLabel()
         self._zoom_label.setObjectName("statusZoom")
         status.addPermanentWidget(self._project_path_label, 1)
@@ -673,6 +671,19 @@ class MainWindow(QMainWindow):
         self.workspace.camera_changed.connect(self._update_zoom_status)
         self._update_project_path_status()
         self._update_zoom_status(self.workspace.zoom)
+
+    def eventFilter(self, watched, event):  # noqa: N802 — Qt API
+        label = getattr(self, "_project_path_label", None)
+        if (
+            label is not None
+            and watched is label
+            and event.type() == QEvent.Type.MouseButtonRelease
+            and event.button() == Qt.MouseButton.LeftButton
+            and self.services.projects.filename
+        ):
+            self._reveal_project_folder()
+            return True
+        return super().eventFilter(watched, event)
 
     def _load_empty_project(
         self,
@@ -1901,10 +1912,16 @@ class MainWindow(QMainWindow):
         if label is not None:
             if filename:
                 label.setText(Path(filename).name)
-                label.setToolTip(filename)
+                label.setToolTip(
+                    with_native_shortcuts(
+                        self._tr("tip.status_project_path", path=filename)
+                    )
+                )
+                label.setCursor(Qt.CursorShape.PointingHandCursor)
             else:
                 label.setText(self._tr("status.project_unsaved"))
                 label.setToolTip("")
+                label.setCursor(Qt.CursorShape.ArrowCursor)
         reveal = self._actions.get("reveal_project_folder")
         if reveal is not None:
             has_file = bool(filename)

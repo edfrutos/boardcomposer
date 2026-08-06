@@ -1,5 +1,7 @@
 """Tests for menu and Inspector language switching (SCR-006)."""
 
+from PySide6.QtCore import Qt
+
 from studio.main_window import MainWindow
 from studio.preferences import PreferencesManager, StudioPreferences
 from studio.services import StudioServices
@@ -64,6 +66,9 @@ def test_project_path_status_and_reveal_action(qapp, tmp_path, monkeypatch):
     assert str(path) in window._project_path_label.toolTip()
     assert window._project_path_label.text() == path.name
     assert window._actions["reveal_project_folder"].isEnabled()
+    assert (
+        window._project_path_label.cursor().shape() == Qt.CursorShape.PointingHandCursor
+    )
 
     revealed: list[str] = []
     monkeypatch.setattr(
@@ -72,6 +77,28 @@ def test_project_path_status_and_reveal_action(qapp, tmp_path, monkeypatch):
     )
     window._reveal_project_folder()
     assert revealed == [str(path)]
+
+    revealed.clear()
+    from PySide6.QtCore import QEvent, QPointF
+    from PySide6.QtGui import QMouseEvent
+
+    click = QMouseEvent(
+        QEvent.Type.MouseButtonRelease,
+        QPointF(2, 2),
+        QPointF(2, 2),
+        Qt.MouseButton.LeftButton,
+        Qt.MouseButton.LeftButton,
+        Qt.KeyboardModifier.NoModifier,
+    )
+    assert window.eventFilter(window._project_path_label, click) is True
+    assert revealed == [str(path)]
+
+    services.projects.open_project(project, None)
+    window.update_window_title()
+    revealed.clear()
+    assert window.eventFilter(window._project_path_label, click) is False
+    assert revealed == []
+    assert window._project_path_label.cursor().shape() == Qt.CursorShape.ArrowCursor
 
 
 def test_menu_actions_have_status_tips(qapp, tmp_path):
