@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Tip del basename en barra de estado sin guardar: indica Guardar (Ctrl+S)
+  para poder abrir la carpeta.
 - Tip del % de zoom en barra de estado: incluye rueda y atajos
   (Ctrl+= / Ctrl+- / Ctrl+0).
 - Docs: Preferencias bajo tema `system` = chrome OS (sin `#preferencesRoot`);
