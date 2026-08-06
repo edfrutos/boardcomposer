@@ -472,6 +472,8 @@ def test_zoom_in_status_tip_includes_shortcut():
 
     assert "Ctrl+=" in tr("tip.zoom_in", "es")
     assert "Ctrl+=" in tr("tip.zoom_in", "en")
+    assert "rueda" in tr("tip.zoom_in", "es").casefold()
+    assert "wheel" in tr("tip.zoom_in", "en").casefold()
 
 
 def test_zoom_out_status_tip_includes_shortcut():
@@ -479,6 +481,8 @@ def test_zoom_out_status_tip_includes_shortcut():
 
     assert "Ctrl+-" in tr("tip.zoom_out", "es")
     assert "Ctrl+-" in tr("tip.zoom_out", "en")
+    assert "rueda" in tr("tip.zoom_out", "es").casefold()
+    assert "wheel" in tr("tip.zoom_out", "en").casefold()
 
 
 def test_select_all_pieces_status_tip_includes_shortcut():

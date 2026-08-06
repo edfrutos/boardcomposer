@@ -73,7 +73,7 @@ en red; podés **Copiar**).
 | Duplicar / Eliminar | Ctrl+D / Backspace |
 | Cuadrícula | Ctrl+G |
 | Ajustar al tablero / selección | Ctrl+0 / Ctrl+Shift+0 |
-| Zoom + / − | Ctrl+= / Ctrl+- |
+| Zoom + / − (también rueda) | Ctrl+= / Ctrl+- |
 | Pantalla de inicio | Ctrl+Shift+H |
 | Demo | Ctrl+Shift+D |
 | Mostrar/ocultar docks | Ctrl+1…4 |
