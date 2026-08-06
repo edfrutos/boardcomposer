@@ -1900,11 +1900,7 @@ class MainWindow(QMainWindow):
         filename = self.services.projects.filename
         if label is not None:
             if filename:
-                from PySide6.QtGui import QFontMetrics
-
-                metrics = QFontMetrics(label.font())
-                elided = metrics.elidedText(filename, Qt.TextElideMode.ElideMiddle, 560)
-                label.setText(elided)
+                label.setText(Path(filename).name)
                 label.setToolTip(filename)
             else:
                 label.setText(self._tr("status.project_unsaved"))

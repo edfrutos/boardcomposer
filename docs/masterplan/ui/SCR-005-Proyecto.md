@@ -43,8 +43,8 @@ Plantilla…       Importar tableros…
 Salir            Importar piezas…
 ```
 
-La barra de estado muestra la ruta del `.bcproj` cuando el proyecto está
-guardado.
+La barra de estado muestra el basename del `.bcproj` cuando el proyecto está
+guardado; el tooltip lleva la ruta completa.
 
 ---
 

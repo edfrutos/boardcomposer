@@ -28,7 +28,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 
 - [x] **Nuevo proyecto** (**Ctrl+N**, tip de estado) pide nombre y unidades; aparece workspace vacío con CTAs.
 - [x] **Añadir tablero** (**Ctrl+Shift+B**; tip de estado) y **añadir pieza** (**Ctrl+Shift+P**; tip de estado) (menú / Explorador / CTA vacío).
-- [x] **Guardar** (**Ctrl+S**) / **Guardar como** (**Ctrl+Shift+S**) / **Abrir** (**Ctrl+O**) `.bcproj` (tips de estado); ruta visible en la barra de estado; **Ctrl+Shift+R** abre la carpeta (tip de estado); recuerda carpeta (`last_project_directory`).
+- [x] **Guardar** (**Ctrl+S**) / **Guardar como** (**Ctrl+Shift+S**) / **Abrir** (**Ctrl+O**) `.bcproj` (tips de estado); basename en barra de estado (tooltip = ruta); **Ctrl+Shift+R** abre la carpeta (tip de estado); recuerda carpeta (`last_project_directory`).
 - [x] **Recientes** en inicio y menú: clic / Enter abre; anclar / desanclar vía menú contextual; Delete / menú quita uno; vaciar lista (**Ctrl+Shift+X**; tip de estado) si aplica.
 - [x] **Plantilla de proyecto**: guardar (**Ctrl+Shift+M**; tip de estado) y crear desde plantilla (**Ctrl+Shift+N**; tip de estado).
 - [x] Cerrar / **Salir** (**Ctrl+Q**; tip de estado) con cambios sin guardar → diálogo claro (nombre/ruta/botones).

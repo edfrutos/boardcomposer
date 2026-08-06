@@ -4,6 +4,7 @@
 
 ### Añadido
 
+- Barra de estado: basename del `.bcproj` (tooltip = ruta completa).
 - Archivo → Abrir recientes: tips del submenú (anclar / carpeta / quitar)
   incluyen la ruta completa.
 - Archivo → Abrir recientes: submenú por proyecto (Abrir / anclar / carpeta /

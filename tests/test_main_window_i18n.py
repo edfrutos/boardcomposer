@@ -62,6 +62,7 @@ def test_project_path_status_and_reveal_action(qapp, tmp_path, monkeypatch):
     window.update_window_title()
 
     assert str(path) in window._project_path_label.toolTip()
+    assert window._project_path_label.text() == path.name
     assert window._actions["reveal_project_folder"].isEnabled()
 
     revealed: list[str] = []
