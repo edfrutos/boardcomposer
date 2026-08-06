@@ -3855,8 +3855,9 @@ class MainWindow(QMainWindow):
             pin_action = submenu.addAction(
                 self._tr("welcome.unpin_recent" if pinned else "welcome.pin_recent")
             )
-            pin_tip = with_native_shortcuts(
-                self._tr("tip.unpin_recent" if pinned else "tip.pin_recent")
+            pin_tip = self._tr(
+                "tip.recent_menu_unpin" if pinned else "tip.recent_menu_pin",
+                path=filename,
             )
             pin_action.setToolTip(pin_tip)
             pin_action.setStatusTip(pin_tip)
@@ -3865,7 +3866,7 @@ class MainWindow(QMainWindow):
             )
 
             reveal_action = submenu.addAction(self._tr("welcome.reveal_folder"))
-            reveal_tip = self._tr("tip.reveal_recent")
+            reveal_tip = self._tr("tip.recent_menu_reveal", path=filename)
             reveal_action.setToolTip(reveal_tip)
             reveal_action.setStatusTip(reveal_tip)
             reveal_action.triggered.connect(
@@ -3873,7 +3874,7 @@ class MainWindow(QMainWindow):
             )
 
             remove_action = submenu.addAction(self._tr("welcome.remove_recent"))
-            remove_tip = with_native_shortcuts(self._tr("tip.remove_recent"))
+            remove_tip = self._tr("tip.recent_menu_remove", path=filename)
             remove_action.setToolTip(remove_tip)
             remove_action.setStatusTip(remove_tip)
             remove_action.triggered.connect(

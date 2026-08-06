@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- Archivo → Abrir recientes: tips del submenú (anclar / carpeta / quitar)
+  incluyen la ruta completa.
 - Archivo → Abrir recientes: submenú por proyecto (Abrir / anclar / carpeta /
   quitar); misma gestión que Welcome.
 - Tema `system`: secundarios Welcome/empty/Explain sin `min-height`/`padding`
