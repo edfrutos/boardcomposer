@@ -45,7 +45,7 @@ Salir            Importar piezas…
 
 La barra de estado muestra el basename del `.bcproj` cuando el proyecto está
 guardado; el tooltip lleva la ruta completa. Clic (o **Ctrl+Shift+R**) abre la
-carpeta.
+carpeta. Sin archivo en disco: «aún no guardado» + tip **Ctrl+S**.
 
 ---
 
