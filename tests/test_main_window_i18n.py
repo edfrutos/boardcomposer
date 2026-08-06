@@ -132,7 +132,7 @@ def test_menu_actions_have_status_tips(qapp, tmp_path):
         == "No hay proyecto para calcular layout"
     )
     assert window._actions["zoom_in"].statusTip() == with_native_shortcuts(
-        "Acercar el Workspace (Ctrl+=)"
+        "Acercar el Workspace (rueda, Ctrl+=)"
     )
 
 
