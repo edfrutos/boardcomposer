@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Tip del % de zoom en barra de estado: incluye rueda y atajos
+  (Ctrl+= / Ctrl+- / Ctrl+0).
 - Docs: Preferencias bajo tema `system` = chrome OS (sin `#preferencesRoot`);
   DESIGN / SCR-006 / guía rápida + asserts.
 - Docs planificación 2026-08-06: snapshot

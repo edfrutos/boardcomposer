@@ -1961,7 +1961,7 @@ class MainWindow(QMainWindow):
             factor = self.workspace.zoom if zoom is None else zoom
             percent = max(1, int(round(factor * 100)))
             label.setText(self._tr("status.zoom", n=percent))
-            tip = self._tr("tip.zoom_status")
+            tip = with_native_shortcuts(self._tr("tip.zoom_status"))
             label.setToolTip(tip if tip != "tip.zoom_status" else "")
         self._sync_zoom_actions()
 

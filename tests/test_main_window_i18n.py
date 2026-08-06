@@ -544,6 +544,10 @@ def test_status_bar_shows_workspace_zoom_percent(qapp, tmp_path):
         "status.zoom", n=int(round(window.workspace.zoom * 100))
     )
     assert "zoom" in window._zoom_label.toolTip().casefold()
+    tip = window._zoom_label.toolTip().casefold()
+    assert "rueda" in tip or "wheel" in tip
+    assert "ctrl+=" in tip or "⌘=" in tip
+    assert "ctrl+0" in tip or "⌘0" in tip
 
 
 def test_view_menu_includes_dock_toggles(qapp, tmp_path):
