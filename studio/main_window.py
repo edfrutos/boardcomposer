@@ -1920,7 +1920,9 @@ class MainWindow(QMainWindow):
                 label.setCursor(Qt.CursorShape.PointingHandCursor)
             else:
                 label.setText(self._tr("status.project_unsaved"))
-                label.setToolTip("")
+                label.setToolTip(
+                    with_native_shortcuts(self._tr("tip.status_project_unsaved"))
+                )
                 label.setCursor(Qt.CursorShape.ArrowCursor)
         reveal = self._actions.get("reveal_project_folder")
         if reveal is not None:

@@ -59,6 +59,9 @@ def test_project_path_status_and_reveal_action(qapp, tmp_path, monkeypatch):
 
     assert window._project_path_label.text() == "Project not saved yet"
     assert not window._actions["reveal_project_folder"].isEnabled()
+    unsaved_tip = window._project_path_label.toolTip().casefold()
+    assert "save" in unsaved_tip
+    assert "ctrl+s" in unsaved_tip or "⌘s" in unsaved_tip
 
     services.projects.open_project(project, str(path))
     window.update_window_title()
@@ -99,6 +102,9 @@ def test_project_path_status_and_reveal_action(qapp, tmp_path, monkeypatch):
     assert window.eventFilter(window._project_path_label, click) is False
     assert revealed == []
     assert window._project_path_label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    unsaved_tip = window._project_path_label.toolTip().casefold()
+    assert "save" in unsaved_tip
+    assert "ctrl+s" in unsaved_tip or "⌘s" in unsaved_tip
 
 
 def test_menu_actions_have_status_tips(qapp, tmp_path):
