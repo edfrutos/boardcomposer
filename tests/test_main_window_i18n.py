@@ -222,6 +222,16 @@ def test_recent_menu_actions_use_pinned_status_tip(qapp, tmp_path):
     assert window._tr("welcome.unpin_recent") in labels
     assert window._tr("welcome.reveal_folder") in labels
     assert window._tr("welcome.remove_recent") in labels
+    by_label = {action.text(): action for action in submenu.actions()}
+    path = str(existing)
+    assert path in (by_label[window._tr("action.open_recent")].statusTip() or "")
+    assert path in (by_label[window._tr("welcome.unpin_recent")].statusTip() or "")
+    assert path in (by_label[window._tr("welcome.reveal_folder")].statusTip() or "")
+    assert path in (by_label[window._tr("welcome.remove_recent")].statusTip() or "")
+    assert (
+        "anclaje"
+        in (by_label[window._tr("welcome.unpin_recent")].statusTip() or "").lower()
+    )
 
 
 def test_recent_menu_submenu_pin_reveal_remove(qapp, tmp_path, monkeypatch):
@@ -256,6 +266,8 @@ def test_recent_menu_submenu_pin_reveal_remove(qapp, tmp_path, monkeypatch):
         for action in submenu.actions()
         if action.text() == window._tr("welcome.pin_recent")
     )
+    assert str(existing) in (pin_action.statusTip() or "")
+    assert "Anclar" in (pin_action.statusTip() or "")
     pin_action.trigger()
     assert services.recent_files.is_pinned(str(existing))
 
@@ -281,6 +293,7 @@ def test_recent_menu_submenu_pin_reveal_remove(qapp, tmp_path, monkeypatch):
         for action in submenu.actions()
         if action.text() == window._tr("welcome.reveal_folder")
     )
+    assert str(existing) in (reveal_action.statusTip() or "")
     reveal_action.trigger()
     assert revealed == [str(existing)]
 
@@ -289,6 +302,7 @@ def test_recent_menu_submenu_pin_reveal_remove(qapp, tmp_path, monkeypatch):
         for action in submenu.actions()
         if action.text() == window._tr("welcome.remove_recent")
     )
+    assert str(existing) in (remove_action.statusTip() or "")
     remove_action.trigger()
     assert services.recent_files.files == []
 
