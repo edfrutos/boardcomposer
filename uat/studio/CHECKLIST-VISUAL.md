@@ -31,7 +31,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Nuevo proyecto (Ctrl+N): diálogo nombre/unidades → workspace vacío con CTAs.
 - [x] Añadir tablero (Ctrl+Shift+B): aparece en Explorador y canvas.
 - [x] Añadir pieza (Ctrl+Shift+P): aparece en Explorador.
-- [x] Guardar / Guardar como / Abrir `.bcproj`; basename en barra de estado (tooltip = ruta).
+- [x] Guardar / Guardar como / Abrir `.bcproj`; basename en barra de estado (tooltip = ruta; clic abre carpeta).
 - [x] Abrir carpeta del proyecto (Ctrl+Shift+R) si hay ruta.
 - [x] Comparar revisiones `.bcproj` (Ctrl+Shift+Y): diálogo abre con proyecto actual y muestra diff textual comprensible.
 - [x] Restaurar última revisión (Ctrl+Alt+Y / menú Proyecto): confirmación clara; status y dirty tras restaurar.

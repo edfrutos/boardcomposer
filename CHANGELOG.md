@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- Barra de estado: clic en el basename abre la carpeta del `.bcproj`
+  (mismo flujo que Ctrl+Shift+R); tooltip con ruta + hint.
 - Barra de estado: basename del `.bcproj` (tooltip = ruta completa).
 - Archivo → Abrir recientes: tips del submenú (anclar / carpeta / quitar)
   incluyen la ruta completa.
