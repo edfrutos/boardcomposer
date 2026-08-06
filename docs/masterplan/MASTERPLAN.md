@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-08-05.
+Última revisión: 2026-08-06.
 
 ## Estado actual
 
@@ -11,7 +11,7 @@
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación.
 - Vertical multipanel MaxRects con material + espesor, Workspace interactivo y
   suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-08-05-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-08-06-planificacion.md`.
 
 ## Último bloque consolidado
 
