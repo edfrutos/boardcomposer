@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: **Ctrl+Shift+W** / **Ctrl+Shift+F2** / **Ctrl+Shift+L**,
+  más **Acerca de** (**Ctrl+Shift+A**) y **Salir** (**Ctrl+Q**).
 - Guía rápida: atajos de selección/edición (**Ctrl+A** / **Escape** /
   **Ctrl+Shift+I**, **Return**, **Ctrl+Shift+C**).
 - Guía rápida: nudge de pieza con flechas / Shift+flechas; atajos de
