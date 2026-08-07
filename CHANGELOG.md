@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: nudge de pieza con flechas / Shift+flechas; atajos de
+  plantilla (**Ctrl+Shift+N** / **Ctrl+Shift+M**).
 - Guía rápida: pan de cámara (medio / derecho / Espacio+arrastre) y Eliminar
   con Backspace o Delete.
 - Tips Zoom +/− (menú/toolbar): mencionan rueda además del atajo
