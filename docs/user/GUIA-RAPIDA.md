@@ -117,7 +117,8 @@ marcadores…).
   velocidad. Con la lista enfocada: **Espacio** play/pausa, **Inicio**
   reinicia, **←** / **→** paso a paso.
 - **Exportar…** (**Ctrl+Shift+L**) respeta los filtros visibles; **Vaciar**
-  pide confirmación. **Ctrl+C** en un evento copia su payload.
+  pide confirmación. **Ctrl+C** (lista enfocada) copia la **línea** del
+  evento; el menú contextual ofrece también el **payload JSON**.
 
 ## Consejos
 

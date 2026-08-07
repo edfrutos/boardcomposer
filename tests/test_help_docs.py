@@ -357,10 +357,19 @@ def test_shortcuts_catalog_and_dialog(qapp):
     )
     assert "Timeline" in table.item(replay_row, 0).text()
     assert native_sequence_label("Space") in table.item(replay_row, 1).text()
-    assert len(CONTEXTUAL_SHORTCUTS) == 4
+
+    copy_row = next(
+        i
+        for i, binding in enumerate(all_shortcut_rows())
+        if binding.action_key == "timeline_copy_line"
+    )
+    assert "Timeline" in table.item(copy_row, 0).text()
+    assert native_sequence_label("Ctrl+C") in table.item(copy_row, 1).text()
+    assert len(CONTEXTUAL_SHORTCUTS) == 5
     intro = dialog.findChild(QLabel)
     assert intro is not None
     assert "timeline" in intro.text().casefold()
+    assert "ctrl+c" in intro.text().casefold() or "⌘c" in intro.text().casefold()
 
 
 def test_welcome_has_docs_and_whats_new_buttons(qapp):

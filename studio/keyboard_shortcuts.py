@@ -85,11 +85,12 @@ CONTEXTUAL_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("timeline_replay_reset", "Home"),
     ShortcutBinding("timeline_replay_back", "Left"),
     ShortcutBinding("timeline_replay_forward", "Right"),
+    ShortcutBinding("timeline_copy_line", "Ctrl+C"),
 )
 
 
 def all_shortcut_rows() -> tuple[ShortcutBinding, ...]:
-    """Global menu shortcuts plus contextual Timeline replay rows for F1."""
+    """Global menu shortcuts plus contextual Timeline rows for F1."""
     return STUDIO_SHORTCUTS + CONTEXTUAL_SHORTCUTS
 
 
