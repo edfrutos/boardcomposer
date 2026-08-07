@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- F1 Atajos: filas contextuales de replay Timeline (Espacio / Inicio / ← / →)
+  e intro que las menciona.
 - Guía rápida: sección Timeline (Seguir, filtros, replay, export) y atajos
   contextuales de reproducción.
 - Timeline: tips en combos de filtro (evento / algoritmo / periodo) y replay

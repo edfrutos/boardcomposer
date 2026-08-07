@@ -79,6 +79,19 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("toggle_grid", "Ctrl+G"),
 )
 
+# Display-only rows for F1 / docs. Not applied via apply_shortcuts (list-focused).
+CONTEXTUAL_SHORTCUTS: tuple[ShortcutBinding, ...] = (
+    ShortcutBinding("timeline_replay_play", "Space"),
+    ShortcutBinding("timeline_replay_reset", "Home"),
+    ShortcutBinding("timeline_replay_back", "Left"),
+    ShortcutBinding("timeline_replay_forward", "Right"),
+)
+
+
+def all_shortcut_rows() -> tuple[ShortcutBinding, ...]:
+    """Global menu shortcuts plus contextual Timeline replay rows for F1."""
+    return STUDIO_SHORTCUTS + CONTEXTUAL_SHORTCUTS
+
 
 def native_sequence_label(sequence: str) -> str:
     """Platform-native label for a portable shortcut (⌘N on macOS)."""

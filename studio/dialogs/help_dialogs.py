@@ -19,7 +19,7 @@ from studio.dialogs.dialog_chrome import (
     polish_secondary_button,
 )
 from studio.i18n import DEFAULT_LANGUAGE, tr
-from studio.keyboard_shortcuts import STUDIO_SHORTCUTS, format_shortcut_label
+from studio.keyboard_shortcuts import all_shortcut_rows, format_shortcut_label
 from studio.version import STUDIO_VERSION
 from studio.whats_new import load_whats_new
 
@@ -167,7 +167,7 @@ class ShortcutsDialog(QDialog):
         intro.setWordWrap(True)
         layout.addWidget(intro)
 
-        table = QTableWidget(len(STUDIO_SHORTCUTS), 2)
+        table = QTableWidget(len(all_shortcut_rows()), 2)
         table.setObjectName("shortcutsTable")
         table.setHorizontalHeaderLabels(
             [
@@ -179,7 +179,7 @@ class ShortcutsDialog(QDialog):
         table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         table.setSelectionMode(QTableWidget.SelectionMode.NoSelection)
         table.setShowGrid(False)
-        for row, binding in enumerate(STUDIO_SHORTCUTS):
+        for row, binding in enumerate(all_shortcut_rows()):
             table.setItem(
                 row,
                 0,

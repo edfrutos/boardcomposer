@@ -414,10 +414,16 @@ _STRINGS: dict[str, dict[str, str]] = {
             "(no la tecla Control ⌃). "
             "En el Workspace: Espacio+arrastre, botón medio o derecho para "
             "desplazar; flechas (Shift = tamaño de cuadrícula) para mover "
-            "la pieza; rueda para zoom."
+            "la pieza; rueda para zoom. "
+            "En el Timeline (lista enfocada): Espacio play/pausa, Inicio "
+            "reinicia, ← / → paso a paso."
         ),
         "help.shortcuts_col_action": "Acción",
         "help.shortcuts_col_keys": "Atajo",
+        "action.timeline_replay_play": "Timeline — Play / Pausa (lista enfocada)",
+        "action.timeline_replay_reset": "Timeline — Inicio replay (lista enfocada)",
+        "action.timeline_replay_back": "Timeline — Paso atrás (lista enfocada)",
+        "action.timeline_replay_forward": ("Timeline — Paso adelante (lista enfocada)"),
         "help.docs_missing": "No se encontró la documentación en:\n{path}",
         "status.docs_opened": "Guía rápida abierta",
         "dock.explorer": "Explorador",
@@ -1455,10 +1461,16 @@ _STRINGS: dict[str, dict[str, str]] = {
             "(not the Control ⌃ key). "
             "In the Workspace: Space+drag, middle or right button to pan; "
             "arrow keys (Shift = grid size) to nudge a piece; "
-            "mouse wheel to zoom."
+            "mouse wheel to zoom. "
+            "In the Timeline (list focused): Space play/pause, Home "
+            "restarts, ← / → step."
         ),
         "help.shortcuts_col_action": "Action",
         "help.shortcuts_col_keys": "Shortcut",
+        "action.timeline_replay_play": "Timeline — Play / Pause (list focused)",
+        "action.timeline_replay_reset": "Timeline — Restart replay (list focused)",
+        "action.timeline_replay_back": "Timeline — Step back (list focused)",
+        "action.timeline_replay_forward": ("Timeline — Step forward (list focused)"),
         "help.docs_missing": "Documentation not found at:\n{path}",
         "status.docs_opened": "Quick guide opened",
         "dock.explorer": "Explorer",
