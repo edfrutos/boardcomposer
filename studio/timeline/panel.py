@@ -199,6 +199,7 @@ class TimelinePanel(QWidget):
         self._follow.setText(tr("timeline.follow_latest", language))
         self._clear_filters.setText(tr("timeline.clear_filters", language))
         self._sync_combo_tips()
+        self._sync_list_tip()
         self._sync_event_actions()
         self._replay_reset.setText(tr("timeline.replay_reset", language))
         self._replay_back.setText(tr("timeline.replay_back", language))
@@ -226,6 +227,12 @@ class TimelinePanel(QWidget):
             combo.setStatusTip(tip)
             label.setToolTip(tip)
             label.setStatusTip(tip)
+
+    def _sync_list_tip(self) -> None:
+        """Honest tip for Timeline list focus shortcuts and copy."""
+        tip = with_native_shortcuts(tr("tip.timeline_list", self._language))
+        self._list.setToolTip(tip)
+        self._list.setStatusTip(tip)
 
     def eventFilter(self, watched, event) -> bool:  # noqa: N802 — Qt API
         """Replay shortcuts when the Timeline list has keyboard focus."""
@@ -724,7 +731,15 @@ class TimelinePanel(QWidget):
             return
         menu = QMenu(self)
         copy_line = menu.addAction(tr("timeline.copy_line", self._language))
+        copy_line_tip = with_native_shortcuts(
+            tr("tip.timeline_copy_line", self._language)
+        )
+        copy_line.setToolTip(copy_line_tip)
+        copy_line.setStatusTip(copy_line_tip)
         copy_payload = menu.addAction(tr("timeline.copy_payload", self._language))
+        copy_payload_tip = tr("tip.timeline_copy_payload", self._language)
+        copy_payload.setToolTip(copy_payload_tip)
+        copy_payload.setStatusTip(copy_payload_tip)
         chosen = menu.exec(self._list.mapToGlobal(pos))
         if chosen is copy_line:
             self._copy_text_to_clipboard(item.text())

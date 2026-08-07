@@ -74,3 +74,18 @@ def test_timeline_ctrl_c_copies_selected_line(qapp):
     clipboard = QApplication.clipboard()
     assert clipboard is not None
     assert clipboard.text() == item.text()
+
+
+def test_timeline_list_tip_documents_focus_shortcuts(qapp):
+    panel = _panel_with_events(qapp)
+    tip = panel._list.statusTip().casefold()
+    assert "ctrl+c" in tip or "⌘c" in tip
+    assert "espacio" in tip or "space" in tip
+
+
+def test_timeline_context_menu_copy_actions_have_status_tips(qapp):
+    from studio.i18n import tr
+
+    panel = _panel_with_events(qapp)
+    assert "Ctrl+C" in tr("tip.timeline_copy_line", panel._language)
+    assert "JSON" in tr("tip.timeline_copy_payload", panel._language)

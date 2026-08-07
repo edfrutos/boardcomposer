@@ -460,7 +460,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.copy_line": "Copiar línea",
         "timeline.copy_payload": "Copiar payload JSON",
         "status.timeline_copied": "Evento del Timeline copiado al portapapeles",
-        "tip.timeline_clear": "Vaciar el historial del Timeline",
+        "tip.timeline_clear": ("Vaciar el historial del Timeline (pide confirmación)"),
         "tip.timeline_clear_filters": "Quitar filtros de evento, algoritmo y periodo",
         "tip.timeline_follow": ("Mantener la vista en el último evento del Timeline"),
         "tip.timeline_filter_piece_moves": (
@@ -480,6 +480,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_replay_speed": (
             "Velocidad de la reproducción automática en el Timeline"
         ),
+        "tip.timeline_list": (
+            "Lista enfocada: Espacio play/pausa, Inicio, ← / →, "
+            "Ctrl+C copia la línea; menú contextual = payload JSON"
+        ),
+        "tip.timeline_copy_line": "Copiar la línea visible del evento (Ctrl+C)",
+        "tip.timeline_copy_payload": "Copiar el payload JSON del evento",
         "status.timeline_clear_filters_idle": "No hay filtros activos",
         "status.timeline_filters_cleared": "Filtros del Timeline limpiados",
         "tip.timeline_replay_reset": "Inicio de la reproducción (Inicio)",
@@ -1508,7 +1514,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.copy_line": "Copy line",
         "timeline.copy_payload": "Copy payload JSON",
         "status.timeline_copied": "Timeline event copied to clipboard",
-        "tip.timeline_clear": "Clear the Timeline history",
+        "tip.timeline_clear": ("Clear the Timeline history (asks for confirmation)"),
         "tip.timeline_clear_filters": "Clear event, algorithm, and period filters",
         "tip.timeline_follow": "Keep the view on the latest Timeline event",
         "tip.timeline_filter_piece_moves": (
@@ -1520,6 +1526,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_filter_period": "Limit the history to a recent period",
         "tip.timeline_replay_mode": ("Replay solution placements or solver phases"),
         "tip.timeline_replay_speed": ("Speed of automatic Timeline replay"),
+        "tip.timeline_list": (
+            "List focused: Space play/pause, Home, ← / →, "
+            "Ctrl+C copies the line; context menu = JSON payload"
+        ),
+        "tip.timeline_copy_line": "Copy the visible event line (Ctrl+C)",
+        "tip.timeline_copy_payload": "Copy the event JSON payload",
         "status.timeline_clear_filters_idle": "No filters active",
         "status.timeline_filters_cleared": "Timeline filters cleared",
         "tip.timeline_replay_reset": "Restart replay (Home)",
