@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: sección Timeline (Seguir, filtros, replay, export) y atajos
+  contextuales de reproducción.
 - Timeline: tips en combos de filtro (evento / algoritmo / periodo) y replay
   (modo / velocidad).
 - Timeline: tips honestos en Seguir / Solo movimientos / Solo marcadores

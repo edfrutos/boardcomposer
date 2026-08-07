@@ -64,6 +64,7 @@ en red; podés **Copiar**).
 | Candidata anterior / siguiente | Re Pág / Av Pág |
 | Exportar solución | Ctrl+Shift+E |
 | Exportar historial Timeline | Ctrl+Shift+L |
+| Replay Timeline (lista enfocada) | Espacio / Inicio / ← / → |
 | Comparar revisiones `.bcproj` | Ctrl+Shift+Y |
 | Restaurar última revisión local | Ctrl+Alt+Y |
 | Exportar backup de revisiones | Ctrl+Alt+B |
@@ -102,6 +103,21 @@ Lista completa: **Ayuda → Atajos de teclado** (**F1**).
   expandirse a varios IDs.
 - Formatos: `.csv` y `.xlsx`. Tras elegir archivo, Studio muestra vista previa
   fila a fila (OK / error) antes de incorporar.
+
+## Timeline
+
+Dock **Ctrl+3**. Historial de eventos del proyecto (cálculos, movimientos,
+marcadores…).
+
+- **Seguir:** mantiene la vista en el último evento.
+- **Filtros:** combos de evento / algoritmo / periodo; botones **Solo
+  movimientos** y **Solo marcadores**; **Limpiar filtros** si hay alguno
+  activo.
+- **Replay:** tras **Calcular layout**, modo colocaciones o fases del solver +
+  velocidad. Con la lista enfocada: **Espacio** play/pausa, **Inicio**
+  reinicia, **←** / **→** paso a paso.
+- **Exportar…** (**Ctrl+Shift+L**) respeta los filtros visibles; **Vaciar**
+  pide confirmación. **Ctrl+C** en un evento copia su payload.
 
 ## Consejos
 
