@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: atajos de selección/edición (**Ctrl+A** / **Escape** /
+  **Ctrl+Shift+I**, **Return**, **Ctrl+Shift+C**).
 - Guía rápida: nudge de pieza con flechas / Shift+flechas; atajos de
   plantilla (**Ctrl+Shift+N** / **Ctrl+Shift+M**).
 - Guía rápida: pan de cámara (medio / derecho / Espacio+arrastre) y Eliminar
