@@ -70,6 +70,8 @@ en red; podés **Copiar**).
 | Deshacer / Rehacer | Ctrl+Z / Ctrl+Shift+Z |
 | Rotar pieza | R |
 | Mover pieza seleccionada | Flechas (Shift = tamaño cuadrícula) |
+| Seleccionar todas / Deseleccionar / Invertir | Ctrl+A / Escape / Ctrl+Shift+I |
+| Editar selección / Copiar ID | Return / Ctrl+Shift+C |
 | Renombrar selección | F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
 | Cuadrícula | Ctrl+G |
@@ -107,6 +109,8 @@ Lista completa: **Ayuda → Atajos de teclado** (**F1**).
   **Espacio + arrastre** (la rueda sigue siendo zoom).
 - **Workspace — mover pieza:** con una pieza colocada seleccionada, **flechas**
   mueven 1 mm; **Shift+flechas** usan el tamaño de cuadrícula (Preferencias).
+- **Selección:** **Ctrl+A** / **Escape** / **Ctrl+Shift+I** en el canvas;
+  **Return** edita; **Ctrl+Shift+C** copia el ID (Explorador también).
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - Varias soluciones = alternativas puntuadas; tú eliges.
 - Retales en Inspector son **informativos**, no inventario reutilizable automático.
