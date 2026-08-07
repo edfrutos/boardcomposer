@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Timeline: tips en combos de filtro (evento / algoritmo / periodo) y replay
+  (modo / velocidad).
 - Timeline: tips honestos en Seguir / Solo movimientos / Solo marcadores
   (ya no repiten solo la etiqueta).
 - Barra de estado y tip Export del dock Timeline: atajos vía
