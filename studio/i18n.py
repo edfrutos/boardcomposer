@@ -453,6 +453,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.timeline_copied": "Evento del Timeline copiado al portapapeles",
         "tip.timeline_clear": "Vaciar el historial del Timeline",
         "tip.timeline_clear_filters": "Quitar filtros de evento, algoritmo y periodo",
+        "tip.timeline_follow": ("Mantener la vista en el último evento del Timeline"),
+        "tip.timeline_filter_piece_moves": (
+            "Mostrar solo movimientos de piezas (desactivar = todos)"
+        ),
+        "tip.timeline_filter_markers": ("Mostrar solo marcadores (desactivar = todos)"),
         "status.timeline_clear_filters_idle": "No hay filtros activos",
         "status.timeline_filters_cleared": "Filtros del Timeline limpiados",
         "tip.timeline_replay_reset": "Inicio de la reproducción (Inicio)",
@@ -1476,6 +1481,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.timeline_copied": "Timeline event copied to clipboard",
         "tip.timeline_clear": "Clear the Timeline history",
         "tip.timeline_clear_filters": "Clear event, algorithm, and period filters",
+        "tip.timeline_follow": "Keep the view on the latest Timeline event",
+        "tip.timeline_filter_piece_moves": (
+            "Show only piece moves (turn off = all events)"
+        ),
+        "tip.timeline_filter_markers": ("Show only markers (turn off = all events)"),
         "status.timeline_clear_filters_idle": "No filters active",
         "status.timeline_filters_cleared": "Timeline filters cleared",
         "tip.timeline_replay_reset": "Restart replay (Home)",

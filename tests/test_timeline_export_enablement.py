@@ -75,6 +75,15 @@ def test_timeline_export_enabled_after_event(qapp, tmp_path):
         or "Timeline" in window.console._export.statusTip()
     )
     assert "Vaciar" in window.console._clear.statusTip()
+    follow_tip = window.console._follow.statusTip().casefold()
+    assert follow_tip != "seguir"
+    assert "último" in follow_tip or "vista" in follow_tip
+    moves_tip = window.console._piece_moves.statusTip().casefold()
+    assert moves_tip != "solo movimientos"
+    assert "movimiento" in moves_tip
+    markers_tip = window.console._markers.statusTip().casefold()
+    assert markers_tip != "solo marcadores"
+    assert "marcador" in markers_tip
 
 
 def test_timeline_export_disabled_after_clear(qapp, tmp_path):
