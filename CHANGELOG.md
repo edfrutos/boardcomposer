@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Timeline: tip Vaciar menciona confirmación; tip de lista (atajos + Ctrl+C)
+  y tips del menú contextual copiar línea / payload.
 - F1 Atajos: fila contextual Timeline Ctrl+C (copiar línea de evento) e intro;
   guía rápida alinea Ctrl+C = línea (payload vía menú contextual).
 - F1 Atajos: filas contextuales de replay Timeline (Espacio / Inicio / ← / →)

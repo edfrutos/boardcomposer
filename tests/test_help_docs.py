@@ -601,6 +601,22 @@ def test_export_timeline_status_tip_includes_shortcut():
     assert "Ctrl+Shift+L" in tr("tip.export_timeline", "en")
 
 
+def test_timeline_clear_tip_mentions_confirmation():
+    from studio.i18n import tr
+
+    assert "confirmación" in tr("tip.timeline_clear", "es").casefold()
+    assert "confirmation" in tr("tip.timeline_clear", "en").casefold()
+
+
+def test_timeline_list_and_copy_tips_mention_ctrl_c():
+    from studio.i18n import tr
+
+    for lang in ("es", "en"):
+        assert "Ctrl+C" in tr("tip.timeline_list", lang)
+        assert "Ctrl+C" in tr("tip.timeline_copy_line", lang)
+        assert "JSON" in tr("tip.timeline_copy_payload", lang)
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
