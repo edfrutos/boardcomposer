@@ -1,11 +1,13 @@
 """Tests for changelog highlights and documentation paths."""
 
 from PySide6.QtGui import QAction, QKeySequence
-from PySide6.QtWidgets import QTableWidget
+from PySide6.QtWidgets import QLabel, QTableWidget
 
 from studio.dialogs.help_dialogs import AboutDialog, ShortcutsDialog, WhatsNewDialog
 from studio.keyboard_shortcuts import (
+    CONTEXTUAL_SHORTCUTS,
     STUDIO_SHORTCUTS,
+    all_shortcut_rows,
     apply_shortcuts,
     format_shortcut_label,
     native_sequence_label,
@@ -324,29 +326,41 @@ def test_shortcuts_catalog_and_dialog(qapp):
     table = dialog.findChild(QTableWidget)
     assert table is not None
     assert table.objectName() == "shortcutsTable"
-    assert table.rowCount() == len(STUDIO_SHORTCUTS)
+    assert table.rowCount() == len(all_shortcut_rows())
     assert table.item(0, 0) is not None
     assert table.item(0, 1) is not None
 
     delete_row = next(
         i
-        for i, binding in enumerate(STUDIO_SHORTCUTS)
+        for i, binding in enumerate(all_shortcut_rows())
         if binding.action_key == "delete_piece"
     )
-    delete_binding = STUDIO_SHORTCUTS[delete_row]
+    delete_binding = all_shortcut_rows()[delete_row]
     assert table.item(delete_row, 1).text() == format_shortcut_label(delete_binding)
     assert native_sequence_label("Backspace") in table.item(delete_row, 1).text()
     assert native_sequence_label("Delete") in table.item(delete_row, 1).text()
 
     zoom_row = next(
         i
-        for i, binding in enumerate(STUDIO_SHORTCUTS)
+        for i, binding in enumerate(all_shortcut_rows())
         if binding.action_key == "zoom_in"
     )
-    zoom_binding = STUDIO_SHORTCUTS[zoom_row]
+    zoom_binding = all_shortcut_rows()[zoom_row]
     assert table.item(zoom_row, 1).text() == format_shortcut_label(zoom_binding)
     assert native_sequence_label("Ctrl+=") in table.item(zoom_row, 1).text()
     assert native_sequence_label("Ctrl++") in table.item(zoom_row, 1).text()
+
+    replay_row = next(
+        i
+        for i, binding in enumerate(all_shortcut_rows())
+        if binding.action_key == "timeline_replay_play"
+    )
+    assert "Timeline" in table.item(replay_row, 0).text()
+    assert native_sequence_label("Space") in table.item(replay_row, 1).text()
+    assert len(CONTEXTUAL_SHORTCUTS) == 4
+    intro = dialog.findChild(QLabel)
+    assert intro is not None
+    assert "timeline" in intro.text().casefold()
 
 
 def test_welcome_has_docs_and_whats_new_buttons(qapp):
