@@ -69,12 +69,15 @@ en red; podés **Copiar**).
 | Explicar candidata | Ctrl+Alt+E |
 | Deshacer / Rehacer | Ctrl+Z / Ctrl+Shift+Z |
 | Rotar pieza | R |
+| Mover pieza seleccionada | Flechas (Shift = tamaño cuadrícula) |
 | Renombrar selección | F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
 | Cuadrícula | Ctrl+G |
 | Ajustar al tablero / selección | Ctrl+0 / Ctrl+Shift+0 |
 | Zoom + / − (también rueda) | Ctrl+= / Ctrl+- |
 | Desplazar cámara (pan) | Botón medio / derecho / Espacio+arrastre |
+| Nuevo desde plantilla | Ctrl+Shift+N |
+| Guardar como plantilla | Ctrl+Shift+M |
 | Pantalla de inicio | Ctrl+Shift+H |
 | Demo | Ctrl+Shift+D |
 | Mostrar/ocultar docks | Ctrl+1…4 |
@@ -102,6 +105,8 @@ Lista completa: **Ayuda → Atajos de teclado** (**F1**).
   (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**).
 - **Workspace — pan:** desplaza la cámara con botón medio, botón derecho o
   **Espacio + arrastre** (la rueda sigue siendo zoom).
+- **Workspace — mover pieza:** con una pieza colocada seleccionada, **flechas**
+  mueven 1 mm; **Shift+flechas** usan el tamaño de cuadrícula (Preferencias).
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - Varias soluciones = alternativas puntuadas; tú eliges.
 - Retales en Inspector son **informativos**, no inventario reutilizable automático.
