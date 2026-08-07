@@ -63,6 +63,7 @@ en red; podés **Copiar**).
 | Aplicar layout del Comparador | Ctrl+Shift+Return |
 | Candidata anterior / siguiente | Re Pág / Av Pág |
 | Exportar solución | Ctrl+Shift+E |
+| Exportar historial Timeline | Ctrl+Shift+L |
 | Comparar revisiones `.bcproj` | Ctrl+Shift+Y |
 | Restaurar última revisión local | Ctrl+Alt+Y |
 | Exportar backup de revisiones | Ctrl+Alt+B |
@@ -73,6 +74,7 @@ en red; podés **Copiar**).
 | Seleccionar todas / Deseleccionar / Invertir | Ctrl+A / Escape / Ctrl+Shift+I |
 | Editar selección / Copiar ID | Return / Ctrl+Shift+C |
 | Renombrar selección | F2 |
+| Renombrar proyecto | Ctrl+Shift+F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
 | Cuadrícula | Ctrl+G |
 | Ajustar al tablero / selección | Ctrl+0 / Ctrl+Shift+0 |
@@ -84,8 +86,11 @@ en red; podés **Copiar**).
 | Demo | Ctrl+Shift+D |
 | Mostrar/ocultar docks | Ctrl+1…4 |
 | Mostrar/ocultar barra | Ctrl+Shift+K |
+| Restablecer disposición | Ctrl+Shift+W |
 | Documentación | Shift+F1 (o Ayuda → Documentación) |
 | Atajos / Novedades | F1 / Ctrl+Shift+U |
+| Acerca de | Ctrl+Shift+A |
+| Salir | Ctrl+Q |
 
 Lista completa: **Ayuda → Atajos de teclado** (**F1**).
 
