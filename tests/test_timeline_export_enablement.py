@@ -84,6 +84,12 @@ def test_timeline_export_enabled_after_event(qapp, tmp_path):
     markers_tip = window.console._markers.statusTip().casefold()
     assert markers_tip != "solo marcadores"
     assert "marcador" in markers_tip
+    assert "evento" in window.console._filter.statusTip().casefold()
+    assert "algoritmo" in window.console._algo_filter.statusTip().casefold()
+    assert "periodo" in window.console._period_filter.statusTip().casefold()
+    mode_tip = window.console._mode.statusTip().casefold()
+    assert "colocaciones" in mode_tip and "fases" in mode_tip
+    assert "velocidad" in window.console._speed.statusTip().casefold()
 
 
 def test_timeline_export_disabled_after_clear(qapp, tmp_path):

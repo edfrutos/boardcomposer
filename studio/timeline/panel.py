@@ -198,6 +198,7 @@ class TimelinePanel(QWidget):
         self._markers.setText(tr("timeline.filter_markers", language))
         self._follow.setText(tr("timeline.follow_latest", language))
         self._clear_filters.setText(tr("timeline.clear_filters", language))
+        self._sync_combo_tips()
         self._sync_event_actions()
         self._replay_reset.setText(tr("timeline.replay_reset", language))
         self._replay_back.setText(tr("timeline.replay_back", language))
@@ -209,6 +210,22 @@ class TimelinePanel(QWidget):
         self._rebuild_speed_items()
         self._rebuild()
         self._update_replay_controls()
+
+    def _sync_combo_tips(self) -> None:
+        """Apply honest tips to Timeline filter/replay combos and labels."""
+        pairs = (
+            (self._filter, self._filter_label, "tip.timeline_filter_event"),
+            (self._algo_filter, self._algo_label, "tip.timeline_filter_algorithm"),
+            (self._period_filter, self._period_label, "tip.timeline_filter_period"),
+            (self._mode, self._mode_label, "tip.timeline_replay_mode"),
+            (self._speed, self._speed_label, "tip.timeline_replay_speed"),
+        )
+        for combo, label, tip_key in pairs:
+            tip = tr(tip_key, self._language)
+            combo.setToolTip(tip)
+            combo.setStatusTip(tip)
+            label.setToolTip(tip)
+            label.setStatusTip(tip)
 
     def eventFilter(self, watched, event) -> bool:  # noqa: N802 — Qt API
         """Replay shortcuts when the Timeline list has keyboard focus."""

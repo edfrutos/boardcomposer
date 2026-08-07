@@ -458,6 +458,19 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Mostrar solo movimientos de piezas (desactivar = todos)"
         ),
         "tip.timeline_filter_markers": ("Mostrar solo marcadores (desactivar = todos)"),
+        "tip.timeline_filter_event": (
+            "Limitar el historial a un tipo de evento concreto"
+        ),
+        "tip.timeline_filter_algorithm": (
+            "Mostrar solo eventos de un algoritmo de cálculo"
+        ),
+        "tip.timeline_filter_period": ("Limitar el historial a un periodo reciente"),
+        "tip.timeline_replay_mode": (
+            "Reproducir colocaciones de la solución o las fases del solver"
+        ),
+        "tip.timeline_replay_speed": (
+            "Velocidad de la reproducción automática en el Timeline"
+        ),
         "status.timeline_clear_filters_idle": "No hay filtros activos",
         "status.timeline_filters_cleared": "Filtros del Timeline limpiados",
         "tip.timeline_replay_reset": "Inicio de la reproducción (Inicio)",
@@ -1486,6 +1499,11 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Show only piece moves (turn off = all events)"
         ),
         "tip.timeline_filter_markers": ("Show only markers (turn off = all events)"),
+        "tip.timeline_filter_event": "Limit the history to one event type",
+        "tip.timeline_filter_algorithm": ("Show only events from one solve algorithm"),
+        "tip.timeline_filter_period": "Limit the history to a recent period",
+        "tip.timeline_replay_mode": ("Replay solution placements or solver phases"),
+        "tip.timeline_replay_speed": ("Speed of automatic Timeline replay"),
         "status.timeline_clear_filters_idle": "No filters active",
         "status.timeline_filters_cleared": "Timeline filters cleared",
         "tip.timeline_replay_reset": "Restart replay (Home)",
