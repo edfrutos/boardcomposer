@@ -104,6 +104,22 @@ Lista completa: **Ayuda → Atajos de teclado** (**F1**).
 - Formatos: `.csv` y `.xlsx`. Tras elegir archivo, Studio muestra vista previa
   fila a fila (OK / error) antes de incorporar.
 
+## Comparador
+
+Dock **Ctrl+4**. Candidatas tras **Calcular layout**.
+
+- **Ordenar por:** ranking del solver, piezas, huecos, tablero libre, etc.
+- **Solo soluciones completas:** oculta candidatas parciales.
+- **Fijar como referencia** (≥2 soluciones): marca la candidata y muestra
+  el diff frente a ella.
+- Navegar: **Re Pág** / **Av Pág**; **Ctrl+Shift+Return** aplica la elegida
+  al proyecto.
+- Si editas inventario después de calcular, el banner avisa y el CTA
+  **Calcular layout** recalcula; tips de aplicar / navegar / explicar
+  también lo advierten.
+- **Ayuda → Explicar candidata…** (**Ctrl+Alt+E**): fortalezas / debilidades
+  / notas (sin IA en red; podés **Copiar**).
+
 ## Timeline
 
 Dock **Ctrl+3**. Historial de eventos del proyecto (cálculos, movimientos,
