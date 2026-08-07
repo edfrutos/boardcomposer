@@ -6,7 +6,7 @@
 **Versión:** 1.2.0
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 06/08/2026
+**Última revisión:** 07/08/2026
 
 ---
 
@@ -143,7 +143,7 @@ opción C diferida); sin críticas sin plan. IDE-0007 MVP local entregado.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para `0.4.2`; snapshot
-2026-08-06 en `REVIEW-2026-08-06-planificacion.md` (abiertas = 1, DT-0006).
+2026-08-07 en `REVIEW-2026-08-07-planificacion.md` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
