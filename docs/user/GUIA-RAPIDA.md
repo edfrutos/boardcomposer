@@ -70,10 +70,11 @@ en red; podés **Copiar**).
 | Deshacer / Rehacer | Ctrl+Z / Ctrl+Shift+Z |
 | Rotar pieza | R |
 | Renombrar selección | F2 |
-| Duplicar / Eliminar | Ctrl+D / Backspace |
+| Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
 | Cuadrícula | Ctrl+G |
 | Ajustar al tablero / selección | Ctrl+0 / Ctrl+Shift+0 |
 | Zoom + / − (también rueda) | Ctrl+= / Ctrl+- |
+| Desplazar cámara (pan) | Botón medio / derecho / Espacio+arrastre |
 | Pantalla de inicio | Ctrl+Shift+H |
 | Demo | Ctrl+Shift+D |
 | Mostrar/ocultar docks | Ctrl+1…4 |
@@ -99,6 +100,8 @@ Lista completa: **Ayuda → Atajos de teclado** (**F1**).
   **Ctrl+Shift+R**). Sin guardar: «Proyecto aún no guardado» — tip pide
   **Ctrl+S** antes de poder abrir carpeta. El **%** es el zoom del Workspace
   (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**).
+- **Workspace — pan:** desplaza la cámara con botón medio, botón derecho o
+  **Espacio + arrastre** (la rueda sigue siendo zoom).
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - Varias soluciones = alternativas puntuadas; tú eliges.
 - Retales en Inspector son **informativos**, no inventario reutilizable automático.
