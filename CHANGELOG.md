@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: pan de cámara (medio / derecho / Espacio+arrastre) y Eliminar
+  con Backspace o Delete.
 - Tips Zoom +/− (menú/toolbar): mencionan rueda además del atajo
   (paridad con tip del % en barra).
 - Guía rápida: barra de estado (basename, clic → carpeta, tip sin guardar,
