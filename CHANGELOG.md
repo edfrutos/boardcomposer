@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Timeline: tips honestos en Seguir / Solo movimientos / Solo marcadores
+  (ya no repiten solo la etiqueta).
 - Barra de estado y tip Export del dock Timeline: atajos vía
   `with_native_shortcuts` (⌘ en macOS, no Ctrl+ literal).
 - Guía rápida: **Ctrl+Shift+W** / **Ctrl+Shift+F2** / **Ctrl+Shift+L**,
