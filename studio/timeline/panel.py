@@ -27,6 +27,7 @@ from boardcomposer.solver.solve_trace import SolveTrace
 from studio.dialogs.dialog_chrome import polish_secondary_button
 from studio.events.catalog import ALL_EVENTS, CATALOG, PIECE_MOVED, TIMELINE_MARKED
 from studio.i18n import tr
+from studio.keyboard_shortcuts import with_native_shortcuts
 from studio.timeline.phase_replay import SolvePhaseReplay
 from studio.timeline.replay import SolutionReplay
 from studio.timeline.store import TimelineEntry, TimelineStore
@@ -434,11 +435,13 @@ class TimelinePanel(QWidget):
         )
         has_visible_events = bool(visible_entries)
         self._export.setEnabled(has_visible_events)
-        export_tip = tr(
-            "tip.export_timeline"
-            if has_visible_events
-            else "status.timeline_export_empty",
-            self._language,
+        export_tip = with_native_shortcuts(
+            tr(
+                "tip.export_timeline"
+                if has_visible_events
+                else "status.timeline_export_empty",
+                self._language,
+            )
         )
         self._export.setToolTip(export_tip)
         self._export.setStatusTip(export_tip)

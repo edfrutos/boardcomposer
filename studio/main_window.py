@@ -2620,7 +2620,9 @@ class MainWindow(QMainWindow):
             banner.clear()
 
     def _status(self, key: str, timeout: int = 3000, **kwargs: object) -> None:
-        self.statusBar().showMessage(self._tr(key, **kwargs), timeout)
+        self.statusBar().showMessage(
+            with_native_shortcuts(self._tr(key, **kwargs)), timeout
+        )
 
     def clear_inspector(self) -> None:
         """Show the empty Inspector state in the active language."""

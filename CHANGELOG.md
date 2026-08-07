@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Barra de estado y tip Export del dock Timeline: atajos vía
+  `with_native_shortcuts` (⌘ en macOS, no Ctrl+ literal).
 - Guía rápida: **Ctrl+Shift+W** / **Ctrl+Shift+F2** / **Ctrl+Shift+L**,
   más **Acerca de** (**Ctrl+Shift+A**) y **Salir** (**Ctrl+Q**).
 - Guía rápida: atajos de selección/edición (**Ctrl+A** / **Escape** /

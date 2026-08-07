@@ -34,7 +34,7 @@ def test_layout_ok_status_mentions_export(qapp, tmp_path):
     window._announce_layout_ok(shown=5)
     message = window.statusBar().currentMessage()
     assert "5 soluciones" in message
-    assert "Ctrl+Shift+E" in message
+    assert "Ctrl+Shift+E" in message or "⇧⌘E" in message
     assert "Re/Av Pág" in message
     assert "Fijar referencia" in message
 
