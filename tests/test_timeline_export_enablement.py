@@ -69,6 +69,11 @@ def test_timeline_export_enabled_after_event(qapp, tmp_path):
         or "⇧⌘L" in window._actions["export_timeline"].statusTip()
         or "Timeline" in window._actions["export_timeline"].statusTip()
     )
+    assert (
+        "Ctrl+Shift+L" in window.console._export.statusTip()
+        or "⇧⌘L" in window.console._export.statusTip()
+        or "Timeline" in window.console._export.statusTip()
+    )
     assert "Vaciar" in window.console._clear.statusTip()
 
 

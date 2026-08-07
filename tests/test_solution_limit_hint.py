@@ -45,7 +45,7 @@ def test_announce_single_candidate_explains_no_more(qapp, tmp_path):
     message = window.statusBar().currentMessage()
     assert "única candidata" in message
     assert "no hay más" in message
-    assert "Ctrl+Shift+D" in message
+    assert "Ctrl+Shift+D" in message or "⇧⌘D" in message
     assert "4" in message
     assert "2" in message
 
