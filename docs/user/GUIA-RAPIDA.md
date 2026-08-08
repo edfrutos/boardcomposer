@@ -11,7 +11,16 @@ make run
 .venv/bin/python -m studio.app
 ```
 
-Pantalla de inicio: nuevo proyecto, abrir, recientes (clic o Enter; menú: anclar / carpeta / Delete quita), demo, plantilla, docs, novedades, atajos y acerca de.
+## Pantalla de inicio
+
+Welcome (**Ctrl+Shift+H** para volver). CTAs: nuevo, abrir, importar piezas,
+demo (**Ctrl+Shift+D**), desde plantilla, docs, novedades (**Ctrl+Shift+U**),
+preferencias, atajos (**F1**), acerca de (**Ctrl+Shift+A**).
+
+- **Recientes:** clic o Enter abre; menú: anclar / carpeta / quitar.
+  **Delete** / **Backspace** quita de la lista; **Vaciar lista**
+  (**Ctrl+Shift+X**) limpia todo.
+- Sin recientes: mensaje vacío. Plantilla deshabilitada si no hay catálogo.
 
 ## Flujo típico
 
