@@ -104,6 +104,19 @@ Lista completa: **Ayuda → Atajos de teclado** (**F1**).
 - Formatos: `.csv` y `.xlsx`. Tras elegir archivo, Studio muestra vista previa
   fila a fila (OK / error) antes de incorporar.
 
+## Workspace
+
+Canvas central del layout.
+
+- Sin tableros ni piezas: overlay con CTAs (añadir / importar).
+- **Pan:** botón medio, botón derecho o **Espacio + arrastre**.
+- **Zoom:** rueda, **Ctrl+=** / **Ctrl+-**, ajustar todo (**Ctrl+0**) o
+  selección (**Ctrl+Shift+0**). Cuadrícula: **Ctrl+G**.
+- **Pieza colocada:** **flechas** mueven 1 mm; **Shift+flechas** usan el
+  tamaño de cuadrícula (Preferencias); **R** rota 90°.
+- **Selección:** **Ctrl+A** / **Escape** / **Ctrl+Shift+I**; **Return**
+  edita; **Ctrl+Shift+C** copia el ID.
+
 ## Explorador
 
 Dock **Ctrl+1**. Árbol del proyecto: **Tableros**, **Piezas** y **Soluciones**.
@@ -169,12 +182,6 @@ marcadores…).
   **Ctrl+Shift+R**). Sin guardar: «Proyecto aún no guardado» — tip pide
   **Ctrl+S** antes de poder abrir carpeta. El **%** es el zoom del Workspace
   (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**).
-- **Workspace — pan:** desplaza la cámara con botón medio, botón derecho o
-  **Espacio + arrastre** (la rueda sigue siendo zoom).
-- **Workspace — mover pieza:** con una pieza colocada seleccionada, **flechas**
-  mueven 1 mm; **Shift+flechas** usan el tamaño de cuadrícula (Preferencias).
-- **Selección:** **Ctrl+A** / **Escape** / **Ctrl+Shift+I** en el canvas;
-  **Return** edita; **Ctrl+Shift+C** copia el ID (Explorador también).
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - Varias soluciones = alternativas puntuadas; tú eliges.
 - Retales en Inspector son **informativos**, no inventario reutilizable automático.
