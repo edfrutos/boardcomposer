@@ -129,6 +129,11 @@
   (Ctrl+= / Ctrl+- / Ctrl+0).
 - Docs: Preferencias bajo tema `system` = chrome OS (sin `#preferencesRoot`);
   DESIGN / SCR-006 / guía rápida + asserts.
+- Docs planificación 2026-08-08: snapshot
+  `docs/masterplan/REVIEW-2026-08-08-planificacion.md`; cola IDE-0019…0024
+  vigente (sin IDE nuevas: residuales + backlog abierto; avance QoL Timeline/
+  guía); ROADMAP / DOC-003 / DOC-004 / DOC-006 / MASTERPLAN / AI_CONTEXT /
+  INDEX alineados.
 - Docs planificación 2026-08-07: snapshot
   `docs/masterplan/REVIEW-2026-08-07-planificacion.md`; cola IDE-0019…0024
   vigente (sin IDE nuevas: residuales + backlog abierto); ROADMAP / DOC-003 /
