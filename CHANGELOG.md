@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: sección Explorador (doble clic, menú contextual, colocar,
+  vista previa).
 - Guía rápida: sección Comparador (ordenar, completas, referencia, navigate,
   banner desactualizado, explicar).
 - Timeline: tip Vaciar menciona confirmación; tip de lista (atajos + Ctrl+C)

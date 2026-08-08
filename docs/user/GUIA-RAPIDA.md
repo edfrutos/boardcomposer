@@ -104,6 +104,19 @@ Lista completa: **Ayuda → Atajos de teclado** (**F1**).
 - Formatos: `.csv` y `.xlsx`. Tras elegir archivo, Studio muestra vista previa
   fila a fila (OK / error) antes de incorporar.
 
+## Explorador
+
+Dock **Ctrl+1**. Árbol del proyecto: **Tableros**, **Piezas** y **Soluciones**.
+
+- **Doble clic / Return:** edita tablero o pieza; si la pieza está sin
+  colocar y hay tablero enfocado en el Workspace, la **coloca** ahí.
+  En una solución: vista previa en el Workspace (sin aplicar).
+- **Menú contextual:** editar / renombrar (**F2**) / duplicar (**Ctrl+D**) /
+  copiar ID (**Ctrl+Shift+C**) / eliminar; en piezas también
+  **Colocar en tablero enfocado**; en categorías, añadir tablero/pieza;
+  en el proyecto, renombrar u **Abrir carpeta…**.
+- Piezas sin colocar llevan marca **sin colocar**.
+
 ## Comparador
 
 Dock **Ctrl+4**. Candidatas tras **Calcular layout**.
