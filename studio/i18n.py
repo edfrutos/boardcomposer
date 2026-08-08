@@ -495,7 +495,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.timeline_replay_idle": (
             "Calcula un layout para reproducir la solución en el Timeline"
         ),
-        "tip.timeline_mark": "Añadir un marcador en el Timeline",
+        "tip.timeline_mark": (
+            "Añadir un marcador con nota (diálogo); opcional paso/algoritmo "
+            "del replay activo"
+        ),
         "timeline.export": "Exportar…",
         "timeline.mark": "Marcador…",
         "timeline.mark_dialog_title": "Añadir marcador",
@@ -1541,7 +1544,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.timeline_replay_idle": (
             "Calculate a layout to replay the solution in the Timeline"
         ),
-        "tip.timeline_mark": "Add a marker to the Timeline",
+        "tip.timeline_mark": (
+            "Add a marker with a note (dialog); optional step/algorithm "
+            "from the active replay"
+        ),
         "timeline.export": "Export…",
         "timeline.mark": "Marker…",
         "timeline.mark_dialog_title": "Add marker",

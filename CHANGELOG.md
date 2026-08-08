@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Timeline: tip Marcador menciona diálogo de nota (+ paso/algoritmo de replay);
+  guía rápida documenta el botón.
 - Guía rápida: sección Pantalla de inicio (CTAs, recientes, atajos Welcome).
 - Guía rápida: sección Plantillas de proyecto (guardar / nuevo, colocaciones,
   vs plantillas de exportación).
