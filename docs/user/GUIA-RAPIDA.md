@@ -175,6 +175,19 @@ marcadores…).
   pide confirmación. **Ctrl+C** (lista enfocada) copia la **línea** del
   evento; el menú contextual ofrece también el **payload JSON**.
 
+## Exportar
+
+**Archivo → Exportar…** (**Ctrl+Shift+E**) exporta la **solución seleccionada**.
+
+- Formatos: SVG / PNG / JPEG / PDF / DXF / JSON / CSV. Vista previa según
+  opciones (métricas, explicación, retales en JSON).
+- **Cliente** y **plantilla** reutilizan un perfil; **Guardar…** / **Eliminar**
+  gestionan el catálogo; **Exportar/Importar pack…** comparte plantillas
+  (recuerda la última carpeta).
+- Al terminar: diálogo con **Abrir archivo** / **Abrir carpeta**.
+- Si las soluciones están desactualizadas, el diálogo prioriza **Calcular
+  layout** antes de continuar.
+
 ## Consejos
 
 - **Barra de estado:** con proyecto guardado muestra el nombre del `.bcproj`
