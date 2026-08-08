@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: sección Comparador (ordenar, completas, referencia, navigate,
+  banner desactualizado, explicar).
 - Timeline: tip Vaciar menciona confirmación; tip de lista (atajos + Ctrl+C)
   y tips del menú contextual copiar línea / payload.
 - F1 Atajos: fila contextual Timeline Ctrl+C (copiar línea de evento) e intro;
