@@ -117,6 +117,19 @@ Dock **Ctrl+1**. Árbol del proyecto: **Tableros**, **Piezas** y **Soluciones**.
   en el proyecto, renombrar u **Abrir carpeta…**.
 - Piezas sin colocar llevan marca **sin colocar**.
 
+## Inspector
+
+Dock **Ctrl+2**. Detalle de la selección y del layout.
+
+- Sin selección: mensaje vacío. Con **tablero** o **pieza**: dimensiones,
+  espesor, cantidad, material; en piezas, posición o «sin colocar» (con
+  consejo de colocar vía Explorador).
+- Tras **Calcular layout**: métricas de la candidata (piezas, huecos,
+  material libre, omitidas, puntos clave).
+- **Retales** son **informativos** — no inventario reutilizable automático.
+- Si el inventario cambió tras calcular, el Inspector también avisa de
+  soluciones desactualizadas.
+
 ## Comparador
 
 Dock **Ctrl+4**. Candidatas tras **Calcular layout**.
