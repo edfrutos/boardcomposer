@@ -188,6 +188,18 @@ marcadores…).
 - Si las soluciones están desactualizadas, el diálogo prioriza **Calcular
   layout** antes de continuar.
 
+## Preferencias
+
+**Editar → Preferencias** (**Ctrl+,**). Globales: **no** van en el `.bcproj`.
+
+- **General:** idioma, tema (sistema / claro / oscuro), unidades.
+- **Workspace:** mostrar cuadrícula y tamaño (afecta **Shift+flechas**).
+- **Algoritmos:** estrategia y pesos opcionales.
+- **Exportación:** formato por defecto y opciones JSON (métricas /
+  explicación / retales).
+- **Avanzado:** máx. soluciones a conservar; **Abrir carpeta de
+  configuración…** (`preferences.json`); **Restaurar valores**.
+
 ## Consejos
 
 - **Barra de estado:** con proyecto guardado muestra el nombre del `.bcproj`
@@ -198,7 +210,6 @@ marcadores…).
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - Varias soluciones = alternativas puntuadas; tú eliges.
 - Retales en Inspector son **informativos**, no inventario reutilizable automático.
-- Tema **sistema**/claro/oscuro e idioma: **Editar → Preferencias**.
 - Si te arrepientes tras varios Guardar: **Ctrl+Alt+Y** restaura la última
   copia del anillo local (luego Guardar otra vez).
 - En macOS, **Ctrl** de los atajos es la tecla **⌘** (Command).

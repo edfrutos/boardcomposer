@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: sección Preferencias (pestañas globales, cuadrícula,
+  carpeta de config); Consejos dejan de duplicar tema/idioma.
 - Guía rápida: sección Exportar (formatos, plantillas, pack, abrir carpeta,
   banner desactualizado).
 - Guía rápida: sección Workspace (overlay vacío, pan, zoom, nudge, selección);
