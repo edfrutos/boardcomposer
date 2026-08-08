@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: sección Inspector (selección, métricas de layout, retales
+  informativos, banner desactualizado).
 - Guía rápida: sección Explorador (doble clic, menú contextual, colocar,
   vista previa).
 - Guía rápida: sección Comparador (ordenar, completas, referencia, navigate,
