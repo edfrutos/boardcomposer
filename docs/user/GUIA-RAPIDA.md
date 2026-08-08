@@ -200,6 +200,17 @@ marcadores…).
 - **Avanzado:** máx. soluciones a conservar; **Abrir carpeta de
   configuración…** (`preferences.json`); **Restaurar valores**.
 
+## Plantillas de proyecto
+
+Inventario reutilizable (tableros / piezas), distinto de las **plantillas de
+exportación**.
+
+- **Guardar como plantilla…** (**Ctrl+Shift+M**): pide nombre; opcional
+  incluir colocaciones actuales. Requiere proyecto abierto.
+- **Nuevo desde plantilla…** (**Ctrl+Shift+N** o Welcome): elige plantilla;
+  opcional restaurar colocaciones; renombrar / eliminar desde el diálogo.
+- Sin catálogo, el atajo/botón queda deshabilitado (tip honesto).
+
 ## Consejos
 
 - **Barra de estado:** con proyecto guardado muestra el nombre del `.bcproj`

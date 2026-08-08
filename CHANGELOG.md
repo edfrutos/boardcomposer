@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: sección Plantillas de proyecto (guardar / nuevo, colocaciones,
+  vs plantillas de exportación).
 - Guía rápida: sección Preferencias (pestañas globales, cuadrícula,
   carpeta de config); Consejos dejan de duplicar tema/idioma.
 - Guía rápida: sección Exportar (formatos, plantillas, pack, abrir carpeta,
