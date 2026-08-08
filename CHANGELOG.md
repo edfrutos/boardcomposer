@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: sección Workspace (overlay vacío, pan, zoom, nudge, selección);
+  Consejos dejan de duplicar pan/nudge/selección.
 - Guía rápida: sección Inspector (selección, métricas de layout, retales
   informativos, banner desactualizado).
 - Guía rápida: sección Explorador (doble clic, menú contextual, colocar,
