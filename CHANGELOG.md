@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Guía rápida: sección Pantalla de inicio (CTAs, recientes, atajos Welcome).
 - Guía rápida: sección Plantillas de proyecto (guardar / nuevo, colocaciones,
   vs plantillas de exportación).
 - Guía rápida: sección Preferencias (pestañas globales, cuadrícula,
