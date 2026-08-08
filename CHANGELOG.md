@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: sección Exportar (formatos, plantillas, pack, abrir carpeta,
+  banner desactualizado).
 - Guía rápida: sección Workspace (overlay vacío, pan, zoom, nudge, selección);
   Consejos dejan de duplicar pan/nudge/selección.
 - Guía rápida: sección Inspector (selección, métricas de layout, retales
