@@ -177,6 +177,7 @@ marcadores…).
 - **Filtros:** combos de evento / algoritmo / periodo; botones **Solo
   movimientos** y **Solo marcadores**; **Limpiar filtros** si hay alguno
   activo.
+- **Marcador…:** pide una nota; si hay replay activo, guarda paso/algoritmo.
 - **Replay:** tras **Calcular layout**, modo colocaciones o fases del solver +
   velocidad. Con la lista enfocada: **Espacio** play/pausa, **Inicio**
   reinicia, **←** / **→** paso a paso.

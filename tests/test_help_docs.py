@@ -617,6 +617,17 @@ def test_timeline_list_and_copy_tips_mention_ctrl_c():
         assert "JSON" in tr("tip.timeline_copy_payload", lang)
 
 
+def test_timeline_mark_tip_mentions_note_dialog():
+    from studio.i18n import tr
+
+    es = tr("tip.timeline_mark", "es").casefold()
+    en = tr("tip.timeline_mark", "en").casefold()
+    assert "nota" in es
+    assert "diálogo" in es
+    assert "note" in en
+    assert "dialog" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
