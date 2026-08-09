@@ -663,7 +663,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Soluciones desactualizadas: el diff usa candidatas viejas; "
             "recalcula con el CTA del Comparador o Ctrl+Return"
         ),
-        "tip.comparator_sort": "Ordena las candidatas del Comparador",
+        "tip.comparator_sort": (
+            "Ordena las candidatas: ranking del solver, piezas, huecos, "
+            "tablero libre o puntuación"
+        ),
         "tip.comparator_complete_only": (
             "Oculta candidatas parciales en el Comparador"
         ),
@@ -1711,7 +1714,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Solutions outdated: the diff uses stale candidates; "
             "recalculate via the Comparator banner CTA or Ctrl+Return"
         ),
-        "tip.comparator_sort": "Sort Comparator candidates",
+        "tip.comparator_sort": (
+            "Sort candidates by solver ranking, pieces, gaps, free board, or score"
+        ),
         "tip.comparator_complete_only": "Hide partial candidates in the Comparator",
         "comparator.reference_mark": "Ref {n}",
         "comparator.reference_thumb": "#{n} · ref",

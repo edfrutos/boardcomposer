@@ -628,6 +628,17 @@ def test_timeline_mark_tip_mentions_note_dialog():
     assert "dialog" in en
 
 
+def test_comparator_sort_tip_lists_criteria():
+    from studio.i18n import tr
+
+    es = tr("tip.comparator_sort", "es").casefold()
+    en = tr("tip.comparator_sort", "en").casefold()
+    assert "ranking" in es
+    assert "puntuación" in es
+    assert "ranking" in en
+    assert "score" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
