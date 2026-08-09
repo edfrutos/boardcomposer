@@ -221,6 +221,17 @@ exportación**.
   opcional restaurar colocaciones; renombrar / eliminar desde el diálogo.
 - Sin catálogo, el atajo/botón queda deshabilitado (tip honesto).
 
+## Disposición
+
+Chrome de Studio (se recuerda entre sesiones).
+
+- **Docks:** Explorador (**Ctrl+1**), Inspector (**Ctrl+2**), Timeline
+  (**Ctrl+3**), Comparador (**Ctrl+4**).
+- **Barra de herramientas:** mostrar/ocultar (**Ctrl+Shift+K**).
+- **Restablecer disposición** (**Ctrl+Shift+W**): docks, toolbar y tamaño
+  de ventana a valores iniciales (status: «Disposición de ventana
+  restablecida»).
+
 ## Consejos
 
 - **Barra de estado:** con proyecto guardado muestra el nombre del `.bcproj`
