@@ -683,6 +683,17 @@ def test_new_from_template_tip_mentions_picker_and_unsaved():
     assert "template" in en and "unsaved" in en
 
 
+def test_new_project_tip_mentions_dialog_and_unsaved():
+    from studio.i18n import tr
+
+    es = tr("tip.new_project", "es").casefold()
+    en = tr("tip.new_project", "en").casefold()
+    assert "Ctrl+N" in tr("tip.new_project", "es")
+    assert "Ctrl+N" in tr("tip.new_project", "en")
+    assert "nombre" in es and "sin guardar" in es
+    assert "name" in en and "unsaved" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
