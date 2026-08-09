@@ -672,6 +672,17 @@ def test_new_demo_project_tip_mentions_inventory_and_unsaved():
     assert "unsaved" in en
 
 
+def test_new_from_template_tip_mentions_picker_and_unsaved():
+    from studio.i18n import tr
+
+    es = tr("tip.new_from_template", "es").casefold()
+    en = tr("tip.new_from_template", "en").casefold()
+    assert "Ctrl+Shift+N" in tr("tip.new_from_template", "es")
+    assert "Ctrl+Shift+N" in tr("tip.new_from_template", "en")
+    assert "plantilla" in es and "sin guardar" in es
+    assert "template" in en and "unsaved" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 

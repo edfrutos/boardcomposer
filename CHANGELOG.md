@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Plantilla: tip Nuevo desde plantilla menciona selector + confirmación si hay
+  cambios sin guardar.
 - Demo: tip menciona inventario de ejemplo + confirmación si hay cambios sin
   guardar.
 - Comparador: tip «Solo soluciones completas» explica omitidas vs parciales.
