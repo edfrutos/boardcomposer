@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Guía rápida: sección Disposición (docks Ctrl+1…4, toolbar, restablecer
+  Ctrl+Shift+W).
 - Explorador / Comparador: tip Vista previa aclara que no aplica y apunta a
   Ctrl+Shift+Return para conservar.
 - Comparador: tip Ordenar por lista criterios (ranking / piezas / huecos /
