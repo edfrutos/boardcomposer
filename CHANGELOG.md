@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Nuevo proyecto: tip menciona diálogo nombre/unidades + confirmación si hay
+  cambios sin guardar.
 - Plantilla: tip Nuevo desde plantilla menciona selector + confirmación si hay
   cambios sin guardar.
 - Demo: tip menciona inventario de ejemplo + confirmación si hay cambios sin

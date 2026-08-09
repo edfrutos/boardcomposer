@@ -221,7 +221,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.shortcuts": "Atajos de teclado…",
         "action.open_docs": "Documentación…",
         "action.about": "Acerca de BoardComposer…",
-        "tip.new_project": "Crear un proyecto vacío (Ctrl+N)",
+        "tip.new_project": (
+            "Crear un proyecto vacío (Ctrl+N); pide nombre/unidades y "
+            "confirmación si hay cambios sin guardar"
+        ),
         "tip.new_demo_project": (
             "Abrir el proyecto de ejemplo con tableros, piezas y colocaciones "
             "(Ctrl+Shift+D); pide confirmación si hay cambios sin guardar"
@@ -1308,7 +1311,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.shortcuts": "Keyboard shortcuts…",
         "action.open_docs": "Documentation…",
         "action.about": "About BoardComposer…",
-        "tip.new_project": "Create an empty project (Ctrl+N)",
+        "tip.new_project": (
+            "Create an empty project (Ctrl+N); asks for name/units and "
+            "confirms if there are unsaved changes"
+        ),
         "tip.new_demo_project": (
             "Open the sample project with boards, pieces, and placements "
             "(Ctrl+Shift+D); asks to confirm if there are unsaved changes"
