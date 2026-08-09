@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Comparador: tip Ordenar por lista criterios (ranking / piezas / huecos /
+  tablero libre / puntuación).
 - Timeline: tip Marcador menciona diálogo de nota (+ paso/algoritmo de replay);
   guía rápida documenta el botón.
 - Guía rápida: sección Pantalla de inicio (CTAs, recientes, atajos Welcome).
