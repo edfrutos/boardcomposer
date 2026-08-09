@@ -659,6 +659,19 @@ def test_comparator_complete_only_tip_explains_toggle():
     assert "turn off" in en
 
 
+def test_new_demo_project_tip_mentions_inventory_and_unsaved():
+    from studio.i18n import tr
+
+    es = tr("tip.new_demo_project", "es").casefold()
+    en = tr("tip.new_demo_project", "en").casefold()
+    assert "Ctrl+Shift+D" in tr("tip.new_demo_project", "es")
+    assert "Ctrl+Shift+D" in tr("tip.new_demo_project", "en")
+    assert "tableros" in es and "piezas" in es
+    assert "sin guardar" in es
+    assert "boards" in en and "pieces" in en
+    assert "unsaved" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
