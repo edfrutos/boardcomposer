@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Demo: tip menciona inventario de ejemplo + confirmación si hay cambios sin
+  guardar.
 - Comparador: tip «Solo soluciones completas» explica omitidas vs parciales.
 - Guía rápida: sección Disposición (docks Ctrl+1…4, toolbar, restablecer
   Ctrl+Shift+W).

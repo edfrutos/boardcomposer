@@ -222,7 +222,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.open_docs": "Documentación…",
         "action.about": "Acerca de BoardComposer…",
         "tip.new_project": "Crear un proyecto vacío (Ctrl+N)",
-        "tip.new_demo_project": "Abrir el proyecto de ejemplo (Ctrl+Shift+D)",
+        "tip.new_demo_project": (
+            "Abrir el proyecto de ejemplo con tableros, piezas y colocaciones "
+            "(Ctrl+Shift+D); pide confirmación si hay cambios sin guardar"
+        ),
         "tip.new_from_template": "Crear un proyecto desde una plantilla (Ctrl+Shift+N)",
         "tip.save_as_template": "Guardar el proyecto actual como plantilla (Ctrl+Shift+M)",
         "tip.show_welcome": "Volver a la pantalla de inicio (Ctrl+Shift+H)",
@@ -1303,7 +1306,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.open_docs": "Documentation…",
         "action.about": "About BoardComposer…",
         "tip.new_project": "Create an empty project (Ctrl+N)",
-        "tip.new_demo_project": "Open the sample project (Ctrl+Shift+D)",
+        "tip.new_demo_project": (
+            "Open the sample project with boards, pieces, and placements "
+            "(Ctrl+Shift+D); asks to confirm if there are unsaved changes"
+        ),
         "tip.new_from_template": "Create a project from a saved template (Ctrl+Shift+N)",
         "tip.save_as_template": "Save the current project as a template (Ctrl+Shift+M)",
         "tip.show_welcome": "Return to the home screen (Ctrl+Shift+H)",
