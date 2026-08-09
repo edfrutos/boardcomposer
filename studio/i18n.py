@@ -226,7 +226,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Abrir el proyecto de ejemplo con tableros, piezas y colocaciones "
             "(Ctrl+Shift+D); pide confirmación si hay cambios sin guardar"
         ),
-        "tip.new_from_template": "Crear un proyecto desde una plantilla (Ctrl+Shift+N)",
+        "tip.new_from_template": (
+            "Elegir una plantilla guardada y crear un proyecto "
+            "(Ctrl+Shift+N); pide confirmación si hay cambios sin guardar"
+        ),
         "tip.save_as_template": "Guardar el proyecto actual como plantilla (Ctrl+Shift+M)",
         "tip.show_welcome": "Volver a la pantalla de inicio (Ctrl+Shift+H)",
         "status.already_on_welcome": "Ya estás en la pantalla de inicio",
@@ -1310,7 +1313,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Open the sample project with boards, pieces, and placements "
             "(Ctrl+Shift+D); asks to confirm if there are unsaved changes"
         ),
-        "tip.new_from_template": "Create a project from a saved template (Ctrl+Shift+N)",
+        "tip.new_from_template": (
+            "Pick a saved template and create a project "
+            "(Ctrl+Shift+N); asks to confirm if there are unsaved changes"
+        ),
         "tip.save_as_template": "Save the current project as a template (Ctrl+Shift+M)",
         "tip.show_welcome": "Return to the home screen (Ctrl+Shift+H)",
         "status.already_on_welcome": "You are already on the home screen",
