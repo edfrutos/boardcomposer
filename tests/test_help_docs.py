@@ -639,6 +639,15 @@ def test_comparator_sort_tip_lists_criteria():
     assert "score" in en
 
 
+def test_preview_solution_tip_mentions_apply_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Shift+Return" in tr("tip.preview_solution", "es")
+    assert "Ctrl+Shift+Return" in tr("tip.preview_solution", "en")
+    assert "sin aplicarla" in tr("tip.preview_solution", "es").casefold()
+    assert "without applying" in tr("tip.preview_solution", "en").casefold()
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 

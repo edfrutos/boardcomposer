@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Explorador / Comparador: tip Vista previa aclara que no aplica y apunta a
+  Ctrl+Shift+Return para conservar.
 - Comparador: tip Ordenar por lista criterios (ranking / piezas / huecos /
   tablero libre / puntuación).
 - Timeline: tip Marcador menciona diálogo de nota (+ paso/algoritmo de replay);
