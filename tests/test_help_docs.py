@@ -648,6 +648,17 @@ def test_preview_solution_tip_mentions_apply_shortcut():
     assert "without applying" in tr("tip.preview_solution", "en").casefold()
 
 
+def test_comparator_complete_only_tip_explains_toggle():
+    from studio.i18n import tr
+
+    es = tr("tip.comparator_complete_only", "es").casefold()
+    en = tr("tip.comparator_complete_only", "en").casefold()
+    assert "omitidas" in es or "completas" in es
+    assert "desactivar" in es
+    assert "omitted" in en or "complete" in en
+    assert "turn off" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
