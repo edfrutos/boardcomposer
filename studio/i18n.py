@@ -671,7 +671,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "tablero libre o puntuación"
         ),
         "tip.comparator_complete_only": (
-            "Oculta candidatas parciales en el Comparador"
+            "Mostrar solo candidatas completas (sin piezas omitidas); "
+            "desactivar = también las parciales"
         ),
         "comparator.reference_mark": "Ref {n}",
         "comparator.reference_thumb": "#{n} · ref",
@@ -1723,7 +1724,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.comparator_sort": (
             "Sort candidates by solver ranking, pieces, gaps, free board, or score"
         ),
-        "tip.comparator_complete_only": "Hide partial candidates in the Comparator",
+        "tip.comparator_complete_only": (
+            "Show only complete candidates (no omitted pieces); "
+            "turn off = include partial ones too"
+        ),
         "comparator.reference_mark": "Ref {n}",
         "comparator.reference_thumb": "#{n} · ref",
         "comparator.reference_tooltip": "Pinned reference (solution {n})",
