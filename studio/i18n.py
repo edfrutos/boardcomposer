@@ -237,7 +237,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Guardar el proyecto actual como plantilla (Ctrl+Shift+M); "
             "pide nombre y, si hay, si incluir colocaciones"
         ),
-        "tip.show_welcome": "Volver a la pantalla de inicio (Ctrl+Shift+H)",
+        "tip.show_welcome": (
+            "Volver a la pantalla de inicio sin cerrar el proyecto (Ctrl+Shift+H)"
+        ),
         "status.already_on_welcome": "Ya estás en la pantalla de inicio",
         "tip.open": ("Abrir un proyecto .bcproj (Ctrl+O); recuerda la última carpeta"),
         "tip.save": "Guardar el proyecto actual (Ctrl+S)",
@@ -1345,7 +1347,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Save the current project as a template (Ctrl+Shift+M); "
             "asks for a name and, if any, whether to include placements"
         ),
-        "tip.show_welcome": "Return to the home screen (Ctrl+Shift+H)",
+        "tip.show_welcome": (
+            "Return to the home screen without closing the project (Ctrl+Shift+H)"
+        ),
         "status.already_on_welcome": "You are already on the home screen",
         "tip.open": "Open a .bcproj project (Ctrl+O); remembers the last folder",
         "tip.save": "Save the current project (Ctrl+S)",
