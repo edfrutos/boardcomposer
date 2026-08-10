@@ -705,6 +705,17 @@ def test_save_as_template_tip_mentions_name_and_placements():
     assert "name" in en and "placements" in en
 
 
+def test_clear_recent_tip_mentions_confirmation_and_disk_safe():
+    from studio.i18n import tr
+
+    es = tr("tip.clear_recent", "es").casefold()
+    en = tr("tip.clear_recent", "en").casefold()
+    assert "Ctrl+Shift+X" in tr("tip.clear_recent", "es")
+    assert "Ctrl+Shift+X" in tr("tip.clear_recent", "en")
+    assert "confirmación" in es and "disco" in es
+    assert "confirmation" in en and "disk" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
