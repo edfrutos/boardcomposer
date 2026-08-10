@@ -22,9 +22,7 @@ vía `gh pr list`: #457 (tip Clear recent).
 | Welcome / Archivo → Recientes (pin, quitar, carpeta, submenú gestión) | 🟢 QoL `0.4.3.dev0` |
 | Barra de estado: basename, clic → carpeta, tips zoom / sin guardar | 🟢 QoL `0.4.3.dev0` |
 | Timeline: tips honestos + F1 replay/Ctrl+C | 🟢 QoL `0.4.3.dev0` |
-| Tips honesty ola post-08-09: Comparador sort/completas/preview; demo /
-  plantilla / nuevo proyecto / guardar como plantilla; Marcador Timeline |
-  | 🟢 QoL `0.4.3.dev0` |
+| Tips honesty post-08-09 (Comparador, demo, plantillas, Marcador) | 🟢 QoL `0.4.3.dev0` |
 | Guía rápida: Welcome…Explorador + Disposición (docks/toolbar/reset) | 🟢 Docs `0.4.3.dev0` |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
