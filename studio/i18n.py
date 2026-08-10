@@ -387,7 +387,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "help.explain_copy": "Copiar",
         "tip.explain_copy": "Copiar toda la explicación al portapapeles",
         "status.explain_copied": "Explicación copiada al portapapeles",
-        "tip.shortcuts": "Ver los atajos de teclado activos (F1)",
+        "tip.shortcuts": (
+            "Abrir el diálogo de atajos activos (F1); "
+            "incluye filas contextuales del Timeline"
+        ),
         "tip.open_docs": (
             "Abrir la guía rápida local en la app del sistema (Shift+F1)"
         ),
@@ -1481,7 +1484,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "help.explain_copy": "Copy",
         "tip.explain_copy": "Copy the full explanation to the clipboard",
         "status.explain_copied": "Explanation copied to the clipboard",
-        "tip.shortcuts": "Show active keyboard shortcuts (F1)",
+        "tip.shortcuts": (
+            "Open the active shortcuts dialog (F1); includes contextual Timeline rows"
+        ),
         "tip.open_docs": (
             "Open the local end-user quick guide in the system app (Shift+F1)"
         ),
