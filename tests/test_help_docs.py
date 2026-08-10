@@ -716,6 +716,17 @@ def test_clear_recent_tip_mentions_confirmation_and_disk_safe():
     assert "confirmation" in en and "disk" in en
 
 
+def test_exit_tip_mentions_unsaved_confirmation():
+    from studio.i18n import tr
+
+    es = tr("tip.exit", "es").casefold()
+    en = tr("tip.exit", "en").casefold()
+    assert "Ctrl+Q" in tr("tip.exit", "es")
+    assert "Ctrl+Q" in tr("tip.exit", "en")
+    assert "sin guardar" in es
+    assert "unsaved" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
