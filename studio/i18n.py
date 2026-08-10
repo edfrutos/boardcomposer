@@ -388,7 +388,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.explain_copy": "Copiar toda la explicación al portapapeles",
         "status.explain_copied": "Explicación copiada al portapapeles",
         "tip.shortcuts": "Ver los atajos de teclado activos (F1)",
-        "tip.open_docs": "Abrir la guía rápida de usuario (Shift+F1)",
+        "tip.open_docs": (
+            "Abrir la guía rápida local en la app del sistema (Shift+F1)"
+        ),
         "tip.about": "Información sobre BoardComposer Studio (Ctrl+Shift+A)",
         "tip.clear_recent": (
             "Vaciar la lista de proyectos recientes (Ctrl+Shift+X); "
@@ -1478,7 +1480,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.explain_copy": "Copy the full explanation to the clipboard",
         "status.explain_copied": "Explanation copied to the clipboard",
         "tip.shortcuts": "Show active keyboard shortcuts (F1)",
-        "tip.open_docs": "Open the end-user quick guide (Shift+F1)",
+        "tip.open_docs": (
+            "Open the local end-user quick guide in the system app (Shift+F1)"
+        ),
         "tip.about": "About BoardComposer Studio (Ctrl+Shift+A)",
         "tip.clear_recent": (
             "Clear the list of recent projects (Ctrl+Shift+X); "

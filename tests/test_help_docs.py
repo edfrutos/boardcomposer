@@ -738,6 +738,17 @@ def test_whats_new_tip_mentions_dialog_highlights():
     assert "dialog" in en and "highlights" in en
 
 
+def test_open_docs_tip_mentions_local_system_app():
+    from studio.i18n import tr
+
+    es = tr("tip.open_docs", "es").casefold()
+    en = tr("tip.open_docs", "en").casefold()
+    assert "Shift+F1" in tr("tip.open_docs", "es")
+    assert "Shift+F1" in tr("tip.open_docs", "en")
+    assert "local" in es and "sistema" in es
+    assert "local" in en and "system" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 

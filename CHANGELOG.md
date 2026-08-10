@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Documentación: tip aclara guía rápida local abierta en la app del sistema.
 - Novedades: tip aclara diálogo con highlights del CHANGELOG (no abre el archivo).
 - Salir: tip menciona confirmación si hay cambios sin guardar.
 - Recientes: tip Vaciar lista menciona confirmación (no borra archivos del disco).
