@@ -143,7 +143,7 @@ opción C diferida); sin críticas sin plan. IDE-0007 MVP local entregado.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para `0.4.2`; snapshot
-2026-08-09 en `REVIEW-2026-08-09-planificacion.md` (abiertas = 1, DT-0006).
+2026-08-10 en `REVIEW-2026-08-10-planificacion.md` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
