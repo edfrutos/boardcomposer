@@ -359,7 +359,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Soluciones desactualizadas: recalcula con el CTA del Comparador "
             "o Ctrl+Return antes de aplicar (Ctrl+Shift+Return)"
         ),
-        "tip.whats_new": "Ver las novedades del CHANGELOG (Ctrl+Shift+U)",
+        "tip.whats_new": (
+            "Mostrar un resumen reciente del CHANGELOG en un diálogo (Ctrl+Shift+U)"
+        ),
         "tip.explain_solution": (
             "Mostrar fortalezas, debilidades y notas de la candidata "
             "(Ctrl+Alt+E); en el diálogo podés Copiar al portapapeles"
@@ -1447,7 +1449,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Solutions outdated: recalculate via the Comparator banner CTA "
             "or Ctrl+Return before applying (Ctrl+Shift+Return)"
         ),
-        "tip.whats_new": "Show CHANGELOG highlights (Ctrl+Shift+U)",
+        "tip.whats_new": (
+            "Show recent CHANGELOG highlights in a dialog (Ctrl+Shift+U)"
+        ),
         "tip.explain_solution": (
             "Show strengths, weaknesses, and notes for the selected candidate "
             "(Ctrl+Alt+E); Copy is available in the dialog"
