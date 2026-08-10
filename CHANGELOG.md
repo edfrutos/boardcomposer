@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Pantalla de inicio: tip aclara que no cierra el proyecto abierto.
 - Atajos: tip F1 menciona diálogo + filas contextuales del Timeline.
 - Acerca de: tip menciona diálogo con la versión de Studio.
 - Documentación: tip aclara guía rápida local abierta en la app del sistema.

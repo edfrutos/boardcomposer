@@ -771,6 +771,17 @@ def test_shortcuts_tip_mentions_dialog_and_timeline_rows():
     assert "dialog" in en and "timeline" in en
 
 
+def test_show_welcome_tip_mentions_keeps_project():
+    from studio.i18n import tr
+
+    es = tr("tip.show_welcome", "es").casefold()
+    en = tr("tip.show_welcome", "en").casefold()
+    assert "Ctrl+Shift+H" in tr("tip.show_welcome", "es")
+    assert "Ctrl+Shift+H" in tr("tip.show_welcome", "en")
+    assert "sin cerrar" in es and "proyecto" in es
+    assert "without closing" in en and "project" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
