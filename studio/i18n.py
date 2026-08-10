@@ -233,7 +233,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Elegir una plantilla guardada y crear un proyecto "
             "(Ctrl+Shift+N); pide confirmación si hay cambios sin guardar"
         ),
-        "tip.save_as_template": "Guardar el proyecto actual como plantilla (Ctrl+Shift+M)",
+        "tip.save_as_template": (
+            "Guardar el proyecto actual como plantilla (Ctrl+Shift+M); "
+            "pide nombre y, si hay, si incluir colocaciones"
+        ),
         "tip.show_welcome": "Volver a la pantalla de inicio (Ctrl+Shift+H)",
         "status.already_on_welcome": "Ya estás en la pantalla de inicio",
         "tip.open": ("Abrir un proyecto .bcproj (Ctrl+O); recuerda la última carpeta"),
@@ -1323,7 +1326,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Pick a saved template and create a project "
             "(Ctrl+Shift+N); asks to confirm if there are unsaved changes"
         ),
-        "tip.save_as_template": "Save the current project as a template (Ctrl+Shift+M)",
+        "tip.save_as_template": (
+            "Save the current project as a template (Ctrl+Shift+M); "
+            "asks for a name and, if any, whether to include placements"
+        ),
         "tip.show_welcome": "Return to the home screen (Ctrl+Shift+H)",
         "status.already_on_welcome": "You are already on the home screen",
         "tip.open": "Open a .bcproj project (Ctrl+O); remembers the last folder",

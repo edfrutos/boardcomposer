@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Plantilla: tip Guardar como plantilla menciona nombre + opción de colocaciones.
 - Nuevo proyecto: tip menciona diálogo nombre/unidades + confirmación si hay
   cambios sin guardar.
 - Plantilla: tip Nuevo desde plantilla menciona selector + confirmación si hay

@@ -694,6 +694,17 @@ def test_new_project_tip_mentions_dialog_and_unsaved():
     assert "name" in en and "unsaved" in en
 
 
+def test_save_as_template_tip_mentions_name_and_placements():
+    from studio.i18n import tr
+
+    es = tr("tip.save_as_template", "es").casefold()
+    en = tr("tip.save_as_template", "en").casefold()
+    assert "Ctrl+Shift+M" in tr("tip.save_as_template", "es")
+    assert "Ctrl+Shift+M" in tr("tip.save_as_template", "en")
+    assert "nombre" in es and "colocaciones" in es
+    assert "name" in en and "placements" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
