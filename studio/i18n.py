@@ -391,7 +391,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.open_docs": (
             "Abrir la guía rápida local en la app del sistema (Shift+F1)"
         ),
-        "tip.about": "Información sobre BoardComposer Studio (Ctrl+Shift+A)",
+        "tip.about": (
+            "Abrir Acerca de con la versión de BoardComposer Studio (Ctrl+Shift+A)"
+        ),
         "tip.clear_recent": (
             "Vaciar la lista de proyectos recientes (Ctrl+Shift+X); "
             "pide confirmación (no borra archivos del disco)"
@@ -1483,7 +1485,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.open_docs": (
             "Open the local end-user quick guide in the system app (Shift+F1)"
         ),
-        "tip.about": "About BoardComposer Studio (Ctrl+Shift+A)",
+        "tip.about": (
+            "Open About with the BoardComposer Studio version (Ctrl+Shift+A)"
+        ),
         "tip.clear_recent": (
             "Clear the list of recent projects (Ctrl+Shift+X); "
             "asks for confirmation (does not delete files on disk)"
