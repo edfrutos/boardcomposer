@@ -760,6 +760,17 @@ def test_about_tip_mentions_version_dialog():
     assert "version" in en
 
 
+def test_shortcuts_tip_mentions_dialog_and_timeline_rows():
+    from studio.i18n import tr
+
+    es = tr("tip.shortcuts", "es").casefold()
+    en = tr("tip.shortcuts", "en").casefold()
+    assert "F1" in tr("tip.shortcuts", "es")
+    assert "F1" in tr("tip.shortcuts", "en")
+    assert "diálogo" in es and "timeline" in es
+    assert "dialog" in en and "timeline" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
