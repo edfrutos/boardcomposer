@@ -782,6 +782,17 @@ def test_show_welcome_tip_mentions_keeps_project():
     assert "without closing" in en and "project" in en
 
 
+def test_preferences_tip_mentions_global_sections():
+    from studio.i18n import tr
+
+    es = tr("tip.preferences", "es").casefold()
+    en = tr("tip.preferences", "en").casefold()
+    assert "Ctrl+," in tr("tip.preferences", "es")
+    assert "Ctrl+," in tr("tip.preferences", "en")
+    assert "idioma" in es and "cuadrícula" in es and "exportación" in es
+    assert "language" in en and "grid" in en and "export" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 

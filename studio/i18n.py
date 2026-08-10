@@ -317,7 +317,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.select_all_pieces": "Seleccionar todas las piezas del canvas (Ctrl+A)",
         "tip.deselect_pieces": "Quitar la selección de piezas del canvas (Escape)",
         "tip.invert_selection": "Invertir la selección de piezas del canvas (Ctrl+Shift+I)",
-        "tip.preferences": "Abrir las preferencias de Studio (Ctrl+,)",
+        "tip.preferences": (
+            "Abrir preferencias globales: idioma, tema, unidades, cuadrícula, "
+            "algoritmos y exportación (Ctrl+,)"
+        ),
         "status.pieces_selected": "{n} piezas seleccionadas",
         "status.no_pieces_to_select": "No hay piezas para seleccionar",
         "status.nothing_to_deselect": "No hay piezas seleccionadas",
@@ -1419,7 +1422,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.select_all_pieces": "Select every piece on the canvas (Ctrl+A)",
         "tip.deselect_pieces": "Clear the piece selection on the canvas (Escape)",
         "tip.invert_selection": "Invert the piece selection on the canvas (Ctrl+Shift+I)",
-        "tip.preferences": "Open Studio preferences (Ctrl+,)",
+        "tip.preferences": (
+            "Open global preferences: language, theme, units, grid, "
+            "algorithms, and export (Ctrl+,)"
+        ),
         "status.pieces_selected": "{n} pieces selected",
         "status.no_pieces_to_select": "No pieces to select",
         "status.nothing_to_deselect": "No pieces are selected",
