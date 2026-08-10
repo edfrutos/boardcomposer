@@ -294,7 +294,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Exportar el historial del Timeline (Ctrl+Shift+L); "
             "recuerda la última carpeta"
         ),
-        "tip.exit": "Cerrar BoardComposer Studio (Ctrl+Q)",
+        "tip.exit": (
+            "Cerrar BoardComposer Studio (Ctrl+Q); "
+            "pide confirmación si hay cambios sin guardar"
+        ),
         "tip.undo": "Deshacer la última acción (Ctrl+Z)",
         "tip.redo": "Rehacer la última acción deshecha (Ctrl+Shift+Z)",
         "tip.rotate_piece": "Rotar 90° la pieza seleccionada (R)",
@@ -1384,7 +1387,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_timeline": (
             "Export the Timeline history (Ctrl+Shift+L); remembers the last folder"
         ),
-        "tip.exit": "Quit BoardComposer Studio (Ctrl+Q)",
+        "tip.exit": (
+            "Quit BoardComposer Studio (Ctrl+Q); "
+            "asks to confirm if there are unsaved changes"
+        ),
         "tip.undo": "Undo the last action (Ctrl+Z)",
         "tip.redo": "Redo the last undone action (Ctrl+Shift+Z)",
         "tip.rotate_piece": "Rotate the selected piece by 90° (R)",

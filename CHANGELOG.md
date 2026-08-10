@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Salir: tip menciona confirmación si hay cambios sin guardar.
 - Recientes: tip Vaciar lista menciona confirmación (no borra archivos del disco).
 - Plantilla: tip Guardar como plantilla menciona nombre + opción de colocaciones.
 - Nuevo proyecto: tip menciona diálogo nombre/unidades + confirmación si hay
