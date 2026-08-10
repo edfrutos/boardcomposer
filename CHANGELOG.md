@@ -95,6 +95,8 @@
 
 ### Cambiado
 
+- Preferencias: tip lista secciones globales (idioma/tema/unidades/cuadrícula/
+  algoritmos/exportación).
 - Pantalla de inicio: tip aclara que no cierra el proyecto abierto.
 - Atajos: tip F1 menciona diálogo + filas contextuales del Timeline.
 - Acerca de: tip menciona diálogo con la versión de Studio.
