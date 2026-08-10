@@ -749,6 +749,17 @@ def test_open_docs_tip_mentions_local_system_app():
     assert "local" in en and "system" in en
 
 
+def test_about_tip_mentions_version_dialog():
+    from studio.i18n import tr
+
+    es = tr("tip.about", "es").casefold()
+    en = tr("tip.about", "en").casefold()
+    assert "Ctrl+Shift+A" in tr("tip.about", "es")
+    assert "Ctrl+Shift+A" in tr("tip.about", "en")
+    assert "versión" in es
+    assert "version" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 

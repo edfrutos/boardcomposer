@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Acerca de: tip menciona diálogo con la versión de Studio.
 - Documentación: tip aclara guía rápida local abierta en la app del sistema.
 - Novedades: tip aclara diálogo con highlights del CHANGELOG (no abre el archivo).
 - Salir: tip menciona confirmación si hay cambios sin guardar.
