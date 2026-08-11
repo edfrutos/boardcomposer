@@ -282,7 +282,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Añadir un tablero al inventario (Ctrl+Shift+B); "
             "abre el diálogo de ID y dimensiones"
         ),
-        "tip.add_piece": "Añadir una pieza al proyecto (Ctrl+Shift+P)",
+        "tip.add_piece": (
+            "Añadir una pieza al proyecto (Ctrl+Shift+P); "
+            "abre el diálogo de ID, dimensiones y cantidad"
+        ),
         "tip.import_boards_csv": (
             "Importar inventario de tableros desde CSV o Excel (Ctrl+Shift+T); "
             "recuerda la última carpeta"
@@ -1400,7 +1403,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Add a board to the inventory (Ctrl+Shift+B); "
             "opens the ID and dimensions dialog"
         ),
-        "tip.add_piece": "Add a piece to the project (Ctrl+Shift+P)",
+        "tip.add_piece": (
+            "Add a piece to the project (Ctrl+Shift+P); "
+            "opens the ID, dimensions, and quantity dialog"
+        ),
         "tip.import_boards_csv": (
             "Import board inventory from CSV or Excel (Ctrl+Shift+T); "
             "remembers the last folder"

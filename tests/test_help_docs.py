@@ -837,6 +837,17 @@ def test_add_board_tip_mentions_dimensions_dialog():
     assert "dialog" in en and "dimensions" in en
 
 
+def test_add_piece_tip_mentions_dimensions_dialog():
+    from studio.i18n import tr
+
+    es = tr("tip.add_piece", "es").casefold()
+    en = tr("tip.add_piece", "en").casefold()
+    assert "Ctrl+Shift+P" in tr("tip.add_piece", "es")
+    assert "Ctrl+Shift+P" in tr("tip.add_piece", "en")
+    assert "diálogo" in es and "cantidad" in es
+    assert "dialog" in en and "quantity" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
