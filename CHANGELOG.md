@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Añadir tablero: tip menciona diálogo de ID y dimensiones.
 - Guardar: tip aclara que sin archivo en disco pide ruta (como Guardar como).
 - Renombrar proyecto: tip menciona diálogo del nuevo nombre.
 - Eliminar: tip menciona confirmación antes de borrar pieza o tablero.
