@@ -317,7 +317,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.rename_selection": (
             "Renombrar la pieza, el tablero o el proyecto seleccionado (F2)"
         ),
-        "tip.edit_selection": "Editar la pieza o el tablero seleccionado (Return)",
+        "tip.edit_selection": (
+            "Editar la pieza o el tablero seleccionado (Return); "
+            "abre el diálogo de ID y dimensiones"
+        ),
         "tip.copy_selection_id": (
             "Copiar al portapapeles el ID de la pieza o tablero (Ctrl+Shift+C)"
         ),
@@ -1434,7 +1437,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.redo": "Redo the last undone action (Ctrl+Shift+Z)",
         "tip.rotate_piece": "Rotate the selected piece by 90° (R)",
         "tip.rename_selection": ("Rename the selected piece, board, or project (F2)"),
-        "tip.edit_selection": "Edit the selected piece or board (Return)",
+        "tip.edit_selection": (
+            "Edit the selected piece or board (Return); "
+            "opens the ID and dimensions dialog"
+        ),
         "tip.copy_selection_id": (
             "Copy the selected piece or board ID to the clipboard (Ctrl+Shift+C)"
         ),

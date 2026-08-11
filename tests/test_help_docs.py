@@ -848,6 +848,17 @@ def test_add_piece_tip_mentions_dimensions_dialog():
     assert "dialog" in en and "quantity" in en
 
 
+def test_edit_selection_tip_mentions_dimensions_dialog():
+    from studio.i18n import tr
+
+    es = tr("tip.edit_selection", "es").casefold()
+    en = tr("tip.edit_selection", "en").casefold()
+    assert "Return" in tr("tip.edit_selection", "es")
+    assert "Return" in tr("tip.edit_selection", "en")
+    assert "diálogo" in es and "dimensiones" in es
+    assert "dialog" in en and "dimensions" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 

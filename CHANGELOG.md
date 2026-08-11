@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Editar selección: tip menciona diálogo de ID y dimensiones.
 - Añadir pieza: tip menciona diálogo de ID, dimensiones y cantidad.
 - Añadir tablero: tip menciona diálogo de ID y dimensiones.
 - Guardar: tip aclara que sin archivo en disco pide ruta (como Guardar como).
