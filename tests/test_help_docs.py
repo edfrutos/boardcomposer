@@ -826,6 +826,17 @@ def test_save_tip_mentions_path_prompt_when_unsaved():
     assert "path" in en and "save as" in en
 
 
+def test_add_board_tip_mentions_dimensions_dialog():
+    from studio.i18n import tr
+
+    es = tr("tip.add_board", "es").casefold()
+    en = tr("tip.add_board", "en").casefold()
+    assert "Ctrl+Shift+B" in tr("tip.add_board", "es")
+    assert "Ctrl+Shift+B" in tr("tip.add_board", "en")
+    assert "diálogo" in es and "dimensiones" in es
+    assert "dialog" in en and "dimensions" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 

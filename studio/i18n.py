@@ -278,7 +278,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.revision_backup_done": "Backup de revisiones exportado: {path}",
         "status.revision_backup_failed": "No se pudo exportar el backup: {error}",
         "dialog.export_revision_backup": "Carpeta de backup de revisiones",
-        "tip.add_board": "Añadir un tablero al inventario (Ctrl+Shift+B)",
+        "tip.add_board": (
+            "Añadir un tablero al inventario (Ctrl+Shift+B); "
+            "abre el diálogo de ID y dimensiones"
+        ),
         "tip.add_piece": "Añadir una pieza al proyecto (Ctrl+Shift+P)",
         "tip.import_boards_csv": (
             "Importar inventario de tableros desde CSV o Excel (Ctrl+Shift+T); "
@@ -1393,7 +1396,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.revision_backup_done": "Revisions backup exported: {path}",
         "status.revision_backup_failed": "Could not export backup: {error}",
         "dialog.export_revision_backup": "Revisions backup folder",
-        "tip.add_board": "Add a board to the inventory (Ctrl+Shift+B)",
+        "tip.add_board": (
+            "Add a board to the inventory (Ctrl+Shift+B); "
+            "opens the ID and dimensions dialog"
+        ),
         "tip.add_piece": "Add a piece to the project (Ctrl+Shift+P)",
         "tip.import_boards_csv": (
             "Import board inventory from CSV or Excel (Ctrl+Shift+T); "
