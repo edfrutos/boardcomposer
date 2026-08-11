@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Guardar: tip aclara que sin archivo en disco pide ruta (como Guardar como).
 - Renombrar proyecto: tip menciona diálogo del nuevo nombre.
 - Eliminar: tip menciona confirmación antes de borrar pieza o tablero.
 - Preferencias: tip lista secciones globales (idioma/tema/unidades/cuadrícula/
