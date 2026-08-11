@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Duplicar: tip aclara que asigna un ID único.
 - Editar selección: tip menciona diálogo de ID y dimensiones.
 - Añadir pieza: tip menciona diálogo de ID, dimensiones y cantidad.
 - Añadir tablero: tip menciona diálogo de ID y dimensiones.

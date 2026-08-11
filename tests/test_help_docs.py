@@ -859,6 +859,17 @@ def test_edit_selection_tip_mentions_dimensions_dialog():
     assert "dialog" in en and "dimensions" in en
 
 
+def test_duplicate_piece_tip_mentions_unique_id():
+    from studio.i18n import tr
+
+    es = tr("tip.duplicate_piece", "es").casefold()
+    en = tr("tip.duplicate_piece", "en").casefold()
+    assert "Ctrl+D" in tr("tip.duplicate_piece", "es")
+    assert "Ctrl+D" in tr("tip.duplicate_piece", "en")
+    assert "id único" in es or "id unico" in es
+    assert "unique id" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
