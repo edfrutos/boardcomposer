@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Eliminar: tip menciona confirmación antes de borrar pieza o tablero.
 - Preferencias: tip lista secciones globales (idioma/tema/unidades/cuadrícula/
   algoritmos/exportación).
 - Pantalla de inicio: tip aclara que no cierra el proyecto abierto.

@@ -793,6 +793,17 @@ def test_preferences_tip_mentions_global_sections():
     assert "language" in en and "grid" in en and "export" in en
 
 
+def test_delete_piece_tip_mentions_confirmation():
+    from studio.i18n import tr
+
+    es = tr("tip.delete_piece", "es").casefold()
+    en = tr("tip.delete_piece", "en").casefold()
+    assert "Backspace" in tr("tip.delete_piece", "es")
+    assert "Delete" in tr("tip.delete_piece", "en")
+    assert "confirmación" in es
+    assert "confirmation" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
