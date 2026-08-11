@@ -804,6 +804,17 @@ def test_delete_piece_tip_mentions_confirmation():
     assert "confirmation" in en
 
 
+def test_rename_project_tip_mentions_name_dialog():
+    from studio.i18n import tr
+
+    es = tr("tip.rename_project", "es").casefold()
+    en = tr("tip.rename_project", "en").casefold()
+    assert "Ctrl+Shift+F2" in tr("tip.rename_project", "es")
+    assert "Ctrl+Shift+F2" in tr("tip.rename_project", "en")
+    assert "nombre" in es
+    assert "name" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
