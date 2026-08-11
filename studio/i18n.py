@@ -242,7 +242,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.already_on_welcome": "Ya estás en la pantalla de inicio",
         "tip.open": ("Abrir un proyecto .bcproj (Ctrl+O); recuerda la última carpeta"),
-        "tip.save": "Guardar el proyecto actual (Ctrl+S)",
+        "tip.save": (
+            "Guardar el proyecto actual (Ctrl+S); si aún no tiene archivo, "
+            "pide ruta (como Guardar como)"
+        ),
         "tip.save_as": (
             "Guardar el proyecto con otro nombre o ruta (Ctrl+Shift+S); "
             "recuerda la última carpeta"
@@ -1358,7 +1361,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.already_on_welcome": "You are already on the home screen",
         "tip.open": "Open a .bcproj project (Ctrl+O); remembers the last folder",
-        "tip.save": "Save the current project (Ctrl+S)",
+        "tip.save": (
+            "Save the current project (Ctrl+S); if it has no file yet, "
+            "asks for a path (like Save As)"
+        ),
         "tip.save_as": (
             "Save the project under another name or path (Ctrl+Shift+S); "
             "remembers the last folder"

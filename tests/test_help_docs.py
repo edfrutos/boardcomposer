@@ -815,6 +815,17 @@ def test_rename_project_tip_mentions_name_dialog():
     assert "name" in en
 
 
+def test_save_tip_mentions_path_prompt_when_unsaved():
+    from studio.i18n import tr
+
+    es = tr("tip.save", "es").casefold()
+    en = tr("tip.save", "en").casefold()
+    assert "Ctrl+S" in tr("tip.save", "es")
+    assert "Ctrl+S" in tr("tip.save", "en")
+    assert "ruta" in es and "guardar como" in es
+    assert "path" in en and "save as" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
