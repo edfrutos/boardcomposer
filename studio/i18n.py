@@ -247,7 +247,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Guardar el proyecto con otro nombre o ruta (Ctrl+Shift+S); "
             "recuerda la última carpeta"
         ),
-        "tip.rename_project": "Cambiar el nombre del proyecto (Ctrl+Shift+F2)",
+        "tip.rename_project": (
+            "Cambiar el nombre del proyecto (Ctrl+Shift+F2); pide el nuevo nombre"
+        ),
         "tip.reveal_project_folder": "Abrir la carpeta del archivo .bcproj (Ctrl+Shift+R)",
         "tip.status_project_path": (
             "{path}\nClic para abrir la carpeta (Ctrl+Shift+R)"
@@ -1361,7 +1363,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Save the project under another name or path (Ctrl+Shift+S); "
             "remembers the last folder"
         ),
-        "tip.rename_project": "Rename the current project (Ctrl+Shift+F2)",
+        "tip.rename_project": (
+            "Rename the current project (Ctrl+Shift+F2); asks for the new name"
+        ),
         "tip.reveal_project_folder": "Open the folder that contains the .bcproj file (Ctrl+Shift+R)",
         "tip.status_project_path": ("{path}\nClick to open the folder (Ctrl+Shift+R)"),
         "tip.status_project_unsaved": ("Save the project (Ctrl+S) to open its folder"),
