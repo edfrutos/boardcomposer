@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Calcular layout: tip aclara que hace falta inventario de tableros y piezas.
 - Aplicar layout: tip outdated menciona diálogo recalcular/aplicar/cancelar.
 - Exportar solución: tip outdated menciona diálogo recalcular/exportar/cancelar.
 - Restaurar revisión local: tip Ctrl+Alt+Y menciona confirmación.
