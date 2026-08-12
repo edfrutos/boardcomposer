@@ -881,6 +881,15 @@ def test_template_delete_tip_mentions_confirmation():
     assert "catalog" in en
 
 
+def test_template_rename_tip_mentions_name_dialog():
+    from studio.i18n import tr
+
+    es = tr("tip.template_rename", "es").casefold()
+    en = tr("tip.template_rename", "en").casefold()
+    assert "nombre" in es
+    assert "name" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
