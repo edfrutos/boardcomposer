@@ -43,7 +43,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Abrir la carpeta de preferences.json en el explorador de archivos"
         ),
         "tip.template_rename": "Renombrar la plantilla seleccionada",
-        "tip.template_delete": "Eliminar la plantilla seleccionada del catálogo",
+        "tip.template_delete": (
+            "Eliminar la plantilla seleccionada del catálogo; pide confirmación"
+        ),
         "prefs.restore_defaults": "Restaurar valores",
         "theme.system": "Sistema",
         "theme.light": "Claro",
@@ -1175,7 +1177,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Open the preferences.json folder in the file manager"
         ),
         "tip.template_rename": "Rename the selected template",
-        "tip.template_delete": "Delete the selected template from the catalog",
+        "tip.template_delete": (
+            "Delete the selected template from the catalog; asks for confirmation"
+        ),
         "prefs.restore_defaults": "Restore defaults",
         "theme.system": "System",
         "theme.light": "Light",

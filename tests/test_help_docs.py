@@ -870,6 +870,17 @@ def test_duplicate_piece_tip_mentions_unique_id():
     assert "unique id" in en
 
 
+def test_template_delete_tip_mentions_confirmation():
+    from studio.i18n import tr
+
+    es = tr("tip.template_delete", "es").casefold()
+    en = tr("tip.template_delete", "en").casefold()
+    assert "confirmación" in es
+    assert "confirmation" in en
+    assert "catálogo" in es or "catalogo" in es
+    assert "catalog" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
