@@ -317,7 +317,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.undo": "Deshacer la última acción (Ctrl+Z)",
         "tip.redo": "Rehacer la última acción deshecha (Ctrl+Shift+Z)",
-        "tip.rotate_piece": "Rotar 90° la pieza seleccionada (R)",
+        "tip.rotate_piece": (
+            "Rotar 90° la pieza seleccionada en el lienzo (R); "
+            "debe estar colocada en un tablero"
+        ),
         "tip.rename_selection": (
             "Renombrar la pieza, el tablero o el proyecto seleccionado (F2); "
             "pide el nuevo nombre o ID"
@@ -992,8 +995,13 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.no_template": "(sin plantilla)",
         "export.save": "Guardar…",
         "export.delete": "Eliminar",
-        "tip.export_save_template": "Guardar la configuración actual como plantilla de exportación",
-        "tip.export_delete_template": "Eliminar la plantilla de exportación seleccionada",
+        "tip.export_save_template": (
+            "Guardar la configuración actual como plantilla de exportación; "
+            "pide el nombre"
+        ),
+        "tip.export_delete_template": (
+            "Eliminar la plantilla de exportación seleccionada; pide confirmación"
+        ),
         "tip.export_share_export": (
             "Exportar el catálogo de plantillas a un archivo; "
             "recuerda la última carpeta"
@@ -2089,8 +2097,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.no_template": "(no template)",
         "export.save": "Save…",
         "export.delete": "Delete",
-        "tip.export_save_template": "Save the current options as an export template",
-        "tip.export_delete_template": "Delete the selected export template",
+        "tip.export_save_template": (
+            "Save the current options as an export template; asks for the name"
+        ),
+        "tip.export_delete_template": (
+            "Delete the selected export template; asks for confirmation"
+        ),
         "tip.export_share_export": (
             "Export the template catalog to a file; remembers the last folder"
         ),

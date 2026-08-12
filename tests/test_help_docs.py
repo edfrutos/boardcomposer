@@ -428,6 +428,15 @@ def test_rotate_piece_status_tip_includes_shortcut():
     assert "(R)" in tr("tip.rotate_piece", "en")
 
 
+def test_rotate_piece_tip_mentions_placed_on_board():
+    from studio.i18n import tr
+
+    es = tr("tip.rotate_piece", "es").casefold()
+    en = tr("tip.rotate_piece", "en").casefold()
+    assert "tablero" in es
+    assert "board" in en
+
+
 def test_open_status_tip_includes_shortcut():
     from studio.i18n import tr
 
@@ -895,6 +904,24 @@ def test_template_rename_tip_mentions_name_dialog():
 
     es = tr("tip.template_rename", "es").casefold()
     en = tr("tip.template_rename", "en").casefold()
+    assert "nombre" in es
+    assert "name" in en
+
+
+def test_export_delete_template_tip_mentions_confirmation():
+    from studio.i18n import tr
+
+    es = tr("tip.export_delete_template", "es").casefold()
+    en = tr("tip.export_delete_template", "en").casefold()
+    assert "confirmación" in es
+    assert "confirmation" in en
+
+
+def test_export_save_template_tip_mentions_name_dialog():
+    from studio.i18n import tr
+
+    es = tr("tip.export_save_template", "es").casefold()
+    en = tr("tip.export_save_template", "en").casefold()
     assert "nombre" in es
     assert "name" in en
 
