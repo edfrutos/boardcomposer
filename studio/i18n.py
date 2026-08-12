@@ -1077,7 +1077,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "import.mapping_template": "Plantilla:",
         "import.mapping_delete": "Eliminar…",
-        "tip.import_mapping_delete": "Eliminar la plantilla de mapeo seleccionada",
+        "tip.import_mapping_delete": (
+            "Eliminar la plantilla de mapeo seleccionada; pide confirmación"
+        ),
         "import.mapping_delete_title": "Eliminar plantilla de importación",
         "import.mapping_delete_confirm": "¿Eliminar la plantilla «{name}»?",
         "import.mapping_save_title": "Guardar plantilla de importación",
@@ -2176,7 +2178,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "import.mapping_incomplete": ("Required columns are still missing: {fields}"),
         "import.mapping_template": "Template:",
         "import.mapping_delete": "Delete…",
-        "tip.import_mapping_delete": "Delete the selected mapping template",
+        "tip.import_mapping_delete": (
+            "Delete the selected mapping template; prompts for confirmation"
+        ),
         "import.mapping_delete_title": "Delete import template",
         "import.mapping_delete_confirm": "Delete template “{name}”?",
         "import.mapping_save_title": "Save import template",
