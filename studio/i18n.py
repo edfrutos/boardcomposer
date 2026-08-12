@@ -434,7 +434,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Vaciar la lista de proyectos recientes (Ctrl+Shift+X); "
             "pide confirmación (no borra archivos del disco)"
         ),
-        "tip.remove_recent": ("Quitar este proyecto de la lista (Delete o Backspace)"),
+        "tip.remove_recent": (
+            "Quitar este proyecto de la lista (Delete o Backspace); "
+            "no borra el archivo del disco"
+        ),
         "tip.pin_recent": "Anclar este proyecto arriba en la lista de recientes",
         "tip.unpin_recent": "Quitar el anclaje de este proyecto reciente",
         "tip.reveal_recent": "Mostrar el archivo .bcproj en el explorador de archivos",
@@ -1568,7 +1571,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Clear the list of recent projects (Ctrl+Shift+X); "
             "asks for confirmation (does not delete files on disk)"
         ),
-        "tip.remove_recent": "Remove this project from the list (Delete or Backspace)",
+        "tip.remove_recent": (
+            "Remove this project from the list (Delete or Backspace); "
+            "does not delete the file on disk"
+        ),
         "tip.pin_recent": "Pin this project to the top of the recent list",
         "tip.unpin_recent": "Unpin this recent project",
         "tip.reveal_recent": "Show the .bcproj file in the file manager",

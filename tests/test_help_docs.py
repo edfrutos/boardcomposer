@@ -745,6 +745,15 @@ def test_clear_recent_tip_mentions_confirmation_and_disk_safe():
     assert "confirmation" in en and "disk" in en
 
 
+def test_remove_recent_tip_mentions_disk_safe():
+    from studio.i18n import tr
+
+    es = tr("tip.remove_recent", "es").casefold()
+    en = tr("tip.remove_recent", "en").casefold()
+    assert "disco" in es
+    assert "disk" in en
+
+
 def test_exit_tip_mentions_unsaved_confirmation():
     from studio.i18n import tr
 
