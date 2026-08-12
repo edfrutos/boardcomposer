@@ -391,6 +391,17 @@ def test_solve_layout_status_tip_includes_shortcut():
     assert "Ctrl+Return" in tr("tip.solve_layout_outdated", "en")
 
 
+def test_solve_layout_tip_mentions_inventory():
+    from studio.i18n import tr
+
+    es = tr("tip.solve_layout", "es").casefold()
+    en = tr("tip.solve_layout", "en").casefold()
+    assert "inventario" in es
+    assert "tableros" in es and "piezas" in es
+    assert "inventory" in en
+    assert "board" in en and "piece" in en
+
+
 def test_save_status_tip_includes_shortcut():
     from studio.i18n import tr
 

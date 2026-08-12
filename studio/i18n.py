@@ -370,7 +370,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             " (Ctrl+Shift+W)"
         ),
         "status.window_layout_reset": "Disposición de ventana restablecida",
-        "tip.solve_layout": "Calcular soluciones de layout (Ctrl+Return)",
+        "tip.solve_layout": (
+            "Calcular soluciones de layout (Ctrl+Return); "
+            "hace falta inventario de tableros y piezas"
+        ),
         "tip.solve_layout_outdated": (
             "Soluciones desactualizadas: recalcula ahora (Ctrl+Return)"
         ),
@@ -1503,7 +1506,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Restore the default dock, toolbar and window size layout (Ctrl+Shift+W)"
         ),
         "status.window_layout_reset": "Window layout reset",
-        "tip.solve_layout": "Calculate layout solutions (Ctrl+Return)",
+        "tip.solve_layout": (
+            "Calculate layout solutions (Ctrl+Return); needs board and piece inventory"
+        ),
         "tip.solve_layout_outdated": (
             "Solutions outdated: recalculate now (Ctrl+Return)"
         ),
