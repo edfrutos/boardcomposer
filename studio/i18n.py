@@ -386,8 +386,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.apply_layout": "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return)",
         "tip.apply_layout_outdated": (
-            "Soluciones desactualizadas: recalcula con el CTA del Comparador "
-            "o Ctrl+Return antes de aplicar (Ctrl+Shift+Return)"
+            "Soluciones desactualizadas: al aplicar (Ctrl+Shift+Return) "
+            "pide confirmar recalcular / aplicar de todos modos / cancelar"
         ),
         "tip.whats_new": (
             "Mostrar un resumen reciente del CHANGELOG en un diálogo (Ctrl+Shift+U)"
@@ -1518,8 +1518,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.apply_layout": "Apply the selected solution to the project (Ctrl+Shift+Return)",
         "tip.apply_layout_outdated": (
-            "Solutions outdated: recalculate via the Comparator banner CTA "
-            "or Ctrl+Return before applying (Ctrl+Shift+Return)"
+            "Solutions outdated: when applying (Ctrl+Shift+Return) "
+            "prompts to recalculate / apply anyway / cancel"
         ),
         "tip.whats_new": (
             "Show recent CHANGELOG highlights in a dialog (Ctrl+Shift+U)"
