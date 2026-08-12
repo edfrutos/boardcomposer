@@ -95,7 +95,14 @@
 
 ### Cambiado
 
+- Aplicar layout: tip outdated menciona diálogo recalcular/aplicar/cancelar.
+- Exportar solución: tip outdated menciona diálogo recalcular/exportar/cancelar.
+- Restaurar revisión local: tip Ctrl+Alt+Y menciona confirmación.
 - Renombrar selección: tip F2 menciona diálogo de nombre o ID.
+- Importación: tip Eliminar plantilla de mapeo menciona confirmación.
+- Exportar: tip Guardar plantilla menciona diálogo del nombre.
+- Exportar: tip Eliminar plantilla menciona confirmación.
+- Rotar: tip R aclara que la pieza debe estar colocada en un tablero.
 - Plantilla: tip Renombrar menciona diálogo del nuevo nombre.
 - Plantilla: tip Eliminar del catálogo menciona confirmación.
 - Duplicar: tip aclara que asigna un ID único.

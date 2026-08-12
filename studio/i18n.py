@@ -270,7 +270,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.restore_local_revision": (
             "Cargar la última revisión del anillo local en memoria "
-            "(Ctrl+Alt+Y); Guardar para escribir en disco"
+            "(Ctrl+Alt+Y); pide confirmación · Guardar para escribir en disco"
         ),
         "tip.export_revision_backup": (
             "Copia el .bcproj y el anillo .revs/ a una carpeta de backup "
@@ -304,8 +304,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "recuerda la última carpeta"
         ),
         "tip.export_selected_outdated": (
-            "Soluciones desactualizadas: recalcula con el CTA del Comparador "
-            "o Ctrl+Return antes de exportar (Ctrl+Shift+E)"
+            "Soluciones desactualizadas: al exportar (Ctrl+Shift+E) "
+            "pide confirmar recalcular / exportar de todos modos / cancelar"
         ),
         "tip.export_timeline": (
             "Exportar el historial del Timeline (Ctrl+Shift+L); "
@@ -386,8 +386,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.apply_layout": "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return)",
         "tip.apply_layout_outdated": (
-            "Soluciones desactualizadas: recalcula con el CTA del Comparador "
-            "o Ctrl+Return antes de aplicar (Ctrl+Shift+Return)"
+            "Soluciones desactualizadas: al aplicar (Ctrl+Shift+Return) "
+            "pide confirmar recalcular / aplicar de todos modos / cancelar"
         ),
         "tip.whats_new": (
             "Mostrar un resumen reciente del CHANGELOG en un diálogo (Ctrl+Shift+U)"
@@ -1077,7 +1077,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "import.mapping_template": "Plantilla:",
         "import.mapping_delete": "Eliminar…",
-        "tip.import_mapping_delete": "Eliminar la plantilla de mapeo seleccionada",
+        "tip.import_mapping_delete": (
+            "Eliminar la plantilla de mapeo seleccionada; pide confirmación"
+        ),
         "import.mapping_delete_title": "Eliminar plantilla de importación",
         "import.mapping_delete_confirm": "¿Eliminar la plantilla «{name}»?",
         "import.mapping_save_title": "Guardar plantilla de importación",
@@ -1407,7 +1409,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.restore_local_revision": (
             "Load the latest local ring revision into memory (Ctrl+Alt+Y); "
-            "Save to write to disk"
+            "prompts for confirmation · Save to write to disk"
         ),
         "tip.export_revision_backup": (
             "Copy the .bcproj and .revs/ ring to a backup folder (Ctrl+Alt+B); "
@@ -1440,8 +1442,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "remembers the last folder"
         ),
         "tip.export_selected_outdated": (
-            "Solutions outdated: recalculate via the Comparator banner CTA "
-            "or Ctrl+Return before exporting (Ctrl+Shift+E)"
+            "Solutions outdated: when exporting (Ctrl+Shift+E) "
+            "prompts to recalculate / export anyway / cancel"
         ),
         "tip.export_timeline": (
             "Export the Timeline history (Ctrl+Shift+L); remembers the last folder"
@@ -1517,8 +1519,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.apply_layout": "Apply the selected solution to the project (Ctrl+Shift+Return)",
         "tip.apply_layout_outdated": (
-            "Solutions outdated: recalculate via the Comparator banner CTA "
-            "or Ctrl+Return before applying (Ctrl+Shift+Return)"
+            "Solutions outdated: when applying (Ctrl+Shift+Return) "
+            "prompts to recalculate / apply anyway / cancel"
         ),
         "tip.whats_new": (
             "Show recent CHANGELOG highlights in a dialog (Ctrl+Shift+U)"
@@ -2177,7 +2179,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "import.mapping_incomplete": ("Required columns are still missing: {fields}"),
         "import.mapping_template": "Template:",
         "import.mapping_delete": "Delete…",
-        "tip.import_mapping_delete": "Delete the selected mapping template",
+        "tip.import_mapping_delete": (
+            "Delete the selected mapping template; prompts for confirmation"
+        ),
         "import.mapping_delete_title": "Delete import template",
         "import.mapping_delete_confirm": "Delete template “{name}”?",
         "import.mapping_save_title": "Save import template",
