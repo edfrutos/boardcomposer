@@ -908,6 +908,15 @@ def test_export_delete_template_tip_mentions_confirmation():
     assert "confirmation" in en
 
 
+def test_export_save_template_tip_mentions_name_dialog():
+    from studio.i18n import tr
+
+    es = tr("tip.export_save_template", "es").casefold()
+    en = tr("tip.export_save_template", "en").casefold()
+    assert "nombre" in es
+    assert "name" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 

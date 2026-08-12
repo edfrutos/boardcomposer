@@ -994,7 +994,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.no_template": "(sin plantilla)",
         "export.save": "Guardar…",
         "export.delete": "Eliminar",
-        "tip.export_save_template": "Guardar la configuración actual como plantilla de exportación",
+        "tip.export_save_template": (
+            "Guardar la configuración actual como plantilla de exportación; "
+            "pide el nombre"
+        ),
         "tip.export_delete_template": (
             "Eliminar la plantilla de exportación seleccionada; pide confirmación"
         ),
@@ -2092,7 +2095,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.no_template": "(no template)",
         "export.save": "Save…",
         "export.delete": "Delete",
-        "tip.export_save_template": "Save the current options as an export template",
+        "tip.export_save_template": (
+            "Save the current options as an export template; asks for the name"
+        ),
         "tip.export_delete_template": (
             "Delete the selected export template; asks for confirmation"
         ),
