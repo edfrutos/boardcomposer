@@ -67,12 +67,12 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 ## Próximo foco (operativo)
 
-Revisión: `docs/masterplan/REVIEW-2026-08-10-planificacion.md`.
+Revisión: `docs/masterplan/REVIEW-2026-08-12-planificacion.md`.
 
 1. Release **`0.4.2`** cortado (`v0.4.2`, 2026-08-02) — hecho.
-2. Ciclo `0.4.3.dev0` abierto — QoL tips honesty + guía Disposición
-   (docks/toolbar); candidatos IDE-0019…0024 aún sin implementar (bajo
-   demanda).
+2. Ciclo `0.4.3.dev0` abierto — ola tips honesty menú Archivo/Edición/Ayuda
+   + plantillas (PRs ~457–473); candidatos IDE-0019…0024 aún sin implementar
+   (bajo demanda).
 3. IDE-0007: MVP local en `0.4.2`; **eval humana** aún abierta
    (`uat/studio/CHECKLIST-EXPLAIN-EVAL.md`).
 4. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).

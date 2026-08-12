@@ -176,6 +176,11 @@
   (Ctrl+= / Ctrl+- / Ctrl+0).
 - Docs: Preferencias bajo tema `system` = chrome OS (sin `#preferencesRoot`);
   DESIGN / SCR-006 / guía rápida + asserts.
+- Docs planificación 2026-08-12: snapshot
+  `docs/masterplan/REVIEW-2026-08-12-planificacion.md`; cola IDE-0019…0024
+  vigente (sin IDE nuevas: residuales + backlog abierto; ola tips honesty
+  Archivo/Edición/Ayuda/plantillas PRs ~457–473); ROADMAP / DOC-003 /
+  DOC-004 / DOC-006 / MASTERPLAN / AI_CONTEXT / INDEX alineados.
 - Docs planificación 2026-08-10: snapshot
   `docs/masterplan/REVIEW-2026-08-10-planificacion.md`; cola IDE-0019…0024
   vigente (sin IDE nuevas: residuales + backlog abierto; avance tips honesty
