@@ -324,7 +324,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_selection_id": (
             "Copiar al portapapeles el ID de la pieza o tablero (Ctrl+Shift+C)"
         ),
-        "tip.duplicate_piece": "Duplicar la pieza o el tablero seleccionado (Ctrl+D)",
+        "tip.duplicate_piece": (
+            "Duplicar la pieza o el tablero seleccionado (Ctrl+D); asigna un ID único"
+        ),
         "tip.delete_piece": (
             "Eliminar la pieza o el tablero seleccionado (Backspace o Delete); "
             "pide confirmación"
@@ -1444,7 +1446,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_selection_id": (
             "Copy the selected piece or board ID to the clipboard (Ctrl+Shift+C)"
         ),
-        "tip.duplicate_piece": "Duplicate the selected piece or board (Ctrl+D)",
+        "tip.duplicate_piece": (
+            "Duplicate the selected piece or board (Ctrl+D); assigns a unique ID"
+        ),
         "tip.delete_piece": (
             "Delete the selected piece or board (Backspace or Delete); "
             "asks for confirmation"
