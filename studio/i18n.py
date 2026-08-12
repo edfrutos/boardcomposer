@@ -304,8 +304,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "recuerda la última carpeta"
         ),
         "tip.export_selected_outdated": (
-            "Soluciones desactualizadas: recalcula con el CTA del Comparador "
-            "o Ctrl+Return antes de exportar (Ctrl+Shift+E)"
+            "Soluciones desactualizadas: al exportar (Ctrl+Shift+E) "
+            "pide confirmar recalcular / exportar de todos modos / cancelar"
         ),
         "tip.export_timeline": (
             "Exportar el historial del Timeline (Ctrl+Shift+L); "
@@ -1442,8 +1442,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "remembers the last folder"
         ),
         "tip.export_selected_outdated": (
-            "Solutions outdated: recalculate via the Comparator banner CTA "
-            "or Ctrl+Return before exporting (Ctrl+Shift+E)"
+            "Solutions outdated: when exporting (Ctrl+Shift+E) "
+            "prompts to recalculate / export anyway / cancel"
         ),
         "tip.export_timeline": (
             "Export the Timeline history (Ctrl+Shift+L); remembers the last folder"
