@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Aplicar layout: tip outdated menciona diálogo recalcular/aplicar/cancelar.
 - Restaurar revisión local: tip Ctrl+Alt+Y menciona confirmación.
 - Renombrar selección: tip F2 menciona diálogo del nuevo nombre (pieza/tablero/proyecto).
 - Importación: tip Eliminar plantilla de mapeo menciona confirmación.
