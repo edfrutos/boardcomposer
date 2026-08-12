@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Rotar: tip R aclara que la pieza debe estar colocada en un tablero.
 - Plantilla: tip Renombrar menciona diálogo del nuevo nombre.
 - Plantilla: tip Eliminar del catálogo menciona confirmación.
 - Duplicar: tip aclara que asigna un ID único.
