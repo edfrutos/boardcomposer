@@ -317,7 +317,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.undo": "Deshacer la última acción (Ctrl+Z)",
         "tip.redo": "Rehacer la última acción deshecha (Ctrl+Shift+Z)",
-        "tip.rotate_piece": "Rotar 90° la pieza seleccionada (R)",
+        "tip.rotate_piece": (
+            "Rotar 90° la pieza seleccionada en el lienzo (R); "
+            "debe estar colocada en un tablero"
+        ),
         "tip.rename_selection": (
             "Renombrar la pieza, el tablero o el proyecto seleccionado (F2)"
         ),
@@ -1443,7 +1446,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.undo": "Undo the last action (Ctrl+Z)",
         "tip.redo": "Redo the last undone action (Ctrl+Shift+Z)",
-        "tip.rotate_piece": "Rotate the selected piece by 90° (R)",
+        "tip.rotate_piece": (
+            "Rotate the selected canvas piece by 90° (R); it must be placed on a board"
+        ),
         "tip.rename_selection": ("Rename the selected piece, board, or project (F2)"),
         "tip.edit_selection": (
             "Edit the selected piece or board (Return); "

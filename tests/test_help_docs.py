@@ -428,6 +428,15 @@ def test_rotate_piece_status_tip_includes_shortcut():
     assert "(R)" in tr("tip.rotate_piece", "en")
 
 
+def test_rotate_piece_tip_mentions_placed_on_board():
+    from studio.i18n import tr
+
+    es = tr("tip.rotate_piece", "es").casefold()
+    en = tr("tip.rotate_piece", "en").casefold()
+    assert "tablero" in es
+    assert "board" in en
+
+
 def test_open_status_tip_includes_shortcut():
     from studio.i18n import tr
 
