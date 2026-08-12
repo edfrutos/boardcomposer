@@ -323,7 +323,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.rename_selection": (
             "Renombrar la pieza, el tablero o el proyecto seleccionado (F2); "
-            "pide el nuevo nombre"
+            "pide el nuevo nombre o ID"
         ),
         "tip.edit_selection": (
             "Editar la pieza o el tablero seleccionado (Return); "
@@ -1455,10 +1455,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.undo": "Undo the last action (Ctrl+Z)",
         "tip.redo": "Redo the last undone action (Ctrl+Shift+Z)",
         "tip.rotate_piece": (
-            "Rotate the selected canvas piece by 90° (R); it must be placed on a board"
+            "Rotate the selected piece by 90° (R); the piece must be placed on a board"
         ),
         "tip.rename_selection": (
-            "Rename the selected piece, board, or project (F2); prompts for the new name"
+            "Rename the selected piece, board, or project (F2); "
+            "asks for the new name or ID"
         ),
         "tip.edit_selection": (
             "Edit the selected piece or board (Return); "

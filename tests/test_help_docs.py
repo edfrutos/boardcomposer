@@ -559,6 +559,15 @@ def test_rename_selection_status_tip_includes_shortcut():
     assert "F2" in tr("tip.rename_selection", "en")
 
 
+def test_rename_selection_tip_mentions_name_dialog():
+    from studio.i18n import tr
+
+    es = tr("tip.rename_selection", "es").casefold()
+    en = tr("tip.rename_selection", "en").casefold()
+    assert "nombre" in es or "id" in es
+    assert "name" in en or "id" in en
+
+
 def test_copy_selection_id_status_tip_includes_shortcut():
     from studio.i18n import tr
 
