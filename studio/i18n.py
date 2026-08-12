@@ -270,7 +270,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.restore_local_revision": (
             "Cargar la última revisión del anillo local en memoria "
-            "(Ctrl+Alt+Y); Guardar para escribir en disco"
+            "(Ctrl+Alt+Y); pide confirmación · Guardar para escribir en disco"
         ),
         "tip.export_revision_backup": (
             "Copia el .bcproj y el anillo .revs/ a una carpeta de backup "
@@ -1406,7 +1406,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.restore_local_revision": (
             "Load the latest local ring revision into memory (Ctrl+Alt+Y); "
-            "Save to write to disk"
+            "prompts for confirmation · Save to write to disk"
         ),
         "tip.export_revision_backup": (
             "Copy the .bcproj and .revs/ ring to a backup folder (Ctrl+Alt+B); "
