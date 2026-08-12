@@ -322,7 +322,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "debe estar colocada en un tablero"
         ),
         "tip.rename_selection": (
-            "Renombrar la pieza, el tablero o el proyecto seleccionado (F2)"
+            "Renombrar la pieza, el tablero o el proyecto seleccionado (F2); "
+            "pide el nuevo nombre"
         ),
         "tip.edit_selection": (
             "Editar la pieza o el tablero seleccionado (Return); "
@@ -1454,7 +1455,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.rotate_piece": (
             "Rotate the selected canvas piece by 90° (R); it must be placed on a board"
         ),
-        "tip.rename_selection": ("Rename the selected piece, board, or project (F2)"),
+        "tip.rename_selection": (
+            "Rename the selected piece, board, or project (F2); prompts for the new name"
+        ),
         "tip.edit_selection": (
             "Edit the selected piece or board (Return); "
             "opens the ID and dimensions dialog"
