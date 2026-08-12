@@ -3,7 +3,7 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.0
+**Versión:** 1.2.1
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
 **Última revisión:** 12/08/2026
