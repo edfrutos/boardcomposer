@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Importar tableros: tip menciona mapeo de columnas y vista previa.
 - Exportar: tip Importar pack menciona fusionar o reemplazar el catálogo.
 - Ventana: tip Restablecer disposición aclara que guarda esa disposición.
 - Recientes: tip fila Welcome anclada menciona confirmación si hay cambios sin guardar.
