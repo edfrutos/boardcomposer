@@ -455,6 +455,15 @@ def test_open_status_tip_includes_shortcut():
     assert "Ctrl+O" in tr("tip.open", "en")
 
 
+def test_open_tip_mentions_unsaved_confirmation():
+    from studio.i18n import tr
+
+    es = tr("tip.open", "es").casefold()
+    en = tr("tip.open", "en").casefold()
+    assert "sin guardar" in es
+    assert "unsaved" in en
+
+
 def test_folder_memory_status_tips_are_honest():
     from studio.i18n import tr
 
