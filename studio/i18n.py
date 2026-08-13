@@ -1025,7 +1025,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "recuerda la última carpeta"
         ),
         "tip.export_share_import": (
-            "Importar un pack de plantillas de exportación; recuerda la última carpeta"
+            "Importar un pack de plantillas de exportación; "
+            "recuerda la última carpeta; pide fusionar o reemplazar el catálogo"
         ),
         "export.format": "Formato:",
         "export.metrics": "Incluir métricas (JSON)",
@@ -2149,7 +2150,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Export the template catalog to a file; remembers the last folder"
         ),
         "tip.export_share_import": (
-            "Import an export-templates pack; remembers the last folder"
+            "Import an export-templates pack; remembers the last folder; "
+            "asks to merge or replace the catalog"
         ),
         "export.format": "Format:",
         "export.metrics": "Include metrics (JSON)",
