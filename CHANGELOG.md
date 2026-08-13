@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Ventana: tip Restablecer disposición aclara que guarda esa disposición.
 - Recientes: tip fila Welcome anclada menciona confirmación si hay cambios sin guardar.
 - Recientes: tip fila Welcome menciona confirmación si hay cambios sin guardar.
 - Recientes: tip Quitar del menú aclara que no borra el archivo del disco.

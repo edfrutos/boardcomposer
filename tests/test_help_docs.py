@@ -1014,6 +1014,15 @@ def test_reset_window_layout_status_tip_includes_shortcut():
     assert "Ctrl+Shift+W" in tr("tip.reset_window_layout", "en")
 
 
+def test_reset_window_layout_tip_mentions_saves_layout():
+    from studio.i18n import tr
+
+    es = tr("tip.reset_window_layout", "es").casefold()
+    en = tr("tip.reset_window_layout", "en").casefold()
+    assert "guarda" in es
+    assert "saves" in en
+
+
 def test_shortcuts_status_tip_includes_shortcut():
     from studio.i18n import tr
 

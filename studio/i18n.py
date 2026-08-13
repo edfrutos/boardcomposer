@@ -369,8 +369,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.grid_shown": "Cuadrícula visible",
         "status.grid_hidden": "Cuadrícula oculta",
         "tip.reset_window_layout": (
-            "Volver a la disposición inicial de docks, toolbar y tamaño de ventana"
-            " (Ctrl+Shift+W)"
+            "Volver a la disposición inicial de docks, toolbar y tamaño de ventana "
+            "(Ctrl+Shift+W); guarda esa disposición"
         ),
         "status.window_layout_reset": "Disposición de ventana restablecida",
         "tip.solve_layout": (
@@ -1521,7 +1521,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.grid_shown": "Grid visible",
         "status.grid_hidden": "Grid hidden",
         "tip.reset_window_layout": (
-            "Restore the default dock, toolbar and window size layout (Ctrl+Shift+W)"
+            "Restore the default dock, toolbar and window size layout "
+            "(Ctrl+Shift+W); saves that layout"
         ),
         "status.window_layout_reset": "Window layout reset",
         "tip.solve_layout": (
