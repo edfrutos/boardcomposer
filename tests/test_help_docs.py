@@ -482,6 +482,15 @@ def test_recent_row_tip_mentions_unsaved_confirmation():
     assert "unsaved" in en
 
 
+def test_recent_row_pinned_tip_mentions_unsaved_confirmation():
+    from studio.i18n import tr
+
+    es = tr("tip.recent_row_pinned", "es").casefold()
+    en = tr("tip.recent_row_pinned", "en").casefold()
+    assert "sin guardar" in es
+    assert "unsaved" in en
+
+
 def test_folder_memory_status_tips_are_honest():
     from studio.i18n import tr
 

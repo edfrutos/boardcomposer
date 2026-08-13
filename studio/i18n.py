@@ -452,7 +452,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "menú: anclar / Mostrar en carpeta / quitar"
         ),
         "tip.recent_row_pinned": (
-            "{path}\nClic abre · menú: desanclar / Mostrar en carpeta / quitar"
+            "{path}\nClic abre; pide confirmación si hay cambios sin guardar · "
+            "menú: desanclar / Mostrar en carpeta / quitar"
         ),
         "tip.recent_menu": ("{path} — Abrir · anclar · carpeta · quitar"),
         "tip.recent_menu_pinned": (
@@ -1600,7 +1601,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "menu: pin / Show in folder / remove"
         ),
         "tip.recent_row_pinned": (
-            "{path}\nClick opens · menu: unpin / Show in folder / remove"
+            "{path}\nClick opens; asks to confirm unsaved changes · "
+            "menu: unpin / Show in folder / remove"
         ),
         "tip.recent_menu": "{path} — Open · pin · folder · remove",
         "tip.recent_menu_pinned": ("{path} (pinned) — Open · unpin · folder · remove"),
