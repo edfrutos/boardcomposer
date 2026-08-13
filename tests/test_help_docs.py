@@ -1000,6 +1000,15 @@ def test_export_save_template_tip_mentions_name_dialog():
     assert "name" in en
 
 
+def test_export_share_import_tip_mentions_merge_or_replace():
+    from studio.i18n import tr
+
+    es = tr("tip.export_share_import", "es").casefold()
+    en = tr("tip.export_share_import", "en").casefold()
+    assert "fusionar" in es and "reemplazar" in es
+    assert "merge" in en and "replace" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
