@@ -464,6 +464,15 @@ def test_open_tip_mentions_unsaved_confirmation():
     assert "unsaved" in en
 
 
+def test_recent_menu_open_tip_mentions_unsaved_confirmation():
+    from studio.i18n import tr
+
+    es = tr("tip.recent_menu_open", "es").casefold()
+    en = tr("tip.recent_menu_open", "en").casefold()
+    assert "sin guardar" in es
+    assert "unsaved" in en
+
+
 def test_folder_memory_status_tips_are_honest():
     from studio.i18n import tr
 
