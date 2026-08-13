@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Recientes: tip fila Welcome menciona confirmación si hay cambios sin guardar.
 - Recientes: tip Quitar del menú aclara que no borra el archivo del disco.
 - Recientes: tip Abrir menciona confirmación si hay cambios sin guardar.
 - Abrir: tip Ctrl+O menciona confirmación si hay cambios sin guardar.

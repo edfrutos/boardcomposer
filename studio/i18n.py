@@ -448,7 +448,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.unpin_recent": "Quitar el anclaje de este proyecto reciente",
         "tip.reveal_recent": "Mostrar el archivo .bcproj en el explorador de archivos",
         "tip.recent_row": (
-            "{path}\nClic abre · menú: anclar / Mostrar en carpeta / quitar"
+            "{path}\nClic abre; pide confirmación si hay cambios sin guardar · "
+            "menú: anclar / Mostrar en carpeta / quitar"
         ),
         "tip.recent_row_pinned": (
             "{path}\nClic abre · menú: desanclar / Mostrar en carpeta / quitar"
@@ -1594,7 +1595,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.pin_recent": "Pin this project to the top of the recent list",
         "tip.unpin_recent": "Unpin this recent project",
         "tip.reveal_recent": "Show the .bcproj file in the file manager",
-        "tip.recent_row": ("{path}\nClick opens · menu: pin / Show in folder / remove"),
+        "tip.recent_row": (
+            "{path}\nClick opens; asks to confirm unsaved changes · "
+            "menu: pin / Show in folder / remove"
+        ),
         "tip.recent_row_pinned": (
             "{path}\nClick opens · menu: unpin / Show in folder / remove"
         ),
