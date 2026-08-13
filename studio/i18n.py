@@ -463,7 +463,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.recent_menu_pin": "Anclar {path} arriba en recientes",
         "tip.recent_menu_unpin": "Quitar el anclaje de {path}",
         "tip.recent_menu_reveal": "Mostrar {path} en el explorador de archivos",
-        "tip.recent_menu_remove": "Quitar {path} de recientes",
+        "tip.recent_menu_remove": (
+            "Quitar {path} de recientes; no borra el archivo del disco"
+        ),
         "help.whats_new_title": "Novedades",
         "help.whats_new_heading": "Cambios recientes ({section})",
         "help.whats_new_unavailable": "No hay notas de versión disponibles.",
@@ -1604,7 +1606,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.recent_menu_pin": "Pin {path} to the top of recent projects",
         "tip.recent_menu_unpin": "Unpin {path}",
         "tip.recent_menu_reveal": "Show {path} in the file manager",
-        "tip.recent_menu_remove": "Remove {path} from recent projects",
+        "tip.recent_menu_remove": (
+            "Remove {path} from recent projects; does not delete the file on disk"
+        ),
         "help.whats_new_title": "What’s new",
         "help.whats_new_heading": "Recent changes ({section})",
         "help.whats_new_unavailable": "No release notes available.",
