@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Aplicar layout: tip aclara que sustituye las colocaciones actuales.
 - Recientes: tip Quitar aclara que no borra el archivo del disco.
 - Calcular layout: tip aclara que hace falta inventario de tableros y piezas.
 - Aplicar layout: tip outdated menciona diálogo recalcular/aplicar/cancelar.

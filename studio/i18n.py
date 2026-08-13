@@ -387,7 +387,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Soluciones desactualizadas: navegas candidatas viejas (Av Pág); "
             "recalcula con el CTA del Comparador o Ctrl+Return"
         ),
-        "tip.apply_layout": "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return)",
+        "tip.apply_layout": (
+            "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return); "
+            "sustituye las colocaciones actuales"
+        ),
         "tip.apply_layout_outdated": (
             "Soluciones desactualizadas: al aplicar (Ctrl+Shift+Return) "
             "pide confirmar recalcular / aplicar de todos modos / cancelar"
@@ -1525,7 +1528,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Solutions outdated: browsing stale candidates (Page Down); "
             "recalculate via the Comparator banner CTA or Ctrl+Return"
         ),
-        "tip.apply_layout": "Apply the selected solution to the project (Ctrl+Shift+Return)",
+        "tip.apply_layout": (
+            "Apply the selected solution to the project (Ctrl+Shift+Return); "
+            "replaces current placements"
+        ),
         "tip.apply_layout_outdated": (
             "Solutions outdated: when applying (Ctrl+Shift+Return) "
             "prompts to recalculate / apply anyway / cancel"
