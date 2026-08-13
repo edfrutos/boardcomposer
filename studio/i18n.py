@@ -457,7 +457,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.recent_menu_pinned": (
             "{path} (anclado) — Abrir · desanclar · carpeta · quitar"
         ),
-        "tip.recent_menu_open": "Abrir {path}",
+        "tip.recent_menu_open": (
+            "Abrir {path}; pide confirmación si hay cambios sin guardar"
+        ),
         "tip.recent_menu_pin": "Anclar {path} arriba en recientes",
         "tip.recent_menu_unpin": "Quitar el anclaje de {path}",
         "tip.recent_menu_reveal": "Mostrar {path} en el explorador de archivos",
@@ -1596,7 +1598,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.recent_menu": "{path} — Open · pin · folder · remove",
         "tip.recent_menu_pinned": ("{path} (pinned) — Open · unpin · folder · remove"),
-        "tip.recent_menu_open": "Open {path}",
+        "tip.recent_menu_open": (
+            "Open {path}; asks to confirm if there are unsaved changes"
+        ),
         "tip.recent_menu_pin": "Pin {path} to the top of recent projects",
         "tip.recent_menu_unpin": "Unpin {path}",
         "tip.recent_menu_reveal": "Show {path} in the file manager",
