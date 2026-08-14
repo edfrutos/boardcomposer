@@ -1025,7 +1025,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Eliminar la plantilla de exportación seleccionada; pide confirmación"
         ),
         "tip.export_share_export": (
-            "Exportar el catálogo de plantillas a un archivo; "
+            "Exportar el catálogo de plantillas a un pack JSON; "
+            "respeta el filtro de cliente actual; "
             "recuerda la última carpeta"
         ),
         "tip.export_share_import": (
@@ -2157,7 +2158,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Delete the selected export template; asks for confirmation"
         ),
         "tip.export_share_export": (
-            "Export the template catalog to a file; remembers the last folder"
+            "Export the template catalog to a JSON pack; "
+            "respects the current client filter; "
+            "remembers the last folder"
         ),
         "tip.export_share_import": (
             "Import an export-templates pack; remembers the last folder; "
