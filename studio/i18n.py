@@ -269,7 +269,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.diff_bcproj": (
             "Comparar dos revisiones .bcproj o el proyecto abierto vs un archivo "
-            "(Ctrl+Shift+Y); recuerda la última carpeta"
+            "(Ctrl+Shift+Y); abre el diálogo; puede restaurar una revisión del anillo; "
+            "recuerda la última carpeta"
         ),
         "tip.restore_local_revision": (
             "Cargar la última revisión del anillo local en memoria "
@@ -1429,7 +1430,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_project_unsaved": ("Save the project (Ctrl+S) to open its folder"),
         "tip.diff_bcproj": (
             "Compare two .bcproj revisions or the open project vs a file "
-            "(Ctrl+Shift+Y); remembers the last folder"
+            "(Ctrl+Shift+Y); opens the dialog; can restore a ring revision; "
+            "remembers the last folder"
         ),
         "tip.restore_local_revision": (
             "Load the latest local ring revision into memory (Ctrl+Alt+Y); "
