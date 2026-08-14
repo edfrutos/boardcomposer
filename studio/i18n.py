@@ -302,8 +302,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "recuerda la última carpeta; abre mapeo de columnas y vista previa"
         ),
         "tip.export_selected": (
-            "Exportar la solución del Comparador (Ctrl+Shift+E): "
-            "SVG/PNG/JPEG/PDF/DXF/JSON/CSV — menú Exportar; "
+            "Exportar la solución del Comparador (Ctrl+Shift+E); "
+            "abre opciones de formato y vista previa "
+            "(SVG/PNG/JPEG/PDF/DXF/JSON/CSV); "
             "recuerda la última carpeta"
         ),
         "tip.export_selected_outdated": (
@@ -1460,8 +1461,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "remembers the last folder; opens column mapping and a preview"
         ),
         "tip.export_selected": (
-            "Export the Comparator solution (Ctrl+Shift+E): "
-            "SVG/PNG/JPEG/PDF/DXF/JSON/CSV — Export menu; "
+            "Export the Comparator solution (Ctrl+Shift+E); "
+            "opens format options and a preview "
+            "(SVG/PNG/JPEG/PDF/DXF/JSON/CSV); "
             "remembers the last folder"
         ),
         "tip.export_selected_outdated": (
