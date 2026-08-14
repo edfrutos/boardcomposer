@@ -295,7 +295,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.import_boards_csv": (
             "Importar inventario de tableros desde CSV o Excel (Ctrl+Shift+T); "
-            "recuerda la última carpeta"
+            "recuerda la última carpeta; abre mapeo de columnas y vista previa"
         ),
         "tip.import_pieces_csv": (
             "Importar piezas desde CSV o Excel (Ctrl+Shift+O); "
@@ -1453,7 +1453,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.import_boards_csv": (
             "Import board inventory from CSV or Excel (Ctrl+Shift+T); "
-            "remembers the last folder"
+            "remembers the last folder; opens column mapping and a preview"
         ),
         "tip.import_pieces_csv": (
             "Import pieces from CSV or Excel (Ctrl+Shift+O); remembers the last folder"
