@@ -1187,3 +1187,12 @@ def test_import_pieces_csv_status_tip_includes_shortcut():
 
     assert "Ctrl+Shift+O" in tr("tip.import_pieces_csv", "es")
     assert "Ctrl+Shift+O" in tr("tip.import_pieces_csv", "en")
+
+
+def test_import_pieces_csv_tip_mentions_mapping_and_preview():
+    from studio.i18n import tr
+
+    es = tr("tip.import_pieces_csv", "es").casefold()
+    en = tr("tip.import_pieces_csv", "en").casefold()
+    assert "mapeo" in es and "vista previa" in es
+    assert "mapping" in en and "preview" in en

@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Importar piezas: tip menciona mapeo de columnas y vista previa.
 - CI: cache de pip y cancela runs de PR supersedidos.
 - Importar tableros: tip menciona mapeo de columnas y vista previa.
 - Exportar: tip Importar pack menciona fusionar o reemplazar el catálogo.
