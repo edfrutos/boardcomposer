@@ -1045,6 +1045,15 @@ def test_export_share_import_tip_mentions_merge_or_replace():
     assert "merge" in en and "replace" in en
 
 
+def test_export_share_export_tip_mentions_json_and_client_filter():
+    from studio.i18n import tr
+
+    es = tr("tip.export_share_export", "es").casefold()
+    en = tr("tip.export_share_export", "en").casefold()
+    assert "json" in es and "filtro" in es and "cliente" in es
+    assert "json" in en and "filter" in en and "client" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 
