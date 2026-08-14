@@ -312,7 +312,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "pide confirmar recalcular / exportar de todos modos / cancelar"
         ),
         "tip.export_timeline": (
-            "Exportar el historial del Timeline (Ctrl+Shift+L); "
+            "Exportar el historial del Timeline (Ctrl+Shift+L): "
+            "JSON o CSV según los filtros actuales; "
             "recuerda la última carpeta"
         ),
         "tip.exit": (
@@ -1471,7 +1472,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "prompts to recalculate / export anyway / cancel"
         ),
         "tip.export_timeline": (
-            "Export the Timeline history (Ctrl+Shift+L); remembers the last folder"
+            "Export the Timeline history (Ctrl+Shift+L): "
+            "JSON or CSV matching current filters; "
+            "remembers the last folder"
         ),
         "tip.exit": (
             "Quit BoardComposer Studio (Ctrl+Q); "
