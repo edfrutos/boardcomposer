@@ -622,6 +622,15 @@ def test_copy_selection_id_status_tip_includes_shortcut():
     assert "Ctrl+Shift+C" in tr("tip.copy_selection_id", "en")
 
 
+def test_copy_selection_id_tip_mentions_explorer_and_focused_board():
+    from studio.i18n import tr
+
+    es = tr("tip.copy_selection_id", "es").casefold()
+    en = tr("tip.copy_selection_id", "en").casefold()
+    assert "explorador" in es and "única" in es and "enfocado" in es
+    assert "explorer" in en and "single" in en and "focused" in en
+
+
 def test_delete_piece_status_tip_includes_shortcut():
     from studio.i18n import tr
 
