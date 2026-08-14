@@ -362,7 +362,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_fit_board": "No hay tableros para ajustar la vista",
         "tip.fit_board": "Ajustar el zoom para ver todos los tableros (Ctrl+0)",
-        "tip.fit_selection": "Ajustar el zoom a la pieza o tablero seleccionado (Ctrl+Shift+0)",
+        "tip.fit_selection": (
+            "Ajustar el zoom a las piezas seleccionadas o al tablero enfocado "
+            "(Ctrl+Shift+0)"
+        ),
         "tip.zoom_in": "Acercar el Workspace (rueda, Ctrl+=)",
         "tip.zoom_out": "Alejar el Workspace (rueda, Ctrl+-)",
         "status.zoom_at_maximum": "Zoom al máximo",
@@ -1522,7 +1525,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_fit_selection": ("Select a piece or board to fit the view"),
         "status.nothing_to_fit_board": "No boards to fit the view",
         "tip.fit_board": "Zoom to fit all boards (Ctrl+0)",
-        "tip.fit_selection": "Zoom to fit the selected piece or board (Ctrl+Shift+0)",
+        "tip.fit_selection": (
+            "Zoom to fit the selected pieces or the focused board (Ctrl+Shift+0)"
+        ),
         "tip.zoom_in": "Zoom in on the Workspace (wheel, Ctrl+=)",
         "tip.zoom_out": "Zoom out on the Workspace (wheel, Ctrl+-)",
         "status.zoom_at_maximum": "Already at maximum zoom",

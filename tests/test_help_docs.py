@@ -546,6 +546,15 @@ def test_fit_selection_status_tip_includes_shortcut():
     assert "Ctrl+Shift+0" in tr("tip.fit_selection", "en")
 
 
+def test_fit_selection_tip_mentions_pieces_or_focused_board():
+    from studio.i18n import tr
+
+    es = tr("tip.fit_selection", "es").casefold()
+    en = tr("tip.fit_selection", "en").casefold()
+    assert "seleccionadas" in es and "enfocado" in es
+    assert "pieces" in en and "focused" in en
+
+
 def test_zoom_in_status_tip_includes_shortcut():
     from studio.i18n import tr
 
