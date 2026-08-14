@@ -693,6 +693,15 @@ def test_export_timeline_tip_mentions_json_csv_and_filters():
     assert "json" in en and "csv" in en and "filters" in en
 
 
+def test_diff_bcproj_tip_mentions_dialog_and_restore():
+    from studio.i18n import tr
+
+    es = tr("tip.diff_bcproj", "es").casefold()
+    en = tr("tip.diff_bcproj", "en").casefold()
+    assert "diálogo" in es and "restaurar" in es
+    assert "dialog" in en and "restore" in en
+
+
 def test_timeline_clear_tip_mentions_confirmation():
     from studio.i18n import tr
 

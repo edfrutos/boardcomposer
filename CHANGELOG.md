@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Diff .bcproj: tip menciona el diálogo y que puede restaurar una revisión del anillo.
 - Timeline: tip Exportar historial menciona JSON/CSV y filtros actuales.
 - Exportar: tip solución del Comparador menciona opciones de formato y vista previa.
 - Importar piezas: tip menciona mapeo de columnas y vista previa.
