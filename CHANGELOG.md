@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Copiar ID: tip aclara Explorador, selección única o tablero enfocado.
 - Diff .bcproj: tip menciona el diálogo y que puede restaurar una revisión del anillo.
 - Timeline: tip Exportar historial menciona JSON/CSV y filtros actuales.
 - Exportar: tip solución del Comparador menciona opciones de formato y vista previa.

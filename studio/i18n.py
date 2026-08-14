@@ -336,7 +336,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "abre el diálogo de ID y dimensiones"
         ),
         "tip.copy_selection_id": (
-            "Copiar al portapapeles el ID de la pieza o tablero (Ctrl+Shift+C)"
+            "Copiar al portapapeles el ID de la pieza o tablero (Ctrl+Shift+C): "
+            "Explorador, selección única o tablero enfocado"
         ),
         "tip.duplicate_piece": (
             "Duplicar la pieza o el tablero seleccionado (Ctrl+D); asigna un ID único"
@@ -1496,7 +1497,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "opens the ID and dimensions dialog"
         ),
         "tip.copy_selection_id": (
-            "Copy the selected piece or board ID to the clipboard (Ctrl+Shift+C)"
+            "Copy the piece or board ID to the clipboard (Ctrl+Shift+C): "
+            "Explorer, single selection, or focused board"
         ),
         "tip.duplicate_piece": (
             "Duplicate the selected piece or board (Ctrl+D); assigns a unique ID"
