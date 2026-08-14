@@ -668,6 +668,15 @@ def test_export_selected_status_tip_includes_shortcut():
     assert "Ctrl+Shift+E" in tr("tip.export_selected", "en")
 
 
+def test_export_selected_tip_mentions_options_and_preview():
+    from studio.i18n import tr
+
+    es = tr("tip.export_selected", "es").casefold()
+    en = tr("tip.export_selected", "en").casefold()
+    assert "opciones" in es and "vista previa" in es
+    assert "options" in en and "preview" in en
+
+
 def test_export_timeline_status_tip_includes_shortcut():
     from studio.i18n import tr
 
