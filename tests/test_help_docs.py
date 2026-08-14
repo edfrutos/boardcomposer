@@ -684,6 +684,15 @@ def test_export_timeline_status_tip_includes_shortcut():
     assert "Ctrl+Shift+L" in tr("tip.export_timeline", "en")
 
 
+def test_export_timeline_tip_mentions_json_csv_and_filters():
+    from studio.i18n import tr
+
+    es = tr("tip.export_timeline", "es").casefold()
+    en = tr("tip.export_timeline", "en").casefold()
+    assert "json" in es and "csv" in es and "filtros" in es
+    assert "json" in en and "csv" in en and "filters" in en
+
+
 def test_timeline_clear_tip_mentions_confirmation():
     from studio.i18n import tr
 

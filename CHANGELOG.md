@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Timeline: tip Exportar historial menciona JSON/CSV y filtros actuales.
 - Exportar: tip solución del Comparador menciona opciones de formato y vista previa.
 - Importar piezas: tip menciona mapeo de columnas y vista previa.
 - CI: cache de pip y cancela runs de PR supersedidos.
