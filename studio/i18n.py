@@ -255,7 +255,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.save_as": (
             "Guardar el proyecto con otro nombre o ruta (Ctrl+Shift+S); "
-            "pasa a ser el archivo actual; "
+            "pasa a ser el archivo actual; si existe, deja revisión en el anillo; "
             "recuerda la última carpeta"
         ),
         "tip.rename_project": (
@@ -1429,7 +1429,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.save_as": (
             "Save the project under another name or path (Ctrl+Shift+S); "
-            "becomes the current file; "
+            "becomes the current file; if the file exists, stores a ring revision; "
             "remembers the last folder"
         ),
         "tip.rename_project": (

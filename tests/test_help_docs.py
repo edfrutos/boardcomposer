@@ -534,6 +534,15 @@ def test_save_as_tip_mentions_becomes_current_file():
     assert "current file" in en
 
 
+def test_save_as_tip_mentions_ring_revision_when_file_exists():
+    from studio.i18n import tr
+
+    es = tr("tip.save_as", "es").casefold()
+    en = tr("tip.save_as", "en").casefold()
+    assert "revisión" in es and "anillo" in es
+    assert "revision" in en and "ring" in en
+
+
 def test_preferences_status_tip_includes_shortcut():
     from studio.i18n import tr
 
