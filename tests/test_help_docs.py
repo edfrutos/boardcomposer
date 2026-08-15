@@ -729,6 +729,15 @@ def test_export_timeline_tip_mentions_json_csv_and_filters():
     assert "json" in en and "csv" in en and "filters" in en
 
 
+def test_export_timeline_tip_mentions_offer_to_open():
+    from studio.i18n import tr
+
+    es = tr("tip.export_timeline", "es").casefold()
+    en = tr("tip.export_timeline", "en").casefold()
+    assert "ofrece" in es and "abrir" in es
+    assert "offers" in en and "open" in en
+
+
 def test_diff_bcproj_tip_mentions_dialog_and_restore():
     from studio.i18n import tr
 
