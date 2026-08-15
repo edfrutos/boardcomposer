@@ -930,6 +930,15 @@ def test_preferences_tip_mentions_global_sections():
     assert "language" in en and "grid" in en and "export" in en
 
 
+def test_preferences_tip_mentions_apply_on_accept():
+    from studio.i18n import tr
+
+    es = tr("tip.preferences", "es").casefold()
+    en = tr("tip.preferences", "en").casefold()
+    assert "aplican" in es and "aceptar" in es
+    assert "applied" in en and "accept" in en
+
+
 def test_delete_piece_tip_mentions_confirmation():
     from studio.i18n import tr
 
