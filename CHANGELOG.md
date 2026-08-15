@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Docs planificación 2026-08-15: snapshot
+  `docs/masterplan/REVIEW-2026-08-15-planificacion.md`; cola IDE-0019…0024
+  sin IDE nuevas (Issues abiertos = 0; residuales eval/piloto).
 - Barra de estado: clic en el basename abre la carpeta del `.bcproj`
   (mismo flujo que Ctrl+Shift+R); tooltip con ruta + hint.
 - Barra de estado: basename del `.bcproj` (tooltip = ruta completa).
