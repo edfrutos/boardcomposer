@@ -352,7 +352,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.invert_selection": "Invertir la selección de piezas del canvas (Ctrl+Shift+I)",
         "tip.preferences": (
             "Abrir preferencias globales: idioma, tema, unidades, cuadrícula, "
-            "algoritmos y exportación (Ctrl+,)"
+            "algoritmos y exportación (Ctrl+,); se aplican al aceptar"
         ),
         "status.pieces_selected": "{n} piezas seleccionadas",
         "status.no_pieces_to_select": "No hay piezas para seleccionar",
@@ -1518,7 +1518,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.invert_selection": "Invert the piece selection on the canvas (Ctrl+Shift+I)",
         "tip.preferences": (
             "Open global preferences: language, theme, units, grid, "
-            "algorithms, and export (Ctrl+,)"
+            "algorithms, and export (Ctrl+,); applied when you accept"
         ),
         "status.pieces_selected": "{n} pieces selected",
         "status.no_pieces_to_select": "No pieces to select",
