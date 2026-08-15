@@ -98,6 +98,7 @@
 
 ### Cambiado
 
+- Guardar: tip aclara que si el archivo existe deja revisión en el anillo.
 - Timeline: tip Exportar historial aclara que ofrece abrir el archivo.
 - Exportar: tip solución del Comparador aclara que ofrece abrir el archivo.
 - Guardar como: tip aclara que pasa a ser el archivo actual.

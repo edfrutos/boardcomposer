@@ -999,6 +999,15 @@ def test_save_tip_mentions_path_prompt_when_unsaved():
     assert "path" in en and "save as" in en
 
 
+def test_save_tip_mentions_ring_revision_when_file_exists():
+    from studio.i18n import tr
+
+    es = tr("tip.save", "es").casefold()
+    en = tr("tip.save", "en").casefold()
+    assert "revisión" in es and "anillo" in es
+    assert "revision" in en and "ring" in en
+
+
 def test_add_board_tip_mentions_dimensions_dialog():
     from studio.i18n import tr
 
