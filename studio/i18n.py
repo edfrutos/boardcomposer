@@ -308,6 +308,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Exportar la solución del Comparador (Ctrl+Shift+E); "
             "abre opciones de formato y vista previa "
             "(SVG/PNG/JPEG/PDF/DXF/JSON/CSV); "
+            "ofrece abrir el archivo; "
             "recuerda la última carpeta"
         ),
         "tip.export_selected_outdated": (
@@ -1476,6 +1477,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Export the Comparator solution (Ctrl+Shift+E); "
             "opens format options and a preview "
             "(SVG/PNG/JPEG/PDF/DXF/JSON/CSV); "
+            "offers to open the file; "
             "remembers the last folder"
         ),
         "tip.export_selected_outdated": (
