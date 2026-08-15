@@ -525,6 +525,15 @@ def test_save_as_status_tip_includes_shortcut():
     assert "Ctrl+Shift+S" in tr("tip.save_as", "en")
 
 
+def test_save_as_tip_mentions_becomes_current_file():
+    from studio.i18n import tr
+
+    es = tr("tip.save_as", "es").casefold()
+    en = tr("tip.save_as", "en").casefold()
+    assert "archivo actual" in es
+    assert "current file" in en
+
+
 def test_preferences_status_tip_includes_shortcut():
     from studio.i18n import tr
 
