@@ -1063,6 +1063,15 @@ def test_export_share_export_tip_mentions_json_and_client_filter():
     assert "json" in en and "filter" in en and "client" in en
 
 
+def test_export_revision_backup_tip_mentions_offer_to_open():
+    from studio.i18n import tr
+
+    es = tr("tip.export_revision_backup", "es").casefold()
+    en = tr("tip.export_revision_backup", "en").casefold()
+    assert "ofrece" in es and "abrir" in es
+    assert "offers" in en and "open" in en
+
+
 def test_exit_status_tip_includes_shortcut():
     from studio.i18n import tr
 

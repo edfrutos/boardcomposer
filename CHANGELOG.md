@@ -95,6 +95,7 @@
 
 ### Cambiado
 
+- Backup de revisiones: tip aclara que ofrece abrir la carpeta exportada.
 - Vista: tip Ajustar a selección aclara piezas seleccionadas o tablero enfocado.
 - Exportar: tip pack de plantillas menciona JSON y filtro de cliente.
 - Copiar ID: tip aclara Explorador, selección única o tablero enfocado.
