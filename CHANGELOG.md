@@ -98,6 +98,7 @@
 
 ### Cambiado
 
+- Vista: tip Ajustar a tableros aclara que ignora la selección.
 - Guardar como: tip aclara que si el archivo existe deja revisión en el anillo.
 - Guardar: tip aclara que si el archivo existe deja revisión en el anillo.
 - Timeline: tip Exportar historial aclara que ofrece abrir el archivo.

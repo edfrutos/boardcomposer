@@ -557,6 +557,15 @@ def test_fit_board_status_tip_includes_shortcut():
     assert "Ctrl+0" in tr("tip.fit_board", "en")
 
 
+def test_fit_board_tip_mentions_ignores_selection():
+    from studio.i18n import tr
+
+    es = tr("tip.fit_board", "es").casefold()
+    en = tr("tip.fit_board", "en").casefold()
+    assert "ignora" in es and "selección" in es
+    assert "ignores" in en and "selection" in en
+
+
 def test_fit_selection_status_tip_includes_shortcut():
     from studio.i18n import tr
 
