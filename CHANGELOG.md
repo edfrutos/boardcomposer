@@ -98,6 +98,7 @@
 
 ### Cambiado
 
+- Timeline: tip Exportar historial aclara que ofrece abrir el archivo.
 - Exportar: tip solución del Comparador aclara que ofrece abrir el archivo.
 - Guardar como: tip aclara que pasa a ser el archivo actual.
 - Preferencias: tip aclara que los cambios se aplican al aceptar.

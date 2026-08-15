@@ -318,6 +318,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_timeline": (
             "Exportar el historial del Timeline (Ctrl+Shift+L): "
             "JSON o CSV según los filtros actuales; "
+            "ofrece abrir el archivo; "
             "recuerda la última carpeta"
         ),
         "tip.exit": (
@@ -1487,6 +1488,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_timeline": (
             "Export the Timeline history (Ctrl+Shift+L): "
             "JSON or CSV matching current filters; "
+            "offers to open the file; "
             "remembers the last folder"
         ),
         "tip.exit": (
