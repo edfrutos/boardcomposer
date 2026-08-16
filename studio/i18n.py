@@ -446,7 +446,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "incluye filas contextuales del Timeline"
         ),
         "tip.open_docs": (
-            "Abrir la guía rápida local en la app del sistema (Shift+F1)"
+            "Abrir la guía rápida local en la app del sistema (Shift+F1); "
+            "si falta, el índice de docs o el README"
         ),
         "tip.about": (
             "Abrir Acerca de con la versión de BoardComposer Studio (Ctrl+Shift+A)"
@@ -1612,7 +1613,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Open the active shortcuts dialog (F1); includes contextual Timeline rows"
         ),
         "tip.open_docs": (
-            "Open the local end-user quick guide in the system app (Shift+F1)"
+            "Open the local end-user quick guide in the system app (Shift+F1); "
+            "if missing, the docs index or README"
         ),
         "tip.about": (
             "Open About with the BoardComposer Studio version (Ctrl+Shift+A)"

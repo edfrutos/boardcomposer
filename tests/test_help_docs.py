@@ -967,6 +967,15 @@ def test_open_docs_tip_mentions_local_system_app():
     assert "local" in en and "system" in en
 
 
+def test_open_docs_tip_mentions_fallback_index_or_readme():
+    from studio.i18n import tr
+
+    es = tr("tip.open_docs", "es").casefold()
+    en = tr("tip.open_docs", "en").casefold()
+    assert "si falta" in es and "readme" in es
+    assert "missing" in en and "readme" in en
+
+
 def test_about_tip_mentions_version_dialog():
     from studio.i18n import tr
 
