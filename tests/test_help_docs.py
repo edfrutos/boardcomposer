@@ -803,6 +803,15 @@ def test_comparator_sort_tip_lists_criteria():
     assert "score" in en
 
 
+def test_comparator_sort_tip_mentions_session_only():
+    from studio.i18n import tr
+
+    es = tr("tip.comparator_sort", "es").casefold()
+    en = tr("tip.comparator_sort", "en").casefold()
+    assert "sesión" in es
+    assert "session" in en
+
+
 def test_preview_solution_tip_mentions_apply_shortcut():
     from studio.i18n import tr
 

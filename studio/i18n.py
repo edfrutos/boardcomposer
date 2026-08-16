@@ -756,7 +756,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.comparator_sort": (
             "Ordena las candidatas: ranking del solver, piezas, huecos, "
-            "tablero libre o puntuación"
+            "tablero libre o puntuación (solo esta sesión)"
         ),
         "tip.comparator_complete_only": (
             "Mostrar solo candidatas completas (sin piezas omitidas); "
@@ -1906,7 +1906,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "recalculate via the Comparator banner CTA or Ctrl+Return"
         ),
         "tip.comparator_sort": (
-            "Sort candidates by solver ranking, pieces, gaps, free board, or score"
+            "Sort candidates by solver ranking, pieces, gaps, free board, or score "
+            "(this session only)"
         ),
         "tip.comparator_complete_only": (
             "Show only complete candidates (no omitted pieces); "
