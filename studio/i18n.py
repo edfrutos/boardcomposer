@@ -40,7 +40,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.max_solutions": "Máx. soluciones a conservar:",
         "prefs.open_config_folder": "Abrir carpeta de configuración…",
         "tip.open_config_folder": (
-            "Abrir la carpeta de preferences.json en el explorador de archivos"
+            "Abrir la carpeta de preferences.json en el explorador de archivos; "
+            "la crea si no existe"
         ),
         "tip.template_rename": (
             "Renombrar la plantilla seleccionada; pide el nuevo nombre"
@@ -1221,7 +1222,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.max_solutions": "Max solutions to keep:",
         "prefs.open_config_folder": "Open settings folder…",
         "tip.open_config_folder": (
-            "Open the preferences.json folder in the file manager"
+            "Open the preferences.json folder in the file manager; "
+            "creates it if missing"
         ),
         "tip.template_rename": ("Rename the selected template; asks for the new name"),
         "tip.template_delete": (
