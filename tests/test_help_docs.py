@@ -832,6 +832,15 @@ def test_comparator_complete_only_tip_explains_toggle():
     assert "turn off" in en
 
 
+def test_comparator_complete_only_tip_mentions_session_only():
+    from studio.i18n import tr
+
+    es = tr("tip.comparator_complete_only", "es").casefold()
+    en = tr("tip.comparator_complete_only", "en").casefold()
+    assert "sesión" in es
+    assert "session" in en
+
+
 def test_new_demo_project_tip_mentions_inventory_and_unsaved():
     from studio.i18n import tr
 

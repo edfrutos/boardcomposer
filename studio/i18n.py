@@ -760,7 +760,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.comparator_complete_only": (
             "Mostrar solo candidatas completas (sin piezas omitidas); "
-            "desactivar = también las parciales"
+            "desactivar = también las parciales (solo esta sesión)"
         ),
         "comparator.reference_mark": "Ref {n}",
         "comparator.reference_thumb": "#{n} · ref",
@@ -1911,7 +1911,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.comparator_complete_only": (
             "Show only complete candidates (no omitted pieces); "
-            "turn off = include partial ones too"
+            "turn off = include partial ones too (this session only)"
         ),
         "comparator.reference_mark": "Ref {n}",
         "comparator.reference_thumb": "#{n} · ref",

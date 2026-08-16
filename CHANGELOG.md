@@ -102,6 +102,7 @@
 
 ### Cambiado
 
+- Comparador: tip Solo completas aclara que el filtro es solo de esta sesión.
 - Comparador: tip Ordenar aclara que el criterio es solo de esta sesión.
 - Vista: tip Ajustar a tableros aclara que ignora la selección.
 - Guardar como: tip aclara que si el archivo existe deja revisión en el anillo.
