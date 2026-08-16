@@ -841,6 +841,15 @@ def test_comparator_complete_only_tip_mentions_session_only():
     assert "session" in en
 
 
+def test_pin_reference_tip_mentions_cleared_on_recalculate():
+    from studio.i18n import tr
+
+    es = tr("tip.pin_reference", "es").casefold()
+    en = tr("tip.pin_reference", "en").casefold()
+    assert "recalcular" in es
+    assert "recalculate" in en
+
+
 def test_new_demo_project_tip_mentions_inventory_and_unsaved():
     from studio.i18n import tr
 
