@@ -947,6 +947,15 @@ def test_whats_new_tip_mentions_dialog_highlights():
     assert "dialog" in en and "highlights" in en
 
 
+def test_whats_new_tip_mentions_unreleased_added():
+    from studio.i18n import tr
+
+    es = tr("tip.whats_new", "es").casefold()
+    en = tr("tip.whats_new", "en").casefold()
+    assert "unreleased" in es and "añadido" in es
+    assert "unreleased" in en and "added" in en
+
+
 def test_open_docs_tip_mentions_local_system_app():
     from studio.i18n import tr
 

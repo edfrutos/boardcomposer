@@ -412,7 +412,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "pide confirmar recalcular / aplicar de todos modos / cancelar"
         ),
         "tip.whats_new": (
-            "Mostrar un resumen reciente del CHANGELOG en un diálogo (Ctrl+Shift+U)"
+            "Mostrar un resumen reciente del CHANGELOG en un diálogo "
+            "(Ctrl+Shift+U); prioriza Añadido de Unreleased"
         ),
         "tip.explain_solution": (
             "Mostrar fortalezas, debilidades y notas de la candidata "
@@ -1577,7 +1578,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "prompts to recalculate / apply anyway / cancel"
         ),
         "tip.whats_new": (
-            "Show recent CHANGELOG highlights in a dialog (Ctrl+Shift+U)"
+            "Show recent CHANGELOG highlights in a dialog (Ctrl+Shift+U); "
+            "prefers Unreleased Added"
         ),
         "tip.explain_solution": (
             "Show strengths, weaknesses, and notes for the selected candidate "

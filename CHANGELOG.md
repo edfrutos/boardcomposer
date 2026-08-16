@@ -102,6 +102,7 @@
 
 ### Cambiado
 
+- Ayuda: tip Novedades aclara que prioriza Añadido de Unreleased.
 - Comparador: tip Fijar referencia aclara que se pierde al recalcular.
 - Comparador: tip Solo completas aclara que el filtro es solo de esta sesión.
 - Comparador: tip Ordenar aclara que el criterio es solo de esta sesión.
