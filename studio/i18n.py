@@ -748,7 +748,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "comparator.pin_reference": "Fijar como referencia",
         "tip.pin_reference": (
             "Fija la candidata seleccionada como referencia del diff "
-            "(hace falta ≥2 soluciones)"
+            "(hace falta ≥2 soluciones); se pierde al recalcular"
         ),
         "tip.pin_reference_outdated": (
             "Soluciones desactualizadas: el diff usa candidatas viejas; "
@@ -1899,7 +1899,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "comparator.complete_only": "Complete solutions only",
         "comparator.pin_reference": "Pin as reference",
         "tip.pin_reference": (
-            "Pin the selected candidate as the diff reference (needs ≥2 solutions)"
+            "Pin the selected candidate as the diff reference (needs ≥2 solutions); "
+            "cleared when you recalculate"
         ),
         "tip.pin_reference_outdated": (
             "Solutions outdated: the diff uses stale candidates; "
