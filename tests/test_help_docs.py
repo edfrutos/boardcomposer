@@ -1020,6 +1020,15 @@ def test_preferences_tip_mentions_apply_on_accept():
     assert "applied" in en and "accept" in en
 
 
+def test_open_config_folder_tip_mentions_creates_if_missing():
+    from studio.i18n import tr
+
+    es = tr("tip.open_config_folder", "es").casefold()
+    en = tr("tip.open_config_folder", "en").casefold()
+    assert "crea" in es and "existe" in es
+    assert "creates" in en and "missing" in en
+
+
 def test_delete_piece_tip_mentions_confirmation():
     from studio.i18n import tr
 
