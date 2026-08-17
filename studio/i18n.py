@@ -407,7 +407,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.apply_layout": (
             "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return); "
-            "sustituye las colocaciones actuales"
+            "sustituye las colocaciones actuales (no se puede deshacer)"
         ),
         "tip.apply_layout_outdated": (
             "Soluciones desactualizadas: al aplicar (Ctrl+Shift+Return) "
@@ -1578,7 +1578,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.apply_layout": (
             "Apply the selected solution to the project (Ctrl+Shift+Return); "
-            "replaces current placements"
+            "replaces current placements (cannot be undone)"
         ),
         "tip.apply_layout_outdated": (
             "Solutions outdated: when applying (Ctrl+Shift+Return) "
