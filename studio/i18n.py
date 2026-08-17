@@ -551,7 +551,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.copy_line": "Copiar línea",
         "timeline.copy_payload": "Copiar payload JSON",
         "status.timeline_copied": "Evento del Timeline copiado al portapapeles",
-        "tip.timeline_clear": ("Vaciar el historial del Timeline (pide confirmación)"),
+        "tip.timeline_clear": (
+            "Vaciar el historial del Timeline (pide confirmación; no se puede deshacer)"
+        ),
         "tip.timeline_clear_filters": "Quitar filtros de evento, algoritmo y periodo",
         "tip.timeline_follow": ("Mantener la vista en el último evento del Timeline"),
         "tip.timeline_filter_piece_moves": (
@@ -1714,7 +1716,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "timeline.copy_line": "Copy line",
         "timeline.copy_payload": "Copy payload JSON",
         "status.timeline_copied": "Timeline event copied to clipboard",
-        "tip.timeline_clear": ("Clear the Timeline history (asks for confirmation)"),
+        "tip.timeline_clear": (
+            "Clear the Timeline history (asks for confirmation; cannot be undone)"
+        ),
         "tip.timeline_clear_filters": "Clear event, algorithm, and period filters",
         "tip.timeline_follow": "Keep the view on the latest Timeline event",
         "tip.timeline_filter_piece_moves": (
