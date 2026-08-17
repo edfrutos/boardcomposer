@@ -102,6 +102,7 @@
 
 ### Cambiado
 
+- Importar piezas: tip aclara que ofrece guardar el mapeo como plantilla.
 - Importar tableros: tip aclara que ofrece guardar el mapeo como plantilla.
 - Eliminar: tip aclara que al borrar un tablero las piezas se conservan.
 - Nuevo desde plantilla: tip aclara que pregunta si restaurar colocaciones.
