@@ -50,6 +50,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Eliminar la plantilla seleccionada del catálogo; pide confirmación"
         ),
         "prefs.restore_defaults": "Restaurar valores",
+        "tip.restore_defaults": (
+            "Restaurar todas las opciones a los valores por defecto; "
+            "se aplican al aceptar (no pide confirmación)"
+        ),
         "theme.system": "Sistema",
         "theme.light": "Claro",
         "theme.dark": "Oscuro",
@@ -1237,6 +1241,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Delete the selected template from the catalog; asks for confirmation"
         ),
         "prefs.restore_defaults": "Restore defaults",
+        "tip.restore_defaults": (
+            "Reset all options to defaults; applied when you accept "
+            "(does not ask for confirmation)"
+        ),
         "theme.system": "System",
         "theme.light": "Light",
         "theme.dark": "Dark",

@@ -80,6 +80,17 @@ def test_preferences_open_config_folder_is_polished(qapp):
     assert "preferences" in tip or "configuración" in tip or "configuracion" in tip
 
 
+def test_preferences_restore_defaults_tip_is_wired(qapp):
+    del qapp
+    dialog = PreferencesDialog(StudioPreferences(language="es"))
+    box = dialog.findChild(QDialogButtonBox)
+    assert box is not None
+    restore = box.button(QDialogButtonBox.StandardButton.RestoreDefaults)
+    assert restore is not None
+    tip = restore.toolTip().casefold()
+    assert "defecto" in tip and "aceptar" in tip
+
+
 def test_template_picker_secondary_buttons_polished(qapp):
     del qapp
     picker = ProjectTemplatePickerDialog(

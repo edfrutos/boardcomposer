@@ -102,6 +102,7 @@
 
 ### Cambiado
 
+- Preferencias: tip Restaurar valores aclara que se aplica al aceptar.
 - Importar piezas: tip aclara que ofrece guardar el mapeo como plantilla.
 - Importar tableros: tip aclara que ofrece guardar el mapeo como plantilla.
 - Eliminar: tip aclara que al borrar un tablero las piezas se conservan.

@@ -230,6 +230,9 @@ class PreferencesDialog(QDialog):
         restore = self._buttons.button(QDialogButtonBox.StandardButton.RestoreDefaults)
         if restore is not None:
             restore.setText(tr("prefs.restore_defaults", language))
+            restore_tip = tr("tip.restore_defaults", language)
+            restore.setToolTip(restore_tip)
+            restore.setStatusTip(restore_tip)
 
     def _on_language_changed(self, _index: int) -> None:
         self._retranslate()
