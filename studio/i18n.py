@@ -306,7 +306,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.import_pieces_csv": (
             "Importar piezas desde CSV o Excel (Ctrl+Shift+O); "
-            "recuerda la última carpeta; abre mapeo de columnas y vista previa"
+            "recuerda la última carpeta; abre mapeo de columnas y vista previa; "
+            "ofrece guardar el mapeo como plantilla"
         ),
         "tip.export_selected": (
             "Exportar la solución del Comparador (Ctrl+Shift+E); "
@@ -1486,7 +1487,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.import_pieces_csv": (
             "Import pieces from CSV or Excel (Ctrl+Shift+O); "
-            "remembers the last folder; opens column mapping and a preview"
+            "remembers the last folder; opens column mapping and a preview; "
+            "offers to save the mapping as a template"
         ),
         "tip.export_selected": (
             "Export the Comparator solution (Ctrl+Shift+E); "

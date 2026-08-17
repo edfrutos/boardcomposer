@@ -1430,3 +1430,12 @@ def test_import_pieces_csv_tip_mentions_mapping_and_preview():
     en = tr("tip.import_pieces_csv", "en").casefold()
     assert "mapeo" in es and "vista previa" in es
     assert "mapping" in en and "preview" in en
+
+
+def test_import_pieces_csv_tip_mentions_offer_to_save_mapping_template():
+    from studio.i18n import tr
+
+    es = tr("tip.import_pieces_csv", "es").casefold()
+    en = tr("tip.import_pieces_csv", "en").casefold()
+    assert "ofrece" in es and "plantilla" in es
+    assert "offers" in en and "template" in en
