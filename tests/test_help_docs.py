@@ -901,6 +901,15 @@ def test_new_from_template_tip_mentions_picker_and_unsaved():
     assert "template" in en and "unsaved" in en
 
 
+def test_new_from_template_tip_mentions_optional_placements():
+    from studio.i18n import tr
+
+    es = tr("tip.new_from_template", "es").casefold()
+    en = tr("tip.new_from_template", "en").casefold()
+    assert "colocaciones" in es and "restaurar" in es
+    assert "placements" in en and "restore" in en
+
+
 def test_new_project_tip_mentions_dialog_and_unsaved():
     from studio.i18n import tr
 
