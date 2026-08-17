@@ -781,6 +781,15 @@ def test_timeline_clear_tip_mentions_cannot_undo():
     assert "undone" in en
 
 
+def test_restore_local_revision_tip_mentions_unsaved_discarded():
+    from studio.i18n import tr
+
+    es = tr("tip.restore_local_revision", "es").casefold()
+    en = tr("tip.restore_local_revision", "en").casefold()
+    assert "sin guardar" in es and "pierden" in es
+    assert "unsaved" in en and "discarded" in en
+
+
 def test_timeline_list_and_copy_tips_mention_ctrl_c():
     from studio.i18n import tr
 
