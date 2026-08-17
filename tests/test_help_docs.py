@@ -706,6 +706,15 @@ def test_apply_layout_tip_mentions_replaces_placements():
     assert "placements" in en
 
 
+def test_apply_layout_tip_mentions_cannot_undo():
+    from studio.i18n import tr
+
+    es = tr("tip.apply_layout", "es").casefold()
+    en = tr("tip.apply_layout", "en").casefold()
+    assert "deshacer" in es
+    assert "undone" in en
+
+
 def test_export_selected_status_tip_includes_shortcut():
     from studio.i18n import tr
 
