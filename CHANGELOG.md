@@ -102,6 +102,7 @@
 
 ### Cambiado
 
+- Restaurar revisión: tip aclara que los cambios sin guardar se pierden.
 - Timeline: tip Vaciar aclara que no se puede deshacer.
 - Ayuda: tip Documentación aclara fallback a índice de docs o README.
 - Preferencias: tip Abrir carpeta de configuración aclara que la crea si no existe.
