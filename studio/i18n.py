@@ -236,7 +236,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.new_from_template": (
             "Elegir una plantilla guardada y crear un proyecto "
-            "(Ctrl+Shift+N); pide confirmación si hay cambios sin guardar"
+            "(Ctrl+Shift+N); pide confirmación si hay cambios sin guardar; "
+            "si hay colocaciones, pregunta si restaurarlas"
         ),
         "tip.save_as_template": (
             "Guardar el proyecto actual como plantilla (Ctrl+Shift+M); "
@@ -1418,7 +1419,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.new_from_template": (
             "Pick a saved template and create a project "
-            "(Ctrl+Shift+N); asks to confirm if there are unsaved changes"
+            "(Ctrl+Shift+N); asks to confirm if there are unsaved changes; "
+            "if it has placements, asks whether to restore them"
         ),
         "tip.save_as_template": (
             "Save the current project as a template (Ctrl+Shift+M); "

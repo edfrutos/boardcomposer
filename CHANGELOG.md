@@ -102,6 +102,7 @@
 
 ### Cambiado
 
+- Nuevo desde plantilla: tip aclara que pregunta si restaurar colocaciones.
 - Aplicar layout: tip aclara que no se puede deshacer.
 - Restaurar revisión: tip aclara que los cambios sin guardar se pierden.
 - Timeline: tip Vaciar aclara que no se puede deshacer.
