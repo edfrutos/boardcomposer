@@ -772,6 +772,15 @@ def test_timeline_clear_tip_mentions_confirmation():
     assert "confirmation" in tr("tip.timeline_clear", "en").casefold()
 
 
+def test_timeline_clear_tip_mentions_cannot_undo():
+    from studio.i18n import tr
+
+    es = tr("tip.timeline_clear", "es").casefold()
+    en = tr("tip.timeline_clear", "en").casefold()
+    assert "deshacer" in es
+    assert "undone" in en
+
+
 def test_timeline_list_and_copy_tips_mention_ctrl_c():
     from studio.i18n import tr
 
