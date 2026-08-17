@@ -1065,6 +1065,17 @@ def test_preferences_tip_mentions_apply_on_accept():
     assert "applied" in en and "accept" in en
 
 
+def test_restore_defaults_tip_mentions_apply_on_accept():
+    from studio.i18n import tr
+
+    es = tr("tip.restore_defaults", "es").casefold()
+    en = tr("tip.restore_defaults", "en").casefold()
+    assert "defecto" in es and "aceptar" in es
+    assert "defaults" in en and "accept" in en
+    assert "confirmación" in es
+    assert "confirmation" in en
+
+
 def test_open_config_folder_tip_mentions_creates_if_missing():
     from studio.i18n import tr
 
