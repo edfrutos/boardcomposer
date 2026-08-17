@@ -1085,6 +1085,15 @@ def test_delete_piece_tip_mentions_confirmation():
     assert "confirmation" in en
 
 
+def test_delete_piece_tip_mentions_board_keeps_pieces():
+    from studio.i18n import tr
+
+    es = tr("tip.delete_piece", "es").casefold()
+    en = tr("tip.delete_piece", "en").casefold()
+    assert "tablero" in es and "conservan" in es
+    assert "board" in en and "kept" in en
+
+
 def test_rename_project_tip_mentions_name_dialog():
     from studio.i18n import tr
 

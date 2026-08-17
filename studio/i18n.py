@@ -351,7 +351,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.delete_piece": (
             "Eliminar la pieza o el tablero seleccionado (Backspace o Delete); "
-            "pide confirmación"
+            "pide confirmación (si es tablero, las piezas se conservan)"
         ),
         "tip.select_all_pieces": "Seleccionar todas las piezas del canvas (Ctrl+A)",
         "tip.deselect_pieces": "Quitar la selección de piezas del canvas (Escape)",
@@ -1529,7 +1529,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.delete_piece": (
             "Delete the selected piece or board (Backspace or Delete); "
-            "asks for confirmation"
+            "asks for confirmation (if a board, pieces are kept)"
         ),
         "tip.select_all_pieces": "Select every piece on the canvas (Ctrl+A)",
         "tip.deselect_pieces": "Clear the piece selection on the canvas (Escape)",
