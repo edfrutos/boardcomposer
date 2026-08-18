@@ -441,6 +441,15 @@ def test_redo_status_tip_includes_shortcut():
     assert "Ctrl+Shift+Z" in tr("tip.redo", "en")
 
 
+def test_redo_tip_mentions_piece_board_or_placement_edit():
+    from studio.i18n import tr
+
+    es = tr("tip.redo", "es").casefold()
+    en = tr("tip.redo", "en").casefold()
+    assert "piezas" in es and "tableros" in es and "colocaciones" in es
+    assert "piece" in en and "board" in en and "placement" in en
+
+
 def test_rotate_piece_status_tip_includes_shortcut():
     from studio.i18n import tr
 
