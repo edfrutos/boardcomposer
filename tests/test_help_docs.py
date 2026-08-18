@@ -1445,6 +1445,15 @@ def test_import_boards_csv_tip_mentions_offer_to_save_mapping_template():
     assert "offers" in en and "template" in en
 
 
+def test_import_boards_csv_tip_mentions_excel_sheet_picker():
+    from studio.i18n import tr
+
+    es = tr("tip.import_boards_csv", "es").casefold()
+    en = tr("tip.import_boards_csv", "en").casefold()
+    assert "excel" in es and "hojas" in es
+    assert "excel" in en and "sheets" in en
+
+
 def test_import_pieces_csv_status_tip_includes_shortcut():
     from studio.i18n import tr
 

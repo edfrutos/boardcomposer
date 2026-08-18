@@ -102,6 +102,7 @@
 
 ### Cambiado
 
+- Importar tableros: tip aclara que si Excel tiene varias hojas, pide cuál.
 - Rehacer: tip aclara que cubre piezas, tableros o colocaciones.
 - Deshacer: tip aclara que cubre piezas, tableros o colocaciones.
 - Preferencias: tip Restaurar valores aclara que se aplica al aceptar.
