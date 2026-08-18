@@ -102,6 +102,7 @@
 
 ### Cambiado
 
+- Rehacer: tip aclara que cubre piezas, tableros o colocaciones.
 - Deshacer: tip aclara que cubre piezas, tableros o colocaciones.
 - Preferencias: tip Restaurar valores aclara que se aplica al aceptar.
 - Importar piezas: tip aclara que ofrece guardar el mapeo como plantilla.

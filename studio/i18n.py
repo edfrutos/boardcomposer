@@ -337,7 +337,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.undo": (
             "Deshacer la última edición de piezas, tableros o colocaciones (Ctrl+Z)"
         ),
-        "tip.redo": "Rehacer la última acción deshecha (Ctrl+Shift+Z)",
+        "tip.redo": (
+            "Rehacer la última edición deshecha de piezas, tableros o colocaciones "
+            "(Ctrl+Shift+Z)"
+        ),
         "tip.rotate_piece": (
             "Rotar 90° la pieza seleccionada en el lienzo (R); "
             "debe estar colocada en un tablero"
@@ -1522,7 +1525,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "asks to confirm if there are unsaved changes"
         ),
         "tip.undo": ("Undo the last piece, board, or placement edit (Ctrl+Z)"),
-        "tip.redo": "Redo the last undone action (Ctrl+Shift+Z)",
+        "tip.redo": (
+            "Redo the last undone piece, board, or placement edit (Ctrl+Shift+Z)"
+        ),
         "tip.rotate_piece": (
             "Rotate the selected piece by 90° (R); the piece must be placed on a board"
         ),
