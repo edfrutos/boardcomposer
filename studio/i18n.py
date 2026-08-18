@@ -334,7 +334,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Cerrar BoardComposer Studio (Ctrl+Q); "
             "pide confirmación si hay cambios sin guardar"
         ),
-        "tip.undo": "Deshacer la última acción (Ctrl+Z)",
+        "tip.undo": (
+            "Deshacer la última edición de piezas, tableros o colocaciones (Ctrl+Z)"
+        ),
         "tip.redo": "Rehacer la última acción deshecha (Ctrl+Shift+Z)",
         "tip.rotate_piece": (
             "Rotar 90° la pieza seleccionada en el lienzo (R); "
@@ -1519,7 +1521,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Quit BoardComposer Studio (Ctrl+Q); "
             "asks to confirm if there are unsaved changes"
         ),
-        "tip.undo": "Undo the last action (Ctrl+Z)",
+        "tip.undo": ("Undo the last piece, board, or placement edit (Ctrl+Z)"),
         "tip.redo": "Redo the last undone action (Ctrl+Shift+Z)",
         "tip.rotate_piece": (
             "Rotate the selected piece by 90° (R); the piece must be placed on a board"
