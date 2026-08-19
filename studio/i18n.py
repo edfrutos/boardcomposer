@@ -404,10 +404,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.window_layout_reset": "Disposición de ventana restablecida",
         "tip.solve_layout": (
             "Calcular soluciones de layout (Ctrl+Return); "
-            "hace falta inventario de tableros y piezas"
+            "hace falta inventario de tableros y piezas; "
+            "muestra progreso y se puede cancelar"
         ),
         "tip.solve_layout_outdated": (
-            "Soluciones desactualizadas: recalcula ahora (Ctrl+Return)"
+            "Soluciones desactualizadas: recalcula ahora (Ctrl+Return); "
+            "muestra progreso y se puede cancelar"
         ),
         "tip.previous_solution": "Seleccionar la solución anterior (Re Pág)",
         "tip.previous_solution_outdated": (
@@ -1586,10 +1588,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.window_layout_reset": "Window layout reset",
         "tip.solve_layout": (
-            "Calculate layout solutions (Ctrl+Return); needs board and piece inventory"
+            "Calculate layout solutions (Ctrl+Return); "
+            "needs board and piece inventory; shows progress and can be cancelled"
         ),
         "tip.solve_layout_outdated": (
-            "Solutions outdated: recalculate now (Ctrl+Return)"
+            "Solutions outdated: recalculate now (Ctrl+Return); "
+            "shows progress and can be cancelled"
         ),
         "tip.previous_solution": "Select the previous solution (Page Up)",
         "tip.previous_solution_outdated": (
