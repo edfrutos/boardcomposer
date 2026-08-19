@@ -1477,3 +1477,12 @@ def test_import_pieces_csv_tip_mentions_offer_to_save_mapping_template():
     en = tr("tip.import_pieces_csv", "en").casefold()
     assert "ofrece" in es and "plantilla" in es
     assert "offers" in en and "template" in en
+
+
+def test_import_pieces_csv_tip_mentions_excel_sheet_picker():
+    from studio.i18n import tr
+
+    es = tr("tip.import_pieces_csv", "es").casefold()
+    en = tr("tip.import_pieces_csv", "en").casefold()
+    assert "excel" in es and "hojas" in es
+    assert "excel" in en and "sheets" in en
