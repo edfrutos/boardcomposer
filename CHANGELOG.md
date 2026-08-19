@@ -106,6 +106,7 @@
 
 ### Cambiado
 
+- CI: `apt-get` evita el mirror Azure (timeout; `archive.ubuntu.com`).
 - Importar tableros: tip aclara que si Excel tiene varias hojas, pide cuál.
 - Rehacer: tip aclara que cubre piezas, tableros o colocaciones.
 - Deshacer: tip aclara que cubre piezas, tableros o colocaciones.
