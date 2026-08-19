@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Docs planificación 2026-08-19: snapshot
+  `docs/masterplan/REVIEW-2026-08-19-planificacion.md`; cola IDE-0019…0024
+  sin IDE nuevas (Issues abiertos = 0; residuales eval/piloto; tips
+  #519…#535).
 - Docs planificación 2026-08-16: snapshot
   `docs/masterplan/REVIEW-2026-08-16-planificacion.md`; cola IDE-0019…0024
   sin IDE nuevas (Issues abiertos = 0; residuales eval/piloto; tips
@@ -102,6 +106,7 @@
 
 ### Cambiado
 
+- CI: `apt-get` evita el mirror Azure (timeout; `archive.ubuntu.com`).
 - Importar tableros: tip aclara que si Excel tiene varias hojas, pide cuál.
 - Rehacer: tip aclara que cubre piezas, tableros o colocaciones.
 - Deshacer: tip aclara que cubre piezas, tableros o colocaciones.
