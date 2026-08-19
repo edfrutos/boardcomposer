@@ -12,6 +12,7 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v4
@@ -24,8 +25,25 @@ jobs:
 
       - name: Install Qt runtime libraries (offscreen platform plugin)
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
+          set -euo pipefail
+          # ubuntu-latest mirrorlist prefers azure.archive.ubuntu.com, which
+          # can stall apt-get update until the 6h job timeout (#536 / #537).
+          for path in \
+            /etc/apt/sources.list \
+            /etc/apt/sources.list.d/ubuntu.sources \
+            /etc/apt/apt-mirrors.txt
+          do
+            if [ -f "$path" ]; then
+              sudo sed -i \
+                's|http://azure.archive.ubuntu.com/ubuntu|http://archive.ubuntu.com/ubuntu|g' \
+                "$path"
+            fi
+          done
+          sudo timeout 120 apt-get update \
+            -o Acquire::Retries=3 \
+            -o Acquire::http::Timeout=20 \
+            -o Acquire::https::Timeout=20
+          sudo timeout 180 apt-get install -y --no-install-recommends \
             libegl1 libgl1 libxkbcommon0 libxkbcommon-x11-0 libxcb-cursor0 \
             libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 \
             libxcb-render-util0 libxcb-shape0 libxcb-xinerama0 libxcb-xfixes0 \
