@@ -599,7 +599,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "se recuerda entre sesiones"
         ),
         "tip.timeline_replay_speed": (
-            "Velocidad de la reproducción automática en el Timeline"
+            "Velocidad de la reproducción automática en el Timeline; "
+            "se recuerda entre sesiones"
         ),
         "tip.timeline_list": (
             "Lista enfocada: Espacio play/pausa, Inicio, ← / →, "
@@ -1783,7 +1784,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_replay_mode": (
             "Replay solution placements or solver phases; remembered across sessions"
         ),
-        "tip.timeline_replay_speed": ("Speed of automatic Timeline replay"),
+        "tip.timeline_replay_speed": (
+            "Speed of automatic Timeline replay; remembered across sessions"
+        ),
         "tip.timeline_list": (
             "List focused: Space play/pause, Home, ← / →, "
             "Ctrl+C copies the line; context menu = JSON payload"
