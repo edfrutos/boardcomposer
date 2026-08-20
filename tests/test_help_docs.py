@@ -857,6 +857,15 @@ def test_timeline_filter_event_tip_mentions_persists_across_sessions():
     assert "remembered" in en and "sessions" in en
 
 
+def test_timeline_filter_piece_moves_tip_mentions_persists_across_sessions():
+    from studio.i18n import tr
+
+    es = tr("tip.timeline_filter_piece_moves", "es").casefold()
+    en = tr("tip.timeline_filter_piece_moves", "en").casefold()
+    assert "recuerda" in es and "sesiones" in es
+    assert "remembered" in en and "sessions" in en
+
+
 def test_restore_local_revision_tip_mentions_unsaved_discarded():
     from studio.i18n import tr
 

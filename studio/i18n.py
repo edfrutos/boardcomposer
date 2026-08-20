@@ -577,7 +577,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "se recuerda entre sesiones"
         ),
         "tip.timeline_filter_piece_moves": (
-            "Mostrar solo movimientos de piezas (desactivar = todos)"
+            "Mostrar solo movimientos de piezas (desactivar = todos); "
+            "se recuerda entre sesiones"
         ),
         "tip.timeline_filter_markers": ("Mostrar solo marcadores (desactivar = todos)"),
         "tip.timeline_filter_event": (
@@ -1762,7 +1763,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Keep the view on the latest Timeline event; remembered across sessions"
         ),
         "tip.timeline_filter_piece_moves": (
-            "Show only piece moves (turn off = all events)"
+            "Show only piece moves (turn off = all events); remembered across sessions"
         ),
         "tip.timeline_filter_markers": ("Show only markers (turn off = all events)"),
         "tip.timeline_filter_event": (
