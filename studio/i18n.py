@@ -580,7 +580,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Mostrar solo movimientos de piezas (desactivar = todos); "
             "se recuerda entre sesiones"
         ),
-        "tip.timeline_filter_markers": ("Mostrar solo marcadores (desactivar = todos)"),
+        "tip.timeline_filter_markers": (
+            "Mostrar solo marcadores (desactivar = todos); se recuerda entre sesiones"
+        ),
         "tip.timeline_filter_event": (
             "Limitar el historial a un tipo de evento concreto; "
             "se recuerda entre sesiones"
@@ -1765,7 +1767,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_filter_piece_moves": (
             "Show only piece moves (turn off = all events); remembered across sessions"
         ),
-        "tip.timeline_filter_markers": ("Show only markers (turn off = all events)"),
+        "tip.timeline_filter_markers": (
+            "Show only markers (turn off = all events); remembered across sessions"
+        ),
         "tip.timeline_filter_event": (
             "Limit the history to one event type; remembered across sessions"
         ),
