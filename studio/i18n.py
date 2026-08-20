@@ -595,7 +595,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Limitar el historial a un periodo reciente; se recuerda entre sesiones"
         ),
         "tip.timeline_replay_mode": (
-            "Reproducir colocaciones de la solución o las fases del solver"
+            "Reproducir colocaciones de la solución o las fases del solver; "
+            "se recuerda entre sesiones"
         ),
         "tip.timeline_replay_speed": (
             "Velocidad de la reproducción automática en el Timeline"
@@ -1779,7 +1780,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_filter_period": (
             "Limit the history to a recent period; remembered across sessions"
         ),
-        "tip.timeline_replay_mode": ("Replay solution placements or solver phases"),
+        "tip.timeline_replay_mode": (
+            "Replay solution placements or solver phases; remembered across sessions"
+        ),
         "tip.timeline_replay_speed": ("Speed of automatic Timeline replay"),
         "tip.timeline_list": (
             "List focused: Space play/pause, Home, ← / →, "
