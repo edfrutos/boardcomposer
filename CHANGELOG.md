@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Docs planificación 2026-08-20: snapshot
+  `docs/masterplan/REVIEW-2026-08-20-planificacion.md`; cola IDE-0019…0024
+  sin IDE nuevas (Issues abiertos = 0; residuales eval/piloto; tips
+  #537–#538; PR #539 abierto).
 - Docs planificación 2026-08-19: snapshot
   `docs/masterplan/REVIEW-2026-08-19-planificacion.md`; cola IDE-0019…0024
   sin IDE nuevas (Issues abiertos = 0; residuales eval/piloto; tips
