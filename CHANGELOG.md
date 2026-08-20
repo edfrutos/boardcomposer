@@ -110,6 +110,7 @@
 
 ### Cambiado
 
+- Timeline: tip Evento aclara que se recuerda entre sesiones.
 - Timeline: tip Algoritmo aclara que se recuerda entre sesiones.
 - Timeline: tip Periodo aclara que se recuerda entre sesiones.
 - Timeline: tip Seguir aclara que se recuerda entre sesiones.

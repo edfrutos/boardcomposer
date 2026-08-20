@@ -581,7 +581,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.timeline_filter_markers": ("Mostrar solo marcadores (desactivar = todos)"),
         "tip.timeline_filter_event": (
-            "Limitar el historial a un tipo de evento concreto"
+            "Limitar el historial a un tipo de evento concreto; "
+            "se recuerda entre sesiones"
         ),
         "tip.timeline_filter_algorithm": (
             "Mostrar solo eventos de un algoritmo de cálculo; "
@@ -1764,7 +1765,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Show only piece moves (turn off = all events)"
         ),
         "tip.timeline_filter_markers": ("Show only markers (turn off = all events)"),
-        "tip.timeline_filter_event": "Limit the history to one event type",
+        "tip.timeline_filter_event": (
+            "Limit the history to one event type; remembered across sessions"
+        ),
         "tip.timeline_filter_algorithm": (
             "Show only events from one solve algorithm; remembered across sessions"
         ),
