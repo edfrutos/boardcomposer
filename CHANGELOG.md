@@ -106,6 +106,7 @@
 
 ### Cambiado
 
+- Timeline: tip Seguir aclara que se recuerda entre sesiones.
 - Calcular layout: tip aclara que muestra progreso y se puede cancelar.
 - CI: `apt-get` evita el mirror Azure (timeout; `archive.ubuntu.com`).
 - Importar piezas: tip aclara que si Excel tiene varias hojas, pide cuál.
