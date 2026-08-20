@@ -830,6 +830,15 @@ def test_timeline_follow_tip_mentions_persists_across_sessions():
     assert "remembered" in en and "sessions" in en
 
 
+def test_timeline_filter_period_tip_mentions_persists_across_sessions():
+    from studio.i18n import tr
+
+    es = tr("tip.timeline_filter_period", "es").casefold()
+    en = tr("tip.timeline_filter_period", "en").casefold()
+    assert "recuerda" in es and "sesiones" in es
+    assert "remembered" in en and "sessions" in en
+
+
 def test_restore_local_revision_tip_mentions_unsaved_discarded():
     from studio.i18n import tr
 
