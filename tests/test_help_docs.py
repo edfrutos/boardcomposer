@@ -402,6 +402,19 @@ def test_solve_layout_tip_mentions_inventory():
     assert "board" in en and "piece" in en
 
 
+def test_solve_layout_tip_mentions_cancelable_progress():
+    from studio.i18n import tr
+
+    es = tr("tip.solve_layout", "es").casefold()
+    en = tr("tip.solve_layout", "en").casefold()
+    assert "progreso" in es and "cancelar" in es
+    assert "progress" in en and "cancel" in en
+    outdated_es = tr("tip.solve_layout_outdated", "es").casefold()
+    outdated_en = tr("tip.solve_layout_outdated", "en").casefold()
+    assert "progreso" in outdated_es and "cancelar" in outdated_es
+    assert "progress" in outdated_en and "cancel" in outdated_en
+
+
 def test_save_status_tip_includes_shortcut():
     from studio.i18n import tr
 
