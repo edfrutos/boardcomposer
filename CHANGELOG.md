@@ -110,6 +110,7 @@
 
 ### Cambiado
 
+- Timeline: tip modo replay aclara que se recuerda entre sesiones.
 - Timeline: tip Solo marcadores aclara que se recuerda entre sesiones.
 - Timeline: tip Solo movimientos aclara que se recuerda entre sesiones.
 - Timeline: tip Evento aclara que se recuerda entre sesiones.
