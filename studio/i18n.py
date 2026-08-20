@@ -571,7 +571,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_clear": (
             "Vaciar el historial del Timeline (pide confirmación; no se puede deshacer)"
         ),
-        "tip.timeline_clear_filters": "Quitar filtros de evento, algoritmo y periodo",
+        "tip.timeline_clear_filters": (
+            "Quitar filtros de evento, algoritmo y periodo; se recuerda entre sesiones"
+        ),
         "tip.timeline_follow": (
             "Mantener la vista en el último evento del Timeline; "
             "se recuerda entre sesiones"
@@ -1762,7 +1764,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_clear": (
             "Clear the Timeline history (asks for confirmation; cannot be undone)"
         ),
-        "tip.timeline_clear_filters": "Clear event, algorithm, and period filters",
+        "tip.timeline_clear_filters": (
+            "Clear event, algorithm, and period filters; remembered across sessions"
+        ),
         "tip.timeline_follow": (
             "Keep the view on the latest Timeline event; remembered across sessions"
         ),
