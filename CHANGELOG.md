@@ -110,6 +110,7 @@
 
 ### Cambiado
 
+- Timeline: tip Algoritmo aclara que se recuerda entre sesiones.
 - Timeline: tip Periodo aclara que se recuerda entre sesiones.
 - Timeline: tip Seguir aclara que se recuerda entre sesiones.
 - Calcular layout: tip aclara que muestra progreso y se puede cancelar.

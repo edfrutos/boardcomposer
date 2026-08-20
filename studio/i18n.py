@@ -584,7 +584,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Limitar el historial a un tipo de evento concreto"
         ),
         "tip.timeline_filter_algorithm": (
-            "Mostrar solo eventos de un algoritmo de cálculo"
+            "Mostrar solo eventos de un algoritmo de cálculo; "
+            "se recuerda entre sesiones"
         ),
         "tip.timeline_filter_period": (
             "Limitar el historial a un periodo reciente; se recuerda entre sesiones"
@@ -1764,7 +1765,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.timeline_filter_markers": ("Show only markers (turn off = all events)"),
         "tip.timeline_filter_event": "Limit the history to one event type",
-        "tip.timeline_filter_algorithm": ("Show only events from one solve algorithm"),
+        "tip.timeline_filter_algorithm": (
+            "Show only events from one solve algorithm; remembered across sessions"
+        ),
         "tip.timeline_filter_period": (
             "Limit the history to a recent period; remembered across sessions"
         ),
