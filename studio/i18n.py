@@ -87,9 +87,18 @@ _STRINGS: dict[str, dict[str, str]] = {
         "menu.view": "Ver",
         "toolbar.main": "Barra principal",
         "action.toggle_toolbar": "Barra de herramientas",
-        "tip.toggle_toolbar": "Mostrar u ocultar la barra de herramientas (Ctrl+Shift+K)",
-        "tip.toggle_toolbar_show": "Mostrar la barra de herramientas (Ctrl+Shift+K)",
-        "tip.toggle_toolbar_hide": "Ocultar la barra de herramientas (Ctrl+Shift+K)",
+        "tip.toggle_toolbar": (
+            "Mostrar u ocultar la barra de herramientas (Ctrl+Shift+K); "
+            "se recuerda entre sesiones"
+        ),
+        "tip.toggle_toolbar_show": (
+            "Mostrar la barra de herramientas (Ctrl+Shift+K); "
+            "se recuerda entre sesiones"
+        ),
+        "tip.toggle_toolbar_hide": (
+            "Ocultar la barra de herramientas (Ctrl+Shift+K); "
+            "se recuerda entre sesiones"
+        ),
         "status.toolbar_shown": "Barra de herramientas visible",
         "status.toolbar_hidden": "Barra de herramientas oculta",
         "action.toggle_explorer": "Explorador",
@@ -1317,9 +1326,15 @@ _STRINGS: dict[str, dict[str, str]] = {
         "menu.view": "View",
         "toolbar.main": "Main toolbar",
         "action.toggle_toolbar": "Toolbar",
-        "tip.toggle_toolbar": "Show or hide the main toolbar (Ctrl+Shift+K)",
-        "tip.toggle_toolbar_show": "Show the main toolbar (Ctrl+Shift+K)",
-        "tip.toggle_toolbar_hide": "Hide the main toolbar (Ctrl+Shift+K)",
+        "tip.toggle_toolbar": (
+            "Show or hide the main toolbar (Ctrl+Shift+K); remembered across sessions"
+        ),
+        "tip.toggle_toolbar_show": (
+            "Show the main toolbar (Ctrl+Shift+K); remembered across sessions"
+        ),
+        "tip.toggle_toolbar_hide": (
+            "Hide the main toolbar (Ctrl+Shift+K); remembered across sessions"
+        ),
         "status.toolbar_shown": "Toolbar visible",
         "status.toolbar_hidden": "Toolbar hidden",
         "action.toggle_explorer": "Explorer",
