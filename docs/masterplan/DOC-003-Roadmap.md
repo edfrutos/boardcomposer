@@ -3,10 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.11  
+**Versión:** 1.3.12  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 20/08/2026
+**Última revisión:** 21/08/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
@@ -160,7 +160,7 @@ Objetivos:
 - Eval humana IDE-0007 MVP (`uat/studio/CHECKLIST-EXPLAIN-EVAL.md`).
 - Piloto DT-0006 opción D (backup); C diferida.
 - Pulido / QoL Fase 2 bajo demanda (ciclo `0.4.3.dev0`).
-- Candidatos producto IDE-0019…0024 (ver revisión 2026-08-20) cuando haya
+- Candidatos producto IDE-0019…0024 (ver revisión 2026-08-21) cuando haya
   capacidad tras eval.
 
 ### Prioridad P2
@@ -186,8 +186,8 @@ Toda modificación deberá:
 
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
 ciclo `0.4.3.dev0` (ola tips honesty Archivo/Edición/Ayuda/plantillas/
-outdated/import·export + candidatos IDE-0019…0024). Revisión:
-`REVIEW-2026-08-20-planificacion.md`.
+outdated/import·export/Timeline + candidatos IDE-0019…0024). Revisión:
+`REVIEW-2026-08-21-planificacion.md`.
 
 Pendiente de:
 
