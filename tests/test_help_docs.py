@@ -1073,6 +1073,27 @@ def test_recent_menu_remove_tip_mentions_disk_safe():
     assert "disk" in en
 
 
+def test_pin_recent_tip_mentions_persists_across_sessions():
+    from studio.i18n import tr
+
+    es = tr("tip.pin_recent", "es").casefold()
+    en = tr("tip.pin_recent", "en").casefold()
+    assert "recuerda" in es and "sesiones" in es
+    assert "remembered" in en and "sessions" in en
+    unpin_es = tr("tip.unpin_recent", "es").casefold()
+    unpin_en = tr("tip.unpin_recent", "en").casefold()
+    assert "recuerda" in unpin_es and "sesiones" in unpin_es
+    assert "remembered" in unpin_en and "sessions" in unpin_en
+    menu_es = tr("tip.recent_menu_pin", "es", path="x").casefold()
+    menu_en = tr("tip.recent_menu_pin", "en", path="x").casefold()
+    assert "recuerda" in menu_es and "sesiones" in menu_es
+    assert "remembered" in menu_en and "sessions" in menu_en
+    menu_unpin_es = tr("tip.recent_menu_unpin", "es", path="x").casefold()
+    menu_unpin_en = tr("tip.recent_menu_unpin", "en", path="x").casefold()
+    assert "recuerda" in menu_unpin_es and "sesiones" in menu_unpin_es
+    assert "remembered" in menu_unpin_en and "sessions" in menu_unpin_en
+
+
 def test_exit_tip_mentions_unsaved_confirmation():
     from studio.i18n import tr
 

@@ -477,8 +477,13 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Quitar este proyecto de la lista (Delete o Backspace); "
             "no borra el archivo del disco"
         ),
-        "tip.pin_recent": "Anclar este proyecto arriba en la lista de recientes",
-        "tip.unpin_recent": "Quitar el anclaje de este proyecto reciente",
+        "tip.pin_recent": (
+            "Anclar este proyecto arriba en la lista de recientes; "
+            "se recuerda entre sesiones"
+        ),
+        "tip.unpin_recent": (
+            "Quitar el anclaje de este proyecto reciente; se recuerda entre sesiones"
+        ),
         "tip.reveal_recent": "Mostrar el archivo .bcproj en el explorador de archivos",
         "tip.recent_row": (
             "{path}\nClic abre; pide confirmación si hay cambios sin guardar · "
@@ -495,8 +500,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.recent_menu_open": (
             "Abrir {path}; pide confirmación si hay cambios sin guardar"
         ),
-        "tip.recent_menu_pin": "Anclar {path} arriba en recientes",
-        "tip.recent_menu_unpin": "Quitar el anclaje de {path}",
+        "tip.recent_menu_pin": (
+            "Anclar {path} arriba en recientes; se recuerda entre sesiones"
+        ),
+        "tip.recent_menu_unpin": (
+            "Quitar el anclaje de {path}; se recuerda entre sesiones"
+        ),
         "tip.recent_menu_reveal": "Mostrar {path} en el explorador de archivos",
         "tip.recent_menu_remove": (
             "Quitar {path} de recientes; no borra el archivo del disco"
@@ -1674,8 +1683,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Remove this project from the list (Delete or Backspace); "
             "does not delete the file on disk"
         ),
-        "tip.pin_recent": "Pin this project to the top of the recent list",
-        "tip.unpin_recent": "Unpin this recent project",
+        "tip.pin_recent": (
+            "Pin this project to the top of the recent list; remembered across sessions"
+        ),
+        "tip.unpin_recent": ("Unpin this recent project; remembered across sessions"),
         "tip.reveal_recent": "Show the .bcproj file in the file manager",
         "tip.recent_row": (
             "{path}\nClick opens; asks to confirm unsaved changes · "
@@ -1690,8 +1701,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.recent_menu_open": (
             "Open {path}; asks to confirm if there are unsaved changes"
         ),
-        "tip.recent_menu_pin": "Pin {path} to the top of recent projects",
-        "tip.recent_menu_unpin": "Unpin {path}",
+        "tip.recent_menu_pin": (
+            "Pin {path} to the top of recent projects; remembered across sessions"
+        ),
+        "tip.recent_menu_unpin": ("Unpin {path}; remembered across sessions"),
         "tip.recent_menu_reveal": "Show {path} in the file manager",
         "tip.recent_menu_remove": (
             "Remove {path} from recent projects; does not delete the file on disk"
