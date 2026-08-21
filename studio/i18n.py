@@ -392,9 +392,16 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.zoom_out": "Alejar el Workspace (rueda, Ctrl+-)",
         "status.zoom_at_maximum": "Zoom al máximo",
         "status.zoom_at_minimum": "Zoom al mínimo",
-        "tip.toggle_grid": "Mostrar u ocultar la cuadrícula del canvas (Ctrl+G)",
-        "tip.toggle_grid_show": "Mostrar la cuadrícula del canvas (Ctrl+G)",
-        "tip.toggle_grid_hide": "Ocultar la cuadrícula del canvas (Ctrl+G)",
+        "tip.toggle_grid": (
+            "Mostrar u ocultar la cuadrícula del canvas (Ctrl+G); "
+            "se recuerda entre sesiones"
+        ),
+        "tip.toggle_grid_show": (
+            "Mostrar la cuadrícula del canvas (Ctrl+G); se recuerda entre sesiones"
+        ),
+        "tip.toggle_grid_hide": (
+            "Ocultar la cuadrícula del canvas (Ctrl+G); se recuerda entre sesiones"
+        ),
         "status.grid_shown": "Cuadrícula visible",
         "status.grid_hidden": "Cuadrícula oculta",
         "tip.reset_window_layout": (
@@ -1600,9 +1607,15 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.zoom_out": "Zoom out on the Workspace (wheel, Ctrl+-)",
         "status.zoom_at_maximum": "Already at maximum zoom",
         "status.zoom_at_minimum": "Already at minimum zoom",
-        "tip.toggle_grid": "Show or hide the canvas grid (Ctrl+G)",
-        "tip.toggle_grid_show": "Show the canvas grid (Ctrl+G)",
-        "tip.toggle_grid_hide": "Hide the canvas grid (Ctrl+G)",
+        "tip.toggle_grid": (
+            "Show or hide the canvas grid (Ctrl+G); remembered across sessions"
+        ),
+        "tip.toggle_grid_show": (
+            "Show the canvas grid (Ctrl+G); remembered across sessions"
+        ),
+        "tip.toggle_grid_hide": (
+            "Hide the canvas grid (Ctrl+G); remembered across sessions"
+        ),
         "status.grid_shown": "Grid visible",
         "status.grid_hidden": "Grid hidden",
         "tip.reset_window_layout": (

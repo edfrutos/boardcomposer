@@ -431,6 +431,16 @@ def test_toggle_grid_status_tip_includes_shortcut():
     assert "Ctrl+G" in tr("tip.toggle_grid_hide", "en")
 
 
+def test_toggle_grid_tip_mentions_persists_across_sessions():
+    from studio.i18n import tr
+
+    for key in ("tip.toggle_grid", "tip.toggle_grid_show", "tip.toggle_grid_hide"):
+        es = tr(key, "es").casefold()
+        en = tr(key, "en").casefold()
+        assert "recuerda" in es and "sesiones" in es
+        assert "remembered" in en and "sessions" in en
+
+
 def test_undo_status_tip_includes_shortcut():
     from studio.i18n import tr
 

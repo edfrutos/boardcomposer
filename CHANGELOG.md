@@ -114,6 +114,7 @@
 
 ### Cambiado
 
+- Vista: tip cuadrícula aclara que se recuerda entre sesiones.
 - Recientes: tip Anclar aclara que se recuerda entre sesiones.
 - Timeline: tip Limpiar filtros aclara que se recuerda entre sesiones.
 - Timeline: tip velocidad replay aclara que se recuerda entre sesiones.
