@@ -1459,6 +1459,20 @@ def test_toggle_toolbar_status_tip_includes_shortcut():
     assert "Ctrl+Shift+K" in tr("tip.toggle_toolbar_hide", "en")
 
 
+def test_toggle_toolbar_tip_mentions_persists_across_sessions():
+    from studio.i18n import tr
+
+    for key in (
+        "tip.toggle_toolbar",
+        "tip.toggle_toolbar_show",
+        "tip.toggle_toolbar_hide",
+    ):
+        es = tr(key, "es").casefold()
+        en = tr(key, "en").casefold()
+        assert "recuerda" in es and "sesiones" in es
+        assert "remembered" in en and "sessions" in en
+
+
 def test_toggle_explorer_status_tip_includes_shortcut():
     from studio.i18n import tr
 
