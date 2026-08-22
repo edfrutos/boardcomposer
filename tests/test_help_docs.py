@@ -1482,6 +1482,20 @@ def test_toggle_explorer_status_tip_includes_shortcut():
     assert "Ctrl+1" in tr("tip.toggle_explorer_hide", "en")
 
 
+def test_toggle_explorer_tip_mentions_persists_across_sessions():
+    from studio.i18n import tr
+
+    for key in (
+        "tip.toggle_explorer",
+        "tip.toggle_explorer_show",
+        "tip.toggle_explorer_hide",
+    ):
+        es = tr(key, "es").casefold()
+        en = tr(key, "en").casefold()
+        assert "recuerda" in es and "sesiones" in es
+        assert "remembered" in en and "sessions" in en
+
+
 def test_toggle_inspector_status_tip_includes_shortcut():
     from studio.i18n import tr
 

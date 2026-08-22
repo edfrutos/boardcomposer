@@ -118,6 +118,7 @@
 
 ### Cambiado
 
+- Vista: tip Explorador aclara que se recuerda entre sesiones.
 - Vista: tip barra de herramientas aclara que se recuerda entre sesiones.
 - Vista: tip cuadrícula aclara que se recuerda entre sesiones.
 - Recientes: tip Anclar aclara que se recuerda entre sesiones.
