@@ -102,9 +102,15 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.toolbar_shown": "Barra de herramientas visible",
         "status.toolbar_hidden": "Barra de herramientas oculta",
         "action.toggle_explorer": "Explorador",
-        "tip.toggle_explorer": "Mostrar u ocultar el Explorador (Ctrl+1)",
-        "tip.toggle_explorer_show": "Mostrar el Explorador (Ctrl+1)",
-        "tip.toggle_explorer_hide": "Ocultar el Explorador (Ctrl+1)",
+        "tip.toggle_explorer": (
+            "Mostrar u ocultar el Explorador (Ctrl+1); se recuerda entre sesiones"
+        ),
+        "tip.toggle_explorer_show": (
+            "Mostrar el Explorador (Ctrl+1); se recuerda entre sesiones"
+        ),
+        "tip.toggle_explorer_hide": (
+            "Ocultar el Explorador (Ctrl+1); se recuerda entre sesiones"
+        ),
         "action.toggle_inspector": "Inspector",
         "tip.toggle_inspector": "Mostrar u ocultar el Inspector (Ctrl+2)",
         "tip.toggle_inspector_show": "Mostrar el Inspector (Ctrl+2)",
@@ -1338,9 +1344,15 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.toolbar_shown": "Toolbar visible",
         "status.toolbar_hidden": "Toolbar hidden",
         "action.toggle_explorer": "Explorer",
-        "tip.toggle_explorer": "Show or hide the Explorer (Ctrl+1)",
-        "tip.toggle_explorer_show": "Show the Explorer (Ctrl+1)",
-        "tip.toggle_explorer_hide": "Hide the Explorer (Ctrl+1)",
+        "tip.toggle_explorer": (
+            "Show or hide the Explorer (Ctrl+1); remembered across sessions"
+        ),
+        "tip.toggle_explorer_show": (
+            "Show the Explorer (Ctrl+1); remembered across sessions"
+        ),
+        "tip.toggle_explorer_hide": (
+            "Hide the Explorer (Ctrl+1); remembered across sessions"
+        ),
         "action.toggle_inspector": "Inspector",
         "tip.toggle_inspector": "Show or hide the Inspector (Ctrl+2)",
         "tip.toggle_inspector_show": "Show the Inspector (Ctrl+2)",
