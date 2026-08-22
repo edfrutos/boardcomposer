@@ -112,9 +112,15 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Ocultar el Explorador (Ctrl+1); se recuerda entre sesiones"
         ),
         "action.toggle_inspector": "Inspector",
-        "tip.toggle_inspector": "Mostrar u ocultar el Inspector (Ctrl+2)",
-        "tip.toggle_inspector_show": "Mostrar el Inspector (Ctrl+2)",
-        "tip.toggle_inspector_hide": "Ocultar el Inspector (Ctrl+2)",
+        "tip.toggle_inspector": (
+            "Mostrar u ocultar el Inspector (Ctrl+2); se recuerda entre sesiones"
+        ),
+        "tip.toggle_inspector_show": (
+            "Mostrar el Inspector (Ctrl+2); se recuerda entre sesiones"
+        ),
+        "tip.toggle_inspector_hide": (
+            "Ocultar el Inspector (Ctrl+2); se recuerda entre sesiones"
+        ),
         "action.toggle_timeline": "Timeline",
         "tip.toggle_timeline": "Mostrar u ocultar el Timeline (Ctrl+3)",
         "tip.toggle_timeline_show": "Mostrar el Timeline (Ctrl+3)",
@@ -1354,9 +1360,15 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Hide the Explorer (Ctrl+1); remembered across sessions"
         ),
         "action.toggle_inspector": "Inspector",
-        "tip.toggle_inspector": "Show or hide the Inspector (Ctrl+2)",
-        "tip.toggle_inspector_show": "Show the Inspector (Ctrl+2)",
-        "tip.toggle_inspector_hide": "Hide the Inspector (Ctrl+2)",
+        "tip.toggle_inspector": (
+            "Show or hide the Inspector (Ctrl+2); remembered across sessions"
+        ),
+        "tip.toggle_inspector_show": (
+            "Show the Inspector (Ctrl+2); remembered across sessions"
+        ),
+        "tip.toggle_inspector_hide": (
+            "Hide the Inspector (Ctrl+2); remembered across sessions"
+        ),
         "action.toggle_timeline": "Timeline",
         "tip.toggle_timeline": "Show or hide the Timeline (Ctrl+3)",
         "tip.toggle_timeline_show": "Show the Timeline (Ctrl+3)",
