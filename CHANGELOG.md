@@ -118,6 +118,7 @@
 
 ### Cambiado
 
+- Vista: tip Inspector aclara que se recuerda entre sesiones.
 - Vista: tip Explorador aclara que se recuerda entre sesiones.
 - Vista: tip barra de herramientas aclara que se recuerda entre sesiones.
 - Vista: tip cuadrícula aclara que se recuerda entre sesiones.
