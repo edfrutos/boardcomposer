@@ -122,9 +122,15 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Ocultar el Inspector (Ctrl+2); se recuerda entre sesiones"
         ),
         "action.toggle_timeline": "Timeline",
-        "tip.toggle_timeline": "Mostrar u ocultar el Timeline (Ctrl+3)",
-        "tip.toggle_timeline_show": "Mostrar el Timeline (Ctrl+3)",
-        "tip.toggle_timeline_hide": "Ocultar el Timeline (Ctrl+3)",
+        "tip.toggle_timeline": (
+            "Mostrar u ocultar el Timeline (Ctrl+3); se recuerda entre sesiones"
+        ),
+        "tip.toggle_timeline_show": (
+            "Mostrar el Timeline (Ctrl+3); se recuerda entre sesiones"
+        ),
+        "tip.toggle_timeline_hide": (
+            "Ocultar el Timeline (Ctrl+3); se recuerda entre sesiones"
+        ),
         "action.toggle_comparator": "Comparador de soluciones",
         "tip.toggle_comparator": "Mostrar u ocultar el Comparador de soluciones (Ctrl+4)",
         "tip.toggle_comparator_show": "Mostrar el Comparador de soluciones (Ctrl+4)",
@@ -1370,9 +1376,15 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Hide the Inspector (Ctrl+2); remembered across sessions"
         ),
         "action.toggle_timeline": "Timeline",
-        "tip.toggle_timeline": "Show or hide the Timeline (Ctrl+3)",
-        "tip.toggle_timeline_show": "Show the Timeline (Ctrl+3)",
-        "tip.toggle_timeline_hide": "Hide the Timeline (Ctrl+3)",
+        "tip.toggle_timeline": (
+            "Show or hide the Timeline (Ctrl+3); remembered across sessions"
+        ),
+        "tip.toggle_timeline_show": (
+            "Show the Timeline (Ctrl+3); remembered across sessions"
+        ),
+        "tip.toggle_timeline_hide": (
+            "Hide the Timeline (Ctrl+3); remembered across sessions"
+        ),
         "action.toggle_comparator": "Solution comparator",
         "tip.toggle_comparator": "Show or hide the solution comparator (Ctrl+4)",
         "tip.toggle_comparator_show": "Show the solution comparator (Ctrl+4)",
