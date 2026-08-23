@@ -1524,6 +1524,20 @@ def test_toggle_timeline_status_tip_includes_shortcut():
     assert "Ctrl+3" in tr("tip.toggle_timeline", "en")
 
 
+def test_toggle_timeline_tip_mentions_persists_across_sessions():
+    from studio.i18n import tr
+
+    for key in (
+        "tip.toggle_timeline",
+        "tip.toggle_timeline_show",
+        "tip.toggle_timeline_hide",
+    ):
+        es = tr(key, "es").casefold()
+        en = tr(key, "en").casefold()
+        assert "recuerda" in es and "sesiones" in es
+        assert "remembered" in en and "sessions" in en
+
+
 def test_toggle_comparator_status_tip_includes_shortcut():
     from studio.i18n import tr
 
