@@ -122,6 +122,7 @@
 
 ### Cambiado
 
+- Calcular layout: tip aclara que sustituye las candidatas anteriores.
 - Vista: tip Comparador aclara que se recuerda entre sesiones.
 - Vista: tip Timeline aclara que se recuerda entre sesiones.
 - Vista: tip Inspector aclara que se recuerda entre sesiones.
