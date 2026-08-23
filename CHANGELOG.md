@@ -118,6 +118,7 @@
 
 ### Cambiado
 
+- Vista: tip Comparador aclara que se recuerda entre sesiones.
 - Vista: tip Timeline aclara que se recuerda entre sesiones.
 - Vista: tip Inspector aclara que se recuerda entre sesiones.
 - Vista: tip Explorador aclara que se recuerda entre sesiones.

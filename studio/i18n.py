@@ -132,9 +132,16 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Ocultar el Timeline (Ctrl+3); se recuerda entre sesiones"
         ),
         "action.toggle_comparator": "Comparador de soluciones",
-        "tip.toggle_comparator": "Mostrar u ocultar el Comparador de soluciones (Ctrl+4)",
-        "tip.toggle_comparator_show": "Mostrar el Comparador de soluciones (Ctrl+4)",
-        "tip.toggle_comparator_hide": "Ocultar el Comparador de soluciones (Ctrl+4)",
+        "tip.toggle_comparator": (
+            "Mostrar u ocultar el Comparador de soluciones (Ctrl+4); "
+            "se recuerda entre sesiones"
+        ),
+        "tip.toggle_comparator_show": (
+            "Mostrar el Comparador de soluciones (Ctrl+4); se recuerda entre sesiones"
+        ),
+        "tip.toggle_comparator_hide": (
+            "Ocultar el Comparador de soluciones (Ctrl+4); se recuerda entre sesiones"
+        ),
         "status.dock_shown": "{name} visible",
         "status.dock_hidden": "{name} oculto",
         "menu.project": "Proyecto",
@@ -1386,9 +1393,15 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Hide the Timeline (Ctrl+3); remembered across sessions"
         ),
         "action.toggle_comparator": "Solution comparator",
-        "tip.toggle_comparator": "Show or hide the solution comparator (Ctrl+4)",
-        "tip.toggle_comparator_show": "Show the solution comparator (Ctrl+4)",
-        "tip.toggle_comparator_hide": "Hide the solution comparator (Ctrl+4)",
+        "tip.toggle_comparator": (
+            "Show or hide the solution comparator (Ctrl+4); remembered across sessions"
+        ),
+        "tip.toggle_comparator_show": (
+            "Show the solution comparator (Ctrl+4); remembered across sessions"
+        ),
+        "tip.toggle_comparator_hide": (
+            "Hide the solution comparator (Ctrl+4); remembered across sessions"
+        ),
         "status.dock_shown": "{name} visible",
         "status.dock_hidden": "{name} hidden",
         "menu.project": "Project",
