@@ -425,6 +425,16 @@ def test_solve_layout_tip_mentions_replaces_candidates():
         assert "replace" in en and "candidates" in en
 
 
+def test_solve_layout_tip_mentions_cannot_undo():
+    from studio.i18n import tr
+
+    for key in ("tip.solve_layout", "tip.solve_layout_outdated"):
+        es = tr(key, "es").casefold()
+        en = tr(key, "en").casefold()
+        assert "deshacer" in es
+        assert "undone" in en
+
+
 def test_save_status_tip_includes_shortcut():
     from studio.i18n import tr
 

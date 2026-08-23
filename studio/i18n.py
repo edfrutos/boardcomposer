@@ -447,12 +447,12 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Calcular soluciones de layout (Ctrl+Return); "
             "hace falta inventario de tableros y piezas; "
             "muestra progreso y se puede cancelar; "
-            "sustituye las candidatas anteriores"
+            "sustituye las candidatas anteriores (no se puede deshacer)"
         ),
         "tip.solve_layout_outdated": (
             "Soluciones desactualizadas: recalcula ahora (Ctrl+Return); "
             "muestra progreso y se puede cancelar; "
-            "sustituye las candidatas anteriores"
+            "sustituye las candidatas anteriores (no se puede deshacer)"
         ),
         "tip.previous_solution": "Seleccionar la solución anterior (Re Pág)",
         "tip.previous_solution_outdated": (
@@ -1692,11 +1692,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.solve_layout": (
             "Calculate layout solutions (Ctrl+Return); "
             "needs board and piece inventory; shows progress and can be cancelled; "
-            "replaces previous candidates"
+            "replaces previous candidates (cannot be undone)"
         ),
         "tip.solve_layout_outdated": (
             "Solutions outdated: recalculate now (Ctrl+Return); "
-            "shows progress and can be cancelled; replaces previous candidates"
+            "shows progress and can be cancelled; "
+            "replaces previous candidates (cannot be undone)"
         ),
         "tip.previous_solution": "Select the previous solution (Page Up)",
         "tip.previous_solution_outdated": (
