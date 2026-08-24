@@ -126,6 +126,7 @@
 
 ### Cambiado
 
+- Barra de estado: tip sin guardar aclara que abre el explorador de archivos.
 - Barra de estado: tip del basename aclara que abre el explorador de archivos.
 - Proyecto: tip Abrir carpeta aclara que abre el explorador de archivos.
 - Calcular layout: tip aclara que la lista de candidatas no se puede deshacer.

@@ -310,7 +310,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "(Ctrl+Shift+R)"
         ),
         "tip.status_project_unsaved": (
-            "Guarda el proyecto (Ctrl+S) para abrir su carpeta"
+            "Guarda el proyecto (Ctrl+S) para abrir su carpeta "
+            "en el explorador de archivos"
         ),
         "tip.diff_bcproj": (
             "Comparar dos revisiones .bcproj o el proyecto abierto vs un archivo "
@@ -1572,7 +1573,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_project_path": (
             "{path}\nClick to open the folder in the file manager (Ctrl+Shift+R)"
         ),
-        "tip.status_project_unsaved": ("Save the project (Ctrl+S) to open its folder"),
+        "tip.status_project_unsaved": (
+            "Save the project (Ctrl+S) to open its folder in the file manager"
+        ),
         "tip.diff_bcproj": (
             "Compare two .bcproj revisions or the open project vs a file "
             "(Ctrl+Shift+Y); opens the dialog; can restore a ring revision; "
