@@ -306,7 +306,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "(Ctrl+Shift+R)"
         ),
         "tip.status_project_path": (
-            "{path}\nClic para abrir la carpeta (Ctrl+Shift+R)"
+            "{path}\nClic para abrir la carpeta en el explorador de archivos "
+            "(Ctrl+Shift+R)"
         ),
         "tip.status_project_unsaved": (
             "Guarda el proyecto (Ctrl+S) para abrir su carpeta"
@@ -1568,7 +1569,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Open the folder that contains the .bcproj file in the file manager "
             "(Ctrl+Shift+R)"
         ),
-        "tip.status_project_path": ("{path}\nClick to open the folder (Ctrl+Shift+R)"),
+        "tip.status_project_path": (
+            "{path}\nClick to open the folder in the file manager (Ctrl+Shift+R)"
+        ),
         "tip.status_project_unsaved": ("Save the project (Ctrl+S) to open its folder"),
         "tip.diff_bcproj": (
             "Compare two .bcproj revisions or the open project vs a file "
