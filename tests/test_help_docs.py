@@ -1641,6 +1641,17 @@ def test_status_project_path_tip_mentions_file_manager():
     assert "Ctrl+Shift+R" in tr("tip.status_project_path", "en")
 
 
+def test_status_project_unsaved_tip_mentions_file_manager():
+    from studio.i18n import tr
+
+    es = tr("tip.status_project_unsaved", "es").casefold()
+    en = tr("tip.status_project_unsaved", "en").casefold()
+    assert "explorador" in es and "archivos" in es
+    assert "file manager" in en
+    assert "Ctrl+S" in tr("tip.status_project_unsaved", "es")
+    assert "Ctrl+S" in tr("tip.status_project_unsaved", "en")
+
+
 def test_add_board_status_tip_includes_shortcut():
     from studio.i18n import tr
 
