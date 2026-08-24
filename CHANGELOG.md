@@ -126,6 +126,7 @@
 
 ### Cambiado
 
+- Proyecto: tip Abrir carpeta aclara que abre el explorador de archivos.
 - Calcular layout: tip aclara que la lista de candidatas no se puede deshacer.
 - Calcular layout: tip aclara que sustituye las candidatas anteriores.
 - Vista: tip Comparador aclara que se recuerda entre sesiones.
