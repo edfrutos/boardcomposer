@@ -3,10 +3,10 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.9
+**Versión:** 1.2.10
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 23/08/2026
+**Última revisión:** 24/08/2026
 
 ---
 
@@ -143,7 +143,7 @@ opción C diferida); sin críticas sin plan. IDE-0007 MVP local entregado.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para `0.4.2`; snapshot
-2026-08-23 en `REVIEW-2026-08-23-planificacion.md` (abiertas = 1, DT-0006).
+2026-08-24 en `REVIEW-2026-08-24-planificacion.md` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
