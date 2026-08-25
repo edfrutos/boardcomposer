@@ -1652,6 +1652,15 @@ def test_status_project_unsaved_tip_mentions_file_manager():
     assert "Ctrl+S" in tr("tip.status_project_unsaved", "en")
 
 
+def test_project_folder_unavailable_status_mentions_file_manager():
+    from studio.i18n import tr
+
+    es = tr("status.project_folder_unavailable", "es").casefold()
+    en = tr("status.project_folder_unavailable", "en").casefold()
+    assert "explorador" in es and "archivos" in es
+    assert "file manager" in en
+
+
 def test_add_board_status_tip_includes_shortcut():
     from studio.i18n import tr
 
