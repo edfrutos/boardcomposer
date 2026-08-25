@@ -676,7 +676,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_replay_reset": "Inicio de la reproducción (Inicio)",
         "tip.timeline_replay_back": "Paso atrás (←)",
         "tip.timeline_replay_forward": "Paso adelante (→)",
-        "tip.timeline_replay_play": "Play / Pausa (Espacio)",
+        "tip.timeline_replay_play": ("Play / Pausa (Espacio); sin aplicarla"),
         "status.timeline_replay_idle": (
             "Calcula un layout para reproducir la solución en el Timeline"
         ),
@@ -1920,7 +1920,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_replay_reset": "Restart replay (Home)",
         "tip.timeline_replay_back": "Step back (←)",
         "tip.timeline_replay_forward": "Step forward (→)",
-        "tip.timeline_replay_play": "Play / Pause (Space)",
+        "tip.timeline_replay_play": ("Play / Pause (Space); without applying it"),
         "status.timeline_replay_idle": (
             "Calculate a layout to replay the solution in the Timeline"
         ),
