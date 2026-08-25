@@ -943,6 +943,15 @@ def test_timeline_replay_speed_tip_mentions_persists_across_sessions():
     assert "remembered" in en and "sessions" in en
 
 
+def test_timeline_replay_play_tip_mentions_without_applying():
+    from studio.i18n import tr
+
+    es = tr("tip.timeline_replay_play", "es").casefold()
+    en = tr("tip.timeline_replay_play", "en").casefold()
+    assert "sin aplicarla" in es
+    assert "without applying" in en
+
+
 def test_timeline_clear_filters_tip_mentions_persists_across_sessions():
     from studio.i18n import tr
 

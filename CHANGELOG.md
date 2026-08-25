@@ -130,6 +130,7 @@
 
 ### Cambiado
 
+- Timeline: tip Play/Pausa aclara que no aplica la candidata.
 - Comparar: tip solución siguiente aclara que no aplica la candidata.
 - Comparar: tip solución anterior aclara que no aplica la candidata.
 - Proyecto: status carpeta no disponible aclara que abre el explorador de archivos.
