@@ -673,7 +673,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_copy_payload": "Copiar el payload JSON del evento",
         "status.timeline_clear_filters_idle": "No hay filtros activos",
         "status.timeline_filters_cleared": "Filtros del Timeline limpiados",
-        "tip.timeline_replay_reset": "Inicio de la reproducción (Inicio)",
+        "tip.timeline_replay_reset": (
+            "Inicio de la reproducción (Inicio); sin aplicarla"
+        ),
         "tip.timeline_replay_back": "Paso atrás (←)",
         "tip.timeline_replay_forward": "Paso adelante (→)",
         "tip.timeline_replay_play": ("Play / Pausa (Espacio); sin aplicarla"),
@@ -1917,7 +1919,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.timeline_copy_payload": "Copy the event JSON payload",
         "status.timeline_clear_filters_idle": "No filters active",
         "status.timeline_filters_cleared": "Timeline filters cleared",
-        "tip.timeline_replay_reset": "Restart replay (Home)",
+        "tip.timeline_replay_reset": ("Restart replay (Home); without applying it"),
         "tip.timeline_replay_back": "Step back (←)",
         "tip.timeline_replay_forward": "Step forward (→)",
         "tip.timeline_replay_play": ("Play / Pause (Space); without applying it"),
