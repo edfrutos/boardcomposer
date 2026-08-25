@@ -130,6 +130,7 @@
 
 ### Cambiado
 
+- Comparar: tip solución anterior aclara que no aplica la candidata.
 - Proyecto: status carpeta no disponible aclara que abre el explorador de archivos.
 - Barra de estado: tip sin guardar aclara que abre el explorador de archivos.
 - Barra de estado: tip del basename aclara que abre el explorador de archivos.

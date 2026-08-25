@@ -459,10 +459,12 @@ _STRINGS: dict[str, dict[str, str]] = {
             "muestra progreso y se puede cancelar; "
             "sustituye las candidatas anteriores (no se puede deshacer)"
         ),
-        "tip.previous_solution": "Seleccionar la solución anterior (Re Pág)",
+        "tip.previous_solution": (
+            "Seleccionar la solución anterior (Re Pág); sin aplicarla"
+        ),
         "tip.previous_solution_outdated": (
             "Soluciones desactualizadas: navegas candidatas viejas (Re Pág); "
-            "recalcula con el CTA del Comparador o Ctrl+Return"
+            "sin aplicarla; recalcula con el CTA del Comparador o Ctrl+Return"
         ),
         "tip.next_solution": "Seleccionar la solución siguiente (Av Pág)",
         "tip.next_solution_outdated": (
@@ -1713,10 +1715,13 @@ _STRINGS: dict[str, dict[str, str]] = {
             "shows progress and can be cancelled; "
             "replaces previous candidates (cannot be undone)"
         ),
-        "tip.previous_solution": "Select the previous solution (Page Up)",
+        "tip.previous_solution": (
+            "Select the previous solution (Page Up); without applying it"
+        ),
         "tip.previous_solution_outdated": (
             "Solutions outdated: browsing stale candidates (Page Up); "
-            "recalculate via the Comparator banner CTA or Ctrl+Return"
+            "without applying it; recalculate via the Comparator banner CTA "
+            "or Ctrl+Return"
         ),
         "tip.next_solution": "Select the next solution (Page Down)",
         "tip.next_solution_outdated": (
