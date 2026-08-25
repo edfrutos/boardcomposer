@@ -761,6 +761,16 @@ def test_next_solution_status_tip_includes_shortcut():
     assert "Page Down" in tr("tip.next_solution", "en")
 
 
+def test_next_solution_tip_mentions_without_applying():
+    from studio.i18n import tr
+
+    for key in ("tip.next_solution", "tip.next_solution_outdated"):
+        es = tr(key, "es").casefold()
+        en = tr(key, "en").casefold()
+        assert "sin aplicarla" in es
+        assert "without applying" in en
+
+
 def test_apply_layout_status_tip_includes_shortcut():
     from studio.i18n import tr
 

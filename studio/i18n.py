@@ -466,10 +466,12 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Soluciones desactualizadas: navegas candidatas viejas (Re Pág); "
             "sin aplicarla; recalcula con el CTA del Comparador o Ctrl+Return"
         ),
-        "tip.next_solution": "Seleccionar la solución siguiente (Av Pág)",
+        "tip.next_solution": (
+            "Seleccionar la solución siguiente (Av Pág); sin aplicarla"
+        ),
         "tip.next_solution_outdated": (
             "Soluciones desactualizadas: navegas candidatas viejas (Av Pág); "
-            "recalcula con el CTA del Comparador o Ctrl+Return"
+            "sin aplicarla; recalcula con el CTA del Comparador o Ctrl+Return"
         ),
         "tip.apply_layout": (
             "Aplicar la solución seleccionada al proyecto (Ctrl+Shift+Return); "
@@ -1723,10 +1725,13 @@ _STRINGS: dict[str, dict[str, str]] = {
             "without applying it; recalculate via the Comparator banner CTA "
             "or Ctrl+Return"
         ),
-        "tip.next_solution": "Select the next solution (Page Down)",
+        "tip.next_solution": (
+            "Select the next solution (Page Down); without applying it"
+        ),
         "tip.next_solution_outdated": (
             "Solutions outdated: browsing stale candidates (Page Down); "
-            "recalculate via the Comparator banner CTA or Ctrl+Return"
+            "without applying it; recalculate via the Comparator banner CTA "
+            "or Ctrl+Return"
         ),
         "tip.apply_layout": (
             "Apply the selected solution to the project (Ctrl+Shift+Return); "
