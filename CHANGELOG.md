@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Docs planificación 2026-08-27: snapshot
+  `docs/masterplan/REVIEW-2026-08-27-planificacion.md`; cola IDE-0019…0024
+  sin IDE nuevas (Issues abiertos = 0; residuales eval/piloto; tips
+  Timeline replay-reset #570 mergeado; PR #572 replay-back abierto).
 - Docs planificación 2026-08-26: snapshot
   `docs/masterplan/REVIEW-2026-08-26-planificacion.md`; cola IDE-0019…0024
   sin IDE nuevas (Issues abiertos = 0; residuales eval/piloto; tips
