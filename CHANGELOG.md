@@ -138,6 +138,7 @@
 
 ### Cambiado
 
+- Timeline: tip de la lista aclara que el replay no aplica la candidata.
 - Timeline: tip paso adelante aclara que no aplica la candidata.
 - Timeline: tip paso atrás aclara que no aplica la candidata.
 - Timeline: tip Inicio replay aclara que no aplica la candidata.

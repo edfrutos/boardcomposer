@@ -666,8 +666,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "se recuerda entre sesiones"
         ),
         "tip.timeline_list": (
-            "Lista enfocada: Espacio play/pausa, Inicio, ← / →, "
-            "Ctrl+C copia la línea; menú contextual = payload JSON"
+            "Lista enfocada: Espacio play/pausa, Inicio, ← / → "
+            "(sin aplicarla); Ctrl+C copia la línea; "
+            "menú contextual = payload JSON"
         ),
         "tip.timeline_copy_line": "Copiar la línea visible del evento (Ctrl+C)",
         "tip.timeline_copy_payload": "Copiar el payload JSON del evento",
@@ -1912,8 +1913,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Speed of automatic Timeline replay; remembered across sessions"
         ),
         "tip.timeline_list": (
-            "List focused: Space play/pause, Home, ← / →, "
-            "Ctrl+C copies the line; context menu = JSON payload"
+            "List focused: Space play/pause, Home, ← / → "
+            "(without applying it); Ctrl+C copies the line; "
+            "context menu = JSON payload"
         ),
         "tip.timeline_copy_line": "Copy the visible event line (Ctrl+C)",
         "tip.timeline_copy_payload": "Copy the event JSON payload",

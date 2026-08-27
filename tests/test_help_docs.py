@@ -1006,6 +1006,15 @@ def test_timeline_list_and_copy_tips_mention_ctrl_c():
         assert "JSON" in tr("tip.timeline_copy_payload", lang)
 
 
+def test_timeline_list_tip_mentions_without_applying():
+    from studio.i18n import tr
+
+    es = tr("tip.timeline_list", "es").casefold()
+    en = tr("tip.timeline_list", "en").casefold()
+    assert "sin aplicarla" in es
+    assert "without applying" in en
+
+
 def test_timeline_mark_tip_mentions_note_dialog():
     from studio.i18n import tr
 
