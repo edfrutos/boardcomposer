@@ -952,6 +952,15 @@ def test_timeline_replay_play_tip_mentions_without_applying():
     assert "without applying" in en
 
 
+def test_timeline_replay_reset_tip_mentions_without_applying():
+    from studio.i18n import tr
+
+    es = tr("tip.timeline_replay_reset", "es").casefold()
+    en = tr("tip.timeline_replay_reset", "en").casefold()
+    assert "sin aplicarla" in es
+    assert "without applying" in en
+
+
 def test_timeline_clear_filters_tip_mentions_persists_across_sessions():
     from studio.i18n import tr
 
