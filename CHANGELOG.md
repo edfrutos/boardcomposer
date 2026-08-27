@@ -134,6 +134,7 @@
 
 ### Cambiado
 
+- Timeline: tip paso atrás aclara que no aplica la candidata.
 - Timeline: tip Inicio replay aclara que no aplica la candidata.
 - Timeline: tip Play/Pausa aclara que no aplica la candidata.
 - Comparar: tip solución siguiente aclara que no aplica la candidata.
