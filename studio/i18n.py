@@ -488,11 +488,13 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.explain_solution": (
             "Mostrar fortalezas, debilidades y notas de la candidata "
-            "(Ctrl+Alt+E); en el diálogo podés Copiar al portapapeles"
+            "(Ctrl+Alt+E); explicación determinista (sin IA en red); "
+            "en el diálogo podés Copiar al portapapeles"
         ),
         "tip.explain_solution_outdated": (
-            "Soluciones desactualizadas: la explicación describe la candidata "
-            "vieja; recalcula con el CTA del Comparador o Ctrl+Return "
+            "Soluciones desactualizadas: la explicación determinista "
+            "(sin IA en red) describe la candidata vieja; "
+            "recalcula con el CTA del Comparador o Ctrl+Return "
             "(Ctrl+Alt+E)"
         ),
         "help.explain_solution_title": "Explicar candidata",
@@ -1753,10 +1755,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.explain_solution": (
             "Show strengths, weaknesses, and notes for the selected candidate "
-            "(Ctrl+Alt+E); Copy is available in the dialog"
+            "(Ctrl+Alt+E); deterministic explanation (no cloud AI); "
+            "Copy is available in the dialog"
         ),
         "tip.explain_solution_outdated": (
-            "Solutions outdated: explanation describes the stale candidate; "
+            "Solutions outdated: deterministic explanation (no cloud AI) "
+            "describes the stale candidate; "
             "recalculate via the Comparator banner CTA or Ctrl+Return "
             "(Ctrl+Alt+E)"
         ),

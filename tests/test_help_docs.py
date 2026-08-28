@@ -1219,6 +1219,16 @@ def test_exit_tip_mentions_unsaved_confirmation():
     assert "unsaved" in en
 
 
+def test_explain_solution_tip_mentions_no_cloud_ai():
+    from studio.i18n import tr
+
+    for key in ("tip.explain_solution", "tip.explain_solution_outdated"):
+        es = tr(key, "es").casefold()
+        en = tr(key, "en").casefold()
+        assert "sin ia" in es and "red" in es
+        assert "no cloud" in en and "ai" in en
+
+
 def test_whats_new_tip_mentions_dialog_highlights():
     from studio.i18n import tr
 
