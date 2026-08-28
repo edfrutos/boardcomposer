@@ -687,6 +687,15 @@ def test_select_all_pieces_status_tip_includes_shortcut():
     assert "Ctrl+A" in tr("tip.select_all_pieces", "en")
 
 
+def test_select_all_pieces_tip_mentions_keeps_placement_board():
+    from studio.i18n import tr
+
+    es = tr("tip.select_all_pieces", "es").casefold()
+    en = tr("tip.select_all_pieces", "en").casefold()
+    assert "conserva" in es and "enfocado" in es
+    assert "keeps" in en and "focused" in en
+
+
 def test_deselect_pieces_status_tip_includes_shortcut():
     from studio.i18n import tr
 
