@@ -142,6 +142,7 @@
 
 ### Cambiado
 
+- Ayuda: tip Explicar candidata aclara que la explicación es determinista (sin IA en red).
 - Vista: tip del zoom en barra de estado aclara que Ctrl+0 ignora la selección.
 - Vista: tip del zoom en barra de estado aclara que Ctrl+0 ajusta a todos los tableros.
 - Proyecto: tip Guardar aclara que recuerda la última carpeta al pedir ruta.
