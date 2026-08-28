@@ -142,6 +142,7 @@
 
 ### Cambiado
 
+- Vista: tip del zoom en barra de estado aclara que Ctrl+0 ajusta a todos los tableros.
 - Proyecto: tip Guardar aclara que recuerda la última carpeta al pedir ruta.
 - Timeline: tip de la lista aclara que el replay no aplica la candidata.
 - Timeline: tip paso adelante aclara que no aplica la candidata.
