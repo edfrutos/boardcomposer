@@ -291,7 +291,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.save": (
             "Guardar el proyecto actual (Ctrl+S); si aún no tiene archivo, "
-            "pide ruta (como Guardar como); si ya existe, deja revisión en el anillo"
+            "pide ruta (como Guardar como) y recuerda la última carpeta; "
+            "si ya existe, deja revisión en el anillo"
         ),
         "tip.save_as": (
             "Guardar el proyecto con otro nombre o ruta (Ctrl+Shift+S); "
@@ -1565,7 +1566,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.save": (
             "Save the current project (Ctrl+S); if it has no file yet, "
-            "asks for a path (like Save As); if the file exists, stores a ring revision"
+            "asks for a path (like Save As) and remembers the last folder; "
+            "if the file exists, stores a ring revision"
         ),
         "tip.save_as": (
             "Save the project under another name or path (Ctrl+Shift+S); "

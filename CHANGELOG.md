@@ -138,6 +138,7 @@
 
 ### Cambiado
 
+- Proyecto: tip Guardar aclara que recuerda la última carpeta al pedir ruta.
 - Timeline: tip de la lista aclara que el replay no aplica la candidata.
 - Timeline: tip paso adelante aclara que no aplica la candidata.
 - Timeline: tip paso atrás aclara que no aplica la candidata.
