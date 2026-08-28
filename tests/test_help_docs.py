@@ -662,6 +662,15 @@ def test_zoom_out_status_tip_includes_shortcut():
     assert "wheel" in tr("tip.zoom_out", "en").casefold()
 
 
+def test_zoom_status_tip_mentions_fit_all_boards():
+    from studio.i18n import tr
+
+    es = tr("tip.zoom_status", "es").casefold()
+    en = tr("tip.zoom_status", "en").casefold()
+    assert "ctrl+0" in es and "tableros" in es
+    assert "ctrl+0" in en and "fits all boards" in en
+
+
 def test_select_all_pieces_status_tip_includes_shortcut():
     from studio.i18n import tr
 

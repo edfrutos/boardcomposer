@@ -909,7 +909,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_unsaved": "Proyecto aún no guardado",
         "status.zoom": "{n}%",
         "tip.zoom_status": (
-            "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-, Ctrl+0)"
+            "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
+            "Ctrl+0 ajusta a todos los tableros)"
         ),
         "status.project_folder_unavailable": (
             "Guarda el proyecto para abrir su carpeta en el explorador de archivos"
@@ -2153,7 +2154,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.ready": "BoardComposer Studio ready",
         "status.project_unsaved": "Project not saved yet",
         "status.zoom": "{n}%",
-        "tip.zoom_status": ("Workspace zoom level (wheel, Ctrl+= / Ctrl+-, Ctrl+0)"),
+        "tip.zoom_status": (
+            "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; Ctrl+0 fits all boards)"
+        ),
         "status.project_folder_unavailable": (
             "Save the project to open its folder in the file manager"
         ),
