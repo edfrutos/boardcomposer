@@ -703,6 +703,15 @@ def test_deselect_pieces_status_tip_includes_shortcut():
     assert "Escape" in tr("tip.deselect_pieces", "en")
 
 
+def test_deselect_pieces_tip_mentions_keeps_placement_board():
+    from studio.i18n import tr
+
+    es = tr("tip.deselect_pieces", "es").casefold()
+    en = tr("tip.deselect_pieces", "en").casefold()
+    assert "conserva" in es and "enfocado" in es
+    assert "keeps" in en and "focused" in en
+
+
 def test_invert_selection_status_tip_includes_shortcut():
     from studio.i18n import tr
 
