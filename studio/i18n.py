@@ -406,7 +406,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Eliminar la pieza o el tablero seleccionado (Backspace o Delete); "
             "pide confirmación (si es tablero, las piezas se conservan)"
         ),
-        "tip.select_all_pieces": "Seleccionar todas las piezas del canvas (Ctrl+A)",
+        "tip.select_all_pieces": (
+            "Seleccionar todas las piezas del canvas (Ctrl+A); "
+            "conserva el último tablero enfocado para colocar"
+        ),
         "tip.deselect_pieces": "Quitar la selección de piezas del canvas (Escape)",
         "tip.invert_selection": "Invertir la selección de piezas del canvas (Ctrl+Shift+I)",
         "tip.preferences": (
@@ -1678,7 +1681,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Delete the selected piece or board (Backspace or Delete); "
             "asks for confirmation (if a board, pieces are kept)"
         ),
-        "tip.select_all_pieces": "Select every piece on the canvas (Ctrl+A)",
+        "tip.select_all_pieces": (
+            "Select every piece on the canvas (Ctrl+A); "
+            "keeps the last focused board for placing"
+        ),
         "tip.deselect_pieces": "Clear the piece selection on the canvas (Escape)",
         "tip.invert_selection": "Invert the piece selection on the canvas (Ctrl+Shift+I)",
         "tip.preferences": (
