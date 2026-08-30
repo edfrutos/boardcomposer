@@ -1143,6 +1143,17 @@ def test_new_demo_project_tip_mentions_inventory_and_unsaved():
     assert "unsaved" in en
 
 
+def test_new_demo_project_tip_mentions_raises_max_solutions():
+    from studio.i18n import tr
+
+    es = tr("tip.new_demo_project", "es").casefold()
+    en = tr("tip.new_demo_project", "en").casefold()
+    assert "soluciones" in es and "restaura" in es
+    assert "recuerda" in es and "sesiones" in es
+    assert "solutions" in en and "restores" in en
+    assert "remembered" in en and "sessions" in en
+
+
 def test_new_from_template_tip_mentions_picker_and_unsaved():
     from studio.i18n import tr
 
