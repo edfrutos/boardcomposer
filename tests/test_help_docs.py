@@ -1256,6 +1256,14 @@ def test_explain_solution_tip_mentions_no_cloud_ai():
         assert "no cloud" in en and "ai" in en
 
 
+def test_explain_solution_tip_uses_spain_spanish_puedes():
+    from studio.i18n import tr
+
+    es = tr("tip.explain_solution", "es")
+    assert "puedes" in es.casefold()
+    assert "podés" not in es
+
+
 def test_whats_new_tip_mentions_dialog_highlights():
     from studio.i18n import tr
 

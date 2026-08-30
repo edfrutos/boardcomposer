@@ -498,7 +498,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.explain_solution": (
             "Mostrar fortalezas, debilidades y notas de la candidata "
             "(Ctrl+Alt+E); explicación determinista (sin IA en red); "
-            "en el diálogo podés Copiar al portapapeles"
+            "en el diálogo puedes Copiar al portapapeles"
         ),
         "tip.explain_solution_outdated": (
             "Soluciones desactualizadas: la explicación determinista "
