@@ -414,7 +414,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Quitar la selección de piezas del canvas (Escape); "
             "conserva el último tablero enfocado para colocar"
         ),
-        "tip.invert_selection": "Invertir la selección de piezas del canvas (Ctrl+Shift+I)",
+        "tip.invert_selection": (
+            "Invertir la selección de piezas del canvas (Ctrl+Shift+I); "
+            "conserva el último tablero enfocado para colocar"
+        ),
         "tip.preferences": (
             "Abrir preferencias globales: idioma, tema, unidades, cuadrícula, "
             "algoritmos y exportación (Ctrl+,); se aplican al aceptar"
@@ -1692,7 +1695,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Clear the piece selection on the canvas (Escape); "
             "keeps the last focused board for placing"
         ),
-        "tip.invert_selection": "Invert the piece selection on the canvas (Ctrl+Shift+I)",
+        "tip.invert_selection": (
+            "Invert the piece selection on the canvas (Ctrl+Shift+I); "
+            "keeps the last focused board for placing"
+        ),
         "tip.preferences": (
             "Open global preferences: language, theme, units, grid, "
             "algorithms, and export (Ctrl+,); applied when you accept"
