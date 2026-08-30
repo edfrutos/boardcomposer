@@ -719,6 +719,15 @@ def test_invert_selection_status_tip_includes_shortcut():
     assert "Ctrl+Shift+I" in tr("tip.invert_selection", "en")
 
 
+def test_invert_selection_tip_mentions_keeps_placement_board():
+    from studio.i18n import tr
+
+    es = tr("tip.invert_selection", "es").casefold()
+    en = tr("tip.invert_selection", "en").casefold()
+    assert "conserva" in es and "enfocado" in es
+    assert "keeps" in en and "focused" in en
+
+
 def test_duplicate_piece_status_tip_includes_shortcut():
     from studio.i18n import tr
 
