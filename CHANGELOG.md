@@ -147,6 +147,9 @@
 
 ### Cambiado
 
+- Ayuda: tip Explicar candidata usa puedes (español de España).
+- Edición: tip Invertir selección aclara que conserva el tablero de colocación.
+- Edición: tip Quitar selección aclara que conserva el tablero de colocación.
 - Edición: tip Seleccionar todas aclara que conserva el tablero de colocación.
 - Ayuda: tip Explicar candidata aclara que la explicación es determinista (sin IA en red).
 - Vista: tip del zoom en barra de estado aclara que Ctrl+0 ignora la selección.

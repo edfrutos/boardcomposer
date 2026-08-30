@@ -703,11 +703,29 @@ def test_deselect_pieces_status_tip_includes_shortcut():
     assert "Escape" in tr("tip.deselect_pieces", "en")
 
 
+def test_deselect_pieces_tip_mentions_keeps_placement_board():
+    from studio.i18n import tr
+
+    es = tr("tip.deselect_pieces", "es").casefold()
+    en = tr("tip.deselect_pieces", "en").casefold()
+    assert "conserva" in es and "enfocado" in es
+    assert "keeps" in en and "focused" in en
+
+
 def test_invert_selection_status_tip_includes_shortcut():
     from studio.i18n import tr
 
     assert "Ctrl+Shift+I" in tr("tip.invert_selection", "es")
     assert "Ctrl+Shift+I" in tr("tip.invert_selection", "en")
+
+
+def test_invert_selection_tip_mentions_keeps_placement_board():
+    from studio.i18n import tr
+
+    es = tr("tip.invert_selection", "es").casefold()
+    en = tr("tip.invert_selection", "en").casefold()
+    assert "conserva" in es and "enfocado" in es
+    assert "keeps" in en and "focused" in en
 
 
 def test_duplicate_piece_status_tip_includes_shortcut():
@@ -1236,6 +1254,14 @@ def test_explain_solution_tip_mentions_no_cloud_ai():
         en = tr(key, "en").casefold()
         assert "sin ia" in es and "red" in es
         assert "no cloud" in en and "ai" in en
+
+
+def test_explain_solution_tip_uses_spain_spanish_puedes():
+    from studio.i18n import tr
+
+    es = tr("tip.explain_solution", "es")
+    assert "puedes" in es.casefold()
+    assert "podés" not in es
 
 
 def test_whats_new_tip_mentions_dialog_highlights():
