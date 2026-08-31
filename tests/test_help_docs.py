@@ -1924,3 +1924,14 @@ def test_import_pieces_csv_tip_mentions_excel_sheet_picker():
     en = tr("tip.import_pieces_csv", "en").casefold()
     assert "excel" in es and "hojas" in es
     assert "excel" in en and "sheets" in en
+
+
+def test_import_pieces_csv_tip_mentions_creates_empty_project():
+    from studio.i18n import tr
+
+    es = tr("tip.import_pieces_csv", "es").casefold()
+    en = tr("tip.import_pieces_csv", "en").casefold()
+    assert "proyecto" in es and "vacío" in es
+    assert "crea" in es
+    assert "project" in en and "empty" in en
+    assert "creates" in en
