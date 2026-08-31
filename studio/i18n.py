@@ -362,7 +362,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "abre opciones de formato y vista previa "
             "(SVG/PNG/JPEG/PDF/DXF/JSON/CSV); "
             "ofrece abrir el archivo; "
-            "recuerda la última carpeta"
+            "recuerda la última carpeta; las opciones se recuerdan entre sesiones"
         ),
         "tip.export_selected_outdated": (
             "Soluciones desactualizadas: al exportar (Ctrl+Shift+E) "
@@ -1650,7 +1650,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "opens format options and a preview "
             "(SVG/PNG/JPEG/PDF/DXF/JSON/CSV); "
             "offers to open the file; "
-            "remembers the last folder"
+            "remembers the last folder; options are remembered across sessions"
         ),
         "tip.export_selected_outdated": (
             "Solutions outdated: when exporting (Ctrl+Shift+E) "

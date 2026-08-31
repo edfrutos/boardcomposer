@@ -151,6 +151,7 @@
 
 ### Cambiado
 
+- Exportar: tip solución aclara que las opciones se recuerdan entre sesiones.
 - Proyecto: tip Nuevo aclara que las unidades se recuerdan entre sesiones.
 - Proyecto: tip demo aclara que restaura Máx. soluciones si es 1 (se recuerda).
 - Ayuda: tip Explicar candidata usa puedes (español de España).

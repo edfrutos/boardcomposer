@@ -867,6 +867,17 @@ def test_export_selected_tip_mentions_offer_to_open():
     assert "offers" in en and "open" in en
 
 
+def test_export_selected_tip_mentions_options_persist_across_sessions():
+    from studio.i18n import tr
+
+    es = tr("tip.export_selected", "es").casefold()
+    en = tr("tip.export_selected", "en").casefold()
+    assert "opciones" in es and "recuerdan" in es
+    assert "sesiones" in es
+    assert "options" in en and "remembered" in en
+    assert "sessions" in en
+
+
 def test_export_timeline_status_tip_includes_shortcut():
     from studio.i18n import tr
 
