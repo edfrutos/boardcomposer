@@ -270,7 +270,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.new_demo_project": (
             "Abrir el proyecto de ejemplo con tableros, piezas y colocaciones "
-            "(Ctrl+Shift+D); pide confirmación si hay cambios sin guardar"
+            "(Ctrl+Shift+D); pide confirmación si hay cambios sin guardar; "
+            "si Máx. soluciones es 1, lo restaura (se recuerda entre sesiones)"
         ),
         "tip.new_from_template": (
             "Elegir una plantilla guardada y crear un proyecto "
@@ -1557,7 +1558,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.new_demo_project": (
             "Open the sample project with boards, pieces, and placements "
-            "(Ctrl+Shift+D); asks to confirm if there are unsaved changes"
+            "(Ctrl+Shift+D); asks to confirm if there are unsaved changes; "
+            "if Max solutions is 1, restores the default "
+            "(remembered across sessions)"
         ),
         "tip.new_from_template": (
             "Pick a saved template and create a project "

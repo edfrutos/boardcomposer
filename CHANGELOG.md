@@ -147,6 +147,7 @@
 
 ### Cambiado
 
+- Proyecto: tip demo aclara que restaura Máx. soluciones si es 1 (se recuerda).
 - Ayuda: tip Explicar candidata usa puedes (español de España).
 - Edición: tip Invertir selección aclara que conserva el tablero de colocación.
 - Edición: tip Quitar selección aclara que conserva el tablero de colocación.
