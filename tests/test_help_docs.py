@@ -1185,6 +1185,17 @@ def test_new_project_tip_mentions_dialog_and_unsaved():
     assert "name" in en and "unsaved" in en
 
 
+def test_new_project_tip_mentions_units_persist_across_sessions():
+    from studio.i18n import tr
+
+    es = tr("tip.new_project", "es").casefold()
+    en = tr("tip.new_project", "en").casefold()
+    assert "unidades" in es and "recuerdan" in es
+    assert "sesiones" in es
+    assert "units" in en and "remembered" in en
+    assert "sessions" in en
+
+
 def test_save_as_template_tip_mentions_name_and_placements():
     from studio.i18n import tr
 
