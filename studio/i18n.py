@@ -266,7 +266,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.about": "Acerca de BoardComposer…",
         "tip.new_project": (
             "Crear un proyecto vacío (Ctrl+N); pide nombre/unidades y "
-            "confirmación si hay cambios sin guardar"
+            "confirmación si hay cambios sin guardar; si cambias las unidades, "
+            "se recuerdan entre sesiones"
         ),
         "tip.new_demo_project": (
             "Abrir el proyecto de ejemplo con tableros, piezas y colocaciones "
@@ -1554,7 +1555,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.about": "About BoardComposer…",
         "tip.new_project": (
             "Create an empty project (Ctrl+N); asks for name/units and "
-            "confirms if there are unsaved changes"
+            "confirms if there are unsaved changes; if you change the units, "
+            "they are remembered across sessions"
         ),
         "tip.new_demo_project": (
             "Open the sample project with boards, pieces, and placements "
