@@ -903,6 +903,18 @@ def test_export_timeline_tip_mentions_offer_to_open():
     assert "offers" in en and "open" in en
 
 
+def test_export_timeline_tip_mentions_format_persist_across_sessions():
+    from studio.i18n import tr
+
+    es = tr("tip.export_timeline", "es").casefold()
+    en = tr("tip.export_timeline", "en").casefold()
+    assert "formato" in es and "recuerda" in es
+    assert "sesiones" in es
+    assert "json" in es and "csv" in es
+    assert "format" in en and "remembered" in en
+    assert "sessions" in en
+
+
 def test_diff_bcproj_tip_mentions_dialog_and_restore():
     from studio.i18n import tr
 
