@@ -151,6 +151,7 @@
 
 ### Cambiado
 
+- Timeline: tip exportar aclara que el formato JSON/CSV se recuerda.
 - Exportar: tip solución aclara que las opciones se recuerdan entre sesiones.
 - Proyecto: tip Nuevo aclara que las unidades se recuerdan entre sesiones.
 - Proyecto: tip demo aclara que restaura Máx. soluciones si es 1 (se recuerda).

@@ -372,7 +372,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Exportar el historial del Timeline (Ctrl+Shift+L): "
             "JSON o CSV según los filtros actuales; "
             "ofrece abrir el archivo; "
-            "recuerda la última carpeta"
+            "recuerda la última carpeta; el formato JSON o CSV "
+            "se recuerda entre sesiones"
         ),
         "tip.exit": (
             "Cerrar BoardComposer Studio (Ctrl+Q); "
@@ -1660,7 +1661,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Export the Timeline history (Ctrl+Shift+L): "
             "JSON or CSV matching current filters; "
             "offers to open the file; "
-            "remembers the last folder"
+            "remembers the last folder; the JSON or CSV format "
+            "is remembered across sessions"
         ),
         "tip.exit": (
             "Quit BoardComposer Studio (Ctrl+Q); "
