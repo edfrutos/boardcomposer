@@ -4,6 +4,29 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-04: snapshot
+  `docs/masterplan/REVIEW-2026-09-04-planificacion.md` (+ históricos
+  `REVIEW-2026-09-01` / `REVIEW-2026-09-02` / `REVIEW-2026-09-03` desde
+  PRs #594/#595/#596 draft); cola IDE-0019…0024 sin IDE nuevas
+  (Issues = 0; PRs abiertos #593 tip import-boards + #594/#595/#596;
+  residuales eval/piloto; sin merges nuevos 09-01→09-04; tips #589–#592
+  + planning #588 en `main`).
+- Docs planificación 2026-09-03: snapshot
+  `docs/masterplan/REVIEW-2026-09-03-planificacion.md` (+ históricos
+  `REVIEW-2026-09-01` / `REVIEW-2026-09-02` desde PRs #594/#595 draft);
+  cola IDE-0019…0024 sin IDE nuevas (Issues = 0; PRs abiertos #593 tip
+  import-boards + #594/#595; residuales eval/piloto; sin merges nuevos
+  09-01→09-03; tips #589–#592 + planning #588 en `main`).
+- Docs planificación 2026-09-02: snapshot
+  `docs/masterplan/REVIEW-2026-09-02-planificacion.md` (+ histórico
+  `REVIEW-2026-09-01-planificacion.md` desde PR #594 draft); cola
+  IDE-0019…0024 sin IDE nuevas (Issues = 0; PRs abiertos #593 tip
+  import-boards + #594; residuales eval/piloto; sin merges nuevos
+  09-01→09-02; tips #589–#592 + planning #588 en `main`).
+- Docs planificación 2026-09-01: snapshot
+  `docs/masterplan/REVIEW-2026-09-01-planificacion.md`; cola IDE-0019…0024
+  sin IDE nuevas (Issues = 0; PR abierto #593 tip import-boards; residuales
+  eval/piloto; tips #589–#592 + planning #588 en `main`).
 - Docs planificación 2026-08-31: snapshot
   `docs/masterplan/REVIEW-2026-08-31-planificacion.md`; cola IDE-0019…0024
   sin IDE nuevas (Issues/PRs abiertos = 0; residuales eval/piloto; tips

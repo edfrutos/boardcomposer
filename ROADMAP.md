@@ -67,15 +67,17 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 ## Próximo foco (operativo)
 
-Revisión: `docs/masterplan/REVIEW-2026-08-31-planificacion.md`.
+Revisión: `docs/masterplan/REVIEW-2026-09-04-planificacion.md`.
 
 1. Release **`0.4.2`** cortado (`v0.4.2`, 2026-08-02) — hecho.
 2. Ciclo `0.4.3.dev0` abierto — ola tips honesty Archivo/Edición/Ayuda/
    plantillas/outdated/confirmaciones/import·export + Timeline/Vista/docks/
    comparador + Calcular layout + Abrir carpeta/barra estado + Comparar
    ant./sig. + Timeline Play/Reset/←/→/lista + Guardar/zoom/Explicar/
-   Seleccionar todas/Quitar/Invertir + demo Máx. soluciones (PRs ~457–587;
-   Issues/PRs abiertos = 0 al corte 08-31); candidatos IDE-0019…0024 aún
+   Seleccionar todas/Quitar/Invertir + demo Máx. soluciones + Nuevo
+   proyecto/export selección/Timeline + Importar piezas (PRs ~457–592;
+   Issues = 0; PRs abiertos #593 tip import-boards + #594/#595/#596
+   planning drafts plegados al corte 09-04); candidatos IDE-0019…0024 aún
    sin implementar (bajo demanda).
 3. IDE-0007: MVP local en `0.4.2`; **eval humana** aún abierta
    (`uat/studio/CHECKLIST-EXPLAIN-EVAL.md`).
