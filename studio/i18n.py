@@ -339,7 +339,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.export_revision_backup": "Carpeta de backup de revisiones",
         "tip.add_board": (
             "Añadir un tablero al inventario (Ctrl+Shift+B); "
-            "abre el diálogo de ID y dimensiones"
+            "abre el diálogo de ID y dimensiones; "
+            "si no hay proyecto, crea uno vacío"
         ),
         "tip.add_piece": (
             "Añadir una pieza al proyecto (Ctrl+Shift+P); "
@@ -1630,7 +1631,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.export_revision_backup": "Revisions backup folder",
         "tip.add_board": (
             "Add a board to the inventory (Ctrl+Shift+B); "
-            "opens the ID and dimensions dialog"
+            "opens the ID and dimensions dialog; "
+            "if there is no project, creates an empty one"
         ),
         "tip.add_piece": (
             "Add a piece to the project (Ctrl+Shift+P); "
