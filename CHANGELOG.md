@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-06: snapshot
+  `docs/masterplan/REVIEW-2026-09-06-planificacion.md`; cola
+  IDE-0019…0024 sin IDE nuevas (Issues = 0; PRs abiertos = 0; tip #599
+  Añadir tablero + planning #598 en `main`; residuales eval/piloto).
 - Docs planificación 2026-09-05: snapshot
   `docs/masterplan/REVIEW-2026-09-05-planificacion.md` (+ históricos
   `REVIEW-2026-09-03` / `REVIEW-2026-09-04` desde PRs #596/#597 draft);
