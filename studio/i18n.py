@@ -344,7 +344,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.add_piece": (
             "Añadir una pieza al proyecto (Ctrl+Shift+P); "
-            "abre el diálogo de ID, dimensiones y cantidad"
+            "abre el diálogo de ID, dimensiones y cantidad; "
+            "si no hay proyecto, crea uno vacío"
         ),
         "tip.import_boards_csv": (
             "Importar inventario de tableros desde CSV o Excel (Ctrl+Shift+T); "
@@ -1636,7 +1637,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.add_piece": (
             "Add a piece to the project (Ctrl+Shift+P); "
-            "opens the ID, dimensions, and quantity dialog"
+            "opens the ID, dimensions, and quantity dialog; "
+            "if there is no project, creates an empty one"
         ),
         "tip.import_boards_csv": (
             "Import board inventory from CSV or Excel (Ctrl+Shift+T); "

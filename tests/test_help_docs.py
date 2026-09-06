@@ -1515,6 +1515,17 @@ def test_add_piece_tip_mentions_dimensions_dialog():
     assert "dialog" in en and "quantity" in en
 
 
+def test_add_piece_tip_mentions_creates_empty_project():
+    from studio.i18n import tr
+
+    es = tr("tip.add_piece", "es").casefold()
+    en = tr("tip.add_piece", "en").casefold()
+    assert "proyecto" in es and "vacío" in es
+    assert "crea" in es
+    assert "project" in en and "empty" in en
+    assert "creates" in en
+
+
 def test_edit_selection_tip_mentions_dimensions_dialog():
     from studio.i18n import tr
 

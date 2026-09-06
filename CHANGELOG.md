@@ -177,6 +177,7 @@
 
 ### Cambiado
 
+- Inventario: tip Añadir pieza aclara que crea un proyecto vacío si no hay.
 - Inventario: tip Añadir tablero aclara que crea un proyecto vacío si no hay.
 - Importar: tip piezas aclara que crea un proyecto vacío si no hay.
 - Timeline: tip exportar aclara que el formato JSON/CSV se recuerda.
