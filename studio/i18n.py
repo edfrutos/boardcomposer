@@ -360,7 +360,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "recuerda la última carpeta; si Excel tiene varias hojas, pide cuál; "
             "abre mapeo de columnas y vista previa; "
             "ofrece guardar el mapeo como plantilla; "
-            "si no hay proyecto, crea uno vacío"
+            "si no hay proyecto, crea uno vacío; "
+            "si hay tableros, las coloca en el primero"
         ),
         "tip.export_selected": (
             "Exportar la solución del Comparador (Ctrl+Shift+E); "
@@ -1655,7 +1656,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "remembers the last folder; if Excel has several sheets, asks which one; "
             "opens column mapping and a preview; "
             "offers to save the mapping as a template; "
-            "if there is no project, creates an empty one"
+            "if there is no project, creates an empty one; "
+            "if there are boards, places them on the first one"
         ),
         "tip.export_selected": (
             "Export the Comparator solution (Ctrl+Shift+E); "
