@@ -1548,6 +1548,15 @@ def test_duplicate_piece_tip_mentions_unique_id():
     assert "unique id" in en
 
 
+def test_duplicate_piece_tip_mentions_copies_placement():
+    from studio.i18n import tr
+
+    es = tr("tip.duplicate_piece", "es").casefold()
+    en = tr("tip.duplicate_piece", "en").casefold()
+    assert "colocada" in es and "copia" in es
+    assert "placed" in en and "copy" in en
+
+
 def test_template_delete_tip_mentions_confirmation():
     from studio.i18n import tr
 

@@ -407,7 +407,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Explorador, selección única o tablero enfocado"
         ),
         "tip.duplicate_piece": (
-            "Duplicar la pieza o el tablero seleccionado (Ctrl+D); asigna un ID único"
+            "Duplicar la pieza o el tablero seleccionado (Ctrl+D); "
+            "asigna un ID único; si la pieza está colocada, la copia también"
         ),
         "tip.delete_piece": (
             "Eliminar la pieza o el tablero seleccionado (Backspace o Delete); "
@@ -1696,7 +1697,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Explorer, single selection, or focused board"
         ),
         "tip.duplicate_piece": (
-            "Duplicate the selected piece or board (Ctrl+D); assigns a unique ID"
+            "Duplicate the selected piece or board (Ctrl+D); "
+            "assigns a unique ID; if the piece is placed, the copy is too"
         ),
         "tip.delete_piece": (
             "Delete the selected piece or board (Backspace or Delete); "

@@ -181,6 +181,7 @@
 
 ### Cambiado
 
+- Edición: tip Duplicar aclara que si la pieza está colocada, la copia también.
 - Inventario: tip Añadir pieza aclara que crea un proyecto vacío si no hay.
 - Inventario: tip Añadir tablero aclara que crea un proyecto vacío si no hay.
 - Importar: tip piezas aclara que crea un proyecto vacío si no hay.
