@@ -2021,3 +2021,14 @@ def test_import_pieces_csv_tip_mentions_places_on_first_board():
     assert "primero" in es
     assert "boards" in en and "places" in en
     assert "first" in en
+
+
+def test_import_pieces_csv_tip_mentions_quantity_creates_unique_ids():
+    from studio.i18n import tr
+
+    es = tr("tip.import_pieces_csv", "es").casefold()
+    en = tr("tip.import_pieces_csv", "en").casefold()
+    assert "cantidad" in es and "varias" in es
+    assert "únicos" in es or "unicos" in es
+    assert "quantity" in en and "several" in en
+    assert "unique" in en
