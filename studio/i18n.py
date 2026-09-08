@@ -362,7 +362,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "abre mapeo de columnas y vista previa; "
             "ofrece guardar el mapeo como plantilla; "
             "si no hay proyecto, crea uno vacío; "
-            "si hay tableros, las coloca en el primero"
+            "si hay tableros, las coloca en el primero; "
+            "si la cantidad es mayor que 1, crea varias con IDs únicos"
         ),
         "tip.export_selected": (
             "Exportar la solución del Comparador (Ctrl+Shift+E); "
@@ -1660,7 +1661,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "opens column mapping and a preview; "
             "offers to save the mapping as a template; "
             "if there is no project, creates an empty one; "
-            "if there are boards, places them on the first one"
+            "if there are boards, places them on the first one; "
+            "if quantity is greater than 1, creates several with unique ids"
         ),
         "tip.export_selected": (
             "Export the Comparator solution (Ctrl+Shift+E); "
