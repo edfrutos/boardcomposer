@@ -186,6 +186,7 @@
 
 ### Cambiado
 
+- Importar: tip tableros aclara que si hay plantilla de mapeo aplicable, la aplica.
 - Importar: tip piezas aclara que si cantidad > 1, crea varias con IDs únicos.
 - Inventario: tip Añadir pieza aclara que si cantidad > 1, crea varias con IDs únicos.
 - Edición: tip Duplicar aclara que si no está colocada y hay tableros, la coloca en el primero.
