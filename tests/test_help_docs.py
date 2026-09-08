@@ -2043,3 +2043,14 @@ def test_import_pieces_csv_tip_mentions_quantity_creates_unique_ids():
     assert "únicos" in es or "unicos" in es
     assert "quantity" in en and "several" in en
     assert "unique" in en
+
+
+def test_import_pieces_csv_tip_mentions_applies_mapping_template():
+    from studio.i18n import tr
+
+    es = tr("tip.import_pieces_csv", "es").casefold()
+    en = tr("tip.import_pieces_csv", "en").casefold()
+    assert "plantilla" in es and "aplicable" in es
+    assert "aplica" in es
+    assert "applicable" in en and "template" in en
+    assert "applies" in en
