@@ -1568,6 +1568,17 @@ def test_duplicate_piece_tip_mentions_copies_placement():
     assert "placed" in en and "copy" in en
 
 
+def test_duplicate_piece_tip_mentions_unplaced_places_on_first_board():
+    from studio.i18n import tr
+
+    es = tr("tip.duplicate_piece", "es").casefold()
+    en = tr("tip.duplicate_piece", "en").casefold()
+    assert "no está colocada" in es or "no esta colocada" in es
+    assert "tableros" in es and "primero" in es
+    assert "not placed" in en and "boards" in en
+    assert "first" in en
+
+
 def test_template_delete_tip_mentions_confirmation():
     from studio.i18n import tr
 
