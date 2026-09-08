@@ -1537,6 +1537,17 @@ def test_add_piece_tip_mentions_places_on_first_board():
     assert "first" in en
 
 
+def test_add_piece_tip_mentions_quantity_creates_unique_ids():
+    from studio.i18n import tr
+
+    es = tr("tip.add_piece", "es").casefold()
+    en = tr("tip.add_piece", "en").casefold()
+    assert "cantidad" in es and "varias" in es
+    assert "únicos" in es or "unicos" in es
+    assert "quantity" in en and "several" in en
+    assert "unique" in en
+
+
 def test_edit_selection_tip_mentions_dimensions_dialog():
     from studio.i18n import tr
 
