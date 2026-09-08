@@ -181,6 +181,7 @@
 
 ### Cambiado
 
+- Inventario: tip Añadir pieza aclara que si cantidad > 1, crea varias con IDs únicos.
 - Edición: tip Duplicar aclara que si no está colocada y hay tableros, la coloca en el primero.
 - Importar: tip piezas aclara que si hay tableros, las coloca en el primero.
 - Inventario: tip Añadir pieza aclara que si hay tableros, la coloca en el primero.
