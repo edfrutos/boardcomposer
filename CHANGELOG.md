@@ -181,6 +181,7 @@
 
 ### Cambiado
 
+- Importar: tip piezas aclara que si hay tableros, las coloca en el primero.
 - Inventario: tip Añadir pieza aclara que si hay tableros, la coloca en el primero.
 - Edición: tip Duplicar aclara que si la pieza está colocada, la copia también.
 - Inventario: tip Añadir pieza aclara que crea un proyecto vacío si no hay.

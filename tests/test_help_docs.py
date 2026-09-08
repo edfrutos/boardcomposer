@@ -1988,3 +1988,14 @@ def test_import_pieces_csv_tip_mentions_creates_empty_project():
     assert "crea" in es
     assert "project" in en and "empty" in en
     assert "creates" in en
+
+
+def test_import_pieces_csv_tip_mentions_places_on_first_board():
+    from studio.i18n import tr
+
+    es = tr("tip.import_pieces_csv", "es").casefold()
+    en = tr("tip.import_pieces_csv", "en").casefold()
+    assert "tableros" in es and "coloca" in es
+    assert "primero" in es
+    assert "boards" in en and "places" in en
+    assert "first" in en
