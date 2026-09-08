@@ -1967,6 +1967,17 @@ def test_import_boards_csv_tip_mentions_creates_empty_project():
     assert "creates" in en
 
 
+def test_import_boards_csv_tip_mentions_applies_mapping_template():
+    from studio.i18n import tr
+
+    es = tr("tip.import_boards_csv", "es").casefold()
+    en = tr("tip.import_boards_csv", "en").casefold()
+    assert "plantilla" in es and "aplicable" in es
+    assert "aplica" in es
+    assert "applicable" in en and "template" in en
+    assert "applies" in en
+
+
 def test_import_pieces_csv_status_tip_includes_shortcut():
     from studio.i18n import tr
 

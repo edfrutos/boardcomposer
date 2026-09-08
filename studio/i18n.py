@@ -354,6 +354,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "recuerda la última carpeta; si Excel tiene varias hojas, pide cuál; "
             "abre mapeo de columnas y vista previa; "
             "ofrece guardar el mapeo como plantilla; "
+            "si hay una plantilla de mapeo aplicable, la aplica; "
             "si no hay proyecto, crea uno vacío"
         ),
         "tip.import_pieces_csv": (
@@ -1653,6 +1654,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "remembers the last folder; if Excel has several sheets, asks which one; "
             "opens column mapping and a preview; "
             "offers to save the mapping as a template; "
+            "if an applicable mapping template exists, applies it; "
             "if there is no project, creates an empty one"
         ),
         "tip.import_pieces_csv": (
