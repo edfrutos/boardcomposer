@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.26  
+**Versión:** 1.3.27  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 08/09/2026
+**Última revisión:** 09/09/2026
 
 ---
 
@@ -140,10 +140,10 @@ Detalle: `docs/masterplan/epics/`.
 
 **Estado actual:** 🟢 Actualizado — IDE-0001…0018 Studio/Core completadas
 (salvo IDE-0007 🟡 MVP local + eval abierta); EP (001…003) Fase 3 entregadas;
-IDE-0019…0024 siguen como ideas abiertas (revisión 2026-09-08: sin IDE
-nuevas; cola no vacía; Issues abiertos = 0; PR abierto #607 tip; tips
-#603–#606 + planning #602 en `main`).
-Ver `REVIEW-2026-09-08-planificacion.md`.
+IDE-0019…0024 siguen como ideas abiertas (revisión 2026-09-09: sin IDE
+nuevas; cola no vacía; Issues/PRs abiertos = 0; tips #603–#607/#609–#611
++ planning #602/#608 en `main`).
+Ver `REVIEW-2026-09-09-planificacion.md`.
 
 Próximo foco:
 
