@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from boardcomposer.layout.kerf import aabb_overlap_with_kerf
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.panel_compatibility import incompatibility_reason
 
@@ -28,15 +29,6 @@ def same_physical_panel(left: StudioPlacement, right: StudioPlacement) -> bool:
         and left.board_instance == right.board_instance
         and left.stock_panel_index == right.stock_panel_index
     )
-
-
-def _rects_overlap(
-    left: tuple[float, float, float, float],
-    right: tuple[float, float, float, float],
-) -> bool:
-    ax, ay, aw, ah = left
-    bx, by, bw, bh = right
-    return not (ax + aw <= bx or bx + bw <= ax or ay + ah <= by or by + bh <= ay)
 
 
 def _fits_board(
@@ -87,9 +79,12 @@ def swap_block_reason(
     if not _fits_board(second_board, first.x_mm, first.y_mm, second_w, second_h):
         return "status.swap_overflow"
 
+    kerf = project.kerf_mm
     first_rect = (second.x_mm, second.y_mm, first_w, first_h)
     second_rect = (first.x_mm, first.y_mm, second_w, second_h)
-    if _rects_overlap(first_rect, second_rect) and same_physical_panel(first, second):
+    if same_physical_panel(first, second) and aabb_overlap_with_kerf(
+        *first_rect, *second_rect, kerf
+    ):
         return "status.swap_overlap"
 
     proposed = {
@@ -111,7 +106,7 @@ def swap_block_reason(
             except KeyError:
                 continue
             ow, oh = placed_size(other_piece, other.rotation)
-            if _rects_overlap(rect, (other.x_mm, other.y_mm, ow, oh)):
+            if aabb_overlap_with_kerf(*rect, other.x_mm, other.y_mm, ow, oh, kerf):
                 return "status.swap_overlap"
 
     return None

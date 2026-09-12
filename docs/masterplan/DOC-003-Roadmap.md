@@ -159,8 +159,8 @@ Objetivos:
 
 - Piloto DT-0006 opción D (backup); C diferida.
 - Pulido / QoL Fase 2 bajo demanda (ciclo `0.4.3.dev0`).
-- Candidatos producto restantes IDE-0020…0023 (eval, IDE-0024 e IDE-0019
-  cerrados 2026-09-12).
+- Candidatos producto restantes IDE-0023 / 0021 / 0022 (eval, 0024, 0019
+  y 0020 cerrados 2026-09-12).
 
 ### Prioridad P2
 
@@ -190,12 +190,12 @@ outdated/import·export/Timeline/Vista + docks/comparador + Calcular layout
 + Guardar/zoom/Explicar/Seleccionar/Quitar/Invertir + demo Máx. soluciones
 + Nuevo proyecto/export selección/Timeline + Importar piezas/tableros
 + Añadir tablero/pieza + Duplicar/colocación + 1.º tablero + cantidad→ids
-+ plantilla mapeo + IDE-0024 metadatos + IDE-0019 swap; candidatos
-  IDE-0020…0023).
++ plantilla mapeo + IDE-0024 metadatos + IDE-0019 swap + IDE-0020 kerf;
+  candidatos IDE-0023 / 0021 / 0022).
 Revisión: `REVIEW-2026-09-10-planificacion.md`.
 
 Pendiente de:
 
 - Piloto DT-0006 D (activo; C diferida);
-- slices QoL / IDE-0020…0023 bajo demanda;
+- slices QoL / IDE-0023 / 0021 / 0022 bajo demanda;
 - aprobar como hoja de ruta oficial del proyecto.

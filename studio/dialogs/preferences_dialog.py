@@ -20,6 +20,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from boardcomposer.layout.kerf import DEFAULT_KERF_MM, MAX_KERF_MM
 from boardcomposer.solver.strategies import strategy_by_name
 from studio.dialogs.dialog_chrome import (
     polish_dialog_button_box,
@@ -162,6 +163,14 @@ class PreferencesDialog(QDialog):
         self.max_solutions.setValue(preferences.max_solutions)
         self._max_solutions_label = QLabel()
         advanced_form.addRow(self._max_solutions_label, self.max_solutions)
+        self.default_kerf_mm = QDoubleSpinBox()
+        self.default_kerf_mm.setRange(0.0, MAX_KERF_MM)
+        self.default_kerf_mm.setDecimals(1)
+        self.default_kerf_mm.setSingleStep(0.5)
+        self.default_kerf_mm.setSuffix(" mm")
+        self.default_kerf_mm.setValue(preferences.default_kerf_mm)
+        self._default_kerf_label = QLabel()
+        advanced_form.addRow(self._default_kerf_label, self.default_kerf_mm)
         self.open_config_folder = polish_secondary_button(QPushButton())
         self.open_config_folder.clicked.connect(self._open_config_folder)
         advanced_form.addRow("", self.open_config_folder)
@@ -217,6 +226,9 @@ class PreferencesDialog(QDialog):
         self._weight_rotation_label.setText(tr("prefs.weight_rotation", language))
         self._export_format_label.setText(tr("prefs.export_format", language))
         self._max_solutions_label.setText(tr("prefs.max_solutions", language))
+        self._default_kerf_label.setText(tr("prefs.default_kerf", language))
+        self.default_kerf_mm.setToolTip(tr("tip.prefs_default_kerf", language))
+        self.default_kerf_mm.setStatusTip(tr("tip.prefs_default_kerf", language))
 
         for index, key in enumerate(VALID_LANGUAGES):
             self.language.setItemText(index, tr(f"language.{key}", language))
@@ -283,6 +295,7 @@ class PreferencesDialog(QDialog):
         self.export_include_explanation.setChecked(True)
         self.export_include_offcuts.setChecked(True)
         self.max_solutions.setValue(DEFAULT_MAX_SOLUTIONS)
+        self.default_kerf_mm.setValue(DEFAULT_KERF_MM)
         self._on_strategy_changed(self.strategy.currentIndex())
         self._retranslate()
 
@@ -312,4 +325,5 @@ class PreferencesDialog(QDialog):
             export_include_explanation=self.export_include_explanation.isChecked(),
             export_include_offcuts=self.export_include_offcuts.isChecked(),
             max_solutions=self.max_solutions.value(),
+            default_kerf_mm=self.default_kerf_mm.value(),
         )

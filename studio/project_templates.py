@@ -121,6 +121,7 @@ class ProjectTemplatesManager:
             client=project.client,
             reference=project.reference,
             notes=project.notes,
+            kerf_mm=project.kerf_mm,
             boards=[
                 StudioBoard(
                     board.board_id,
@@ -227,6 +228,7 @@ class ProjectTemplatesManager:
             client=source.client,
             reference=source.reference,
             notes=source.notes,
+            kerf_mm=source.kerf_mm,
             boards=list(source.boards),
             pieces=list(source.pieces),
             placements=list(source.placements) if include_placements else [],

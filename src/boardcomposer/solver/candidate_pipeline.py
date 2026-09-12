@@ -2,6 +2,11 @@ from dataclasses import replace
 from time import perf_counter
 
 from boardcomposer.domain import AssemblySolution, Project
+from boardcomposer.layout.kerf import (
+    deflate_solution,
+    inflate_project_for_kerf,
+    normalize_kerf,
+)
 from boardcomposer.solver.cancel import (
     CancellationToken,
     CancelledError,
@@ -38,7 +43,11 @@ class CandidatePipeline:
         self.trace = SolveTrace()
         candidates: list[AssemblySolution] = []
 
-        panel_instances = self.project.stock_panel_instances()
+        kerf_mm = normalize_kerf(self.project.constraints.kerf_mm)
+        packing_project = (
+            inflate_project_for_kerf(self.project) if kerf_mm else self.project
+        )
+        panel_instances = packing_project.stock_panel_instances()
         generator_names = (
             ["maxrects"]
             if len(panel_instances) > 1
@@ -53,7 +62,11 @@ class CandidatePipeline:
                 generator = generators_by_name([name])[0]
                 failure_log = PlacementFailureLog()
                 with capture_placement_failures(failure_log):
-                    generated = generator(self.project)
+                    generated = generator(packing_project)
+                if kerf_mm:
+                    generated = [
+                        deflate_solution(solution, kerf_mm) for solution in generated
+                    ]
                 self._record_placement_failures(failure_log)
                 if len(panel_instances) == 1:
                     reference = panel_instances[0][0]

@@ -261,6 +261,10 @@ def test_shortcuts_catalog_and_dialog(qapp):
         for b in STUDIO_SHORTCUTS
     )
     assert any(
+        b.action_key == "edit_project_kerf" and b.sequence == "Ctrl+Alt+K"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
         b.action_key == "exit" and b.sequence == "Ctrl+Q" for b in STUDIO_SHORTCUTS
     )
     assert any(
@@ -1491,6 +1495,26 @@ def test_swap_pieces_tip_mentions_two_placed_and_shortcut():
     assert "Ctrl+Alt+X" in tr("tip.swap_pieces", "en")
     assert "dos" in es and "colocadas" in es
     assert "two" in en and "placed" in en
+
+
+def test_edit_project_kerf_tip_mentions_file_gap_and_undo():
+    from studio.i18n import tr
+
+    es = tr("tip.edit_project_kerf", "es").casefold()
+    en = tr("tip.edit_project_kerf", "en").casefold()
+    assert "Ctrl+Alt+K" in tr("tip.edit_project_kerf", "es")
+    assert "Ctrl+Alt+K" in tr("tip.edit_project_kerf", "en")
+    assert ".bcproj" in es and "hueco" in es and "deshacer" in es
+    assert ".bcproj" in en and "gap" in en and "undone" in en
+
+
+def test_prefs_default_kerf_tip_mentions_new_projects_only():
+    from studio.i18n import tr
+
+    es = tr("tip.prefs_default_kerf", "es").casefold()
+    en = tr("tip.prefs_default_kerf", "en").casefold()
+    assert "nuevos" in es and ".bcproj" in es
+    assert "new projects" in en and ".bcproj" in en
 
 
 def test_swap_pieces_tip_mentions_noop_if_invalid_and_can_undo():

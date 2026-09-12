@@ -52,6 +52,7 @@ from studio.commands import (
     DuplicatePieceCommand,
     EditBoardCommand,
     EditPieceCommand,
+    EditProjectKerfCommand,
     EditProjectMetadataCommand,
     ImportBoardsCommand,
     ImportPiecesCommand,
@@ -82,6 +83,7 @@ from studio.dialogs import (
     NewPieceDialog,
     NewProjectDialog,
     PreferencesDialog,
+    ProjectKerfDialog,
     ProjectMetadataDialog,
     ProjectTemplatePickerDialog,
     ShortcutsDialog,
@@ -223,6 +225,7 @@ class MainWindow(QMainWindow):
 
         self._menus["project"].addAction(self._actions["rename_project"])
         self._menus["project"].addAction(self._actions["edit_project_metadata"])
+        self._menus["project"].addAction(self._actions["edit_project_kerf"])
         self._menus["project"].addAction(self._actions["reveal_project_folder"])
         self._menus["project"].addAction(self._actions["diff_bcproj"])
         self._menus["project"].addAction(self._actions["restore_local_revision"])
@@ -264,6 +267,7 @@ class MainWindow(QMainWindow):
         self._actions["edit_project_metadata"].triggered.connect(
             self._edit_project_metadata
         )
+        self._actions["edit_project_kerf"].triggered.connect(self._edit_project_kerf)
         self._actions["reveal_project_folder"].triggered.connect(
             self._reveal_project_folder
         )
@@ -708,6 +712,7 @@ class MainWindow(QMainWindow):
             boards=[],
             pieces=[],
             placements=[],
+            kerf_mm=self.services.preferences.current.default_kerf_mm,
         )
 
         self.services.projects.new_project(project)
@@ -996,7 +1001,8 @@ class MainWindow(QMainWindow):
             f"{self._tr('inspector.project')}: {project.name}\n"
             f"{self._tr('inspector.client')}: {_value(project.client)}\n"
             f"{self._tr('inspector.reference')}: {_value(project.reference)}\n"
-            f"{self._tr('inspector.notes')}: {_value(project.notes)}"
+            f"{self._tr('inspector.notes')}: {_value(project.notes)}\n"
+            f"{self._tr('inspector.kerf')}: {self._format_length(project.kerf_mm)}"
         )
 
     def _new_project(self):
@@ -1887,6 +1893,11 @@ class MainWindow(QMainWindow):
                 "edit_project_metadata",
                 "tip.edit_project_metadata",
                 self._tr("status.nothing_to_edit_metadata"),
+            ),
+            (
+                "edit_project_kerf",
+                "tip.edit_project_kerf",
+                self._tr("status.nothing_to_edit_kerf"),
             ),
         )
         for key, tip_key, disabled_tip in pairs:
@@ -4693,6 +4704,33 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self.update_undo_redo()
         self._status("status.project_metadata_saved")
+
+    def _edit_project_kerf(self) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.nothing_to_edit_kerf")
+            return
+
+        dialog = ProjectKerfDialog(
+            self,
+            kerf_mm=project.kerf_mm,
+            language=self._ui_language(),
+        )
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+        new_kerf = dialog.value()
+        if new_kerf == project.kerf_mm:
+            self._status("status.project_kerf_unchanged")
+            return
+
+        command = EditProjectKerfCommand(self.services, project.kerf_mm, new_kerf)
+        self.services.commands.execute(command)
+        self._mark_project_modified(reason="project_kerf")
+        self.workspace.reload_project(fit=False)
+        self._show_project_inspector()
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.project_kerf_saved")
 
     def _rename_piece(self, piece_id: str) -> None:
         project = self.services.projects.current_project

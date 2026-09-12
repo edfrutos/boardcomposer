@@ -161,6 +161,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.save_as": "Guardar como…",
         "action.rename_project": "Renombrar proyecto…",
         "action.edit_project_metadata": "Metadatos del proyecto…",
+        "action.edit_project_kerf": "Espesor de sierra…",
         "action.reveal_project_folder": "Abrir carpeta del proyecto",
         "action.diff_bcproj": "Comparar revisiones .bcproj…",
         "action.restore_local_revision": "Restaurar última revisión local…",
@@ -309,6 +310,15 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.edit_project_metadata": (
             "Editar cliente, referencia y notas del proyecto (Ctrl+Alt+M); "
             "se guardan en el .bcproj; se puede deshacer"
+        ),
+        "tip.edit_project_kerf": (
+            "Espesor de sierra del proyecto (Ctrl+Alt+K); "
+            "se guarda en el .bcproj; al calcular deja hueco entre piezas; "
+            "se puede deshacer"
+        ),
+        "tip.prefs_default_kerf": (
+            "Kerf por defecto de proyectos nuevos; "
+            "los ya abiertos siguen el valor del .bcproj"
         ),
         "tip.reveal_project_folder": (
             "Abrir la carpeta del archivo .bcproj en el explorador de archivos "
@@ -1167,6 +1177,16 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.edit_piece": "Editar pieza",
         "dialog.rename_project_title": "Renombrar proyecto",
         "dialog.project_metadata_title": "Metadatos del proyecto",
+        "dialog.project_kerf_title": "Espesor de sierra",
+        "form.project_kerf": "Kerf / sierra:",
+        "form.project_kerf_help": (
+            "Hueco mínimo entre piezas al calcular y al mover. 0 = sin hueco."
+        ),
+        "status.project_kerf_saved": "Espesor de sierra actualizado",
+        "status.project_kerf_unchanged": "Espesor de sierra sin cambios",
+        "status.nothing_to_edit_kerf": "No hay proyecto para editar el espesor de sierra",
+        "prefs.default_kerf": "Kerf de proyectos nuevos:",
+        "inspector.kerf": "Espesor de sierra",
         "form.project_client": "Cliente:",
         "form.project_reference": "Referencia:",
         "form.project_notes": "Notas:",
@@ -1502,6 +1522,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.save_as": "Save as…",
         "action.rename_project": "Rename project…",
         "action.edit_project_metadata": "Project metadata…",
+        "action.edit_project_kerf": "Saw kerf…",
         "action.reveal_project_folder": "Open project folder",
         "action.diff_bcproj": "Compare .bcproj revisions…",
         "action.restore_local_revision": "Restore latest local revision…",
@@ -1649,6 +1670,14 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.edit_project_metadata": (
             "Edit the project client, reference, and notes (Ctrl+Alt+M); "
             "stored in the .bcproj; can be undone"
+        ),
+        "tip.edit_project_kerf": (
+            "Project saw kerf (Ctrl+Alt+K); stored in the .bcproj; "
+            "calculating layout leaves a gap between pieces; can be undone"
+        ),
+        "tip.prefs_default_kerf": (
+            "Default kerf for new projects; "
+            "open projects keep the value stored in the .bcproj"
         ),
         "tip.reveal_project_folder": (
             "Open the folder that contains the .bcproj file in the file manager "
@@ -2469,6 +2498,16 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.edit_piece": "Edit piece",
         "dialog.rename_project_title": "Rename project",
         "dialog.project_metadata_title": "Project metadata",
+        "dialog.project_kerf_title": "Saw kerf",
+        "form.project_kerf": "Kerf / saw:",
+        "form.project_kerf_help": (
+            "Minimum gap between pieces when calculating and moving. 0 = no gap."
+        ),
+        "status.project_kerf_saved": "Saw kerf updated",
+        "status.project_kerf_unchanged": "Saw kerf unchanged",
+        "status.nothing_to_edit_kerf": "No project to edit saw kerf",
+        "prefs.default_kerf": "Kerf for new projects:",
+        "inspector.kerf": "Saw kerf",
         "form.project_client": "Client:",
         "form.project_reference": "Reference:",
         "form.project_notes": "Notes:",
@@ -2674,6 +2713,7 @@ _ACTION_KEYS = (
     "save_as",
     "rename_project",
     "edit_project_metadata",
+    "edit_project_kerf",
     "reveal_project_folder",
     "diff_bcproj",
     "restore_local_revision",
