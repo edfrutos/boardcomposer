@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- Workspace: intercambiar dos piezas colocadas (IDE-0019); **Ctrl+Alt+X**;
+  undo; no-op si no caben o el material/espesor no coincide.
 - Proyecto: metadatos cliente / referencia / notas (IDE-0024); diálogo
   **Ctrl+Alt+M**; persistidos en `.bcproj` v3; undo.
 - Docs planificación 2026-09-10: snapshot

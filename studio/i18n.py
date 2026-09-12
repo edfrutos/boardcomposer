@@ -230,6 +230,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.undo": "Deshacer",
         "action.redo": "Rehacer",
         "action.rotate_piece": "Rotar 90°",
+        "action.swap_pieces": "Intercambiar piezas",
         "action.rename_selection": "Renombrar…",
         "action.edit_selection": "Editar…",
         "action.copy_selection_id": "Copiar ID",
@@ -404,6 +405,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.rotate_piece": (
             "Rotar 90° la pieza seleccionada en el lienzo (R); "
             "debe estar colocada en un tablero"
+        ),
+        "tip.swap_pieces": (
+            "Intercambiar las posiciones de dos piezas colocadas (Ctrl+Alt+X); "
+            "si no caben o el material no coincide, no cambia nada; "
+            "se puede deshacer"
         ),
         "tip.rename_selection": (
             "Renombrar la pieza, el tablero o el proyecto seleccionado (F2); "
@@ -1003,6 +1009,19 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.piece_duplicated": "Pieza duplicada: {id}",
         "status.board_duplicated": "Tablero duplicado: {id}",
         "status.id_copied": "ID copiado: {id}",
+        "status.swap_need_two": (
+            "Selecciona exactamente dos piezas colocadas para intercambiar"
+        ),
+        "status.swap_need_placed": (
+            "Las dos piezas deben estar colocadas en un tablero"
+        ),
+        "status.swap_missing_board": (
+            "No se encuentra el tablero destino para intercambiar"
+        ),
+        "status.swap_incompatible": ("Material o espesor incompatible al intercambiar"),
+        "status.swap_overflow": ("Una pieza no cabe en la posición de la otra"),
+        "status.swap_overlap": ("El intercambio solaparía otra pieza o entre sí"),
+        "status.swap_done": "Piezas intercambiadas",
         "status.select_piece_first": "Selecciona una pieza primero",
         "status.place_piece_before_rotate": (
             "Coloca la pieza en un tablero antes de rotarla"
@@ -1551,6 +1570,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.undo": "Undo",
         "action.redo": "Redo",
         "action.rotate_piece": "Rotate 90°",
+        "action.swap_pieces": "Swap pieces",
         "action.rename_selection": "Rename…",
         "action.edit_selection": "Edit…",
         "action.copy_selection_id": "Copy ID",
@@ -1719,6 +1739,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.rotate_piece": (
             "Rotate the selected piece by 90° (R); the piece must be placed on a board"
+        ),
+        "tip.swap_pieces": (
+            "Swap the positions of two placed pieces (Ctrl+Alt+X); "
+            "if they do not fit or the material does not match, nothing changes; "
+            "can be undone"
         ),
         "tip.rename_selection": (
             "Rename the selected piece, board, or project (F2); "
@@ -2294,6 +2319,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.piece_duplicated": "Piece duplicated: {id}",
         "status.board_duplicated": "Board duplicated: {id}",
         "status.id_copied": "ID copied: {id}",
+        "status.swap_need_two": ("Select exactly two placed pieces to swap"),
+        "status.swap_need_placed": ("Both pieces must be placed on a board"),
+        "status.swap_missing_board": (
+            "The destination board for the swap was not found"
+        ),
+        "status.swap_incompatible": ("Incompatible material or thickness for the swap"),
+        "status.swap_overflow": (
+            "One piece does not fit in the other piece's position"
+        ),
+        "status.swap_overlap": ("The swap would overlap another piece or each other"),
+        "status.swap_done": "Pieces swapped",
         "status.select_piece_first": "Select a piece first",
         "status.place_piece_before_rotate": (
             "Place the piece on a board before rotating it"
@@ -2653,6 +2689,7 @@ _ACTION_KEYS = (
     "undo",
     "redo",
     "rotate_piece",
+    "swap_pieces",
     "rename_selection",
     "edit_selection",
     "copy_selection_id",
