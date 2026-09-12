@@ -373,6 +373,13 @@ class BoardWorkspace(QGraphicsView):
         if self.empty_overlay.isVisible():
             self._position_empty_overlay()
 
+    def select_pieces(self, piece_ids: list[str]) -> None:
+        """Select several canvas pieces and notify listeners."""
+        self.clear_board_focus(clear_sticky=False)
+        self.selection.select_many(piece_ids)
+        self.selection.sync_inspector(self.window())
+        self.selection_or_focus_changed.emit()
+
     def select_piece(self, piece_id: str) -> None:
         """Select the piece.
 

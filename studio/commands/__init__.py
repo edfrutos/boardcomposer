@@ -19,6 +19,7 @@ from studio.commands.move_piece_command import MovePieceCommand
 from studio.commands.place_piece_command import PlacePieceCommand
 from studio.commands.rename_project_command import RenameProjectCommand
 from studio.commands.rotate_piece_command import RotatePieceCommand
+from studio.commands.swap_pieces_command import SwapPiecesCommand
 
 __all__ = [
     "AddBoardCommand",
@@ -38,4 +39,5 @@ __all__ = [
     "PlacePieceCommand",
     "RenameProjectCommand",
     "RotatePieceCommand",
+    "SwapPiecesCommand",
 ]

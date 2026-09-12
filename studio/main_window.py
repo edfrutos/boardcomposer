@@ -58,8 +58,10 @@ from studio.commands import (
     PlacePieceCommand,
     RenameProjectCommand,
     RotatePieceCommand,
+    SwapPiecesCommand,
 )
 from studio.panel_compatibility import incompatibility_reason
+from studio.swap_pieces import swap_block_reason
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import (
     UnsupportedProjectVersionError,
@@ -198,6 +200,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["redo"])
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["rotate_piece"])
+        self._menus["edit"].addAction(self._actions["swap_pieces"])
         self._menus["edit"].addAction(self._actions["rename_selection"])
         self._menus["edit"].addAction(self._actions["edit_selection"])
         self._menus["edit"].addAction(self._actions["copy_selection_id"])
@@ -283,6 +286,7 @@ class MainWindow(QMainWindow):
         self._actions["undo"].triggered.connect(self._undo)
         self._actions["redo"].triggered.connect(self._redo)
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
+        self._actions["swap_pieces"].triggered.connect(self._swap_selected_pieces)
         self._actions["rename_selection"].triggered.connect(self._rename_selection)
         self._actions["edit_selection"].triggered.connect(self._edit_selection)
         self._actions["copy_selection_id"].triggered.connect(self._copy_selection_id)
@@ -395,6 +399,7 @@ class MainWindow(QMainWindow):
         )
         # Ensure Edit→Rotar / R is available while the canvas has focus.
         self.workspace.addAction(self._actions["rotate_piece"])
+        self.workspace.addAction(self._actions["swap_pieces"])
         self.welcome = WelcomeScreen()
         self.welcome.new_project_requested.connect(self._new_project)
         self.welcome.open_project_requested.connect(self._open_project)
@@ -2111,6 +2116,33 @@ class MainWindow(QMainWindow):
         self.update_undo_redo()
         self._status("status.piece_rotated")
 
+    def _swap_selected_pieces(self) -> None:
+        """Swap seats of exactly two placed pieces (IDE-0019)."""
+        selected = self.workspace.selection.selected()
+        if len(selected) != 2:
+            self._status("status.swap_need_two")
+            return
+
+        first_id, second_id = selected[0], selected[1]
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.swap_need_two")
+            return
+
+        blocked = swap_block_reason(project, first_id, second_id)
+        if blocked is not None:
+            self._status(blocked)
+            return
+
+        command = SwapPiecesCommand(self.services, first_id, second_id)
+        self.services.commands.execute(command)
+        self.workspace.reload_project()
+        self.workspace.select_pieces([first_id, second_id])
+        self._mark_project_modified()
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.swap_done")
+
     def _delete_selected_piece(self):
         """Delete the selected piece, or the focused/explorer board (Delete)."""
         piece_id = self.workspace.selection.current()
@@ -2456,6 +2488,19 @@ class MainWindow(QMainWindow):
                 with_native_shortcuts(self._tr(tip_key))
                 if enabled
                 else self._tr(disabled_tip)
+            )
+
+        swap = self._actions.get("swap_pieces")
+        if swap is not None:
+            blocked = "status.swap_need_two"
+            if project is not None and len(selected) == 2:
+                blocked = swap_block_reason(project, selected[0], selected[1])
+            can_swap = blocked is None
+            swap.setEnabled(can_swap)
+            swap.setStatusTip(
+                with_native_shortcuts(self._tr("tip.swap_pieces"))
+                if can_swap
+                else self._tr(blocked or "status.swap_need_two")
             )
 
     def _sync_solution_actions(self) -> None:
