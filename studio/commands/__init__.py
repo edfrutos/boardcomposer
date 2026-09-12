@@ -10,6 +10,7 @@ from studio.commands.duplicate_board_command import DuplicateBoardCommand
 from studio.commands.duplicate_piece_command import DuplicatePieceCommand
 from studio.commands.edit_board_command import EditBoardCommand
 from studio.commands.edit_piece_command import EditPieceCommand
+from studio.commands.edit_project_kerf_command import EditProjectKerfCommand
 from studio.commands.edit_project_metadata_command import (
     EditProjectMetadataCommand,
 )
@@ -32,6 +33,7 @@ __all__ = [
     "DuplicatePieceCommand",
     "EditBoardCommand",
     "EditPieceCommand",
+    "EditProjectKerfCommand",
     "EditProjectMetadataCommand",
     "ImportBoardsCommand",
     "ImportPiecesCommand",

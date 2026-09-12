@@ -143,13 +143,17 @@ class BoardWorkspace(QGraphicsView):
 
             self._board_items[slot.key] = board
             self._panel_slots[slot.key] = slot
+            kerf_mm = 0.0
+            if self.services.projects.current_project is not None:
+                kerf_mm = self.services.projects.current_project.kerf_mm
             self._validators[slot.key] = PlacementValidator(
                 QRectF(
                     slot.x_mm,
                     slot.y_mm,
                     slot.length_mm,
                     slot.width_mm,
-                )
+                ),
+                kerf_mm=kerf_mm,
             )
 
         if self._board_items:

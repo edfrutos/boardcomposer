@@ -69,6 +69,7 @@ carpeta. Sin archivo en disco: «aún no guardado» + tip **Ctrl+S**.
 |--------|-------|--------|
 | Renombrar proyecto | **Ctrl+Shift+F2** (también **F2** en raíz) | Undoable; menú y ctx Explorador |
 | Metadatos (cliente, ref., notas) | **Ctrl+Alt+M** (también **Return** / Editar en raíz) | Undoable; `.bcproj` v3; Inspector |
+| Espesor de sierra / kerf | **Ctrl+Alt+K** | Undoable; `.bcproj` v4; hueco al calcular/mover |
 | Abrir carpeta | **Ctrl+Shift+R** | Solo si hay archivo en disco |
 | Comparar revisiones | **Ctrl+Shift+Y** | Diff vs anillo local / archivos; recuerda carpeta (`last_diff_directory`) |
 | Restaurar última revisión | **Ctrl+Alt+Y** | Snapshot más reciente del anillo; dirty hasta Guardar; vacía undo |
@@ -141,8 +142,9 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
 
 ## Límites conocidos (Studio actual)
 
-- Metadatos de proyecto (cliente, referencia, notas) entregados (IDE-0024;
-  `.bcproj` v3). Kerf / veta siguen fuera (IDE-0020 / IDE-0021).
+- Metadatos de proyecto (cliente, referencia, notas) entregados (IDE-0024).
+  Kerf / espesor de sierra entregado (IDE-0020; `.bcproj` v4; **Ctrl+Alt+K**).
+  Veta sigue fuera (IDE-0021).
 
 ---
 

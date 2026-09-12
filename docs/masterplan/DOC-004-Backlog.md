@@ -4,7 +4,7 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.29  
+**Versión:** 1.3.30  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
 **Última revisión:** 12/09/2026
@@ -89,7 +89,7 @@ Observaciones:
 | IDE-0017 | Importación de piezas desde CSV/Excel | 🟢 | P1 |
 | IDE-0018 | Icono/logo propio de BoardComposer Studio | 🟢 | P1 |
 | IDE-0019 | Intercambiar dos piezas seleccionadas | 🟢 | P2 |
-| IDE-0020 | Kerf / espesor de sierra en packing | ⚪ | P2 |
+| IDE-0020 | Kerf / espesor de sierra en packing | 🟢 | P2 |
 | IDE-0021 | Restricción de veta / orientación de fibra | ⚪ | P2 |
 | IDE-0022 | Packing multipanel Skyline | ⚪ | P2 |
 | IDE-0023 | Lista de corte / informe de taller | ⚪ | P2 |
@@ -106,7 +106,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0008 | XL | ADR-004; contratos de extensión | Fase 5; marketplace fuera del MVP plugin |
 | DT-0006 | M (opción D/A) · L–XL (opción C) | Piloto nombrado; DOC-005 | Spike: `spikes/SPIKE-DT-0006-historial-cloud.md` |
 | IDE-0019 | S–M | SelectionController; Command Pattern | Entregado; Ctrl+Alt+X; no-op si no cabe |
-| IDE-0020 | M | PlacementValidator (ADR-010); migraciones | Preferencias + `.bcproj` |
+| IDE-0020 | M | PlacementValidator (ADR-010); migraciones | Entregado; v4 `kerf_mm`; default prefs |
 | IDE-0021 | M | Modelo de pieza; solvers | Afecta rotación automática |
 | IDE-0022 | M–L | ADR-014 contrato multipanel | Hoy solo MaxRects multipanel |
 | IDE-0023 | M | Export PDF/CSV; SCR-007 | Lista piezas/paneles para taller |
@@ -138,13 +138,13 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0019 y IDE-0024 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0020 y IDE-0024 Studio/Core
 completadas; IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003)
-Fase 3 entregadas. Cola abierta: IDE-0020…0023.
+Fase 3 entregadas. Cola abierta: IDE-0021…0023.
 
 Próximo foco:
 
 1. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-2. Ciclo `0.4.3`: IDE-0020 / 0023 / 0021 / 0022 (orden revisión).
+2. Ciclo `0.4.3`: IDE-0023 / 0021 / 0022 (orden revisión).
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
 5. LLM opt-in — solo tras eval + DEC-0011 / política de datos.

@@ -19,6 +19,7 @@ class StudioProject:
     client: str = ""
     reference: str = ""
     notes: str = ""
+    kerf_mm: float = 0.0
 
     def piece_by_id(self, piece_id: str) -> StudioPiece:
         for piece in self.pieces:

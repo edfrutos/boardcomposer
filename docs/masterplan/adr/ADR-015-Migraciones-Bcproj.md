@@ -52,6 +52,11 @@ una única función documentada (`_migrate_v1_to_v2`) en vez de repartidos por
 IDE-0024: añade `client`, `reference` y `notes` (cadenas; vacío si faltan)
 en la raíz del `.bcproj`. No toca inventario ni colocaciones.
 
+## Migración v3 → v4
+
+IDE-0020: añade `kerf_mm` (número ≥ 0; 0 si falta) en la raíz del `.bcproj`.
+Es el hueco de sierra entre piezas al calcular y al validar movimientos.
+
 ## Versiones futuras
 
 Al introducir un cambio de esquema que requiera una migración:
