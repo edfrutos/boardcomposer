@@ -160,6 +160,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.save": "Guardar",
         "action.save_as": "Guardar como…",
         "action.rename_project": "Renombrar proyecto…",
+        "action.edit_project_metadata": "Metadatos del proyecto…",
         "action.reveal_project_folder": "Abrir carpeta del proyecto",
         "action.diff_bcproj": "Comparar revisiones .bcproj…",
         "action.restore_local_revision": "Restaurar última revisión local…",
@@ -303,6 +304,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.rename_project": (
             "Cambiar el nombre del proyecto (Ctrl+Shift+F2); pide el nuevo nombre"
+        ),
+        "tip.edit_project_metadata": (
+            "Editar cliente, referencia y notas del proyecto (Ctrl+Alt+M); "
+            "se guardan en el .bcproj; se puede deshacer"
         ),
         "tip.reveal_project_folder": (
             "Abrir la carpeta del archivo .bcproj en el explorador de archivos "
@@ -836,6 +841,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.unplaced_mark": "sin colocar",
         "inspector.title": "Inspector",
         "inspector.none": "Sin selección",
+        "inspector.project": "Proyecto",
+        "inspector.client": "Cliente",
+        "inspector.reference": "Referencia",
+        "inspector.notes": "Notas",
+        "inspector.empty_value": "—",
         "inspector.board": "Tablero",
         "inspector.piece": "Pieza",
         "inspector.dimensions": "Dimensiones",
@@ -1088,6 +1098,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.redone": "Acción rehecha",
         "status.nothing_to_save": "No hay proyecto para guardar",
         "status.nothing_to_rename": "No hay proyecto para renombrar",
+        "status.nothing_to_edit_metadata": "No hay proyecto para editar metadatos",
         "status.nothing_to_rename_selection": (
             "Selecciona una pieza, un tablero o el proyecto para renombrar"
         ),
@@ -1136,6 +1147,13 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.edit_board": "Editar tablero",
         "dialog.edit_piece": "Editar pieza",
         "dialog.rename_project_title": "Renombrar proyecto",
+        "dialog.project_metadata_title": "Metadatos del proyecto",
+        "form.project_client": "Cliente:",
+        "form.project_reference": "Referencia:",
+        "form.project_notes": "Notas:",
+        "form.project_notes_placeholder": "Pedido, acabado, restricciones…",
+        "status.project_metadata_saved": "Metadatos del proyecto actualizados",
+        "status.project_metadata_unchanged": "Metadatos sin cambios",
         "dialog.rename_piece_title": "Renombrar pieza",
         "dialog.rename_board_title": "Renombrar tablero",
         "dialog.delete_board_title": "Eliminar tablero",
@@ -1464,6 +1482,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.save": "Save",
         "action.save_as": "Save as…",
         "action.rename_project": "Rename project…",
+        "action.edit_project_metadata": "Project metadata…",
         "action.reveal_project_folder": "Open project folder",
         "action.diff_bcproj": "Compare .bcproj revisions…",
         "action.restore_local_revision": "Restore latest local revision…",
@@ -1606,6 +1625,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.rename_project": (
             "Rename the current project (Ctrl+Shift+F2); asks for the new name"
+        ),
+        "tip.edit_project_metadata": (
+            "Edit the project client, reference, and notes (Ctrl+Alt+M); "
+            "stored in the .bcproj; can be undone"
         ),
         "tip.reveal_project_folder": (
             "Open the folder that contains the .bcproj file in the file manager "
@@ -2111,6 +2134,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.unplaced_mark": "unplaced",
         "inspector.title": "Inspector",
         "inspector.none": "No selection",
+        "inspector.project": "Project",
+        "inspector.client": "Client",
+        "inspector.reference": "Reference",
+        "inspector.notes": "Notes",
+        "inspector.empty_value": "—",
         "inspector.board": "Board",
         "inspector.piece": "Piece",
         "inspector.dimensions": "Dimensions",
@@ -2359,6 +2387,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.redone": "Redone",
         "status.nothing_to_save": "No project to save",
         "status.nothing_to_rename": "No project to rename",
+        "status.nothing_to_edit_metadata": "No project to edit metadata",
         "status.nothing_to_rename_selection": (
             "Select a piece, board, or the project to rename"
         ),
@@ -2403,6 +2432,13 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.edit_board": "Edit board",
         "dialog.edit_piece": "Edit piece",
         "dialog.rename_project_title": "Rename project",
+        "dialog.project_metadata_title": "Project metadata",
+        "form.project_client": "Client:",
+        "form.project_reference": "Reference:",
+        "form.project_notes": "Notes:",
+        "form.project_notes_placeholder": "Order, finish, constraints…",
+        "status.project_metadata_saved": "Project metadata updated",
+        "status.project_metadata_unchanged": "Metadata unchanged",
         "dialog.rename_piece_title": "Rename piece",
         "dialog.rename_board_title": "Rename board",
         "dialog.delete_board_title": "Delete board",
@@ -2601,6 +2637,7 @@ _ACTION_KEYS = (
     "save",
     "save_as",
     "rename_project",
+    "edit_project_metadata",
     "reveal_project_folder",
     "diff_bcproj",
     "restore_local_revision",

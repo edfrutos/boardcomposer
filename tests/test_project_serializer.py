@@ -13,6 +13,9 @@ def test_project_serialization_preserves_stock_and_panel_assignment():
     project = StudioProject(
         project_id="PRJ-1",
         name="Multipanel",
+        client="Nordik",
+        reference="PED-42",
+        notes="Canto ABS",
         boards=[StudioBoard("P1", 1000, 500, "Melamina", 19, 2)],
         pieces=[StudioPiece("A", 900, 400, "Melamina", 19)],
         placements=[StudioPlacement("A", 0, 0, False, 0, "P1", 1, 0)],
@@ -21,7 +24,10 @@ def test_project_serialization_preserves_stock_and_panel_assignment():
     payload = project_to_dict(project)
     restored = project_from_dict(payload)
 
-    assert payload["version"] == 2
+    assert payload["version"] == 3
+    assert payload["client"] == "Nordik"
+    assert payload["reference"] == "PED-42"
+    assert payload["notes"] == "Canto ABS"
     assert restored == project
 
 
@@ -109,3 +115,23 @@ def test_migration_chain_fills_every_default_for_a_bare_version_one_project():
     assert restored.boards[0] == StudioBoard("P1", 1000, 500, "Demo", 19, 1)
     assert restored.pieces[0] == StudioPiece("A", 400, 300, "Demo", 19)
     assert restored.placements[0] == StudioPlacement("A", 0, 0, False, 0, None, 0, None)
+    assert restored.client == ""
+    assert restored.reference == ""
+    assert restored.notes == ""
+
+
+def test_version_two_project_gains_empty_metadata():
+    restored = project_from_dict(
+        {
+            "version": 2,
+            "project_id": "PRJ-V2",
+            "name": "Sin meta",
+            "boards": [],
+            "pieces": [],
+            "placements": [],
+        }
+    )
+
+    assert restored.client == ""
+    assert restored.reference == ""
+    assert restored.notes == ""

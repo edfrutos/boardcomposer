@@ -21,7 +21,13 @@ def test_project_file_actions_disabled_without_project(qapp, tmp_path):
     window = _window(tmp_path)
     assert window.services.projects.current_project is None
 
-    for key in ("save", "save_as", "save_as_template", "rename_project"):
+    for key in (
+        "save",
+        "save_as",
+        "save_as_template",
+        "rename_project",
+        "edit_project_metadata",
+    ):
         assert not window._actions[key].isEnabled(), key
 
     assert "guardar" in window._actions["save"].statusTip().lower()
@@ -35,7 +41,13 @@ def test_project_file_actions_enabled_with_project(qapp, tmp_path):
     window.services.projects.new_project(StudioProject(project_id="PRJ-1", name="Demo"))
     window.update_window_title()
 
-    for key in ("save", "save_as", "save_as_template", "rename_project"):
+    for key in (
+        "save",
+        "save_as",
+        "save_as_template",
+        "rename_project",
+        "edit_project_metadata",
+    ):
         assert window._actions[key].isEnabled(), key
 
     assert "Ctrl+S" in window._actions["save"].statusTip() or "⌘S" in (

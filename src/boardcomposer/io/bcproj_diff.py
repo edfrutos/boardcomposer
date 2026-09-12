@@ -14,7 +14,7 @@ from typing import Any
 
 from boardcomposer.io.bcproj import migrate_bcproj_dict
 
-_META_KEYS = ("version", "project_id", "name")
+_META_KEYS = ("version", "project_id", "name", "client", "reference", "notes")
 _BOARD_FIELDS = (
     "board_id",
     "length_mm",
