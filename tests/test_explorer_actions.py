@@ -23,7 +23,11 @@ def test_explorer_context_actions_for_piece():
 
 
 def test_explorer_context_actions_for_board_and_categories():
-    assert explorer_context_actions("project:root") == ("rename", "reveal_folder")
+    assert explorer_context_actions("project:root") == (
+        "rename",
+        "edit",
+        "reveal_folder",
+    )
     assert explorer_context_actions("board:B1") == (
         "edit",
         "rename",
@@ -46,6 +50,9 @@ def test_explorer_context_tip_keys(qapp, tmp_path):
     window = MainWindow(services)
 
     assert window._explorer_context_tip_key("edit", "piece:A") == "tip.edit_selection"
+    assert window._explorer_context_tip_key("edit", "project:root") == (
+        "tip.edit_project_metadata"
+    )
     assert (
         window._explorer_context_tip_key("duplicate", "board:B1")
         == "tip.duplicate_piece"

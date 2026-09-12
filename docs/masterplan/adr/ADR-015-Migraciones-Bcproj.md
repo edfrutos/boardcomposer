@@ -47,6 +47,11 @@ defecto son los mismos que ya usaba el código implícito, pero ahora viven en
 una única función documentada (`_migrate_v1_to_v2`) en vez de repartidos por
 `project_from_dict`.
 
+## Migración v2 → v3
+
+IDE-0024: añade `client`, `reference` y `notes` (cadenas; vacío si faltan)
+en la raíz del `.bcproj`. No toca inventario ni colocaciones.
+
 ## Versiones futuras
 
 Al introducir un cambio de esquema que requiera una migración:

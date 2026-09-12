@@ -52,6 +52,7 @@ from studio.commands import (
     DuplicatePieceCommand,
     EditBoardCommand,
     EditPieceCommand,
+    EditProjectMetadataCommand,
     ImportBoardsCommand,
     ImportPiecesCommand,
     PlacePieceCommand,
@@ -79,6 +80,7 @@ from studio.dialogs import (
     NewPieceDialog,
     NewProjectDialog,
     PreferencesDialog,
+    ProjectMetadataDialog,
     ProjectTemplatePickerDialog,
     ShortcutsDialog,
     WhatsNewDialog,
@@ -217,6 +219,7 @@ class MainWindow(QMainWindow):
         self._menus["view"].addAction(self._actions["toggle_grid"])
 
         self._menus["project"].addAction(self._actions["rename_project"])
+        self._menus["project"].addAction(self._actions["edit_project_metadata"])
         self._menus["project"].addAction(self._actions["reveal_project_folder"])
         self._menus["project"].addAction(self._actions["diff_bcproj"])
         self._menus["project"].addAction(self._actions["restore_local_revision"])
@@ -255,6 +258,9 @@ class MainWindow(QMainWindow):
         self._actions["show_welcome"].triggered.connect(self._show_welcome_screen)
         self._actions["save_as_template"].triggered.connect(self._save_as_template)
         self._actions["rename_project"].triggered.connect(self._rename_project)
+        self._actions["edit_project_metadata"].triggered.connect(
+            self._edit_project_metadata
+        )
         self._actions["reveal_project_folder"].triggered.connect(
             self._reveal_project_folder
         )
@@ -906,9 +912,13 @@ class MainWindow(QMainWindow):
             return
         kind, object_id = parsed
 
-        if kind in {"category", "project"}:
+        if kind == "category":
             self.workspace.clear_piece_selection()
             self.inspector.setText(f"{self._tr('inspector.title')}\n\n{item.text(0)}")
+            return
+        if kind == "project":
+            self.workspace.clear_piece_selection()
+            self._show_project_inspector()
             return
 
         if kind == "solution":
@@ -964,6 +974,24 @@ class MainWindow(QMainWindow):
             f"{self._format_length(board.thickness_mm)}\n"
             f"{self._tr('inspector.quantity')}: {board.quantity}\n"
             f"{self._tr('inspector.material')}: {board.material}"
+        )
+
+    def _show_project_inspector(self) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        empty = self._tr("inspector.empty_value")
+
+        def _value(text: str) -> str:
+            cleaned = text.strip()
+            return cleaned if cleaned else empty
+
+        self.inspector.setText(
+            f"{self._tr('inspector.title')}\n\n"
+            f"{self._tr('inspector.project')}: {project.name}\n"
+            f"{self._tr('inspector.client')}: {_value(project.client)}\n"
+            f"{self._tr('inspector.reference')}: {_value(project.reference)}\n"
+            f"{self._tr('inspector.notes')}: {_value(project.notes)}"
         )
 
     def _new_project(self):
@@ -1850,6 +1878,11 @@ class MainWindow(QMainWindow):
             ("save_as", "tip.save_as", need_project),
             ("save_as_template", "tip.save_as_template", need_template),
             ("rename_project", "tip.rename_project", need_rename),
+            (
+                "edit_project_metadata",
+                "tip.edit_project_metadata",
+                self._tr("status.nothing_to_edit_metadata"),
+            ),
         )
         for key, tip_key, disabled_tip in pairs:
             action = self._actions.get(key)
@@ -4134,6 +4167,11 @@ class MainWindow(QMainWindow):
             if parsed is not None and parsed[0] == "project":
                 return "tip.rename_project"
             return "tip.rename_selection"
+        if key == "edit":
+            parsed = parse_explorer_role(role)
+            if parsed is not None and parsed[0] == "project":
+                return "tip.edit_project_metadata"
+            return "tip.edit_selection"
         if key == "preview_solution":
             if self.services.layout.solutions_outdated:
                 return "tip.preview_solution_outdated"
@@ -4213,6 +4251,9 @@ class MainWindow(QMainWindow):
 
         if kind == "project" and action_key == "rename":
             self._rename_project()
+            return
+        if kind == "project" and action_key == "edit":
+            self._edit_project_metadata()
             return
         if kind == "project" and action_key == "reveal_folder":
             self._reveal_project_folder()
@@ -4486,6 +4527,9 @@ class MainWindow(QMainWindow):
             parsed = parse_explorer_role(item.data(0, Qt.ItemDataRole.UserRole))
             if parsed is not None:
                 kind, object_id = parsed
+                if kind == "project":
+                    self._edit_project_metadata()
+                    return
                 if kind == "piece":
                     self._edit_piece(object_id)
                     return
@@ -4564,6 +4608,46 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self.update_undo_redo()
         self._status("status.project_renamed", name=cleaned)
+
+    def _edit_project_metadata(self) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.nothing_to_edit_metadata")
+            return
+
+        dialog = ProjectMetadataDialog(
+            self,
+            client=project.client,
+            reference=project.reference,
+            notes=project.notes,
+            language=self._ui_language(),
+        )
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+        data = dialog.metadata()
+        if (
+            data["client"] == project.client
+            and data["reference"] == project.reference
+            and data["notes"] == project.notes
+        ):
+            self._status("status.project_metadata_unchanged")
+            return
+
+        command = EditProjectMetadataCommand(
+            self.services,
+            old_client=project.client,
+            old_reference=project.reference,
+            old_notes=project.notes,
+            new_client=data["client"],
+            new_reference=data["reference"],
+            new_notes=data["notes"],
+        )
+        self.services.commands.execute(command)
+        self._mark_project_modified(affects_layout=False, reason="project_metadata")
+        self._show_project_inspector()
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.project_metadata_saved")
 
     def _rename_piece(self, piece_id: str) -> None:
         project = self.services.projects.current_project

@@ -36,8 +36,10 @@ en cada una.
 
 ## Veredicto
 
-- [ ] ≥4/5 **Útil** o **Mixto** → MVP explicación aceptable para estudio.
-- [ ] ≥2/5 **Ruido** → anotar fallos; no cablear LLM hasta revisar texto Core.
-- Fecha / evaluador: _______________
+- [X] ≥4/5 **Útil** o **Mixto** → MVP explicación aceptable para estudio.
+- [X] ≥2/5 **Ruido** → anotar fallos; no cablear LLM hasta revisar texto Core.
+- Fecha / evaluador: 09-12-2026
+
+Cierre: MVP explicación aceptable para estudio. LLM sigue diferido (DEC-0011).
 
 **Fuera de alcance:** calidad de un LLM futuro (solo texto determinista actual).

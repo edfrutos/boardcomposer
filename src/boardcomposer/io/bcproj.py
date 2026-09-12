@@ -13,7 +13,7 @@ from pathlib import Path
 
 from boardcomposer.domain import Board, Project, ProjectConstraints, StockPanel
 
-CURRENT_VERSION = 2
+CURRENT_VERSION = 3
 
 
 class UnsupportedProjectVersionError(Exception):
@@ -62,8 +62,19 @@ def _migrate_v1_to_v2(data: dict) -> dict:
     return migrated
 
 
+def _migrate_v2_to_v3(data: dict) -> dict:
+    """Add optional project metadata (IDE-0024): client, reference, notes."""
+    migrated = dict(data)
+    migrated.setdefault("client", "")
+    migrated.setdefault("reference", "")
+    migrated.setdefault("notes", "")
+    migrated["version"] = 3
+    return migrated
+
+
 _MIGRATIONS: dict[int, Callable[[dict], dict]] = {
     1: _migrate_v1_to_v2,
+    2: _migrate_v2_to_v3,
 }
 
 

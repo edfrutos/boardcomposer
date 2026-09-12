@@ -10,6 +10,9 @@ from studio.commands.duplicate_board_command import DuplicateBoardCommand
 from studio.commands.duplicate_piece_command import DuplicatePieceCommand
 from studio.commands.edit_board_command import EditBoardCommand
 from studio.commands.edit_piece_command import EditPieceCommand
+from studio.commands.edit_project_metadata_command import (
+    EditProjectMetadataCommand,
+)
 from studio.commands.import_boards_command import ImportBoardsCommand
 from studio.commands.import_pieces_command import ImportPiecesCommand
 from studio.commands.move_piece_command import MovePieceCommand
@@ -28,6 +31,7 @@ __all__ = [
     "DuplicatePieceCommand",
     "EditBoardCommand",
     "EditPieceCommand",
+    "EditProjectMetadataCommand",
     "ImportBoardsCommand",
     "ImportPiecesCommand",
     "MovePieceCommand",

@@ -4,6 +4,8 @@
 
 ### Añadido
 
+- Proyecto: metadatos cliente / referencia / notas (IDE-0024); diálogo
+  **Ctrl+Alt+M**; persistidos en `.bcproj` v3; undo.
 - Docs planificación 2026-09-10: snapshot
   `docs/masterplan/REVIEW-2026-09-10-planificacion.md`; cola
   IDE-0019…0024 sin IDE nuevas (Issues/PRs abiertos = 0; planning
@@ -196,6 +198,7 @@
 
 ### Cambiado
 
+- IDE-0007: eval humana 2026-09-12 (MVP explicación aceptable; LLM diferido).
 - Importar: tip piezas aclara que si hay plantilla de mapeo aplicable, la aplica.
 - Importar: tip tableros aclara que si hay plantilla de mapeo aplicable, la aplica.
 - Importar: tip piezas aclara que si cantidad > 1, crea varias con IDs únicos.

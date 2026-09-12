@@ -253,6 +253,10 @@ def test_shortcuts_catalog_and_dialog(qapp):
         for b in STUDIO_SHORTCUTS
     )
     assert any(
+        b.action_key == "edit_project_metadata" and b.sequence == "Ctrl+Alt+M"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
         b.action_key == "exit" and b.sequence == "Ctrl+Q" for b in STUDIO_SHORTCUTS
     )
     assert any(
@@ -1451,6 +1455,26 @@ def test_rename_project_tip_mentions_name_dialog():
     assert "Ctrl+Shift+F2" in tr("tip.rename_project", "en")
     assert "nombre" in es
     assert "name" in en
+
+
+def test_edit_project_metadata_tip_mentions_dialog_and_file():
+    from studio.i18n import tr
+
+    es = tr("tip.edit_project_metadata", "es").casefold()
+    en = tr("tip.edit_project_metadata", "en").casefold()
+    assert "Ctrl+Alt+M" in tr("tip.edit_project_metadata", "es")
+    assert "Ctrl+Alt+M" in tr("tip.edit_project_metadata", "en")
+    assert "cliente" in es and "notas" in es and ".bcproj" in es
+    assert "client" in en and "notes" in en and ".bcproj" in en
+
+
+def test_edit_project_metadata_tip_mentions_can_undo():
+    from studio.i18n import tr
+
+    es = tr("tip.edit_project_metadata", "es").casefold()
+    en = tr("tip.edit_project_metadata", "en").casefold()
+    assert "deshacer" in es
+    assert "undone" in en
 
 
 def test_save_tip_mentions_path_prompt_when_unsaved():

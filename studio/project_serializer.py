@@ -38,6 +38,9 @@ def project_to_dict(project: StudioProject) -> dict:
         "version": CURRENT_VERSION,
         "project_id": project.project_id,
         "name": project.name,
+        "client": project.client,
+        "reference": project.reference,
+        "notes": project.notes,
         "boards": [
             {
                 "board_id": board.board_id,
@@ -81,6 +84,9 @@ def project_from_dict(data: dict) -> StudioProject:
     return StudioProject(
         project_id=data["project_id"],
         name=data["name"],
+        client=str(data.get("client", "") or ""),
+        reference=str(data.get("reference", "") or ""),
+        notes=str(data.get("notes", "") or ""),
         boards=[
             StudioBoard(
                 board_id=item["board_id"],

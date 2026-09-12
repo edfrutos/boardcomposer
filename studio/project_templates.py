@@ -118,6 +118,9 @@ class ProjectTemplatesManager:
         template_project = StudioProject(
             project_id=f"TPL-{slugify_template_name(cleaned)[:24]}",
             name=cleaned,
+            client=project.client,
+            reference=project.reference,
+            notes=project.notes,
             boards=[
                 StudioBoard(
                     board.board_id,
@@ -221,6 +224,9 @@ class ProjectTemplatesManager:
         return StudioProject(
             project_id=new_project_id(),
             name=source.name,
+            client=source.client,
+            reference=source.reference,
+            notes=source.notes,
             boards=list(source.boards),
             pieces=list(source.pieces),
             placements=list(source.placements) if include_placements else [],

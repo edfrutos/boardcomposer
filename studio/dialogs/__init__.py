@@ -9,6 +9,7 @@ from .import_pieces_preview_dialog import (
 from .new_board_dialog import NewBoardDialog as NewBoardDialog
 from .new_piece_dialog import NewPieceDialog as NewPieceDialog
 from .new_project_dialog import NewProjectDialog as NewProjectDialog
+from .project_metadata_dialog import ProjectMetadataDialog as ProjectMetadataDialog
 from .help_dialogs import AboutDialog as AboutDialog
 from .help_dialogs import ExplainSolutionDialog as ExplainSolutionDialog
 from .help_dialogs import ShortcutsDialog as ShortcutsDialog
@@ -29,6 +30,7 @@ __all__ = [
     "NewPieceDialog",
     "NewProjectDialog",
     "PreferencesDialog",
+    "ProjectMetadataDialog",
     "ProjectTemplatePickerDialog",
     "ShortcutsDialog",
     "WhatsNewDialog",

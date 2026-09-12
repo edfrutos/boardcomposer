@@ -22,6 +22,7 @@ def test_detects_piece_and_board_changes(tmp_path):
     left = json.loads(BASE.read_text(encoding="utf-8"))
     right = json.loads(BASE.read_text(encoding="utf-8"))
     right["name"] = "Revised demo"
+    right["client"] = "Nordik"
     right["boards"][0]["quantity"] = 3
     right["pieces"].append(
         {
@@ -43,6 +44,7 @@ def test_detects_piece_and_board_changes(tmp_path):
     assert report.identical is False
     paths = {change.path for change in report.changes}
     assert "name" in paths
+    assert "client" in paths
     assert "boards.P1.quantity" in paths
     assert "pieces.C" in paths
     assert "pieces.B" in paths
