@@ -1,6 +1,7 @@
 from typing import Protocol
 
 from boardcomposer.domain import Board, BoardPlacement
+from boardcomposer.domain.grain import rotation_allowed
 
 
 class PlacementLike(Protocol):
@@ -46,7 +47,7 @@ def place_all_boards(
         placement = packer.place(
             length_mm=board.length_mm,
             width_mm=board.width_mm,
-            allow_rotation=allow_rotation,
+            allow_rotation=rotation_allowed(board, allow_rotation),
         )
 
         if placement is None:

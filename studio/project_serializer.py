@@ -20,6 +20,7 @@ from boardcomposer.io.bcproj import (
     UnsupportedProjectVersionError,
     migrate_bcproj_dict,
 )
+from boardcomposer.domain.grain import GRAIN_NONE, normalize_grain
 from boardcomposer.layout.kerf import normalize_kerf
 from boardcomposer.io.bcproj_revisions import snapshot_before_overwrite
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
@@ -61,6 +62,7 @@ def project_to_dict(project: StudioProject) -> dict:
                 "width_mm": piece.width_mm,
                 "material": piece.material,
                 "thickness_mm": piece.thickness_mm,
+                "grain": piece.grain,
             }
             for piece in project.pieces
         ],
@@ -108,6 +110,7 @@ def project_from_dict(data: dict) -> StudioProject:
                 width_mm=item["width_mm"],
                 material=item.get("material", "Demo"),
                 thickness_mm=item.get("thickness_mm", 19),
+                grain=normalize_grain(item.get("grain", GRAIN_NONE)),
             )
             for item in data.get("pieces", [])
         ],

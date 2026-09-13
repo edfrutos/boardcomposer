@@ -14,6 +14,7 @@ from boardcomposer.domain import (
     SolutionExplanation,
     StockPanel,
 )
+from boardcomposer.domain.grain import rotation_allowed
 from boardcomposer.solver.maxrects.free_rectangle import FreeRectangle
 from boardcomposer.solver.maxrects.heuristics import Heuristic
 from boardcomposer.solver.maxrects.maxrects import MaxRects
@@ -99,7 +100,7 @@ def _pack_panel(
         placement = packer.place(
             length_mm=board.length_mm,
             width_mm=board.width_mm,
-            allow_rotation=allow_rotation,
+            allow_rotation=rotation_allowed(board, allow_rotation),
         )
 
         if placement is None:

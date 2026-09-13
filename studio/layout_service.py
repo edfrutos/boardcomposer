@@ -120,6 +120,7 @@ class LayoutService:
                     width_mm=piece.width_mm,
                     thickness_mm=piece.thickness_mm,
                     material=piece.material,
+                    grain=piece.grain,
                 )
             )
 

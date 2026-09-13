@@ -57,6 +57,11 @@ en la raíz del `.bcproj`. No toca inventario ni colocaciones.
 IDE-0020: añade `kerf_mm` (número ≥ 0; 0 si falta) en la raíz del `.bcproj`.
 Es el hueco de sierra entre piezas al calcular y al validar movimientos.
 
+## Migración v4 → v5
+
+IDE-0021: añade `grain` en cada pieza (`none` o `locked`; `none` si falta).
+`locked` fija la veta: el solver y Rotar (R) no giran esa pieza.
+
 ## Versiones futuras
 
 Al introducir un cambio de esquema que requiera una migración:

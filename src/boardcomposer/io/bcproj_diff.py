@@ -37,6 +37,7 @@ _PIECE_FIELDS = (
     "width_mm",
     "thickness_mm",
     "material",
+    "grain",
 )
 
 

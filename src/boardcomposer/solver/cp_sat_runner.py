@@ -22,6 +22,7 @@ from boardcomposer.domain import (
     Project,
     SolutionExplanation,
 )
+from boardcomposer.domain.grain import rotation_allowed
 
 try:
     from ortools.sat.python import cp_model
@@ -95,7 +96,9 @@ def _candidate_items(
         width_mm = round(board.width_mm)
         fits_upright = length_mm <= bin_length_mm and width_mm <= bin_width_mm
         fits_rotated = (
-            allow_rotation and width_mm <= bin_length_mm and length_mm <= bin_width_mm
+            rotation_allowed(board, allow_rotation)
+            and width_mm <= bin_length_mm
+            and length_mm <= bin_width_mm
         )
 
         if fits_upright or fits_rotated:

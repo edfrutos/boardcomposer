@@ -428,7 +428,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.rotate_piece": (
             "Rotar 90° la pieza seleccionada en el lienzo (R); "
-            "debe estar colocada en un tablero"
+            "debe estar colocada en un tablero; "
+            "no aplica si la veta está fija"
+        ),
+        "tip.piece_grain": (
+            "Si se desmarca, la veta queda fija: el cálculo y Rotar (R) "
+            "no giran la pieza; se guarda en el .bcproj"
         ),
         "tip.swap_pieces": (
             "Intercambiar las posiciones de dos piezas colocadas (Ctrl+Alt+X); "
@@ -882,6 +887,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "inspector.thickness": "Espesor",
         "inspector.quantity": "Cantidad",
         "inspector.material": "Material",
+        "inspector.grain": "Veta",
+        "inspector.grain_free": "libre (puede rotar)",
+        "inspector.grain_locked": "fija (no rotar)",
         "inspector.position": "Posición",
         "inspector.unplaced": "Sin colocar en el Workspace",
         "inspector.place_hint": (
@@ -1055,6 +1063,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_delete": ("Selecciona una pieza o un tablero para eliminar"),
         "status.cannot_rotate": "La pieza no puede rotarse en esa posición",
+        "status.cannot_rotate_grain": "La veta de esta pieza está fija; no se puede rotar",
         "status.piece_rotated": "Pieza rotada 90°",
         "status.piece_placed": "Pieza {piece} colocada en {board}",
         "status.piece_already_placed": "La pieza {id} ya está colocada",
@@ -1796,7 +1805,13 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Redo the last undone piece, board, or placement edit (Ctrl+Shift+Z)"
         ),
         "tip.rotate_piece": (
-            "Rotate the selected piece by 90° (R); the piece must be placed on a board"
+            "Rotate the selected piece by 90° (R); "
+            "the piece must be placed on a board; "
+            "does nothing if grain is locked"
+        ),
+        "tip.piece_grain": (
+            "If unchecked, grain is locked: calculating layout and Rotate (R) "
+            "will not turn the piece; stored in the .bcproj"
         ),
         "tip.swap_pieces": (
             "Swap the positions of two placed pieces (Ctrl+Alt+X); "
@@ -2228,6 +2243,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "inspector.thickness": "Thickness",
         "inspector.quantity": "Quantity",
         "inspector.material": "Material",
+        "inspector.grain": "Grain",
+        "inspector.grain_free": "free (may rotate)",
+        "inspector.grain_locked": "locked (do not rotate)",
         "inspector.position": "Position",
         "inspector.unplaced": "Not placed in the Workspace",
         "inspector.place_hint": (
@@ -2395,6 +2413,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_duplicate": "Select a piece or board to duplicate",
         "status.nothing_to_delete": "Select a piece or board to delete",
         "status.cannot_rotate": "The piece cannot be rotated in that position",
+        "status.cannot_rotate_grain": "This piece has locked grain; it cannot be rotated",
         "status.piece_rotated": "Piece rotated 90°",
         "status.piece_placed": "Piece {piece} placed on {board}",
         "status.piece_already_placed": "Piece {id} is already placed",

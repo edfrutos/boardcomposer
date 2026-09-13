@@ -17,6 +17,7 @@ class ValidationReason(StrEnum):
     EXCEEDS_STOCK_PANEL = "exceeds_stock_panel"
     PANEL_THICKNESS_MISMATCH = "panel_thickness_mismatch"
     PANEL_MATERIAL_MISMATCH = "panel_material_mismatch"
+    GRAIN_VIOLATION = "grain_violation"
 
 
 @dataclass(frozen=True)

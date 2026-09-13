@@ -11,6 +11,11 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from boardcomposer.domain.grain import (
+    GRAIN_LOCKED,
+    GRAIN_NONE,
+    grain_allows_rotation,
+)
 from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.units import display_to_mm, mm_to_display, unit_label
@@ -29,6 +34,7 @@ class NewPieceDialog(QDialog):
         thickness_mm: int = 19,
         quantity: int = 1,
         material: str = "Melamina blanca",
+        grain: str = GRAIN_NONE,
         title: str | None = None,
         show_quantity: bool = True,
         units: str = "mm",
@@ -49,7 +55,9 @@ class NewPieceDialog(QDialog):
         self.quantity = QSpinBox()
         self.material = QLineEdit(material)
         self.rotatable = QCheckBox()
-        self.rotatable.setChecked(True)
+        self.rotatable.setChecked(grain_allows_rotation(grain))
+        self.rotatable.setToolTip(tr("tip.piece_grain", language))
+        self.rotatable.setStatusTip(tr("tip.piece_grain", language))
 
         decimals = 0 if units == "mm" else 2
         for field in (self.length, self.width, self.thickness):
@@ -97,4 +105,5 @@ class NewPieceDialog(QDialog):
             "quantity": self.quantity.value(),
             "material": self.material.text().strip(),
             "rotatable": self.rotatable.isChecked(),
+            "grain": GRAIN_NONE if self.rotatable.isChecked() else GRAIN_LOCKED,
         }

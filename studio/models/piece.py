@@ -2,6 +2,8 @@
 
 from dataclasses import dataclass
 
+from boardcomposer.domain.grain import GRAIN_NONE, normalize_grain
+
 
 @dataclass(frozen=True)
 class StudioPiece:
@@ -12,3 +14,7 @@ class StudioPiece:
     width_mm: float
     material: str = "Demo"
     thickness_mm: float = 19
+    grain: str = GRAIN_NONE
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "grain", normalize_grain(self.grain))

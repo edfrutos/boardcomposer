@@ -527,6 +527,24 @@ def test_rotate_piece_tip_mentions_placed_on_board():
     assert "board" in en
 
 
+def test_rotate_piece_tip_mentions_locked_grain():
+    from studio.i18n import tr
+
+    es = tr("tip.rotate_piece", "es").casefold()
+    en = tr("tip.rotate_piece", "en").casefold()
+    assert "veta" in es and "fija" in es
+    assert "grain" in en and "locked" in en
+
+
+def test_piece_grain_tip_mentions_file_and_no_rotate():
+    from studio.i18n import tr
+
+    es = tr("tip.piece_grain", "es").casefold()
+    en = tr("tip.piece_grain", "en").casefold()
+    assert ".bcproj" in es and "veta" in es and "rotar" in es
+    assert ".bcproj" in en and "grain" in en and "rotate" in en
+
+
 def test_open_status_tip_includes_shortcut():
     from studio.i18n import tr
 
