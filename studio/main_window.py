@@ -4752,10 +4752,13 @@ class MainWindow(QMainWindow):
             self._status("status.project_kerf_unchanged")
             return
 
+        selected_ids = self.workspace.selection.selected()
         command = EditProjectKerfCommand(self.services, project.kerf_mm, new_kerf)
         self.services.commands.execute(command)
         self._mark_project_modified(reason="project_kerf")
         self._refresh_project_views(fit=False)
+        if selected_ids:
+            self.workspace.select_pieces(selected_ids)
         self.update_undo_redo()
         self._status("status.project_kerf_saved")
 
