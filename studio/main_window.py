@@ -2062,10 +2062,33 @@ class MainWindow(QMainWindow):
         self.services.commands.clear()
         self.update_undo_redo()
 
+    def _refresh_inspector_from_context(self) -> None:
+        if self.workspace.selection.selected():
+            self.workspace.selection.sync_inspector(self)
+            return
+        current = self.explorer.currentItem()
+        if current is None:
+            self.clear_inspector()
+            return
+        parsed = parse_explorer_role(current.data(0, Qt.ItemDataRole.UserRole))
+        if parsed is None:
+            self.clear_inspector()
+            return
+        kind, object_id = parsed
+        if kind == "project":
+            self._show_project_inspector()
+            return
+        if kind == "board":
+            self._show_board_inspector(object_id)
+            return
+        self.clear_inspector()
+
     def _refresh_project_views(self, *, fit: bool = True) -> None:
         self.workspace.reload_project(fit=fit)
         self._reload_explorer()
-        self._show_project_inspector()
+        self._refresh_inspector_from_context()
+        self._sync_view_actions()
+        self._sync_edit_selection_actions()
         self.update_window_title()
 
     def _undo(self):
@@ -2153,6 +2176,8 @@ class MainWindow(QMainWindow):
         self.services.commands.execute(command)
         self.workspace.reload_project()
         self.workspace.select_pieces([first_id, second_id])
+        self._sync_view_actions()
+        self._sync_edit_selection_actions()
         self._mark_project_modified()
         self.update_window_title()
         self.update_undo_redo()
