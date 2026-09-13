@@ -9,8 +9,9 @@ from studio.workspace.board_piece_item import BoardPieceItem
 class PlacementValidator:
     """Única fuente de verdad para validar colocaciones."""
 
-    def __init__(self, board_rect: QtCore.QRectF):
+    def __init__(self, board_rect: QtCore.QRectF, kerf_mm: float = 0.0):
         self.board_rect = board_rect
+        self.kerf_mm = max(0.0, float(kerf_mm))
 
     def constrain_position(
         self,
@@ -60,7 +61,21 @@ class PlacementValidator:
         )
 
     def overlaps(self, first: QRectF, second: QRectF) -> bool:
-        return first.intersects(second)
+        if self.kerf_mm <= 0:
+            return first.intersects(second)
+        inflated_first = QRectF(
+            first.x(),
+            first.y(),
+            first.width() + self.kerf_mm,
+            first.height() + self.kerf_mm,
+        )
+        inflated_second = QRectF(
+            second.x(),
+            second.y(),
+            second.width() + self.kerf_mm,
+            second.height() + self.kerf_mm,
+        )
+        return inflated_first.intersects(inflated_second)
 
     def rotated_rect(self, item: BoardPieceItem, angle: int) -> QRectF:
         angle = angle % 180

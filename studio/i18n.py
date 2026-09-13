@@ -160,6 +160,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.save": "Guardar",
         "action.save_as": "Guardar como…",
         "action.rename_project": "Renombrar proyecto…",
+        "action.edit_project_metadata": "Metadatos del proyecto…",
+        "action.edit_project_kerf": "Espesor de sierra…",
         "action.reveal_project_folder": "Abrir carpeta del proyecto",
         "action.diff_bcproj": "Comparar revisiones .bcproj…",
         "action.restore_local_revision": "Restaurar última revisión local…",
@@ -229,6 +231,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.undo": "Deshacer",
         "action.redo": "Rehacer",
         "action.rotate_piece": "Rotar 90°",
+        "action.swap_pieces": "Intercambiar piezas",
         "action.rename_selection": "Renombrar…",
         "action.edit_selection": "Editar…",
         "action.copy_selection_id": "Copiar ID",
@@ -303,6 +306,19 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.rename_project": (
             "Cambiar el nombre del proyecto (Ctrl+Shift+F2); pide el nuevo nombre"
+        ),
+        "tip.edit_project_metadata": (
+            "Editar cliente, referencia y notas del proyecto (Ctrl+Alt+M); "
+            "se guardan en el .bcproj; se puede deshacer"
+        ),
+        "tip.edit_project_kerf": (
+            "Espesor de sierra del proyecto (Ctrl+Alt+K); "
+            "se guarda en el .bcproj; al calcular deja hueco entre piezas; "
+            "se puede deshacer"
+        ),
+        "tip.prefs_default_kerf": (
+            "Kerf por defecto de proyectos nuevos; "
+            "los ya abiertos siguen el valor del .bcproj"
         ),
         "tip.reveal_project_folder": (
             "Abrir la carpeta del archivo .bcproj en el explorador de archivos "
@@ -400,6 +416,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.rotate_piece": (
             "Rotar 90° la pieza seleccionada en el lienzo (R); "
             "debe estar colocada en un tablero"
+        ),
+        "tip.swap_pieces": (
+            "Intercambiar las posiciones de dos piezas colocadas (Ctrl+Alt+X); "
+            "si no caben o el material no coincide, no cambia nada; "
+            "se puede deshacer"
         ),
         "tip.rename_selection": (
             "Renombrar la pieza, el tablero o el proyecto seleccionado (F2); "
@@ -837,6 +858,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.unplaced_mark": "sin colocar",
         "inspector.title": "Inspector",
         "inspector.none": "Sin selección",
+        "inspector.project": "Proyecto",
+        "inspector.client": "Cliente",
+        "inspector.reference": "Referencia",
+        "inspector.notes": "Notas",
+        "inspector.empty_value": "—",
         "inspector.board": "Tablero",
         "inspector.piece": "Pieza",
         "inspector.dimensions": "Dimensiones",
@@ -994,6 +1020,19 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.piece_duplicated": "Pieza duplicada: {id}",
         "status.board_duplicated": "Tablero duplicado: {id}",
         "status.id_copied": "ID copiado: {id}",
+        "status.swap_need_two": (
+            "Selecciona exactamente dos piezas colocadas para intercambiar"
+        ),
+        "status.swap_need_placed": (
+            "Las dos piezas deben estar colocadas en un tablero"
+        ),
+        "status.swap_missing_board": (
+            "No se encuentra el tablero destino para intercambiar"
+        ),
+        "status.swap_incompatible": ("Material o espesor incompatible al intercambiar"),
+        "status.swap_overflow": ("Una pieza no cabe en la posición de la otra"),
+        "status.swap_overlap": ("El intercambio solaparía otra pieza o entre sí"),
+        "status.swap_done": "Piezas intercambiadas",
         "status.select_piece_first": "Selecciona una pieza primero",
         "status.place_piece_before_rotate": (
             "Coloca la pieza en un tablero antes de rotarla"
@@ -1089,6 +1128,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.redone": "Acción rehecha",
         "status.nothing_to_save": "No hay proyecto para guardar",
         "status.nothing_to_rename": "No hay proyecto para renombrar",
+        "status.nothing_to_edit_metadata": "No hay proyecto para editar metadatos",
         "status.nothing_to_rename_selection": (
             "Selecciona una pieza, un tablero o el proyecto para renombrar"
         ),
@@ -1137,6 +1177,23 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.edit_board": "Editar tablero",
         "dialog.edit_piece": "Editar pieza",
         "dialog.rename_project_title": "Renombrar proyecto",
+        "dialog.project_metadata_title": "Metadatos del proyecto",
+        "dialog.project_kerf_title": "Espesor de sierra",
+        "form.project_kerf": "Kerf / sierra:",
+        "form.project_kerf_help": (
+            "Hueco mínimo entre piezas al calcular y al mover. 0 = sin hueco."
+        ),
+        "status.project_kerf_saved": "Espesor de sierra actualizado",
+        "status.project_kerf_unchanged": "Espesor de sierra sin cambios",
+        "status.nothing_to_edit_kerf": "No hay proyecto para editar el espesor de sierra",
+        "prefs.default_kerf": "Kerf de proyectos nuevos:",
+        "inspector.kerf": "Espesor de sierra",
+        "form.project_client": "Cliente:",
+        "form.project_reference": "Referencia:",
+        "form.project_notes": "Notas:",
+        "form.project_notes_placeholder": "Pedido, acabado, restricciones…",
+        "status.project_metadata_saved": "Metadatos del proyecto actualizados",
+        "status.project_metadata_unchanged": "Metadatos sin cambios",
         "dialog.rename_piece_title": "Renombrar pieza",
         "dialog.rename_board_title": "Renombrar tablero",
         "dialog.delete_board_title": "Eliminar tablero",
@@ -1465,6 +1522,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.save": "Save",
         "action.save_as": "Save as…",
         "action.rename_project": "Rename project…",
+        "action.edit_project_metadata": "Project metadata…",
+        "action.edit_project_kerf": "Saw kerf…",
         "action.reveal_project_folder": "Open project folder",
         "action.diff_bcproj": "Compare .bcproj revisions…",
         "action.restore_local_revision": "Restore latest local revision…",
@@ -1533,6 +1592,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.undo": "Undo",
         "action.redo": "Redo",
         "action.rotate_piece": "Rotate 90°",
+        "action.swap_pieces": "Swap pieces",
         "action.rename_selection": "Rename…",
         "action.edit_selection": "Edit…",
         "action.copy_selection_id": "Copy ID",
@@ -1607,6 +1667,18 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.rename_project": (
             "Rename the current project (Ctrl+Shift+F2); asks for the new name"
+        ),
+        "tip.edit_project_metadata": (
+            "Edit the project client, reference, and notes (Ctrl+Alt+M); "
+            "stored in the .bcproj; can be undone"
+        ),
+        "tip.edit_project_kerf": (
+            "Project saw kerf (Ctrl+Alt+K); stored in the .bcproj; "
+            "calculating layout leaves a gap between pieces; can be undone"
+        ),
+        "tip.prefs_default_kerf": (
+            "Default kerf for new projects; "
+            "open projects keep the value stored in the .bcproj"
         ),
         "tip.reveal_project_folder": (
             "Open the folder that contains the .bcproj file in the file manager "
@@ -1698,6 +1770,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.rotate_piece": (
             "Rotate the selected piece by 90° (R); the piece must be placed on a board"
+        ),
+        "tip.swap_pieces": (
+            "Swap the positions of two placed pieces (Ctrl+Alt+X); "
+            "if they do not fit or the material does not match, nothing changes; "
+            "can be undone"
         ),
         "tip.rename_selection": (
             "Rename the selected piece, board, or project (F2); "
@@ -2113,6 +2190,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.unplaced_mark": "unplaced",
         "inspector.title": "Inspector",
         "inspector.none": "No selection",
+        "inspector.project": "Project",
+        "inspector.client": "Client",
+        "inspector.reference": "Reference",
+        "inspector.notes": "Notes",
+        "inspector.empty_value": "—",
         "inspector.board": "Board",
         "inspector.piece": "Piece",
         "inspector.dimensions": "Dimensions",
@@ -2268,6 +2350,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.piece_duplicated": "Piece duplicated: {id}",
         "status.board_duplicated": "Board duplicated: {id}",
         "status.id_copied": "ID copied: {id}",
+        "status.swap_need_two": ("Select exactly two placed pieces to swap"),
+        "status.swap_need_placed": ("Both pieces must be placed on a board"),
+        "status.swap_missing_board": (
+            "The destination board for the swap was not found"
+        ),
+        "status.swap_incompatible": ("Incompatible material or thickness for the swap"),
+        "status.swap_overflow": (
+            "One piece does not fit in the other piece's position"
+        ),
+        "status.swap_overlap": ("The swap would overlap another piece or each other"),
+        "status.swap_done": "Pieces swapped",
         "status.select_piece_first": "Select a piece first",
         "status.place_piece_before_rotate": (
             "Place the piece on a board before rotating it"
@@ -2361,6 +2454,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.redone": "Redone",
         "status.nothing_to_save": "No project to save",
         "status.nothing_to_rename": "No project to rename",
+        "status.nothing_to_edit_metadata": "No project to edit metadata",
         "status.nothing_to_rename_selection": (
             "Select a piece, board, or the project to rename"
         ),
@@ -2405,6 +2499,23 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.edit_board": "Edit board",
         "dialog.edit_piece": "Edit piece",
         "dialog.rename_project_title": "Rename project",
+        "dialog.project_metadata_title": "Project metadata",
+        "dialog.project_kerf_title": "Saw kerf",
+        "form.project_kerf": "Kerf / saw:",
+        "form.project_kerf_help": (
+            "Minimum gap between pieces when calculating and moving. 0 = no gap."
+        ),
+        "status.project_kerf_saved": "Saw kerf updated",
+        "status.project_kerf_unchanged": "Saw kerf unchanged",
+        "status.nothing_to_edit_kerf": "No project to edit saw kerf",
+        "prefs.default_kerf": "Kerf for new projects:",
+        "inspector.kerf": "Saw kerf",
+        "form.project_client": "Client:",
+        "form.project_reference": "Reference:",
+        "form.project_notes": "Notes:",
+        "form.project_notes_placeholder": "Order, finish, constraints…",
+        "status.project_metadata_saved": "Project metadata updated",
+        "status.project_metadata_unchanged": "Metadata unchanged",
         "dialog.rename_piece_title": "Rename piece",
         "dialog.rename_board_title": "Rename board",
         "dialog.delete_board_title": "Delete board",
@@ -2603,6 +2714,8 @@ _ACTION_KEYS = (
     "save",
     "save_as",
     "rename_project",
+    "edit_project_metadata",
+    "edit_project_kerf",
     "reveal_project_folder",
     "diff_bcproj",
     "restore_local_revision",
@@ -2618,6 +2731,7 @@ _ACTION_KEYS = (
     "undo",
     "redo",
     "rotate_piece",
+    "swap_pieces",
     "rename_selection",
     "edit_selection",
     "copy_selection_id",

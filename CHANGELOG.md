@@ -4,6 +4,13 @@
 
 ### Añadido
 
+- Packing: espesor de sierra / kerf (IDE-0020); **Ctrl+Alt+K**; `.bcproj` v4;
+  hueco entre piezas al calcular y al mover; default en Preferencias solo
+  para proyectos nuevos.
+- Workspace: intercambiar dos piezas colocadas (IDE-0019); **Ctrl+Alt+X**;
+  undo; no-op si no caben o el material/espesor no coincide.
+- Proyecto: metadatos cliente / referencia / notas (IDE-0024); diálogo
+  **Ctrl+Alt+M**; persistidos en `.bcproj` v3; undo.
 - Docs planificación 2026-09-10: snapshot
   `docs/masterplan/REVIEW-2026-09-10-planificacion.md`; cola
   IDE-0019…0024 sin IDE nuevas (Issues/PRs abiertos = 0; planning

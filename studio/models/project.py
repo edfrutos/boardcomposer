@@ -16,6 +16,10 @@ class StudioProject:
     boards: list[StudioBoard] = field(default_factory=list)
     pieces: list[StudioPiece] = field(default_factory=list)
     placements: list[StudioPlacement] = field(default_factory=list)
+    client: str = ""
+    reference: str = ""
+    notes: str = ""
+    kerf_mm: float = 0.0
 
     def piece_by_id(self, piece_id: str) -> StudioPiece:
         for piece in self.pieces:

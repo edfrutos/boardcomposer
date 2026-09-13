@@ -6,6 +6,7 @@ import json
 from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
 
+from boardcomposer.layout.kerf import DEFAULT_KERF_MM, normalize_kerf
 from boardcomposer.solver.scoring_weights import ScoringWeights
 from boardcomposer.solver.strategies import OptimizationStrategy, strategy_by_name
 from studio.theme import DEFAULT_THEME, VALID_THEMES
@@ -79,6 +80,7 @@ class StudioPreferences:
     last_diff_directory: str | None = None
     last_export_templates_directory: str | None = None
     max_solutions: int = DEFAULT_MAX_SOLUTIONS
+    default_kerf_mm: float = DEFAULT_KERF_MM
     window_geometry: str | None = None
     window_state: str | None = None
     timeline_event_filter: str | None = None
@@ -285,6 +287,9 @@ class PreferencesManager:
                 payload.get("last_export_templates_directory")
             ),
             max_solutions=max_solutions,
+            default_kerf_mm=normalize_kerf(
+                payload.get("default_kerf_mm", DEFAULT_KERF_MM)
+            ),
             window_geometry=_optional_base64_string(payload.get("window_geometry")),
             window_state=_optional_base64_string(payload.get("window_state")),
             timeline_event_filter=_optional_string(
@@ -338,6 +343,7 @@ class PreferencesManager:
                 preferences.last_export_templates_directory
             ),
             "max_solutions": preferences.max_solutions,
+            "default_kerf_mm": preferences.default_kerf_mm,
             "window_geometry": preferences.window_geometry,
             "window_state": preferences.window_state,
             "timeline_event_filter": preferences.timeline_event_filter,

@@ -52,13 +52,17 @@ from studio.commands import (
     DuplicatePieceCommand,
     EditBoardCommand,
     EditPieceCommand,
+    EditProjectKerfCommand,
+    EditProjectMetadataCommand,
     ImportBoardsCommand,
     ImportPiecesCommand,
     PlacePieceCommand,
     RenameProjectCommand,
     RotatePieceCommand,
+    SwapPiecesCommand,
 )
 from studio.panel_compatibility import incompatibility_reason
+from studio.swap_pieces import swap_block_reason
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import (
     UnsupportedProjectVersionError,
@@ -79,6 +83,8 @@ from studio.dialogs import (
     NewPieceDialog,
     NewProjectDialog,
     PreferencesDialog,
+    ProjectKerfDialog,
+    ProjectMetadataDialog,
     ProjectTemplatePickerDialog,
     ShortcutsDialog,
     WhatsNewDialog,
@@ -196,6 +202,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["redo"])
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["rotate_piece"])
+        self._menus["edit"].addAction(self._actions["swap_pieces"])
         self._menus["edit"].addAction(self._actions["rename_selection"])
         self._menus["edit"].addAction(self._actions["edit_selection"])
         self._menus["edit"].addAction(self._actions["copy_selection_id"])
@@ -217,6 +224,8 @@ class MainWindow(QMainWindow):
         self._menus["view"].addAction(self._actions["toggle_grid"])
 
         self._menus["project"].addAction(self._actions["rename_project"])
+        self._menus["project"].addAction(self._actions["edit_project_metadata"])
+        self._menus["project"].addAction(self._actions["edit_project_kerf"])
         self._menus["project"].addAction(self._actions["reveal_project_folder"])
         self._menus["project"].addAction(self._actions["diff_bcproj"])
         self._menus["project"].addAction(self._actions["restore_local_revision"])
@@ -255,6 +264,10 @@ class MainWindow(QMainWindow):
         self._actions["show_welcome"].triggered.connect(self._show_welcome_screen)
         self._actions["save_as_template"].triggered.connect(self._save_as_template)
         self._actions["rename_project"].triggered.connect(self._rename_project)
+        self._actions["edit_project_metadata"].triggered.connect(
+            self._edit_project_metadata
+        )
+        self._actions["edit_project_kerf"].triggered.connect(self._edit_project_kerf)
         self._actions["reveal_project_folder"].triggered.connect(
             self._reveal_project_folder
         )
@@ -277,6 +290,7 @@ class MainWindow(QMainWindow):
         self._actions["undo"].triggered.connect(self._undo)
         self._actions["redo"].triggered.connect(self._redo)
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
+        self._actions["swap_pieces"].triggered.connect(self._swap_selected_pieces)
         self._actions["rename_selection"].triggered.connect(self._rename_selection)
         self._actions["edit_selection"].triggered.connect(self._edit_selection)
         self._actions["copy_selection_id"].triggered.connect(self._copy_selection_id)
@@ -389,6 +403,7 @@ class MainWindow(QMainWindow):
         )
         # Ensure Edit→Rotar / R is available while the canvas has focus.
         self.workspace.addAction(self._actions["rotate_piece"])
+        self.workspace.addAction(self._actions["swap_pieces"])
         self.welcome = WelcomeScreen()
         self.welcome.new_project_requested.connect(self._new_project)
         self.welcome.open_project_requested.connect(self._open_project)
@@ -697,6 +712,7 @@ class MainWindow(QMainWindow):
             boards=[],
             pieces=[],
             placements=[],
+            kerf_mm=self.services.preferences.current.default_kerf_mm,
         )
 
         self.services.projects.new_project(project)
@@ -906,9 +922,13 @@ class MainWindow(QMainWindow):
             return
         kind, object_id = parsed
 
-        if kind in {"category", "project"}:
+        if kind == "category":
             self.workspace.clear_piece_selection()
             self.inspector.setText(f"{self._tr('inspector.title')}\n\n{item.text(0)}")
+            return
+        if kind == "project":
+            self.workspace.clear_piece_selection()
+            self._show_project_inspector()
             return
 
         if kind == "solution":
@@ -964,6 +984,25 @@ class MainWindow(QMainWindow):
             f"{self._format_length(board.thickness_mm)}\n"
             f"{self._tr('inspector.quantity')}: {board.quantity}\n"
             f"{self._tr('inspector.material')}: {board.material}"
+        )
+
+    def _show_project_inspector(self) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        empty = self._tr("inspector.empty_value")
+
+        def _value(text: str) -> str:
+            cleaned = text.strip()
+            return cleaned if cleaned else empty
+
+        self.inspector.setText(
+            f"{self._tr('inspector.title')}\n\n"
+            f"{self._tr('inspector.project')}: {project.name}\n"
+            f"{self._tr('inspector.client')}: {_value(project.client)}\n"
+            f"{self._tr('inspector.reference')}: {_value(project.reference)}\n"
+            f"{self._tr('inspector.notes')}: {_value(project.notes)}\n"
+            f"{self._tr('inspector.kerf')}: {self._format_length(project.kerf_mm)}"
         )
 
     def _new_project(self):
@@ -1850,6 +1889,16 @@ class MainWindow(QMainWindow):
             ("save_as", "tip.save_as", need_project),
             ("save_as_template", "tip.save_as_template", need_template),
             ("rename_project", "tip.rename_project", need_rename),
+            (
+                "edit_project_metadata",
+                "tip.edit_project_metadata",
+                self._tr("status.nothing_to_edit_metadata"),
+            ),
+            (
+                "edit_project_kerf",
+                "tip.edit_project_kerf",
+                self._tr("status.nothing_to_edit_kerf"),
+            ),
         )
         for key, tip_key, disabled_tip in pairs:
             action = self._actions.get(key)
@@ -2077,6 +2126,33 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self.update_undo_redo()
         self._status("status.piece_rotated")
+
+    def _swap_selected_pieces(self) -> None:
+        """Swap seats of exactly two placed pieces (IDE-0019)."""
+        selected = self.workspace.selection.selected()
+        if len(selected) != 2:
+            self._status("status.swap_need_two")
+            return
+
+        first_id, second_id = selected[0], selected[1]
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.swap_need_two")
+            return
+
+        blocked = swap_block_reason(project, first_id, second_id)
+        if blocked is not None:
+            self._status(blocked)
+            return
+
+        command = SwapPiecesCommand(self.services, first_id, second_id)
+        self.services.commands.execute(command)
+        self.workspace.reload_project()
+        self.workspace.select_pieces([first_id, second_id])
+        self._mark_project_modified()
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.swap_done")
 
     def _delete_selected_piece(self):
         """Delete the selected piece, or the focused/explorer board (Delete)."""
@@ -2423,6 +2499,19 @@ class MainWindow(QMainWindow):
                 with_native_shortcuts(self._tr(tip_key))
                 if enabled
                 else self._tr(disabled_tip)
+            )
+
+        swap = self._actions.get("swap_pieces")
+        if swap is not None:
+            blocked = "status.swap_need_two"
+            if project is not None and len(selected) == 2:
+                blocked = swap_block_reason(project, selected[0], selected[1])
+            can_swap = blocked is None
+            swap.setEnabled(can_swap)
+            swap.setStatusTip(
+                with_native_shortcuts(self._tr("tip.swap_pieces"))
+                if can_swap
+                else self._tr(blocked or "status.swap_need_two")
             )
 
     def _sync_solution_actions(self) -> None:
@@ -4134,6 +4223,11 @@ class MainWindow(QMainWindow):
             if parsed is not None and parsed[0] == "project":
                 return "tip.rename_project"
             return "tip.rename_selection"
+        if key == "edit":
+            parsed = parse_explorer_role(role)
+            if parsed is not None and parsed[0] == "project":
+                return "tip.edit_project_metadata"
+            return "tip.edit_selection"
         if key == "preview_solution":
             if self.services.layout.solutions_outdated:
                 return "tip.preview_solution_outdated"
@@ -4213,6 +4307,9 @@ class MainWindow(QMainWindow):
 
         if kind == "project" and action_key == "rename":
             self._rename_project()
+            return
+        if kind == "project" and action_key == "edit":
+            self._edit_project_metadata()
             return
         if kind == "project" and action_key == "reveal_folder":
             self._reveal_project_folder()
@@ -4486,6 +4583,9 @@ class MainWindow(QMainWindow):
             parsed = parse_explorer_role(item.data(0, Qt.ItemDataRole.UserRole))
             if parsed is not None:
                 kind, object_id = parsed
+                if kind == "project":
+                    self._edit_project_metadata()
+                    return
                 if kind == "piece":
                     self._edit_piece(object_id)
                     return
@@ -4564,6 +4664,73 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self.update_undo_redo()
         self._status("status.project_renamed", name=cleaned)
+
+    def _edit_project_metadata(self) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.nothing_to_edit_metadata")
+            return
+
+        dialog = ProjectMetadataDialog(
+            self,
+            client=project.client,
+            reference=project.reference,
+            notes=project.notes,
+            language=self._ui_language(),
+        )
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+        data = dialog.metadata()
+        if (
+            data["client"] == project.client
+            and data["reference"] == project.reference
+            and data["notes"] == project.notes
+        ):
+            self._status("status.project_metadata_unchanged")
+            return
+
+        command = EditProjectMetadataCommand(
+            self.services,
+            old_client=project.client,
+            old_reference=project.reference,
+            old_notes=project.notes,
+            new_client=data["client"],
+            new_reference=data["reference"],
+            new_notes=data["notes"],
+        )
+        self.services.commands.execute(command)
+        self._mark_project_modified(affects_layout=False, reason="project_metadata")
+        self._show_project_inspector()
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.project_metadata_saved")
+
+    def _edit_project_kerf(self) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.nothing_to_edit_kerf")
+            return
+
+        dialog = ProjectKerfDialog(
+            self,
+            kerf_mm=project.kerf_mm,
+            language=self._ui_language(),
+        )
+        if dialog.exec() != dialog.DialogCode.Accepted:
+            return
+        new_kerf = dialog.value()
+        if new_kerf == project.kerf_mm:
+            self._status("status.project_kerf_unchanged")
+            return
+
+        command = EditProjectKerfCommand(self.services, project.kerf_mm, new_kerf)
+        self.services.commands.execute(command)
+        self._mark_project_modified(reason="project_kerf")
+        self.workspace.reload_project(fit=False)
+        self._show_project_inspector()
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.project_kerf_saved")
 
     def _rename_piece(self, piece_id: str) -> None:
         project = self.services.projects.current_project

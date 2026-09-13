@@ -91,7 +91,8 @@ outdated.
 - Eliminar: selección / id.
 - Mover entre paneles físicos: drag-drop en Workspace; material/espesor deben
   compatir; drop inválido revierte; `MovePieceCommand` (también nudge).
-  No hay botón «swap».
+- Intercambiar dos colocadas: **Ctrl+Alt+X**; `SwapPiecesCommand`; si no
+  caben / material no coincide, no-op.
 
 ### Proyecto
 

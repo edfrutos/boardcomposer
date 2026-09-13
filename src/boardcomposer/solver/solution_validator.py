@@ -97,18 +97,22 @@ def validate_solution(
 
     if project.stock_panels:
         panel_groups = {placement.panel_reference for placement in solution.placements}
+        kerf_mm = project.constraints.kerf_mm
         overlaps = any(
             has_overlaps(
                 [
                     placement
                     for placement in solution.placements
                     if placement.panel_reference == reference
-                ]
+                ],
+                kerf_mm=kerf_mm,
             )
             for reference in panel_groups
         )
     else:
-        overlaps = has_overlaps(solution.placements)
+        overlaps = has_overlaps(
+            solution.placements, kerf_mm=project.constraints.kerf_mm
+        )
 
     if overlaps:
         reasons.append(ValidationReason.OVERLAP)
