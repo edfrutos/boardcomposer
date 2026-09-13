@@ -3,6 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
+**Versión:** 1.3.30  
+**Estado:** En revisión — actualizado  
+**Fecha de creación:** 01/07/2026  
+**Última revisión:** 11/09/2026
 **Versión:** 1.3.31  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
@@ -163,6 +167,10 @@ Objetivos:
 
 - Piloto DT-0006 opción D (backup); C diferida.
 - Pulido / QoL Fase 2 bajo demanda (ciclo `0.4.3.dev0`).
+- Candidatos producto IDE-0019…0024 (ver revisión 2026-09-11) cuando haya
+  capacidad tras eval.
+- Candidatos producto restantes IDE-0023 / 0021 / 0022 (eval, 0024, 0019
+  y 0020 cerrados 2026-09-12).
 - Candidatos producto IDE-0019…0024 (ver revisión 2026-09-12) cuando haya
   capacidad tras eval.
 - Candidatos producto restantes IDE-0023 → 0021 → 0022 (eval, 0024, 0019
@@ -196,6 +204,12 @@ outdated/import·export/Timeline/Vista + docks/comparador + Calcular layout
 + Guardar/zoom/Explicar/Seleccionar/Quitar/Invertir + demo Máx. soluciones
 + Nuevo proyecto/export selección/Timeline + Importar piezas/tableros
 + Añadir tablero/pieza + Duplicar/colocación + 1.º tablero + cantidad→ids
++ plantilla mapeo + candidatos IDE-0019…0024; tip Añadir tablero/stock
+  pendiente en PR `#614`).
+Revisión: `REVIEW-2026-09-11-planificacion.md`.
++ plantilla mapeo + IDE-0024 metadatos + IDE-0019 swap + IDE-0020 kerf;
+  candidatos IDE-0023 / 0021 / 0022).
+Revisión: `REVIEW-2026-09-10-planificacion.md`.
 + plantilla mapeo + candidatos IDE-0019…0024).
 Revisión: `REVIEW-2026-09-12-planificacion.md`.
 + plantilla mapeo + tip stock tablero #614 + IDE-0024 metadatos + IDE-0019

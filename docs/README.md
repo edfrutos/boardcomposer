@@ -21,6 +21,7 @@ En la app: **Ayuda → Documentación** abre la guía rápida.
 | [`masterplan/DOC-000-Manifiesto.md`](masterplan/DOC-000-Manifiesto.md) | Propósito |
 | [`masterplan/DOC-003-Roadmap.md`](masterplan/DOC-003-Roadmap.md) | Fases |
 | [`masterplan/DOC-004-Backlog.md`](masterplan/DOC-004-Backlog.md) | Backlog de producto |
+| [`masterplan/REVIEW-2026-09-11-planificacion.md`](masterplan/REVIEW-2026-09-11-planificacion.md) | Snapshot planificación (cron) |
 | [`masterplan/REVIEW-2026-09-12-planificacion.md`](masterplan/REVIEW-2026-09-12-planificacion.md) | Snapshot planificación (cron) |
 | [`masterplan/REVIEW-2026-09-13-planificacion.md`](masterplan/REVIEW-2026-09-13-planificacion.md) | Snapshot planificación (cron) |
 | [`masterplan/DOC-005-Decisiones.md`](masterplan/DOC-005-Decisiones.md) | Índice de decisiones → ADR |

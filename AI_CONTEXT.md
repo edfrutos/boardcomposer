@@ -8,6 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
+## Estado actual — 2026-09-11
 ## Estado actual — 2026-09-12
 ## Estado actual — 2026-09-13
 
@@ -23,6 +24,12 @@ alternativas comprensibles para que el usuario decida.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`
   (Welcome…Explorador + Disposición); UAT visual
   `uat/studio/CHECKLIST-VISUAL.md`; planificación
+  `docs/masterplan/REVIEW-2026-09-11-planificacion.md`.
+- Versión de desarrollo: `0.4.3.dev0` (última estable: `0.4.2`).
+- Próximo: eval IDE-0007; piloto DT-0006 D; candidatos IDE-0019…0024
+  (sin IDE nuevas: cola no vacía; Issues = 0; PR abierto `#614` tip
+  Añadir tablero; planning #602/#608/#612/#613 + tips #603–#607/#609–#611
+  en `main`; sin merges de producto 09-10→09-11).
   `docs/masterplan/REVIEW-2026-09-12-planificacion.md`.
 - Versión de desarrollo: `0.4.3.dev0` (última estable: `0.4.2`).
 - Próximo: eval IDE-0007; piloto DT-0006 D; candidatos IDE-0019…0024
