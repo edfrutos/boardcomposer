@@ -46,6 +46,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("next_solution", "PgDown"),
     ShortcutBinding("apply_layout", "Ctrl+Shift+Return"),
     ShortcutBinding("export_selected", "Ctrl+Shift+E"),
+    ShortcutBinding("export_cut_list", "Ctrl+Alt+C"),
     ShortcutBinding("add_piece", "Ctrl+Shift+P"),
     ShortcutBinding("add_board", "Ctrl+Shift+B"),
     ShortcutBinding("import_pieces_csv", "Ctrl+Shift+O"),

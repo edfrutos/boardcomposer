@@ -27,6 +27,7 @@ def test_solution_actions_disabled_without_solutions(qapp, tmp_path):
 
     assert not window._actions["apply_layout"].isEnabled()
     assert not window._actions["export_selected"].isEnabled()
+    assert not window._actions["export_cut_list"].isEnabled()
     assert not window._actions["previous_solution"].isEnabled()
     assert not window._actions["next_solution"].isEnabled()
     assert not window.pin_reference_button.isEnabled()
@@ -52,6 +53,7 @@ def test_solution_actions_single_candidate(qapp, tmp_path):
 
     assert window._actions["apply_layout"].isEnabled()
     assert window._actions["export_selected"].isEnabled()
+    assert window._actions["export_cut_list"].isEnabled()
     assert not window._actions["previous_solution"].isEnabled()
     assert not window._actions["next_solution"].isEnabled()
     assert not window.pin_reference_button.isEnabled()
@@ -71,6 +73,7 @@ def test_solution_actions_multiple_candidates(qapp, tmp_path):
 
     assert window._actions["apply_layout"].isEnabled()
     assert window._actions["export_selected"].isEnabled()
+    assert window._actions["export_cut_list"].isEnabled()
     assert window._actions["previous_solution"].isEnabled()
     assert window._actions["next_solution"].isEnabled()
     assert window.pin_reference_button.isEnabled()

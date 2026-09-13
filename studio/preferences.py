@@ -6,6 +6,7 @@ import json
 from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
 
+from boardcomposer.export.cut_list import normalize_cut_list_format
 from boardcomposer.layout.kerf import DEFAULT_KERF_MM, normalize_kerf
 from boardcomposer.solver.scoring_weights import ScoringWeights
 from boardcomposer.solver.strategies import OptimizationStrategy, strategy_by_name
@@ -90,6 +91,7 @@ class StudioPreferences:
     timeline_replay_interval_ms: int = 450
     timeline_follow_latest: bool = True
     timeline_export_format: str = "json"
+    cut_list_export_format: str = "csv"
 
     def resolved_strategy(self) -> OptimizationStrategy:
         """Return the OptimizationStrategy implied by these preferences."""
@@ -315,6 +317,9 @@ class PreferencesManager:
             timeline_export_format=_timeline_export_format(
                 payload.get("timeline_export_format")
             ),
+            cut_list_export_format=normalize_cut_list_format(
+                payload.get("cut_list_export_format")
+            ),
         )
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
@@ -353,6 +358,7 @@ class PreferencesManager:
             "timeline_replay_interval_ms": preferences.timeline_replay_interval_ms,
             "timeline_follow_latest": preferences.timeline_follow_latest,
             "timeline_export_format": preferences.timeline_export_format,
+            "cut_list_export_format": preferences.cut_list_export_format,
         }
         self.path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + "\n",

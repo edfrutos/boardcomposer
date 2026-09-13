@@ -33,7 +33,12 @@ from PySide6.QtWidgets import (
 )
 from shiboken6 import isValid as _qt_is_valid
 
-from boardcomposer.export import solution_to_svg
+from boardcomposer.export import (
+    CutListMeta,
+    build_cut_list,
+    render_cut_list,
+    solution_to_svg,
+)
 from boardcomposer.io.bcproj_revisions import (
     export_project_backup,
     latest_revision,
@@ -244,6 +249,7 @@ class MainWindow(QMainWindow):
         self._menus["compare"].addAction(self._actions["apply_layout"])
 
         self._menus["export"].addAction(self._actions["export_selected"])
+        self._menus["export"].addAction(self._actions["export_cut_list"])
         self._menus["export"].addAction(self._actions["export_timeline"])
 
         self._menus["help"].addAction(self._actions["whats_new"])
@@ -319,6 +325,7 @@ class MainWindow(QMainWindow):
         self._actions["export_selected"].triggered.connect(
             self._export_selected_solution
         )
+        self._actions["export_cut_list"].triggered.connect(self._export_cut_list)
         self._actions["export_timeline"].triggered.connect(
             self._export_timeline_history
         )
@@ -2553,6 +2560,7 @@ class MainWindow(QMainWindow):
         has_multiple_visible = visible > 1
         self._actions["apply_layout"].setEnabled(has_any)
         self._actions["export_selected"].setEnabled(has_any)
+        self._actions["export_cut_list"].setEnabled(has_any)
         self._actions["previous_solution"].setEnabled(has_multiple_visible)
         self._actions["next_solution"].setEnabled(has_multiple_visible)
 
@@ -2575,19 +2583,26 @@ class MainWindow(QMainWindow):
         no_match = with_native_shortcuts(self._tr("status.no_solutions_match_filter"))
         apply = self._actions["apply_layout"]
         export = self._actions["export_selected"]
+        cut_list = self._actions["export_cut_list"]
         previous = self._actions["previous_solution"]
         next_action = self._actions["next_solution"]
         if not has_any:
             apply_tip = need_layout
             export_tip = need_layout
+            cut_list_tip = need_layout
         elif self.services.layout.solutions_outdated:
             apply_tip = with_native_shortcuts(self._tr("tip.apply_layout_outdated"))
             export_tip = with_native_shortcuts(self._tr("tip.export_selected_outdated"))
+            cut_list_tip = with_native_shortcuts(
+                self._tr("tip.export_cut_list_outdated")
+            )
         else:
             apply_tip = with_native_shortcuts(self._tr("tip.apply_layout"))
             export_tip = with_native_shortcuts(self._tr("tip.export_selected"))
+            cut_list_tip = with_native_shortcuts(self._tr("tip.export_cut_list"))
         apply.setStatusTip(apply_tip)
         export.setStatusTip(export_tip)
+        cut_list.setStatusTip(cut_list_tip)
         explain = self._actions.get("explain_solution")
         if explain is not None:
             explain.setEnabled(has_any)
@@ -3562,6 +3577,90 @@ class MainWindow(QMainWindow):
         if solution_index is None:
             return
         self._select_layout_solution(int(solution_index))
+
+    def _export_cut_list(self) -> None:
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            self._status("status.calculate_layout_first")
+            return
+
+        if self.services.layout.solutions_outdated:
+            choice = self._confirm_while_outdated(
+                body_key="dialog.outdated_solutions_export",
+                proceed_key="dialog.outdated_solutions_export_anyway",
+            )
+            if choice == "recalculate":
+                self._solve_layout()
+                return
+            if choice != "proceed":
+                return
+
+        studio_project = self.services.projects.current_project
+        meta = CutListMeta()
+        if studio_project is not None:
+            meta = CutListMeta(
+                project_name=studio_project.name,
+                client=studio_project.client,
+                reference=studio_project.reference,
+                notes=studio_project.notes,
+                kerf_mm=studio_project.kerf_mm,
+            )
+        cut_list = build_cut_list(solution, self.services.layout.solved_project, meta)
+
+        preferred = self.services.preferences.current.cut_list_export_format
+        if preferred not in {"csv", "pdf"}:
+            preferred = "csv"
+        selected_index = self.services.layout.selected_solution_index + 1
+        default_name = f"boardcomposer-cut-list-{selected_index}.{preferred}"
+        path, selected_filter = QFileDialog.getSaveFileName(
+            self,
+            self._tr("dialog.export_cut_list"),
+            self._suggested_export_path(default_name),
+            self._cut_list_export_file_filter(preferred),
+        )
+        if not path:
+            return
+
+        use_pdf = path.lower().endswith(".pdf") or "PDF" in (selected_filter or "")
+        if use_pdf and not path.lower().endswith(".pdf"):
+            path = f"{path}.pdf"
+        elif not use_pdf and not path.lower().endswith(".csv"):
+            path = f"{path}.csv"
+        fmt = "pdf" if use_pdf else "csv"
+        label = "PDF" if use_pdf else "CSV"
+
+        self._emit(events.EXPORT_STARTED, format=label, path=path)
+        try:
+            payload = render_cut_list(cut_list, fmt)
+            if isinstance(payload, bytes):
+                Path(path).write_bytes(payload)
+            else:
+                Path(path).write_text(payload, encoding="utf-8")
+        except OSError as exc:
+            self._emit(events.EXPORT_FAILED, format=label, path=path, error=str(exc))
+            self._status("status.export_failed", 5000, format=label, error=exc)
+            return
+
+        self._remember_export_directory(path)
+        self._remember_cut_list_export_format(fmt)
+        self._emit(events.EXPORT_COMPLETED, format=label, path=path)
+        self._status("status.exported", 5000, format=label, path=path)
+        self._offer_open_exported_path(path)
+
+    def _cut_list_export_file_filter(self, preferred_format: str) -> str:
+        csv_filter = "CSV (*.csv)"
+        pdf_filter = "PDF (*.pdf)"
+        if preferred_format == "pdf":
+            return f"{pdf_filter};;{csv_filter}"
+        return f"{csv_filter};;{pdf_filter}"
+
+    def _remember_cut_list_export_format(self, fmt: str) -> None:
+        prefs = self.services.preferences.current
+        if prefs.cut_list_export_format == fmt:
+            return
+        self.services.preferences.update(
+            dataclass_replace(prefs, cut_list_export_format=fmt)
+        )
 
     def _export_timeline_history(self) -> None:
         from studio.timeline.export import timeline_to_csv, timeline_to_json

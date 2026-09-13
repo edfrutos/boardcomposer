@@ -202,6 +202,10 @@ def test_shortcuts_catalog_and_dialog(qapp):
         for b in STUDIO_SHORTCUTS
     )
     assert any(
+        b.action_key == "export_cut_list" and b.sequence == "Ctrl+Alt+C"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
         b.action_key == "show_welcome" and b.sequence == "Ctrl+Shift+H"
         for b in STUDIO_SHORTCUTS
     )
@@ -308,6 +312,7 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert actions["import_pieces_csv"].shortcut() == QKeySequence("Ctrl+Shift+O")
     assert actions["import_boards_csv"].shortcut() == QKeySequence("Ctrl+Shift+T")
     assert actions["export_timeline"].shortcut() == QKeySequence("Ctrl+Shift+L")
+    assert actions["export_cut_list"].shortcut() == QKeySequence("Ctrl+Alt+C")
     assert actions["show_welcome"].shortcut() == QKeySequence("Ctrl+Shift+H")
     assert actions["reveal_project_folder"].shortcut() == QKeySequence("Ctrl+Shift+R")
     assert actions["shortcuts"].shortcut() == QKeySequence("F1")
@@ -577,6 +582,7 @@ def test_folder_memory_status_tips_are_honest():
         "tip.import_pieces_csv",
         "tip.export_selected",
         "tip.export_timeline",
+        "tip.export_cut_list",
         "tip.export_share_export",
         "tip.export_share_import",
         "tip.export_revision_backup",
@@ -912,6 +918,26 @@ def test_export_timeline_tip_mentions_offer_to_open():
 
     es = tr("tip.export_timeline", "es").casefold()
     en = tr("tip.export_timeline", "en").casefold()
+    assert "ofrece" in es and "abrir" in es
+    assert "offers" in en and "open" in en
+
+
+def test_export_cut_list_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Alt+C" in tr("tip.export_cut_list", "es")
+    assert "Ctrl+Alt+C" in tr("tip.export_cut_list", "en")
+
+
+def test_export_cut_list_tip_mentions_csv_pdf_and_persist():
+    from studio.i18n import tr
+
+    es = tr("tip.export_cut_list", "es").casefold()
+    en = tr("tip.export_cut_list", "en").casefold()
+    assert "csv" in es and "pdf" in es and "piezas" in es and "tableros" in es
+    assert "sesiones" in es
+    assert "csv" in en and "pdf" in en and "pieces" in en and "boards" in en
+    assert "sessions" in en
     assert "ofrece" in es and "abrir" in es
     assert "offers" in en and "open" in en
 

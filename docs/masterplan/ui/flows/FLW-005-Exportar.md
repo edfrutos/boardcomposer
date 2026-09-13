@@ -35,6 +35,7 @@ historial del Timeline) a un archivo. Detalle de UI: SCR-007.
 | Acción | Atajo / menú |
 |--------|----------------|
 | Exportar solución seleccionada… | **Ctrl+Shift+E** · menú Exportar · toolbar |
+| Exportar lista de corte… | **Ctrl+Alt+C** · menú Exportar (CSV/PDF; no usa ExportDialog) |
 | Exportar historial del Timeline… | **Ctrl+Shift+L** · menú Exportar · Timeline |
 
 Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.
@@ -142,6 +143,8 @@ posibilidad de abrir/revelar al terminar y de reutilizar plantillas/defaults.
 ## Límites conocidos
 
 - PNG/JPEG/PDF/DXF/SVG/JSON/CSV vía diálogo de export (SCR-007).
+- Lista de corte (IDE-0023): CSV/PDF aparte, misma carpeta y diálogo
+  outdated que la solución.
 - Opciones de papel/escala/márgenes limitadas (defaults del exportador).
-- CSV solo placements.
+- CSV del diálogo solo placements.
 - Sin lotes ni publicación a la nube.
