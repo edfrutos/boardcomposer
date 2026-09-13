@@ -5,6 +5,7 @@ from PySide6.QtWidgets import QDialogButtonBox, QFormLayout
 from studio.dialogs.new_board_dialog import NewBoardDialog
 from studio.dialogs.new_piece_dialog import NewPieceDialog
 from studio.dialogs.new_project_dialog import NewProjectDialog
+from studio.dialogs.project_metadata_dialog import ProjectMetadataDialog
 
 
 def _label_texts(dialog) -> list[str]:
@@ -49,12 +50,24 @@ def test_new_board_dialog_spanish_defaults(qapp):
     assert "Identificador:" in _label_texts(dialog)
 
 
+def test_project_metadata_dialog_english_labels(qapp):
+    del qapp
+    dialog = ProjectMetadataDialog(language="en")
+
+    assert dialog.windowTitle() == "Project metadata"
+    labels = _label_texts(dialog)
+    assert "Client:" in labels
+    assert "Reference:" in labels
+    assert "Notes:" in labels
+
+
 def test_form_dialogs_mark_ok_as_primary_button(qapp):
     del qapp
     for dialog in (
         NewBoardDialog(),
         NewPieceDialog(),
         NewProjectDialog(),
+        ProjectMetadataDialog(),
     ):
         box = dialog.findChild(QDialogButtonBox)
         assert box is not None

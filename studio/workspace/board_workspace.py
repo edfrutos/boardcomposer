@@ -143,13 +143,17 @@ class BoardWorkspace(QGraphicsView):
 
             self._board_items[slot.key] = board
             self._panel_slots[slot.key] = slot
+            kerf_mm = 0.0
+            if self.services.projects.current_project is not None:
+                kerf_mm = self.services.projects.current_project.kerf_mm
             self._validators[slot.key] = PlacementValidator(
                 QRectF(
                     slot.x_mm,
                     slot.y_mm,
                     slot.length_mm,
                     slot.width_mm,
-                )
+                ),
+                kerf_mm=kerf_mm,
             )
 
         if self._board_items:
@@ -372,6 +376,13 @@ class BoardWorkspace(QGraphicsView):
         super().resizeEvent(event)
         if self.empty_overlay.isVisible():
             self._position_empty_overlay()
+
+    def select_pieces(self, piece_ids: list[str]) -> None:
+        """Select several canvas pieces and notify listeners."""
+        self.clear_board_focus(clear_sticky=False)
+        self.selection.select_many(piece_ids)
+        self.selection.sync_inspector(self.window())
+        self.selection_or_focus_changed.emit()
 
     def select_piece(self, piece_id: str) -> None:
         """Select the piece.

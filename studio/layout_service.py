@@ -85,6 +85,7 @@ class LayoutService:
             constraints=ProjectConstraints(
                 allow_rotation=True,
                 allow_cutting=False,
+                kerf_mm=studio_project.kerf_mm,
             )
         )
 
@@ -96,6 +97,7 @@ class LayoutService:
                 max_width_mm=source_board.width_mm,
                 allow_rotation=True,
                 allow_cutting=False,
+                kerf_mm=studio_project.kerf_mm,
             )
 
         for board in studio_project.boards:

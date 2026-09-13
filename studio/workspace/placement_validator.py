@@ -3,14 +3,16 @@ from __future__ import annotations
 from PySide6.QtCore import QRectF
 from PySide6 import QtCore
 
+from boardcomposer.layout.kerf import aabb_overlap_with_kerf
 from studio.workspace.board_piece_item import BoardPieceItem
 
 
 class PlacementValidator:
     """Única fuente de verdad para validar colocaciones."""
 
-    def __init__(self, board_rect: QtCore.QRectF):
+    def __init__(self, board_rect: QtCore.QRectF, kerf_mm: float = 0.0):
         self.board_rect = board_rect
+        self.kerf_mm = max(0.0, float(kerf_mm))
 
     def constrain_position(
         self,
@@ -60,7 +62,19 @@ class PlacementValidator:
         )
 
     def overlaps(self, first: QRectF, second: QRectF) -> bool:
-        return first.intersects(second)
+        if self.kerf_mm <= 0:
+            return first.intersects(second)
+        return aabb_overlap_with_kerf(
+            first.x(),
+            first.y(),
+            first.width(),
+            first.height(),
+            second.x(),
+            second.y(),
+            second.width(),
+            second.height(),
+            self.kerf_mm,
+        )
 
     def rotated_rect(self, item: BoardPieceItem, angle: int) -> QRectF:
         angle = angle % 180

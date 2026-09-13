@@ -5,7 +5,11 @@ from studio.services import StudioServices
 
 
 def test_explorer_project_root_offers_rename():
-    assert explorer_context_actions("project:root") == ("rename", "reveal_folder")
+    assert explorer_context_actions("project:root") == (
+        "rename",
+        "edit",
+        "reveal_folder",
+    )
 
 
 def test_rename_project_redo_and_undo():

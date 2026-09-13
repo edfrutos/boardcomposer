@@ -157,11 +157,12 @@ Objetivos:
 
 ### Prioridad P1 — Siguiente (producto)
 
-- Eval humana IDE-0007 MVP (`uat/studio/CHECKLIST-EXPLAIN-EVAL.md`).
 - Piloto DT-0006 opción D (backup); C diferida.
 - Pulido / QoL Fase 2 bajo demanda (ciclo `0.4.3.dev0`).
 - Candidatos producto IDE-0019…0024 (ver revisión 2026-09-11) cuando haya
   capacidad tras eval.
+- Candidatos producto restantes IDE-0023 / 0021 / 0022 (eval, 0024, 0019
+  y 0020 cerrados 2026-09-12).
 
 ### Prioridad P2
 
@@ -194,9 +195,12 @@ outdated/import·export/Timeline/Vista + docks/comparador + Calcular layout
 + plantilla mapeo + candidatos IDE-0019…0024; tip Añadir tablero/stock
   pendiente en PR `#614`).
 Revisión: `REVIEW-2026-09-11-planificacion.md`.
++ plantilla mapeo + IDE-0024 metadatos + IDE-0019 swap + IDE-0020 kerf;
+  candidatos IDE-0023 / 0021 / 0022).
+Revisión: `REVIEW-2026-09-10-planificacion.md`.
 
 Pendiente de:
 
-- Eval IDE-0007 + piloto DT-0006 D;
-- slices QoL / IDE-0019…0024 bajo demanda;
+- Piloto DT-0006 D (activo; C diferida);
+- slices QoL / IDE-0023 / 0021 / 0022 bajo demanda;
 - aprobar como hoja de ruta oficial del proyecto.
