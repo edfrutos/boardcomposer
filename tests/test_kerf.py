@@ -8,9 +8,11 @@ from boardcomposer.layout.kerf import (
 )
 from boardcomposer.domain import BoardPlacement
 from boardcomposer.solver.geometry_solver import GeometrySolver
+from PySide6.QtCore import QRectF
 from studio.commands import EditProjectKerfCommand
 from studio.models import StudioProject
 from studio.services import StudioServices
+from studio.workspace.placement_validator import PlacementValidator
 
 
 def test_normalize_kerf_clamps_and_rejects_junk():
@@ -48,6 +50,13 @@ def test_placements_overlap_respects_kerf():
     right = BoardPlacement("B", 100, 0, 100, 50)
     assert placements_overlap(left, right) is False
     assert placements_overlap(left, right, kerf_mm=3) is True
+
+
+def test_workspace_validator_matches_shared_kerf_gap_rule():
+    validator = PlacementValidator(QRectF(0, 0, 500, 500), kerf_mm=3)
+    left = QRectF(0, 0, 100, 50)
+    assert validator.overlaps(left, QRectF(103, 0, 100, 50)) is False
+    assert validator.overlaps(left, QRectF(102.9, 0, 100, 50)) is True
 
 
 def test_solver_leaves_kerf_gap_between_two_pieces():
