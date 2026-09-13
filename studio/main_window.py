@@ -2062,13 +2062,41 @@ class MainWindow(QMainWindow):
         self.services.commands.clear()
         self.update_undo_redo()
 
+    def _refresh_inspector_from_context(self) -> None:
+        if self.workspace.selection.selected():
+            self.workspace.selection.sync_inspector(self)
+            return
+        current = self.explorer.currentItem()
+        if current is None:
+            self.clear_inspector()
+            return
+        parsed = parse_explorer_role(current.data(0, Qt.ItemDataRole.UserRole))
+        if parsed is None:
+            self.clear_inspector()
+            return
+        kind, object_id = parsed
+        if kind == "project":
+            self._show_project_inspector()
+            return
+        if kind == "board":
+            self._show_board_inspector(object_id)
+            return
+        self.clear_inspector()
+
+    def _refresh_project_views(self, *, fit: bool = True) -> None:
+        self.workspace.reload_project(fit=fit)
+        self._reload_explorer()
+        self._refresh_inspector_from_context()
+        self._sync_view_actions()
+        self._sync_edit_selection_actions()
+        self.update_window_title()
+
     def _undo(self):
         if not self.services.commands.can_undo():
             self._status("status.nothing_to_undo")
             return
         self.services.commands.undo()
-        self.workspace.reload_project()
-        self._reload_explorer()
+        self._refresh_project_views()
         self.update_undo_redo()
         self._status("status.undone")
 
@@ -2077,8 +2105,7 @@ class MainWindow(QMainWindow):
             self._status("status.nothing_to_redo")
             return
         self.services.commands.redo()
-        self.workspace.reload_project()
-        self._reload_explorer()
+        self._refresh_project_views()
         self.update_undo_redo()
         self._status("status.redone")
 
@@ -2149,6 +2176,8 @@ class MainWindow(QMainWindow):
         self.services.commands.execute(command)
         self.workspace.reload_project()
         self.workspace.select_pieces([first_id, second_id])
+        self._sync_view_actions()
+        self._sync_edit_selection_actions()
         self._mark_project_modified()
         self.update_window_title()
         self.update_undo_redo()
@@ -4723,12 +4752,13 @@ class MainWindow(QMainWindow):
             self._status("status.project_kerf_unchanged")
             return
 
+        selected_ids = self.workspace.selection.selected()
         command = EditProjectKerfCommand(self.services, project.kerf_mm, new_kerf)
         self.services.commands.execute(command)
         self._mark_project_modified(reason="project_kerf")
-        self.workspace.reload_project(fit=False)
-        self._show_project_inspector()
-        self.update_window_title()
+        self._refresh_project_views(fit=False)
+        if selected_ids:
+            self.workspace.select_pieces(selected_ids)
         self.update_undo_redo()
         self._status("status.project_kerf_saved")
 

@@ -203,7 +203,7 @@
 
 ### Cambiado
 
-- IDE-0007: eval humana 2026-09-12 (MVP explicación aceptable; LLM diferido).
+- Inventario: tip Añadir tablero aclara que la cantidad es stock de paneles, no varios IDs.
 - Importar: tip piezas aclara que si hay plantilla de mapeo aplicable, la aplica.
 - Importar: tip tableros aclara que si hay plantilla de mapeo aplicable, la aplica.
 - Importar: tip piezas aclara que si cantidad > 1, crea varias con IDs únicos.

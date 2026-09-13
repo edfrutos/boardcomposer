@@ -356,7 +356,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.add_board": (
             "Añadir un tablero al inventario (Ctrl+Shift+B); "
             "abre el diálogo de ID y dimensiones; "
-            "si no hay proyecto, crea uno vacío"
+            "si no hay proyecto, crea uno vacío; "
+            "la cantidad es stock de paneles, no varios IDs"
         ),
         "tip.add_piece": (
             "Añadir una pieza al proyecto (Ctrl+Shift+P); "
@@ -1713,7 +1714,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.add_board": (
             "Add a board to the inventory (Ctrl+Shift+B); "
             "opens the ID and dimensions dialog; "
-            "if there is no project, creates an empty one"
+            "if there is no project, creates an empty one; "
+            "quantity is panel stock, not several ids"
         ),
         "tip.add_piece": (
             "Add a piece to the project (Ctrl+Shift+P); "
