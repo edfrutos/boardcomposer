@@ -167,14 +167,8 @@ Objetivos:
 
 - Piloto DT-0006 opción D (backup); C diferida.
 - Pulido / QoL Fase 2 bajo demanda (ciclo `0.4.3.dev0`).
-- Candidatos producto IDE-0019…0024 (ver revisión 2026-09-11) cuando haya
-  capacidad tras eval.
-- Candidatos producto restantes IDE-0023 / 0021 / 0022 (eval, 0024, 0019
-  y 0020 cerrados 2026-09-12).
-- Candidatos producto IDE-0019…0024 (ver revisión 2026-09-12) cuando haya
-  capacidad tras eval.
-- Candidatos producto restantes IDE-0023 → 0021 → 0022 (eval, 0024, 0019
-  y 0020 cerrados 2026-09-12 en `main`).
+- Candidatos producto restantes IDE-0021 grain / IDE-0022 Skyline
+  (0024, 0019, 0020 y 0023 cerrados).
 
 ### Prioridad P2
 
@@ -198,26 +192,12 @@ Toda modificación deberá:
 ## Estado
 
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
-ciclo `0.4.3.dev0` (ola tips honesty Archivo/Edición/Ayuda/plantillas/
-outdated/import·export/Timeline/Vista + docks/comparador + Calcular layout
-+ Abrir carpeta/barra estado + Comparar ant./sig. + Timeline Play/Reset/←/→/lista
-+ Guardar/zoom/Explicar/Seleccionar/Quitar/Invertir + demo Máx. soluciones
-+ Nuevo proyecto/export selección/Timeline + Importar piezas/tableros
-+ Añadir tablero/pieza + Duplicar/colocación + 1.º tablero + cantidad→ids
-+ plantilla mapeo + candidatos IDE-0019…0024; tip Añadir tablero/stock
-  pendiente en PR `#614`).
-Revisión: `REVIEW-2026-09-11-planificacion.md`.
-+ plantilla mapeo + IDE-0024 metadatos + IDE-0019 swap + IDE-0020 kerf;
-  candidatos IDE-0023 / 0021 / 0022).
-Revisión: `REVIEW-2026-09-10-planificacion.md`.
-+ plantilla mapeo + candidatos IDE-0019…0024).
-Revisión: `REVIEW-2026-09-12-planificacion.md`.
-+ plantilla mapeo + tip stock tablero #614 + IDE-0024 metadatos + IDE-0019
-  swap + IDE-0020 kerf; candidatos IDE-0023 / 0021 / 0022).
+ciclo `0.4.3.dev0` (tips honesty + IDE-0024 metadatos + IDE-0019 swap +
+IDE-0020 kerf + IDE-0023 lista de corte; candidatos IDE-0021 / 0022).
 Revisión: `REVIEW-2026-09-13-planificacion.md`.
 
 Pendiente de:
 
 - Piloto DT-0006 D (activo; C diferida);
-- slices producto IDE-0023 → 0021 → 0022 bajo demanda;
+- slices producto IDE-0021 / 0022 bajo demanda;
 - aprobar como hoja de ruta oficial del proyecto.

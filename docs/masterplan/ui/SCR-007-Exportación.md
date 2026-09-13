@@ -31,6 +31,7 @@ canvas sin calcular.
 | Acción | Atajo / menú |
 |--------|----------------|
 | Exportar solución seleccionada… | **Ctrl+Shift+E** · Exportar · toolbar |
+| Exportar lista de corte… | **Ctrl+Alt+C** · Exportar (flujo aparte; CSV/PDF) |
 | Exportar historial del Timeline… | **Ctrl+Shift+L** · Exportar · Timeline (flujo aparte) |
 
 Sin solución calculada/seleccionada: el tip de estado pide calcular layout
@@ -166,7 +167,8 @@ No usa `ExportDialog`. Flujo propio:
 
 - Sin controles de papel/escala/márgenes.
 - Métricas/explicación solo en JSON.
-- CSV limitado a placements.
+- CSV del diálogo limitado a placements; lista de corte (Ctrl+Alt+C)
+  cubre piezas/tableros/cortes en CSV o PDF.
 - Sin exportación por lotes ni publicación a la nube.
 
 ---

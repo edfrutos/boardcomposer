@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Exportar: lista de corte / informe de taller (IDE-0023); **Ctrl+Alt+C**;
+  CSV o PDF de piezas y tableros de la solución del Comparador; recuerda
+  carpeta y formato.
 - Docs planificación 2026-09-11: snapshot
   `docs/masterplan/REVIEW-2026-09-11-planificacion.md`; cola
   IDE-0019…0024 sin IDE nuevas (Issues = 0; PR abierto `#614` tip

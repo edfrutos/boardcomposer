@@ -227,6 +227,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.revision_restore_failed": "No se pudo restaurar la revisión: {error}",
         "action.export_selected": "Exportar solución seleccionada…",
         "action.export_timeline": "Exportar historial del Timeline…",
+        "action.export_cut_list": "Exportar lista de corte…",
         "action.exit": "Salir",
         "action.undo": "Deshacer",
         "action.redo": "Rehacer",
@@ -401,6 +402,18 @@ _STRINGS: dict[str, dict[str, str]] = {
             "ofrece abrir el archivo; "
             "recuerda la última carpeta; el formato JSON o CSV "
             "se recuerda entre sesiones"
+        ),
+        "tip.export_cut_list": (
+            "Exportar lista de corte de la solución del Comparador "
+            "(Ctrl+Alt+C); CSV o PDF de piezas y tableros; "
+            "ofrece abrir el archivo; "
+            "recuerda la última carpeta; el formato CSV o PDF "
+            "se recuerda entre sesiones"
+        ),
+        "tip.export_cut_list_outdated": (
+            "Soluciones desactualizadas: al exportar la lista de corte "
+            "(Ctrl+Alt+C) pide confirmar recalcular / exportar de todos "
+            "modos / cancelar"
         ),
         "tip.exit": (
             "Cerrar BoardComposer Studio (Ctrl+Q); "
@@ -1172,6 +1185,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.import_pieces": "Importar piezas (CSV/Excel)",
         "dialog.import_pieces_short": "Importar piezas",
         "dialog.export_selected": "Exportar solución seleccionada",
+        "dialog.export_cut_list": "Exportar lista de corte",
+        "dialog.filter_cut_list": "CSV (*.csv);;PDF (*.pdf)",
         "dialog.filter_csv_excel": "CSV / Excel (*.csv *.xlsx);;CSV (*.csv);;Excel (*.xlsx);;Todos los archivos (*)",
         "dialog.filter_bcproj": "BoardComposer Project (*.bcproj)",
         "dialog.edit_board": "Editar tablero",
@@ -1588,6 +1603,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.revision_restore_failed": "Could not restore revision: {error}",
         "action.export_selected": "Export selected solution…",
         "action.export_timeline": "Export Timeline history…",
+        "action.export_cut_list": "Export cut list…",
         "action.exit": "Quit",
         "action.undo": "Undo",
         "action.redo": "Redo",
@@ -1759,6 +1775,17 @@ _STRINGS: dict[str, dict[str, str]] = {
             "offers to open the file; "
             "remembers the last folder; the JSON or CSV format "
             "is remembered across sessions"
+        ),
+        "tip.export_cut_list": (
+            "Export a workshop cut list from the Comparator solution "
+            "(Ctrl+Alt+C); CSV or PDF of pieces and boards; "
+            "offers to open the file; "
+            "remembers the last folder; the CSV or PDF format "
+            "is remembered across sessions"
+        ),
+        "tip.export_cut_list_outdated": (
+            "Solutions outdated: when exporting the cut list "
+            "(Ctrl+Alt+C) prompts to recalculate / export anyway / cancel"
         ),
         "tip.exit": (
             "Quit BoardComposer Studio (Ctrl+Q); "
@@ -2494,6 +2521,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.import_pieces": "Import pieces (CSV/Excel)",
         "dialog.import_pieces_short": "Import pieces",
         "dialog.export_selected": "Export selected solution",
+        "dialog.export_cut_list": "Export cut list",
+        "dialog.filter_cut_list": "CSV (*.csv);;PDF (*.pdf)",
         "dialog.filter_csv_excel": "CSV / Excel (*.csv *.xlsx);;CSV (*.csv);;Excel (*.xlsx);;All files (*)",
         "dialog.filter_bcproj": "BoardComposer Project (*.bcproj)",
         "dialog.edit_board": "Edit board",
@@ -2726,6 +2755,7 @@ _ACTION_KEYS = (
     "import_pieces_csv",
     "export_selected",
     "export_timeline",
+    "export_cut_list",
     "exit",
     "clear_recent",
     "undo",

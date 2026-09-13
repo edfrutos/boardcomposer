@@ -4,17 +4,9 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.29  
-**Estado:** En revisión — actualizado  
-**Fecha de creación:** 01/07/2026  
-**Última revisión:** 11/09/2026
-**Versión:** 1.3.30  
-**Estado:** En revisión — actualizado  
-**Fecha de creación:** 01/07/2026  
-**Última revisión:** 12/09/2026
-**Versión:** 1.3.31  
-**Estado:** En revisión — actualizado  
-**Fecha de creación:** 01/07/2026  
+**Versión:** 1.3.32
+**Estado:** En revisión — actualizado
+**Fecha de creación:** 01/07/2026
 **Última revisión:** 13/09/2026
 
 ---
@@ -100,7 +92,7 @@ Observaciones:
 | IDE-0020 | Kerf / espesor de sierra en packing | 🟢 | P2 |
 | IDE-0021 | Restricción de veta / orientación de fibra | ⚪ | P2 |
 | IDE-0022 | Packing multipanel Skyline | ⚪ | P2 |
-| IDE-0023 | Lista de corte / informe de taller | ⚪ | P2 |
+| IDE-0023 | Lista de corte / informe de taller | 🟢 | P2 |
 | IDE-0024 | Metadatos de proyecto (cliente, ref., notas) | 🟢 | P2 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -117,7 +109,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0020 | M | PlacementValidator (ADR-010); migraciones | Entregado; v4 `kerf_mm`; default prefs |
 | IDE-0021 | M | Modelo de pieza; solvers | Afecta rotación automática |
 | IDE-0022 | M–L | ADR-014 contrato multipanel | Hoy solo MaxRects multipanel |
-| IDE-0023 | M | Export PDF/CSV; SCR-007 | Lista piezas/paneles para taller |
+| IDE-0023 | M | Export PDF/CSV; SCR-007 | Entregado; Ctrl+Alt+C; CSV/PDF |
 | IDE-0024 | S | SCR-005 evolución; persistencia v3 | Entregado; kerf/vetas siguen en 0020/0021 |
 
 ---
@@ -146,26 +138,14 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0018 Studio/Core completadas
-(salvo IDE-0007 🟡 MVP local + eval abierta); EP (001…003) Fase 3 entregadas;
-IDE-0019…0024 siguen como ideas abiertas (revisión 2026-09-11: sin IDE
-nuevas; cola no vacía; Issues = 0; PR abierto `#614` tip Añadir tablero;
-planning #602/#608/#612/#613 + tips #603–#607/#609–#611 en `main`; sin
-merges de producto 09-10→09-11).
-Ver `REVIEW-2026-09-11-planificacion.md`.
-IDE-0019…0024 siguen como ideas abiertas (revisión 2026-09-12: sin IDE
-nuevas; cola no vacía; Issues = 0; PRs abiertos #614 tip + #615 planning
-draft plegado; tips #603–#607/#609–#611 + planning #602/#608/#612/#613
-en `main`; sin merges de producto 09-10→09-12).
-Ver `REVIEW-2026-09-12-planificacion.md`.
-**Estado actual:** 🟢 Actualizado — IDE-0001…0020 y IDE-0024 Studio/Core
-completadas; IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003)
-Fase 3 entregadas. Cola abierta: IDE-0021…0023. Snapshot:
-`REVIEW-2026-09-13-planificacion.md`.
+**Estado actual:** 🟢 Actualizado — IDE-0001…0020, IDE-0023 y IDE-0024
+Studio/Core completadas; IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
+EP (001…003) Fase 3 entregadas. Cola abierta: IDE-0021 / 0022.
+Snapshot: `REVIEW-2026-09-13-planificacion.md`.
 
 Próximo foco:
 
 1. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-2. Ciclo `0.4.3`: IDE-0023 → 0021 → 0022 (orden revisión 09-13).
+2. Ciclo `0.4.3`: IDE-0021 grain → IDE-0022 Skyline.
 3. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
 4. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).
