@@ -1,17 +1,18 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-10.
+Última revisión: 2026-09-13.
 
 ## Estado actual
 
 - Fase de producto: **Fase 2 — BoardComposer Studio** (núcleo usable;
   Fase 3 plataforma entregada).
 - Versión de desarrollo: `0.4.3.dev0` (última estable: `0.4.2`).
-- Core base consolidado y cubierto por tests.
+- Core base consolidado y cubierto por tests (incluye kerf IDE-0020).
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación.
 - Vertical multipanel MaxRects con material + espesor, Workspace interactivo y
-  suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-10-planificacion.md`.
+  suite Qt de arrastre/reasignación; swap de dos piezas (IDE-0019);
+  metadatos de proyecto (IDE-0024).
+- Snapshot de planificación: `REVIEW-2026-09-13-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -21,20 +22,22 @@
 - `PanelReference` por tipo e instancia física.
 - MaxRects multipanel con compatibilidad de **espesor y material**.
 - Validación, completitud, deduplicación y scoring por panel.
-- Persistencia Studio versionada (migraciones ADR-015).
+- Persistencia Studio versionada (migraciones ADR-015; v3 metadatos, v4 kerf).
 - Workspace y SVG con paneles físicos lado a lado.
 - Movimiento y reasignación interactiva de piezas entre paneles (arrastre en
   Workspace, con undo; solape o incompatibilidad revierten el movimiento).
+- Intercambio de dos piezas colocadas (**Ctrl+Alt+X**, IDE-0019).
+- Kerf / espesor de sierra en packing (**Ctrl+Alt+K**, IDE-0020).
 - ADR-014 / ADR-016 y documentación técnica alineada en README, backlog y UAT.
 
 ## Próxima tarea única
 
-1. Cerrar **eval humana** IDE-0007 (`uat/studio/CHECKLIST-EXPLAIN-EVAL.md`).
-2. Ciclo `0.4.3.dev0`: QoL o candidatos **IDE-0019…0024** (DOC-004) bajo
-   demanda.
+1. Ciclo `0.4.3.dev0`: candidatos restantes **IDE-0023 → 0021 → 0022**
+   (DOC-004) bajo demanda.
+2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
-   - IDE-0007 LLM opt-in — tras política de datos / eval (DEC-0011).
+   - IDE-0007 LLM opt-in — tras política de datos (eval cerrada; DEC-0011).
    - IDE-0008 plugins — XL; no priorizar sin ADR-004 operativo.
 
 ## Criterio de finalización del próximo bloque
@@ -51,8 +54,8 @@
   (CP-SAT exacto sigue siendo un solo panel, opcional).
 - Una sola candidata tras «Calcular layout» es válida: el pipeline puede
   deduplicar a una solución única según inventario y heurísticas.
-- No hay acción «intercambiar dos piezas»; la reasignación es arrastrar y
-  soltar sobre otro panel físico compatible.
+- Sin restricción de veta (IDE-0021), lista de corte taller (IDE-0023) ni
+  multipanel Skyline (IDE-0022).
 - Guía de usuario final: [`docs/user/GUIA-RAPIDA.md`](../user/GUIA-RAPIDA.md)
   (también **Ayuda → Documentación**, Shift+F1). UAT y masterplan complementan.
 

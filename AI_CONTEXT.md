@@ -8,26 +8,24 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-09-10
+## Estado actual — 2026-09-13
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
-- Core base completado y en evolución controlada.
+- Core base completado y en evolución controlada (kerf IDE-0020 en packing).
 - Vertical multipanel MaxRects implementada, con compatibilidad de material
   y espesor, órdenes de panel, retales informativos (ADR-016) y soluciones
   parciales (piezas omitidas en vez de "sin solución").
 - Studio funcional con persistencia versionada y migraciones explícitas
-  (ADR-015), importación de inventario de tableros desde CSV, y movimiento
-  de piezas entre paneles físicos desde el Workspace.
-- Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`
-  (Welcome…Explorador + Disposición); UAT visual
-  `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-09-10-planificacion.md`.
+  (ADR-015; v3 metadatos IDE-0024, v4 kerf), importación de inventario,
+  movimiento entre paneles y swap de dos piezas (IDE-0019).
+- Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
+  UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
+  `docs/masterplan/REVIEW-2026-09-13-planificacion.md`.
 - Versión de desarrollo: `0.4.3.dev0` (última estable: `0.4.2`).
-- Próximo: eval IDE-0007; piloto DT-0006 D; candidatos IDE-0019…0024
-  (sin IDE nuevas: cola no vacía; Issues/PRs abiertos = 0; tips
-  #603–#607/#609–#611 + planning #602/#608/#612 en `main`; sin merges
-  de producto 09-09→09-10).
+- Próximo: piloto DT-0006 D; cola IDE-0023 → 0021 → 0022 (sin IDE nuevas:
+  cola no vacía; Issues = 0; PRs abiertos #615/#616 planning supersedidos;
+  producto #617–#619 + tip #614 en `main`; eval IDE-0007 cerrada).
 
 ## Fuentes de verdad
 

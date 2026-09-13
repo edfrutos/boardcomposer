@@ -4,6 +4,12 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-13: snapshot
+  `docs/masterplan/REVIEW-2026-09-13-planificacion.md` (+ históricos
+  `REVIEW-2026-09-11` / `REVIEW-2026-09-12` desde PRs #615/#616);
+  cola restante IDE-0023 → 0021 → 0022 sin IDE nuevas (Issues = 0;
+  producto #617–#619 + tip #614 en `main`; eval IDE-0007 cerrada;
+  piloto DT-0006 D).
 - Packing: espesor de sierra / kerf (IDE-0020); **Ctrl+Alt+K**; `.bcproj` v4;
   hueco entre piezas al calcular y al mover; default en Preferencias solo
   para proyectos nuevos.
