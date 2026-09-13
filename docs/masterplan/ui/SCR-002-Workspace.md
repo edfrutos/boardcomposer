@@ -3,9 +3,9 @@
 ## SCR-002 — Workspace
 
 **Código:** SCR-002  
-**Versión:** 1.1.0  
+**Versión:** 1.1.1  
 **Estado:** Alineado con Studio  
-**Última revisión:** 24/07/2026
+**Última revisión:** 12/09/2026
 
 ---
 
@@ -70,7 +70,8 @@ Historial de eventos y tabla de candidatas (si hay más de una tras calcular).
 
 ## Interacción: mover y reasignar piezas
 
-No hay botón «intercambiar piezas». La reasignación es **arrastrar y soltar**:
+Reasignación por **arrastrar y soltar**, o **intercambiar** dos piezas
+colocadas (**Ctrl+Alt+X** / Editar → Intercambiar piezas):
 
 1. Selecciona una pieza en el canvas (o en el Explorador).
 2. Arrástrala dentro de su panel para reposicionarla, **o** suéltala sobre
@@ -80,6 +81,9 @@ No hay botón «intercambiar piezas». La reasignación es **arrastrar y soltar*
    (undo/redo con **Ctrl+Z** / **Ctrl+Shift+Z**).
 4. Si el destino es inválido (solape, fuera de límites, material/espesor
    incompatible), el movimiento **revierte** a la posición anterior.
+5. Con **exactamente dos** piezas colocadas seleccionadas, Intercambiar
+   intercambia origen y panel (cada una conserva su rotación). Si no caben,
+   solapan u el material/espesor no coincide, no cambia nada.
 
 Notas:
 
@@ -98,7 +102,8 @@ Notas:
 3. **Calcular layout** (**Ctrl+Return**).
 4. Si hay varias candidatas, recorrerlas (**Re Pág** / **Av Pág**) y comparar.
 5. **Aplicar** la elegida (**Ctrl+Shift+Return**).
-6. Ajustar a mano en el Workspace (arrastre / rotación **R** / flechas).
+6. Ajustar a mano en el Workspace (arrastre / rotación **R** /
+   intercambiar **Ctrl+Alt+X** / flechas).
 7. Exportar (**Ctrl+Shift+E**).
 
 Una sola candidata tras calcular es un resultado válido del pipeline

@@ -12,6 +12,9 @@ def _sample_project() -> StudioProject:
     return StudioProject(
         project_id="PRJ-1",
         name="Cocina cliente",
+        client="Nordik",
+        reference="PED-42",
+        notes="Canto ABS",
         boards=[StudioBoard("TAB-1", 2800, 1200, "Melamina", 19, 2)],
         pieces=[
             StudioPiece("P-1", 600, 400),
@@ -38,6 +41,9 @@ def test_save_and_instantiate_clears_placements_by_default(tmp_path):
     project = manager.instantiate("Cocina")
     assert project.name == "Cocina"
     assert project.project_id != "PRJ-1"
+    assert project.client == "Nordik"
+    assert project.reference == "PED-42"
+    assert project.notes == "Canto ABS"
     assert len(project.boards) == 1
     assert len(project.pieces) == 2
     assert project.placements == []

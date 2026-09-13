@@ -13,6 +13,19 @@
 - Docs planificación 2026-09-11: snapshot
   `docs/masterplan/REVIEW-2026-09-11-planificacion.md` (histórico desde
   PR #615 draft); cola IDE-0019…0024 sin IDE nuevas.
+- Docs planificación 2026-09-13: snapshot
+  `docs/masterplan/REVIEW-2026-09-13-planificacion.md` (+ históricos
+  `REVIEW-2026-09-11` / `REVIEW-2026-09-12` desde PRs #615/#616);
+  cola restante IDE-0023 → 0021 → 0022 sin IDE nuevas (Issues = 0;
+  producto #617–#619 + tip #614 en `main`; eval IDE-0007 cerrada;
+  piloto DT-0006 D).
+- Packing: espesor de sierra / kerf (IDE-0020); **Ctrl+Alt+K**; `.bcproj` v4;
+  hueco entre piezas al calcular y al mover; default en Preferencias solo
+  para proyectos nuevos.
+- Workspace: intercambiar dos piezas colocadas (IDE-0019); **Ctrl+Alt+X**;
+  undo; no-op si no caben o el material/espesor no coincide.
+- Proyecto: metadatos cliente / referencia / notas (IDE-0024); diálogo
+  **Ctrl+Alt+M**; persistidos en `.bcproj` v3; undo.
 - Docs planificación 2026-09-10: snapshot
   `docs/masterplan/REVIEW-2026-09-10-planificacion.md`; cola
   IDE-0019…0024 sin IDE nuevas (Issues/PRs abiertos = 0; planning
@@ -205,6 +218,7 @@
 
 ### Cambiado
 
+- Inventario: tip Añadir tablero aclara que la cantidad es stock de paneles, no varios IDs.
 - Importar: tip piezas aclara que si hay plantilla de mapeo aplicable, la aplica.
 - Importar: tip tableros aclara que si hay plantilla de mapeo aplicable, la aplica.
 - Importar: tip piezas aclara que si cantidad > 1, crea varias con IDs únicos.

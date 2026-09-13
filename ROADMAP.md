@@ -89,3 +89,14 @@ Revisión: `docs/masterplan/REVIEW-2026-09-12-planificacion.md`.
 5. Gate demo/release (`uat/RELEASE-SMOKE.md`) — activo en cada corte.
 6. IDE-0007 LLM opt-in — tras eval/política (DEC-0011).
 7. Plugins (IDE-0008) — no priorizar sin ADR-004 operativo.
+Revisión: `docs/masterplan/REVIEW-2026-09-13-planificacion.md`.
+
+1. Release **`0.4.2`** cortado (`v0.4.2`, 2026-08-02) — hecho.
+2. IDE-0007 eval humana cerrada (2026-09-12); LLM sigue diferido.
+3. IDE-0024 metadatos de proyecto entregado (`.bcproj` v3) — #617.
+4. IDE-0019 intercambiar dos piezas colocadas (**Ctrl+Alt+X**) — #618.
+5. IDE-0020 espesor de sierra / kerf (`.bcproj` v4, **Ctrl+Alt+K**) — #619.
+6. Ciclo `0.4.3.dev0` — cola producto restante IDE-0023 → 0021 → 0022.
+7. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).
+8. Gate demo/release (`uat/RELEASE-SMOKE.md`) — activo en cada corte.
+9. Plugins (IDE-0008) — no priorizar sin ADR-004 operativo.

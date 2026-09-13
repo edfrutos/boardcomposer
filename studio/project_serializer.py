@@ -20,6 +20,7 @@ from boardcomposer.io.bcproj import (
     UnsupportedProjectVersionError,
     migrate_bcproj_dict,
 )
+from boardcomposer.layout.kerf import normalize_kerf
 from boardcomposer.io.bcproj_revisions import snapshot_before_overwrite
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 
@@ -38,6 +39,10 @@ def project_to_dict(project: StudioProject) -> dict:
         "version": CURRENT_VERSION,
         "project_id": project.project_id,
         "name": project.name,
+        "client": project.client,
+        "reference": project.reference,
+        "notes": project.notes,
+        "kerf_mm": project.kerf_mm,
         "boards": [
             {
                 "board_id": board.board_id,
@@ -81,6 +86,10 @@ def project_from_dict(data: dict) -> StudioProject:
     return StudioProject(
         project_id=data["project_id"],
         name=data["name"],
+        client=str(data.get("client", "") or ""),
+        reference=str(data.get("reference", "") or ""),
+        notes=str(data.get("notes", "") or ""),
+        kerf_mm=normalize_kerf(data.get("kerf_mm", 0)),
         boards=[
             StudioBoard(
                 board_id=item["board_id"],
