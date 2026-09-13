@@ -58,7 +58,7 @@ def aabb_overlap_with_kerf(
     bh: float,
     kerf_mm: float,
 ) -> bool:
-    """Overlap test that reserves ``kerf_mm`` to the right and bottom."""
+    """Overlap test that enforces one shared ``kerf_mm`` gap between AABBs."""
     kerf = normalize_kerf(kerf_mm)
     return aabb_overlap(ax, ay, aw + kerf, ah + kerf, bx, by, bw + kerf, bh + kerf)
 

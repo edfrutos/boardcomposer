@@ -2062,13 +2062,18 @@ class MainWindow(QMainWindow):
         self.services.commands.clear()
         self.update_undo_redo()
 
+    def _refresh_project_views(self, *, fit: bool = True) -> None:
+        self.workspace.reload_project(fit=fit)
+        self._reload_explorer()
+        self._show_project_inspector()
+        self.update_window_title()
+
     def _undo(self):
         if not self.services.commands.can_undo():
             self._status("status.nothing_to_undo")
             return
         self.services.commands.undo()
-        self.workspace.reload_project()
-        self._reload_explorer()
+        self._refresh_project_views()
         self.update_undo_redo()
         self._status("status.undone")
 
@@ -2077,8 +2082,7 @@ class MainWindow(QMainWindow):
             self._status("status.nothing_to_redo")
             return
         self.services.commands.redo()
-        self.workspace.reload_project()
-        self._reload_explorer()
+        self._refresh_project_views()
         self.update_undo_redo()
         self._status("status.redone")
 
@@ -4726,9 +4730,7 @@ class MainWindow(QMainWindow):
         command = EditProjectKerfCommand(self.services, project.kerf_mm, new_kerf)
         self.services.commands.execute(command)
         self._mark_project_modified(reason="project_kerf")
-        self.workspace.reload_project(fit=False)
-        self._show_project_inspector()
-        self.update_window_title()
+        self._refresh_project_views(fit=False)
         self.update_undo_redo()
         self._status("status.project_kerf_saved")
 
