@@ -4,7 +4,7 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.32
+**Versión:** 1.3.33
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
 **Última revisión:** 13/09/2026
@@ -90,7 +90,7 @@ Observaciones:
 | IDE-0018 | Icono/logo propio de BoardComposer Studio | 🟢 | P1 |
 | IDE-0019 | Intercambiar dos piezas seleccionadas | 🟢 | P2 |
 | IDE-0020 | Kerf / espesor de sierra en packing | 🟢 | P2 |
-| IDE-0021 | Restricción de veta / orientación de fibra | ⚪ | P2 |
+| IDE-0021 | Restricción de veta / orientación de fibra | 🟢 | P2 |
 | IDE-0022 | Packing multipanel Skyline | ⚪ | P2 |
 | IDE-0023 | Lista de corte / informe de taller | 🟢 | P2 |
 | IDE-0024 | Metadatos de proyecto (cliente, ref., notas) | 🟢 | P2 |
@@ -107,7 +107,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | DT-0006 | M (opción D/A) · L–XL (opción C) | Piloto nombrado; DOC-005 | Spike: `spikes/SPIKE-DT-0006-historial-cloud.md` |
 | IDE-0019 | S–M | SelectionController; Command Pattern | Entregado; Ctrl+Alt+X; no-op si no cabe |
 | IDE-0020 | M | PlacementValidator (ADR-010); migraciones | Entregado; v4 `kerf_mm`; default prefs |
-| IDE-0021 | M | Modelo de pieza; solvers | Afecta rotación automática |
+| IDE-0021 | M | Modelo de pieza; solvers | Entregado; v5 `grain`; no rotar |
 | IDE-0022 | M–L | ADR-014 contrato multipanel | Hoy solo MaxRects multipanel |
 | IDE-0023 | M | Export PDF/CSV; SCR-007 | Entregado; Ctrl+Alt+C; CSV/PDF |
 | IDE-0024 | S | SCR-005 evolución; persistencia v3 | Entregado; kerf/vetas siguen en 0020/0021 |
@@ -138,14 +138,14 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0020, IDE-0023 y IDE-0024
+**Estado actual:** 🟢 Actualizado — IDE-0001…0024 salvo IDE-0022
 Studio/Core completadas; IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
-EP (001…003) Fase 3 entregadas. Cola abierta: IDE-0021 / 0022.
+EP (001…003) Fase 3 entregadas. Cola abierta: IDE-0022 Skyline.
 Snapshot: `REVIEW-2026-09-13-planificacion.md`.
 
 Próximo foco:
 
 1. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-2. Ciclo `0.4.3`: IDE-0021 grain → IDE-0022 Skyline.
+2. Ciclo `0.4.3`: IDE-0022 Skyline multipanel.
 3. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
 4. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).

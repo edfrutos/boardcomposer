@@ -33,6 +33,7 @@ from PySide6.QtWidgets import (
 )
 from shiboken6 import isValid as _qt_is_valid
 
+from boardcomposer.domain.grain import grain_allows_rotation
 from boardcomposer.export import (
     CutListMeta,
     build_cut_list,
@@ -1759,6 +1760,7 @@ class MainWindow(QMainWindow):
                 width_mm=data["width_mm"],
                 material=data["material"],
                 thickness_mm=data["thickness_mm"],
+                grain=data.get("grain", "none"),
             )
             pieces.append(piece)
             piece_lookup[piece_id] = piece
@@ -1795,6 +1797,11 @@ class MainWindow(QMainWindow):
             self._status("status.pieces_added", n=len(piece_ids))
         else:
             self._status("status.piece_added")
+
+    def _grain_label(self, grain: str) -> str:
+        if grain_allows_rotation(grain):
+            return self._tr("inspector.grain_free")
+        return self._tr("inspector.grain_locked")
 
     def _panel_info_text(self, project, placement) -> str:
         """Return a human-readable label for a placement's physical panel."""
@@ -1848,6 +1855,7 @@ class MainWindow(QMainWindow):
                 f"{self._tr('inspector.thickness')}: "
                 f"{self._format_length(piece.thickness_mm)}\n"
                 f"{self._tr('inspector.material')}: {piece.material}\n"
+                f"{self._tr('inspector.grain')}: {self._grain_label(piece.grain)}\n"
                 f"{self._tr('inspector.unplaced')}\n"
                 f"{self._tr('inspector.place_hint')}"
             )
@@ -1865,7 +1873,8 @@ class MainWindow(QMainWindow):
             f"{self._format_length(placement.y_mm)}\n"
             f"{self._tr('inspector.board')}: "
             f"{self._panel_info_text(project, placement)}\n"
-            f"{self._tr('inspector.material')}: {piece.material}"
+            f"{self._tr('inspector.material')}: {piece.material}\n"
+            f"{self._tr('inspector.grain')}: {self._grain_label(piece.grain)}"
         )
 
     def update_window_title(self):
@@ -2140,6 +2149,14 @@ class MainWindow(QMainWindow):
         old_rotation = placement.rotation
         new_rotation = 90 if old_rotation % 180 == 0 else 0
 
+        try:
+            piece = project.piece_by_id(piece_id)
+        except KeyError:
+            piece = None
+        if piece is not None and not grain_allows_rotation(piece.grain):
+            self._status("status.cannot_rotate_grain")
+            return
+
         if not self.workspace.can_rotate_item(item, new_rotation):
             self._status("status.cannot_rotate")
             return
@@ -2298,6 +2315,7 @@ class MainWindow(QMainWindow):
             width_mm=source.width_mm,
             material=source.material,
             thickness_mm=source.thickness_mm,
+            grain=source.grain,
         )
 
         source_placement = project.placement_by_piece_id(piece_id)
@@ -2434,14 +2452,23 @@ class MainWindow(QMainWindow):
         )
         piece_id = self.workspace.selection.current()
         project = self.services.projects.current_project
-        can_rotate = bool(
+        placed = bool(
             piece_id is not None
             and project is not None
             and project.placement_by_piece_id(piece_id) is not None
         )
+        grain_free = True
+        if placed and project is not None and piece_id is not None:
+            try:
+                grain_free = grain_allows_rotation(project.piece_by_id(piece_id).grain)
+            except KeyError:
+                grain_free = True
+        can_rotate = placed and grain_free
         rotate_piece.setEnabled(can_rotate)
         if can_rotate:
             rotate_tip = with_native_shortcuts(self._tr("tip.rotate_piece"))
+        elif placed and not grain_free:
+            rotate_tip = self._tr("status.cannot_rotate_grain")
         elif piece_id is not None:
             rotate_tip = self._tr("status.place_piece_before_rotate")
         else:
@@ -4899,6 +4926,7 @@ class MainWindow(QMainWindow):
             width_mm=piece.width_mm,
             material=piece.material,
             thickness_mm=piece.thickness_mm,
+            grain=piece.grain,
         )
         command = EditPieceCommand(self.services, piece, updated)
         self.services.commands.execute(command)
@@ -5371,6 +5399,7 @@ class MainWindow(QMainWindow):
             width_mm=int(piece.width_mm),
             thickness_mm=int(piece.thickness_mm),
             material=piece.material,
+            grain=piece.grain,
             title=self._tr("dialog.edit_piece"),
             show_quantity=False,
             units=self._display_units(),
@@ -5401,6 +5430,7 @@ class MainWindow(QMainWindow):
             width_mm=data["width_mm"],
             material=data["material"],
             thickness_mm=data["thickness_mm"],
+            grain=data.get("grain", "none"),
         )
         if updated_piece == piece:
             self._status("status.edit_unchanged")

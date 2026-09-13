@@ -4,6 +4,7 @@ from copy import deepcopy
 from dataclasses import dataclass
 
 from boardcomposer.domain import Board, BoardPlacement
+from boardcomposer.domain.grain import rotation_allowed
 from boardcomposer.solver.maxrects.maxrects import MaxRects
 from boardcomposer.solver.maxrects.contact import contact_score
 from boardcomposer.solver.maxrects.placement import MaxRectsPlacement
@@ -36,7 +37,7 @@ class MaxRectsState:
         candidates = self.packer.find_candidates(
             board.length_mm,
             board.width_mm,
-            allow_rotation=allow_rotation,
+            allow_rotation=rotation_allowed(board, allow_rotation),
         )
 
         candidates = sorted(

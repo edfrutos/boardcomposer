@@ -18,14 +18,15 @@ def test_project_serialization_preserves_stock_and_panel_assignment():
         notes="Canto ABS",
         kerf_mm=3.5,
         boards=[StudioBoard("P1", 1000, 500, "Melamina", 19, 2)],
-        pieces=[StudioPiece("A", 900, 400, "Melamina", 19)],
+        pieces=[StudioPiece("A", 900, 400, "Melamina", 19, grain="locked")],
         placements=[StudioPlacement("A", 0, 0, False, 0, "P1", 1, 0)],
     )
 
     payload = project_to_dict(project)
     restored = project_from_dict(payload)
 
-    assert payload["version"] == 4
+    assert payload["version"] == 5
+    assert payload["pieces"][0]["grain"] == "locked"
     assert payload["client"] == "Nordik"
     assert payload["reference"] == "PED-42"
     assert payload["notes"] == "Canto ABS"
@@ -139,6 +140,31 @@ def test_version_two_project_gains_empty_metadata():
     assert restored.reference == ""
     assert restored.notes == ""
     assert restored.kerf_mm == 0.0
+
+
+def test_version_four_project_gains_free_grain():
+    restored = project_from_dict(
+        {
+            "version": 4,
+            "project_id": "PRJ-V4",
+            "name": "Sin veta",
+            "kerf_mm": 2,
+            "boards": [],
+            "pieces": [
+                {
+                    "piece_id": "A",
+                    "length_mm": 400,
+                    "width_mm": 300,
+                    "material": "Demo",
+                    "thickness_mm": 19,
+                }
+            ],
+            "placements": [],
+        }
+    )
+
+    assert restored.kerf_mm == 2
+    assert restored.pieces[0].grain == "none"
 
 
 def test_version_three_project_gains_zero_kerf():

@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Piezas: veta fija / orientación de fibra (IDE-0021); `.bcproj` v5;
+  checkbox «Permitir rotación» persistido; el cálculo y Rotar (R) no
+  giran piezas con veta fija.
 - Exportar: lista de corte / informe de taller (IDE-0023); **Ctrl+Alt+C**;
   CSV o PDF de piezas y tableros de la solución del Comparador; recuerda
   carpeta y formato.

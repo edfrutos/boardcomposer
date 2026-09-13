@@ -140,6 +140,7 @@ class ProjectTemplatesManager:
                     piece.width_mm,
                     piece.material,
                     piece.thickness_mm,
+                    piece.grain,
                 )
                 for piece in project.pieces
             ],

@@ -6,6 +6,7 @@ from boardcomposer.domain import (
     Project,
     SolutionExplanation,
 )
+from boardcomposer.domain.grain import grain_allows_rotation, rotation_allowed
 from boardcomposer.solver.board_ordering import (
     largest_area_first,
     longest_edge_first,
@@ -19,7 +20,9 @@ def _default_skyline_width(project: Project) -> float:
     if project.constraints.max_width_mm is not None:
         return project.constraints.max_width_mm
 
-    if project.constraints.allow_rotation:
+    if project.constraints.allow_rotation and any(
+        grain_allows_rotation(board.grain) for board in project.boards
+    ):
         return max(
             (min(board.length_mm, board.width_mm) for board in project.boards),
             default=0,
@@ -52,7 +55,7 @@ def _generate_for_order(
         position = skyline.place(
             width_mm=board.length_mm,
             height_mm=board.width_mm,
-            allow_rotation=project.constraints.allow_rotation,
+            allow_rotation=rotation_allowed(board, project.constraints.allow_rotation),
         )
 
         if position is None:

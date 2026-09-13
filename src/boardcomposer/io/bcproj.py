@@ -12,9 +12,10 @@ from collections.abc import Callable
 from pathlib import Path
 
 from boardcomposer.domain import Board, Project, ProjectConstraints, StockPanel
+from boardcomposer.domain.grain import GRAIN_NONE, normalize_grain
 from boardcomposer.layout.kerf import normalize_kerf
 
-CURRENT_VERSION = 4
+CURRENT_VERSION = 5
 
 
 class UnsupportedProjectVersionError(Exception):
@@ -81,10 +82,22 @@ def _migrate_v3_to_v4(data: dict) -> dict:
     return migrated
 
 
+def _migrate_v4_to_v5(data: dict) -> dict:
+    """Add per-piece grain (IDE-0021); default none (rotation allowed)."""
+    migrated = dict(data)
+    migrated["pieces"] = [
+        {**piece, "grain": piece.get("grain", GRAIN_NONE)}
+        for piece in data.get("pieces", [])
+    ]
+    migrated["version"] = 5
+    return migrated
+
+
 _MIGRATIONS: dict[int, Callable[[dict], dict]] = {
     1: _migrate_v1_to_v2,
     2: _migrate_v2_to_v3,
     3: _migrate_v3_to_v4,
+    4: _migrate_v4_to_v5,
 }
 
 
@@ -149,6 +162,7 @@ def core_project_from_bcproj_dict(data: dict) -> Project:
                 thickness_mm=float(item.get("thickness_mm", 19)),
                 id=item.get("piece_id"),
                 material=str(item.get("material", "Demo")),
+                grain=normalize_grain(item.get("grain", GRAIN_NONE)),
             )
         )
 

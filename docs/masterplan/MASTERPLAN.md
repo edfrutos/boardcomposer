@@ -59,8 +59,8 @@
   (CP-SAT exacto sigue siendo un solo panel, opcional).
 - Una sola candidata tras «Calcular layout» es válida: el pipeline puede
   deduplicar a una solución única según inventario y heurísticas.
-- Sin restricción de veta (IDE-0021), lista de corte taller (IDE-0023) ni
-  multipanel Skyline (IDE-0022).
+- Veta (IDE-0021) y lista de corte (IDE-0023) entregadas.
+  Sin multipanel Skyline (IDE-0022).
 - Guía de usuario final: [`docs/user/GUIA-RAPIDA.md`](../user/GUIA-RAPIDA.md)
   (también **Ayuda → Documentación**, Shift+F1). UAT y masterplan complementan.
 

@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from .grain import normalize_grain
+
 
 @dataclass(frozen=True)
 class Board:
@@ -8,6 +10,7 @@ class Board:
     thickness_mm: float
     id: str | None = None
     material: str = "Generico"
+    grain: str = "none"
 
     def __post_init__(self) -> None:
         if self.length_mm <= 0:
@@ -16,6 +19,7 @@ class Board:
             raise ValueError("width_mm debe ser mayor que 0")
         if self.thickness_mm <= 0:
             raise ValueError("thickness_mm debe ser mayor que 0")
+        object.__setattr__(self, "grain", normalize_grain(self.grain))
 
     @property
     def area_mm2(self) -> float:

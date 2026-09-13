@@ -6,6 +6,8 @@ from boardcomposer.domain import (
     SolutionScore,
 )
 
+from boardcomposer.domain.grain import rotation_allowed
+
 from .base_solver import BaseSolver
 
 
@@ -27,7 +29,7 @@ class SequentialSolver(BaseSolver):
             rotated = False
 
             if (
-                self.project.constraints.allow_rotation
+                rotation_allowed(board, self.project.constraints.allow_rotation)
                 and self.project.constraints.max_length_mm is not None
                 and x + length > self.project.constraints.max_length_mm
                 and x + board.width_mm <= self.project.constraints.max_length_mm

@@ -144,11 +144,12 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
 
 - Metadatos de proyecto (cliente, referencia, notas) entregados (IDE-0024).
   Kerf / espesor de sierra entregado (IDE-0020; `.bcproj` v4; **Ctrl+Alt+K**).
-  Veta sigue fuera (IDE-0021).
+  Veta / orientación de fibra entregada (IDE-0021; `.bcproj` v5; por pieza).
 
 ---
 
 ## Evolución prevista
 
-- Kerf / veta: **IDE-0020** / **IDE-0021** (no mezclar con metadatos sueltos).
+- Kerf entregado (IDE-0020). Veta por pieza entregada (IDE-0021; no
+  mezclar con metadatos de proyecto).
 - Historial cloud / multi-usuario (DT-0006; piloto D activo).

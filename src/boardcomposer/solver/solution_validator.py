@@ -3,6 +3,7 @@
 from math import isclose
 
 from boardcomposer.domain import AssemblySolution, Project
+from boardcomposer.domain.grain import grain_allows_rotation
 from boardcomposer.layout.validation import has_overlaps
 from boardcomposer.solver.constraints_validator import respects_constraints
 from boardcomposer.solver.validation_result import (
@@ -89,6 +90,15 @@ def validate_solution(
 
     if material_mismatch:
         reasons.append(ValidationReason.PANEL_MATERIAL_MISMATCH)
+
+    grain_violation = any(
+        placement.rotated
+        and not grain_allows_rotation(boards_by_id[placement.board_id].grain)
+        for placement in solution.placements
+        if placement.board_id in boards_by_id
+    )
+    if grain_violation:
+        reasons.append(ValidationReason.GRAIN_VIOLATION)
 
     if not project.stock_panels and not respects_constraints(
         solution, project.constraints
