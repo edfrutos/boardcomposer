@@ -1,5 +1,6 @@
 # BoardComposer — MASTERPLAN
 
+Última revisión: 2026-09-12.
 Última revisión: 2026-09-13.
 
 ## Estado actual
@@ -10,6 +11,8 @@
 - Core base consolidado y cubierto por tests (incluye kerf IDE-0020).
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación.
 - Vertical multipanel MaxRects con material + espesor, Workspace interactivo y
+  suite Qt de arrastre/reasignación.
+- Snapshot de planificación: `REVIEW-2026-09-12-planificacion.md`.
   suite Qt de arrastre/reasignación; swap de dos piezas (IDE-0019);
   metadatos de proyecto (IDE-0024).
 - Snapshot de planificación: `REVIEW-2026-09-13-planificacion.md`.
