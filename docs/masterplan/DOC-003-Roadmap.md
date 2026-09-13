@@ -7,6 +7,14 @@
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
 **Última revisión:** 11/09/2026
+**Versión:** 1.3.31  
+**Estado:** En revisión — actualizado  
+**Fecha de creación:** 01/07/2026  
+**Última revisión:** 12/09/2026
+**Versión:** 1.3.30  
+**Estado:** En revisión — actualizado  
+**Fecha de creación:** 01/07/2026  
+**Última revisión:** 13/09/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
@@ -163,6 +171,10 @@ Objetivos:
   capacidad tras eval.
 - Candidatos producto restantes IDE-0023 / 0021 / 0022 (eval, 0024, 0019
   y 0020 cerrados 2026-09-12).
+- Candidatos producto IDE-0019…0024 (ver revisión 2026-09-12) cuando haya
+  capacidad tras eval.
+- Candidatos producto restantes IDE-0023 → 0021 → 0022 (eval, 0024, 0019
+  y 0020 cerrados 2026-09-12 en `main`).
 
 ### Prioridad P2
 
@@ -198,9 +210,14 @@ Revisión: `REVIEW-2026-09-11-planificacion.md`.
 + plantilla mapeo + IDE-0024 metadatos + IDE-0019 swap + IDE-0020 kerf;
   candidatos IDE-0023 / 0021 / 0022).
 Revisión: `REVIEW-2026-09-10-planificacion.md`.
++ plantilla mapeo + candidatos IDE-0019…0024).
+Revisión: `REVIEW-2026-09-12-planificacion.md`.
++ plantilla mapeo + tip stock tablero #614 + IDE-0024 metadatos + IDE-0019
+  swap + IDE-0020 kerf; candidatos IDE-0023 / 0021 / 0022).
+Revisión: `REVIEW-2026-09-13-planificacion.md`.
 
 Pendiente de:
 
 - Piloto DT-0006 D (activo; C diferida);
-- slices QoL / IDE-0023 / 0021 / 0022 bajo demanda;
+- slices producto IDE-0023 → 0021 → 0022 bajo demanda;
 - aprobar como hoja de ruta oficial del proyecto.

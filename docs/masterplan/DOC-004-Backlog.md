@@ -12,6 +12,10 @@
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
 **Última revisión:** 12/09/2026
+**Versión:** 1.3.31  
+**Estado:** En revisión — actualizado  
+**Fecha de creación:** 01/07/2026  
+**Última revisión:** 13/09/2026
 
 ---
 
@@ -149,13 +153,19 @@ nuevas; cola no vacía; Issues = 0; PR abierto `#614` tip Añadir tablero;
 planning #602/#608/#612/#613 + tips #603–#607/#609–#611 en `main`; sin
 merges de producto 09-10→09-11).
 Ver `REVIEW-2026-09-11-planificacion.md`.
+IDE-0019…0024 siguen como ideas abiertas (revisión 2026-09-12: sin IDE
+nuevas; cola no vacía; Issues = 0; PRs abiertos #614 tip + #615 planning
+draft plegado; tips #603–#607/#609–#611 + planning #602/#608/#612/#613
+en `main`; sin merges de producto 09-10→09-12).
+Ver `REVIEW-2026-09-12-planificacion.md`.
 **Estado actual:** 🟢 Actualizado — IDE-0001…0020 y IDE-0024 Studio/Core
 completadas; IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003)
-Fase 3 entregadas. Cola abierta: IDE-0021…0023.
+Fase 3 entregadas. Cola abierta: IDE-0021…0023. Snapshot:
+`REVIEW-2026-09-13-planificacion.md`.
 
 Próximo foco:
 
 1. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-2. Ciclo `0.4.3`: IDE-0023 / 0021 / 0022 (orden revisión).
-4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
-5. LLM opt-in — solo tras eval + DEC-0011 / política de datos.
+2. Ciclo `0.4.3`: IDE-0023 → 0021 → 0022 (orden revisión 09-13).
+3. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
+4. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).

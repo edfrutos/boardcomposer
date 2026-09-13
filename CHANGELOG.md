@@ -9,6 +9,21 @@
   IDE-0019…0024 sin IDE nuevas (Issues = 0; PR abierto `#614` tip
   Añadir tablero/stock; planning #613 en `main`; sin merges de producto
   09-10→09-11; residuales eval/piloto).
+- Docs planificación 2026-09-12: snapshot
+  `docs/masterplan/REVIEW-2026-09-12-planificacion.md` (+ histórico
+  `REVIEW-2026-09-11-planificacion.md` desde PR #615 draft); cola
+  IDE-0019…0024 sin IDE nuevas (Issues = 0; PRs abiertos #614 tip +
+  #615 plegado; planning #613 en `main`; sin merges de producto
+  09-10→09-12; residuales eval/piloto).
+- Docs planificación 2026-09-11: snapshot
+  `docs/masterplan/REVIEW-2026-09-11-planificacion.md` (histórico desde
+  PR #615 draft); cola IDE-0019…0024 sin IDE nuevas.
+- Docs planificación 2026-09-13: snapshot
+  `docs/masterplan/REVIEW-2026-09-13-planificacion.md` (+ históricos
+  `REVIEW-2026-09-11` / `REVIEW-2026-09-12` desde PRs #615/#616);
+  cola restante IDE-0023 → 0021 → 0022 sin IDE nuevas (Issues = 0;
+  producto #617–#619 + tip #614 en `main`; eval IDE-0007 cerrada;
+  piloto DT-0006 D).
 - Packing: espesor de sierra / kerf (IDE-0020); **Ctrl+Alt+K**; `.bcproj` v4;
   hueco entre piezas al calcular y al mover; default en Preferencias solo
   para proyectos nuevos.
