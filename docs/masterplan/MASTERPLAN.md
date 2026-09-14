@@ -37,8 +37,9 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.3.dev0`: candidatos restantes **IDE-0023 → 0021 → 0022**
-   (DOC-004) bajo demanda.
+1. Ciclo `0.4.3.dev0`: cola producto **IDE-0019…0024 cerrada**. Pulido de
+   uso diario (guía / smoke) y gate de release; no abrir IDE nuevas sin
+   demanda.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
