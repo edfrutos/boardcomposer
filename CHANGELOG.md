@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-14: snapshot
+  `docs/masterplan/REVIEW-2026-09-14-planificacion.md`; cola restante
+  IDE-0022 (PR `#623`) sin IDE nuevas (Issues = 0; producto #621 lista
+  de corte + #622 veta en `main`; planning #620 mergeado; eval IDE-0007
+  cerrada; piloto DT-0006 D).
 - Skyline: packing multipanel (IDE-0022); mismo contrato ADR-014 que
   MaxRects (inventario, material/espesor, veta, retales); el pipeline
   compara ambas candidatas cuando hay más de un panel físico.

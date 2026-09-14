@@ -67,13 +67,19 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 ## Próximo foco (operativo)
 
-Revisión: `docs/masterplan/REVIEW-2026-09-13-planificacion.md`.
+Revisión: `docs/masterplan/REVIEW-2026-09-14-planificacion.md`.
 
 1. Release **`0.4.2`** cortado (`v0.4.2`, 2026-08-02) — hecho.
 2. IDE-0007 eval humana cerrada (2026-09-12); LLM sigue diferido.
 3. IDE-0024 metadatos de proyecto entregado (`.bcproj` v3) — #617.
 4. IDE-0019 intercambiar dos piezas colocadas (**Ctrl+Alt+X**) — #618.
 5. IDE-0020 espesor de sierra / kerf (`.bcproj` v4, **Ctrl+Alt+K**) — #619.
+6. IDE-0023 lista de corte / informe de taller (**Ctrl+Alt+C**; CSV/PDF) — #621.
+7. IDE-0021 veta / orientación de fibra (`.bcproj` v5; no rotar si fija) — #622.
+8. Ciclo `0.4.3.dev0` — cola restante IDE-0022 Skyline multipanel (PR `#623`).
+9. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).
+10. Gate demo/release (`uat/RELEASE-SMOKE.md`) — activo en cada corte.
+11. Plugins (IDE-0008) — no priorizar sin ADR-004 operativo.
 6. IDE-0023 lista de corte / informe de taller (**Ctrl+Alt+C**; CSV/PDF).
 7. IDE-0021 veta / orientación de fibra (`.bcproj` v5; no rotar si fija).
 8. IDE-0022 packing multipanel Skyline (ADR-014; junto a MaxRects).
