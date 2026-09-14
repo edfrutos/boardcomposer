@@ -3,18 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.30  
+**Versión:** 1.3.32  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 11/09/2026
-**Versión:** 1.3.31  
-**Estado:** En revisión — actualizado  
-**Fecha de creación:** 01/07/2026  
-**Última revisión:** 12/09/2026
-**Versión:** 1.3.30  
-**Estado:** En revisión — actualizado  
-**Fecha de creación:** 01/07/2026  
-**Última revisión:** 13/09/2026
+**Última revisión:** 14/09/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
@@ -167,8 +159,8 @@ Objetivos:
 
 - Piloto DT-0006 opción D (backup); C diferida.
 - Pulido / QoL Fase 2 bajo demanda (ciclo `0.4.3.dev0`).
-- Candidato producto restante IDE-0022 Skyline
-  (0024, 0019, 0020, 0023 y 0021 cerrados).
+- Candidato producto restante IDE-0022 Skyline (PR `#623`;
+  0024, 0019, 0020, 0023 y 0021 cerrados).
 
 ### Prioridad P2
 
@@ -194,11 +186,11 @@ Toda modificación deberá:
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
 ciclo `0.4.3.dev0` (tips honesty + IDE-0024 metadatos + IDE-0019 swap +
 IDE-0020 kerf + IDE-0023 lista de corte + IDE-0021 veta;
-  candidato IDE-0022 Skyline).
-Revisión: `REVIEW-2026-09-13-planificacion.md`.
+candidato IDE-0022 Skyline en PR `#623`).
+Revisión: `REVIEW-2026-09-14-planificacion.md`.
 
 Pendiente de:
 
 - Piloto DT-0006 D (activo; C diferida);
-- slice producto IDE-0022 Skyline bajo demanda;
+- merge/revisión IDE-0022 Skyline (`#623`);
 - aprobar como hoja de ruta oficial del proyecto.

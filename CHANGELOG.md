@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-14: snapshot
+  `docs/masterplan/REVIEW-2026-09-14-planificacion.md`; cola restante
+  IDE-0022 (PR `#623`) sin IDE nuevas (Issues = 0; producto #621 lista
+  de corte + #622 veta en `main`; planning #620 mergeado; eval IDE-0007
+  cerrada; piloto DT-0006 D).
 - Piezas: veta fija / orientación de fibra (IDE-0021); `.bcproj` v5;
   checkbox «Permitir rotación» persistido; el cálculo y Rotar (R) no
   giran piezas con veta fija.
