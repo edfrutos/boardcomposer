@@ -16,8 +16,13 @@ class SkylineCandidate:
 
 
 class Skyline:
-    def __init__(self, width_mm: float = 3000.0) -> None:
+    def __init__(
+        self,
+        width_mm: float = 3000.0,
+        max_height_mm: float | None = None,
+    ) -> None:
         self.width_mm = width_mm
+        self.max_height_mm = max_height_mm
         self.nodes = [SkylineNode(x_mm=0.0, y_mm=0.0, width_mm=width_mm)]
 
     @property
@@ -139,6 +144,11 @@ class Skyline:
             covered_width = (node.x_mm + node.width_mm) - x_start
 
             if covered_width >= width_mm:
+                if (
+                    self.max_height_mm is not None
+                    and max_y + height_mm > self.max_height_mm
+                ):
+                    return None
                 return SkylineCandidate(
                     x_mm=x_start,
                     y_mm=max_y,

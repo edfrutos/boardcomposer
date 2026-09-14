@@ -49,7 +49,7 @@ class CandidatePipeline:
         )
         panel_instances = packing_project.stock_panel_instances()
         generator_names = (
-            ["maxrects"]
+            ["maxrects", "skyline"]
             if len(panel_instances) > 1
             else list(self.strategy.generator_names)
         )

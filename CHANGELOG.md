@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Skyline: packing multipanel (IDE-0022); mismo contrato ADR-014 que
+  MaxRects (inventario, material/espesor, veta, retales); el pipeline
+  compara ambas candidatas cuando hay más de un panel físico.
 - Piezas: veta fija / orientación de fibra (IDE-0021); `.bcproj` v5;
   checkbox «Permitir rotación» persistido; el cálculo y Rotar (R) no
   giran piezas con veta fija.
