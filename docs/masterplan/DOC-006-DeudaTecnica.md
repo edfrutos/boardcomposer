@@ -114,8 +114,8 @@ conteo en «Estado» o en las notas de release.
 - **Advertencia:** umbrales de la tabla; no bloquea patch/`dev0` si hay plan
   explícito en «Próximo foco».
 
-**Corte 2026-08-02 (`0.4.2`):** abiertas = **1** (DT-0006 en piloto D;
-opción C diferida); sin críticas sin plan. IDE-0007 MVP local entregado.
+**Corte 2026-09-14 (`0.4.3`):** abiertas = **1** (DT-0006 en piloto D;
+opción C diferida); sin críticas sin plan. Cola producto 0019…0024 cerrada.
 
 ---
 
@@ -142,7 +142,7 @@ opción C diferida); sin críticas sin plan. IDE-0007 MVP local entregado.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — revisado para `0.4.2`; snapshot
+**Estado actual:** 🟢 Actualizado — revisado para `0.4.3`; snapshot
 2026-09-14 en `REVIEW-2026-09-14-planificacion.md` (abiertas = 1, DT-0006).
 Históricos: `REVIEW-2026-09-11`…`09-13` (abiertas = 1, DT-0006).
 

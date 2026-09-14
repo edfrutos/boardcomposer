@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-07-25 (taller 0019–0024: 2026-09-14)  
 **Base:** `main` tras IDE-0019…0024 + guía rápida  
-**Versión:** `0.4.3.dev0`  
+**Versión:** `0.4.3`  
 **Cómo arrancar:** `make run` o `.venv/bin/python -m studio.app`
 
 > Pasada visual cerrada (2026-07-28): [`CHECKLIST-VISUAL.md`](CHECKLIST-VISUAL.md).

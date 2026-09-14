@@ -140,23 +140,14 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0024 salvo IDE-0022
-Studio/Core completadas; IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
-EP (001…003) Fase 3 entregadas. Cola abierta: IDE-0022 Skyline (PR `#623`).
+**Estado actual:** 🟢 Actualizado — IDE-0001…0024 Studio/Core completadas;
+IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
+EP (001…003) Fase 3 entregadas. Cola producto 0019…0024 cerrada.
 Snapshot: `REVIEW-2026-09-14-planificacion.md`.
 
 Próximo foco:
 
-1. Merge/revisión IDE-0022 (`#623`); luego alinear límites docs.
-2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-**Estado actual:** 🟢 Actualizado — IDE-0001…0024 Studio/Core completadas;
-IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
-EP (001…003) Fase 3 entregadas. Cola producto 0019…0024 cerrada.
-Snapshot: `REVIEW-2026-09-13-planificacion.md`.
-
-Próximo foco:
-
 1. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-2. Ciclo `0.4.3`: cola producto cerrada; pulido / release gate.
+2. Corte `0.4.3`; siguiente ciclo `0.4.4.dev0` tras la etiqueta.
 3. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
 4. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).

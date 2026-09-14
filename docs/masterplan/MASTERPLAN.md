@@ -6,13 +6,13 @@
 
 - Fase de producto: **Fase 2 — BoardComposer Studio** (núcleo usable;
   Fase 3 plataforma entregada).
-- Versión de desarrollo: `0.4.3.dev0` (última estable: `0.4.2`).
+- Versión: `0.4.3`.
 - Core base consolidado y cubierto por tests (incluye kerf IDE-0020 y
   veta IDE-0021).
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación
   (lista de corte IDE-0023; swap IDE-0019; metadatos IDE-0024).
-- Vertical multipanel MaxRects con material + espesor, Workspace interactivo y
-  suite Qt de arrastre/reasignación.
+- Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
+  y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
 - Snapshot de planificación: `REVIEW-2026-09-14-planificacion.md`.
 
 ## Último bloque consolidado
@@ -32,14 +32,13 @@
 - Kerf / espesor de sierra en packing (**Ctrl+Alt+K**, IDE-0020).
 - Veta fija por pieza (**Permitir rotación**, IDE-0021).
 - Lista de corte / informe taller (**Ctrl+Alt+C**, IDE-0023).
+- Packing Skyline multipanel (IDE-0022; junto a MaxRects).
 - ADR-014 / ADR-016 y documentación técnica alineada en README, backlog y UAT.
 
 ## Próxima tarea única
 
-1. Cerrar IDE-0022 Skyline multipanel — PR `#623` (CI verde).
-1. Ciclo `0.4.3.dev0`: cola producto **IDE-0019…0024 cerrada**. Pulido de
-   uso diario (guía / smoke) y gate de release; no abrir IDE nuevas sin
-   demanda.
+1. Post-`0.4.3`: no abrir IDE nuevas sin demanda; siguiente ciclo
+   `0.4.4.dev0` tras la etiqueta.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
@@ -56,13 +55,7 @@
 
 ## Límites conocidos
 
-- Solo MaxRects implementa por ahora el contrato multipanel completo en
-  `main` (Skyline multipanel en PR `#623`; CP-SAT exacto sigue siendo un
-  solo panel, opcional).
-- Una sola candidata tras «Calcular layout» es válida: el pipeline puede
-  deduplicar a una solución única según inventario y heurísticas.
-- Veta (IDE-0021) y lista de corte (IDE-0023) entregadas.
-- Solo MaxRects y Skyline implementan el contrato multipanel completo
+- MaxRects y Skyline implementan el contrato multipanel completo
   (CP-SAT exacto sigue siendo un solo panel, opcional).
 - Una sola candidata tras «Calcular layout» es válida: el pipeline puede
   deduplicar a una solución única según inventario y heurísticas.
