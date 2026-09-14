@@ -1,14 +1,16 @@
 # Modelo de datos
 
-Última revisión: 2026-07-16.
+Última revisión: 2026-09-14.
 
 ## Entidades principales
 
 ### Board
 
-Pieza rectangular que debe colocarse. Contiene largo, ancho, espesor, ID y
-`material` (por defecto `"Generico"`). `material_key` normaliza mayúsculas
-y espacios para comparar compatibilidad con un panel.
+Pieza rectangular que debe colocarse. Contiene largo, ancho, espesor, ID,
+`material` (por defecto `"Generico"`) y `grain` (`none` o `locked`;
+IDE-0021). `material_key` normaliza mayúsculas y espacios para comparar
+compatibilidad con un panel. `locked` impide rotar en packing y en Studio
+(**R**).
 
 ### StockPanel
 
@@ -27,9 +29,9 @@ Los índices comienzan en cero. Los IDs de usuario no actúan como clave interna
 
 ### Project
 
-Agrupa piezas, inventario de paneles y restricciones. Expone las instancias
-físicas mediante `stock_panel_instances()` y resuelve referencias con
-`stock_panel_for()`.
+Agrupa piezas, inventario de paneles y restricciones. `kerf_mm` (IDE-0020)
+es el hueco de sierra. Expone las instancias físicas mediante
+`stock_panel_instances()` y resuelve referencias con `stock_panel_for()`.
 
 ### BoardPlacement
 
@@ -60,7 +62,7 @@ Colección de colocaciones con score y explicación. Expone:
 Separa dos conceptos:
 
 - `complete`: todas las piezas esperadas aparecen exactamente una vez;
-- `valid`: cumple geometría, espesor, material y límites. Una pieza sin
+- `valid`: cumple geometría, espesor, material, veta y límites. Una pieza sin
   colocar (`missing_board_ids`) ya **no** invalida la solución por sí sola:
   se trata como un motivo "blando" que produce una solución parcial válida,
   a diferencia de solapes, límites excedidos o incompatibilidad de

@@ -1,8 +1,8 @@
 # Checklist visual — BoardComposer Studio
 
-**Fecha:** 2026-07-28  
-**Base / commit:** `main@3430698` (incluye cierre de huecos residuales)  
-**Versión:** `0.4.2`  
+**Fecha:** 2026-07-28 (taller 0019–0024: 2026-09-14)  
+**Base / commit:** `main` post-IDE-0019…0024  
+**Versión:** `0.4.3.dev0`  
 **Cómo arrancar:** `make run` o `.venv/bin/python -m studio.app`  
 **Guía:** [`../../docs/user/GUIA-RAPIDA.md`](../../docs/user/GUIA-RAPIDA.md)
 
@@ -39,6 +39,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Recientes en inicio y menú; quitar / vaciar lista si aplica.
 - [x] Guardar como plantilla y crear desde plantilla (si hay plantillas).
 - [x] Renombrar proyecto (F2 / menú / clic derecho raíz).
+- [x] Metadatos del proyecto (**Ctrl+Alt+M**): cliente / referencia / notas.
+- [x] Espesor de sierra (**Ctrl+Alt+K**): diálogo mm; Inspector en raíz.
 - [x] Cerrar o Salir con cambios sin guardar → diálogo claro (nombre, ruta, botones).
 
 ---
@@ -63,7 +65,10 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Cuadrícula Ctrl+G: visible/oculta + tip Mostrar/Ocultar.
 - [x] Selección pieza: borde/resaltado claro.
 - [x] Seleccionar todas / Invertir / Deseleccionar (Escape) según estado.
-- [x] Rotar (R) con pieza seleccionada; deshabilitado sin selección.
+- [x] Rotar (R) con pieza seleccionada; deshabilitado sin selección o con
+  veta fija (status lo dice).
+- [x] Intercambiar dos piezas colocadas (**Ctrl+Alt+X**); no-op visible si
+  no caben.
 - [x] Mover pieza entre paneles físicos (drag o flujo previsto) se refleja.
 - [x] Identificador / instancia de panel visible en Inspector de pieza.
 
@@ -94,6 +99,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 ## 6. Exportación
 
 - [x] Exportar solución (menú/flujo) completa sin error visible.
+- [x] Lista de corte (**Ctrl+Alt+C**): elige CSV o PDF; no es el CSV del
+  diálogo de solución.
 - [x] Opción abrir después (si existe) abre el artefacto.
 - [x] Export con open-after no deja la UI colgada.
 
@@ -112,7 +119,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 
 - [x] Ayuda → Documentación abre la guía rápida (`docs/user/GUIA-RAPIDA.md`).
 - [x] Ayuda → Novedades muestra bullets de CHANGELOG Unreleased.
-- [x] Ayuda → Atajos lista atajos legibles (incl. Ctrl+Alt+B / Ctrl+Alt+E).
+- [x] Ayuda → Atajos lista atajos legibles (incl. Ctrl+Alt+B / E / M / K / X / C).
 - [x] Ayuda → Explicar candidata (Ctrl+Alt+E): texto + Copiar tras Calcular layout.
 - [x] Acerca de muestra nombre/versión coherente.
 
