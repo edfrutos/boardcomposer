@@ -232,6 +232,9 @@
 
 ### Cambiado
 
+- Guía rápida y smoke de release: atajos de taller **Ctrl+Alt+M / K / X / C**
+  (metadatos, kerf, intercambio, lista de corte) y veta en pieza; español de
+  España (`puedes`, no `podés`).
 - Inventario: tip Añadir tablero aclara que la cantidad es stock de paneles, no varios IDs.
 - Importar: tip piezas aclara que si hay plantilla de mapeo aplicable, la aplica.
 - Importar: tip tableros aclara que si hay plantilla de mapeo aplicable, la aplica.

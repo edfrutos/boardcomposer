@@ -21,10 +21,11 @@ CSV/Excel) y el Explorador como árbol del trabajo en curso. No es una pantalla
 
 ## Filosofía
 
-Un proyecto es una unidad reproducible en disco (`.bcproj` v2, con migraciones).
-El usuario debe poder retomarlo meses después con el mismo inventario,
-colocaciones y contexto. La configuración de solver/tema vive en Preferencias
-(SCR-006), no en un formulario monolítico de «Proyecto».
+Un proyecto es una unidad reproducible en disco (`.bcproj` v5, con
+migraciones ADR-015). El usuario debe poder retomarlo meses después con el
+mismo inventario, colocaciones y contexto. La configuración de solver/tema
+vive en Preferencias (SCR-006), no en un formulario monolítico de
+«Proyecto».
 
 ---
 

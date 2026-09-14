@@ -32,6 +32,21 @@ def test_documentation_paths_exist():
     assert paths["design"].is_file()
 
 
+def test_user_guide_mentions_workshop_shortcuts_and_spain_spanish():
+    text = documentation_paths()["user_guide"].read_text(encoding="utf-8")
+    for needle in (
+        "Ctrl+Alt+C",
+        "Ctrl+Alt+K",
+        "Ctrl+Alt+X",
+        "Ctrl+Alt+M",
+        "veta",
+        "lista de corte",
+    ):
+        assert needle in text
+    assert "podés" not in text
+    assert "puedes" in text
+
+
 def test_load_whats_new_from_changelog(tmp_path):
     changelog = tmp_path / "CHANGELOG.md"
     changelog.write_text(
