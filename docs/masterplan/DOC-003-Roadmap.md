@@ -167,8 +167,7 @@ Objetivos:
 
 - Piloto DT-0006 opción D (backup); C diferida.
 - Pulido / QoL Fase 2 bajo demanda (ciclo `0.4.3.dev0`).
-- Candidato producto restante IDE-0022 Skyline
-  (0024, 0019, 0020, 0023 y 0021 cerrados).
+- Cola producto IDE-0019…0024 cerrada (Skyline IDE-0022 incluido).
 
 ### Prioridad P2
 
@@ -193,12 +192,11 @@ Toda modificación deberá:
 
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
 ciclo `0.4.3.dev0` (tips honesty + IDE-0024 metadatos + IDE-0019 swap +
-IDE-0020 kerf + IDE-0023 lista de corte + IDE-0021 veta;
-  candidato IDE-0022 Skyline).
+IDE-0020 kerf + IDE-0023 lista de corte + IDE-0021 veta +
+IDE-0022 Skyline).
 Revisión: `REVIEW-2026-09-13-planificacion.md`.
 
 Pendiente de:
 
 - Piloto DT-0006 D (activo; C diferida);
-- slice producto IDE-0022 Skyline bajo demanda;
 - aprobar como hoja de ruta oficial del proyecto.

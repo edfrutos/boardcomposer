@@ -58,10 +58,13 @@ La solución expone área usada y desperdicio tanto por panel como de forma tota
 
 ## Algoritmo inicial
 
-MaxRects será el primer generador compatible. Evaluará los tipos e instancias
-en el orden declarado por el proyecto y conservará las piezas que no quepan para
-el siguiente panel compatible. Las estrategias históricas siguen disponibles
-para proyectos sin inventario.
+MaxRects fue el primer generador compatible. Skyline (IDE-0022) implementa el
+mismo contrato: recorre tipos e instancias (con las mismas ordenaciones de
+panel), respeta espesor/material/veta, asigna `PanelReference` y conserva las
+piezas que no quepan para el siguiente panel compatible. Con más de una
+instancia física el pipeline ejecuta MaxRects y Skyline y elige la mejor
+candidata. Las estrategias históricas siguen disponibles para proyectos sin
+inventario o con un solo panel.
 
 ## Studio y persistencia
 
