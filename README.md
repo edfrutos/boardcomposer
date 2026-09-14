@@ -14,7 +14,10 @@ conserva la decisión final.
 - Studio en PySide6 con workspace, proyectos, inspector y soluciones.
 - Generadores horizontal, vertical, free-space, Skyline y MaxRects.
 - Beam Search, estrategias adaptativas, validación, scoring y diagnósticos.
-- Packing MaxRects multipanel con cantidad, espesor **y material** por panel.
+- Packing MaxRects **y** Skyline multipanel (ADR-014): cantidad, espesor,
+  material y veta por pieza.
+- Kerf / espesor de sierra, lista de corte CSV/PDF, intercambio de dos
+  piezas, metadatos de proyecto (cliente / ref. / notas).
 - Movimiento y reasignación interactiva de piezas entre paneles físicos desde
   el Workspace, con deshacer/rehacer.
 - Soluciones parciales (piezas omitidas) en vez de "sin solución" cuando no

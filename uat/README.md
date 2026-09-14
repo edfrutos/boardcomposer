@@ -6,7 +6,7 @@ Pruebas humanas (y enlace a regresión automatizada).
 | --- | --- | --- |
 | [`studio/CHECKLIST-VISUAL.md`](studio/CHECKLIST-VISUAL.md) | Cerrada 2026-07-28 | Pasada visual completa (+ huecos residuales cubiertos por test) |
 | [`studio/CHECKLIST-FUNCIONAL.md`](studio/CHECKLIST-FUNCIONAL.md) | Marcada (histórico) | Funcionalidad Studio ya verificada |
-| [`studio/CHECKLIST-EXPLAIN-EVAL.md`](studio/CHECKLIST-EXPLAIN-EVAL.md) | Pendiente humana | IDE-0007: 5 candidatas demo → útil vs ruido |
+| [`studio/CHECKLIST-EXPLAIN-EVAL.md`](studio/CHECKLIST-EXPLAIN-EVAL.md) | Cerrada 2026-09-12 | IDE-0007 MVP; LLM diferido DEC-0011 |
 | [`multipanel/CHECKLIST.md`](multipanel/CHECKLIST.md) | Cerrada | Multipanel absorbido por Studio |
 | [`plataforma/CHECKLIST.md`](plataforma/CHECKLIST.md) | OK operativo 2026-07-30 | Smoke batch+HTTP (+ 21 tests) |
 | [`RELEASE-SMOKE.md`](RELEASE-SMOKE.md) | Activa | Gate corto demo / ciclo `0.4.3.dev0` |

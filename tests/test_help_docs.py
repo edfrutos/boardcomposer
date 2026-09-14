@@ -47,6 +47,20 @@ def test_user_guide_mentions_workshop_shortcuts_and_spain_spanish():
     assert "puedes" in text
 
 
+def test_uat_funcional_mentions_workshop_shortcuts():
+    text = (
+        repo_root() / "uat" / "studio" / "CHECKLIST-FUNCIONAL.md"
+    ).read_text(encoding="utf-8")
+    for needle in (
+        "Ctrl+Alt+C",
+        "Ctrl+Alt+K",
+        "Ctrl+Alt+X",
+        "Ctrl+Alt+M",
+        "veta",
+    ):
+        assert needle in text
+
+
 def test_load_whats_new_from_changelog(tmp_path):
     changelog = tmp_path / "CHANGELOG.md"
     changelog.write_text(
