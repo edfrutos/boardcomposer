@@ -37,6 +37,9 @@
 ## Próxima tarea única
 
 1. Cerrar IDE-0022 Skyline multipanel — PR `#623` (CI verde).
+1. Ciclo `0.4.3.dev0`: cola producto **IDE-0019…0024 cerrada**. Pulido de
+   uso diario (guía / smoke) y gate de release; no abrir IDE nuevas sin
+   demanda.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
@@ -59,6 +62,12 @@
 - Una sola candidata tras «Calcular layout» es válida: el pipeline puede
   deduplicar a una solución única según inventario y heurísticas.
 - Veta (IDE-0021) y lista de corte (IDE-0023) entregadas.
+- Solo MaxRects y Skyline implementan el contrato multipanel completo
+  (CP-SAT exacto sigue siendo un solo panel, opcional).
+- Una sola candidata tras «Calcular layout» es válida: el pipeline puede
+  deduplicar a una solución única según inventario y heurísticas.
+- Veta (IDE-0021), lista de corte (IDE-0023) y Skyline multipanel
+  (IDE-0022) entregadas.
 - Guía de usuario final: [`docs/user/GUIA-RAPIDA.md`](../user/GUIA-RAPIDA.md)
   (también **Ayuda → Documentación**, Shift+F1). UAT y masterplan complementan.
 

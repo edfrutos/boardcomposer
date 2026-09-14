@@ -115,7 +115,8 @@ def test_pipeline_publishes_placement_failures_for_maxrects():
     pipeline.run()
 
     kinds = [event.kind for event in pipeline.trace.events]
-    # material_first includes maxrects; with stock panels pipeline uses only maxrects
+    # material_first includes maxrects; with several stock panels the
+    # pipeline uses maxrects and skyline (IDE-0022).
     assert "placement_failures_summary" in kinds or "generator_finished" in kinds
 
     bus = EventBus()

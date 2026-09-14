@@ -25,17 +25,22 @@ preferencias, atajos (**F1**), acerca de (**Ctrl+Shift+A**).
 ## Flujo típico
 
 1. **Nuevo proyecto** (**Ctrl+N**) — nombre y unidades (mm / pulgadas).
+   Opcional: cliente / referencia / notas (**Ctrl+Alt+M**).
 2. **Añadir tableros** (**Ctrl+Shift+B**) y **piezas** (**Ctrl+Shift+P**), o
-   importar CSV/Excel (**Ctrl+Shift+T** / **Ctrl+Shift+O**).
+   importar CSV/Excel (**Ctrl+Shift+T** / **Ctrl+Shift+O**). En cada pieza,
+   «Permitir rotación» desmarcado fija la **veta** (el cálculo y **R** no
+   giran esa pieza). Espesor de sierra del proyecto: **Ctrl+Alt+K**.
 3. **Calcular layout** (**Ctrl+Return**) — hace falta ≥1 tablero y ≥1 pieza;
-   genera soluciones candidatas.
+   genera soluciones candidatas (con varios tableros compara MaxRects y
+   Skyline).
 4. Revisar en **Workspace** (paneles, piezas, cámara).
 5. Comparar en **Comparador** (**Ctrl+4**): **Re Pág** / **Av Pág** entre
    candidatas; **Ctrl+Shift+Return** aplica la elegida. Si editas el
    inventario después de calcular, el banner avisa y ofrece **Calcular
    layout**; al aplicar o exportar con soluciones viejas, el diálogo prioriza
    **Calcular layout** frente a continuar de todos modos.
-6. **Exportar** (**Ctrl+Shift+E**): SVG / PNG / JPEG / PDF / DXF / JSON / CSV.
+6. **Exportar** la solución (**Ctrl+Shift+E**): SVG / PNG / JPEG / PDF / DXF /
+   JSON / CSV. **Lista de corte** de taller (**Ctrl+Alt+C**): CSV o PDF.
 7. **Guardar** (**Ctrl+S**) el proyecto `.bcproj`.
 
 ## Revisiones locales del `.bcproj`
@@ -56,7 +61,7 @@ vacía al restaurar o al abrir otro proyecto.
 
 Tras **Calcular layout**, **Ayuda → Explicar candidata…** (**Ctrl+Alt+E**)
 muestra fortalezas / debilidades / notas de la solución seleccionada (sin IA
-en red; podés **Copiar**).
+en red; puedes **Copiar**).
 
 ## Atajos útiles
 
@@ -72,6 +77,7 @@ en red; podés **Copiar**).
 | Aplicar layout del Comparador | Ctrl+Shift+Return |
 | Candidata anterior / siguiente | Re Pág / Av Pág |
 | Exportar solución | Ctrl+Shift+E |
+| Exportar lista de corte (CSV/PDF) | Ctrl+Alt+C |
 | Exportar historial Timeline | Ctrl+Shift+L |
 | Replay Timeline (lista enfocada) | Espacio / Inicio / ← / → |
 | Comparar revisiones `.bcproj` | Ctrl+Shift+Y |
@@ -79,7 +85,10 @@ en red; podés **Copiar**).
 | Exportar backup de revisiones | Ctrl+Alt+B |
 | Explicar candidata | Ctrl+Alt+E |
 | Deshacer / Rehacer | Ctrl+Z / Ctrl+Shift+Z |
-| Rotar pieza | R |
+| Rotar pieza | R (no si la veta está fija) |
+| Intercambiar dos piezas colocadas | Ctrl+Alt+X |
+| Metadatos del proyecto | Ctrl+Alt+M |
+| Espesor de sierra / kerf | Ctrl+Alt+K |
 | Mover pieza seleccionada | Flechas (Shift = tamaño cuadrícula) |
 | Seleccionar todas / Deseleccionar / Invertir | Ctrl+A / Escape / Ctrl+Shift+I |
 | Editar selección / Copiar ID | Return / Ctrl+Shift+C |
@@ -122,7 +131,10 @@ Canvas central del layout.
 - **Zoom:** rueda, **Ctrl+=** / **Ctrl+-**, ajustar todo (**Ctrl+0**) o
   selección (**Ctrl+Shift+0**). Cuadrícula: **Ctrl+G**.
 - **Pieza colocada:** **flechas** mueven 1 mm; **Shift+flechas** usan el
-  tamaño de cuadrícula (Preferencias); **R** rota 90°.
+  tamaño de cuadrícula (Preferencias); **R** rota 90° (deshabilitado si la
+  veta está fija). Con **exactamente dos** piezas colocadas
+  seleccionadas, **Ctrl+Alt+X** intercambia posiciones (si no caben o el
+  material no coincide, no cambia nada; se puede deshacer).
 - **Selección:** **Ctrl+A** / **Escape** / **Ctrl+Shift+I**; **Return**
   edita; **Ctrl+Shift+C** copia el ID.
 
@@ -143,9 +155,11 @@ Dock **Ctrl+1**. Árbol del proyecto: **Tableros**, **Piezas** y **Soluciones**.
 
 Dock **Ctrl+2**. Detalle de la selección y del layout.
 
-- Sin selección: mensaje vacío. Con **tablero** o **pieza**: dimensiones,
-  espesor, cantidad, material; en piezas, posición o «sin colocar» (con
-  consejo de colocar vía Explorador).
+- Sin selección: mensaje vacío. Con la **raíz del proyecto** en el
+  Explorador: cliente, referencia, notas (**Ctrl+Alt+M**) y espesor de
+  sierra (**Ctrl+Alt+K**). Con **tablero** o **pieza**: dimensiones,
+  espesor, cantidad, material; en piezas, veta (libre o fija) y posición
+  o «sin colocar» (con consejo de colocar vía Explorador).
 - Tras **Calcular layout**: métricas de la candidata (piezas, huecos,
   material libre, omitidas, puntos clave).
 - **Retales** son **informativos** — no inventario reutilizable automático.
@@ -166,7 +180,7 @@ Dock **Ctrl+4**. Candidatas tras **Calcular layout**.
   **Calcular layout** recalcula; tips de aplicar / navegar / explicar
   también lo advierten.
 - **Ayuda → Explicar candidata…** (**Ctrl+Alt+E**): fortalezas / debilidades
-  / notas (sin IA en red; podés **Copiar**).
+  / notas (sin IA en red; puedes **Copiar**).
 
 ## Timeline
 
@@ -191,6 +205,9 @@ marcadores…).
 
 - Formatos: SVG / PNG / JPEG / PDF / DXF / JSON / CSV. Vista previa según
   opciones (métricas, explicación, retales en JSON).
+- **Archivo → Exportar lista de corte…** (**Ctrl+Alt+C**) es otro flujo:
+  CSV o PDF de taller (piezas y tableros de la candidata). Recuerda carpeta
+  y formato. No sustituye el CSV de colocaciones del diálogo de solución.
 - **Cliente** y **plantilla** reutilizan un perfil; **Guardar…** / **Eliminar**
   gestionan el catálogo; **Exportar/Importar pack…** comparte plantillas
   (recuerda la última carpeta).
@@ -240,7 +257,10 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+S** antes de poder abrir carpeta. El **%** es el zoom del Workspace
   (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**).
 - Material y espesor deben ser compatibles entre pieza y tablero.
-- Varias soluciones = alternativas puntuadas; tú eliges.
+- El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
+  y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
+- Varias soluciones = alternativas puntuadas; tú eliges. Con más de un
+  tablero físico el cálculo compara MaxRects y Skyline.
 - Retales en Inspector son **informativos**, no inventario reutilizable automático.
 - Si te arrepientes tras varios Guardar: **Ctrl+Alt+Y** restaura la última
   copia del anillo local (luego Guardar otra vez).

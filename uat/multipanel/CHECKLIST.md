@@ -13,7 +13,8 @@
 - [x] Comparador resalta la mejor solución por métrica.
 - [x] Retales visibles en Inspector / SVG.
 - [x] Importación de inventario CSV con vista previa.
-- [x] Persistencia `.bcproj` v2 y carga de proyectos v1.
+- [x] Persistencia `.bcproj` (v5 actual; carga v1…v4 vía ADR-015).
+- [x] Skyline y MaxRects cumplen el contrato multipanel (IDE-0022).
 
 ## Cubierto también en UAT Studio
 
@@ -24,6 +25,7 @@
 ## Regresión automatizada
 
 - `tests/test_workspace_qt_interaction.py` (Qt offscreen).
-- `tests/test_multi_panel_validation.py`, `tests/test_maxrects_generator.py`.
+- `tests/test_multi_panel_validation.py`, `tests/test_maxrects_generator.py`,
+  `tests/test_multi_panel_skyline.py`.
 - `scripts/benchmark_multipanel_maxrects.py`.
 - `tests/test_uat_multi_candidate_flow.py` (Comparador multi-candidata).

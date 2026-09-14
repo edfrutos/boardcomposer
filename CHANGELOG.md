@@ -9,6 +9,9 @@
   IDE-0022 (PR `#623`) sin IDE nuevas (Issues = 0; producto #621 lista
   de corte + #622 veta en `main`; planning #620 mergeado; eval IDE-0007
   cerrada; piloto DT-0006 D).
+- Skyline: packing multipanel (IDE-0022); mismo contrato ADR-014 que
+  MaxRects (inventario, material/espesor, veta, retales); el pipeline
+  compara ambas candidatas cuando hay más de un panel físico.
 - Piezas: veta fija / orientación de fibra (IDE-0021); `.bcproj` v5;
   checkbox «Permitir rotación» persistido; el cálculo y Rotar (R) no
   giran piezas con veta fija.
@@ -234,6 +237,11 @@
 
 ### Cambiado
 
+- Guía rápida y smoke de release: atajos de taller **Ctrl+Alt+M / K / X / C**
+  (metadatos, kerf, intercambio, lista de corte) y veta en pieza; español de
+  España (`puedes`, no `podés`).
+- UAT Studio / algoritmos: checklist taller 0019–0024; Skyline en el
+  pipeline multipanel; eval IDE-0007 marcada cerrada.
 - Inventario: tip Añadir tablero aclara que la cantidad es stock de paneles, no varios IDs.
 - Importar: tip piezas aclara que si hay plantilla de mapeo aplicable, la aplica.
 - Importar: tip tableros aclara que si hay plantilla de mapeo aplicable, la aplica.

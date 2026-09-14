@@ -1,8 +1,8 @@
 # Checklist humana — funcionalidad Studio
 
-**Fecha:** 2026-07-25  
-**Base:** `main` tras sync docs SCR-001…007 + FLW-001…006  
-**Versión:** `0.4.2`  
+**Fecha:** 2026-07-25 (taller 0019–0024: 2026-09-14)  
+**Base:** `main` tras IDE-0019…0024 + guía rápida  
+**Versión:** `0.4.3.dev0`  
 **Cómo arrancar:** `make run` o `.venv/bin/python -m studio.app`
 
 > Pasada visual cerrada (2026-07-28): [`CHECKLIST-VISUAL.md`](CHECKLIST-VISUAL.md).
@@ -61,7 +61,8 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] Pan: botón medio, botón derecho, **Espacio + arrastre**.
 - [x] Clic en vacío deselecciona; **Ctrl+A** / **Esc** / **Ctrl+Shift+I** (tips de estado en selección).
 - [x] **Flechas** mueven 1 mm; **Shift+flechas** = tamaño de cuadrícula (prefs).
-- [x] **R** rota si cabe (tip de estado); si no, se rechaza.
+- [x] **R** rota si cabe (tip de estado); si no, se rechaza. Con **veta
+  fija** la acción queda deshabilitada (`status.cannot_rotate_grain`).
 - [x] Doble clic pieza/tablero → editar; vacío → ajustar vista.
 - [x] **Enter/Return** edita selección (tip de estado); **F2** renombra (tip de estado); **Ctrl+Shift+C** copia ID (tip de estado).
 - [x] **Ctrl+D** duplica pieza o tablero enfocado (tip de estado).
@@ -136,7 +137,8 @@ Precondición para checks de comparador multi-candidata:
 
 - [x] Tema, idioma, unidades, grid, estrategia/pesos, máx. soluciones, defaults export.
 - [x] Geometría de ventana/docks se recuerda al reiniciar.
-- [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo (incl. PgUp/PgDown, Ctrl+Shift+Return/E, Ctrl+Alt+B/E).
+- [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo
+  (incl. PgUp/PgDown, Ctrl+Shift+Return/E, Ctrl+Alt+B/E/M/K/X/C).
 - [x] Ayuda → Novedades (**Ctrl+Shift+U**; tip de estado) / Documentación (**Shift+F1**; tip de estado) / Acerca de (**Ctrl+Shift+A**; tip de estado, icono correcto).
 - [x] **Ayuda → Explicar candidata…** (**Ctrl+Alt+E**; tip idle sin layout): tras Calcular, diálogo con fortalezas/debilidades/notas + **Copiar** (status bar confirma).
   Eval humana 5 candidatas: [`CHECKLIST-EXPLAIN-EVAL.md`](CHECKLIST-EXPLAIN-EVAL.md).
@@ -149,6 +151,27 @@ Precondición para checks de comparador multi-candidata:
 - [x] Material/espesor incompatible → pieza omitida o fallo visible (parcial).
 - [x] Inspector muestra panel + instancia; retales informativos si hay.
 - [x] Guardar/reabrir `.bcproj` conserva colocaciones e inventario.
+
+---
+
+## 9. Taller 0.4.3 (IDE-0019…0024)
+
+Regresión auto: `tests/test_grain.py`, `tests/test_kerf.py`,
+`tests/test_cut_list.py`, `tests/test_multi_panel_skyline.py`,
+`tests/test_project_serializer.py`. Guía: `docs/user/GUIA-RAPIDA.md`.
+
+- [x] **Ctrl+Alt+M** metadatos (cliente / referencia / notas); Inspector en
+  raíz del Explorador; `.bcproj` v3+.
+- [x] **Ctrl+Alt+K** espesor de sierra; 0 mm = sin hueco; recalcular tras
+  cambiar kerf marca soluciones desactualizadas.
+- [x] Pieza: desmarcar «Permitir rotación» → veta fija; Calcular y **R** no
+  giran; Inspector muestra veta.
+- [x] **Ctrl+Alt+X** intercambia dos piezas colocadas; no-op si no caben o
+  material/espesor no coinciden; se puede deshacer.
+- [x] **Ctrl+Alt+C** lista de corte CSV/PDF (flujo aparte de Exportar
+  solución); pide recalcular si outdated.
+- [x] Varios tableros físicos: pipeline MaxRects **y** Skyline; Inspector
+  panel + instancia.
 
 ---
 
@@ -165,8 +188,9 @@ Precondición para checks de comparador multi-candidata:
 | 6 Timeline | OK | Export/clear/filters |
 | 7 Preferencias/Ayuda | OK | Atajos/docs/tema |
 | 8 Multipanel | OK | Ver `uat/multipanel/` |
+| 9 Taller 0019–0024 | OK | Guía + tests grano/kerf/corte/Skyline |
 
 **Veredicto:** x Listo para uso diario de estudio  □ Faltan huecos (anotar arriba)  □ Solo regresión automatizada
 
-**Regresión auto (opcional):** `make test` → 562+ passed; multi-candidata:
+**Regresión auto (opcional):** `make test` → 1180+ passed; multi-candidata:
 `pytest tests/test_uat_multi_candidate_flow.py`.

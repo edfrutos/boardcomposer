@@ -80,3 +80,10 @@ Revisión: `docs/masterplan/REVIEW-2026-09-14-planificacion.md`.
 9. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).
 10. Gate demo/release (`uat/RELEASE-SMOKE.md`) — activo en cada corte.
 11. Plugins (IDE-0008) — no priorizar sin ADR-004 operativo.
+6. IDE-0023 lista de corte / informe de taller (**Ctrl+Alt+C**; CSV/PDF).
+7. IDE-0021 veta / orientación de fibra (`.bcproj` v5; no rotar si fija).
+8. IDE-0022 packing multipanel Skyline (ADR-014; junto a MaxRects).
+9. Ciclo `0.4.3.dev0` — cola de producto 0019…0024 cerrada.
+10. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).
+11. Gate demo/release (`uat/RELEASE-SMOKE.md`) — activo en cada corte.
+12. Plugins (IDE-0008) — no priorizar sin ADR-004 operativo.

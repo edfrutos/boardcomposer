@@ -21,10 +21,11 @@ CSV/Excel) y el Explorador como árbol del trabajo en curso. No es una pantalla
 
 ## Filosofía
 
-Un proyecto es una unidad reproducible en disco (`.bcproj` v2, con migraciones).
-El usuario debe poder retomarlo meses después con el mismo inventario,
-colocaciones y contexto. La configuración de solver/tema vive en Preferencias
-(SCR-006), no en un formulario monolítico de «Proyecto».
+Un proyecto es una unidad reproducible en disco (`.bcproj` v5, con
+migraciones ADR-015). El usuario debe poder retomarlo meses después con el
+mismo inventario, colocaciones y contexto. La configuración de solver/tema
+vive en Preferencias (SCR-006), no en un formulario monolítico de
+«Proyecto».
 
 ---
 
@@ -145,6 +146,7 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
 - Metadatos de proyecto (cliente, referencia, notas) entregados (IDE-0024).
   Kerf / espesor de sierra entregado (IDE-0020; `.bcproj` v4; **Ctrl+Alt+K**).
   Veta / orientación de fibra entregada (IDE-0021; `.bcproj` v5; por pieza).
+  Packing Skyline multipanel entregado (IDE-0022).
 
 ---
 

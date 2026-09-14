@@ -161,6 +161,7 @@ Objetivos:
 - Pulido / QoL Fase 2 bajo demanda (ciclo `0.4.3.dev0`).
 - Candidato producto restante IDE-0022 Skyline (PR `#623`;
   0024, 0019, 0020, 0023 y 0021 cerrados).
+- Cola producto IDE-0019…0024 cerrada (Skyline IDE-0022 incluido).
 
 ### Prioridad P2
 
@@ -188,6 +189,9 @@ ciclo `0.4.3.dev0` (tips honesty + IDE-0024 metadatos + IDE-0019 swap +
 IDE-0020 kerf + IDE-0023 lista de corte + IDE-0021 veta;
 candidato IDE-0022 Skyline en PR `#623`).
 Revisión: `REVIEW-2026-09-14-planificacion.md`.
+IDE-0020 kerf + IDE-0023 lista de corte + IDE-0021 veta +
+IDE-0022 Skyline).
+Revisión: `REVIEW-2026-09-13-planificacion.md`.
 
 Pendiente de:
 

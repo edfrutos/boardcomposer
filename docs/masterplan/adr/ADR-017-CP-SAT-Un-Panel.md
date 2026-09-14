@@ -20,8 +20,8 @@ combinatoria y todavía no hay un caso de uso de Studio que lo demande.
 1. **Alcance:** un solo panel físico. Las dimensiones salen de
    `ProjectConstraints.max_length_mm` / `max_width_mm` (mismo contrato que
    los generadores clásicos de un panel). En proyectos con inventario
-   multipanel (`stock_panel_instances() > 1`) el pipeline sigue forzando
-   solo MaxRects; CP-SAT no participa ahí.
+   multipanel (`stock_panel_instances() > 1`) el pipeline fuerza MaxRects
+   y Skyline (IDE-0022); CP-SAT no participa ahí.
 2. **Dependencia opcional:** `ortools` se instala con
    `pip install 'boardcomposer[cp_sat]'`. Importar `cp_sat_runner` no falla
    sin él; solo `generate_cp_sat_solution` lanza `CpSatUnavailableError`.
