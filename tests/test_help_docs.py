@@ -48,9 +48,9 @@ def test_user_guide_mentions_workshop_shortcuts_and_spain_spanish():
 
 
 def test_uat_funcional_mentions_workshop_shortcuts():
-    text = (
-        repo_root() / "uat" / "studio" / "CHECKLIST-FUNCIONAL.md"
-    ).read_text(encoding="utf-8")
+    text = (repo_root() / "uat" / "studio" / "CHECKLIST-FUNCIONAL.md").read_text(
+        encoding="utf-8"
+    )
     for needle in (
         "Ctrl+Alt+C",
         "Ctrl+Alt+K",
