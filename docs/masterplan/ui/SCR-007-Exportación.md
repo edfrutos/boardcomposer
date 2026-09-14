@@ -29,7 +29,7 @@ canvas sin calcular.
 ## Acceso
 
 | Acción | Atajo / menú |
-|--------|----------------|
+| -------- | ---------------- |
 | Exportar solución seleccionada… | **Ctrl+Shift+E** · Exportar · toolbar |
 | Exportar lista de corte… | **Ctrl+Alt+C** · Exportar (flujo aparte; CSV/PDF) |
 | Exportar historial del Timeline… | **Ctrl+Shift+L** · Exportar · Timeline (flujo aparte) |
@@ -65,7 +65,7 @@ Tras exportar OK: opción de abrir el archivo o revelar la carpeta.
 ## Formatos
 
 | Formato | Contenido principal |
-|--------|---------------------|
+| -------- | --------------------- |
 | PNG / JPEG | Raster del layout (misma geometría que SVG preview) |
 | SVG / DXF / PDF | Planos de paneles; retales opcionales |
 | JSON | Documento estructurado; métricas / explicación / retales opcionales |
