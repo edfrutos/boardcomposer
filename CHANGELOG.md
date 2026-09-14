@@ -1,6 +1,14 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.3.dev0 — 2026-08-02
+## Unreleased — 0.4.4.dev0 — 2026-09-14
+
+### Añadido
+
+- _(ciclo post-`0.4.3` — vacío al corte)_
+
+### Cambiado
+
+## 0.4.3 — 2026-09-14
 
 ### Añadido
 

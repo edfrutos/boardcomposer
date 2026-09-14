@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-07-28 (taller 0019–0024: 2026-09-14)  
 **Base / commit:** `main` post-IDE-0019…0024  
-**Versión:** `0.4.3.dev0`  
+**Versión:** `0.4.3`  
 **Cómo arrancar:** `make run` o `.venv/bin/python -m studio.app`  
 **Guía:** [`../../docs/user/GUIA-RAPIDA.md`](../../docs/user/GUIA-RAPIDA.md)
 

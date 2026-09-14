@@ -9,7 +9,7 @@ Pruebas humanas (y enlace a regresión automatizada).
 | [`studio/CHECKLIST-EXPLAIN-EVAL.md`](studio/CHECKLIST-EXPLAIN-EVAL.md) | Cerrada 2026-09-12 | IDE-0007 MVP; LLM diferido DEC-0011 |
 | [`multipanel/CHECKLIST.md`](multipanel/CHECKLIST.md) | Cerrada | Multipanel absorbido por Studio |
 | [`plataforma/CHECKLIST.md`](plataforma/CHECKLIST.md) | OK operativo 2026-07-30 | Smoke batch+HTTP (+ 21 tests) |
-| [`RELEASE-SMOKE.md`](RELEASE-SMOKE.md) | Activa | Gate corto demo / ciclo `0.4.3.dev0` |
+| [`RELEASE-SMOKE.md`](RELEASE-SMOKE.md) | Activa | Gate corto demo / release `0.4.3` |
 
 Arranque: `make run` o `.venv/bin/python -m studio.app`.
 

@@ -23,9 +23,9 @@ alternativas comprensibles para que el usuario decida.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
   `docs/masterplan/REVIEW-2026-09-14-planificacion.md`.
-- Versión de desarrollo: `0.4.3.dev0` (última estable: `0.4.2`).
-- Próximo: merge IDE-0022 (`#623`); piloto DT-0006 D (sin IDE nuevas: cola
-  no vacía; Issues = 0; producto #617–#622 en `main`; eval IDE-0007 cerrada).
+- Versión: `0.4.3`.
+- Próximo: etiqueta `v0.4.3`; piloto DT-0006 D; no IDE nuevas (cola 0019–0024
+  cerrada; Issues = 0; eval IDE-0007 cerrada).
 
 ## Fuentes de verdad
 
