@@ -3862,6 +3862,7 @@ class MainWindow(QMainWindow):
             export_include_metrics=options.include_metrics,
             export_include_explanation=options.include_explanation,
             export_include_offcuts=options.include_offcuts,
+            export_include_piece_labels=options.include_piece_labels,
             last_export_directory=str(Path(path).expanduser().resolve().parent),
         )
         self.services.preferences.update(updated)

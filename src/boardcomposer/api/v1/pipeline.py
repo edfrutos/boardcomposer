@@ -69,9 +69,11 @@ def export_json(
 def export_svg(
     solution: AssemblySolution,
     project: Project | None = None,
+    *,
+    include_piece_labels: bool = True,
 ) -> str:
     """Render one solution as an SVG document string."""
-    return solution_to_svg(solution, project)
+    return solution_to_svg(solution, project, include_piece_labels=include_piece_labels)
 
 
 def export_csv(solution: AssemblySolution) -> str:

@@ -43,7 +43,7 @@ def test_solution_to_dxf_draws_panels_pieces_and_offcuts():
     assert "PANELS" in dxf
     assert "PIECES" in dxf
     assert "OFFCUTS" in dxf
-    assert "A" in dxf
+    assert "A 400x300" in dxf
     assert dxf.rstrip().endswith("EOF")
 
 
@@ -56,7 +56,7 @@ def test_solution_to_dxf_works_without_a_project():
     dxf = solution_to_dxf(solution)
 
     assert "PIECES" in dxf
-    assert "A" in dxf
+    assert "A 100x50" in dxf
 
 
 def test_solution_to_pdf_returns_a_valid_pdf_header():
@@ -68,7 +68,7 @@ def test_solution_to_pdf_returns_a_valid_pdf_header():
     assert b"%%EOF" in pdf
     assert b"/Type /Page" in pdf
     assert b"Helvetica" in pdf
-    assert b"A" in pdf
+    assert b"A 400x300" in pdf
 
 
 def test_solution_to_pdf_works_without_a_project():
@@ -80,4 +80,28 @@ def test_solution_to_pdf_works_without_a_project():
     pdf = solution_to_pdf(solution)
 
     assert pdf.startswith(b"%PDF-1.4")
-    assert b"A" in pdf
+    assert b"A 100x50" in pdf
+
+
+def test_solution_to_dxf_can_omit_piece_labels():
+    solution = AssemblySolution(
+        placements=[BoardPlacement("A", 0, 0, 100, 50)],
+        explanation=SolutionExplanation(),
+    )
+
+    dxf = solution_to_dxf(solution, include_piece_labels=False)
+
+    assert "PIECES" in dxf
+    assert "A 100x50" not in dxf
+
+
+def test_solution_to_pdf_can_omit_piece_labels():
+    solution = AssemblySolution(
+        placements=[BoardPlacement("A", 0, 0, 100, 50)],
+        explanation=SolutionExplanation(),
+    )
+
+    pdf = solution_to_pdf(solution, include_piece_labels=False)
+
+    assert pdf.startswith(b"%PDF-1.4")
+    assert b"A 100x50" not in pdf

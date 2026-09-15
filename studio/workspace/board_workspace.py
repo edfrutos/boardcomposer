@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, cast
 from PySide6.QtCore import QPoint, QPointF, QRectF, Qt, Signal
 from PySide6.QtGui import QKeyEvent, QMouseEvent, QPainter, QResizeEvent, QWheelEvent
 from PySide6.QtWidgets import (
+    QGraphicsItem,
     QGraphicsRectItem,
     QGraphicsScene,
     QGraphicsView,
@@ -31,6 +32,18 @@ if TYPE_CHECKING:
 
 _NUDGE_STEP_MM = 1.0
 _NUDGE_LARGE_FALLBACK_MM = 10.0
+
+
+def _piece_item_from_hit(item: QGraphicsItem | None) -> BoardPieceItem | None:
+    """Return the piece under a scene hit, including decorative children."""
+    current: QGraphicsItem | None = item
+    while current is not None:
+        if isinstance(current, BoardPieceItem):
+            return current
+        current = current.parentItem()
+    return None
+
+
 _ARROW_NUDGE: dict[Qt.Key, tuple[float, float]] = {
     Qt.Key.Key_Left: (-1.0, 0.0),
     Qt.Key.Key_Right: (1.0, 0.0),
@@ -574,7 +587,8 @@ class BoardWorkspace(QGraphicsView):
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         """Handle the mouse press event."""
-        clicked_item = self.itemAt(event.position().toPoint())
+        hit = self.itemAt(event.position().toPoint())
+        clicked_item = _piece_item_from_hit(hit)
         button = event.button()
 
         # Middle / right / Space+left: pan (even over a piece — never start a drag).
@@ -585,7 +599,7 @@ class BoardWorkspace(QGraphicsView):
             event.accept()
             return
 
-        if isinstance(clicked_item, BoardPieceItem):
+        if clicked_item is not None:
             old_x, old_y = self._local_item_position(clicked_item)
             self._rejected_drop_slot = None
             self._drag.begin(
@@ -603,7 +617,7 @@ class BoardWorkspace(QGraphicsView):
                 # Empty canvas / gap between panels: clear selection.
                 self.clear_piece_selection()
 
-        if clicked_item is None:
+        if hit is None:
             self._start_pan(event.position().toPoint())
             event.accept()
             return
@@ -703,10 +717,10 @@ class BoardWorkspace(QGraphicsView):
 
     def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
         """Edit piece/board on double-click; otherwise fit the viewport."""
-        clicked_item = self.itemAt(event.position().toPoint())
+        clicked_item = _piece_item_from_hit(self.itemAt(event.position().toPoint()))
         window = self.window()
 
-        if isinstance(clicked_item, BoardPieceItem):
+        if clicked_item is not None:
             if hasattr(window, "_edit_piece"):
                 window._edit_piece(clicked_item.piece_id)
             event.accept()

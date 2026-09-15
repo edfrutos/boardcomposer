@@ -10,6 +10,7 @@ from boardcomposer.export.common import (
     PANEL_GAP_MM,
     canvas_size_mm,
     panel_offsets,
+    piece_plan_label,
 )
 
 
@@ -75,3 +76,8 @@ def test_canvas_size_mm_falls_back_to_solution_totals():
     assert height == solution.total_width_mm
     assert width == 100.0
     assert height == 50.0
+
+
+def test_piece_plan_label_includes_id_and_placed_size():
+    placement = BoardPlacement("A", 0, 0, 400, 300)
+    assert piece_plan_label(placement) == "A 400x300"

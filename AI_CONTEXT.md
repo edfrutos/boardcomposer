@@ -24,7 +24,7 @@ alternativas comprensibles para que el usuario decida.
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
   `docs/masterplan/REVIEW-2026-09-15-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3`).
-- Próximo: cola IDE-0026 → 0027 → 0030 → 0025 → 0028 → 0029; piloto
+- Próximo: cola IDE-0027 → 0030 → 0025 → 0028 → 0029; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

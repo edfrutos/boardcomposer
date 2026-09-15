@@ -204,7 +204,8 @@ marcadores…).
 **Archivo → Exportar…** (**Ctrl+Shift+E**) exporta la **solución seleccionada**.
 
 - Formatos: SVG / PNG / JPEG / PDF / DXF / JSON / CSV. Vista previa según
-  opciones (métricas, explicación, retales en JSON).
+  opciones (métricas y explicación solo JSON; retales; **etiquetas** de
+  pieza con id y LxW mm en el plano SVG/PDF/DXF/raster).
 - **Archivo → Exportar lista de corte…** (**Ctrl+Alt+C**) es otro flujo:
   CSV o PDF de taller (piezas y tableros de la candidata). Recuerda carpeta
   y formato. No sustituye el CSV de colocaciones del diálogo de solución.
@@ -222,8 +223,8 @@ marcadores…).
 - **General:** idioma, tema (sistema / claro / oscuro), unidades.
 - **Workspace:** mostrar cuadrícula y tamaño (afecta **Shift+flechas**).
 - **Algoritmos:** estrategia y pesos opcionales.
-- **Exportación:** formato por defecto y opciones JSON (métricas /
-  explicación / retales).
+- **Exportación:** formato por defecto y opciones (métricas / explicación
+  JSON, retales, etiquetas de piezas).
 - **Avanzado:** máx. soluciones a conservar; **Abrir carpeta de
   configuración…** (`preferences.json`); **Restaurar valores**.
 

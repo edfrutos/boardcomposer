@@ -116,6 +116,31 @@ def test_export_dialog_embeds_graphic_preview(qapp):
     assert "Retales: 0" in dialog.preview.toPlainText()
 
 
+def test_preview_svg_respects_piece_labels_option():
+    solution = _solution()
+
+    with_labels = preview_svg(solution, None, ExportOptions(include_piece_labels=True))
+    without_labels = preview_svg(
+        solution, None, ExportOptions(include_piece_labels=False)
+    )
+
+    assert "A 100x50" in with_labels
+    assert "A 100x50" not in without_labels
+
+
+def test_export_dialog_piece_labels_enabled_for_plan_formats(qapp):
+    del qapp
+    from studio.dialogs import ExportDialog
+
+    dialog = ExportDialog(_solution(), None, ExportOptions(format="svg"))
+    assert dialog.include_piece_labels.isEnabled()
+    assert dialog.include_piece_labels.text() == "Etiquetas de piezas (id y medidas)"
+
+    dialog.format.setCurrentIndex(dialog.format.findData("json"))
+    dialog._refresh_preview()
+    assert not dialog.include_piece_labels.isEnabled()
+
+
 def test_svg_to_raster_bytes_supports_png_and_jpeg(qapp):
     del qapp
     from studio.solution_thumbnail import svg_to_raster_bytes

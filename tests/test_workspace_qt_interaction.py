@@ -587,3 +587,13 @@ def test_arrow_without_selection_is_ignored():
     handled = workspace.nudge_selected_piece(1.0, 0.0)
     assert handled is False
     assert (placement.x_mm, placement.y_mm) == before
+
+
+def test_piece_item_label_includes_id_and_placed_size():
+    item = BoardPieceItem("A", 0, 0, 400, 300)
+    assert item._label is not None
+    assert item._label.text() == "A 400x300"
+    assert item._label.acceptedMouseButtons() == Qt.MouseButton.NoButton
+
+    item.set_rotation(90)
+    assert item._label.text() == "A 300x400"
