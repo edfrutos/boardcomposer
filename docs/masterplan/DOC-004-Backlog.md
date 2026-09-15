@@ -96,7 +96,7 @@ Observaciones:
 | IDE-0024 | Metadatos de proyecto (cliente, ref., notas) | 🟢 | P2 |
 | IDE-0025 | Retales como inventario reutilizable | ⚪ | P2 |
 | IDE-0026 | Etiquetas de piezas en plano (SVG/PDF) | 🟢 | P2 |
-| IDE-0027 | Secuencia de corte por panel | ⚪ | P2 |
+| IDE-0027 | Secuencia de corte por panel | 🟢 | P2 |
 | IDE-0028 | Catálogo de materiales / espesores | ⚪ | P2 |
 | IDE-0029 | Coste estimado de material | ⚪ | P3 |
 | IDE-0030 | Congelar colocaciones / re-pack omitidas | ⚪ | P2 |
@@ -119,7 +119,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0024 | S | SCR-005 evolución; persistencia v3 | Entregado; kerf/vetas en 0020/0021 |
 | IDE-0025 | M–L | ADR-016; migraciones `.bcproj`; StockPanel | Evolución retales → inventario |
 | IDE-0026 | S–M | SCR-007 export; Workspace labels | Entregado; id + LxW mm; casilla export |
-| IDE-0027 | M | IDE-0023; métricas por panel | Orden de sierra exportable |
+| IDE-0027 | M | IDE-0023; métricas por panel | Entregado; CSV/PDF + números plano |
 | IDE-0028 | M | SCR-005; prefs / archivo usuario | Catálogo tipificado entre proyectos |
 | IDE-0029 | S–M | IDE-0028 útil; scoring / export | Precio por m² → coste solución |
 | IDE-0030 | M | Pipeline parciales; Command Pattern | Freeze OK + re-pack solo omitidas |
@@ -158,7 +158,7 @@ Snapshot: `REVIEW-2026-09-15-planificacion.md`.
 
 Próximo foco:
 
-1. Atacar cola IDE-0027 → 0030 → 0025 → 0028 → 0029.
+1. Atacar cola IDE-0030 → 0025 → 0028 → 0029.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto (`#628`); etiqueta `v0.4.3` si falta.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.3.0  
+**Versión:** 1.4.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 15/09/2026
 
@@ -83,6 +83,9 @@ diálogo.
   (omiten `offcuts` cuando están desmarcados).
 - **Etiquetas de piezas (id y LxW mm):** SVG, PNG, JPEG, DXF y PDF
   (mismo dibujo que Workspace). Deshabilitada en JSON/CSV. Default: sí.
+- **Números de secuencia (IDE-0027):** siempre en SVG/PDF/DXF (paso de
+  pieza en su panel). La lista de corte (Ctrl+Alt+C) añade el orden de
+  sierra (guillotina o por posición) en CSV y PDF.
 
 ---
 
@@ -171,7 +174,7 @@ No usa `ExportDialog`. Flujo propio:
 - Sin controles de papel/escala/márgenes.
 - Métricas/explicación solo en JSON.
 - CSV del diálogo limitado a placements; lista de corte (Ctrl+Alt+C)
-  cubre piezas/tableros/cortes en CSV o PDF.
+  cubre piezas/tableros/cortes y secuencia de sierra en CSV o PDF.
 - Sin exportación por lotes ni publicación a la nube.
 
 ---

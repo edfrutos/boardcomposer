@@ -8,6 +8,12 @@ from .cut_list import (
     cut_list_to_pdf,
     render_cut_list,
 )
+from .cut_sequence import (
+    PanelCutSequence,
+    SequenceStep,
+    build_cut_sequences,
+    piece_sequence_numbers,
+)
 from .dxf_exporter import solution_to_dxf
 from .json_exporter import solution_to_json
 from .pdf_exporter import solution_to_pdf
@@ -18,11 +24,15 @@ __all__ = [
     "DEFAULT_SVG_PALETTE",
     "CutList",
     "CutListMeta",
+    "PanelCutSequence",
+    "SequenceStep",
     "SvgPalette",
     "build_cut_list",
+    "build_cut_sequences",
     "cut_list_to_csv",
     "cut_list_to_pdf",
     "piece_plan_label",
+    "piece_sequence_numbers",
     "prepare_solution_for_export",
     "render_cut_list",
     "solution_to_csv",
