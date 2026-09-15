@@ -43,6 +43,7 @@ class ExportTemplate:
             "include_metrics": self.options.include_metrics,
             "include_explanation": self.options.include_explanation,
             "include_offcuts": self.options.include_offcuts,
+            "include_piece_labels": self.options.include_piece_labels,
         }
         if self.client:
             payload["client"] = self.client
@@ -58,6 +59,7 @@ class ExportTemplate:
             include_metrics=bool(payload.get("include_metrics", True)),
             include_explanation=bool(payload.get("include_explanation", True)),
             include_offcuts=bool(payload.get("include_offcuts", True)),
+            include_piece_labels=bool(payload.get("include_piece_labels", True)),
         ).normalized()
         client = normalize_client(str(payload.get("client", "")))
         return cls(name=name, options=options, client=client)

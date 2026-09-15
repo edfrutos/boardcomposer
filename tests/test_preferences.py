@@ -260,6 +260,7 @@ def test_preferences_dialog_labels_follow_language(qapp):
     assert dialog.use_custom_weights.text() == "Use custom weights"
     assert dialog._weight_material_label.text() == "Material utilization:"
     assert dialog.export_include_offcuts.text() == "Include offcuts"
+    assert dialog.export_include_piece_labels.text() == "Piece labels (id and size)"
     assert "Material first" in [
         dialog.strategy.itemText(i) for i in range(dialog.strategy.count())
     ]
@@ -269,6 +270,9 @@ def test_preferences_dialog_labels_follow_language(qapp):
     assert dialog.use_custom_weights.text() == "Usar pesos personalizados"
     assert dialog._weight_material_label.text() == "Aprovechamiento de material:"
     assert dialog.export_include_offcuts.text() == "Incluir retales"
+    assert dialog.export_include_piece_labels.text() == (
+        "Etiquetas de piezas (id y medidas)"
+    )
     assert "Material primero" in [
         dialog.strategy.itemText(i) for i in range(dialog.strategy.count())
     ]

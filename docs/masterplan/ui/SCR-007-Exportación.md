@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.2.0  
+**Versión:** 1.3.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 02/08/2026
+**Última revisión:** 15/09/2026
 
 ---
 
@@ -50,6 +50,7 @@ Defaults de formato y flags: SCR-006 → `preferences.json`.
 ├────────────────────┬───────────────────────────────────────────────┤
 │ Formato            │ SVG │ PNG │ JPEG │ DXF │ PDF │ JSON │ CSV     │
 │ Opciones           │ ☐ Métricas  ☐ Explicación  ☐ Retales          │
+│                    │ ☐ Etiquetas de piezas (id y LxW mm)           │
 │ Plantillas         │ cliente · guardar/aplicar/borrar · pack JSON  │
 ├────────────────────┴───────────────────────────────────────────────┤
 │ Vista previa (SVG/raster + texto/resumen según formato)            │
@@ -80,6 +81,8 @@ diálogo.
   en el resto).
 - **Retales:** aplican a todos los formatos vía preparación de la solución
   (omiten `offcuts` cuando están desmarcados).
+- **Etiquetas de piezas (id y LxW mm):** SVG, PNG, JPEG, DXF y PDF
+  (mismo dibujo que Workspace). Deshabilitada en JSON/CSV. Default: sí.
 
 ---
 
@@ -106,7 +109,7 @@ diálogo.
 Tras un export correcto se guardan en `preferences.json`:
 
 - formato
-- incluir métricas / explicación / retales
+- incluir métricas / explicación / retales / etiquetas de piezas
 - carpeta de destino (`last_export_directory`) — sin UI en Preferencias;
   el siguiente `QFileDialog` (solución **o** Timeline) abre ahí si sigue
   existiendo
@@ -146,7 +149,7 @@ No usa `ExportDialog`. Flujo propio:
 
 - Exporta la candidata seleccionada, no otra.
 - SVG/DXF/PDF/JSON/CSV cubiertos desde el mismo diálogo.
-- Vista previa coherente con retales y formato.
+- Vista previa coherente con retales, etiquetas y formato.
 - Plantillas y última elección persistentes.
 - Timeline exportable sin mezclarse con el diálogo de solución.
 

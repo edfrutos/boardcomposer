@@ -74,6 +74,7 @@ class StudioPreferences:
     export_include_metrics: bool = True
     export_include_explanation: bool = True
     export_include_offcuts: bool = True
+    export_include_piece_labels: bool = True
     last_export_directory: str | None = None
     last_backup_directory: str | None = None
     last_import_directory: str | None = None
@@ -112,6 +113,7 @@ class StudioPreferences:
             include_metrics=self.export_include_metrics,
             include_explanation=self.export_include_explanation,
             include_offcuts=self.export_include_offcuts,
+            include_piece_labels=self.export_include_piece_labels,
         ).normalized()
 
 
@@ -272,6 +274,9 @@ class PreferencesManager:
                 payload.get("export_include_explanation", True)
             ),
             export_include_offcuts=bool(payload.get("export_include_offcuts", True)),
+            export_include_piece_labels=bool(
+                payload.get("export_include_piece_labels", True)
+            ),
             last_export_directory=_optional_directory(
                 payload.get("last_export_directory")
             ),
@@ -339,6 +344,7 @@ class PreferencesManager:
             "export_include_metrics": preferences.export_include_metrics,
             "export_include_explanation": preferences.export_include_explanation,
             "export_include_offcuts": preferences.export_include_offcuts,
+            "export_include_piece_labels": (preferences.export_include_piece_labels),
             "last_export_directory": preferences.last_export_directory,
             "last_backup_directory": preferences.last_backup_directory,
             "last_import_directory": preferences.last_import_directory,

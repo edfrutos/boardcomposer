@@ -170,6 +170,7 @@ def test_export_dialog_uses_english_labels(qapp):
     assert dialog.windowTitle() == "Export solution"
     assert dialog.save_template_button.text() == "Save…"
     assert dialog.include_offcuts.text() == "Include offcuts"
+    assert dialog.include_piece_labels.text() == "Piece labels (id and size)"
     assert dialog.client.itemText(0) == "(all clients)"
 
 

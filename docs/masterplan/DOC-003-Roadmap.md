@@ -3,7 +3,7 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.33  
+**Versión:** 1.3.34  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
 **Última revisión:** 15/09/2026
@@ -158,8 +158,9 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Piloto DT-0006 opción D (backup); C diferida.
-- Cola ciclo `0.4.4`: IDE-0026 → 0027 → 0030 → 0025 → 0028 → 0029
-  (etiquetas, secuencia, freeze, retales inventario, catálogo, coste).
+- Cola ciclo `0.4.4`: IDE-0027 → 0030 → 0025 → 0028 → 0029
+  (secuencia, freeze, retales inventario, catálogo, coste; etiquetas 0026
+  entregadas).
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2

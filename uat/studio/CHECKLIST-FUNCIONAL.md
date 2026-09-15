@@ -175,6 +175,16 @@ Regresión auto: `tests/test_grain.py`, `tests/test_kerf.py`,
 
 ---
 
+## 10. Taller 0.4.4 (IDE-0026…)
+
+Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`,
+`tests/test_export_options.py`.
+
+- [ ] **Ctrl+Shift+E** plano SVG/PDF: piezas muestran id y LxW mm; desmarcar
+  «Etiquetas de piezas» deja el plano sin texto de pieza; Workspace igual.
+
+---
+
 ## Resultado
 
 | Bloque | ¿OK? | Notas |

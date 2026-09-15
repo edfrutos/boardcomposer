@@ -162,6 +162,11 @@ class ExportDialog(QDialog):
         self.include_offcuts.setChecked(options.include_offcuts)
         self.include_offcuts.toggled.connect(self._on_options_edited)
         form.addRow("", self.include_offcuts)
+
+        self.include_piece_labels = QCheckBox(self._tr("export.labels"))
+        self.include_piece_labels.setChecked(options.include_piece_labels)
+        self.include_piece_labels.toggled.connect(self._on_options_edited)
+        form.addRow("", self.include_piece_labels)
         layout.addLayout(form)
 
         layout.addWidget(QLabel(self._tr("export.graphic")))
@@ -207,6 +212,7 @@ class ExportDialog(QDialog):
             include_metrics=self.include_metrics.isChecked(),
             include_explanation=self.include_explanation.isChecked(),
             include_offcuts=self.include_offcuts.isChecked(),
+            include_piece_labels=self.include_piece_labels.isChecked(),
         ).normalized()
 
     def _client_filter(self) -> str | None:
@@ -290,17 +296,20 @@ class ExportDialog(QDialog):
         self.include_metrics.blockSignals(True)
         self.include_explanation.blockSignals(True)
         self.include_offcuts.blockSignals(True)
+        self.include_piece_labels.blockSignals(True)
 
         index = self.format.findData(options.format)
         self.format.setCurrentIndex(index if index >= 0 else 0)
         self.include_metrics.setChecked(options.include_metrics)
         self.include_explanation.setChecked(options.include_explanation)
         self.include_offcuts.setChecked(options.include_offcuts)
+        self.include_piece_labels.setChecked(options.include_piece_labels)
 
         self.format.blockSignals(False)
         self.include_metrics.blockSignals(False)
         self.include_explanation.blockSignals(False)
         self.include_offcuts.blockSignals(False)
+        self.include_piece_labels.blockSignals(False)
         self._refresh_preview()
 
     def _on_client_changed(self, index: int) -> None:
@@ -491,6 +500,8 @@ class ExportDialog(QDialog):
         json_only = options.format == "json"
         self.include_metrics.setEnabled(json_only)
         self.include_explanation.setEnabled(json_only)
+        plan = options.format in {"svg", "png", "jpeg", "dxf", "pdf"}
+        self.include_piece_labels.setEnabled(plan)
 
         svg = preview_svg(self._solution, self._project, options)
         pixmap = svg_to_pixmap(svg, box=_GRAPHIC_PREVIEW_SIZE)

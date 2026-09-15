@@ -30,7 +30,7 @@ def test_solution_to_svg():
 
     assert svg.startswith("<svg")
     assert "<rect" in svg
-    assert "A" in svg
+    assert "A 100x50" in svg
 
 
 def test_solution_to_svg_places_physical_panels_side_by_side():
@@ -63,7 +63,7 @@ def test_solution_to_svg_does_not_overlap_panel_and_piece_labels():
     svg = solution_to_svg(solution, project)
 
     panel_label_y = svg.index("P1")
-    piece_label_y = svg.index(">A<")
+    piece_label_y = svg.index(">A 900x400<")
     assert panel_label_y < piece_label_y
 
 
@@ -109,3 +109,13 @@ def test_solution_to_svg_has_no_offcuts_when_solution_reports_none():
     svg = solution_to_svg(solution)
 
     assert "stroke-dasharray" not in svg
+
+
+def test_solution_to_svg_omits_piece_labels_when_disabled():
+    solution = AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
+
+    svg = solution_to_svg(solution, include_piece_labels=False)
+
+    assert "<rect" in svg
+    assert "A 100x50" not in svg
+    assert ">A<" not in svg

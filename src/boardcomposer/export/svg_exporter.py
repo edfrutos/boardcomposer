@@ -1,7 +1,13 @@
 """Render an `AssemblySolution` as a self-contained SVG document."""
 
+from html import escape
+
 from boardcomposer.domain import AssemblySolution, Offcut, PanelReference, Project
-from boardcomposer.export.common import canvas_size_mm, panel_offsets
+from boardcomposer.export.common import (
+    canvas_size_mm,
+    panel_offsets,
+    piece_plan_label,
+)
 from boardcomposer.export.svg_palette import DEFAULT_SVG_PALETTE, SvgPalette
 
 # Vertical space reserved above each panel row for its label, so it never
@@ -70,6 +76,8 @@ def _placement_svg_parts(
     solution: AssemblySolution,
     offsets: dict[PanelReference, float],
     palette: SvgPalette,
+    *,
+    include_piece_labels: bool,
 ) -> list[str]:
     parts = []
     for placement in solution.placements:
@@ -85,11 +93,13 @@ def _placement_svg_parts(
             f'width="{placement.length_mm:g}" height="{placement.width_mm:g}" '
             f'fill="{palette.piece_fill}" stroke="{palette.piece_stroke}" />'
         )
+        if not include_piece_labels:
+            continue
         parts.append(
             f'<text x="{placement.x_mm + offset_x + 5:g}" '
             f'y="{placement.y_mm + y_offset + 20:g}" font-size="16" '
             f'fill="{palette.piece_label}">'
-            f"{placement.board_id}</text>"
+            f"{escape(piece_plan_label(placement))}</text>"
         )
     return parts
 
@@ -138,13 +148,14 @@ def solution_to_svg(
     project: Project | None = None,
     *,
     palette: SvgPalette | None = None,
+    include_piece_labels: bool = True,
 ) -> str:
     """Render `solution` as an SVG document.
 
     Physical panels (if any) are laid out side by side. Placed pieces are
     filled rectangles, usable offcuts (ADR-016) are dashed rectangles,
     and, for partial solutions, a legend lists the pieces that couldn't be
-    placed.
+    placed. Piece labels (id + placed LxW mm) can be omitted.
     """
     colors = palette or DEFAULT_SVG_PALETTE
     offsets, panel_rows = _panel_layout(solution, project)
@@ -160,7 +171,14 @@ def solution_to_svg(
         f'<rect width="100%" height="100%" fill="{colors.background}" />',
     ]
     parts.extend(_panel_svg_parts(project, panel_rows, colors))
-    parts.extend(_placement_svg_parts(solution, offsets, colors))
+    parts.extend(
+        _placement_svg_parts(
+            solution,
+            offsets,
+            colors,
+            include_piece_labels=include_piece_labels,
+        )
+    )
     parts.extend(_offcut_svg_parts(solution.offcuts, offsets, colors))
     parts.extend(legend_parts)
     parts.append("</svg>")

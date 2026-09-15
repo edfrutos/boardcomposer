@@ -39,11 +39,18 @@ class BoardPieceItem(QGraphicsRectItem):
             | QGraphicsItem.GraphicsItemFlag.ItemSendsGeometryChanges
         )
 
-        label = QGraphicsSimpleTextItem(piece_id, self)
+        label = QGraphicsSimpleTextItem("", self)
         label.setFont(QFont("Source Sans 3", 40))
         label.setPos(24, 20)
         self._label = label
+        self._refresh_label()
         self.set_normal()
+
+    def _refresh_label(self) -> None:
+        if self._label is None:
+            return
+        rect = self.rect()
+        self._label.setText(f"{self.piece_id} {rect.width():g}x{rect.height():g}")
 
     def itemChange(self, change, value):
         scene = self.scene()
@@ -99,5 +106,6 @@ class BoardPieceItem(QGraphicsRectItem):
         else:
             self.setRect(0, 0, self.length_mm, self.width_mm)
 
+        self._refresh_label()
         self.setTransformOriginPoint(self.rect().center())
         self.setRotation(0)

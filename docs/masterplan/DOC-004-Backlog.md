@@ -4,7 +4,7 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.35
+**Versión:** 1.3.36
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
 **Última revisión:** 15/09/2026
@@ -95,7 +95,7 @@ Observaciones:
 | IDE-0023 | Lista de corte / informe de taller | 🟢 | P2 |
 | IDE-0024 | Metadatos de proyecto (cliente, ref., notas) | 🟢 | P2 |
 | IDE-0025 | Retales como inventario reutilizable | ⚪ | P2 |
-| IDE-0026 | Etiquetas de piezas en plano (SVG/PDF) | ⚪ | P2 |
+| IDE-0026 | Etiquetas de piezas en plano (SVG/PDF) | 🟢 | P2 |
 | IDE-0027 | Secuencia de corte por panel | ⚪ | P2 |
 | IDE-0028 | Catálogo de materiales / espesores | ⚪ | P2 |
 | IDE-0029 | Coste estimado de material | ⚪ | P3 |
@@ -118,7 +118,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0023 | M | Export PDF/CSV; SCR-007 | Entregado; Ctrl+Alt+C; CSV/PDF |
 | IDE-0024 | S | SCR-005 evolución; persistencia v3 | Entregado; kerf/vetas en 0020/0021 |
 | IDE-0025 | M–L | ADR-016; migraciones `.bcproj`; StockPanel | Evolución retales → inventario |
-| IDE-0026 | S–M | SCR-007 export; Workspace labels | Ids / dims en plano de corte |
+| IDE-0026 | S–M | SCR-007 export; Workspace labels | Entregado; id + LxW mm; casilla export |
 | IDE-0027 | M | IDE-0023; métricas por panel | Orden de sierra exportable |
 | IDE-0028 | M | SCR-005; prefs / archivo usuario | Catálogo tipificado entre proyectos |
 | IDE-0029 | S–M | IDE-0028 útil; scoring / export | Precio por m² → coste solución |
@@ -150,15 +150,15 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0024 Studio/Core completadas;
-IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
+**Estado actual:** 🟢 Actualizado — IDE-0001…0024 y IDE-0026 Studio/Core
+completadas; IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Cola producto 0019…0024 cerrada.
-Nuevas ideas ciclo `0.4.4`: IDE-0025…0030 (⚪).
+Ciclo `0.4.4`: IDE-0026 🟢; resto 0025/0027…0030 ⚪.
 Snapshot: `REVIEW-2026-09-15-planificacion.md`.
 
 Próximo foco:
 
-1. Atacar cola IDE-0026 → 0027 → 0030 → 0025 → 0028 → 0029.
+1. Atacar cola IDE-0027 → 0030 → 0025 → 0028 → 0029.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto (`#628`); etiqueta `v0.4.3` si falta.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

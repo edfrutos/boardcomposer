@@ -1,4 +1,4 @@
-from .common import prepare_solution_for_export
+from .common import piece_plan_label, prepare_solution_for_export
 from .csv_exporter import solution_to_csv
 from .cut_list import (
     CutList,
@@ -22,6 +22,7 @@ __all__ = [
     "build_cut_list",
     "cut_list_to_csv",
     "cut_list_to_pdf",
+    "piece_plan_label",
     "prepare_solution_for_export",
     "render_cut_list",
     "solution_to_csv",

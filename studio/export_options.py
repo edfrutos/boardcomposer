@@ -46,6 +46,7 @@ class ExportOptions:
     include_metrics: bool = True
     include_explanation: bool = True
     include_offcuts: bool = True
+    include_piece_labels: bool = True
 
     def normalized(self) -> ExportOptions:
         fmt = (
@@ -58,6 +59,7 @@ class ExportOptions:
             include_metrics=self.include_metrics,
             include_explanation=self.include_explanation,
             include_offcuts=self.include_offcuts,
+            include_piece_labels=self.include_piece_labels,
         )
 
     @property
@@ -99,14 +101,22 @@ def render_export(
     prepared = prepare_solution(solution, options)
 
     if options.format == "svg":
-        return solution_to_svg(prepared, project)
+        return solution_to_svg(
+            prepared, project, include_piece_labels=options.include_piece_labels
+        )
     if options.format in {"png", "jpeg"}:
         # Raster export is generated in Studio from this SVG payload.
-        return solution_to_svg(prepared, project)
+        return solution_to_svg(
+            prepared, project, include_piece_labels=options.include_piece_labels
+        )
     if options.format == "dxf":
-        return solution_to_dxf(prepared, project)
+        return solution_to_dxf(
+            prepared, project, include_piece_labels=options.include_piece_labels
+        )
     if options.format == "pdf":
-        return solution_to_pdf(prepared, project)
+        return solution_to_pdf(
+            prepared, project, include_piece_labels=options.include_piece_labels
+        )
     if options.format == "csv":
         return solution_to_csv(prepared)
     return solution_to_json(
@@ -128,7 +138,9 @@ def preview_svg(
     """Return the layout SVG used for the graphical export preview."""
     options = options.normalized()
     prepared = prepare_solution(solution, options)
-    return solution_to_svg(prepared, project)
+    return solution_to_svg(
+        prepared, project, include_piece_labels=options.include_piece_labels
+    )
 
 
 def preview_text(
@@ -167,15 +179,28 @@ def preview_text(
         return "\n".join(summary) + body
 
     if options.format == "svg":
-        svg = solution_to_svg(prepared, project)
+        svg = solution_to_svg(
+            prepared, project, include_piece_labels=options.include_piece_labels
+        )
         summary.append(f"Tamaño SVG: {len(svg)} caracteres")
         summary.append("Arriba: vista previa gráfica del dibujo vectorial.")
+        summary.append(
+            "Etiquetas de piezas (id y LxW mm) incluidas."
+            if options.include_piece_labels
+            else "Sin etiquetas de piezas."
+        )
         return "\n".join(summary)
 
     summary.append(
         f"Se generará un archivo {options.label} con paneles, piezas"
         + (" y retales." if options.include_offcuts else " (sin retales).")
     )
+    if options.format in {"svg", "png", "jpeg", "dxf", "pdf"}:
+        summary.append(
+            "Etiquetas de piezas (id y LxW mm) incluidas."
+            if options.include_piece_labels
+            else "Sin etiquetas de piezas."
+        )
     if options.format in {"dxf", "pdf"}:
         summary.append(
             "Arriba: vista previa del layout (misma geometría que el export)."

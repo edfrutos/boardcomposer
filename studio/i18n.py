@@ -37,6 +37,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.export_metrics": "Incluir métricas (JSON)",
         "prefs.export_explanation": "Incluir explicación (JSON)",
         "prefs.export_offcuts": "Incluir retales",
+        "prefs.export_labels": "Etiquetas de piezas (id y medidas)",
         "prefs.max_solutions": "Máx. soluciones a conservar:",
         "prefs.open_config_folder": "Abrir carpeta de configuración…",
         "tip.open_config_folder": (
@@ -1258,6 +1259,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.metrics": "Incluir métricas (JSON)",
         "export.explanation": "Incluir explicación (JSON)",
         "export.offcuts": "Incluir retales",
+        "export.labels": "Etiquetas de piezas (id y medidas)",
         "export.graphic": "Vista previa gráfica",
         "export.summary": "Resumen / contenido",
         "export.export_btn": "Exportar…",
@@ -1429,6 +1431,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.export_metrics": "Include metrics (JSON)",
         "prefs.export_explanation": "Include explanation (JSON)",
         "prefs.export_offcuts": "Include offcuts",
+        "prefs.export_labels": "Piece labels (id and size)",
         "prefs.max_solutions": "Max solutions to keep:",
         "prefs.open_config_folder": "Open settings folder…",
         "tip.open_config_folder": (
@@ -2603,6 +2606,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.metrics": "Include metrics (JSON)",
         "export.explanation": "Include explanation (JSON)",
         "export.offcuts": "Include offcuts",
+        "export.labels": "Piece labels (id and size)",
         "export.graphic": "Graphic preview",
         "export.summary": "Summary / content",
         "export.export_btn": "Export…",

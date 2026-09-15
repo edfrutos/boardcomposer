@@ -37,7 +37,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4`: cola IDE-0026 → 0027 → 0030 → 0025 → 0028 → 0029.
+1. Ciclo `0.4.4`: cola IDE-0027 → 0030 → 0025 → 0028 → 0029.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

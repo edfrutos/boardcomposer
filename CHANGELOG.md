@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Exportar: etiquetas de piezas en plano (IDE-0026); id y medidas LxW mm
+  en SVG/PDF/DXF/raster; casilla en el diálogo y Preferencias; Workspace
+  muestra el mismo texto.
 - Docs planificación 2026-09-15: snapshot
   `docs/masterplan/REVIEW-2026-09-15-planificacion.md`; cola producto
   IDE-0019…0024 cerrada (Skyline `#623` en `0.4.3`); Issues = 0 →
