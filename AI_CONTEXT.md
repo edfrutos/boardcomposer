@@ -8,13 +8,13 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-09-14
+## Estado actual — 2026-09-15
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
 - Core base completado y en evolución controlada (kerf IDE-0020; grain
-  IDE-0021).
-- Vertical multipanel MaxRects implementada, con compatibilidad de material
+  IDE-0021; Skyline multipanel IDE-0022).
+- Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, órdenes de panel, retales informativos (ADR-016) y soluciones
   parciales (piezas omitidas en vez de "sin solución").
 - Studio funcional con persistencia versionada y migraciones explícitas
@@ -22,10 +22,10 @@ alternativas comprensibles para que el usuario decida.
   movimiento entre paneles, swap (IDE-0019) y lista de corte (IDE-0023).
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-09-14-planificacion.md`.
-- Versión: `0.4.3`.
-- Próximo: etiqueta `v0.4.3`; piloto DT-0006 D; no IDE nuevas (cola 0019–0024
-  cerrada; Issues = 0; eval IDE-0007 cerrada).
+  `docs/masterplan/REVIEW-2026-09-15-planificacion.md`.
+- Versión: `0.4.4.dev0` (estable `0.4.3`).
+- Próximo: cola IDE-0025…0030; piloto DT-0006 D; Issues = 0; eval IDE-0007
+  cerrada; LLM / plugins / DT-0006 C bloqueados.
 
 ## Fuentes de verdad
 

@@ -1,10 +1,15 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-14
+## Unreleased — 0.4.4.dev0 — 2026-09-15
 
 ### Añadido
 
-- _(ciclo post-`0.4.3` — vacío al corte)_
+- Docs planificación 2026-09-15: snapshot
+  `docs/masterplan/REVIEW-2026-09-15-planificacion.md`; cola producto
+  IDE-0019…0024 cerrada (Skyline `#623` en `0.4.3`); Issues = 0 →
+  nuevas ideas IDE-0025…0030 (retales inventario, etiquetas plano,
+  secuencia corte, catálogo materiales, coste, freeze/re-pack).
+- _(resto del ciclo `0.4.4` — pendiente de implementación)_
 
 ### Cambiado
 
