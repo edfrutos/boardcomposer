@@ -18,6 +18,7 @@ boardcomposer-backup = "boardcomposer.backup_cli:main"
 dev = [
     "ruff==0.15.22",
     "pytest",
+    "pytest-timeout",
     "pylint",
     "flake8",
     "Flake8-pyproject",
@@ -62,3 +63,4 @@ max-line-length = 999
 
 [tool.pytest.ini_options]
 pythonpath = ["src", "."]
+faulthandler_timeout = 90
