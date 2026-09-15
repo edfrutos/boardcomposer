@@ -67,13 +67,12 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 ## Próximo foco (operativo)
 
-Revisión: `docs/masterplan/REVIEW-2026-09-14-planificacion.md`.
+Revisión: `docs/masterplan/REVIEW-2026-09-15-planificacion.md`.
 
-1. Release **`0.4.3`** cortado (`v0.4.3`, 2026-09-14).
-2. Ciclo `0.4.4.dev0` abierto — slices QoL bajo demanda (backlog grande
-   bloqueado).
-3. Cola producto IDE-0019…0024 cerrada en `0.4.3` (metadatos, swap, kerf,
-   lista de corte, veta, Skyline multipanel).
+1. Release **`0.4.3`** cortado (2026-09-14); etiqueta `v0.4.3` si falta.
+2. Ciclo **`0.4.4.dev0`** — cola IDE-0026 → 0027 → 0030 → 0025 → 0028 → 0029
+   (etiquetas, secuencia, freeze, retales inventario, catálogo, coste).
+3. Cola producto IDE-0019…0024 cerrada en `0.4.3` (incluye Skyline `#623`).
 4. IDE-0007 eval humana cerrada (2026-09-12); LLM sigue diferido.
 5. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).
 6. Gate demo/release (`uat/RELEASE-SMOKE.md`) — activo en cada corte.
