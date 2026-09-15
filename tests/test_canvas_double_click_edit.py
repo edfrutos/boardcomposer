@@ -71,6 +71,26 @@ def test_double_click_piece_opens_edit(qapp, tmp_path, monkeypatch):
     assert fit_calls == []
 
 
+def test_double_click_piece_label_opens_edit(qapp, tmp_path, monkeypatch):
+    del qapp
+    window = _window(tmp_path)
+    called: list[str] = []
+    monkeypatch.setattr(
+        window,
+        "_edit_piece",
+        lambda piece_id: called.append(piece_id),
+    )
+    monkeypatch.setattr(window, "_edit_board", lambda board_id: called.append(board_id))
+
+    piece = window.workspace.piece_item_by_id("A")
+    assert piece is not None
+    assert piece._label is not None
+    point = window.workspace.mapFromScene(piece._label.sceneBoundingRect().center())
+    _left_double_click(window.workspace, point)
+
+    assert called == ["A"]
+
+
 def test_double_click_board_opens_edit(qapp, tmp_path, monkeypatch):
     del qapp
     window = _window(tmp_path)

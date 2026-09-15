@@ -69,4 +69,6 @@ jobs:
           QT_ACCESSIBILITY: "0"
           NO_AT_BRIDGE: "1"
           PYTHONUNBUFFERED: "1"
-        run: python -u -m pytest -q --timeout=120 --durations=20
+        # Process timeout: Qt dialog.exec() holds the GIL so pytest-timeout
+        # cannot abort a modal hang (seen on piece-label double-click).
+        run: timeout --kill-after=15s 20m python -u -m pytest -q --timeout=120 --durations=20

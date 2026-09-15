@@ -1,3 +1,4 @@
+from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QGraphicsItem, QGraphicsRectItem, QGraphicsSimpleTextItem
 
@@ -42,6 +43,10 @@ class BoardPieceItem(QGraphicsRectItem):
         label = QGraphicsSimpleTextItem("", self)
         label.setFont(QFont("Source Sans 3", 40))
         label.setPos(24, 20)
+        # Decorative: clicks must hit the piece, not the text child.
+        # Otherwise itemAt() on the label skips BoardPieceItem and a
+        # double-click opens the board editor (modal exec() hang in CI).
+        label.setAcceptedMouseButtons(Qt.MouseButton.NoButton)
         self._label = label
         self._refresh_label()
         self.set_normal()
