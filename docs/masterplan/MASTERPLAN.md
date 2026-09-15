@@ -6,7 +6,7 @@
 
 - Fase de producto: **Fase 2 — BoardComposer Studio** (núcleo usable;
   Fase 3 plataforma entregada).
-- Versión: `0.4.3`.
+- Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3`).
 - Core base consolidado y cubierto por tests (incluye kerf IDE-0020 y
   veta IDE-0021).
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación
@@ -37,8 +37,7 @@
 
 ## Próxima tarea única
 
-1. Post-`0.4.3`: no abrir IDE nuevas sin demanda; siguiente ciclo
-   `0.4.4.dev0` tras la etiqueta.
+1. Ciclo `0.4.4.dev0`: pulido QoL bajo demanda. No abrir IDE nuevas.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

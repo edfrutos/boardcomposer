@@ -148,6 +148,6 @@ Snapshot: `REVIEW-2026-09-14-planificacion.md`.
 Próximo foco:
 
 1. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-2. Corte `0.4.3`; siguiente ciclo `0.4.4.dev0` tras la etiqueta.
+2. Ciclo `0.4.4.dev0` abierto; última estable `0.4.3`.
 3. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
 4. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).

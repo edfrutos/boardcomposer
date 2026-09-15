@@ -8,6 +8,8 @@
 
 ### Cambiado
 
+- Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con `0.4.4.dev0`.
+
 ## 0.4.3 — 2026-09-14
 
 ### Añadido
