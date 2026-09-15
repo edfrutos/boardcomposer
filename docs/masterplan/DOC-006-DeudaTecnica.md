@@ -3,10 +3,10 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.26
+**Versión:** 1.2.27
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 14/09/2026
+**Última revisión:** 15/09/2026
 
 ---
 
@@ -117,6 +117,9 @@ conteo en «Estado» o en las notas de release.
 **Corte 2026-09-14 (`0.4.3`):** abiertas = **1** (DT-0006 en piloto D;
 opción C diferida); sin críticas sin plan. Cola producto 0019…0024 cerrada.
 
+**Revisión 2026-09-15 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
+sin críticas sin plan. Cola implementable 0019…0024 vacía → IDE-0025…0030.
+
 ---
 
 ## Política de gestión
@@ -142,9 +145,9 @@ opción C diferida); sin críticas sin plan. Cola producto 0019…0024 cerrada.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — revisado para `0.4.3`; snapshot
-2026-09-14 en `REVIEW-2026-09-14-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`09-13` (abiertas = 1, DT-0006).
+**Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
+2026-09-15 en `REVIEW-2026-09-15-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`09-14` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -153,5 +156,6 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
+- Cola producto IDE-0025…0030 (ADR-016 retales inventario entre ellas).
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
