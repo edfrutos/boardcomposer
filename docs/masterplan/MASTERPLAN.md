@@ -32,12 +32,13 @@
 - Kerf / espesor de sierra en packing (**Ctrl+Alt+K**, IDE-0020).
 - Veta fija por pieza (**Permitir rotación**, IDE-0021).
 - Lista de corte / informe taller (**Ctrl+Alt+C**, IDE-0023).
+- Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Packing Skyline multipanel (IDE-0022; junto a MaxRects).
 - ADR-014 / ADR-016 y documentación técnica alineada en README, backlog y UAT.
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4`: cola IDE-0027 → 0030 → 0025 → 0028 → 0029.
+1. Ciclo `0.4.4`: cola IDE-0030 → 0025 → 0028 → 0029.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

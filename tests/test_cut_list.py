@@ -93,6 +93,9 @@ def test_cut_list_csv_has_meta_panels_pieces_and_cuts():
     cut = next(row for row in rows if row["section"] == "cut")
     assert cut["id"] == "A"
     assert cut["panel_id"] == "P1"
+    assert cut["sequence"] == "1"
+    saw_rows = [row for row in rows if row["section"] == "saw"]
+    assert saw_rows
     omitted = next(
         row for row in rows if row["section"] == "piece" and row["id"] == "B"
     )
@@ -110,6 +113,7 @@ def test_cut_list_pdf_is_pdf_and_mentions_workshop_sections():
     assert b"Tableros" in payload
     assert b"Piezas" in payload
     assert b"Cortes" in payload
+    assert b"Secuencia de sierra" in payload
 
 
 def test_render_cut_list_picks_csv_or_pdf():

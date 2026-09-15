@@ -8,6 +8,7 @@ from boardcomposer.export.common import (
     panel_offsets,
     piece_plan_label,
 )
+from boardcomposer.export.cut_sequence import piece_sequence_numbers
 from boardcomposer.export.svg_palette import DEFAULT_SVG_PALETTE, SvgPalette
 
 # Vertical space reserved above each panel row for its label, so it never
@@ -78,9 +79,11 @@ def _placement_svg_parts(
     palette: SvgPalette,
     *,
     include_piece_labels: bool,
+    project: Project | None = None,
 ) -> list[str]:
     parts = []
-    for placement in solution.placements:
+    numbers = piece_sequence_numbers(solution, project)
+    for index, placement in enumerate(solution.placements):
         offset_x = (
             offsets.get(placement.panel_reference, 0.0)
             if placement.panel_reference is not None
@@ -93,11 +96,18 @@ def _placement_svg_parts(
             f'width="{placement.length_mm:g}" height="{placement.width_mm:g}" '
             f'fill="{palette.piece_fill}" stroke="{palette.piece_stroke}" />'
         )
+        sequence = numbers.get(index, index + 1)
+        parts.append(
+            f'<text x="{placement.x_mm + offset_x + 5:g}" '
+            f'y="{placement.y_mm + y_offset + 18:g}" font-size="14" '
+            f'fill="{palette.piece_label}" data-cut-seq="{sequence}">'
+            f"{sequence}</text>"
+        )
         if not include_piece_labels:
             continue
         parts.append(
             f'<text x="{placement.x_mm + offset_x + 5:g}" '
-            f'y="{placement.y_mm + y_offset + 20:g}" font-size="16" '
+            f'y="{placement.y_mm + y_offset + 36:g}" font-size="16" '
             f'fill="{palette.piece_label}">'
             f"{escape(piece_plan_label(placement))}</text>"
         )
@@ -177,6 +187,7 @@ def solution_to_svg(
             offsets,
             colors,
             include_piece_labels=include_piece_labels,
+            project=project,
         )
     )
     parts.extend(_offcut_svg_parts(solution.offcuts, offsets, colors))

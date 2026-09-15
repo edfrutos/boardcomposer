@@ -43,6 +43,7 @@ def test_solution_to_dxf_draws_panels_pieces_and_offcuts():
     assert "PANELS" in dxf
     assert "PIECES" in dxf
     assert "OFFCUTS" in dxf
+    assert "SEQ" in dxf
     assert "A 400x300" in dxf
     assert dxf.rstrip().endswith("EOF")
 
@@ -92,6 +93,7 @@ def test_solution_to_dxf_can_omit_piece_labels():
     dxf = solution_to_dxf(solution, include_piece_labels=False)
 
     assert "PIECES" in dxf
+    assert "SEQ" in dxf
     assert "A 100x50" not in dxf
 
 

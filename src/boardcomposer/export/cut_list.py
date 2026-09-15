@@ -7,6 +7,12 @@ import io
 from dataclasses import dataclass
 
 from boardcomposer.domain import AssemblySolution, Project
+from boardcomposer.export.cut_sequence import (
+    PanelCutSequence,
+    SequenceStep,
+    build_cut_sequences,
+    piece_sequence_numbers,
+)
 
 DEFAULT_CUT_LIST_FORMAT = "csv"
 VALID_CUT_LIST_FORMATS = ("csv", "pdf")
@@ -26,6 +32,7 @@ _FIELDNAMES = (
     "x_mm",
     "y_mm",
     "omitted",
+    "sequence",
 )
 
 _PAGE_W = 595.28
@@ -86,6 +93,7 @@ class CutListCut:
     instance_index: int
     x_mm: float
     y_mm: float
+    sequence: int = 0
 
 
 @dataclass(frozen=True)
@@ -96,6 +104,7 @@ class CutList:
     panels: tuple[CutListPanel, ...]
     pieces: tuple[CutListPiece, ...]
     cuts: tuple[CutListCut, ...]
+    sequences: tuple[PanelCutSequence, ...] = ()
 
 
 def normalize_cut_list_format(value: object) -> str:
@@ -188,8 +197,10 @@ def build_cut_list(
                 )
             )
 
+    sequences = build_cut_sequences(solution, project)
+    numbers = piece_sequence_numbers(solution, project)
     cuts: list[CutListCut] = []
-    for placement in solution.placements:
+    for index, placement in enumerate(solution.placements):
         reference = placement.panel_reference
         panel_id = ""
         stock_index = -1
@@ -226,14 +237,24 @@ def build_cut_list(
                 instance_index=instance_index,
                 x_mm=placement.x_mm,
                 y_mm=placement.y_mm,
+                sequence=numbers.get(index, index + 1),
             )
         )
+    cuts.sort(
+        key=lambda item: (
+            item.stock_panel_index,
+            item.instance_index,
+            item.sequence,
+            item.piece_id,
+        )
+    )
 
     return CutList(
         meta=header,
         panels=tuple(panels),
         pieces=tuple(pieces),
         cuts=tuple(cuts),
+        sequences=sequences,
     )
 
 
@@ -294,8 +315,26 @@ def cut_list_to_csv(cut_list: CutList) -> str:
                 "panel_id": cut.panel_id,
                 "x_mm": cut.x_mm,
                 "y_mm": cut.y_mm,
+                "sequence": cut.sequence,
             }
         )
+
+    for panel in cut_list.sequences:
+        for step in panel.steps:
+            row = {
+                "section": "saw",
+                "id": step.piece_id or f"cut-{step.index}",
+                "value": step.kind,
+                "panel_id": panel.panel_id,
+                "instance_index": panel.instance_index,
+                "sequence": step.index,
+                "length_mm": step.span_mm if step.span_mm is not None else "",
+            }
+            if step.axis == "x":
+                row["x_mm"] = step.position_mm
+            elif step.axis == "y":
+                row["y_mm"] = step.position_mm
+            writer.writerow(row)
 
     return buffer.getvalue()
 
@@ -346,18 +385,40 @@ def _report_lines(cut_list: CutList) -> list[str]:
             f"{piece.length_mm:g}x{piece.width_mm:g}  {omitted}"
         )
 
-    lines.extend(["", "Cortes por tablero", "pieza  panel#  LxW  rotada  x,y"])
+    lines.extend(["", "Cortes por tablero", "seq  pieza  panel#  LxW  rotada  x,y"])
     if not cut_list.cuts:
         lines.append("(sin cortes colocados)")
     for cut in cut_list.cuts:
         rotated = "si" if cut.rotated else "no"
         panel_label = f"{cut.panel_id}#{cut.instance_index + 1}"
         lines.append(
-            f"{cut.piece_id}  {panel_label}  "
+            f"{cut.sequence}  {cut.piece_id}  {panel_label}  "
             f"{cut.length_mm:g}x{cut.width_mm:g}  {rotated}  "
             f"{cut.x_mm:g},{cut.y_mm:g}"
         )
+
+    lines.extend(["", "Secuencia de sierra"])
+    if not cut_list.sequences:
+        lines.append("(sin secuencia)")
+    for panel in cut_list.sequences:
+        mode = "guillotina" if panel.guillotine else "orden por posicion"
+        panel_label = f"{panel.panel_id}#{panel.instance_index + 1}"
+        lines.append(f"{panel_label}  {mode}")
+        if not panel.steps:
+            lines.append("(sin pasos)")
+            continue
+        for step in panel.steps:
+            lines.append(_saw_step_line(step))
     return lines
+
+
+def _saw_step_line(step: SequenceStep) -> str:
+    if step.kind == "piece":
+        return f"{step.index}. Pieza {step.piece_id}"
+    axis = "horizontal" if step.axis == "y" else "vertical"
+    position = f"{step.position_mm:g}" if step.position_mm is not None else "-"
+    span = f"{step.span_mm:g}" if step.span_mm is not None else "-"
+    return f"{step.index}. Corte {axis} a {position} mm (largo {span})"
 
 
 def _escape_pdf_text(value: str) -> str:

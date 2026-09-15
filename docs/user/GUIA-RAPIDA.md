@@ -207,8 +207,10 @@ marcadores…).
   opciones (métricas y explicación solo JSON; retales; **etiquetas** de
   pieza con id y LxW mm en el plano SVG/PDF/DXF/raster).
 - **Archivo → Exportar lista de corte…** (**Ctrl+Alt+C**) es otro flujo:
-  CSV o PDF de taller (piezas y tableros de la candidata). Recuerda carpeta
-  y formato. No sustituye el CSV de colocaciones del diálogo de solución.
+  CSV o PDF de taller (piezas, tableros y **secuencia de sierra** por
+  panel). Recuerda carpeta y formato. El plano SVG/PDF/DXF numera cada
+  pieza con ese orden. No sustituye el CSV de colocaciones del diálogo
+  de solución.
 - **Cliente** y **plantilla** reutilizan un perfil; **Guardar…** / **Eliminar**
   gestionan el catálogo; **Exportar/Importar pack…** comparte plantillas
   (recuerda la última carpeta).

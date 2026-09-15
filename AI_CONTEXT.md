@@ -19,12 +19,13 @@ alternativas comprensibles para que el usuario decida.
   parciales (piezas omitidas en vez de "sin solución").
 - Studio funcional con persistencia versionada y migraciones explícitas
   (ADR-015; v3 metadatos, v4 kerf, v5 grain), importación de inventario,
-  movimiento entre paneles, swap (IDE-0019) y lista de corte (IDE-0023).
+  movimiento entre paneles, swap (IDE-0019), lista de corte (IDE-0023) y
+  secuencia de sierra por panel (IDE-0027).
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
   `docs/masterplan/REVIEW-2026-09-15-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3`).
-- Próximo: cola IDE-0027 → 0030 → 0025 → 0028 → 0029; piloto
+- Próximo: cola IDE-0030 → 0025 → 0028 → 0029; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

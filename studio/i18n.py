@@ -406,8 +406,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.export_cut_list": (
             "Exportar lista de corte de la solución del Comparador "
-            "(Ctrl+Alt+C); CSV o PDF de piezas y tableros; "
-            "ofrece abrir el archivo; "
+            "(Ctrl+Alt+C); CSV o PDF de piezas, tableros y secuencia "
+            "de sierra por panel; ofrece abrir el archivo; "
             "recuerda la última carpeta; el formato CSV o PDF "
             "se recuerda entre sesiones"
         ),
@@ -1790,8 +1790,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.export_cut_list": (
             "Export a workshop cut list from the Comparator solution "
-            "(Ctrl+Alt+C); CSV or PDF of pieces and boards; "
-            "offers to open the file; "
+            "(Ctrl+Alt+C); CSV or PDF of pieces, boards and per-panel "
+            "saw sequence; offers to open the file; "
             "remembers the last folder; the CSV or PDF format "
             "is remembered across sessions"
         ),

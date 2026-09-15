@@ -10,6 +10,7 @@ from boardcomposer.export.common import (
     panel_offsets,
     piece_plan_label,
 )
+from boardcomposer.export.cut_sequence import piece_sequence_numbers
 
 _MM_TO_PT = 72.0 / 25.4
 _MARGIN_PT = 36.0
@@ -72,7 +73,8 @@ def solution_to_pdf(
                 )
             )
 
-    for placement in solution.placements:
+    numbers = piece_sequence_numbers(solution, project)
+    for index, placement in enumerate(solution.placements):
         offset_x = (
             offsets.get(placement.panel_reference, 0.0)
             if placement.panel_reference is not None
@@ -84,6 +86,8 @@ def solution_to_pdf(
         )
         h_pt = y_top - y_bottom
         ops.append(_rect_ops(x_pt, y_bottom, placement.length_mm * _MM_TO_PT, h_pt))
+        sequence = str(numbers.get(index, index + 1))
+        ops.append(_text_ops(x_pt + 4, y_top - 12, 10, sequence))
         if include_piece_labels:
             ops.append(
                 _text_ops(x_pt + 4, y_bottom + 4, 9, piece_plan_label(placement))

@@ -119,3 +119,4 @@ def test_solution_to_svg_omits_piece_labels_when_disabled():
     assert "<rect" in svg
     assert "A 100x50" not in svg
     assert ">A<" not in svg
+    assert 'data-cut-seq="1"' in svg
