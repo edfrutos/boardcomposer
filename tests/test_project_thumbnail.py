@@ -2,6 +2,7 @@
 
 from PySide6.QtCore import QSize
 
+from boardcomposer.export.common import piece_plan_label
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.project_serializer import save_project
 from studio.project_thumbnail import (
@@ -23,12 +24,14 @@ def _sample_project() -> StudioProject:
 
 
 def test_studio_project_to_svg_renders_placed_pieces():
-    svg = studio_project_to_svg(_sample_project())
+    project = _sample_project()
+    svg = studio_project_to_svg(project)
+    placement = studio_to_assembly_solution(project).placements[0]
 
     assert svg is not None
     assert "P1" in svg
     assert 'width="400"' in svg
-    assert ">A 400x300</text>" in svg
+    assert f">{piece_plan_label(placement)}</text>" in svg
 
 
 def test_studio_project_to_svg_draws_empty_boards():
