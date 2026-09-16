@@ -43,6 +43,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("preferences", "Ctrl+,"),
     ShortcutBinding("solve_layout", "Ctrl+Return"),
     ShortcutBinding("repack_omitted", "Ctrl+Alt+F"),
+    ShortcutBinding("promote_offcuts", "Ctrl+Alt+R"),
     ShortcutBinding("previous_solution", "PgUp"),
     ShortcutBinding("next_solution", "PgDown"),
     ShortcutBinding("apply_layout", "Ctrl+Shift+Return"),

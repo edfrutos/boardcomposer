@@ -174,6 +174,7 @@ def test_generate_and_compare_menus_are_populated(qapp, tmp_path):
     compare_texts = [a.text() for a in window._menus["compare"].actions() if a.text()]
     assert "Calculate layout" in generate_texts
     assert "Repack omitted pieces" in generate_texts
+    assert "Add offcuts to inventory" in generate_texts
     assert "Previous solution" in compare_texts
     assert "Next solution" in compare_texts
     assert "Apply calculated layout" in compare_texts

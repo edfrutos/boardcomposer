@@ -12,6 +12,8 @@
   plano SVG/PDF/DXF.
 - Layout: congelar colocaciones OK y re-empaquetar omitidas (IDE-0030);
   **Ctrl+Alt+F**; no mueve las piezas ya colocadas.
+- Inventario: retales de la candidata a tableros remnant (IDE-0025);
+  **Ctrl+Alt+R**; `.bcproj` v6 `remnant`; no descuenta tableros origen.
 - Docs planificación 2026-09-15: snapshot
   `docs/masterplan/REVIEW-2026-09-15-planificacion.md`; cola producto
   IDE-0019…0024 cerrada (Skyline `#623` en `0.4.3`); Issues = 0 →

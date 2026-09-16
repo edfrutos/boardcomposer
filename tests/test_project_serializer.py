@@ -25,7 +25,8 @@ def test_project_serialization_preserves_stock_and_panel_assignment():
     payload = project_to_dict(project)
     restored = project_from_dict(payload)
 
-    assert payload["version"] == 5
+    assert payload["version"] == CURRENT_VERSION
+    assert payload["boards"][0]["remnant"] is False
     assert payload["pieces"][0]["grain"] == "locked"
     assert payload["client"] == "Nordik"
     assert payload["reference"] == "PED-42"
@@ -165,6 +166,44 @@ def test_version_four_project_gains_free_grain():
 
     assert restored.kerf_mm == 2
     assert restored.pieces[0].grain == "none"
+
+
+def test_version_five_project_gains_remnant_false():
+    restored = project_from_dict(
+        {
+            "version": 5,
+            "project_id": "PRJ-V5",
+            "name": "Sin retal",
+            "kerf_mm": 0,
+            "boards": [
+                {
+                    "board_id": "P1",
+                    "length_mm": 1000,
+                    "width_mm": 500,
+                    "material": "Demo",
+                    "thickness_mm": 19,
+                    "quantity": 1,
+                }
+            ],
+            "pieces": [],
+            "placements": [],
+        }
+    )
+
+    assert restored.boards[0].remnant is False
+
+
+def test_remnant_board_roundtrip():
+    project = StudioProject(
+        project_id="PRJ-R",
+        name="Retal",
+        boards=[StudioBoard("P1-0-R1", 600, 500, "Melamina", 19, 1, remnant=True)],
+    )
+
+    restored = project_from_dict(project_to_dict(project))
+
+    assert restored.boards[0].remnant is True
+    assert restored.boards[0].board_id == "P1-0-R1"
 
 
 def test_version_three_project_gains_zero_kerf():

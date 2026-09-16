@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-003  
-**Versión:** 1.3.0  
+**Versión:** 1.4.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -38,6 +38,7 @@ Comparador / Inspector.
 |---------|--------|
 | Generar → Calcular layout | **Ctrl+Return** |
 | Generar → Re-empaquetar omitidas | **Ctrl+Alt+F** |
+| Generar → Añadir retales al inventario | **Ctrl+Alt+R** |
 | Botón toolbar «Calcular layout» | igual |
 
 Preferencias que afectan el cálculo (SCR-006):
@@ -66,6 +67,8 @@ Preferencias que afectan el cálculo (SCR-006):
    (FLW-005). Si la candidata es **parcial**, **Re-empaquetar omitidas**
    (**Ctrl+Alt+F**) congela las colocaciones OK y solo empaqueta las
    piezas omitidas en el espacio libre (retales + instancias sin usar).
+   **Añadir retales al inventario** (**Ctrl+Alt+R**) convierte esos retales
+   en tableros remnant del proyecto (no descuenta el origen).
 
 Una sola candidata tras el ranking es un resultado **válido** (dedupe /
 inventario restringido).

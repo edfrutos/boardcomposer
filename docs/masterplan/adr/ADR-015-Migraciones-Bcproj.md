@@ -62,6 +62,12 @@ Es el hueco de sierra entre piezas al calcular y al validar movimientos.
 IDE-0021: añade `grain` en cada pieza (`none` o `locked`; `none` si falta).
 `locked` fija la veta: el solver y Rotar (R) no giran esa pieza.
 
+## Migración v5 → v6
+
+IDE-0025: añade `remnant` (booleano; `false` si falta) en cada tablero.
+`true` marca un retal promovido desde una candidata; el solver lo trata
+como stock normal. No descuenta automáticamente el tablero origen.
+
 ## Versiones futuras
 
 Al introducir un cambio de esquema que requiera una migración:

@@ -46,13 +46,19 @@ Los retales se muestran en:
 - el exportador SVG (rectángulos punteados en verde, con su área);
 - los presenters de texto y JSON (detalle por panel).
 
+## Evolución (IDE-0025)
+
+Los retales de una candidata se pueden **promover** a tableros `remnant`
+del mismo `.bcproj` (**Ctrl+Alt+R**). El origen no se descuenta solo: el
+usuario baja la cantidad de tableros ya cortados. No hay librería
+compartida entre proyectos (ciclo de vida / concurrencia sigue fuera).
+
 ## Fuera de alcance (por ahora)
 
-No se persisten los retales como `StockPanel` ni se ofrecen para su reserva
-o consumo por otros proyectos. Si en el futuro se valida una necesidad real
-de inventario de recortes, esta ADR debería revisarse o sustituirse por una
-que defina el ciclo de vida completo (persistencia, concurrencia entre
-proyectos, expiración).
+No se ofrece reserva ni consumo por otros proyectos. El inventario de
+retales vive en el `.bcproj` actual (IDE-0025). Una librería compartida
+seguiría exigiendo ciclo de vida (creado, reservado, consumido) y esta
+ADR o una sucesora debería definirlo.
 
 ## Consecuencias
 
@@ -62,3 +68,5 @@ proyectos, expiración).
   adelante, `Offcut` ya captura la geometría necesaria como punto de partida.
 - El umbral mínimo de 50 mm es una heurística inicial; puede convertirse en
   preferencia de usuario si el UAT lo demanda.
+- IDE-0025 añade promoción opcional a inventario del mismo archivo; no
+  cambia el reporte informativo ni el umbral.

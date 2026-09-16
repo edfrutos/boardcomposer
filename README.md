@@ -145,6 +145,6 @@ error) antes de incorporar los tableros al proyecto. Ver
 - [`docs/algorithms.md`](docs/algorithms.md): pipeline y algoritmos.
 - [`docs/masterplan/adr/ADR-014-Multi-Panel-Packing.md`](docs/masterplan/adr/ADR-014-Multi-Panel-Packing.md): contrato multipanel (referencia de panel, validación, desperdicio).
 - [`docs/masterplan/adr/ADR-015-Migraciones-Bcproj.md`](docs/masterplan/adr/ADR-015-Migraciones-Bcproj.md): migraciones explícitas de proyectos `.bcproj`.
-- [`docs/masterplan/adr/ADR-016-Retales-Informativos.md`](docs/masterplan/adr/ADR-016-Retales-Informativos.md): retales como información, no como inventario.
+- [`docs/masterplan/adr/ADR-016-Retales-Informativos.md`](docs/masterplan/adr/ADR-016-Retales-Informativos.md): retales; promoción a inventario del mismo proyecto (IDE-0025).
 - [`uat/studio/CHECKLIST-VISUAL.md`](uat/studio/CHECKLIST-VISUAL.md): pasada visual humana.
 - [`docs/masterplan/DOC-004-Backlog.md`](docs/masterplan/DOC-004-Backlog.md) y [`CHANGELOG.md`](CHANGELOG.md): backlog e histórico de versiones.

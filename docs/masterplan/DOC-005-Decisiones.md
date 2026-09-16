@@ -64,10 +64,11 @@ Documentos relacionados
 | DEC-0005 | El proyecto utilizará un Master Plan versionado como referencia oficial | ✅ Vigente |
 | DEC-0006 | Las colocaciones multipanel usan referencias físicas y coordenadas locales | ✅ Vigente |
 | DEC-0007 | Las migraciones de `.bcproj` son explícitas y versionadas (ADR-015) | ✅ Vigente |
-| DEC-0008 | Los retales se reportan como información, no como inventario (ADR-016) | ✅ Vigente |
+| DEC-0008 | Los retales se reportan como información, no como inventario (ADR-016) | ✅ Vigente (evolución IDE-0025) |
 | DEC-0009 | Una solución parcial (piezas omitidas) es válida; solo fallan motivos duros | ✅ Vigente |
 | DEC-0010 | Piloto DT-0006: backup de revisiones (opción D), sin cloud multi-usuario | ✅ Vigente |
 | DEC-0011 | IDE-0007 arranca con explicación determinista; LLM solo opt-in | ✅ Vigente |
+| DEC-0012 | Retales aprovechables se pueden añadir como tableros remnant del mismo `.bcproj` (IDE-0025); sin librería entre proyectos | ✅ Vigente |
 
 ---
 

@@ -39,6 +39,7 @@ def test_user_guide_mentions_workshop_shortcuts_and_spain_spanish():
         "Ctrl+Alt+K",
         "Ctrl+Alt+X",
         "Ctrl+Alt+F",
+        "Ctrl+Alt+R",
         "Ctrl+Alt+M",
         "veta",
         "lista de corte",
@@ -57,6 +58,7 @@ def test_uat_funcional_mentions_workshop_shortcuts():
         "Ctrl+Alt+K",
         "Ctrl+Alt+X",
         "Ctrl+Alt+F",
+        "Ctrl+Alt+R",
         "Ctrl+Alt+M",
         "veta",
     ):
@@ -300,6 +302,10 @@ def test_shortcuts_catalog_and_dialog(qapp):
         for b in STUDIO_SHORTCUTS
     )
     assert any(
+        b.action_key == "promote_offcuts" and b.sequence == "Ctrl+Alt+R"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
         b.action_key == "edit_project_kerf" and b.sequence == "Ctrl+Alt+K"
         for b in STUDIO_SHORTCUTS
     )
@@ -361,6 +367,7 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert actions["rename_project"].shortcut() == QKeySequence("Ctrl+Shift+F2")
     assert actions["swap_pieces"].shortcut() == QKeySequence("Ctrl+Alt+X")
     assert actions["repack_omitted"].shortcut() == QKeySequence("Ctrl+Alt+F")
+    assert actions["promote_offcuts"].shortcut() == QKeySequence("Ctrl+Alt+R")
     assert actions["exit"].shortcut() == QKeySequence("Ctrl+Q")
     assert actions["clear_recent"].shortcut() == QKeySequence("Ctrl+Shift+X")
     assert actions["toggle_toolbar"].shortcut() == QKeySequence("Ctrl+Shift+K")
@@ -1575,6 +1582,17 @@ def test_swap_pieces_tip_mentions_two_placed_and_shortcut():
     assert "Ctrl+Alt+X" in tr("tip.swap_pieces", "en")
     assert "dos" in es and "colocadas" in es
     assert "two" in en and "placed" in en
+
+
+def test_promote_offcuts_tip_mentions_inventory_and_shortcut():
+    from studio.i18n import tr
+
+    es = tr("tip.promote_offcuts", "es").casefold()
+    en = tr("tip.promote_offcuts", "en").casefold()
+    assert "Ctrl+Alt+R" in tr("tip.promote_offcuts", "es")
+    assert "Ctrl+Alt+R" in tr("tip.promote_offcuts", "en")
+    assert "retales" in es and "inventario" in es
+    assert "offcut" in en and "inventory" in en
 
 
 def test_repack_omitted_tip_mentions_freeze_and_shortcut():

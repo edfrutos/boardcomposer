@@ -18,6 +18,7 @@ from studio.commands.import_boards_command import ImportBoardsCommand
 from studio.commands.import_pieces_command import ImportPiecesCommand
 from studio.commands.move_piece_command import MovePieceCommand
 from studio.commands.place_piece_command import PlacePieceCommand
+from studio.commands.promote_offcuts_command import PromoteOffcutsCommand
 from studio.commands.rename_project_command import RenameProjectCommand
 from studio.commands.rotate_piece_command import RotatePieceCommand
 from studio.commands.swap_pieces_command import SwapPiecesCommand
@@ -39,6 +40,7 @@ __all__ = [
     "ImportPiecesCommand",
     "MovePieceCommand",
     "PlacePieceCommand",
+    "PromoteOffcutsCommand",
     "RenameProjectCommand",
     "RotatePieceCommand",
     "SwapPiecesCommand",

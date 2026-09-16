@@ -75,6 +75,7 @@ en red; puedes **Copiar**).
 | Importar tableros / piezas (CSV/Excel) | Ctrl+Shift+T / Ctrl+Shift+O |
 | Calcular layout | Ctrl+Return |
 | Re-empaquetar omitidas (congelar OK) | Ctrl+Alt+F |
+| Añadir retales al inventario | Ctrl+Alt+R |
 | Aplicar layout del Comparador | Ctrl+Shift+Return |
 | Candidata anterior / siguiente | Re Pág / Av Pág |
 | Exportar solución | Ctrl+Shift+E |
@@ -180,6 +181,10 @@ Dock **Ctrl+4**. Candidatas tras **Calcular layout**.
 - **Generar → Re-empaquetar omitidas** (**Ctrl+Alt+F**): congela las piezas
   ya colocadas de la candidata parcial y solo intenta colocar las omitidas
   en retales y tableros libres. No sustituye a Calcular layout.
+- **Generar → Añadir retales al inventario** (**Ctrl+Alt+R**): crea tableros
+  remnant con las medidas de los retales ≥ 50 mm. No baja solo la cantidad
+  de tableros ya cortados; hazlo antes del próximo cálculo. Se puede
+  deshacer.
 - Si editas inventario después de calcular, el banner avisa y el CTA
   **Calcular layout** recalcula; tips de aplicar / navegar / explicar
   también lo advierten.
