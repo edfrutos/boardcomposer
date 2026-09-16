@@ -350,9 +350,7 @@ class PreferencesManager:
             "export_include_explanation": preferences.export_include_explanation,
             "export_include_offcuts": preferences.export_include_offcuts,
             "export_include_piece_labels": (preferences.export_include_piece_labels),
-            "export_include_offcut_labels": (
-                preferences.export_include_offcut_labels
-            ),
+            "export_include_offcut_labels": (preferences.export_include_offcut_labels),
             "last_export_directory": preferences.last_export_directory,
             "last_backup_directory": preferences.last_backup_directory,
             "last_import_directory": preferences.last_import_directory,
