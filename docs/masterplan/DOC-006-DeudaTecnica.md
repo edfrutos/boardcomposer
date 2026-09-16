@@ -121,8 +121,8 @@ opción C diferida); sin críticas sin plan. Cola producto 0019…0024 cerrada.
 sin críticas sin plan. Cola implementable 0019…0024 vacía → IDE-0025…0030.
 
 **Revisión 2026-09-16 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
-sin críticas sin plan. Entregadas IDE-0026/0027/0030; cola restante
-0025 → 0028 → 0029 (sin IDE nuevas).
+sin críticas sin plan. Ola 1 (0025…0030) cerrada (`#638`); segunda ola
+IDE-0031…0036.
 
 ---
 
@@ -160,6 +160,6 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
-- Cola producto ciclo `0.4.4` vacía (0025…0030).
+- Cola producto ciclo `0.4.4` segunda ola IDE-0031…0036.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

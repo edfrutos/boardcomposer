@@ -22,8 +22,9 @@
   físicos consumidos, no de piezas. 0 = sin precio; no cambia el solver.
 - Docs planificación 2026-09-16: snapshot
   `docs/masterplan/REVIEW-2026-09-16-planificacion.md`; Issues = 0;
-  entregadas IDE-0025/0026/0027/0028/0029/0030; cola producto vacía
-  **sin** IDE nuevas.
+  ola 1 IDE-0025…0030 cerrada (`#638`); segunda ola IDE-0031…0036
+  (medidas tablero, etiquetas retal, presupuesto PDF, papel, lote,
+  hueco asistido).
 - Docs planificación 2026-09-15: snapshot
   `docs/masterplan/REVIEW-2026-09-15-planificacion.md`; cola producto
   IDE-0019…0024 cerrada (Skyline `#623` en `0.4.3`); Issues = 0 →

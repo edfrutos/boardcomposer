@@ -4,7 +4,7 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.37
+**Versión:** 1.3.38
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
 **Última revisión:** 16/09/2026
@@ -100,6 +100,12 @@ Observaciones:
 | IDE-0028 | Catálogo de materiales / espesores | 🟢 | P2 |
 | IDE-0029 | Coste estimado de material | 🟢 | P3 |
 | IDE-0030 | Congelar colocaciones / re-pack omitidas | 🟢 | P2 |
+| IDE-0031 | Medidas típicas de tablero en catálogo | ⚪ | P2 |
+| IDE-0032 | Informe de presupuesto PDF | ⚪ | P2 |
+| IDE-0033 | Etiquetas de retales en plano | ⚪ | P2 |
+| IDE-0034 | Papel / márgenes / escala en PDF | ⚪ | P2 |
+| IDE-0035 | Exportar soluciones en lote | ⚪ | P2 |
+| IDE-0036 | Colocación manual asistida (sugerir hueco) | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -123,6 +129,12 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0028 | M | SCR-005; prefs / archivo usuario | Entregado; Ctrl+Alt+T; JSON usuario |
 | IDE-0029 | S–M | IDE-0028 útil; scoring / export | Entregado; €/m² catálogo; tablero físico |
 | IDE-0030 | M | Pipeline parciales; Command Pattern | Entregado; Ctrl+Alt+F; freeze OK |
+| IDE-0031 | S | IDE-0028; NewBoardDialog | L×A típicas en catálogo usuario |
+| IDE-0032 | S–M | IDE-0029; IDE-0023; SCR-007 | PDF presupuesto; no cambia solver |
+| IDE-0033 | S–M | IDE-0026; ADR-016 | Medidas de retal en plano |
+| IDE-0034 | M | SCR-007; export PDF | Papel / márgenes / escala |
+| IDE-0035 | M | SCR-007; ExportDialog | Lote de candidatas Studio |
+| IDE-0036 | M–L | Workspace; PlacementValidator | Sugerir hueco al mover |
 
 ---
 
@@ -151,13 +163,14 @@ Detalle: `docs/masterplan/epics/`.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — IDE-0001…0030 Studio/Core
-completadas (ciclo `0.4.4` 0025…0030); IDE-0007 🟢 MVP+eval (2026-09-12;
-LLM diferido). EP (001…003) Fase 3 entregadas. Cola producto vacía.
-Snapshot: `REVIEW-2026-09-16-planificacion.md`.
+completadas (ciclo `0.4.4` ola 1); IDE-0031…0036 ⚪ segunda ola.
+IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
+entregadas. Snapshot: `REVIEW-2026-09-16-planificacion.md`.
 
 Próximo foco:
 
-1. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-2. Ciclo `0.4.4.dev0` abierto; etiqueta `v0.4.3` si falta.
-3. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
-4. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).
+1. Atacar cola IDE-0031 → 0033 → 0032 → 0034 → 0035 → 0036.
+2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
+3. Ciclo `0.4.4.dev0` abierto; etiqueta `v0.4.3` si falta.
+4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
+5. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).
