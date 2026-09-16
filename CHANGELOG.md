@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Exportar: papel / márgenes / escala en PDF de plano (IDE-0034);
+  A4/A3/Letter o ajustar al dibujo; escala fit o 1:n; márgenes mm.
+  Default: página a tamaño del dibujo (igual que antes). Lista de
+  corte y presupuesto siguen en A4. Sin bump `.bcproj`.
 - Exportar: presupuesto de material PDF (IDE-0032); **Ctrl+Alt+Q**;
   tableros físicos × €/m² del catálogo; no cambia el solver. Sin bump
   `.bcproj`.

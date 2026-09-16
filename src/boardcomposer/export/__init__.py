@@ -17,6 +17,18 @@ from .cut_sequence import (
 from .dxf_exporter import solution_to_dxf
 from .json_exporter import solution_to_json
 from .pdf_exporter import solution_to_pdf
+from .pdf_page import (
+    DEFAULT_PDF_MARGIN_MM,
+    DEFAULT_PDF_ORIENTATION,
+    DEFAULT_PDF_PAPER,
+    DEFAULT_PDF_SCALE,
+    MAX_PDF_MARGIN_MM,
+    MIN_PDF_MARGIN_MM,
+    VALID_PDF_ORIENTATIONS,
+    VALID_PDF_PAPERS,
+    VALID_PDF_SCALES,
+    PdfPageOptions,
+)
 from .quote import QuoteMeta, QuoteReport, build_quote, quote_to_pdf
 from .report_pdf import pdf_from_text_lines
 from .svg_exporter import solution_to_svg
@@ -24,9 +36,16 @@ from .svg_palette import DEFAULT_SVG_PALETTE, SvgPalette
 
 __all__ = [
     "DEFAULT_SVG_PALETTE",
+    "DEFAULT_PDF_MARGIN_MM",
+    "DEFAULT_PDF_ORIENTATION",
+    "DEFAULT_PDF_PAPER",
+    "DEFAULT_PDF_SCALE",
+    "MAX_PDF_MARGIN_MM",
+    "MIN_PDF_MARGIN_MM",
     "CutList",
     "CutListMeta",
     "PanelCutSequence",
+    "PdfPageOptions",
     "QuoteMeta",
     "QuoteReport",
     "SequenceStep",
@@ -46,6 +65,9 @@ __all__ = [
     "solution_to_csv",
     "solution_to_dxf",
     "solution_to_json",
+    "VALID_PDF_ORIENTATIONS",
+    "VALID_PDF_PAPERS",
+    "VALID_PDF_SCALES",
     "solution_to_pdf",
     "solution_to_svg",
 ]

@@ -32,6 +32,29 @@ def test_export_templates_manager_round_trips(tmp_path):
     assert pdf.options.include_offcuts is False
 
 
+def test_export_templates_round_trip_pdf_page_settings(tmp_path):
+    path = tmp_path / "templates.json"
+    manager = ExportTemplatesManager(path=path)
+    manager.save_template(
+        "A4 taller",
+        ExportOptions(
+            format="pdf",
+            pdf_paper="a4",
+            pdf_orientation="landscape",
+            pdf_scale="fit",
+            pdf_margin_mm=10.0,
+        ),
+        client="Acme",
+    )
+
+    reloaded = ExportTemplatesManager(path=path).get("A4 taller", client="Acme")
+    assert reloaded is not None
+    assert reloaded.options.pdf_paper == "a4"
+    assert reloaded.options.pdf_orientation == "landscape"
+    assert reloaded.options.pdf_scale == "fit"
+    assert reloaded.options.pdf_margin_mm == 10.0
+
+
 def test_export_templates_same_name_allowed_for_different_clients(tmp_path):
     path = tmp_path / "templates.json"
     manager = ExportTemplatesManager(path=path)
@@ -172,6 +195,7 @@ def test_export_dialog_uses_english_labels(qapp):
     assert dialog.include_offcuts.text() == "Include offcuts"
     assert dialog.include_piece_labels.text() == "Piece labels (id and size)"
     assert dialog.include_offcut_labels.text() == "Offcut labels (size)"
+    assert dialog.pdf_paper.itemText(0) == "Fit drawing"
     assert dialog.client.itemText(0) == "(all clients)"
 
 

@@ -223,6 +223,9 @@ marcadores…).
   opciones (métricas y explicación solo JSON; retales; **etiquetas** de
   pieza con id y LxW mm y de retal con LxW mm en el plano SVG/PDF/DXF/raster).
   El JSON de Studio incluye coste estimado si el catálogo tiene precio €/m².
+  En **PDF** de plano: papel (ajustar al dibujo, A4, A3, Letter),
+  orientación, escala (ajustar o 1:n) y márgenes mm. Lista de corte y
+  presupuesto PDF siguen en A4.
 - **Archivo → Exportar lista de corte…** (**Ctrl+Alt+C**) es otro flujo:
   CSV o PDF de taller (piezas, tableros y **secuencia de sierra** por
   panel). Recuerda carpeta y formato. El plano SVG/PDF/DXF numera cada

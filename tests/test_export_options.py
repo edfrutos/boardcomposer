@@ -76,6 +76,8 @@ def test_preview_text_includes_format_summary():
 
     assert "Formato: PDF" in text
     assert "Piezas colocadas: 1" in text
+    assert "Papel: drawing" in text
+    assert "escala: 1:1" in text
 
 
 def test_render_export_png_and_jpeg_return_svg_payload():
@@ -159,6 +161,38 @@ def test_export_dialog_piece_labels_enabled_for_plan_formats(qapp):
     dialog._refresh_preview()
     assert dialog.include_piece_labels.isEnabled()
     assert not dialog.include_offcut_labels.isEnabled()
+
+
+def test_export_dialog_pdf_page_controls_enabled_only_for_pdf(qapp):
+    del qapp
+    from studio.dialogs import ExportDialog
+
+    dialog = ExportDialog(
+        _solution(),
+        None,
+        ExportOptions(format="pdf", pdf_paper="a4", pdf_scale="fit"),
+    )
+    assert dialog.pdf_paper.isEnabled()
+    assert dialog.pdf_orientation.isEnabled()
+    assert dialog.pdf_scale.isEnabled()
+    assert dialog.pdf_margin_mm.isEnabled()
+    assert dialog.pdf_paper.currentData() == "a4"
+    assert "Papel: a4" in dialog.preview.toPlainText()
+
+    dialog.format.setCurrentIndex(dialog.format.findData("svg"))
+    dialog._refresh_preview()
+    assert not dialog.pdf_paper.isEnabled()
+    assert not dialog.pdf_orientation.isEnabled()
+    assert not dialog.pdf_scale.isEnabled()
+    assert not dialog.pdf_margin_mm.isEnabled()
+
+    dialog.format.setCurrentIndex(dialog.format.findData("pdf"))
+    dialog.pdf_paper.setCurrentIndex(dialog.pdf_paper.findData("drawing"))
+    dialog._refresh_preview()
+    assert dialog.pdf_paper.isEnabled()
+    assert not dialog.pdf_orientation.isEnabled()
+    assert not dialog.pdf_scale.isEnabled()
+    assert dialog.pdf_margin_mm.isEnabled()
 
 
 def test_svg_to_raster_bytes_supports_png_and_jpeg(qapp):

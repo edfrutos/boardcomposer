@@ -4126,6 +4126,10 @@ class MainWindow(QMainWindow):
             export_include_offcuts=options.include_offcuts,
             export_include_piece_labels=options.include_piece_labels,
             export_include_offcut_labels=options.include_offcut_labels,
+            export_pdf_paper=options.pdf_paper,
+            export_pdf_orientation=options.pdf_orientation,
+            export_pdf_scale=options.pdf_scale,
+            export_pdf_margin_mm=options.pdf_margin_mm,
             last_export_directory=str(Path(path).expanduser().resolve().parent),
         )
         self.services.preferences.update(updated)

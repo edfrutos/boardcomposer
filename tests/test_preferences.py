@@ -64,6 +64,19 @@ def test_preferences_manager_round_trips_through_json(tmp_path):
     assert path.is_file()
 
 
+def test_preferences_manager_normalizes_pdf_page_settings(tmp_path):
+    path = tmp_path / "preferences.json"
+    path.write_text(
+        '{"export_pdf_paper": "folio", "export_pdf_scale": "1:3", '
+        '"export_pdf_margin_mm": 80}\n',
+        encoding="utf-8",
+    )
+    prefs = PreferencesManager(path).current
+    assert prefs.export_pdf_paper == "drawing"
+    assert prefs.export_pdf_scale == "1:1"
+    assert prefs.export_pdf_margin_mm == 50.0
+
+
 def test_preferences_manager_ignores_blank_last_export_directory(tmp_path):
     path = tmp_path / "preferences.json"
     path.write_text(
@@ -262,6 +275,11 @@ def test_preferences_dialog_labels_follow_language(qapp):
     assert dialog.export_include_offcuts.text() == "Include offcuts"
     assert dialog.export_include_piece_labels.text() == "Piece labels (id and size)"
     assert dialog.export_include_offcut_labels.text() == "Offcut labels (size)"
+    assert dialog._export_pdf_paper_label.text() == "Paper (PDF):"
+    assert "Fit drawing" in [
+        dialog.export_pdf_paper.itemText(i)
+        for i in range(dialog.export_pdf_paper.count())
+    ]
     assert "Material first" in [
         dialog.strategy.itemText(i) for i in range(dialog.strategy.count())
     ]
@@ -277,6 +295,7 @@ def test_preferences_dialog_labels_follow_language(qapp):
     assert dialog.export_include_offcut_labels.text() == (
         "Etiquetas de retales (medidas)"
     )
+    assert dialog._export_pdf_paper_label.text() == "Papel (PDF):"
     assert "Material primero" in [
         dialog.strategy.itemText(i) for i in range(dialog.strategy.count())
     ]

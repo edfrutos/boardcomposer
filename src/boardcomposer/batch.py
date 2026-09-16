@@ -9,6 +9,11 @@ from pathlib import Path
 
 from boardcomposer.api import v1
 from boardcomposer.export import (
+    DEFAULT_PDF_MARGIN_MM,
+    DEFAULT_PDF_ORIENTATION,
+    DEFAULT_PDF_PAPER,
+    DEFAULT_PDF_SCALE,
+    PdfPageOptions,
     prepare_solution_for_export,
     solution_to_dxf,
     solution_to_pdf,
@@ -39,6 +44,10 @@ class BatchProfile:
     include_offcuts: bool = True
     include_piece_labels: bool = True
     include_offcut_labels: bool = True
+    pdf_paper: str = DEFAULT_PDF_PAPER
+    pdf_orientation: str = DEFAULT_PDF_ORIENTATION
+    pdf_scale: str = DEFAULT_PDF_SCALE
+    pdf_margin_mm: float = DEFAULT_PDF_MARGIN_MM
 
     @classmethod
     def from_dict(cls, data: dict) -> BatchProfile:
@@ -46,6 +55,12 @@ class BatchProfile:
         if isinstance(formats, str):
             formats = [part.strip() for part in formats.split(",") if part.strip()]
 
+        page = PdfPageOptions(
+            paper=str(data.get("pdf_paper", DEFAULT_PDF_PAPER)),
+            orientation=str(data.get("pdf_orientation", DEFAULT_PDF_ORIENTATION)),
+            scale=str(data.get("pdf_scale", DEFAULT_PDF_SCALE)),
+            margin_mm=data.get("pdf_margin_mm", DEFAULT_PDF_MARGIN_MM),
+        ).normalized()
         profile = cls(
             strategy=str(data.get("strategy", "balanced")),
             top=int(data.get("top", 1)),
@@ -55,6 +70,10 @@ class BatchProfile:
             include_offcuts=bool(data.get("include_offcuts", True)),
             include_piece_labels=bool(data.get("include_piece_labels", True)),
             include_offcut_labels=bool(data.get("include_offcut_labels", True)),
+            pdf_paper=page.paper,
+            pdf_orientation=page.orientation,
+            pdf_scale=page.scale,
+            pdf_margin_mm=page.margin_mm,
         )
 
         template_name = str(data.get("template", "")).strip()
@@ -95,6 +114,10 @@ class BatchProfile:
             include_offcuts=template.include_offcuts,
             include_piece_labels=template.include_piece_labels,
             include_offcut_labels=template.include_offcut_labels,
+            pdf_paper=template.pdf_paper,
+            pdf_orientation=template.pdf_orientation,
+            pdf_scale=template.pdf_scale,
+            pdf_margin_mm=template.pdf_margin_mm,
         )
 
     @classmethod
@@ -312,6 +335,12 @@ def _write_exports(
                     project,
                     include_piece_labels=profile.include_piece_labels,
                     include_offcut_labels=profile.include_offcut_labels,
+                    page=PdfPageOptions(
+                        paper=profile.pdf_paper,
+                        orientation=profile.pdf_orientation,
+                        scale=profile.pdf_scale,
+                        margin_mm=profile.pdf_margin_mm,
+                    ),
                 )
             )
 

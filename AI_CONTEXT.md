@@ -26,11 +26,13 @@ alternativas comprensibles para que el usuario decida.
 - Catálogo de materiales / espesores / precio €/m² / medidas L×A
   (IDE-0028/0029/0031; `~/.boardcomposer/material_catalog.json`;
   **Ctrl+Alt+T**). Coste = tableros físicos × precio; no puntúa el solver.
+- PDF de plano: papel / márgenes / escala (IDE-0034); default ajustar al
+  dibujo. Lista de corte y presupuesto siguen A4.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
   `docs/masterplan/REVIEW-2026-09-16-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3`).
-- Próximo: cola IDE-0034 → 0035 → 0036; piloto
+- Próximo: cola IDE-0035 → 0036; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

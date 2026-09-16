@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-005  
-**Versión:** 1.5.0  
+**Versión:** 1.6.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -147,6 +147,7 @@ posibilidad de abrir/revelar al terminar y de reutilizar plantillas/defaults.
 - PNG/JPEG/PDF/DXF/SVG/JSON/CSV vía diálogo de export (SCR-007).
 - Lista de corte (IDE-0023 / IDE-0027): CSV/PDF aparte, misma carpeta y
   diálogo outdated que la solución; incluye secuencia de sierra por panel.
-- Opciones de papel/escala/márgenes limitadas (defaults del exportador).
+- PDF de plano (IDE-0034): papel A4/A3/Letter o ajustar al dibujo, escala
+  fit/1:n y márgenes mm. Lista de corte y presupuesto siguen en A4.
 - CSV del diálogo solo placements.
 - Sin lotes ni publicación a la nube.

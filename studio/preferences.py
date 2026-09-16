@@ -7,6 +7,13 @@ from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
 
 from boardcomposer.export.cut_list import normalize_cut_list_format
+from boardcomposer.export.pdf_page import (
+    DEFAULT_PDF_MARGIN_MM,
+    DEFAULT_PDF_ORIENTATION,
+    DEFAULT_PDF_PAPER,
+    DEFAULT_PDF_SCALE,
+    PdfPageOptions,
+)
 from boardcomposer.layout.kerf import DEFAULT_KERF_MM, normalize_kerf
 from boardcomposer.solver.scoring_weights import ScoringWeights
 from boardcomposer.solver.strategies import OptimizationStrategy, strategy_by_name
@@ -76,6 +83,10 @@ class StudioPreferences:
     export_include_offcuts: bool = True
     export_include_piece_labels: bool = True
     export_include_offcut_labels: bool = True
+    export_pdf_paper: str = DEFAULT_PDF_PAPER
+    export_pdf_orientation: str = DEFAULT_PDF_ORIENTATION
+    export_pdf_scale: str = DEFAULT_PDF_SCALE
+    export_pdf_margin_mm: float = DEFAULT_PDF_MARGIN_MM
     last_export_directory: str | None = None
     last_backup_directory: str | None = None
     last_import_directory: str | None = None
@@ -116,6 +127,10 @@ class StudioPreferences:
             include_offcuts=self.export_include_offcuts,
             include_piece_labels=self.export_include_piece_labels,
             include_offcut_labels=self.export_include_offcut_labels,
+            pdf_paper=self.export_pdf_paper,
+            pdf_orientation=self.export_pdf_orientation,
+            pdf_scale=self.export_pdf_scale,
+            pdf_margin_mm=self.export_pdf_margin_mm,
         ).normalized()
 
 
@@ -261,6 +276,13 @@ class PreferencesManager:
         if export_format not in VALID_EXPORT_FORMATS:
             export_format = DEFAULT_EXPORT_FORMAT
 
+        page = PdfPageOptions(
+            paper=payload.get("export_pdf_paper", DEFAULT_PDF_PAPER),
+            orientation=payload.get("export_pdf_orientation", DEFAULT_PDF_ORIENTATION),
+            scale=payload.get("export_pdf_scale", DEFAULT_PDF_SCALE),
+            margin_mm=payload.get("export_pdf_margin_mm", DEFAULT_PDF_MARGIN_MM),
+        ).normalized()
+
         return StudioPreferences(
             strategy_name=strategy_name,
             use_custom_weights=bool(payload.get("use_custom_weights", False)),
@@ -282,6 +304,10 @@ class PreferencesManager:
             export_include_offcut_labels=bool(
                 payload.get("export_include_offcut_labels", True)
             ),
+            export_pdf_paper=page.paper,
+            export_pdf_orientation=page.orientation,
+            export_pdf_scale=page.scale,
+            export_pdf_margin_mm=page.margin_mm,
             last_export_directory=_optional_directory(
                 payload.get("last_export_directory")
             ),
@@ -351,6 +377,10 @@ class PreferencesManager:
             "export_include_offcuts": preferences.export_include_offcuts,
             "export_include_piece_labels": (preferences.export_include_piece_labels),
             "export_include_offcut_labels": (preferences.export_include_offcut_labels),
+            "export_pdf_paper": preferences.export_pdf_paper,
+            "export_pdf_orientation": preferences.export_pdf_orientation,
+            "export_pdf_scale": preferences.export_pdf_scale,
+            "export_pdf_margin_mm": preferences.export_pdf_margin_mm,
             "last_export_directory": preferences.last_export_directory,
             "last_backup_directory": preferences.last_backup_directory,
             "last_import_directory": preferences.last_import_directory,

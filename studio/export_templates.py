@@ -6,6 +6,12 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from boardcomposer.export import (
+    DEFAULT_PDF_MARGIN_MM,
+    DEFAULT_PDF_ORIENTATION,
+    DEFAULT_PDF_PAPER,
+    DEFAULT_PDF_SCALE,
+)
 from studio.export_options import ExportOptions
 
 
@@ -45,6 +51,10 @@ class ExportTemplate:
             "include_offcuts": self.options.include_offcuts,
             "include_piece_labels": self.options.include_piece_labels,
             "include_offcut_labels": self.options.include_offcut_labels,
+            "pdf_paper": self.options.pdf_paper,
+            "pdf_orientation": self.options.pdf_orientation,
+            "pdf_scale": self.options.pdf_scale,
+            "pdf_margin_mm": self.options.pdf_margin_mm,
         }
         if self.client:
             payload["client"] = self.client
@@ -62,6 +72,12 @@ class ExportTemplate:
             include_offcuts=bool(payload.get("include_offcuts", True)),
             include_piece_labels=bool(payload.get("include_piece_labels", True)),
             include_offcut_labels=bool(payload.get("include_offcut_labels", True)),
+            pdf_paper=str(payload.get("pdf_paper", DEFAULT_PDF_PAPER)),
+            pdf_orientation=str(
+                payload.get("pdf_orientation", DEFAULT_PDF_ORIENTATION)
+            ),
+            pdf_scale=str(payload.get("pdf_scale", DEFAULT_PDF_SCALE)),
+            pdf_margin_mm=payload.get("pdf_margin_mm", DEFAULT_PDF_MARGIN_MM),
         ).normalized()
         client = normalize_client(str(payload.get("client", "")))
         return cls(name=name, options=options, client=client)

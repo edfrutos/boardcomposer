@@ -49,3 +49,11 @@ def test_parse_share_pack():
     assert len(templates) == 1
     assert templates[0].client == "Acme"
     assert templates[0].format == "csv"
+
+
+def test_parse_legacy_template_defaults_pdf_page():
+    templates = parse_export_templates_payload([{"name": "Legacy", "format": "pdf"}])
+    assert len(templates) == 1
+    assert templates[0].pdf_paper == "drawing"
+    assert templates[0].pdf_scale == "1:1"
+    assert templates[0].pdf_margin_mm == 12.7
