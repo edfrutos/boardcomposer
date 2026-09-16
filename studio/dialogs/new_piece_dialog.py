@@ -2,6 +2,7 @@
 
 from PySide6.QtWidgets import (
     QCheckBox,
+    QComboBox,
     QDialog,
     QDialogButtonBox,
     QDoubleSpinBox,
@@ -18,6 +19,8 @@ from boardcomposer.domain.grain import (
 )
 from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.i18n import DEFAULT_LANGUAGE, tr
+from studio.material_catalog import MaterialCatalog
+from studio.material_fields import bind_thickness_suggestions, fill_material_combo
 from studio.units import display_to_mm, mm_to_display, unit_label
 
 
@@ -39,6 +42,7 @@ class NewPieceDialog(QDialog):
         show_quantity: bool = True,
         units: str = "mm",
         language: str = DEFAULT_LANGUAGE,
+        catalog: MaterialCatalog | None = None,
     ):
         super().__init__(parent)
 
@@ -53,7 +57,7 @@ class NewPieceDialog(QDialog):
         self.width = QDoubleSpinBox()
         self.thickness = QDoubleSpinBox()
         self.quantity = QSpinBox()
-        self.material = QLineEdit(material)
+        self.material = QComboBox()
         self.rotatable = QCheckBox()
         self.rotatable.setChecked(grain_allows_rotation(grain))
         self.rotatable.setToolTip(tr("tip.piece_grain", language))
@@ -70,6 +74,7 @@ class NewPieceDialog(QDialog):
         self.thickness.setValue(mm_to_display(thickness_mm, units))
         self.quantity.setRange(1, 10_000)
         self.quantity.setValue(quantity)
+        fill_material_combo(self.material, catalog, material)
 
         form = QFormLayout()
         form.addRow(tr("form.id", language), self.piece_id)
@@ -95,6 +100,13 @@ class NewPieceDialog(QDialog):
         layout.addWidget(buttons)
 
         self.setLayout(layout)
+        bind_thickness_suggestions(
+            self.material,
+            self.thickness,
+            catalog,
+            units=units,
+            language=language,
+        )
 
     def piece_data(self) -> dict:
         return {
@@ -103,7 +115,7 @@ class NewPieceDialog(QDialog):
             "width_mm": display_to_mm(self.width.value(), self._units),
             "thickness_mm": display_to_mm(self.thickness.value(), self._units),
             "quantity": self.quantity.value(),
-            "material": self.material.text().strip(),
+            "material": self.material.currentText().strip(),
             "rotatable": self.rotatable.isChecked(),
             "grain": GRAIN_NONE if self.rotatable.isChecked() else GRAIN_LOCKED,
         }

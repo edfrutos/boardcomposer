@@ -1,6 +1,7 @@
 """Dialog for creating or editing a Studio board."""
 
 from PySide6.QtWidgets import (
+    QComboBox,
     QDialog,
     QDialogButtonBox,
     QDoubleSpinBox,
@@ -12,6 +13,8 @@ from PySide6.QtWidgets import (
 
 from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.i18n import DEFAULT_LANGUAGE, tr
+from studio.material_catalog import MaterialCatalog
+from studio.material_fields import bind_thickness_suggestions, fill_material_combo
 from studio.units import display_to_mm, mm_to_display, unit_label
 
 
@@ -31,6 +34,7 @@ class NewBoardDialog(QDialog):
         title: str | None = None,
         units: str = "mm",
         language: str = DEFAULT_LANGUAGE,
+        catalog: MaterialCatalog | None = None,
     ) -> None:
         super().__init__(parent)
 
@@ -45,7 +49,7 @@ class NewBoardDialog(QDialog):
         self.width = QDoubleSpinBox()
         self.thickness = QDoubleSpinBox()
         self.quantity = QSpinBox()
-        self.material = QLineEdit(material)
+        self.material = QComboBox()
 
         decimals = 0 if units == "mm" else 2
         for field in (self.length, self.width, self.thickness):
@@ -58,6 +62,7 @@ class NewBoardDialog(QDialog):
         self.thickness.setValue(mm_to_display(thickness_mm, units))
         self.quantity.setRange(1, 10_000)
         self.quantity.setValue(quantity)
+        fill_material_combo(self.material, catalog, material)
 
         form = QFormLayout()
         form.addRow(tr("form.id", language), self.board_id)
@@ -78,6 +83,13 @@ class NewBoardDialog(QDialog):
         layout.addLayout(form)
         layout.addWidget(buttons)
         self.setLayout(layout)
+        bind_thickness_suggestions(
+            self.material,
+            self.thickness,
+            catalog,
+            units=units,
+            language=language,
+        )
 
     def board_data(self) -> dict:
         """Return the values entered in the dialog (always in mm)."""
@@ -87,5 +99,5 @@ class NewBoardDialog(QDialog):
             "width_mm": display_to_mm(self.width.value(), self._units),
             "thickness_mm": display_to_mm(self.thickness.value(), self._units),
             "quantity": self.quantity.value(),
-            "material": self.material.text().strip(),
+            "material": self.material.currentText().strip(),
         }

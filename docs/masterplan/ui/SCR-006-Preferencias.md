@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-006  
-**Versión:** 1.1.0  
+**Versión:** 1.2.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 24/07/2026
+**Última revisión:** 16/09/2026
 
 ---
 
@@ -32,7 +32,8 @@ scoring personales.
 - Botón en pantalla de inicio (SCR-001)
 - Atajo **Ctrl+,**
 
-Persistencia: `~/.boardcomposer/preferences.json` (fuera del proyecto).
+Persistencia: `~/.boardcomposer/preferences.json` y
+`~/.boardcomposer/material_catalog.json` (fuera del proyecto).
 
 ---
 
@@ -50,7 +51,8 @@ Restaurar valores por defecto.
 │ Algoritmos     estrategia · pesos custom (4)               │
 │ Exportación    formato default · métricas/explicación/     │
 │                retales                                     │
-│ Avanzado       máx. soluciones · abrir ~/.boardcomposer/   │
+│ Avanzado       máx. soluciones · kerf default · catálogo   │
+│                · abrir ~/.boardcomposer/                   │
 ├────────────────────────────────────────────────────────────┤
 │              [Restaurar]  [Cancelar]  [OK]                 │
 └────────────────────────────────────────────────────────────┘
@@ -95,6 +97,7 @@ Restaurar valores por defecto.
 | Campo | Notas |
 | --- | --- |
 | Máx. soluciones | 1–100 (default 20); trunca ranking tras calcular |
+| Catálogo de materiales | Botón abre el editor (también **Ctrl+Alt+T**) |
 | Abrir carpeta de datos | Revela `~/.boardcomposer/` |
 
 No implementados (visión antigua): zoom inicial, guías/reglas/cotas, beam

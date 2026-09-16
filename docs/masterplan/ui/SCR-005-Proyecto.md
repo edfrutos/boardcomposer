@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-005  
-**Versión:** 1.2.0  
+**Versión:** 1.3.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 02/08/2026
+**Última revisión:** 16/09/2026
 
 ---
 
@@ -21,11 +21,11 @@ CSV/Excel) y el Explorador como árbol del trabajo en curso. No es una pantalla
 
 ## Filosofía
 
-Un proyecto es una unidad reproducible en disco (`.bcproj` v5, con
+Un proyecto es una unidad reproducible en disco (`.bcproj` v6, con
 migraciones ADR-015). El usuario debe poder retomarlo meses después con el
 mismo inventario, colocaciones y contexto. La configuración de solver/tema
-vive en Preferencias (SCR-006), no en un formulario monolítico de
-«Proyecto».
+y el catálogo de materiales viven fuera del `.bcproj` (SCR-006 /
+`material_catalog.json`).
 
 ---
 
@@ -42,6 +42,7 @@ Abrir / Recientes Añadir tablero…
 Guardar / Como   Añadir pieza…
 Plantilla…       Importar tableros…
 Salir            Importar piezas…
+                 Catálogo materiales…
 ```
 
 La barra de estado muestra el basename del `.bcproj` cuando el proyecto está
@@ -71,6 +72,7 @@ carpeta. Sin archivo en disco: «aún no guardado» + tip **Ctrl+S**.
 | Renombrar proyecto | **Ctrl+Shift+F2** (también **F2** en raíz) | Undoable; menú y ctx Explorador |
 | Metadatos (cliente, ref., notas) | **Ctrl+Alt+M** (también **Return** / Editar en raíz) | Undoable; `.bcproj` v3; Inspector |
 | Espesor de sierra / kerf | **Ctrl+Alt+K** | Undoable; `.bcproj` v4; hueco al calcular/mover |
+| Catálogo de materiales | **Ctrl+Alt+T** | Usuario; `material_catalog.json`; no va en el `.bcproj` |
 | Abrir carpeta | **Ctrl+Shift+R** | Solo si hay archivo en disco |
 | Comparar revisiones | **Ctrl+Shift+Y** | Diff vs anillo local / archivos; recuerda carpeta (`last_diff_directory`) |
 | Restaurar última revisión | **Ctrl+Alt+Y** | Snapshot más reciente del anillo; dirty hasta Guardar; vacía undo |
@@ -89,8 +91,8 @@ carpeta. Sin archivo en disco: «aún no guardado» + tip **Ctrl+S**.
 
 | Acción | Atajo | Notas |
 |--------|-------|--------|
-| Añadir tablero | **Ctrl+Shift+B** | Diálogo; `AddBoardCommand` (undo) |
-| Añadir pieza | **Ctrl+Shift+P** | Qty → varios IDs; `AddPieceCommand` (undo) |
+| Añadir tablero | **Ctrl+Shift+B** | Diálogo combo catálogo; `AddBoardCommand` (undo) |
+| Añadir pieza | **Ctrl+Shift+P** | Qty → varios IDs; combo catálogo; `AddPieceCommand` |
 | Importar tableros CSV/Excel | **Ctrl+Shift+T** | Preview + mapeo; con undo |
 | Importar piezas CSV/Excel | **Ctrl+Shift+O** | Preview; qty expandida; con undo |
 
@@ -147,6 +149,7 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
   Kerf / espesor de sierra entregado (IDE-0020; `.bcproj` v4; **Ctrl+Alt+K**).
   Veta / orientación de fibra entregada (IDE-0021; `.bcproj` v5; por pieza).
   Packing Skyline multipanel entregado (IDE-0022).
+  Catálogo de materiales / espesores entregado (IDE-0028; archivo usuario).
 
 ---
 

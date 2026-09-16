@@ -87,6 +87,7 @@ from studio.dialogs import (
     ExplainSolutionDialog,
     ImportBoardsPreviewDialog,
     ImportPiecesPreviewDialog,
+    MaterialCatalogDialog,
     NewBoardDialog,
     NewPieceDialog,
     NewProjectDialog,
@@ -234,6 +235,7 @@ class MainWindow(QMainWindow):
         self._menus["project"].addAction(self._actions["rename_project"])
         self._menus["project"].addAction(self._actions["edit_project_metadata"])
         self._menus["project"].addAction(self._actions["edit_project_kerf"])
+        self._menus["project"].addAction(self._actions["material_catalog"])
         self._menus["project"].addAction(self._actions["reveal_project_folder"])
         self._menus["project"].addAction(self._actions["diff_bcproj"])
         self._menus["project"].addAction(self._actions["restore_local_revision"])
@@ -279,6 +281,7 @@ class MainWindow(QMainWindow):
             self._edit_project_metadata
         )
         self._actions["edit_project_kerf"].triggered.connect(self._edit_project_kerf)
+        self._actions["material_catalog"].triggered.connect(self._open_material_catalog)
         self._actions["reveal_project_folder"].triggered.connect(
             self._reveal_project_folder
         )
@@ -1266,7 +1269,10 @@ class MainWindow(QMainWindow):
             return
 
         dialog = NewBoardDialog(
-            self, units=self._display_units(), language=self._ui_language()
+            self,
+            units=self._display_units(),
+            language=self._ui_language(),
+            catalog=self.services.material_catalog.catalog,
         )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
@@ -1287,6 +1293,7 @@ class MainWindow(QMainWindow):
             quantity=data["quantity"],
         )
         self.services.commands.execute(AddBoardCommand(self.services, board))
+        self._remember_catalog_entry(data["material"], data["thickness_mm"])
 
         self._mark_project_modified()
         self.workspace.reload_project()
@@ -1740,7 +1747,10 @@ class MainWindow(QMainWindow):
             return
 
         dialog = NewPieceDialog(
-            self, units=self._display_units(), language=self._ui_language()
+            self,
+            units=self._display_units(),
+            language=self._ui_language(),
+            catalog=self.services.material_catalog.catalog,
         )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
@@ -1799,6 +1809,7 @@ class MainWindow(QMainWindow):
         self.services.commands.execute(
             AddPieceCommand(self.services, pieces, placements)
         )
+        self._remember_catalog_entry(data["material"], data["thickness_mm"])
 
         self._mark_project_modified()
         self.workspace.reload_project()
@@ -2774,12 +2785,27 @@ class MainWindow(QMainWindow):
             self.statusBar().showMessage(message, 3000)
 
     def _open_preferences(self) -> None:
-        dialog = PreferencesDialog(self.services.preferences.current, self)
+        dialog = PreferencesDialog(
+            self.services.preferences.current,
+            self,
+            catalog=self.services.material_catalog,
+        )
         if dialog.exec() != PreferencesDialog.DialogCode.Accepted:
             return
         self.services.preferences.update(dialog.preferences())
         self._apply_preferences()
         self._status("status.prefs_saved")
+
+    def _open_material_catalog(self) -> None:
+        dialog = MaterialCatalogDialog(
+            self.services.material_catalog,
+            self,
+            language=self._ui_language(),
+        )
+        dialog.exec()
+
+    def _remember_catalog_entry(self, name: str, thickness_mm: float) -> None:
+        self.services.material_catalog.remember(name, thickness_mm)
 
     def _display_units(self) -> str:
         return self.services.preferences.current.units
@@ -5455,6 +5481,7 @@ class MainWindow(QMainWindow):
             title=self._tr("dialog.edit_board"),
             units=self._display_units(),
             language=self._ui_language(),
+            catalog=self.services.material_catalog.catalog,
         )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
@@ -5484,6 +5511,7 @@ class MainWindow(QMainWindow):
 
         command = EditBoardCommand(self.services, board, updated_board)
         self.services.commands.execute(command)
+        self._remember_catalog_entry(data["material"], data["thickness_mm"])
 
         self._mark_project_modified(reason="board_edited")
 
@@ -5515,6 +5543,7 @@ class MainWindow(QMainWindow):
             show_quantity=False,
             units=self._display_units(),
             language=self._ui_language(),
+            catalog=self.services.material_catalog.catalog,
         )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
@@ -5549,6 +5578,7 @@ class MainWindow(QMainWindow):
 
         command = EditPieceCommand(self.services, piece, updated_piece)
         self.services.commands.execute(command)
+        self._remember_catalog_entry(data["material"], data["thickness_mm"])
 
         self._mark_project_modified(reason="piece_edited")
 

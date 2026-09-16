@@ -40,6 +40,7 @@ def test_user_guide_mentions_workshop_shortcuts_and_spain_spanish():
         "Ctrl+Alt+X",
         "Ctrl+Alt+F",
         "Ctrl+Alt+R",
+        "Ctrl+Alt+T",
         "Ctrl+Alt+M",
         "veta",
         "lista de corte",
@@ -59,6 +60,7 @@ def test_uat_funcional_mentions_workshop_shortcuts():
         "Ctrl+Alt+X",
         "Ctrl+Alt+F",
         "Ctrl+Alt+R",
+        "Ctrl+Alt+T",
         "Ctrl+Alt+M",
         "veta",
     ):
@@ -306,6 +308,10 @@ def test_shortcuts_catalog_and_dialog(qapp):
         for b in STUDIO_SHORTCUTS
     )
     assert any(
+        b.action_key == "material_catalog" and b.sequence == "Ctrl+Alt+T"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
         b.action_key == "edit_project_kerf" and b.sequence == "Ctrl+Alt+K"
         for b in STUDIO_SHORTCUTS
     )
@@ -368,6 +374,7 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert actions["swap_pieces"].shortcut() == QKeySequence("Ctrl+Alt+X")
     assert actions["repack_omitted"].shortcut() == QKeySequence("Ctrl+Alt+F")
     assert actions["promote_offcuts"].shortcut() == QKeySequence("Ctrl+Alt+R")
+    assert actions["material_catalog"].shortcut() == QKeySequence("Ctrl+Alt+T")
     assert actions["exit"].shortcut() == QKeySequence("Ctrl+Q")
     assert actions["clear_recent"].shortcut() == QKeySequence("Ctrl+Shift+X")
     assert actions["toggle_toolbar"].shortcut() == QKeySequence("Ctrl+Shift+K")

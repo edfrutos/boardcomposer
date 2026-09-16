@@ -28,6 +28,7 @@ from studio.dialogs.dialog_chrome import (
 )
 from studio.export_options import VALID_EXPORT_FORMATS, format_label
 from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES, tr
+from studio.material_catalog import MaterialCatalogManager
 from studio.preferences import (
     DEFAULT_GRID_SIZE_MM,
     DEFAULT_MAX_SOLUTIONS,
@@ -47,11 +48,18 @@ from studio.units import DEFAULT_UNITS, VALID_UNITS
 class PreferencesDialog(QDialog):
     """Edit user-level Studio preferences."""
 
-    def __init__(self, preferences: StudioPreferences, parent=None) -> None:
+    def __init__(
+        self,
+        preferences: StudioPreferences,
+        parent=None,
+        *,
+        catalog: MaterialCatalogManager | None = None,
+    ) -> None:
         super().__init__(parent)
 
         self._preferences = preferences
         self._language = preferences.language
+        self._catalog = catalog
         self.setMinimumWidth(460)
 
         layout = QVBoxLayout(self)
@@ -176,6 +184,11 @@ class PreferencesDialog(QDialog):
         self.default_kerf_mm.setValue(preferences.default_kerf_mm)
         self._default_kerf_label = QLabel()
         advanced_form.addRow(self._default_kerf_label, self.default_kerf_mm)
+        self.edit_catalog = polish_secondary_button(QPushButton())
+        self.edit_catalog.clicked.connect(self._open_material_catalog)
+        if catalog is None:
+            self.edit_catalog.hide()
+        advanced_form.addRow("", self.edit_catalog)
         self.open_config_folder = polish_secondary_button(QPushButton())
         self.open_config_folder.clicked.connect(self._open_config_folder)
         advanced_form.addRow("", self.open_config_folder)
@@ -213,6 +226,10 @@ class PreferencesDialog(QDialog):
         config_tip = tr("tip.open_config_folder", language)
         self.open_config_folder.setToolTip(config_tip)
         self.open_config_folder.setStatusTip(config_tip)
+        self.edit_catalog.setText(tr("prefs.edit_catalog", language))
+        catalog_tip = tr("tip.prefs_edit_catalog", language)
+        self.edit_catalog.setToolTip(catalog_tip)
+        self.edit_catalog.setStatusTip(catalog_tip)
         self.use_custom_weights.setText(tr("prefs.use_custom_weights", language))
         self.export_include_metrics.setText(tr("prefs.export_metrics", language))
         self.export_include_explanation.setText(
@@ -305,6 +322,18 @@ class PreferencesDialog(QDialog):
         self.default_kerf_mm.setValue(DEFAULT_KERF_MM)
         self._on_strategy_changed(self.strategy.currentIndex())
         self._retranslate()
+
+    def _open_material_catalog(self) -> None:
+        if self._catalog is None:
+            return
+        from studio.dialogs.material_catalog_dialog import MaterialCatalogDialog
+
+        dialog = MaterialCatalogDialog(
+            self._catalog,
+            self,
+            language=self._language,
+        )
+        dialog.exec()
 
     def _open_config_folder(self) -> None:
         folder = default_preferences_path().parent
