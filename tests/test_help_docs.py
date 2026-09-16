@@ -36,6 +36,7 @@ def test_user_guide_mentions_workshop_shortcuts_and_spain_spanish():
     text = documentation_paths()["user_guide"].read_text(encoding="utf-8")
     for needle in (
         "Ctrl+Alt+C",
+        "Ctrl+Alt+Q",
         "Ctrl+Alt+K",
         "Ctrl+Alt+X",
         "Ctrl+Alt+F",
@@ -44,6 +45,7 @@ def test_user_guide_mentions_workshop_shortcuts_and_spain_spanish():
         "Ctrl+Alt+M",
         "veta",
         "lista de corte",
+        "presupuesto",
     ):
         assert needle in text
     assert "podés" not in text
@@ -56,6 +58,7 @@ def test_uat_funcional_mentions_workshop_shortcuts():
     )
     for needle in (
         "Ctrl+Alt+C",
+        "Ctrl+Alt+Q",
         "Ctrl+Alt+K",
         "Ctrl+Alt+X",
         "Ctrl+Alt+F",
@@ -241,6 +244,10 @@ def test_shortcuts_catalog_and_dialog(qapp):
         for b in STUDIO_SHORTCUTS
     )
     assert any(
+        b.action_key == "export_quote" and b.sequence == "Ctrl+Alt+Q"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
         b.action_key == "show_welcome" and b.sequence == "Ctrl+Shift+H"
         for b in STUDIO_SHORTCUTS
     )
@@ -360,6 +367,7 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert actions["import_boards_csv"].shortcut() == QKeySequence("Ctrl+Shift+T")
     assert actions["export_timeline"].shortcut() == QKeySequence("Ctrl+Shift+L")
     assert actions["export_cut_list"].shortcut() == QKeySequence("Ctrl+Alt+C")
+    assert actions["export_quote"].shortcut() == QKeySequence("Ctrl+Alt+Q")
     assert actions["show_welcome"].shortcut() == QKeySequence("Ctrl+Shift+H")
     assert actions["reveal_project_folder"].shortcut() == QKeySequence("Ctrl+Shift+R")
     assert actions["shortcuts"].shortcut() == QKeySequence("F1")
@@ -651,6 +659,7 @@ def test_folder_memory_status_tips_are_honest():
         "tip.export_selected",
         "tip.export_timeline",
         "tip.export_cut_list",
+        "tip.export_quote",
         "tip.export_share_export",
         "tip.export_share_import",
         "tip.export_revision_backup",
@@ -1006,6 +1015,26 @@ def test_export_cut_list_tip_mentions_csv_pdf_and_persist():
     assert "sesiones" in es
     assert "csv" in en and "pdf" in en and "pieces" in en and "boards" in en
     assert "sessions" in en
+    assert "ofrece" in es and "abrir" in es
+    assert "offers" in en and "open" in en
+
+
+def test_export_quote_status_tip_includes_shortcut():
+    from studio.i18n import tr
+
+    assert "Ctrl+Alt+Q" in tr("tip.export_quote", "es")
+    assert "Ctrl+Alt+Q" in tr("tip.export_quote", "en")
+
+
+def test_export_quote_tip_mentions_pdf_catalog_and_folder():
+    from studio.i18n import tr
+
+    es = tr("tip.export_quote", "es").casefold()
+    en = tr("tip.export_quote", "en").casefold()
+    assert "pdf" in es and "eur/m2" in es
+    assert "carpeta" in es
+    assert "pdf" in en and "catalog" in en
+    assert "folder" in en
     assert "ofrece" in es and "abrir" in es
     assert "offers" in en and "open" in en
 

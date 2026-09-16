@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Exportar: presupuesto de material PDF (IDE-0032); **Ctrl+Alt+Q**;
+  tableros físicos × €/m² del catálogo; no cambia el solver. Sin bump
+  `.bcproj`.
 - Exportar: etiquetas de retales en plano (IDE-0033); LxW mm en SVG/PDF/DXF
   (PDF también dibuja el retal punteado); casilla en el diálogo y
   Preferencias. Default: sí. JSON/Inspector siguen mostrando el área.

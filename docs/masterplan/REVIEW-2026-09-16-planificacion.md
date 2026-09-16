@@ -32,7 +32,8 @@ revisión previa del mismo día (cola 0025…0030 cerrada).
 | IDE-0028 catálogo materiales / espesores (Ctrl+Alt+T) | 🟢 (#637) |
 | IDE-0029 coste estimado de material (€/m² catálogo) | 🟢 (#638) |
 | IDE-0031 medidas típicas de tablero en catálogo (L×A) | 🟢 (#640) |
-| IDE-0033 etiquetas de retales en plano (LxW SVG/PDF/DXF) | 🟢 |
+| IDE-0032 presupuesto de material PDF (Ctrl+Alt+Q) | 🟢 |
+| IDE-0033 etiquetas de retales en plano (LxW SVG/PDF/DXF) | 🟢 (#641) |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -79,8 +80,8 @@ Límites conocidos (no son bugs; son alcance):
 - Catálogo de usuario (IDE-0028/0031) guarda nombre / espesor / €/m² /
   L×A de tablero.
 - Etiquetas de plano cubren piezas (IDE-0026) y retales LxW (IDE-0033).
-- Coste (IDE-0029) vive en Comparador / Inspector / JSON, no en un
-  documento de presupuesto.
+- Coste (IDE-0029) y presupuesto PDF (IDE-0032) cubren material de
+  tableros físicos; no hay mano de obra.
 - Export PDF: sin papel / márgenes / escala; sin lote de soluciones
   (SCR-007 / FLW-005).
 - Workspace: sin sugerencias de hueco para colocación manual (SCR-002).
@@ -92,8 +93,8 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` segunda ola** — atacar **IDE-0032 → 0034 →
-   0035 → 0036** (0031 y 0033 entregadas).
+1. **Cola `0.4.4` segunda ola** — atacar **IDE-0034 →
+   0035 → 0036** (0031, 0032 y 0033 entregadas).
 2. **Etiqueta** — `v0.4.3` publicado.
 3. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
@@ -119,14 +120,14 @@ coste IDE-0029; SCR-007 papel/lotes; SCR-002 hueco; usuarios N1–N2):
 | ID | Título | Por qué ahora |
 |----|--------|---------------|
 | IDE-0031 | Medidas típicas de tablero en catálogo | Entregado; L×A; combo Nuevo tablero |
-| IDE-0032 | Informe de presupuesto PDF | Coste IDE-0029 solo UI/JSON; taller necesita documento |
+| IDE-0032 | Informe de presupuesto PDF | Entregado; Ctrl+Alt+Q; tableros × €/m² |
 | IDE-0033 | Etiquetas de retales en plano | Entregado; LxW en plano; casilla export |
 | IDE-0034 | Papel / márgenes / escala en PDF | Límite explícito SCR-007 / FLW-005 |
 | IDE-0035 | Exportar soluciones en lote | SCR-007 «sin lotes»; EP-002 es CLI de proyectos |
 | IDE-0036 | Colocación manual asistida (sugerir hueco) | Evolución prevista SCR-002 |
 
-Prioridad sugerida de ataque: **0032 → 0034 → 0035 → 0036**
-(presupuesto; página y lote después; asistida al final).
+Prioridad sugerida de ataque: **0034 → 0035 → 0036**
+(página y lote; asistida al final).
 
 Cerradas en este ciclo `0.4.4.dev0`: IDE-0025…0030.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
