@@ -15,18 +15,18 @@ alternativas comprensibles para que el usuario decida.
 - Core base completado y en evolución controlada (kerf IDE-0020; grain
   IDE-0021; Skyline multipanel IDE-0022; freeze/re-pack IDE-0030).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
-  y espesor, órdenes de panel, retales informativos (ADR-016) y soluciones
+  y espesor, órdenes de panel, retales (ADR-016; inventario IDE-0025) y soluciones
   parciales (piezas omitidas en vez de "sin solución").
 - Studio funcional con persistencia versionada y migraciones explícitas
-  (ADR-015; v3 metadatos, v4 kerf, v5 grain), importación de inventario,
+  (ADR-015; v3 metadatos, v4 kerf, v5 grain, v6 remnant), importación de inventario,
   movimiento entre paneles, swap (IDE-0019), lista de corte (IDE-0023),
-  etiquetas en plano (IDE-0026), secuencia de sierra (IDE-0027) y
-  freeze/re-pack (IDE-0030).
+  etiquetas en plano (IDE-0026), secuencia de sierra (IDE-0027),
+  freeze/re-pack (IDE-0030) y retales a inventario (IDE-0025).
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
   `docs/masterplan/REVIEW-2026-09-16-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3`).
-- Próximo: cola IDE-0025 → 0028 → 0029; piloto
+- Próximo: cola IDE-0028 → 0029; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

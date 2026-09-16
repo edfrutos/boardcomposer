@@ -57,8 +57,7 @@ tira y acota la altura al ancho del tablero (`max_height_mm`). Ordena piezas
 
 ## Evolución prevista
 
-- Evaluar si los retales informativos (ADR-016) deben pasar a ser inventario
-  reutilizable entre proyectos.
+- Librería de retales entre proyectos (ciclo de vida / concurrencia; ADR-016).
 - Valorar CP-SAT multipanel si aparece un caso de uso real (hoy solo un
   panel, ADR-017).
 

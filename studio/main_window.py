@@ -63,6 +63,7 @@ from studio.commands import (
     ImportBoardsCommand,
     ImportPiecesCommand,
     PlacePieceCommand,
+    PromoteOffcutsCommand,
     RenameProjectCommand,
     RotatePieceCommand,
     SwapPiecesCommand,
@@ -70,6 +71,7 @@ from studio.commands import (
 from studio.panel_compatibility import incompatibility_reason
 from studio.swap_pieces import swap_block_reason
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
+from studio.offcut_inventory import remnant_studio_boards
 from studio.project_serializer import (
     UnsupportedProjectVersionError,
     load_project,
@@ -244,6 +246,7 @@ class MainWindow(QMainWindow):
 
         self._menus["generate"].addAction(self._actions["solve_layout"])
         self._menus["generate"].addAction(self._actions["repack_omitted"])
+        self._menus["generate"].addAction(self._actions["promote_offcuts"])
 
         self._menus["compare"].addAction(self._actions["previous_solution"])
         self._menus["compare"].addAction(self._actions["next_solution"])
@@ -320,6 +323,7 @@ class MainWindow(QMainWindow):
         )
         self._actions["solve_layout"].triggered.connect(self._solve_layout)
         self._actions["repack_omitted"].triggered.connect(self._repack_omitted)
+        self._actions["promote_offcuts"].triggered.connect(self._promote_offcuts)
         self._actions["previous_solution"].triggered.connect(
             self._previous_layout_solution
         )
@@ -359,6 +363,7 @@ class MainWindow(QMainWindow):
         toolbar.addSeparator()
         toolbar.addAction(self._actions["solve_layout"])
         toolbar.addAction(self._actions["repack_omitted"])
+        toolbar.addAction(self._actions["promote_offcuts"])
         toolbar.addSeparator()
         for key in ("previous_solution", "next_solution", "apply_layout"):
             toolbar.addAction(self._actions[key])
@@ -795,6 +800,8 @@ class MainWindow(QMainWindow):
                     f"{self._format_size(board.length_mm, board.width_mm, thickness_mm=board.thickness_mm)} "
                     f"— {board.quantity} {self._tr('explorer.units')}"
                 )
+                if board.remnant:
+                    board_label = f"{board_label} — {self._tr('explorer.remnant_mark')}"
                 item = QTreeWidgetItem([board_label])
                 item.setData(
                     0,
@@ -986,7 +993,7 @@ class MainWindow(QMainWindow):
         )
         if board is None:
             return
-        self.inspector.setText(
+        text = (
             f"{self._tr('inspector.title')}\n\n"
             f"{self._tr('inspector.board')}: {board.board_id}\n"
             f"{self._tr('inspector.dimensions')}: "
@@ -996,6 +1003,9 @@ class MainWindow(QMainWindow):
             f"{self._tr('inspector.quantity')}: {board.quantity}\n"
             f"{self._tr('inspector.material')}: {board.material}"
         )
+        if board.remnant:
+            text = f"{text}\n{self._tr('inspector.remnant')}"
+        self.inspector.setText(text)
 
     def _show_project_inspector(self) -> None:
         project = self.services.projects.current_project
@@ -2615,6 +2625,27 @@ class MainWindow(QMainWindow):
                 repack_tip = with_native_shortcuts(self._tr("tip.repack_omitted"))
             repack.setStatusTip(repack_tip)
 
+        has_offcuts = selected is not None and bool(selected.offcuts)
+        can_promote = has_offcuts and not outdated
+        promote = self._actions.get("promote_offcuts")
+        if promote is not None:
+            promote.setEnabled(can_promote)
+            if not has_any:
+                promote_tip = with_native_shortcuts(
+                    self._tr("status.promote_need_offcuts")
+                )
+            elif outdated:
+                promote_tip = with_native_shortcuts(
+                    self._tr("tip.promote_offcuts_outdated")
+                )
+            elif not has_offcuts:
+                promote_tip = with_native_shortcuts(
+                    self._tr("tip.promote_offcuts_none")
+                )
+            else:
+                promote_tip = with_native_shortcuts(self._tr("tip.promote_offcuts"))
+            promote.setStatusTip(promote_tip)
+
         pin = getattr(self, "pin_reference_button", None)
         if pin is not None:
             pin.setEnabled(has_multiple_visible)
@@ -3026,6 +3057,43 @@ class MainWindow(QMainWindow):
             added=added,
             omitted=len(packed.omitted_piece_ids),
         )
+
+    def _promote_offcuts(self) -> None:
+        project = self.services.projects.current_project
+        solution = self.services.layout.selected_solution
+        if project is None or solution is None:
+            self._status("status.promote_need_offcuts")
+            return
+        if self.services.layout.solutions_outdated:
+            self._status("status.promote_need_offcuts")
+            return
+        if not solution.offcuts:
+            self._status("status.promote_none")
+            return
+
+        core = self.services.layout._solved_project
+        if core is None:
+            core = self.services.layout.to_core_project()
+        if core is None:
+            self._status("status.promote_need_offcuts")
+            return
+
+        boards = remnant_studio_boards(
+            core,
+            solution,
+            casefolded_board_ids(project),
+        )
+        if not boards:
+            self._status("status.promote_already")
+            return
+
+        self.services.commands.execute(PromoteOffcutsCommand(self.services, boards))
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self.update_window_title()
+        self.update_undo_redo()
+        self._mark_project_modified(reason="offcuts_promoted")
+        self._status("status.promote_ok", n=len(boards))
 
     def _reveal_comparator_after_solve(self) -> None:
         """Bring Comparador forward so multi-candidate UAT is not buried under Timeline."""
@@ -4589,14 +4657,7 @@ class MainWindow(QMainWindow):
 
         existing_ids = casefolded_board_ids(project)
         new_id = allocate_unique_board_id(f"{source.board_id}-copy", existing_ids)
-        clone = StudioBoard(
-            board_id=new_id,
-            length_mm=source.length_mm,
-            width_mm=source.width_mm,
-            material=source.material,
-            thickness_mm=source.thickness_mm,
-            quantity=source.quantity,
-        )
+        clone = dataclass_replace(source, board_id=new_id)
         command = DuplicateBoardCommand(self.services, clone)
         self.services.commands.execute(command)
 
@@ -5036,14 +5097,7 @@ class MainWindow(QMainWindow):
             self._status("status.board_id_exists", id=new_board_id)
             return
 
-        updated = StudioBoard(
-            board_id=new_board_id,
-            length_mm=board.length_mm,
-            width_mm=board.width_mm,
-            material=board.material,
-            thickness_mm=board.thickness_mm,
-            quantity=board.quantity,
-        )
+        updated = dataclass_replace(board, board_id=new_board_id)
         command = EditBoardCommand(self.services, board, updated)
         self.services.commands.execute(command)
 
@@ -5415,7 +5469,8 @@ class MainWindow(QMainWindow):
             self._status("status.board_id_exists", id=new_board_id)
             return
 
-        updated_board = StudioBoard(
+        updated_board = dataclass_replace(
+            board,
             board_id=new_board_id,
             length_mm=data["length_mm"],
             width_mm=data["width_mm"],

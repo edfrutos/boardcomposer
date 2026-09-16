@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-006  
-**Versión:** 1.2.0  
+**Versión:** 1.3.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 01/08/2026
+**Última revisión:** 16/09/2026
 
 ---
 
@@ -81,6 +81,8 @@ outdated.
 - Eliminar: `DeleteBoardCommand` desde Explorer; piezas se conservan;
   colocaciones de ese tablero se quitan.
 - Duplicar tablero: acción Explorer / handler `_duplicate_board`.
+- Añadir retales: **Ctrl+Alt+R** desde candidata con offcuts;
+  `PromoteOffcutsCommand` (undo); marca `remnant`; no descuenta origen.
 
 ### Piezas
 

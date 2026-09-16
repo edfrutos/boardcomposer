@@ -52,6 +52,7 @@ def project_to_dict(project: StudioProject) -> dict:
                 "material": board.material,
                 "thickness_mm": board.thickness_mm,
                 "quantity": board.quantity,
+                "remnant": board.remnant,
             }
             for board in project.boards
         ],
@@ -100,6 +101,7 @@ def project_from_dict(data: dict) -> StudioProject:
                 material=item.get("material", "Demo"),
                 thickness_mm=item.get("thickness_mm", 19),
                 quantity=item.get("quantity", 1),
+                remnant=bool(item.get("remnant", False)),
             )
             for item in data.get("boards", [])
         ],

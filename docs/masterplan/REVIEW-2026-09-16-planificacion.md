@@ -1,6 +1,6 @@
 # Revisión de planificación — 2026-09-16
 
-**Origen:** cron diario post-merges `#631`/`#632`/`#634` (ciclo `0.4.4.dev0`).
+**Origen:** cron diario post-merges `#631`/`#632`/`#634`/`#636` (ciclo `0.4.4.dev0`).
 **Fuentes:** `ROADMAP.md`, `MASTERPLAN.md`, `DOC-003`, `DOC-004`, `DOC-006`,
 spikes IDE-0007 / DT-0006, `CHANGELOG` Unreleased, UAT release smoke,
 revisión `REVIEW-2026-09-15-planificacion.md` (PR #630 mergeado).
@@ -25,6 +25,7 @@ revisión `REVIEW-2026-09-15-planificacion.md` (PR #630 mergeado).
 | IDE-0023 lista de corte / informe taller (Ctrl+Alt+C; CSV/PDF) | 🟢 (#621) |
 | IDE-0021 veta / orientación de fibra (`.bcproj` v5; no rotar si fija) | 🟢 (#622) |
 | IDE-0022 packing multipanel Skyline | 🟢 (#623) |
+| IDE-0025 retales a inventario remnant (Ctrl+Alt+R; `.bcproj` v6) | 🟢 (#636) |
 | IDE-0026 etiquetas de piezas en plano (SVG/PDF/DXF) | 🟢 (#631) |
 | IDE-0027 secuencia de corte por panel | 🟢 (#632) |
 | IDE-0030 congelar colocaciones / re-pack omitidas (Ctrl+Alt+F) | 🟢 (#634) |
@@ -59,16 +60,16 @@ Versión: desarrollo `0.4.4.dev0` · estable `0.4.3` (2026-09-14; etiqueta
 Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; ciclo `0.4.4.dev0` avanzó con
-etiquetas (`#631`), secuencia de corte (`#632`) y freeze/re-pack (`#634`).
+etiquetas (`#631`), secuencia de corte (`#632`), freeze/re-pack (`#634`)
+y retales a inventario (`#636`).
 
 Desde la revisión 2026-09-15 (#630 mergeado), en `main` entró: `#631`
-(IDE-0026), `#632` (IDE-0027), `#634` (IDE-0030). Al corte 09-16:
-**Issues abiertos = 0**; **PRs abiertos = 0**.
+(IDE-0026), `#632` (IDE-0027), `#634` (IDE-0030), `#636` (IDE-0025).
 
 Límites conocidos (no son bugs; son alcance):
 
-- Retales informativos (ADR-016); **no** son inventario reutilizable todavía
-  (IDE-0025 pendiente).
+- Retales se reportan (ADR-016) y se pueden promover a inventario del
+  mismo `.bcproj` (IDE-0025); no hay librería compartida entre proyectos.
 - CP-SAT exacto sigue siendo un solo panel (opcional).
 - DT-0006 C (API revisiones + ACL) bloqueada hasta demanda multi-usuario.
 
@@ -79,8 +80,8 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` restante** — atacar **IDE-0025 → 0028 → 0029**
-   (retales inventario → catálogo materiales → coste estimado).
+1. **Cola `0.4.4` restante** — atacar **IDE-0028 → 0029**
+   (catálogo materiales → coste estimado).
 2. **Etiqueta** — publicar `v0.4.3` en GitHub Releases si falta.
 3. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
@@ -93,7 +94,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-restante: **IDE-0025, IDE-0028, IDE-0029** (⚪). Residual: piloto DT-0006 D
+restante: **IDE-0028, IDE-0029** (⚪). Residual: piloto DT-0006 D
 (operativo, no feature de producto) + backlog grande bloqueado
 (IDE-0008 / LLM / DT-0006 C).
 
@@ -103,16 +104,16 @@ desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
 
 | ID | Título | Estado | Notas |
 |----|--------|--------|-------|
-| IDE-0025 | Retales como inventario reutilizable | ⚪ | Siguiente ataque |
+| IDE-0025 | Retales como inventario reutilizable | 🟢 | #636 |
 | IDE-0026 | Etiquetas de piezas en plano | 🟢 | #631 |
 | IDE-0027 | Secuencia de corte por panel | 🟢 | #632 |
-| IDE-0028 | Catálogo de materiales / espesores | ⚪ | Tras 0025 |
+| IDE-0028 | Catálogo de materiales / espesores | ⚪ | Siguiente ataque |
 | IDE-0029 | Coste estimado de material | ⚪ | Tras 0028 |
 | IDE-0030 | Congelar colocaciones / re-pack omitidas | 🟢 | #634 |
 
-Prioridad de ataque restante: **0025 → 0028 → 0029**.
+Prioridad de ataque restante: **0028 → 0029**.
 
-Cerradas en este ciclo `0.4.4.dev0`: IDE-0026, 0027, 0030.
+Cerradas en este ciclo `0.4.4.dev0`: IDE-0025, 0026, 0027, 0030.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
@@ -120,7 +121,7 @@ Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 ## 6. Criterio de esta revisión
 
 - No se implementa código de producto en este pase: solo alinear docs,
-  snapshot y backlog con merges `#631`/`#632`/`#634`.
+  snapshot y backlog con merges `#631`/`#632`/`#634`/`#636`.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.

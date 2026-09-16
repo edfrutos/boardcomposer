@@ -187,6 +187,8 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
 - [ ] **Ctrl+Alt+F** en candidata parcial: piezas OK no se mueven;
   omitidas caben en retales o tablero libre; acción deshabilitada si la
   solución es completa.
+- [ ] **Ctrl+Alt+R** con retales ≥ 50 mm: Explorer muestra tableros
+  remnant; segundo disparo no duplica; undo los quita; origen no baja solo.
 
 ---
 

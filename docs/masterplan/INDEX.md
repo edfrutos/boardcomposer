@@ -98,7 +98,8 @@ referencia oficial del manifiesto es `DOC-000-Manifiesto.md`.
 - ADR-013 — Geometry Engine.
 - ADR-014 — Packing multipanel.
 - ADR-015 — Migraciones explícitas de `.bcproj`.
-- ADR-016 — Retales informativos (no inventario).
+- ADR-016 — Retales informativos; promoción a inventario del mismo `.bcproj`
+  (IDE-0025).
 - ADR-017 — CP-SAT como generador exacto de un solo panel.
 
 ## UX

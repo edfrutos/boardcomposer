@@ -12,7 +12,9 @@
 
 - `src/boardcomposer/domain/`: modelos principales.
 - `src/boardcomposer/domain/panel_reference.py`: identidad de panel físico.
-- `src/boardcomposer/domain/offcut.py`: retal informativo por panel (ADR-016).
+- `src/boardcomposer/domain/offcut.py`: retal por panel (ADR-016).
+- `src/boardcomposer/inventory/offcut_inventory.py`: promoción a stock remnant
+  (IDE-0025).
 - `src/boardcomposer/layout/`: geometría y colocación.
 - `src/boardcomposer/solver/`: generación, validación y evaluación.
 - `src/boardcomposer/solver/multi_panel_maxrects.py`: packing MaxRects
