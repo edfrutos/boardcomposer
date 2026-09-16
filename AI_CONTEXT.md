@@ -8,23 +8,23 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-09-15
+## Estado actual — 2026-09-16
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
 - Core base completado y en evolución controlada (kerf IDE-0020; grain
-  IDE-0021; Skyline multipanel IDE-0022).
+  IDE-0021; Skyline multipanel IDE-0022; freeze/re-pack IDE-0030).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, órdenes de panel, retales informativos (ADR-016) y soluciones
   parciales (piezas omitidas en vez de "sin solución").
 - Studio funcional con persistencia versionada y migraciones explícitas
   (ADR-015; v3 metadatos, v4 kerf, v5 grain), importación de inventario,
   movimiento entre paneles, swap (IDE-0019), lista de corte (IDE-0023),
-  secuencia de sierra por panel (IDE-0027) y freeze/re-pack omitidas
-  (IDE-0030).
+  etiquetas en plano (IDE-0026), secuencia de sierra (IDE-0027) y
+  freeze/re-pack (IDE-0030).
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-09-15-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-09-16-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3`).
 - Próximo: cola IDE-0025 → 0028 → 0029; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.

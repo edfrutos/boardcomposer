@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-15
+## Unreleased — 0.4.4.dev0 — 2026-09-16
 
 ### Añadido
 
@@ -12,6 +12,10 @@
   plano SVG/PDF/DXF.
 - Layout: congelar colocaciones OK y re-empaquetar omitidas (IDE-0030);
   **Ctrl+Alt+F**; no mueve las piezas ya colocadas.
+- Docs planificación 2026-09-16: snapshot
+  `docs/masterplan/REVIEW-2026-09-16-planificacion.md`; Issues = 0;
+  entregadas IDE-0026/0027/0030 (`#631`/`#632`/`#634`); cola restante
+  IDE-0025 → 0028 → 0029 **sin** IDE nuevas (cola implementable no vacía).
 - Docs planificación 2026-09-15: snapshot
   `docs/masterplan/REVIEW-2026-09-15-planificacion.md`; cola producto
   IDE-0019…0024 cerrada (Skyline `#623` en `0.4.3`); Issues = 0 →
@@ -20,7 +24,8 @@
 
 ### Cambiado
 
-- Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con `0.4.4.dev0`.
+- Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con
+  `0.4.4.dev0` y snapshot 2026-09-16.
 
 ## 0.4.3 — 2026-09-14
 
