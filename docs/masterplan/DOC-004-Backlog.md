@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.36
+**Versión:** 1.3.37
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 15/09/2026
+**Última revisión:** 16/09/2026
 
 ---
 
@@ -150,16 +150,16 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0024 y IDE-0026 Studio/Core
-completadas; IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
-EP (001…003) Fase 3 entregadas. Cola producto 0019…0024 cerrada.
-Ciclo `0.4.4`: IDE-0025/0026/0027/0030 🟢; resto 0028/0029 ⚪.
-Snapshot: `REVIEW-2026-09-15-planificacion.md`.
+**Estado actual:** 🟢 Actualizado — IDE-0001…0024, IDE-0025…0027 e
+IDE-0030 Studio/Core completadas; IDE-0007 🟢 MVP+eval (2026-09-12;
+LLM diferido). EP (001…003) Fase 3 entregadas. Cola producto 0019…0024
+cerrada. Ciclo `0.4.4`: 0025/0026/0027/0030 🟢; restantes 0028/0029 ⚪.
+Snapshot: `REVIEW-2026-09-16-planificacion.md`.
 
 Próximo foco:
 
 1. Atacar cola IDE-0028 → 0029.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-3. Ciclo `0.4.4.dev0` abierto (`#628`); etiqueta `v0.4.3` si falta.
+3. Ciclo `0.4.4.dev0` abierto; etiqueta `v0.4.3` si falta.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
 5. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).

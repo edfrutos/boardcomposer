@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-15.
+Última revisión: 2026-09-16.
 
 ## Estado actual
 
@@ -8,12 +8,13 @@
   Fase 3 plataforma entregada).
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3`).
 - Core base consolidado y cubierto por tests (incluye kerf IDE-0020,
-  veta IDE-0021 y Skyline multipanel IDE-0022).
+  veta IDE-0021, Skyline multipanel IDE-0022 y freeze/re-pack IDE-0030).
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación
-  (lista de corte IDE-0023; swap IDE-0019; metadatos IDE-0024).
+  (lista de corte IDE-0023; swap IDE-0019; metadatos IDE-0024;
+  etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-15-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-16-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -32,6 +33,7 @@
 - Kerf / espesor de sierra en packing (**Ctrl+Alt+K**, IDE-0020).
 - Veta fija por pieza (**Permitir rotación**, IDE-0021).
 - Lista de corte / informe taller (**Ctrl+Alt+C**, IDE-0023).
+- Etiquetas de piezas en plano SVG/PDF/DXF (IDE-0026).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
 - Retales a inventario del mismo proyecto (**Ctrl+Alt+R**, IDE-0025).
