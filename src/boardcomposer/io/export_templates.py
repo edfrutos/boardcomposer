@@ -44,6 +44,7 @@ class NamedExportTemplate:
     pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     pdf_scale: str = DEFAULT_PDF_SCALE
     pdf_margin_mm: float = DEFAULT_PDF_MARGIN_MM
+    export_batch: bool = False
     client: str = ""
 
     @property
@@ -76,6 +77,7 @@ class NamedExportTemplate:
             pdf_orientation=page.orientation,
             pdf_scale=page.scale,
             pdf_margin_mm=page.margin_mm,
+            export_batch=bool(payload.get("export_batch", False)),
             client=normalize_client(str(payload.get("client", ""))),
         )
 

@@ -57,3 +57,4 @@ def test_parse_legacy_template_defaults_pdf_page():
     assert templates[0].pdf_paper == "drawing"
     assert templates[0].pdf_scale == "1:1"
     assert templates[0].pdf_margin_mm == 12.7
+    assert templates[0].export_batch is False

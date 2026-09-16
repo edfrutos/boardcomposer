@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-005  
-**Versión:** 1.6.0  
+**Versión:** 1.7.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -50,14 +50,15 @@ Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.
 3. Si `solutions_outdated`: diálogo **Calcular layout** (default) /
    Exportar de todos modos / Cancelar. Recalcular o cancelar no abre SCR-007.
 4. Se abre `ExportDialog` (SCR-007) con última elección o defaults.
-5. Elige formato: SVG / DXF / PDF / JSON / CSV.
+5. Elige formato: SVG / PNG / JPEG / DXF / PDF / JSON / CSV.
 6. Ajusta opciones: métricas y explicación (solo JSON), retales (todos),
-   etiquetas de piezas y de retales (planos SVG/PDF/DXF/raster).
+   etiquetas de piezas y de retales (planos SVG/PDF/DXF/raster), papel PDF,
+   lote de candidatas si el ranking tiene más de una.
 7. Opcional: aplica o guarda una plantilla / perfil por cliente.
 8. Revisa la vista previa (SVG + texto/resumen).
-9. Confirma y elige ruta en el diálogo de archivo.
-10. Studio escribe el archivo; emite eventos Timeline; ofrece **Abrir archivo**
-    o **Mostrar en carpeta**.
+9. Confirma: archivo único, o carpeta si el lote está marcado.
+10. Studio escribe el archivo o los `boardcomposer-solution-01…`; emite
+    eventos Timeline; ofrece **Abrir archivo** / **Abrir carpeta**.
 11. Persiste formato + flags en `preferences.json`.
 
 ---
@@ -149,5 +150,7 @@ posibilidad de abrir/revelar al terminar y de reutilizar plantillas/defaults.
   diálogo outdated que la solución; incluye secuencia de sierra por panel.
 - PDF de plano (IDE-0034): papel A4/A3/Letter o ajustar al dibujo, escala
   fit/1:n y márgenes mm. Lista de corte y presupuesto siguen en A4.
+- Lote de candidatas (IDE-0035): carpeta con un archivo por solución del
+  ranking. EP-002 sigue siendo CLI de proyectos.
 - CSV del diálogo solo placements.
-- Sin lotes ni publicación a la nube.
+- Sin publicación a la nube.

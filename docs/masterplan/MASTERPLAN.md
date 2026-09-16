@@ -47,7 +47,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` segunda ola: cola IDE-0035 → 0036 (0034 papel PDF
+1. Ciclo `0.4.4` segunda ola: cola IDE-0036 (0035 lote PDF/SVG
    entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:

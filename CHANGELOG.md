@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Exportar: lote de candidatas del ranking (IDE-0035); casilla en
+  Exportar; escribe `boardcomposer-solution-01…` en una carpeta.
+  Default: solo la seleccionada. No es el CLI EP-002 de proyectos.
+  Sin bump `.bcproj`.
 - Exportar: papel / márgenes / escala en PDF de plano (IDE-0034);
   A4/A3/Letter o ajustar al dibujo; escala fit o 1:n; márgenes mm.
   Default: página a tamaño del dibujo (igual que antes). Lista de

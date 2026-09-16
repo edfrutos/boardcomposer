@@ -226,6 +226,10 @@ marcadores…).
   En **PDF** de plano: papel (ajustar al dibujo, A4, A3, Letter),
   orientación, escala (ajustar o 1:n) y márgenes mm. Lista de corte y
   presupuesto PDF siguen en A4.
+  **Lote:** marca «Exportar las N candidatas del ranking» y elige carpeta;
+  un archivo numerado por candidata (`boardcomposer-solution-01…`). El CLI
+  `boardcomposer-batch` sigue siendo para carpetas de proyectos, no para
+  el Comparador.
 - **Archivo → Exportar lista de corte…** (**Ctrl+Alt+C**) es otro flujo:
   CSV o PDF de taller (piezas, tableros y **secuencia de sierra** por
   panel). Recuerda carpeta y formato. El plano SVG/PDF/DXF numera cada

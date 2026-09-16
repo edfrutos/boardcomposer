@@ -81,6 +81,7 @@ class ExportDialog(QDialog):
         templates_directory: str | None = None,
         on_templates_directory: Callable[[str | Path], None] | None = None,
         material_prices: dict[str, float] | None = None,
+        ranked_count: int = 1,
         parent=None,
     ) -> None:
         super().__init__(parent)
@@ -93,6 +94,7 @@ class ExportDialog(QDialog):
         self._templates_directory = templates_directory or ""
         self._on_templates_directory = on_templates_directory
         self._material_prices = material_prices
+        self._ranked_count = max(int(ranked_count), 1)
         self._templates = (
             templates
             if templates is not None
@@ -219,6 +221,15 @@ class ExportDialog(QDialog):
         self.pdf_margin_mm.setValue(options.pdf_margin_mm)
         self.pdf_margin_mm.valueChanged.connect(self._on_options_edited)
         form.addRow(self._tr("export.pdf_margin"), self.pdf_margin_mm)
+
+        self.export_batch = QCheckBox(
+            self._tr("export.batch", count=self._ranked_count)
+        )
+        can_batch = self._ranked_count >= 2
+        self.export_batch.setChecked(bool(options.export_batch) and can_batch)
+        self.export_batch.setEnabled(can_batch)
+        self.export_batch.toggled.connect(self._on_options_edited)
+        form.addRow("", self.export_batch)
         layout.addLayout(form)
 
         layout.addWidget(QLabel(self._tr("export.graphic")))
@@ -270,6 +281,7 @@ class ExportDialog(QDialog):
             pdf_orientation=self.pdf_orientation.currentData() or "auto",
             pdf_scale=self.pdf_scale.currentData() or "1:1",
             pdf_margin_mm=self.pdf_margin_mm.value(),
+            export_batch=self.export_batch.isChecked() and self._ranked_count >= 2,
         ).normalized()
 
     def _client_filter(self) -> str | None:
@@ -359,6 +371,7 @@ class ExportDialog(QDialog):
         self.pdf_orientation.blockSignals(True)
         self.pdf_scale.blockSignals(True)
         self.pdf_margin_mm.blockSignals(True)
+        self.export_batch.blockSignals(True)
 
         index = self.format.findData(options.format)
         self.format.setCurrentIndex(index if index >= 0 else 0)
@@ -376,6 +389,9 @@ class ExportDialog(QDialog):
         scale_index = self.pdf_scale.findData(options.pdf_scale)
         self.pdf_scale.setCurrentIndex(scale_index if scale_index >= 0 else 0)
         self.pdf_margin_mm.setValue(options.pdf_margin_mm)
+        self.export_batch.setChecked(
+            bool(options.export_batch) and self._ranked_count >= 2
+        )
 
         self.format.blockSignals(False)
         self.include_metrics.blockSignals(False)
@@ -387,6 +403,7 @@ class ExportDialog(QDialog):
         self.pdf_orientation.blockSignals(False)
         self.pdf_scale.blockSignals(False)
         self.pdf_margin_mm.blockSignals(False)
+        self.export_batch.blockSignals(False)
         self._refresh_preview()
 
     def _on_client_changed(self, index: int) -> None:
@@ -602,5 +619,6 @@ class ExportDialog(QDialog):
                 strategy_name=self._strategy_name,
                 solution_index=self._solution_index,
                 material_prices=self._material_prices,
+                ranked_count=self._ranked_count,
             )
         )
