@@ -44,6 +44,7 @@ class ExportTemplate:
             "include_explanation": self.options.include_explanation,
             "include_offcuts": self.options.include_offcuts,
             "include_piece_labels": self.options.include_piece_labels,
+            "include_offcut_labels": self.options.include_offcut_labels,
         }
         if self.client:
             payload["client"] = self.client
@@ -60,6 +61,7 @@ class ExportTemplate:
             include_explanation=bool(payload.get("include_explanation", True)),
             include_offcuts=bool(payload.get("include_offcuts", True)),
             include_piece_labels=bool(payload.get("include_piece_labels", True)),
+            include_offcut_labels=bool(payload.get("include_offcut_labels", True)),
         ).normalized()
         client = normalize_client(str(payload.get("client", "")))
         return cls(name=name, options=options, client=client)

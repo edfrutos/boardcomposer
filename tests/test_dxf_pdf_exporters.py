@@ -45,6 +45,7 @@ def test_solution_to_dxf_draws_panels_pieces_and_offcuts():
     assert "OFFCUTS" in dxf
     assert "SEQ" in dxf
     assert "A 400x300" in dxf
+    assert "600x300" in dxf
     assert dxf.rstrip().endswith("EOF")
 
 
@@ -70,6 +71,8 @@ def test_solution_to_pdf_returns_a_valid_pdf_header():
     assert b"/Type /Page" in pdf
     assert b"Helvetica" in pdf
     assert b"A 400x300" in pdf
+    assert b"600x300" in pdf
+    assert b"[8 4] 0 d" in pdf
 
 
 def test_solution_to_pdf_works_without_a_project():
@@ -107,3 +110,24 @@ def test_solution_to_pdf_can_omit_piece_labels():
 
     assert pdf.startswith(b"%PDF-1.4")
     assert b"A 100x50" not in pdf
+
+
+def test_solution_to_dxf_can_omit_offcut_labels():
+    project, solution = _single_panel_solution()
+
+    dxf = solution_to_dxf(solution, project, include_offcut_labels=False)
+
+    assert "OFFCUTS" in dxf
+    assert "600x300" not in dxf
+    assert "A 400x300" in dxf
+
+
+def test_solution_to_pdf_can_omit_offcut_labels():
+    project, solution = _single_panel_solution()
+
+    pdf = solution_to_pdf(solution, project, include_offcut_labels=False)
+
+    assert pdf.startswith(b"%PDF-1.4")
+    assert b"[8 4] 0 d" in pdf
+    assert b"600x300" not in pdf
+    assert b"A 400x300" in pdf

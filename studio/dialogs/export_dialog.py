@@ -169,6 +169,11 @@ class ExportDialog(QDialog):
         self.include_piece_labels.setChecked(options.include_piece_labels)
         self.include_piece_labels.toggled.connect(self._on_options_edited)
         form.addRow("", self.include_piece_labels)
+
+        self.include_offcut_labels = QCheckBox(self._tr("export.offcut_labels"))
+        self.include_offcut_labels.setChecked(options.include_offcut_labels)
+        self.include_offcut_labels.toggled.connect(self._on_options_edited)
+        form.addRow("", self.include_offcut_labels)
         layout.addLayout(form)
 
         layout.addWidget(QLabel(self._tr("export.graphic")))
@@ -215,6 +220,7 @@ class ExportDialog(QDialog):
             include_explanation=self.include_explanation.isChecked(),
             include_offcuts=self.include_offcuts.isChecked(),
             include_piece_labels=self.include_piece_labels.isChecked(),
+            include_offcut_labels=self.include_offcut_labels.isChecked(),
         ).normalized()
 
     def _client_filter(self) -> str | None:
@@ -299,6 +305,7 @@ class ExportDialog(QDialog):
         self.include_explanation.blockSignals(True)
         self.include_offcuts.blockSignals(True)
         self.include_piece_labels.blockSignals(True)
+        self.include_offcut_labels.blockSignals(True)
 
         index = self.format.findData(options.format)
         self.format.setCurrentIndex(index if index >= 0 else 0)
@@ -306,12 +313,14 @@ class ExportDialog(QDialog):
         self.include_explanation.setChecked(options.include_explanation)
         self.include_offcuts.setChecked(options.include_offcuts)
         self.include_piece_labels.setChecked(options.include_piece_labels)
+        self.include_offcut_labels.setChecked(options.include_offcut_labels)
 
         self.format.blockSignals(False)
         self.include_metrics.blockSignals(False)
         self.include_explanation.blockSignals(False)
         self.include_offcuts.blockSignals(False)
         self.include_piece_labels.blockSignals(False)
+        self.include_offcut_labels.blockSignals(False)
         self._refresh_preview()
 
     def _on_client_changed(self, index: int) -> None:
@@ -504,6 +513,7 @@ class ExportDialog(QDialog):
         self.include_explanation.setEnabled(json_only)
         plan = options.format in {"svg", "png", "jpeg", "dxf", "pdf"}
         self.include_piece_labels.setEnabled(plan)
+        self.include_offcut_labels.setEnabled(plan and options.include_offcuts)
 
         svg = preview_svg(self._solution, self._project, options)
         pixmap = svg_to_pixmap(svg, box=_GRAPHIC_PREVIEW_SIZE)

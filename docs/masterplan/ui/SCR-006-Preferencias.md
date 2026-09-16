@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-006  
-**Versión:** 1.2.0  
+**Versión:** 1.3.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -50,7 +50,7 @@ Restaurar valores por defecto.
 │ Workspace      cuadrícula on/off · tamaño (mm)             │
 │ Algoritmos     estrategia · pesos custom (4)               │
 │ Exportación    formato default · métricas/explicación/     │
-│                retales                                     │
+│                retales · etiquetas piezas/retales          │
 │ Avanzado       máx. soluciones · kerf default · catálogo   │
 │                · abrir ~/.boardcomposer/                   │
 ├────────────────────────────────────────────────────────────┤
@@ -91,6 +91,7 @@ Restaurar valores por defecto.
 | --- | --- |
 | Formato | `svg` / `dxf` / `pdf` / `json` / `csv` |
 | Incluir métricas / explicación / retales | Checkboxes |
+| Etiquetas de piezas / retales | Checkboxes; planos SVG/PDF/DXF |
 
 ### Avanzado
 

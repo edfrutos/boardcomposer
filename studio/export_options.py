@@ -48,6 +48,7 @@ class ExportOptions:
     include_explanation: bool = True
     include_offcuts: bool = True
     include_piece_labels: bool = True
+    include_offcut_labels: bool = True
 
     def normalized(self) -> ExportOptions:
         fmt = (
@@ -61,6 +62,7 @@ class ExportOptions:
             include_explanation=self.include_explanation,
             include_offcuts=self.include_offcuts,
             include_piece_labels=self.include_piece_labels,
+            include_offcut_labels=self.include_offcut_labels,
         )
 
     @property
@@ -74,6 +76,13 @@ class ExportOptions:
     @property
     def extension(self) -> str:
         return self.normalized().format
+
+
+def _plan_label_kwargs(options: ExportOptions) -> dict[str, bool]:
+    return {
+        "include_piece_labels": options.include_piece_labels,
+        "include_offcut_labels": options.include_offcut_labels,
+    }
 
 
 def format_label(fmt: str) -> str:
@@ -103,22 +112,14 @@ def render_export(
     prepared = prepare_solution(solution, options)
 
     if options.format == "svg":
-        return solution_to_svg(
-            prepared, project, include_piece_labels=options.include_piece_labels
-        )
+        return solution_to_svg(prepared, project, **_plan_label_kwargs(options))
     if options.format in {"png", "jpeg"}:
         # Raster export is generated in Studio from this SVG payload.
-        return solution_to_svg(
-            prepared, project, include_piece_labels=options.include_piece_labels
-        )
+        return solution_to_svg(prepared, project, **_plan_label_kwargs(options))
     if options.format == "dxf":
-        return solution_to_dxf(
-            prepared, project, include_piece_labels=options.include_piece_labels
-        )
+        return solution_to_dxf(prepared, project, **_plan_label_kwargs(options))
     if options.format == "pdf":
-        return solution_to_pdf(
-            prepared, project, include_piece_labels=options.include_piece_labels
-        )
+        return solution_to_pdf(prepared, project, **_plan_label_kwargs(options))
     if options.format == "csv":
         return solution_to_csv(prepared)
     return solution_to_json(
@@ -141,9 +142,7 @@ def preview_svg(
     """Return the layout SVG used for the graphical export preview."""
     options = options.normalized()
     prepared = prepare_solution(solution, options)
-    return solution_to_svg(
-        prepared, project, include_piece_labels=options.include_piece_labels
-    )
+    return solution_to_svg(prepared, project, **_plan_label_kwargs(options))
 
 
 def preview_text(
@@ -184,9 +183,7 @@ def preview_text(
         return "\n".join(summary) + body
 
     if options.format == "svg":
-        svg = solution_to_svg(
-            prepared, project, include_piece_labels=options.include_piece_labels
-        )
+        svg = solution_to_svg(prepared, project, **_plan_label_kwargs(options))
         summary.append(f"Tamaño SVG: {len(svg)} caracteres")
         summary.append("Arriba: vista previa gráfica del dibujo vectorial.")
         summary.append(
@@ -194,6 +191,12 @@ def preview_text(
             if options.include_piece_labels
             else "Sin etiquetas de piezas."
         )
+        if options.include_offcuts:
+            summary.append(
+                "Etiquetas de retales (LxW mm) incluidas."
+                if options.include_offcut_labels
+                else "Sin etiquetas de retales."
+            )
         return "\n".join(summary)
 
     summary.append(
@@ -206,6 +209,12 @@ def preview_text(
             if options.include_piece_labels
             else "Sin etiquetas de piezas."
         )
+        if options.include_offcuts:
+            summary.append(
+                "Etiquetas de retales (LxW mm) incluidas."
+                if options.include_offcut_labels
+                else "Sin etiquetas de retales."
+            )
     if options.format in {"dxf", "pdf"}:
         summary.append(
             "Arriba: vista previa del layout (misma geometría que el export)."

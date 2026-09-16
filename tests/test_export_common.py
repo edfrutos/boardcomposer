@@ -4,11 +4,13 @@ from boardcomposer import Board, Project, ProjectConstraints, StockPanel
 from boardcomposer.domain import (
     AssemblySolution,
     BoardPlacement,
+    Offcut,
     PanelReference,
 )
 from boardcomposer.export.common import (
     PANEL_GAP_MM,
     canvas_size_mm,
+    offcut_plan_label,
     panel_offsets,
     piece_plan_label,
 )
@@ -81,3 +83,8 @@ def test_canvas_size_mm_falls_back_to_solution_totals():
 def test_piece_plan_label_includes_id_and_placed_size():
     placement = BoardPlacement("A", 0, 0, 400, 300)
     assert piece_plan_label(placement) == "A 400x300"
+
+
+def test_offcut_plan_label_includes_placed_size():
+    offcut = Offcut(PanelReference(0, 0), 400, 0, 600, 300)
+    assert offcut_plan_label(offcut) == "600x300"

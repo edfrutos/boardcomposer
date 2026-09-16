@@ -167,6 +167,11 @@ class PreferencesDialog(QDialog):
             preferences.export_include_piece_labels
         )
         export_form.addRow("", self.export_include_piece_labels)
+        self.export_include_offcut_labels = QCheckBox()
+        self.export_include_offcut_labels.setChecked(
+            preferences.export_include_offcut_labels
+        )
+        export_form.addRow("", self.export_include_offcut_labels)
         layout.addWidget(self.export_group)
 
         self.advanced = QGroupBox()
@@ -237,6 +242,9 @@ class PreferencesDialog(QDialog):
         )
         self.export_include_offcuts.setText(tr("prefs.export_offcuts", language))
         self.export_include_piece_labels.setText(tr("prefs.export_labels", language))
+        self.export_include_offcut_labels.setText(
+            tr("prefs.export_offcut_labels", language)
+        )
 
         self._language_label.setText(tr("prefs.language", language))
         self._theme_label.setText(tr("prefs.theme", language))
@@ -318,6 +326,7 @@ class PreferencesDialog(QDialog):
         self.export_include_explanation.setChecked(True)
         self.export_include_offcuts.setChecked(True)
         self.export_include_piece_labels.setChecked(True)
+        self.export_include_offcut_labels.setChecked(True)
         self.max_solutions.setValue(DEFAULT_MAX_SOLUTIONS)
         self.default_kerf_mm.setValue(DEFAULT_KERF_MM)
         self._on_strategy_changed(self.strategy.currentIndex())
@@ -361,6 +370,9 @@ class PreferencesDialog(QDialog):
             export_include_explanation=self.export_include_explanation.isChecked(),
             export_include_offcuts=self.export_include_offcuts.isChecked(),
             export_include_piece_labels=(self.export_include_piece_labels.isChecked()),
+            export_include_offcut_labels=(
+                self.export_include_offcut_labels.isChecked()
+            ),
             max_solutions=self.max_solutions.value(),
             default_kerf_mm=self.default_kerf_mm.value(),
         )

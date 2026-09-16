@@ -31,6 +31,7 @@ class NamedExportTemplate:
     include_explanation: bool = True
     include_offcuts: bool = True
     include_piece_labels: bool = True
+    include_offcut_labels: bool = True
     client: str = ""
 
     @property
@@ -52,6 +53,7 @@ class NamedExportTemplate:
             include_explanation=bool(payload.get("include_explanation", True)),
             include_offcuts=bool(payload.get("include_offcuts", True)),
             include_piece_labels=bool(payload.get("include_piece_labels", True)),
+            include_offcut_labels=bool(payload.get("include_offcut_labels", True)),
             client=normalize_client(str(payload.get("client", ""))),
         )
 

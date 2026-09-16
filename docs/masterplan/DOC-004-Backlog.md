@@ -102,7 +102,7 @@ Observaciones:
 | IDE-0030 | Congelar colocaciones / re-pack omitidas | 🟢 | P2 |
 | IDE-0031 | Medidas típicas de tablero en catálogo | 🟢 | P2 |
 | IDE-0032 | Informe de presupuesto PDF | ⚪ | P2 |
-| IDE-0033 | Etiquetas de retales en plano | ⚪ | P2 |
+| IDE-0033 | Etiquetas de retales en plano | 🟢 | P2 |
 | IDE-0034 | Papel / márgenes / escala en PDF | ⚪ | P2 |
 | IDE-0035 | Exportar soluciones en lote | ⚪ | P2 |
 | IDE-0036 | Colocación manual asistida (sugerir hueco) | ⚪ | P3 |
@@ -162,14 +162,15 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0031 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031); IDE-0032…0036 ⚪ restantes.
-IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
-entregadas. Snapshot: `REVIEW-2026-09-16-planificacion.md`.
+**Estado actual:** 🟢 Actualizado — IDE-0001…0033 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031/0033); IDE-0032…0036 restantes
+(0033 entregada). IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
+(001…003) Fase 3 entregadas. Snapshot:
+`REVIEW-2026-09-16-planificacion.md`.
 
 Próximo foco:
 
-1. Atacar cola IDE-0033 → 0032 → 0034 → 0035 → 0036.
+1. Atacar cola IDE-0032 → 0034 → 0035 → 0036.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

@@ -5,7 +5,11 @@ result as a 2D cutting layout with one closed polyline per panel/piece.
 """
 
 from boardcomposer.domain import AssemblySolution, Project
-from boardcomposer.export.common import panel_offsets, piece_plan_label
+from boardcomposer.export.common import (
+    offcut_plan_label,
+    panel_offsets,
+    piece_plan_label,
+)
 from boardcomposer.export.cut_sequence import piece_sequence_numbers
 
 
@@ -72,6 +76,7 @@ def solution_to_dxf(
     project: Project | None = None,
     *,
     include_piece_labels: bool = True,
+    include_offcut_labels: bool = True,
 ) -> str:
     """Render `solution` as a DXF document (mm coordinates, Y up)."""
     offsets = panel_offsets(solution, project)
@@ -144,6 +149,16 @@ def solution_to_dxf(
                 "OFFCUTS",
             )
         )
+        if include_offcut_labels:
+            entities.extend(
+                _text(
+                    offcut.x_mm + offset_x + 5.0,
+                    offcut.y_mm + 5.0,
+                    16.0,
+                    offcut_plan_label(offcut),
+                    "OFFCUTS",
+                )
+            )
 
     lines = [
         "0",

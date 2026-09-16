@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-005  
-**Versión:** 1.3.0  
+**Versión:** 1.4.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 15/09/2026
+**Última revisión:** 16/09/2026
 
 ---
 
@@ -50,7 +50,8 @@ Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.
    Exportar de todos modos / Cancelar. Recalcular o cancelar no abre SCR-007.
 4. Se abre `ExportDialog` (SCR-007) con última elección o defaults.
 5. Elige formato: SVG / DXF / PDF / JSON / CSV.
-6. Ajusta opciones: métricas y explicación (solo JSON), retales (todos).
+6. Ajusta opciones: métricas y explicación (solo JSON), retales (todos),
+   etiquetas de piezas y de retales (planos SVG/PDF/DXF/raster).
 7. Opcional: aplica o guarda una plantilla / perfil por cliente.
 8. Revisa la vista previa (SVG + texto/resumen).
 9. Confirma y elige ruta en el diálogo de archivo.

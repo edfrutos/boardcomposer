@@ -5,6 +5,7 @@ from dataclasses import replace
 from boardcomposer.domain import (
     AssemblySolution,
     BoardPlacement,
+    Offcut,
     PanelReference,
     Project,
 )
@@ -15,6 +16,11 @@ PANEL_GAP_MM = 50.0
 def piece_plan_label(placement: BoardPlacement) -> str:
     """Workshop label: piece id and placed size in mm (ASCII ``x``)."""
     return f"{placement.board_id} {placement.length_mm:g}x{placement.width_mm:g}"
+
+
+def offcut_plan_label(offcut: Offcut) -> str:
+    """Workshop label: offcut size in mm (ASCII ``x``)."""
+    return f"{offcut.length_mm:g}x{offcut.width_mm:g}"
 
 
 def prepare_solution_for_export(
