@@ -74,6 +74,7 @@ en red; puedes **Copiar**).
 | Añadir tablero / pieza | Ctrl+Shift+B / Ctrl+Shift+P |
 | Importar tableros / piezas (CSV/Excel) | Ctrl+Shift+T / Ctrl+Shift+O |
 | Calcular layout | Ctrl+Return |
+| Re-empaquetar omitidas (congelar OK) | Ctrl+Alt+F |
 | Aplicar layout del Comparador | Ctrl+Shift+Return |
 | Candidata anterior / siguiente | Re Pág / Av Pág |
 | Exportar solución | Ctrl+Shift+E |
@@ -176,6 +177,9 @@ Dock **Ctrl+4**. Candidatas tras **Calcular layout**.
   el diff frente a ella.
 - Navegar: **Re Pág** / **Av Pág**; **Ctrl+Shift+Return** aplica la elegida
   al proyecto.
+- **Generar → Re-empaquetar omitidas** (**Ctrl+Alt+F**): congela las piezas
+  ya colocadas de la candidata parcial y solo intenta colocar las omitidas
+  en retales y tableros libres. No sustituye a Calcular layout.
 - Si editas inventario después de calcular, el banner avisa y el CTA
   **Calcular layout** recalcula; tips de aplicar / navegar / explicar
   también lo advierten.

@@ -184,6 +184,9 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
   «Etiquetas de piezas» deja el plano sin texto de pieza; Workspace igual.
 - [ ] **Ctrl+Alt+C** lista de corte: CSV/PDF con `sequence` y pasos de
   sierra (`saw`); el plano muestra el número de orden por panel.
+- [ ] **Ctrl+Alt+F** en candidata parcial: piezas OK no se mueven;
+  omitidas caben en retales o tablero libre; acción deshabilitada si la
+  solución es completa.
 
 ---
 

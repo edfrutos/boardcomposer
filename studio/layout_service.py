@@ -9,6 +9,7 @@ from __future__ import annotations
 from boardcomposer import Board, Project, ProjectConstraints, StockPanel
 from boardcomposer.domain import AssemblySolution
 from boardcomposer.solver.cancel import CancellationToken
+from boardcomposer.solver.freeze_repack import freeze_and_repack_omitted
 from boardcomposer.solver.geometry_solver import GeometrySolver
 from boardcomposer.solver.pipeline_stats import PipelineStats
 from boardcomposer.solver.solve_trace import SolveTrace
@@ -172,6 +173,23 @@ class LayoutService:
         self.solutions_outdated = False
 
         return self.selected_solution
+
+    def repack_omitted(self) -> AssemblySolution | None:
+        """Freeze placed pieces and pack omitted ones into leftover space."""
+        frozen = self.selected_solution
+        project = self._solved_project or self.to_core_project()
+        if frozen is None or project is None:
+            return None
+        if not frozen.omitted_piece_ids:
+            return frozen
+
+        packed = freeze_and_repack_omitted(project, frozen)
+        index = self.selected_solution_index
+        solutions = list(self.solutions)
+        solutions[index] = packed
+        self.solutions = solutions
+        self.solutions_outdated = False
+        return packed
 
     def mark_solutions_outdated(self) -> bool:
         """Flag cached solutions as stale after project edits (FLW-006).

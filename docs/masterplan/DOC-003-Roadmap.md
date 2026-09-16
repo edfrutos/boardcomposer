@@ -158,8 +158,8 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Piloto DT-0006 opción D (backup); C diferida.
-- Cola ciclo `0.4.4`: IDE-0030 → 0025 → 0028 → 0029
-  (freeze, retales inventario, catálogo, coste; 0026/0027 entregadas).
+- Cola ciclo `0.4.4`: IDE-0025 → 0028 → 0029
+  (retales inventario, catálogo, coste; 0026/0027/0030 entregadas).
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2

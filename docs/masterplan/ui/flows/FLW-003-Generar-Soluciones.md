@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-003  
-**Versión:** 1.2.0  
+**Versión:** 1.3.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 25/07/2026
+**Última revisión:** 16/09/2026
 
 ---
 
@@ -37,6 +37,7 @@ Comparador / Inspector.
 | Control | Atajo |
 |---------|--------|
 | Generar → Calcular layout | **Ctrl+Return** |
+| Generar → Re-empaquetar omitidas | **Ctrl+Alt+F** |
 | Botón toolbar «Calcular layout» | igual |
 
 Preferencias que afectan el cálculo (SCR-006):
@@ -62,7 +63,9 @@ Preferencias que afectan el cálculo (SCR-006):
    (clic / **Re Pág** / **Av Pág**), no automáticamente al terminar el
    cálculo.
 8. El usuario explora (FLW-004), aplica (**Ctrl+Shift+Return**) o exporta
-   (FLW-005).
+   (FLW-005). Si la candidata es **parcial**, **Re-empaquetar omitidas**
+   (**Ctrl+Alt+F**) congela las colocaciones OK y solo empaqueta las
+   piezas omitidas en el espacio libre (retales + instancias sin usar).
 
 Una sola candidata tras el ranking es un resultado **válido** (dedupe /
 inventario restringido).

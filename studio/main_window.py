@@ -243,6 +243,7 @@ class MainWindow(QMainWindow):
         self._menus["project"].addAction(self._actions["import_pieces_csv"])
 
         self._menus["generate"].addAction(self._actions["solve_layout"])
+        self._menus["generate"].addAction(self._actions["repack_omitted"])
 
         self._menus["compare"].addAction(self._actions["previous_solution"])
         self._menus["compare"].addAction(self._actions["next_solution"])
@@ -318,6 +319,7 @@ class MainWindow(QMainWindow):
             self._reset_window_layout
         )
         self._actions["solve_layout"].triggered.connect(self._solve_layout)
+        self._actions["repack_omitted"].triggered.connect(self._repack_omitted)
         self._actions["previous_solution"].triggered.connect(
             self._previous_layout_solution
         )
@@ -356,6 +358,7 @@ class MainWindow(QMainWindow):
             toolbar.addAction(self._actions[key])
         toolbar.addSeparator()
         toolbar.addAction(self._actions["solve_layout"])
+        toolbar.addAction(self._actions["repack_omitted"])
         toolbar.addSeparator()
         for key in ("previous_solution", "next_solution", "apply_layout"):
             toolbar.addAction(self._actions[key])
@@ -2591,6 +2594,27 @@ class MainWindow(QMainWindow):
         self._actions["previous_solution"].setEnabled(has_multiple_visible)
         self._actions["next_solution"].setEnabled(has_multiple_visible)
 
+        selected = self.services.layout.selected_solution if has_any else None
+        has_omitted = selected is not None and bool(selected.omitted_piece_ids)
+        outdated = self.services.layout.solutions_outdated
+        can_repack = has_omitted and not outdated
+        repack = self._actions.get("repack_omitted")
+        if repack is not None:
+            repack.setEnabled(can_repack)
+            if not has_any:
+                repack_tip = with_native_shortcuts(
+                    self._tr("status.repack_need_partial")
+                )
+            elif outdated:
+                repack_tip = with_native_shortcuts(
+                    self._tr("tip.repack_omitted_outdated")
+                )
+            elif not has_omitted:
+                repack_tip = with_native_shortcuts(self._tr("tip.repack_omitted_none"))
+            else:
+                repack_tip = with_native_shortcuts(self._tr("tip.repack_omitted"))
+            repack.setStatusTip(repack_tip)
+
         pin = getattr(self, "pin_reference_button", None)
         if pin is not None:
             pin.setEnabled(has_multiple_visible)
@@ -2971,6 +2995,37 @@ class MainWindow(QMainWindow):
             return
 
         self._announce_layout_ok(solution_count)
+
+    def _repack_omitted(self) -> None:
+        frozen = self.services.layout.selected_solution
+        if frozen is None:
+            self._status("status.repack_need_partial")
+            return
+        if self.services.layout.solutions_outdated:
+            self._status("status.repack_need_partial")
+            return
+        if not frozen.omitted_piece_ids:
+            self._status("status.repack_no_omitted")
+            return
+
+        placed_before = len(frozen.placements)
+        packed = self.services.layout.repack_omitted()
+        if packed is None:
+            self._status("status.repack_need_partial")
+            return
+
+        self._reload_solution_table()
+        self._show_layout_solution(packed)
+        self._reload_explorer()
+        added = len(packed.placements) - placed_before
+        if added <= 0:
+            self._status("status.repack_no_gain")
+            return
+        self._status(
+            "status.repack_ok",
+            added=added,
+            omitted=len(packed.omitted_piece_ids),
+        )
 
     def _reveal_comparator_after_solve(self) -> None:
         """Bring Comparador forward so multi-candidate UAT is not buried under Timeline."""
