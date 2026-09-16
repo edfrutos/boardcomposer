@@ -34,12 +34,14 @@ def solution_highlights(
     solutions: list[AssemblySolution],
     *,
     board_waste: Callable[[AssemblySolution], float] | None = None,
+    material_cost: Callable[[AssemblySolution], float] | None = None,
 ) -> dict[int, list[str]]:
     """Return, for each solution index, the metrics where it's the best.
 
     With a single solution there's nothing to compare against, so an empty
     mapping is returned. Optional ``board_waste`` adds the free-board metric
-    (same ratio the comparator table shows).
+    (same ratio the comparator table shows). Optional ``material_cost``
+    adds estimated stock cost (lower is better; infinite = no catalog price).
     """
     if len(solutions) < 2:
         return {}
@@ -47,6 +49,10 @@ def solution_highlights(
     metrics: list[_Metric] = list(_BASE_METRICS)
     if board_waste is not None:
         metrics.append(_Metric("highlight.board_free", board_waste, False))
+    if material_cost is not None:
+        values = [material_cost(solution) for solution in solutions]
+        if any(value != float("inf") for value in values):
+            metrics.append(_Metric("highlight.cost", material_cost, False))
 
     highlights: dict[int, list[str]] = {}
 

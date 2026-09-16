@@ -6,6 +6,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QDialog,
     QDialogButtonBox,
+    QDoubleSpinBox,
     QFormLayout,
     QHBoxLayout,
     QLabel,
@@ -59,12 +60,18 @@ class MaterialCatalogDialog(QDialog):
 
         self.name = QLineEdit()
         self.thicknesses = QLineEdit()
+        self.price = QDoubleSpinBox()
+        self.price.setRange(0.0, 1_000_000.0)
+        self.price.setDecimals(2)
+        self.price.setSingleStep(1.0)
 
         form = QFormLayout()
         self._name_label = QLabel()
         self._thickness_label = QLabel()
+        self._price_label = QLabel()
         form.addRow(self._name_label, self.name)
         form.addRow(self._thickness_label, self.thicknesses)
+        form.addRow(self._price_label, self.price)
 
         buttons_row = QHBoxLayout()
         self.add_button = polish_secondary_button(QPushButton())
@@ -101,7 +108,11 @@ class MaterialCatalogDialog(QDialog):
         self._intro.setText(tr("catalog.intro", language))
         self._name_label.setText(tr("catalog.name", language))
         self._thickness_label.setText(tr("catalog.thicknesses", language))
+        self._price_label.setText(tr("catalog.price", language))
         self.thicknesses.setPlaceholderText(tr("catalog.thickness_hint", language))
+        self.price.setSuffix(tr("catalog.price_suffix", language))
+        self.price.setToolTip(tr("tip.catalog_price", language))
+        self.price.setStatusTip(tr("tip.catalog_price", language))
         self.add_button.setText(tr("catalog.add", language))
         self.update_button.setText(tr("catalog.update", language))
         self.remove_button.setText(tr("catalog.remove", language))
@@ -117,6 +128,8 @@ class MaterialCatalogDialog(QDialog):
                 for value in item.thicknesses_mm
             )
             label = item.name if not thicknesses else f"{item.name} — {thicknesses} mm"
+            if item.price_per_m2 > 0:
+                label = f"{label} · {item.price_per_m2:.2f} €/m²"
             row = QListWidgetItem(label)
             row.setData(int(Qt.ItemDataRole.UserRole), item.name)
             self.list.addItem(row)
@@ -136,6 +149,7 @@ class MaterialCatalogDialog(QDialog):
                 for value in item.thicknesses_mm
             )
         )
+        self.price.setValue(item.price_per_m2)
 
     def _current_material(self) -> CatalogMaterial | None:
         name = self.name.text().strip()
@@ -144,6 +158,7 @@ class MaterialCatalogDialog(QDialog):
         return CatalogMaterial(
             name=name,
             thicknesses_mm=_parse_thicknesses(self.thicknesses.text()),
+            price_per_m2=self.price.value(),
         )
 
     def _add(self) -> None:
@@ -169,6 +184,7 @@ class MaterialCatalogDialog(QDialog):
             self._manager.replace_all(materials)
             self.name.clear()
             self.thicknesses.clear()
+            self.price.setValue(0)
             self._reload_list()
 
     def _restore(self) -> None:

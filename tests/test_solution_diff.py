@@ -73,6 +73,7 @@ def test_compare_solutions_reports_metric_and_placement_changes():
     assert "Puntuación" in metric_labels
     assert "Material libre" in metric_labels
     assert "Piezas omitidas" in metric_labels
+    assert "Coste material (€)" not in metric_labels
 
     kinds = {change.kind: change.piece_id for change in diff.placements}
     assert kinds["moved"] == "A"
@@ -82,6 +83,35 @@ def test_compare_solutions_reports_metric_and_placement_changes():
     text = "\n".join(diff.summary_lines())
     assert "Diferencias de #2" in text
     assert "A:" in text
+
+
+def test_compare_solutions_reports_finite_cost_delta():
+    reference = _solution([BoardPlacement("A", 0, 0, 10, 10)], score=5.0)
+    candidate = _solution([BoardPlacement("A", 5, 0, 10, 10)], score=5.0)
+
+    diff = compare_solutions(
+        reference,
+        candidate,
+        reference_index=0,
+        candidate_index=1,
+        cost_reference=25.0,
+        cost_candidate=12.5,
+    )
+
+    cost = next(metric for metric in diff.metrics if "Coste" in metric.label)
+    assert cost.reference == "25.00"
+    assert cost.candidate == "12.50"
+    assert cost.better == "candidate"
+
+    skipped = compare_solutions(
+        reference,
+        candidate,
+        reference_index=0,
+        candidate_index=1,
+        cost_reference=float("inf"),
+        cost_candidate=12.5,
+    )
+    assert not any("Coste" in metric.label for metric in skipped.metrics)
 
 
 def test_compare_solutions_summary_translates_to_english():

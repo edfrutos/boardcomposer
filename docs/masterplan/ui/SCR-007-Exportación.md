@@ -5,7 +5,7 @@
 **Código:** SCR-007  
 **Versión:** 1.4.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 15/09/2026
+**Última revisión:** 16/09/2026
 
 ---
 
@@ -69,7 +69,7 @@ Tras exportar OK: opción de abrir el archivo o revelar la carpeta.
 |--------|---------------------|
 | PNG / JPEG | Raster del layout (misma geometría que SVG preview) |
 | SVG / DXF / PDF | Planos de paneles; retales opcionales |
-| JSON | Documento estructurado; métricas / explicación / retales opcionales |
+| JSON | Documento estructurado; métricas / explicación / retales opcionales; Studio añade `estimated_material_cost` si el catálogo tiene €/m² |
 | CSV | Filas de placements (sin omitted/metrics/explanation) |
 
 No implementados: escala, márgenes, papel, calidad, cotas como opciones del

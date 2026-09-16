@@ -38,12 +38,13 @@
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
 - Retales a inventario del mismo proyecto (**Ctrl+Alt+R**, IDE-0025).
 - Catálogo de materiales / espesores de usuario (**Ctrl+Alt+T**, IDE-0028).
+- Coste estimado de material (precio €/m² del catálogo; IDE-0029).
 - Packing Skyline multipanel (IDE-0022; junto a MaxRects).
 - ADR-014 / ADR-016 y documentación técnica alineada en README, backlog y UAT.
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4`: cola IDE-0029 (coste).
+1. Ciclo `0.4.4`: cola producto vacía (0025…0030 entregadas).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

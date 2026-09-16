@@ -85,6 +85,8 @@ Al seleccionar una candidata (Comparador, Explorador o tras calcular):
 - Piezas colocadas / omitidas (si parcial)
 - Largo y ancho totales (texto en mm en i18n actual)
 - Huecos internos % y material libre %
+- Coste estimado de material (€; tableros físicos × €/m² del catálogo;
+  «—» si el material no tiene precio; `*` si el coste es parcial)
 - Aviso si las soluciones están desactualizadas respecto al proyecto
 - Highlights del Comparador («mejor en…») si hay ≥ 2 candidatas
 - Fortalezas / debilidades cuando existen

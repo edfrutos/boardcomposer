@@ -29,6 +29,8 @@ revisión `REVIEW-2026-09-15-planificacion.md` (PR #630 mergeado).
 | IDE-0026 etiquetas de piezas en plano (SVG/PDF/DXF) | 🟢 (#631) |
 | IDE-0027 secuencia de corte por panel | 🟢 (#632) |
 | IDE-0030 congelar colocaciones / re-pack omitidas (Ctrl+Alt+F) | 🟢 (#634) |
+| IDE-0028 catálogo materiales / espesores (Ctrl+Alt+T) | 🟢 (#637) |
+| IDE-0029 coste estimado de material (€/m² catálogo) | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -60,11 +62,12 @@ Versión: desarrollo `0.4.4.dev0` · estable `0.4.3` (2026-09-14; etiqueta
 Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; ciclo `0.4.4.dev0` avanzó con
-etiquetas (`#631`), secuencia de corte (`#632`), freeze/re-pack (`#634`)
-y retales a inventario (`#636`).
+etiquetas (`#631`), secuencia de corte (`#632`), freeze/re-pack (`#634`),
+retales a inventario (`#636`) y catálogo (`#637`).
 
 Desde la revisión 2026-09-15 (#630 mergeado), en `main` entró: `#631`
-(IDE-0026), `#632` (IDE-0027), `#634` (IDE-0030), `#636` (IDE-0025).
+(IDE-0026), `#632` (IDE-0027), `#634` (IDE-0030), `#636` (IDE-0025),
+`#637` (IDE-0028).
 
 Límites conocidos (no son bugs; son alcance):
 
@@ -80,8 +83,8 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` restante** — atacar **IDE-0029**
-   (coste estimado; catálogo IDE-0028 entregado).
+1. **Cola `0.4.4`** — vacía (0025…0030 entregadas). No abrir IDE nuevas
+   en este ciclo (cron: cola vacía y bugs = 0; residual piloto/eval).
 2. **Etiqueta** — publicar `v0.4.3` en GitHub Releases si falta.
 3. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
@@ -94,34 +97,33 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-restante: **IDE-0029** (⚪). Residual: piloto DT-0006 D
+restante: **vacía**. Residual: piloto DT-0006 D
 (operativo, no feature de producto) + backlog grande bloqueado
 (IDE-0008 / LLM / DT-0006 C).
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
 desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
-(cola implementable no vacía).
+en este PR (siguiente ciclo / cron diario).
 
 | ID | Título | Estado | Notas |
 |----|--------|--------|-------|
 | IDE-0025 | Retales como inventario reutilizable | 🟢 | #636 |
 | IDE-0026 | Etiquetas de piezas en plano | 🟢 | #631 |
 | IDE-0027 | Secuencia de corte por panel | 🟢 | #632 |
-| IDE-0028 | Catálogo de materiales / espesores | 🟢 | Ctrl+Alt+T; JSON usuario |
-| IDE-0029 | Coste estimado de material | ⚪ | Siguiente ataque |
+| IDE-0028 | Catálogo de materiales / espesores | 🟢 | #637; Ctrl+Alt+T |
+| IDE-0029 | Coste estimado de material | 🟢 | €/m² catálogo; tablero físico |
 | IDE-0030 | Congelar colocaciones / re-pack omitidas | 🟢 | #634 |
 
-Prioridad de ataque restante: **0029**.
+Prioridad de ataque restante: **ninguna (cola vacía)**.
 
-Cerradas en este ciclo `0.4.4.dev0`: IDE-0025, 0026, 0027, 0028, 0030.
+Cerradas en este ciclo `0.4.4.dev0`: IDE-0025…0030.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
 
 ## 6. Criterio de esta revisión
 
-- No se implementa código de producto en este pase: solo alinear docs,
-  snapshot y backlog con merges `#631`/`#632`/`#634`/`#636`.
+- Snapshot alineado con ciclo `0.4.4` (0025…0030) y merge `#637`.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.

@@ -23,6 +23,7 @@ class SortCriterion:
 
 def _default_criteria(
     board_waste: Callable[[AssemblySolution], float] | None = None,
+    material_cost: Callable[[AssemblySolution], float] | None = None,
 ) -> dict[str, SortCriterion]:
     criteria = {
         "pieces": SortCriterion(
@@ -51,6 +52,13 @@ def _default_criteria(
             board_waste,
             False,
         )
+    if material_cost is not None:
+        criteria["cost"] = SortCriterion(
+            "cost",
+            "Coste material",
+            material_cost,
+            False,
+        )
     return criteria
 
 
@@ -59,6 +67,7 @@ SORT_LABELS: tuple[tuple[str, str], ...] = (
     ("pieces", "Piezas colocadas"),
     ("waste", "Huecos internos"),
     ("board_waste", "Tablero libre"),
+    ("cost", "Coste material"),
     ("score", "Puntuación"),
 )
 
@@ -69,6 +78,7 @@ def ordered_solution_indexes(
     sort_by: str = "ranking",
     complete_only: bool = False,
     board_waste: Callable[[AssemblySolution], float] | None = None,
+    material_cost: Callable[[AssemblySolution], float] | None = None,
 ) -> list[int]:
     """Return indexes into `solutions` in the requested display order.
 
@@ -83,7 +93,7 @@ def ordered_solution_indexes(
     if sort_by == "ranking" or not indexes:
         return indexes
 
-    criteria = _default_criteria(board_waste)
+    criteria = _default_criteria(board_waste, material_cost)
     criterion = criteria.get(sort_by)
     if criterion is None:
         return indexes

@@ -179,7 +179,7 @@ Regresión auto: `tests/test_grain.py`, `tests/test_kerf.py`,
 
 Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`,
 `tests/test_export_options.py`, `tests/test_cut_sequence.py`,
-`tests/test_material_catalog.py`.
+`tests/test_material_catalog.py`, `tests/test_material_cost.py`.
 
 - [ ] **Ctrl+Shift+E** plano SVG/PDF: piezas muestran id y LxW mm; desmarcar
   «Etiquetas de piezas» deja el plano sin texto de pieza; Workspace igual.
@@ -192,6 +192,8 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
   remnant; segundo disparo no duplica; undo los quita; origen no baja solo.
 - [ ] **Ctrl+Alt+T** catálogo de materiales: añade un nombre/espesor; al
   añadir tablero el combo lo ofrece; el `.bcproj` no cambia de versión.
+  Precio €/m² opcional: el Comparador muestra el coste de los tableros
+  físicos consumidos (no el área de piezas); «—» si falta precio.
 
 ---
 

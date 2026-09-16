@@ -101,18 +101,51 @@ def test_selecting_catalog_material_fills_first_thickness(qapp):
     assert dialog.piece_data()["thickness_mm"] == 16
 
 
+def test_price_persists_and_zero_is_omitted(tmp_path):
+    path = tmp_path / "material_catalog.json"
+    manager = MaterialCatalogManager(path=path)
+    manager.replace_all([CatalogMaterial("Haya", (18.0,), price_per_m2=25.5)])
+    payload = manager.catalog.to_payload()
+    assert payload["materials"][0]["price_per_m2"] == 25.5
+    assert manager.catalog.price_for("haya") == 25.5
+    assert manager.price_map() == {"haya": 25.5}
+
+    unpriced = CatalogMaterial("MDF", (16.0,))
+    assert "price_per_m2" not in unpriced.to_dict()
+    assert unpriced.price_per_m2 == 0.0
+
+
+def test_remember_keeps_existing_price():
+    catalog = MaterialCatalog(
+        materials=[CatalogMaterial("Haya", (18.0,), price_per_m2=12.5)]
+    )
+    assert catalog.remember("Haya", 22)
+    found = catalog.find("Haya")
+    assert found is not None
+    assert found.thicknesses_mm == (18.0, 22.0)
+    assert found.price_per_m2 == 12.5
+
+
 def test_catalog_dialog_adds_and_persists(qapp, tmp_path):
     del qapp
     path = tmp_path / "material_catalog.json"
     manager = MaterialCatalogManager(path=path)
     dialog = MaterialCatalogDialog(manager, language="en")
     assert dialog.windowTitle() == "Material catalog"
+    assert "€/m²" in dialog._price_label.text()
     dialog.name.setText("Haya")
     dialog.thicknesses.setText("18, 22")
+    dialog.price.setValue(25.5)
     dialog._add()
-    assert manager.catalog.find("Haya") is not None
+    found = manager.catalog.find("Haya")
+    assert found is not None
+    assert found.price_per_m2 == 25.5
     reloaded = MaterialCatalogManager(path=path)
     assert reloaded.catalog.thicknesses_for("Haya") == (18.0, 22.0)
+    assert reloaded.catalog.price_for("Haya") == 25.5
+    assert any(
+        "25.50 €/m²" in dialog.list.item(i).text() for i in range(dialog.list.count())
+    )
 
 
 def test_add_board_remembers_custom_material(qapp, tmp_path, monkeypatch):
@@ -195,3 +228,30 @@ def test_material_catalog_tip_mentions_user_file_and_shortcut():
     assert "Ctrl+Alt+T" in tr("tip.material_catalog", "en")
     assert ".bcproj" in es and "proyectos" in es
     assert ".bcproj" in en and "projects" in en
+    assert "€/m²" in tr("catalog.intro", "es")
+    assert "€/m²" in tr("catalog.intro", "en")
+
+
+def test_format_material_cost_shows_dash_amount_and_partial(qapp, tmp_path):
+    del qapp
+    from boardcomposer.inventory.material_cost import MaterialCostEstimate
+
+    services = StudioServices(
+        preferences=PreferencesManager(tmp_path / "preferences.json")
+    )
+    services.preferences.update(StudioPreferences(language="es"))
+    window = MainWindow(services)
+
+    empty = MaterialCostEstimate()
+    assert window._format_material_cost(empty) == "—"
+
+    full = MaterialCostEstimate(total=12.5, priced_area_m2=0.5)
+    assert window._format_material_cost(full) == "12.50 €"
+
+    mixed = MaterialCostEstimate(
+        total=12.5,
+        priced_area_m2=0.5,
+        unpriced_area_m2=0.3,
+        missing_materials=("MDF",),
+    )
+    assert window._format_material_cost(mixed) == "12.50 €*"

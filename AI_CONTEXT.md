@@ -22,13 +22,14 @@ alternativas comprensibles para que el usuario decida.
   movimiento entre paneles, swap (IDE-0019), lista de corte (IDE-0023),
   etiquetas en plano (IDE-0026), secuencia de sierra (IDE-0027),
   freeze/re-pack (IDE-0030) y retales a inventario (IDE-0025).
-- Catálogo de materiales / espesores a nivel de usuario (IDE-0028;
-  `~/.boardcomposer/material_catalog.json`; **Ctrl+Alt+T**).
+- Catálogo de materiales / espesores / precio €/m² a nivel de usuario
+  (IDE-0028/0029; `~/.boardcomposer/material_catalog.json`; **Ctrl+Alt+T**).
+  Coste estimado = tableros físicos consumidos × precio; no puntúa el solver.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
   `docs/masterplan/REVIEW-2026-09-16-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3`).
-- Próximo: cola IDE-0029; piloto
+- Próximo: cola producto vacía; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

@@ -134,6 +134,8 @@ def _metric_deltas(
     board_waste_reference: float | None,
     board_waste_candidate: float | None,
     language: str,
+    cost_reference: float | None = None,
+    cost_candidate: float | None = None,
 ) -> list[MetricDelta]:
     deltas: list[MetricDelta] = []
 
@@ -237,6 +239,18 @@ def _metric_deltas(
         candidate.score.total,
         higher_is_better=True,
     )
+    if (
+        cost_reference is not None
+        and cost_candidate is not None
+        and cost_reference != float("inf")
+        and cost_candidate != float("inf")
+    ):
+        add(
+            "diff.metric.cost",
+            cost_reference,
+            cost_candidate,
+            higher_is_better=False,
+        )
 
     if reference.is_complete != candidate.is_complete:
         deltas.append(
@@ -319,6 +333,8 @@ def compare_solutions(
     candidate_index: int,
     board_waste_reference: float | None = None,
     board_waste_candidate: float | None = None,
+    cost_reference: float | None = None,
+    cost_candidate: float | None = None,
     language: str = DEFAULT_LANGUAGE,
 ) -> SolutionDiff:
     """Return the structured diff of `candidate` against `reference`."""
@@ -336,6 +352,8 @@ def compare_solutions(
             candidate,
             board_waste_reference=board_waste_reference,
             board_waste_candidate=board_waste_candidate,
+            cost_reference=cost_reference,
+            cost_candidate=cost_candidate,
             language=language,
         )
     )

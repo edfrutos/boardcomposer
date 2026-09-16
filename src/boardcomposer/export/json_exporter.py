@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Mapping
 
 from boardcomposer.domain import AssemblySolution, Project
+from boardcomposer.inventory.material_cost import estimated_material_cost
 
 
 def _panel_reference_to_dict(reference) -> dict | None:
@@ -25,6 +27,7 @@ def solution_to_dict(
     include_metrics: bool = True,
     include_explanation: bool = True,
     include_offcuts: bool = True,
+    material_prices: Mapping[str, float] | None = None,
 ) -> dict:
     """Return a JSON-serializable dict for one solution."""
     payload: dict = {
@@ -93,6 +96,14 @@ def solution_to_dict(
             payload["metrics"]["panel_waste_ratio"] = solution.panel_waste_ratio(
                 project
             )
+        if include_metrics and material_prices is not None:
+            estimate = estimated_material_cost(solution, project, material_prices)
+            payload["metrics"]["estimated_material_cost"] = estimate.total
+            payload["metrics"]["priced_area_m2"] = estimate.priced_area_m2
+            payload["metrics"]["unpriced_area_m2"] = estimate.unpriced_area_m2
+            payload["metrics"]["missing_price_materials"] = list(
+                estimate.missing_materials
+            )
 
     return payload
 
@@ -106,6 +117,7 @@ def solution_to_json(
     include_metrics: bool = True,
     include_explanation: bool = True,
     include_offcuts: bool = True,
+    material_prices: Mapping[str, float] | None = None,
 ) -> str:
     """Serialize one solution to indented JSON text."""
     return (
@@ -118,6 +130,7 @@ def solution_to_json(
                 include_metrics=include_metrics,
                 include_explanation=include_explanation,
                 include_offcuts=include_offcuts,
+                material_prices=material_prices,
             ),
             indent=2,
             ensure_ascii=False,

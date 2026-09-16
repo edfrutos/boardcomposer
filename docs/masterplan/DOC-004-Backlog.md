@@ -98,7 +98,7 @@ Observaciones:
 | IDE-0026 | Etiquetas de piezas en plano (SVG/PDF) | 🟢 | P2 |
 | IDE-0027 | Secuencia de corte por panel | 🟢 | P2 |
 | IDE-0028 | Catálogo de materiales / espesores | 🟢 | P2 |
-| IDE-0029 | Coste estimado de material | ⚪ | P3 |
+| IDE-0029 | Coste estimado de material | 🟢 | P3 |
 | IDE-0030 | Congelar colocaciones / re-pack omitidas | 🟢 | P2 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -121,7 +121,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0026 | S–M | SCR-007 export; Workspace labels | Entregado; id + LxW mm; casilla export |
 | IDE-0027 | M | IDE-0023; métricas por panel | Entregado; CSV/PDF + números plano |
 | IDE-0028 | M | SCR-005; prefs / archivo usuario | Entregado; Ctrl+Alt+T; JSON usuario |
-| IDE-0029 | S–M | IDE-0028 útil; scoring / export | Precio por m² → coste solución |
+| IDE-0029 | S–M | IDE-0028 útil; scoring / export | Entregado; €/m² catálogo; tablero físico |
 | IDE-0030 | M | Pipeline parciales; Command Pattern | Entregado; Ctrl+Alt+F; freeze OK |
 
 ---
@@ -150,16 +150,14 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0024, IDE-0025…0028 e
-IDE-0030 Studio/Core completadas; IDE-0007 🟢 MVP+eval (2026-09-12;
-LLM diferido). EP (001…003) Fase 3 entregadas. Cola producto 0019…0024
-cerrada. Ciclo `0.4.4`: 0025/0026/0027/0028/0030 🟢; restante 0029 ⚪.
+**Estado actual:** 🟢 Actualizado — IDE-0001…0030 Studio/Core
+completadas (ciclo `0.4.4` 0025…0030); IDE-0007 🟢 MVP+eval (2026-09-12;
+LLM diferido). EP (001…003) Fase 3 entregadas. Cola producto vacía.
 Snapshot: `REVIEW-2026-09-16-planificacion.md`.
 
 Próximo foco:
 
-1. Atacar cola IDE-0029.
-2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-3. Ciclo `0.4.4.dev0` abierto; etiqueta `v0.4.3` si falta.
-4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
-5. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).
+1. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
+2. Ciclo `0.4.4.dev0` abierto; etiqueta `v0.4.3` si falta.
+3. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
+4. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).
