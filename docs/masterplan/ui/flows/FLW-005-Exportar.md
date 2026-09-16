@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-005  
-**Versión:** 1.4.0  
+**Versión:** 1.5.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -36,6 +36,7 @@ historial del Timeline) a un archivo. Detalle de UI: SCR-007.
 |--------|----------------|
 | Exportar solución seleccionada… | **Ctrl+Shift+E** · menú Exportar · toolbar |
 | Exportar lista de corte… | **Ctrl+Alt+C** · menú Exportar (CSV/PDF; no usa ExportDialog) |
+| Exportar presupuesto… | **Ctrl+Alt+Q** · menú Exportar (PDF; no usa ExportDialog) |
 | Exportar historial del Timeline… | **Ctrl+Shift+L** · menú Exportar · Timeline |
 
 Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.

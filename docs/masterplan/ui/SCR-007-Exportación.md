@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.5.0  
+**Versión:** 1.6.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -32,6 +32,7 @@ canvas sin calcular.
 |--------|----------------|
 | Exportar solución seleccionada… | **Ctrl+Shift+E** · Exportar · toolbar |
 | Exportar lista de corte… | **Ctrl+Alt+C** · Exportar (flujo aparte; CSV/PDF) |
+| Exportar presupuesto… | **Ctrl+Alt+Q** · Exportar (flujo aparte; PDF) |
 | Exportar historial del Timeline… | **Ctrl+Shift+L** · Exportar · Timeline (flujo aparte) |
 
 Sin solución calculada/seleccionada: el tip de estado pide calcular layout

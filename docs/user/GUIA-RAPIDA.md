@@ -228,6 +228,9 @@ marcadores…).
   panel). Recuerda carpeta y formato. El plano SVG/PDF/DXF numera cada
   pieza con ese orden. No sustituye el CSV de colocaciones del diálogo
   de solución.
+- **Archivo → Exportar presupuesto…** (**Ctrl+Alt+Q**) PDF de coste de
+  material: tableros físicos consumidos × €/m² del catálogo. No incluye
+  mano de obra. Recuerda la carpeta. No sustituye el JSON de métricas.
 - **Cliente** y **plantilla** reutilizan un perfil; **Guardar…** / **Eliminar**
   gestionan el catálogo; **Exportar/Importar pack…** comparte plantillas
   (recuerda la última carpeta).

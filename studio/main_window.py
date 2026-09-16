@@ -36,7 +36,10 @@ from shiboken6 import isValid as _qt_is_valid
 from boardcomposer.domain.grain import grain_allows_rotation
 from boardcomposer.export import (
     CutListMeta,
+    QuoteMeta,
     build_cut_list,
+    build_quote,
+    quote_to_pdf,
     render_cut_list,
     solution_to_svg,
 )
@@ -257,6 +260,7 @@ class MainWindow(QMainWindow):
 
         self._menus["export"].addAction(self._actions["export_selected"])
         self._menus["export"].addAction(self._actions["export_cut_list"])
+        self._menus["export"].addAction(self._actions["export_quote"])
         self._menus["export"].addAction(self._actions["export_timeline"])
 
         self._menus["help"].addAction(self._actions["whats_new"])
@@ -336,6 +340,7 @@ class MainWindow(QMainWindow):
             self._export_selected_solution
         )
         self._actions["export_cut_list"].triggered.connect(self._export_cut_list)
+        self._actions["export_quote"].triggered.connect(self._export_quote)
         self._actions["export_timeline"].triggered.connect(
             self._export_timeline_history
         )
@@ -2618,6 +2623,7 @@ class MainWindow(QMainWindow):
         self._actions["apply_layout"].setEnabled(has_any)
         self._actions["export_selected"].setEnabled(has_any)
         self._actions["export_cut_list"].setEnabled(has_any)
+        self._actions["export_quote"].setEnabled(has_any)
         self._actions["previous_solution"].setEnabled(has_multiple_visible)
         self._actions["next_solution"].setEnabled(has_multiple_visible)
 
@@ -2683,25 +2689,30 @@ class MainWindow(QMainWindow):
         apply = self._actions["apply_layout"]
         export = self._actions["export_selected"]
         cut_list = self._actions["export_cut_list"]
+        quote = self._actions["export_quote"]
         previous = self._actions["previous_solution"]
         next_action = self._actions["next_solution"]
         if not has_any:
             apply_tip = need_layout
             export_tip = need_layout
             cut_list_tip = need_layout
+            quote_tip = need_layout
         elif self.services.layout.solutions_outdated:
             apply_tip = with_native_shortcuts(self._tr("tip.apply_layout_outdated"))
             export_tip = with_native_shortcuts(self._tr("tip.export_selected_outdated"))
             cut_list_tip = with_native_shortcuts(
                 self._tr("tip.export_cut_list_outdated")
             )
+            quote_tip = with_native_shortcuts(self._tr("tip.export_quote_outdated"))
         else:
             apply_tip = with_native_shortcuts(self._tr("tip.apply_layout"))
             export_tip = with_native_shortcuts(self._tr("tip.export_selected"))
             cut_list_tip = with_native_shortcuts(self._tr("tip.export_cut_list"))
+            quote_tip = with_native_shortcuts(self._tr("tip.export_quote"))
         apply.setStatusTip(apply_tip)
         export.setStatusTip(export_tip)
         cut_list.setStatusTip(cut_list_tip)
+        quote.setStatusTip(quote_tip)
         explain = self._actions.get("explain_solution")
         if explain is not None:
             explain.setEnabled(has_any)
@@ -3859,6 +3870,66 @@ class MainWindow(QMainWindow):
 
         self._remember_export_directory(path)
         self._remember_cut_list_export_format(fmt)
+        self._emit(events.EXPORT_COMPLETED, format=label, path=path)
+        self._status("status.exported", 5000, format=label, path=path)
+        self._offer_open_exported_path(path)
+
+    def _export_quote(self) -> None:
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            self._status("status.calculate_layout_first")
+            return
+
+        if self.services.layout.solutions_outdated:
+            choice = self._confirm_while_outdated(
+                body_key="dialog.outdated_solutions_export",
+                proceed_key="dialog.outdated_solutions_export_anyway",
+            )
+            if choice == "recalculate":
+                self._solve_layout()
+                return
+            if choice != "proceed":
+                return
+
+        studio_project = self.services.projects.current_project
+        meta = QuoteMeta()
+        if studio_project is not None:
+            meta = QuoteMeta(
+                project_name=studio_project.name,
+                client=studio_project.client,
+                reference=studio_project.reference,
+                notes=studio_project.notes,
+            )
+        report = build_quote(
+            solution,
+            self.services.layout.solved_project,
+            self.services.material_catalog.price_map(),
+            meta,
+        )
+
+        selected_index = self.services.layout.selected_solution_index + 1
+        default_name = f"boardcomposer-quote-{selected_index}.pdf"
+        path, _selected_filter = QFileDialog.getSaveFileName(
+            self,
+            self._tr("dialog.export_quote"),
+            self._suggested_export_path(default_name),
+            "PDF (*.pdf)",
+        )
+        if not path:
+            return
+        if not path.lower().endswith(".pdf"):
+            path = f"{path}.pdf"
+        label = "PDF"
+
+        self._emit(events.EXPORT_STARTED, format=label, path=path)
+        try:
+            Path(path).write_bytes(quote_to_pdf(report))
+        except OSError as exc:
+            self._emit(events.EXPORT_FAILED, format=label, path=path, error=str(exc))
+            self._status("status.export_failed", 5000, format=label, error=exc)
+            return
+
+        self._remember_export_directory(path)
         self._emit(events.EXPORT_COMPLETED, format=label, path=path)
         self._status("status.exported", 5000, format=label, path=path)
         self._offer_open_exported_path(path)

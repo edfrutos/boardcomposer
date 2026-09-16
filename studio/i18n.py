@@ -236,6 +236,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.export_selected": "Exportar solución seleccionada…",
         "action.export_timeline": "Exportar historial del Timeline…",
         "action.export_cut_list": "Exportar lista de corte…",
+        "action.export_quote": "Exportar presupuesto…",
         "action.exit": "Salir",
         "action.undo": "Deshacer",
         "action.redo": "Rehacer",
@@ -428,6 +429,16 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_cut_list_outdated": (
             "Soluciones desactualizadas: al exportar la lista de corte "
             "(Ctrl+Alt+C) pide confirmar recalcular / exportar de todos "
+            "modos / cancelar"
+        ),
+        "tip.export_quote": (
+            "Exportar presupuesto de material de la solución del Comparador "
+            "(Ctrl+Alt+Q); PDF con tableros físicos × EUR/m2 del catálogo; "
+            "ofrece abrir el archivo; recuerda la última carpeta"
+        ),
+        "tip.export_quote_outdated": (
+            "Soluciones desactualizadas: al exportar el presupuesto "
+            "(Ctrl+Alt+Q) pide confirmar recalcular / exportar de todos "
             "modos / cancelar"
         ),
         "tip.exit": (
@@ -1257,6 +1268,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.import_pieces_short": "Importar piezas",
         "dialog.export_selected": "Exportar solución seleccionada",
         "dialog.export_cut_list": "Exportar lista de corte",
+        "dialog.export_quote": "Exportar presupuesto",
         "dialog.filter_cut_list": "CSV (*.csv);;PDF (*.pdf)",
         "dialog.filter_csv_excel": "CSV / Excel (*.csv *.xlsx);;CSV (*.csv);;Excel (*.xlsx);;Todos los archivos (*)",
         "dialog.filter_bcproj": "BoardComposer Project (*.bcproj)",
@@ -1719,6 +1731,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.export_selected": "Export selected solution…",
         "action.export_timeline": "Export Timeline history…",
         "action.export_cut_list": "Export cut list…",
+        "action.export_quote": "Export quote…",
         "action.exit": "Quit",
         "action.undo": "Undo",
         "action.redo": "Redo",
@@ -1908,6 +1921,15 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_cut_list_outdated": (
             "Solutions outdated: when exporting the cut list "
             "(Ctrl+Alt+C) prompts to recalculate / export anyway / cancel"
+        ),
+        "tip.export_quote": (
+            "Export a material quote from the Comparator solution "
+            "(Ctrl+Alt+Q); PDF of physical boards × catalog EUR/m2; "
+            "offers to open the file; remembers the last folder"
+        ),
+        "tip.export_quote_outdated": (
+            "Solutions outdated: when exporting the quote "
+            "(Ctrl+Alt+Q) prompts to recalculate / export anyway / cancel"
         ),
         "tip.exit": (
             "Quit BoardComposer Studio (Ctrl+Q); "
@@ -2699,6 +2721,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.import_pieces_short": "Import pieces",
         "dialog.export_selected": "Export selected solution",
         "dialog.export_cut_list": "Export cut list",
+        "dialog.export_quote": "Export quote",
         "dialog.filter_cut_list": "CSV (*.csv);;PDF (*.pdf)",
         "dialog.filter_csv_excel": "CSV / Excel (*.csv *.xlsx);;CSV (*.csv);;Excel (*.xlsx);;All files (*)",
         "dialog.filter_bcproj": "BoardComposer Project (*.bcproj)",
@@ -2968,6 +2991,7 @@ _ACTION_KEYS = (
     "export_selected",
     "export_timeline",
     "export_cut_list",
+    "export_quote",
     "exit",
     "clear_recent",
     "undo",
