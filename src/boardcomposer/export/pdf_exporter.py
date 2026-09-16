@@ -4,6 +4,8 @@ Pure Python (no ReportLab): rectangles for panels/pieces plus Helvetica
 labels. Coordinates are millimetres, scaled to PDF points (1 mm ≈ 2.834 pt).
 """
 
+from __future__ import annotations
+
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.export.common import (
     canvas_size_mm,
@@ -12,9 +14,7 @@ from boardcomposer.export.common import (
     piece_plan_label,
 )
 from boardcomposer.export.cut_sequence import piece_sequence_numbers
-
-_MM_TO_PT = 72.0 / 25.4
-_MARGIN_PT = 36.0
+from boardcomposer.export.pdf_page import PdfPageOptions, resolve_pdf_page
 
 
 def _escape_pdf_text(value: str) -> str:
@@ -38,6 +38,7 @@ def solution_to_pdf(
     *,
     include_piece_labels: bool = True,
     include_offcut_labels: bool = True,
+    page: PdfPageOptions | None = None,
 ) -> bytes:
     """Render `solution` as PDF bytes."""
     offsets = panel_offsets(solution, project)
@@ -45,13 +46,15 @@ def solution_to_pdf(
     # Extra headroom for panel labels above the drawing.
     height_mm += 30.0
 
-    page_w = width_mm * _MM_TO_PT + 2 * _MARGIN_PT
-    page_h = height_mm * _MM_TO_PT + 2 * _MARGIN_PT
+    layout = resolve_pdf_page(width_mm, height_mm, page)
+    page_w = layout.page_w_pt
+    page_h = layout.page_h_pt
+    scale = layout.scale_pt_per_mm
 
     def to_page(x_mm: float, y_mm: float) -> tuple[float, float]:
         # PDF Y grows upward; our drawing Y grows downward from the top label.
-        x_pt = _MARGIN_PT + x_mm * _MM_TO_PT
-        y_pt = page_h - _MARGIN_PT - (y_mm + 0.0) * _MM_TO_PT
+        x_pt = layout.origin_x_pt + x_mm * scale
+        y_pt = page_h - layout.origin_y_top_pt - y_mm * scale
         return x_pt, y_pt
 
     ops: list[str] = ["0.2 w"]
@@ -65,7 +68,7 @@ def solution_to_pdf(
             x_pt, y_top = to_page(offset_x, 0.0)
             _, y_bottom = to_page(offset_x, panel.width_mm)
             h_pt = y_top - y_bottom
-            ops.append(_rect_ops(x_pt, y_bottom, panel.length_mm * _MM_TO_PT, h_pt))
+            ops.append(_rect_ops(x_pt, y_bottom, panel.length_mm * scale, h_pt))
             ops.append(
                 _text_ops(
                     x_pt + 4,
@@ -87,7 +90,7 @@ def solution_to_pdf(
             placement.x_mm + offset_x, placement.y_mm + placement.width_mm
         )
         h_pt = y_top - y_bottom
-        ops.append(_rect_ops(x_pt, y_bottom, placement.length_mm * _MM_TO_PT, h_pt))
+        ops.append(_rect_ops(x_pt, y_bottom, placement.length_mm * scale, h_pt))
         sequence = str(numbers.get(index, index + 1))
         ops.append(_text_ops(x_pt + 4, y_top - 12, 10, sequence))
         if include_piece_labels:
@@ -101,7 +104,7 @@ def solution_to_pdf(
         _, y_bottom = to_page(offcut.x_mm + offset_x, offcut.y_mm + offcut.width_mm)
         h_pt = y_top - y_bottom
         ops.append("[8 4] 0 d")
-        ops.append(_rect_ops(x_pt, y_bottom, offcut.length_mm * _MM_TO_PT, h_pt))
+        ops.append(_rect_ops(x_pt, y_bottom, offcut.length_mm * scale, h_pt))
         ops.append("[] 0 d")
         if include_offcut_labels:
             ops.append(_text_ops(x_pt + 4, y_top - 12, 9, offcut_plan_label(offcut)))

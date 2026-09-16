@@ -20,6 +20,17 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from boardcomposer.export.pdf_page import (
+    DEFAULT_PDF_MARGIN_MM,
+    DEFAULT_PDF_ORIENTATION,
+    DEFAULT_PDF_PAPER,
+    DEFAULT_PDF_SCALE,
+    MAX_PDF_MARGIN_MM,
+    MIN_PDF_MARGIN_MM,
+    VALID_PDF_ORIENTATIONS,
+    VALID_PDF_PAPERS,
+    VALID_PDF_SCALES,
+)
 from boardcomposer.layout.kerf import DEFAULT_KERF_MM, MAX_KERF_MM
 from boardcomposer.solver.strategies import strategy_by_name
 from studio.dialogs.dialog_chrome import (
@@ -172,6 +183,41 @@ class PreferencesDialog(QDialog):
             preferences.export_include_offcut_labels
         )
         export_form.addRow("", self.export_include_offcut_labels)
+        self.export_pdf_paper = QComboBox()
+        for key in VALID_PDF_PAPERS:
+            self.export_pdf_paper.addItem(key, key)
+        paper_index = self.export_pdf_paper.findData(preferences.export_pdf_paper)
+        self.export_pdf_paper.setCurrentIndex(paper_index if paper_index >= 0 else 0)
+        self._export_pdf_paper_label = QLabel()
+        export_form.addRow(self._export_pdf_paper_label, self.export_pdf_paper)
+        self.export_pdf_orientation = QComboBox()
+        for key in VALID_PDF_ORIENTATIONS:
+            self.export_pdf_orientation.addItem(key, key)
+        orientation_index = self.export_pdf_orientation.findData(
+            preferences.export_pdf_orientation
+        )
+        self.export_pdf_orientation.setCurrentIndex(
+            orientation_index if orientation_index >= 0 else 0
+        )
+        self._export_pdf_orientation_label = QLabel()
+        export_form.addRow(
+            self._export_pdf_orientation_label, self.export_pdf_orientation
+        )
+        self.export_pdf_scale = QComboBox()
+        for key in VALID_PDF_SCALES:
+            self.export_pdf_scale.addItem(key, key)
+        scale_index = self.export_pdf_scale.findData(preferences.export_pdf_scale)
+        self.export_pdf_scale.setCurrentIndex(scale_index if scale_index >= 0 else 0)
+        self._export_pdf_scale_label = QLabel()
+        export_form.addRow(self._export_pdf_scale_label, self.export_pdf_scale)
+        self.export_pdf_margin_mm = QDoubleSpinBox()
+        self.export_pdf_margin_mm.setRange(MIN_PDF_MARGIN_MM, MAX_PDF_MARGIN_MM)
+        self.export_pdf_margin_mm.setDecimals(1)
+        self.export_pdf_margin_mm.setSingleStep(1.0)
+        self.export_pdf_margin_mm.setSuffix(" mm")
+        self.export_pdf_margin_mm.setValue(preferences.export_pdf_margin_mm)
+        self._export_pdf_margin_label = QLabel()
+        export_form.addRow(self._export_pdf_margin_label, self.export_pdf_margin_mm)
         layout.addWidget(self.export_group)
 
         self.advanced = QGroupBox()
@@ -245,6 +291,24 @@ class PreferencesDialog(QDialog):
         self.export_include_offcut_labels.setText(
             tr("prefs.export_offcut_labels", language)
         )
+        self._export_pdf_paper_label.setText(tr("prefs.export_pdf_paper", language))
+        self._export_pdf_orientation_label.setText(
+            tr("prefs.export_pdf_orientation", language)
+        )
+        self._export_pdf_scale_label.setText(tr("prefs.export_pdf_scale", language))
+        self._export_pdf_margin_label.setText(tr("prefs.export_pdf_margin", language))
+        for index, key in enumerate(VALID_PDF_PAPERS):
+            self.export_pdf_paper.setItemText(
+                index, tr(f"export.paper_{key}", language)
+            )
+        for index, key in enumerate(VALID_PDF_ORIENTATIONS):
+            self.export_pdf_orientation.setItemText(
+                index, tr(f"export.orientation_{key}", language)
+            )
+        for index, key in enumerate(VALID_PDF_SCALES):
+            self.export_pdf_scale.setItemText(
+                index, tr(f"export.scale_{key.replace(':', '_')}", language)
+            )
 
         self._language_label.setText(tr("prefs.language", language))
         self._theme_label.setText(tr("prefs.theme", language))
@@ -327,6 +391,17 @@ class PreferencesDialog(QDialog):
         self.export_include_offcuts.setChecked(True)
         self.export_include_piece_labels.setChecked(True)
         self.export_include_offcut_labels.setChecked(True)
+        paper_index = self.export_pdf_paper.findData(DEFAULT_PDF_PAPER)
+        self.export_pdf_paper.setCurrentIndex(paper_index if paper_index >= 0 else 0)
+        orientation_index = self.export_pdf_orientation.findData(
+            DEFAULT_PDF_ORIENTATION
+        )
+        self.export_pdf_orientation.setCurrentIndex(
+            orientation_index if orientation_index >= 0 else 0
+        )
+        scale_index = self.export_pdf_scale.findData(DEFAULT_PDF_SCALE)
+        self.export_pdf_scale.setCurrentIndex(scale_index if scale_index >= 0 else 0)
+        self.export_pdf_margin_mm.setValue(DEFAULT_PDF_MARGIN_MM)
         self.max_solutions.setValue(DEFAULT_MAX_SOLUTIONS)
         self.default_kerf_mm.setValue(DEFAULT_KERF_MM)
         self._on_strategy_changed(self.strategy.currentIndex())
@@ -373,6 +448,11 @@ class PreferencesDialog(QDialog):
             export_include_offcut_labels=(
                 self.export_include_offcut_labels.isChecked()
             ),
+            export_pdf_paper=self.export_pdf_paper.currentData() or DEFAULT_PDF_PAPER,
+            export_pdf_orientation=self.export_pdf_orientation.currentData()
+            or DEFAULT_PDF_ORIENTATION,
+            export_pdf_scale=self.export_pdf_scale.currentData() or DEFAULT_PDF_SCALE,
+            export_pdf_margin_mm=self.export_pdf_margin_mm.value(),
             max_solutions=self.max_solutions.value(),
             default_kerf_mm=self.default_kerf_mm.value(),
         )

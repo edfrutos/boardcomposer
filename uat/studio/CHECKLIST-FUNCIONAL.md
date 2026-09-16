@@ -178,13 +178,16 @@ Regresión auto: `tests/test_grain.py`, `tests/test_kerf.py`,
 ## 10. Taller 0.4.4 (IDE-0026…)
 
 Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`,
-`tests/test_export_options.py`, `tests/test_cut_sequence.py`,
-`tests/test_material_catalog.py`, `tests/test_material_cost.py`,
-`tests/test_quote.py`.
+`tests/test_export_options.py`, `tests/test_pdf_page.py`,
+`tests/test_cut_sequence.py`, `tests/test_material_catalog.py`,
+`tests/test_material_cost.py`, `tests/test_quote.py`.
 
 - [ ] **Ctrl+Shift+E** plano SVG/PDF: piezas muestran id y LxW mm; retales
   muestran LxW mm; desmarcar «Etiquetas de piezas» o «Etiquetas de retales»
   deja el plano sin ese texto; Workspace sigue mostrando solo piezas.
+- [ ] **Ctrl+Shift+E** PDF de plano: papel A4/A3/Letter o ajustar al
+  dibujo; escala fit o 1:n; márgenes mm. Lista de corte y presupuesto
+  PDF no cambian de página.
 - [ ] **Ctrl+Alt+Q** presupuesto PDF: total = tableros físicos × €/m²;
   materiales sin precio aparecen como «-»; no cambia el `.bcproj`.
 - [ ] **Ctrl+Alt+C** lista de corte: CSV/PDF con `sequence` y pasos de

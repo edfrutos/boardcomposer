@@ -10,6 +10,14 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
+from boardcomposer.export.pdf_page import (
+    DEFAULT_PDF_MARGIN_MM,
+    DEFAULT_PDF_ORIENTATION,
+    DEFAULT_PDF_PAPER,
+    DEFAULT_PDF_SCALE,
+    PdfPageOptions,
+)
+
 VALID_TEMPLATE_FORMATS = ("svg", "dxf", "pdf", "json", "csv")
 
 
@@ -32,6 +40,10 @@ class NamedExportTemplate:
     include_offcuts: bool = True
     include_piece_labels: bool = True
     include_offcut_labels: bool = True
+    pdf_paper: str = DEFAULT_PDF_PAPER
+    pdf_orientation: str = DEFAULT_PDF_ORIENTATION
+    pdf_scale: str = DEFAULT_PDF_SCALE
+    pdf_margin_mm: float = DEFAULT_PDF_MARGIN_MM
     client: str = ""
 
     @property
@@ -46,6 +58,12 @@ class NamedExportTemplate:
         fmt = str(payload.get("format", "svg")).strip().lower()
         if fmt not in VALID_TEMPLATE_FORMATS:
             fmt = "svg"
+        page = PdfPageOptions(
+            paper=str(payload.get("pdf_paper", DEFAULT_PDF_PAPER)),
+            orientation=str(payload.get("pdf_orientation", DEFAULT_PDF_ORIENTATION)),
+            scale=str(payload.get("pdf_scale", DEFAULT_PDF_SCALE)),
+            margin_mm=payload.get("pdf_margin_mm", DEFAULT_PDF_MARGIN_MM),
+        ).normalized()
         return cls(
             name=name,
             format=fmt,
@@ -54,6 +72,10 @@ class NamedExportTemplate:
             include_offcuts=bool(payload.get("include_offcuts", True)),
             include_piece_labels=bool(payload.get("include_piece_labels", True)),
             include_offcut_labels=bool(payload.get("include_offcut_labels", True)),
+            pdf_paper=page.paper,
+            pdf_orientation=page.orientation,
+            pdf_scale=page.scale,
+            pdf_margin_mm=page.margin_mm,
             client=normalize_client(str(payload.get("client", ""))),
         )
 

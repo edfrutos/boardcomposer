@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.6.0  
+**Versión:** 1.7.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -53,6 +53,8 @@ Defaults de formato y flags: SCR-006 → `preferences.json`.
 │ Opciones           │ ☐ Métricas  ☐ Explicación  ☐ Retales          │
 │                    │ ☐ Etiquetas de piezas (id y LxW mm)           │
 │                    │ ☐ Etiquetas de retales (LxW mm)               │
+│ PDF plano          │ papel (dibujo/A4/A3/Letter) · orientación     │
+│                    │ escala (fit / 1:n) · márgenes mm              │
 │ Plantillas         │ cliente · guardar/aplicar/borrar · pack JSON  │
 ├────────────────────┴───────────────────────────────────────────────┤
 │ Vista previa (SVG/raster + texto/resumen según formato)            │
@@ -74,8 +76,7 @@ Tras exportar OK: opción de abrir el archivo o revelar la carpeta.
 | JSON | Documento estructurado; métricas / explicación / retales opcionales; Studio añade `estimated_material_cost` si el catálogo tiene €/m² |
 | CSV | Filas de placements (sin omitted/metrics/explanation) |
 
-No implementados: escala, márgenes, papel, calidad, cotas como opciones del
-diálogo.
+No implementados: calidad y cotas como opciones del diálogo.
 
 ### Opciones de contenido
 
@@ -91,6 +92,12 @@ diálogo.
 - **Números de secuencia (IDE-0027):** siempre en SVG/PDF/DXF (paso de
   pieza en su panel). La lista de corte (Ctrl+Alt+C) añade el orden de
   sierra (guillotina o por posición) en CSV y PDF.
+- **Papel / orientación / escala / márgenes (IDE-0034):** solo formato
+  **PDF** de plano. Papel: ajustar al dibujo (default, 1:1, página a
+  medida) o A4/A3/Letter. Escala fit o 1:1 / 1:2 / 1:5 / 1:10 y
+  orientación auto/vertical/apaisado cuando el papel es ISO. Márgenes
+  0–50 mm (default 12,7 mm). Lista de corte y presupuesto siguen A4
+  aparte. SVG/DXF/raster no usan estos controles.
 
 ---
 
@@ -119,6 +126,7 @@ Tras un export correcto se guardan en `preferences.json`:
 - formato
 - incluir métricas / explicación / retales / etiquetas de piezas / etiquetas
   de retales
+- papel / orientación / escala / márgenes del PDF de plano
 - carpeta de destino (`last_export_directory`) — sin UI en Preferencias;
   el siguiente `QFileDialog` (solución **o** Timeline) abre ahí si sigue
   existiendo
@@ -159,6 +167,8 @@ No usa `ExportDialog`. Flujo propio:
 - Exporta la candidata seleccionada, no otra.
 - SVG/DXF/PDF/JSON/CSV cubiertos desde el mismo diálogo.
 - Vista previa coherente con retales, etiquetas de piezas/retales y formato.
+- PDF de plano respeta papel/escala/márgenes; lista de corte y presupuesto
+  no cambian de página.
 - Plantillas y última elección persistentes.
 - Timeline exportable sin mezclarse con el diálogo de solución.
 
@@ -177,7 +187,6 @@ No usa `ExportDialog`. Flujo propio:
 
 ## Límites conocidos (Studio actual)
 
-- Sin controles de papel/escala/márgenes.
 - Métricas/explicación solo en JSON.
 - CSV del diálogo limitado a placements; lista de corte (Ctrl+Alt+C)
   cubre piezas/tableros/cortes y secuencia de sierra en CSV o PDF.
@@ -187,6 +196,6 @@ No usa `ExportDialog`. Flujo propio:
 
 ## Evolución prevista
 
-- Más formatos de imagen y opciones de página.
+- Más formatos de imagen y cotas.
 - Lotes / perfiles CAD-CAM avanzados.
 - Trazabilidad explícita (versión app, algoritmo, fecha) en más formatos.

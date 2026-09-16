@@ -7,6 +7,11 @@ from collections.abc import Mapping
 
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.export import (
+    DEFAULT_PDF_MARGIN_MM,
+    DEFAULT_PDF_ORIENTATION,
+    DEFAULT_PDF_PAPER,
+    DEFAULT_PDF_SCALE,
+    PdfPageOptions,
     prepare_solution_for_export,
     solution_to_csv,
     solution_to_dxf,
@@ -49,6 +54,10 @@ class ExportOptions:
     include_offcuts: bool = True
     include_piece_labels: bool = True
     include_offcut_labels: bool = True
+    pdf_paper: str = DEFAULT_PDF_PAPER
+    pdf_orientation: str = DEFAULT_PDF_ORIENTATION
+    pdf_scale: str = DEFAULT_PDF_SCALE
+    pdf_margin_mm: float = DEFAULT_PDF_MARGIN_MM
 
     def normalized(self) -> ExportOptions:
         fmt = (
@@ -56,6 +65,7 @@ class ExportOptions:
             if self.format in VALID_EXPORT_FORMATS
             else DEFAULT_EXPORT_FORMAT
         )
+        page = self.pdf_page()
         return ExportOptions(
             format=fmt,
             include_metrics=self.include_metrics,
@@ -63,7 +73,20 @@ class ExportOptions:
             include_offcuts=self.include_offcuts,
             include_piece_labels=self.include_piece_labels,
             include_offcut_labels=self.include_offcut_labels,
+            pdf_paper=page.paper,
+            pdf_orientation=page.orientation,
+            pdf_scale=page.scale,
+            pdf_margin_mm=page.margin_mm,
         )
+
+    def pdf_page(self) -> PdfPageOptions:
+        """Return plan-PDF page settings (ignored by other formats)."""
+        return PdfPageOptions(
+            paper=self.pdf_paper,
+            orientation=self.pdf_orientation,
+            scale=self.pdf_scale,
+            margin_mm=self.pdf_margin_mm,
+        ).normalized()
 
     @property
     def label(self) -> str:
@@ -119,7 +142,12 @@ def render_export(
     if options.format == "dxf":
         return solution_to_dxf(prepared, project, **_plan_label_kwargs(options))
     if options.format == "pdf":
-        return solution_to_pdf(prepared, project, **_plan_label_kwargs(options))
+        return solution_to_pdf(
+            prepared,
+            project,
+            **_plan_label_kwargs(options),
+            page=options.pdf_page(),
+        )
     if options.format == "csv":
         return solution_to_csv(prepared)
     return solution_to_json(
@@ -219,4 +247,14 @@ def preview_text(
         summary.append(
             "Arriba: vista previa del layout (misma geometría que el export)."
         )
+    if options.format == "pdf":
+        summary.append(
+            f"Papel: {options.pdf_paper}; orientación: {options.pdf_orientation}; "
+            f"escala: {options.pdf_scale}; margen: {options.pdf_margin_mm:g} mm."
+        )
+        if options.pdf_paper == "drawing":
+            summary.append(
+                "Página a tamaño del dibujo (1:1). Lista de corte y presupuesto "
+                "siguen en A4 aparte."
+            )
     return "\n".join(summary)
