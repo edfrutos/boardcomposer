@@ -14,7 +14,11 @@ from PySide6.QtWidgets import (
 from studio.dialogs.dialog_chrome import polish_dialog_button_box
 from studio.i18n import DEFAULT_LANGUAGE, tr
 from studio.material_catalog import MaterialCatalog
-from studio.material_fields import bind_thickness_suggestions, fill_material_combo
+from studio.material_fields import (
+    bind_board_size_suggestions,
+    bind_thickness_suggestions,
+    fill_material_combo,
+)
 from studio.units import display_to_mm, mm_to_display, unit_label
 
 
@@ -35,6 +39,7 @@ class NewBoardDialog(QDialog):
         units: str = "mm",
         language: str = DEFAULT_LANGUAGE,
         catalog: MaterialCatalog | None = None,
+        suggest_catalog_size: bool = False,
     ) -> None:
         super().__init__(parent)
 
@@ -50,6 +55,7 @@ class NewBoardDialog(QDialog):
         self.thickness = QDoubleSpinBox()
         self.quantity = QSpinBox()
         self.material = QComboBox()
+        self.size = QComboBox()
 
         decimals = 0 if units == "mm" else 2
         for field in (self.length, self.width, self.thickness):
@@ -68,6 +74,7 @@ class NewBoardDialog(QDialog):
         form.addRow(tr("form.id", language), self.board_id)
         form.addRow(tr("form.length", language, unit=unit), self.length)
         form.addRow(tr("form.width", language, unit=unit), self.width)
+        form.addRow(tr("form.board_size", language), self.size)
         form.addRow(tr("form.thickness", language, unit=unit), self.thickness)
         form.addRow(tr("form.quantity", language), self.quantity)
         form.addRow(tr("form.material", language), self.material)
@@ -89,6 +96,16 @@ class NewBoardDialog(QDialog):
             catalog,
             units=units,
             language=language,
+        )
+        bind_board_size_suggestions(
+            self.material,
+            self.length,
+            self.width,
+            self.size,
+            catalog,
+            units=units,
+            language=language,
+            suggest_catalog_size=suggest_catalog_size,
         )
 
     def board_data(self) -> dict:

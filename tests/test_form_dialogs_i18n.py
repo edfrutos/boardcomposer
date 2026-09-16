@@ -29,6 +29,7 @@ def test_new_board_dialog_english_labels(qapp):
     assert "Length (mm):" in labels
     assert "Quantity:" in labels
     assert "Material:" in labels
+    assert "Board size:" in labels
     assert isinstance(dialog.material, QComboBox)
     assert dialog.material.isEditable()
     assert "Melamina blanca" in [

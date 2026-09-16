@@ -22,7 +22,11 @@ from studio.dialogs.dialog_chrome import (
     polish_secondary_button,
 )
 from studio.i18n import DEFAULT_LANGUAGE, tr
-from studio.material_catalog import CatalogMaterial, MaterialCatalogManager
+from studio.material_catalog import (
+    CatalogMaterial,
+    MaterialCatalogManager,
+    format_catalog_size,
+)
 
 
 def _parse_thicknesses(text: str) -> tuple[float, ...]:
@@ -36,6 +40,25 @@ def _parse_thicknesses(text: str) -> tuple[float, ...]:
         except ValueError:
             continue
     return tuple(values)
+
+
+def _parse_sizes(text: str) -> tuple[tuple[float, float], ...]:
+    pairs: list[tuple[float, float]] = []
+    for chunk in text.replace(";", ",").split(","):
+        cleaned = chunk.strip().lower().replace("×", "x").replace("*", "x")
+        if "x" not in cleaned:
+            continue
+        left, right = cleaned.split("x", 1)
+        try:
+            pairs.append(
+                (
+                    float(left.strip().replace(",", ".")),
+                    float(right.strip().replace(",", ".")),
+                )
+            )
+        except ValueError:
+            continue
+    return tuple(pairs)
 
 
 class MaterialCatalogDialog(QDialog):
@@ -60,6 +83,7 @@ class MaterialCatalogDialog(QDialog):
 
         self.name = QLineEdit()
         self.thicknesses = QLineEdit()
+        self.sizes = QLineEdit()
         self.price = QDoubleSpinBox()
         self.price.setRange(0.0, 1_000_000.0)
         self.price.setDecimals(2)
@@ -68,9 +92,11 @@ class MaterialCatalogDialog(QDialog):
         form = QFormLayout()
         self._name_label = QLabel()
         self._thickness_label = QLabel()
+        self._sizes_label = QLabel()
         self._price_label = QLabel()
         form.addRow(self._name_label, self.name)
         form.addRow(self._thickness_label, self.thicknesses)
+        form.addRow(self._sizes_label, self.sizes)
         form.addRow(self._price_label, self.price)
 
         buttons_row = QHBoxLayout()
@@ -108,8 +134,12 @@ class MaterialCatalogDialog(QDialog):
         self._intro.setText(tr("catalog.intro", language))
         self._name_label.setText(tr("catalog.name", language))
         self._thickness_label.setText(tr("catalog.thicknesses", language))
+        self._sizes_label.setText(tr("catalog.sizes", language))
         self._price_label.setText(tr("catalog.price", language))
         self.thicknesses.setPlaceholderText(tr("catalog.thickness_hint", language))
+        self.sizes.setPlaceholderText(tr("catalog.sizes_hint", language))
+        self.sizes.setToolTip(tr("tip.catalog_sizes_edit", language))
+        self.sizes.setStatusTip(tr("tip.catalog_sizes_edit", language))
         self.price.setSuffix(tr("catalog.price_suffix", language))
         self.price.setToolTip(tr("tip.catalog_price", language))
         self.price.setStatusTip(tr("tip.catalog_price", language))
@@ -128,6 +158,9 @@ class MaterialCatalogDialog(QDialog):
                 for value in item.thicknesses_mm
             )
             label = item.name if not thicknesses else f"{item.name} — {thicknesses} mm"
+            if item.sizes_mm:
+                sheets = ", ".join(format_catalog_size(*pair) for pair in item.sizes_mm)
+                label = f"{label} · {sheets}"
             if item.price_per_m2 > 0:
                 label = f"{label} · {item.price_per_m2:.2f} €/m²"
             row = QListWidgetItem(label)
@@ -149,6 +182,9 @@ class MaterialCatalogDialog(QDialog):
                 for value in item.thicknesses_mm
             )
         )
+        self.sizes.setText(
+            ", ".join(format_catalog_size(*pair) for pair in item.sizes_mm)
+        )
         self.price.setValue(item.price_per_m2)
 
     def _current_material(self) -> CatalogMaterial | None:
@@ -159,6 +195,7 @@ class MaterialCatalogDialog(QDialog):
             name=name,
             thicknesses_mm=_parse_thicknesses(self.thicknesses.text()),
             price_per_m2=self.price.value(),
+            sizes_mm=_parse_sizes(self.sizes.text()),
         )
 
     def _add(self) -> None:
@@ -184,6 +221,7 @@ class MaterialCatalogDialog(QDialog):
             self._manager.replace_all(materials)
             self.name.clear()
             self.thicknesses.clear()
+            self.sizes.clear()
             self.price.setValue(0)
             self._reload_list()
 

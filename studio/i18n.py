@@ -327,8 +327,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "se puede deshacer"
         ),
         "tip.material_catalog": (
-            "Editar nombres y espesores típicos reutilizables entre proyectos "
-            "(Ctrl+Alt+T); se guarda en ~/.boardcomposer, no en el .bcproj"
+            "Editar nombres, espesores y medidas L×A reutilizables entre "
+            "proyectos (Ctrl+Alt+T); se guarda en ~/.boardcomposer, no en "
+            "el .bcproj"
         ),
         "tip.prefs_default_kerf": (
             "Kerf por defecto de proyectos nuevos; "
@@ -1411,18 +1412,23 @@ _STRINGS: dict[str, dict[str, str]] = {
         "form.id": "Identificador:",
         "form.length": "Largo ({unit}):",
         "form.width": "Ancho ({unit}):",
+        "form.board_size": "Medida de tablero:",
+        "form.size_custom": "Libre",
         "form.thickness": "Espesor ({unit}):",
         "form.quantity": "Cantidad:",
         "form.material": "Material:",
         "form.allow_rotation": "Permitir rotación:",
         "catalog.title": "Catálogo de materiales",
         "catalog.intro": (
-            "Estos nombres, espesores y precios €/m² se reutilizan en todos "
-            "los proyectos. No forman parte del fichero `.bcproj`."
+            "Estos nombres, espesores, medidas L×A y precios €/m² se "
+            "reutilizan en todos los proyectos. No forman parte del fichero "
+            "`.bcproj`."
         ),
         "catalog.name": "Nombre:",
         "catalog.thicknesses": "Espesores (mm):",
         "catalog.thickness_hint": "16, 19, 22",
+        "catalog.sizes": "Medidas de tablero (mm):",
+        "catalog.sizes_hint": "2800x2070, 2440x1220",
         "catalog.price": "Precio (€/m²):",
         "catalog.price_suffix": " €/m²",
         "catalog.add": "Añadir",
@@ -1432,6 +1438,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.catalog_material": ("Elige un material del catálogo o escribe uno nuevo"),
         "tip.catalog_thickness": "Espesores típicos: {thicknesses} mm",
         "tip.catalog_thickness_custom": "Espesor libre (no está en el catálogo)",
+        "tip.catalog_size": "Medidas típicas: {sizes} mm",
+        "tip.catalog_size_custom": "Medida libre (no está en el catálogo)",
+        "tip.catalog_sizes_edit": (
+            "Medidas típicas L×A en mm; vacío = sin sugerencia al añadir tablero"
+        ),
         "tip.catalog_price": (
             "Precio del tablero por metro cuadrado; 0 = sin coste estimado"
         ),
@@ -1796,8 +1807,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "calculating layout leaves a gap between pieces; can be undone"
         ),
         "tip.material_catalog": (
-            "Edit reusable material names and typical thicknesses across "
-            "projects (Ctrl+Alt+T); stored in ~/.boardcomposer, not the .bcproj"
+            "Edit reusable material names, thicknesses and L×W sheet sizes "
+            "across projects (Ctrl+Alt+T); stored in ~/.boardcomposer, not "
+            "the .bcproj"
         ),
         "tip.prefs_default_kerf": (
             "Default kerf for new projects; "
@@ -2837,18 +2849,23 @@ _STRINGS: dict[str, dict[str, str]] = {
         "form.id": "Identifier:",
         "form.length": "Length ({unit}):",
         "form.width": "Width ({unit}):",
+        "form.board_size": "Board size:",
+        "form.size_custom": "Custom",
         "form.thickness": "Thickness ({unit}):",
         "form.quantity": "Quantity:",
         "form.material": "Material:",
         "form.allow_rotation": "Allow rotation:",
         "catalog.title": "Material catalog",
         "catalog.intro": (
-            "These names, thicknesses and €/m² prices are reused across every "
-            "project. They are not part of the `.bcproj` file."
+            "These names, thicknesses, L×W sheet sizes and €/m² prices are "
+            "reused across every project. They are not part of the `.bcproj` "
+            "file."
         ),
         "catalog.name": "Name:",
         "catalog.thicknesses": "Thicknesses (mm):",
         "catalog.thickness_hint": "16, 19, 22",
+        "catalog.sizes": "Board sizes (mm):",
+        "catalog.sizes_hint": "2800x2070, 2440x1220",
         "catalog.price": "Price (€/m²):",
         "catalog.price_suffix": " €/m²",
         "catalog.add": "Add",
@@ -2858,6 +2875,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.catalog_material": "Pick a catalog material or type a new name",
         "tip.catalog_thickness": "Typical thicknesses: {thicknesses} mm",
         "tip.catalog_thickness_custom": "Free thickness (not in the catalog)",
+        "tip.catalog_size": "Typical sizes: {sizes} mm",
+        "tip.catalog_size_custom": "Free size (not in the catalog)",
+        "tip.catalog_sizes_edit": (
+            "Typical L×W sizes in mm; empty = no suggestion when adding a board"
+        ),
         "tip.catalog_price": ("Board price per square metre; 0 = no estimated cost"),
         "cost.none": "—",
         "cost.amount": "{value} €",
