@@ -20,6 +20,9 @@
 - Estudio: coste estimado de material (IDE-0029); precio opcional €/m²
   en el catálogo; Comparador / Inspector / JSON usan área de tableros
   físicos consumidos, no de piezas. 0 = sin precio; no cambia el solver.
+- Estudio: medidas típicas de tablero en el catálogo (IDE-0031); L×A
+  por material (`2800×2070`); combo en Nuevo tablero; aprende al
+  aceptar. Sin bump `.bcproj`.
 - Docs planificación 2026-09-16: snapshot
   `docs/masterplan/REVIEW-2026-09-16-planificacion.md`; Issues = 0;
   ola 1 IDE-0025…0030 cerrada (`#638`); segunda ola IDE-0031…0036

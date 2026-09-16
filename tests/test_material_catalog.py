@@ -14,6 +14,8 @@ from studio.material_catalog import (
     MaterialCatalog,
     MaterialCatalogManager,
     default_catalog,
+    format_catalog_size,
+    normalize_size,
     normalize_thickness,
 )
 from studio.models import StudioProject
@@ -33,6 +35,13 @@ def test_default_catalog_includes_workshop_stock():
     assert "MDF" in names
     assert "Contrachapado" in names
     assert default_catalog().thicknesses_for("Melamina blanca") == (16.0, 19.0, 22.0)
+    assert default_catalog().sizes_for("Melamina blanca")[0] == (2800.0, 2070.0)
+
+
+def test_normalize_size_and_format():
+    assert normalize_size(2800.0001, 2070.04) == (2800.0, 2070.0)
+    assert normalize_size(0, 2070) is None
+    assert format_catalog_size(2800, 2070) == "2800×2070"
 
 
 def test_remember_adds_name_and_extra_thickness(tmp_path):
@@ -89,6 +98,31 @@ def test_new_board_dialog_keeps_custom_thickness_on_open(qapp):
     assert dialog.thickness.value() == 18
     assert dialog.board_data()["material"] == "Melamina blanca"
     assert dialog.board_data()["thickness_mm"] == 18
+    assert dialog.board_data()["length_mm"] == 3000
+    assert dialog.board_data()["width_mm"] == 1200
+
+
+def test_new_board_dialog_suggests_catalog_sheet_size(qapp):
+    del qapp
+    catalog = MaterialCatalog(
+        materials=[
+            CatalogMaterial(
+                "Melamina blanca",
+                (16.0, 19.0, 22.0),
+                sizes_mm=((2800.0, 2070.0), (2440.0, 1220.0)),
+            )
+        ]
+    )
+    dialog = NewBoardDialog(
+        catalog=catalog,
+        suggest_catalog_size=True,
+        material="Melamina blanca",
+    )
+    assert dialog.board_data()["length_mm"] == 2800
+    assert dialog.board_data()["width_mm"] == 2070
+    dialog.size.setCurrentIndex(2)
+    assert dialog.board_data()["length_mm"] == 2440
+    assert dialog.board_data()["width_mm"] == 1220
 
 
 def test_selecting_catalog_material_fills_first_thickness(qapp):
@@ -112,18 +146,35 @@ def test_price_persists_and_zero_is_omitted(tmp_path):
 
     unpriced = CatalogMaterial("MDF", (16.0,))
     assert "price_per_m2" not in unpriced.to_dict()
+    assert "sizes_mm" not in unpriced.to_dict()
     assert unpriced.price_per_m2 == 0.0
 
 
 def test_remember_keeps_existing_price():
     catalog = MaterialCatalog(
-        materials=[CatalogMaterial("Haya", (18.0,), price_per_m2=12.5)]
+        materials=[
+            CatalogMaterial(
+                "Haya", (18.0,), price_per_m2=12.5, sizes_mm=((2800.0, 2070.0),)
+            )
+        ]
     )
     assert catalog.remember("Haya", 22)
     found = catalog.find("Haya")
     assert found is not None
     assert found.thicknesses_mm == (18.0, 22.0)
     assert found.price_per_m2 == 12.5
+    assert found.sizes_mm == ((2800.0, 2070.0),)
+
+
+def test_remember_adds_sheet_size():
+    catalog = MaterialCatalog(
+        materials=[CatalogMaterial("Haya", (18.0,), sizes_mm=((2800.0, 2070.0),))]
+    )
+    assert catalog.remember("Haya", 18, length_mm=2440, width_mm=1220)
+    assert not catalog.remember("Haya", 18, length_mm=2440, width_mm=1220)
+    found = catalog.find("Haya")
+    assert found is not None
+    assert found.sizes_mm == ((2800.0, 2070.0), (2440.0, 1220.0))
 
 
 def test_catalog_dialog_adds_and_persists(qapp, tmp_path):
@@ -135,13 +186,16 @@ def test_catalog_dialog_adds_and_persists(qapp, tmp_path):
     assert "€/m²" in dialog._price_label.text()
     dialog.name.setText("Haya")
     dialog.thicknesses.setText("18, 22")
+    dialog.sizes.setText("2800x2070, 2440 × 1220")
     dialog.price.setValue(25.5)
     dialog._add()
     found = manager.catalog.find("Haya")
     assert found is not None
     assert found.price_per_m2 == 25.5
+    assert found.sizes_mm == ((2800.0, 2070.0), (2440.0, 1220.0))
     reloaded = MaterialCatalogManager(path=path)
     assert reloaded.catalog.thicknesses_for("Haya") == (18.0, 22.0)
+    assert reloaded.catalog.sizes_for("Haya") == ((2800.0, 2070.0), (2440.0, 1220.0))
     assert reloaded.catalog.price_for("Haya") == 25.5
     assert any(
         "25.50 €/m²" in dialog.list.item(i).text() for i in range(dialog.list.count())
@@ -186,6 +240,7 @@ def test_add_board_remembers_custom_material(qapp, tmp_path, monkeypatch):
     found = MaterialCatalogManager(path=path).catalog.find("Haya")
     assert found is not None
     assert found.thicknesses_mm == (18.0,)
+    assert found.sizes_mm == ((2800.0, 2070.0),)
     assert window.services.projects.current_project.boards[0].material == "Haya"
 
 

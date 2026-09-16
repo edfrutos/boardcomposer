@@ -1273,6 +1273,7 @@ class MainWindow(QMainWindow):
             units=self._display_units(),
             language=self._ui_language(),
             catalog=self.services.material_catalog.catalog,
+            suggest_catalog_size=True,
         )
 
         if dialog.exec() != dialog.DialogCode.Accepted:
@@ -1293,7 +1294,12 @@ class MainWindow(QMainWindow):
             quantity=data["quantity"],
         )
         self.services.commands.execute(AddBoardCommand(self.services, board))
-        self._remember_catalog_entry(data["material"], data["thickness_mm"])
+        self._remember_catalog_entry(
+            data["material"],
+            data["thickness_mm"],
+            length_mm=data["length_mm"],
+            width_mm=data["width_mm"],
+        )
 
         self._mark_project_modified()
         self.workspace.reload_project()
@@ -2804,8 +2810,20 @@ class MainWindow(QMainWindow):
         )
         dialog.exec()
 
-    def _remember_catalog_entry(self, name: str, thickness_mm: float) -> None:
-        self.services.material_catalog.remember(name, thickness_mm)
+    def _remember_catalog_entry(
+        self,
+        name: str,
+        thickness_mm: float,
+        *,
+        length_mm: float | None = None,
+        width_mm: float | None = None,
+    ) -> None:
+        self.services.material_catalog.remember(
+            name,
+            thickness_mm,
+            length_mm=length_mm,
+            width_mm=width_mm,
+        )
 
     def _display_units(self) -> str:
         return self.services.preferences.current.units
@@ -5535,7 +5553,12 @@ class MainWindow(QMainWindow):
 
         command = EditBoardCommand(self.services, board, updated_board)
         self.services.commands.execute(command)
-        self._remember_catalog_entry(data["material"], data["thickness_mm"])
+        self._remember_catalog_entry(
+            data["material"],
+            data["thickness_mm"],
+            length_mm=data["length_mm"],
+            width_mm=data["width_mm"],
+        )
 
         self._mark_project_modified(reason="board_edited")
 

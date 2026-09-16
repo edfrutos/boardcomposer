@@ -29,7 +29,8 @@ preferencias, atajos (**F1**), acerca de (**Ctrl+Shift+A**).
 2. **Añadir tableros** (**Ctrl+Shift+B**) y **piezas** (**Ctrl+Shift+P**), o
    importar CSV/Excel (**Ctrl+Shift+T** / **Ctrl+Shift+O**). El material es
    un combo del **catálogo** (**Ctrl+Alt+T**; archivo de usuario, no va en
-   el `.bcproj`; precio opcional €/m² para el coste estimado). En cada pieza,
+   el `.bcproj`; precio opcional €/m²; medidas L×A típicas de tablero).
+   En cada pieza,
    «Permitir rotación» desmarcado fija la
    **veta** (el cálculo y **R** no giran esa pieza). Espesor de sierra del
    proyecto: **Ctrl+Alt+K**.
@@ -79,7 +80,7 @@ en red; puedes **Copiar**).
 | Calcular layout | Ctrl+Return |
 | Re-empaquetar omitidas (congelar OK) | Ctrl+Alt+F |
 | Añadir retales al inventario | Ctrl+Alt+R |
-| Catálogo de materiales / espesores | Ctrl+Alt+T |
+| Catálogo de materiales / espesores / L×A | Ctrl+Alt+T |
 | Aplicar layout del Comparador | Ctrl+Shift+Return |
 | Candidata anterior / siguiente | Re Pág / Av Pág |
 | Exportar solución | Ctrl+Shift+E |
@@ -244,7 +245,7 @@ marcadores…).
 - **Exportación:** formato por defecto y opciones (métricas / explicación
   JSON, retales, etiquetas de piezas).
 - **Avanzado:** máx. soluciones a conservar; **Catálogo de materiales**
-  (nombres, espesores, precio €/m²); **Abrir carpeta de
+  (nombres, espesores, medidas L×A, precio €/m²); **Abrir carpeta de
   configuración…** (`preferences.json`); **Restaurar valores**.
 
 ## Plantillas de proyecto

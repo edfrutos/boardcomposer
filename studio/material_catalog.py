@@ -1,4 +1,4 @@
-"""User-level material / thickness catalog (IDE-0028).
+"""User-level material / thickness / sheet-size catalog (IDE-0028/0031).
 
 Stored outside `.bcproj` so every project can reuse the same typed stock
 names. Optional: the catalog learns new pairs when the user accepts a
@@ -21,13 +21,51 @@ def normalize_thickness(value: float) -> float:
     return round(float(value), 1)
 
 
+def normalize_size(length_mm: float, width_mm: float) -> tuple[float, float] | None:
+    """Return a positive L×W pair rounded to 0.1 mm, or None."""
+    try:
+        length = normalize_thickness(length_mm)
+        width = normalize_thickness(width_mm)
+    except (TypeError, ValueError):
+        return None
+    if length <= 0 or width <= 0:
+        return None
+    return (length, width)
+
+
+def format_catalog_size(length_mm: float, width_mm: float) -> str:
+    """Human L×W label without units (2800×2070)."""
+
+    def _fmt(value: float) -> str:
+        return str(int(value) if value == int(value) else value)
+
+    return f"{_fmt(length_mm)}×{_fmt(width_mm)}"
+
+
+def _normalize_sizes(
+    sizes: tuple[tuple[float, float], ...],
+) -> tuple[tuple[float, float], ...]:
+    cleaned: list[tuple[float, float]] = []
+    seen: set[tuple[float, float]] = set()
+    for raw in sizes:
+        if not isinstance(raw, (list, tuple)) or len(raw) < 2:
+            continue
+        pair = normalize_size(raw[0], raw[1])
+        if pair is None or pair in seen:
+            continue
+        seen.add(pair)
+        cleaned.append(pair)
+    return tuple(cleaned)
+
+
 @dataclass(frozen=True)
 class CatalogMaterial:
-    """Named material with typical thicknesses and optional €/m² price."""
+    """Named material with thicknesses, optional €/m² and typical L×W."""
 
     name: str
     thicknesses_mm: tuple[float, ...] = ()
     price_per_m2: float = 0.0
+    sizes_mm: tuple[tuple[float, float], ...] = ()
 
     def __post_init__(self) -> None:
         cleaned = self.name.strip()
@@ -45,6 +83,7 @@ class CatalogMaterial:
         object.__setattr__(self, "name", cleaned)
         object.__setattr__(self, "thicknesses_mm", thicknesses)
         object.__setattr__(self, "price_per_m2", price)
+        object.__setattr__(self, "sizes_mm", _normalize_sizes(self.sizes_mm))
 
     def to_dict(self) -> dict:
         payload = {
@@ -53,6 +92,8 @@ class CatalogMaterial:
         }
         if self.price_per_m2 > 0:
             payload["price_per_m2"] = self.price_per_m2
+        if self.sizes_mm:
+            payload["sizes_mm"] = [list(pair) for pair in self.sizes_mm]
         return payload
 
     @classmethod
@@ -75,18 +116,38 @@ class CatalogMaterial:
             price = float(raw_price)
         except (TypeError, ValueError):
             price = 0.0
+        sizes: list[tuple[float, float]] = []
+        raw_sizes = payload.get("sizes_mm", ())
+        if isinstance(raw_sizes, (list, tuple)):
+            for item in raw_sizes:
+                if not isinstance(item, (list, tuple)) or len(item) < 2:
+                    continue
+                try:
+                    sizes.append((float(item[0]), float(item[1])))
+                except (TypeError, ValueError):
+                    continue
         return cls(
             name=name,
             thicknesses_mm=tuple(thicknesses),
             price_per_m2=price,
+            sizes_mm=tuple(sizes),
         )
 
 
+_EURO_SHEET: tuple[tuple[float, float], ...] = (
+    (2800.0, 2070.0),
+    (2440.0, 1220.0),
+)
+
 DEFAULT_CATALOG_MATERIALS: tuple[CatalogMaterial, ...] = (
-    CatalogMaterial("Melamina blanca", (16.0, 19.0, 22.0)),
-    CatalogMaterial("MDF", (16.0, 19.0, 22.0, 30.0)),
-    CatalogMaterial("Contrachapado", (12.0, 15.0, 18.0)),
-    CatalogMaterial("Demo", (19.0,)),
+    CatalogMaterial("Melamina blanca", (16.0, 19.0, 22.0), sizes_mm=_EURO_SHEET),
+    CatalogMaterial("MDF", (16.0, 19.0, 22.0, 30.0), sizes_mm=_EURO_SHEET),
+    CatalogMaterial(
+        "Contrachapado",
+        (12.0, 15.0, 18.0),
+        sizes_mm=((2500.0, 1250.0), (2440.0, 1220.0)),
+    ),
+    CatalogMaterial("Demo", (19.0,), sizes_mm=((2800.0, 2070.0),)),
 )
 
 
@@ -124,6 +185,10 @@ class MaterialCatalog:
         found = self.find(name)
         return found.thicknesses_mm if found else ()
 
+    def sizes_for(self, name: str) -> tuple[tuple[float, float], ...]:
+        found = self.find(name)
+        return found.sizes_mm if found else ()
+
     def price_for(self, name: str) -> float:
         found = self.find(name)
         return found.price_per_m2 if found else 0.0
@@ -135,27 +200,52 @@ class MaterialCatalog:
             if item.price_per_m2 > 0
         }
 
-    def remember(self, name: str, thickness_mm: float) -> bool:
-        """Add a material/thickness pair. Return True if the catalog changed."""
+    def remember(
+        self,
+        name: str,
+        thickness_mm: float,
+        *,
+        length_mm: float | None = None,
+        width_mm: float | None = None,
+    ) -> bool:
+        """Add a material/thickness and optional L×W. True if catalog changed."""
         cleaned = name.strip()
         if not cleaned:
             return False
         thickness = normalize_thickness(thickness_mm)
         if thickness <= 0:
             return False
+        size = None
+        if length_mm is not None and width_mm is not None:
+            size = normalize_size(length_mm, width_mm)
         existing = self.find(cleaned)
         if existing is None:
+            sizes = (size,) if size is not None else ()
             self.materials.append(
-                CatalogMaterial(name=cleaned, thicknesses_mm=(thickness,))
+                CatalogMaterial(
+                    name=cleaned,
+                    thicknesses_mm=(thickness,),
+                    sizes_mm=sizes,
+                )
             )
             self.materials.sort(key=lambda item: item.name.casefold())
             return True
-        if thickness in existing.thicknesses_mm:
+        thicknesses = existing.thicknesses_mm
+        sizes = existing.sizes_mm
+        changed = False
+        if thickness not in thicknesses:
+            thicknesses = thicknesses + (thickness,)
+            changed = True
+        if size is not None and size not in sizes:
+            sizes = sizes + (size,)
+            changed = True
+        if not changed:
             return False
         updated = CatalogMaterial(
             name=existing.name,
-            thicknesses_mm=existing.thicknesses_mm + (thickness,),
+            thicknesses_mm=thicknesses,
             price_per_m2=existing.price_per_m2,
+            sizes_mm=sizes,
         )
         index = self.materials.index(existing)
         self.materials[index] = updated
@@ -220,11 +310,26 @@ class MaterialCatalogManager:
     def thicknesses_for(self, name: str) -> tuple[float, ...]:
         return self.catalog.thicknesses_for(name)
 
+    def sizes_for(self, name: str) -> tuple[tuple[float, float], ...]:
+        return self.catalog.sizes_for(name)
+
     def price_map(self) -> dict[str, float]:
         return self.catalog.price_map()
 
-    def remember(self, name: str, thickness_mm: float) -> bool:
-        changed = self.catalog.remember(name, thickness_mm)
+    def remember(
+        self,
+        name: str,
+        thickness_mm: float,
+        *,
+        length_mm: float | None = None,
+        width_mm: float | None = None,
+    ) -> bool:
+        changed = self.catalog.remember(
+            name,
+            thickness_mm,
+            length_mm=length_mm,
+            width_mm=width_mm,
+        )
         if changed:
             self.save()
         return changed

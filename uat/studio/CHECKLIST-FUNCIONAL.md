@@ -190,8 +190,9 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
   solución es completa.
 - [ ] **Ctrl+Alt+R** con retales ≥ 50 mm: Explorer muestra tableros
   remnant; segundo disparo no duplica; undo los quita; origen no baja solo.
-- [ ] **Ctrl+Alt+T** catálogo de materiales: añade un nombre/espesor; al
-  añadir tablero el combo lo ofrece; el `.bcproj` no cambia de versión.
+- [ ] **Ctrl+Alt+T** catálogo de materiales: añade un nombre/espesor/medida
+  L×A; al añadir tablero el combo ofrece el nombre y la medida típica
+  (`2800×2070`); el `.bcproj` no cambia de versión.
   Precio €/m² opcional: el Comparador muestra el coste de los tableros
   físicos consumidos (no el área de piezas); «—» si falta precio.
 

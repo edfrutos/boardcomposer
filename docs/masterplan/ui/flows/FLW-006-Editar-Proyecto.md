@@ -77,7 +77,7 @@ outdated.
 ### Tableros
 
 - Añadir: `NewBoardDialog` (id, largo, ancho, espesor, material, cantidad;
-  combo del catálogo; al aceptar, Studio recuerda el par nombre/espesor).
+  combo del catálogo; al aceptar, Studio recuerda nombre/espesor/L×A).
 - Editar: mismo diálogo; `EditBoardCommand` (undo; renombre id actualiza
   colocaciones).
 - Eliminar: `DeleteBoardCommand` desde Explorer; piezas se conservan;
