@@ -94,7 +94,7 @@ Observaciones:
 | IDE-0022 | Packing multipanel Skyline | 🟢 | P2 |
 | IDE-0023 | Lista de corte / informe de taller | 🟢 | P2 |
 | IDE-0024 | Metadatos de proyecto (cliente, ref., notas) | 🟢 | P2 |
-| IDE-0025 | Retales como inventario reutilizable | ⚪ | P2 |
+| IDE-0025 | Retales como inventario reutilizable | 🟢 | P2 |
 | IDE-0026 | Etiquetas de piezas en plano (SVG/PDF) | 🟢 | P2 |
 | IDE-0027 | Secuencia de corte por panel | 🟢 | P2 |
 | IDE-0028 | Catálogo de materiales / espesores | ⚪ | P2 |
@@ -117,7 +117,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0022 | M–L | ADR-014 contrato multipanel | Entregado; Skyline + MaxRects (#623) |
 | IDE-0023 | M | Export PDF/CSV; SCR-007 | Entregado; Ctrl+Alt+C; CSV/PDF |
 | IDE-0024 | S | SCR-005 evolución; persistencia v3 | Entregado; kerf/vetas en 0020/0021 |
-| IDE-0025 | M–L | ADR-016; migraciones `.bcproj`; StockPanel | Evolución retales → inventario |
+| IDE-0025 | M–L | ADR-016; migraciones `.bcproj`; StockPanel | Entregado; Ctrl+Alt+R; v6 remnant |
 | IDE-0026 | S–M | SCR-007 export; Workspace labels | Entregado; id + LxW mm; casilla export |
 | IDE-0027 | M | IDE-0023; métricas por panel | Entregado; CSV/PDF + números plano |
 | IDE-0028 | M | SCR-005; prefs / archivo usuario | Catálogo tipificado entre proyectos |
@@ -153,12 +153,12 @@ Detalle: `docs/masterplan/epics/`.
 **Estado actual:** 🟢 Actualizado — IDE-0001…0024 y IDE-0026 Studio/Core
 completadas; IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Cola producto 0019…0024 cerrada.
-Ciclo `0.4.4`: IDE-0026 🟢; resto 0025/0027…0030 ⚪.
+Ciclo `0.4.4`: IDE-0025/0026/0027/0030 🟢; resto 0028/0029 ⚪.
 Snapshot: `REVIEW-2026-09-15-planificacion.md`.
 
 Próximo foco:
 
-1. Atacar cola IDE-0025 → 0028 → 0029.
+1. Atacar cola IDE-0028 → 0029.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto (`#628`); etiqueta `v0.4.3` si falta.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

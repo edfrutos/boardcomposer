@@ -130,6 +130,7 @@ class ProjectTemplatesManager:
                     board.material,
                     board.thickness_mm,
                     board.quantity,
+                    board.remnant,
                 )
                 for board in project.boards
             ],

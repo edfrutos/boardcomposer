@@ -1,6 +1,6 @@
 # Modelo de datos
 
-Última revisión: 2026-09-14.
+Última revisión: 2026-09-16.
 
 ## Entidades principales
 
@@ -16,7 +16,9 @@ compatibilidad con un panel. `locked` impide rotar en packing y en Studio
 
 Tipo de tablero disponible: dimensiones, espesor, ID opcional, `quantity` y
 `material` (mismas reglas de normalización que `Board`). Una cantidad mayor
-que uno representa varias unidades físicas equivalentes.
+que uno representa varias unidades físicas equivalentes. En Studio, un
+tablero puede marcarse `remnant` (IDE-0025 / `.bcproj` v6) si nació de un
+retal promovido; el Core lo trata como stock normal.
 
 ### PanelReference
 
@@ -42,8 +44,9 @@ al panel físico.
 ### Offcut
 
 Región rectangular sobrante en un panel físico consumido: `panel_reference`,
-posición y dimensiones locales al panel, y `area_mm2`. Es puramente
-informativa (no se reutiliza como inventario todavía). Ver ADR-016.
+posición y dimensiones locales al panel, y `area_mm2`. El reporte es
+informativo (ADR-016). IDE-0025 puede promoverlos a tableros `remnant` del
+mismo `.bcproj` (**Ctrl+Alt+R**).
 
 ### AssemblySolution
 
@@ -75,5 +78,5 @@ inventario, las dimensiones físicas de cada panel sustituyen los límites
 globales como frontera de colocación, y espesor **y material** deben
 coincidir entre pieza y panel.
 
-Consulta ADR-014 (contrato multipanel), ADR-015 (migraciones de `.bcproj`) y
-ADR-016 (retales informativos) para el detalle normativo.
+Consulta ADR-014 (contrato multipanel), ADR-015 (migraciones de `.bcproj`,
+hoy `CURRENT_VERSION` 6) y ADR-016 (retales) para el detalle normativo.

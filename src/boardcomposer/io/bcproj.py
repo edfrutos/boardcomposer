@@ -15,7 +15,7 @@ from boardcomposer.domain import Board, Project, ProjectConstraints, StockPanel
 from boardcomposer.domain.grain import GRAIN_NONE, normalize_grain
 from boardcomposer.layout.kerf import normalize_kerf
 
-CURRENT_VERSION = 5
+CURRENT_VERSION = 6
 
 
 class UnsupportedProjectVersionError(Exception):
@@ -93,11 +93,23 @@ def _migrate_v4_to_v5(data: dict) -> dict:
     return migrated
 
 
+def _migrate_v5_to_v6(data: dict) -> dict:
+    """Mark remnant boards (IDE-0025); default false (full sheet)."""
+    migrated = dict(data)
+    migrated["boards"] = [
+        {**board, "remnant": bool(board.get("remnant", False))}
+        for board in data.get("boards", [])
+    ]
+    migrated["version"] = 6
+    return migrated
+
+
 _MIGRATIONS: dict[int, Callable[[dict], dict]] = {
     1: _migrate_v1_to_v2,
     2: _migrate_v2_to_v3,
     3: _migrate_v3_to_v4,
     4: _migrate_v4_to_v5,
+    5: _migrate_v5_to_v6,
 }
 
 

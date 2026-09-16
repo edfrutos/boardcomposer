@@ -251,6 +251,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.reset_window_layout": "Restablecer disposición de ventana",
         "action.solve_layout": "Calcular layout",
         "action.repack_omitted": "Re-empaquetar omitidas",
+        "action.promote_offcuts": "Añadir retales al inventario",
         "action.previous_solution": "Solución anterior",
         "action.next_solution": "Solución siguiente",
         "action.apply_layout": "Aplicar layout calculado",
@@ -538,6 +539,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.repack_omitted_outdated": (
             "Soluciones desactualizadas: recalcula el layout antes de "
             "re-empaquetar omitidas (Ctrl+Alt+F)"
+        ),
+        "tip.promote_offcuts": (
+            "Añadir retales aprovechables de la candidata al inventario "
+            "(Ctrl+Alt+R); no descuenta tableros origen; se puede deshacer"
+        ),
+        "tip.promote_offcuts_none": (
+            "La candidata no tiene retales ≥ 50 mm: nada que añadir (Ctrl+Alt+R)"
+        ),
+        "tip.promote_offcuts_outdated": (
+            "Soluciones desactualizadas: recalcula el layout antes de "
+            "añadir retales (Ctrl+Alt+R)"
         ),
         "tip.previous_solution": (
             "Seleccionar la solución anterior (Re Pág); sin aplicarla"
@@ -889,6 +901,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "vieja; recalcula con el CTA del Comparador o Ctrl+Return"
         ),
         "explorer.unplaced_mark": "sin colocar",
+        "explorer.remnant_mark": "retal",
         "inspector.title": "Inspector",
         "inspector.none": "Sin selección",
         "inspector.project": "Proyecto",
@@ -902,6 +915,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "inspector.thickness": "Espesor",
         "inspector.quantity": "Cantidad",
         "inspector.material": "Material",
+        "inspector.remnant": "Retal de inventario",
         "inspector.grain": "Veta",
         "inspector.grain_free": "libre (puede rotar)",
         "inspector.grain_locked": "fija (no rotar)",
@@ -1123,6 +1137,15 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.repack_ok": (
             "Re-empaquetado: {added} pieza(s) más; omitidas {omitted}"
+        ),
+        "status.promote_need_offcuts": (
+            "Calcula un layout con retales antes de añadirlos al inventario"
+        ),
+        "status.promote_none": "La candidata no tiene retales aprovechables",
+        "status.promote_already": "Esos retales ya están en el inventario",
+        "status.promote_ok": (
+            "Añadidos {n} retal(es) al inventario. Baja la cantidad de "
+            "tableros ya cortados antes del próximo cálculo"
         ),
         "status.layout_ok": (
             "Layout calculado: {n} soluciones — Re/Av Pág · "
@@ -1660,6 +1683,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.reset_window_layout": "Reset window layout",
         "action.solve_layout": "Calculate layout",
         "action.repack_omitted": "Repack omitted pieces",
+        "action.promote_offcuts": "Add offcuts to inventory",
         "action.previous_solution": "Previous solution",
         "action.next_solution": "Next solution",
         "action.apply_layout": "Apply calculated layout",
@@ -1934,6 +1958,17 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.repack_omitted_outdated": (
             "Solutions outdated: recalculate layout before re-packing "
             "omitted pieces (Ctrl+Alt+F)"
+        ),
+        "tip.promote_offcuts": (
+            "Add usable offcuts from the candidate to inventory "
+            "(Ctrl+Alt+R); does not consume source sheets; can be undone"
+        ),
+        "tip.promote_offcuts_none": (
+            "The selected candidate has no offcuts ≥ 50 mm: nothing to add (Ctrl+Alt+R)"
+        ),
+        "tip.promote_offcuts_outdated": (
+            "Solutions outdated: recalculate layout before adding offcuts "
+            "to inventory (Ctrl+Alt+R)"
         ),
         "tip.previous_solution": (
             "Select the previous solution (Page Up); without applying it"
@@ -2269,6 +2304,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "recalculate via the Comparator banner CTA or Ctrl+Return"
         ),
         "explorer.unplaced_mark": "unplaced",
+        "explorer.remnant_mark": "offcut",
         "inspector.title": "Inspector",
         "inspector.none": "No selection",
         "inspector.project": "Project",
@@ -2282,6 +2318,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "inspector.thickness": "Thickness",
         "inspector.quantity": "Quantity",
         "inspector.material": "Material",
+        "inspector.remnant": "Inventory offcut",
         "inspector.grain": "Grain",
         "inspector.grain_free": "free (may rotate)",
         "inspector.grain_locked": "locked (do not rotate)",
@@ -2496,6 +2533,15 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Repack: omitted pieces still do not fit; OK layout unchanged"
         ),
         "status.repack_ok": ("Repack: {added} more piece(s) placed; omitted {omitted}"),
+        "status.promote_need_offcuts": (
+            "Calculate a layout with offcuts before adding them to inventory"
+        ),
+        "status.promote_none": "The selected candidate has no usable offcuts",
+        "status.promote_already": "Those offcuts are already in inventory",
+        "status.promote_ok": (
+            "Added {n} offcut(s) to inventory. Lower the quantity of "
+            "already-cut sheets before the next solve"
+        ),
         "status.layout_ok": (
             "Layout calculated: {n} solutions — Page Up/Down · "
             "Pin reference · Export Ctrl+Shift+E"
@@ -2844,6 +2890,7 @@ _ACTION_KEYS = (
     "reset_window_layout",
     "solve_layout",
     "repack_omitted",
+    "promote_offcuts",
     "previous_solution",
     "next_solution",
     "apply_layout",

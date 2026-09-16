@@ -1,8 +1,8 @@
 """Leftover rectangular area on a consumed physical panel.
 
-Purely informational for now (see ADR-016): a solution reports the usable
-offcuts left on each panel it consumed, but they are not yet persisted as
-reusable `StockPanel` inventory for future projects.
+A solution reports usable offcuts (ADR-016). IDE-0025 can promote them to
+remnant `StockPanel` / Studio boards in the same `.bcproj`. There is no
+shared remnant library across projects.
 """
 
 from dataclasses import dataclass

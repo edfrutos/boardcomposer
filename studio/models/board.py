@@ -13,3 +13,4 @@ class StudioBoard:
     material: str = "Demo"
     thickness_mm: float = 19
     quantity: int = 1
+    remnant: bool = False
