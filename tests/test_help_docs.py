@@ -38,6 +38,7 @@ def test_user_guide_mentions_workshop_shortcuts_and_spain_spanish():
         "Ctrl+Alt+C",
         "Ctrl+Alt+K",
         "Ctrl+Alt+X",
+        "Ctrl+Alt+F",
         "Ctrl+Alt+M",
         "veta",
         "lista de corte",
@@ -55,6 +56,7 @@ def test_uat_funcional_mentions_workshop_shortcuts():
         "Ctrl+Alt+C",
         "Ctrl+Alt+K",
         "Ctrl+Alt+X",
+        "Ctrl+Alt+F",
         "Ctrl+Alt+M",
         "veta",
     ):
@@ -294,6 +296,10 @@ def test_shortcuts_catalog_and_dialog(qapp):
         for b in STUDIO_SHORTCUTS
     )
     assert any(
+        b.action_key == "repack_omitted" and b.sequence == "Ctrl+Alt+F"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
         b.action_key == "edit_project_kerf" and b.sequence == "Ctrl+Alt+K"
         for b in STUDIO_SHORTCUTS
     )
@@ -354,6 +360,7 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert actions["about"].shortcut() == QKeySequence("Ctrl+Shift+A")
     assert actions["rename_project"].shortcut() == QKeySequence("Ctrl+Shift+F2")
     assert actions["swap_pieces"].shortcut() == QKeySequence("Ctrl+Alt+X")
+    assert actions["repack_omitted"].shortcut() == QKeySequence("Ctrl+Alt+F")
     assert actions["exit"].shortcut() == QKeySequence("Ctrl+Q")
     assert actions["clear_recent"].shortcut() == QKeySequence("Ctrl+Shift+X")
     assert actions["toggle_toolbar"].shortcut() == QKeySequence("Ctrl+Shift+K")
@@ -1568,6 +1575,17 @@ def test_swap_pieces_tip_mentions_two_placed_and_shortcut():
     assert "Ctrl+Alt+X" in tr("tip.swap_pieces", "en")
     assert "dos" in es and "colocadas" in es
     assert "two" in en and "placed" in en
+
+
+def test_repack_omitted_tip_mentions_freeze_and_shortcut():
+    from studio.i18n import tr
+
+    es = tr("tip.repack_omitted", "es").casefold()
+    en = tr("tip.repack_omitted", "en").casefold()
+    assert "Ctrl+Alt+F" in tr("tip.repack_omitted", "es")
+    assert "Ctrl+Alt+F" in tr("tip.repack_omitted", "en")
+    assert "omitidas" in es and "congelar" in es
+    assert "omitted" in en and "freeze" in en
 
 
 def test_edit_project_kerf_tip_mentions_file_gap_and_undo():

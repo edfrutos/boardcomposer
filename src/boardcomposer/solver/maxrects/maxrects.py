@@ -112,6 +112,16 @@ class MaxRects:
 
         return self.place_candidate(placement)
 
+    def occupy(
+        self,
+        x_mm: float,
+        y_mm: float,
+        length_mm: float,
+        width_mm: float,
+    ) -> None:
+        """Mark an already-placed rectangle as used free space."""
+        self.place_candidate(MaxRectsPlacement(x_mm, y_mm, length_mm, width_mm))
+
     def _split_free_rectangle(
         self,
         rectangle: FreeRectangle,

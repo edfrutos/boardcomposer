@@ -30,6 +30,7 @@ def test_solution_actions_disabled_without_solutions(qapp, tmp_path):
     assert not window._actions["export_cut_list"].isEnabled()
     assert not window._actions["previous_solution"].isEnabled()
     assert not window._actions["next_solution"].isEnabled()
+    assert not window._actions["repack_omitted"].isEnabled()
     assert not window.pin_reference_button.isEnabled()
     assert not window.comparator_sort.isEnabled()
     assert not window.comparator_sort_label.isEnabled()
@@ -56,6 +57,7 @@ def test_solution_actions_single_candidate(qapp, tmp_path):
     assert window._actions["export_cut_list"].isEnabled()
     assert not window._actions["previous_solution"].isEnabled()
     assert not window._actions["next_solution"].isEnabled()
+    assert not window._actions["repack_omitted"].isEnabled()
     assert not window.pin_reference_button.isEnabled()
     assert window.comparator_sort.isEnabled()
     assert window.comparator_complete_only.isEnabled()
@@ -84,3 +86,53 @@ def test_solution_actions_multiple_candidates(qapp, tmp_path):
     assert "PNG" in tip or "SVG" in tip
     assert "Ordena" in window.comparator_sort.statusTip()
     assert "parciales" in window.comparator_complete_only.statusTip()
+    assert not window._actions["repack_omitted"].isEnabled()
+
+
+def test_repack_omitted_enabled_for_partial_and_places_leftover(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    from boardcomposer import Board, Project, StockPanel
+    from boardcomposer.domain import PanelReference
+    from studio.models import StudioBoard, StudioPiece, StudioProject
+
+    window.services.projects.new_project(
+        StudioProject(
+            project_id="PRJ-1",
+            name="Freeze",
+            boards=[StudioBoard("P1", 1000, 500, "Demo", 19, 1)],
+            pieces=[
+                StudioPiece("A", 400, 300, "Demo", 19),
+                StudioPiece("B", 200, 100, "Demo", 19),
+            ],
+        )
+    )
+    core = Project()
+    core.add_stock_panel(StockPanel(1000, 500, 19, "P1"))
+    core.add_board(Board(400, 300, 19, "A"))
+    core.add_board(Board(200, 100, 19, "B"))
+    window.services.layout._solved_project = core
+    window.services.layout.solutions = [
+        AssemblySolution(
+            placements=[
+                BoardPlacement(
+                    "A",
+                    0,
+                    0,
+                    400,
+                    300,
+                    panel_reference=PanelReference(0, 0),
+                )
+            ],
+            omitted_piece_ids=("B",),
+        )
+    ]
+    window.services.layout.selected_solution_index = 0
+    window._reload_solution_table()
+
+    assert window._actions["repack_omitted"].isEnabled()
+    window._repack_omitted()
+    packed = window.services.layout.selected_solution
+    assert packed is not None
+    assert {item.board_id for item in packed.placements} == {"A", "B"}
+    assert packed.omitted_piece_ids == ()

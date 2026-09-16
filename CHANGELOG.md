@@ -10,6 +10,8 @@
 - Taller: secuencia de corte por panel (IDE-0027); orden de sierra
   guillotina (o por posición) en lista CSV/PDF; números de paso en
   plano SVG/PDF/DXF.
+- Layout: congelar colocaciones OK y re-empaquetar omitidas (IDE-0030);
+  **Ctrl+Alt+F**; no mueve las piezas ya colocadas.
 - Docs planificación 2026-09-15: snapshot
   `docs/masterplan/REVIEW-2026-09-15-planificacion.md`; cola producto
   IDE-0019…0024 cerrada (Skyline `#623` en `0.4.3`); Issues = 0 →

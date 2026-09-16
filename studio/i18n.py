@@ -250,6 +250,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.toggle_grid": "Mostrar cuadrícula",
         "action.reset_window_layout": "Restablecer disposición de ventana",
         "action.solve_layout": "Calcular layout",
+        "action.repack_omitted": "Re-empaquetar omitidas",
         "action.previous_solution": "Solución anterior",
         "action.next_solution": "Solución siguiente",
         "action.apply_layout": "Aplicar layout calculado",
@@ -524,6 +525,19 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Soluciones desactualizadas: recalcula ahora (Ctrl+Return); "
             "muestra progreso y se puede cancelar; "
             "sustituye las candidatas anteriores (no se puede deshacer)"
+        ),
+        "tip.repack_omitted": (
+            "Congelar las piezas ya colocadas y re-empaquetar solo las "
+            "omitidas (Ctrl+Alt+F); usa retales y tableros libres; "
+            "no mueve el layout OK"
+        ),
+        "tip.repack_omitted_none": (
+            "No hay piezas omitidas en la candidata: no hay nada que "
+            "re-empaquetar (Ctrl+Alt+F)"
+        ),
+        "tip.repack_omitted_outdated": (
+            "Soluciones desactualizadas: recalcula el layout antes de "
+            "re-empaquetar omitidas (Ctrl+Alt+F)"
         ),
         "tip.previous_solution": (
             "Seleccionar la solución anterior (Re Pág); sin aplicarla"
@@ -1102,6 +1116,14 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.layout_failed": "No se pudo calcular layout",
         "status.layout_partial": "Layout parcial: {omitted} pieza(s) sin colocar de {total} soluciones",
+        "status.repack_need_partial": "Calcula un layout parcial antes de re-empaquetar omitidas",
+        "status.repack_no_omitted": "La candidata no tiene piezas omitidas",
+        "status.repack_no_gain": (
+            "Re-empaquetado: las omitidas siguen sin caber; layout OK intacto"
+        ),
+        "status.repack_ok": (
+            "Re-empaquetado: {added} pieza(s) más; omitidas {omitted}"
+        ),
         "status.layout_ok": (
             "Layout calculado: {n} soluciones — Re/Av Pág · "
             "Fijar referencia · Exportar Ctrl+Shift+E"
@@ -1637,6 +1659,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.toggle_grid": "Show grid",
         "action.reset_window_layout": "Reset window layout",
         "action.solve_layout": "Calculate layout",
+        "action.repack_omitted": "Repack omitted pieces",
         "action.previous_solution": "Previous solution",
         "action.next_solution": "Next solution",
         "action.apply_layout": "Apply calculated layout",
@@ -1898,6 +1921,19 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Solutions outdated: recalculate now (Ctrl+Return); "
             "shows progress and can be cancelled; "
             "replaces previous candidates (cannot be undone)"
+        ),
+        "tip.repack_omitted": (
+            "Freeze placed pieces and re-pack only omitted ones "
+            "(Ctrl+Alt+F); uses leftover offcuts and free stock; "
+            "does not move the OK layout"
+        ),
+        "tip.repack_omitted_none": (
+            "No omitted pieces on the selected candidate: nothing to "
+            "re-pack (Ctrl+Alt+F)"
+        ),
+        "tip.repack_omitted_outdated": (
+            "Solutions outdated: recalculate layout before re-packing "
+            "omitted pieces (Ctrl+Alt+F)"
         ),
         "tip.previous_solution": (
             "Select the previous solution (Page Up); without applying it"
@@ -2454,6 +2490,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.layout_failed": "Could not calculate layout",
         "status.layout_partial": "Partial layout: {omitted} unplaced piece(s) across {total} solutions",
+        "status.repack_need_partial": "Calculate a partial layout before re-packing omitted pieces",
+        "status.repack_no_omitted": "The selected candidate has no omitted pieces",
+        "status.repack_no_gain": (
+            "Repack: omitted pieces still do not fit; OK layout unchanged"
+        ),
+        "status.repack_ok": ("Repack: {added} more piece(s) placed; omitted {omitted}"),
         "status.layout_ok": (
             "Layout calculated: {n} solutions — Page Up/Down · "
             "Pin reference · Export Ctrl+Shift+E"
@@ -2801,6 +2843,7 @@ _ACTION_KEYS = (
     "toggle_grid",
     "reset_window_layout",
     "solve_layout",
+    "repack_omitted",
     "previous_solution",
     "next_solution",
     "apply_layout",
