@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Exportar: etiquetas de retales en plano (IDE-0033); LxW mm en SVG/PDF/DXF
+  (PDF también dibuja el retal punteado); casilla en el diálogo y
+  Preferencias. Default: sí. JSON/Inspector siguen mostrando el área.
 - Exportar: etiquetas de piezas en plano (IDE-0026); id y medidas LxW mm
   en SVG/PDF/DXF/raster; casilla en el diálogo y Preferencias; Workspace
   muestra el mismo texto.

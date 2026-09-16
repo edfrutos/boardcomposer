@@ -38,6 +38,7 @@ class BatchProfile:
     include_explanation: bool = True
     include_offcuts: bool = True
     include_piece_labels: bool = True
+    include_offcut_labels: bool = True
 
     @classmethod
     def from_dict(cls, data: dict) -> BatchProfile:
@@ -53,6 +54,7 @@ class BatchProfile:
             include_explanation=bool(data.get("include_explanation", True)),
             include_offcuts=bool(data.get("include_offcuts", True)),
             include_piece_labels=bool(data.get("include_piece_labels", True)),
+            include_offcut_labels=bool(data.get("include_offcut_labels", True)),
         )
 
         template_name = str(data.get("template", "")).strip()
@@ -92,6 +94,7 @@ class BatchProfile:
             include_explanation=template.include_explanation,
             include_offcuts=template.include_offcuts,
             include_piece_labels=template.include_piece_labels,
+            include_offcut_labels=template.include_offcut_labels,
         )
 
     @classmethod
@@ -285,21 +288,30 @@ def _write_exports(
         elif name == "svg":
             (output_dir / "solution.svg").write_text(
                 v1.export_svg(
-                    best, project, include_piece_labels=profile.include_piece_labels
+                    best,
+                    project,
+                    include_piece_labels=profile.include_piece_labels,
+                    include_offcut_labels=profile.include_offcut_labels,
                 ),
                 encoding="utf-8",
             )
         elif name == "dxf":
             (output_dir / "solution.dxf").write_text(
                 solution_to_dxf(
-                    best, project, include_piece_labels=profile.include_piece_labels
+                    best,
+                    project,
+                    include_piece_labels=profile.include_piece_labels,
+                    include_offcut_labels=profile.include_offcut_labels,
                 ),
                 encoding="utf-8",
             )
         elif name == "pdf":
             (output_dir / "solution.pdf").write_bytes(
                 solution_to_pdf(
-                    best, project, include_piece_labels=profile.include_piece_labels
+                    best,
+                    project,
+                    include_piece_labels=profile.include_piece_labels,
+                    include_offcut_labels=profile.include_offcut_labels,
                 )
             )
 

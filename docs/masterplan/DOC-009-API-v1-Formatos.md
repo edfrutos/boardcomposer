@@ -216,7 +216,8 @@ Una fila por placement. **No** incluye piezas omitidas ni métricas (usar JSON).
 ## 4. Solución — SVG (`export_svg`)
 
 Documento SVG con paneles lado a lado (si hay referencias), piezas como
-rectángulos, retales con trazo discontinuo y leyenda de omitidas si aplica.
+rectángulos, retales con trazo discontinuo y etiqueta L×W (omisible),
+y leyenda de omitidas si aplica.
 Contrato visual, no schema JSON; estable en el sentido de «documento SVG
 válido», no pixel-perfect entre versiones menores.
 

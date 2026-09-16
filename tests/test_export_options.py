@@ -10,7 +10,7 @@ from boardcomposer.domain import (
     SolutionExplanation,
     SolutionScore,
 )
-from boardcomposer.export import prepare_solution_for_export
+from boardcomposer.export import DEFAULT_SVG_PALETTE, prepare_solution_for_export
 from studio.export_options import (
     ExportOptions,
     prepare_solution,
@@ -88,8 +88,6 @@ def test_render_export_png_and_jpeg_return_svg_payload():
 
 
 def test_preview_svg_respects_offcuts_option():
-    from boardcomposer.export import DEFAULT_SVG_PALETTE
-
     solution = _solution()
 
     with_offcuts = preview_svg(solution, None, ExportOptions(include_offcuts=True))
@@ -128,6 +126,19 @@ def test_preview_svg_respects_piece_labels_option():
     assert "A 100x50" not in without_labels
 
 
+def test_preview_svg_respects_offcut_labels_option():
+    solution = _solution()
+
+    with_labels = preview_svg(solution, None, ExportOptions(include_offcut_labels=True))
+    without_labels = preview_svg(
+        solution, None, ExportOptions(include_offcut_labels=False)
+    )
+
+    assert "200x50" in with_labels
+    assert "200x50" not in without_labels
+    assert DEFAULT_SVG_PALETTE.offcut_stroke in without_labels
+
+
 def test_export_dialog_piece_labels_enabled_for_plan_formats(qapp):
     del qapp
     from studio.dialogs import ExportDialog
@@ -135,10 +146,19 @@ def test_export_dialog_piece_labels_enabled_for_plan_formats(qapp):
     dialog = ExportDialog(_solution(), None, ExportOptions(format="svg"))
     assert dialog.include_piece_labels.isEnabled()
     assert dialog.include_piece_labels.text() == "Etiquetas de piezas (id y medidas)"
+    assert dialog.include_offcut_labels.isEnabled()
+    assert dialog.include_offcut_labels.text() == "Etiquetas de retales (medidas)"
 
     dialog.format.setCurrentIndex(dialog.format.findData("json"))
     dialog._refresh_preview()
     assert not dialog.include_piece_labels.isEnabled()
+    assert not dialog.include_offcut_labels.isEnabled()
+
+    dialog.format.setCurrentIndex(dialog.format.findData("svg"))
+    dialog.include_offcuts.setChecked(False)
+    dialog._refresh_preview()
+    assert dialog.include_piece_labels.isEnabled()
+    assert not dialog.include_offcut_labels.isEnabled()
 
 
 def test_svg_to_raster_bytes_supports_png_and_jpeg(qapp):

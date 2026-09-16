@@ -5,6 +5,7 @@ from html import escape
 from boardcomposer.domain import AssemblySolution, Offcut, PanelReference, Project
 from boardcomposer.export.common import (
     canvas_size_mm,
+    offcut_plan_label,
     panel_offsets,
     piece_plan_label,
 )
@@ -118,8 +119,10 @@ def _offcut_svg_parts(
     offcuts: tuple[Offcut, ...],
     offsets: dict[PanelReference, float],
     palette: SvgPalette,
+    *,
+    include_offcut_labels: bool,
 ) -> list[str]:
-    """Draw usable offcuts as dashed rectangles with an area label."""
+    """Draw usable offcuts as dashed rectangles with optional LxW labels."""
     parts = []
     for offcut in offcuts:
         offset_x = offsets.get(offcut.panel_reference, 0.0)
@@ -129,11 +132,13 @@ def _offcut_svg_parts(
             f'width="{offcut.length_mm:g}" height="{offcut.width_mm:g}" '
             f'fill="none" stroke="{palette.offcut_stroke}" stroke-dasharray="8,4" />'
         )
+        if not include_offcut_labels:
+            continue
         parts.append(
             f'<text x="{offcut.x_mm + offset_x + 5:g}" '
             f'y="{offcut.y_mm + y_offset + 20:g}" font-size="14" '
             f'fill="{palette.offcut_stroke}">'
-            f"{offcut.area_mm2:.0f} mm²</text>"
+            f"{escape(offcut_plan_label(offcut))}</text>"
         )
     return parts
 
@@ -159,13 +164,15 @@ def solution_to_svg(
     *,
     palette: SvgPalette | None = None,
     include_piece_labels: bool = True,
+    include_offcut_labels: bool = True,
 ) -> str:
     """Render `solution` as an SVG document.
 
     Physical panels (if any) are laid out side by side. Placed pieces are
     filled rectangles, usable offcuts (ADR-016) are dashed rectangles,
     and, for partial solutions, a legend lists the pieces that couldn't be
-    placed. Piece labels (id + placed LxW mm) can be omitted.
+    placed. Piece labels (id + placed LxW mm) and offcut LxW labels can
+    be omitted.
     """
     colors = palette or DEFAULT_SVG_PALETTE
     offsets, panel_rows = _panel_layout(solution, project)
@@ -190,7 +197,14 @@ def solution_to_svg(
             project=project,
         )
     )
-    parts.extend(_offcut_svg_parts(solution.offcuts, offsets, colors))
+    parts.extend(
+        _offcut_svg_parts(
+            solution.offcuts,
+            offsets,
+            colors,
+            include_offcut_labels=include_offcut_labels,
+        )
+    )
     parts.extend(legend_parts)
     parts.append("</svg>")
 

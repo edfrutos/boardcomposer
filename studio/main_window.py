@@ -4054,6 +4054,7 @@ class MainWindow(QMainWindow):
             export_include_explanation=options.include_explanation,
             export_include_offcuts=options.include_offcuts,
             export_include_piece_labels=options.include_piece_labels,
+            export_include_offcut_labels=options.include_offcut_labels,
             last_export_directory=str(Path(path).expanduser().resolve().parent),
         )
         self.services.preferences.update(updated)

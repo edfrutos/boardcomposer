@@ -7,6 +7,7 @@ labels. Coordinates are millimetres, scaled to PDF points (1 mm ≈ 2.834 pt).
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.export.common import (
     canvas_size_mm,
+    offcut_plan_label,
     panel_offsets,
     piece_plan_label,
 )
@@ -36,6 +37,7 @@ def solution_to_pdf(
     project: Project | None = None,
     *,
     include_piece_labels: bool = True,
+    include_offcut_labels: bool = True,
 ) -> bytes:
     """Render `solution` as PDF bytes."""
     offsets = panel_offsets(solution, project)
@@ -91,6 +93,21 @@ def solution_to_pdf(
         if include_piece_labels:
             ops.append(
                 _text_ops(x_pt + 4, y_bottom + 4, 9, piece_plan_label(placement))
+            )
+
+    for offcut in solution.offcuts:
+        offset_x = offsets.get(offcut.panel_reference, 0.0)
+        x_pt, y_top = to_page(offcut.x_mm + offset_x, offcut.y_mm)
+        _, y_bottom = to_page(
+            offcut.x_mm + offset_x, offcut.y_mm + offcut.width_mm
+        )
+        h_pt = y_top - y_bottom
+        ops.append("[8 4] 0 d")
+        ops.append(_rect_ops(x_pt, y_bottom, offcut.length_mm * _MM_TO_PT, h_pt))
+        ops.append("[] 0 d")
+        if include_offcut_labels:
+            ops.append(
+                _text_ops(x_pt + 4, y_top - 12, 9, offcut_plan_label(offcut))
             )
 
     content = "\n".join(ops).encode("latin-1", errors="replace")

@@ -100,7 +100,8 @@ def test_solution_to_svg_draws_offcuts_dashed_and_offset_by_panel():
     svg = solution_to_svg(solution, project)
 
     assert "stroke-dasharray" in svg
-    assert "600000 mm" in svg
+    assert "600x1000" in svg
+    assert "600000 mm" not in svg
 
 
 def test_solution_to_svg_has_no_offcuts_when_solution_reports_none():
@@ -120,3 +121,19 @@ def test_solution_to_svg_omits_piece_labels_when_disabled():
     assert "A 100x50" not in svg
     assert ">A<" not in svg
     assert 'data-cut-seq="1"' in svg
+
+
+def test_solution_to_svg_omits_offcut_labels_when_disabled():
+    project = Project()
+    project.add_stock_panel(StockPanel(1000, 1000, 19, "P1"))
+    solution = AssemblySolution(
+        placements=[
+            BoardPlacement("A", 0, 0, 400, 400, panel_reference=PanelReference(0, 0)),
+        ],
+        offcuts=(Offcut(PanelReference(0, 0), 400, 0, 600, 1000),),
+    )
+
+    svg = solution_to_svg(solution, project, include_offcut_labels=False)
+
+    assert "stroke-dasharray" in svg
+    assert "600x1000" not in svg

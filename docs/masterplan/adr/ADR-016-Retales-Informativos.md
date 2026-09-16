@@ -43,8 +43,8 @@ de inventario sin usar no genera retales.
 Los retales se muestran en:
 
 - el Inspector de Studio (recuento y área total de la solución seleccionada);
-- el exportador SVG (rectángulos punteados en verde, con su área);
-- los presenters de texto y JSON (detalle por panel).
+- el exportador SVG/PDF/DXF (rectángulos punteados; L×W mm, IDE-0033);
+- los presenters de texto y JSON (detalle por panel, con área).
 
 ## Evolución (IDE-0025)
 

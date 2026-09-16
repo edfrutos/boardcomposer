@@ -221,8 +221,8 @@ marcadores…).
 
 - Formatos: SVG / PNG / JPEG / PDF / DXF / JSON / CSV. Vista previa según
   opciones (métricas y explicación solo JSON; retales; **etiquetas** de
-  pieza con id y LxW mm en el plano SVG/PDF/DXF/raster). El JSON de Studio
-  incluye coste estimado si el catálogo tiene precio €/m².
+  pieza con id y LxW mm y de retal con LxW mm en el plano SVG/PDF/DXF/raster).
+  El JSON de Studio incluye coste estimado si el catálogo tiene precio €/m².
 - **Archivo → Exportar lista de corte…** (**Ctrl+Alt+C**) es otro flujo:
   CSV o PDF de taller (piezas, tableros y **secuencia de sierra** por
   panel). Recuerda carpeta y formato. El plano SVG/PDF/DXF numera cada
@@ -243,7 +243,7 @@ marcadores…).
 - **Workspace:** mostrar cuadrícula y tamaño (afecta **Shift+flechas**).
 - **Algoritmos:** estrategia y pesos opcionales.
 - **Exportación:** formato por defecto y opciones (métricas / explicación
-  JSON, retales, etiquetas de piezas).
+  JSON, retales, etiquetas de piezas y de retales).
 - **Avanzado:** máx. soluciones a conservar; **Catálogo de materiales**
   (nombres, espesores, medidas L×A, precio €/m²); **Abrir carpeta de
   configuración…** (`preferences.json`); **Restaurar valores**.

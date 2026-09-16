@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.4.0  
+**Versión:** 1.5.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -51,6 +51,7 @@ Defaults de formato y flags: SCR-006 → `preferences.json`.
 │ Formato            │ SVG │ PNG │ JPEG │ DXF │ PDF │ JSON │ CSV     │
 │ Opciones           │ ☐ Métricas  ☐ Explicación  ☐ Retales          │
 │                    │ ☐ Etiquetas de piezas (id y LxW mm)           │
+│                    │ ☐ Etiquetas de retales (LxW mm)               │
 │ Plantillas         │ cliente · guardar/aplicar/borrar · pack JSON  │
 ├────────────────────┴───────────────────────────────────────────────┤
 │ Vista previa (SVG/raster + texto/resumen según formato)            │
@@ -83,6 +84,9 @@ diálogo.
   (omiten `offcuts` cuando están desmarcados).
 - **Etiquetas de piezas (id y LxW mm):** SVG, PNG, JPEG, DXF y PDF
   (mismo dibujo que Workspace). Deshabilitada en JSON/CSV. Default: sí.
+- **Etiquetas de retales (LxW mm):** mismos formatos de plano. Requiere
+  retales incluidos. PDF dibuja el retal punteado. Default: sí.
+  Deshabilitada en JSON/CSV. Área mm² sigue en JSON/Inspector.
 - **Números de secuencia (IDE-0027):** siempre en SVG/PDF/DXF (paso de
   pieza en su panel). La lista de corte (Ctrl+Alt+C) añade el orden de
   sierra (guillotina o por posición) en CSV y PDF.
@@ -112,7 +116,8 @@ diálogo.
 Tras un export correcto se guardan en `preferences.json`:
 
 - formato
-- incluir métricas / explicación / retales / etiquetas de piezas
+- incluir métricas / explicación / retales / etiquetas de piezas / etiquetas
+  de retales
 - carpeta de destino (`last_export_directory`) — sin UI en Preferencias;
   el siguiente `QFileDialog` (solución **o** Timeline) abre ahí si sigue
   existiendo
@@ -152,7 +157,7 @@ No usa `ExportDialog`. Flujo propio:
 
 - Exporta la candidata seleccionada, no otra.
 - SVG/DXF/PDF/JSON/CSV cubiertos desde el mismo diálogo.
-- Vista previa coherente con retales, etiquetas y formato.
+- Vista previa coherente con retales, etiquetas de piezas/retales y formato.
 - Plantillas y última elección persistentes.
 - Timeline exportable sin mezclarse con el diálogo de solución.
 
