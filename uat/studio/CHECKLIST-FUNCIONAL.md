@@ -138,7 +138,7 @@ Precondición para checks de comparador multi-candidata:
 - [x] Tema, idioma, unidades, grid, estrategia/pesos, máx. soluciones, defaults export.
 - [x] Geometría de ventana/docks se recuerda al reiniciar.
 - [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo
-  (incl. PgUp/PgDown, Ctrl+Shift+Return/E, Ctrl+Alt+B/E/M/K/X/C).
+  (incl. PgUp/PgDown, Ctrl+Shift+Return/E, Ctrl+Alt+B/E/M/K/X/C/T).
 - [x] Ayuda → Novedades (**Ctrl+Shift+U**; tip de estado) / Documentación (**Shift+F1**; tip de estado) / Acerca de (**Ctrl+Shift+A**; tip de estado, icono correcto).
 - [x] **Ayuda → Explicar candidata…** (**Ctrl+Alt+E**; tip idle sin layout): tras Calcular, diálogo con fortalezas/debilidades/notas + **Copiar** (status bar confirma).
   Eval humana 5 candidatas: [`CHECKLIST-EXPLAIN-EVAL.md`](CHECKLIST-EXPLAIN-EVAL.md).
@@ -178,7 +178,8 @@ Regresión auto: `tests/test_grain.py`, `tests/test_kerf.py`,
 ## 10. Taller 0.4.4 (IDE-0026…)
 
 Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`,
-`tests/test_export_options.py`, `tests/test_cut_sequence.py`.
+`tests/test_export_options.py`, `tests/test_cut_sequence.py`,
+`tests/test_material_catalog.py`.
 
 - [ ] **Ctrl+Shift+E** plano SVG/PDF: piezas muestran id y LxW mm; desmarcar
   «Etiquetas de piezas» deja el plano sin texto de pieza; Workspace igual.
@@ -189,6 +190,8 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
   solución es completa.
 - [ ] **Ctrl+Alt+R** con retales ≥ 50 mm: Explorer muestra tableros
   remnant; segundo disparo no duplica; undo los quita; origen no baja solo.
+- [ ] **Ctrl+Alt+T** catálogo de materiales: añade un nombre/espesor; al
+  añadir tablero el combo lo ofrece; el `.bcproj` no cambia de versión.
 
 ---
 

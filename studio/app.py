@@ -10,6 +10,7 @@ from PySide6.QtWidgets import QApplication
 
 from studio.branding import app_icon
 from studio.main_window import MainWindow
+from studio.material_catalog import MaterialCatalogManager
 from studio.services import StudioServices
 from studio.theme import apply_theme, bootstrap_ui_font
 
@@ -40,7 +41,7 @@ def main() -> int:
     icon = app_icon()
     if not icon.isNull():
         app.setWindowIcon(icon)
-    services = StudioServices()
+    services = StudioServices(material_catalog=MaterialCatalogManager())
     apply_theme(app, services.preferences.current.theme)
     window = MainWindow(services=services)
     if not icon.isNull():

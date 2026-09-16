@@ -40,9 +40,14 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.export_labels": "Etiquetas de piezas (id y medidas)",
         "prefs.max_solutions": "Máx. soluciones a conservar:",
         "prefs.open_config_folder": "Abrir carpeta de configuración…",
+        "prefs.edit_catalog": "Editar catálogo de materiales…",
         "tip.open_config_folder": (
             "Abrir la carpeta de preferences.json en el explorador de archivos; "
             "la crea si no existe"
+        ),
+        "tip.prefs_edit_catalog": (
+            "Abrir el catálogo de nombres y espesores (también Ctrl+Alt+T); "
+            "archivo material_catalog.json, fuera del .bcproj"
         ),
         "tip.template_rename": (
             "Renombrar la plantilla seleccionada; pide el nuevo nombre"
@@ -163,6 +168,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.rename_project": "Renombrar proyecto…",
         "action.edit_project_metadata": "Metadatos del proyecto…",
         "action.edit_project_kerf": "Espesor de sierra…",
+        "action.material_catalog": "Catálogo de materiales…",
         "action.reveal_project_folder": "Abrir carpeta del proyecto",
         "action.diff_bcproj": "Comparar revisiones .bcproj…",
         "action.restore_local_revision": "Restaurar última revisión local…",
@@ -319,6 +325,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Espesor de sierra del proyecto (Ctrl+Alt+K); "
             "se guarda en el .bcproj; al calcular deja hueco entre piezas; "
             "se puede deshacer"
+        ),
+        "tip.material_catalog": (
+            "Editar nombres y espesores típicos reutilizables entre proyectos "
+            "(Ctrl+Alt+T); se guarda en ~/.boardcomposer, no en el .bcproj"
         ),
         "tip.prefs_default_kerf": (
             "Kerf por defecto de proyectos nuevos; "
@@ -1401,6 +1411,21 @@ _STRINGS: dict[str, dict[str, str]] = {
         "form.quantity": "Cantidad:",
         "form.material": "Material:",
         "form.allow_rotation": "Permitir rotación:",
+        "catalog.title": "Catálogo de materiales",
+        "catalog.intro": (
+            "Estos nombres y espesores se reutilizan en todos los proyectos. "
+            "No forman parte del fichero `.bcproj`."
+        ),
+        "catalog.name": "Nombre:",
+        "catalog.thicknesses": "Espesores (mm):",
+        "catalog.thickness_hint": "16, 19, 22",
+        "catalog.add": "Añadir",
+        "catalog.update": "Actualizar",
+        "catalog.remove": "Quitar",
+        "catalog.restore": "Restaurar valores de fábrica",
+        "tip.catalog_material": ("Elige un material del catálogo o escribe uno nuevo"),
+        "tip.catalog_thickness": "Espesores típicos: {thicknesses} mm",
+        "tip.catalog_thickness_custom": "Espesor libre (no está en el catálogo)",
         "diff.title": "Diferencias",
         "diff.identical": "Solución #{candidate} es idéntica a la referencia #{reference}.",
         "diff.header": "Diferencias de #{candidate} respecto a la referencia #{reference}",
@@ -1479,9 +1504,14 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.export_labels": "Piece labels (id and size)",
         "prefs.max_solutions": "Max solutions to keep:",
         "prefs.open_config_folder": "Open settings folder…",
+        "prefs.edit_catalog": "Edit material catalog…",
         "tip.open_config_folder": (
             "Open the preferences.json folder in the file manager; "
             "creates it if missing"
+        ),
+        "tip.prefs_edit_catalog": (
+            "Open the catalog of names and thicknesses (also Ctrl+Alt+T); "
+            "material_catalog.json, outside the .bcproj"
         ),
         "tip.template_rename": ("Rename the selected template; asks for the new name"),
         "tip.template_delete": (
@@ -1596,6 +1626,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.rename_project": "Rename project…",
         "action.edit_project_metadata": "Project metadata…",
         "action.edit_project_kerf": "Saw kerf…",
+        "action.material_catalog": "Material catalog…",
         "action.reveal_project_folder": "Open project folder",
         "action.diff_bcproj": "Compare .bcproj revisions…",
         "action.restore_local_revision": "Restore latest local revision…",
@@ -1750,6 +1781,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.edit_project_kerf": (
             "Project saw kerf (Ctrl+Alt+K); stored in the .bcproj; "
             "calculating layout leaves a gap between pieces; can be undone"
+        ),
+        "tip.material_catalog": (
+            "Edit reusable material names and typical thicknesses across "
+            "projects (Ctrl+Alt+T); stored in ~/.boardcomposer, not the .bcproj"
         ),
         "tip.prefs_default_kerf": (
             "Default kerf for new projects; "
@@ -2789,6 +2824,21 @@ _STRINGS: dict[str, dict[str, str]] = {
         "form.quantity": "Quantity:",
         "form.material": "Material:",
         "form.allow_rotation": "Allow rotation:",
+        "catalog.title": "Material catalog",
+        "catalog.intro": (
+            "These names and thicknesses are reused across every project. "
+            "They are not part of the `.bcproj` file."
+        ),
+        "catalog.name": "Name:",
+        "catalog.thicknesses": "Thicknesses (mm):",
+        "catalog.thickness_hint": "16, 19, 22",
+        "catalog.add": "Add",
+        "catalog.update": "Update",
+        "catalog.remove": "Remove",
+        "catalog.restore": "Restore factory values",
+        "tip.catalog_material": "Pick a catalog material or type a new name",
+        "tip.catalog_thickness": "Typical thicknesses: {thicknesses} mm",
+        "tip.catalog_thickness_custom": "Free thickness (not in the catalog)",
         "diff.title": "Differences",
         "diff.identical": "Solution #{candidate} is identical to reference #{reference}.",
         "diff.header": "Differences of #{candidate} vs reference #{reference}",
@@ -2856,6 +2906,7 @@ _ACTION_KEYS = (
     "rename_project",
     "edit_project_metadata",
     "edit_project_kerf",
+    "material_catalog",
     "reveal_project_folder",
     "diff_bcproj",
     "restore_local_revision",

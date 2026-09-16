@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-006  
-**Versión:** 1.3.0  
+**Versión:** 1.4.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -48,7 +48,8 @@ Crear proyecto: FLW-001. Import CSV/Excel: FLW-002. Abrir/guardar: SCR-005.
 | Mover pieza (panel) | Arrastre en Workspace · flechas (nudge) |
 
 Inspector (SCR-004) refleja selección; edición de dims/material suele ir por
-diálogos `NewBoardDialog` / `NewPieceDialog` (modo add vs edit).
+diálogos `NewBoardDialog` / `NewPieceDialog` (modo add vs edit; combo
+del catálogo de materiales, IDE-0028).
 
 ---
 
@@ -75,7 +76,8 @@ outdated.
 
 ### Tableros
 
-- Añadir: `NewBoardDialog` (id, largo, ancho, espesor, material, cantidad).
+- Añadir: `NewBoardDialog` (id, largo, ancho, espesor, material, cantidad;
+  combo del catálogo; al aceptar, Studio recuerda el par nombre/espesor).
 - Editar: mismo diálogo; `EditBoardCommand` (undo; renombre id actualiza
   colocaciones).
 - Eliminar: `DeleteBoardCommand` desde Explorer; piezas se conservan;
@@ -87,7 +89,7 @@ outdated.
 ### Piezas
 
 - Añadir: `NewPieceDialog` con cantidad → ids correlativos + placements
-  iniciales.
+  iniciales; mismo combo de catálogo.
 - Editar: diálogo sin campo cantidad; `EditPieceCommand`.
 - Duplicar: `DuplicatePieceCommand` — id `*-copy`, offset ~20 mm.
 - Eliminar: selección / id.
@@ -127,6 +129,7 @@ outdated.
 | Add/edit/delete board/piece, move, import, duplicate | Sí | Sí |
 | Rename project | Sí | No |
 | Preferencias UI sin tocar inventario | No (vía prefs) | No |
+| Catálogo de materiales (Ctrl+Alt+T) | No | No |
 
 Banner en Comparador mientras `solutions_outdated`. Apply (FLW-004) y Export
 (FLW-005) avisan si está outdated.

@@ -1,6 +1,6 @@
 """Tests for NewBoard / NewPiece form i18n (SCR-006)."""
 
-from PySide6.QtWidgets import QDialogButtonBox, QFormLayout
+from PySide6.QtWidgets import QComboBox, QDialogButtonBox, QFormLayout
 
 from studio.dialogs.new_board_dialog import NewBoardDialog
 from studio.dialogs.new_piece_dialog import NewPieceDialog
@@ -29,6 +29,11 @@ def test_new_board_dialog_english_labels(qapp):
     assert "Length (mm):" in labels
     assert "Quantity:" in labels
     assert "Material:" in labels
+    assert isinstance(dialog.material, QComboBox)
+    assert dialog.material.isEditable()
+    assert "Melamina blanca" in [
+        dialog.material.itemText(index) for index in range(dialog.material.count())
+    ]
 
 
 def test_new_piece_dialog_english_labels(qapp):

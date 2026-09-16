@@ -11,6 +11,7 @@ from studio.project import ProjectManager
 from studio.project_templates import ProjectTemplatesManager
 from studio.selection import SelectionManager
 from studio.layout_service import LayoutService
+from studio.material_catalog import MaterialCatalogManager, in_memory_catalog
 from studio.preferences import PreferencesManager
 from studio.timeline import TimelineStore
 from studio.events import catalog as events
@@ -35,6 +36,7 @@ class StudioServices:
     project_templates: ProjectTemplatesManager = field(
         default_factory=ProjectTemplatesManager
     )
+    material_catalog: MaterialCatalogManager = field(default_factory=in_memory_catalog)
 
     def __post_init__(self):
         self.layout = LayoutService(self)

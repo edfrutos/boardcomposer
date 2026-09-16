@@ -14,10 +14,13 @@
   **Ctrl+Alt+F**; no mueve las piezas ya colocadas.
 - Inventario: retales de la candidata a tableros remnant (IDE-0025);
   **Ctrl+Alt+R**; `.bcproj` v6 `remnant`; no descuenta tableros origen.
+- Estudio: catálogo de materiales y espesores (IDE-0028);
+  `~/.boardcomposer/material_catalog.json`; combo en tablero/pieza;
+  **Ctrl+Alt+T**; aprende al aceptar el diálogo. Sin bump `.bcproj`.
 - Docs planificación 2026-09-16: snapshot
   `docs/masterplan/REVIEW-2026-09-16-planificacion.md`; Issues = 0;
   entregadas IDE-0025/0026/0027/0030 (`#636`/`#631`/`#632`/`#634`);
-  cola restante IDE-0028 → 0029 **sin** IDE nuevas (cola no vacía).
+  IDE-0028 en esta rama; cola restante IDE-0029 **sin** IDE nuevas.
 - Docs planificación 2026-09-15: snapshot
   `docs/masterplan/REVIEW-2026-09-15-planificacion.md`; cola producto
   IDE-0019…0024 cerrada (Skyline `#623` en `0.4.3`); Issues = 0 →

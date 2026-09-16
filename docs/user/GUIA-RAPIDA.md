@@ -27,9 +27,11 @@ preferencias, atajos (**F1**), acerca de (**Ctrl+Shift+A**).
 1. **Nuevo proyecto** (**Ctrl+N**) — nombre y unidades (mm / pulgadas).
    Opcional: cliente / referencia / notas (**Ctrl+Alt+M**).
 2. **Añadir tableros** (**Ctrl+Shift+B**) y **piezas** (**Ctrl+Shift+P**), o
-   importar CSV/Excel (**Ctrl+Shift+T** / **Ctrl+Shift+O**). En cada pieza,
-   «Permitir rotación» desmarcado fija la **veta** (el cálculo y **R** no
-   giran esa pieza). Espesor de sierra del proyecto: **Ctrl+Alt+K**.
+   importar CSV/Excel (**Ctrl+Shift+T** / **Ctrl+Shift+O**). El material es
+   un combo del **catálogo** (**Ctrl+Alt+T**; archivo de usuario, no va en
+   el `.bcproj`). En cada pieza, «Permitir rotación» desmarcado fija la
+   **veta** (el cálculo y **R** no giran esa pieza). Espesor de sierra del
+   proyecto: **Ctrl+Alt+K**.
 3. **Calcular layout** (**Ctrl+Return**) — hace falta ≥1 tablero y ≥1 pieza;
    genera soluciones candidatas (con varios tableros compara MaxRects y
    Skyline).
@@ -76,6 +78,7 @@ en red; puedes **Copiar**).
 | Calcular layout | Ctrl+Return |
 | Re-empaquetar omitidas (congelar OK) | Ctrl+Alt+F |
 | Añadir retales al inventario | Ctrl+Alt+R |
+| Catálogo de materiales / espesores | Ctrl+Alt+T |
 | Aplicar layout del Comparador | Ctrl+Shift+Return |
 | Candidata anterior / siguiente | Re Pág / Av Pág |
 | Exportar solución | Ctrl+Shift+E |

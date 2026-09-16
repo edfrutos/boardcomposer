@@ -80,8 +80,8 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` restante** — atacar **IDE-0028 → 0029**
-   (catálogo materiales → coste estimado).
+1. **Cola `0.4.4` restante** — atacar **IDE-0029**
+   (coste estimado; catálogo IDE-0028 entregado).
 2. **Etiqueta** — publicar `v0.4.3` en GitHub Releases si falta.
 3. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
@@ -94,7 +94,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-restante: **IDE-0028, IDE-0029** (⚪). Residual: piloto DT-0006 D
+restante: **IDE-0029** (⚪). Residual: piloto DT-0006 D
 (operativo, no feature de producto) + backlog grande bloqueado
 (IDE-0008 / LLM / DT-0006 C).
 
@@ -107,13 +107,13 @@ desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
 | IDE-0025 | Retales como inventario reutilizable | 🟢 | #636 |
 | IDE-0026 | Etiquetas de piezas en plano | 🟢 | #631 |
 | IDE-0027 | Secuencia de corte por panel | 🟢 | #632 |
-| IDE-0028 | Catálogo de materiales / espesores | ⚪ | Siguiente ataque |
-| IDE-0029 | Coste estimado de material | ⚪ | Tras 0028 |
+| IDE-0028 | Catálogo de materiales / espesores | 🟢 | Ctrl+Alt+T; JSON usuario |
+| IDE-0029 | Coste estimado de material | ⚪ | Siguiente ataque |
 | IDE-0030 | Congelar colocaciones / re-pack omitidas | 🟢 | #634 |
 
-Prioridad de ataque restante: **0028 → 0029**.
+Prioridad de ataque restante: **0029**.
 
-Cerradas en este ciclo `0.4.4.dev0`: IDE-0025, 0026, 0027, 0030.
+Cerradas en este ciclo `0.4.4.dev0`: IDE-0025, 0026, 0027, 0028, 0030.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
