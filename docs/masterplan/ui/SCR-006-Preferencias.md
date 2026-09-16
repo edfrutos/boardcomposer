@@ -97,7 +97,7 @@ Restaurar valores por defecto.
 | Campo | Notas |
 | --- | --- |
 | Máx. soluciones | 1–100 (default 20); trunca ranking tras calcular |
-| Catálogo de materiales | Botón abre el editor (también **Ctrl+Alt+T**) |
+| Catálogo de materiales | Editor (**Ctrl+Alt+T**); nombres, espesores y €/m² (0 = sin coste) |
 | Abrir carpeta de datos | Revela `~/.boardcomposer/` |
 
 No implementados (visión antigua): zoom inicial, guías/reglas/cotas, beam

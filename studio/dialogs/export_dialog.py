@@ -72,6 +72,7 @@ class ExportDialog(QDialog):
         language: str = DEFAULT_LANGUAGE,
         templates_directory: str | None = None,
         on_templates_directory: Callable[[str | Path], None] | None = None,
+        material_prices: dict[str, float] | None = None,
         parent=None,
     ) -> None:
         super().__init__(parent)
@@ -83,6 +84,7 @@ class ExportDialog(QDialog):
         self._solution_index = solution_index
         self._templates_directory = templates_directory or ""
         self._on_templates_directory = on_templates_directory
+        self._material_prices = material_prices
         self._templates = (
             templates
             if templates is not None
@@ -517,5 +519,6 @@ class ExportDialog(QDialog):
                 options,
                 strategy_name=self._strategy_name,
                 solution_index=self._solution_index,
+                material_prices=self._material_prices,
             )
         )

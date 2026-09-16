@@ -29,7 +29,8 @@ preferencias, atajos (**F1**), acerca de (**Ctrl+Shift+A**).
 2. **Añadir tableros** (**Ctrl+Shift+B**) y **piezas** (**Ctrl+Shift+P**), o
    importar CSV/Excel (**Ctrl+Shift+T** / **Ctrl+Shift+O**). El material es
    un combo del **catálogo** (**Ctrl+Alt+T**; archivo de usuario, no va en
-   el `.bcproj`). En cada pieza, «Permitir rotación» desmarcado fija la
+   el `.bcproj`; precio opcional €/m² para el coste estimado). En cada pieza,
+   «Permitir rotación» desmarcado fija la
    **veta** (el cálculo y **R** no giran esa pieza). Espesor de sierra del
    proyecto: **Ctrl+Alt+K**.
 3. **Calcular layout** (**Ctrl+Return**) — hace falta ≥1 tablero y ≥1 pieza;
@@ -166,7 +167,8 @@ Dock **Ctrl+2**. Detalle de la selección y del layout.
   espesor, cantidad, material; en piezas, veta (libre o fija) y posición
   o «sin colocar» (con consejo de colocar vía Explorador).
 - Tras **Calcular layout**: métricas de la candidata (piezas, huecos,
-  material libre, omitidas, puntos clave).
+  material libre, coste de tableros si el catálogo tiene €/m², omitidas,
+  puntos clave).
 - **Retales** son **informativos** — no inventario reutilizable automático.
 - Si el inventario cambió tras calcular, el Inspector también avisa de
   soluciones desactualizadas.
@@ -175,7 +177,8 @@ Dock **Ctrl+2**. Detalle de la selección y del layout.
 
 Dock **Ctrl+4**. Candidatas tras **Calcular layout**.
 
-- **Ordenar por:** ranking del solver, piezas, huecos, tablero libre, etc.
+- **Ordenar por:** ranking del solver, piezas, huecos, tablero libre,
+  coste material, puntuación.
 - **Solo soluciones completas:** oculta candidatas parciales.
 - **Fijar como referencia** (≥2 soluciones): marca la candidata y muestra
   el diff frente a ella.
@@ -217,7 +220,8 @@ marcadores…).
 
 - Formatos: SVG / PNG / JPEG / PDF / DXF / JSON / CSV. Vista previa según
   opciones (métricas y explicación solo JSON; retales; **etiquetas** de
-  pieza con id y LxW mm en el plano SVG/PDF/DXF/raster).
+  pieza con id y LxW mm en el plano SVG/PDF/DXF/raster). El JSON de Studio
+  incluye coste estimado si el catálogo tiene precio €/m².
 - **Archivo → Exportar lista de corte…** (**Ctrl+Alt+C**) es otro flujo:
   CSV o PDF de taller (piezas, tableros y **secuencia de sierra** por
   panel). Recuerda carpeta y formato. El plano SVG/PDF/DXF numera cada
@@ -239,7 +243,8 @@ marcadores…).
 - **Algoritmos:** estrategia y pesos opcionales.
 - **Exportación:** formato por defecto y opciones (métricas / explicación
   JSON, retales, etiquetas de piezas).
-- **Avanzado:** máx. soluciones a conservar; **Abrir carpeta de
+- **Avanzado:** máx. soluciones a conservar; **Catálogo de materiales**
+  (nombres, espesores, precio €/m²); **Abrir carpeta de
   configuración…** (`preferences.json`); **Restaurar valores**.
 
 ## Plantillas de proyecto

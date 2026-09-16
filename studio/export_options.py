@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from collections.abc import Mapping
 
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.export import (
@@ -95,6 +96,7 @@ def render_export(
     *,
     strategy_name: str | None = None,
     solution_index: int | None = None,
+    material_prices: Mapping[str, float] | None = None,
 ) -> str | bytes:
     """Render the export payload (text or PDF bytes)."""
     options = options.normalized()
@@ -127,6 +129,7 @@ def render_export(
         include_metrics=options.include_metrics,
         include_explanation=options.include_explanation,
         include_offcuts=options.include_offcuts,
+        material_prices=material_prices,
     )
 
 
@@ -150,6 +153,7 @@ def preview_text(
     *,
     strategy_name: str | None = None,
     solution_index: int | None = None,
+    material_prices: Mapping[str, float] | None = None,
     max_chars: int = 4000,
 ) -> str:
     """Return a human-readable preview for the export dialog."""
@@ -173,6 +177,7 @@ def preview_text(
             options,
             strategy_name=strategy_name,
             solution_index=solution_index,
+            material_prices=material_prices,
         )
         assert isinstance(payload, str)
         body = payload if len(payload) <= max_chars else payload[:max_chars] + "\n…"

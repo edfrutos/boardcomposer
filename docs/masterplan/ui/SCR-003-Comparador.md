@@ -5,7 +5,7 @@
 **Código:** SCR-003  
 **Versión:** 1.1.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 24/07/2026
+**Última revisión:** 16/09/2026
 
 ---
 
@@ -39,7 +39,7 @@ Visible/ocultable con **Ver → Comparador de soluciones** (**Ctrl+4**).
 ├──────────────────────────────────────────────────────────────────────────────┤
 │ Miniaturas SVG (misma escala)  #1  #2  …                                     │
 ├──────────────────────────────────────────────────────────────────────────────┤
-│ Tabla: # │ Piezas │ Huecos │ Tablero libre │ Largo │ Ancho │ Score           │
+│ Tabla: # │ Piezas │ Huecos │ Tablero libre │ Coste │ Largo │ Ancho │ Score   │
 ├──────────────────────────────────────────────────────────────────────────────┤
 │ Diferencias vs referencia (texto; métricas + cambios de colocación)          │
 └──────────────────────────────────────────────────────────────────────────────┘
@@ -51,7 +51,8 @@ Visible/ocultable con **Ver → Comparador de soluciones** (**Ctrl+4**).
 
 ### Controles
 
-- **Ordenar por:** ranking del pipeline, piezas, huecos, tablero libre o score.
+- **Ordenar por:** ranking del pipeline, piezas, huecos, tablero libre,
+  coste material o score.
 - **Solo completas:** oculta soluciones parciales (con piezas omitidas).
 - **Fijar como referencia:** usa la candidata seleccionada como base del panel
   de diferencias (se reinicia tras un nuevo cálculo).
@@ -67,12 +68,14 @@ SVG de cada candidata a la misma escala. Clic selecciona; tooltip si es
 ### Tabla
 
 Columnas: `#`, Piezas (con sufijo de omitidas si incompleta), Huecos
-(`waste_ratio`), Tablero libre, Largo, Ancho, Score.
+(`waste_ratio`), Tablero libre, Coste (€, tableros físicos × precio
+catálogo; «—» si no hay €/m²), Largo, Ancho, Score.
 
 ### Resaltado «mejor en métrica»
 
 Solo con **≥ 2** soluciones. Criterios: más piezas, menos huecos internos,
-mayor score, menos tablero libre, menor largo y menor ancho. La fila/thumb
+mayor score, menos tablero libre, menor coste de material (si hay
+precio en catálogo), menor largo y menor ancho. La fila/thumb
 va en negrita y el tooltip lista las métricas.
 
 ### Panel de diferencias

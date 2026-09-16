@@ -49,14 +49,15 @@ Detalle de UI: SCR-003. Generación previa: FLW-003.
 
 1. Tras FLW-003, el Comparador lista candidatas (miniaturas + tabla).
 2. El usuario abre el dock si hace falta (**Ctrl+4**).
-3. Opcional: ordenar (ranking / piezas / huecos / tablero libre / score) y
+3. Opcional: ordenar (ranking / piezas / huecos / tablero libre / coste /
+  score) y
    filtrar «solo completas».
 4. Opcional: **Fijar como referencia** la candidata actual (base del panel de
    diferencias; se reinicia al volver a calcular).
 5. Clic en fila/miniatura (o **Re Pág** / **Av Pág**) → preview en Workspace +
    Inspector; evento `SolutionSelected`.
 6. Revisar highlights («mejor en» piezas / huecos / score / tablero libre /
-   largo / ancho) y el texto de
+  coste / largo / ancho) y el texto de
    diferencias vs referencia.
 7. Elegir destino:
    - **Aplicar** → placements al proyecto (`WorkspaceUpdated`,
@@ -107,10 +108,11 @@ Tabla / Inspector:
 - Piezas (y omitidas si parcial)
 - Huecos (`waste_ratio`)
 - Tablero libre
+- Coste material (€; tableros físicos × precio catálogo)
 - Largo / ancho totales
 - Score
 - Estrategia (en resumen de layout)
-- Highlights best-of (piezas ↑, waste ↓, score ↑) si ≥ 2
+- Highlights best-of (piezas ↑, waste ↓, score ↑, coste ↓) si ≥ 2
 
 Panel de diferencias: deltas de métricas + cambios de colocación
 (solo-ref / solo-cand / movidas).

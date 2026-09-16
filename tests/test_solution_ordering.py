@@ -122,7 +122,7 @@ def test_unknown_sort_key_falls_back_to_ranking():
 
 def test_sort_labels_cover_every_supported_key():
     keys = {key for key, _label in SORT_LABELS}
-    assert keys == {"ranking", "pieces", "waste", "board_waste", "score"}
+    assert keys == {"ranking", "pieces", "waste", "board_waste", "cost", "score"}
 
 
 def test_step_display_index_wraps_and_skips_filtered():

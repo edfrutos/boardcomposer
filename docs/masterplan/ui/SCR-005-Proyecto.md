@@ -149,7 +149,8 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
   Kerf / espesor de sierra entregado (IDE-0020; `.bcproj` v4; **Ctrl+Alt+K**).
   Veta / orientación de fibra entregada (IDE-0021; `.bcproj` v5; por pieza).
   Packing Skyline multipanel entregado (IDE-0022).
-  Catálogo de materiales / espesores entregado (IDE-0028; archivo usuario).
+  Catálogo de materiales / espesores / €/m² entregado (IDE-0028/0029;
+  archivo usuario; coste en Comparador, no en `.bcproj`).
 
 ---
 

@@ -49,7 +49,7 @@ Crear proyecto: FLW-001. Import CSV/Excel: FLW-002. Abrir/guardar: SCR-005.
 
 Inspector (SCR-004) refleja selección; edición de dims/material suele ir por
 diálogos `NewBoardDialog` / `NewPieceDialog` (modo add vs edit; combo
-del catálogo de materiales, IDE-0028).
+del catálogo de materiales, IDE-0028/0029; precio €/m² opcional).
 
 ---
 

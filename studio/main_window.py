@@ -546,7 +546,7 @@ class MainWindow(QMainWindow):
         )
 
         self.solutions_table = QTableWidget()
-        self.solutions_table.setColumnCount(7)
+        self.solutions_table.setColumnCount(8)
         self.solutions_table.cellDoubleClicked.connect(
             self._on_solution_table_double_clicked
         )
@@ -2827,6 +2827,14 @@ class MainWindow(QMainWindow):
     def _format_length(self, value_mm: float) -> str:
         return format_length(value_mm, self._display_units())
 
+    def _format_material_cost(self, estimate) -> str:
+        if not estimate.has_price:
+            return self._tr("cost.none")
+        text = self._tr("cost.amount", value=f"{estimate.total:.2f}")
+        if estimate.missing_materials:
+            return f"{text}{self._tr('cost.partial_mark')}"
+        return text
+
     def _ui_language(self) -> str:
         return self.services.preferences.current.language
 
@@ -2903,6 +2911,7 @@ class MainWindow(QMainWindow):
                 self._tr("comparator.pieces"),
                 self._tr("comparator.waste"),
                 self._tr("comparator.board_free"),
+                self._tr("comparator.cost"),
                 self._tr("comparator.length"),
                 self._tr("comparator.width"),
                 self._tr("comparator.score"),
@@ -3190,6 +3199,7 @@ class MainWindow(QMainWindow):
             sort_by=self._comparator_sort_by,
             complete_only=self._comparator_complete_only,
             board_waste=self.services.layout.board_waste_ratio,
+            material_cost=self.services.layout.material_cost_total,
         )
 
         project = self.services.layout.solved_project
@@ -3215,6 +3225,9 @@ class MainWindow(QMainWindow):
                 placed_label,
                 f"{solution.waste_ratio:.1%}",
                 f"{self.services.layout.board_waste_ratio(solution):.1%}",
+                self._format_material_cost(
+                    self.services.layout.material_cost_estimate(solution)
+                ),
                 f"{solution.total_length_mm:.0f}",
                 f"{solution.total_width_mm:.0f}",
                 f"{solution.score.total:.2f}",
@@ -3363,6 +3376,8 @@ class MainWindow(QMainWindow):
             candidate_index=candidate_index,
             board_waste_reference=layout.board_waste_ratio(reference),
             board_waste_candidate=layout.board_waste_ratio(candidate),
+            cost_reference=layout.material_cost_total(reference),
+            cost_candidate=layout.material_cost_total(candidate),
             language=language,
         )
         self.solution_differences.setPlainText("\n".join(diff.summary_lines()))
@@ -3399,6 +3414,12 @@ class MainWindow(QMainWindow):
             self._tr(
                 "inspector.free_material",
                 value=f"{self.services.layout.board_waste_ratio(solution):.1%}",
+            ),
+            self._tr(
+                "inspector.material_cost",
+                value=self._format_material_cost(
+                    self.services.layout.material_cost_estimate(solution)
+                ),
             ),
         ]
 
@@ -3673,6 +3694,7 @@ class MainWindow(QMainWindow):
             sort_by=self._comparator_sort_by,
             complete_only=self._comparator_complete_only,
             board_waste=self.services.layout.board_waste_ratio,
+            material_cost=self.services.layout.material_cost_total,
         )
         return self._solution_display_indexes
 
@@ -3946,6 +3968,7 @@ class MainWindow(QMainWindow):
             language=self._ui_language(),
             templates_directory=self._suggested_export_templates_directory(),
             on_templates_directory=self._remember_export_templates_directory,
+            material_prices=self.services.material_catalog.price_map(),
             parent=self,
         )
         if dialog.exec() != ExportDialog.DialogCode.Accepted:
@@ -3979,6 +4002,7 @@ class MainWindow(QMainWindow):
                 options,
                 strategy_name=self.services.layout.strategy_name,
                 solution_index=self.services.layout.selected_solution_index,
+                material_prices=self.services.material_catalog.price_map(),
             )
             if options.format in {"png", "jpeg"}:
                 assert isinstance(payload, str)

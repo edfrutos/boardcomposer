@@ -8,6 +8,10 @@ from __future__ import annotations
 
 from boardcomposer import Board, Project, ProjectConstraints, StockPanel
 from boardcomposer.domain import AssemblySolution
+from boardcomposer.inventory.material_cost import (
+    MaterialCostEstimate,
+    estimated_material_cost,
+)
 from boardcomposer.solver.cancel import CancellationToken
 from boardcomposer.solver.freeze_repack import freeze_and_repack_omitted
 from boardcomposer.solver.geometry_solver import GeometrySolver
@@ -275,12 +279,33 @@ class LayoutService:
 
         return max(0.0, 1.0 - solution.used_area_mm2 / board_area)
 
+    def material_cost_estimate(
+        self, solution: AssemblySolution
+    ) -> MaterialCostEstimate:
+        """Return catalog €/m² cost of consumed stock panels."""
+        project = self._solved_project
+        if project is None:
+            return MaterialCostEstimate()
+        return estimated_material_cost(
+            solution,
+            project,
+            self.services.material_catalog.price_map(),
+        )
+
+    def material_cost_total(self, solution: AssemblySolution) -> float:
+        """Finite cost for sorting; +inf when the catalog has no price."""
+        estimate = self.material_cost_estimate(solution)
+        if not estimate.has_price:
+            return float("inf")
+        return estimate.total
+
     @property
     def solution_highlights(self) -> dict[int, list[str]]:
         """Return, per solution index, which metrics it wins at (SCR-003)."""
         return solution_highlights(
             self.solutions,
             board_waste=self.board_waste_ratio,
+            material_cost=self.material_cost_total,
         )
 
     def stats_summary_lines(self, language: str = "es") -> list[str]:

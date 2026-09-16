@@ -23,10 +23,11 @@ def normalize_thickness(value: float) -> float:
 
 @dataclass(frozen=True)
 class CatalogMaterial:
-    """Named material with typical thicknesses in millimetres."""
+    """Named material with typical thicknesses and optional €/m² price."""
 
     name: str
     thicknesses_mm: tuple[float, ...] = ()
+    price_per_m2: float = 0.0
 
     def __post_init__(self) -> None:
         cleaned = self.name.strip()
@@ -37,14 +38,22 @@ class CatalogMaterial:
                 {normalize_thickness(item) for item in self.thicknesses_mm if item > 0}
             )
         )
+        try:
+            price = max(0.0, round(float(self.price_per_m2), 2))
+        except (TypeError, ValueError):
+            price = 0.0
         object.__setattr__(self, "name", cleaned)
         object.__setattr__(self, "thicknesses_mm", thicknesses)
+        object.__setattr__(self, "price_per_m2", price)
 
     def to_dict(self) -> dict:
-        return {
+        payload = {
             "name": self.name,
             "thicknesses_mm": list(self.thicknesses_mm),
         }
+        if self.price_per_m2 > 0:
+            payload["price_per_m2"] = self.price_per_m2
+        return payload
 
     @classmethod
     def from_dict(cls, payload: dict) -> CatalogMaterial | None:
@@ -60,7 +69,17 @@ class CatalogMaterial:
                 thicknesses.append(float(item))
             except (TypeError, ValueError):
                 continue
-        return cls(name=name, thicknesses_mm=tuple(thicknesses))
+        price = 0.0
+        raw_price = payload.get("price_per_m2", 0)
+        try:
+            price = float(raw_price)
+        except (TypeError, ValueError):
+            price = 0.0
+        return cls(
+            name=name,
+            thicknesses_mm=tuple(thicknesses),
+            price_per_m2=price,
+        )
 
 
 DEFAULT_CATALOG_MATERIALS: tuple[CatalogMaterial, ...] = (
@@ -105,6 +124,17 @@ class MaterialCatalog:
         found = self.find(name)
         return found.thicknesses_mm if found else ()
 
+    def price_for(self, name: str) -> float:
+        found = self.find(name)
+        return found.price_per_m2 if found else 0.0
+
+    def price_map(self) -> dict[str, float]:
+        return {
+            item.name.casefold(): item.price_per_m2
+            for item in self.materials
+            if item.price_per_m2 > 0
+        }
+
     def remember(self, name: str, thickness_mm: float) -> bool:
         """Add a material/thickness pair. Return True if the catalog changed."""
         cleaned = name.strip()
@@ -125,6 +155,7 @@ class MaterialCatalog:
         updated = CatalogMaterial(
             name=existing.name,
             thicknesses_mm=existing.thicknesses_mm + (thickness,),
+            price_per_m2=existing.price_per_m2,
         )
         index = self.materials.index(existing)
         self.materials[index] = updated
@@ -188,6 +219,9 @@ class MaterialCatalogManager:
 
     def thicknesses_for(self, name: str) -> tuple[float, ...]:
         return self.catalog.thicknesses_for(name)
+
+    def price_map(self) -> dict[str, float]:
+        return self.catalog.price_map()
 
     def remember(self, name: str, thickness_mm: float) -> bool:
         changed = self.catalog.remember(name, thickness_mm)
