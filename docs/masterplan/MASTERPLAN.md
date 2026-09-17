@@ -1,12 +1,13 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-16.
+Última revisión: 2026-09-17.
 
 ## Estado actual
 
 - Fase de producto: **Fase 2 — BoardComposer Studio** (núcleo usable;
   Fase 3 plataforma entregada).
-- Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3`).
+- Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
+  `v0.4.3` publicada).
 - Core base consolidado y cubierto por tests (incluye kerf IDE-0020,
   veta IDE-0021, Skyline multipanel IDE-0022 y freeze/re-pack IDE-0030).
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación
@@ -14,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-16-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-17-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -49,7 +50,7 @@
 ## Próxima tarea única
 
 1. Ciclo `0.4.4` segunda ola: cola IDE-0031…0036 entregada
-   (0036 hueco asistido).
+   (0036 hueco asistido `#645`; 0035 lote `#644`).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

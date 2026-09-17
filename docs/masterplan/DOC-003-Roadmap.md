@@ -3,10 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.36  
+**Versión:** 1.3.37  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 16/09/2026
+**Última revisión:** 17/09/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
@@ -183,9 +183,9 @@ Toda modificación deberá:
 ## Estado
 
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
-corte `0.4.3` cerrado; ciclo `0.4.4.dev0` ola 1 (0025…0030) cerrada;
-segunda ola IDE-0031…0036 entregada.
-Revisión: `REVIEW-2026-09-16-planificacion.md`.
+corte `0.4.3` / `v0.4.3` publicado; ciclo `0.4.4.dev0` ola 1 (0025…0030)
+cerrada; segunda ola IDE-0031…0036 entregada.
+Revisión: `REVIEW-2026-09-17-planificacion.md`.
 
 Pendiente de:
 

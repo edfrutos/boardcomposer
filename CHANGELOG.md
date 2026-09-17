@@ -1,9 +1,13 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-16
+## Unreleased — 0.4.4.dev0 — 2026-09-17
 
 ### Añadido
 
+- Docs planificación 2026-09-17: snapshot
+  `docs/masterplan/REVIEW-2026-09-17-planificacion.md`; Issues = 0;
+  `v0.4.3` publicada; segunda ola 0031…0036 en `main` (`#644`/`#645`)
+  → **sin IDE nuevas** (cola vacía al merge de este snapshot).
 - Workspace: colocación manual asistida (IDE-0036); **Ctrl+Alt+G**
   sugiere un hueco MaxRects en el mismo panel (pieza colocada) o en el
   tablero enfocado (sin colocar); un drop inválido por solape ajusta al
@@ -56,7 +60,7 @@
 ### Cambiado
 
 - Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con
-  `0.4.4.dev0` y snapshot 2026-09-16.
+  `0.4.4.dev0` y snapshot 2026-09-17.
 
 ## 0.4.3 — 2026-09-14
 
