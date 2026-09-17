@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-006  
-**Versión:** 1.4.0  
+**Versión:** 1.4.1  
 **Estado:** Alineado con Studio  
-**Última revisión:** 16/09/2026
+**Última revisión:** 17/09/2026
 
 ---
 
@@ -94,7 +94,10 @@ outdated.
 - Duplicar: `DuplicatePieceCommand` — id `*-copy`, offset ~20 mm.
 - Eliminar: selección / id.
 - Mover entre paneles físicos: drag-drop en Workspace; material/espesor deben
-  compatir; drop inválido revierte; `MovePieceCommand` (también nudge).
+  coincidir; drop incompatible revierte; solape ajusta al hueco más cercano
+  (IDE-0036); `MovePieceCommand` (también nudge).
+- Sugerir hueco: **Ctrl+Alt+G**; `SuggestGapCommand`; pieza colocada en su
+  panel o sin colocar en el tablero enfocado; veta fija no rota.
 - Intercambiar dos colocadas: **Ctrl+Alt+X**; `SwapPiecesCommand`; si no
   caben / material no coincide, no-op.
 

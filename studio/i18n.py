@@ -247,6 +247,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.redo": "Rehacer",
         "action.rotate_piece": "Rotar 90°",
         "action.swap_pieces": "Intercambiar piezas",
+        "action.suggest_gap": "Sugerir hueco",
         "action.rename_selection": "Renombrar…",
         "action.edit_selection": "Editar…",
         "action.copy_selection_id": "Copiar ID",
@@ -469,6 +470,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.swap_pieces": (
             "Intercambiar las posiciones de dos piezas colocadas (Ctrl+Alt+X); "
             "si no caben o el material no coincide, no cambia nada; "
+            "se puede deshacer"
+        ),
+        "tip.suggest_gap": (
+            "Colocar la pieza seleccionada en un hueco libre (Ctrl+Alt+G); "
+            "pieza colocada: mismo panel; sin colocar: tablero enfocado; "
+            "un drop inválido también ajusta al hueco más cercano; "
             "se puede deshacer"
         ),
         "tip.rename_selection": (
@@ -1115,6 +1122,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.swap_overflow": ("Una pieza no cabe en la posición de la otra"),
         "status.swap_overlap": ("El intercambio solaparía otra pieza o entre sí"),
         "status.swap_done": "Piezas intercambiadas",
+        "status.suggest_gap_done": "Pieza {piece} colocada en el hueco sugerido",
+        "status.suggest_gap_already": ("La pieza {piece} ya está en el hueco sugerido"),
+        "status.suggest_gap_no_space": ("No hay hueco libre para {piece} en {board}"),
+        "status.suggest_gap_snapped": ("Pieza {piece} ajustada al hueco más cercano"),
         "status.select_piece_first": "Selecciona una pieza primero",
         "status.place_piece_before_rotate": (
             "Coloca la pieza en un tablero antes de rotarla"
@@ -1766,6 +1777,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.redo": "Redo",
         "action.rotate_piece": "Rotate 90°",
         "action.swap_pieces": "Swap pieces",
+        "action.suggest_gap": "Suggest gap",
         "action.rename_selection": "Rename…",
         "action.edit_selection": "Edit…",
         "action.copy_selection_id": "Copy ID",
@@ -1980,6 +1992,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.swap_pieces": (
             "Swap the positions of two placed pieces (Ctrl+Alt+X); "
             "if they do not fit or the material does not match, nothing changes; "
+            "can be undone"
+        ),
+        "tip.suggest_gap": (
+            "Place the selected piece in a free gap (Ctrl+Alt+G); "
+            "placed piece: same panel; unplaced: focused board; "
+            "an invalid drop also snaps to the nearest gap; "
             "can be undone"
         ),
         "tip.rename_selection": (
@@ -2600,6 +2618,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.swap_overlap": ("The swap would overlap another piece or each other"),
         "status.swap_done": "Pieces swapped",
+        "status.suggest_gap_done": "Piece {piece} placed in the suggested gap",
+        "status.suggest_gap_already": ("Piece {piece} is already in the suggested gap"),
+        "status.suggest_gap_no_space": ("No free gap for {piece} on {board}"),
+        "status.suggest_gap_snapped": "Piece {piece} snapped to the nearest gap",
         "status.select_piece_first": "Select a piece first",
         "status.place_piece_before_rotate": (
             "Place the piece on a board before rotating it"
@@ -3046,6 +3068,7 @@ _ACTION_KEYS = (
     "redo",
     "rotate_piece",
     "swap_pieces",
+    "suggest_gap",
     "rename_selection",
     "edit_selection",
     "copy_selection_id",

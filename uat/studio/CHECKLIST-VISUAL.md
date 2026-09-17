@@ -69,6 +69,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
   veta fija (status lo dice).
 - [x] Intercambiar dos piezas colocadas (**Ctrl+Alt+X**); no-op visible si
   no caben.
+- [x] Sugerir hueco (**Ctrl+Alt+G**); drop que solapa ajusta al hueco
+  cercano.
 - [x] Mover pieza entre paneles físicos (drag o flujo previsto) se refleja.
 - [x] Identificador / instancia de panel visible en Inspector de pieza.
 

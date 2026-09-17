@@ -94,6 +94,7 @@ en red; puedes **Copiar**).
 | Deshacer / Rehacer | Ctrl+Z / Ctrl+Shift+Z |
 | Rotar pieza | R (no si la veta está fija) |
 | Intercambiar dos piezas colocadas | Ctrl+Alt+X |
+| Sugerir hueco | Ctrl+Alt+G |
 | Metadatos del proyecto | Ctrl+Alt+M |
 | Espesor de sierra / kerf | Ctrl+Alt+K |
 | Mover pieza seleccionada | Flechas (Shift = tamaño cuadrícula) |
@@ -142,6 +143,10 @@ Canvas central del layout.
   veta está fija). Con **exactamente dos** piezas colocadas
   seleccionadas, **Ctrl+Alt+X** intercambia posiciones (si no caben o el
   material no coincide, no cambia nada; se puede deshacer).
+  **Ctrl+Alt+G** coloca la pieza seleccionada en un hueco libre (mismo
+  panel si ya está colocada; tablero enfocado si no). Un drop que solapa
+  ajusta al hueco más cercano; incompatibilidad de material/espesor sigue
+  revirtiendo.
 - **Selección:** **Ctrl+A** / **Escape** / **Ctrl+Shift+I**; **Return**
   edita; **Ctrl+Shift+C** copia el ID.
 

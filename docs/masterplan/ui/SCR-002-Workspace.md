@@ -3,9 +3,9 @@
 ## SCR-002 — Workspace
 
 **Código:** SCR-002  
-**Versión:** 1.1.1  
+**Versión:** 1.1.2  
 **Estado:** Alineado con Studio  
-**Última revisión:** 12/09/2026
+**Última revisión:** 17/09/2026
 
 ---
 
@@ -79,9 +79,14 @@ colocadas (**Ctrl+Alt+X** / Editar → Intercambiar piezas):
 3. Si la pieza cabe sin solape y el **material/espesor** son compatibles con el
    panel destino, la colocación se actualiza y se registra en el historial
    (undo/redo con **Ctrl+Z** / **Ctrl+Shift+Z**).
-4. Si el destino es inválido (solape, fuera de límites, material/espesor
-   incompatible), el movimiento **revierte** a la posición anterior.
-5. Con **exactamente dos** piezas colocadas seleccionadas, Intercambiar
+4. Si el destino es inválido por **material/espesor incompatible**, el
+   movimiento **revierte** a la posición anterior.
+5. Si el destino es inválido por **solape o fuera de límites**, el
+   Workspace **ajusta** la pieza al hueco libre más cercano en el panel
+   compatible (**Ctrl+Alt+G** / Editar → Sugerir hueco hace lo mismo a
+   petición: pieza colocada en su panel; pieza sin colocar en el tablero
+   enfocado). Si no hay hueco, revierte. Se puede deshacer.
+6. Con **exactamente dos** piezas colocadas seleccionadas, Intercambiar
    intercambia origen y panel (cada una conserva su rotación). Si no caben,
    solapan u el material/espesor no coincide, no cambia nada.
 
@@ -103,7 +108,7 @@ Notas:
 4. Si hay varias candidatas, recorrerlas (**Re Pág** / **Av Pág**) y comparar.
 5. **Aplicar** la elegida (**Ctrl+Shift+Return**).
 6. Ajustar a mano en el Workspace (arrastre / rotación **R** /
-   intercambiar **Ctrl+Alt+X** / flechas).
+   intercambiar **Ctrl+Alt+X** / sugerir hueco **Ctrl+Alt+G** / flechas).
 7. Exportar (**Ctrl+Shift+E**).
 
 Una sola candidata tras calcular es un resultado válido del pipeline
@@ -144,6 +149,5 @@ Una sola candidata tras calcular es un resultado válido del pipeline
 ## Evolución prevista
 
 - Animación paso a paso del packing (parcial vía Timeline).
-- Edición manual asistida (sugerencias de hueco).
 - Vista múltiple / comparación lado a lado de dos soluciones en el canvas.
 - Colaboración e integración con asistentes de IA.

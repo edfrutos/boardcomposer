@@ -70,10 +70,12 @@ from studio.commands import (
     PromoteOffcutsCommand,
     RenameProjectCommand,
     RotatePieceCommand,
+    SuggestGapCommand,
     SwapPiecesCommand,
 )
 from studio.panel_compatibility import incompatibility_reason
 from studio.swap_pieces import swap_block_reason
+from studio.suggest_gap import suggest_gap_for_piece
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.offcut_inventory import remnant_studio_boards
 from studio.project_serializer import (
@@ -215,6 +217,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["rotate_piece"])
         self._menus["edit"].addAction(self._actions["swap_pieces"])
+        self._menus["edit"].addAction(self._actions["suggest_gap"])
         self._menus["edit"].addAction(self._actions["rename_selection"])
         self._menus["edit"].addAction(self._actions["edit_selection"])
         self._menus["edit"].addAction(self._actions["copy_selection_id"])
@@ -309,6 +312,7 @@ class MainWindow(QMainWindow):
         self._actions["redo"].triggered.connect(self._redo)
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
         self._actions["swap_pieces"].triggered.connect(self._swap_selected_pieces)
+        self._actions["suggest_gap"].triggered.connect(self._suggest_gap_for_selected)
         self._actions["rename_selection"].triggered.connect(self._rename_selection)
         self._actions["edit_selection"].triggered.connect(self._edit_selection)
         self._actions["copy_selection_id"].triggered.connect(self._copy_selection_id)
@@ -428,6 +432,7 @@ class MainWindow(QMainWindow):
         # Ensure Edit→Rotar / R is available while the canvas has focus.
         self.workspace.addAction(self._actions["rotate_piece"])
         self.workspace.addAction(self._actions["swap_pieces"])
+        self.workspace.addAction(self._actions["suggest_gap"])
         self.welcome = WelcomeScreen()
         self.welcome.new_project_requested.connect(self._new_project)
         self.welcome.open_project_requested.connect(self._open_project)
@@ -2242,6 +2247,137 @@ class MainWindow(QMainWindow):
         self.update_undo_redo()
         self._status("status.swap_done")
 
+    def _suggest_gap_piece_id(self) -> str | None:
+        """Piece targeted by Sugerir hueco: canvas current or Explorador."""
+        piece_id = self.workspace.selection.current()
+        if piece_id is not None:
+            return piece_id
+        item = self.explorer.currentItem()
+        if item is None:
+            return None
+        parsed = parse_explorer_role(item.data(0, Qt.ItemDataRole.UserRole))
+        if parsed is None or parsed[0] != "piece":
+            return None
+        return parsed[1]
+
+    def _suggest_gap_for_selected(self) -> None:
+        """Snap the selected piece to a MaxRects gap (IDE-0036)."""
+        piece_id = self._suggest_gap_piece_id()
+        if piece_id is None:
+            self._status("status.select_piece_first")
+            return
+
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.select_piece_first")
+            return
+
+        try:
+            piece = project.piece_by_id(piece_id)
+        except KeyError:
+            self._status("status.place_piece_missing", id=piece_id)
+            return
+
+        old = project.placement_by_piece_id(piece_id)
+        if old is None:
+            board_id = self.workspace.placement_target_board_id()
+            if board_id is None:
+                self._status("status.place_needs_board_focus")
+                return
+            board_instance = 0
+            stock_panel_index = next(
+                (
+                    index
+                    for index, candidate in enumerate(project.boards)
+                    if candidate.board_id == board_id
+                ),
+                None,
+            )
+            if stock_panel_index is None:
+                self._status("status.place_board_missing", id=board_id)
+                return
+            prefer_near = None
+            keep_rotation = False
+        else:
+            board_id = old.board_id or ""
+            board_instance = old.board_instance
+            stock_panel_index = old.stock_panel_index
+            prefer_near = None
+            keep_rotation = False
+
+        board = next(
+            (item for item in project.boards if item.board_id == board_id),
+            None,
+        )
+        if board is None:
+            self._status("status.place_board_missing", id=board_id)
+            return
+
+        reason = incompatibility_reason(piece, board)
+        if reason is not None:
+            self._status(
+                f"status.place_incompatible_{reason}",
+                piece=piece_id,
+                board=board_id,
+                piece_thickness=self._format_length(piece.thickness_mm),
+                board_thickness=self._format_length(board.thickness_mm),
+                piece_material=piece.material,
+                board_material=board.material,
+            )
+            return
+
+        suggestion = suggest_gap_for_piece(
+            project,
+            piece_id,
+            board_id=board_id,
+            board_instance=board_instance,
+            stock_panel_index=stock_panel_index,
+            prefer_near=prefer_near,
+            keep_rotation=keep_rotation,
+        )
+        if suggestion is None:
+            self._status(
+                "status.suggest_gap_no_space",
+                piece=piece_id,
+                board=board_id,
+            )
+            return
+
+        already = (
+            old is not None
+            and abs(old.x_mm - suggestion.x_mm) < 1e-6
+            and abs(old.y_mm - suggestion.y_mm) < 1e-6
+            and bool(old.rotated) == bool(suggestion.rotated)
+        )
+        if already:
+            self._status("status.suggest_gap_already", piece=piece_id)
+            return
+
+        new_placement = StudioPlacement(
+            piece_id=piece_id,
+            x_mm=suggestion.x_mm,
+            y_mm=suggestion.y_mm,
+            rotated=suggestion.rotated,
+            rotation=90 if suggestion.rotated else 0,
+            board_id=board_id,
+            board_instance=board_instance,
+            stock_panel_index=stock_panel_index,
+        )
+        self.services.commands.execute(
+            SuggestGapCommand(self.services, piece_id, old, new_placement)
+        )
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self.workspace.focus_board(board_id)
+        self.workspace.select_piece(piece_id)
+        self.refresh_inspector_for_piece(piece_id)
+        self._sync_view_actions()
+        self._sync_edit_selection_actions()
+        self._mark_project_modified(reason="piece_moved")
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.suggest_gap_done", piece=piece_id)
+
     def _delete_selected_piece(self):
         """Delete the selected piece, or the focused/explorer board (Delete)."""
         piece_id = self.workspace.selection.current()
@@ -2610,6 +2746,26 @@ class MainWindow(QMainWindow):
                 with_native_shortcuts(self._tr("tip.swap_pieces"))
                 if can_swap
                 else self._tr(blocked or "status.swap_need_two")
+            )
+
+        suggest = self._actions.get("suggest_gap")
+        if suggest is not None:
+            piece_id = self._suggest_gap_piece_id()
+            can_suggest = False
+            disabled_tip = "status.select_piece_first"
+            if project is not None and piece_id is not None:
+                placed = project.placement_by_piece_id(piece_id) is not None
+                if placed:
+                    can_suggest = True
+                elif self.workspace.placement_target_board_id() is not None:
+                    can_suggest = True
+                else:
+                    disabled_tip = "status.place_needs_board_focus"
+            suggest.setEnabled(can_suggest)
+            suggest.setStatusTip(
+                with_native_shortcuts(self._tr("tip.suggest_gap"))
+                if can_suggest
+                else self._tr(disabled_tip)
             )
 
     def _sync_solution_actions(self) -> None:

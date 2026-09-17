@@ -265,6 +265,32 @@ def test_dropping_a_piece_on_top_of_another_reverts_the_move():
     assert not services.commands.can_undo()
 
 
+def test_dropping_on_overlap_snaps_to_nearest_gap():
+    services = _multipanel_services()
+    project = _require_project(services)
+    project.pieces[0] = StudioPiece("A", 200, 200, "Demo", 19)
+    project.placements[0] = StudioPlacement("A", 0, 0, False, 0, "P1", 0, 0)
+    project.pieces.append(StudioPiece("B", 200, 200, "Demo", 19))
+    project.placements.append(StudioPlacement("B", 400, 0, False, 0, "P1", 0, 0))
+
+    workspace = BoardWorkspace(services)
+    workspace.reload_project()
+
+    _drag_to(workspace, "A", 400, 0)
+
+    placement = _require_placement(services, "A")
+    assert (placement.x_mm, placement.y_mm) == (400.0, 200.0)
+    assert services.commands.can_undo()
+    services.commands.undo()
+    assert (
+        _require_placement(services, "A").x_mm,
+        _require_placement(services, "A").y_mm,
+    ) == (
+        0.0,
+        0.0,
+    )
+
+
 def test_select_piece_updates_the_shared_selection_manager():
     services = _multipanel_services()
     workspace = BoardWorkspace(services)

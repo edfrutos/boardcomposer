@@ -39,6 +39,7 @@ def test_user_guide_mentions_workshop_shortcuts_and_spain_spanish():
         "Ctrl+Alt+Q",
         "Ctrl+Alt+K",
         "Ctrl+Alt+X",
+        "Ctrl+Alt+G",
         "Ctrl+Alt+F",
         "Ctrl+Alt+R",
         "Ctrl+Alt+T",
@@ -61,6 +62,7 @@ def test_uat_funcional_mentions_workshop_shortcuts():
         "Ctrl+Alt+Q",
         "Ctrl+Alt+K",
         "Ctrl+Alt+X",
+        "Ctrl+Alt+G",
         "Ctrl+Alt+F",
         "Ctrl+Alt+R",
         "Ctrl+Alt+T",
@@ -307,6 +309,10 @@ def test_shortcuts_catalog_and_dialog(qapp):
         for b in STUDIO_SHORTCUTS
     )
     assert any(
+        b.action_key == "suggest_gap" and b.sequence == "Ctrl+Alt+G"
+        for b in STUDIO_SHORTCUTS
+    )
+    assert any(
         b.action_key == "repack_omitted" and b.sequence == "Ctrl+Alt+F"
         for b in STUDIO_SHORTCUTS
     )
@@ -380,6 +386,7 @@ def test_shortcuts_catalog_and_dialog(qapp):
     assert actions["about"].shortcut() == QKeySequence("Ctrl+Shift+A")
     assert actions["rename_project"].shortcut() == QKeySequence("Ctrl+Shift+F2")
     assert actions["swap_pieces"].shortcut() == QKeySequence("Ctrl+Alt+X")
+    assert actions["suggest_gap"].shortcut() == QKeySequence("Ctrl+Alt+G")
     assert actions["repack_omitted"].shortcut() == QKeySequence("Ctrl+Alt+F")
     assert actions["promote_offcuts"].shortcut() == QKeySequence("Ctrl+Alt+R")
     assert actions["material_catalog"].shortcut() == QKeySequence("Ctrl+Alt+T")
@@ -1669,6 +1676,17 @@ def test_swap_pieces_tip_mentions_noop_if_invalid_and_can_undo():
     en = tr("tip.swap_pieces", "en").casefold()
     assert "no cambia" in es and "deshacer" in es
     assert "nothing changes" in en and "undone" in en
+
+
+def test_suggest_gap_tip_mentions_shortcut_and_undo():
+    from studio.i18n import tr
+
+    es = tr("tip.suggest_gap", "es").casefold()
+    en = tr("tip.suggest_gap", "en").casefold()
+    assert "Ctrl+Alt+G" in tr("tip.suggest_gap", "es")
+    assert "Ctrl+Alt+G" in tr("tip.suggest_gap", "en")
+    assert "hueco" in es and "deshacer" in es
+    assert "gap" in en and "undone" in en
 
 
 def test_save_tip_mentions_path_prompt_when_unsaved():
