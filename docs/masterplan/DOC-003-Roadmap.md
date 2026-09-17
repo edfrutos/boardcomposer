@@ -3,10 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.35  
+**Versión:** 1.3.36  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 16/09/2026
+**Última revisión:** 17/09/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
@@ -158,8 +158,8 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Piloto DT-0006 opción D (backup); C diferida.
-- Cola ciclo `0.4.4` segunda ola: IDE-0035 → 0036
-  (0031…0034 entregadas).
+- Cola ciclo `0.4.4` segunda ola restante: IDE-0036 (`#645`) →
+  IDE-0035 (0031…0034 entregadas).
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2
@@ -184,9 +184,9 @@ Toda modificación deberá:
 ## Estado
 
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
-corte `0.4.3` cerrado; ciclo `0.4.4.dev0` ola 1 (0025…0030) cerrada;
-segunda ola restante IDE-0035…0036 (0031…0034 entregadas).
-Revisión: `REVIEW-2026-09-16-planificacion.md`.
+corte `0.4.3` / `v0.4.3` publicado; ciclo `0.4.4.dev0` ola 1 (0025…0030)
+cerrada; segunda ola 0031…0034 cerrada; restante IDE-0036 (`#645`) +
+IDE-0035. Revisión: `REVIEW-2026-09-17-planificacion.md`.
 
 Pendiente de:
 
