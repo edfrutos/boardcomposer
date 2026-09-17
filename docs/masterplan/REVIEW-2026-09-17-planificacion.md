@@ -38,6 +38,10 @@ revisión previa `REVIEW-2026-09-16-planificacion.md`.
 | IDE-0034 papel / márgenes / escala en PDF de plano | 🟢 (#643) |
 | IDE-0035 exportar soluciones en lote | 🟢 (#644) |
 | IDE-0036 colocación manual asistida (sugerir hueco) | 🟢 (#645) |
+| IDE-0037 cotas L×A del tablero en plano | 🟢 |
+| IDE-0038 calidad raster PNG/JPEG (DPI) | ⚪ |
+| IDE-0039 trazabilidad en plano (versión, algoritmo, fecha) | ⚪ |
+| IDE-0040 unidades Inspector (mm/cm/in) | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -70,11 +74,12 @@ Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** en `main`
-(`#640`…`#645`).
+(`#640`…`#645`); IDE-0037 cotas de tablero **entregada**; restante
+tercera ola 0038…0040.
 
 Desde la revisión 2026-09-16, en `main` entró: `#640` (IDE-0031), `#641`
 (IDE-0033), `#642` (IDE-0032), `#643` (IDE-0034), `#644` (IDE-0035),
-`#645` (IDE-0036).
+`#645` (IDE-0036), más cotas de tablero (IDE-0037).
 
 Límites conocidos (no son bugs; son alcance):
 
@@ -84,7 +89,8 @@ Límites conocidos (no son bugs; son alcance):
 - DT-0006 C (API revisiones + ACL) bloqueada hasta demanda multi-usuario.
 - Catálogo de usuario (IDE-0028/0031) guarda nombre / espesor / €/m² /
   L×A de tablero.
-- Etiquetas de plano cubren piezas (IDE-0026) y retales LxW (IDE-0033).
+- Etiquetas de plano cubren piezas (IDE-0026), retales LxW (IDE-0033) y
+  cotas L×A del tablero (IDE-0037).
 - Coste (IDE-0029) y presupuesto PDF (IDE-0032) cubren material de
   tableros físicos; no hay mano de obra.
 - Export PDF: papel/márgenes/escala en plano (IDE-0034); lote de
@@ -98,8 +104,8 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` segunda ola** — IDE-0031…0036 entregadas
-   (0036 hueco asistido `#645`; 0035 lote `#644`).
+1. **Cola `0.4.4` tercera ola** — IDE-0038…0040 (0037 cotas de tablero
+   entregada).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -111,30 +117,32 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0031…0036: **vacía**. Residual bloqueado: piloto DT-0006 D (operativo)
+0038…0040. Residual bloqueado: piloto DT-0006 D (operativo)
 + IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
-desarrollo pendiente y bugs cerrados* → al corte original 0035/0036
-aún abiertas (**no se añadieron IDE**); al merge `#644`/`#645` la cola
-queda vacía (siguiente cron puede proponer).
+desarrollo pendiente y bugs cerrados* → 0037 cotas entregada; 0038…0040
+siguen abiertas.
 
 | ID | Título | Estado |
 |----|--------|--------|
-| IDE-0035 | Exportar soluciones en lote | Entregado; `#644` |
-| IDE-0036 | Colocación manual asistida (sugerir hueco) | Entregado; `#645` |
+| IDE-0037 | Cotas L×A del tablero en plano | Entregado |
+| IDE-0038 | Calidad raster PNG/JPEG (DPI) | Idea |
+| IDE-0039 | Trazabilidad en plano (versión, algoritmo, fecha) | Idea |
+| IDE-0040 | Unidades Inspector (mm/cm/in) | Idea |
 
-Prioridad de ataque: **vacía** (0031…0036 entregadas).
+Prioridad de ataque: **IDE-0038** (calidad raster).
 
-Cerradas en este ciclo `0.4.4.dev0`: IDE-0025…0036.
+Cerradas en este ciclo `0.4.4.dev0`: IDE-0025…0037.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
 
 ## 6. Criterio de esta revisión
 
-- No se implementa código de producto en este pase: solo alinear docs,
-  snapshot y backlog con merge `#643`–`#645` y release `v0.4.3`.
+- No se implementa código de producto en el snapshot original: alinear
+  docs con merge `#643`–`#645` y release `v0.4.3`. IDE-0037 (cotas)
+  entra en el mismo ciclo `0.4.4.dev0` y registra 0038…0040.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.

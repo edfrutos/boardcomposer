@@ -54,6 +54,7 @@ class ExportOptions:
     include_offcuts: bool = True
     include_piece_labels: bool = True
     include_offcut_labels: bool = True
+    include_panel_dimensions: bool = True
     pdf_paper: str = DEFAULT_PDF_PAPER
     pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     pdf_scale: str = DEFAULT_PDF_SCALE
@@ -74,6 +75,7 @@ class ExportOptions:
             include_offcuts=self.include_offcuts,
             include_piece_labels=self.include_piece_labels,
             include_offcut_labels=self.include_offcut_labels,
+            include_panel_dimensions=self.include_panel_dimensions,
             pdf_paper=page.paper,
             pdf_orientation=page.orientation,
             pdf_scale=page.scale,
@@ -107,6 +109,7 @@ def _plan_label_kwargs(options: ExportOptions) -> dict[str, bool]:
     return {
         "include_piece_labels": options.include_piece_labels,
         "include_offcut_labels": options.include_offcut_labels,
+        "include_panel_dimensions": options.include_panel_dimensions,
     }
 
 
@@ -234,6 +237,11 @@ def preview_text(
                 if options.include_offcut_labels
                 else "Sin etiquetas de retales."
             )
+        summary.append(
+            "Cotas L×A del tablero incluidas."
+            if options.include_panel_dimensions
+            else "Sin cotas de tablero."
+        )
         return "\n".join(summary)
 
     summary.append(
@@ -252,6 +260,11 @@ def preview_text(
                 if options.include_offcut_labels
                 else "Sin etiquetas de retales."
             )
+        summary.append(
+            "Cotas L×A del tablero incluidas."
+            if options.include_panel_dimensions
+            else "Sin cotas de tablero."
+        )
     if options.format in {"dxf", "pdf"}:
         summary.append(
             "Arriba: vista previa del layout (misma geometría que el export)."

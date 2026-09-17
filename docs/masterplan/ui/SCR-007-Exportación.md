@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.8.0  
+**Versión:** 1.9.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 16/09/2026
+**Última revisión:** 17/09/2026
 
 ---
 
@@ -53,6 +53,7 @@ Defaults de formato y flags: SCR-006 → `preferences.json`.
 │ Opciones           │ ☐ Métricas  ☐ Explicación  ☐ Retales          │
 │                    │ ☐ Etiquetas de piezas (id y LxW mm)           │
 │                    │ ☐ Etiquetas de retales (LxW mm)               │
+│                    │ ☐ Cotas L×A del tablero                       │
 │ PDF plano          │ papel (dibujo/A4/A3/Letter) · orientación     │
 │                    │ escala (fit / 1:n) · márgenes mm              │
 │ Lote               │ ☐ Todas las candidatas del ranking            │
@@ -77,7 +78,7 @@ Tras exportar OK: opción de abrir el archivo o revelar la carpeta.
 | JSON | Documento estructurado; métricas / explicación / retales opcionales; Studio añade `estimated_material_cost` si el catálogo tiene €/m² |
 | CSV | Filas de placements (sin omitted/metrics/explanation) |
 
-No implementados: calidad y cotas como opciones del diálogo.
+No implementados: calidad raster (IDE-0038) como opción del diálogo.
 
 ### Opciones de contenido
 
@@ -90,6 +91,10 @@ No implementados: calidad y cotas como opciones del diálogo.
 - **Etiquetas de retales (LxW mm):** mismos formatos de plano. Requiere
   retales incluidos. PDF dibuja el retal punteado. Default: sí.
   Deshabilitada en JSON/CSV. Área mm² sigue en JSON/Inspector.
+- **Cotas L×A del tablero (IDE-0037):** mismos formatos de plano.
+  Líneas de dimensión overall (largo abajo, ancho a la izquierda) con
+  valor en mm. Default: sí. Deshabilitada en JSON/CSV. Sin bump
+  `.bcproj`. No son etiquetas de pieza/retal (0026/0033).
 - **Números de secuencia (IDE-0027):** siempre en SVG/PDF/DXF (paso de
   pieza en su panel). La lista de corte (Ctrl+Alt+C) añade el orden de
   sierra (guillotina o por posición) en CSV y PDF.
@@ -204,6 +209,7 @@ No usa `ExportDialog`. Flujo propio:
 
 ## Evolución prevista
 
-- Más formatos de imagen y cotas.
+- Más formatos de imagen; calidad raster (IDE-0038).
 - Perfiles CAD-CAM avanzados.
-- Trazabilidad explícita (versión app, algoritmo, fecha) en más formatos.
+- Trazabilidad explícita (versión app, algoritmo, fecha) en más formatos
+  (IDE-0039).

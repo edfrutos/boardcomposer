@@ -3,7 +3,7 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.37  
+**Versión:** 1.3.38  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
 **Última revisión:** 17/09/2026
@@ -158,7 +158,7 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Piloto DT-0006 opción D (backup); C diferida.
-- Cola ciclo `0.4.4` segunda ola: IDE-0031…0036 entregadas.
+- Cola ciclo `0.4.4` tercera ola: IDE-0038…0040 (0037 cotas entregada).
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2
@@ -184,7 +184,8 @@ Toda modificación deberá:
 
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
 corte `0.4.3` / `v0.4.3` publicado; ciclo `0.4.4.dev0` ola 1 (0025…0030)
-cerrada; segunda ola IDE-0031…0036 entregada.
+cerrada; segunda ola IDE-0031…0036 entregada; 0037 cotas de tablero
+entregada; restante 0038…0040.
 Revisión: `REVIEW-2026-09-17-planificacion.md`.
 
 Pendiente de:

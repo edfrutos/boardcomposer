@@ -6,7 +6,11 @@ result as a 2D cutting layout with one closed polyline per panel/piece.
 
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.export.common import (
+    PANEL_COTA_GAP_MM,
+    PANEL_COTA_TICK_MM,
     offcut_plan_label,
+    panel_dimension_label,
+    panel_dimension_margins,
     panel_offsets,
     piece_plan_label,
 )
@@ -71,15 +75,36 @@ def _text(
     ]
 
 
+def _line(x1: float, y1: float, x2: float, y2: float, layer: str) -> list[str]:
+    return [
+        "0",
+        "LINE",
+        "8",
+        layer,
+        "10",
+        f"{x1:g}",
+        "20",
+        f"{y1:g}",
+        "11",
+        f"{x2:g}",
+        "21",
+        f"{y2:g}",
+    ]
+
+
 def solution_to_dxf(
     solution: AssemblySolution,
     project: Project | None = None,
     *,
     include_piece_labels: bool = True,
     include_offcut_labels: bool = True,
+    include_panel_dimensions: bool = True,
 ) -> str:
     """Render `solution` as a DXF document (mm coordinates, Y up)."""
     offsets = panel_offsets(solution, project)
+    origin_x, _extra_bottom = panel_dimension_margins(
+        include_panel_dimensions and bool(offsets)
+    )
     entities: list[str] = []
 
     if project is not None:
@@ -89,11 +114,17 @@ def solution_to_dxf(
                 continue
             label = panel.id or f"panel-{reference.stock_panel_index + 1}"
             entities.extend(
-                _rect(offset_x, 0.0, panel.length_mm, panel.width_mm, "PANELS")
+                _rect(
+                    offset_x + origin_x,
+                    0.0,
+                    panel.length_mm,
+                    panel.width_mm,
+                    "PANELS",
+                )
             )
             entities.extend(
                 _text(
-                    offset_x + 5.0,
+                    offset_x + origin_x + 5.0,
                     panel.width_mm + 5.0,
                     20.0,
                     f"{label} · {reference.instance_index + 1}",
@@ -110,7 +141,7 @@ def solution_to_dxf(
         )
         entities.extend(
             _rect(
-                placement.x_mm + offset_x,
+                placement.x_mm + offset_x + origin_x,
                 placement.y_mm,
                 placement.length_mm,
                 placement.width_mm,
@@ -120,7 +151,7 @@ def solution_to_dxf(
         sequence = str(numbers.get(index, index + 1))
         entities.extend(
             _text(
-                placement.x_mm + offset_x + 5.0,
+                placement.x_mm + offset_x + origin_x + 5.0,
                 placement.y_mm + placement.width_mm - 20.0,
                 16.0,
                 sequence,
@@ -130,7 +161,7 @@ def solution_to_dxf(
         if include_piece_labels:
             entities.extend(
                 _text(
-                    placement.x_mm + offset_x + 5.0,
+                    placement.x_mm + offset_x + origin_x + 5.0,
                     placement.y_mm + 5.0,
                     16.0,
                     piece_plan_label(placement),
@@ -142,7 +173,7 @@ def solution_to_dxf(
         offset_x = offsets.get(offcut.panel_reference, 0.0)
         entities.extend(
             _rect(
-                offcut.x_mm + offset_x,
+                offcut.x_mm + offset_x + origin_x,
                 offcut.y_mm,
                 offcut.length_mm,
                 offcut.width_mm,
@@ -152,11 +183,49 @@ def solution_to_dxf(
         if include_offcut_labels:
             entities.extend(
                 _text(
-                    offcut.x_mm + offset_x + 5.0,
+                    offcut.x_mm + offset_x + origin_x + 5.0,
                     offcut.y_mm + 5.0,
                     16.0,
                     offcut_plan_label(offcut),
                     "OFFCUTS",
+                )
+            )
+
+    if include_panel_dimensions and project is not None:
+        gap = PANEL_COTA_GAP_MM
+        tick = PANEL_COTA_TICK_MM
+        for reference, offset_x in offsets.items():
+            panel = project.stock_panel_for(reference)
+            if panel is None:
+                continue
+            left = offset_x + origin_x
+            right = left + panel.length_mm
+            hy = -gap
+            entities.extend(_line(left, hy, right, hy, "DIMS"))
+            entities.extend(_line(left, hy - tick, left, hy + tick, "DIMS"))
+            entities.extend(_line(right, hy - tick, right, hy + tick, "DIMS"))
+            entities.extend(
+                _text(
+                    left + panel.length_mm / 2.0,
+                    hy - 16.0,
+                    16.0,
+                    panel_dimension_label(panel.length_mm),
+                    "DIMS",
+                )
+            )
+            vx = left - gap
+            entities.extend(_line(vx, 0.0, vx, panel.width_mm, "DIMS"))
+            entities.extend(_line(vx - tick, 0.0, vx + tick, 0.0, "DIMS"))
+            entities.extend(
+                _line(vx - tick, panel.width_mm, vx + tick, panel.width_mm, "DIMS")
+            )
+            entities.extend(
+                _text(
+                    vx - 20.0,
+                    panel.width_mm / 2.0,
+                    16.0,
+                    panel_dimension_label(panel.width_mm),
+                    "DIMS",
                 )
             )
 

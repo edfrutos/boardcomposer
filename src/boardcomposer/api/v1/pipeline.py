@@ -72,6 +72,7 @@ def export_svg(
     *,
     include_piece_labels: bool = True,
     include_offcut_labels: bool = True,
+    include_panel_dimensions: bool = True,
 ) -> str:
     """Render one solution as an SVG document string."""
     return solution_to_svg(
@@ -79,6 +80,7 @@ def export_svg(
         project,
         include_piece_labels=include_piece_labels,
         include_offcut_labels=include_offcut_labels,
+        include_panel_dimensions=include_panel_dimensions,
     )
 
 

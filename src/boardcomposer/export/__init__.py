@@ -1,4 +1,9 @@
-from .common import offcut_plan_label, piece_plan_label, prepare_solution_for_export
+from .common import (
+    offcut_plan_label,
+    panel_dimension_label,
+    prepare_solution_for_export,
+    piece_plan_label,
+)
 from .csv_exporter import solution_to_csv
 from .cut_list import (
     CutList,
@@ -56,6 +61,7 @@ __all__ = [
     "cut_list_to_csv",
     "cut_list_to_pdf",
     "offcut_plan_label",
+    "panel_dimension_label",
     "pdf_from_text_lines",
     "piece_plan_label",
     "piece_sequence_numbers",

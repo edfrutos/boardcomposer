@@ -32,12 +32,14 @@ alternativas comprensibles para que el usuario decida.
   `boardcomposer-solution-01…`. EP-002 sigue siendo CLI de proyectos.
 - Workspace: sugerir hueco (IDE-0036); **Ctrl+Alt+G**; drop inválido por
   solape ajusta al hueco más cercano.
+- Exportar: cotas L×A del tablero en plano (IDE-0037); SVG/PDF/DXF;
+  casilla en diálogo y Preferencias. Default: sí.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
   `docs/masterplan/REVIEW-2026-09-17-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
-- Próximo: cola producto `0.4.4` segunda ola vacía; piloto
+- Próximo: cola producto `0.4.4` tercera ola IDE-0038…0040; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
