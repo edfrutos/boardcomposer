@@ -4,7 +4,7 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.38
+**Versión:** 1.3.39
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
 **Última revisión:** 16/09/2026
@@ -105,7 +105,7 @@ Observaciones:
 | IDE-0033 | Etiquetas de retales en plano | 🟢 | P2 |
 | IDE-0034 | Papel / márgenes / escala en PDF | 🟢 | P2 |
 | IDE-0035 | Exportar soluciones en lote | 🟢 | P2 |
-| IDE-0036 | Colocación manual asistida (sugerir hueco) | ⚪ | P3 |
+| IDE-0036 | Colocación manual asistida (sugerir hueco) | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -134,7 +134,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0033 | S–M | IDE-0026; ADR-016 | Medidas de retal en plano |
 | IDE-0034 | M | SCR-007; export PDF | Entregado; papel/márgenes/escala plano |
 | IDE-0035 | M | SCR-007; ExportDialog | Entregado; lote candidatas Studio |
-| IDE-0036 | M–L | Workspace; PlacementValidator | Sugerir hueco al mover |
+| IDE-0036 | M–L | Workspace; PlacementValidator | Entregado; Ctrl+Alt+G; snap drop |
 
 ---
 
@@ -162,15 +162,14 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0035 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0035); IDE-0036
-restante. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
-(001…003) Fase 3 entregadas. Snapshot:
+**Estado actual:** 🟢 Actualizado — IDE-0001…0036 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0036). IDE-0007 🟢 MVP+eval
+(2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-09-16-planificacion.md`.
 
 Próximo foco:
 
-1. Atacar cola IDE-0036.
+1. Cola producto `0.4.4` segunda ola vacía (0031…0036 entregadas).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Workspace: colocación manual asistida (IDE-0036); **Ctrl+Alt+G**
+  sugiere un hueco MaxRects en el mismo panel (pieza colocada) o en el
+  tablero enfocado (sin colocar); un drop inválido por solape ajusta al
+  hueco más cercano (incompatibilidad sigue revirtiendo). Respeta veta y
+  kerf. Sin bump `.bcproj`; no cambia el solver.
 - Exportar: lote de candidatas del ranking (IDE-0035); casilla en
   Exportar; escribe `boardcomposer-solution-01…` en una carpeta.
   Default: solo la seleccionada. No es el CLI EP-002 de proyectos.
