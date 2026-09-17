@@ -145,3 +145,55 @@ def test_context_menu_place_after_set_current_item():
     placed = project.placement_by_piece_id("T1")
     assert placed is not None
     assert placed.board_id == "TAB-T01"
+
+
+def test_suggest_gap_places_unplaced_on_focused_board():
+    from studio.main_window import MainWindow
+
+    services = _services_with_project()
+    window = MainWindow(services)
+    window.workspace.reload_project()
+    window.workspace.focus_board("TAB-T01")
+    window.workspace.select_piece("T1")
+    window._suggest_gap_for_selected()
+
+    project = services.projects.current_project
+    assert project is not None
+    placed = project.placement_by_piece_id("T1")
+    assert placed is not None
+    assert placed.board_id == "TAB-T01"
+    assert (placed.x_mm, placed.y_mm) == (0.0, 0.0)
+    services.commands.undo()
+    assert project.placement_by_piece_id("T1") is None
+
+
+def test_suggest_gap_snaps_placed_piece_to_origin():
+    from studio.main_window import MainWindow
+
+    services = _services_with_project()
+    project = services.projects.current_project
+    assert project is not None
+    project.placements.append(
+        StudioPlacement(
+            "A1",
+            80,
+            40,
+            False,
+            0,
+            "TAB-A01",
+            0,
+            0,
+        )
+    )
+    window = MainWindow(services)
+    window.workspace.reload_project()
+    window.workspace.select_piece("A1")
+    window._suggest_gap_for_selected()
+
+    placed = project.placement_by_piece_id("A1")
+    assert placed is not None
+    assert (placed.x_mm, placed.y_mm) == (0.0, 0.0)
+    services.commands.undo()
+    placed = project.placement_by_piece_id("A1")
+    assert placed is not None
+    assert (placed.x_mm, placed.y_mm) == (80.0, 40.0)

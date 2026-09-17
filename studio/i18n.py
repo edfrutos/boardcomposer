@@ -39,6 +39,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.export_offcuts": "Incluir retales",
         "prefs.export_labels": "Etiquetas de piezas (id y medidas)",
         "prefs.export_offcut_labels": "Etiquetas de retales (medidas)",
+        "prefs.export_batch": "Exportar todas las candidatas del ranking",
         "prefs.export_pdf_paper": "Papel (PDF):",
         "prefs.export_pdf_orientation": "Orientación (PDF):",
         "prefs.export_pdf_scale": "Escala (PDF):",
@@ -246,6 +247,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.redo": "Rehacer",
         "action.rotate_piece": "Rotar 90°",
         "action.swap_pieces": "Intercambiar piezas",
+        "action.suggest_gap": "Sugerir hueco",
         "action.rename_selection": "Renombrar…",
         "action.edit_selection": "Editar…",
         "action.copy_selection_id": "Copiar ID",
@@ -468,6 +470,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.swap_pieces": (
             "Intercambiar las posiciones de dos piezas colocadas (Ctrl+Alt+X); "
             "si no caben o el material no coincide, no cambia nada; "
+            "se puede deshacer"
+        ),
+        "tip.suggest_gap": (
+            "Colocar la pieza seleccionada en un hueco libre (Ctrl+Alt+G); "
+            "pieza colocada: mismo panel; sin colocar: tablero enfocado; "
+            "un drop inválido también ajusta al hueco más cercano; "
             "se puede deshacer"
         ),
         "tip.rename_selection": (
@@ -1114,6 +1122,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.swap_overflow": ("Una pieza no cabe en la posición de la otra"),
         "status.swap_overlap": ("El intercambio solaparía otra pieza o entre sí"),
         "status.swap_done": "Piezas intercambiadas",
+        "status.suggest_gap_done": "Pieza {piece} colocada en el hueco sugerido",
+        "status.suggest_gap_already": ("La pieza {piece} ya está en el hueco sugerido"),
+        "status.suggest_gap_no_space": ("No hay hueco libre para {piece} en {board}"),
+        "status.suggest_gap_snapped": ("Pieza {piece} ajustada al hueco más cercano"),
         "status.select_piece_first": "Selecciona una pieza primero",
         "status.place_piece_before_rotate": (
             "Coloca la pieza en un tablero antes de rotarla"
@@ -1219,6 +1231,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.previewing_solution": "Previsualizando solución {current}/{total}. Pulsa 'Aplicar layout calculado' para conservarla.",
         "status.export_failed": "No se pudo exportar {format}: {error}",
         "status.exported": "{format} exportado: {path}",
+        "status.exported_batch": "{count} soluciones ({format}) exportadas: {path}",
         "status.export_open_failed": "No se pudo abrir el archivo: {path}",
         "status.export_reveal_failed": "No se pudo abrir la carpeta de: {path}",
         "status.nothing_to_undo": "No hay acciones para deshacer",
@@ -1271,6 +1284,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.import_pieces": "Importar piezas (CSV/Excel)",
         "dialog.import_pieces_short": "Importar piezas",
         "dialog.export_selected": "Exportar solución seleccionada",
+        "dialog.export_batch_folder": "Carpeta para el lote de soluciones",
         "dialog.export_cut_list": "Exportar lista de corte",
         "dialog.export_quote": "Exportar presupuesto",
         "dialog.filter_cut_list": "CSV (*.csv);;PDF (*.pdf)",
@@ -1354,6 +1368,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.scale_1_2": "1:2",
         "export.scale_1_5": "1:5",
         "export.scale_1_10": "1:10",
+        "export.batch": "Exportar las {count} candidatas del ranking",
         "export.graphic": "Vista previa gráfica",
         "export.summary": "Resumen / contenido",
         "export.export_btn": "Exportar…",
@@ -1561,6 +1576,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.export_offcuts": "Include offcuts",
         "prefs.export_labels": "Piece labels (id and size)",
         "prefs.export_offcut_labels": "Offcut labels (size)",
+        "prefs.export_batch": "Export every ranked candidate",
         "prefs.export_pdf_paper": "Paper (PDF):",
         "prefs.export_pdf_orientation": "Orientation (PDF):",
         "prefs.export_pdf_scale": "Scale (PDF):",
@@ -1761,6 +1777,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.redo": "Redo",
         "action.rotate_piece": "Rotate 90°",
         "action.swap_pieces": "Swap pieces",
+        "action.suggest_gap": "Suggest gap",
         "action.rename_selection": "Rename…",
         "action.edit_selection": "Edit…",
         "action.copy_selection_id": "Copy ID",
@@ -1975,6 +1992,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.swap_pieces": (
             "Swap the positions of two placed pieces (Ctrl+Alt+X); "
             "if they do not fit or the material does not match, nothing changes; "
+            "can be undone"
+        ),
+        "tip.suggest_gap": (
+            "Place the selected piece in a free gap (Ctrl+Alt+G); "
+            "placed piece: same panel; unplaced: focused board; "
+            "an invalid drop also snaps to the nearest gap; "
             "can be undone"
         ),
         "tip.rename_selection": (
@@ -2595,6 +2618,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.swap_overlap": ("The swap would overlap another piece or each other"),
         "status.swap_done": "Pieces swapped",
+        "status.suggest_gap_done": "Piece {piece} placed in the suggested gap",
+        "status.suggest_gap_already": ("Piece {piece} is already in the suggested gap"),
+        "status.suggest_gap_no_space": ("No free gap for {piece} on {board}"),
+        "status.suggest_gap_snapped": "Piece {piece} snapped to the nearest gap",
         "status.select_piece_first": "Select a piece first",
         "status.place_piece_before_rotate": (
             "Place the piece on a board before rotating it"
@@ -2696,6 +2723,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.previewing_solution": "Previewing solution {current}/{total}. Press 'Apply calculated layout' to keep it.",
         "status.export_failed": "Could not export {format}: {error}",
         "status.exported": "{format} exported: {path}",
+        "status.exported_batch": "{count} solutions ({format}) exported: {path}",
         "status.export_open_failed": "Could not open the file: {path}",
         "status.export_reveal_failed": "Could not open the folder for: {path}",
         "status.nothing_to_undo": "No actions to undo",
@@ -2744,6 +2772,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "dialog.import_pieces": "Import pieces (CSV/Excel)",
         "dialog.import_pieces_short": "Import pieces",
         "dialog.export_selected": "Export selected solution",
+        "dialog.export_batch_folder": "Folder for ranked solutions",
         "dialog.export_cut_list": "Export cut list",
         "dialog.export_quote": "Export quote",
         "dialog.filter_cut_list": "CSV (*.csv);;PDF (*.pdf)",
@@ -2826,6 +2855,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "export.scale_1_2": "1:2",
         "export.scale_1_5": "1:5",
         "export.scale_1_10": "1:10",
+        "export.batch": "Export all {count} ranked candidates",
         "export.graphic": "Graphic preview",
         "export.summary": "Summary / content",
         "export.export_btn": "Export…",
@@ -3038,6 +3068,7 @@ _ACTION_KEYS = (
     "redo",
     "rotate_piece",
     "swap_pieces",
+    "suggest_gap",
     "rename_selection",
     "edit_selection",
     "copy_selection_id",

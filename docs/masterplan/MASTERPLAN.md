@@ -29,8 +29,9 @@
   v5 grain, v6 remnant).
 - Workspace y SVG con paneles físicos lado a lado.
 - Movimiento y reasignación interactiva de piezas entre paneles (arrastre en
-  Workspace, con undo; solape o incompatibilidad revierten el movimiento).
+  Workspace, con undo; incompatibilidad revierte; solape ajusta al hueco).
 - Intercambio de dos piezas colocadas (**Ctrl+Alt+X**, IDE-0019).
+- Colocación manual asistida / sugerir hueco (**Ctrl+Alt+G**, IDE-0036).
 - Kerf / espesor de sierra en packing (**Ctrl+Alt+K**, IDE-0020).
 - Veta fija por pieza (**Permitir rotación**, IDE-0021).
 - Lista de corte / informe taller (**Ctrl+Alt+C**, IDE-0023).
@@ -48,8 +49,8 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` restante: cerrar IDE-0036 (`#645`) → IDE-0035
-   (0031…0034 en `main`).
+1. Ciclo `0.4.4` segunda ola: cola IDE-0031…0036 entregada
+   (0036 hueco asistido `#645`; 0035 lote `#644`).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

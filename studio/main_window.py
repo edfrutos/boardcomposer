@@ -48,7 +48,8 @@ from boardcomposer.io.bcproj_revisions import (
     latest_revision,
     list_revisions,
 )
-from studio.export_options import render_export
+from studio.export_batch import export_ranked_solutions, write_export_payload
+from studio.export_options import ExportOptions, render_export
 from dataclasses import replace as dataclass_replace
 from studio.board_ids import allocate_unique_board_id, casefolded_board_ids
 from studio.branding import app_icon
@@ -69,10 +70,12 @@ from studio.commands import (
     PromoteOffcutsCommand,
     RenameProjectCommand,
     RotatePieceCommand,
+    SuggestGapCommand,
     SwapPiecesCommand,
 )
 from studio.panel_compatibility import incompatibility_reason
 from studio.swap_pieces import swap_block_reason
+from studio.suggest_gap import suggest_gap_for_piece
 from studio.models import StudioBoard, StudioPiece, StudioPlacement, StudioProject
 from studio.offcut_inventory import remnant_studio_boards
 from studio.project_serializer import (
@@ -131,7 +134,6 @@ from studio.solution_diff import (
     compare_solutions_at_step,
     format_diff_unavailable,
 )
-from studio.solution_thumbnail import svg_to_raster_bytes
 from studio.solution_ordering import (
     SORT_LABELS,
     ordered_solution_indexes,
@@ -215,6 +217,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addSeparator()
         self._menus["edit"].addAction(self._actions["rotate_piece"])
         self._menus["edit"].addAction(self._actions["swap_pieces"])
+        self._menus["edit"].addAction(self._actions["suggest_gap"])
         self._menus["edit"].addAction(self._actions["rename_selection"])
         self._menus["edit"].addAction(self._actions["edit_selection"])
         self._menus["edit"].addAction(self._actions["copy_selection_id"])
@@ -309,6 +312,7 @@ class MainWindow(QMainWindow):
         self._actions["redo"].triggered.connect(self._redo)
         self._actions["rotate_piece"].triggered.connect(self._rotate_selected_piece)
         self._actions["swap_pieces"].triggered.connect(self._swap_selected_pieces)
+        self._actions["suggest_gap"].triggered.connect(self._suggest_gap_for_selected)
         self._actions["rename_selection"].triggered.connect(self._rename_selection)
         self._actions["edit_selection"].triggered.connect(self._edit_selection)
         self._actions["copy_selection_id"].triggered.connect(self._copy_selection_id)
@@ -428,6 +432,7 @@ class MainWindow(QMainWindow):
         # Ensure Edit→Rotar / R is available while the canvas has focus.
         self.workspace.addAction(self._actions["rotate_piece"])
         self.workspace.addAction(self._actions["swap_pieces"])
+        self.workspace.addAction(self._actions["suggest_gap"])
         self.welcome = WelcomeScreen()
         self.welcome.new_project_requested.connect(self._new_project)
         self.welcome.open_project_requested.connect(self._open_project)
@@ -2242,6 +2247,137 @@ class MainWindow(QMainWindow):
         self.update_undo_redo()
         self._status("status.swap_done")
 
+    def _suggest_gap_piece_id(self) -> str | None:
+        """Piece targeted by Sugerir hueco: canvas current or Explorador."""
+        piece_id = self.workspace.selection.current()
+        if piece_id is not None:
+            return piece_id
+        item = self.explorer.currentItem()
+        if item is None:
+            return None
+        parsed = parse_explorer_role(item.data(0, Qt.ItemDataRole.UserRole))
+        if parsed is None or parsed[0] != "piece":
+            return None
+        return parsed[1]
+
+    def _suggest_gap_for_selected(self) -> None:
+        """Snap the selected piece to a MaxRects gap (IDE-0036)."""
+        piece_id = self._suggest_gap_piece_id()
+        if piece_id is None:
+            self._status("status.select_piece_first")
+            return
+
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.select_piece_first")
+            return
+
+        try:
+            piece = project.piece_by_id(piece_id)
+        except KeyError:
+            self._status("status.place_piece_missing", id=piece_id)
+            return
+
+        old = project.placement_by_piece_id(piece_id)
+        if old is None:
+            board_id = self.workspace.placement_target_board_id()
+            if board_id is None:
+                self._status("status.place_needs_board_focus")
+                return
+            board_instance = 0
+            stock_panel_index = next(
+                (
+                    index
+                    for index, candidate in enumerate(project.boards)
+                    if candidate.board_id == board_id
+                ),
+                None,
+            )
+            if stock_panel_index is None:
+                self._status("status.place_board_missing", id=board_id)
+                return
+            prefer_near = None
+            keep_rotation = False
+        else:
+            board_id = old.board_id or ""
+            board_instance = old.board_instance
+            stock_panel_index = old.stock_panel_index
+            prefer_near = None
+            keep_rotation = False
+
+        board = next(
+            (item for item in project.boards if item.board_id == board_id),
+            None,
+        )
+        if board is None:
+            self._status("status.place_board_missing", id=board_id)
+            return
+
+        reason = incompatibility_reason(piece, board)
+        if reason is not None:
+            self._status(
+                f"status.place_incompatible_{reason}",
+                piece=piece_id,
+                board=board_id,
+                piece_thickness=self._format_length(piece.thickness_mm),
+                board_thickness=self._format_length(board.thickness_mm),
+                piece_material=piece.material,
+                board_material=board.material,
+            )
+            return
+
+        suggestion = suggest_gap_for_piece(
+            project,
+            piece_id,
+            board_id=board_id,
+            board_instance=board_instance,
+            stock_panel_index=stock_panel_index,
+            prefer_near=prefer_near,
+            keep_rotation=keep_rotation,
+        )
+        if suggestion is None:
+            self._status(
+                "status.suggest_gap_no_space",
+                piece=piece_id,
+                board=board_id,
+            )
+            return
+
+        already = (
+            old is not None
+            and abs(old.x_mm - suggestion.x_mm) < 1e-6
+            and abs(old.y_mm - suggestion.y_mm) < 1e-6
+            and bool(old.rotated) == bool(suggestion.rotated)
+        )
+        if already:
+            self._status("status.suggest_gap_already", piece=piece_id)
+            return
+
+        new_placement = StudioPlacement(
+            piece_id=piece_id,
+            x_mm=suggestion.x_mm,
+            y_mm=suggestion.y_mm,
+            rotated=suggestion.rotated,
+            rotation=90 if suggestion.rotated else 0,
+            board_id=board_id,
+            board_instance=board_instance,
+            stock_panel_index=stock_panel_index,
+        )
+        self.services.commands.execute(
+            SuggestGapCommand(self.services, piece_id, old, new_placement)
+        )
+        self.workspace.reload_project()
+        self._reload_explorer()
+        self.workspace.focus_board(board_id)
+        self.workspace.select_piece(piece_id)
+        self.refresh_inspector_for_piece(piece_id)
+        self._sync_view_actions()
+        self._sync_edit_selection_actions()
+        self._mark_project_modified(reason="piece_moved")
+        self.update_window_title()
+        self.update_undo_redo()
+        self._status("status.suggest_gap_done", piece=piece_id)
+
     def _delete_selected_piece(self):
         """Delete the selected piece, or the focused/explorer board (Delete)."""
         piece_id = self.workspace.selection.current()
@@ -2610,6 +2746,26 @@ class MainWindow(QMainWindow):
                 with_native_shortcuts(self._tr("tip.swap_pieces"))
                 if can_swap
                 else self._tr(blocked or "status.swap_need_two")
+            )
+
+        suggest = self._actions.get("suggest_gap")
+        if suggest is not None:
+            piece_id = self._suggest_gap_piece_id()
+            can_suggest = False
+            disabled_tip = "status.select_piece_first"
+            if project is not None and piece_id is not None:
+                placed = project.placement_by_piece_id(piece_id) is not None
+                if placed:
+                    can_suggest = True
+                elif self.workspace.placement_target_board_id() is not None:
+                    can_suggest = True
+                else:
+                    disabled_tip = "status.place_needs_board_focus"
+            suggest.setEnabled(can_suggest)
+            suggest.setStatusTip(
+                with_native_shortcuts(self._tr("tip.suggest_gap"))
+                if can_suggest
+                else self._tr(disabled_tip)
             )
 
     def _sync_solution_actions(self) -> None:
@@ -4058,12 +4214,18 @@ class MainWindow(QMainWindow):
             templates_directory=self._suggested_export_templates_directory(),
             on_templates_directory=self._remember_export_templates_directory,
             material_prices=self.services.material_catalog.price_map(),
+            ranked_count=len(self.services.layout.solutions),
             parent=self,
         )
         if dialog.exec() != ExportDialog.DialogCode.Accepted:
             return
 
         options = dialog.options()
+        solutions = list(self.services.layout.solutions)
+        if options.export_batch and len(solutions) >= 2:
+            self._export_ranked_solutions(options, solutions)
+            return
+
         selected_index = self.services.layout.selected_solution_index + 1
         default_filename = (
             f"boardcomposer-solution-{selected_index}.{options.extension}"
@@ -4093,16 +4255,7 @@ class MainWindow(QMainWindow):
                 solution_index=self.services.layout.selected_solution_index,
                 material_prices=self.services.material_catalog.price_map(),
             )
-            if options.format in {"png", "jpeg"}:
-                assert isinstance(payload, str)
-                image_format = "PNG" if options.format == "png" else "JPEG"
-                Path(path).write_bytes(
-                    svg_to_raster_bytes(payload, image_format=image_format)
-                )
-            elif isinstance(payload, bytes):
-                Path(path).write_bytes(payload)
-            else:
-                Path(path).write_text(payload, encoding="utf-8")
+            write_export_payload(Path(path), payload, options)
         except OSError as exc:
             self._emit(
                 events.EXPORT_FAILED,
@@ -4130,6 +4283,7 @@ class MainWindow(QMainWindow):
             export_pdf_orientation=options.pdf_orientation,
             export_pdf_scale=options.pdf_scale,
             export_pdf_margin_mm=options.pdf_margin_mm,
+            export_batch=options.export_batch,
             last_export_directory=str(Path(path).expanduser().resolve().parent),
         )
         self.services.preferences.update(updated)
@@ -4141,6 +4295,86 @@ class MainWindow(QMainWindow):
         )
         self._status("status.exported", 5000, format=options.label, path=path)
         self._offer_open_exported_path(path)
+
+    def _export_ranked_solutions(
+        self,
+        options: ExportOptions,
+        solutions: list,
+    ) -> None:
+        """Write every ranked candidate into a user-chosen folder."""
+        start_dir = self.services.preferences.current.last_export_directory or ""
+        if start_dir and not Path(start_dir).expanduser().is_dir():
+            start_dir = ""
+        directory = QFileDialog.getExistingDirectory(
+            self,
+            self._tr("dialog.export_batch_folder"),
+            start_dir,
+        )
+        if not directory:
+            return
+
+        self._emit(
+            events.EXPORT_STARTED,
+            format=options.label,
+            path=directory,
+            count=len(solutions),
+        )
+        try:
+            written = export_ranked_solutions(
+                solutions,
+                self.services.layout.solved_project,
+                options,
+                directory,
+                strategy_name=self.services.layout.strategy_name,
+                material_prices=self.services.material_catalog.price_map(),
+            )
+        except OSError as exc:
+            self._emit(
+                events.EXPORT_FAILED,
+                format=options.label,
+                path=directory,
+                error=str(exc),
+            )
+            self._status(
+                "status.export_failed",
+                5000,
+                format=options.label,
+                error=exc,
+            )
+            return
+
+        folder = str(Path(directory).expanduser().resolve())
+        prefs = self.services.preferences.current
+        updated = dataclass_replace(
+            prefs,
+            export_format=options.format,
+            export_include_metrics=options.include_metrics,
+            export_include_explanation=options.include_explanation,
+            export_include_offcuts=options.include_offcuts,
+            export_include_piece_labels=options.include_piece_labels,
+            export_include_offcut_labels=options.include_offcut_labels,
+            export_pdf_paper=options.pdf_paper,
+            export_pdf_orientation=options.pdf_orientation,
+            export_pdf_scale=options.pdf_scale,
+            export_pdf_margin_mm=options.pdf_margin_mm,
+            export_batch=options.export_batch,
+            last_export_directory=folder,
+        )
+        self.services.preferences.update(updated)
+        self._emit(
+            events.EXPORT_COMPLETED,
+            format=options.label,
+            path=folder,
+            count=len(written),
+        )
+        self._status(
+            "status.exported_batch",
+            5000,
+            format=options.label,
+            count=len(written),
+            path=folder,
+        )
+        self._offer_open_exported_path(folder)
 
     def _suggested_export_path(self, default_filename: str) -> str:
         """Prefer last successful export folder when it still exists."""

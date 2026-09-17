@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-006  
-**Versión:** 1.4.0  
+**Versión:** 1.5.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -93,6 +93,7 @@ Restaurar valores por defecto.
 | Incluir métricas / explicación / retales | Checkboxes |
 | Etiquetas de piezas / retales | Checkboxes; planos SVG/PDF/DXF |
 | Papel / orientación / escala / márgenes PDF | Solo plano PDF; default ajustar al dibujo |
+| Lote de candidatas | Checkbox; default no; requiere ≥2 soluciones |
 
 ### Avanzado
 

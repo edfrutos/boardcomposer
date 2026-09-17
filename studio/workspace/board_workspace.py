@@ -765,7 +765,7 @@ class BoardWorkspace(QGraphicsView):
         key = self._panel_key(item)
         validator = self._validators.get(key) if key is not None else None
         incompatible = self._incompatibility_for_item(item)
-        if (validator is not None and not validator.can_place(item)) or incompatible:
+        if incompatible:
             self._revert_item_to_panel(
                 item,
                 old_x,
@@ -781,9 +781,25 @@ class BoardWorkspace(QGraphicsView):
                 if rejected_slot is not None
                 else (item.board_id or "")
             )
-            if incompatible and board_id:
+            if board_id:
                 self._status_incompatible_drop(piece_id, board_id, incompatible)
             return
+
+        snapped = False
+        if validator is not None and not validator.can_place(item):
+            snapped = self._snap_item_to_suggested_gap(item)
+            if not snapped:
+                self._revert_item_to_panel(
+                    item,
+                    old_x,
+                    old_y,
+                    old_board_id,
+                    old_board_instance,
+                    old_stock_panel_index,
+                )
+                self.piece_moved(piece_id, item.pos().x(), item.pos().y())
+                item.set_normal()
+                return
 
         project = self.services.projects.current_project
         placement = project.placement_by_piece_id(piece_id) if project else None
@@ -824,6 +840,7 @@ class BoardWorkspace(QGraphicsView):
             return
 
         if placement.x_mm == old_x and placement.y_mm == old_y and panel_unchanged:
+            item.set_normal()
             return
 
         command = MovePieceCommand(
@@ -855,6 +872,41 @@ class BoardWorkspace(QGraphicsView):
             window.update_window_title()
 
         item.set_normal()
+        if snapped:
+            window = cast("MainWindow", self.window())
+            if hasattr(window, "_status"):
+                window._status("status.suggest_gap_snapped", piece=piece_id)
+
+    def _snap_item_to_suggested_gap(self, item: BoardPieceItem) -> bool:
+        """Move ``item`` to the nearest MaxRects gap; False if none."""
+        from studio.suggest_gap import suggest_gap_for_piece
+
+        project = self.services.projects.current_project
+        if project is None or not item.board_id:
+            return False
+
+        suggestion = suggest_gap_for_piece(
+            project,
+            item.piece_id,
+            board_id=item.board_id,
+            board_instance=item.board_instance,
+            stock_panel_index=item.stock_panel_index,
+            prefer_near=self._local_item_position(item),
+            keep_rotation=True,
+        )
+        if suggestion is None:
+            return False
+
+        key = self._panel_key(item)
+        slot = self._panel_slots.get(key) if key is not None else None
+        item.setPos(
+            suggestion.x_mm + (slot.x_mm if slot is not None else 0),
+            suggestion.y_mm + (slot.y_mm if slot is not None else 0),
+        )
+        validator = self._validators.get(key) if key is not None else None
+        if validator is not None and not validator.can_place(item):
+            return False
+        return True
 
     def _status_incompatible_drop(
         self, piece_id: str, board_id: str, reason: str

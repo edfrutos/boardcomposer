@@ -58,6 +58,7 @@ class ExportOptions:
     pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     pdf_scale: str = DEFAULT_PDF_SCALE
     pdf_margin_mm: float = DEFAULT_PDF_MARGIN_MM
+    export_batch: bool = False
 
     def normalized(self) -> ExportOptions:
         fmt = (
@@ -77,6 +78,7 @@ class ExportOptions:
             pdf_orientation=page.orientation,
             pdf_scale=page.scale,
             pdf_margin_mm=page.margin_mm,
+            export_batch=self.export_batch,
         )
 
     def pdf_page(self) -> PdfPageOptions:
@@ -181,6 +183,7 @@ def preview_text(
     strategy_name: str | None = None,
     solution_index: int | None = None,
     material_prices: Mapping[str, float] | None = None,
+    ranked_count: int = 1,
     max_chars: int = 4000,
 ) -> str:
     """Return a human-readable preview for the export dialog."""
@@ -196,6 +199,12 @@ def preview_text(
         f"Puntuación: {prepared.score.total:.2f}",
         "",
     ]
+    if options.export_batch and ranked_count > 1:
+        summary.append(
+            f"Lote: {ranked_count} archivos "
+            f"boardcomposer-solution-01.{options.extension} …"
+        )
+        summary.append("")
 
     if options.format in {"json", "csv"}:
         payload = render_export(

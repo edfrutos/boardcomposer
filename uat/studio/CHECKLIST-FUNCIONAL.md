@@ -180,7 +180,9 @@ Regresión auto: `tests/test_grain.py`, `tests/test_kerf.py`,
 Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`,
 `tests/test_export_options.py`, `tests/test_pdf_page.py`,
 `tests/test_cut_sequence.py`, `tests/test_material_catalog.py`,
-`tests/test_material_cost.py`, `tests/test_quote.py`.
+`tests/test_material_cost.py`, `tests/test_quote.py`,
+`tests/test_export_batch.py`,
+`tests/test_suggest_gap.py`.
 
 - [ ] **Ctrl+Shift+E** plano SVG/PDF: piezas muestran id y LxW mm; retales
   muestran LxW mm; desmarcar «Etiquetas de piezas» o «Etiquetas de retales»
@@ -188,6 +190,10 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
 - [ ] **Ctrl+Shift+E** PDF de plano: papel A4/A3/Letter o ajustar al
   dibujo; escala fit o 1:n; márgenes mm. Lista de corte y presupuesto
   PDF no cambian de página.
+- [ ] **Ctrl+Shift+E** lote: con ≥2 candidatas, marca «Exportar las N
+  candidatas del ranking»; elige carpeta; aparecen
+  `boardcomposer-solution-01` y siguientes. Con 1 candidata la casilla
+  está deshabilitada. No usa `boardcomposer-batch`.
 - [ ] **Ctrl+Alt+Q** presupuesto PDF: total = tableros físicos × €/m²;
   materiales sin precio aparecen como «-»; no cambia el `.bcproj`.
 - [ ] **Ctrl+Alt+C** lista de corte: CSV/PDF con `sequence` y pasos de
@@ -200,8 +206,10 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
 - [ ] **Ctrl+Alt+T** catálogo de materiales: añade un nombre/espesor/medida
   L×A; al añadir tablero el combo ofrece el nombre y la medida típica
   (`2800×2070`); el `.bcproj` no cambia de versión.
-  Precio €/m² opcional: el Comparador muestra el coste de los tableros
-  físicos consumidos (no el área de piezas); «—» si falta precio.
+- [ ] **Ctrl+Alt+G** con una pieza: colocada → mismo panel al hueco
+  MaxRects; sin colocar → tablero enfocado. Drop que solapa ajusta al
+  hueco más cercano; material/espesor incompatible sigue revirtiendo.
+  Veta fija no rota. Se puede deshacer.
 
 ---
 

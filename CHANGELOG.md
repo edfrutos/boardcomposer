@@ -6,8 +6,17 @@
 
 - Docs planificación 2026-09-17: snapshot
   `docs/masterplan/REVIEW-2026-09-17-planificacion.md`; Issues = 0;
-  `v0.4.3` publicada; 0031…0034 en `main`; IDE-0036 🟡 `#645`;
-  IDE-0035 pendiente → **sin IDE nuevas**.
+  `v0.4.3` publicada; segunda ola 0031…0036 en `main` (`#644`/`#645`)
+  → **sin IDE nuevas** (cola vacía al merge de este snapshot).
+- Workspace: colocación manual asistida (IDE-0036); **Ctrl+Alt+G**
+  sugiere un hueco MaxRects en el mismo panel (pieza colocada) o en el
+  tablero enfocado (sin colocar); un drop inválido por solape ajusta al
+  hueco más cercano (incompatibilidad sigue revirtiendo). Respeta veta y
+  kerf. Sin bump `.bcproj`; no cambia el solver.
+- Exportar: lote de candidatas del ranking (IDE-0035); casilla en
+  Exportar; escribe `boardcomposer-solution-01…` en una carpeta.
+  Default: solo la seleccionada. No es el CLI EP-002 de proyectos.
+  Sin bump `.bcproj`.
 - Exportar: papel / márgenes / escala en PDF de plano (IDE-0034);
   A4/A3/Letter o ajustar al dibujo; escala fit o 1:n; márgenes mm.
   Default: página a tamaño del dibujo (igual que antes). Lista de

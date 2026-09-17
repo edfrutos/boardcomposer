@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.7.0  
+**Versión:** 1.8.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 16/09/2026
 
@@ -55,6 +55,7 @@ Defaults de formato y flags: SCR-006 → `preferences.json`.
 │                    │ ☐ Etiquetas de retales (LxW mm)               │
 │ PDF plano          │ papel (dibujo/A4/A3/Letter) · orientación     │
 │                    │ escala (fit / 1:n) · márgenes mm              │
+│ Lote               │ ☐ Todas las candidatas del ranking            │
 │ Plantillas         │ cliente · guardar/aplicar/borrar · pack JSON  │
 ├────────────────────┴───────────────────────────────────────────────┤
 │ Vista previa (SVG/raster + texto/resumen según formato)            │
@@ -98,6 +99,11 @@ No implementados: calidad y cotas como opciones del diálogo.
   orientación auto/vertical/apaisado cuando el papel es ISO. Márgenes
   0–50 mm (default 12,7 mm). Lista de corte y presupuesto siguen A4
   aparte. SVG/DXF/raster no usan estos controles.
+- **Lote de candidatas (IDE-0035):** casilla «Exportar las N candidatas
+  del ranking». Deshabilitada si hay menos de 2. Elige carpeta y escribe
+  `boardcomposer-solution-01.{ext}` … en orden del Comparador. Vista
+  previa sigue siendo la candidata seleccionada. No sustituye
+  `boardcomposer-batch` (EP-002, carpetas de proyectos).
 
 ---
 
@@ -127,6 +133,7 @@ Tras un export correcto se guardan en `preferences.json`:
 - incluir métricas / explicación / retales / etiquetas de piezas / etiquetas
   de retales
 - papel / orientación / escala / márgenes del PDF de plano
+- lote de candidatas del ranking
 - carpeta de destino (`last_export_directory`) — sin UI en Preferencias;
   el siguiente `QFileDialog` (solución **o** Timeline) abre ahí si sigue
   existiendo
@@ -170,6 +177,7 @@ No usa `ExportDialog`. Flujo propio:
 - PDF de plano respeta papel/escala/márgenes; lista de corte y presupuesto
   no cambian de página.
 - Plantillas y última elección persistentes.
+- Lote: N archivos en carpeta, nombres numerados, misma opciones.
 - Timeline exportable sin mezclarse con el diálogo de solución.
 
 ---
@@ -190,12 +198,12 @@ No usa `ExportDialog`. Flujo propio:
 - Métricas/explicación solo en JSON.
 - CSV del diálogo limitado a placements; lista de corte (Ctrl+Alt+C)
   cubre piezas/tableros/cortes y secuencia de sierra en CSV o PDF.
-- Sin exportación por lotes ni publicación a la nube.
+- Sin publicación a la nube.
 
 ---
 
 ## Evolución prevista
 
 - Más formatos de imagen y cotas.
-- Lotes / perfiles CAD-CAM avanzados.
+- Perfiles CAD-CAM avanzados.
 - Trazabilidad explícita (versión app, algoritmo, fecha) en más formatos.

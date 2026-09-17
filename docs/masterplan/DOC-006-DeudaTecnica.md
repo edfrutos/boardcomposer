@@ -3,7 +3,7 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.29
+**Versión:** 1.2.30
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
 **Última revisión:** 17/09/2026
@@ -164,7 +164,6 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
-- Cola producto ciclo `0.4.4` restante: IDE-0036 (`#645`) → IDE-0035
-  (0031…0034 entregadas).
+- Cola producto ciclo `0.4.4` segunda ola IDE-0031…0036 entregada
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
