@@ -55,6 +55,7 @@ class ExportTemplate:
             "pdf_orientation": self.options.pdf_orientation,
             "pdf_scale": self.options.pdf_scale,
             "pdf_margin_mm": self.options.pdf_margin_mm,
+            "export_batch": self.options.export_batch,
         }
         if self.client:
             payload["client"] = self.client
@@ -78,6 +79,7 @@ class ExportTemplate:
             ),
             pdf_scale=str(payload.get("pdf_scale", DEFAULT_PDF_SCALE)),
             pdf_margin_mm=payload.get("pdf_margin_mm", DEFAULT_PDF_MARGIN_MM),
+            export_batch=bool(payload.get("export_batch", False)),
         ).normalized()
         client = normalize_client(str(payload.get("client", "")))
         return cls(name=name, options=options, client=client)

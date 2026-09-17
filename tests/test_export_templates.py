@@ -55,6 +55,18 @@ def test_export_templates_round_trip_pdf_page_settings(tmp_path):
     assert reloaded.options.pdf_margin_mm == 10.0
 
 
+def test_export_templates_round_trip_batch_flag(tmp_path):
+    path = tmp_path / "templates.json"
+    manager = ExportTemplatesManager(path=path)
+    manager.save_template(
+        "Lote SVG",
+        ExportOptions(format="svg", export_batch=True),
+    )
+    reloaded = ExportTemplatesManager(path=path).get("Lote SVG")
+    assert reloaded is not None
+    assert reloaded.options.export_batch is True
+
+
 def test_export_templates_same_name_allowed_for_different_clients(tmp_path):
     path = tmp_path / "templates.json"
     manager = ExportTemplatesManager(path=path)

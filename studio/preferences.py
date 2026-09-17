@@ -87,6 +87,7 @@ class StudioPreferences:
     export_pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     export_pdf_scale: str = DEFAULT_PDF_SCALE
     export_pdf_margin_mm: float = DEFAULT_PDF_MARGIN_MM
+    export_batch: bool = False
     last_export_directory: str | None = None
     last_backup_directory: str | None = None
     last_import_directory: str | None = None
@@ -131,6 +132,7 @@ class StudioPreferences:
             pdf_orientation=self.export_pdf_orientation,
             pdf_scale=self.export_pdf_scale,
             pdf_margin_mm=self.export_pdf_margin_mm,
+            export_batch=self.export_batch,
         ).normalized()
 
 
@@ -308,6 +310,7 @@ class PreferencesManager:
             export_pdf_orientation=page.orientation,
             export_pdf_scale=page.scale,
             export_pdf_margin_mm=page.margin_mm,
+            export_batch=bool(payload.get("export_batch", False)),
             last_export_directory=_optional_directory(
                 payload.get("last_export_directory")
             ),
@@ -381,6 +384,7 @@ class PreferencesManager:
             "export_pdf_orientation": preferences.export_pdf_orientation,
             "export_pdf_scale": preferences.export_pdf_scale,
             "export_pdf_margin_mm": preferences.export_pdf_margin_mm,
+            "export_batch": preferences.export_batch,
             "last_export_directory": preferences.last_export_directory,
             "last_backup_directory": preferences.last_backup_directory,
             "last_import_directory": preferences.last_import_directory,

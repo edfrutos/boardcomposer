@@ -48,7 +48,8 @@ from boardcomposer.io.bcproj_revisions import (
     latest_revision,
     list_revisions,
 )
-from studio.export_options import render_export
+from studio.export_batch import export_ranked_solutions, write_export_payload
+from studio.export_options import ExportOptions, render_export
 from dataclasses import replace as dataclass_replace
 from studio.board_ids import allocate_unique_board_id, casefolded_board_ids
 from studio.branding import app_icon
@@ -131,7 +132,6 @@ from studio.solution_diff import (
     compare_solutions_at_step,
     format_diff_unavailable,
 )
-from studio.solution_thumbnail import svg_to_raster_bytes
 from studio.solution_ordering import (
     SORT_LABELS,
     ordered_solution_indexes,
@@ -4058,12 +4058,18 @@ class MainWindow(QMainWindow):
             templates_directory=self._suggested_export_templates_directory(),
             on_templates_directory=self._remember_export_templates_directory,
             material_prices=self.services.material_catalog.price_map(),
+            ranked_count=len(self.services.layout.solutions),
             parent=self,
         )
         if dialog.exec() != ExportDialog.DialogCode.Accepted:
             return
 
         options = dialog.options()
+        solutions = list(self.services.layout.solutions)
+        if options.export_batch and len(solutions) >= 2:
+            self._export_ranked_solutions(options, solutions)
+            return
+
         selected_index = self.services.layout.selected_solution_index + 1
         default_filename = (
             f"boardcomposer-solution-{selected_index}.{options.extension}"
@@ -4093,16 +4099,7 @@ class MainWindow(QMainWindow):
                 solution_index=self.services.layout.selected_solution_index,
                 material_prices=self.services.material_catalog.price_map(),
             )
-            if options.format in {"png", "jpeg"}:
-                assert isinstance(payload, str)
-                image_format = "PNG" if options.format == "png" else "JPEG"
-                Path(path).write_bytes(
-                    svg_to_raster_bytes(payload, image_format=image_format)
-                )
-            elif isinstance(payload, bytes):
-                Path(path).write_bytes(payload)
-            else:
-                Path(path).write_text(payload, encoding="utf-8")
+            write_export_payload(Path(path), payload, options)
         except OSError as exc:
             self._emit(
                 events.EXPORT_FAILED,
@@ -4130,6 +4127,7 @@ class MainWindow(QMainWindow):
             export_pdf_orientation=options.pdf_orientation,
             export_pdf_scale=options.pdf_scale,
             export_pdf_margin_mm=options.pdf_margin_mm,
+            export_batch=options.export_batch,
             last_export_directory=str(Path(path).expanduser().resolve().parent),
         )
         self.services.preferences.update(updated)
@@ -4141,6 +4139,86 @@ class MainWindow(QMainWindow):
         )
         self._status("status.exported", 5000, format=options.label, path=path)
         self._offer_open_exported_path(path)
+
+    def _export_ranked_solutions(
+        self,
+        options: ExportOptions,
+        solutions: list,
+    ) -> None:
+        """Write every ranked candidate into a user-chosen folder."""
+        start_dir = self.services.preferences.current.last_export_directory or ""
+        if start_dir and not Path(start_dir).expanduser().is_dir():
+            start_dir = ""
+        directory = QFileDialog.getExistingDirectory(
+            self,
+            self._tr("dialog.export_batch_folder"),
+            start_dir,
+        )
+        if not directory:
+            return
+
+        self._emit(
+            events.EXPORT_STARTED,
+            format=options.label,
+            path=directory,
+            count=len(solutions),
+        )
+        try:
+            written = export_ranked_solutions(
+                solutions,
+                self.services.layout.solved_project,
+                options,
+                directory,
+                strategy_name=self.services.layout.strategy_name,
+                material_prices=self.services.material_catalog.price_map(),
+            )
+        except OSError as exc:
+            self._emit(
+                events.EXPORT_FAILED,
+                format=options.label,
+                path=directory,
+                error=str(exc),
+            )
+            self._status(
+                "status.export_failed",
+                5000,
+                format=options.label,
+                error=exc,
+            )
+            return
+
+        folder = str(Path(directory).expanduser().resolve())
+        prefs = self.services.preferences.current
+        updated = dataclass_replace(
+            prefs,
+            export_format=options.format,
+            export_include_metrics=options.include_metrics,
+            export_include_explanation=options.include_explanation,
+            export_include_offcuts=options.include_offcuts,
+            export_include_piece_labels=options.include_piece_labels,
+            export_include_offcut_labels=options.include_offcut_labels,
+            export_pdf_paper=options.pdf_paper,
+            export_pdf_orientation=options.pdf_orientation,
+            export_pdf_scale=options.pdf_scale,
+            export_pdf_margin_mm=options.pdf_margin_mm,
+            export_batch=options.export_batch,
+            last_export_directory=folder,
+        )
+        self.services.preferences.update(updated)
+        self._emit(
+            events.EXPORT_COMPLETED,
+            format=options.label,
+            path=folder,
+            count=len(written),
+        )
+        self._status(
+            "status.exported_batch",
+            5000,
+            format=options.label,
+            count=len(written),
+            path=folder,
+        )
+        self._offer_open_exported_path(folder)
 
     def _suggested_export_path(self, default_filename: str) -> str:
         """Prefer last successful export folder when it still exists."""
