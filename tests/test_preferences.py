@@ -275,8 +275,11 @@ def test_preferences_dialog_labels_follow_language(qapp):
     assert dialog.export_include_offcuts.text() == "Include offcuts"
     assert dialog.export_include_piece_labels.text() == "Piece labels (id and size)"
     assert dialog.export_include_offcut_labels.text() == "Offcut labels (size)"
+    assert dialog.export_include_panel_dimensions.text() == "Panel L×W dimensions"
     assert dialog.export_batch.text() == "Export every ranked candidate"
     assert dialog._export_pdf_paper_label.text() == "Paper (PDF):"
+    assert dialog._export_raster_dpi_label.text() == "Resolution (PNG/JPEG):"
+    assert dialog._export_jpeg_quality_label.text() == "JPEG quality:"
     assert "Fit drawing" in [
         dialog.export_pdf_paper.itemText(i)
         for i in range(dialog.export_pdf_paper.count())
@@ -296,8 +299,11 @@ def test_preferences_dialog_labels_follow_language(qapp):
     assert dialog.export_include_offcut_labels.text() == (
         "Etiquetas de retales (medidas)"
     )
+    assert dialog.export_include_panel_dimensions.text() == "Cotas L×A del tablero"
     assert dialog.export_batch.text() == ("Exportar todas las candidatas del ranking")
     assert dialog._export_pdf_paper_label.text() == "Papel (PDF):"
+    assert dialog._export_raster_dpi_label.text() == "Resolución (PNG/JPEG):"
+    assert dialog._export_jpeg_quality_label.text() == "Calidad JPEG:"
     assert "Material primero" in [
         dialog.strategy.itemText(i) for i in range(dialog.strategy.count())
     ]

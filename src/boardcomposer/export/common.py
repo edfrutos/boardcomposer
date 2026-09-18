@@ -11,6 +11,10 @@ from boardcomposer.domain import (
 )
 
 PANEL_GAP_MM = 50.0
+PANEL_COTA_LEFT_MM = 32.0
+PANEL_COTA_BOTTOM_MM = 24.0
+PANEL_COTA_GAP_MM = 10.0
+PANEL_COTA_TICK_MM = 4.0
 
 
 def piece_plan_label(placement: BoardPlacement) -> str:
@@ -21,6 +25,18 @@ def piece_plan_label(placement: BoardPlacement) -> str:
 def offcut_plan_label(offcut: Offcut) -> str:
     """Workshop label: offcut size in mm (ASCII ``x``)."""
     return f"{offcut.length_mm:g}x{offcut.width_mm:g}"
+
+
+def panel_dimension_label(value_mm: float) -> str:
+    """Workshop dimension: overall panel size in mm."""
+    return f"{value_mm:g}"
+
+
+def panel_dimension_margins(enabled: bool) -> tuple[float, float]:
+    """Return ``(left, bottom)`` extra drawing mm when panel cotas are on."""
+    if not enabled:
+        return 0.0, 0.0
+    return PANEL_COTA_LEFT_MM, PANEL_COTA_BOTTOM_MM
 
 
 def prepare_solution_for_export(

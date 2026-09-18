@@ -44,6 +44,7 @@ class BatchProfile:
     include_offcuts: bool = True
     include_piece_labels: bool = True
     include_offcut_labels: bool = True
+    include_panel_dimensions: bool = True
     pdf_paper: str = DEFAULT_PDF_PAPER
     pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     pdf_scale: str = DEFAULT_PDF_SCALE
@@ -70,6 +71,7 @@ class BatchProfile:
             include_offcuts=bool(data.get("include_offcuts", True)),
             include_piece_labels=bool(data.get("include_piece_labels", True)),
             include_offcut_labels=bool(data.get("include_offcut_labels", True)),
+            include_panel_dimensions=bool(data.get("include_panel_dimensions", True)),
             pdf_paper=page.paper,
             pdf_orientation=page.orientation,
             pdf_scale=page.scale,
@@ -114,6 +116,7 @@ class BatchProfile:
             include_offcuts=template.include_offcuts,
             include_piece_labels=template.include_piece_labels,
             include_offcut_labels=template.include_offcut_labels,
+            include_panel_dimensions=template.include_panel_dimensions,
             pdf_paper=template.pdf_paper,
             pdf_orientation=template.pdf_orientation,
             pdf_scale=template.pdf_scale,
@@ -315,6 +318,7 @@ def _write_exports(
                     project,
                     include_piece_labels=profile.include_piece_labels,
                     include_offcut_labels=profile.include_offcut_labels,
+                    include_panel_dimensions=profile.include_panel_dimensions,
                 ),
                 encoding="utf-8",
             )
@@ -325,6 +329,7 @@ def _write_exports(
                     project,
                     include_piece_labels=profile.include_piece_labels,
                     include_offcut_labels=profile.include_offcut_labels,
+                    include_panel_dimensions=profile.include_panel_dimensions,
                 ),
                 encoding="utf-8",
             )
@@ -335,6 +340,7 @@ def _write_exports(
                     project,
                     include_piece_labels=profile.include_piece_labels,
                     include_offcut_labels=profile.include_offcut_labels,
+                    include_panel_dimensions=profile.include_panel_dimensions,
                     page=PdfPageOptions(
                         paper=profile.pdf_paper,
                         orientation=profile.pdf_orientation,

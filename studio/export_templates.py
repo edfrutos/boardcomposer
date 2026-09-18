@@ -12,7 +12,11 @@ from boardcomposer.export import (
     DEFAULT_PDF_PAPER,
     DEFAULT_PDF_SCALE,
 )
-from studio.export_options import ExportOptions
+from studio.export_options import (
+    DEFAULT_JPEG_QUALITY,
+    DEFAULT_RASTER_DPI,
+    ExportOptions,
+)
 
 
 def default_export_templates_path() -> Path:
@@ -51,10 +55,13 @@ class ExportTemplate:
             "include_offcuts": self.options.include_offcuts,
             "include_piece_labels": self.options.include_piece_labels,
             "include_offcut_labels": self.options.include_offcut_labels,
+            "include_panel_dimensions": self.options.include_panel_dimensions,
             "pdf_paper": self.options.pdf_paper,
             "pdf_orientation": self.options.pdf_orientation,
             "pdf_scale": self.options.pdf_scale,
             "pdf_margin_mm": self.options.pdf_margin_mm,
+            "raster_dpi": self.options.raster_dpi,
+            "jpeg_quality": self.options.jpeg_quality,
             "export_batch": self.options.export_batch,
         }
         if self.client:
@@ -73,12 +80,17 @@ class ExportTemplate:
             include_offcuts=bool(payload.get("include_offcuts", True)),
             include_piece_labels=bool(payload.get("include_piece_labels", True)),
             include_offcut_labels=bool(payload.get("include_offcut_labels", True)),
+            include_panel_dimensions=bool(
+                payload.get("include_panel_dimensions", True)
+            ),
             pdf_paper=str(payload.get("pdf_paper", DEFAULT_PDF_PAPER)),
             pdf_orientation=str(
                 payload.get("pdf_orientation", DEFAULT_PDF_ORIENTATION)
             ),
             pdf_scale=str(payload.get("pdf_scale", DEFAULT_PDF_SCALE)),
             pdf_margin_mm=payload.get("pdf_margin_mm", DEFAULT_PDF_MARGIN_MM),
+            raster_dpi=payload.get("raster_dpi", DEFAULT_RASTER_DPI),
+            jpeg_quality=payload.get("jpeg_quality", DEFAULT_JPEG_QUALITY),
             export_batch=bool(payload.get("export_batch", False)),
         ).normalized()
         client = normalize_client(str(payload.get("client", "")))

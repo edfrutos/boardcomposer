@@ -20,8 +20,12 @@ from boardcomposer.solver.strategies import OptimizationStrategy, strategy_by_na
 from studio.theme import DEFAULT_THEME, VALID_THEMES
 from studio.export_options import (
     DEFAULT_EXPORT_FORMAT,
+    DEFAULT_JPEG_QUALITY,
+    DEFAULT_RASTER_DPI,
     VALID_EXPORT_FORMATS,
     ExportOptions,
+    normalize_jpeg_quality,
+    normalize_raster_dpi,
 )
 from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES
 from studio.units import DEFAULT_UNITS, VALID_UNITS
@@ -83,10 +87,13 @@ class StudioPreferences:
     export_include_offcuts: bool = True
     export_include_piece_labels: bool = True
     export_include_offcut_labels: bool = True
+    export_include_panel_dimensions: bool = True
     export_pdf_paper: str = DEFAULT_PDF_PAPER
     export_pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     export_pdf_scale: str = DEFAULT_PDF_SCALE
     export_pdf_margin_mm: float = DEFAULT_PDF_MARGIN_MM
+    export_raster_dpi: int = DEFAULT_RASTER_DPI
+    export_jpeg_quality: int = DEFAULT_JPEG_QUALITY
     export_batch: bool = False
     last_export_directory: str | None = None
     last_backup_directory: str | None = None
@@ -128,10 +135,13 @@ class StudioPreferences:
             include_offcuts=self.export_include_offcuts,
             include_piece_labels=self.export_include_piece_labels,
             include_offcut_labels=self.export_include_offcut_labels,
+            include_panel_dimensions=self.export_include_panel_dimensions,
             pdf_paper=self.export_pdf_paper,
             pdf_orientation=self.export_pdf_orientation,
             pdf_scale=self.export_pdf_scale,
             pdf_margin_mm=self.export_pdf_margin_mm,
+            raster_dpi=self.export_raster_dpi,
+            jpeg_quality=self.export_jpeg_quality,
             export_batch=self.export_batch,
         ).normalized()
 
@@ -306,10 +316,19 @@ class PreferencesManager:
             export_include_offcut_labels=bool(
                 payload.get("export_include_offcut_labels", True)
             ),
+            export_include_panel_dimensions=bool(
+                payload.get("export_include_panel_dimensions", True)
+            ),
             export_pdf_paper=page.paper,
             export_pdf_orientation=page.orientation,
             export_pdf_scale=page.scale,
             export_pdf_margin_mm=page.margin_mm,
+            export_raster_dpi=normalize_raster_dpi(
+                payload.get("export_raster_dpi", DEFAULT_RASTER_DPI)
+            ),
+            export_jpeg_quality=normalize_jpeg_quality(
+                payload.get("export_jpeg_quality", DEFAULT_JPEG_QUALITY)
+            ),
             export_batch=bool(payload.get("export_batch", False)),
             last_export_directory=_optional_directory(
                 payload.get("last_export_directory")
@@ -380,10 +399,15 @@ class PreferencesManager:
             "export_include_offcuts": preferences.export_include_offcuts,
             "export_include_piece_labels": (preferences.export_include_piece_labels),
             "export_include_offcut_labels": (preferences.export_include_offcut_labels),
+            "export_include_panel_dimensions": (
+                preferences.export_include_panel_dimensions
+            ),
             "export_pdf_paper": preferences.export_pdf_paper,
             "export_pdf_orientation": preferences.export_pdf_orientation,
             "export_pdf_scale": preferences.export_pdf_scale,
             "export_pdf_margin_mm": preferences.export_pdf_margin_mm,
+            "export_raster_dpi": preferences.export_raster_dpi,
+            "export_jpeg_quality": preferences.export_jpeg_quality,
             "export_batch": preferences.export_batch,
             "last_export_directory": preferences.last_export_directory,
             "last_backup_directory": preferences.last_backup_directory,

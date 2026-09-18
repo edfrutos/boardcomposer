@@ -226,11 +226,14 @@ marcadores…).
 
 - Formatos: SVG / PNG / JPEG / PDF / DXF / JSON / CSV. Vista previa según
   opciones (métricas y explicación solo JSON; retales; **etiquetas** de
-  pieza con id y LxW mm y de retal con LxW mm en el plano SVG/PDF/DXF/raster).
+  pieza con id y LxW mm y de retal con LxW mm; **cotas L×A** del tablero
+  en el plano SVG/PDF/DXF/raster).
   El JSON de Studio incluye coste estimado si el catálogo tiene precio €/m².
   En **PDF** de plano: papel (ajustar al dibujo, A4, A3, Letter),
   orientación, escala (ajustar o 1:n) y márgenes mm. Lista de corte y
   presupuesto PDF siguen en A4.
+  En **PNG/JPEG**: resolución DPI (36–300, default 96) y, en JPEG,
+  calidad 1–100 (default 90).
   **Lote:** marca «Exportar las N candidatas del ranking» y elige carpeta;
   un archivo numerado por candidata (`boardcomposer-solution-01…`). El CLI
   `boardcomposer-batch` sigue siendo para carpetas de proyectos, no para
@@ -258,7 +261,8 @@ marcadores…).
 - **Workspace:** mostrar cuadrícula y tamaño (afecta **Shift+flechas**).
 - **Algoritmos:** estrategia y pesos opcionales.
 - **Exportación:** formato por defecto y opciones (métricas / explicación
-  JSON, retales, etiquetas de piezas y de retales).
+  JSON, retales, etiquetas de piezas y de retales, cotas de tablero,
+  DPI y calidad JPEG).
 - **Avanzado:** máx. soluciones a conservar; **Catálogo de materiales**
   (nombres, espesores, medidas L×A, precio €/m²); **Abrir carpeta de
   configuración…** (`preferences.json`); **Restaurar valores**.

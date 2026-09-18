@@ -14,7 +14,7 @@ from studio.export_batch import (
     ranked_export_filename,
     write_export_payload,
 )
-from studio.export_options import ExportOptions, preview_text
+from studio.export_options import ExportOptions, preview_svg, preview_text
 
 
 def _solution(piece_id: str = "A") -> AssemblySolution:
@@ -53,7 +53,12 @@ def test_export_ranked_solutions_writes_numbered_svg(tmp_path):
     assert "B 100x50" in second
 
 
-def test_write_export_payload_json(tmp_path):
+def test_write_export_payload_png_uses_dpi(qapp, tmp_path):
+    del qapp
+    path = tmp_path / "one.png"
+    svg = preview_svg(_solution(), None, ExportOptions(format="png"))
+    write_export_payload(path, svg, ExportOptions(format="png", raster_dpi=72))
+    assert path.read_bytes().startswith(b"\x89PNG")
     path = tmp_path / "one.json"
     payload = '{"ok": true}'
     write_export_payload(path, payload, ExportOptions(format="json"))

@@ -37,6 +37,8 @@
 - Lista de corte / informe taller (**Ctrl+Alt+C**, IDE-0023).
 - Etiquetas de piezas en plano SVG/PDF/DXF (IDE-0026).
 - Etiquetas de retales (LxW mm) en plano SVG/PDF/DXF (IDE-0033).
+- Cotas L×A del tablero en plano SVG/PDF/DXF (IDE-0037).
+- Calidad raster PNG/JPEG (DPI y calidad JPEG, IDE-0038).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
 - Retales a inventario del mismo proyecto (**Ctrl+Alt+R**, IDE-0025).

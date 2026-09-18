@@ -82,12 +82,52 @@ def solution_thumbnails(
     return [svg_to_pixmap(svg, box=box, scale=scale) for svg in svgs]
 
 
-def svg_to_raster_bytes(svg: str, *, image_format: str) -> bytes:
-    """Render SVG into PNG/JPEG bytes at intrinsic size."""
-    pixmap = svg_to_pixmap(svg, box=svg_default_size(svg))
+def raster_pixel_size(svg_size: QSize, dpi: int) -> QSize:
+    """Return PNG/JPEG pixel size for an SVG whose units are millimetres."""
+    from studio.export_options import (
+        MAX_RASTER_EDGE_PX,
+        MM_PER_INCH,
+        normalize_raster_dpi,
+    )
+
+    scale = normalize_raster_dpi(dpi) / MM_PER_INCH
+    width = max(1, int(round(svg_size.width() * scale)))
+    height = max(1, int(round(svg_size.height() * scale)))
+    longest = max(width, height)
+    if longest > MAX_RASTER_EDGE_PX:
+        factor = MAX_RASTER_EDGE_PX / longest
+        width = max(1, int(round(width * factor)))
+        height = max(1, int(round(height * factor)))
+    return QSize(width, height)
+
+
+def svg_to_raster_bytes(
+    svg: str,
+    *,
+    image_format: str,
+    dpi: int | None = None,
+    jpeg_quality: int | None = None,
+) -> bytes:
+    """Render SVG into PNG/JPEG bytes at the requested DPI."""
+    from studio.export_options import (
+        DEFAULT_JPEG_QUALITY,
+        DEFAULT_RASTER_DPI,
+        normalize_jpeg_quality,
+    )
+
+    target = raster_pixel_size(
+        svg_default_size(svg),
+        DEFAULT_RASTER_DPI if dpi is None else dpi,
+    )
+    pixmap = svg_to_pixmap(svg, box=target)
     buffer = QBuffer()
     buffer.open(QIODevice.OpenModeFlag.WriteOnly)
-    ok = pixmap.save(buffer, image_format.upper())
+    quality = -1
+    if image_format.upper() in {"JPEG", "JPG"}:
+        quality = normalize_jpeg_quality(
+            DEFAULT_JPEG_QUALITY if jpeg_quality is None else jpeg_quality
+        )
+    ok = pixmap.save(buffer, image_format.upper(), quality)
     data = bytes(buffer.data())
     buffer.close()
     if not ok or not data:

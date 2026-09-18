@@ -112,6 +112,10 @@ Observaciones:
 | IDE-0040 | Unidades en Inspector (mm/cm/in) | ⚪ | P3 |
 | IDE-0041 | Capas DXF por rol (marco/pieza/retal/cota) | ⚪ | P3 |
 | IDE-0042 | Exportar/importar catálogo de materiales | ⚪ | P3 |
+| IDE-0037 | Cotas L×A del tablero en plano | 🟢 | P2 |
+| IDE-0038 | Calidad raster PNG/JPEG (DPI) | 🟢 | P3 |
+| IDE-0039 | Trazabilidad en plano (versión, algoritmo, fecha) | ⚪ | P3 |
+| IDE-0040 | Unidades en Inspector (mm/cm/in) | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 

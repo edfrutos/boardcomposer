@@ -101,6 +101,10 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 ## 6. Exportación
 
 - [x] Exportar solución (menú/flujo) completa sin error visible.
+- [ ] Exportar plano: cotas L×A del tablero visibles; desmarcar la casilla
+  las quita sin cambiar piezas ni retales.
+- [ ] Exportar PNG/JPEG: subir DPI agranda el archivo; bajar calidad JPEG
+  lo aligera.
 - [x] Lista de corte (**Ctrl+Alt+C**): elige CSV o PDF; no es el CSV del
   diálogo de solución.
 - [x] Opción abrir después (si existe) abre el artefacto.

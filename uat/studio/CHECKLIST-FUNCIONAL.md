@@ -185,11 +185,15 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
 `tests/test_suggest_gap.py`.
 
 - [ ] **Ctrl+Shift+E** plano SVG/PDF: piezas muestran id y LxW mm; retales
-  muestran LxW mm; desmarcar «Etiquetas de piezas» o «Etiquetas de retales»
-  deja el plano sin ese texto; Workspace sigue mostrando solo piezas.
+  muestran LxW mm; el tablero muestra cotas L×A; desmarcar «Etiquetas de
+  piezas», «Etiquetas de retales» o «Cotas L×A del tablero» deja el
+  plano sin ese texto; Workspace sigue mostrando solo piezas.
 - [ ] **Ctrl+Shift+E** PDF de plano: papel A4/A3/Letter o ajustar al
   dibujo; escala fit o 1:n; márgenes mm. Lista de corte y presupuesto
   PDF no cambian de página.
+- [ ] **Ctrl+Shift+E** PNG/JPEG: DPI 36–300 cambia el tamaño del archivo;
+  JPEG calidad baja el peso; deshabilitado en SVG/PDF/DXF. Preferencias
+  recuerdan DPI y calidad.
 - [ ] **Ctrl+Shift+E** lote: con ≥2 candidatas, marca «Exportar las N
   candidatas del ranking»; elige carpeta; aparecen
   `boardcomposer-solution-01` y siguientes. Con 1 candidata la casilla

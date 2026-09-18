@@ -125,8 +125,8 @@ sin críticas sin plan. Ola 1 (0025…0030) cerrada (`#638`); segunda ola
 IDE-0031…0036.
 
 **Revisión 2026-09-17 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
-sin críticas sin plan. Segunda ola 0031…0034 en `main`; restante
-IDE-0036 (`#645`) + IDE-0035; Issues = 0 → sin IDE nuevas.
+sin críticas sin plan. Segunda ola 0031…0036 en `main`; IDE-0037 cotas
+de tablero; IDE-0038 raster; cola 0039…0040; Issues = 0.
 
 **Revisión 2026-09-18 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
 sin críticas sin plan. Segunda ola 0031…0036 en `main`; Issues = 0 →
