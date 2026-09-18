@@ -4,7 +4,7 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.40
+**Versión:** 1.3.41
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
 **Última revisión:** 17/09/2026
@@ -106,6 +106,10 @@ Observaciones:
 | IDE-0034 | Papel / márgenes / escala en PDF | 🟢 | P2 |
 | IDE-0035 | Exportar soluciones en lote | 🟢 | P2 |
 | IDE-0036 | Colocación manual asistida (sugerir hueco) | 🟢 | P3 |
+| IDE-0037 | Cotas L×A del tablero en plano | 🟢 | P2 |
+| IDE-0038 | Calidad raster PNG/JPEG (DPI) | ⚪ | P3 |
+| IDE-0039 | Trazabilidad en plano (versión, algoritmo, fecha) | ⚪ | P3 |
+| IDE-0040 | Unidades en Inspector (mm/cm/in) | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -135,6 +139,10 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0034 | M | SCR-007; export PDF | Entregado; papel/márgenes/escala plano |
 | IDE-0035 | M | SCR-007; ExportDialog | Entregado; lote candidatas Studio |
 | IDE-0036 | M–L | Workspace; PlacementValidator | Entregado; Ctrl+Alt+G; snap drop |
+| IDE-0037 | S–M | SCR-007; export SVG/PDF/DXF | Entregado; cotas L×A; casilla export |
+| IDE-0038 | S | SCR-007; raster PNG/JPEG | DPI/calidad; no cambia solver |
+| IDE-0039 | S–M | SCR-007; export plan | Versión app, algoritmo, fecha |
+| IDE-0040 | S–M | Inspector; prefs.units | Display; persistencia sigue mm |
 
 ---
 
@@ -162,14 +170,15 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0036 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0036). IDE-0007 🟢 MVP+eval
+**Estado actual:** 🟢 Actualizado — IDE-0001…0037 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0037). IDE-0007 🟢 MVP+eval
 (2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-09-17-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` segunda ola vacía (0031…0036 entregadas).
+1. Cola producto `0.4.4` tercera ola: IDE-0038…0040 (0037 cotas
+   entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

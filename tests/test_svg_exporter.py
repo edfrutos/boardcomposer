@@ -45,8 +45,11 @@ def test_solution_to_svg_places_physical_panels_side_by_side():
 
     svg = solution_to_svg(solution, project)
 
-    assert 'width="2050"' in svg
-    assert '<rect x="1050" y="30" width="900" height="400"' in svg
+    assert 'width="2082"' in svg
+    assert '<rect x="1082" y="30" width="900" height="400"' in svg
+    assert 'text-anchor="middle"' in svg
+    assert ">1000</text>" in svg
+    assert ">500</text>" in svg
 
 
 def test_solution_to_svg_does_not_overlap_panel_and_piece_labels():
@@ -137,3 +140,22 @@ def test_solution_to_svg_omits_offcut_labels_when_disabled():
 
     assert "stroke-dasharray" in svg
     assert "600x1000" not in svg
+
+
+def test_solution_to_svg_omits_panel_dimensions_when_disabled():
+    project = Project()
+    project.add_stock_panel(StockPanel(1000, 500, 19, "P1", quantity=2))
+    solution = AssemblySolution(
+        placements=[
+            BoardPlacement("A", 0, 0, 900, 400, panel_reference=PanelReference(0, 0)),
+            BoardPlacement("B", 0, 0, 900, 400, panel_reference=PanelReference(0, 1)),
+        ]
+    )
+
+    svg = solution_to_svg(solution, project, include_panel_dimensions=False)
+
+    assert 'width="2050"' in svg
+    assert '<rect x="1050" y="30" width="900" height="400"' in svg
+    assert 'text-anchor="middle"' not in svg
+    assert ">1000</text>" not in svg
+    assert ">500</text>" not in svg

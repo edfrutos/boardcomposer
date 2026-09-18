@@ -51,6 +51,7 @@ class ExportTemplate:
             "include_offcuts": self.options.include_offcuts,
             "include_piece_labels": self.options.include_piece_labels,
             "include_offcut_labels": self.options.include_offcut_labels,
+            "include_panel_dimensions": self.options.include_panel_dimensions,
             "pdf_paper": self.options.pdf_paper,
             "pdf_orientation": self.options.pdf_orientation,
             "pdf_scale": self.options.pdf_scale,
@@ -73,6 +74,9 @@ class ExportTemplate:
             include_offcuts=bool(payload.get("include_offcuts", True)),
             include_piece_labels=bool(payload.get("include_piece_labels", True)),
             include_offcut_labels=bool(payload.get("include_offcut_labels", True)),
+            include_panel_dimensions=bool(
+                payload.get("include_panel_dimensions", True)
+            ),
             pdf_paper=str(payload.get("pdf_paper", DEFAULT_PDF_PAPER)),
             pdf_orientation=str(
                 payload.get("pdf_orientation", DEFAULT_PDF_ORIENTATION)

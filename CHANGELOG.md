@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Exportar: cotas L×A del tablero en plano (IDE-0037); líneas de
+  dimensión overall en SVG/PDF/DXF (raster vía SVG); casilla en
+  Exportar y Preferencias; plantillas y batch EP-002. Default: sí.
+  JSON/CSV no. Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-09-17: snapshot
   `docs/masterplan/REVIEW-2026-09-17-planificacion.md`; Issues = 0;
   `v0.4.3` publicada; segunda ola 0031…0036 en `main` (`#644`/`#645`)

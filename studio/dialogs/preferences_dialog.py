@@ -183,6 +183,11 @@ class PreferencesDialog(QDialog):
             preferences.export_include_offcut_labels
         )
         export_form.addRow("", self.export_include_offcut_labels)
+        self.export_include_panel_dimensions = QCheckBox()
+        self.export_include_panel_dimensions.setChecked(
+            preferences.export_include_panel_dimensions
+        )
+        export_form.addRow("", self.export_include_panel_dimensions)
         self.export_batch = QCheckBox()
         self.export_batch.setChecked(preferences.export_batch)
         export_form.addRow("", self.export_batch)
@@ -294,6 +299,9 @@ class PreferencesDialog(QDialog):
         self.export_include_offcut_labels.setText(
             tr("prefs.export_offcut_labels", language)
         )
+        self.export_include_panel_dimensions.setText(
+            tr("prefs.export_panel_dimensions", language)
+        )
         self.export_batch.setText(tr("prefs.export_batch", language))
         self._export_pdf_paper_label.setText(tr("prefs.export_pdf_paper", language))
         self._export_pdf_orientation_label.setText(
@@ -395,6 +403,7 @@ class PreferencesDialog(QDialog):
         self.export_include_offcuts.setChecked(True)
         self.export_include_piece_labels.setChecked(True)
         self.export_include_offcut_labels.setChecked(True)
+        self.export_include_panel_dimensions.setChecked(True)
         self.export_batch.setChecked(False)
         paper_index = self.export_pdf_paper.findData(DEFAULT_PDF_PAPER)
         self.export_pdf_paper.setCurrentIndex(paper_index if paper_index >= 0 else 0)
@@ -452,6 +461,9 @@ class PreferencesDialog(QDialog):
             export_include_piece_labels=(self.export_include_piece_labels.isChecked()),
             export_include_offcut_labels=(
                 self.export_include_offcut_labels.isChecked()
+            ),
+            export_include_panel_dimensions=(
+                self.export_include_panel_dimensions.isChecked()
             ),
             export_batch=self.export_batch.isChecked(),
             export_pdf_paper=self.export_pdf_paper.currentData() or DEFAULT_PDF_PAPER,

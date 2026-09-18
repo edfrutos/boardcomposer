@@ -40,6 +40,7 @@ class NamedExportTemplate:
     include_offcuts: bool = True
     include_piece_labels: bool = True
     include_offcut_labels: bool = True
+    include_panel_dimensions: bool = True
     pdf_paper: str = DEFAULT_PDF_PAPER
     pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     pdf_scale: str = DEFAULT_PDF_SCALE
@@ -73,6 +74,9 @@ class NamedExportTemplate:
             include_offcuts=bool(payload.get("include_offcuts", True)),
             include_piece_labels=bool(payload.get("include_piece_labels", True)),
             include_offcut_labels=bool(payload.get("include_offcut_labels", True)),
+            include_panel_dimensions=bool(
+                payload.get("include_panel_dimensions", True)
+            ),
             pdf_paper=page.paper,
             pdf_orientation=page.orientation,
             pdf_scale=page.scale,

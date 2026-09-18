@@ -37,6 +37,7 @@
 - Lista de corte / informe taller (**Ctrl+Alt+C**, IDE-0023).
 - Etiquetas de piezas en plano SVG/PDF/DXF (IDE-0026).
 - Etiquetas de retales (LxW mm) en plano SVG/PDF/DXF (IDE-0033).
+- Cotas L×A del tablero en plano SVG/PDF/DXF (IDE-0037).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
 - Retales a inventario del mismo proyecto (**Ctrl+Alt+R**, IDE-0025).
@@ -49,8 +50,8 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` segunda ola: cola IDE-0031…0036 entregada
-   (0036 hueco asistido `#645`; 0035 lote `#644`).
+1. Ciclo `0.4.4` tercera ola: IDE-0038…0040 (0037 cotas de tablero
+   entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

@@ -78,6 +78,7 @@ def test_preview_text_includes_format_summary():
     assert "Piezas colocadas: 1" in text
     assert "Papel: drawing" in text
     assert "escala: 1:1" in text
+    assert "Cotas L×A del tablero incluidas." in text
 
 
 def test_render_export_png_and_jpeg_return_svg_payload():
@@ -141,6 +142,30 @@ def test_preview_svg_respects_offcut_labels_option():
     assert DEFAULT_SVG_PALETTE.offcut_stroke in without_labels
 
 
+def test_preview_svg_respects_panel_dimensions_option():
+    from boardcomposer.domain import Project, StockPanel
+
+    project = Project()
+    project.add_stock_panel(StockPanel(1000, 500, 19, "P1"))
+    solution = AssemblySolution(
+        placements=[
+            BoardPlacement("A", 0, 0, 400, 300, panel_reference=PanelReference(0, 0))
+        ]
+    )
+
+    with_dims = preview_svg(
+        solution, project, ExportOptions(include_panel_dimensions=True)
+    )
+    without_dims = preview_svg(
+        solution, project, ExportOptions(include_panel_dimensions=False)
+    )
+
+    assert ">1000</text>" in with_dims
+    assert ">500</text>" in with_dims
+    assert ">1000</text>" not in without_dims
+    assert ">500</text>" not in without_dims
+
+
 def test_export_dialog_piece_labels_enabled_for_plan_formats(qapp):
     del qapp
     from studio.dialogs import ExportDialog
@@ -150,17 +175,21 @@ def test_export_dialog_piece_labels_enabled_for_plan_formats(qapp):
     assert dialog.include_piece_labels.text() == "Etiquetas de piezas (id y medidas)"
     assert dialog.include_offcut_labels.isEnabled()
     assert dialog.include_offcut_labels.text() == "Etiquetas de retales (medidas)"
+    assert dialog.include_panel_dimensions.isEnabled()
+    assert dialog.include_panel_dimensions.text() == "Cotas L×A del tablero"
 
     dialog.format.setCurrentIndex(dialog.format.findData("json"))
     dialog._refresh_preview()
     assert not dialog.include_piece_labels.isEnabled()
     assert not dialog.include_offcut_labels.isEnabled()
+    assert not dialog.include_panel_dimensions.isEnabled()
 
     dialog.format.setCurrentIndex(dialog.format.findData("svg"))
     dialog.include_offcuts.setChecked(False)
     dialog._refresh_preview()
     assert dialog.include_piece_labels.isEnabled()
     assert not dialog.include_offcut_labels.isEnabled()
+    assert dialog.include_panel_dimensions.isEnabled()
 
 
 def test_export_dialog_pdf_page_controls_enabled_only_for_pdf(qapp):
