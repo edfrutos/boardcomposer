@@ -1,9 +1,14 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-17
+## Unreleased — 0.4.4.dev0 — 2026-09-18
 
 ### Añadido
 
+- Docs planificación 2026-09-18: snapshot
+  `docs/masterplan/REVIEW-2026-09-18-planificacion.md`; Issues = 0;
+  segunda ola 0031…0036 en `main`; cola vacía → tercera ola
+  IDE-0037…0042 (cotas tablero `#647`, DPI raster, trazabilidad plano,
+  unidades Inspector, capas DXF, export/import catálogo).
 - Docs planificación 2026-09-17: snapshot
   `docs/masterplan/REVIEW-2026-09-17-planificacion.md`; Issues = 0;
   `v0.4.3` publicada; segunda ola 0031…0036 en `main` (`#644`/`#645`)
@@ -60,7 +65,7 @@
 ### Cambiado
 
 - Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con
-  `0.4.4.dev0` y snapshot 2026-09-17.
+  `0.4.4.dev0` y snapshot 2026-09-18.
 
 ## 0.4.3 — 2026-09-14
 

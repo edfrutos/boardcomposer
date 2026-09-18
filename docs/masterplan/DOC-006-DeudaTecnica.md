@@ -3,10 +3,10 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.30
+**Versión:** 1.2.31
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 17/09/2026
+**Última revisión:** 18/09/2026
 
 ---
 
@@ -128,6 +128,10 @@ IDE-0031…0036.
 sin críticas sin plan. Segunda ola 0031…0034 en `main`; restante
 IDE-0036 (`#645`) + IDE-0035; Issues = 0 → sin IDE nuevas.
 
+**Revisión 2026-09-18 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
+sin críticas sin plan. Segunda ola 0031…0036 en `main`; Issues = 0 →
+tercera ola IDE-0037…0042 (0037 🟡 `#647`).
+
 ---
 
 ## Política de gestión
@@ -154,8 +158,8 @@ IDE-0036 (`#645`) + IDE-0035; Issues = 0 → sin IDE nuevas.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-09-17 en `REVIEW-2026-09-17-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`09-16` (abiertas = 1, DT-0006).
+2026-09-18 en `REVIEW-2026-09-18-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`09-17` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -164,6 +168,6 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
-- Cola producto ciclo `0.4.4` segunda ola IDE-0031…0036 entregada
+- Cola producto ciclo `0.4.4` tercera ola IDE-0037…0042 (0037 `#647`)
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
