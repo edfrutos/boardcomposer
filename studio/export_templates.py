@@ -12,7 +12,11 @@ from boardcomposer.export import (
     DEFAULT_PDF_PAPER,
     DEFAULT_PDF_SCALE,
 )
-from studio.export_options import ExportOptions
+from studio.export_options import (
+    DEFAULT_JPEG_QUALITY,
+    DEFAULT_RASTER_DPI,
+    ExportOptions,
+)
 
 
 def default_export_templates_path() -> Path:
@@ -56,6 +60,8 @@ class ExportTemplate:
             "pdf_orientation": self.options.pdf_orientation,
             "pdf_scale": self.options.pdf_scale,
             "pdf_margin_mm": self.options.pdf_margin_mm,
+            "raster_dpi": self.options.raster_dpi,
+            "jpeg_quality": self.options.jpeg_quality,
             "export_batch": self.options.export_batch,
         }
         if self.client:
@@ -83,6 +89,8 @@ class ExportTemplate:
             ),
             pdf_scale=str(payload.get("pdf_scale", DEFAULT_PDF_SCALE)),
             pdf_margin_mm=payload.get("pdf_margin_mm", DEFAULT_PDF_MARGIN_MM),
+            raster_dpi=payload.get("raster_dpi", DEFAULT_RASTER_DPI),
+            jpeg_quality=payload.get("jpeg_quality", DEFAULT_JPEG_QUALITY),
             export_batch=bool(payload.get("export_batch", False)),
         ).normalized()
         client = normalize_client(str(payload.get("client", "")))

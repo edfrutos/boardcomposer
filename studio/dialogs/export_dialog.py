@@ -21,6 +21,7 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QPushButton,
     QScrollArea,
+    QSpinBox,
     QTextEdit,
     QVBoxLayout,
 )
@@ -38,6 +39,10 @@ from studio.dialogs.dialog_chrome import (
     polish_secondary_button,
 )
 from studio.export_options import (
+    MAX_JPEG_QUALITY,
+    MAX_RASTER_DPI,
+    MIN_JPEG_QUALITY,
+    MIN_RASTER_DPI,
     VALID_EXPORT_FORMATS,
     ExportOptions,
     format_label,
@@ -227,6 +232,22 @@ class ExportDialog(QDialog):
         self.pdf_margin_mm.valueChanged.connect(self._on_options_edited)
         form.addRow(self._tr("export.pdf_margin"), self.pdf_margin_mm)
 
+        self.raster_dpi = QSpinBox()
+        self.raster_dpi.setRange(MIN_RASTER_DPI, MAX_RASTER_DPI)
+        self.raster_dpi.setSingleStep(12)
+        self.raster_dpi.setSuffix(" DPI")
+        self.raster_dpi.setValue(options.raster_dpi)
+        self.raster_dpi.valueChanged.connect(self._on_options_edited)
+        form.addRow(self._tr("export.raster_dpi"), self.raster_dpi)
+
+        self.jpeg_quality = QSpinBox()
+        self.jpeg_quality.setRange(MIN_JPEG_QUALITY, MAX_JPEG_QUALITY)
+        self.jpeg_quality.setSingleStep(5)
+        self.jpeg_quality.setSuffix(" %")
+        self.jpeg_quality.setValue(options.jpeg_quality)
+        self.jpeg_quality.valueChanged.connect(self._on_options_edited)
+        form.addRow(self._tr("export.jpeg_quality"), self.jpeg_quality)
+
         self.export_batch = QCheckBox(
             self._tr("export.batch", count=self._ranked_count)
         )
@@ -287,6 +308,8 @@ class ExportDialog(QDialog):
             pdf_orientation=self.pdf_orientation.currentData() or "auto",
             pdf_scale=self.pdf_scale.currentData() or "1:1",
             pdf_margin_mm=self.pdf_margin_mm.value(),
+            raster_dpi=self.raster_dpi.value(),
+            jpeg_quality=self.jpeg_quality.value(),
             export_batch=self.export_batch.isChecked() and self._ranked_count >= 2,
         ).normalized()
 
@@ -378,6 +401,8 @@ class ExportDialog(QDialog):
         self.pdf_orientation.blockSignals(True)
         self.pdf_scale.blockSignals(True)
         self.pdf_margin_mm.blockSignals(True)
+        self.raster_dpi.blockSignals(True)
+        self.jpeg_quality.blockSignals(True)
         self.export_batch.blockSignals(True)
 
         index = self.format.findData(options.format)
@@ -397,6 +422,8 @@ class ExportDialog(QDialog):
         scale_index = self.pdf_scale.findData(options.pdf_scale)
         self.pdf_scale.setCurrentIndex(scale_index if scale_index >= 0 else 0)
         self.pdf_margin_mm.setValue(options.pdf_margin_mm)
+        self.raster_dpi.setValue(options.raster_dpi)
+        self.jpeg_quality.setValue(options.jpeg_quality)
         self.export_batch.setChecked(
             bool(options.export_batch) and self._ranked_count >= 2
         )
@@ -412,6 +439,8 @@ class ExportDialog(QDialog):
         self.pdf_orientation.blockSignals(False)
         self.pdf_scale.blockSignals(False)
         self.pdf_margin_mm.blockSignals(False)
+        self.raster_dpi.blockSignals(False)
+        self.jpeg_quality.blockSignals(False)
         self.export_batch.blockSignals(False)
         self._refresh_preview()
 
@@ -613,6 +642,9 @@ class ExportDialog(QDialog):
         iso_paper = pdf and options.pdf_paper != "drawing"
         self.pdf_orientation.setEnabled(iso_paper)
         self.pdf_scale.setEnabled(iso_paper)
+        raster = options.format in {"png", "jpeg"}
+        self.raster_dpi.setEnabled(raster)
+        self.jpeg_quality.setEnabled(options.format == "jpeg")
 
         svg = preview_svg(self._solution, self._project, options)
         pixmap = svg_to_pixmap(svg, box=_GRAPHIC_PREVIEW_SIZE)

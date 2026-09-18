@@ -1,9 +1,13 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-17
+## Unreleased — 0.4.4.dev0 — 2026-09-18
 
 ### Añadido
 
+- Exportar: calidad raster PNG/JPEG (IDE-0038); DPI 36–300 (default 96)
+  y calidad JPEG 1–100 (default 90); casilla/spins en Exportar y
+  Preferencias; plantillas. Lado mayor acotado a 16384 px. SVG/PDF/DXF
+  no. Sin bump `.bcproj`; no cambia el solver.
 - Exportar: cotas L×A del tablero en plano (IDE-0037); líneas de
   dimensión overall en SVG/PDF/DXF (raster vía SVG); casilla en
   Exportar y Preferencias; plantillas y batch EP-002. Default: sí.

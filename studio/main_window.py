@@ -4284,6 +4284,8 @@ class MainWindow(QMainWindow):
             export_pdf_orientation=options.pdf_orientation,
             export_pdf_scale=options.pdf_scale,
             export_pdf_margin_mm=options.pdf_margin_mm,
+            export_raster_dpi=options.raster_dpi,
+            export_jpeg_quality=options.jpeg_quality,
             export_batch=options.export_batch,
             last_export_directory=str(Path(path).expanduser().resolve().parent),
         )
@@ -4359,6 +4361,8 @@ class MainWindow(QMainWindow):
             export_pdf_orientation=options.pdf_orientation,
             export_pdf_scale=options.pdf_scale,
             export_pdf_margin_mm=options.pdf_margin_mm,
+            export_raster_dpi=options.raster_dpi,
+            export_jpeg_quality=options.jpeg_quality,
             export_batch=options.export_batch,
             last_export_directory=folder,
         )

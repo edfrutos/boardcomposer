@@ -23,6 +23,15 @@ from boardcomposer.export import (
 VALID_EXPORT_FORMATS = ("svg", "png", "jpeg", "dxf", "pdf", "json", "csv")
 DEFAULT_EXPORT_FORMAT = "svg"
 
+MM_PER_INCH = 25.4
+DEFAULT_RASTER_DPI = 96
+MIN_RASTER_DPI = 36
+MAX_RASTER_DPI = 300
+DEFAULT_JPEG_QUALITY = 90
+MIN_JPEG_QUALITY = 1
+MAX_JPEG_QUALITY = 100
+MAX_RASTER_EDGE_PX = 16384
+
 _FORMAT_LABELS = {
     "svg": "SVG",
     "png": "PNG",
@@ -59,6 +68,8 @@ class ExportOptions:
     pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     pdf_scale: str = DEFAULT_PDF_SCALE
     pdf_margin_mm: float = DEFAULT_PDF_MARGIN_MM
+    raster_dpi: int = DEFAULT_RASTER_DPI
+    jpeg_quality: int = DEFAULT_JPEG_QUALITY
     export_batch: bool = False
 
     def normalized(self) -> ExportOptions:
@@ -80,6 +91,8 @@ class ExportOptions:
             pdf_orientation=page.orientation,
             pdf_scale=page.scale,
             pdf_margin_mm=page.margin_mm,
+            raster_dpi=normalize_raster_dpi(self.raster_dpi),
+            jpeg_quality=normalize_jpeg_quality(self.jpeg_quality),
             export_batch=self.export_batch,
         )
 
@@ -103,6 +116,24 @@ class ExportOptions:
     @property
     def extension(self) -> str:
         return self.normalized().format
+
+
+def normalize_raster_dpi(value: object) -> int:
+    """Clamp PNG/JPEG resolution (dots per inch)."""
+    try:
+        dpi = int(round(float(value)))
+    except (TypeError, ValueError):
+        return DEFAULT_RASTER_DPI
+    return max(MIN_RASTER_DPI, min(MAX_RASTER_DPI, dpi))
+
+
+def normalize_jpeg_quality(value: object) -> int:
+    """Clamp JPEG encoder quality (1–100)."""
+    try:
+        quality = int(round(float(value)))
+    except (TypeError, ValueError):
+        return DEFAULT_JPEG_QUALITY
+    return max(MIN_JPEG_QUALITY, min(MAX_JPEG_QUALITY, quality))
 
 
 def _plan_label_kwargs(options: ExportOptions) -> dict[str, bool]:
@@ -269,6 +300,10 @@ def preview_text(
         summary.append(
             "Arriba: vista previa del layout (misma geometría que el export)."
         )
+    if options.format in {"png", "jpeg"}:
+        summary.append(f"Resolución: {options.raster_dpi} DPI.")
+        if options.format == "jpeg":
+            summary.append(f"Calidad JPEG: {options.jpeg_quality}.")
     if options.format == "pdf":
         summary.append(
             f"Papel: {options.pdf_paper}; orientación: {options.pdf_orientation}; "

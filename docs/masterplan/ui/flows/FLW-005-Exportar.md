@@ -53,7 +53,7 @@ Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.
 5. Elige formato: SVG / PNG / JPEG / DXF / PDF / JSON / CSV.
 6. Ajusta opciones: métricas y explicación (solo JSON), retales (todos),
    etiquetas de piezas y de retales (planos SVG/PDF/DXF/raster), cotas
-   L×A del tablero, papel PDF,
+   L×A del tablero, papel PDF, DPI/calidad raster,
    lote de candidatas si el ranking tiene más de una.
 7. Opcional: aplica o guarda una plantilla / perfil por cliente.
 8. Revisa la vista previa (SVG + texto/resumen).

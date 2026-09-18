@@ -233,3 +233,76 @@ def test_svg_to_raster_bytes_supports_png_and_jpeg(qapp):
     jpeg = svg_to_raster_bytes(svg, image_format="JPEG")
     assert png.startswith(b"\x89PNG")
     assert jpeg[:2] == b"\xff\xd8"
+
+
+def test_export_options_normalizes_raster_settings():
+    from studio.export_options import MAX_JPEG_QUALITY, MAX_RASTER_DPI
+    from studio.export_options import MIN_JPEG_QUALITY, MIN_RASTER_DPI
+
+    low = ExportOptions(raster_dpi=1, jpeg_quality=0).normalized()
+    assert low.raster_dpi == MIN_RASTER_DPI
+    assert low.jpeg_quality == MIN_JPEG_QUALITY
+    high = ExportOptions(raster_dpi=999, jpeg_quality=200).normalized()
+    assert high.raster_dpi == MAX_RASTER_DPI
+    assert high.jpeg_quality == MAX_JPEG_QUALITY
+
+
+def test_export_dialog_raster_controls_enabled_for_png_and_jpeg(qapp):
+    del qapp
+    from studio.dialogs import ExportDialog
+
+    dialog = ExportDialog(
+        _solution(),
+        None,
+        ExportOptions(format="png", raster_dpi=150),
+    )
+    assert dialog.raster_dpi.isEnabled()
+    assert not dialog.jpeg_quality.isEnabled()
+    assert dialog.raster_dpi.value() == 150
+    assert "Resolución: 150 DPI." in dialog.preview.toPlainText()
+
+    dialog.format.setCurrentIndex(dialog.format.findData("jpeg"))
+    dialog._refresh_preview()
+    assert dialog.raster_dpi.isEnabled()
+    assert dialog.jpeg_quality.isEnabled()
+    assert "Calidad JPEG:" in dialog.preview.toPlainText()
+
+    dialog.format.setCurrentIndex(dialog.format.findData("svg"))
+    dialog._refresh_preview()
+    assert not dialog.raster_dpi.isEnabled()
+    assert not dialog.jpeg_quality.isEnabled()
+
+
+def test_svg_to_raster_bytes_respects_dpi(qapp):
+    del qapp
+    from studio.solution_thumbnail import svg_to_raster_bytes
+
+    svg = preview_svg(_solution(), None, ExportOptions(format="svg"))
+    small = svg_to_raster_bytes(svg, image_format="PNG", dpi=36)
+    large = svg_to_raster_bytes(svg, image_format="PNG", dpi=150)
+    assert small.startswith(b"\x89PNG")
+    assert large.startswith(b"\x89PNG")
+    assert len(large) > len(small)
+
+
+def test_svg_to_raster_bytes_respects_jpeg_quality(qapp):
+    del qapp
+    from studio.solution_thumbnail import svg_to_raster_bytes
+
+    svg = preview_svg(_solution(), None, ExportOptions(format="svg"))
+    low = svg_to_raster_bytes(svg, image_format="JPEG", dpi=96, jpeg_quality=10)
+    high = svg_to_raster_bytes(svg, image_format="JPEG", dpi=96, jpeg_quality=95)
+    assert low[:2] == b"\xff\xd8"
+    assert high[:2] == b"\xff\xd8"
+    assert len(high) > len(low)
+
+
+def test_raster_pixel_size_clamps_huge_drawings(qapp):
+    del qapp
+    from PySide6.QtCore import QSize
+
+    from studio.export_options import MAX_RASTER_EDGE_PX
+    from studio.solution_thumbnail import raster_pixel_size
+
+    size = raster_pixel_size(QSize(50000, 1000), 300)
+    assert max(size.width(), size.height()) <= MAX_RASTER_EDGE_PX

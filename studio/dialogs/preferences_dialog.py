@@ -37,7 +37,16 @@ from studio.dialogs.dialog_chrome import (
     polish_dialog_button_box,
     polish_secondary_button,
 )
-from studio.export_options import VALID_EXPORT_FORMATS, format_label
+from studio.export_options import (
+    DEFAULT_JPEG_QUALITY,
+    DEFAULT_RASTER_DPI,
+    MAX_JPEG_QUALITY,
+    MAX_RASTER_DPI,
+    MIN_JPEG_QUALITY,
+    MIN_RASTER_DPI,
+    VALID_EXPORT_FORMATS,
+    format_label,
+)
 from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES, tr
 from studio.material_catalog import MaterialCatalogManager
 from studio.preferences import (
@@ -226,6 +235,20 @@ class PreferencesDialog(QDialog):
         self.export_pdf_margin_mm.setValue(preferences.export_pdf_margin_mm)
         self._export_pdf_margin_label = QLabel()
         export_form.addRow(self._export_pdf_margin_label, self.export_pdf_margin_mm)
+        self.export_raster_dpi = QSpinBox()
+        self.export_raster_dpi.setRange(MIN_RASTER_DPI, MAX_RASTER_DPI)
+        self.export_raster_dpi.setSingleStep(12)
+        self.export_raster_dpi.setSuffix(" DPI")
+        self.export_raster_dpi.setValue(preferences.export_raster_dpi)
+        self._export_raster_dpi_label = QLabel()
+        export_form.addRow(self._export_raster_dpi_label, self.export_raster_dpi)
+        self.export_jpeg_quality = QSpinBox()
+        self.export_jpeg_quality.setRange(MIN_JPEG_QUALITY, MAX_JPEG_QUALITY)
+        self.export_jpeg_quality.setSingleStep(5)
+        self.export_jpeg_quality.setSuffix(" %")
+        self.export_jpeg_quality.setValue(preferences.export_jpeg_quality)
+        self._export_jpeg_quality_label = QLabel()
+        export_form.addRow(self._export_jpeg_quality_label, self.export_jpeg_quality)
         layout.addWidget(self.export_group)
 
         self.advanced = QGroupBox()
@@ -309,6 +332,10 @@ class PreferencesDialog(QDialog):
         )
         self._export_pdf_scale_label.setText(tr("prefs.export_pdf_scale", language))
         self._export_pdf_margin_label.setText(tr("prefs.export_pdf_margin", language))
+        self._export_raster_dpi_label.setText(tr("prefs.export_raster_dpi", language))
+        self._export_jpeg_quality_label.setText(
+            tr("prefs.export_jpeg_quality", language)
+        )
         for index, key in enumerate(VALID_PDF_PAPERS):
             self.export_pdf_paper.setItemText(
                 index, tr(f"export.paper_{key}", language)
@@ -416,6 +443,8 @@ class PreferencesDialog(QDialog):
         scale_index = self.export_pdf_scale.findData(DEFAULT_PDF_SCALE)
         self.export_pdf_scale.setCurrentIndex(scale_index if scale_index >= 0 else 0)
         self.export_pdf_margin_mm.setValue(DEFAULT_PDF_MARGIN_MM)
+        self.export_raster_dpi.setValue(DEFAULT_RASTER_DPI)
+        self.export_jpeg_quality.setValue(DEFAULT_JPEG_QUALITY)
         self.max_solutions.setValue(DEFAULT_MAX_SOLUTIONS)
         self.default_kerf_mm.setValue(DEFAULT_KERF_MM)
         self._on_strategy_changed(self.strategy.currentIndex())
@@ -471,6 +500,8 @@ class PreferencesDialog(QDialog):
             or DEFAULT_PDF_ORIENTATION,
             export_pdf_scale=self.export_pdf_scale.currentData() or DEFAULT_PDF_SCALE,
             export_pdf_margin_mm=self.export_pdf_margin_mm.value(),
+            export_raster_dpi=self.export_raster_dpi.value(),
+            export_jpeg_quality=self.export_jpeg_quality.value(),
             max_solutions=self.max_solutions.value(),
             default_kerf_mm=self.default_kerf_mm.value(),
         )
