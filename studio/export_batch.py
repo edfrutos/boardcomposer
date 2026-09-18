@@ -29,7 +29,14 @@ def write_export_payload(
 
         assert isinstance(payload, str)
         image_format = "PNG" if options.format == "png" else "JPEG"
-        path.write_bytes(svg_to_raster_bytes(payload, image_format=image_format))
+        path.write_bytes(
+            svg_to_raster_bytes(
+                payload,
+                image_format=image_format,
+                dpi=options.raster_dpi,
+                jpeg_quality=options.jpeg_quality,
+            )
+        )
         return
     if isinstance(payload, bytes):
         path.write_bytes(payload)

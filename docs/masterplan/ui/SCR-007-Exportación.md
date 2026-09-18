@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.9.0  
+**Versión:** 1.10.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 17/09/2026
+**Última revisión:** 18/09/2026
 
 ---
 
@@ -56,6 +56,7 @@ Defaults de formato y flags: SCR-006 → `preferences.json`.
 │                    │ ☐ Cotas L×A del tablero                       │
 │ PDF plano          │ papel (dibujo/A4/A3/Letter) · orientación     │
 │                    │ escala (fit / 1:n) · márgenes mm              │
+│ Raster PNG/JPEG    │ DPI (36–300) · calidad JPEG (1–100)           │
 │ Lote               │ ☐ Todas las candidatas del ranking            │
 │ Plantillas         │ cliente · guardar/aplicar/borrar · pack JSON  │
 ├────────────────────┴───────────────────────────────────────────────┤
@@ -78,7 +79,7 @@ Tras exportar OK: opción de abrir el archivo o revelar la carpeta.
 | JSON | Documento estructurado; métricas / explicación / retales opcionales; Studio añade `estimated_material_cost` si el catálogo tiene €/m² |
 | CSV | Filas de placements (sin omitted/metrics/explanation) |
 
-No implementados: calidad raster (IDE-0038) como opción del diálogo.
+No implementados: más formatos de imagen (WebP, TIFF).
 
 ### Opciones de contenido
 
@@ -104,6 +105,12 @@ No implementados: calidad raster (IDE-0038) como opción del diálogo.
   orientación auto/vertical/apaisado cuando el papel es ISO. Márgenes
   0–50 mm (default 12,7 mm). Lista de corte y presupuesto siguen A4
   aparte. SVG/DXF/raster no usan estos controles.
+- **Calidad raster (IDE-0038):** solo **PNG** y **JPEG**. DPI 36–300
+  (default 96; 1 mm ≈ DPI/25,4 px). JPEG calidad 1–100 (default 90;
+  deshabilitada en PNG). El lado mayor se recorta a 16384 px si el
+  dibujo × DPI lo supera. Vista previa del diálogo sigue en miniatura;
+  el archivo usa DPI. Plantillas y Preferencias recuerdan ambos valores.
+  `boardcomposer-batch` no exporta PNG/JPEG.
 - **Lote de candidatas (IDE-0035):** casilla «Exportar las N candidatas
   del ranking». Deshabilitada si hay menos de 2. Elige carpeta y escribe
   `boardcomposer-solution-01.{ext}` … en orden del Comparador. Vista
@@ -209,7 +216,7 @@ No usa `ExportDialog`. Flujo propio:
 
 ## Evolución prevista
 
-- Más formatos de imagen; calidad raster (IDE-0038).
+- Más formatos de imagen (WebP, TIFF).
 - Perfiles CAD-CAM avanzados.
 - Trazabilidad explícita (versión app, algoritmo, fecha) en más formatos
   (IDE-0039).

@@ -191,6 +191,9 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
 - [ ] **Ctrl+Shift+E** PDF de plano: papel A4/A3/Letter o ajustar al
   dibujo; escala fit o 1:n; márgenes mm. Lista de corte y presupuesto
   PDF no cambian de página.
+- [ ] **Ctrl+Shift+E** PNG/JPEG: DPI 36–300 cambia el tamaño del archivo;
+  JPEG calidad baja el peso; deshabilitado en SVG/PDF/DXF. Preferencias
+  recuerdan DPI y calidad.
 - [ ] **Ctrl+Shift+E** lote: con ≥2 candidatas, marca «Exportar las N
   candidatas del ranking»; elige carpeta; aparecen
   `boardcomposer-solution-01` y siguientes. Con 1 candidata la casilla

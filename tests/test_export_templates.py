@@ -209,6 +209,8 @@ def test_export_dialog_uses_english_labels(qapp):
     assert dialog.include_offcut_labels.text() == "Offcut labels (size)"
     assert dialog.include_panel_dimensions.text() == "Panel L×W dimensions"
     assert dialog.pdf_paper.itemText(0) == "Fit drawing"
+    assert dialog.raster_dpi.suffix() == " DPI"
+    assert dialog.jpeg_quality.suffix() == " %"
     assert dialog.client.itemText(0) == "(all clients)"
 
 

@@ -20,8 +20,12 @@ from boardcomposer.solver.strategies import OptimizationStrategy, strategy_by_na
 from studio.theme import DEFAULT_THEME, VALID_THEMES
 from studio.export_options import (
     DEFAULT_EXPORT_FORMAT,
+    DEFAULT_JPEG_QUALITY,
+    DEFAULT_RASTER_DPI,
     VALID_EXPORT_FORMATS,
     ExportOptions,
+    normalize_jpeg_quality,
+    normalize_raster_dpi,
 )
 from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES
 from studio.units import DEFAULT_UNITS, VALID_UNITS
@@ -88,6 +92,8 @@ class StudioPreferences:
     export_pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     export_pdf_scale: str = DEFAULT_PDF_SCALE
     export_pdf_margin_mm: float = DEFAULT_PDF_MARGIN_MM
+    export_raster_dpi: int = DEFAULT_RASTER_DPI
+    export_jpeg_quality: int = DEFAULT_JPEG_QUALITY
     export_batch: bool = False
     last_export_directory: str | None = None
     last_backup_directory: str | None = None
@@ -134,6 +140,8 @@ class StudioPreferences:
             pdf_orientation=self.export_pdf_orientation,
             pdf_scale=self.export_pdf_scale,
             pdf_margin_mm=self.export_pdf_margin_mm,
+            raster_dpi=self.export_raster_dpi,
+            jpeg_quality=self.export_jpeg_quality,
             export_batch=self.export_batch,
         ).normalized()
 
@@ -315,6 +323,12 @@ class PreferencesManager:
             export_pdf_orientation=page.orientation,
             export_pdf_scale=page.scale,
             export_pdf_margin_mm=page.margin_mm,
+            export_raster_dpi=normalize_raster_dpi(
+                payload.get("export_raster_dpi", DEFAULT_RASTER_DPI)
+            ),
+            export_jpeg_quality=normalize_jpeg_quality(
+                payload.get("export_jpeg_quality", DEFAULT_JPEG_QUALITY)
+            ),
             export_batch=bool(payload.get("export_batch", False)),
             last_export_directory=_optional_directory(
                 payload.get("last_export_directory")
@@ -392,6 +406,8 @@ class PreferencesManager:
             "export_pdf_orientation": preferences.export_pdf_orientation,
             "export_pdf_scale": preferences.export_pdf_scale,
             "export_pdf_margin_mm": preferences.export_pdf_margin_mm,
+            "export_raster_dpi": preferences.export_raster_dpi,
+            "export_jpeg_quality": preferences.export_jpeg_quality,
             "export_batch": preferences.export_batch,
             "last_export_directory": preferences.last_export_directory,
             "last_backup_directory": preferences.last_backup_directory,
