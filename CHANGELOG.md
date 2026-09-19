@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-18: snapshot
+  `docs/masterplan/REVIEW-2026-09-18-planificacion.md`; Issues = 0;
+  segunda ola 0031…0036 en `main`; cola vacía → tercera ola
+  IDE-0037…0042 (cotas tablero `#647`, DPI raster, trazabilidad plano,
+  unidades Inspector, capas DXF, export/import catálogo).
 - Exportar: calidad raster PNG/JPEG (IDE-0038); DPI 36–300 (default 96)
   y calidad JPEG 1–100 (default 90); casilla/spins en Exportar y
   Preferencias; plantillas. Lado mayor acotado a 16384 px. SVG/PDF/DXF
@@ -68,7 +73,7 @@
 ### Cambiado
 
 - Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con
-  `0.4.4.dev0` y snapshot 2026-09-17.
+  `0.4.4.dev0` y snapshot 2026-09-18.
 
 ## 0.4.3 — 2026-09-14
 

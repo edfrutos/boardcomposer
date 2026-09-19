@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-17-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-18-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -51,7 +51,8 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` tercera ola: IDE-0039…0040 (0038 raster entregada).
+1. Ciclo `0.4.4` tercera ola: IDE-0037…0042
+   (0037 cotas L×A `#647`; luego 0038…0042).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
