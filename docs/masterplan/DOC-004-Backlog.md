@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.41
+**Versión:** 1.3.43
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 18/09/2026
+**Última revisión:** 19/09/2026
 
 ---
 
@@ -106,16 +106,12 @@ Observaciones:
 | IDE-0034 | Papel / márgenes / escala en PDF | 🟢 | P2 |
 | IDE-0035 | Exportar soluciones en lote | 🟢 | P2 |
 | IDE-0036 | Colocación manual asistida (sugerir hueco) | 🟢 | P3 |
-| IDE-0037 | Cotas L×A del tablero en plano | 🟡 | P2 |
-| IDE-0038 | Calidad raster PNG/JPEG (DPI) | ⚪ | P3 |
-| IDE-0039 | Trazabilidad en plano (versión, algoritmo, fecha) | ⚪ | P3 |
-| IDE-0040 | Unidades en Inspector (mm/cm/in) | ⚪ | P3 |
-| IDE-0041 | Capas DXF por rol (marco/pieza/retal/cota) | ⚪ | P3 |
-| IDE-0042 | Exportar/importar catálogo de materiales | ⚪ | P3 |
 | IDE-0037 | Cotas L×A del tablero en plano | 🟢 | P2 |
 | IDE-0038 | Calidad raster PNG/JPEG (DPI) | 🟢 | P3 |
 | IDE-0039 | Trazabilidad en plano (versión, algoritmo, fecha) | ⚪ | P3 |
 | IDE-0040 | Unidades en Inspector (mm/cm/in) | ⚪ | P3 |
+| IDE-0041 | Capas DXF por rol (marco/pieza/retal/cota) | ⚪ | P3 |
+| IDE-0042 | Exportar/importar catálogo de materiales | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -145,8 +141,8 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0034 | M | SCR-007; export PDF | Entregado; papel/márgenes/escala plano |
 | IDE-0035 | M | SCR-007; ExportDialog | Entregado; lote candidatas Studio |
 | IDE-0036 | M–L | Workspace; PlacementValidator | Entregado; Ctrl+Alt+G; snap drop |
-| IDE-0037 | S–M | SCR-007; export SVG/PDF/DXF | En curso `#647`; cotas L×A; casilla export |
-| IDE-0038 | S | SCR-007; raster PNG/JPEG | DPI/calidad; no cambia solver |
+| IDE-0037 | S–M | SCR-007; export SVG/PDF/DXF | Entregado; cotas L×A; casilla export |
+| IDE-0038 | S | SCR-007; raster PNG/JPEG | Entregado; DPI 36–300; JPEG 1–100 |
 | IDE-0039 | S–M | SCR-007; export plan | Versión app, algoritmo, fecha |
 | IDE-0040 | S–M | Inspector; prefs.units | Display; persistencia sigue mm |
 | IDE-0041 | S–M | SCR-007; DXF exporter | Capas por rol; CAD/CNC |
@@ -178,15 +174,15 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0036 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0036). Tercera ola
-IDE-0037…0042 registrada (0037 🟡 `#647`). IDE-0007 🟢 MVP+eval
-(2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-09-18-planificacion.md`.
+**Estado actual:** 🟢 Actualizado — IDE-0001…0038 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0038; `#647`/`#649`).
+IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
+entregadas. Snapshot: `REVIEW-2026-09-19-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` tercera ola: cerrar `#647` (0037) → 0038…0042.
+1. Cola producto `0.4.4` tercera ola: IDE-0039…0042 (0037/0038
+   entregadas; 0041/0042 de snapshot 2026-09-18).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

@@ -1,14 +1,14 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-18
+## Unreleased — 0.4.4.dev0 — 2026-09-19
 
 ### Añadido
 
-- Docs planificación 2026-09-18: snapshot
-  `docs/masterplan/REVIEW-2026-09-18-planificacion.md`; Issues = 0;
-  segunda ola 0031…0036 en `main`; cola vacía → tercera ola
-  IDE-0037…0042 (cotas tablero `#647`, DPI raster, trazabilidad plano,
-  unidades Inspector, capas DXF, export/import catálogo).
+- Docs planificación 2026-09-19: snapshot
+  `docs/masterplan/REVIEW-2026-09-19-planificacion.md`; Issues = 0;
+  `#647` (IDE-0037) y `#649` (IDE-0038) en `main`; tercera ola restante
+  IDE-0039…0042 → **sin IDE nuevas** (cola implementable abierta).
+  Histórico 2026-09-18 plegado desde PR `#648`.
 - Exportar: calidad raster PNG/JPEG (IDE-0038); DPI 36–300 (default 96)
   y calidad JPEG 1–100 (default 90); casilla/spins en Exportar y
   Preferencias; plantillas. Lado mayor acotado a 16384 px. SVG/PDF/DXF
@@ -17,6 +17,10 @@
   dimensión overall en SVG/PDF/DXF (raster vía SVG); casilla en
   Exportar y Preferencias; plantillas y batch EP-002. Default: sí.
   JSON/CSV no. Sin bump `.bcproj`; no cambia el solver.
+- Docs planificación 2026-09-18: snapshot
+  `docs/masterplan/REVIEW-2026-09-18-planificacion.md`; Issues = 0;
+  cola 0031…0036 vacía en `main` → tercera ola IDE-0037…0042;
+  `#647` 🟡 al corte.
 - Docs planificación 2026-09-17: snapshot
   `docs/masterplan/REVIEW-2026-09-17-planificacion.md`; Issues = 0;
   `v0.4.3` publicada; segunda ola 0031…0036 en `main` (`#644`/`#645`)
@@ -73,7 +77,7 @@
 ### Cambiado
 
 - Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con
-  `0.4.4.dev0` y snapshot 2026-09-18.
+  `0.4.4.dev0` y snapshot 2026-09-19.
 
 ## 0.4.3 — 2026-09-14
 
