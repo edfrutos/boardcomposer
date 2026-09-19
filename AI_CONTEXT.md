@@ -36,12 +36,14 @@ alternativas comprensibles para que el usuario decida.
   casilla en diálogo y Preferencias. Default: sí.
 - Exportar: calidad raster PNG/JPEG (IDE-0038; `#649`); DPI 36–300 (default 96)
   y calidad JPEG 1–100 (default 90).
+- Exportar: trazabilidad en plano (IDE-0039); pie versión / algoritmo /
+  fecha en SVG/PDF/DXF; casilla en diálogo y Preferencias. Default: sí.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
   `docs/masterplan/REVIEW-2026-09-19-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
-- Próximo: cola producto `0.4.4` tercera ola IDE-0039…0042; piloto
+- Próximo: cola producto `0.4.4` tercera ola IDE-0040…0042; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

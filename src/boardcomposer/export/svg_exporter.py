@@ -1,5 +1,8 @@
 """Render an `AssemblySolution` as a self-contained SVG document."""
 
+from __future__ import annotations
+
+from datetime import datetime
 from html import escape
 
 from boardcomposer.domain import AssemblySolution, Offcut, PanelReference, Project
@@ -10,8 +13,10 @@ from boardcomposer.export.common import (
     panel_dimension_margins,
     panel_offsets,
     piece_plan_label,
+    plan_traceability_label,
     PANEL_COTA_GAP_MM,
     PANEL_COTA_TICK_MM,
+    PLAN_TRACE_LINE_MM,
 )
 from boardcomposer.export.cut_sequence import piece_sequence_numbers
 from boardcomposer.export.svg_palette import DEFAULT_SVG_PALETTE, SvgPalette
@@ -20,6 +25,7 @@ from boardcomposer.export.svg_palette import DEFAULT_SVG_PALETTE, SvgPalette
 # overlaps the pieces placed right at the panel's own origin (y=0).
 _PANEL_LABEL_MARGIN = 30
 _LEGEND_LINE_HEIGHT = 20
+_TRACE_LINE_HEIGHT = PLAN_TRACE_LINE_MM
 
 
 def _panel_layout(
@@ -230,6 +236,10 @@ def solution_to_svg(
     include_piece_labels: bool = True,
     include_offcut_labels: bool = True,
     include_panel_dimensions: bool = True,
+    include_plan_traceability: bool = True,
+    strategy_name: str | None = None,
+    exported_at: datetime | str | None = None,
+    app_version: str | None = None,
 ) -> str:
     """Render `solution` as an SVG document.
 
@@ -238,6 +248,8 @@ def solution_to_svg(
     and, for partial solutions, a legend lists the pieces that couldn't be
     placed. Piece labels (id + placed LxW mm) and offcut LxW labels can
     be omitted. Panel overall L/W dimension lines (IDE-0037) can too.
+    A footer can list app version, packing strategy and export time
+    (IDE-0039).
     """
     colors = palette or DEFAULT_SVG_PALETTE
     offsets, panel_rows = _panel_layout(solution, project)
@@ -255,6 +267,19 @@ def solution_to_svg(
     legend_parts = _legend_svg_parts(solution, height + _LEGEND_LINE_HEIGHT, colors)
     if legend_parts:
         height += _LEGEND_LINE_HEIGHT
+    trace_parts: list[str] = []
+    if include_plan_traceability:
+        height += _TRACE_LINE_HEIGHT
+        label = plan_traceability_label(
+            version=app_version,
+            strategy_name=strategy_name,
+            exported_at=exported_at,
+        )
+        trace_parts = [
+            f'<text x="5" y="{height - 4:g}" font-size="12" '
+            f'fill="{colors.legend}">'
+            f"{escape(label)}</text>"
+        ]
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width:g}" '
@@ -286,6 +311,7 @@ def solution_to_svg(
             _panel_dimension_svg_parts(project, panel_rows, colors, origin_x=origin_x)
         )
     parts.extend(legend_parts)
+    parts.extend(trace_parts)
     parts.append("</svg>")
 
     return "\n".join(parts)

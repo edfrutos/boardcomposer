@@ -13,6 +13,7 @@ from boardcomposer.export.common import (
     offcut_plan_label,
     panel_offsets,
     piece_plan_label,
+    plan_traceability_label,
 )
 
 
@@ -88,3 +89,21 @@ def test_piece_plan_label_includes_id_and_placed_size():
 def test_offcut_plan_label_includes_placed_size():
     offcut = Offcut(PanelReference(0, 0), 400, 0, 600, 300)
     assert offcut_plan_label(offcut) == "600x300"
+
+
+def test_plan_traceability_label_uses_injected_fields():
+    label = plan_traceability_label(
+        version="9.9.9",
+        strategy_name="material",
+        exported_at="2026-09-19 12:00",
+    )
+    assert label == "BoardComposer 9.9.9 · material · 2026-09-19 12:00"
+
+
+def test_plan_traceability_label_falls_back_when_strategy_missing():
+    label = plan_traceability_label(
+        version="1.0.0",
+        strategy_name=None,
+        exported_at="2026-09-19 12:00",
+    )
+    assert label == "BoardComposer 1.0.0 · - · 2026-09-19 12:00"

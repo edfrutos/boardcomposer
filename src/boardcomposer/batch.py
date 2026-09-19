@@ -45,6 +45,7 @@ class BatchProfile:
     include_piece_labels: bool = True
     include_offcut_labels: bool = True
     include_panel_dimensions: bool = True
+    include_plan_traceability: bool = True
     pdf_paper: str = DEFAULT_PDF_PAPER
     pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     pdf_scale: str = DEFAULT_PDF_SCALE
@@ -72,6 +73,7 @@ class BatchProfile:
             include_piece_labels=bool(data.get("include_piece_labels", True)),
             include_offcut_labels=bool(data.get("include_offcut_labels", True)),
             include_panel_dimensions=bool(data.get("include_panel_dimensions", True)),
+            include_plan_traceability=bool(data.get("include_plan_traceability", True)),
             pdf_paper=page.paper,
             pdf_orientation=page.orientation,
             pdf_scale=page.scale,
@@ -117,6 +119,7 @@ class BatchProfile:
             include_piece_labels=template.include_piece_labels,
             include_offcut_labels=template.include_offcut_labels,
             include_panel_dimensions=template.include_panel_dimensions,
+            include_plan_traceability=template.include_plan_traceability,
             pdf_paper=template.pdf_paper,
             pdf_orientation=template.pdf_orientation,
             pdf_scale=template.pdf_scale,
@@ -319,6 +322,8 @@ def _write_exports(
                     include_piece_labels=profile.include_piece_labels,
                     include_offcut_labels=profile.include_offcut_labels,
                     include_panel_dimensions=profile.include_panel_dimensions,
+                    include_plan_traceability=profile.include_plan_traceability,
+                    strategy_name=profile.strategy,
                 ),
                 encoding="utf-8",
             )
@@ -330,6 +335,8 @@ def _write_exports(
                     include_piece_labels=profile.include_piece_labels,
                     include_offcut_labels=profile.include_offcut_labels,
                     include_panel_dimensions=profile.include_panel_dimensions,
+                    include_plan_traceability=profile.include_plan_traceability,
+                    strategy_name=profile.strategy,
                 ),
                 encoding="utf-8",
             )
@@ -341,6 +348,8 @@ def _write_exports(
                     include_piece_labels=profile.include_piece_labels,
                     include_offcut_labels=profile.include_offcut_labels,
                     include_panel_dimensions=profile.include_panel_dimensions,
+                    include_plan_traceability=profile.include_plan_traceability,
+                    strategy_name=profile.strategy,
                     page=PdfPageOptions(
                         paper=profile.pdf_paper,
                         orientation=profile.pdf_orientation,

@@ -51,7 +51,7 @@ Restaurar valores por defecto.
 │ Algoritmos     estrategia · pesos custom (4)               │
 │ Exportación    formato default · métricas/explicación/     │
 │                retales · etiquetas piezas/retales · cotas  │
-│                · DPI/calidad JPEG                          │
+│                · trazabilidad · DPI/calidad JPEG           │
 │ Avanzado       máx. soluciones · kerf default · catálogo   │
 │                · abrir ~/.boardcomposer/                   │
 ├────────────────────────────────────────────────────────────┤
@@ -94,6 +94,7 @@ Restaurar valores por defecto.
 | Incluir métricas / explicación / retales | Checkboxes |
 | Etiquetas de piezas / retales | Checkboxes; planos SVG/PDF/DXF |
 | Cotas L×A del tablero | Checkbox; planos SVG/PDF/DXF; default sí |
+| Trazabilidad (versión, algoritmo, fecha) | Checkbox; planos SVG/PDF/DXF; default sí |
 | Papel / orientación / escala / márgenes PDF | Solo plano PDF; default ajustar al dibujo |
 | Resolución PNG/JPEG | DPI 36–300; default 96 |
 | Calidad JPEG | 1–100; default 90; solo JPEG |

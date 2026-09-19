@@ -88,6 +88,7 @@ class StudioPreferences:
     export_include_piece_labels: bool = True
     export_include_offcut_labels: bool = True
     export_include_panel_dimensions: bool = True
+    export_include_plan_traceability: bool = True
     export_pdf_paper: str = DEFAULT_PDF_PAPER
     export_pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     export_pdf_scale: str = DEFAULT_PDF_SCALE
@@ -136,6 +137,7 @@ class StudioPreferences:
             include_piece_labels=self.export_include_piece_labels,
             include_offcut_labels=self.export_include_offcut_labels,
             include_panel_dimensions=self.export_include_panel_dimensions,
+            include_plan_traceability=self.export_include_plan_traceability,
             pdf_paper=self.export_pdf_paper,
             pdf_orientation=self.export_pdf_orientation,
             pdf_scale=self.export_pdf_scale,
@@ -319,6 +321,9 @@ class PreferencesManager:
             export_include_panel_dimensions=bool(
                 payload.get("export_include_panel_dimensions", True)
             ),
+            export_include_plan_traceability=bool(
+                payload.get("export_include_plan_traceability", True)
+            ),
             export_pdf_paper=page.paper,
             export_pdf_orientation=page.orientation,
             export_pdf_scale=page.scale,
@@ -401,6 +406,9 @@ class PreferencesManager:
             "export_include_offcut_labels": (preferences.export_include_offcut_labels),
             "export_include_panel_dimensions": (
                 preferences.export_include_panel_dimensions
+            ),
+            "export_include_plan_traceability": (
+                preferences.export_include_plan_traceability
             ),
             "export_pdf_paper": preferences.export_pdf_paper,
             "export_pdf_orientation": preferences.export_pdf_orientation,

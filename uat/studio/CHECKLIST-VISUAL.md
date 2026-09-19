@@ -103,6 +103,9 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Exportar solución (menú/flujo) completa sin error visible.
 - [ ] Exportar plano: cotas L×A del tablero visibles; desmarcar la casilla
   las quita sin cambiar piezas ni retales.
+- [ ] Exportar plano: pie de trazabilidad (versión, algoritmo, fecha)
+  visible; desmarcar la casilla lo quita. JSON/CSV deshabilitan la
+  casilla.
 - [ ] Exportar PNG/JPEG: subir DPI agranda el archivo; bajar calidad JPEG
   lo aligera.
 - [x] Lista de corte (**Ctrl+Alt+C**): elige CSV o PDF; no es el CSV del

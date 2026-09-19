@@ -1,6 +1,10 @@
 """Shared panel layout for exporters (SVG / DXF / PDF)."""
 
+from __future__ import annotations
+
 from dataclasses import replace
+from datetime import datetime
+from importlib import metadata
 
 from boardcomposer.domain import (
     AssemblySolution,
@@ -15,6 +19,7 @@ PANEL_COTA_LEFT_MM = 32.0
 PANEL_COTA_BOTTOM_MM = 24.0
 PANEL_COTA_GAP_MM = 10.0
 PANEL_COTA_TICK_MM = 4.0
+PLAN_TRACE_LINE_MM = 18.0
 
 
 def piece_plan_label(placement: BoardPlacement) -> str:
@@ -37,6 +42,38 @@ def panel_dimension_margins(enabled: bool) -> tuple[float, float]:
     if not enabled:
         return 0.0, 0.0
     return PANEL_COTA_LEFT_MM, PANEL_COTA_BOTTOM_MM
+
+
+def app_version() -> str:
+    """Installed BoardComposer version, or a placeholder if unpackaged."""
+    try:
+        return metadata.version("boardcomposer")
+    except metadata.PackageNotFoundError:
+        return "0.0.0+unknown"
+
+
+def format_exported_at(when: datetime | None = None) -> str:
+    """Local export stamp ``YYYY-MM-DD HH:MM``."""
+    stamp = when if when is not None else datetime.now().astimezone()
+    return stamp.strftime("%Y-%m-%d %H:%M")
+
+
+def plan_traceability_label(
+    *,
+    version: str | None = None,
+    strategy_name: str | None = None,
+    exported_at: datetime | str | None = None,
+) -> str:
+    """Workshop footer: app version, packing strategy and export time."""
+    ver = (version or app_version()).strip() or "0.0.0+unknown"
+    algo = (strategy_name or "").strip() or "-"
+    if isinstance(exported_at, datetime):
+        when = format_exported_at(exported_at)
+    elif isinstance(exported_at, str) and exported_at.strip():
+        when = exported_at.strip()
+    else:
+        when = format_exported_at()
+    return f"BoardComposer {ver} · {algo} · {when}"
 
 
 def prepare_solution_for_export(

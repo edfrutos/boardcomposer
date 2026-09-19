@@ -67,6 +67,18 @@ def test_export_templates_round_trip_batch_flag(tmp_path):
     assert reloaded.options.export_batch is True
 
 
+def test_export_templates_round_trip_plan_traceability(tmp_path):
+    path = tmp_path / "templates.json"
+    manager = ExportTemplatesManager(path=path)
+    manager.save_template(
+        "Plano sin pie",
+        ExportOptions(format="svg", include_plan_traceability=False),
+    )
+    reloaded = ExportTemplatesManager(path=path).get("Plano sin pie")
+    assert reloaded is not None
+    assert reloaded.options.include_plan_traceability is False
+
+
 def test_export_templates_same_name_allowed_for_different_clients(tmp_path):
     path = tmp_path / "templates.json"
     manager = ExportTemplatesManager(path=path)
@@ -208,6 +220,9 @@ def test_export_dialog_uses_english_labels(qapp):
     assert dialog.include_piece_labels.text() == "Piece labels (id and size)"
     assert dialog.include_offcut_labels.text() == "Offcut labels (size)"
     assert dialog.include_panel_dimensions.text() == "Panel L×W dimensions"
+    assert dialog.include_plan_traceability.text() == (
+        "Traceability (version, algorithm, date)"
+    )
     assert dialog.pdf_paper.itemText(0) == "Fit drawing"
     assert dialog.raster_dpi.suffix() == " DPI"
     assert dialog.jpeg_quality.suffix() == " %"

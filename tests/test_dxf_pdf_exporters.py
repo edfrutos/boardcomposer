@@ -155,3 +155,53 @@ def test_solution_to_pdf_can_omit_panel_dimensions():
     assert b"(1000)" not in pdf
     assert b"(500)" not in pdf
     assert b"A 400x300" in pdf
+
+
+def test_solution_to_dxf_includes_injected_plan_traceability():
+    project, solution = _single_panel_solution()
+
+    dxf = solution_to_dxf(
+        solution,
+        project,
+        strategy_name="material",
+        exported_at="2026-09-19 12:00",
+        app_version="9.9.9",
+    )
+
+    assert "META" in dxf
+    assert "BoardComposer 9.9.9 · material · 2026-09-19 12:00" in dxf
+
+
+def test_solution_to_dxf_omits_plan_traceability_when_disabled():
+    project, solution = _single_panel_solution()
+
+    dxf = solution_to_dxf(solution, project, include_plan_traceability=False)
+
+    assert "BoardComposer" not in dxf
+    assert "META" not in dxf
+
+
+def test_solution_to_pdf_includes_injected_plan_traceability():
+    project, solution = _single_panel_solution()
+
+    pdf = solution_to_pdf(
+        solution,
+        project,
+        strategy_name="material",
+        exported_at="2026-09-19 12:00",
+        app_version="9.9.9",
+    )
+
+    assert pdf.startswith(b"%PDF-1.4")
+    assert b"BoardComposer 9.9.9" in pdf
+    assert b"material" in pdf
+    assert b"2026-09-19 12:00" in pdf
+
+
+def test_solution_to_pdf_omits_plan_traceability_when_disabled():
+    project, solution = _single_panel_solution()
+
+    pdf = solution_to_pdf(solution, project, include_plan_traceability=False)
+
+    assert pdf.startswith(b"%PDF-1.4")
+    assert b"BoardComposer" not in pdf

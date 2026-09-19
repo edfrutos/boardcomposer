@@ -159,3 +159,25 @@ def test_solution_to_svg_omits_panel_dimensions_when_disabled():
     assert 'text-anchor="middle"' not in svg
     assert ">1000</text>" not in svg
     assert ">500</text>" not in svg
+
+
+def test_solution_to_svg_includes_injected_plan_traceability():
+    solution = AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
+
+    svg = solution_to_svg(
+        solution,
+        strategy_name="material",
+        exported_at="2026-09-19 12:00",
+        app_version="9.9.9",
+    )
+
+    assert "BoardComposer 9.9.9 · material · 2026-09-19 12:00" in svg
+    assert 'width="100"' in svg
+
+
+def test_solution_to_svg_omits_plan_traceability_when_disabled():
+    solution = AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
+
+    svg = solution_to_svg(solution, include_plan_traceability=False)
+
+    assert "BoardComposer" not in svg
