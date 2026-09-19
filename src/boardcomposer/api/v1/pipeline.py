@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 from pathlib import Path
 
 from boardcomposer.domain import AssemblySolution, Project
@@ -73,6 +74,10 @@ def export_svg(
     include_piece_labels: bool = True,
     include_offcut_labels: bool = True,
     include_panel_dimensions: bool = True,
+    include_plan_traceability: bool = True,
+    strategy_name: str | None = None,
+    exported_at: datetime | str | None = None,
+    app_version: str | None = None,
 ) -> str:
     """Render one solution as an SVG document string."""
     return solution_to_svg(
@@ -81,6 +86,10 @@ def export_svg(
         include_piece_labels=include_piece_labels,
         include_offcut_labels=include_offcut_labels,
         include_panel_dimensions=include_panel_dimensions,
+        include_plan_traceability=include_plan_traceability,
+        strategy_name=strategy_name,
+        exported_at=exported_at,
+        app_version=app_version,
     )
 
 

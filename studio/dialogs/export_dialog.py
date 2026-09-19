@@ -195,6 +195,11 @@ class ExportDialog(QDialog):
         self.include_panel_dimensions.toggled.connect(self._on_options_edited)
         form.addRow("", self.include_panel_dimensions)
 
+        self.include_plan_traceability = QCheckBox(self._tr("export.plan_traceability"))
+        self.include_plan_traceability.setChecked(options.include_plan_traceability)
+        self.include_plan_traceability.toggled.connect(self._on_options_edited)
+        form.addRow("", self.include_plan_traceability)
+
         self.pdf_paper = QComboBox()
         for key in VALID_PDF_PAPERS:
             self.pdf_paper.addItem(self._tr(f"export.paper_{key}"), key)
@@ -304,6 +309,7 @@ class ExportDialog(QDialog):
             include_piece_labels=self.include_piece_labels.isChecked(),
             include_offcut_labels=self.include_offcut_labels.isChecked(),
             include_panel_dimensions=self.include_panel_dimensions.isChecked(),
+            include_plan_traceability=self.include_plan_traceability.isChecked(),
             pdf_paper=self.pdf_paper.currentData() or "drawing",
             pdf_orientation=self.pdf_orientation.currentData() or "auto",
             pdf_scale=self.pdf_scale.currentData() or "1:1",
@@ -397,6 +403,7 @@ class ExportDialog(QDialog):
         self.include_piece_labels.blockSignals(True)
         self.include_offcut_labels.blockSignals(True)
         self.include_panel_dimensions.blockSignals(True)
+        self.include_plan_traceability.blockSignals(True)
         self.pdf_paper.blockSignals(True)
         self.pdf_orientation.blockSignals(True)
         self.pdf_scale.blockSignals(True)
@@ -413,6 +420,7 @@ class ExportDialog(QDialog):
         self.include_piece_labels.setChecked(options.include_piece_labels)
         self.include_offcut_labels.setChecked(options.include_offcut_labels)
         self.include_panel_dimensions.setChecked(options.include_panel_dimensions)
+        self.include_plan_traceability.setChecked(options.include_plan_traceability)
         paper_index = self.pdf_paper.findData(options.pdf_paper)
         self.pdf_paper.setCurrentIndex(paper_index if paper_index >= 0 else 0)
         orientation_index = self.pdf_orientation.findData(options.pdf_orientation)
@@ -435,6 +443,7 @@ class ExportDialog(QDialog):
         self.include_piece_labels.blockSignals(False)
         self.include_offcut_labels.blockSignals(False)
         self.include_panel_dimensions.blockSignals(False)
+        self.include_plan_traceability.blockSignals(False)
         self.pdf_paper.blockSignals(False)
         self.pdf_orientation.blockSignals(False)
         self.pdf_scale.blockSignals(False)
@@ -636,6 +645,7 @@ class ExportDialog(QDialog):
         self.include_piece_labels.setEnabled(plan)
         self.include_offcut_labels.setEnabled(plan and options.include_offcuts)
         self.include_panel_dimensions.setEnabled(plan)
+        self.include_plan_traceability.setEnabled(plan)
         pdf = options.format == "pdf"
         self.pdf_paper.setEnabled(pdf)
         self.pdf_margin_mm.setEnabled(pdf)
@@ -646,7 +656,12 @@ class ExportDialog(QDialog):
         self.raster_dpi.setEnabled(raster)
         self.jpeg_quality.setEnabled(options.format == "jpeg")
 
-        svg = preview_svg(self._solution, self._project, options)
+        svg = preview_svg(
+            self._solution,
+            self._project,
+            options,
+            strategy_name=self._strategy_name,
+        )
         pixmap = svg_to_pixmap(svg, box=_GRAPHIC_PREVIEW_SIZE)
         self.graphic_preview.setPixmap(pixmap)
         self.graphic_preview.setText(

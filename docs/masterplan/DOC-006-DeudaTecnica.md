@@ -133,7 +133,8 @@ sin críticas sin plan. Cola implementable vacía en `main` → tercera ola
 IDE-0037…0042 (PR `#648`); `#647` 🟡 al corte.
 
 **Revisión 2026-09-19 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
-sin críticas sin plan. `#647`/`#649` mergeados; cola 0039…0042; Issues = 0.
+sin críticas sin plan. `#647`/`#649` mergeados; IDE-0039 trazabilidad
+de plano; cola 0040…0042; Issues = 0.
 
 ---
 
@@ -171,7 +172,7 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
-- Cola producto ciclo `0.4.4` tercera ola IDE-0039…0042 (0037/0038
+- Cola producto ciclo `0.4.4` tercera ola IDE-0040…0042 (0037…0039
   entregadas)
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
