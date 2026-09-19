@@ -67,11 +67,11 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 ## Próximo foco (operativo)
 
-Revisión: `docs/masterplan/REVIEW-2026-09-17-planificacion.md`.
+Revisión: `docs/masterplan/REVIEW-2026-09-19-planificacion.md`.
 
 1. Release **`0.4.3`** / `v0.4.3` publicado (2026-09-16).
-2. Ciclo **`0.4.4.dev0`** — tercera ola IDE-0039…0040 (0038 raster
-   entregada; 0037 cotas; segunda ola 0031…0036 `#640`…`#645`; ola 1
+2. Ciclo **`0.4.4.dev0`** — tercera ola IDE-0039…0042 (0037 `#647` y
+   0038 `#649` entregadas; segunda ola 0031…0036 `#640`…`#645`; ola 1
    0025…0030 entregadas).
 3. Cola producto IDE-0019…0024 cerrada en `0.4.3` (incluye Skyline `#623`).
 4. IDE-0007 eval humana cerrada (2026-09-12); LLM sigue diferido.

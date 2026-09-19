@@ -1,6 +1,6 @@
 # Índice documental de BoardComposer
 
-Última revisión: 2026-09-16.
+Última revisión: 2026-09-19.
 
 ## Precedencia
 
@@ -31,7 +31,9 @@ Las discrepancias deben corregirse, no mantenerse como conocimiento implícito.
 | `DOC-002-Arquitectura.md` | Arquitectura objetivo | En revisión |
 | `DOC-003-Roadmap.md` | Fases del producto | Actualizado |
 | `DOC-004-Backlog.md` | Iniciativas priorizadas | Actualizado |
-| `REVIEW-2026-09-17-planificacion.md` | Snapshot estado / siguientes pasos | Actualizado |
+| `REVIEW-2026-09-19-planificacion.md` | Snapshot estado / siguientes pasos | Actualizado |
+| `REVIEW-2026-09-18-planificacion.md` | Snapshot previo (histórico) | Histórico |
+| `REVIEW-2026-09-17-planificacion.md` | Snapshot previo (histórico) | Histórico |
 | `REVIEW-2026-09-16-planificacion.md` | Snapshot previo (histórico) | Histórico |
 | `REVIEW-2026-09-15-planificacion.md` | Snapshot previo (histórico) | Histórico |
 | `REVIEW-2026-09-14-planificacion.md` | Snapshot previo (histórico) | Histórico |
