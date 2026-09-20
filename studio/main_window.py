@@ -140,7 +140,7 @@ from studio.solution_ordering import (
     step_display_index,
 )
 from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
-from studio.units import format_length, format_size
+from studio.units import format_area, format_length, format_size
 from studio.welcome_screen import WelcomeScreen
 from studio.timeline import TimelinePanel
 from studio.events import catalog as events
@@ -3012,6 +3012,9 @@ class MainWindow(QMainWindow):
     def _format_length(self, value_mm: float) -> str:
         return format_length(value_mm, self._display_units())
 
+    def _format_area(self, value_mm2: float) -> str:
+        return format_area(value_mm2, self._display_units())
+
     def _format_material_cost(self, estimate) -> str:
         if not estimate.has_price:
             return self._tr("cost.none")
@@ -3163,7 +3166,7 @@ class MainWindow(QMainWindow):
         if self.services.layout.selected_solution is not None:
             self._show_layout_solution(self.services.layout.selected_solution)
         else:
-            self.workspace.selection.sync_inspector(self)
+            self._refresh_inspector_from_context()
         self._reload_solution_table()
 
     def _solve_layout(self):
@@ -3586,11 +3589,11 @@ class MainWindow(QMainWindow):
             self._tr("inspector.placed", n=len(solution.placements)),
             self._tr(
                 "inspector.total_length",
-                value=f"{solution.total_length_mm:.0f}",
+                value=self._format_length(solution.total_length_mm),
             ),
             self._tr(
                 "inspector.total_width",
-                value=f"{solution.total_width_mm:.0f}",
+                value=self._format_length(solution.total_width_mm),
             ),
             self._tr(
                 "inspector.internal_waste",
@@ -3621,7 +3624,7 @@ class MainWindow(QMainWindow):
                 self._tr(
                     "inspector.offcuts",
                     n=len(solution.offcuts),
-                    area=f"{solution.total_offcut_area_mm2:.0f}",
+                    area=self._format_area(solution.total_offcut_area_mm2),
                 )
             )
 

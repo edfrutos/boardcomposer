@@ -92,7 +92,8 @@ No implementados: más formatos de imagen (WebP, TIFF).
   (mismo dibujo que Workspace). Deshabilitada en JSON/CSV. Default: sí.
 - **Etiquetas de retales (LxW mm):** mismos formatos de plano. Requiere
   retales incluidos. PDF dibuja el retal punteado. Default: sí.
-  Deshabilitada en JSON/CSV. Área mm² sigue en JSON/Inspector.
+  Deshabilitada en JSON/CSV. Área mm² sigue en JSON; Inspector usa
+  prefs.units (IDE-0040).
 - **Cotas L×A del tablero (IDE-0037):** mismos formatos de plano.
   Líneas de dimensión overall (largo abajo, ancho a la izquierda) con
   valor en mm. Default: sí. Deshabilitada en JSON/CSV. Sin bump

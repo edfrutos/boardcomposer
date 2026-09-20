@@ -174,7 +174,8 @@ Dock **Ctrl+2**. Detalle de la selección y del layout.
   o «sin colocar» (con consejo de colocar vía Explorador).
 - Tras **Calcular layout**: métricas de la candidata (piezas, huecos,
   material libre, coste de tableros si el catálogo tiene €/m², omitidas,
-  puntos clave).
+  puntos clave). Largos, anchos y área de retales usan las **unidades**
+  de Preferencias (mm / cm / in). El proyecto sigue guardando mm.
 - **Retales** son **informativos** — no inventario reutilizable automático.
 - Si el inventario cambió tras calcular, el Inspector también avisa de
   soluciones desactualizadas.

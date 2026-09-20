@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Inspector: unidades de Preferencias mm/cm/in (IDE-0040) en pieza,
+  tablero, kerf, posición y métricas de layout (largo, ancho, área de
+  retales). Persistencia `.bcproj` / JSON sigue en mm. Sin bump de
+  esquema; no cambia el solver.
 - Docs planificación 2026-09-20: snapshot
   `docs/masterplan/REVIEW-2026-09-20-planificacion.md`; Issues = 0;
   `#651` (IDE-0039) en `main`; residual IDE-0040…0042 → **sin IDE
