@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-19.
+Última revisión: 2026-09-20.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-19-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-20-planificacion.md`.
 
 ## Último bloque consolidado
 

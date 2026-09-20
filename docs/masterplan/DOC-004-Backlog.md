@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.43
+**Versión:** 1.3.44
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 19/09/2026
+**Última revisión:** 20/09/2026
 
 ---
 
@@ -175,9 +175,9 @@ Detalle: `docs/masterplan/epics/`.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — IDE-0001…0039 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0039; `#647`/`#649`).
+completadas (ciclo `0.4.4` ola 1 + 0031…0039; `#647`/`#649`/`#651`).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
-entregadas. Snapshot: `REVIEW-2026-09-19-planificacion.md`.
+entregadas. Snapshot: `REVIEW-2026-09-20-planificacion.md`.
 
 Próximo foco:
 
