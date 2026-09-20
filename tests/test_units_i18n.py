@@ -26,6 +26,9 @@ def test_tr_formats_interpolated_values():
     assert tr("menu.file", "en") == "File"
     assert tr("action.solve_layout", "en") == "Calculate layout"
     assert tr("inspector.none", "en") == "No selection"
+    assert tr("inspector.total_length", "es", value="10 cm") == "Largo total: 10 cm"
+    assert tr("inspector.total_width", "en", value="1 in") == "Total width: 1 in"
+    assert "mm" not in tr("inspector.offcuts", "es", n=1, area="200 cm²")
     assert tr("status.board_added", "en") == "Board added"
     assert tr("export.title", "en") == "Export solution"
     assert "unsaved changes" in tr("dialog.unsaved_body", "en").lower()

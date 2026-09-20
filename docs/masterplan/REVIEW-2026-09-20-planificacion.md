@@ -42,7 +42,7 @@ revisión `REVIEW-2026-09-19`.
 | IDE-0037 cotas L×A del tablero en plano | 🟢 (#647) |
 | IDE-0038 calidad raster PNG/JPEG (DPI) | 🟢 (#649) |
 | IDE-0039 trazabilidad en plano (versión, algoritmo, fecha) | 🟢 (#651) |
-| IDE-0040 unidades Inspector (mm/cm/in) | ⚪ |
+| IDE-0040 unidades Inspector (mm/cm/in) | 🟢 |
 | IDE-0041 capas DXF por rol (marco/pieza/retal/cota) | ⚪ |
 | IDE-0042 exportar/importar catálogo de materiales | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
@@ -78,7 +78,7 @@ CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
 IDE-0037, IDE-0038 e IDE-0039 **entregadas** (`#647`, `#649`, `#651`);
-residual tercera ola 0040…0042.
+residual tercera ola 0041…0042.
 
 Desde la revisión 2026-09-19, en `main` entró `#651` (IDE-0039
 trazabilidad: pie `BoardComposer {version} · {algorithm} · fecha` en
@@ -102,6 +102,7 @@ Límites conocidos (no son bugs; son alcance):
   candidatas Studio (IDE-0035). Raster PNG/JPEG: DPI y calidad JPEG
   (IDE-0038). Capas DXF por rol aún no (IDE-0041). Sin nube.
 - Workspace: sugerir hueco para colocación manual (IDE-0036; SCR-002).
+- Inspector: unidades prefs mm/cm/in (IDE-0040); disco sigue mm.
 
 Deuda abierta explícita: **1** ítem (`DT-0006` en piloto D). Sin críticas sin
 plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
@@ -110,7 +111,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` tercera ola** — IDE-0040…0042 (0037…0039 entregadas).
+1. **Cola `0.4.4` tercera ola** — IDE-0041…0042 (0037…0040 entregadas).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -122,23 +123,23 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0040…0042. Residual bloqueado: piloto DT-0006 D (operativo) + IDE-0008 /
+0041…0042. Residual bloqueado: piloto DT-0006 D (operativo) + IDE-0008 /
 LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
 desarrollo pendiente y bugs cerrados* → **no** se proponen IDE nuevas
-(0040…0042 siguen abiertas).
+(0041…0042 siguen abiertas).
 
 | ID | Título | Estado |
 |----|--------|--------|
 | IDE-0039 | Trazabilidad en plano (versión, algoritmo, fecha) | Entregado (#651) |
-| IDE-0040 | Unidades Inspector (mm/cm/in) | Idea |
+| IDE-0040 | Unidades Inspector (mm/cm/in) | Entregado |
 | IDE-0041 | Capas DXF por rol (marco/pieza/retal/cota) | Idea |
 | IDE-0042 | Exportar/importar catálogo de materiales | Idea |
 
-Prioridad de ataque: **IDE-0040** (unidades Inspector).
+Prioridad de ataque: **IDE-0041** (capas DXF por rol).
 
-Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0039.
+Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0040.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
@@ -146,7 +147,7 @@ Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 ## 6. Criterio de esta revisión
 
 - No se implementa código de producto: alinear docs con `#651` 🟢,
-  plegar histórico 2026-09-19 (`#650`) y retener IDE-0040…0042 en DOC-004.
+  plegar histórico 2026-09-19 (`#650`) y retener IDE-0041…0042 en DOC-004.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.

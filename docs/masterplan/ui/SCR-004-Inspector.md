@@ -5,7 +5,7 @@
 **Código:** SCR-004  
 **Versión:** 1.1.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 24/07/2026
+**Última revisión:** 20/09/2026
 
 ---
 
@@ -83,14 +83,15 @@ Al seleccionar una candidata (Comparador, Explorador o tras calcular):
 
 - Índice y estrategia
 - Piezas colocadas / omitidas (si parcial)
-- Largo y ancho totales (texto en mm en i18n actual)
+- Largo y ancho totales (unidades de preferencias; persistencia mm)
 - Huecos internos % y material libre %
 - Coste estimado de material (€; tableros físicos × €/m² del catálogo;
   «—» si el material no tiene precio; `*` si el coste es parcial)
 - Aviso si las soluciones están desactualizadas respecto al proyecto
 - Highlights del Comparador («mejor en…») si hay ≥ 2 candidatas
 - Fortalezas / debilidades cuando existen
-- Retales aprovechables: conteo + área total (mm²) si `offcuts` no vacío
+- Retales aprovechables: conteo + área total (prefs.units²) si `offcuts`
+  no vacío. JSON / Core siguen en mm².
 - Bloque de diagnóstico del solver al final cuando aplica
 
 ### Sin solución
@@ -128,7 +129,7 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 - SCR-002 — Workspace (selección).
 - SCR-003 — Comparador (candidata + highlights).
 - SCR-005 — Proyecto / Explorador.
-- SCR-006 — Preferencias (unidades de display en pieza/tablero).
+- SCR-006 — Preferencias (unidades de display en pieza/tablero/layout).
 - ADR-016 — Retales informativos.
 
 ---
@@ -137,8 +138,8 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 
 - Solo lectura: no edita propiedades inline.
 - Contexto de proyecto/categoría muy pobre (solo etiqueta).
-- Unidades de prefs en pieza/tablero; métricas de layout y retales aún en mm
-  hardcodeados en strings i18n.
+- Unidades de prefs en pieza, tablero, kerf, posición y métricas de layout
+  (IDE-0040). Disco / `.bcproj` / JSON siguen en mm.
 - Sin contexto «algoritmo» dedicado (parámetros viven en Preferencias).
 
 ---
@@ -147,5 +148,5 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 
 - Resumen rico de proyecto/categoría.
 - Edición inline de campos seguros.
-- Unidades coherentes en todas las métricas.
+- Unidades también en Comparador (`diff.metric.*` sigue en mm).
 - Gráficos / historial del elemento seleccionado.

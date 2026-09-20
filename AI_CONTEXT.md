@@ -39,12 +39,14 @@ alternativas comprensibles para que el usuario decida.
 - Exportar: trazabilidad en plano (IDE-0039; `#651`); pie versión /
   algoritmo / fecha en SVG/PDF/DXF; casilla en diálogo y Preferencias.
   Default: sí.
+- Inspector: unidades de Preferencias mm/cm/in (IDE-0040) en pieza,
+  tablero y métricas de layout; disco / JSON siguen mm.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
   `docs/masterplan/REVIEW-2026-09-20-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
-- Próximo: cola producto `0.4.4` tercera ola IDE-0040…0042; piloto
+- Próximo: cola producto `0.4.4` tercera ola IDE-0041…0042; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

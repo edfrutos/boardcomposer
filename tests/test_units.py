@@ -4,6 +4,7 @@ from studio.units import (
     DEFAULT_UNITS,
     VALID_UNITS,
     display_to_mm,
+    format_area,
     format_length,
     format_size,
     mm_to_display,
@@ -54,6 +55,12 @@ def test_format_length_cm_and_in_trim_trailing_zeros():
 def test_format_length_explicit_decimals():
     assert format_length(10, "mm", decimals=2) == "10 mm"
     assert format_length(25.4, "in", decimals=3) == "1 in"
+
+
+def test_format_area_for_each_unit():
+    assert format_area(10000, "mm") == "10000 mm²"
+    assert format_area(10000, "cm") == "100 cm²"
+    assert format_area(645.16, "in") == "1 in²"
 
 
 def test_format_size_without_thickness():

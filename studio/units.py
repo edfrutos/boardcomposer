@@ -36,17 +36,27 @@ def display_to_mm(value: float, units: str) -> float:
     return float(value) * _MM_PER_UNIT[normalize_units(units)]
 
 
+def _format_display_number(display: float, units: str, decimals: int | None) -> str:
+    if decimals is None:
+        decimals = 0 if units == "mm" else 2
+    if decimals == 0:
+        return f"{display:g}"
+    return f"{display:.{decimals}f}".rstrip("0").rstrip(".")
+
+
 def format_length(value_mm: float, units: str, *, decimals: int | None = None) -> str:
     """Format a millimetre value for UI display."""
     units = normalize_units(units)
     display = mm_to_display(value_mm, units)
-    if decimals is None:
-        decimals = 0 if units == "mm" else 2
-    if decimals == 0:
-        text = f"{display:g}"
-    else:
-        text = f"{display:.{decimals}f}".rstrip("0").rstrip(".")
-    return f"{text} {unit_label(units)}"
+    return f"{_format_display_number(display, units, decimals)} {unit_label(units)}"
+
+
+def format_area(value_mm2: float, units: str, *, decimals: int | None = None) -> str:
+    """Format a millimetre-squared value for UI display."""
+    units = normalize_units(units)
+    factor = _MM_PER_UNIT[units] ** 2
+    display = float(value_mm2) / factor
+    return f"{_format_display_number(display, units, decimals)} {unit_label(units)}²"
 
 
 def format_size(

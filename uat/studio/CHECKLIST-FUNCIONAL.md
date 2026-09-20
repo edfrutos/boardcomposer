@@ -43,6 +43,8 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 
 - [x] Contadores `Tableros (n)`, `Piezas (n)`, `Soluciones (n)`.
 - [x] Clic en **pieza** → Inspector completo + selección en canvas.
+- [ ] Preferencias unidades cm/in: Inspector de pieza/tablero y de layout
+  muestra cm o in (área de retales incluida); `.bcproj` / JSON siguen mm.
 - [x] Clic en **tablero** → centra cámara y resalta en Workspace.
 - [x] Menú contextual pieza: editar / duplicar / eliminar / copiar ID / renombrar.
 - [x] Menú contextual tablero: editar / duplicar / eliminar / copiar ID / renombrar.
