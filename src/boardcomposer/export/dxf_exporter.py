@@ -21,6 +21,86 @@ from boardcomposer.export.common import (
 )
 from boardcomposer.export.cut_sequence import piece_sequence_numbers
 
+LAYER_PANELS = "PANELS"
+LAYER_PIECES = "PIECES"
+LAYER_OFFCUTS = "OFFCUTS"
+LAYER_DIMS = "DIMS"
+LAYER_SEQ = "SEQ"
+LAYER_META = "META"
+
+_LAYER_ORDER = (
+    LAYER_PANELS,
+    LAYER_PIECES,
+    LAYER_OFFCUTS,
+    LAYER_DIMS,
+    LAYER_SEQ,
+    LAYER_META,
+)
+_LAYER_COLORS = {
+    "0": 7,
+    LAYER_PANELS: 8,
+    LAYER_PIECES: 4,
+    LAYER_OFFCUTS: 1,
+    LAYER_DIMS: 6,
+    LAYER_SEQ: 2,
+    LAYER_META: 8,
+}
+
+
+def _layer_record(name: str) -> list[str]:
+    """Emit one LAYER table row (name, on, ACI color, CONTINUOUS)."""
+    return [
+        "0",
+        "LAYER",
+        "2",
+        name,
+        "70",
+        "0",
+        "62",
+        str(_LAYER_COLORS.get(name, 7)),
+        "6",
+        "CONTINUOUS",
+    ]
+
+
+def _tables_section(used: set[str]) -> list[str]:
+    """Declare used role layers so CAD/CNC can toggle them."""
+    names = ["0"]
+    names.extend(layer for layer in _LAYER_ORDER if layer in used)
+    extras = sorted(used.difference(_LAYER_ORDER))
+    names.extend(extras)
+    records: list[str] = []
+    for name in names:
+        records.extend(_layer_record(name))
+    return [
+        "0",
+        "SECTION",
+        "2",
+        "TABLES",
+        "0",
+        "TABLE",
+        "2",
+        "LAYER",
+        "70",
+        str(len(names)),
+        *records,
+        "0",
+        "ENDTAB",
+        "0",
+        "ENDSEC",
+    ]
+
+
+def _entity_layers(tokens: list[str]) -> set[str]:
+    """Return layer names attached to LWPOLYLINE / TEXT / LINE entities."""
+    used: set[str] = set()
+    for index, token in enumerate(tokens):
+        if token not in {"LWPOLYLINE", "TEXT", "LINE"}:
+            continue
+        if index + 2 < len(tokens) and tokens[index + 1] == "8":
+            used.add(tokens[index + 2])
+    return used
+
 
 def _polyline(points: list[tuple[float, float]], layer: str) -> list[str]:
     """Emit a closed LWPOLYLINE entity."""
@@ -109,7 +189,11 @@ def solution_to_dxf(
     exported_at: datetime | str | None = None,
     app_version: str | None = None,
 ) -> str:
-    """Render `solution` as a DXF document (mm coordinates, Y up)."""
+    """Render `solution` as a DXF document (mm coordinates, Y up).
+
+    Role layers (IDE-0041): ``PANELS``, ``PIECES``, ``OFFCUTS``, ``DIMS``,
+    ``SEQ``, ``META``. Declared in a LAYER table so CAD/CNC can toggle them.
+    """
     offsets = panel_offsets(solution, project)
     origin_x, extra_bottom = panel_dimension_margins(
         include_panel_dimensions and bool(offsets)
@@ -128,7 +212,7 @@ def solution_to_dxf(
                     0.0,
                     panel.length_mm,
                     panel.width_mm,
-                    "PANELS",
+                    LAYER_PANELS,
                 )
             )
             entities.extend(
@@ -137,7 +221,7 @@ def solution_to_dxf(
                     panel.width_mm + 5.0,
                     20.0,
                     f"{label} · {reference.instance_index + 1}",
-                    "LABELS",
+                    LAYER_PANELS,
                 )
             )
 
@@ -154,7 +238,7 @@ def solution_to_dxf(
                 placement.y_mm,
                 placement.length_mm,
                 placement.width_mm,
-                "PIECES",
+                LAYER_PIECES,
             )
         )
         sequence = str(numbers.get(index, index + 1))
@@ -164,7 +248,7 @@ def solution_to_dxf(
                 placement.y_mm + placement.width_mm - 20.0,
                 16.0,
                 sequence,
-                "SEQ",
+                LAYER_SEQ,
             )
         )
         if include_piece_labels:
@@ -174,7 +258,7 @@ def solution_to_dxf(
                     placement.y_mm + 5.0,
                     16.0,
                     piece_plan_label(placement),
-                    "LABELS",
+                    LAYER_PIECES,
                 )
             )
 
@@ -186,7 +270,7 @@ def solution_to_dxf(
                 offcut.y_mm,
                 offcut.length_mm,
                 offcut.width_mm,
-                "OFFCUTS",
+                LAYER_OFFCUTS,
             )
         )
         if include_offcut_labels:
@@ -196,7 +280,7 @@ def solution_to_dxf(
                     offcut.y_mm + 5.0,
                     16.0,
                     offcut_plan_label(offcut),
-                    "OFFCUTS",
+                    LAYER_OFFCUTS,
                 )
             )
 
@@ -210,23 +294,23 @@ def solution_to_dxf(
             left = offset_x + origin_x
             right = left + panel.length_mm
             hy = -gap
-            entities.extend(_line(left, hy, right, hy, "DIMS"))
-            entities.extend(_line(left, hy - tick, left, hy + tick, "DIMS"))
-            entities.extend(_line(right, hy - tick, right, hy + tick, "DIMS"))
+            entities.extend(_line(left, hy, right, hy, LAYER_DIMS))
+            entities.extend(_line(left, hy - tick, left, hy + tick, LAYER_DIMS))
+            entities.extend(_line(right, hy - tick, right, hy + tick, LAYER_DIMS))
             entities.extend(
                 _text(
                     left + panel.length_mm / 2.0,
                     hy - 16.0,
                     16.0,
                     panel_dimension_label(panel.length_mm),
-                    "DIMS",
+                    LAYER_DIMS,
                 )
             )
             vx = left - gap
-            entities.extend(_line(vx, 0.0, vx, panel.width_mm, "DIMS"))
-            entities.extend(_line(vx - tick, 0.0, vx + tick, 0.0, "DIMS"))
+            entities.extend(_line(vx, 0.0, vx, panel.width_mm, LAYER_DIMS))
+            entities.extend(_line(vx - tick, 0.0, vx + tick, 0.0, LAYER_DIMS))
             entities.extend(
-                _line(vx - tick, panel.width_mm, vx + tick, panel.width_mm, "DIMS")
+                _line(vx - tick, panel.width_mm, vx + tick, panel.width_mm, LAYER_DIMS)
             )
             entities.extend(
                 _text(
@@ -234,7 +318,7 @@ def solution_to_dxf(
                     panel.width_mm / 2.0,
                     16.0,
                     panel_dimension_label(panel.width_mm),
-                    "DIMS",
+                    LAYER_DIMS,
                 )
             )
 
@@ -250,17 +334,23 @@ def solution_to_dxf(
                     strategy_name=strategy_name,
                     exported_at=exported_at,
                 ),
-                "META",
+                LAYER_META,
             )
         )
 
+    used_layers = _entity_layers(entities)
     lines = [
         "0",
         "SECTION",
         "2",
         "HEADER",
+        "9",
+        "$INSUNITS",
+        "70",
+        "4",
         "0",
         "ENDSEC",
+        *_tables_section(used_layers),
         "0",
         "SECTION",
         "2",
