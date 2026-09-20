@@ -6,6 +6,8 @@ labels. Coordinates are millimetres, scaled to PDF points (1 mm ≈ 2.834 pt).
 
 from __future__ import annotations
 
+from datetime import datetime
+
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.export.common import (
     canvas_size_mm,
@@ -16,6 +18,7 @@ from boardcomposer.export.common import (
     panel_dimension_margins,
     panel_offsets,
     piece_plan_label,
+    plan_traceability_label,
 )
 from boardcomposer.export.cut_sequence import piece_sequence_numbers
 from boardcomposer.export.pdf_page import PdfPageOptions, resolve_pdf_page
@@ -47,6 +50,10 @@ def solution_to_pdf(
     include_piece_labels: bool = True,
     include_offcut_labels: bool = True,
     include_panel_dimensions: bool = True,
+    include_plan_traceability: bool = True,
+    strategy_name: str | None = None,
+    exported_at: datetime | str | None = None,
+    app_version: str | None = None,
     page: PdfPageOptions | None = None,
 ) -> bytes:
     """Render `solution` as PDF bytes."""
@@ -58,6 +65,10 @@ def solution_to_pdf(
     # Extra headroom for panel labels above the drawing.
     width_mm += origin_x
     height_mm += 30.0 + extra_bottom
+    footer_y = height_mm - 30.0 + 12.0
+    if include_plan_traceability:
+        height_mm += 16.0
+        footer_y = height_mm - 30.0 - 4.0
 
     layout = resolve_pdf_page(width_mm, height_mm, page)
     page_w = layout.page_w_pt
@@ -165,6 +176,15 @@ def solution_to_pdf(
                     panel_dimension_label(panel.width_mm),
                 )
             )
+
+    if include_plan_traceability:
+        label = plan_traceability_label(
+            version=app_version,
+            strategy_name=strategy_name,
+            exported_at=exported_at,
+        )
+        x_pt, y_pt = to_page(5.0, footer_y)
+        ops.append(_text_ops(x_pt, y_pt, 8, label))
 
     content = "\n".join(ops).encode("latin-1", errors="replace")
 

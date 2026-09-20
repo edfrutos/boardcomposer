@@ -1,6 +1,7 @@
 from .common import (
     offcut_plan_label,
     panel_dimension_label,
+    plan_traceability_label,
     prepare_solution_for_export,
     piece_plan_label,
 )
@@ -62,6 +63,7 @@ __all__ = [
     "cut_list_to_pdf",
     "offcut_plan_label",
     "panel_dimension_label",
+    "plan_traceability_label",
     "pdf_from_text_lines",
     "piece_plan_label",
     "piece_sequence_numbers",

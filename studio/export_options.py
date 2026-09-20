@@ -64,6 +64,7 @@ class ExportOptions:
     include_piece_labels: bool = True
     include_offcut_labels: bool = True
     include_panel_dimensions: bool = True
+    include_plan_traceability: bool = True
     pdf_paper: str = DEFAULT_PDF_PAPER
     pdf_orientation: str = DEFAULT_PDF_ORIENTATION
     pdf_scale: str = DEFAULT_PDF_SCALE
@@ -87,6 +88,7 @@ class ExportOptions:
             include_piece_labels=self.include_piece_labels,
             include_offcut_labels=self.include_offcut_labels,
             include_panel_dimensions=self.include_panel_dimensions,
+            include_plan_traceability=self.include_plan_traceability,
             pdf_paper=page.paper,
             pdf_orientation=page.orientation,
             pdf_scale=page.scale,
@@ -136,11 +138,17 @@ def normalize_jpeg_quality(value: object) -> int:
     return max(MIN_JPEG_QUALITY, min(MAX_JPEG_QUALITY, quality))
 
 
-def _plan_label_kwargs(options: ExportOptions) -> dict[str, bool]:
+def _plan_kwargs(
+    options: ExportOptions,
+    *,
+    strategy_name: str | None = None,
+) -> dict[str, bool | str | None]:
     return {
         "include_piece_labels": options.include_piece_labels,
         "include_offcut_labels": options.include_offcut_labels,
         "include_panel_dimensions": options.include_panel_dimensions,
+        "include_plan_traceability": options.include_plan_traceability,
+        "strategy_name": strategy_name,
     }
 
 
@@ -170,18 +178,19 @@ def render_export(
     options = options.normalized()
     prepared = prepare_solution(solution, options)
 
+    plan = _plan_kwargs(options, strategy_name=strategy_name)
     if options.format == "svg":
-        return solution_to_svg(prepared, project, **_plan_label_kwargs(options))
+        return solution_to_svg(prepared, project, **plan)
     if options.format in {"png", "jpeg"}:
         # Raster export is generated in Studio from this SVG payload.
-        return solution_to_svg(prepared, project, **_plan_label_kwargs(options))
+        return solution_to_svg(prepared, project, **plan)
     if options.format == "dxf":
-        return solution_to_dxf(prepared, project, **_plan_label_kwargs(options))
+        return solution_to_dxf(prepared, project, **plan)
     if options.format == "pdf":
         return solution_to_pdf(
             prepared,
             project,
-            **_plan_label_kwargs(options),
+            **plan,
             page=options.pdf_page(),
         )
     if options.format == "csv":
@@ -202,11 +211,17 @@ def preview_svg(
     solution: AssemblySolution,
     project: Project | None,
     options: ExportOptions,
+    *,
+    strategy_name: str | None = None,
 ) -> str:
     """Return the layout SVG used for the graphical export preview."""
     options = options.normalized()
     prepared = prepare_solution(solution, options)
-    return solution_to_svg(prepared, project, **_plan_label_kwargs(options))
+    return solution_to_svg(
+        prepared,
+        project,
+        **_plan_kwargs(options, strategy_name=strategy_name),
+    )
 
 
 def preview_text(
@@ -254,7 +269,11 @@ def preview_text(
         return "\n".join(summary) + body
 
     if options.format == "svg":
-        svg = solution_to_svg(prepared, project, **_plan_label_kwargs(options))
+        svg = solution_to_svg(
+            prepared,
+            project,
+            **_plan_kwargs(options, strategy_name=strategy_name),
+        )
         summary.append(f"Tamaño SVG: {len(svg)} caracteres")
         summary.append("Arriba: vista previa gráfica del dibujo vectorial.")
         summary.append(
@@ -272,6 +291,11 @@ def preview_text(
             "Cotas L×A del tablero incluidas."
             if options.include_panel_dimensions
             else "Sin cotas de tablero."
+        )
+        summary.append(
+            "Trazabilidad (versión, algoritmo, fecha) incluida."
+            if options.include_plan_traceability
+            else "Sin trazabilidad en el plano."
         )
         return "\n".join(summary)
 
@@ -295,6 +319,11 @@ def preview_text(
             "Cotas L×A del tablero incluidas."
             if options.include_panel_dimensions
             else "Sin cotas de tablero."
+        )
+        summary.append(
+            "Trazabilidad (versión, algoritmo, fecha) incluida."
+            if options.include_plan_traceability
+            else "Sin trazabilidad en el plano."
         )
     if options.format in {"dxf", "pdf"}:
         summary.append(

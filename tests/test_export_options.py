@@ -166,6 +166,27 @@ def test_preview_svg_respects_panel_dimensions_option():
     assert ">500</text>" not in without_dims
 
 
+def test_preview_svg_respects_plan_traceability_option():
+    solution = AssemblySolution(placements=[BoardPlacement("A", 0, 0, 100, 50)])
+
+    with_trace = preview_svg(
+        solution,
+        None,
+        ExportOptions(include_plan_traceability=True),
+        strategy_name="material",
+    )
+    without_trace = preview_svg(
+        solution,
+        None,
+        ExportOptions(include_plan_traceability=False),
+        strategy_name="material",
+    )
+
+    assert "BoardComposer" in with_trace
+    assert "material" in with_trace
+    assert "BoardComposer" not in without_trace
+
+
 def test_export_dialog_piece_labels_enabled_for_plan_formats(qapp):
     del qapp
     from studio.dialogs import ExportDialog
@@ -177,12 +198,17 @@ def test_export_dialog_piece_labels_enabled_for_plan_formats(qapp):
     assert dialog.include_offcut_labels.text() == "Etiquetas de retales (medidas)"
     assert dialog.include_panel_dimensions.isEnabled()
     assert dialog.include_panel_dimensions.text() == "Cotas L×A del tablero"
+    assert dialog.include_plan_traceability.isEnabled()
+    assert dialog.include_plan_traceability.text() == (
+        "Trazabilidad (versión, algoritmo, fecha)"
+    )
 
     dialog.format.setCurrentIndex(dialog.format.findData("json"))
     dialog._refresh_preview()
     assert not dialog.include_piece_labels.isEnabled()
     assert not dialog.include_offcut_labels.isEnabled()
     assert not dialog.include_panel_dimensions.isEnabled()
+    assert not dialog.include_plan_traceability.isEnabled()
 
     dialog.format.setCurrentIndex(dialog.format.findData("svg"))
     dialog.include_offcuts.setChecked(False)
@@ -190,6 +216,7 @@ def test_export_dialog_piece_labels_enabled_for_plan_formats(qapp):
     assert dialog.include_piece_labels.isEnabled()
     assert not dialog.include_offcut_labels.isEnabled()
     assert dialog.include_panel_dimensions.isEnabled()
+    assert dialog.include_plan_traceability.isEnabled()
 
 
 def test_export_dialog_pdf_page_controls_enabled_only_for_pdf(qapp):

@@ -54,6 +54,7 @@ Defaults de formato y flags: SCR-006 → `preferences.json`.
 │                    │ ☐ Etiquetas de piezas (id y LxW mm)           │
 │                    │ ☐ Etiquetas de retales (LxW mm)               │
 │                    │ ☐ Cotas L×A del tablero                       │
+│                    │ ☐ Trazabilidad (versión, algoritmo, fecha)    │
 │ PDF plano          │ papel (dibujo/A4/A3/Letter) · orientación     │
 │                    │ escala (fit / 1:n) · márgenes mm              │
 │ Raster PNG/JPEG    │ DPI (36–300) · calidad JPEG (1–100)           │
@@ -96,6 +97,11 @@ No implementados: más formatos de imagen (WebP, TIFF).
   Líneas de dimensión overall (largo abajo, ancho a la izquierda) con
   valor en mm. Default: sí. Deshabilitada en JSON/CSV. Sin bump
   `.bcproj`. No son etiquetas de pieza/retal (0026/0033).
+- **Trazabilidad (IDE-0039):** mismos formatos de plano. Pie
+  `BoardComposer {versión} · {algoritmo o "-"} · YYYY-MM-DD HH:MM`.
+  Default: sí. Deshabilitada en JSON/CSV. Capa DXF `META`. Sin bump
+  `.bcproj`. JSON ya lleva `strategy`; este pie es para el plano
+  impreso.
 - **Números de secuencia (IDE-0027):** siempre en SVG/PDF/DXF (paso de
   pieza en su panel). La lista de corte (Ctrl+Alt+C) añade el orden de
   sierra (guillotina o por posición) en CSV y PDF.
@@ -218,5 +224,5 @@ No usa `ExportDialog`. Flujo propio:
 
 - Más formatos de imagen (WebP, TIFF).
 - Perfiles CAD-CAM avanzados.
-- Trazabilidad explícita (versión app, algoritmo, fecha) en más formatos
-  (IDE-0039).
+- Trazabilidad en más formatos de informe (lista de corte / presupuesto)
+  además del pie de plano (IDE-0039).

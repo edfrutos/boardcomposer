@@ -6,9 +6,14 @@
 
 - Docs planificación 2026-09-20: snapshot
   `docs/masterplan/REVIEW-2026-09-20-planificacion.md`; Issues = 0;
-  IDE-0039 🟡 (`#651` abierto); residual IDE-0040…0042 → **sin IDE
+  `#651` (IDE-0039) en `main`; residual IDE-0040…0042 → **sin IDE
   nuevas** (cola implementable abierta). Histórico 2026-09-19 plegado
   desde PR `#650`.
+- Exportar: trazabilidad en plano (IDE-0039); pie
+  `BoardComposer {versión} · {algoritmo} · YYYY-MM-DD HH:MM` en
+  SVG/PDF/DXF (raster vía SVG); casilla en Exportar y Preferencias;
+  plantillas y batch EP-002. Default: sí. JSON/CSV no. Capa DXF
+  `META`. Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-09-19: snapshot
   `docs/masterplan/REVIEW-2026-09-19-planificacion.md`; Issues = 0;
   `#647` (IDE-0037) y `#649` (IDE-0038) en `main`; tercera ola restante
