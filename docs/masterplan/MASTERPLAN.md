@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-19.
+Última revisión: 2026-09-20.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-19-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-20-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -39,6 +39,7 @@
 - Etiquetas de retales (LxW mm) en plano SVG/PDF/DXF (IDE-0033).
 - Cotas L×A del tablero en plano SVG/PDF/DXF (IDE-0037).
 - Calidad raster PNG/JPEG (DPI y calidad JPEG, IDE-0038).
+- Trazabilidad en plano (versión / algoritmo / fecha, IDE-0039) — 🟡 `#651`.
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
 - Retales a inventario del mismo proyecto (**Ctrl+Alt+R**, IDE-0025).
@@ -51,7 +52,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` tercera ola: IDE-0039…0042 (0037/0038 entregadas).
+1. Cerrar `#651` (IDE-0039); luego residual IDE-0040…0042.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

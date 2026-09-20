@@ -1,9 +1,14 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-19
+## Unreleased — 0.4.4.dev0 — 2026-09-20
 
 ### Añadido
 
+- Docs planificación 2026-09-20: snapshot
+  `docs/masterplan/REVIEW-2026-09-20-planificacion.md`; Issues = 0;
+  IDE-0039 🟡 (`#651` abierto); residual IDE-0040…0042 → **sin IDE
+  nuevas** (cola implementable abierta). Histórico 2026-09-19 plegado
+  desde PR `#650`.
 - Docs planificación 2026-09-19: snapshot
   `docs/masterplan/REVIEW-2026-09-19-planificacion.md`; Issues = 0;
   `#647` (IDE-0037) y `#649` (IDE-0038) en `main`; tercera ola restante
@@ -77,7 +82,7 @@
 ### Cambiado
 
 - Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con
-  `0.4.4.dev0` y snapshot 2026-09-19.
+  `0.4.4.dev0` y snapshot 2026-09-20.
 
 ## 0.4.3 — 2026-09-14
 
