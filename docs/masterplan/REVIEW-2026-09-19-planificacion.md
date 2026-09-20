@@ -41,7 +41,7 @@ revisiones `REVIEW-2026-09-17` / `REVIEW-2026-09-18`.
 | IDE-0036 colocación manual asistida (sugerir hueco) | 🟢 (#645) |
 | IDE-0037 cotas L×A del tablero en plano | 🟢 (#647) |
 | IDE-0038 calidad raster PNG/JPEG (DPI) | 🟢 (#649) |
-| IDE-0039 trazabilidad en plano (versión, algoritmo, fecha) | ⚪ |
+| IDE-0039 trazabilidad en plano (versión, algoritmo, fecha) | 🟢 |
 | IDE-0040 unidades Inspector (mm/cm/in) | ⚪ |
 | IDE-0041 capas DXF por rol (marco/pieza/retal/cota) | ⚪ |
 | IDE-0042 exportar/importar catálogo de materiales | ⚪ |
@@ -77,8 +77,8 @@ Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
-IDE-0037 y IDE-0038 **entregadas** (`#647`, `#649`); restante tercera ola
-0039…0042.
+IDE-0037, IDE-0038 e IDE-0039 **entregadas**; restante tercera ola
+0040…0042.
 
 Desde la revisión 2026-09-18, en `main` entró: `#647` (IDE-0037 cotas) y
 `#649` (IDE-0038 raster). El snapshot 2026-09-18 (PR `#648`) proponía la
@@ -100,7 +100,8 @@ Límites conocidos (no son bugs; son alcance):
   tableros físicos; no hay mano de obra.
 - Export PDF: papel/márgenes/escala en plano (IDE-0034); lote de
   candidatas Studio (IDE-0035). Raster PNG/JPEG: DPI y calidad JPEG
-  (IDE-0038). Capas DXF por rol aún no (IDE-0041). Sin nube.
+  (IDE-0038). Pie de trazabilidad en plano (IDE-0039). Capas DXF por
+  rol aún no (IDE-0041). Sin nube.
 - Workspace: sugerir hueco para colocación manual (IDE-0036; SCR-002).
 
 Deuda abierta explícita: **1** ítem (`DT-0006` en piloto D). Sin críticas sin
@@ -110,7 +111,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` tercera ola** — IDE-0039…0042 (0037/0038 entregadas).
+1. **Cola `0.4.4` tercera ola** — IDE-0040…0042 (0037…0039 entregadas).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -122,25 +123,25 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0039…0042. Residual bloqueado: piloto DT-0006 D (operativo)
+0040…0042. Residual bloqueado: piloto DT-0006 D (operativo)
 + IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
 desarrollo pendiente y bugs cerrados* → **no** se proponen IDE nuevas
-(0039…0042 siguen abiertas; 0041/0042 vienen del snapshot 2026-09-18).
+(0040…0042 siguen abiertas; 0041/0042 vienen del snapshot 2026-09-18).
 
 | ID | Título | Estado |
 |----|--------|--------|
 | IDE-0037 | Cotas L×A del tablero en plano | Entregado (#647) |
 | IDE-0038 | Calidad raster PNG/JPEG (DPI) | Entregado (#649) |
-| IDE-0039 | Trazabilidad en plano (versión, algoritmo, fecha) | Idea |
+| IDE-0039 | Trazabilidad en plano (versión, algoritmo, fecha) | Entregado |
 | IDE-0040 | Unidades Inspector (mm/cm/in) | Idea |
 | IDE-0041 | Capas DXF por rol (marco/pieza/retal/cota) | Idea |
 | IDE-0042 | Exportar/importar catálogo de materiales | Idea |
 
-Prioridad de ataque: **IDE-0039** (trazabilidad en plano).
+Prioridad de ataque: **IDE-0040** (unidades Inspector).
 
-Cerradas en este ciclo `0.4.4.dev0`: IDE-0025…0038.
+Cerradas en este ciclo `0.4.4.dev0`: IDE-0025…0039.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---

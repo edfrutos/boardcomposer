@@ -186,8 +186,10 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
 
 - [ ] **Ctrl+Shift+E** plano SVG/PDF: piezas muestran id y LxW mm; retales
   muestran LxW mm; el tablero muestra cotas L×A; desmarcar «Etiquetas de
-  piezas», «Etiquetas de retales» o «Cotas L×A del tablero» deja el
-  plano sin ese texto; Workspace sigue mostrando solo piezas.
+  piezas», «Etiquetas de retales», «Cotas L×A del tablero» o
+  «Trazabilidad (versión, algoritmo, fecha)» deja el plano sin ese
+  texto; Workspace sigue mostrando solo piezas. El pie muestra
+  versión, algoritmo y fecha; JSON/CSV no activan la casilla.
 - [ ] **Ctrl+Shift+E** PDF de plano: papel A4/A3/Letter o ajustar al
   dibujo; escala fit o 1:n; márgenes mm. Lista de corte y presupuesto
   PDF no cambian de página.

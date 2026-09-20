@@ -4,6 +4,10 @@ No external dependencies: CAD tools (LibreCAD, QCAD, AutoCAD) can open the
 result as a 2D cutting layout with one closed polyline per panel/piece.
 """
 
+from __future__ import annotations
+
+from datetime import datetime
+
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.export.common import (
     PANEL_COTA_GAP_MM,
@@ -13,6 +17,7 @@ from boardcomposer.export.common import (
     panel_dimension_margins,
     panel_offsets,
     piece_plan_label,
+    plan_traceability_label,
 )
 from boardcomposer.export.cut_sequence import piece_sequence_numbers
 
@@ -99,10 +104,14 @@ def solution_to_dxf(
     include_piece_labels: bool = True,
     include_offcut_labels: bool = True,
     include_panel_dimensions: bool = True,
+    include_plan_traceability: bool = True,
+    strategy_name: str | None = None,
+    exported_at: datetime | str | None = None,
+    app_version: str | None = None,
 ) -> str:
     """Render `solution` as a DXF document (mm coordinates, Y up)."""
     offsets = panel_offsets(solution, project)
-    origin_x, _extra_bottom = panel_dimension_margins(
+    origin_x, extra_bottom = panel_dimension_margins(
         include_panel_dimensions and bool(offsets)
     )
     entities: list[str] = []
@@ -228,6 +237,22 @@ def solution_to_dxf(
                     "DIMS",
                 )
             )
+
+    if include_plan_traceability:
+        fy = -(extra_bottom + 18.0) if extra_bottom else -18.0
+        entities.extend(
+            _text(
+                5.0,
+                fy,
+                16.0,
+                plan_traceability_label(
+                    version=app_version,
+                    strategy_name=strategy_name,
+                    exported_at=exported_at,
+                ),
+                "META",
+            )
+        )
 
     lines = [
         "0",
