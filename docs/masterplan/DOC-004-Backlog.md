@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.44
+**Versión:** 1.3.45
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 20/09/2026
+**Última revisión:** 21/09/2026
 
 ---
 
@@ -144,9 +144,9 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0037 | S–M | SCR-007; export SVG/PDF/DXF | Entregado; cotas L×A; casilla export |
 | IDE-0038 | S | SCR-007; raster PNG/JPEG | Entregado; DPI 36–300; JPEG 1–100 |
 | IDE-0039 | S–M | SCR-007; export plan | Entregado; pie versión/algoritmo/fecha |
-| IDE-0040 | S–M | Inspector; prefs.units | Entregado; display prefs; mm en disco |
-| IDE-0041 | S–M | SCR-007; DXF exporter | Entregado; tabla LAYER por rol |
-| IDE-0042 | S | IDE-0028; catálogo JSON | Entregado; export/import JSON; sin nube |
+| IDE-0040 | S–M | Inspector; prefs.units | Entregado (#653); display prefs; mm en disco |
+| IDE-0041 | S–M | SCR-007; DXF exporter | Entregado (#654); tabla LAYER por rol |
+| IDE-0042 | S | IDE-0028; catálogo JSON | Entregado (#655); export/import JSON; sin nube |
 
 ---
 
@@ -175,9 +175,10 @@ Detalle: `docs/masterplan/epics/`.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — IDE-0001…0042 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0042; `#647`/`#649`/`#651`).
-IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
-entregadas. Snapshot: `REVIEW-2026-09-20-planificacion.md`.
+completadas (ciclo `0.4.4` ola 1 + 0031…0042; `#647`/`#649`/`#651`/
+`#653`/`#654`/`#655`). IDE-0007 🟢 MVP+eval (2026-09-12; LLM
+diferido). EP (001…003) Fase 3 entregadas. Snapshot:
+`REVIEW-2026-09-21-planificacion.md`.
 
 Próximo foco:
 

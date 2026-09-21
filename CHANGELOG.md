@@ -1,12 +1,17 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-20
+## Unreleased — 0.4.4.dev0 — 2026-09-21
 
 ### Añadido
 
 - Exportar/importar catálogo de materiales (IDE-0042): JSON entre PCs,
   fusionar o reemplazar; sin nube. Recuerda última carpeta. Sin bump
   `.bcproj`; no cambia el solver.
+- Docs planificación 2026-09-21: snapshot
+  `docs/masterplan/REVIEW-2026-09-21-planificacion.md`; Issues = 0;
+  `#653` (IDE-0040) y `#654` (IDE-0041) en `main`; `#655` (IDE-0042)
+  🟡 → **sin IDE nuevas** (cola implementable abierta). Histórico
+  2026-09-20 plegado desde PR `#652`.
 - Exportar DXF: capas por rol (IDE-0041) `PANELS` / `PIECES` / `OFFCUTS`
   / `DIMS` / `SEQ` / `META` declaradas en tabla LAYER; `$INSUNITS` mm.
   Etiquetas van en la capa del rol (no `LABELS`). CAD/CNC puede ocultar
@@ -98,7 +103,7 @@
 ### Cambiado
 
 - Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con
-  `0.4.4.dev0` y snapshot 2026-09-20.
+  `0.4.4.dev0` y snapshot 2026-09-21.
 
 ## 0.4.3 — 2026-09-14
 

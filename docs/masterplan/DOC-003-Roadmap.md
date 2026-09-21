@@ -3,10 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.41  
+**Versión:** 1.3.42  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 20/09/2026
+**Última revisión:** 21/09/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
@@ -184,10 +184,9 @@ Toda modificación deberá:
 
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
 corte `0.4.3` / `v0.4.3` publicado; ciclo `0.4.4.dev0` ola 1 (0025…0030)
-cerrada; segunda ola IDE-0031…0036 entregada; 0037 cotas, 0038 raster
-y 0039 trazabilidad de plano entregados (`#647`/`#649`/`#651`); 0040
-unidades Inspector, 0041 capas DXF y 0042 catálogo JSON entregados.
-Revisión: `REVIEW-2026-09-20-planificacion.md`.
+cerrada; segunda ola IDE-0031…0036 entregada; 0037…0042 entregadas
+(`#647`/`#649`/`#651`/`#653`/`#654`/`#655`).
+Revisión: `REVIEW-2026-09-21-planificacion.md`.
 
 Pendiente de:
 

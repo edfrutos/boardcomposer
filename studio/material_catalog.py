@@ -365,7 +365,7 @@ class MaterialCatalogManager:
         if kind is not None and kind != CATALOG_PACK_KIND:
             raise ValueError("El archivo no es un catálogo de materiales BoardComposer")
         catalog = MaterialCatalog.from_payload(payload)
-        if not catalog.materials and kind != CATALOG_PACK_KIND:
+        if not catalog.materials:
             raise ValueError("El paquete no contiene materiales")
         return catalog
 
@@ -382,6 +382,8 @@ class MaterialCatalogManager:
 
         Returns `(imported_count, total_after)`.
         """
+        if mode not in {"merge", "replace"}:
+            raise ValueError(f"Modo de importación no soportado: {mode}")
         source = Path(path)
         try:
             payload = json.loads(source.read_text(encoding="utf-8"))

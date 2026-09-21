@@ -8,7 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-09-20
+## Estado actual — 2026-09-21
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
@@ -40,16 +40,16 @@ alternativas comprensibles para que el usuario decida.
 - Exportar: trazabilidad en plano (IDE-0039; `#651`); pie versión /
   algoritmo / fecha en SVG/PDF/DXF; casilla en diálogo y Preferencias.
   Default: sí.
-- Inspector: unidades de Preferencias mm/cm/in (IDE-0040) en pieza,
+- Inspector: unidades de Preferencias mm/cm/in (IDE-0040 `#653`) en pieza,
   tablero y métricas de layout; disco / JSON siguen mm.
-- Exportar DXF: capas por rol (IDE-0041) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
+- Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-09-20-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-09-21-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
-- Próximo: cola `0.4.4` tercera ola cerrada; piloto
-  DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
+- Próximo: cola `0.4.4` tercera ola cerrada; piloto DT-0006 D; Issues = 0;
+  eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 
