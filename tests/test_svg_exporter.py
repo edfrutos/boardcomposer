@@ -181,3 +181,24 @@ def test_solution_to_svg_omits_plan_traceability_when_disabled():
     svg = solution_to_svg(solution, include_plan_traceability=False)
 
     assert "BoardComposer" not in svg
+
+
+def test_solution_to_svg_plan_labels_follow_units():
+    project = Project()
+    project.add_stock_panel(StockPanel(1000, 500, 19, "P1"))
+    solution = AssemblySolution(
+        placements=[
+            BoardPlacement("A", 0, 0, 400, 300, panel_reference=PanelReference(0, 0)),
+        ],
+        offcuts=(Offcut(PanelReference(0, 0), 400, 0, 600, 300),),
+    )
+
+    svg = solution_to_svg(solution, project, units="cm")
+
+    assert "A 40x30 cm" in svg
+    assert "60x30 cm" in svg
+    assert ">100 cm</text>" in svg
+    assert ">50 cm</text>" in svg
+    assert "A 400x300" not in svg
+    assert 'width="400"' in svg
+    assert 'height="300"' in svg

@@ -13,6 +13,11 @@ from boardcomposer.domain import (
     PanelReference,
     Project,
 )
+from boardcomposer.units import (
+    DEFAULT_UNITS,
+    plan_length_label,
+    plan_size_label,
+)
 
 PANEL_GAP_MM = 50.0
 PANEL_COTA_LEFT_MM = 32.0
@@ -22,19 +27,22 @@ PANEL_COTA_TICK_MM = 4.0
 PLAN_TRACE_LINE_MM = 18.0
 
 
-def piece_plan_label(placement: BoardPlacement) -> str:
-    """Workshop label: piece id and placed size in mm (ASCII ``x``)."""
-    return f"{placement.board_id} {placement.length_mm:g}x{placement.width_mm:g}"
+def piece_plan_label(placement: BoardPlacement, units: str = DEFAULT_UNITS) -> str:
+    """Workshop label: piece id and placed size (prefs units, ASCII ``x``)."""
+    return (
+        f"{placement.board_id} "
+        f"{plan_size_label(placement.length_mm, placement.width_mm, units)}"
+    )
 
 
-def offcut_plan_label(offcut: Offcut) -> str:
-    """Workshop label: offcut size in mm (ASCII ``x``)."""
-    return f"{offcut.length_mm:g}x{offcut.width_mm:g}"
+def offcut_plan_label(offcut: Offcut, units: str = DEFAULT_UNITS) -> str:
+    """Workshop label: offcut size (prefs units, ASCII ``x``)."""
+    return plan_size_label(offcut.length_mm, offcut.width_mm, units)
 
 
-def panel_dimension_label(value_mm: float) -> str:
-    """Workshop dimension: overall panel size in mm."""
-    return f"{value_mm:g}"
+def panel_dimension_label(value_mm: float, units: str = DEFAULT_UNITS) -> str:
+    """Workshop dimension: overall panel size (prefs units)."""
+    return plan_length_label(value_mm, units)
 
 
 def panel_dimension_margins(enabled: bool) -> tuple[float, float]:

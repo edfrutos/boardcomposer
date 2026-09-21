@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Unidades de Preferencias en etiquetas de plano (IDE-0044): piezas,
+  retales y cotas de tablero en SVG/PDF/DXF/raster y Workspace siguen
+  `prefs.units` (mm/cm/in). Geometría, JSON/CSV y `$INSUNITS` siguen mm.
+  Default mm no cambia el texto actual. Sin casilla extra ni bump
+  `.bcproj`; no cambia el solver.
 - Trazabilidad en lista de corte PDF y presupuesto PDF (IDE-0043);
   mismo pie que el plano; casilla Preferencias; CSV de corte no.
   Sin bump `.bcproj`; no cambia el solver.

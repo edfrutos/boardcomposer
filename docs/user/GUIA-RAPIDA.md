@@ -228,9 +228,9 @@ marcadores…).
 
 - Formatos: SVG / PNG / JPEG / PDF / DXF / JSON / CSV. Vista previa según
   opciones (métricas y explicación solo JSON; retales; **etiquetas** de
-  pieza con id y LxW mm y de retal con LxW mm; **cotas L×A** del tablero
-  y **trazabilidad** (versión, algoritmo, fecha) en el plano
-  SVG/PDF/DXF/raster).
+  pieza con id y LxW y de retal con LxW según las **unidades** de
+  Preferencias; **cotas L×A** del tablero y **trazabilidad** (versión,
+  algoritmo, fecha) en el plano SVG/PDF/DXF/raster).
   El JSON de Studio incluye coste estimado si el catálogo tiene precio €/m².
   En **PDF** de plano: papel (ajustar al dibujo, A4, A3, Letter),
   orientación, escala (ajustar o 1:n) y márgenes mm. Lista de corte y
@@ -264,7 +264,8 @@ marcadores…).
 
 **Editar → Preferencias** (**Ctrl+,**). Globales: **no** van en el `.bcproj`.
 
-- **General:** idioma, tema (sistema / claro / oscuro), unidades.
+- **General:** idioma, tema (sistema / claro / oscuro), unidades
+  (Inspector, Workspace y etiquetas de plano; disco sigue mm).
 - **Workspace:** mostrar cuadrícula y tamaño (afecta **Shift+flechas**).
 - **Algoritmos:** estrategia y pesos opcionales.
 - **Exportación:** formato por defecto y opciones (métricas / explicación

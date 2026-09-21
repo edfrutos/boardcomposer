@@ -186,6 +186,7 @@ class BoardWorkspace(QGraphicsView):
                 placement,
                 offset_x=slot.x_mm if slot is not None else 0,
                 offset_y=slot.y_mm if slot is not None else 0,
+                units=self.services.preferences.current.units,
             )
             if slot is not None:
                 item.stock_panel_index = slot.stock_panel_index

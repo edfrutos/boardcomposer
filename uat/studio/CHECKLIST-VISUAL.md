@@ -51,7 +51,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Contadores Tableros / Piezas / Soluciones actualizan.
 - [x] Clic pieza → Inspector completo + selección en canvas.
 - [ ] Preferencias cm/in: Inspector muestra esas unidades en dims, kerf,
-  posición y métricas de layout (no mm hardcodeados).
+  posición y métricas de layout (no mm hardcodeados); Workspace y
+  etiquetas de plano también.
 - [x] Clic tablero → centra cámara / resalta en Workspace.
 - [x] Menú contextual pieza: editar, duplicar, eliminar, copiar ID, renombrar.
 - [x] Menú contextual tablero: editar, duplicar, eliminar, copiar ID, renombrar.
@@ -105,7 +106,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 
 - [x] Exportar solución (menú/flujo) completa sin error visible.
 - [ ] Exportar plano: cotas L×A del tablero visibles; desmarcar la casilla
-  las quita sin cambiar piezas ni retales.
+  las quita sin cambiar piezas ni retales. Con prefs en cm/in, TEXT
+  de pieza/retal/cota muestra esa unidad.
 - [ ] Exportar plano: pie de trazabilidad (versión, algoritmo, fecha)
   visible; desmarcar la casilla lo quita. JSON/CSV deshabilitan la
   casilla.

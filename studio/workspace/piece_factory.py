@@ -1,3 +1,4 @@
+from boardcomposer.units import DEFAULT_UNITS
 from studio.workspace.board_piece_item import BoardPieceItem
 
 
@@ -7,6 +8,7 @@ def create_piece_item(
     *,
     offset_x: float = 0,
     offset_y: float = 0,
+    units: str = DEFAULT_UNITS,
 ) -> BoardPieceItem:
     item = BoardPieceItem(
         piece.piece_id,
@@ -17,6 +19,7 @@ def create_piece_item(
         board_id=placement.board_id,
         board_instance=placement.board_instance,
         stock_panel_index=placement.stock_panel_index,
+        units=units,
     )
     item.set_rotation(placement.rotation)
     return item

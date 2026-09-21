@@ -47,8 +47,8 @@ revisión `REVIEW-2026-09-20`.
 | IDE-0040 unidades Inspector (mm/cm/in) | 🟢 (#653) |
 | IDE-0041 capas DXF por rol (marco/pieza/retal/cota) | 🟢 (#654) |
 | IDE-0042 exportar/importar catálogo de materiales | 🟢 (#655) |
-| IDE-0043 trazabilidad lista de corte / presupuesto PDF | 🟢 |
-| IDE-0044 unidades prefs en plano / etiquetas export | ⚪ |
+| IDE-0043 trazabilidad lista de corte / presupuesto PDF | 🟢 (#657) |
+| IDE-0044 unidades prefs en plano / etiquetas export | 🟢 |
 | IDE-0045 mano de obra en presupuesto | ⚪ |
 | IDE-0046 Inspector espesor / rotación / veta de pieza | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
@@ -83,11 +83,11 @@ Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
-IDE-0037…0043 **entregadas**; cuarta ola IDE-0044…0046 abierta.
+IDE-0037…0044 **entregadas**; cuarta ola IDE-0045…0046 abierta.
 
 Desde la revisión 2026-09-20, en `main` entraron `#653`…`#655` (0040…0042)
-y el pie de informes (IDE-0043). Planning `#656` queda alineado con
-`#655` mergeado.
+y el pie de informes (IDE-0043 `#657`). Planning `#656` queda alineado
+con `#655` mergeado. IDE-0044 usa `prefs.units` en TEXT de plano.
 
 Límites conocidos (no son bugs; son alcance):
 
@@ -100,7 +100,7 @@ Límites conocidos (no son bugs; son alcance):
 - Etiquetas de plano cubren piezas (IDE-0026), retales LxW (IDE-0033) y
   cotas L×A del tablero (IDE-0037) y pie de trazabilidad (IDE-0039);
   lista de corte / presupuesto PDF (IDE-0043). Etiquetas de plano siguen
-  en mm (IDE-0044).
+  `prefs.units` (IDE-0044); geometría / JSON / `$INSUNITS` en mm.
 - Coste (IDE-0029) y presupuesto PDF (IDE-0032) cubren material de
   tableros físicos; no hay mano de obra (IDE-0045).
 - Export PDF: papel/márgenes/escala en plano (IDE-0034); lote de
@@ -117,7 +117,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` cuarta ola** — IDE-0044…0046 (0043 entregada).
+1. **Cola `0.4.4` cuarta ola** — IDE-0045…0046 (0044 entregada).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -129,7 +129,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-IDE-0044…0046. Residual bloqueado: piloto DT-0006 D (operativo) +
+IDE-0045…0046. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
@@ -139,21 +139,22 @@ desarrollo pendiente y bugs cerrados* → **sí se añaden IDE-0043…0046**
 | ID | Título | Estado |
 |----|--------|--------|
 | IDE-0042 | Exportar/importar catálogo de materiales | Entregado (#655) |
-| IDE-0043 | Trazabilidad en lista de corte / presupuesto | Entregado |
-| IDE-0044 | Unidades prefs en plano y etiquetas de export | Idea |
+| IDE-0043 | Trazabilidad en lista de corte / presupuesto | Entregado (#657) |
+| IDE-0044 | Unidades prefs en plano y etiquetas de export | Entregado |
 | IDE-0045 | Mano de obra en presupuesto | Idea |
 | IDE-0046 | Inspector: espesor / rotación / veta de pieza | Idea |
 
-Prioridad de ataque: **IDE-0044** (unidades prefs en plano).
+Prioridad de ataque: **IDE-0045** (mano de obra en presupuesto).
 
-Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0043.
+Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0043;
+IDE-0044 en esta rama.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
 
 ## 6. Criterio de esta revisión
 
-- Alinear `#655` 🟢; entregar IDE-0043; abrir cuarta ola 0044…0046.
+- Alinear `#657` 🟢; entregar IDE-0044; cola 0045…0046.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.

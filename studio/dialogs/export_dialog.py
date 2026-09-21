@@ -100,6 +100,7 @@ class ExportDialog(QDialog):
         self._on_templates_directory = on_templates_directory
         self._material_prices = material_prices
         self._ranked_count = max(int(ranked_count), 1)
+        self._units = options.normalized().units
         self._templates = (
             templates
             if templates is not None
@@ -317,6 +318,7 @@ class ExportDialog(QDialog):
             raster_dpi=self.raster_dpi.value(),
             jpeg_quality=self.jpeg_quality.value(),
             export_batch=self.export_batch.isChecked() and self._ranked_count >= 2,
+            units=self._units,
         ).normalized()
 
     def _client_filter(self) -> str | None:

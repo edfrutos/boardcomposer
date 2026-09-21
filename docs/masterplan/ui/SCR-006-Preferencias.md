@@ -70,7 +70,7 @@ Restaurar valores por defecto.
 | --- | --- |
 | Idioma | `es` / `en` |
 | Tema | sistema / claro / oscuro |
-| Unidades | `mm` / `cm` / `in` (interno siempre mm; Inspector display) |
+| Unidades | `mm` / `cm` / `in` (interno siempre mm; Inspector y plano TEXT) |
 
 ### Workspace
 

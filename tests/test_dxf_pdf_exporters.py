@@ -239,3 +239,27 @@ def test_solution_to_pdf_omits_plan_traceability_when_disabled():
 
     assert pdf.startswith(b"%PDF-1.4")
     assert b"BoardComposer" not in pdf
+
+
+def test_solution_to_dxf_plan_labels_follow_units():
+    project, solution = _single_panel_solution()
+
+    dxf = solution_to_dxf(solution, project, units="cm")
+
+    assert "A 40x30 cm" in dxf
+    assert "60x30 cm" in dxf
+    assert "100 cm" in dxf
+    assert "A 400x300" not in dxf
+    assert "$INSUNITS" in dxf
+    assert "432" in dxf
+
+
+def test_solution_to_pdf_plan_labels_follow_units():
+    project, solution = _single_panel_solution()
+
+    pdf = solution_to_pdf(solution, project, units="cm")
+
+    assert pdf.startswith(b"%PDF-1.4")
+    assert b"A 40x30 cm" in pdf
+    assert b"60x30 cm" in pdf
+    assert b"A 400x300" not in pdf
