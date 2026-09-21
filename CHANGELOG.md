@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Exportar/importar catálogo de materiales (IDE-0042): JSON entre PCs,
+  fusionar o reemplazar; sin nube. Recuerda última carpeta. Sin bump
+  `.bcproj`; no cambia el solver.
 - Exportar DXF: capas por rol (IDE-0041) `PANELS` / `PIECES` / `OFFCUTS`
   / `DIMS` / `SEQ` / `META` declaradas en tabla LAYER; `$INSUNITS` mm.
   Etiquetas van en la capa del rol (no `LABELS`). CAD/CNC puede ocultar

@@ -1,8 +1,8 @@
-"""User-level material / thickness / sheet-size catalog (IDE-0028/0031).
+"""User-level material / thickness / sheet-size catalog (IDE-0028/0031/0042).
 
 Stored outside `.bcproj` so every project can reuse the same typed stock
 names. Optional: the catalog learns new pairs when the user accepts a
-board or piece dialog.
+board or piece dialog. Share via JSON export/import (no cloud).
 """
 
 from __future__ import annotations
@@ -10,6 +10,9 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
+
+
+CATALOG_PACK_KIND = "boardcomposer.material_catalog"
 
 
 def default_material_catalog_path() -> Path:
@@ -340,6 +343,60 @@ class MaterialCatalogManager:
 
     def restore_defaults(self) -> None:
         self.replace_all(list(DEFAULT_CATALOG_MATERIALS))
+
+    def export_pack(self, path: Path | str) -> int:
+        """Write the catalog to a shareable JSON pack. Returns count exported."""
+        destination = Path(path)
+        payload = {
+            **self.catalog.to_payload(),
+            "kind": CATALOG_PACK_KIND,
+        }
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(
+            json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        return len(self.catalog.materials)
+
+    @staticmethod
+    def parse_pack(payload: object) -> MaterialCatalog:
+        """Parse a pack, a user catalog file, or a legacy bare list."""
+        kind = payload.get("kind") if isinstance(payload, dict) else None
+        if kind is not None and kind != CATALOG_PACK_KIND:
+            raise ValueError("El archivo no es un catálogo de materiales BoardComposer")
+        catalog = MaterialCatalog.from_payload(payload)
+        if not catalog.materials and kind != CATALOG_PACK_KIND:
+            raise ValueError("El paquete no contiene materiales")
+        return catalog
+
+    def import_pack(
+        self,
+        path: Path | str,
+        *,
+        mode: str = "merge",
+    ) -> tuple[int, int]:
+        """Import materials from a JSON pack.
+
+        `mode="merge"` upserts by name (incoming wins).
+        `mode="replace"` replaces the whole catalog.
+
+        Returns `(imported_count, total_after)`.
+        """
+        source = Path(path)
+        try:
+            payload = json.loads(source.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise ValueError(f"No se pudo leer el paquete: {exc}") from exc
+
+        incoming = self.parse_pack(payload)
+        if mode == "replace":
+            self.replace_all(list(incoming.materials))
+        else:
+            by_key = {item.name.casefold(): item for item in self.catalog.materials}
+            for item in incoming.materials:
+                by_key[item.name.casefold()] = item
+            self.replace_all(list(by_key.values()))
+        return len(incoming.materials), len(self.catalog.materials)
 
     def load(self) -> None:
         if self.path is None or not self.path.is_file():

@@ -137,6 +137,16 @@ def test_preferences_manager_ignores_blank_last_export_templates_directory(tmp_p
     assert prefs.last_export_templates_directory is None
 
 
+def test_preferences_manager_ignores_blank_last_material_catalog_directory(tmp_path):
+    path = tmp_path / "preferences.json"
+    path.write_text(
+        '{"strategy_name": "material", "last_material_catalog_directory": "  "}\n',
+        encoding="utf-8",
+    )
+    prefs = PreferencesManager(path).current
+    assert prefs.last_material_catalog_directory is None
+
+
 def test_preferences_dialog_preserves_last_export_directory(qapp):
     del qapp
     from studio.dialogs.preferences_dialog import PreferencesDialog
@@ -208,6 +218,20 @@ def test_preferences_dialog_preserves_last_export_templates_directory(qapp):
     )
     dialog.max_solutions.setValue(12)
     assert dialog.preferences().last_export_templates_directory == "/template-packs"
+    assert dialog.preferences().max_solutions == 12
+
+
+def test_preferences_dialog_preserves_last_material_catalog_directory(qapp):
+    del qapp
+    from studio.dialogs.preferences_dialog import PreferencesDialog
+
+    dialog = PreferencesDialog(
+        StudioPreferences(
+            language="es", last_material_catalog_directory="/catalog-packs"
+        )
+    )
+    dialog.max_solutions.setValue(12)
+    assert dialog.preferences().last_material_catalog_directory == "/catalog-packs"
     assert dialog.preferences().max_solutions == 12
 
 

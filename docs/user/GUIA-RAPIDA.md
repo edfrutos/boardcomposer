@@ -29,7 +29,8 @@ preferencias, atajos (**F1**), acerca de (**Ctrl+Shift+A**).
 2. **Añadir tableros** (**Ctrl+Shift+B**) y **piezas** (**Ctrl+Shift+P**), o
    importar CSV/Excel (**Ctrl+Shift+T** / **Ctrl+Shift+O**). El material es
    un combo del **catálogo** (**Ctrl+Alt+T**; archivo de usuario, no va en
-   el `.bcproj`; precio opcional €/m²; medidas L×A típicas de tablero).
+   el `.bcproj`; precio opcional €/m²; medidas L×A típicas de tablero;
+   **Exportar/Importar** JSON para otro PC, sin nube).
    En cada pieza,
    «Permitir rotación» desmarcado fija la
    **veta** (el cálculo y **R** no giran esa pieza). Espesor de sierra del
