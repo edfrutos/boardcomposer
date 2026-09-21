@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Exportar DXF: capas por rol (IDE-0041) `PANELS` / `PIECES` / `OFFCUTS`
+  / `DIMS` / `SEQ` / `META` declaradas en tabla LAYER; `$INSUNITS` mm.
+  Etiquetas van en la capa del rol (no `LABELS`). CAD/CNC puede ocultar
+  cotas o meta. Sin bump `.bcproj`; no cambia el solver.
 - Inspector: unidades de Preferencias mm/cm/in (IDE-0040) en pieza,
   tablero, kerf, posición y métricas de layout (largo, ancho, área de
   retales). Persistencia `.bcproj` / JSON sigue en mm. Sin bump de

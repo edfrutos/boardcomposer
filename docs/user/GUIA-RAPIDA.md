@@ -236,6 +236,8 @@ marcadores…).
   presupuesto PDF siguen en A4.
   En **PNG/JPEG**: resolución DPI (36–300, default 96) y, en JPEG,
   calidad 1–100 (default 90).
+  En **DXF**: capas `PANELS` / `PIECES` / `OFFCUTS` / `DIMS` / `SEQ` /
+  `META` (el CAD puede ocultar cotas o el pie).
   **Lote:** marca «Exportar las N candidatas del ranking» y elige carpeta;
   un archivo numerado por candidata (`boardcomposer-solution-01…`). El CLI
   `boardcomposer-batch` sigue siendo para carpetas de proyectos, no para

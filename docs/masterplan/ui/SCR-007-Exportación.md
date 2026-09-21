@@ -103,6 +103,10 @@ No implementados: más formatos de imagen (WebP, TIFF).
   Default: sí. Deshabilitada en JSON/CSV. Capa DXF `META`. Sin bump
   `.bcproj`. JSON ya lleva `strategy`; este pie es para el plano
   impreso.
+- **Capas DXF por rol (IDE-0041):** solo **DXF**. Tabla LAYER con
+  `PANELS` (marco), `PIECES`, `OFFCUTS`, `DIMS` (cotas), `SEQ`, `META`.
+  `$INSUNITS` = mm. LibreCAD / QCAD / CAM pueden ocultar capas. SVG/PDF
+  no. Sin checkbox extra.
 - **Números de secuencia (IDE-0027):** siempre en SVG/PDF/DXF (paso de
   pieza en su panel). La lista de corte (Ctrl+Alt+C) añade el orden de
   sierra (guillotina o por posición) en CSV y PDF.
@@ -224,6 +228,6 @@ No usa `ExportDialog`. Flujo propio:
 ## Evolución prevista
 
 - Más formatos de imagen (WebP, TIFF).
-- Perfiles CAD-CAM avanzados.
+- Perfiles CAD-CAM avanzados (más allá de capas DXF IDE-0041).
 - Trazabilidad en más formatos de informe (lista de corte / presupuesto)
   además del pie de plano (IDE-0039).

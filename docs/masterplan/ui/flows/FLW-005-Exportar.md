@@ -55,6 +55,7 @@ Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.
    etiquetas de piezas y de retales (planos SVG/PDF/DXF/raster), cotas
    L×A del tablero, trazabilidad (versión, algoritmo, fecha), papel PDF,
    DPI/calidad raster, lote de candidatas si el ranking tiene más de una.
+   DXF declara capas por rol (PANELS/PIECES/OFFCUTS/DIMS/SEQ/META).
 7. Opcional: aplica o guarda una plantilla / perfil por cliente.
 8. Revisa la vista previa (SVG + texto/resumen).
 9. Confirma: archivo único, o carpeta si el lote está marcado.

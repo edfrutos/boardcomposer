@@ -47,6 +47,10 @@ def test_solution_to_dxf_draws_panels_pieces_and_offcuts():
     assert "A 400x300" in dxf
     assert "600x300" in dxf
     assert "DIMS" in dxf
+    assert "TABLES" in dxf
+    assert "LAYER" in dxf
+    assert "$INSUNITS" in dxf
+    assert "LABELS" not in dxf
     assert dxf.rstrip().endswith("EOF")
 
 
@@ -134,6 +138,36 @@ def test_solution_to_pdf_can_omit_offcut_labels():
     assert b"[8 4] 0 d" in pdf
     assert b"600x300" not in pdf
     assert b"A 400x300" in pdf
+
+
+def test_solution_to_dxf_declares_role_layers_in_table():
+    project, solution = _single_panel_solution()
+
+    dxf = solution_to_dxf(solution, project)
+    tables, _sep, entities = dxf.partition("ENTITIES")
+
+    assert "2\nLAYER" in tables
+    for layer in ("PANELS", "PIECES", "OFFCUTS", "DIMS", "SEQ", "META"):
+        assert f"2\n{layer}\n" in tables
+        assert f"8\n{layer}\n" in entities
+
+
+def test_solution_to_dxf_omits_unused_role_layers_from_table():
+    project, solution = _single_panel_solution()
+
+    dxf = solution_to_dxf(
+        solution,
+        project,
+        include_panel_dimensions=False,
+        include_plan_traceability=False,
+    )
+    tables, _sep, _entities = dxf.partition("ENTITIES")
+
+    assert "2\nPANELS\n" in tables
+    assert "2\nPIECES\n" in tables
+    assert "2\nOFFCUTS\n" in tables
+    assert "2\nDIMS\n" not in tables
+    assert "2\nMETA\n" not in tables
 
 
 def test_solution_to_dxf_can_omit_panel_dimensions():

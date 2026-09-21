@@ -108,6 +108,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [ ] Exportar plano: pie de trazabilidad (versión, algoritmo, fecha)
   visible; desmarcar la casilla lo quita. JSON/CSV deshabilitan la
   casilla.
+- [ ] Exportar DXF: capas por rol visibles en el CAD; cotas en DIMS,
+  pie en META.
 - [ ] Exportar PNG/JPEG: subir DPI agranda el archivo; bajar calidad JPEG
   lo aligera.
 - [x] Lista de corte (**Ctrl+Alt+C**): elige CSV o PDF; no es el CSV del
