@@ -1,10 +1,13 @@
-"""Workshop cut list (IDE-0023): pieces, stock panels, and placed cuts."""
+"""Workshop cut list (IDE-0023): pieces, stock panels, and placed cuts.
+
+PDF reports can append the IDE-0043 traceability footer; CSV stays data-only.
+"""
 
 from __future__ import annotations
 
 import csv
 import io
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from boardcomposer.domain import AssemblySolution, Project
 from boardcomposer.export.cut_sequence import (
@@ -13,6 +16,7 @@ from boardcomposer.export.cut_sequence import (
     build_cut_sequences,
     piece_sequence_numbers,
 )
+from boardcomposer.export.common import report_traceability_footer
 from boardcomposer.export.report_pdf import pdf_from_text_lines
 
 DEFAULT_CUT_LIST_FORMAT = "csv"
@@ -46,6 +50,10 @@ class CutListMeta:
     reference: str = ""
     notes: str = ""
     kerf_mm: float = 0.0
+    include_traceability: bool = True
+    strategy_name: str = ""
+    version: str | None = None
+    exported_at: str | None = None
 
 
 @dataclass(frozen=True)
@@ -117,13 +125,7 @@ def build_cut_list(
     """Build a cut list from the selected solution and optional project."""
     header = meta or CutListMeta()
     if project is not None and header.kerf_mm == 0:
-        header = CutListMeta(
-            project_name=header.project_name,
-            client=header.client,
-            reference=header.reference,
-            notes=header.notes,
-            kerf_mm=project.constraints.kerf_mm,
-        )
+        header = replace(header, kerf_mm=project.constraints.kerf_mm)
 
     omitted = set(solution.omitted_piece_ids)
     used_instances: dict[int, set[int]] = {}
@@ -403,6 +405,14 @@ def _report_lines(cut_list: CutList) -> list[str]:
             continue
         for step in panel.steps:
             lines.append(_saw_step_line(step))
+    lines.extend(
+        report_traceability_footer(
+            include=meta.include_traceability,
+            strategy_name=meta.strategy_name,
+            version=meta.version,
+            exported_at=meta.exported_at,
+        )
+    )
     return lines
 
 

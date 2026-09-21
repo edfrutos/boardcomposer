@@ -4003,7 +4003,12 @@ class MainWindow(QMainWindow):
                 return
 
         studio_project = self.services.projects.current_project
-        meta = CutListMeta()
+        prefs = self.services.preferences.current
+        trace = {
+            "include_traceability": prefs.export_include_plan_traceability,
+            "strategy_name": self.services.layout.strategy_name or "",
+        }
+        meta = CutListMeta(**trace)
         if studio_project is not None:
             meta = CutListMeta(
                 project_name=studio_project.name,
@@ -4011,6 +4016,7 @@ class MainWindow(QMainWindow):
                 reference=studio_project.reference,
                 notes=studio_project.notes,
                 kerf_mm=studio_project.kerf_mm,
+                **trace,
             )
         cut_list = build_cut_list(solution, self.services.layout.solved_project, meta)
 
@@ -4072,13 +4078,19 @@ class MainWindow(QMainWindow):
                 return
 
         studio_project = self.services.projects.current_project
-        meta = QuoteMeta()
+        prefs = self.services.preferences.current
+        trace = {
+            "include_traceability": prefs.export_include_plan_traceability,
+            "strategy_name": self.services.layout.strategy_name or "",
+        }
+        meta = QuoteMeta(**trace)
         if studio_project is not None:
             meta = QuoteMeta(
                 project_name=studio_project.name,
                 client=studio_project.client,
                 reference=studio_project.reference,
                 notes=studio_project.notes,
+                **trace,
             )
         report = build_quote(
             solution,

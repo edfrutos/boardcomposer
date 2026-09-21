@@ -46,7 +46,11 @@ revisión `REVIEW-2026-09-20`.
 | IDE-0039 trazabilidad en plano (versión, algoritmo, fecha) | 🟢 (#651) |
 | IDE-0040 unidades Inspector (mm/cm/in) | 🟢 (#653) |
 | IDE-0041 capas DXF por rol (marco/pieza/retal/cota) | 🟢 (#654) |
-| IDE-0042 exportar/importar catálogo de materiales | 🟡 (#655) |
+| IDE-0042 exportar/importar catálogo de materiales | 🟢 (#655) |
+| IDE-0043 trazabilidad lista de corte / presupuesto PDF | 🟢 |
+| IDE-0044 unidades prefs en plano / etiquetas export | ⚪ |
+| IDE-0045 mano de obra en presupuesto | ⚪ |
+| IDE-0046 Inspector espesor / rotación / veta de pieza | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -79,32 +83,32 @@ Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
-IDE-0037…0041 **entregadas** (`#647`, `#649`, `#651`, `#653`, `#654`);
-residual tercera ola IDE-0042 en desarrollo (`#655`).
+IDE-0037…0043 **entregadas**; cuarta ola IDE-0044…0046 abierta.
 
-Desde la revisión 2026-09-20, en `main` entraron `#653` (IDE-0040
-unidades Inspector mm/cm/in) y `#654` (IDE-0041 capas DXF
-`PANELS`/`PIECES`/`OFFCUTS`/`DIMS`/`SEQ`/`META`). Planning `#652` queda
-histórico. PR `#655` abre export/import del catálogo de materiales.
+Desde la revisión 2026-09-20, en `main` entraron `#653`…`#655` (0040…0042)
+y el pie de informes (IDE-0043). Planning `#656` queda alineado con
+`#655` mergeado.
 
 Límites conocidos (no son bugs; son alcance):
 
 - Retales se reportan (ADR-016) y se pueden promover a inventario del
-  mismo `.bcproj` (IDE-0025); librería entre PCs vía export/import
-  catálogo en vuelo (IDE-0042 `#655`).
+  mismo `.bcproj` (IDE-0025); no hay librería de retales entre proyectos.
 - CP-SAT exacto sigue siendo un solo panel (opcional).
 - DT-0006 C (API revisiones + ACL) bloqueada hasta demanda multi-usuario.
 - Catálogo de usuario (IDE-0028/0031) guarda nombre / espesor / €/m² /
-  L×A de tablero.
+  L×A; export/import JSON (IDE-0042 `#655`). Sin nube.
 - Etiquetas de plano cubren piezas (IDE-0026), retales LxW (IDE-0033) y
-  cotas L×A del tablero (IDE-0037) y pie de trazabilidad (IDE-0039).
+  cotas L×A del tablero (IDE-0037) y pie de trazabilidad (IDE-0039);
+  lista de corte / presupuesto PDF (IDE-0043). Etiquetas de plano siguen
+  en mm (IDE-0044).
 - Coste (IDE-0029) y presupuesto PDF (IDE-0032) cubren material de
-  tableros físicos; no hay mano de obra.
+  tableros físicos; no hay mano de obra (IDE-0045).
 - Export PDF: papel/márgenes/escala en plano (IDE-0034); lote de
   candidatas Studio (IDE-0035). Raster PNG/JPEG: DPI y calidad JPEG
   (IDE-0038). Capas DXF por rol (IDE-0041 `#654`). Sin nube.
 - Workspace: sugerir hueco para colocación manual (IDE-0036; SCR-002).
 - Inspector: unidades prefs mm/cm/in (IDE-0040 `#653`); disco sigue mm.
+  No muestra espesor/rotación/veta de pieza (IDE-0046).
 
 Deuda abierta explícita: **1** ítem (`DT-0006` en piloto D). Sin críticas sin
 plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
@@ -113,8 +117,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` tercera ola** — cerrar IDE-0042 (`#655`; 0037…0041
-   entregadas).
+1. **Cola `0.4.4` cuarta ola** — IDE-0044…0046 (0043 entregada).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -126,31 +129,31 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-IDE-0042 🟡 (`#655`). Residual bloqueado: piloto DT-0006 D (operativo) +
+IDE-0044…0046. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
-desarrollo pendiente y bugs cerrados* → **no** se proponen IDE nuevas
-(0042 sigue abierta / en desarrollo).
+desarrollo pendiente y bugs cerrados* → **sí se añaden IDE-0043…0046**
+(ancladas a SCR-007 informes, 0040 plano, coste, SCR-004).
 
 | ID | Título | Estado |
 |----|--------|--------|
-| IDE-0040 | Unidades Inspector (mm/cm/in) | Entregado (#653) |
-| IDE-0041 | Capas DXF por rol (marco/pieza/retal/cota) | Entregado (#654) |
-| IDE-0042 | Exportar/importar catálogo de materiales | En desarrollo (#655) |
+| IDE-0042 | Exportar/importar catálogo de materiales | Entregado (#655) |
+| IDE-0043 | Trazabilidad en lista de corte / presupuesto | Entregado |
+| IDE-0044 | Unidades prefs en plano y etiquetas de export | Idea |
+| IDE-0045 | Mano de obra en presupuesto | Idea |
+| IDE-0046 | Inspector: espesor / rotación / veta de pieza | Idea |
 
-Prioridad de ataque: **cerrar `#655` (IDE-0042)**.
+Prioridad de ataque: **IDE-0044** (unidades prefs en plano).
 
-Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0041.
+Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0043.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
 
 ## 6. Criterio de esta revisión
 
-- No se implementa código de producto: alinear docs con `#653`/`#654` 🟢,
-  marcar `#655` 🟡, plegar histórico 2026-09-20 (`#652`) y retener
-  IDE-0042 en DOC-004.
+- Alinear `#655` 🟢; entregar IDE-0043; abrir cuarta ola 0044…0046.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.

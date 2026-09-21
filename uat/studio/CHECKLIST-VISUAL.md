@@ -115,6 +115,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
   lo aligera.
 - [x] Lista de corte (**Ctrl+Alt+C**): elige CSV o PDF; no es el CSV del
   diálogo de solución.
+- [ ] Lista de corte / presupuesto PDF: pie versión · algoritmo · fecha;
+  CSV de corte sin pie.
 - [x] Opción abrir después (si existe) abre el artefacto.
 - [x] Export con open-after no deja la UI colgada.
 

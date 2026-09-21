@@ -76,6 +76,26 @@ def plan_traceability_label(
     return f"BoardComposer {ver} · {algo} · {when}"
 
 
+def report_traceability_footer(
+    *,
+    include: bool = True,
+    strategy_name: str | None = None,
+    version: str | None = None,
+    exported_at: datetime | str | None = None,
+) -> list[str]:
+    """Blank line + workshop footer, or nothing when disabled."""
+    if not include:
+        return []
+    return [
+        "",
+        plan_traceability_label(
+            version=version,
+            strategy_name=strategy_name,
+            exported_at=exported_at,
+        ),
+    ]
+
+
 def prepare_solution_for_export(
     solution: AssemblySolution,
     *,

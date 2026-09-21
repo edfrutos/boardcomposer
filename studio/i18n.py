@@ -432,7 +432,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_cut_list": (
             "Exportar lista de corte de la solución del Comparador "
             "(Ctrl+Alt+C); CSV o PDF de piezas, tableros y secuencia "
-            "de sierra por panel; ofrece abrir el archivo; "
+            "de sierra por panel; el PDF incluye pie de versión; "
+            "ofrece abrir el archivo; "
             "recuerda la última carpeta; el formato CSV o PDF "
             "se recuerda entre sesiones"
         ),
@@ -443,8 +444,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.export_quote": (
             "Exportar presupuesto de material de la solución del Comparador "
-            "(Ctrl+Alt+Q); PDF con tableros físicos × EUR/m2 del catálogo; "
-            "ofrece abrir el archivo; recuerda la última carpeta"
+            "(Ctrl+Alt+Q); PDF con tableros físicos × EUR/m2 del catálogo "
+            "y pie de versión; ofrece abrir el archivo; "
+            "recuerda la última carpeta"
         ),
         "tip.export_quote_outdated": (
             "Soluciones desactualizadas: al exportar el presupuesto "
@@ -1991,7 +1993,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_cut_list": (
             "Export a workshop cut list from the Comparator solution "
             "(Ctrl+Alt+C); CSV or PDF of pieces, boards and per-panel "
-            "saw sequence; offers to open the file; "
+            "saw sequence; PDF includes a version footer; "
+            "offers to open the file; "
             "remembers the last folder; the CSV or PDF format "
             "is remembered across sessions"
         ),
@@ -2001,8 +2004,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.export_quote": (
             "Export a material quote from the Comparator solution "
-            "(Ctrl+Alt+Q); PDF of physical boards × catalog EUR/m2; "
-            "offers to open the file; remembers the last folder"
+            "(Ctrl+Alt+Q); PDF of physical boards × catalog EUR/m2 "
+            "and a version footer; offers to open the file; "
+            "remembers the last folder"
         ),
         "tip.export_quote_outdated": (
             "Solutions outdated: when exporting the quote "

@@ -54,6 +54,7 @@ def test_quote_export_writes_pdf_and_remembers_folder(qapp, tmp_path, monkeypatc
         )
     ]
     window.services.layout.selected_solution_index = 0
+    window.services.layout.strategy_name = "maxrects"
     window._reload_solution_table()
 
     target = tmp_path / "out" / "presupuesto.pdf"
@@ -78,6 +79,7 @@ def test_quote_export_writes_pdf_and_remembers_folder(qapp, tmp_path, monkeypatc
     assert b"Cocina" in payload
     assert b"ACME" in payload
     assert b"12.50 EUR" in payload
+    assert b"maxrects" in payload
     assert offered == [target]
     prefs = window.services.preferences.current
     assert prefs.last_export_directory == str(target.parent.resolve())
