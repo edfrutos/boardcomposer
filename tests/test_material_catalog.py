@@ -1,7 +1,7 @@
 """User-level material / thickness catalog (IDE-0028)."""
 
 import pytest
-from PySide6.QtWidgets import QComboBox
+from PySide6.QtWidgets import QComboBox, QMessageBox
 
 from studio.dialogs.material_catalog_dialog import MaterialCatalogDialog
 from studio.dialogs.new_board_dialog import NewBoardDialog
@@ -358,6 +358,24 @@ def test_import_pack_replace_and_user_catalog_file(tmp_path):
     assert found.thicknesses_mm == (12.0,)
 
 
+def test_import_pack_rejects_unknown_mode(tmp_path):
+    manager = MaterialCatalogManager(path=tmp_path / "c.json", autoload=False)
+
+    with pytest.raises(ValueError, match="Modo de importación no soportado"):
+        manager.import_pack(tmp_path / "missing-pack.json", mode="invalid")
+
+
+def test_import_pack_rejects_empty_exported_pack(tmp_path):
+    source = MaterialCatalogManager(path=tmp_path / "a.json", autoload=False)
+    source.replace_all([])
+    pack = tmp_path / "empty-pack.json"
+    assert source.export_pack(pack) == 0
+
+    target = MaterialCatalogManager(path=tmp_path / "b.json", autoload=False)
+    with pytest.raises(ValueError, match="El paquete no contiene materiales"):
+        target.import_pack(pack, mode="replace")
+
+
 def test_import_pack_rejects_wrong_kind_and_empty(tmp_path):
     manager = MaterialCatalogManager(path=tmp_path / "d.json", autoload=False)
     manager.replace_all([CatalogMaterial("Keep", (18.0,))])
@@ -413,6 +431,61 @@ def test_catalog_dialog_export_pack_remembers_directory(qapp, tmp_path, monkeypa
     assert target.is_file()
     assert chosen == [str(target)]
     assert dialog._pack_directory == str(pack_dir.resolve())
+
+
+def test_catalog_dialog_share_errors_are_translated_in_english(
+    qapp, tmp_path, monkeypatch
+):
+    del qapp
+    manager = MaterialCatalogManager(path=tmp_path / "material_catalog.json")
+    manager.replace_all([CatalogMaterial("Haya", (18.0,))])
+    dialog = MaterialCatalogDialog(manager, language="en")
+    warnings: list[tuple[str, str]] = []
+
+    def capture_warning(*args, **kwargs):
+        del kwargs
+        warnings.append((args[1], args[2]))
+
+    def fail_export(path):
+        del path
+        raise OSError("disk full")
+
+    invalid = tmp_path / "invalid.json"
+    invalid.write_text(
+        '{"kind": "boardcomposer.export_templates", "templates": []}',
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(
+        "studio.dialogs.material_catalog_dialog.QMessageBox.warning",
+        capture_warning,
+    )
+    monkeypatch.setattr(manager, "export_pack", fail_export)
+    monkeypatch.setattr(
+        "studio.dialogs.material_catalog_dialog.QFileDialog.getSaveFileName",
+        lambda *args, **kwargs: (str(tmp_path / "out.json"), "json"),
+    )
+
+    dialog._export_pack()
+
+    assert warnings[-1] == (
+        "Export catalog",
+        "Could not complete the operation:\ndisk full",
+    )
+
+    monkeypatch.setattr(
+        "studio.dialogs.material_catalog_dialog.QFileDialog.getOpenFileName",
+        lambda *args, **kwargs: (str(invalid), "json"),
+    )
+    monkeypatch.setattr(
+        "studio.dialogs.material_catalog_dialog.QMessageBox.question",
+        lambda *args, **kwargs: QMessageBox.StandardButton.Yes,
+    )
+
+    dialog._import_pack()
+
+    assert warnings[-1][0] == "Import catalog"
+    assert warnings[-1][1].startswith("Could not complete the operation:\n")
 
 
 def test_catalog_share_tips_mention_json_and_merge(qapp):
