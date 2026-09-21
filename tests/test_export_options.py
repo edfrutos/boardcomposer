@@ -187,6 +187,45 @@ def test_preview_svg_respects_plan_traceability_option():
     assert "BoardComposer" not in without_trace
 
 
+def test_export_options_normalizes_unknown_units_to_mm():
+    assert ExportOptions(units="px").normalized().units == "mm"
+
+
+def test_preview_svg_uses_export_units_on_labels():
+    solution = _solution()
+
+    cm = preview_svg(solution, None, ExportOptions(units="cm"))
+    inches = preview_svg(solution, None, ExportOptions(units="in"))
+
+    assert "A 10x5 cm" in cm
+    assert "20x5 cm" in cm
+    assert "A 100x50" not in cm
+    assert "A 3.94x1.97 in" in inches
+
+
+def test_render_export_json_and_csv_stay_in_mm_when_units_are_cm():
+    payload = render_export(_solution(), None, ExportOptions(format="json", units="cm"))
+    csv = render_export(_solution(), None, ExportOptions(format="csv", units="cm"))
+
+    assert isinstance(payload, str)
+    assert isinstance(csv, str)
+    data = json.loads(payload)
+    assert data["placements"][0]["length_mm"] == 100
+    assert data["placements"][0]["width_mm"] == 50
+    assert "100" in csv
+    assert "50" in csv
+    assert "10x5 cm" not in payload
+    assert "10x5 cm" not in csv
+
+
+def test_export_dialog_keeps_prefs_units_after_rebuild(qapp):
+    del qapp
+    from studio.dialogs import ExportDialog
+
+    dialog = ExportDialog(_solution(), None, ExportOptions(format="svg", units="cm"))
+    assert dialog.options().units == "cm"
+
+
 def test_export_dialog_piece_labels_enabled_for_plan_formats(qapp):
     del qapp
     from studio.dialogs import ExportDialog

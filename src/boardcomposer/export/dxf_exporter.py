@@ -20,6 +20,7 @@ from boardcomposer.export.common import (
     plan_traceability_label,
 )
 from boardcomposer.export.cut_sequence import piece_sequence_numbers
+from boardcomposer.units import DEFAULT_UNITS
 
 LAYER_PANELS = "PANELS"
 LAYER_PIECES = "PIECES"
@@ -188,6 +189,7 @@ def solution_to_dxf(
     strategy_name: str | None = None,
     exported_at: datetime | str | None = None,
     app_version: str | None = None,
+    units: str = DEFAULT_UNITS,
 ) -> str:
     """Render `solution` as a DXF document (mm coordinates, Y up).
 
@@ -257,7 +259,7 @@ def solution_to_dxf(
                     placement.x_mm + offset_x + origin_x + 5.0,
                     placement.y_mm + 5.0,
                     16.0,
-                    piece_plan_label(placement),
+                    piece_plan_label(placement, units),
                     LAYER_PIECES,
                 )
             )
@@ -279,7 +281,7 @@ def solution_to_dxf(
                     offcut.x_mm + offset_x + origin_x + 5.0,
                     offcut.y_mm + 5.0,
                     16.0,
-                    offcut_plan_label(offcut),
+                    offcut_plan_label(offcut, units),
                     LAYER_OFFCUTS,
                 )
             )
@@ -302,7 +304,7 @@ def solution_to_dxf(
                     left + panel.length_mm / 2.0,
                     hy - 16.0,
                     16.0,
-                    panel_dimension_label(panel.length_mm),
+                    panel_dimension_label(panel.length_mm, units),
                     LAYER_DIMS,
                 )
             )
@@ -317,7 +319,7 @@ def solution_to_dxf(
                     vx - 20.0,
                     panel.width_mm / 2.0,
                     16.0,
-                    panel_dimension_label(panel.width_mm),
+                    panel_dimension_label(panel.width_mm, units),
                     LAYER_DIMS,
                 )
             )

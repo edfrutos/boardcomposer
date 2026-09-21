@@ -78,6 +78,7 @@ def export_svg(
     strategy_name: str | None = None,
     exported_at: datetime | str | None = None,
     app_version: str | None = None,
+    units: str = "mm",
 ) -> str:
     """Render one solution as an SVG document string."""
     return solution_to_svg(
@@ -90,6 +91,7 @@ def export_svg(
         strategy_name=strategy_name,
         exported_at=exported_at,
         app_version=app_version,
+        units=units,
     )
 
 

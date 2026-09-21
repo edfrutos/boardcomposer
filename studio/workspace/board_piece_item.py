@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QGraphicsItem, QGraphicsRectItem, QGraphicsSimpleT
 
 from typing import TYPE_CHECKING, cast
 
+from boardcomposer.units import DEFAULT_UNITS, plan_size_label
 from studio.workspace.canvas_style import color, pen
 
 if TYPE_CHECKING:
@@ -21,6 +22,7 @@ class BoardPieceItem(QGraphicsRectItem):
         board_id: str | None = None,
         board_instance: int = 0,
         stock_panel_index: int | None = None,
+        units: str = DEFAULT_UNITS,
     ):
         super().__init__(0, 0, length_mm, width_mm)
 
@@ -30,6 +32,7 @@ class BoardPieceItem(QGraphicsRectItem):
         self.board_id = board_id
         self.board_instance = board_instance
         self.stock_panel_index = stock_panel_index
+        self._units = units
         self._label: QGraphicsSimpleTextItem | None = None
 
         self.setPos(x_mm, y_mm)
@@ -55,7 +58,8 @@ class BoardPieceItem(QGraphicsRectItem):
         if self._label is None:
             return
         rect = self.rect()
-        self._label.setText(f"{self.piece_id} {rect.width():g}x{rect.height():g}")
+        size = plan_size_label(rect.width(), rect.height(), self._units)
+        self._label.setText(f"{self.piece_id} {size}")
 
     def itemChange(self, change, value):
         scene = self.scene()

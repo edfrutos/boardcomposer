@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.10.0  
+**Versión:** 1.11.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 18/09/2026
+**Última revisión:** 21/09/2026
 
 ---
 
@@ -88,16 +88,22 @@ No implementados: más formatos de imagen (WebP, TIFF).
   en el resto).
 - **Retales:** aplican a todos los formatos vía preparación de la solución
   (omiten `offcuts` cuando están desmarcados).
-- **Etiquetas de piezas (id y LxW mm):** SVG, PNG, JPEG, DXF y PDF
-  (mismo dibujo que Workspace). Deshabilitada en JSON/CSV. Default: sí.
-- **Etiquetas de retales (LxW mm):** mismos formatos de plano. Requiere
+- **Etiquetas de piezas (id y LxW):** SVG, PNG, JPEG, DXF y PDF
+  (mismo dibujo que Workspace). Texto según `prefs.units` (IDE-0044).
+  Deshabilitada en JSON/CSV. Default: sí.
+- **Etiquetas de retales (LxW):** mismos formatos de plano. Requiere
   retales incluidos. PDF dibuja el retal punteado. Default: sí.
   Deshabilitada en JSON/CSV. Área mm² sigue en JSON; Inspector usa
   prefs.units (IDE-0040).
 - **Cotas L×A del tablero (IDE-0037):** mismos formatos de plano.
-  Líneas de dimensión overall (largo abajo, ancho a la izquierda) con
-  valor en mm. Default: sí. Deshabilitada en JSON/CSV. Sin bump
-  `.bcproj`. No son etiquetas de pieza/retal (0026/0033).
+  Líneas de dimensión overall (largo abajo, ancho a la izquierda).
+  Valor según `prefs.units` (IDE-0044). Default: sí. Deshabilitada en
+  JSON/CSV. Sin bump `.bcproj`. No son etiquetas de pieza/retal
+  (0026/0033).
+- **Unidades de plano (IDE-0044):** sin casilla. `prefs.units` mm/cm/in
+  en TEXT de pieza/retal/cota. mm omite sufijo (`A 400x300`); cm/in
+  lo añaden (`A 40x30 cm`). Geometría, JSON/CSV y `$INSUNITS` siguen
+  mm. Lista de corte / presupuesto no.
 - **Trazabilidad (IDE-0039 / IDE-0043):** pie
   `BoardComposer {versión} · {algoritmo o "-"} · YYYY-MM-DD HH:MM`.
   Plano SVG/PDF/DXF (0039) y PDF de lista de corte / presupuesto (0043).

@@ -22,6 +22,7 @@ from boardcomposer.export.common import (
 )
 from boardcomposer.export.cut_sequence import piece_sequence_numbers
 from boardcomposer.export.pdf_page import PdfPageOptions, resolve_pdf_page
+from boardcomposer.units import DEFAULT_UNITS
 
 
 def _escape_pdf_text(value: str) -> str:
@@ -55,8 +56,9 @@ def solution_to_pdf(
     exported_at: datetime | str | None = None,
     app_version: str | None = None,
     page: PdfPageOptions | None = None,
+    units: str = DEFAULT_UNITS,
 ) -> bytes:
-    """Render `solution` as PDF bytes."""
+    """Render `solution` as PDF bytes. TEXT uses ``units``; geometry stays mm."""
     offsets = panel_offsets(solution, project)
     origin_x, extra_bottom = panel_dimension_margins(
         include_panel_dimensions and bool(offsets)
@@ -120,7 +122,7 @@ def solution_to_pdf(
         ops.append(_text_ops(x_pt + 4, y_top - 12, 10, sequence))
         if include_piece_labels:
             ops.append(
-                _text_ops(x_pt + 4, y_bottom + 4, 9, piece_plan_label(placement))
+                _text_ops(x_pt + 4, y_bottom + 4, 9, piece_plan_label(placement, units))
             )
 
     for offcut in solution.offcuts:
@@ -134,7 +136,9 @@ def solution_to_pdf(
         ops.append(_rect_ops(x_pt, y_bottom, offcut.length_mm * scale, h_pt))
         ops.append("[] 0 d")
         if include_offcut_labels:
-            ops.append(_text_ops(x_pt + 4, y_top - 12, 9, offcut_plan_label(offcut)))
+            ops.append(
+                _text_ops(x_pt + 4, y_top - 12, 9, offcut_plan_label(offcut, units))
+            )
 
     if include_panel_dimensions and project is not None:
         gap = PANEL_COTA_GAP_MM
@@ -157,7 +161,9 @@ def solution_to_pdf(
             ops.append(_line_ops(x_right, y_h_tick_a, x_right, y_h_tick_b))
             mid_x, mid_y = to_page((left + right) / 2, hy + 8)
             ops.append(
-                _text_ops(mid_x - 12, mid_y, 9, panel_dimension_label(panel.length_mm))
+                _text_ops(
+                    mid_x - 12, mid_y, 9, panel_dimension_label(panel.length_mm, units)
+                )
             )
             vx_pt, y_top = to_page(vx, 0.0)
             _, y_bot = to_page(vx, panel.width_mm)
@@ -173,7 +179,7 @@ def solution_to_pdf(
                     label_x - 18,
                     label_y,
                     9,
-                    panel_dimension_label(panel.width_mm),
+                    panel_dimension_label(panel.width_mm, units),
                 )
             )
 

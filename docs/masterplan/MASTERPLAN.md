@@ -41,7 +41,8 @@
 - Calidad raster PNG/JPEG (DPI y calidad JPEG, IDE-0038).
 - Trazabilidad en plano (versión, algoritmo, fecha; IDE-0039) y en
   lista de corte / presupuesto PDF (IDE-0043).
-- Unidades de display en Inspector mm/cm/in (IDE-0040 `#653`; disco sigue mm).
+- Unidades de display en Inspector mm/cm/in (IDE-0040 `#653`; disco sigue mm)
+  y en etiquetas de plano / Workspace (IDE-0044).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -55,7 +56,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` cuarta ola: IDE-0044…0046 (0043 entregada).
+1. Ciclo `0.4.4` cuarta ola: IDE-0045…0046 (0044 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

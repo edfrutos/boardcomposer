@@ -44,7 +44,8 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] Contadores `Tableros (n)`, `Piezas (n)`, `Soluciones (n)`.
 - [x] Clic en **pieza** → Inspector completo + selección en canvas.
 - [ ] Preferencias unidades cm/in: Inspector de pieza/tablero y de layout
-  muestra cm o in (área de retales incluida); `.bcproj` / JSON siguen mm.
+  muestra cm o in (área de retales incluida); Workspace y plano
+  SVG/PDF/DXF usan las mismas unidades; `.bcproj` / JSON siguen mm.
 - [x] Clic en **tablero** → centra cámara y resalta en Workspace.
 - [x] Menú contextual pieza: editar / duplicar / eliminar / copiar ID / renombrar.
 - [x] Menú contextual tablero: editar / duplicar / eliminar / copiar ID / renombrar.
@@ -187,8 +188,9 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
 `tests/test_export_batch.py`,
 `tests/test_suggest_gap.py`.
 
-- [ ] **Ctrl+Shift+E** plano SVG/PDF: piezas muestran id y LxW mm; retales
-  muestran LxW mm; el tablero muestra cotas L×A; desmarcar «Etiquetas de
+- [ ] **Ctrl+Shift+E** plano SVG/PDF: piezas muestran id y LxW según
+  unidades de Preferencias (mm: `A 400x300`; cm: `A 40x30 cm`); retales
+  y cotas L×A del tablero igual; desmarcar «Etiquetas de
   piezas», «Etiquetas de retales», «Cotas L×A del tablero» o
   «Trazabilidad (versión, algoritmo, fecha)» deja el plano sin ese
   texto; Workspace sigue mostrando solo piezas. El pie muestra

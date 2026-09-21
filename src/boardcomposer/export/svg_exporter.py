@@ -20,6 +20,7 @@ from boardcomposer.export.common import (
 )
 from boardcomposer.export.cut_sequence import piece_sequence_numbers
 from boardcomposer.export.svg_palette import DEFAULT_SVG_PALETTE, SvgPalette
+from boardcomposer.units import DEFAULT_UNITS
 
 # Vertical space reserved above each panel row for its label, so it never
 # overlaps the pieces placed right at the panel's own origin (y=0).
@@ -98,6 +99,7 @@ def _placement_svg_parts(
     include_piece_labels: bool,
     project: Project | None = None,
     origin_x: float = 0.0,
+    units: str = DEFAULT_UNITS,
 ) -> list[str]:
     parts = []
     numbers = piece_sequence_numbers(solution, project)
@@ -128,7 +130,7 @@ def _placement_svg_parts(
             f'<text x="{x0 + 5:g}" '
             f'y="{placement.y_mm + y_offset + 36:g}" font-size="16" '
             f'fill="{palette.piece_label}">'
-            f"{escape(piece_plan_label(placement))}</text>"
+            f"{escape(piece_plan_label(placement, units))}</text>"
         )
     return parts
 
@@ -140,6 +142,7 @@ def _offcut_svg_parts(
     *,
     include_offcut_labels: bool,
     origin_x: float = 0.0,
+    units: str = DEFAULT_UNITS,
 ) -> list[str]:
     """Draw usable offcuts as dashed rectangles with optional LxW labels."""
     parts = []
@@ -158,7 +161,7 @@ def _offcut_svg_parts(
             f'<text x="{x0 + 5:g}" '
             f'y="{offcut.y_mm + y_offset + 20:g}" font-size="14" '
             f'fill="{palette.offcut_stroke}">'
-            f"{escape(offcut_plan_label(offcut))}</text>"
+            f"{escape(offcut_plan_label(offcut, units))}</text>"
         )
     return parts
 
@@ -191,6 +194,7 @@ def _panel_dimension_svg_parts(
     palette: SvgPalette,
     *,
     origin_x: float,
+    units: str = DEFAULT_UNITS,
 ) -> list[str]:
     if project is None:
         return []
@@ -214,7 +218,7 @@ def _panel_dimension_svg_parts(
         parts.append(
             f'<text x="{(left + right) / 2:g}" y="{hy + 14:g}" '
             f'font-size="14" text-anchor="middle" fill="{color}">'
-            f"{escape(panel_dimension_label(panel.length_mm))}</text>"
+            f"{escape(panel_dimension_label(panel.length_mm, units))}</text>"
         )
         vx = left - gap
         parts.append(_svg_line(vx - tick, top, vx + tick, top, color))
@@ -223,7 +227,7 @@ def _panel_dimension_svg_parts(
         parts.append(
             f'<text x="{vx - 6:g}" y="{(top + bottom) / 2 + 5:g}" '
             f'font-size="14" text-anchor="end" fill="{color}">'
-            f"{escape(panel_dimension_label(panel.width_mm))}</text>"
+            f"{escape(panel_dimension_label(panel.width_mm, units))}</text>"
         )
     return parts
 
@@ -240,16 +244,17 @@ def solution_to_svg(
     strategy_name: str | None = None,
     exported_at: datetime | str | None = None,
     app_version: str | None = None,
+    units: str = DEFAULT_UNITS,
 ) -> str:
     """Render `solution` as an SVG document.
 
     Physical panels (if any) are laid out side by side. Placed pieces are
     filled rectangles, usable offcuts (ADR-016) are dashed rectangles,
     and, for partial solutions, a legend lists the pieces that couldn't be
-    placed. Piece labels (id + placed LxW mm) and offcut LxW labels can
+    placed. Piece labels (id + placed LxW) and offcut LxW labels can
     be omitted. Panel overall L/W dimension lines (IDE-0037) can too.
     A footer can list app version, packing strategy and export time
-    (IDE-0039).
+    (IDE-0039). TEXT uses ``units`` (IDE-0044); geometry stays in mm.
     """
     colors = palette or DEFAULT_SVG_PALETTE
     offsets, panel_rows = _panel_layout(solution, project)
@@ -295,6 +300,7 @@ def solution_to_svg(
             include_piece_labels=include_piece_labels,
             project=project,
             origin_x=origin_x,
+            units=units,
         )
     )
     parts.extend(
@@ -304,11 +310,14 @@ def solution_to_svg(
             colors,
             include_offcut_labels=include_offcut_labels,
             origin_x=origin_x,
+            units=units,
         )
     )
     if include_panel_dimensions:
         parts.extend(
-            _panel_dimension_svg_parts(project, panel_rows, colors, origin_x=origin_x)
+            _panel_dimension_svg_parts(
+                project, panel_rows, colors, origin_x=origin_x, units=units
+            )
         )
     parts.extend(legend_parts)
     parts.extend(trace_parts)

@@ -73,3 +73,13 @@ def test_format_size_with_thickness_in_inches():
     assert "10" in text
     assert "5" in text
     assert "1" in text
+
+
+def test_plan_labels_omit_mm_and_append_other_units():
+    from studio.units import plan_length_label, plan_size_label
+
+    assert plan_size_label(400, 300, "mm") == "400x300"
+    assert plan_size_label(400, 300, "cm") == "40x30 cm"
+    assert plan_size_label(400, 300, "in") == "15.75x11.81 in"
+    assert plan_length_label(1000, "mm") == "1000"
+    assert plan_length_label(1000, "cm") == "100 cm"

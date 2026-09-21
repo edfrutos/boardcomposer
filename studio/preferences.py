@@ -146,6 +146,7 @@ class StudioPreferences:
             raster_dpi=self.export_raster_dpi,
             jpeg_quality=self.export_jpeg_quality,
             export_batch=self.export_batch,
+            units=self.units,
         ).normalized()
 
 

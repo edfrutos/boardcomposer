@@ -84,11 +84,23 @@ def test_canvas_size_mm_falls_back_to_solution_totals():
 def test_piece_plan_label_includes_id_and_placed_size():
     placement = BoardPlacement("A", 0, 0, 400, 300)
     assert piece_plan_label(placement) == "A 400x300"
+    assert piece_plan_label(placement, "cm") == "A 40x30 cm"
+    assert piece_plan_label(placement, "in") == "A 15.75x11.81 in"
+    assert piece_plan_label(placement, "px") == "A 400x300"
 
 
 def test_offcut_plan_label_includes_placed_size():
     offcut = Offcut(PanelReference(0, 0), 400, 0, 600, 300)
     assert offcut_plan_label(offcut) == "600x300"
+    assert offcut_plan_label(offcut, "cm") == "60x30 cm"
+
+
+def test_panel_dimension_label_follows_units():
+    from boardcomposer.export.common import panel_dimension_label
+
+    assert panel_dimension_label(1000) == "1000"
+    assert panel_dimension_label(1000, "cm") == "100 cm"
+    assert panel_dimension_label(254, "in") == "10 in"
 
 
 def test_plan_traceability_label_uses_injected_fields():

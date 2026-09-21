@@ -19,6 +19,7 @@ from boardcomposer.export import (
     solution_to_pdf,
     solution_to_svg,
 )
+from boardcomposer.units import DEFAULT_UNITS, normalize_units
 
 VALID_EXPORT_FORMATS = ("svg", "png", "jpeg", "dxf", "pdf", "json", "csv")
 DEFAULT_EXPORT_FORMAT = "svg"
@@ -72,6 +73,7 @@ class ExportOptions:
     raster_dpi: int = DEFAULT_RASTER_DPI
     jpeg_quality: int = DEFAULT_JPEG_QUALITY
     export_batch: bool = False
+    units: str = DEFAULT_UNITS
 
     def normalized(self) -> ExportOptions:
         fmt = (
@@ -96,6 +98,7 @@ class ExportOptions:
             raster_dpi=normalize_raster_dpi(self.raster_dpi),
             jpeg_quality=normalize_jpeg_quality(self.jpeg_quality),
             export_batch=self.export_batch,
+            units=normalize_units(self.units),
         )
 
     def pdf_page(self) -> PdfPageOptions:
@@ -149,6 +152,7 @@ def _plan_kwargs(
         "include_panel_dimensions": options.include_panel_dimensions,
         "include_plan_traceability": options.include_plan_traceability,
         "strategy_name": strategy_name,
+        "units": options.units,
     }
 
 
