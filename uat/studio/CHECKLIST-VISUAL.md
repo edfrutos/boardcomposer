@@ -41,6 +41,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Renombrar proyecto (F2 / menú / clic derecho raíz).
 - [x] Metadatos del proyecto (**Ctrl+Alt+M**): cliente / referencia / notas.
 - [x] Espesor de sierra (**Ctrl+Alt+K**): diálogo mm; Inspector en raíz.
+- [ ] Catálogo (**Ctrl+Alt+T**): botones Exportar/Importar JSON visibles.
 - [x] Cerrar o Salir con cambios sin guardar → diálogo claro (nombre, ruta, botones).
 
 ---

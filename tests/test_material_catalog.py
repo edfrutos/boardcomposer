@@ -1,5 +1,6 @@
 """User-level material / thickness catalog (IDE-0028)."""
 
+import pytest
 from PySide6.QtWidgets import QComboBox
 
 from studio.dialogs.material_catalog_dialog import MaterialCatalogDialog
@@ -283,6 +284,7 @@ def test_material_catalog_tip_mentions_user_file_and_shortcut():
     assert "Ctrl+Alt+T" in tr("tip.material_catalog", "en")
     assert ".bcproj" in es and "proyectos" in es
     assert ".bcproj" in en and "projects" in en
+    assert "json" in es and "json" in en
     assert "€/m²" in tr("catalog.intro", "es")
     assert "€/m²" in tr("catalog.intro", "en")
 
@@ -310,3 +312,115 @@ def test_format_material_cost_shows_dash_amount_and_partial(qapp, tmp_path):
         missing_materials=("MDF",),
     )
     assert window._format_material_cost(mixed) == "12.50 €*"
+
+
+def test_export_pack_and_import_merge(tmp_path):
+    source = MaterialCatalogManager(path=tmp_path / "a.json", autoload=False)
+    source.replace_all(
+        [
+            CatalogMaterial("Haya", (18.0,), price_per_m2=12.5),
+            CatalogMaterial("MDF", (16.0,)),
+        ]
+    )
+    pack = tmp_path / "pack.json"
+    assert source.export_pack(pack) == 2
+    payload = pack.read_text(encoding="utf-8")
+    assert "boardcomposer.material_catalog" in payload
+
+    target = MaterialCatalogManager(path=tmp_path / "b.json", autoload=False)
+    target.replace_all([CatalogMaterial("MDF", (19.0,), price_per_m2=8.0)])
+    imported, total = target.import_pack(pack, mode="merge")
+
+    assert imported == 2
+    assert total == 2
+    mdf = target.catalog.find("mdf")
+    assert mdf is not None
+    assert mdf.thicknesses_mm == (16.0,)
+    assert mdf.price_per_m2 == 0.0
+    assert target.catalog.find("Haya") is not None
+
+
+def test_import_pack_replace_and_user_catalog_file(tmp_path):
+    user_file = tmp_path / "material_catalog.json"
+    user_file.write_text(
+        '{"version": 1, "materials": [{"name": "Solo", "thicknesses_mm": [12]}]}',
+        encoding="utf-8",
+    )
+    manager = MaterialCatalogManager(path=tmp_path / "c.json", autoload=False)
+    manager.replace_all([CatalogMaterial("Keep", (18.0,))])
+    imported, total = manager.import_pack(user_file, mode="replace")
+
+    assert imported == 1
+    assert total == 1
+    assert manager.catalog.find("Keep") is None
+    found = manager.catalog.find("Solo")
+    assert found is not None
+    assert found.thicknesses_mm == (12.0,)
+
+
+def test_import_pack_rejects_wrong_kind_and_empty(tmp_path):
+    manager = MaterialCatalogManager(path=tmp_path / "d.json", autoload=False)
+    manager.replace_all([CatalogMaterial("Keep", (18.0,))])
+
+    wrong = tmp_path / "templates.json"
+    wrong.write_text(
+        '{"kind": "boardcomposer.export_templates", "templates": []}',
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="catálogo"):
+        manager.import_pack(wrong)
+
+    empty = tmp_path / "empty.json"
+    empty.write_text('{"foo": 1}', encoding="utf-8")
+    with pytest.raises(ValueError, match="materiales"):
+        manager.import_pack(empty)
+
+    assert manager.catalog.find("Keep") is not None
+
+
+def test_catalog_dialog_shows_share_buttons(qapp, tmp_path):
+    del qapp
+    manager = MaterialCatalogManager(path=tmp_path / "material_catalog.json")
+    dialog = MaterialCatalogDialog(manager, language="en")
+    assert dialog.export_button.text() == "Export…"
+    assert dialog.import_button.text() == "Import…"
+
+
+def test_catalog_dialog_export_pack_remembers_directory(qapp, tmp_path, monkeypatch):
+    del qapp
+    chosen: list[str] = []
+    pack_dir = tmp_path / "out"
+    pack_dir.mkdir()
+    target = pack_dir / "pack.json"
+    manager = MaterialCatalogManager(path=tmp_path / "material_catalog.json")
+    manager.replace_all([CatalogMaterial("Haya", (18.0,))])
+    dialog = MaterialCatalogDialog(
+        manager,
+        language="en",
+        on_pack_directory=lambda path: chosen.append(str(path)),
+    )
+    monkeypatch.setattr(
+        "studio.dialogs.material_catalog_dialog.QFileDialog.getSaveFileName",
+        lambda *args, **kwargs: (str(target), "json"),
+    )
+    monkeypatch.setattr(
+        "studio.dialogs.material_catalog_dialog.QMessageBox.information",
+        lambda *args, **kwargs: None,
+    )
+
+    dialog._export_pack()
+
+    assert target.is_file()
+    assert chosen == [str(target)]
+    assert dialog._pack_directory == str(pack_dir.resolve())
+
+
+def test_catalog_share_tips_mention_json_and_merge(qapp):
+    del qapp
+    es_export = tr("tip.catalog_share_export", "es").casefold()
+    en_export = tr("tip.catalog_share_export", "en").casefold()
+    es_import = tr("tip.catalog_share_import", "es").casefold()
+    en_import = tr("tip.catalog_share_import", "en").casefold()
+    assert "json" in es_export and "json" in en_export
+    assert "fusionar" in es_import and "reemplazar" in es_import
+    assert "merge" in en_import and "replace" in en_import

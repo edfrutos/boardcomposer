@@ -111,7 +111,7 @@ Observaciones:
 | IDE-0039 | Trazabilidad en plano (versión, algoritmo, fecha) | 🟢 | P3 |
 | IDE-0040 | Unidades en Inspector (mm/cm/in) | 🟢 | P3 |
 | IDE-0041 | Capas DXF por rol (marco/pieza/retal/cota) | 🟢 | P3 |
-| IDE-0042 | Exportar/importar catálogo de materiales | 🟡 | P3 |
+| IDE-0042 | Exportar/importar catálogo de materiales | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -146,7 +146,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0039 | S–M | SCR-007; export plan | Entregado; pie versión/algoritmo/fecha |
 | IDE-0040 | S–M | Inspector; prefs.units | Entregado (#653); display prefs; mm en disco |
 | IDE-0041 | S–M | SCR-007; DXF exporter | Entregado (#654); tabla LAYER por rol |
-| IDE-0042 | S | IDE-0028; catálogo JSON | En desarrollo (#655); sin nube |
+| IDE-0042 | S | IDE-0028; catálogo JSON | Entregado (#655); export/import JSON; sin nube |
 
 ---
 
@@ -174,15 +174,16 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0041 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0041; `#647`/`#649`/`#651`/
-`#653`/`#654`). IDE-0042 🟡 `#655`. IDE-0007 🟢 MVP+eval (2026-09-12;
-LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
+**Estado actual:** 🟢 Actualizado — IDE-0001…0042 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0042; `#647`/`#649`/`#651`/
+`#653`/`#654`/`#655`). IDE-0007 🟢 MVP+eval (2026-09-12; LLM
+diferido). EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-09-21-planificacion.md`.
 
 Próximo foco:
 
-1. Cerrar IDE-0042 (`#655`; 0037…0041 entregadas).
+1. Cola producto `0.4.4` tercera ola **cerrada** (0037…0042).
+   Residual implementable vacío; bloqueados IDE-0008 / LLM / DT-0006 C.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

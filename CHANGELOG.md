@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Exportar/importar catálogo de materiales (IDE-0042): JSON entre PCs,
+  fusionar o reemplazar; sin nube. Recuerda última carpeta. Sin bump
+  `.bcproj`; no cambia el solver.
 - Docs planificación 2026-09-21: snapshot
   `docs/masterplan/REVIEW-2026-09-21-planificacion.md`; Issues = 0;
   `#653` (IDE-0040) y `#654` (IDE-0041) en `main`; `#655` (IDE-0042)

@@ -341,7 +341,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.material_catalog": (
             "Editar nombres, espesores y medidas L×A reutilizables entre "
             "proyectos (Ctrl+Alt+T); se guarda en ~/.boardcomposer, no en "
-            "el .bcproj"
+            "el .bcproj; se puede exportar/importar JSON"
         ),
         "tip.prefs_default_kerf": (
             "Kerf por defecto de proyectos nuevos; "
@@ -1492,6 +1492,24 @@ _STRINGS: dict[str, dict[str, str]] = {
         "catalog.update": "Actualizar",
         "catalog.remove": "Quitar",
         "catalog.restore": "Restaurar valores de fábrica",
+        "catalog.share_export": "Exportar…",
+        "catalog.share_import": "Importar…",
+        "catalog.share_export_title": "Exportar catálogo",
+        "catalog.share_import_title": "Importar catálogo",
+        "catalog.share_filter": "Catálogo BoardComposer (*.json)",
+        "catalog.share_export_done": "Se exportaron {count} material(es).",
+        "catalog.share_import_mode": (
+            "¿Fusionar con el catálogo existente?\n\n"
+            "Sí = fusionar (sustituye homónimos)\n"
+            "No = reemplazar todo el catálogo\n"
+            "Cancelar = no importar"
+        ),
+        "catalog.share_import_done": (
+            "Importados {imported} material(es) ({mode}). Catálogo actual: {total}."
+        ),
+        "catalog.share_mode_merge": "fusión",
+        "catalog.share_mode_replace": "reemplazo",
+        "catalog.share_error": "No se pudo completar la operación:\n{error}",
         "tip.catalog_material": ("Elige un material del catálogo o escribe uno nuevo"),
         "tip.catalog_thickness": "Espesores típicos: {thicknesses} mm",
         "tip.catalog_thickness_custom": "Espesor libre (no está en el catálogo)",
@@ -1502,6 +1520,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.catalog_price": (
             "Precio del tablero por metro cuadrado; 0 = sin coste estimado"
+        ),
+        "tip.catalog_share_export": (
+            "Guardar el catálogo en un JSON para otro PC; recuerda la carpeta"
+        ),
+        "tip.catalog_share_import": (
+            "Cargar un JSON de catálogo; fusionar o reemplazar; sin nube"
         ),
         "cost.none": "—",
         "cost.amount": "{value} €",
@@ -1878,7 +1902,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.material_catalog": (
             "Edit reusable material names, thicknesses and L×W sheet sizes "
             "across projects (Ctrl+Alt+T); stored in ~/.boardcomposer, not "
-            "the .bcproj"
+            "the .bcproj; can export/import JSON"
         ),
         "tip.prefs_default_kerf": (
             "Default kerf for new projects; "
@@ -2985,6 +3009,24 @@ _STRINGS: dict[str, dict[str, str]] = {
         "catalog.update": "Update",
         "catalog.remove": "Remove",
         "catalog.restore": "Restore factory values",
+        "catalog.share_export": "Export…",
+        "catalog.share_import": "Import…",
+        "catalog.share_export_title": "Export catalog",
+        "catalog.share_import_title": "Import catalog",
+        "catalog.share_filter": "BoardComposer catalog (*.json)",
+        "catalog.share_export_done": "Exported {count} material(s).",
+        "catalog.share_import_mode": (
+            "Merge with the existing catalog?\n\n"
+            "Yes = merge (incoming names replace matches)\n"
+            "No = replace the whole catalog\n"
+            "Cancel = do not import"
+        ),
+        "catalog.share_import_done": (
+            "Imported {imported} material(s) ({mode}). Current catalog: {total}."
+        ),
+        "catalog.share_mode_merge": "merge",
+        "catalog.share_mode_replace": "replace",
+        "catalog.share_error": "Could not complete the operation:\n{error}",
         "tip.catalog_material": "Pick a catalog material or type a new name",
         "tip.catalog_thickness": "Typical thicknesses: {thicknesses} mm",
         "tip.catalog_thickness_custom": "Free thickness (not in the catalog)",
@@ -2994,6 +3036,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Typical L×W sizes in mm; empty = no suggestion when adding a board"
         ),
         "tip.catalog_price": ("Board price per square metre; 0 = no estimated cost"),
+        "tip.catalog_share_export": (
+            "Save the catalog as JSON for another PC; remembers the folder"
+        ),
+        "tip.catalog_share_import": ("Load a catalog JSON; merge or replace; no cloud"),
         "cost.none": "—",
         "cost.amount": "{value} €",
         "cost.partial_mark": "*",
