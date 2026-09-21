@@ -98,11 +98,11 @@ No implementados: más formatos de imagen (WebP, TIFF).
   Líneas de dimensión overall (largo abajo, ancho a la izquierda) con
   valor en mm. Default: sí. Deshabilitada en JSON/CSV. Sin bump
   `.bcproj`. No son etiquetas de pieza/retal (0026/0033).
-- **Trazabilidad (IDE-0039):** mismos formatos de plano. Pie
+- **Trazabilidad (IDE-0039 / IDE-0043):** pie
   `BoardComposer {versión} · {algoritmo o "-"} · YYYY-MM-DD HH:MM`.
-  Default: sí. Deshabilitada en JSON/CSV. Capa DXF `META`. Sin bump
-  `.bcproj`. JSON ya lleva `strategy`; este pie es para el plano
-  impreso.
+  Plano SVG/PDF/DXF (0039) y PDF de lista de corte / presupuesto (0043).
+  Default: sí (casilla Preferencias / Exportar plano). JSON/CSV y CSV
+  de corte no. Capa DXF `META`. Sin bump `.bcproj`.
 - **Capas DXF por rol (IDE-0041):** solo **DXF**. Tabla LAYER con
   `PANELS` (marco), `PIECES`, `OFFCUTS`, `DIMS` (cotas), `SEQ`, `META`.
   `$INSUNITS` = mm. LibreCAD / QCAD / CAM pueden ocultar capas. SVG/PDF
@@ -229,5 +229,3 @@ No usa `ExportDialog`. Flujo propio:
 
 - Más formatos de imagen (WebP, TIFF).
 - Perfiles CAD-CAM avanzados (más allá de capas DXF IDE-0041).
-- Trazabilidad en más formatos de informe (lista de corte / presupuesto)
-  además del pie de plano (IDE-0039).

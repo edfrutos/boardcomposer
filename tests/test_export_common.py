@@ -107,3 +107,16 @@ def test_plan_traceability_label_falls_back_when_strategy_missing():
         exported_at="2026-09-19 12:00",
     )
     assert label == "BoardComposer 1.0.0 · - · 2026-09-19 12:00"
+
+
+def test_report_traceability_footer_omits_when_disabled():
+    from boardcomposer.export.common import report_traceability_footer
+
+    assert report_traceability_footer(include=False) == []
+    lines = report_traceability_footer(
+        include=True,
+        version="9.9.9",
+        strategy_name="material",
+        exported_at="2026-09-21 12:00",
+    )
+    assert lines == ["", "BoardComposer 9.9.9 · material · 2026-09-21 12:00"]

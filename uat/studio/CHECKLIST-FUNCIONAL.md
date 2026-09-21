@@ -206,9 +206,11 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
   `boardcomposer-solution-01` y siguientes. Con 1 candidata la casilla
   está deshabilitada. No usa `boardcomposer-batch`.
 - [ ] **Ctrl+Alt+Q** presupuesto PDF: total = tableros físicos × €/m²;
-  materiales sin precio aparecen como «-»; no cambia el `.bcproj`.
+  materiales sin precio aparecen como «-»; pie de versión/algoritmo/fecha;
+  desmarcar trazabilidad en Preferencias lo quita; no cambia el `.bcproj`.
 - [ ] **Ctrl+Alt+C** lista de corte: CSV/PDF con `sequence` y pasos de
-  sierra (`saw`); el plano muestra el número de orden por panel.
+  sierra (`saw`); el PDF incluye pie de trazabilidad; el CSV no; el plano
+  muestra el número de orden por panel.
 - [ ] **Ctrl+Alt+F** en candidata parcial: piezas OK no se mueven;
   omitidas caben en retales o tablero libre; acción deshabilitada si la
   solución es completa.

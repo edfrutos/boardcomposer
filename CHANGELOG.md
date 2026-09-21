@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Trazabilidad en lista de corte PDF y presupuesto PDF (IDE-0043);
+  mismo pie que el plano; casilla Preferencias; CSV de corte no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Exportar/importar catálogo de materiales (IDE-0042): JSON entre PCs,
   fusionar o reemplazar; sin nube. Recuerda última carpeta. Sin bump
   `.bcproj`; no cambia el solver.

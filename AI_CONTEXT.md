@@ -37,9 +37,9 @@ alternativas comprensibles para que el usuario decida.
   casilla en diálogo y Preferencias. Default: sí.
 - Exportar: calidad raster PNG/JPEG (IDE-0038; `#649`); DPI 36–300 (default 96)
   y calidad JPEG 1–100 (default 90).
-- Exportar: trazabilidad en plano (IDE-0039; `#651`); pie versión /
-  algoritmo / fecha en SVG/PDF/DXF; casilla en diálogo y Preferencias.
-  Default: sí.
+- Exportar: trazabilidad en plano (IDE-0039; `#651`) y en lista de corte
+  / presupuesto PDF (IDE-0043); pie versión / algoritmo / fecha.
+  CSV de corte no. Casilla Preferencias. Default: sí.
 - Inspector: unidades de Preferencias mm/cm/in (IDE-0040 `#653`) en pieza,
   tablero y métricas de layout; disco / JSON siguen mm.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
@@ -48,7 +48,7 @@ alternativas comprensibles para que el usuario decida.
   `docs/masterplan/REVIEW-2026-09-21-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
-- Próximo: cola `0.4.4` tercera ola cerrada; piloto DT-0006 D; Issues = 0;
+- Próximo: cola `0.4.4` cuarta ola IDE-0044…0046; piloto DT-0006 D; Issues = 0;
   eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

@@ -1,4 +1,4 @@
-"""Material quote PDF (IDE-0032): consumed sheets × catalog €/m².
+"""Material quote PDF (IDE-0032) with optional report footer (IDE-0043).
 
 Does not change the solver. Cost matches IDE-0029 (physical panels, not
 placed piece area). Helvetica PDF stays latin-1, so currency is ``EUR``.
@@ -10,6 +10,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 
 from boardcomposer.domain import AssemblySolution, Project
+from boardcomposer.export.common import report_traceability_footer
 from boardcomposer.export.report_pdf import pdf_from_text_lines
 from boardcomposer.inventory.material_cost import (
     MM2_PER_M2,
@@ -27,6 +28,10 @@ class QuoteMeta:
     client: str = ""
     reference: str = ""
     notes: str = ""
+    include_traceability: bool = True
+    strategy_name: str = ""
+    version: str | None = None
+    exported_at: str | None = None
 
 
 @dataclass(frozen=True)
@@ -166,5 +171,13 @@ def _report_lines(report: QuoteReport) -> list[str]:
             "El coste es el de tableros fisicos consumidos (catalogo EUR/m2).",
             "No incluye mano de obra ni herrajes. No cambia el packing.",
         ]
+    )
+    lines.extend(
+        report_traceability_footer(
+            include=meta.include_traceability,
+            strategy_name=meta.strategy_name,
+            version=meta.version,
+            exported_at=meta.exported_at,
+        )
     )
     return lines

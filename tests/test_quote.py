@@ -113,3 +113,28 @@ def test_quote_to_pdf_is_pdf_and_lists_cost():
     assert b"P1#1" in payload
     assert b"mano de obra" in payload
     assert b"Piezas omitidas: B" in payload
+
+
+def test_quote_pdf_includes_or_omits_traceability():
+    project, solution = _project_and_solution()
+    stamped = QuoteMeta(
+        project_name="Cocina",
+        strategy_name="skyline",
+        version="9.9.9",
+        exported_at="2026-09-21 12:00",
+    )
+    payload = quote_to_pdf(build_quote(solution, project, {"Melamina": 25}, stamped))
+    text = payload.decode("latin-1", errors="replace")
+    assert "BoardComposer 9.9.9" in text
+    assert "skyline" in text
+    assert "2026-09-21 12:00" in text
+
+    omitted = quote_to_pdf(
+        build_quote(
+            solution,
+            project,
+            {"Melamina": 25},
+            QuoteMeta(project_name="Cocina", include_traceability=False),
+        )
+    )
+    assert b"9.9.9" not in omitted

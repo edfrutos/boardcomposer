@@ -2,6 +2,7 @@ from .common import (
     offcut_plan_label,
     panel_dimension_label,
     plan_traceability_label,
+    report_traceability_footer,
     prepare_solution_for_export,
     piece_plan_label,
 )
@@ -64,6 +65,7 @@ __all__ = [
     "offcut_plan_label",
     "panel_dimension_label",
     "plan_traceability_label",
+    "report_traceability_footer",
     "pdf_from_text_lines",
     "piece_plan_label",
     "piece_sequence_numbers",

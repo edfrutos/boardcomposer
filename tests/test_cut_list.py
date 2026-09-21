@@ -116,6 +116,33 @@ def test_cut_list_pdf_is_pdf_and_mentions_workshop_sections():
     assert b"Secuencia de sierra" in payload
 
 
+def test_cut_list_pdf_includes_or_omits_traceability():
+    project, solution = _project_and_solution()
+    stamped = CutListMeta(
+        project_name="Cocina",
+        strategy_name="maxrects",
+        version="9.9.9",
+        exported_at="2026-09-21 12:00",
+    )
+    payload = cut_list_to_pdf(build_cut_list(solution, project, stamped))
+    text = payload.decode("latin-1", errors="replace")
+    assert "BoardComposer 9.9.9" in text
+    assert "maxrects" in text
+    assert "2026-09-21 12:00" in text
+
+    omitted = cut_list_to_pdf(
+        build_cut_list(
+            solution,
+            project,
+            CutListMeta(project_name="Cocina", include_traceability=False),
+        )
+    )
+    omitted_text = omitted.decode("latin-1", errors="replace")
+    assert "9.9.9" not in omitted_text
+    csv_payload = cut_list_to_csv(build_cut_list(solution, project, stamped))
+    assert "9.9.9" not in csv_payload
+
+
 def test_render_cut_list_picks_csv_or_pdf():
     project, solution = _project_and_solution()
     cut_list = build_cut_list(solution, project)
