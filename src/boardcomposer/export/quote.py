@@ -1,7 +1,8 @@
-"""Material quote PDF (IDE-0032) with optional report footer (IDE-0043).
+"""Material quote PDF (IDE-0032) with optional labor (IDE-0045).
 
-Does not change the solver. Cost matches IDE-0029 (physical panels, not
-placed piece area). Helvetica PDF stays latin-1, so currency is ``EUR``.
+Does not change the solver. Material cost matches IDE-0029 (physical
+panels, not placed piece area). Labor is shop prefs: EUR/h x minutes
+per placed piece. Helvetica PDF stays latin-1, so currency is ``EUR``.
 """
 
 from __future__ import annotations
@@ -19,6 +20,11 @@ from boardcomposer.inventory.material_cost import (
     normalize_price_map,
 )
 
+DEFAULT_LABOR_EUR_PER_HOUR = 0.0
+MAX_LABOR_EUR_PER_HOUR = 999.0
+DEFAULT_LABOR_MINUTES_PER_PIECE = 0.0
+MAX_LABOR_MINUTES_PER_PIECE = 180.0
+
 
 @dataclass(frozen=True)
 class QuoteMeta:
@@ -32,6 +38,8 @@ class QuoteMeta:
     strategy_name: str = ""
     version: str | None = None
     exported_at: str | None = None
+    labor_rate_eur_per_hour: float = DEFAULT_LABOR_EUR_PER_HOUR
+    labor_minutes_per_piece: float = DEFAULT_LABOR_MINUTES_PER_PIECE
 
 
 @dataclass(frozen=True)
@@ -62,6 +70,52 @@ class QuoteReport:
     estimate: MaterialCostEstimate
     placed_count: int
     omitted_ids: tuple[str, ...]
+    labor_hours: float = 0.0
+    labor_cost: float = 0.0
+
+    @property
+    def has_labor(self) -> bool:
+        return self.labor_cost > 0
+
+    @property
+    def grand_total(self) -> float:
+        material = self.estimate.total if self.estimate.has_price else 0.0
+        return round(material + self.labor_cost, 2)
+
+
+def normalize_labor_rate(value: object) -> float:
+    """Clamp a shop hourly rate to ``0…999`` EUR/h."""
+    try:
+        rate = float(value)
+    except (TypeError, ValueError):
+        return DEFAULT_LABOR_EUR_PER_HOUR
+    return max(0.0, min(MAX_LABOR_EUR_PER_HOUR, round(rate, 2)))
+
+
+def normalize_labor_minutes(value: object) -> float:
+    """Clamp minutes per placed piece to ``0…180``."""
+    try:
+        minutes = float(value)
+    except (TypeError, ValueError):
+        return DEFAULT_LABOR_MINUTES_PER_PIECE
+    return max(0.0, min(MAX_LABOR_MINUTES_PER_PIECE, round(minutes, 1)))
+
+
+def quote_labor_hours(placed_count: int, minutes_per_piece: float) -> float:
+    """Return hours for ``placed_count`` pieces at ``minutes_per_piece``."""
+    minutes = normalize_labor_minutes(minutes_per_piece)
+    count = max(0, int(placed_count))
+    if minutes <= 0 or count <= 0:
+        return 0.0
+    return round(count * minutes / 60.0, 4)
+
+
+def quote_labor_cost(hours: float, rate: float) -> float:
+    """Return EUR for ``hours`` at ``rate`` EUR/h."""
+    hourly = normalize_labor_rate(rate)
+    if hours <= 0 or hourly <= 0:
+        return 0.0
+    return round(float(hours) * hourly, 2)
 
 
 def build_quote(
@@ -72,13 +126,18 @@ def build_quote(
 ) -> QuoteReport:
     """Build a quote from consumed panels of ``solution``."""
     header = meta or QuoteMeta()
+    placed = len(solution.placements)
+    hours = quote_labor_hours(placed, header.labor_minutes_per_piece)
+    labor = quote_labor_cost(hours, header.labor_rate_eur_per_hour)
     if project is None:
         return QuoteReport(
             meta=header,
             lines=(),
             estimate=MaterialCostEstimate(),
-            placed_count=len(solution.placements),
+            placed_count=placed,
             omitted_ids=solution.omitted_piece_ids,
+            labor_hours=hours,
+            labor_cost=labor,
         )
 
     lookup = normalize_price_map(prices)
@@ -109,8 +168,10 @@ def build_quote(
         meta=header,
         lines=tuple(lines),
         estimate=estimated_material_cost(solution, project, prices),
-        placed_count=len(solution.placements),
+        placed_count=placed,
         omitted_ids=solution.omitted_piece_ids,
+        labor_hours=hours,
+        labor_cost=labor,
     )
 
 
@@ -157,10 +218,20 @@ def _report_lines(report: QuoteReport) -> list[str]:
         )
 
     missing = ", ".join(estimate.missing_materials) or "-"
-    lines.extend(
+    rate = normalize_labor_rate(meta.labor_rate_eur_per_hour)
+    minutes = normalize_labor_minutes(meta.labor_minutes_per_piece)
+    totals = [
+        "",
+        f"Total material: {total}",
+    ]
+    if report.has_labor:
+        totals.append(
+            f"Mano de obra: {report.placed_count} x {minutes:g} min x "
+            f"{rate:.2f} EUR/h = {_money(report.labor_cost)}"
+        )
+        totals.append(f"Total: {_money(report.grand_total)}")
+    totals.extend(
         [
-            "",
-            f"Total material: {total}",
             f"Area con precio: {estimate.priced_area_m2:.3f} m2",
             f"Area sin precio: {estimate.unpriced_area_m2:.3f} m2",
             f"Materiales sin precio: {missing}",
@@ -168,10 +239,20 @@ def _report_lines(report: QuoteReport) -> list[str]:
             f"Piezas colocadas: {report.placed_count}",
             f"Piezas omitidas: {omitted}",
             "",
-            "El coste es el de tableros fisicos consumidos (catalogo EUR/m2).",
-            "No incluye mano de obra ni herrajes. No cambia el packing.",
+            "El coste de material es el de tableros fisicos consumidos "
+            "(catalogo EUR/m2).",
         ]
     )
+    if report.has_labor:
+        totals.append(
+            "La mano de obra estima piezas colocadas x minutos x tarifa. "
+            "No incluye herrajes."
+        )
+    else:
+        totals.append("No incluye mano de obra ni herrajes. No cambia el packing.")
+    if report.has_labor:
+        totals.append("No cambia el packing.")
+    lines.extend(totals)
     lines.extend(
         report_traceability_footer(
             include=meta.include_traceability,

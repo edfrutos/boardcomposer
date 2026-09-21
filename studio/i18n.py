@@ -48,6 +48,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.export_pdf_margin": "Márgenes (PDF):",
         "prefs.export_raster_dpi": "Resolución (PNG/JPEG):",
         "prefs.export_jpeg_quality": "Calidad JPEG:",
+        "prefs.quote_labor_rate": "Mano de obra (EUR/h):",
+        "prefs.quote_labor_minutes": "Minutos por pieza:",
         "prefs.max_solutions": "Máx. soluciones a conservar:",
         "prefs.open_config_folder": "Abrir carpeta de configuración…",
         "prefs.edit_catalog": "Editar catálogo de materiales…",
@@ -347,6 +349,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Kerf por defecto de proyectos nuevos; "
             "los ya abiertos siguen el valor del .bcproj"
         ),
+        "tip.prefs_quote_labor": (
+            "Tarifa y minutos por pieza colocada para el presupuesto PDF "
+            "(Ctrl+Alt+Q); 0 omite la mano de obra; no va en el .bcproj"
+        ),
         "tip.reveal_project_folder": (
             "Abrir la carpeta del archivo .bcproj en el explorador de archivos "
             "(Ctrl+Shift+R)"
@@ -445,8 +451,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_quote": (
             "Exportar presupuesto de material de la solución del Comparador "
             "(Ctrl+Alt+Q); PDF con tableros físicos × EUR/m2 del catálogo "
-            "y pie de versión; ofrece abrir el archivo; "
-            "recuerda la última carpeta"
+            "y mano de obra de Preferencias; pie de versión; ofrece abrir "
+            "el archivo; recuerda la última carpeta"
         ),
         "tip.export_quote_outdated": (
             "Soluciones desactualizadas: al exportar el presupuesto "
@@ -1619,6 +1625,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.export_pdf_margin": "Margins (PDF):",
         "prefs.export_raster_dpi": "Resolution (PNG/JPEG):",
         "prefs.export_jpeg_quality": "JPEG quality:",
+        "prefs.quote_labor_rate": "Labor (EUR/h):",
+        "prefs.quote_labor_minutes": "Minutes per piece:",
         "prefs.max_solutions": "Max solutions to keep:",
         "prefs.open_config_folder": "Open settings folder…",
         "prefs.edit_catalog": "Edit material catalog…",
@@ -1910,6 +1918,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Default kerf for new projects; "
             "open projects keep the value stored in the .bcproj"
         ),
+        "tip.prefs_quote_labor": (
+            "Hourly rate and minutes per placed piece for the quote PDF "
+            "(Ctrl+Alt+Q); 0 omits labor; not stored in the .bcproj"
+        ),
         "tip.reveal_project_folder": (
             "Open the folder that contains the .bcproj file in the file manager "
             "(Ctrl+Shift+R)"
@@ -2005,8 +2017,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.export_quote": (
             "Export a material quote from the Comparator solution "
             "(Ctrl+Alt+Q); PDF of physical boards × catalog EUR/m2 "
-            "and a version footer; offers to open the file; "
-            "remembers the last folder"
+            "and labor from Preferences; version footer; offers to open "
+            "the file; remembers the last folder"
         ),
         "tip.export_quote_outdated": (
             "Solutions outdated: when exporting the quote "

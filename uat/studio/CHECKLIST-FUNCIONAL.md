@@ -207,9 +207,11 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
   candidatas del ranking»; elige carpeta; aparecen
   `boardcomposer-solution-01` y siguientes. Con 1 candidata la casilla
   está deshabilitada. No usa `boardcomposer-batch`.
-- [ ] **Ctrl+Alt+Q** presupuesto PDF: total = tableros físicos × €/m²;
-  materiales sin precio aparecen como «-»; pie de versión/algoritmo/fecha;
-  desmarcar trazabilidad en Preferencias lo quita; no cambia el `.bcproj`.
+- [ ] **Ctrl+Alt+Q** presupuesto PDF: total material = tableros físicos
+  × €/m²; si Preferencias tiene EUR/h y min/pieza > 0, suma mano de obra;
+  0 omite labor; materiales sin precio aparecen como «-»; pie de
+  versión/algoritmo/fecha; desmarcar trazabilidad en Preferencias lo
+  quita; no cambia el `.bcproj`.
 - [ ] **Ctrl+Alt+C** lista de corte: CSV/PDF con `sequence` y pasos de
   sierra (`saw`); el PDF incluye pie de trazabilidad; el CSV no; el plano
   muestra el número de orden por panel.

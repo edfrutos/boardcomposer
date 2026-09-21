@@ -114,7 +114,7 @@ Observaciones:
 | IDE-0042 | Exportar/importar catálogo de materiales | 🟢 | P3 |
 | IDE-0043 | Trazabilidad en lista de corte / presupuesto | 🟢 | P3 |
 | IDE-0044 | Unidades prefs en plano y etiquetas de export | 🟢 | P3 |
-| IDE-0045 | Mano de obra en presupuesto | ⚪ | P3 |
+| IDE-0045 | Mano de obra en presupuesto | 🟢 | P3 |
 | IDE-0046 | Inspector: espesor / rotación / veta de pieza | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -153,7 +153,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0042 | S | IDE-0028; catálogo JSON | Entregado (#655); export/import JSON; sin nube |
 | IDE-0043 | S | IDE-0039; cut list / quote PDF | Entregado; pie en PDF; CSV no |
 | IDE-0044 | S–M | IDE-0040; SCR-007 etiquetas | Entregado; prefs.units en plano TEXT; mm en disco |
-| IDE-0045 | S–M | IDE-0032; catálogo / prefs | Mano de obra; no cambia solver |
+| IDE-0045 | S–M | IDE-0032; catálogo / prefs | Entregado; EUR/h + min/pieza; 0 omite |
 | IDE-0046 | S | SCR-004 Inspector | Espesor, rotación y veta de pieza |
 
 ---
@@ -182,15 +182,15 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0044 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0044; `#647`/`#649`/`#651`/
-`#653`/`#654`/`#655`/`#657`). IDE-0007 🟢 MVP+eval (2026-09-12; LLM
+**Estado actual:** 🟢 Actualizado — IDE-0001…0045 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0045; `#647`/`#649`/`#651`/
+`#653`/`#654`/`#655`/`#657`/`#658`). IDE-0007 🟢 MVP+eval (2026-09-12; LLM
 diferido). EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-09-21-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` cuarta ola: IDE-0045…0046 (0044 entregada).
+1. Cola producto `0.4.4` cuarta ola: IDE-0046 (0045 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
