@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-20.
+Última revisión: 2026-09-21.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-20-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-21-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -40,13 +40,13 @@
 - Cotas L×A del tablero en plano SVG/PDF/DXF (IDE-0037).
 - Calidad raster PNG/JPEG (DPI y calidad JPEG, IDE-0038).
 - Trazabilidad en plano (versión, algoritmo, fecha; IDE-0039).
-- Unidades de display en Inspector mm/cm/in (IDE-0040; disco sigue mm).
-- Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041).
+- Unidades de display en Inspector mm/cm/in (IDE-0040 `#653`; disco sigue mm).
+- Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
 - Retales a inventario del mismo proyecto (**Ctrl+Alt+R**, IDE-0025).
 - Catálogo de materiales / espesores / L×A de usuario (**Ctrl+Alt+T**,
-  IDE-0028/0031).
+  IDE-0028/0031); export/import en vuelo (IDE-0042 `#655`).
 - Coste estimado de material (precio €/m² del catálogo; IDE-0029).
 - Presupuesto de material PDF (**Ctrl+Alt+Q**, IDE-0032).
 - Packing Skyline multipanel (IDE-0022; junto a MaxRects).
@@ -54,7 +54,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` tercera ola: IDE-0042 (0037…0041 entregadas).
+1. Ciclo `0.4.4` tercera ola: cerrar IDE-0042 `#655` (0037…0041 entregadas).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

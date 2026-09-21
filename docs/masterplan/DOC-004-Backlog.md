@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.44
+**Versión:** 1.3.45
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 20/09/2026
+**Última revisión:** 21/09/2026
 
 ---
 
@@ -111,7 +111,7 @@ Observaciones:
 | IDE-0039 | Trazabilidad en plano (versión, algoritmo, fecha) | 🟢 | P3 |
 | IDE-0040 | Unidades en Inspector (mm/cm/in) | 🟢 | P3 |
 | IDE-0041 | Capas DXF por rol (marco/pieza/retal/cota) | 🟢 | P3 |
-| IDE-0042 | Exportar/importar catálogo de materiales | ⚪ | P3 |
+| IDE-0042 | Exportar/importar catálogo de materiales | 🟡 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -144,9 +144,9 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0037 | S–M | SCR-007; export SVG/PDF/DXF | Entregado; cotas L×A; casilla export |
 | IDE-0038 | S | SCR-007; raster PNG/JPEG | Entregado; DPI 36–300; JPEG 1–100 |
 | IDE-0039 | S–M | SCR-007; export plan | Entregado; pie versión/algoritmo/fecha |
-| IDE-0040 | S–M | Inspector; prefs.units | Entregado; display prefs; mm en disco |
-| IDE-0041 | S–M | SCR-007; DXF exporter | Entregado; tabla LAYER por rol |
-| IDE-0042 | S | IDE-0028; catálogo JSON | Export/import archivo; sin nube |
+| IDE-0040 | S–M | Inspector; prefs.units | Entregado (#653); display prefs; mm en disco |
+| IDE-0041 | S–M | SCR-007; DXF exporter | Entregado (#654); tabla LAYER por rol |
+| IDE-0042 | S | IDE-0028; catálogo JSON | En desarrollo (#655); sin nube |
 
 ---
 
@@ -175,14 +175,14 @@ Detalle: `docs/masterplan/epics/`.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — IDE-0001…0041 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0041; `#647`/`#649`/`#651`).
-IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
-entregadas. Snapshot: `REVIEW-2026-09-20-planificacion.md`.
+completadas (ciclo `0.4.4` ola 1 + 0031…0041; `#647`/`#649`/`#651`/
+`#653`/`#654`). IDE-0042 🟡 `#655`. IDE-0007 🟢 MVP+eval (2026-09-12;
+LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
+`REVIEW-2026-09-21-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` tercera ola: IDE-0042 (0037…0041
-   entregadas; 0042 de snapshot 2026-09-18).
+1. Cerrar IDE-0042 (`#655`; 0037…0041 entregadas).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
