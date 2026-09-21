@@ -25,7 +25,8 @@ alternativas comprensibles para que el usuario decida.
   de retal (IDE-0033).
 - Catálogo de materiales / espesores / precio €/m² / medidas L×A
   (IDE-0028/0029/0031; `~/.boardcomposer/material_catalog.json`;
-  **Ctrl+Alt+T**). Coste = tableros físicos × precio; no puntúa el solver.
+  **Ctrl+Alt+T**). Export/import JSON (IDE-0042); sin nube.
+  Coste = tableros físicos × precio; no puntúa el solver.
 - PDF de plano: papel / márgenes / escala (IDE-0034); default ajustar al
   dibujo. Lista de corte y presupuesto siguen A4.
 - Exportar lote de candidatas del ranking (IDE-0035); carpeta con
@@ -47,7 +48,7 @@ alternativas comprensibles para que el usuario decida.
   `docs/masterplan/REVIEW-2026-09-20-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
-- Próximo: cola producto `0.4.4` tercera ola IDE-0042; piloto
+- Próximo: cola `0.4.4` tercera ola cerrada; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

@@ -102,6 +102,7 @@ class StudioPreferences:
     last_project_directory: str | None = None
     last_diff_directory: str | None = None
     last_export_templates_directory: str | None = None
+    last_material_catalog_directory: str | None = None
     max_solutions: int = DEFAULT_MAX_SOLUTIONS
     default_kerf_mm: float = DEFAULT_KERF_MM
     window_geometry: str | None = None
@@ -351,6 +352,9 @@ class PreferencesManager:
             last_export_templates_directory=_optional_directory(
                 payload.get("last_export_templates_directory")
             ),
+            last_material_catalog_directory=_optional_directory(
+                payload.get("last_material_catalog_directory")
+            ),
             max_solutions=max_solutions,
             default_kerf_mm=normalize_kerf(
                 payload.get("default_kerf_mm", DEFAULT_KERF_MM)
@@ -424,6 +428,9 @@ class PreferencesManager:
             "last_diff_directory": preferences.last_diff_directory,
             "last_export_templates_directory": (
                 preferences.last_export_templates_directory
+            ),
+            "last_material_catalog_directory": (
+                preferences.last_material_catalog_directory
             ),
             "max_solutions": preferences.max_solutions,
             "default_kerf_mm": preferences.default_kerf_mm,

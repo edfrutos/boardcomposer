@@ -1,18 +1,23 @@
-"""Edit the user-level material / thickness catalog (IDE-0028)."""
+"""Edit the user-level material / thickness catalog (IDE-0028/0042)."""
 
 from __future__ import annotations
+
+from collections.abc import Callable
+from pathlib import Path
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QDialog,
     QDialogButtonBox,
     QDoubleSpinBox,
+    QFileDialog,
     QFormLayout,
     QHBoxLayout,
     QLabel,
     QLineEdit,
     QListWidget,
     QListWidgetItem,
+    QMessageBox,
     QPushButton,
     QVBoxLayout,
 )
@@ -70,10 +75,14 @@ class MaterialCatalogDialog(QDialog):
         parent=None,
         *,
         language: str = DEFAULT_LANGUAGE,
+        pack_directory: str = "",
+        on_pack_directory: Callable[[str | Path], None] | None = None,
     ) -> None:
         super().__init__(parent)
         self._manager = manager
         self._language = language
+        self._pack_directory = pack_directory
+        self._on_pack_directory = on_pack_directory
         self.setMinimumWidth(460)
 
         self._intro = QLabel()
@@ -113,6 +122,15 @@ class MaterialCatalogDialog(QDialog):
         buttons_row.addWidget(self.remove_button)
         buttons_row.addWidget(self.restore_button)
 
+        share_row = QHBoxLayout()
+        self.export_button = polish_secondary_button(QPushButton())
+        self.import_button = polish_secondary_button(QPushButton())
+        self.export_button.clicked.connect(self._export_pack)
+        self.import_button.clicked.connect(self._import_pack)
+        share_row.addWidget(self.export_button)
+        share_row.addWidget(self.import_button)
+        share_row.addStretch(1)
+
         box = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
         polish_dialog_button_box(box)
         box.rejected.connect(self.accept)
@@ -123,6 +141,7 @@ class MaterialCatalogDialog(QDialog):
         layout.addWidget(self.list)
         layout.addLayout(form)
         layout.addLayout(buttons_row)
+        layout.addLayout(share_row)
         layout.addWidget(box)
 
         self._retranslate()
@@ -147,6 +166,12 @@ class MaterialCatalogDialog(QDialog):
         self.update_button.setText(tr("catalog.update", language))
         self.remove_button.setText(tr("catalog.remove", language))
         self.restore_button.setText(tr("catalog.restore", language))
+        self.export_button.setText(tr("catalog.share_export", language))
+        self.import_button.setText(tr("catalog.share_import", language))
+        self.export_button.setToolTip(tr("tip.catalog_share_export", language))
+        self.export_button.setStatusTip(tr("tip.catalog_share_export", language))
+        self.import_button.setToolTip(tr("tip.catalog_share_import", language))
+        self.import_button.setStatusTip(tr("tip.catalog_share_import", language))
 
     def _reload_list(self, select: str | None = None) -> None:
         self.list.clear()
@@ -228,3 +253,96 @@ class MaterialCatalogDialog(QDialog):
     def _restore(self) -> None:
         self._manager.restore_defaults()
         self._reload_list()
+
+    def _suggested_pack_path(self, default_filename: str = "") -> str:
+        """Prefer last pack folder when it still exists."""
+        directory = self._pack_directory.strip()
+        if directory:
+            folder = Path(directory).expanduser()
+            if folder.is_dir():
+                if default_filename:
+                    return str(folder / default_filename)
+                return str(folder)
+        return default_filename
+
+    def _remember_pack_directory(self, path: str | Path) -> None:
+        folder = str(Path(path).expanduser().resolve().parent)
+        self._pack_directory = folder
+        if self._on_pack_directory is not None:
+            self._on_pack_directory(path)
+
+    def _export_pack(self) -> None:
+        path, _ = QFileDialog.getSaveFileName(
+            self,
+            tr("catalog.share_export_title", self._language),
+            self._suggested_pack_path("boardcomposer-material-catalog.json"),
+            tr("catalog.share_filter", self._language),
+        )
+        if not path:
+            return
+        try:
+            count = self._manager.export_pack(path)
+        except OSError as exc:
+            QMessageBox.warning(
+                self,
+                tr("catalog.share_export_title", self._language),
+                tr("catalog.share_error", self._language, error=str(exc)),
+            )
+            return
+        self._remember_pack_directory(path)
+        QMessageBox.information(
+            self,
+            tr("catalog.share_export_title", self._language),
+            tr("catalog.share_export_done", self._language, count=count),
+        )
+
+    def _import_pack(self) -> None:
+        path, _ = QFileDialog.getOpenFileName(
+            self,
+            tr("catalog.share_import_title", self._language),
+            self._suggested_pack_path(),
+            tr("catalog.share_filter", self._language),
+        )
+        if not path:
+            return
+
+        choice = QMessageBox.question(
+            self,
+            tr("catalog.share_import_title", self._language),
+            tr("catalog.share_import_mode", self._language),
+            QMessageBox.StandardButton.Yes
+            | QMessageBox.StandardButton.No
+            | QMessageBox.StandardButton.Cancel,
+        )
+        if choice == QMessageBox.StandardButton.Cancel:
+            return
+        mode = "replace" if choice == QMessageBox.StandardButton.No else "merge"
+
+        try:
+            imported, total = self._manager.import_pack(path, mode=mode)
+        except (OSError, ValueError) as exc:
+            QMessageBox.warning(
+                self,
+                tr("catalog.share_import_title", self._language),
+                tr("catalog.share_error", self._language, error=str(exc)),
+            )
+            return
+
+        self._remember_pack_directory(path)
+        self._reload_list()
+        QMessageBox.information(
+            self,
+            tr("catalog.share_import_title", self._language),
+            tr(
+                "catalog.share_import_done",
+                self._language,
+                imported=imported,
+                total=total,
+                mode=tr(
+                    "catalog.share_mode_replace"
+                    if mode == "replace"
+                    else "catalog.share_mode_merge",
+                    self._language,
+                ),
+            ),
+        )

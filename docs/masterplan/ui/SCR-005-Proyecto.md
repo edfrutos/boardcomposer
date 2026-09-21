@@ -72,7 +72,7 @@ carpeta. Sin archivo en disco: «aún no guardado» + tip **Ctrl+S**.
 | Renombrar proyecto | **Ctrl+Shift+F2** (también **F2** en raíz) | Undoable; menú y ctx Explorador |
 | Metadatos (cliente, ref., notas) | **Ctrl+Alt+M** (también **Return** / Editar en raíz) | Undoable; `.bcproj` v3; Inspector |
 | Espesor de sierra / kerf | **Ctrl+Alt+K** | Undoable; `.bcproj` v4; hueco al calcular/mover |
-| Catálogo de materiales | **Ctrl+Alt+T** | Usuario; `material_catalog.json`; no va en el `.bcproj` |
+| Catálogo de materiales | **Ctrl+Alt+T** | Usuario; `material_catalog.json`; export/import JSON; no va en el `.bcproj` |
 | Abrir carpeta | **Ctrl+Shift+R** | Solo si hay archivo en disco |
 | Comparar revisiones | **Ctrl+Shift+Y** | Diff vs anillo local / archivos; recuerda carpeta (`last_diff_directory`) |
 | Restaurar última revisión | **Ctrl+Alt+Y** | Snapshot más reciente del anillo; dirty hasta Guardar; vacía undo |

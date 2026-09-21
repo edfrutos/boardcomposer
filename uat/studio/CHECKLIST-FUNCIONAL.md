@@ -119,6 +119,7 @@ Precondición para checks de comparador multi-candidata:
 - [x] Import recuerda última carpeta (`last_import_directory`).
 - [x] Diff `.bcproj` recuerda última carpeta (`last_diff_directory`).
 - [x] Pack plantillas exportación recuerda carpeta (`last_export_templates_directory`).
+- [ ] Pack catálogo materiales recuerda carpeta (`last_material_catalog_directory`).
 - [x] Excel multi-hoja: selector de hoja.
 - [x] Si fallan columnas: asistente de mapeo + guardar/reaplicar/eliminar plantilla.
 - [x] Importación **deshacible** (**Ctrl+Z** / **Ctrl+Shift+Z**, tips de Deshacer/Rehacer).
@@ -215,7 +216,8 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
   remnant; segundo disparo no duplica; undo los quita; origen no baja solo.
 - [ ] **Ctrl+Alt+T** catálogo de materiales: añade un nombre/espesor/medida
   L×A; al añadir tablero el combo ofrece el nombre y la medida típica
-  (`2800×2070`); el `.bcproj` no cambia de versión.
+  (`2800×2070`); el `.bcproj` no cambia de versión. **Exportar** genera
+  JSON; **Importar** fusiona o reemplaza; no usa nube.
 - [ ] **Ctrl+Alt+G** con una pieza: colocada → mismo panel al hueco
   MaxRects; sin colocar → tablero enfocado. Drop que solapa ajusta al
   hueco más cercano; material/espesor incompatible sigue revirtiendo.

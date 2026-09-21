@@ -134,6 +134,9 @@ outdated.
 | Preferencias UI sin tocar inventario | No (vía prefs) | No |
 | Catálogo de materiales (Ctrl+Alt+T) | No | No |
 
+Export/import JSON del catálogo (IDE-0042) tampoco marca dirty ni outdated;
+vive fuera del `.bcproj`.
+
 Banner en Comparador mientras `solutions_outdated`. Apply (FLW-004) y Export
 (FLW-005) avisan si está outdated.
 

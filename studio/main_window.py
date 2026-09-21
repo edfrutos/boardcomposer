@@ -1441,6 +1441,25 @@ class MainWindow(QMainWindow):
             dataclass_replace(prefs, last_export_templates_directory=folder)
         )
 
+    def _suggested_material_catalog_directory(self) -> str:
+        """Prefer last successful catalog pack folder when it exists."""
+        directory = self.services.preferences.current.last_material_catalog_directory
+        if directory:
+            folder = Path(directory).expanduser()
+            if folder.is_dir():
+                return str(folder)
+        return ""
+
+    def _remember_material_catalog_directory(self, path: str | Path) -> None:
+        """Persist the folder of a successful catalog pack for the next dialog."""
+        folder = str(Path(path).expanduser().resolve().parent)
+        prefs = self.services.preferences.current
+        if prefs.last_material_catalog_directory == folder:
+            return
+        self.services.preferences.update(
+            dataclass_replace(prefs, last_material_catalog_directory=folder)
+        )
+
     def _resolve_import_headers_interactive(
         self,
         *,
@@ -2974,6 +2993,8 @@ class MainWindow(QMainWindow):
             self.services.material_catalog,
             self,
             language=self._ui_language(),
+            pack_directory=self._suggested_material_catalog_directory(),
+            on_pack_directory=self._remember_material_catalog_directory,
         )
         dialog.exec()
 
