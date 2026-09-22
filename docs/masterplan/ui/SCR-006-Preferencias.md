@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-006  
-**Versión:** 1.7.0  
+**Versión:** 1.8.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 18/09/2026
+**Última revisión:** 21/09/2026
 
 ---
 
@@ -53,6 +53,7 @@ Restaurar valores por defecto.
 │ Exportación    formato default · métricas/explicación/     │
 │                retales · etiquetas piezas/retales · cotas  │
 │                · trazabilidad · DPI/calidad JPEG           │
+│                · mano de obra EUR/h y min/pieza            │
 │ Avanzado       máx. soluciones · kerf default · catálogo   │
 │                · abrir ~/.boardcomposer/                   │
 ├────────────────────────────────────────────────────────────┤
@@ -100,6 +101,8 @@ Restaurar valores por defecto.
 | Resolución PNG/JPEG | DPI 36–300; default 96 |
 | Calidad JPEG | 1–100; default 90; solo JPEG |
 | Lote de candidatas | Checkbox; default no; requiere ≥2 soluciones |
+| Mano de obra EUR/h | 0–999; default 0 = omitir en presupuesto PDF |
+| Minutos por pieza | 0–180; default 0; piezas colocadas × min × tarifa |
 
 ### Avanzado
 

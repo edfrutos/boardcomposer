@@ -1669,6 +1669,15 @@ def test_prefs_default_kerf_tip_mentions_new_projects_only():
     assert "new projects" in en and ".bcproj" in en
 
 
+def test_prefs_quote_labor_tip_mentions_quote_and_not_bcproj():
+    from studio.i18n import tr
+
+    es = tr("tip.prefs_quote_labor", "es").casefold()
+    en = tr("tip.prefs_quote_labor", "en").casefold()
+    assert "ctrl+alt+q" in es and ".bcproj" in es and "mano de obra" in es
+    assert "ctrl+alt+q" in en and ".bcproj" in en and "labor" in en
+
+
 def test_swap_pieces_tip_mentions_noop_if_invalid_and_can_undo():
     from studio.i18n import tr
 

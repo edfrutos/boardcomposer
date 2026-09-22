@@ -7,6 +7,12 @@ from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
 
 from boardcomposer.export.cut_list import normalize_cut_list_format
+from boardcomposer.export.quote import (
+    DEFAULT_LABOR_EUR_PER_HOUR,
+    DEFAULT_LABOR_MINUTES_PER_PIECE,
+    normalize_labor_minutes,
+    normalize_labor_rate,
+)
 from boardcomposer.export.pdf_page import (
     DEFAULT_PDF_MARGIN_MM,
     DEFAULT_PDF_ORIENTATION,
@@ -105,6 +111,8 @@ class StudioPreferences:
     last_material_catalog_directory: str | None = None
     max_solutions: int = DEFAULT_MAX_SOLUTIONS
     default_kerf_mm: float = DEFAULT_KERF_MM
+    quote_labor_eur_per_hour: float = DEFAULT_LABOR_EUR_PER_HOUR
+    quote_labor_minutes_per_piece: float = DEFAULT_LABOR_MINUTES_PER_PIECE
     window_geometry: str | None = None
     window_state: str | None = None
     timeline_event_filter: str | None = None
@@ -360,6 +368,15 @@ class PreferencesManager:
             default_kerf_mm=normalize_kerf(
                 payload.get("default_kerf_mm", DEFAULT_KERF_MM)
             ),
+            quote_labor_eur_per_hour=normalize_labor_rate(
+                payload.get("quote_labor_eur_per_hour", DEFAULT_LABOR_EUR_PER_HOUR)
+            ),
+            quote_labor_minutes_per_piece=normalize_labor_minutes(
+                payload.get(
+                    "quote_labor_minutes_per_piece",
+                    DEFAULT_LABOR_MINUTES_PER_PIECE,
+                )
+            ),
             window_geometry=_optional_base64_string(payload.get("window_geometry")),
             window_state=_optional_base64_string(payload.get("window_state")),
             timeline_event_filter=_optional_string(
@@ -435,6 +452,10 @@ class PreferencesManager:
             ),
             "max_solutions": preferences.max_solutions,
             "default_kerf_mm": preferences.default_kerf_mm,
+            "quote_labor_eur_per_hour": preferences.quote_labor_eur_per_hour,
+            "quote_labor_minutes_per_piece": (
+                preferences.quote_labor_minutes_per_piece
+            ),
             "window_geometry": preferences.window_geometry,
             "window_state": preferences.window_state,
             "timeline_event_filter": preferences.timeline_event_filter,

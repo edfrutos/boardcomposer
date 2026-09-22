@@ -50,13 +50,14 @@
 - Catálogo de materiales / espesores / L×A de usuario (**Ctrl+Alt+T**,
   IDE-0028/0031); export/import JSON (IDE-0042).
 - Coste estimado de material (precio €/m² del catálogo; IDE-0029).
-- Presupuesto de material PDF (**Ctrl+Alt+Q**, IDE-0032).
+- Presupuesto de material PDF (**Ctrl+Alt+Q**, IDE-0032) con mano de
+  obra opcional (IDE-0045; EUR/h × min/pieza en Preferencias).
 - Packing Skyline multipanel (IDE-0022; junto a MaxRects).
 - ADR-014 / ADR-016 y documentación técnica alineada en README, backlog y UAT.
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` cuarta ola: IDE-0045…0046 (0044 entregada).
+1. Ciclo `0.4.4` cuarta ola: IDE-0046 (0045 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

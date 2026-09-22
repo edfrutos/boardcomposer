@@ -31,6 +31,12 @@ from boardcomposer.export.pdf_page import (
     VALID_PDF_PAPERS,
     VALID_PDF_SCALES,
 )
+from boardcomposer.export.quote import (
+    DEFAULT_LABOR_EUR_PER_HOUR,
+    DEFAULT_LABOR_MINUTES_PER_PIECE,
+    MAX_LABOR_EUR_PER_HOUR,
+    MAX_LABOR_MINUTES_PER_PIECE,
+)
 from boardcomposer.layout.kerf import DEFAULT_KERF_MM, MAX_KERF_MM
 from boardcomposer.solver.strategies import strategy_by_name
 from studio.dialogs.dialog_chrome import (
@@ -254,6 +260,26 @@ class PreferencesDialog(QDialog):
         self.export_jpeg_quality.setValue(preferences.export_jpeg_quality)
         self._export_jpeg_quality_label = QLabel()
         export_form.addRow(self._export_jpeg_quality_label, self.export_jpeg_quality)
+        self.quote_labor_eur_per_hour = QDoubleSpinBox()
+        self.quote_labor_eur_per_hour.setRange(0.0, MAX_LABOR_EUR_PER_HOUR)
+        self.quote_labor_eur_per_hour.setDecimals(2)
+        self.quote_labor_eur_per_hour.setSingleStep(1.0)
+        self.quote_labor_eur_per_hour.setSuffix(" EUR/h")
+        self.quote_labor_eur_per_hour.setValue(preferences.quote_labor_eur_per_hour)
+        self._quote_labor_rate_label = QLabel()
+        export_form.addRow(self._quote_labor_rate_label, self.quote_labor_eur_per_hour)
+        self.quote_labor_minutes_per_piece = QDoubleSpinBox()
+        self.quote_labor_minutes_per_piece.setRange(0.0, MAX_LABOR_MINUTES_PER_PIECE)
+        self.quote_labor_minutes_per_piece.setDecimals(1)
+        self.quote_labor_minutes_per_piece.setSingleStep(1.0)
+        self.quote_labor_minutes_per_piece.setSuffix(" min")
+        self.quote_labor_minutes_per_piece.setValue(
+            preferences.quote_labor_minutes_per_piece
+        )
+        self._quote_labor_minutes_label = QLabel()
+        export_form.addRow(
+            self._quote_labor_minutes_label, self.quote_labor_minutes_per_piece
+        )
         layout.addWidget(self.export_group)
 
         self.advanced = QGroupBox()
@@ -344,6 +370,15 @@ class PreferencesDialog(QDialog):
         self._export_jpeg_quality_label.setText(
             tr("prefs.export_jpeg_quality", language)
         )
+        self._quote_labor_rate_label.setText(tr("prefs.quote_labor_rate", language))
+        self._quote_labor_minutes_label.setText(
+            tr("prefs.quote_labor_minutes", language)
+        )
+        labor_tip = tr("tip.prefs_quote_labor", language)
+        self.quote_labor_eur_per_hour.setToolTip(labor_tip)
+        self.quote_labor_eur_per_hour.setStatusTip(labor_tip)
+        self.quote_labor_minutes_per_piece.setToolTip(labor_tip)
+        self.quote_labor_minutes_per_piece.setStatusTip(labor_tip)
         for index, key in enumerate(VALID_PDF_PAPERS):
             self.export_pdf_paper.setItemText(
                 index, tr(f"export.paper_{key}", language)
@@ -454,6 +489,8 @@ class PreferencesDialog(QDialog):
         self.export_pdf_margin_mm.setValue(DEFAULT_PDF_MARGIN_MM)
         self.export_raster_dpi.setValue(DEFAULT_RASTER_DPI)
         self.export_jpeg_quality.setValue(DEFAULT_JPEG_QUALITY)
+        self.quote_labor_eur_per_hour.setValue(DEFAULT_LABOR_EUR_PER_HOUR)
+        self.quote_labor_minutes_per_piece.setValue(DEFAULT_LABOR_MINUTES_PER_PIECE)
         self.max_solutions.setValue(DEFAULT_MAX_SOLUTIONS)
         self.default_kerf_mm.setValue(DEFAULT_KERF_MM)
         self._on_strategy_changed(self.strategy.currentIndex())
@@ -514,6 +551,8 @@ class PreferencesDialog(QDialog):
             export_pdf_margin_mm=self.export_pdf_margin_mm.value(),
             export_raster_dpi=self.export_raster_dpi.value(),
             export_jpeg_quality=self.export_jpeg_quality.value(),
+            quote_labor_eur_per_hour=self.quote_labor_eur_per_hour.value(),
+            quote_labor_minutes_per_piece=self.quote_labor_minutes_per_piece.value(),
             max_solutions=self.max_solutions.value(),
             default_kerf_mm=self.default_kerf_mm.value(),
         )

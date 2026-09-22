@@ -36,7 +36,20 @@ from .pdf_page import (
     VALID_PDF_SCALES,
     PdfPageOptions,
 )
-from .quote import QuoteMeta, QuoteReport, build_quote, quote_to_pdf
+from .quote import (
+    DEFAULT_LABOR_EUR_PER_HOUR,
+    DEFAULT_LABOR_MINUTES_PER_PIECE,
+    MAX_LABOR_EUR_PER_HOUR,
+    MAX_LABOR_MINUTES_PER_PIECE,
+    QuoteMeta,
+    QuoteReport,
+    build_quote,
+    normalize_labor_minutes,
+    normalize_labor_rate,
+    quote_labor_cost,
+    quote_labor_hours,
+    quote_to_pdf,
+)
 from .report_pdf import pdf_from_text_lines
 from .svg_exporter import solution_to_svg
 from .svg_palette import DEFAULT_SVG_PALETTE, SvgPalette
@@ -47,6 +60,10 @@ __all__ = [
     "DEFAULT_PDF_ORIENTATION",
     "DEFAULT_PDF_PAPER",
     "DEFAULT_PDF_SCALE",
+    "DEFAULT_LABOR_EUR_PER_HOUR",
+    "DEFAULT_LABOR_MINUTES_PER_PIECE",
+    "MAX_LABOR_EUR_PER_HOUR",
+    "MAX_LABOR_MINUTES_PER_PIECE",
     "MAX_PDF_MARGIN_MM",
     "MIN_PDF_MARGIN_MM",
     "CutList",
@@ -60,6 +77,10 @@ __all__ = [
     "build_cut_list",
     "build_cut_sequences",
     "build_quote",
+    "normalize_labor_minutes",
+    "normalize_labor_rate",
+    "quote_labor_cost",
+    "quote_labor_hours",
     "cut_list_to_csv",
     "cut_list_to_pdf",
     "offcut_plan_label",

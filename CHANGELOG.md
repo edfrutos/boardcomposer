@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Mano de obra en presupuesto PDF (IDE-0045): tarifa EUR/h y minutos
+  por pieza colocada en Preferencias (default 0 = omitir). Total =
+  material (catálogo EUR/m²) + labor. JSON de métricas no. Sin bump
+  `.bcproj`; no cambia el solver.
 - Unidades de Preferencias en etiquetas de plano (IDE-0044): piezas,
   retales y cotas de tablero en SVG/PDF/DXF/raster y Workspace siguen
   `prefs.units` (mm/cm/in). Geometría, JSON/CSV y `$INSUNITS` siguen mm.

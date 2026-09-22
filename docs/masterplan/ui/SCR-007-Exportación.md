@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.11.0  
+**Versión:** 1.12.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 21/09/2026
 
@@ -109,6 +109,10 @@ No implementados: más formatos de imagen (WebP, TIFF).
   Plano SVG/PDF/DXF (0039) y PDF de lista de corte / presupuesto (0043).
   Default: sí (casilla Preferencias / Exportar plano). JSON/CSV y CSV
   de corte no. Capa DXF `META`. Sin bump `.bcproj`.
+- **Mano de obra (IDE-0045):** solo presupuesto PDF (**Ctrl+Alt+Q**).
+  Preferencias: EUR/h (0–999) y minutos por pieza colocada (0–180).
+  Default 0 omite la línea. Total = material (catálogo EUR/m²) + labor.
+  JSON de métricas y lista de corte no. Sin herrajes. Sin bump `.bcproj`.
 - **Capas DXF por rol (IDE-0041):** solo **DXF**. Tabla LAYER con
   `PANELS` (marco), `PIECES`, `OFFCUTS`, `DIMS` (cotas), `SEQ`, `META`.
   `$INSUNITS` = mm. LibreCAD / QCAD / CAM pueden ocultar capas. SVG/PDF

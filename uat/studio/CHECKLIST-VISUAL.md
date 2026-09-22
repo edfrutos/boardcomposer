@@ -119,6 +119,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
   diálogo de solución.
 - [ ] Lista de corte / presupuesto PDF: pie versión · algoritmo · fecha;
   CSV de corte sin pie.
+- [ ] Presupuesto PDF: con EUR/h y min/pieza en Preferencias aparece
+  línea de mano de obra y total; con 0 no.
 - [x] Opción abrir después (si existe) abre el artefacto.
 - [x] Export con open-after no deja la UI colgada.
 

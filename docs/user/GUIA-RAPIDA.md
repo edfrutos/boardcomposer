@@ -250,8 +250,9 @@ marcadores…).
   numera cada pieza con ese orden. No sustituye el CSV de colocaciones
   del diálogo de solución.
 - **Archivo → Exportar presupuesto…** (**Ctrl+Alt+Q**) PDF de coste de
-  material: tableros físicos consumidos × €/m² del catálogo, con el
-  mismo pie de trazabilidad. No incluye mano de obra. Recuerda la
+  material: tableros físicos consumidos × €/m² del catálogo, más mano
+  de obra si Preferencias tiene EUR/h y minutos/pieza (0 = omitir),
+  con el mismo pie de trazabilidad. No incluye herrajes. Recuerda la
   carpeta. No sustituye el JSON de métricas.
 - **Cliente** y **plantilla** reutilizan un perfil; **Guardar…** / **Eliminar**
   gestionan el catálogo; **Exportar/Importar pack…** comparte plantillas
@@ -270,7 +271,7 @@ marcadores…).
 - **Algoritmos:** estrategia y pesos opcionales.
 - **Exportación:** formato por defecto y opciones (métricas / explicación
   JSON, retales, etiquetas de piezas y de retales, cotas de tablero,
-  trazabilidad, DPI y calidad JPEG).
+  trazabilidad, DPI y calidad JPEG, mano de obra EUR/h y min/pieza).
 - **Avanzado:** máx. soluciones a conservar; **Catálogo de materiales**
   (nombres, espesores, medidas L×A, precio €/m²); **Abrir carpeta de
   configuración…** (`preferences.json`); **Restaurar valores**.

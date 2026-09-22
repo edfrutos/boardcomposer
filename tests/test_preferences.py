@@ -55,6 +55,8 @@ def test_preferences_manager_round_trips_through_json(tmp_path):
         last_export_directory="/tmp/exports",
         window_geometry="QUJDRA==",
         window_state="U1RBVEU=",
+        quote_labor_eur_per_hour=30.0,
+        quote_labor_minutes_per_piece=15.0,
     )
 
     manager.update(updated)
@@ -289,6 +291,28 @@ def test_preferences_dialog_exposes_advanced_max_solutions(qapp):
     assert dialog.preferences().max_solutions == 8
 
 
+def test_preferences_dialog_exposes_quote_labor(qapp):
+    del qapp
+    from studio.dialogs.preferences_dialog import PreferencesDialog
+
+    dialog = PreferencesDialog(
+        StudioPreferences(
+            quote_labor_eur_per_hour=30,
+            quote_labor_minutes_per_piece=15,
+        )
+    )
+    assert dialog.quote_labor_eur_per_hour.value() == 30
+    assert dialog.quote_labor_minutes_per_piece.value() == 15
+    dialog.quote_labor_eur_per_hour.setValue(40)
+    dialog.quote_labor_minutes_per_piece.setValue(10)
+    prefs = dialog.preferences()
+    assert prefs.quote_labor_eur_per_hour == 40
+    assert prefs.quote_labor_minutes_per_piece == 10
+    dialog._restore_defaults()
+    assert dialog.preferences().quote_labor_eur_per_hour == 0
+    assert dialog.preferences().quote_labor_minutes_per_piece == 0
+
+
 def test_preferences_dialog_labels_follow_language(qapp):
     del qapp
     from studio.dialogs.preferences_dialog import PreferencesDialog
@@ -307,6 +331,8 @@ def test_preferences_dialog_labels_follow_language(qapp):
     assert dialog._export_pdf_paper_label.text() == "Paper (PDF):"
     assert dialog._export_raster_dpi_label.text() == "Resolution (PNG/JPEG):"
     assert dialog._export_jpeg_quality_label.text() == "JPEG quality:"
+    assert dialog._quote_labor_rate_label.text() == "Labor (EUR/h):"
+    assert dialog._quote_labor_minutes_label.text() == "Minutes per piece:"
     assert "Fit drawing" in [
         dialog.export_pdf_paper.itemText(i)
         for i in range(dialog.export_pdf_paper.count())
@@ -334,6 +360,8 @@ def test_preferences_dialog_labels_follow_language(qapp):
     assert dialog._export_pdf_paper_label.text() == "Papel (PDF):"
     assert dialog._export_raster_dpi_label.text() == "Resolución (PNG/JPEG):"
     assert dialog._export_jpeg_quality_label.text() == "Calidad JPEG:"
+    assert dialog._quote_labor_rate_label.text() == "Mano de obra (EUR/h):"
+    assert dialog._quote_labor_minutes_label.text() == "Minutos por pieza:"
     assert "Material primero" in [
         dialog.strategy.itemText(i) for i in range(dialog.strategy.count())
     ]

@@ -8,7 +8,13 @@ from boardcomposer.domain import (
     SolutionExplanation,
     SolutionScore,
 )
-from boardcomposer.export import QuoteMeta, build_quote, quote_to_pdf
+from boardcomposer.export import (
+    QuoteMeta,
+    build_quote,
+    normalize_labor_minutes,
+    normalize_labor_rate,
+    quote_to_pdf,
+)
 from boardcomposer.inventory.material_cost import estimated_material_cost
 
 
@@ -113,6 +119,66 @@ def test_quote_to_pdf_is_pdf_and_lists_cost():
     assert b"P1#1" in payload
     assert b"mano de obra" in payload
     assert b"Piezas omitidas: B" in payload
+
+
+def test_normalize_labor_clamps_and_falls_back():
+    assert normalize_labor_rate("30") == 30.0
+    assert normalize_labor_rate(-5) == 0.0
+    assert normalize_labor_rate(2000) == 999.0
+    assert normalize_labor_rate("x") == 0.0
+    assert normalize_labor_minutes(15) == 15.0
+    assert normalize_labor_minutes(-1) == 0.0
+    assert normalize_labor_minutes(300) == 180.0
+
+
+def test_build_quote_adds_labor_from_meta():
+    project, solution = _project_and_solution()
+    report = build_quote(
+        solution,
+        project,
+        {"melamina": 25},
+        QuoteMeta(labor_rate_eur_per_hour=30, labor_minutes_per_piece=15),
+    )
+    assert report.labor_hours == 0.25
+    assert report.labor_cost == 7.50
+    assert report.has_labor
+    assert report.grand_total == 20.00
+
+
+def test_build_quote_omits_labor_when_rate_or_minutes_are_zero():
+    project, solution = _project_and_solution()
+    report = build_quote(
+        solution,
+        project,
+        {"melamina": 25},
+        QuoteMeta(labor_rate_eur_per_hour=30, labor_minutes_per_piece=0),
+    )
+    assert report.labor_cost == 0
+    assert not report.has_labor
+    assert report.grand_total == 12.50
+
+
+def test_quote_to_pdf_lists_labor_and_grand_total():
+    project, solution = _project_and_solution()
+    payload = quote_to_pdf(
+        build_quote(
+            solution,
+            project,
+            {"Melamina": 25},
+            QuoteMeta(
+                project_name="Cocina",
+                labor_rate_eur_per_hour=30,
+                labor_minutes_per_piece=15,
+            ),
+        )
+    )
+    assert payload.startswith(b"%PDF-1.4")
+    assert b"12.50 EUR" in payload
+    assert b"7.50 EUR" in payload
+    assert b"20.00 EUR" in payload
+    assert b"Mano de obra" in payload
+    assert b"30.00 EUR/h" in payload
+    assert b"herrajes" in payload
 
 
 def test_quote_pdf_includes_or_omits_traceability():
