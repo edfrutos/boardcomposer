@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** FLW-003  
-**Versión:** 1.4.0  
+**Versión:** 1.5.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 16/09/2026
+**Última revisión:** 22/09/2026
 
 ---
 
@@ -59,10 +59,11 @@ Preferencias que afectan el cálculo (SCR-006):
 5. Se conservan como máximo `max_solutions` candidatas; la seleccionada pasa
    a ser la de índice 0 (mejor score).
 6. Se limpia el flag «soluciones desactualizadas».
-7. Studio actualiza Comparador (tabla + miniaturas) e Inspector (métricas /
-   diagnóstico). El preview en Workspace ocurre al seleccionar candidata
-   (clic / **Re Pág** / **Av Pág**), no automáticamente al terminar el
-   cálculo.
+7. Studio actualiza Comparador (tabla + miniaturas), Inspector (métricas /
+   diagnóstico) y **preview del Workspace** con la candidata 0 (mejor
+   score), sin aplicar `placements` (IDE-0052). Recorrer candidatas
+   (**Re Pág** / **Av Pág**) cambia el preview. **Aplicar**
+   (**Ctrl+Shift+Return**) persiste.
 8. El usuario explora (FLW-004), aplica (**Ctrl+Shift+Return**) o exporta
    (FLW-005). Si la candidata es **parcial**, **Re-empaquetar omitidas**
    (**Ctrl+Alt+F**) congela las colocaciones OK y solo empaqueta las
@@ -143,7 +144,8 @@ exportar. El Timeline registra inicio/fin y fases del solver.
 - Progreso modal con Cancelar cooperativo.
 - Cancelar no deja candidatas a medias.
 - 0 candidatas → diagnóstico usable en Inspector.
-- ≥1 candidata → Comparador e Inspector actualizados.
+- ≥1 candidata → Comparador, Inspector y preview de canvas actualizados
+  (sin aplicar).
 - `max_solutions` y estrategia salen de Preferencias.
 - Timeline refleja el cálculo y permite replay de fases/colocaciones.
 
@@ -166,5 +168,5 @@ exportar. El Timeline registra inicio/fin y fases del solver.
 - Sin validación previa amigable «faltan tableros/piezas» antes de lanzar
   → **cerrado:** Calcular layout deshabilitado + tip/status honestos hasta
   haber ≥1 tablero y ≥1 pieza.
-- Preview del canvas no se fuerza al acabar el solve (hay que seleccionar).
+- Preview del canvas al acabar el solve entregado (IDE-0052); no aplica.
 - Solo MaxRects cubre el contrato multipanel completo (`exact` = un panel).

@@ -3557,11 +3557,7 @@ class MainWindow(QMainWindow):
             self._status("status.layout_failed")
             return
 
-        self._reload_solution_table()
-        self._show_layout_solution(solution)
-        self._reload_explorer()
-        self._refresh_solutions_outdated_banner()
-        self._reveal_comparator_after_solve()
+        self._present_solved_layout(solution)
 
         solution_count = len(self.services.layout.solutions)
         self._emit(
@@ -3582,6 +3578,16 @@ class MainWindow(QMainWindow):
 
         self._announce_layout_ok(solution_count)
 
+    def _present_solved_layout(self, solution) -> None:
+        """Show the best/selected candidate on canvas, Inspector and Comparador."""
+        self._reload_solution_table()
+        self.workspace.preview_solution(solution)
+        self._show_layout_solution(solution)
+        self._reload_explorer()
+        self._refresh_explorer_solution_markers()
+        self._refresh_solutions_outdated_banner()
+        self._reveal_comparator_after_solve()
+
     def _repack_omitted(self) -> None:
         frozen = self.services.layout.selected_solution
         if frozen is None:
@@ -3600,9 +3606,7 @@ class MainWindow(QMainWindow):
             self._status("status.repack_need_partial")
             return
 
-        self._reload_solution_table()
-        self._show_layout_solution(packed)
-        self._reload_explorer()
+        self._present_solved_layout(packed)
         added = len(packed.placements) - placed_before
         if added <= 0:
             self._status("status.repack_no_gain")

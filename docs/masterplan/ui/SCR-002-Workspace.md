@@ -3,9 +3,9 @@
 ## SCR-002 — Workspace
 
 **Código:** SCR-002  
-**Versión:** 1.1.2  
+**Versión:** 1.1.3  
 **Estado:** Alineado con Studio  
-**Última revisión:** 17/09/2026
+**Última revisión:** 22/09/2026
 
 ---
 
@@ -104,7 +104,8 @@ Notas:
 
 1. Abrir o crear un proyecto.
 2. Añadir / importar tableros y piezas.
-3. **Calcular layout** (**Ctrl+Return**).
+3. **Calcular layout** (**Ctrl+Return**). El canvas muestra preview de
+   la mejor candidata **sin aplicar** (IDE-0052).
 4. Si hay varias candidatas, recorrerlas (**Re Pág** / **Av Pág**) y comparar.
 5. **Aplicar** la elegida (**Ctrl+Shift+Return**).
 6. Ajustar a mano en el Workspace (arrastre / rotación **R** /
