@@ -135,6 +135,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Toggle barra Ctrl+Shift+K: tip Mostrar/Ocultar + status.
 - [x] Pantalla de inicio Ctrl+Shift+H: tip si ya estás en Welcome.
 - [x] Preferencias (Ctrl+,): unidades, idioma, tema aplican al cerrar.
+- [ ] Preferencias Avanzado: Exportar / Importar JSON de taller (IDE-0049).
 
 ---
 

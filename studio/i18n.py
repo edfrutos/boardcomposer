@@ -53,6 +53,25 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.max_solutions": "Máx. soluciones a conservar:",
         "prefs.open_config_folder": "Abrir carpeta de configuración…",
         "prefs.edit_catalog": "Editar catálogo de materiales…",
+        "prefs.share_export": "Exportar preferencias…",
+        "prefs.share_import": "Importar preferencias…",
+        "prefs.share_export_title": "Exportar preferencias",
+        "prefs.share_import_title": "Importar preferencias",
+        "prefs.share_filter": "Preferencias BoardComposer (*.json)",
+        "prefs.share_export_done": "Preferencias exportadas. Sin rutas locales ni ventana.",
+        "prefs.share_import_mode": (
+            "¿Fusionar con las preferencias actuales?\n\n"
+            "Sí = solo claves del archivo\n"
+            "No = valores de taller por defecto + archivo\n"
+            "Cancelar = no importar\n"
+            "Las carpetas locales y la geometría de ventana no se tocan."
+        ),
+        "prefs.share_import_done": (
+            "Preferencias importadas ({mode}). Confirma OK para guardar."
+        ),
+        "prefs.share_mode_merge": "fusión",
+        "prefs.share_mode_replace": "reemplazo",
+        "prefs.share_error": "No se pudo completar la operación:\n{error}",
         "tip.open_config_folder": (
             "Abrir la carpeta de preferences.json en el explorador de archivos; "
             "la crea si no existe"
@@ -60,6 +79,13 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.prefs_edit_catalog": (
             "Abrir el catálogo de nombres y espesores (también Ctrl+Alt+T); "
             "archivo material_catalog.json, fuera del .bcproj"
+        ),
+        "tip.prefs_share_export": (
+            "Guardar preferencias de taller en un JSON para otro PC; "
+            "sin rutas locales ni ventana; recuerda la carpeta"
+        ),
+        "tip.prefs_share_import": (
+            "Cargar un JSON de preferencias; fusionar o reemplazar; OK guarda; sin nube"
         ),
         "tip.template_rename": (
             "Renombrar la plantilla seleccionada; pide el nuevo nombre"
@@ -1631,6 +1657,25 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.max_solutions": "Max solutions to keep:",
         "prefs.open_config_folder": "Open settings folder…",
         "prefs.edit_catalog": "Edit material catalog…",
+        "prefs.share_export": "Export preferences…",
+        "prefs.share_import": "Import preferences…",
+        "prefs.share_export_title": "Export preferences",
+        "prefs.share_import_title": "Import preferences",
+        "prefs.share_filter": "BoardComposer preferences (*.json)",
+        "prefs.share_export_done": "Preferences exported. No local paths or window.",
+        "prefs.share_import_mode": (
+            "Merge with current preferences?\n\n"
+            "Yes = only keys from the file\n"
+            "No = shop defaults + file\n"
+            "Cancel = do not import\n"
+            "Local folders and window geometry are left untouched."
+        ),
+        "prefs.share_import_done": (
+            "Preferences imported ({mode}). Confirm OK to save."
+        ),
+        "prefs.share_mode_merge": "merge",
+        "prefs.share_mode_replace": "replace",
+        "prefs.share_error": "Could not complete the operation:\n{error}",
         "tip.open_config_folder": (
             "Open the preferences.json folder in the file manager; "
             "creates it if missing"
@@ -1638,6 +1683,13 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.prefs_edit_catalog": (
             "Open the catalog of names and thicknesses (also Ctrl+Alt+T); "
             "material_catalog.json, outside the .bcproj"
+        ),
+        "tip.prefs_share_export": (
+            "Save shop preferences as JSON for another PC; "
+            "no local paths or window; remembers the folder"
+        ),
+        "tip.prefs_share_import": (
+            "Load a preferences JSON; merge or replace; OK saves; no cloud"
         ),
         "tip.template_rename": ("Rename the selected template; asks for the new name"),
         "tip.template_delete": (

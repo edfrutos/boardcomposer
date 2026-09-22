@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Exportar/importar preferencias JSON (IDE-0049): taller entre PCs,
+  fusionar o reemplazar; sin rutas locales ni geometría de ventana; sin
+  nube. Recuerda última carpeta. OK del diálogo guarda. Sin bump
+  `.bcproj`; no cambia el solver.
 - Unidades de Preferencias en lista de corte PDF y presupuesto PDF
   (IDE-0048): LxW, espesor, kerf, posición y pasos de sierra siguen
   `prefs.units`. CSV/JSON y área m² siguen mm. Default mm no cambia

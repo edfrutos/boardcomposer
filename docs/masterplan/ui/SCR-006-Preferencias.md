@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-006  
-**Versión:** 1.8.0  
+**Versión:** 1.9.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 21/09/2026
+**Última revisión:** 22/09/2026
 
 ---
 
@@ -110,6 +110,7 @@ Restaurar valores por defecto.
 | --- | --- |
 | Máx. soluciones | 1–100 (default 20); trunca ranking tras calcular |
 | Catálogo de materiales | Editor (**Ctrl+Alt+T**); nombres, espesores, L×A y €/m² (0 = sin coste); export/import JSON (IDE-0042) |
+| Exportar / importar preferencias | JSON de taller (IDE-0049); fusionar o reemplazar; sin rutas locales ni ventana; OK guarda |
 | Abrir carpeta de datos | Revela `~/.boardcomposer/` |
 
 No implementados (visión antigua): zoom inicial, guías/reglas/cotas, beam
@@ -124,6 +125,8 @@ width, caché, hilos, logs de depuración, búsqueda de preferencias.
 - **Cancelar:** descarta cambios del diálogo.
 - **Restaurar valores por defecto:** solo reinicia widgets; hace falta OK para
   persistir.
+- **Importar preferencias:** aplica al diálogo; OK persiste. Carpetas
+  locales y geometría de ventana no viajan en el JSON.
 - Cambio de idioma **dentro** del diálogo: retraduce el propio diálogo; el
   resto de la app al confirmar OK.
 
@@ -162,7 +165,8 @@ width, caché, hilos, logs de depuración, búsqueda de preferencias.
 ## Límites conocidos (Studio actual)
 
 - Sin pestañas ni búsqueda de preferencias.
-- Sin perfiles / sync en la nube / import-export del JSON de prefs.
+- Export/import JSON de taller (IDE-0049); sin perfiles nombrados ni
+  sync en la nube.
 - Tema **sistema**: el diálogo Preferencias sigue el chrome de la plataforma
   (sin root LIGHT scoped; Industrial completo solo en claro/oscuro). Ver
   `docs/DESIGN.md`.
@@ -171,5 +175,5 @@ width, caché, hilos, logs de depuración, búsqueda de preferencias.
 
 ## Evolución prevista
 
-- Perfiles de preferencias e import/export.
+- Perfiles nombrados de preferencias (export/import JSON entregado).
 - Controles de rendimiento / depuración si hacen falta operativamente.

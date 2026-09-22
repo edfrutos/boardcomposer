@@ -277,7 +277,9 @@ marcadores…).
   JSON, retales, etiquetas de piezas y de retales, cotas de tablero,
   trazabilidad, DPI y calidad JPEG, mano de obra EUR/h y min/pieza).
 - **Avanzado:** máx. soluciones a conservar; **Catálogo de materiales**
-  (nombres, espesores, medidas L×A, precio €/m²); **Abrir carpeta de
+  (nombres, espesores, medidas L×A, precio €/m²); **Exportar /
+  importar preferencias** (JSON de taller: fusionar o reemplazar; no
+  incluye carpetas locales ni ventana; OK guarda); **Abrir carpeta de
   configuración…** (`preferences.json`); **Restaurar valores**.
 
 ## Plantillas de proyecto

@@ -36,6 +36,24 @@ from studio.export_options import (
 from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES
 from studio.units import DEFAULT_UNITS, VALID_UNITS
 
+PREFS_PACK_KIND = "boardcomposer.preferences"
+PREFS_PACK_VERSION = 1
+
+_LOCAL_PREF_KEYS = frozenset(
+    {
+        "last_export_directory",
+        "last_backup_directory",
+        "last_import_directory",
+        "last_project_directory",
+        "last_diff_directory",
+        "last_export_templates_directory",
+        "last_material_catalog_directory",
+        "last_preferences_directory",
+        "window_geometry",
+        "window_state",
+    }
+)
+
 DEFAULT_STRATEGY = "material"
 VALID_STRATEGIES = ("balanced", "material", "compact", "exact")
 DEFAULT_GRID_SIZE_MM = 100
@@ -109,6 +127,7 @@ class StudioPreferences:
     last_diff_directory: str | None = None
     last_export_templates_directory: str | None = None
     last_material_catalog_directory: str | None = None
+    last_preferences_directory: str | None = None
     max_solutions: int = DEFAULT_MAX_SOLUTIONS
     default_kerf_mm: float = DEFAULT_KERF_MM
     quote_labor_eur_per_hour: float = DEFAULT_LABOR_EUR_PER_HOUR
@@ -233,6 +252,288 @@ def default_preferences_path() -> Path:
     return Path.home() / ".boardcomposer" / "preferences.json"
 
 
+def preferences_from_payload(payload: dict) -> StudioPreferences:
+    """Build preferences from a JSON object (user file or pack)."""
+    strategy_name = payload.get("strategy_name", DEFAULT_STRATEGY)
+    if strategy_name not in VALID_STRATEGIES:
+        strategy_name = DEFAULT_STRATEGY
+
+    theme = payload.get("theme", DEFAULT_THEME)
+    if theme not in VALID_THEMES:
+        theme = DEFAULT_THEME
+
+    language = payload.get("language", DEFAULT_LANGUAGE)
+    if language not in VALID_LANGUAGES:
+        language = DEFAULT_LANGUAGE
+
+    units = payload.get("units", DEFAULT_UNITS)
+    if units not in VALID_UNITS:
+        units = DEFAULT_UNITS
+
+    weights_payload = payload.get("weights") or {}
+    preset = WeightPreferences.from_scoring_weights(
+        strategy_by_name(strategy_name).weights
+    )
+    weights = WeightPreferences(
+        material_utilization=float(
+            weights_payload.get("material_utilization", preset.material_utilization)
+        ),
+        placed_boards=float(weights_payload.get("placed_boards", preset.placed_boards)),
+        compactness=float(weights_payload.get("compactness", preset.compactness)),
+        rotation_penalty=float(
+            weights_payload.get("rotation_penalty", preset.rotation_penalty)
+        ),
+    )
+
+    try:
+        grid_size_mm = _clamp_grid_size(
+            payload.get("grid_size_mm", DEFAULT_GRID_SIZE_MM)
+        )
+    except (TypeError, ValueError):
+        grid_size_mm = DEFAULT_GRID_SIZE_MM
+
+    try:
+        max_solutions = _clamp_max_solutions(
+            payload.get("max_solutions", DEFAULT_MAX_SOLUTIONS)
+        )
+    except (TypeError, ValueError):
+        max_solutions = DEFAULT_MAX_SOLUTIONS
+
+    export_format = payload.get("export_format", DEFAULT_EXPORT_FORMAT)
+    if export_format not in VALID_EXPORT_FORMATS:
+        export_format = DEFAULT_EXPORT_FORMAT
+
+    page = PdfPageOptions(
+        paper=payload.get("export_pdf_paper", DEFAULT_PDF_PAPER),
+        orientation=payload.get("export_pdf_orientation", DEFAULT_PDF_ORIENTATION),
+        scale=payload.get("export_pdf_scale", DEFAULT_PDF_SCALE),
+        margin_mm=payload.get("export_pdf_margin_mm", DEFAULT_PDF_MARGIN_MM),
+    ).normalized()
+
+    return StudioPreferences(
+        strategy_name=strategy_name,
+        use_custom_weights=bool(payload.get("use_custom_weights", False)),
+        weights=weights,
+        theme=theme,
+        show_grid=bool(payload.get("show_grid", True)),
+        grid_size_mm=grid_size_mm,
+        language=language,
+        units=units,
+        export_format=export_format,
+        export_include_metrics=bool(payload.get("export_include_metrics", True)),
+        export_include_explanation=bool(
+            payload.get("export_include_explanation", True)
+        ),
+        export_include_offcuts=bool(payload.get("export_include_offcuts", True)),
+        export_include_piece_labels=bool(
+            payload.get("export_include_piece_labels", True)
+        ),
+        export_include_offcut_labels=bool(
+            payload.get("export_include_offcut_labels", True)
+        ),
+        export_include_panel_dimensions=bool(
+            payload.get("export_include_panel_dimensions", True)
+        ),
+        export_include_plan_traceability=bool(
+            payload.get("export_include_plan_traceability", True)
+        ),
+        export_pdf_paper=page.paper,
+        export_pdf_orientation=page.orientation,
+        export_pdf_scale=page.scale,
+        export_pdf_margin_mm=page.margin_mm,
+        export_raster_dpi=normalize_raster_dpi(
+            payload.get("export_raster_dpi", DEFAULT_RASTER_DPI)
+        ),
+        export_jpeg_quality=normalize_jpeg_quality(
+            payload.get("export_jpeg_quality", DEFAULT_JPEG_QUALITY)
+        ),
+        export_batch=bool(payload.get("export_batch", False)),
+        last_export_directory=_optional_directory(payload.get("last_export_directory")),
+        last_backup_directory=_optional_directory(payload.get("last_backup_directory")),
+        last_import_directory=_optional_directory(payload.get("last_import_directory")),
+        last_project_directory=_optional_directory(
+            payload.get("last_project_directory")
+        ),
+        last_diff_directory=_optional_directory(payload.get("last_diff_directory")),
+        last_export_templates_directory=_optional_directory(
+            payload.get("last_export_templates_directory")
+        ),
+        last_material_catalog_directory=_optional_directory(
+            payload.get("last_material_catalog_directory")
+        ),
+        last_preferences_directory=_optional_directory(
+            payload.get("last_preferences_directory")
+        ),
+        max_solutions=max_solutions,
+        default_kerf_mm=normalize_kerf(payload.get("default_kerf_mm", DEFAULT_KERF_MM)),
+        quote_labor_eur_per_hour=normalize_labor_rate(
+            payload.get("quote_labor_eur_per_hour", DEFAULT_LABOR_EUR_PER_HOUR)
+        ),
+        quote_labor_minutes_per_piece=normalize_labor_minutes(
+            payload.get(
+                "quote_labor_minutes_per_piece",
+                DEFAULT_LABOR_MINUTES_PER_PIECE,
+            )
+        ),
+        window_geometry=_optional_base64_string(payload.get("window_geometry")),
+        window_state=_optional_base64_string(payload.get("window_state")),
+        timeline_event_filter=_optional_string(payload.get("timeline_event_filter")),
+        timeline_algorithm_filter=_optional_string(
+            payload.get("timeline_algorithm_filter")
+        ),
+        timeline_period_seconds=_optional_period_seconds(
+            payload.get("timeline_period_seconds")
+        ),
+        timeline_replay_mode=_timeline_replay_mode(payload.get("timeline_replay_mode")),
+        timeline_replay_interval_ms=_timeline_replay_interval_ms(
+            payload.get("timeline_replay_interval_ms")
+        ),
+        timeline_follow_latest=(
+            True
+            if "timeline_follow_latest" not in payload
+            else bool(payload.get("timeline_follow_latest"))
+        ),
+        timeline_export_format=_timeline_export_format(
+            payload.get("timeline_export_format")
+        ),
+        cut_list_export_format=normalize_cut_list_format(
+            payload.get("cut_list_export_format")
+        ),
+    )
+
+
+def preferences_payload(preferences: StudioPreferences) -> dict:
+    """Serialize preferences to the on-disk JSON object."""
+    return {
+        "strategy_name": preferences.strategy_name,
+        "use_custom_weights": preferences.use_custom_weights,
+        "weights": asdict(preferences.weights),
+        "theme": preferences.theme,
+        "show_grid": preferences.show_grid,
+        "grid_size_mm": preferences.grid_size_mm,
+        "language": preferences.language,
+        "units": preferences.units,
+        "export_format": preferences.export_format,
+        "export_include_metrics": preferences.export_include_metrics,
+        "export_include_explanation": preferences.export_include_explanation,
+        "export_include_offcuts": preferences.export_include_offcuts,
+        "export_include_piece_labels": (preferences.export_include_piece_labels),
+        "export_include_offcut_labels": (preferences.export_include_offcut_labels),
+        "export_include_panel_dimensions": (
+            preferences.export_include_panel_dimensions
+        ),
+        "export_include_plan_traceability": (
+            preferences.export_include_plan_traceability
+        ),
+        "export_pdf_paper": preferences.export_pdf_paper,
+        "export_pdf_orientation": preferences.export_pdf_orientation,
+        "export_pdf_scale": preferences.export_pdf_scale,
+        "export_pdf_margin_mm": preferences.export_pdf_margin_mm,
+        "export_raster_dpi": preferences.export_raster_dpi,
+        "export_jpeg_quality": preferences.export_jpeg_quality,
+        "export_batch": preferences.export_batch,
+        "last_export_directory": preferences.last_export_directory,
+        "last_backup_directory": preferences.last_backup_directory,
+        "last_import_directory": preferences.last_import_directory,
+        "last_project_directory": preferences.last_project_directory,
+        "last_diff_directory": preferences.last_diff_directory,
+        "last_export_templates_directory": (
+            preferences.last_export_templates_directory
+        ),
+        "last_material_catalog_directory": (
+            preferences.last_material_catalog_directory
+        ),
+        "last_preferences_directory": preferences.last_preferences_directory,
+        "max_solutions": preferences.max_solutions,
+        "default_kerf_mm": preferences.default_kerf_mm,
+        "quote_labor_eur_per_hour": preferences.quote_labor_eur_per_hour,
+        "quote_labor_minutes_per_piece": (preferences.quote_labor_minutes_per_piece),
+        "window_geometry": preferences.window_geometry,
+        "window_state": preferences.window_state,
+        "timeline_event_filter": preferences.timeline_event_filter,
+        "timeline_algorithm_filter": preferences.timeline_algorithm_filter,
+        "timeline_period_seconds": preferences.timeline_period_seconds,
+        "timeline_replay_mode": preferences.timeline_replay_mode,
+        "timeline_replay_interval_ms": preferences.timeline_replay_interval_ms,
+        "timeline_follow_latest": preferences.timeline_follow_latest,
+        "timeline_export_format": preferences.timeline_export_format,
+        "cut_list_export_format": preferences.cut_list_export_format,
+    }
+
+
+def portable_preferences_payload(preferences: StudioPreferences) -> dict:
+    """Shop settings only: no local folders or window geometry."""
+    payload = preferences_payload(preferences)
+    for key in _LOCAL_PREF_KEYS:
+        payload.pop(key, None)
+    return payload
+
+
+def export_preferences_pack(preferences: StudioPreferences, path: str | Path) -> None:
+    """Write a shareable prefs JSON for another PC (IDE-0049)."""
+    destination = Path(path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    pack = {
+        "kind": PREFS_PACK_KIND,
+        "version": PREFS_PACK_VERSION,
+        "preferences": portable_preferences_payload(preferences),
+    }
+    destination.write_text(
+        json.dumps(pack, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+
+def import_preferences_pack(
+    current: StudioPreferences,
+    path: str | Path,
+    *,
+    mode: str = "merge",
+) -> StudioPreferences:
+    """Return prefs from a pack or raw ``preferences.json``.
+
+    Local folders and window geometry stay those of ``current``.
+    ``merge`` overlays pack keys; ``replace`` starts from defaults.
+    """
+    if mode not in {"merge", "replace"}:
+        raise ValueError("Modo de importación no soportado")
+    try:
+        raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError("El archivo no es un JSON válido") from exc
+    if not isinstance(raw, dict):
+        raise ValueError("El archivo no contiene preferencias")
+
+    incoming: object
+    kind = raw.get("kind")
+    if kind == PREFS_PACK_KIND:
+        incoming = raw.get("preferences")
+        if not isinstance(incoming, dict) or not incoming:
+            raise ValueError("El paquete no contiene preferencias")
+    elif kind:
+        raise ValueError("El archivo no es un paquete de preferencias")
+    elif any(
+        key in raw
+        for key in ("strategy_name", "units", "theme", "language", "max_solutions")
+    ):
+        incoming = raw
+    else:
+        raise ValueError("El archivo no contiene preferencias")
+
+    portable = {
+        key: value for key, value in incoming.items() if key not in _LOCAL_PREF_KEYS
+    }
+    if mode == "replace":
+        base = preferences_payload(StudioPreferences())
+    else:
+        base = preferences_payload(current)
+    base.update(portable)
+    current_payload = preferences_payload(current)
+    for key in _LOCAL_PREF_KEYS:
+        base[key] = current_payload.get(key)
+    return preferences_from_payload(base)
+
+
 class PreferencesManager:
     """Load and save `StudioPreferences` from a JSON file."""
 
@@ -243,232 +544,21 @@ class PreferencesManager:
     def load(self) -> StudioPreferences:
         if not self.path.is_file():
             return StudioPreferences()
-
         try:
             payload = json.loads(self.path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             return StudioPreferences()
-
-        strategy_name = payload.get("strategy_name", DEFAULT_STRATEGY)
-        if strategy_name not in VALID_STRATEGIES:
-            strategy_name = DEFAULT_STRATEGY
-
-        theme = payload.get("theme", DEFAULT_THEME)
-        if theme not in VALID_THEMES:
-            theme = DEFAULT_THEME
-
-        language = payload.get("language", DEFAULT_LANGUAGE)
-        if language not in VALID_LANGUAGES:
-            language = DEFAULT_LANGUAGE
-
-        units = payload.get("units", DEFAULT_UNITS)
-        if units not in VALID_UNITS:
-            units = DEFAULT_UNITS
-
-        weights_payload = payload.get("weights") or {}
-        preset = WeightPreferences.from_scoring_weights(
-            strategy_by_name(strategy_name).weights
-        )
-        weights = WeightPreferences(
-            material_utilization=float(
-                weights_payload.get("material_utilization", preset.material_utilization)
-            ),
-            placed_boards=float(
-                weights_payload.get("placed_boards", preset.placed_boards)
-            ),
-            compactness=float(weights_payload.get("compactness", preset.compactness)),
-            rotation_penalty=float(
-                weights_payload.get("rotation_penalty", preset.rotation_penalty)
-            ),
-        )
-
-        try:
-            grid_size_mm = _clamp_grid_size(
-                payload.get("grid_size_mm", DEFAULT_GRID_SIZE_MM)
-            )
-        except (TypeError, ValueError):
-            grid_size_mm = DEFAULT_GRID_SIZE_MM
-
-        try:
-            max_solutions = _clamp_max_solutions(
-                payload.get("max_solutions", DEFAULT_MAX_SOLUTIONS)
-            )
-        except (TypeError, ValueError):
-            max_solutions = DEFAULT_MAX_SOLUTIONS
-
-        export_format = payload.get("export_format", DEFAULT_EXPORT_FORMAT)
-        if export_format not in VALID_EXPORT_FORMATS:
-            export_format = DEFAULT_EXPORT_FORMAT
-
-        page = PdfPageOptions(
-            paper=payload.get("export_pdf_paper", DEFAULT_PDF_PAPER),
-            orientation=payload.get("export_pdf_orientation", DEFAULT_PDF_ORIENTATION),
-            scale=payload.get("export_pdf_scale", DEFAULT_PDF_SCALE),
-            margin_mm=payload.get("export_pdf_margin_mm", DEFAULT_PDF_MARGIN_MM),
-        ).normalized()
-
-        return StudioPreferences(
-            strategy_name=strategy_name,
-            use_custom_weights=bool(payload.get("use_custom_weights", False)),
-            weights=weights,
-            theme=theme,
-            show_grid=bool(payload.get("show_grid", True)),
-            grid_size_mm=grid_size_mm,
-            language=language,
-            units=units,
-            export_format=export_format,
-            export_include_metrics=bool(payload.get("export_include_metrics", True)),
-            export_include_explanation=bool(
-                payload.get("export_include_explanation", True)
-            ),
-            export_include_offcuts=bool(payload.get("export_include_offcuts", True)),
-            export_include_piece_labels=bool(
-                payload.get("export_include_piece_labels", True)
-            ),
-            export_include_offcut_labels=bool(
-                payload.get("export_include_offcut_labels", True)
-            ),
-            export_include_panel_dimensions=bool(
-                payload.get("export_include_panel_dimensions", True)
-            ),
-            export_include_plan_traceability=bool(
-                payload.get("export_include_plan_traceability", True)
-            ),
-            export_pdf_paper=page.paper,
-            export_pdf_orientation=page.orientation,
-            export_pdf_scale=page.scale,
-            export_pdf_margin_mm=page.margin_mm,
-            export_raster_dpi=normalize_raster_dpi(
-                payload.get("export_raster_dpi", DEFAULT_RASTER_DPI)
-            ),
-            export_jpeg_quality=normalize_jpeg_quality(
-                payload.get("export_jpeg_quality", DEFAULT_JPEG_QUALITY)
-            ),
-            export_batch=bool(payload.get("export_batch", False)),
-            last_export_directory=_optional_directory(
-                payload.get("last_export_directory")
-            ),
-            last_backup_directory=_optional_directory(
-                payload.get("last_backup_directory")
-            ),
-            last_import_directory=_optional_directory(
-                payload.get("last_import_directory")
-            ),
-            last_project_directory=_optional_directory(
-                payload.get("last_project_directory")
-            ),
-            last_diff_directory=_optional_directory(payload.get("last_diff_directory")),
-            last_export_templates_directory=_optional_directory(
-                payload.get("last_export_templates_directory")
-            ),
-            last_material_catalog_directory=_optional_directory(
-                payload.get("last_material_catalog_directory")
-            ),
-            max_solutions=max_solutions,
-            default_kerf_mm=normalize_kerf(
-                payload.get("default_kerf_mm", DEFAULT_KERF_MM)
-            ),
-            quote_labor_eur_per_hour=normalize_labor_rate(
-                payload.get("quote_labor_eur_per_hour", DEFAULT_LABOR_EUR_PER_HOUR)
-            ),
-            quote_labor_minutes_per_piece=normalize_labor_minutes(
-                payload.get(
-                    "quote_labor_minutes_per_piece",
-                    DEFAULT_LABOR_MINUTES_PER_PIECE,
-                )
-            ),
-            window_geometry=_optional_base64_string(payload.get("window_geometry")),
-            window_state=_optional_base64_string(payload.get("window_state")),
-            timeline_event_filter=_optional_string(
-                payload.get("timeline_event_filter")
-            ),
-            timeline_algorithm_filter=_optional_string(
-                payload.get("timeline_algorithm_filter")
-            ),
-            timeline_period_seconds=_optional_period_seconds(
-                payload.get("timeline_period_seconds")
-            ),
-            timeline_replay_mode=_timeline_replay_mode(
-                payload.get("timeline_replay_mode")
-            ),
-            timeline_replay_interval_ms=_timeline_replay_interval_ms(
-                payload.get("timeline_replay_interval_ms")
-            ),
-            timeline_follow_latest=(
-                True
-                if "timeline_follow_latest" not in payload
-                else bool(payload.get("timeline_follow_latest"))
-            ),
-            timeline_export_format=_timeline_export_format(
-                payload.get("timeline_export_format")
-            ),
-            cut_list_export_format=normalize_cut_list_format(
-                payload.get("cut_list_export_format")
-            ),
-        )
+        if not isinstance(payload, dict):
+            return StudioPreferences()
+        return preferences_from_payload(payload)
 
     def save(self, preferences: StudioPreferences | None = None) -> None:
         preferences = preferences or self.current
         self.current = preferences
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        payload = {
-            "strategy_name": preferences.strategy_name,
-            "use_custom_weights": preferences.use_custom_weights,
-            "weights": asdict(preferences.weights),
-            "theme": preferences.theme,
-            "show_grid": preferences.show_grid,
-            "grid_size_mm": preferences.grid_size_mm,
-            "language": preferences.language,
-            "units": preferences.units,
-            "export_format": preferences.export_format,
-            "export_include_metrics": preferences.export_include_metrics,
-            "export_include_explanation": preferences.export_include_explanation,
-            "export_include_offcuts": preferences.export_include_offcuts,
-            "export_include_piece_labels": (preferences.export_include_piece_labels),
-            "export_include_offcut_labels": (preferences.export_include_offcut_labels),
-            "export_include_panel_dimensions": (
-                preferences.export_include_panel_dimensions
-            ),
-            "export_include_plan_traceability": (
-                preferences.export_include_plan_traceability
-            ),
-            "export_pdf_paper": preferences.export_pdf_paper,
-            "export_pdf_orientation": preferences.export_pdf_orientation,
-            "export_pdf_scale": preferences.export_pdf_scale,
-            "export_pdf_margin_mm": preferences.export_pdf_margin_mm,
-            "export_raster_dpi": preferences.export_raster_dpi,
-            "export_jpeg_quality": preferences.export_jpeg_quality,
-            "export_batch": preferences.export_batch,
-            "last_export_directory": preferences.last_export_directory,
-            "last_backup_directory": preferences.last_backup_directory,
-            "last_import_directory": preferences.last_import_directory,
-            "last_project_directory": preferences.last_project_directory,
-            "last_diff_directory": preferences.last_diff_directory,
-            "last_export_templates_directory": (
-                preferences.last_export_templates_directory
-            ),
-            "last_material_catalog_directory": (
-                preferences.last_material_catalog_directory
-            ),
-            "max_solutions": preferences.max_solutions,
-            "default_kerf_mm": preferences.default_kerf_mm,
-            "quote_labor_eur_per_hour": preferences.quote_labor_eur_per_hour,
-            "quote_labor_minutes_per_piece": (
-                preferences.quote_labor_minutes_per_piece
-            ),
-            "window_geometry": preferences.window_geometry,
-            "window_state": preferences.window_state,
-            "timeline_event_filter": preferences.timeline_event_filter,
-            "timeline_algorithm_filter": preferences.timeline_algorithm_filter,
-            "timeline_period_seconds": preferences.timeline_period_seconds,
-            "timeline_replay_mode": preferences.timeline_replay_mode,
-            "timeline_replay_interval_ms": preferences.timeline_replay_interval_ms,
-            "timeline_follow_latest": preferences.timeline_follow_latest,
-            "timeline_export_format": preferences.timeline_export_format,
-            "cut_list_export_format": preferences.cut_list_export_format,
-        }
         self.path.write_text(
-            json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+            json.dumps(preferences_payload(preferences), indent=2, ensure_ascii=False)
+            + "\n",
             encoding="utf-8",
         )
 
