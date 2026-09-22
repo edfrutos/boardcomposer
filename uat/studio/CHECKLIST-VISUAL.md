@@ -50,6 +50,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 
 - [x] Contadores Tableros / Piezas / Soluciones actualizan.
 - [x] Clic pieza → Inspector completo + selección en canvas.
+- [x] Inspector de pieza: espesor (prefs), rotación 0°/90° (— si no
+  colocada) y veta libre/fija.
 - [ ] Preferencias cm/in: Inspector muestra esas unidades en dims, kerf,
   posición y métricas de layout (no mm hardcodeados); Workspace y
   etiquetas de plano también.

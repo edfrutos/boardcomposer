@@ -49,7 +49,7 @@ revisión `REVIEW-2026-09-21`.
 | IDE-0043 trazabilidad lista de corte / presupuesto PDF | 🟢 (#657) |
 | IDE-0044 unidades prefs en plano / etiquetas export | 🟢 (#658) |
 | IDE-0045 mano de obra en presupuesto | 🟢 (#659) |
-| IDE-0046 Inspector espesor / rotación / veta de pieza | ⚪ |
+| IDE-0046 Inspector espesor / rotación / veta de pieza | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -82,8 +82,8 @@ Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
-IDE-0037…0045 **entregadas** en `main` (`#647`…`#659`); cuarta ola
-IDE-0046 abierta.
+IDE-0037…0046 **entregadas** en `main` (`#647`…`#659` + 0046); cuarta ola
+cerrada.
 
 Desde la revisión 2026-09-21, en `main` entraron `#655` (0042), `#657`
 (0043), `#658` (0044) y `#659` (0045). Planning `#656` queda histórico.
@@ -108,7 +108,8 @@ Límites conocidos (no son bugs; son alcance):
   (IDE-0038). Capas DXF por rol (IDE-0041 `#654`). Sin nube.
 - Workspace: sugerir hueco para colocación manual (IDE-0036; SCR-002).
 - Inspector: unidades prefs mm/cm/in (IDE-0040 `#653`); disco sigue mm.
-  No muestra espesor/rotación/veta de pieza (IDE-0046).
+  Pieza muestra espesor, rotación 0°/90° (— si no colocada) y veta
+  (IDE-0046).
 
 Deuda abierta explícita: **1** ítem (`DT-0006` en piloto D). Sin críticas sin
 plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
@@ -117,7 +118,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` cuarta ola** — IDE-0046 (0042…0045 en `main`).
+1. **Cola `0.4.4` cuarta ola** — **vacía** (0046 entregada).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -129,12 +130,12 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-IDE-0046. Residual bloqueado: piloto DT-0006 D (operativo) +
+**vacía**. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
-desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
-(cola implementable abierta: IDE-0046).
+desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas
+hasta el siguiente “Sigue”** (cola implementable vacía).
 
 | ID | Título | Estado |
 |----|--------|--------|
@@ -142,18 +143,20 @@ desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
 | IDE-0043 | Trazabilidad en lista de corte / presupuesto | Entregado (#657) |
 | IDE-0044 | Unidades prefs en plano y etiquetas de export | Entregado (#658) |
 | IDE-0045 | Mano de obra en presupuesto | Entregado (#659) |
-| IDE-0046 | Inspector: espesor / rotación / veta de pieza | Idea |
+| IDE-0046 | Inspector: espesor / rotación / veta de pieza | Entregado |
 
-Prioridad de ataque: **IDE-0046** (Inspector espesor / rotación / veta).
+Prioridad de ataque: cola vacía; no inventar IDs hasta el siguiente
+“Sigue”.
 
-Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0045.
+Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0046.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
 
 ## 6. Criterio de esta revisión
 
-- Alinear `#655`/`#657`/`#658`/`#659` 🟢 en `main`; cola 0046.
+- Alinear `#655`/`#657`/`#658`/`#659` 🟢 en `main`; 0046 entregada;
+  cola vacía.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.

@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-004  
-**Versión:** 1.1.0  
+**Versión:** 1.2.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 20/09/2026
+**Última revisión:** 22/09/2026
 
 ---
 
@@ -69,13 +69,14 @@ Sin métricas de aprovechamiento del panel en este contexto.
 
 ### Pieza
 
-- Id, L×A (prefs), material
+- Id, L×A (prefs), espesor (prefs), material
+- Rotación: `0°` / `90°` si colocada; `—` si no hay placement
+- Veta: libre (puede rotar) o fija (no rotar)
 - Si no hay placement: indicación de no colocada
 - Si colocada: posición x,y (prefs) y **panel físico / instancia**
   (`board · instancia i/n` cuando `quantity > 1`)
 
-No muestra en el Inspector: espesor de pieza, rotación ni canto (sí en el
-diálogo Editar…).
+No muestra en el Inspector: canto (sí en el diálogo Editar…).
 
 ### Solución / layout calculado
 
@@ -140,6 +141,8 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 - Contexto de proyecto/categoría muy pobre (solo etiqueta).
 - Unidades de prefs en pieza, tablero, kerf, posición y métricas de layout
   (IDE-0040). Disco / `.bcproj` / JSON siguen en mm.
+- Pieza: espesor, rotación 0°/90° y veta (IDE-0046). Canto sigue en
+  Editar…, no en el dock.
 - Sin contexto «algoritmo» dedicado (parámetros viven en Preferencias).
 
 ---

@@ -172,7 +172,8 @@ Dock **Ctrl+2**. Detalle de la selección y del layout.
   Explorador: cliente, referencia, notas (**Ctrl+Alt+M**) y espesor de
   sierra (**Ctrl+Alt+K**). Con **tablero** o **pieza**: dimensiones,
   espesor, cantidad, material; en piezas, veta (libre o fija) y posición
-  o «sin colocar» (con consejo de colocar vía Explorador).
+  o «sin colocar» (con consejo de colocar vía Explorador). Rotación
+  `0°`/`90°` si está colocada; `—` si no.
 - Tras **Calcular layout**: métricas de la candidata (piezas, huecos,
   material libre, coste de tableros si el catálogo tiene €/m², omitidas,
   puntos clave). Largos, anchos y área de retales usan las **unidades**
