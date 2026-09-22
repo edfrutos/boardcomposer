@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-007  
-**Versión:** 1.12.0  
+**Versión:** 1.13.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 21/09/2026
+**Última revisión:** 22/09/2026
 
 ---
 
@@ -103,7 +103,11 @@ No implementados: más formatos de imagen (WebP, TIFF).
 - **Unidades de plano (IDE-0044):** sin casilla. `prefs.units` mm/cm/in
   en TEXT de pieza/retal/cota. mm omite sufijo (`A 400x300`); cm/in
   lo añaden (`A 40x30 cm`). Geometría, JSON/CSV y `$INSUNITS` siguen
-  mm. Lista de corte / presupuesto no.
+  mm.
+- **Unidades de informes (IDE-0048):** sin casilla. `prefs.units` en
+  TEXT de lista de corte PDF y presupuesto PDF (LxW, espesor, kerf,
+  posición, pasos de sierra). Default mm no cambia el texto. CSV de
+  corte, JSON y área m² siguen mm.
 - **Trazabilidad (IDE-0039 / IDE-0043):** pie
   `BoardComposer {versión} · {algoritmo o "-"} · YYYY-MM-DD HH:MM`.
   Plano SVG/PDF/DXF (0039) y PDF de lista de corte / presupuesto (0043).

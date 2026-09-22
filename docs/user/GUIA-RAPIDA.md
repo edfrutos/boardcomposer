@@ -247,15 +247,17 @@ marcadores…).
   el Comparador.
 - **Archivo → Exportar lista de corte…** (**Ctrl+Alt+C**) es otro flujo:
   CSV o PDF de taller (piezas, tableros y **secuencia de sierra** por
-  panel). El **PDF** incluye el pie de trazabilidad (versión, algoritmo,
-  fecha); el CSV no. Recuerda carpeta y formato. El plano SVG/PDF/DXF
+  panel). El **PDF** usa las unidades de Preferencias (mm/cm/in) y el pie
+  de trazabilidad (versión, algoritmo, fecha); el CSV sigue en mm y no
+  lleva pie. Recuerda carpeta y formato. El plano SVG/PDF/DXF
   numera cada pieza con ese orden. No sustituye el CSV de colocaciones
   del diálogo de solución.
 - **Archivo → Exportar presupuesto…** (**Ctrl+Alt+Q**) PDF de coste de
   material: tableros físicos consumidos × €/m² del catálogo, más mano
   de obra si Preferencias tiene EUR/h y minutos/pieza (0 = omitir),
-  con el mismo pie de trazabilidad. No incluye herrajes. Recuerda la
-  carpeta. No sustituye el JSON de métricas.
+  con el mismo pie de trazabilidad. LxW y espesor del PDF siguen las
+  unidades de Preferencias; el área sigue en m². No incluye herrajes.
+  Recuerda la carpeta. No sustituye el JSON de métricas.
 - **Cliente** y **plantilla** reutilizan un perfil; **Guardar…** / **Eliminar**
   gestionan el catálogo; **Exportar/Importar pack…** comparte plantillas
   (recuerda la última carpeta).

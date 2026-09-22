@@ -1,6 +1,7 @@
 """Workshop cut list (IDE-0023): pieces, stock panels, and placed cuts.
 
 PDF reports can append the IDE-0043 traceability footer; CSV stays data-only.
+PDF TEXT follows ``meta.units`` (IDE-0048); CSV columns stay millimetres.
 """
 
 from __future__ import annotations
@@ -16,7 +17,13 @@ from boardcomposer.export.cut_sequence import (
     build_cut_sequences,
     piece_sequence_numbers,
 )
-from boardcomposer.export.common import report_traceability_footer
+from boardcomposer.export.common import (
+    report_length_label,
+    report_size_label,
+    report_traceability_footer,
+    report_unit_label,
+)
+from boardcomposer.units import DEFAULT_UNITS, normalize_units
 from boardcomposer.export.report_pdf import pdf_from_text_lines
 
 DEFAULT_CUT_LIST_FORMAT = "csv"
@@ -54,6 +61,7 @@ class CutListMeta:
     strategy_name: str = ""
     version: str | None = None
     exported_at: str | None = None
+    units: str = DEFAULT_UNITS
 
 
 @dataclass(frozen=True)
@@ -350,6 +358,7 @@ def render_cut_list(cut_list: CutList, fmt: str) -> str | bytes:
 
 def _report_lines(cut_list: CutList) -> list[str]:
     meta = cut_list.meta
+    units = normalize_units(meta.units)
     lines = [
         "Lista de corte — BoardComposer",
         "",
@@ -357,7 +366,7 @@ def _report_lines(cut_list: CutList) -> list[str]:
         f"Cliente: {meta.client or '-'}",
         f"Referencia: {meta.reference or '-'}",
         f"Notas: {meta.notes or '-'}",
-        f"Kerf (mm): {meta.kerf_mm}",
+        f"Kerf ({report_unit_label(units)}): {report_length_label(meta.kerf_mm, units)}",
         "",
         "Tableros",
         "id  material  espesor  LxW  stock  usados",
@@ -366,9 +375,10 @@ def _report_lines(cut_list: CutList) -> list[str]:
         lines.append("(sin inventario de tableros)")
     for panel in cut_list.panels:
         lines.append(
-            f"{panel.panel_id}  {panel.material}  {panel.thickness_mm:g}  "
-            f"{panel.length_mm:g}x{panel.width_mm:g}  {panel.quantity}  "
-            f"{panel.instances_used}"
+            f"{panel.panel_id}  {panel.material}  "
+            f"{report_length_label(panel.thickness_mm, units)}  "
+            f"{report_size_label(panel.length_mm, panel.width_mm, units)}  "
+            f"{panel.quantity}  {panel.instances_used}"
         )
 
     lines.extend(["", "Piezas", "id  material  espesor  LxW  omitida"])
@@ -377,8 +387,10 @@ def _report_lines(cut_list: CutList) -> list[str]:
     for piece in cut_list.pieces:
         omitted = "si" if piece.omitted else "no"
         lines.append(
-            f"{piece.piece_id}  {piece.material}  {piece.thickness_mm:g}  "
-            f"{piece.length_mm:g}x{piece.width_mm:g}  {omitted}"
+            f"{piece.piece_id}  {piece.material}  "
+            f"{report_length_label(piece.thickness_mm, units)}  "
+            f"{report_size_label(piece.length_mm, piece.width_mm, units)}  "
+            f"{omitted}"
         )
 
     lines.extend(["", "Cortes por tablero", "seq  pieza  panel#  LxW  rotada  x,y"])
@@ -389,8 +401,10 @@ def _report_lines(cut_list: CutList) -> list[str]:
         panel_label = f"{cut.panel_id}#{cut.instance_index + 1}"
         lines.append(
             f"{cut.sequence}  {cut.piece_id}  {panel_label}  "
-            f"{cut.length_mm:g}x{cut.width_mm:g}  {rotated}  "
-            f"{cut.x_mm:g},{cut.y_mm:g}"
+            f"{report_size_label(cut.length_mm, cut.width_mm, units)}  "
+            f"{rotated}  "
+            f"{report_length_label(cut.x_mm, units)},"
+            f"{report_length_label(cut.y_mm, units)}"
         )
 
     lines.extend(["", "Secuencia de sierra"])
@@ -404,7 +418,7 @@ def _report_lines(cut_list: CutList) -> list[str]:
             lines.append("(sin pasos)")
             continue
         for step in panel.steps:
-            lines.append(_saw_step_line(step))
+            lines.append(_saw_step_line(step, units))
     lines.extend(
         report_traceability_footer(
             include=meta.include_traceability,
@@ -416,10 +430,15 @@ def _report_lines(cut_list: CutList) -> list[str]:
     return lines
 
 
-def _saw_step_line(step: SequenceStep) -> str:
+def _saw_step_line(step: SequenceStep, units: str = DEFAULT_UNITS) -> str:
     if step.kind == "piece":
         return f"{step.index}. Pieza {step.piece_id}"
     axis = "horizontal" if step.axis == "y" else "vertical"
-    position = f"{step.position_mm:g}" if step.position_mm is not None else "-"
-    span = f"{step.span_mm:g}" if step.span_mm is not None else "-"
-    return f"{step.index}. Corte {axis} a {position} mm (largo {span})"
+    if step.position_mm is None:
+        position = "-"
+    elif normalize_units(units) == DEFAULT_UNITS:
+        position = f"{step.position_mm:g} mm"
+    else:
+        position = report_length_label(step.position_mm, units)
+    span = "-" if step.span_mm is None else report_length_label(step.span_mm, units)
+    return f"{step.index}. Corte {axis} a {position} (largo {span})"

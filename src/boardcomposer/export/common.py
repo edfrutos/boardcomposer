@@ -15,8 +15,10 @@ from boardcomposer.domain import (
 )
 from boardcomposer.units import (
     DEFAULT_UNITS,
+    normalize_units,
     plan_length_label,
     plan_size_label,
+    unit_label,
 )
 
 PANEL_GAP_MM = 50.0
@@ -43,6 +45,29 @@ def offcut_plan_label(offcut: Offcut, units: str = DEFAULT_UNITS) -> str:
 def panel_dimension_label(value_mm: float, units: str = DEFAULT_UNITS) -> str:
     """Workshop dimension: overall panel size (prefs units)."""
     return plan_length_label(value_mm, units)
+
+
+def report_size_label(
+    length_mm: float, width_mm: float, units: str = DEFAULT_UNITS
+) -> str:
+    """Cut-list / quote PDF LxW. mm keeps ``400x300``; cm/in add suffix."""
+    units = normalize_units(units)
+    if units == DEFAULT_UNITS:
+        return f"{length_mm:g}x{width_mm:g}"
+    return plan_size_label(length_mm, width_mm, units)
+
+
+def report_length_label(value_mm: float, units: str = DEFAULT_UNITS) -> str:
+    """Single report length. mm keeps ``:g``; cm/in add suffix."""
+    units = normalize_units(units)
+    if units == DEFAULT_UNITS:
+        return f"{value_mm:g}"
+    return plan_length_label(value_mm, units)
+
+
+def report_unit_label(units: str = DEFAULT_UNITS) -> str:
+    """ASCII unit token for report headers (``mm`` / ``cm`` / ``in``)."""
+    return unit_label(units)
 
 
 def panel_dimension_margins(enabled: bool) -> tuple[float, float]:

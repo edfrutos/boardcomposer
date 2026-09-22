@@ -214,10 +214,11 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
   × €/m²; si Preferencias tiene EUR/h y min/pieza > 0, suma mano de obra;
   0 omite labor; materiales sin precio aparecen como «-»; pie de
   versión/algoritmo/fecha; desmarcar trazabilidad en Preferencias lo
-  quita; no cambia el `.bcproj`.
+  quita; LxW/espesor siguen prefs.units; área m²; no cambia el `.bcproj`.
 - [ ] **Ctrl+Alt+C** lista de corte: CSV/PDF con `sequence` y pasos de
-  sierra (`saw`); el PDF incluye pie de trazabilidad; el CSV no; el plano
-  muestra el número de orden por panel.
+  sierra (`saw`); el PDF incluye pie de trazabilidad y prefs.units; el
+  CSV sigue mm y no lleva pie; el plano muestra el número de orden por
+  panel.
 - [ ] **Ctrl+Alt+F** en candidata parcial: piezas OK no se mueven;
   omitidas caben en retales o tablero libre; acción deshabilitada si la
   solución es completa.

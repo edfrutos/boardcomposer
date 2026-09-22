@@ -4037,6 +4037,7 @@ class MainWindow(QMainWindow):
         trace = {
             "include_traceability": prefs.export_include_plan_traceability,
             "strategy_name": self.services.layout.strategy_name or "",
+            "units": prefs.units,
         }
         meta = CutListMeta(**trace)
         if studio_project is not None:
@@ -4114,6 +4115,7 @@ class MainWindow(QMainWindow):
             "strategy_name": self.services.layout.strategy_name or "",
             "labor_rate_eur_per_hour": prefs.quote_labor_eur_per_hour,
             "labor_minutes_per_piece": prefs.quote_labor_minutes_per_piece,
+            "units": prefs.units,
         }
         meta = QuoteMeta(**trace)
         if studio_project is not None:

@@ -2,7 +2,8 @@
 
 Does not change the solver. Material cost matches IDE-0029 (physical
 panels, not placed piece area). Labor is shop prefs: EUR/h x minutes
-per placed piece. Helvetica PDF stays latin-1, so currency is ``EUR``.
+per placed piece. PDF TEXT sizes follow ``meta.units`` (IDE-0048);
+area stays m2. Helvetica PDF stays latin-1, so currency is ``EUR``.
 """
 
 from __future__ import annotations
@@ -11,7 +12,12 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 
 from boardcomposer.domain import AssemblySolution, Project
-from boardcomposer.export.common import report_traceability_footer
+from boardcomposer.export.common import (
+    report_length_label,
+    report_size_label,
+    report_traceability_footer,
+)
+from boardcomposer.units import DEFAULT_UNITS, normalize_units
 from boardcomposer.export.report_pdf import pdf_from_text_lines
 from boardcomposer.inventory.material_cost import (
     MM2_PER_M2,
@@ -40,6 +46,7 @@ class QuoteMeta:
     exported_at: str | None = None
     labor_rate_eur_per_hour: float = DEFAULT_LABOR_EUR_PER_HOUR
     labor_minutes_per_piece: float = DEFAULT_LABOR_MINUTES_PER_PIECE
+    units: str = DEFAULT_UNITS
 
 
 @dataclass(frozen=True)
@@ -190,6 +197,7 @@ def _rate(value: float | None) -> str:
 
 def _report_lines(report: QuoteReport) -> list[str]:
     meta = report.meta
+    units = normalize_units(meta.units)
     estimate = report.estimate
     omitted = ", ".join(report.omitted_ids) if report.omitted_ids else "-"
     total = _money(estimate.total) if estimate.has_price else "-"
@@ -213,7 +221,8 @@ def _report_lines(report: QuoteReport) -> list[str]:
         cost = _money(item.cost) if item.priced else "-"
         lines.append(
             f"{item.panel_id}#{item.instance_index + 1}  {item.material}  "
-            f"{item.length_mm:g}x{item.width_mm:g}  {item.thickness_mm:g}  "
+            f"{report_size_label(item.length_mm, item.width_mm, units)}  "
+            f"{report_length_label(item.thickness_mm, units)}  "
             f"{item.area_m2:.3f}  {_rate(item.price_per_m2)}  {cost}"
         )
 

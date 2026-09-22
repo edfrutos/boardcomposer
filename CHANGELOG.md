@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Unidades de Preferencias en lista de corte PDF y presupuesto PDF
+  (IDE-0048): LxW, espesor, kerf, posición y pasos de sierra siguen
+  `prefs.units`. CSV/JSON y área m² siguen mm. Default mm no cambia
+  el texto. Sin bump `.bcproj`; no cambia el solver.
 - Unidades de Preferencias en Comparador (IDE-0047): Largo/Ancho de
   tabla y diffs (métricas + placements). mm no cambia el texto actual;
   cm/in convierten. Disco / JSON siguen mm. Abre quinta ola 0048…0050.

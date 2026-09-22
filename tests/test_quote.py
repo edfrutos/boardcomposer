@@ -181,6 +181,34 @@ def test_quote_to_pdf_lists_labor_and_grand_total():
     assert b"herrajes" in payload
 
 
+def test_quote_pdf_uses_prefs_units_area_stays_m2():
+    project, solution = _project_and_solution()
+    mm_text = quote_to_pdf(
+        build_quote(
+            solution,
+            project,
+            {"Melamina": 25},
+            QuoteMeta(project_name="Cocina"),
+        )
+    ).decode("latin-1", errors="replace")
+    assert "1000x500" in mm_text
+    assert " 19 " in mm_text
+    assert "0.500" in mm_text
+
+    cm_text = quote_to_pdf(
+        build_quote(
+            solution,
+            project,
+            {"Melamina": 25},
+            QuoteMeta(project_name="Cocina", units="cm"),
+        )
+    ).decode("latin-1", errors="replace")
+    assert "100x50 cm" in cm_text
+    assert "1.9 cm" in cm_text
+    assert "0.500" in cm_text
+    assert "1000x500" not in cm_text
+
+
 def test_quote_pdf_includes_or_omits_traceability():
     project, solution = _project_and_solution()
     stamped = QuoteMeta(
