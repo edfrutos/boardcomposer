@@ -120,7 +120,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Lista de corte (**Ctrl+Alt+C**): elige CSV o PDF; no es el CSV del
   diálogo de solución.
 - [ ] Lista de corte / presupuesto PDF: pie versión · algoritmo · fecha;
-  CSV de corte sin pie.
+  CSV de corte sin pie. Preferencias cm/in: LxW del PDF en esas
+  unidades; CSV de corte sigue mm.
 - [ ] Presupuesto PDF: con EUR/h y min/pieza en Preferencias aparece
   línea de mano de obra y total; con 0 no.
 - [x] Opción abrir después (si existe) abre el artefacto.

@@ -42,7 +42,8 @@
 - Trazabilidad en plano (versión, algoritmo, fecha; IDE-0039) y en
   lista de corte / presupuesto PDF (IDE-0043).
 - Unidades de display en Inspector mm/cm/in (IDE-0040 `#653`; disco sigue mm),
-  etiquetas de plano / Workspace (IDE-0044) y Comparador (IDE-0047).
+  etiquetas de plano / Workspace (IDE-0044), Comparador (IDE-0047) y
+  lista de corte / presupuesto PDF (IDE-0048).
 - Inspector de pieza: espesor, rotación y veta (IDE-0046).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
@@ -58,7 +59,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` quinta ola: IDE-0048…0050 (0047 entregada).
+1. Ciclo `0.4.4` quinta ola: IDE-0049…0050 (0048 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

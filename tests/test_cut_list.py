@@ -154,6 +154,39 @@ def test_render_cut_list_picks_csv_or_pdf():
     assert pdf_payload.startswith(b"%PDF")
 
 
+def test_cut_list_pdf_uses_prefs_units_csv_stays_mm():
+    project, solution = _project_and_solution()
+    mm_pdf = cut_list_to_pdf(
+        build_cut_list(
+            solution,
+            project,
+            CutListMeta(project_name="Cocina", kerf_mm=3.2),
+        )
+    )
+    mm_text = mm_pdf.decode("latin-1", errors="replace")
+    assert "Kerf \\(mm\\): 3.2" in mm_text
+    assert "2500x1250" in mm_text
+    assert "400x300" in mm_text
+    assert "10,20" in mm_text
+
+    cm_list = build_cut_list(
+        solution,
+        project,
+        CutListMeta(project_name="Cocina", kerf_mm=3.2, units="cm"),
+    )
+    cm_text = cut_list_to_pdf(cm_list).decode("latin-1", errors="replace")
+    assert "Kerf \\(cm\\): 0.32" in cm_text
+    assert "250x125 cm" in cm_text
+    assert "40x30 cm" in cm_text
+    assert "1 cm,2 cm" in cm_text
+    assert "2500x1250" not in cm_text
+    csv_payload = cut_list_to_csv(cm_list)
+    assert "2500" in csv_payload
+    assert "400" in csv_payload
+    assert "kerf_mm" in csv_payload
+    assert "40x30 cm" not in csv_payload
+
+
 def test_build_cut_list_without_project_uses_placements():
     solution = AssemblySolution(
         placements=[BoardPlacement("A", 0, 0, 100, 50)],

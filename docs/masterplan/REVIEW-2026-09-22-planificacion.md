@@ -50,8 +50,8 @@ revisión `REVIEW-2026-09-21`.
 | IDE-0044 unidades prefs en plano / etiquetas export | 🟢 (#658) |
 | IDE-0045 mano de obra en presupuesto | 🟢 (#659) |
 | IDE-0046 Inspector espesor / rotación / veta de pieza | 🟢 (#661) |
-| IDE-0047 unidades prefs en Comparador | 🟢 |
-| IDE-0048 unidades prefs en lista de corte / presupuesto | ⚪ |
+| IDE-0047 unidades prefs en Comparador | 🟢 (#662) |
+| IDE-0048 unidades prefs en lista de corte / presupuesto | 🟢 |
 | IDE-0049 exportar/importar preferencias JSON | ⚪ |
 | IDE-0050 Inspector resumen rico proyecto/categoría | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
@@ -86,8 +86,8 @@ Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
-IDE-0037…0047 **entregadas** (`#647`…`#661` + 0047); quinta ola
-0048…0050 abierta.
+IDE-0037…0048 **entregadas** (`#647`…`#662` + 0048); quinta ola
+0049…0050 abierta.
 
 Desde la revisión 2026-09-21, en `main` entraron `#655` (0042), `#657`
 (0043), `#658` (0044) y `#659` (0045). Planning `#656` queda histórico.
@@ -113,8 +113,9 @@ Límites conocidos (no son bugs; son alcance):
 - Workspace: sugerir hueco para colocación manual (IDE-0036; SCR-002).
 - Inspector: unidades prefs mm/cm/in (IDE-0040 `#653`); disco sigue mm.
   Pieza muestra espesor, rotación 0°/90° (— si no colocada) y veta
-  (IDE-0046 `#661`). Comparador Largo/Ancho y diffs (IDE-0047).
-  Lista de corte / presupuesto TEXT siguen mm (IDE-0048).
+  (IDE-0046 `#661`). Comparador Largo/Ancho y diffs (IDE-0047 `#662`).
+  Lista de corte / presupuesto PDF TEXT siguen `prefs.units` (IDE-0048);
+  CSV/JSON y área m² siguen mm.
   Prefs sin export/import JSON (IDE-0049). Inspector de raíz/categoría
   pobre (IDE-0050).
 
@@ -125,7 +126,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` quinta ola** — IDE-0048…0050 (0047 entregada).
+1. **Cola `0.4.4` quinta ola** — IDE-0049…0050 (0048 entregada).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -137,7 +138,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0048…0050. Residual bloqueado: piloto DT-0006 D (operativo) +
+0049…0050. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
@@ -151,22 +152,22 @@ desarrollo pendiente y bugs cerrados* → **sí se añaden IDE-0047…0050**
 | IDE-0044 | Unidades prefs en plano y etiquetas de export | Entregado (#658) |
 | IDE-0045 | Mano de obra en presupuesto | Entregado (#659) |
 | IDE-0046 | Inspector: espesor / rotación / veta de pieza | Entregado (#661) |
-| IDE-0047 | Unidades prefs en Comparador | Entregado |
-| IDE-0048 | Unidades prefs en lista de corte / presupuesto | Idea |
+| IDE-0047 | Unidades prefs en Comparador | Entregado (#662) |
+| IDE-0048 | Unidades prefs en lista de corte / presupuesto | Entregado |
 | IDE-0049 | Exportar/importar preferencias JSON | Idea |
 | IDE-0050 | Inspector: resumen rico de proyecto/categoría | Idea |
 
-Prioridad de ataque: **IDE-0048** (unidades en informes PDF).
+Prioridad de ataque: **IDE-0049** (export/import JSON de prefs).
 
-Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0046;
-IDE-0047 en esta rama.
+Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0047;
+IDE-0048 en esta rama.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
 
 ## 6. Criterio de esta revisión
 
-- Alinear `#661` 🟢; entregar IDE-0047; cola 0048…0050.
+- Alinear `#662` 🟢; entregar IDE-0048; cola 0049…0050.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.
