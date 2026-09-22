@@ -116,6 +116,10 @@ Observaciones:
 | IDE-0044 | Unidades prefs en plano y etiquetas de export | 🟢 | P3 |
 | IDE-0045 | Mano de obra en presupuesto | 🟢 | P3 |
 | IDE-0046 | Inspector: espesor / rotación / veta de pieza | 🟢 | P3 |
+| IDE-0047 | Unidades prefs en Comparador | 🟢 | P3 |
+| IDE-0048 | Unidades prefs en lista de corte / presupuesto | ⚪ | P3 |
+| IDE-0049 | Exportar/importar preferencias JSON | ⚪ | P3 |
+| IDE-0050 | Inspector: resumen rico de proyecto/categoría | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -155,6 +159,10 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0044 | S–M | IDE-0040; SCR-007 etiquetas | Entregado; prefs.units en plano TEXT; mm en disco |
 | IDE-0045 | S–M | IDE-0032; catálogo / prefs | Entregado; EUR/h + min/pieza; 0 omite |
 | IDE-0046 | S | SCR-004 Inspector | Entregado; espesor prefs, 0°/90°, veta |
+| IDE-0047 | S | IDE-0040; SCR-003 | Entregado; tabla + diffs prefs.units; mm igual |
+| IDE-0048 | S | IDE-0044; SCR-007 informes | TEXT cut list / quote; CSV/JSON mm |
+| IDE-0049 | S | IDE-0042; SCR-006 | JSON de prefs; fusionar o reemplazar; sin nube |
+| IDE-0050 | S | SCR-004 raíz/categoría | Resumen proyecto / conteos; no inline edit |
 
 ---
 
@@ -182,15 +190,15 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0046 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0046; `#647`/`#649`/`#651`/
-`#653`/`#654`/`#655`/`#657`/`#658`/`#659`). IDE-0007 🟢 MVP+eval
+**Estado actual:** 🟢 Actualizado — IDE-0001…0047 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0047; `#647`/`#649`/`#651`/
+`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`). IDE-0007 🟢 MVP+eval
 (2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-09-22-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` cuarta ola **vacía** (0046 entregada).
+1. Cola producto `0.4.4` quinta ola: IDE-0048…0050 (0047 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
