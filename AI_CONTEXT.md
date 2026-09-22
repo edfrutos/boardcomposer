@@ -56,10 +56,12 @@ alternativas comprensibles para que el usuario decida.
   `docs/masterplan/REVIEW-2026-09-22-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
-- Preferencias: export/import JSON de taller (IDE-0049); sin rutas
+- Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
   locales ni ventana; fusionar o reemplazar; sin nube.
-- Próximo: cola `0.4.4` quinta ola 0050; piloto DT-0006 D; Issues = 0;
-  eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
+- Inspector raíz/categoría: conteos, materiales y área (IDE-0050).
+- Próximo: cola `0.4.4` vacía (quinta ola 0047…0050 cerrada); piloto
+  DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
+  bloqueados.
 
 ## Fuentes de verdad
 

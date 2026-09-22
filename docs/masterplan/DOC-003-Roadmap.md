@@ -158,7 +158,7 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Piloto DT-0006 opción D (backup); C diferida.
-- Cola ciclo `0.4.4` quinta ola: IDE-0050 (0049 entregada).
+- Cola ciclo `0.4.4` implementable vacía (quinta ola 0047…0050 cerrada).
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2
@@ -184,9 +184,9 @@ Toda modificación deberá:
 
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
 corte `0.4.3` / `v0.4.3` publicado; ciclo `0.4.4.dev0` ola 1 (0025…0030)
-cerrada; segunda ola IDE-0031…0036 entregada; 0037…0049 entregadas
+cerrada; segunda ola IDE-0031…0036 entregada; 0037…0050 entregadas
 (`#647`/`#649`/`#651`/`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/
-`#662`/`#663`); quinta ola 0050. Revisión:
+`#662`/`#663`/`#664`); quinta ola cerrada. Revisión:
 `REVIEW-2026-09-22-planificacion.md`.
 
 Pendiente de:

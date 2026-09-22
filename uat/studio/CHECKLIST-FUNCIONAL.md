@@ -42,6 +42,8 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 ## 2. Explorador e Inspector
 
 - [x] Contadores `Tableros (n)`, `Piezas (n)`, `Soluciones (n)`.
+- [ ] Inspector raíz/categoría: conteos, materiales y área (prefs);
+  soluciones candidatas/seleccionada; sin edición inline (IDE-0050).
 - [x] Clic en **pieza** → Inspector completo + selección en canvas.
 - [x] Inspector de pieza: espesor (prefs), rotación 0°/90° (— si no
   colocada) y veta libre/fija; rotar (R) actualiza el ángulo.
