@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.45
+**Versión:** 1.3.46
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 21/09/2026
+**Última revisión:** 22/09/2026
 
 ---
 
@@ -184,13 +184,13 @@ Detalle: `docs/masterplan/epics/`.
 
 **Estado actual:** 🟢 Actualizado — IDE-0001…0045 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0045; `#647`/`#649`/`#651`/
-`#653`/`#654`/`#655`/`#657`/`#658`). IDE-0007 🟢 MVP+eval (2026-09-12; LLM
-diferido). EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-09-21-planificacion.md`.
+`#653`/`#654`/`#655`/`#657`/`#658`/`#659`). IDE-0007 🟢 MVP+eval
+(2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
+`REVIEW-2026-09-22-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` cuarta ola: IDE-0046 (0045 entregada).
+1. Cola producto `0.4.4` cuarta ola: IDE-0046 (0042…0045 en `main`).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
