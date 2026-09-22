@@ -151,5 +151,5 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 
 - Resumen rico de proyecto/categoría.
 - Edición inline de campos seguros.
-- Unidades también en Comparador (`diff.metric.*` sigue en mm).
+- Unidades en Comparador entregadas (IDE-0047).
 - Gráficos / historial del elemento seleccionado.

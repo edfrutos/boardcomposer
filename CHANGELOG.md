@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Unidades de Preferencias en Comparador (IDE-0047): Largo/Ancho de
+  tabla y diffs (métricas + placements). mm no cambia el texto actual;
+  cm/in convierten. Disco / JSON siguen mm. Abre quinta ola 0048…0050.
+  Sin bump `.bcproj`; no cambia el solver.
 - Inspector de pieza: espesor, rotación y veta (IDE-0046). Espesor en
   unidades de Preferencias; rotación 0°/90° (— si no colocada); veta
   libre o fija. Sin bump `.bcproj`; no cambia el solver.

@@ -190,7 +190,8 @@ Dock **Ctrl+4**. Candidatas tras **Calcular layout**.
   coste material, puntuación.
 - **Solo soluciones completas:** oculta candidatas parciales.
 - **Fijar como referencia** (≥2 soluciones): marca la candidata y muestra
-  el diff frente a ella.
+  el diff frente a ella. Largo, ancho y coords del diff usan las
+  **unidades** de Preferencias (mm / cm / in).
 - Navegar: **Re Pág** / **Av Pág**; **Ctrl+Shift+Return** aplica la elegida
   al proyecto.
 - **Generar → Re-empaquetar omitidas** (**Ctrl+Alt+F**): congela las piezas

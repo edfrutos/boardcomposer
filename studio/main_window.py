@@ -140,7 +140,13 @@ from studio.solution_ordering import (
     step_display_index,
 )
 from studio.solution_thumbnail import DEFAULT_THUMBNAIL_SIZE, solution_thumbnails
-from studio.units import format_area, format_length, format_size
+from studio.units import (
+    format_area,
+    format_length,
+    format_size,
+    normalize_units,
+    plan_length_label,
+)
 from studio.welcome_screen import WelcomeScreen
 from studio.timeline import TimelinePanel
 from studio.events import catalog as events
@@ -3048,6 +3054,13 @@ class MainWindow(QMainWindow):
     def _format_length(self, value_mm: float) -> str:
         return format_length(value_mm, self._display_units())
 
+    def _comparator_length(self, value_mm: float) -> str:
+        """Compact Comparador cell. mm keeps the integer; cm/in add suffix."""
+        units = self._display_units()
+        if normalize_units(units) == "mm":
+            return f"{value_mm:.0f}"
+        return plan_length_label(value_mm, units)
+
     def _format_area(self, value_mm2: float) -> str:
         return format_area(value_mm2, self._display_units())
 
@@ -3452,8 +3465,8 @@ class MainWindow(QMainWindow):
                 self._format_material_cost(
                     self.services.layout.material_cost_estimate(solution)
                 ),
-                f"{solution.total_length_mm:.0f}",
-                f"{solution.total_width_mm:.0f}",
+                self._comparator_length(solution.total_length_mm),
+                self._comparator_length(solution.total_width_mm),
                 f"{solution.score.total:.2f}",
             ]
 
@@ -3603,6 +3616,7 @@ class MainWindow(QMainWindow):
             cost_reference=layout.material_cost_total(reference),
             cost_candidate=layout.material_cost_total(candidate),
             language=language,
+            units=self._display_units(),
         )
         self.solution_differences.setPlainText("\n".join(diff.summary_lines()))
 
@@ -3826,6 +3840,7 @@ class MainWindow(QMainWindow):
             reference_index=reference_index,
             candidate_index=candidate_index,
             language=language,
+            units=self._display_units(),
         )
         self.solution_differences.setPlainText("\n".join(lines))
         self._raise_dock(self.solutions_dock)

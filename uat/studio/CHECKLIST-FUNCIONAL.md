@@ -46,8 +46,9 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] Inspector de pieza: espesor (prefs), rotación 0°/90° (— si no
   colocada) y veta libre/fija; rotar (R) actualiza el ángulo.
 - [ ] Preferencias unidades cm/in: Inspector de pieza/tablero y de layout
-  muestra cm o in (área de retales incluida); Workspace y plano
-  SVG/PDF/DXF usan las mismas unidades; `.bcproj` / JSON siguen mm.
+  muestra cm o in (área de retales incluida); Workspace, plano
+  SVG/PDF/DXF y Comparador (Largo/Ancho + diffs) usan las mismas
+  unidades; `.bcproj` / JSON siguen mm.
 - [x] Clic en **tablero** → centra cámara y resalta en Workspace.
 - [x] Menú contextual pieza: editar / duplicar / eliminar / copiar ID / renombrar.
 - [x] Menú contextual tablero: editar / duplicar / eliminar / copiar ID / renombrar.

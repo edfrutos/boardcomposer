@@ -42,6 +42,7 @@ alternativas comprensibles para que el usuario decida.
   CSV de corte no. Casilla Preferencias. Default: sí.
 - Inspector: unidades de Preferencias mm/cm/in (IDE-0040 `#653`) en pieza,
   tablero y métricas de layout; disco / JSON siguen mm.
+- Comparador: Largo/Ancho y diffs siguen `prefs.units` (IDE-0047).
 - Inspector de pieza: espesor, rotación 0°/90° y veta (IDE-0046).
 - Exportar / Workspace: etiquetas de plano usan `prefs.units` (IDE-0044 `#658`);
   geometría y `$INSUNITS` siguen mm.
@@ -53,7 +54,7 @@ alternativas comprensibles para que el usuario decida.
   `docs/masterplan/REVIEW-2026-09-22-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
-- Próximo: cola `0.4.4` vacía (0046 entregada); piloto DT-0006 D; Issues = 0;
+- Próximo: cola `0.4.4` quinta ola 0048…0050; piloto DT-0006 D; Issues = 0;
   eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

@@ -3,9 +3,9 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-003  
-**Versión:** 1.1.0  
+**Versión:** 1.2.0  
 **Estado:** Alineado con Studio  
-**Última revisión:** 16/09/2026
+**Última revisión:** 22/09/2026
 
 ---
 
@@ -69,7 +69,8 @@ SVG de cada candidata a la misma escala. Clic selecciona; tooltip si es
 
 Columnas: `#`, Piezas (con sufijo de omitidas si incompleta), Huecos
 (`waste_ratio`), Tablero libre, Coste (€, tableros físicos × precio
-catálogo; «—» si no hay €/m²), Largo, Ancho, Score.
+catálogo; «—» si no hay €/m²), Largo, Ancho (prefs.units; IDE-0047),
+Score. mm en celdas sin sufijo; cm/in lo añaden.
 
 ### Resaltado «mejor en métrica»
 
@@ -82,8 +83,10 @@ va en negrita y el tooltip lista las métricas.
 
 Texto de solo lectura. Requiere **≥ 2** soluciones; si no, muestra que se
 necesitan al menos dos. Compara la candidata seleccionada con la referencia
-(métricas y placements: solo-ref / solo-cand / movidas). También se actualiza
-en sync con el replay del Timeline (diff parcial por paso).
+(métricas y placements: solo-ref / solo-cand / movidas). Largo/ancho y
+coords de placement siguen `prefs.units` (IDE-0047); default mm no cambia
+el texto. También se actualiza en sync con el replay del Timeline
+(diff parcial por paso).
 
 ---
 
@@ -134,7 +137,8 @@ en sync con el replay del Timeline (diff parcial por paso).
 
 ## Límites conocidos (Studio actual)
 
-_(Ninguno prioritario en highlights / navegación del Comparador.)_
+- Unidades de prefs en Largo/Ancho de tabla y diffs (IDE-0047). Disco /
+  `.bcproj` / JSON siguen en mm.
 
 ---
 

@@ -10,6 +10,12 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 
 from boardcomposer.domain import AssemblySolution, BoardPlacement, PanelReference
+from boardcomposer.units import (
+    DEFAULT_UNITS,
+    format_length,
+    normalize_units,
+    plan_size_label,
+)
 from studio.i18n import DEFAULT_LANGUAGE, tr
 
 
@@ -111,14 +117,25 @@ def _placement_key(placement: BoardPlacement) -> tuple:
     )
 
 
-def _format_placement(placement: BoardPlacement, language: str) -> str:
+def _format_placement(
+    placement: BoardPlacement,
+    language: str,
+    units: str = DEFAULT_UNITS,
+) -> str:
     rotated = tr("diff.rotated", language) if placement.rotated else ""
-    return (
-        f"({placement.x_mm:g}, {placement.y_mm:g}) "
-        f"{placement.length_mm:g}×{placement.width_mm:g} mm"
-        f"{rotated}"
-        f", {_panel_label(placement.panel_reference, language)}"
-    )
+    units = normalize_units(units)
+    if units == DEFAULT_UNITS:
+        size = (
+            f"({placement.x_mm:g}, {placement.y_mm:g}) "
+            f"{placement.length_mm:g}×{placement.width_mm:g} mm"
+        )
+    else:
+        size = (
+            f"({format_length(placement.x_mm, units)}, "
+            f"{format_length(placement.y_mm, units)}) "
+            f"{plan_size_label(placement.length_mm, placement.width_mm, units)}"
+        )
+    return f"{size}{rotated}, {_panel_label(placement.panel_reference, language)}"
 
 
 def _placements_by_id(
@@ -136,6 +153,7 @@ def _metric_deltas(
     language: str,
     cost_reference: float | None = None,
     cost_candidate: float | None = None,
+    units: str = DEFAULT_UNITS,
 ) -> list[MetricDelta]:
     deltas: list[MetricDelta] = []
 
@@ -147,12 +165,16 @@ def _metric_deltas(
         higher_is_better: bool,
         as_percent: bool = False,
         as_int: bool = False,
+        as_length: bool = False,
     ) -> None:
         if ref_value == cand_value:
             return
         if as_percent:
             ref_text = f"{ref_value:.1%}"
             cand_text = f"{cand_value:.1%}"
+        elif as_length:
+            ref_text = format_length(ref_value, units)
+            cand_text = format_length(cand_value, units)
         elif as_int:
             ref_text = f"{ref_value:.0f}"
             cand_text = f"{cand_value:.0f}"
@@ -210,14 +232,14 @@ def _metric_deltas(
         reference.total_length_mm,
         candidate.total_length_mm,
         higher_is_better=False,
-        as_int=True,
+        as_length=True,
     )
     add(
         "diff.metric.width",
         reference.total_width_mm,
         candidate.total_width_mm,
         higher_is_better=False,
-        as_int=True,
+        as_length=True,
     )
     add(
         "diff.metric.panels",
@@ -275,6 +297,7 @@ def _placement_changes(
     reference: AssemblySolution,
     candidate: AssemblySolution,
     language: str,
+    units: str = DEFAULT_UNITS,
 ) -> list[PlacementChange]:
     ref_map = _placements_by_id(reference)
     cand_map = _placements_by_id(candidate)
@@ -288,7 +311,7 @@ def _placement_changes(
                 detail=tr(
                     "diff.only_reference",
                     language,
-                    placement=_format_placement(ref_map[piece_id], language),
+                    placement=_format_placement(ref_map[piece_id], language, units),
                 ),
             )
         )
@@ -301,7 +324,7 @@ def _placement_changes(
                 detail=tr(
                     "diff.only_candidate",
                     language,
-                    placement=_format_placement(cand_map[piece_id], language),
+                    placement=_format_placement(cand_map[piece_id], language, units),
                 ),
             )
         )
@@ -316,8 +339,8 @@ def _placement_changes(
                 piece_id=piece_id,
                 kind="moved",
                 detail=(
-                    f"{_format_placement(ref_placement, language)} → "
-                    f"{_format_placement(cand_placement, language)}"
+                    f"{_format_placement(ref_placement, language, units)} → "
+                    f"{_format_placement(cand_placement, language, units)}"
                 ),
             )
         )
@@ -336,6 +359,7 @@ def compare_solutions(
     cost_reference: float | None = None,
     cost_candidate: float | None = None,
     language: str = DEFAULT_LANGUAGE,
+    units: str = DEFAULT_UNITS,
 ) -> SolutionDiff:
     """Return the structured diff of `candidate` against `reference`."""
     if reference_index == candidate_index:
@@ -355,9 +379,10 @@ def compare_solutions(
             cost_reference=cost_reference,
             cost_candidate=cost_candidate,
             language=language,
+            units=units,
         )
     )
-    placements = tuple(_placement_changes(reference, candidate, language))
+    placements = tuple(_placement_changes(reference, candidate, language, units))
     identical = not metrics and not placements
 
     return SolutionDiff(
@@ -387,6 +412,7 @@ def compare_solutions_at_step(
     reference_index: int,
     candidate_index: int,
     language: str = DEFAULT_LANGUAGE,
+    units: str = DEFAULT_UNITS,
 ) -> list[str]:
     """Diff the first ``step`` placements of each solution (SCR-003 sync).
 
@@ -431,6 +457,7 @@ def compare_solutions_at_step(
         reference_index=reference_index,
         candidate_index=candidate_index,
         language=language,
+        units=units,
     )
     lines = [header, ""]
     if diff.identical:
