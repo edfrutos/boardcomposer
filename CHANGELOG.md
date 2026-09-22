@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Inspector: resumen rico de proyecto y categorías (IDE-0050). Raíz:
+  conteos de tableros/piezas/soluciones, materiales y área de stock.
+  Categorías: tipos/físicos/retales, colocadas/sin colocar, candidatas.
+  Solo lectura. Cierra quinta ola 0047…0050. Sin bump `.bcproj`; no
+  cambia el solver.
 - Exportar/importar preferencias JSON (IDE-0049): taller entre PCs,
   fusionar o reemplazar; sin rutas locales ni geometría de ventana; sin
   nube. Recuerda última carpeta. OK del diálogo guarda. Sin bump

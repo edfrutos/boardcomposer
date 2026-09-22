@@ -119,7 +119,7 @@ Observaciones:
 | IDE-0047 | Unidades prefs en Comparador | 🟢 | P3 |
 | IDE-0048 | Unidades prefs en lista de corte / presupuesto | 🟢 | P3 |
 | IDE-0049 | Exportar/importar preferencias JSON | 🟢 | P3 |
-| IDE-0050 | Inspector: resumen rico de proyecto/categoría | ⚪ | P3 |
+| IDE-0050 | Inspector: resumen rico de proyecto/categoría | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -162,7 +162,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0047 | S | IDE-0040; SCR-003 | Entregado; tabla + diffs prefs.units; mm igual |
 | IDE-0048 | S | IDE-0044; SCR-007 informes | Entregado; TEXT prefs.units; CSV/JSON mm |
 | IDE-0049 | S | IDE-0042; SCR-006 | Entregado; JSON taller; merge/replace; sin nube |
-| IDE-0050 | S | SCR-004 raíz/categoría | Resumen proyecto / conteos; no inline edit |
+| IDE-0050 | S | SCR-004 raíz/categoría | Entregado; conteos + área; no inline edit |
 
 ---
 
@@ -190,15 +190,15 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0049 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0049; `#647`/`#649`/`#651`/
-`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`).
+**Estado actual:** 🟢 Actualizado — IDE-0001…0050 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0050; `#647`/`#649`/`#651`/
+`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
 entregadas. Snapshot: `REVIEW-2026-09-22-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` quinta ola: IDE-0050 (0049 entregada).
+1. Cola producto `0.4.4` implementable vacía (quinta ola 0047…0050 cerrada).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

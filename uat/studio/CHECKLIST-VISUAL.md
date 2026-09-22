@@ -49,6 +49,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 ## 2. Explorador e Inspector
 
 - [x] Contadores Tableros / Piezas / Soluciones actualizan.
+- [ ] Inspector raíz/categorías: resumen con conteos (no solo etiqueta).
 - [x] Clic pieza → Inspector completo + selección en canvas.
 - [x] Inspector de pieza: espesor (prefs), rotación 0°/90° (— si no
   colocada) y veta libre/fija.

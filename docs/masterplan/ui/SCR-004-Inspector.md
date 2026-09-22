@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-004  
-**Versión:** 1.2.0  
+**Versión:** 1.3.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 22/09/2026
 
@@ -54,8 +54,21 @@ multiselección de piezas, pieza huérfana.
 
 ### Raíz / categorías del Explorador
 
-Solo la etiqueta del ítem del árbol (nombre de proyecto, «Tableros…»,
-«Piezas…», «Soluciones…»). Sin resumen enriquecido.
+**Raíz del proyecto:** nombre, cliente, referencia, notas, kerf
+(prefs.units) más conteos (tableros tipos/físicos, piezas
+colocadas/sin colocar, soluciones), materiales distintos y área de
+stock (prefs.units²). Aviso si las soluciones están desactualizadas.
+
+**Tableros:** tipos, físicos (suma de cantidades), retales de
+inventario, materiales y área de stock.
+
+**Piezas:** total, colocadas, sin colocar, materiales y área de piezas
+(prefs.units²).
+
+**Soluciones:** candidatas, seleccionada `i / n` si hay layout; aviso
+si desactualizadas; «sin candidatas» si el cache está vacío.
+
+Solo lectura. Sin edición inline.
 
 ### Tablero (stock)
 
@@ -118,6 +131,8 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 ## Criterios de aceptación
 
 - Cambio de contexto inmediato y sin formularios en el dock.
+- Raíz y categorías del Explorador muestran conteos, materiales y área
+  (no solo la etiqueta).
 - Pieza colocada identifica panel e instancia.
 - Solución parcial y retales informativos visibles cuando existen.
 - Diagnóstico útil cuando el solver no devuelve candidatas.
@@ -138,7 +153,8 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 ## Límites conocidos (Studio actual)
 
 - Solo lectura: no edita propiedades inline.
-- Contexto de proyecto/categoría muy pobre (solo etiqueta).
+- Contexto de proyecto/categoría: conteos, materiales y área (IDE-0050).
+  Sin edición inline.
 - Unidades de prefs en pieza, tablero, kerf, posición y métricas de layout
   (IDE-0040). Disco / `.bcproj` / JSON siguen en mm.
 - Pieza: espesor, rotación 0°/90° y veta (IDE-0046). Canto sigue en
@@ -149,7 +165,7 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 
 ## Evolución prevista
 
-- Resumen rico de proyecto/categoría.
+- Resumen rico de proyecto/categoría entregado (IDE-0050).
 - Edición inline de campos seguros.
 - Unidades en Comparador entregadas (IDE-0047).
 - Gráficos / historial del elemento seleccionado.

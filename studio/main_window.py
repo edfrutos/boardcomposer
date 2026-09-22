@@ -961,7 +961,7 @@ class MainWindow(QMainWindow):
 
         if kind == "category":
             self.workspace.clear_piece_selection()
-            self.inspector.setText(f"{self._tr('inspector.title')}\n\n{item.text(0)}")
+            self._show_category_inspector(object_id)
             return
         if kind == "project":
             self.workspace.clear_piece_selection()
@@ -1036,14 +1036,166 @@ class MainWindow(QMainWindow):
             cleaned = text.strip()
             return cleaned if cleaned else empty
 
-        self.inspector.setText(
-            f"{self._tr('inspector.title')}\n\n"
-            f"{self._tr('inspector.project')}: {project.name}\n"
-            f"{self._tr('inspector.client')}: {_value(project.client)}\n"
-            f"{self._tr('inspector.reference')}: {_value(project.reference)}\n"
-            f"{self._tr('inspector.notes')}: {_value(project.notes)}\n"
-            f"{self._tr('inspector.kerf')}: {self._format_length(project.kerf_mm)}"
+        placed = sum(
+            1
+            for piece in project.pieces
+            if project.placement_by_piece_id(piece.piece_id) is not None
         )
+        physical = sum(board.quantity for board in project.boards)
+        lines = [
+            self._tr("inspector.title"),
+            "",
+            f"{self._tr('inspector.project')}: {project.name}",
+            f"{self._tr('inspector.client')}: {_value(project.client)}",
+            f"{self._tr('inspector.reference')}: {_value(project.reference)}",
+            f"{self._tr('inspector.notes')}: {_value(project.notes)}",
+            f"{self._tr('inspector.kerf')}: {self._format_length(project.kerf_mm)}",
+            self._tr(
+                "inspector.boards_summary",
+                types=len(project.boards),
+                physical=physical,
+            ),
+            self._tr(
+                "inspector.pieces_summary",
+                total=len(project.pieces),
+                placed=placed,
+                unplaced=len(project.pieces) - placed,
+            ),
+            self._tr(
+                "inspector.solutions_summary",
+                n=len(self.services.layout.solutions),
+            ),
+            self._tr(
+                "inspector.materials",
+                items=self._material_list_label((*project.boards, *project.pieces)),
+            ),
+            self._tr(
+                "inspector.stock_area",
+                area=self._format_summary_area(self._board_stock_area_mm2(project)),
+            ),
+        ]
+        if self.services.layout.solutions_outdated:
+            lines.append(self._tr("inspector.solutions_outdated"))
+        self.inspector.setText("\n".join(lines))
+
+    def _material_list_label(self, items) -> str:
+        seen: list[str] = []
+        for item in items:
+            name = str(item.material).strip()
+            if name and name not in seen:
+                seen.append(name)
+        if not seen:
+            return self._tr("inspector.empty_value")
+        return ", ".join(seen)
+
+    def _board_stock_area_mm2(self, project) -> float:
+        return sum(
+            board.length_mm * board.width_mm * board.quantity
+            for board in project.boards
+        )
+
+    def _piece_area_mm2(self, project) -> float:
+        return sum(piece.length_mm * piece.width_mm for piece in project.pieces)
+
+    def _show_category_inspector(self, category_id: str) -> None:
+        if category_id == "boards":
+            self._show_boards_category_inspector()
+            return
+        if category_id == "pieces":
+            self._show_pieces_category_inspector()
+            return
+        if category_id == "solutions":
+            self._show_solutions_category_inspector()
+            return
+        self.clear_inspector()
+
+    def _show_boards_category_inspector(self) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        remnants = sum(1 for board in project.boards if board.remnant)
+        physical = sum(board.quantity for board in project.boards)
+        self.inspector.setText(
+            "\n".join(
+                [
+                    self._tr("inspector.title"),
+                    "",
+                    self._tr("inspector.category_boards"),
+                    self._tr("inspector.board_types", n=len(project.boards)),
+                    self._tr("inspector.board_physical", n=physical),
+                    self._tr("inspector.board_remnants", n=remnants),
+                    self._tr(
+                        "inspector.materials",
+                        items=self._material_list_label(project.boards),
+                    ),
+                    self._tr(
+                        "inspector.stock_area",
+                        area=self._format_summary_area(
+                            self._board_stock_area_mm2(project)
+                        ),
+                    ),
+                ]
+            )
+        )
+
+    def _show_pieces_category_inspector(self) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        placed = sum(
+            1
+            for piece in project.pieces
+            if project.placement_by_piece_id(piece.piece_id) is not None
+        )
+        self.inspector.setText(
+            "\n".join(
+                [
+                    self._tr("inspector.title"),
+                    "",
+                    self._tr("inspector.category_pieces"),
+                    self._tr("inspector.pieces_total", n=len(project.pieces)),
+                    self._tr("inspector.pieces_placed", n=placed),
+                    self._tr(
+                        "inspector.pieces_unplaced",
+                        n=len(project.pieces) - placed,
+                    ),
+                    self._tr(
+                        "inspector.materials",
+                        items=self._material_list_label(project.pieces),
+                    ),
+                    self._tr(
+                        "inspector.pieces_area",
+                        area=self._format_summary_area(self._piece_area_mm2(project)),
+                    ),
+                ]
+            )
+        )
+
+    def _show_solutions_category_inspector(self) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        layout = self.services.layout
+        count = len(layout.solutions)
+        lines = [
+            self._tr("inspector.title"),
+            "",
+            self._tr("inspector.category_solutions"),
+            self._tr("inspector.solutions_candidates", n=count),
+        ]
+        if count:
+            lines.append(
+                self._tr(
+                    "inspector.solutions_selected",
+                    current=layout.selected_solution_index + 1,
+                    total=count,
+                )
+            )
+            if layout.solutions_outdated:
+                lines.append(self._tr("inspector.solutions_outdated"))
+        else:
+            lines.append(self._tr("inspector.solutions_none"))
+        self.inspector.setText("\n".join(lines))
 
     def _new_project(self):
         if not self._confirm_discard_unsaved_changes():
@@ -2193,6 +2345,9 @@ class MainWindow(QMainWindow):
         if kind == "project":
             self._show_project_inspector()
             return
+        if kind == "category":
+            self._show_category_inspector(object_id)
+            return
         if kind == "board":
             self._show_board_inspector(object_id)
             return
@@ -3084,6 +3239,13 @@ class MainWindow(QMainWindow):
 
     def _format_area(self, value_mm2: float) -> str:
         return format_area(value_mm2, self._display_units())
+
+    def _format_summary_area(self, value_mm2: float) -> str:
+        """Stock/piece area. Avoid scientific notation on large mm² totals."""
+        units = normalize_units(self._display_units())
+        if units == "mm":
+            return f"{value_mm2:.0f} mm²"
+        return format_area(value_mm2, units)
 
     def _format_material_cost(self, estimate) -> str:
         if not estimate.has_price:
