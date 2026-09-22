@@ -53,7 +53,11 @@ revisión `REVIEW-2026-09-21`.
 | IDE-0047 unidades prefs en Comparador | 🟢 (#662) |
 | IDE-0048 unidades prefs en lista de corte / presupuesto | 🟢 (#663) |
 | IDE-0049 exportar/importar preferencias JSON | 🟢 (#664) |
-| IDE-0050 Inspector resumen rico proyecto/categoría | 🟢 |
+| IDE-0050 Inspector resumen rico proyecto/categoría | 🟢 (#665) |
+| IDE-0051 Inspector aprovechamiento de tablero | 🟢 |
+| IDE-0052 preview canvas al terminar el solve | ⚪ |
+| IDE-0053 material por defecto de proyecto | ⚪ |
+| IDE-0054 perfiles nombrados de preferencias | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -118,7 +122,7 @@ Límites conocidos (no son bugs; son alcance):
   CSV/JSON y área m² siguen mm.
   Prefs: export/import JSON de taller (IDE-0049 `#664`); sin rutas
   locales ni ventana. Inspector de raíz/categoría: conteos, materiales
-  y área (IDE-0050).
+  y área (IDE-0050 `#665`). Tablero: aprovechamiento (IDE-0051).
 
 Deuda abierta explícita: **1** ítem (`DT-0006` en piloto D). Sin críticas sin
 plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
@@ -127,7 +131,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` implementable vacía** — quinta ola 0047…0050 cerrada.
+1. **Cola `0.4.4` sexta ola** — IDE-0052 (0051 entregada; abre 0052…0054).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -139,12 +143,13 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-vacía. Residual bloqueado: piloto DT-0006 D (operativo) +
+0052…0054. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
-desarrollo pendiente y bugs cerrados* → **sí se añaden IDE-0047…0050**
-(ancladas a SCR-003 unidades, SCR-007 informes, SCR-006 prefs, SCR-004).
+desarrollo pendiente y bugs cerrados* → **sí se añaden IDE-0051…0054**
+(ancladas a SCR-004 tablero, FLW-003 preview, FLW-001 material,
+SCR-006 perfiles).
 
 | ID | Título | Estado |
 |----|--------|--------|
@@ -156,19 +161,23 @@ desarrollo pendiente y bugs cerrados* → **sí se añaden IDE-0047…0050**
 | IDE-0047 | Unidades prefs en Comparador | Entregado (#662) |
 | IDE-0048 | Unidades prefs en lista de corte / presupuesto | Entregado (#663) |
 | IDE-0049 | Exportar/importar preferencias JSON | Entregado (#664) |
-| IDE-0050 | Inspector: resumen rico de proyecto/categoría | Entregado |
+| IDE-0050 | Inspector: resumen rico de proyecto/categoría | Entregado (#665) |
+| IDE-0051 | Inspector: aprovechamiento de tablero | Entregado |
+| IDE-0052 | Preview canvas al terminar el solve | Idea |
+| IDE-0053 | Material por defecto de proyecto | Idea |
+| IDE-0054 | Perfiles nombrados de preferencias | Idea |
 
-Prioridad de ataque: cola vacía (no inventar IDs hasta Sigue + bugs 0).
+Prioridad de ataque: **IDE-0052** (preview canvas post-solve).
 
-Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0049;
-IDE-0050 en esta rama.
+Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0050;
+IDE-0051 en esta rama.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
 
 ## 6. Criterio de esta revisión
 
-- Alinear `#664` 🟢; entregar IDE-0050; cola vacía.
+- Alinear `#665` 🟢; entregar IDE-0051; cola 0052…0054.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.

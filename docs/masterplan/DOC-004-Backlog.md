@@ -4,7 +4,7 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.46
+**Versión:** 1.3.47
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
 **Última revisión:** 22/09/2026
@@ -120,6 +120,10 @@ Observaciones:
 | IDE-0048 | Unidades prefs en lista de corte / presupuesto | 🟢 | P3 |
 | IDE-0049 | Exportar/importar preferencias JSON | 🟢 | P3 |
 | IDE-0050 | Inspector: resumen rico de proyecto/categoría | 🟢 | P3 |
+| IDE-0051 | Inspector: aprovechamiento de tablero | 🟢 | P3 |
+| IDE-0052 | Preview canvas al terminar el solve | ⚪ | P3 |
+| IDE-0053 | Material por defecto de proyecto | ⚪ | P3 |
+| IDE-0054 | Perfiles nombrados de preferencias | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -163,6 +167,10 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0048 | S | IDE-0044; SCR-007 informes | Entregado; TEXT prefs.units; CSV/JSON mm |
 | IDE-0049 | S | IDE-0042; SCR-006 | Entregado; JSON taller; merge/replace; sin nube |
 | IDE-0050 | S | SCR-004 raíz/categoría | Entregado; conteos + área; no inline edit |
+| IDE-0051 | S | SCR-004 tablero | Entregado; uso/libre/retales; no inline edit |
+| IDE-0052 | S | FLW-003 preview | Forzar preview canvas al acabar solve |
+| IDE-0053 | S | FLW-001 material | Default de catálogo/prefs; sin nube |
+| IDE-0054 | S | SCR-006; IDE-0049 | Perfiles nombrados locales; sin sync |
 
 ---
 
@@ -190,15 +198,15 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0050 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0050; `#647`/`#649`/`#651`/
-`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`).
+**Estado actual:** 🟢 Actualizado — IDE-0001…0051 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0051; `#647`/`#649`/`#651`/
+`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/`#665`).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
 entregadas. Snapshot: `REVIEW-2026-09-22-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` implementable vacía (quinta ola 0047…0050 cerrada).
+1. Cola producto `0.4.4` sexta ola: IDE-0052 (0051 entregada; abre 0052…0054).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

@@ -1012,19 +1012,119 @@ class MainWindow(QMainWindow):
         )
         if board is None:
             return
-        text = (
-            f"{self._tr('inspector.title')}\n\n"
-            f"{self._tr('inspector.board')}: {board.board_id}\n"
+        lines = [
+            self._tr("inspector.title"),
+            "",
+            f"{self._tr('inspector.board')}: {board.board_id}",
             f"{self._tr('inspector.dimensions')}: "
-            f"{self._format_size(board.length_mm, board.width_mm)}\n"
+            f"{self._format_size(board.length_mm, board.width_mm)}",
             f"{self._tr('inspector.thickness')}: "
-            f"{self._format_length(board.thickness_mm)}\n"
-            f"{self._tr('inspector.quantity')}: {board.quantity}\n"
-            f"{self._tr('inspector.material')}: {board.material}"
-        )
+            f"{self._format_length(board.thickness_mm)}",
+            f"{self._tr('inspector.quantity')}: {board.quantity}",
+            f"{self._tr('inspector.material')}: {board.material}",
+        ]
         if board.remnant:
-            text = f"{text}\n{self._tr('inspector.remnant')}"
-        self.inspector.setText(text)
+            lines.append(self._tr("inspector.remnant"))
+        lines.extend(self._board_usage_inspector_lines(project, board))
+        self.inspector.setText("\n".join(lines))
+
+    def _board_usage_metrics(self, project, board):
+        """Usage from selected solution, else applied Workspace placements."""
+        stock_index = next(
+            (
+                index
+                for index, candidate in enumerate(project.boards)
+                if candidate.board_id == board.board_id
+            ),
+            None,
+        )
+        solution = self.services.layout.selected_solution
+        if solution is not None and stock_index is not None:
+            placements = [
+                placement
+                for placement in solution.placements
+                if placement.panel_reference is not None
+                and placement.panel_reference.stock_panel_index == stock_index
+            ]
+            instances = {
+                placement.panel_reference.instance_index
+                for placement in placements
+                if placement.panel_reference is not None
+            }
+            offcuts = [
+                offcut
+                for offcut in solution.offcuts
+                if offcut.panel_reference.stock_panel_index == stock_index
+            ]
+            return (
+                len(instances),
+                board.quantity,
+                len(placements),
+                sum(placement.area_mm2 for placement in placements),
+                len(offcuts),
+                sum(offcut.area_mm2 for offcut in offcuts),
+            )
+        studio = [
+            placement
+            for placement in project.placements
+            if placement.board_id == board.board_id
+        ]
+        if not studio:
+            return None
+        instances = {placement.board_instance for placement in studio}
+        used_area = 0.0
+        for placement in studio:
+            try:
+                piece = project.piece_by_id(placement.piece_id)
+            except KeyError:
+                continue
+            used_area += piece.length_mm * piece.width_mm
+        return (
+            len(instances),
+            board.quantity,
+            len(studio),
+            used_area,
+            0,
+            0.0,
+        )
+
+    def _board_usage_inspector_lines(self, project, board) -> list[str]:
+        usage = self._board_usage_metrics(project, board)
+        if usage is None:
+            return [self._tr("inspector.board_no_layout")]
+        used, quantity, pieces, used_area, offcut_n, offcut_area = usage
+        lines = [
+            self._tr(
+                "inspector.board_instances_used",
+                used=used,
+                quantity=quantity,
+            )
+        ]
+        if used == 0:
+            lines.append(self._tr("inspector.board_unused"))
+            return lines
+        stock_area = board.length_mm * board.width_mm * used
+        utilization = used_area / stock_area if stock_area else 0.0
+        waste = max(0.0, 1.0 - utilization)
+        lines.extend(
+            [
+                self._tr("inspector.placed", n=pieces),
+                self._tr(
+                    "inspector.board_utilization",
+                    value=f"{utilization:.1%}",
+                ),
+                self._tr("inspector.free_material", value=f"{waste:.1%}"),
+            ]
+        )
+        if offcut_n:
+            lines.append(
+                self._tr(
+                    "inspector.offcuts",
+                    n=offcut_n,
+                    area=self._format_summary_area(offcut_area),
+                )
+            )
+        return lines
 
     def _show_project_inspector(self) -> None:
         project = self.services.projects.current_project
