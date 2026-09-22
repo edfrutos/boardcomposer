@@ -1,9 +1,14 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-21
+## Unreleased — 0.4.4.dev0 — 2026-09-22
 
 ### Añadido
 
+- Docs planificación 2026-09-22: snapshot
+  `docs/masterplan/REVIEW-2026-09-22-planificacion.md`; Issues = 0;
+  `#655`/`#657`/`#658`/`#659` (IDE-0042…0045) en `main`; residual
+  IDE-0046 → **sin IDE nuevas** (cola implementable abierta). Histórico
+  2026-09-21 plegado desde PR `#656`.
 - Mano de obra en presupuesto PDF (IDE-0045): tarifa EUR/h y minutos
   por pieza colocada en Preferencias (default 0 = omitir). Total =
   material (catálogo EUR/m²) + labor. JSON de métricas no. Sin bump
@@ -115,7 +120,7 @@
 ### Cambiado
 
 - Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con
-  `0.4.4.dev0` y snapshot 2026-09-21.
+  `0.4.4.dev0` y snapshot 2026-09-22.
 
 ## 0.4.3 — 2026-09-14
 

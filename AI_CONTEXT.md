@@ -8,7 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-09-21
+## Estado actual — 2026-09-22
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
@@ -25,7 +25,7 @@ alternativas comprensibles para que el usuario decida.
   de retal (IDE-0033).
 - Catálogo de materiales / espesores / precio €/m² / medidas L×A
   (IDE-0028/0029/0031; `~/.boardcomposer/material_catalog.json`;
-  **Ctrl+Alt+T**). Export/import JSON (IDE-0042); sin nube.
+  **Ctrl+Alt+T**). Export/import JSON (IDE-0042 `#655`); sin nube.
   Coste = tableros físicos × precio; no puntúa el solver.
 - PDF de plano: papel / márgenes / escala (IDE-0034); default ajustar al
   dibujo. Lista de corte y presupuesto siguen A4.
@@ -38,18 +38,18 @@ alternativas comprensibles para que el usuario decida.
 - Exportar: calidad raster PNG/JPEG (IDE-0038; `#649`); DPI 36–300 (default 96)
   y calidad JPEG 1–100 (default 90).
 - Exportar: trazabilidad en plano (IDE-0039; `#651`) y en lista de corte
-  / presupuesto PDF (IDE-0043); pie versión / algoritmo / fecha.
+  / presupuesto PDF (IDE-0043 `#657`); pie versión / algoritmo / fecha.
   CSV de corte no. Casilla Preferencias. Default: sí.
 - Inspector: unidades de Preferencias mm/cm/in (IDE-0040 `#653`) en pieza,
   tablero y métricas de layout; disco / JSON siguen mm.
-- Exportar / Workspace: etiquetas de plano usan `prefs.units` (IDE-0044);
+- Exportar / Workspace: etiquetas de plano usan `prefs.units` (IDE-0044 `#658`);
   geometría y `$INSUNITS` siguen mm.
-- Presupuesto PDF: mano de obra opcional (IDE-0045) EUR/h × min/pieza
+- Presupuesto PDF: mano de obra opcional (IDE-0045 `#659`) EUR/h × min/pieza
   en Preferencias; 0 omite; material sigue catálogo EUR/m².
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-09-21-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-09-22-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Próximo: cola `0.4.4` cuarta ola IDE-0046; piloto DT-0006 D; Issues = 0;
