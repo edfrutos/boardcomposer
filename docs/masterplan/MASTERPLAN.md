@@ -50,7 +50,8 @@
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
 - Retales a inventario del mismo proyecto (**Ctrl+Alt+R**, IDE-0025).
 - Catálogo de materiales / espesores / L×A de usuario (**Ctrl+Alt+T**,
-  IDE-0028/0031); export/import JSON (IDE-0042).
+  IDE-0028/0031); export/import JSON (IDE-0042). Preferencias de taller
+  también export/import JSON (IDE-0049).
 - Coste estimado de material (precio €/m² del catálogo; IDE-0029).
 - Presupuesto de material PDF (**Ctrl+Alt+Q**, IDE-0032) con mano de
   obra opcional (IDE-0045; EUR/h × min/pieza en Preferencias).
@@ -59,7 +60,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` quinta ola: IDE-0049…0050 (0048 entregada).
+1. Ciclo `0.4.4` quinta ola: IDE-0050 (0049 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

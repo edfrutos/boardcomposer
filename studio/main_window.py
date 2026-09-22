@@ -1466,6 +1466,25 @@ class MainWindow(QMainWindow):
             dataclass_replace(prefs, last_material_catalog_directory=folder)
         )
 
+    def _suggested_preferences_directory(self) -> str:
+        """Prefer last successful prefs pack folder when it exists."""
+        directory = self.services.preferences.current.last_preferences_directory
+        if directory:
+            folder = Path(directory).expanduser()
+            if folder.is_dir():
+                return str(folder)
+        return ""
+
+    def _remember_preferences_directory(self, path: str | Path) -> None:
+        """Persist the folder of a successful prefs pack for the next dialog."""
+        folder = str(Path(path).expanduser().resolve().parent)
+        prefs = self.services.preferences.current
+        if prefs.last_preferences_directory == folder:
+            return
+        self.services.preferences.update(
+            dataclass_replace(prefs, last_preferences_directory=folder)
+        )
+
     def _resolve_import_headers_interactive(
         self,
         *,
@@ -3002,6 +3021,8 @@ class MainWindow(QMainWindow):
             self.services.preferences.current,
             self,
             catalog=self.services.material_catalog,
+            pack_directory=self._suggested_preferences_directory(),
+            on_pack_directory=self._remember_preferences_directory,
         )
         if dialog.exec() != PreferencesDialog.DialogCode.Accepted:
             return

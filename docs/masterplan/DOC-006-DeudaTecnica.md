@@ -145,7 +145,7 @@ sin críticas sin plan. `#653`/`#654` mergeados; cola 0042…0046; Issues = 0.
 
 **Revisión 2026-09-22 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
 sin críticas sin plan. `#655`/`#657`/`#658`/`#659` (0042…0045) en `main`;
-0046 `#661` y 0047 `#662` entregadas; quinta ola 0049…0050; Issues = 0.
+0048 `#663` y 0049 entregadas; quinta ola 0050; Issues = 0.
 
 ---
 
@@ -183,6 +183,6 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
-- Cola producto ciclo `0.4.4` quinta ola IDE-0049…0050 (0048 entregada)
+- Cola producto ciclo `0.4.4` quinta ola IDE-0050 (0049 entregada)
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

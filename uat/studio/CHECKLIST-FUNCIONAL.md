@@ -143,6 +143,8 @@ Precondición para checks de comparador multi-candidata:
 ## 7. Preferencias y ayuda (SCR-006)
 
 - [x] Tema, idioma, unidades, grid, estrategia/pesos, máx. soluciones, defaults export.
+- [ ] Preferencias: export/import JSON de taller (fusionar / reemplazar);
+  rutas locales y ventana no viajan; OK persiste (IDE-0049).
 - [x] Geometría de ventana/docks se recuerda al reiniciar.
 - [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo
   (incl. PgUp/PgDown, Ctrl+Shift+Return/E, Ctrl+Alt+B/E/M/K/X/C/T).
