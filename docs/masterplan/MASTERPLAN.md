@@ -46,6 +46,7 @@
   lista de corte / presupuesto PDF (IDE-0048).
 - Inspector de pieza: espesor, rotación y veta (IDE-0046).
 - Inspector de raíz/categoría: conteos, materiales y área (IDE-0050).
+- Inspector de tablero: aprovechamiento de panel (IDE-0051).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -61,7 +62,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4`: cola implementable vacía (quinta ola 0047…0050 cerrada).
+1. Ciclo `0.4.4` sexta ola: IDE-0052 (0051 entregada; abre 0052…0054).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

@@ -58,8 +58,9 @@ alternativas comprensibles para que el usuario decida.
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
   locales ni ventana; fusionar o reemplazar; sin nube.
-- Inspector raíz/categoría: conteos, materiales y área (IDE-0050).
-- Próximo: cola `0.4.4` vacía (quinta ola 0047…0050 cerrada); piloto
+- Inspector raíz/categoría: conteos, materiales y área (IDE-0050 `#665`).
+- Inspector tablero: aprovechamiento de panel (IDE-0051).
+- Próximo: cola `0.4.4` sexta ola 0052 (abre 0052…0054); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

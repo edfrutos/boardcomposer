@@ -57,6 +57,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
   posición y métricas de layout (no mm hardcodeados); Workspace,
   etiquetas de plano y Comparador (Largo/Ancho + diffs) también.
 - [x] Clic tablero → centra cámara / resalta en Workspace.
+- [ ] Inspector tablero: % aprovechamiento / material libre (IDE-0051).
 - [x] Menú contextual pieza: editar, duplicar, eliminar, copiar ID, renombrar.
 - [x] Menú contextual tablero: editar, duplicar, eliminar, copiar ID, renombrar.
 - [x] Clic / Enter en solución del Explorador → vista previa + tip de estado.

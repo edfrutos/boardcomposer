@@ -174,7 +174,8 @@ Dock **Ctrl+2**. Detalle de la selección y del layout.
   materiales y área de stock. Con las **categorías** del árbol: tipos
   y físicos, retales, colocadas/sin colocar o candidatas. Con
   **tablero** o **pieza**: dimensiones,
-  espesor, cantidad, material; en piezas, veta (libre o fija) y posición
+  espesor, cantidad, material; en tablero, aprovechamiento (instancias,
+  % uso, retales) si hay layout; en piezas, veta (libre o fija) y posición
   o «sin colocar» (con consejo de colocar vía Explorador). Rotación
   `0°`/`90°` si está colocada; `—` si no.
 - Tras **Calcular layout**: métricas de la candidata (piezas, huecos,

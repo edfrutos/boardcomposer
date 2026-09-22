@@ -3,7 +3,7 @@
 **Módulo:** BoardComposer Studio
 
 **Código:** SCR-004  
-**Versión:** 1.3.0  
+**Versión:** 1.4.0  
 **Estado:** Alineado con Studio  
 **Última revisión:** 22/09/2026
 
@@ -77,8 +77,11 @@ Solo lectura. Sin edición inline.
 - Espesor (prefs)
 - Cantidad
 - Material
-
-Sin métricas de aprovechamiento del panel en este contexto.
+- Aprovechamiento (IDE-0051): instancias usadas, piezas, % uso y
+  material libre sobre instancias consumidas; retales del panel si la
+  solución los reporta. Sin layout: mensaje vacío. Sin piezas en el
+  tablero: 0 instancias. Preview de la candidata gana sobre placements
+  aplicados.
 
 ### Pieza
 
@@ -159,6 +162,7 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
   (IDE-0040). Disco / `.bcproj` / JSON siguen en mm.
 - Pieza: espesor, rotación 0°/90° y veta (IDE-0046). Canto sigue en
   Editar…, no en el dock.
+- Tablero: aprovechamiento de panel (IDE-0051). Sin edición inline.
 - Sin contexto «algoritmo» dedicado (parámetros viven en Preferencias).
 
 ---
@@ -166,6 +170,7 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 ## Evolución prevista
 
 - Resumen rico de proyecto/categoría entregado (IDE-0050).
+- Aprovechamiento de tablero entregado (IDE-0051).
 - Edición inline de campos seguros.
 - Unidades en Comparador entregadas (IDE-0047).
 - Gráficos / historial del elemento seleccionado.
