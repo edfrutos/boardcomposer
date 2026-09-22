@@ -1862,6 +1862,17 @@ class MainWindow(QMainWindow):
             return self._tr("inspector.grain_free")
         return self._tr("inspector.grain_locked")
 
+    def _rotation_label(self, placement) -> str:
+        if placement is None:
+            return self._tr("inspector.empty_value")
+        try:
+            angle = int(placement.rotation) % 180
+        except (TypeError, ValueError, AttributeError):
+            angle = 0
+        if bool(getattr(placement, "rotated", False)) and angle == 0:
+            angle = 90
+        return f"{angle}°"
+
     def _panel_info_text(self, project, placement) -> str:
         """Return a human-readable label for a placement's physical panel."""
         if placement is None or placement.board_id is None:
@@ -1913,6 +1924,8 @@ class MainWindow(QMainWindow):
                 f"{self._format_size(piece.length_mm, piece.width_mm)}\n"
                 f"{self._tr('inspector.thickness')}: "
                 f"{self._format_length(piece.thickness_mm)}\n"
+                f"{self._tr('inspector.rotation')}: "
+                f"{self._rotation_label(None)}\n"
                 f"{self._tr('inspector.material')}: {piece.material}\n"
                 f"{self._tr('inspector.grain')}: {self._grain_label(piece.grain)}\n"
                 f"{self._tr('inspector.unplaced')}\n"
@@ -1927,6 +1940,8 @@ class MainWindow(QMainWindow):
             f"{self._format_size(piece.length_mm, piece.width_mm)}\n"
             f"{self._tr('inspector.thickness')}: "
             f"{self._format_length(piece.thickness_mm)}\n"
+            f"{self._tr('inspector.rotation')}: "
+            f"{self._rotation_label(placement)}\n"
             f"{self._tr('inspector.position')}: "
             f"{self._format_length(placement.x_mm)}, "
             f"{self._format_length(placement.y_mm)}\n"

@@ -43,6 +43,8 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 
 - [x] Contadores `Tableros (n)`, `Piezas (n)`, `Soluciones (n)`.
 - [x] Clic en **pieza** → Inspector completo + selección en canvas.
+- [x] Inspector de pieza: espesor (prefs), rotación 0°/90° (— si no
+  colocada) y veta libre/fija; rotar (R) actualiza el ángulo.
 - [ ] Preferencias unidades cm/in: Inspector de pieza/tablero y de layout
   muestra cm o in (área de retales incluida); Workspace y plano
   SVG/PDF/DXF usan las mismas unidades; `.bcproj` / JSON siguen mm.

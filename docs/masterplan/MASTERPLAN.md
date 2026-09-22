@@ -43,6 +43,7 @@
   lista de corte / presupuesto PDF (IDE-0043).
 - Unidades de display en Inspector mm/cm/in (IDE-0040 `#653`; disco sigue mm)
   y en etiquetas de plano / Workspace (IDE-0044).
+- Inspector de pieza: espesor, rotación y veta (IDE-0046).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -57,7 +58,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` cuarta ola: IDE-0046 (0042…0045 en `main`).
+1. Ciclo `0.4.4` cuarta ola **vacía** (0046 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

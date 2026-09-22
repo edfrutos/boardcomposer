@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Inspector de pieza: espesor, rotación y veta (IDE-0046). Espesor en
+  unidades de Preferencias; rotación 0°/90° (— si no colocada); veta
+  libre o fija. Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-09-22: snapshot
   `docs/masterplan/REVIEW-2026-09-22-planificacion.md`; Issues = 0;
   `#655`/`#657`/`#658`/`#659` (IDE-0042…0045) en `main`; residual
