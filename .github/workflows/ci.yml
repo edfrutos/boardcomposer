@@ -71,4 +71,6 @@ jobs:
           PYTHONUNBUFFERED: "1"
         # Process timeout: Qt dialog.exec() holds the GIL so pytest-timeout
         # cannot abort a modal hang (seen on piece-label double-click).
-        run: timeout --kill-after=15s 20m python -u -m pytest -q --timeout=120 --durations=20
+        # Wall clock: ~1370 tests finish near 21 min on a slow runner
+        # (still printing passes at 99%). 25 min stays inside the 30 min job.
+        run: timeout --kill-after=15s 25m python -u -m pytest -q --timeout=120 --durations=20
