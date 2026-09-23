@@ -99,6 +99,8 @@ Precondición para checks de comparador multi-candidata:
 - [x] **Ctrl+Return** calcula layout (progreso + Cancelar funcionan; tip de estado menciona el atajo).
 - [x] Aparecen >=2 soluciones en Comparador + Explorador (si el dataset y preferencias lo permiten).
 - [x] **Re Pág** / **Av Pág** (tips de estado) recorren candidatas (preview + status) cuando hay >=2 visibles; con 1 quedan deshabilitados.
+- [ ] Tras **Calcular layout**, el canvas muestra preview de la mejor
+  candidata sin aplicar `placements` (IDE-0052).
 - [x] **Ctrl+Shift+Return** aplica la solución al proyecto (tip de estado).
 - [x] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**
   (banner Comparador + CTA **Calcular layout**).

@@ -37,7 +37,8 @@ preferencias, atajos (**F1**), acerca de (**Ctrl+Shift+A**).
    proyecto: **Ctrl+Alt+K**.
 3. **Calcular layout** (**Ctrl+Return**) — hace falta ≥1 tablero y ≥1 pieza;
    genera soluciones candidatas (con varios tableros compara MaxRects y
-   Skyline).
+   Skyline). El **Workspace** muestra preview de la mejor candidata
+   sin aplicar; **Ctrl+Shift+Return** la conserva.
 4. Revisar en **Workspace** (paneles, piezas, cámara).
 5. Comparar en **Comparador** (**Ctrl+4**): **Re Pág** / **Av Pág** entre
    candidatas; **Ctrl+Shift+Return** aplica la elegida. Si editas el

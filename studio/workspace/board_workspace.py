@@ -77,6 +77,7 @@ class BoardWorkspace(QGraphicsView):
         self._panel_slots: dict[tuple[int, int], PanelSlot] = {}
         self._validators: dict[tuple[int, int], PlacementValidator] = {}
         self._piece_items: list[BoardPieceItem] = []
+        self._previewing = False
         self._focused_board_id: str | None = None
         # Last board chosen in Explorador/canvas; survives piece selection so
         # "place on focused board" still has a target after clicking a piece.
@@ -208,7 +209,21 @@ class BoardWorkspace(QGraphicsView):
         if project is None:
             return
 
+        self._previewing = True
+        try:
+            self._preview_solution_items(solution, reveal_count=reveal_count)
+        finally:
+            self._previewing = False
+
+    def _preview_solution_items(
+        self, solution, *, reveal_count: int | None = None
+    ) -> None:
+        project = self.services.projects.current_project
+        if project is None:
+            return
+
         all_placements = solution.placements
+        self._ensure_preview_piece_items(all_placements)
         solution_ids = {placement.board_id for placement in all_placements}
         if reveal_count is None:
             revealed_ids = solution_ids
@@ -247,6 +262,62 @@ class BoardWorkspace(QGraphicsView):
                 placement.y_mm + (slot.y_mm if slot is not None else 0),
             )
             item.set_rotation(90 if placement.rotated else 0)
+
+    def _ensure_preview_piece_items(self, placements) -> None:
+        """Add canvas items for solution pieces missing from applied placements."""
+        from studio.models import StudioPlacement
+
+        project = self.services.projects.current_project
+        if project is None:
+            return
+        existing = {item.piece_id for item in self._piece_items}
+        created = False
+        units = self.services.preferences.current.units
+        for placement in placements:
+            piece_id = placement.board_id
+            if piece_id in existing:
+                continue
+            try:
+                piece = project.piece_by_id(piece_id)
+            except KeyError:
+                continue
+            stock_index = None
+            instance = 0
+            studio_board_id = None
+            reference = placement.panel_reference
+            if reference is not None:
+                stock_index = reference.stock_panel_index
+                instance = reference.instance_index
+                if 0 <= stock_index < len(project.boards):
+                    studio_board_id = project.boards[stock_index].board_id
+            studio_placement = StudioPlacement(
+                piece_id,
+                placement.x_mm,
+                placement.y_mm,
+                placement.rotated,
+                90 if placement.rotated else 0,
+                studio_board_id,
+                instance,
+                stock_index,
+            )
+            slot = self._slot_for_placement(studio_placement)
+            item = create_piece_item(
+                piece,
+                studio_placement,
+                offset_x=slot.x_mm if slot is not None else 0,
+                offset_y=slot.y_mm if slot is not None else 0,
+                units=units,
+            )
+            if slot is not None:
+                item.stock_panel_index = slot.stock_panel_index
+                item.board_id = slot.board_id
+                item.board_instance = slot.instance_index
+            self._scene.addItem(item)
+            self._piece_items.append(item)
+            existing.add(piece_id)
+            created = True
+        if created:
+            self.selection.bind_items(self._piece_items)
 
     def constrain_piece_position(
         self, item: BoardPieceItem, new_pos: QPointF
@@ -1060,6 +1131,8 @@ class BoardWorkspace(QGraphicsView):
 
     def piece_moved(self, piece_id: str, x: float, y: float) -> None:
         """Piece moved event."""
+        if self._previewing:
+            return
         project = self.services.projects.current_project
         if project is None:
             return

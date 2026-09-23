@@ -87,6 +87,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 ## 4. Solver y soluciones
 
 - [x] Calcular layout con proyecto válido produce ≥1 solución (o mensaje claro).
+- [ ] Tras Calcular, el canvas muestra la mejor candidata (preview, no apply).
 - [x] Demo (Ctrl+Shift+D) deja proyecto usable con soluciones.
 - [x] Comparador: ≥2 candidatas si el caso las genera; miniaturas legibles.
 - [x] Navegar candidatas (Re Pág / Av Pág o UI) cambia vista.

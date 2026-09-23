@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Preview del Workspace al terminar Calcular layout (IDE-0052). Muestra
+  la mejor candidata en el canvas sin aplicar; no escribe
+  `placements`. Piezas sin colocar aparecen en preview. Sin bump
+  `.bcproj`; no cambia el solver.
 - Inspector de tablero: aprovechamiento (IDE-0051). Instancias usadas,
   piezas, % uso / material libre y retales del panel (solución
   seleccionada o placements aplicados). Abre sexta ola 0052…0054.
