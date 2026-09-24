@@ -107,7 +107,9 @@ proyecto en memoria).
 | Nombre | Sí | Default i18n `project.untitled`; trim |
 | Unidades | Sí | `mm` / prefs; puede actualizar Preferencias |
 
-No se pide material por defecto a nivel de proyecto.
+No se pide material por defecto a nivel de proyecto. El material de
+tableros y piezas nuevos sale de Preferencias (IDE-0053); no se escribe
+en el `.bcproj`.
 
 ---
 
@@ -152,7 +154,9 @@ FLW-006. Persistencia opcional posterior en `.bcproj` (versión 2, ADR-015).
 
 ## Límites conocidos
 
-- Sin wizard multi-paso ni material por defecto de proyecto.
+- Sin wizard multi-paso. El material por defecto de tableros y piezas
+  nuevos vive en Preferencias (IDE-0053), no en este diálogo ni en el
+  `.bcproj`.
 - Plantilla no incluye placements al instanciar.
 - Demo con datos fijos en código (`_load_demo_project`).
 - «Nuevo» no pide ruta de archivo; el `.bcproj` aparece al guardar.

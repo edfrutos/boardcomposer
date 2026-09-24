@@ -6,9 +6,14 @@
 
 - Docs planificación 2026-09-24: snapshot
   `docs/masterplan/REVIEW-2026-09-24-planificacion.md`; Issues = 0;
-  producto estable desde `#667` (IDE-0052); CI `#669` mergeado; residual
-  IDE-0053…0054 → **sin IDE nuevas** (cola implementable abierta).
-  Histórico 2026-09-23 plegado desde PR `#668`.
+  `#671` (IDE-0053) en `main`; CI `#669` mergeado; residual IDE-0054 →
+  **sin IDE nuevas** (cola implementable abierta). Histórico 2026-09-23
+  plegado desde PR `#668`.
+- Material por defecto de taller (IDE-0053). Preferencias → Avanzado:
+  combo editable del catálogo. Tableros y piezas nuevos lo heredan.
+  Semilla «Melamina blanca». No se guarda en el `.bcproj`; Nuevo
+  proyecto sigue siendo nombre + unidades. Editar conserva el material
+  del ítem. Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-09-23: snapshot
   `docs/masterplan/REVIEW-2026-09-23-planificacion.md`; Issues = 0;
   `#661`…`#667` (IDE-0046…0052) en `main`; residual IDE-0053…0054 →

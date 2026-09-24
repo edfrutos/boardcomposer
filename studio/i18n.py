@@ -1366,6 +1366,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_kerf_unchanged": "Espesor de sierra sin cambios",
         "status.nothing_to_edit_kerf": "No hay proyecto para editar el espesor de sierra",
         "prefs.default_kerf": "Kerf de proyectos nuevos:",
+        "prefs.default_material": "Material de tableros y piezas nuevos:",
+        "tip.prefs_default_material": (
+            "Material inicial al añadir un tablero o una pieza. "
+            "No se guarda en el .bcproj."
+        ),
         "inspector.kerf": "Espesor de sierra",
         "form.project_client": "Cliente:",
         "form.project_reference": "Referencia:",
@@ -2945,6 +2950,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_kerf_unchanged": "Saw kerf unchanged",
         "status.nothing_to_edit_kerf": "No project to edit saw kerf",
         "prefs.default_kerf": "Kerf for new projects:",
+        "prefs.default_material": "Material for new boards and pieces:",
+        "tip.prefs_default_material": (
+            "Starting material when adding a board or a piece. "
+            "Not stored in the .bcproj."
+        ),
         "inspector.kerf": "Saw kerf",
         "form.project_client": "Client:",
         "form.project_reference": "Reference:",

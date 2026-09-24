@@ -1,15 +1,13 @@
 # Revisión de planificación — 2026-09-24
 
-**Origen:** cron diario; reconciliar snapshot `REVIEW-2026-09-23` (PR `#668`
-aún abierto; se pliega como histórico) con producto en `main`:
-`#661`…`#667` (IDE-0046…0052). CI `#669` (pytest wall clock) mergeado;
-sin PRs de producto nuevos.
+**Origen:** cron diario; reconciliar snapshot `REVIEW-2026-09-23` (PR `#668`,
+histórico) con producto en `main`: `#661`…`#667` (IDE-0046…0052) y
+`#671` (IDE-0053). CI `#669` (pytest wall clock) mergeado.
 **Fuentes:** `ROADMAP.md`, `MASTERPLAN.md`, `DOC-003`, `DOC-004`, `DOC-006`,
 spikes IDE-0007 / DT-0006, `CHANGELOG` Unreleased, UAT release smoke,
 revisión `REVIEW-2026-09-23`.
 **Issues GitHub:** `gh issue list --state open` → **vacío**.
-**PRs de producto al corte:** `#661`…`#667` **mergeados**; sin PRs de
-producto abiertos. Planning `#668` abierto (docs 2026-09-23).
+**PRs de producto al corte:** `#661`…`#667` y `#671` **mergeados**.
 **Planning previo (plegado):** `#668` (2026-09-23) — histórico.
 
 ---
@@ -58,7 +56,7 @@ producto abiertos. Planning `#668` abierto (docs 2026-09-23).
 | IDE-0050 Inspector resumen rico proyecto/categoría | 🟢 (#665) |
 | IDE-0051 Inspector aprovechamiento de tablero | 🟢 (#666) |
 | IDE-0052 preview canvas al terminar el solve | 🟢 (#667) |
-| IDE-0053 material por defecto de proyecto | ⚪ |
+| IDE-0053 material por defecto de taller | 🟢 (#671) |
 | IDE-0054 perfiles nombrados de preferencias | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
@@ -92,11 +90,11 @@ Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
-IDE-0037…0052 **entregadas** (`#647`…`#667`); sexta ola residual
-0053…0054 abierta.
+IDE-0037…0053 **entregadas** (`#647`…`#667`, `#671`); sexta ola residual
+0054 abierta.
 
-Desde la revisión 2026-09-23 no hubo merges de producto; solo CI `#669`.
-Planning `#668` queda histórico en este PR.
+Desde la revisión 2026-09-23, en `main` entró `#671` (IDE-0053).
+Planning `#668` queda histórico.
 
 Límites conocidos (no son bugs; son alcance):
 
@@ -127,6 +125,7 @@ Límites conocidos (no son bugs; son alcance):
   Prefs: export/import JSON de taller (IDE-0049 `#664`); sin rutas
   locales ni ventana. Inspector de raíz/categoría: conteos, materiales
   y área (IDE-0050 `#665`). Tablero: aprovechamiento (IDE-0051 `#666`).
+  Material por defecto de taller (IDE-0053 `#671`); no va en el `.bcproj`.
 
 Deuda abierta explícita: **1** ítem (`DT-0006` en piloto D). Sin críticas sin
 plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
@@ -135,8 +134,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` sexta ola** — IDE-0053 (0052 `#667` entregada; quedan
-   0053…0054).
+1. **Cola `0.4.4` sexta ola** — IDE-0054 (0053 `#671` entregada; queda 0054).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -148,12 +146,12 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0053…0054. Residual bloqueado: piloto DT-0006 D (operativo) +
+0054. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
 desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
-(cola implementable abierta: IDE-0053, IDE-0054).
+(cola implementable abierta: IDE-0054).
 
 | ID | Título | Estado |
 |----|--------|--------|
@@ -164,20 +162,20 @@ desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
 | IDE-0050 | Inspector: resumen rico de proyecto/categoría | Entregado (#665) |
 | IDE-0051 | Inspector: aprovechamiento de tablero | Entregado (#666) |
 | IDE-0052 | Preview canvas al terminar el solve | Entregado (#667) |
-| IDE-0053 | Material por defecto de proyecto | Idea |
+| IDE-0053 | Material por defecto de taller | Entregado (#671) |
 | IDE-0054 | Perfiles nombrados de preferencias | Idea |
 
-Prioridad de ataque: **IDE-0053** (material por defecto de proyecto).
+Prioridad de ataque: **IDE-0054** (perfiles nombrados de preferencias).
 
-Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0052.
+Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0053.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
 
 ## 6. Criterio de esta revisión
 
-- Producto estable desde `#667`; CI `#669` no cambia cola.
-- Residual cola 0053…0054 → **sin IDE nuevas**. Fold `#668` histórico.
+- Alinear `#671` 🟢 (IDE-0053); residual cola 0054 → **sin IDE nuevas**.
+  Fold `#668` histórico.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.
