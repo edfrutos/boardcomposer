@@ -30,7 +30,9 @@ preferencias, atajos (**F1**), acerca de (**Ctrl+Shift+A**).
    importar CSV/Excel (**Ctrl+Shift+T** / **Ctrl+Shift+O**). El material es
    un combo del **catálogo** (**Ctrl+Alt+T**; archivo de usuario, no va en
    el `.bcproj`; precio opcional €/m²; medidas L×A típicas de tablero;
-   **Exportar/Importar** JSON para otro PC, sin nube).
+   **Exportar/Importar** JSON para otro PC, sin nube). Tableros y piezas
+   **nuevos** arrancan con el material por defecto de Preferencias
+   (semilla «Melamina blanca»); el CSV no lo usa.
    En cada pieza,
    «Permitir rotación» desmarcado fija la
    **veta** (el cálculo y **R** no giran esa pieza). Espesor de sierra del
@@ -281,11 +283,13 @@ marcadores…).
 - **Exportación:** formato por defecto y opciones (métricas / explicación
   JSON, retales, etiquetas de piezas y de retales, cotas de tablero,
   trazabilidad, DPI y calidad JPEG, mano de obra EUR/h y min/pieza).
-- **Avanzado:** máx. soluciones a conservar; **Catálogo de materiales**
-  (nombres, espesores, medidas L×A, precio €/m²); **Exportar /
-  importar preferencias** (JSON de taller: fusionar o reemplazar; no
-  incluye carpetas locales ni ventana; OK guarda); **Abrir carpeta de
-  configuración…** (`preferences.json`); **Restaurar valores**.
+- **Avanzado:** máx. soluciones a conservar; **material por defecto**
+  de tableros y piezas nuevos (combo del catálogo; no va en el
+  `.bcproj`); **Catálogo de materiales** (nombres, espesores, medidas
+  L×A, precio €/m²); **Exportar / importar preferencias** (JSON de
+  taller: fusionar o reemplazar; no incluye carpetas locales ni
+  ventana; OK guarda); **Abrir carpeta de configuración…**
+  (`preferences.json`); **Restaurar valores**.
 
 ## Plantillas de proyecto
 

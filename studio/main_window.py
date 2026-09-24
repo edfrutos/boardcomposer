@@ -1538,6 +1538,7 @@ class MainWindow(QMainWindow):
 
         dialog = NewBoardDialog(
             self,
+            material=self._default_material(),
             units=self._display_units(),
             language=self._ui_language(),
             catalog=self.services.material_catalog.catalog,
@@ -2060,6 +2061,7 @@ class MainWindow(QMainWindow):
 
         dialog = NewPieceDialog(
             self,
+            material=self._default_material(),
             units=self._display_units(),
             language=self._ui_language(),
             catalog=self.services.material_catalog.catalog,
@@ -3325,6 +3327,14 @@ class MainWindow(QMainWindow):
             width_mm,
             self._display_units(),
             thickness_mm=thickness_mm,
+        )
+
+    def _default_material(self) -> str:
+        """Shop default for new boards and pieces (IDE-0053)."""
+        from studio.preferences import normalize_default_material
+
+        return normalize_default_material(
+            self.services.preferences.current.default_material
         )
 
     def _format_length(self, value_mm: float) -> str:

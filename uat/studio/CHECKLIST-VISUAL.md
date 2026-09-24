@@ -139,6 +139,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Pantalla de inicio Ctrl+Shift+H: tip si ya estás en Welcome.
 - [x] Preferencias (Ctrl+,): unidades, idioma, tema aplican al cerrar.
 - [ ] Preferencias Avanzado: Exportar / Importar JSON de taller (IDE-0049).
+- [ ] Preferencias Avanzado: combo de material por defecto (IDE-0053).
 
 ---
 

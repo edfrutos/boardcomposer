@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Material por defecto de taller (IDE-0053). Preferencias → Avanzado:
+  combo editable del catálogo. Tableros y piezas nuevos lo heredan.
+  Semilla «Melamina blanca». No se guarda en el `.bcproj`; Nuevo
+  proyecto sigue siendo nombre + unidades. Editar conserva el material
+  del ítem. Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-09-23: snapshot
   `docs/masterplan/REVIEW-2026-09-23-planificacion.md`; Issues = 0;
   `#661`…`#667` (IDE-0046…0052) en `main`; residual IDE-0053…0054 →

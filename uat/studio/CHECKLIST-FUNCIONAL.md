@@ -151,6 +151,8 @@ Precondición para checks de comparador multi-candidata:
 - [x] Tema, idioma, unidades, grid, estrategia/pesos, máx. soluciones, defaults export.
 - [ ] Preferencias: export/import JSON de taller (fusionar / reemplazar);
   rutas locales y ventana no viajan; OK persiste (IDE-0049).
+- [ ] Preferencias Avanzado: material por defecto; tablero y pieza nuevos
+  lo heredan; editar conserva el del ítem (IDE-0053).
 - [x] Geometría de ventana/docks se recuerda al reiniciar.
 - [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo
   (incl. PgUp/PgDown, Ctrl+Shift+Return/E, Ctrl+Alt+B/E/M/K/X/C/T).
