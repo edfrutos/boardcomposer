@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.48
+**Versión:** 1.3.49
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 22/09/2026
+**Última revisión:** 23/09/2026
 
 ---
 
@@ -168,7 +168,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0049 | S | IDE-0042; SCR-006 | Entregado; JSON taller; merge/replace; sin nube |
 | IDE-0050 | S | SCR-004 raíz/categoría | Entregado; conteos + área; no inline edit |
 | IDE-0051 | S | SCR-004 tablero | Entregado; uso/libre/retales; no inline edit |
-| IDE-0052 | S | FLW-003 preview | Entregado; preview sin aplicar; sin write |
+| IDE-0052 | S | FLW-003 preview | Entregado (#667); preview sin aplicar; sin write |
 | IDE-0053 | S | FLW-001 material | Default de catálogo/prefs; sin nube |
 | IDE-0054 | S | SCR-006; IDE-0049 | Perfiles nombrados locales; sin sync |
 
@@ -200,13 +200,15 @@ Detalle: `docs/masterplan/epics/`.
 
 **Estado actual:** 🟢 Actualizado — IDE-0001…0052 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0052; `#647`/`#649`/`#651`/
-`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/`#665`/`#666`).
+`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
+`#665`/`#666`/`#667`).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
-entregadas. Snapshot: `REVIEW-2026-09-22-planificacion.md`.
+entregadas. Snapshot: `REVIEW-2026-09-23-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` sexta ola: IDE-0053 (0052 entregada; quedan 0053…0054).
+1. Cola producto `0.4.4` sexta ola: IDE-0053 (0052 `#667` entregada;
+   quedan 0053…0054).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

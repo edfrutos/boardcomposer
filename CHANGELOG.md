@@ -1,9 +1,14 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-22
+## Unreleased — 0.4.4.dev0 — 2026-09-23
 
 ### Añadido
 
+- Docs planificación 2026-09-23: snapshot
+  `docs/masterplan/REVIEW-2026-09-23-planificacion.md`; Issues = 0;
+  `#661`…`#667` (IDE-0046…0052) en `main`; residual IDE-0053…0054 →
+  **sin IDE nuevas** (cola implementable abierta). Histórico 2026-09-22
+  plegado desde PR `#660`.
 - Preview del Workspace al terminar Calcular layout (IDE-0052). Muestra
   la mejor candidata en el canvas sin aplicar; no escribe
   `placements`. Piezas sin colocar aparecen en preview. Sin bump
