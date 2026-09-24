@@ -61,7 +61,9 @@ alternativas comprensibles para que el usuario decida.
 - Inspector raíz/categoría: conteos, materiales y área (IDE-0050 `#665`).
 - Inspector tablero: aprovechamiento de panel (IDE-0051 `#666`).
 - Preview canvas al terminar Calcular layout, sin aplicar (IDE-0052 `#667`).
-- Próximo: cola `0.4.4` sexta ola 0053 (quedan 0053…0054); piloto
+- Material por defecto de taller (IDE-0053): tableros y piezas nuevos;
+  no va en el `.bcproj`.
+- Próximo: cola `0.4.4` sexta ola 0054 (queda 0054); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

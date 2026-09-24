@@ -38,6 +38,17 @@ from studio.units import DEFAULT_UNITS, VALID_UNITS
 
 PREFS_PACK_KIND = "boardcomposer.preferences"
 PREFS_PACK_VERSION = 1
+DEFAULT_MATERIAL = "Melamina blanca"
+
+
+def normalize_default_material(value: object) -> str:
+    """Shop default for new boards and pieces. Blank falls back to catalog seed."""
+    if isinstance(value, str):
+        cleaned = value.strip()
+        if cleaned:
+            return cleaned
+    return DEFAULT_MATERIAL
+
 
 _LOCAL_PREF_KEYS = frozenset(
     {
@@ -130,6 +141,7 @@ class StudioPreferences:
     last_preferences_directory: str | None = None
     max_solutions: int = DEFAULT_MAX_SOLUTIONS
     default_kerf_mm: float = DEFAULT_KERF_MM
+    default_material: str = DEFAULT_MATERIAL
     quote_labor_eur_per_hour: float = DEFAULT_LABOR_EUR_PER_HOUR
     quote_labor_minutes_per_piece: float = DEFAULT_LABOR_MINUTES_PER_PIECE
     window_geometry: str | None = None
@@ -366,6 +378,9 @@ def preferences_from_payload(payload: dict) -> StudioPreferences:
         ),
         max_solutions=max_solutions,
         default_kerf_mm=normalize_kerf(payload.get("default_kerf_mm", DEFAULT_KERF_MM)),
+        default_material=normalize_default_material(
+            payload.get("default_material", DEFAULT_MATERIAL)
+        ),
         quote_labor_eur_per_hour=normalize_labor_rate(
             payload.get("quote_labor_eur_per_hour", DEFAULT_LABOR_EUR_PER_HOUR)
         ),
@@ -446,6 +461,7 @@ def preferences_payload(preferences: StudioPreferences) -> dict:
         "last_preferences_directory": preferences.last_preferences_directory,
         "max_solutions": preferences.max_solutions,
         "default_kerf_mm": preferences.default_kerf_mm,
+        "default_material": preferences.default_material,
         "quote_labor_eur_per_hour": preferences.quote_labor_eur_per_hour,
         "quote_labor_minutes_per_piece": (preferences.quote_labor_minutes_per_piece),
         "window_geometry": preferences.window_geometry,

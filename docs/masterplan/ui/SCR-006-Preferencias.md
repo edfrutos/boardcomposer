@@ -109,6 +109,7 @@ Restaurar valores por defecto.
 | Campo | Notas |
 | --- | --- |
 | Máx. soluciones | 1–100 (default 20); trunca ranking tras calcular |
+| Material por defecto | Combo editable del catálogo (IDE-0053); tableros y piezas nuevos; semilla «Melamina blanca»; no va en el `.bcproj` |
 | Catálogo de materiales | Editor (**Ctrl+Alt+T**); nombres, espesores, L×A y €/m² (0 = sin coste); export/import JSON (IDE-0042) |
 | Exportar / importar preferencias | JSON de taller (IDE-0049); fusionar o reemplazar; sin rutas locales ni ventana; OK guarda |
 | Abrir carpeta de datos | Revela `~/.boardcomposer/` |
@@ -165,8 +166,8 @@ width, caché, hilos, logs de depuración, búsqueda de preferencias.
 ## Límites conocidos (Studio actual)
 
 - Sin pestañas ni búsqueda de preferencias.
-- Export/import JSON de taller (IDE-0049); sin perfiles nombrados ni
-  sync en la nube.
+- Material por defecto de taller (IDE-0053); sin perfiles nombrados ni
+  sync en la nube. Export/import JSON (IDE-0049) sí incluye esa clave.
 - Tema **sistema**: el diálogo Preferencias sigue el chrome de la plataforma
   (sin root LIGHT scoped; Industrial completo solo en claro/oscuro). Ver
   `docs/DESIGN.md`.

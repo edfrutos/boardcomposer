@@ -56,7 +56,7 @@ revisión `REVIEW-2026-09-21`.
 | IDE-0050 Inspector resumen rico proyecto/categoría | 🟢 (#665) |
 | IDE-0051 Inspector aprovechamiento de tablero | 🟢 (#666) |
 | IDE-0052 preview canvas al terminar el solve | 🟢 |
-| IDE-0053 material por defecto de proyecto | ⚪ |
+| IDE-0053 material por defecto de taller | 🟢 |
 | IDE-0054 perfiles nombrados de preferencias | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
@@ -132,7 +132,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` sexta ola** — IDE-0053 (0052 entregada; quedan 0053…0054).
+1. **Cola `0.4.4` sexta ola** — IDE-0054 (0053 entregada; queda 0054).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -144,7 +144,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0053…0054. Residual bloqueado: piloto DT-0006 D (operativo) +
+0054. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
@@ -165,10 +165,10 @@ SCR-006 perfiles).
 | IDE-0050 | Inspector: resumen rico de proyecto/categoría | Entregado (#665) |
 | IDE-0051 | Inspector: aprovechamiento de tablero | Entregado (#666) |
 | IDE-0052 | Preview canvas al terminar el solve | Entregado |
-| IDE-0053 | Material por defecto de proyecto | Idea |
+| IDE-0053 | Material por defecto de taller | Entregado |
 | IDE-0054 | Perfiles nombrados de preferencias | Idea |
 
-Prioridad de ataque: **IDE-0053** (material por defecto de proyecto).
+Prioridad de ataque: **IDE-0054** (perfiles nombrados de preferencias).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0051;
 IDE-0052 en esta rama.

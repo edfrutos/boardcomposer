@@ -60,8 +60,10 @@ from studio.export_options import (
 )
 from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES, tr
 from studio.material_catalog import MaterialCatalogManager
+from studio.material_fields import fill_material_combo
 from studio.preferences import (
     DEFAULT_GRID_SIZE_MM,
+    DEFAULT_MATERIAL,
     DEFAULT_MAX_SOLUTIONS,
     MAX_GRID_SIZE_MM,
     MAX_MAX_SOLUTIONS,
@@ -308,6 +310,15 @@ class PreferencesDialog(QDialog):
         self.default_kerf_mm.setValue(preferences.default_kerf_mm)
         self._default_kerf_label = QLabel()
         advanced_form.addRow(self._default_kerf_label, self.default_kerf_mm)
+        self.default_material = QComboBox()
+        catalog_model = catalog.catalog if catalog is not None else None
+        fill_material_combo(
+            self.default_material,
+            catalog_model,
+            preferences.default_material,
+        )
+        self._default_material_label = QLabel()
+        advanced_form.addRow(self._default_material_label, self.default_material)
         self.edit_catalog = polish_secondary_button(QPushButton())
         self.edit_catalog.clicked.connect(self._open_material_catalog)
         if catalog is None:
@@ -433,6 +444,9 @@ class PreferencesDialog(QDialog):
         self._default_kerf_label.setText(tr("prefs.default_kerf", language))
         self.default_kerf_mm.setToolTip(tr("tip.prefs_default_kerf", language))
         self.default_kerf_mm.setStatusTip(tr("tip.prefs_default_kerf", language))
+        self._default_material_label.setText(tr("prefs.default_material", language))
+        self.default_material.setToolTip(tr("tip.prefs_default_material", language))
+        self.default_material.setStatusTip(tr("tip.prefs_default_material", language))
 
         for index, key in enumerate(VALID_LANGUAGES):
             self.language.setItemText(index, tr(f"language.{key}", language))
@@ -520,6 +534,7 @@ class PreferencesDialog(QDialog):
         self.quote_labor_minutes_per_piece.setValue(DEFAULT_LABOR_MINUTES_PER_PIECE)
         self.max_solutions.setValue(DEFAULT_MAX_SOLUTIONS)
         self.default_kerf_mm.setValue(DEFAULT_KERF_MM)
+        self.default_material.setEditText(DEFAULT_MATERIAL)
         self._on_strategy_changed(self.strategy.currentIndex())
         self._retranslate()
 
@@ -685,6 +700,7 @@ class PreferencesDialog(QDialog):
         )
         self.max_solutions.setValue(preferences.max_solutions)
         self.default_kerf_mm.setValue(preferences.default_kerf_mm)
+        self.default_material.setEditText(preferences.default_material)
         self._on_custom_weights_toggled(preferences.use_custom_weights)
         self._retranslate()
 
@@ -730,4 +746,6 @@ class PreferencesDialog(QDialog):
             quote_labor_minutes_per_piece=self.quote_labor_minutes_per_piece.value(),
             max_solutions=self.max_solutions.value(),
             default_kerf_mm=self.default_kerf_mm.value(),
+            default_material=self.default_material.currentText().strip()
+            or DEFAULT_MATERIAL,
         )
