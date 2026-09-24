@@ -1,9 +1,14 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-23
+## Unreleased — 0.4.4.dev0 — 2026-09-24
 
 ### Añadido
 
+- Docs planificación 2026-09-24: snapshot
+  `docs/masterplan/REVIEW-2026-09-24-planificacion.md`; Issues = 0;
+  `#671` (IDE-0053) en `main`; CI `#669` mergeado; residual IDE-0054 →
+  **sin IDE nuevas** (cola implementable abierta). Histórico 2026-09-23
+  plegado desde PR `#668`.
 - Material por defecto de taller (IDE-0053). Preferencias → Avanzado:
   combo editable del catálogo. Tableros y piezas nuevos lo heredan.
   Semilla «Melamina blanca». No se guarda en el `.bcproj`; Nuevo

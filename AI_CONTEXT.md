@@ -8,7 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-09-23
+## Estado actual — 2026-09-24
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-09-23-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-09-24-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -61,7 +61,7 @@ alternativas comprensibles para que el usuario decida.
 - Inspector raíz/categoría: conteos, materiales y área (IDE-0050 `#665`).
 - Inspector tablero: aprovechamiento de panel (IDE-0051 `#666`).
 - Preview canvas al terminar Calcular layout, sin aplicar (IDE-0052 `#667`).
-- Material por defecto de taller (IDE-0053): tableros y piezas nuevos;
+- Material por defecto de taller (IDE-0053 `#671`): tableros y piezas nuevos;
   no va en el `.bcproj`.
 - Próximo: cola `0.4.4` sexta ola 0054 (queda 0054); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C

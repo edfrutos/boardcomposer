@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-23.
+Última revisión: 2026-09-24.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-23-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-24-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -50,7 +50,7 @@
 - Preview del Workspace al terminar Calcular layout, sin aplicar
   (IDE-0052 `#667`).
 - Material por defecto de taller para tableros y piezas nuevos
-  (IDE-0053). Preferencias; no va en el `.bcproj`.
+  (IDE-0053 `#671`). Preferencias; no va en el `.bcproj`.
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).

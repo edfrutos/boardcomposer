@@ -67,10 +67,10 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 ## Próximo foco (operativo)
 
-Revisión: `docs/masterplan/REVIEW-2026-09-23-planificacion.md`.
+Revisión: `docs/masterplan/REVIEW-2026-09-24-planificacion.md`.
 
 1. Release **`0.4.3`** / `v0.4.3` publicado (2026-09-16).
-2. Ciclo **`0.4.4.dev0`** — sexta ola IDE-0054 (0053 entregada; 0052 `#667`;
+2. Ciclo **`0.4.4.dev0`** — sexta ola IDE-0054 (0053 `#671`; 0052 `#667`;
    0051 `#666`; 0050 `#665`; 0049 `#664`; 0048 `#663`; 0047 `#662`; cuarta ola
    0043…0046 `#657`…`#661`; 0042 `#655`; tercera ola 0037…0041;
    segunda ola 0031…0036; ola 1 0025…0030). Queda 0054.
