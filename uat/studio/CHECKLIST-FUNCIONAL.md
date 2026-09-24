@@ -153,6 +153,8 @@ Precondición para checks de comparador multi-candidata:
   rutas locales y ventana no viajan; OK persiste (IDE-0049).
 - [ ] Preferencias Avanzado: material por defecto; tablero y pieza nuevos
   lo heredan; editar conserva el del ítem (IDE-0053).
+- [ ] Preferencias Avanzado: guardar / aplicar / eliminar perfil de taller
+  (IDE-0054). OK persiste. Sin nube.
 - [x] Geometría de ventana/docks se recuerda al reiniciar.
 - [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo
   (incl. PgUp/PgDown, Ctrl+Shift+Return/E, Ctrl+Alt+B/E/M/K/X/C/T).

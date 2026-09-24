@@ -63,7 +63,8 @@ alternativas comprensibles para que el usuario decida.
 - Preview canvas al terminar Calcular layout, sin aplicar (IDE-0052 `#667`).
 - Material por defecto de taller (IDE-0053 `#671`): tableros y piezas nuevos;
   no va en el `.bcproj`.
-- Próximo: cola `0.4.4` sexta ola 0054 (queda 0054); piloto
+- Perfiles nombrados de preferencias, locales (IDE-0054).
+- Próximo: cola `0.4.4` vacía (sexta ola cerrada); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

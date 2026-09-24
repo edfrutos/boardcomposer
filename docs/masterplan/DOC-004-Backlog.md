@@ -123,7 +123,7 @@ Observaciones:
 | IDE-0051 | Inspector: aprovechamiento de tablero | 🟢 | P3 |
 | IDE-0052 | Preview canvas al terminar el solve | 🟢 | P3 |
 | IDE-0053 | Material por defecto de taller | 🟢 | P3 |
-| IDE-0054 | Perfiles nombrados de preferencias | ⚪ | P3 |
+| IDE-0054 | Perfiles nombrados de preferencias | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -170,7 +170,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0051 | S | SCR-004 tablero | Entregado; uso/libre/retales; no inline edit |
 | IDE-0052 | S | FLW-003 preview | Entregado (#667); preview sin aplicar; sin write |
 | IDE-0053 | S | FLW-001 material | Entregado (#671); prefs catálogo; no va en `.bcproj` |
-| IDE-0054 | S | SCR-006; IDE-0049 | Perfiles nombrados locales; sin sync |
+| IDE-0054 | S | SCR-006; IDE-0049 | Entregado; perfiles locales; sin sync |
 
 ---
 
@@ -198,7 +198,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0053 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0054 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0053; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`).
@@ -207,8 +207,8 @@ entregadas. Snapshot: `REVIEW-2026-09-24-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` sexta ola: IDE-0054 (0053 `#671` entregada;
-   queda 0054).
+1. Cola producto `0.4.4` sexta ola cerrada (0054 entregada). Sin IDE
+   nuevas: cola implementable vacía.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

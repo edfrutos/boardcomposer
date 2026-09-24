@@ -72,6 +72,23 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.share_mode_merge": "fusión",
         "prefs.share_mode_replace": "reemplazo",
         "prefs.share_error": "No se pudo completar la operación:\n{error}",
+        "prefs.profile_label": "Perfil de taller:",
+        "prefs.profile_none": "(sin perfil)",
+        "prefs.profile_save": "Guardar perfil…",
+        "prefs.profile_apply": "Aplicar perfil",
+        "prefs.profile_delete": "Eliminar perfil",
+        "prefs.profile_save_title": "Guardar perfil",
+        "prefs.profile_save_prompt": "Nombre del perfil:",
+        "prefs.profile_empty_name": "El nombre del perfil no puede estar vacío.",
+        "prefs.profile_delete_title": "Eliminar perfil",
+        "prefs.profile_delete_confirm": "¿Eliminar el perfil «{name}»?",
+        "prefs.profile_applied": (
+            "Perfil «{name}» aplicado. Confirma OK para guardar."
+        ),
+        "tip.prefs_profile": (
+            "Perfiles locales de preferencias de taller; no viajan en el JSON "
+            "de otro PC ni en el .bcproj"
+        ),
         "tip.open_config_folder": (
             "Abrir la carpeta de preferences.json en el explorador de archivos; "
             "la crea si no existe"
@@ -1705,6 +1722,21 @@ _STRINGS: dict[str, dict[str, str]] = {
         "prefs.share_mode_merge": "merge",
         "prefs.share_mode_replace": "replace",
         "prefs.share_error": "Could not complete the operation:\n{error}",
+        "prefs.profile_label": "Shop profile:",
+        "prefs.profile_none": "(no profile)",
+        "prefs.profile_save": "Save profile…",
+        "prefs.profile_apply": "Apply profile",
+        "prefs.profile_delete": "Delete profile",
+        "prefs.profile_save_title": "Save profile",
+        "prefs.profile_save_prompt": "Profile name:",
+        "prefs.profile_empty_name": "The profile name cannot be empty.",
+        "prefs.profile_delete_title": "Delete profile",
+        "prefs.profile_delete_confirm": "Delete profile «{name}»?",
+        "prefs.profile_applied": ("Profile «{name}» applied. Confirm OK to save."),
+        "tip.prefs_profile": (
+            "Local shop-preference profiles; they do not travel in the JSON "
+            "for another PC or in the .bcproj"
+        ),
         "tip.open_config_folder": (
             "Open the preferences.json folder in the file manager; "
             "creates it if missing"

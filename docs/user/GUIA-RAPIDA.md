@@ -288,7 +288,9 @@ marcadores…).
   `.bcproj`); **Catálogo de materiales** (nombres, espesores, medidas
   L×A, precio €/m²); **Exportar / importar preferencias** (JSON de
   taller: fusionar o reemplazar; no incluye carpetas locales ni
-  ventana; OK guarda); **Abrir carpeta de configuración…**
+  ventana; OK guarda); **perfiles de taller** (guardar / aplicar /
+  eliminar; locales, no van en el pack); **Abrir carpeta de
+  configuración…**
   (`preferences.json`); **Restaurar valores**.
 
 ## Plantillas de proyecto
