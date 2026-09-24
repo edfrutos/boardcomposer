@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-22.
+Última revisión: 2026-09-24.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-22-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-24-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -47,7 +47,8 @@
 - Inspector de pieza: espesor, rotación y veta (IDE-0046).
 - Inspector de raíz/categoría: conteos, materiales y área (IDE-0050).
 - Inspector de tablero: aprovechamiento de panel (IDE-0051).
-- Preview del Workspace al terminar Calcular layout, sin aplicar (IDE-0052).
+- Preview del Workspace al terminar Calcular layout, sin aplicar
+  (IDE-0052 `#667`).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).

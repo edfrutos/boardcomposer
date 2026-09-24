@@ -21,7 +21,9 @@ En la app: **Ayuda → Documentación** abre la guía rápida.
 | [`masterplan/DOC-000-Manifiesto.md`](masterplan/DOC-000-Manifiesto.md) | Propósito |
 | [`masterplan/DOC-003-Roadmap.md`](masterplan/DOC-003-Roadmap.md) | Fases |
 | [`masterplan/DOC-004-Backlog.md`](masterplan/DOC-004-Backlog.md) | Backlog de producto |
-| [`masterplan/REVIEW-2026-09-22-planificacion.md`](masterplan/REVIEW-2026-09-22-planificacion.md) | Snapshot planificación (cron) |
+| [`masterplan/REVIEW-2026-09-24-planificacion.md`](masterplan/REVIEW-2026-09-24-planificacion.md) | Snapshot planificación (cron) |
+| [`masterplan/REVIEW-2026-09-23-planificacion.md`](masterplan/REVIEW-2026-09-23-planificacion.md) | Snapshot previo (histórico) |
+| [`masterplan/REVIEW-2026-09-22-planificacion.md`](masterplan/REVIEW-2026-09-22-planificacion.md) | Snapshot previo (histórico) |
 | [`masterplan/REVIEW-2026-09-21-planificacion.md`](masterplan/REVIEW-2026-09-21-planificacion.md) | Snapshot previo (histórico) |
 | [`masterplan/REVIEW-2026-09-20-planificacion.md`](masterplan/REVIEW-2026-09-20-planificacion.md) | Snapshot previo (histórico) |
 | [`masterplan/REVIEW-2026-09-19-planificacion.md`](masterplan/REVIEW-2026-09-19-planificacion.md) | Snapshot previo (histórico) |
