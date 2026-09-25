@@ -57,7 +57,7 @@ revisión `REVIEW-2026-09-23`.
 | IDE-0051 Inspector aprovechamiento de tablero | 🟢 (#666) |
 | IDE-0052 preview canvas al terminar el solve | 🟢 (#667) |
 | IDE-0053 material por defecto de taller | 🟢 (#671) |
-| IDE-0054 perfiles nombrados de preferencias | ⚪ |
+| IDE-0054 perfiles nombrados de preferencias | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -90,8 +90,8 @@ Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
-IDE-0037…0053 **entregadas** (`#647`…`#667`, `#671`); sexta ola residual
-0054 abierta.
+IDE-0037…0054 **entregadas** (`#647`…`#667`, `#671`); sexta ola
+0051…0054 cerrada.
 
 Desde la revisión 2026-09-23, en `main` entró `#671` (IDE-0053).
 Planning `#668` queda histórico.
@@ -134,7 +134,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` sexta ola** — IDE-0054 (0053 `#671` entregada; queda 0054).
+1. **Cola `0.4.4` sexta ola cerrada** — 0054 entregada. Sin IDE nuevas.
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -146,12 +146,12 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0054. Residual bloqueado: piloto DT-0006 D (operativo) +
+vacía. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
 desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
-(cola implementable abierta: IDE-0054).
+(cola implementable vacía; sexta ola cerrada).
 
 | ID | Título | Estado |
 |----|--------|--------|
@@ -163,9 +163,9 @@ desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
 | IDE-0051 | Inspector: aprovechamiento de tablero | Entregado (#666) |
 | IDE-0052 | Preview canvas al terminar el solve | Entregado (#667) |
 | IDE-0053 | Material por defecto de taller | Entregado (#671) |
-| IDE-0054 | Perfiles nombrados de preferencias | Idea |
+| IDE-0054 | Perfiles nombrados de preferencias | Entregado |
 
-Prioridad de ataque: **IDE-0054** (perfiles nombrados de preferencias).
+Prioridad de ataque: cola implementable vacía. Sin IDE nuevas.
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0053.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
@@ -174,7 +174,7 @@ Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ## 6. Criterio de esta revisión
 
-- Alinear `#671` 🟢 (IDE-0053); residual cola 0054 → **sin IDE nuevas**.
+- Alinear IDE-0054 🟢; cola implementable vacía → **sin IDE nuevas**.
   Fold `#668` histórico.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased

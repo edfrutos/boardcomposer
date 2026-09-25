@@ -140,6 +140,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Preferencias (Ctrl+,): unidades, idioma, tema aplican al cerrar.
 - [ ] Preferencias Avanzado: Exportar / Importar JSON de taller (IDE-0049).
 - [ ] Preferencias Avanzado: combo de material por defecto (IDE-0053).
+- [ ] Preferencias Avanzado: perfil de taller guardar/aplicar/eliminar
+  (IDE-0054).
 
 ---
 

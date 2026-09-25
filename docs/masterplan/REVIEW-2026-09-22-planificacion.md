@@ -57,7 +57,7 @@ revisión `REVIEW-2026-09-21`.
 | IDE-0051 Inspector aprovechamiento de tablero | 🟢 (#666) |
 | IDE-0052 preview canvas al terminar el solve | 🟢 |
 | IDE-0053 material por defecto de taller | 🟢 |
-| IDE-0054 perfiles nombrados de preferencias | ⚪ |
+| IDE-0054 perfiles nombrados de preferencias | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -132,7 +132,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` sexta ola** — IDE-0054 (0053 entregada; queda 0054).
+1. **Cola `0.4.4` sexta ola cerrada** — 0054 entregada. Sin IDE nuevas.
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -166,9 +166,9 @@ SCR-006 perfiles).
 | IDE-0051 | Inspector: aprovechamiento de tablero | Entregado (#666) |
 | IDE-0052 | Preview canvas al terminar el solve | Entregado |
 | IDE-0053 | Material por defecto de taller | Entregado |
-| IDE-0054 | Perfiles nombrados de preferencias | Idea |
+| IDE-0054 | Perfiles nombrados de preferencias | Entregado |
 
-Prioridad de ataque: **IDE-0054** (perfiles nombrados de preferencias).
+Prioridad de ataque: cola implementable vacía. Sin IDE nuevas.
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0051;
 IDE-0052 en esta rama.

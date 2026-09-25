@@ -51,6 +51,7 @@
   (IDE-0052 `#667`).
 - Material por defecto de taller para tableros y piezas nuevos
   (IDE-0053 `#671`). Preferencias; no va en el `.bcproj`.
+- Perfiles nombrados de preferencias, locales (IDE-0054). Sin nube.
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -66,7 +67,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` sexta ola: IDE-0054 (0053 entregada; queda 0054).
+1. Ciclo `0.4.4` sexta ola cerrada (0054 entregada). Sin IDE nuevas.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

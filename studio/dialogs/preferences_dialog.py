@@ -18,6 +18,7 @@ from PySide6.QtWidgets import (
     QFormLayout,
     QGroupBox,
     QHBoxLayout,
+    QInputDialog,
     QLabel,
     QMessageBox,
     QPushButton,
@@ -61,6 +62,10 @@ from studio.export_options import (
 from studio.i18n import DEFAULT_LANGUAGE, VALID_LANGUAGES, tr
 from studio.material_catalog import MaterialCatalogManager
 from studio.material_fields import fill_material_combo
+from studio.preference_profiles import (
+    PreferenceProfilesManager,
+    preferences_from_profile,
+)
 from studio.preferences import (
     DEFAULT_GRID_SIZE_MM,
     DEFAULT_MATERIAL,
@@ -91,6 +96,7 @@ class PreferencesDialog(QDialog):
         catalog: MaterialCatalogManager | None = None,
         pack_directory: str = "",
         on_pack_directory: Callable[[str | Path], None] | None = None,
+        profiles: PreferenceProfilesManager | None = None,
     ) -> None:
         super().__init__(parent)
 
@@ -99,6 +105,7 @@ class PreferencesDialog(QDialog):
         self._catalog = catalog
         self._pack_directory = pack_directory
         self._on_pack_directory = on_pack_directory
+        self._profiles = profiles or PreferenceProfilesManager()
         self.setMinimumWidth(460)
 
         layout = QVBoxLayout(self)
@@ -335,6 +342,22 @@ class PreferencesDialog(QDialog):
         share_row.addWidget(self.export_button)
         share_row.addWidget(self.import_button)
         advanced_form.addRow("", share_row)
+        self._profile_label = QLabel()
+        self.profile_combo = QComboBox()
+        advanced_form.addRow(self._profile_label, self.profile_combo)
+        profile_row = QHBoxLayout()
+        self.profile_save = polish_secondary_button(QPushButton())
+        self.profile_apply = polish_secondary_button(QPushButton())
+        self.profile_delete = polish_secondary_button(QPushButton())
+        self.profile_save.clicked.connect(self._save_profile)
+        self.profile_apply.clicked.connect(self._apply_profile)
+        self.profile_delete.clicked.connect(self._delete_profile)
+        profile_row.addWidget(self.profile_save)
+        profile_row.addWidget(self.profile_apply)
+        profile_row.addWidget(self.profile_delete)
+        advanced_form.addRow("", profile_row)
+        self.profile_combo.currentIndexChanged.connect(self._on_profile_index)
+        self._reload_profile_combo()
         layout.addWidget(self.advanced)
 
         self._buttons = QDialogButtonBox(
@@ -381,6 +404,18 @@ class PreferencesDialog(QDialog):
         self.export_button.setStatusTip(export_tip)
         self.import_button.setToolTip(import_tip)
         self.import_button.setStatusTip(import_tip)
+        self._profile_label.setText(tr("prefs.profile_label", language))
+        profile_tip = tr("tip.prefs_profile", language)
+        self.profile_combo.setToolTip(profile_tip)
+        self.profile_combo.setStatusTip(profile_tip)
+        self.profile_save.setText(tr("prefs.profile_save", language))
+        self.profile_apply.setText(tr("prefs.profile_apply", language))
+        self.profile_delete.setText(tr("prefs.profile_delete", language))
+        none_index = self.profile_combo.findData(None)
+        if none_index >= 0:
+            self.profile_combo.setItemText(
+                none_index, tr("prefs.profile_none", language)
+            )
         self.use_custom_weights.setText(tr("prefs.use_custom_weights", language))
         self.export_include_metrics.setText(tr("prefs.export_metrics", language))
         self.export_include_explanation.setText(
@@ -573,6 +608,74 @@ class PreferencesDialog(QDialog):
         )
         if self._on_pack_directory is not None:
             self._on_pack_directory(path)
+
+    def _reload_profile_combo(self, select: str | None = None) -> None:
+        self.profile_combo.blockSignals(True)
+        self.profile_combo.clear()
+        self.profile_combo.addItem(tr("prefs.profile_none", self._language), None)
+        for name in self._profiles.names():
+            self.profile_combo.addItem(name, name)
+        if select:
+            index = self.profile_combo.findData(select)
+            if index >= 0:
+                self.profile_combo.setCurrentIndex(index)
+        self.profile_combo.blockSignals(False)
+        has_profile = self.profile_combo.currentData() is not None
+        self.profile_apply.setEnabled(has_profile)
+        self.profile_delete.setEnabled(has_profile)
+
+    def _on_profile_index(self, _index: int) -> None:
+        has_profile = self.profile_combo.currentData() is not None
+        self.profile_apply.setEnabled(has_profile)
+        self.profile_delete.setEnabled(has_profile)
+
+    def _save_profile(self) -> None:
+        name, accepted = QInputDialog.getText(
+            self,
+            tr("prefs.profile_save_title", self._language),
+            tr("prefs.profile_save_prompt", self._language),
+        )
+        if not accepted:
+            return
+        cleaned = name.strip()
+        if not cleaned:
+            QMessageBox.warning(
+                self,
+                tr("prefs.profile_save_title", self._language),
+                tr("prefs.profile_empty_name", self._language),
+            )
+            return
+        self._profiles.save_profile(cleaned, self.preferences())
+        self._reload_profile_combo(select=cleaned)
+
+    def _apply_profile(self) -> None:
+        name = self.profile_combo.currentData()
+        if not name:
+            return
+        profile = self._profiles.get(str(name))
+        if profile is None:
+            return
+        applied = preferences_from_profile(self.preferences(), profile.preferences)
+        self._apply_imported_preferences(applied)
+        QMessageBox.information(
+            self,
+            tr("prefs.profile_apply", self._language),
+            tr("prefs.profile_applied", self._language, name=profile.name),
+        )
+
+    def _delete_profile(self) -> None:
+        name = self.profile_combo.currentData()
+        if not name:
+            return
+        choice = QMessageBox.question(
+            self,
+            tr("prefs.profile_delete_title", self._language),
+            tr("prefs.profile_delete_confirm", self._language, name=name),
+        )
+        if choice != QMessageBox.StandardButton.Yes:
+            return
+        self._profiles.delete(str(name))
+        self._reload_profile_combo()
 
     def _export_pack(self) -> None:
         path, _ = QFileDialog.getSaveFileName(

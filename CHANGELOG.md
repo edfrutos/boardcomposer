@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Perfiles nombrados de preferencias (IDE-0054). Preferencias → Avanzado:
+  guardar, aplicar y eliminar un perfil local. El perfil guarda el taller
+  (sin carpetas ni ventana). Aplicar carga el diálogo; OK persiste.
+  Archivo `preference_profiles.json`. Sin nube ni bump `.bcproj`. Cierra
+  sexta ola 0051…0054.
 - Docs planificación 2026-09-24: snapshot
   `docs/masterplan/REVIEW-2026-09-24-planificacion.md`; Issues = 0;
   `#671` (IDE-0053) en `main`; CI `#669` mergeado; residual IDE-0054 →
