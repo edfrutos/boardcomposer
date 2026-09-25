@@ -160,7 +160,8 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
   Sin edición inline.
 - Unidades de prefs en pieza, tablero, kerf, posición y métricas de layout
   (IDE-0040). Disco / `.bcproj` / JSON siguen en mm.
-- Pieza: área L×A (IDE-0055), espesor, rotación 0°/90° y veta (IDE-0046). Canto sigue en
+- Pieza: área L×A (IDE-0055), espesor, rotación 0°/90° y veta (IDE-0046).
+  Copiar el texto del dock: **Ctrl+Alt+I** (IDE-0057). Canto sigue en
   Editar…, no en el dock.
 - Tablero: aprovechamiento de panel (IDE-0051). Sin edición inline.
 - Sin contexto «algoritmo» dedicado (parámetros viven en Preferencias).

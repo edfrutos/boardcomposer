@@ -300,6 +300,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.rename_selection": "Renombrar…",
         "action.edit_selection": "Editar…",
         "action.copy_selection_id": "Copiar ID",
+        "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
         "action.select_all_pieces": "Seleccionar todas las piezas",
@@ -546,6 +547,12 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Copiar al portapapeles el ID de la pieza o tablero (Ctrl+Shift+C): "
             "Explorador, selección única o tablero enfocado"
         ),
+        "tip.copy_inspector": (
+            "Copiar el texto visible del Inspector (Ctrl+Alt+I); "
+            "incluye métricas de la selección"
+        ),
+        "status.inspector_copied": "Texto del Inspector copiado",
+        "status.nothing_to_copy_inspector": "El Inspector no tiene texto que copiar",
         "tip.duplicate_piece": (
             "Duplicar la pieza o el tablero seleccionado (Ctrl+D); "
             "asigna un ID único; si la pieza está colocada, la copia también; "
@@ -1945,6 +1952,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.rename_selection": "Rename…",
         "action.edit_selection": "Edit…",
         "action.copy_selection_id": "Copy ID",
+        "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
         "action.select_all_pieces": "Select all pieces",
@@ -2183,6 +2191,12 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Copy the piece or board ID to the clipboard (Ctrl+Shift+C): "
             "Explorer, single selection, or focused board"
         ),
+        "tip.copy_inspector": (
+            "Copy the visible Inspector text (Ctrl+Alt+I); "
+            "includes metrics for the selection"
+        ),
+        "status.inspector_copied": "Inspector text copied",
+        "status.nothing_to_copy_inspector": "The Inspector has no text to copy",
         "tip.duplicate_piece": (
             "Duplicate the selected piece or board (Ctrl+D); "
             "assigns a unique ID; if the piece is placed, the copy is too; "
@@ -3302,6 +3316,7 @@ _ACTION_KEYS = (
     "rename_selection",
     "edit_selection",
     "copy_selection_id",
+    "copy_inspector",
     "duplicate_piece",
     "delete_piece",
     "select_all_pieces",

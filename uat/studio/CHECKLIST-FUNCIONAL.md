@@ -55,6 +55,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [ ] Inspector tablero: instancias usadas, aprovechamiento y retales
   si hay layout; «sin layout» si no (IDE-0051).
 - [x] Inspector pieza: área L×A (IDE-0055).
+- [ ] **Ctrl+Alt+I** copia el texto del Inspector (IDE-0057).
 - [x] Menú contextual pieza: editar / duplicar / eliminar / copiar ID / renombrar.
 - [x] Menú contextual tablero: editar / duplicar / eliminar / copiar ID / renombrar.
 - [x] Clic / doble clic / Enter en **solución** del Explorador → vista previa
