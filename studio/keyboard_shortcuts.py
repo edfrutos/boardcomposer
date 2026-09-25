@@ -85,6 +85,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("fit_selection", "Ctrl+Shift+0"),
     ShortcutBinding("zoom_in", "Ctrl+=", ("Ctrl++",)),
     ShortcutBinding("zoom_out", "Ctrl+-"),
+    ShortcutBinding("zoom_100", "Ctrl+Alt+0"),
     ShortcutBinding("toggle_grid", "Ctrl+G"),
 )
 

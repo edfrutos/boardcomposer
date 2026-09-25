@@ -59,7 +59,7 @@ revisión `REVIEW-2026-09-24-planificacion.md`, PR abierto `#673`.
 | IDE-0053 material por defecto de taller | 🟢 (#671) |
 | IDE-0054 perfiles nombrados de preferencias | 🟢 (#672) |
 | IDE-0055 Inspector área de la pieza | 🟡 PR `#673` |
-| IDE-0056 zoom del Workspace al 100% | ⚪ |
+| IDE-0056 zoom del Workspace al 100% | 🟢 |
 | IDE-0057 copiar texto del Inspector | ⚪ |
 | IDE-0058 marca sin guardar en la barra de ruta | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
@@ -142,7 +142,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 1. **Cerrar `#673` (IDE-0055)** — área de la pieza en Inspector; merge a
    `main` antes de arrancar 0056.
-2. **Cola `0.4.4` séptima ola** — IDE-0056…0058 (tras merge 0055).
+2. **Cola `0.4.4` séptima ola** — IDE-0057 (0056 entregada; quedan 0057…0058).
 3. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 4. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -167,11 +167,11 @@ SCR-005 dirty state en ruta):
 | ID | Título | Por qué ahora |
 |----|--------|---------------|
 | IDE-0055 | Inspector: área de la pieza | L×A legible; `#673` 🟡 |
-| IDE-0056 | Zoom del Workspace al 100% | Reset vista 1.0; sin solver |
+| IDE-0056 | Zoom del Workspace al 100% | Entregado |
 | IDE-0057 | Copiar texto del Inspector | Pegar métricas a taller; sin nube |
 | IDE-0058 | Marca sin guardar en la barra de ruta | Dirty ● en ruta; SCR-005 |
 
-Prioridad de ataque: **cerrar `#673` (0055) → IDE-0056**.
+Prioridad de ataque: **IDE-0057** (copiar texto del Inspector).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0054.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

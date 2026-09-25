@@ -109,6 +109,7 @@ en red; puedes **Copiar**).
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
 | Cuadrícula | Ctrl+G |
 | Ajustar al tablero / selección | Ctrl+0 / Ctrl+Shift+0 |
+| Zoom al 100% | Ctrl+Alt+0 |
 | Zoom + / − (también rueda) | Ctrl+= / Ctrl+- |
 | Desplazar cámara (pan) | Botón medio / derecho / Espacio+arrastre |
 | Nuevo desde plantilla | Ctrl+Shift+N |
@@ -140,7 +141,8 @@ Canvas central del layout.
 
 - Sin tableros ni piezas: overlay con CTAs (añadir / importar).
 - **Pan:** botón medio, botón derecho o **Espacio + arrastre**.
-- **Zoom:** rueda, **Ctrl+=** / **Ctrl+-**, ajustar todo (**Ctrl+0**) o
+- **Zoom:** rueda, **Ctrl+=** / **Ctrl+-**, ajustar todo (**Ctrl+0**),
+  zoom al 100% (**Ctrl+Alt+0**) o
   selección (**Ctrl+Shift+0**). Cuadrícula: **Ctrl+G**.
 - **Pieza colocada:** **flechas** mueven 1 mm; **Shift+flechas** usan el
   tamaño de cuadrícula (Preferencias); **R** rota 90° (deshabilitado si la

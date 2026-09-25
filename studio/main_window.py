@@ -241,6 +241,7 @@ class MainWindow(QMainWindow):
         self._menus["view"].addAction(self._actions["fit_selection"])
         self._menus["view"].addAction(self._actions["zoom_in"])
         self._menus["view"].addAction(self._actions["zoom_out"])
+        self._menus["view"].addAction(self._actions["zoom_100"])
         self._menus["view"].addSeparator()
         self._menus["view"].addAction(self._actions["toggle_grid"])
 
@@ -334,6 +335,7 @@ class MainWindow(QMainWindow):
         self._actions["fit_selection"].triggered.connect(self._fit_selection)
         self._actions["zoom_in"].triggered.connect(self._zoom_in)
         self._actions["zoom_out"].triggered.connect(self._zoom_out)
+        self._actions["zoom_100"].triggered.connect(self._zoom_100)
         self._actions["toggle_grid"].toggled.connect(self._toggle_grid)
         self._actions["reset_window_layout"].triggered.connect(
             self._reset_window_layout
@@ -376,7 +378,14 @@ class MainWindow(QMainWindow):
         for key in ("undo", "redo"):
             toolbar.addAction(self._actions[key])
         toolbar.addSeparator()
-        for key in ("fit_board", "fit_selection", "zoom_in", "zoom_out", "toggle_grid"):
+        for key in (
+            "fit_board",
+            "fit_selection",
+            "zoom_in",
+            "zoom_out",
+            "zoom_100",
+            "toggle_grid",
+        ):
             toolbar.addAction(self._actions[key])
         toolbar.addSeparator()
         toolbar.addAction(self._actions["solve_layout"])
@@ -2393,12 +2402,20 @@ class MainWindow(QMainWindow):
         """Enable zoom actions only while the camera can still move."""
         zoom_in = self._actions.get("zoom_in")
         zoom_out = self._actions.get("zoom_out")
-        if zoom_in is None or zoom_out is None:
+        zoom_100 = self._actions.get("zoom_100")
+        if zoom_in is None or zoom_out is None or zoom_100 is None:
             return
         can_in = self.workspace.can_zoom_in
         can_out = self.workspace.can_zoom_out
+        can_100 = self.workspace.can_zoom_100
         zoom_in.setEnabled(can_in)
         zoom_out.setEnabled(can_out)
+        zoom_100.setEnabled(can_100)
+        zoom_100.setStatusTip(
+            with_native_shortcuts(self._tr("tip.zoom_100"))
+            if can_100
+            else self._tr("status.zoom_already_100")
+        )
         zoom_in.setStatusTip(
             with_native_shortcuts(self._tr("tip.zoom_in"))
             if can_in
@@ -2892,6 +2909,10 @@ class MainWindow(QMainWindow):
             self._status("status.zoom_at_minimum")
             return
         self.workspace.zoom_out()
+
+    def _zoom_100(self) -> None:
+        if not self.workspace.zoom_100():
+            self._status("status.zoom_already_100")
 
     def _toggle_grid(self, checked: bool) -> None:
         prefs = self.services.preferences.current

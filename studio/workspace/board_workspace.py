@@ -640,6 +640,14 @@ class BoardWorkspace(QGraphicsView):
         """Zoom out around the current camera center."""
         self._zoom_by_steps(-1)
 
+    def zoom_100(self) -> bool:
+        """Reset zoom to 100% without moving the camera center."""
+        if not self.can_zoom_100:
+            return False
+        self._camera.zoom = 1.0
+        self._apply_camera()
+        return True
+
     def _zoom_by_steps(self, direction: int) -> None:
         factor = self._camera.zoom_factor(direction)
         self._camera.zoom = self._camera.clamp_zoom(self._camera.zoom * factor)
@@ -1128,6 +1136,11 @@ class BoardWorkspace(QGraphicsView):
     def can_zoom_out(self) -> bool:
         """True when zoom can still decrease before min."""
         return self._camera.zoom > self._camera.min_zoom
+
+    @property
+    def can_zoom_100(self) -> bool:
+        """True when the camera is not already at 100%."""
+        return abs(self._camera.zoom - 1.0) > 1e-6
 
     def piece_moved(self, piece_id: str, x: float, y: float) -> None:
         """Piece moved event."""
