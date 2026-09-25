@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Inspector de pieza: área (IDE-0055). L×A en unidades de Preferencias.
+  mm usa mm² enteros. Abre séptima ola 0056…0058. Solo lectura. Sin bump
+  `.bcproj`; no cambia el solver.
 - Perfiles nombrados de preferencias (IDE-0054). Preferencias → Avanzado:
   guardar, aplicar y eliminar un perfil local. El perfil guarda el taller
   (sin carpetas ni ventana). Aplicar carga el diálogo; OK persiste.
