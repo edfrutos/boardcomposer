@@ -176,7 +176,7 @@ Dock **Ctrl+2**. Detalle de la selección y del layout.
   sierra (**Ctrl+Alt+K**), conteos (tableros/piezas/soluciones),
   materiales y área de stock. Con las **categorías** del árbol: tipos
   y físicos, retales, colocadas/sin colocar o candidatas. Con
-  **tablero** o **pieza**: dimensiones,
+  **tablero** o **pieza**: dimensiones, área de la pieza,
   espesor, cantidad, material; en tablero, aprovechamiento (instancias,
   % uso, retales) si hay layout; en piezas, veta (libre o fija) y posición
   o «sin colocar» (con consejo de colocar vía Explorador). Rotación

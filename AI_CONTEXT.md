@@ -64,7 +64,8 @@ alternativas comprensibles para que el usuario decida.
 - Material por defecto de taller (IDE-0053 `#671`): tableros y piezas nuevos;
   no va en el `.bcproj`.
 - Perfiles nombrados de preferencias, locales (IDE-0054).
-- Próximo: cola `0.4.4` vacía (sexta ola cerrada); piloto
+- Inspector de pieza: área (IDE-0055).
+- Próximo: cola `0.4.4` séptima ola 0056 (quedan 0056…0058); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

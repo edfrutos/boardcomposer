@@ -158,7 +158,7 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Piloto DT-0006 opción D (backup); C diferida.
-- Cola ciclo `0.4.4` sexta ola cerrada (0054 entregada). Sin IDE nuevas.
+- Cola ciclo `0.4.4` séptima ola: IDE-0056 (0055 entregada; quedan 0056…0058).
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2

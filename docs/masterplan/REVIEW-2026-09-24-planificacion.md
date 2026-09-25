@@ -58,6 +58,10 @@ revisión `REVIEW-2026-09-23`.
 | IDE-0052 preview canvas al terminar el solve | 🟢 (#667) |
 | IDE-0053 material por defecto de taller | 🟢 (#671) |
 | IDE-0054 perfiles nombrados de preferencias | 🟢 |
+| IDE-0055 Inspector área de la pieza | 🟢 |
+| IDE-0056 zoom del Workspace al 100% | ⚪ |
+| IDE-0057 copiar texto del Inspector | ⚪ |
+| IDE-0058 marca sin guardar en la barra de ruta | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -134,7 +138,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` sexta ola cerrada** — 0054 entregada. Sin IDE nuevas.
+1. **Cola `0.4.4` séptima ola** — IDE-0056 (0055 entregada; quedan 0056…0058).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -151,7 +155,7 @@ IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
 desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
-(cola implementable vacía; sexta ola cerrada).
+(cola implementable abierta: IDE-0056, IDE-0057, IDE-0058).
 
 | ID | Título | Estado |
 |----|--------|--------|
@@ -164,8 +168,12 @@ desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
 | IDE-0052 | Preview canvas al terminar el solve | Entregado (#667) |
 | IDE-0053 | Material por defecto de taller | Entregado (#671) |
 | IDE-0054 | Perfiles nombrados de preferencias | Entregado |
+| IDE-0055 | Inspector: área de la pieza | Entregado |
+| IDE-0056 | Zoom del Workspace al 100% | Idea |
+| IDE-0057 | Copiar texto del Inspector | Idea |
+| IDE-0058 | Marca sin guardar en la barra de ruta | Idea |
 
-Prioridad de ataque: cola implementable vacía. Sin IDE nuevas.
+Prioridad de ataque: **IDE-0056** (zoom del Workspace al 100%).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0053.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
