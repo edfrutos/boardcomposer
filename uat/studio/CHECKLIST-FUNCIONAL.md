@@ -69,6 +69,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] Solape inválido revierte el movimiento.
 - [x] Zoom: rueda / **Ctrl+=** / **Ctrl+-** (tips de estado); % en barra de estado.
 - [x] **Ctrl+0** ajusta a todos los tableros (tip de estado); **Ctrl+Shift+0** a la selección (tip de estado).
+- [ ] **Ctrl+Alt+0** vuelve el zoom al 100% (IDE-0056).
 - [x] Pan: botón medio, botón derecho, **Espacio + arrastre**.
 - [x] Clic en vacío deselecciona; **Ctrl+A** / **Esc** / **Ctrl+Shift+I** (tips de estado en selección).
 - [x] **Flechas** mueven 1 mm; **Shift+flechas** = tamaño de cuadrícula (prefs).

@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Zoom del Workspace al 100% (IDE-0056). **Ctrl+Alt+0**. No mueve el
+  centro. Deshabilitado si ya está al 100%. Sin bump `.bcproj`; no
+  cambia el solver.
 - Inspector de pieza: área (IDE-0055). L×A en unidades de Preferencias.
   mm usa mm² enteros. Abre séptima ola 0056…0058. Solo lectura. Sin bump
   `.bcproj`; no cambia el solver.
