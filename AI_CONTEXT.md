@@ -8,7 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-09-24
+## Estado actual — 2026-09-25
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-09-24-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-09-25-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -63,9 +63,9 @@ alternativas comprensibles para que el usuario decida.
 - Preview canvas al terminar Calcular layout, sin aplicar (IDE-0052 `#667`).
 - Material por defecto de taller (IDE-0053 `#671`): tableros y piezas nuevos;
   no va en el `.bcproj`.
-- Perfiles nombrados de preferencias, locales (IDE-0054).
-- Próximo: cola `0.4.4` vacía (sexta ola cerrada); piloto
-  DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
+- Perfiles nombrados de preferencias, locales (IDE-0054 `#672`).
+- Próximo: cola `0.4.4` séptima ola 0055…0058 (`#673` 🟡 IDE-0055);
+  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 
 ## Fuentes de verdad

@@ -1,9 +1,14 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-24
+## Unreleased — 0.4.4.dev0 — 2026-09-25
 
 ### Añadido
 
+- Docs planificación 2026-09-25: snapshot
+  `docs/masterplan/REVIEW-2026-09-25-planificacion.md`; Issues = 0;
+  `#672` (IDE-0054) en `main`; cola vacía → **séptima ola IDE-0055…0058**
+  (alineada con `#673` 🟡 IDE-0055; 0056 zoom 100%; 0057 copiar Inspector;
+  0058 marca sin guardar). Histórico 2026-09-24 desde PR `#670`.
 - Perfiles nombrados de preferencias (IDE-0054). Preferencias → Avanzado:
   guardar, aplicar y eliminar un perfil local. El perfil guarda el taller
   (sin carpetas ni ventana). Aplicar carga el diálogo; OK persiste.
