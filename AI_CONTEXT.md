@@ -63,16 +63,10 @@ alternativas comprensibles para que el usuario decida.
 - Preview canvas al terminar Calcular layout, sin aplicar (IDE-0052 `#667`).
 - Material por defecto de taller (IDE-0053 `#671`): tableros y piezas nuevos;
   no va en el `.bcproj`.
-<<<<<<< HEAD
 - Perfiles nombrados de preferencias, locales (IDE-0054 `#672`).
-- Próximo: cola `0.4.4` séptima ola 0055…0058 (`#673` 🟡 IDE-0055);
-  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
-=======
-- Perfiles nombrados de preferencias, locales (IDE-0054).
-- Inspector de pieza: área (IDE-0055).
-- Próximo: cola `0.4.4` séptima ola 0056 (quedan 0056…0058); piloto
+- Inspector de pieza: área (IDE-0055 `#673`).
+- Próximo: cola `0.4.4` séptima ola IDE-0056 (quedan 0056…0058); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
->>>>>>> origin/main
   bloqueados.
 
 ## Fuentes de verdad
