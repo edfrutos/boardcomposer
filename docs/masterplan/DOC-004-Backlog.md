@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.50
+**Versión:** 1.3.51
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 24/09/2026
+**Última revisión:** 25/09/2026
 
 ---
 
@@ -174,8 +174,8 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0051 | S | SCR-004 tablero | Entregado; uso/libre/retales; no inline edit |
 | IDE-0052 | S | FLW-003 preview | Entregado (#667); preview sin aplicar; sin write |
 | IDE-0053 | S | FLW-001 material | Entregado (#671); prefs catálogo; no va en `.bcproj` |
-| IDE-0054 | S | SCR-006; IDE-0049 | Entregado; perfiles locales; sin sync |
-| IDE-0055 | S | SCR-004 pieza | Entregado; área prefs; no inline edit |
+| IDE-0054 | S | SCR-006; IDE-0049 | Entregado (#672); perfiles locales; sin sync |
+| IDE-0055 | S | SCR-004 pieza | Entregado (#673); área prefs; no inline edit |
 | IDE-0056 | S | SCR-002 zoom | Reset zoom 1.0; sin cambiar solver |
 | IDE-0057 | S | SCR-004 | Copiar texto del dock; sin nube |
 | IDE-0058 | S | SCR-005 status | Marca ● en la ruta si hay cambios |
@@ -207,11 +207,11 @@ Detalle: `docs/masterplan/epics/`.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — IDE-0001…0055 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0053; `#647`/`#649`/`#651`/
+completadas (ciclo `0.4.4` ola 1 + 0031…0055; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
-`#665`/`#666`/`#667`/`#671`).
+`#665`/`#666`/`#667`/`#671`/`#672`/`#673`). IDE-0056…0058 ⚪ (séptima ola).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
-entregadas. Snapshot: `REVIEW-2026-09-24-planificacion.md`.
+entregadas. Snapshot: `REVIEW-2026-09-25-planificacion.md`.
 
 Próximo foco:
 

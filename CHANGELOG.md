@@ -1,12 +1,17 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-24
+## Unreleased — 0.4.4.dev0 — 2026-09-25
 
 ### Añadido
 
 - Inspector de pieza: área (IDE-0055). L×A en unidades de Preferencias.
   mm usa mm² enteros. Abre séptima ola 0056…0058. Solo lectura. Sin bump
   `.bcproj`; no cambia el solver.
+- Docs planificación 2026-09-25: snapshot
+  `docs/masterplan/REVIEW-2026-09-25-planificacion.md`; Issues = 0;
+  `#673` (IDE-0055) en `main`; siguiente cola de ciclo: **IDE-0056…0058**
+  (0056 zoom 100%; 0057 copiar Inspector; 0058 marca sin guardar).
+  Histórico 2026-09-24 desde PR `#670`.
 - Perfiles nombrados de preferencias (IDE-0054). Preferencias → Avanzado:
   guardar, aplicar y eliminar un perfil local. El perfil guarda el taller
   (sin carpetas ni ventana). Aplicar carga el diálogo; OK persiste.
