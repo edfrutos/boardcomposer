@@ -5692,11 +5692,7 @@ class MainWindow(QMainWindow):
             return
         has_text = bool(self.inspector.toPlainText().strip())
         action.setEnabled(has_text)
-        action.setStatusTip(
-            with_native_shortcuts(self._tr("tip.copy_inspector"))
-            if has_text
-            else self._tr("status.nothing_to_copy_inspector")
-        )
+        action.setStatusTip(with_native_shortcuts(self._tr("tip.copy_inspector")))
 
     def _copy_inspector(self) -> None:
         """Copy the visible Inspector text (IDE-0057)."""
