@@ -13,7 +13,7 @@ def test_copy_inspector_shortcut_and_text(qapp, tmp_path):
     clipboard = QApplication.clipboard()
     assert clipboard is not None
     clipboard.clear()
-    window._copy_inspector()
+    window._actions["copy_inspector"].trigger()
     copied = clipboard.text()
     assert "A" in copied
     assert "200" in copied
