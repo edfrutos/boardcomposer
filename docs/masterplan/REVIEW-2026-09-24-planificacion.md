@@ -60,7 +60,7 @@ revisión `REVIEW-2026-09-23`.
 | IDE-0054 perfiles nombrados de preferencias | 🟢 |
 | IDE-0055 Inspector área de la pieza | 🟢 |
 | IDE-0056 zoom del Workspace al 100% | 🟢 |
-| IDE-0057 copiar texto del Inspector | 🟢 |
+| IDE-0057 copiar texto del Inspector | ⚪ |
 | IDE-0058 marca sin guardar en la barra de ruta | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
@@ -138,7 +138,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` séptima ola** — IDE-0058 (0057 entregada; queda 0058).
+1. **Cola `0.4.4` séptima ola** — IDE-0057 (0056 entregada; quedan 0057…0058).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -155,7 +155,7 @@ IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
 desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
-(cola implementable abierta: IDE-0058).
+(cola implementable abierta: IDE-0057, IDE-0058).
 
 | ID | Título | Estado |
 |----|--------|--------|
@@ -170,10 +170,10 @@ desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
 | IDE-0054 | Perfiles nombrados de preferencias | Entregado |
 | IDE-0055 | Inspector: área de la pieza | Entregado |
 | IDE-0056 | Zoom del Workspace al 100% | Entregado |
-| IDE-0057 | Copiar texto del Inspector | Entregado |
+| IDE-0057 | Copiar texto del Inspector | Idea |
 | IDE-0058 | Marca sin guardar en la barra de ruta | Idea |
 
-Prioridad de ataque: **IDE-0058** (marca sin guardar en la barra de ruta).
+Prioridad de ataque: **IDE-0057** (copiar texto del Inspector).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0053.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
