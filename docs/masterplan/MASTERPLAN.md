@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-25.
+Última revisión: 2026-09-26.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-25-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-26-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -53,6 +53,7 @@
   (IDE-0053 `#671`). Preferencias; no va en el `.bcproj`.
 - Perfiles nombrados de preferencias, locales (IDE-0054 `#672`). Sin nube.
 - Inspector de pieza: área L×A (IDE-0055 `#673`).
+- Zoom del Workspace al 100% (**Ctrl+Alt+0**, IDE-0056 `#675`).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -68,7 +69,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` séptima ola: IDE-0057 (0056 entregada; quedan 0057…0058).
+1. Ciclo `0.4.4` séptima ola: cerrar `#676` (IDE-0057); luego IDE-0058.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

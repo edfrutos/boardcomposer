@@ -3,10 +3,10 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.42
+**Versión:** 1.2.43
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 25/09/2026
+**Última revisión:** 26/09/2026
 
 ---
 
@@ -159,6 +159,10 @@ sin críticas sin plan. `#671` (IDE-0053) en `main`; residual 0054; Issues = 0.
 sin críticas sin plan. `#672` (IDE-0054) en `main`; sexta ola cerrada;
 séptima ola 0055…0058 (`#673` 🟡); Issues = 0.
 
+**Revisión 2026-09-26 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
+sin críticas sin plan. `#673`/`#675` (IDE-0055/0056) en `main`; residual
+0057 🟡 `#676` + 0058; Issues = 0.
+
 ---
 
 ## Política de gestión
@@ -185,8 +189,8 @@ séptima ola 0055…0058 (`#673` 🟡); Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-09-25 en `REVIEW-2026-09-25-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`09-24` (abiertas = 1, DT-0006).
+2026-09-26 en `REVIEW-2026-09-26-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`09-25` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -195,6 +199,7 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
-- Cola producto ciclo `0.4.4` séptima ola IDE-0057 (0056 entregada; quedan 0057…0058)
+- Cola producto ciclo `0.4.4` séptima ola: cerrar `#676` (IDE-0057); luego
+  IDE-0058
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
