@@ -227,6 +227,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["rename_selection"])
         self._menus["edit"].addAction(self._actions["edit_selection"])
         self._menus["edit"].addAction(self._actions["copy_selection_id"])
+        self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
         self._menus["edit"].addSeparator()
@@ -323,6 +324,7 @@ class MainWindow(QMainWindow):
         self._actions["rename_selection"].triggered.connect(self._rename_selection)
         self._actions["edit_selection"].triggered.connect(self._edit_selection)
         self._actions["copy_selection_id"].triggered.connect(self._copy_selection_id)
+        self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
             self._duplicate_selected_piece
         )
@@ -528,6 +530,8 @@ class MainWindow(QMainWindow):
         self.inspector = QTextEdit()
         self.inspector.setObjectName("inspectorPanel")
         self.inspector.setReadOnly(True)
+        self.inspector.textChanged.connect(self._sync_copy_inspector_action)
+        self._sync_copy_inspector_action()
 
         self.inspector_dock = QDockWidget("", self)
         self.inspector_dock.setObjectName("inspectorDock")
@@ -3503,6 +3507,7 @@ class MainWindow(QMainWindow):
         self._sync_solution_actions()
         self._sync_timeline_actions()
         self._sync_edit_selection_actions()
+        self._sync_copy_inspector_action()
         self._sync_zoom_actions()
         self._sync_template_actions()
         self._sync_welcome_action()
@@ -5680,6 +5685,27 @@ class MainWindow(QMainWindow):
             return
 
         self._status("status.nothing_to_copy_id")
+
+    def _sync_copy_inspector_action(self) -> None:
+        action = self._actions.get("copy_inspector")
+        if action is None:
+            return
+        has_text = bool(self.inspector.toPlainText().strip())
+        action.setEnabled(has_text)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_inspector"))
+            if has_text
+            else self._tr("status.nothing_to_copy_inspector")
+        )
+
+    def _copy_inspector(self) -> None:
+        """Copy the visible Inspector text (IDE-0057)."""
+        text = self.inspector.toPlainText().strip()
+        if not text:
+            self._status("status.nothing_to_copy_inspector")
+            return
+        self._copy_text_to_clipboard(text)
+        self._status("status.inspector_copied")
 
     def _rename_project(self) -> None:
         project = self.services.projects.current_project

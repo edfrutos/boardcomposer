@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Copiar texto del Inspector (IDE-0057). **Ctrl+Alt+I**. Copia el texto
+  visible, métricas incluidas. Deshabilitado si el dock está vacío.
+  Sin bump `.bcproj`; no cambia el solver.
 - Zoom del Workspace al 100% (IDE-0056). **Ctrl+Alt+0**. No mueve el
   centro. Deshabilitado si ya está al 100%. Sin bump `.bcproj`; no
   cambia el solver.
