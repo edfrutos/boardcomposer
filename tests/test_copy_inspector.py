@@ -17,6 +17,7 @@ def test_copy_inspector_shortcut_and_text(qapp, tmp_path):
     copied = clipboard.text()
     assert "A" in copied
     assert "200" in copied
+    assert window.statusBar().currentMessage() == window._tr("status.inspector_copied")
     assert window._actions["copy_inspector"].isEnabled()
 
 
@@ -24,8 +25,12 @@ def test_copy_inspector_disabled_when_empty(qapp, tmp_path):
     del qapp
     window = _window(tmp_path)
     window.inspector.clear()
+    clipboard = QApplication.clipboard()
+    assert clipboard is not None
+    clipboard.setText("keep-me")
     assert not window._actions["copy_inspector"].isEnabled()
     window._copy_inspector()
+    assert clipboard.text() == "keep-me"
     assert window.statusBar().currentMessage() == window._tr(
         "status.nothing_to_copy_inspector"
     )
