@@ -24,7 +24,7 @@ def test_copy_inspector_shortcut_and_text(qapp, tmp_path):
 def test_copy_inspector_disabled_when_empty(qapp, tmp_path):
     del qapp
     window = _window(tmp_path)
-    window.inspector.clear()
+    window.inspector.setPlainText(" \n ")
     clipboard = QApplication.clipboard()
     assert clipboard is not None
     clipboard.setText("keep-me")
