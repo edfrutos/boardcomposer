@@ -65,9 +65,11 @@ alternativas comprensibles para que el usuario decida.
   no va en el `.bcproj`.
 - Perfiles nombrados de preferencias, locales (IDE-0054 `#672`).
 - Inspector de pieza: área (IDE-0055 `#673`).
-- Zoom del Workspace al 100% (IDE-0056 `#675`; Ctrl+Alt+0).
-- Próximo: cerrar `#676` (IDE-0057) → IDE-0058; piloto DT-0006 D;
-  Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
+- Zoom del Workspace al 100% (IDE-0056; Ctrl+Alt+0).
+- Copiar texto del Inspector (IDE-0057; Ctrl+Alt+I).
+- Próximo: cola `0.4.4` séptima ola IDE-0058 (queda 0058); piloto
+  DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
+  bloqueados.
 
 ## Fuentes de verdad
 
