@@ -3,10 +3,10 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.42
+**Versión:** 1.2.43
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 25/09/2026
+**Última revisión:** 26/09/2026
 
 ---
 
@@ -159,6 +159,10 @@ sin críticas sin plan. `#671` (IDE-0053) en `main`; residual 0054; Issues = 0.
 sin críticas sin plan. `#672` (IDE-0054) en `main`; sexta ola cerrada;
 séptima ola 0055…0058 (`#673` 🟡); Issues = 0.
 
+**Revisión 2026-09-26 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
+sin críticas sin plan. `#673`/`#675`/`#676` (IDE-0055/0056/0057) en `main`;
+residual 0058; Issues = 0.
+
 ---
 
 ## Política de gestión
@@ -185,8 +189,8 @@ séptima ola 0055…0058 (`#673` 🟡); Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-09-25 en `REVIEW-2026-09-25-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`09-24` (abiertas = 1, DT-0006).
+2026-09-26 en `REVIEW-2026-09-26-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`09-25` (abiertas = 1, DT-0006).
 
 Próximo foco:
 

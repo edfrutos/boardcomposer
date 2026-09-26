@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.51
+**Versión:** 1.3.52
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 25/09/2026
+**Última revisión:** 26/09/2026
 
 ---
 
@@ -206,17 +206,17 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0055 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0055; `#647`/`#649`/`#651`/
+**Estado actual:** 🟢 Actualizado — IDE-0001…0057 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0057; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
-`#665`/`#666`/`#667`/`#671`/`#672`/`#673`). IDE-0058 ⚪ (séptima ola).
-IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
-entregadas. Snapshot: `REVIEW-2026-09-25-planificacion.md`.
+`#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`). IDE-0058 ⚪
+(séptima ola). IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
+(001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-26-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` séptima ola: IDE-0058 (0057 entregada;
-   queda 0058).
+1. Cola producto `0.4.4` séptima ola: IDE-0058 (0057 entregada; queda
+   0058).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

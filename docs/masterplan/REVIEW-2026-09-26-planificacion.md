@@ -1,14 +1,14 @@
-# Revisión de planificación — 2026-09-24
+# Revisión de planificación — 2026-09-26
 
-**Origen:** cron diario; reconciliar snapshot `REVIEW-2026-09-23` (PR `#668`,
-histórico) con producto en `main`: `#661`…`#667` (IDE-0046…0052) y
-`#671` (IDE-0053). CI `#669` (pytest wall clock) mergeado.
+**Origen:** cron diario; cola implementable residual tras `#676`
+(IDE-0057). Confirmar siguiente foco sin abrir IDE nuevas antes de 0058.
 **Fuentes:** `ROADMAP.md`, `MASTERPLAN.md`, `DOC-003`, `DOC-004`, `DOC-006`,
 spikes IDE-0007 / DT-0006, `CHANGELOG` Unreleased, UAT release smoke,
-revisión `REVIEW-2026-09-23`.
+revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 **Issues GitHub:** `gh issue list --state open` → **vacío**.
-**PRs de producto al corte:** `#661`…`#667` y `#671` **mergeados**.
-**Planning previo (plegado):** `#668` (2026-09-23) — histórico.
+**PRs de producto al corte:** `#673` **mergeado** (IDE-0055); `#675`
+**mergeado** (IDE-0056); `#676` **mergeado** (IDE-0057 copiar Inspector).
+**Planning previo:** `#674` (2026-09-25) — histórico en `main`.
 
 ---
 
@@ -57,10 +57,10 @@ revisión `REVIEW-2026-09-23`.
 | IDE-0051 Inspector aprovechamiento de tablero | 🟢 (#666) |
 | IDE-0052 preview canvas al terminar el solve | 🟢 (#667) |
 | IDE-0053 material por defecto de taller | 🟢 (#671) |
-| IDE-0054 perfiles nombrados de preferencias | 🟢 |
-| IDE-0055 Inspector área de la pieza | 🟢 |
-| IDE-0056 zoom del Workspace al 100% | 🟢 |
-| IDE-0057 copiar texto del Inspector | ⚪ |
+| IDE-0054 perfiles nombrados de preferencias | 🟢 (#672) |
+| IDE-0055 Inspector área de la pieza | 🟢 (#673) |
+| IDE-0056 zoom del Workspace al 100% | 🟢 (#675) |
+| IDE-0057 copiar texto del Inspector | 🟢 (`#676`) |
 | IDE-0058 marca sin guardar en la barra de ruta | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
@@ -94,11 +94,11 @@ Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
-IDE-0037…0054 **entregadas** (`#647`…`#667`, `#671`); sexta ola
-0051…0054 cerrada.
+IDE-0037…0057 **entregadas** (`#647`…`#667`, `#671`…`#673`, `#675`, `#676`);
+séptima ola 0055…0058 abierta (queda 0058).
 
-Desde la revisión 2026-09-23, en `main` entró `#671` (IDE-0053).
-Planning `#668` queda histórico.
+Desde la revisión 2026-09-25, en `main` entraron `#673` (IDE-0055), `#675`
+(IDE-0056) y `#676` (IDE-0057). Planning `#674` queda histórico.
 
 Límites conocidos (no son bugs; son alcance):
 
@@ -120,16 +120,18 @@ Límites conocidos (no son bugs; son alcance):
   (IDE-0038). Capas DXF por rol (IDE-0041 `#654`). Sin nube.
 - Workspace: sugerir hueco para colocación manual (IDE-0036; SCR-002).
   Preview canvas al terminar Calcular layout, sin aplicar placements
-  (IDE-0052 `#667`).
+  (IDE-0052 `#667`). Zoom al 100% (**Ctrl+Alt+0**, IDE-0056 `#675`).
 - Inspector: unidades prefs mm/cm/in (IDE-0040 `#653`); disco sigue mm.
-  Pieza muestra espesor, rotación 0°/90° (— si no colocada) y veta
-  (IDE-0046 `#661`). Comparador Largo/Ancho y diffs (IDE-0047 `#662`).
-  Lista de corte / presupuesto PDF TEXT siguen `prefs.units` (IDE-0048);
-  CSV/JSON y área m² siguen mm.
-  Prefs: export/import JSON de taller (IDE-0049 `#664`); sin rutas
-  locales ni ventana. Inspector de raíz/categoría: conteos, materiales
-  y área (IDE-0050 `#665`). Tablero: aprovechamiento (IDE-0051 `#666`).
-  Material por defecto de taller (IDE-0053 `#671`); no va en el `.bcproj`.
+  Pieza muestra espesor, rotación 0°/90° (— si no colocada), veta
+  (IDE-0046 `#661`) y área L×A (IDE-0055 `#673`). Comparador Largo/Ancho
+  y diffs (IDE-0047 `#662`). Lista de corte / presupuesto PDF TEXT siguen
+  `prefs.units` (IDE-0048); CSV/JSON y área m² siguen mm.
+  Prefs: export/import JSON de taller (IDE-0049 `#664`); perfiles
+  nombrados locales (IDE-0054 `#672`); sin rutas locales ni ventana.
+  Inspector de raíz/categoría: conteos, materiales y área (IDE-0050
+  `#665`). Tablero: aprovechamiento (IDE-0051 `#666`). Material por
+  defecto de taller (IDE-0053 `#671`); no va en el `.bcproj`. Copiar
+  texto del Inspector: entregado (`#676`, IDE-0057; Ctrl+Alt+I).
 
 Deuda abierta explícita: **1** ítem (`DT-0006` en piloto D). Sin críticas sin
 plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
@@ -138,7 +140,8 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` séptima ola** — IDE-0057 (0056 entregada; quedan 0057…0058).
+1. **Cola `0.4.4` séptima ola** — residual IDE-0058 (marca sin guardar en
+   barra de ruta).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -150,40 +153,36 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-vacía. Residual bloqueado: piloto DT-0006 D (operativo) +
-IDE-0008 / LLM / DT-0006 C.
+0055…0057: **cerrada** en `main` tras `#673`/`#675`/`#676`. Residual abierto:
+IDE-0058 ⚪. Residual bloqueado: piloto DT-0006 D (operativo) + IDE-0008 /
+LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
 desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
-(cola implementable abierta: IDE-0057, IDE-0058).
+(cola implementable abierta: IDE-0058).
 
-| ID | Título | Estado |
-|----|--------|--------|
-| IDE-0046 | Inspector: espesor / rotación / veta de pieza | Entregado (#661) |
-| IDE-0047 | Unidades prefs en Comparador | Entregado (#662) |
-| IDE-0048 | Unidades prefs en lista de corte / presupuesto | Entregado (#663) |
-| IDE-0049 | Exportar/importar preferencias JSON | Entregado (#664) |
-| IDE-0050 | Inspector: resumen rico de proyecto/categoría | Entregado (#665) |
-| IDE-0051 | Inspector: aprovechamiento de tablero | Entregado (#666) |
-| IDE-0052 | Preview canvas al terminar el solve | Entregado (#667) |
-| IDE-0053 | Material por defecto de taller | Entregado (#671) |
-| IDE-0054 | Perfiles nombrados de preferencias | Entregado |
-| IDE-0055 | Inspector: área de la pieza | Entregado |
-| IDE-0056 | Zoom del Workspace al 100% | Entregado |
-| IDE-0057 | Copiar texto del Inspector | Idea |
-| IDE-0058 | Marca sin guardar en la barra de ruta | Idea |
+Séptima ola ya registrada (no renumerar):
 
-Prioridad de ataque: **IDE-0057** (copiar texto del Inspector).
+| ID | Título | Por qué ahora |
+|----|--------|---------------|
+| IDE-0055 | Inspector: área de la pieza | Entregado (`#673`) |
+| IDE-0056 | Zoom del Workspace al 100% | Entregado (`#675`) |
+| IDE-0057 | Copiar texto del Inspector | Entregado (`#676`) |
+| IDE-0058 | Marca sin guardar en la barra de ruta | Dirty ● en ruta; SCR-005 |
 
-Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0053.
+Prioridad de ataque: **IDE-0058** (marca sin guardar en la barra de ruta).
+
+Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
 
 ## 6. Criterio de esta revisión
 
-- Alinear IDE-0054 🟢; cola implementable vacía → **sin IDE nuevas**.
-  Fold `#668` histórico.
+- No se implementa código de producto en este pase: solo alinear docs,
+  snapshot y backlog; registrar `#673`/`#675`/`#676` en `main` y dejar
+  IDE-0058 como única cola implementable. Fold `#674` /
+  `REVIEW-2026-09-25` histórico.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.

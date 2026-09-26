@@ -1,12 +1,16 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-25
+## Unreleased — 0.4.4.dev0 — 2026-09-26
 
 ### Añadido
 
 - Copiar texto del Inspector (IDE-0057). **Ctrl+Alt+I**. Copia el texto
   visible, métricas incluidas. Deshabilitado si el dock está vacío.
   Sin bump `.bcproj`; no cambia el solver.
+- Docs planificación 2026-09-26: snapshot
+  `docs/masterplan/REVIEW-2026-09-26-planificacion.md`; Issues = 0;
+  `#673`/`#675`/`#676` (IDE-0055/0056/0057) en `main`; siguiente:
+  IDE-0058. Histórico 2026-09-25 desde PR `#674`.
 - Zoom del Workspace al 100% (IDE-0056). **Ctrl+Alt+0**. No mueve el
   centro. Deshabilitado si ya está al 100%. Sin bump `.bcproj`; no
   cambia el solver.

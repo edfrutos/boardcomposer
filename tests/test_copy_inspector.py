@@ -13,19 +13,39 @@ def test_copy_inspector_shortcut_and_text(qapp, tmp_path):
     clipboard = QApplication.clipboard()
     assert clipboard is not None
     clipboard.clear()
-    window._copy_inspector()
+    window._actions["copy_inspector"].trigger()
     copied = clipboard.text()
     assert "A" in copied
     assert "200" in copied
+    assert window.statusBar().currentMessage() == window._tr("status.inspector_copied")
     assert window._actions["copy_inspector"].isEnabled()
 
 
 def test_copy_inspector_disabled_when_empty(qapp, tmp_path):
     del qapp
     window = _window(tmp_path)
-    window.inspector.clear()
+    window.inspector.setPlainText(" \n ")
+    clipboard = QApplication.clipboard()
+    assert clipboard is not None
+    clipboard.setText("keep-me")
     assert not window._actions["copy_inspector"].isEnabled()
+    tip = window._actions["copy_inspector"].statusTip()
+    assert "Ctrl+Alt+I" in tip
+    assert window._tr("status.nothing_to_copy_inspector") in tip
     window._copy_inspector()
+    assert clipboard.text() == "keep-me"
     assert window.statusBar().currentMessage() == window._tr(
         "status.nothing_to_copy_inspector"
     )
+
+
+def test_copy_inspector_preserves_visible_whitespace(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    window.inspector.setPlainText("  visible text  \n")
+    clipboard = QApplication.clipboard()
+    assert clipboard is not None
+    clipboard.clear()
+    window._copy_inspector()
+    assert clipboard.text() == "  visible text  \n"
+    assert window.statusBar().currentMessage() == window._tr("status.inspector_copied")
