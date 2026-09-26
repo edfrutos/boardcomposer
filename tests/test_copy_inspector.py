@@ -37,3 +37,15 @@ def test_copy_inspector_disabled_when_empty(qapp, tmp_path):
     assert window.statusBar().currentMessage() == window._tr(
         "status.nothing_to_copy_inspector"
     )
+
+
+def test_copy_inspector_preserves_visible_whitespace(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    window.inspector.setPlainText("  visible text  \n")
+    clipboard = QApplication.clipboard()
+    assert clipboard is not None
+    clipboard.clear()
+    window._copy_inspector()
+    assert clipboard.text() == "  visible text  \n"
+    assert window.statusBar().currentMessage() == window._tr("status.inspector_copied")

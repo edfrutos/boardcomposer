@@ -5701,8 +5701,8 @@ class MainWindow(QMainWindow):
 
     def _copy_inspector(self) -> None:
         """Copy the visible Inspector text (IDE-0057)."""
-        text = self.inspector.toPlainText().strip()
-        if not text:
+        text = self.inspector.toPlainText()
+        if not text.strip():
             self._status("status.nothing_to_copy_inspector")
             return
         self._copy_text_to_clipboard(text)
