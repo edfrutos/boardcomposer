@@ -61,7 +61,7 @@ revisión `REVIEW-2026-09-23`.
 | IDE-0055 Inspector área de la pieza | 🟢 |
 | IDE-0056 zoom del Workspace al 100% | 🟢 |
 | IDE-0057 copiar texto del Inspector | ⚪ |
-| IDE-0058 marca sin guardar en la barra de ruta | ⚪ |
+| IDE-0058 marca sin guardar en la barra de ruta | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -171,7 +171,7 @@ desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
 | IDE-0055 | Inspector: área de la pieza | Entregado |
 | IDE-0056 | Zoom del Workspace al 100% | Entregado |
 | IDE-0057 | Copiar texto del Inspector | Idea |
-| IDE-0058 | Marca sin guardar en la barra de ruta | Idea |
+| IDE-0058 | Marca sin guardar en la barra de ruta | Entregado |
 
 Prioridad de ataque: **IDE-0057** (copiar texto del Inspector).
 

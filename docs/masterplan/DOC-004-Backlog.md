@@ -127,7 +127,7 @@ Observaciones:
 | IDE-0055 | Inspector: área de la pieza | 🟢 | P3 |
 | IDE-0056 | Zoom del Workspace al 100% | 🟢 | P3 |
 | IDE-0057 | Copiar texto del Inspector | 🟢 | P3 |
-| IDE-0058 | Marca sin guardar en la barra de ruta | ⚪ | P3 |
+| IDE-0058 | Marca sin guardar en la barra de ruta | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -178,7 +178,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0055 | S | SCR-004 pieza | Entregado (#673); área prefs; no inline edit |
 | IDE-0056 | S | SCR-002 zoom | Entregado; Ctrl+Alt+0; no mueve el centro |
 | IDE-0057 | S | SCR-004 | Entregado; Ctrl+Alt+I; sin nube |
-| IDE-0058 | S | SCR-005 status | Marca ● en la ruta si hay cambios |
+| IDE-0058 | S | SCR-005 status | Entregado; ● en la ruta si hay cambios |
 
 ---
 
@@ -206,17 +206,17 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0057 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0057; `#647`/`#649`/`#651`/
+**Estado actual:** 🟢 Actualizado — IDE-0001…0058 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0058; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
-`#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`). IDE-0058 ⚪
-(séptima ola). IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
+`#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`). Séptima ola
+cerrada. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
 (001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-26-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` séptima ola: IDE-0058 (0057 entregada; queda
-   0058).
+1. Cola producto `0.4.4` séptima ola cerrada (0058 entregada). Sin IDE
+   nuevas: cola implementable vacía.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

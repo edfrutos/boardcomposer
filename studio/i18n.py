@@ -406,6 +406,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "{path}\nClic para abrir la carpeta en el explorador de archivos "
             "(Ctrl+Shift+R)"
         ),
+        "tip.status_project_path_dirty": (
+            "{path}\nCambios sin guardar. Clic para abrir la carpeta "
+            "en el explorador de archivos (Ctrl+Shift+R)"
+        ),
         "tip.status_project_unsaved": (
             "Guarda el proyecto (Ctrl+S) para abrir su carpeta "
             "en el explorador de archivos"
@@ -2055,6 +2059,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.status_project_path": (
             "{path}\nClick to open the folder in the file manager (Ctrl+Shift+R)"
+        ),
+        "tip.status_project_path_dirty": (
+            "{path}\nUnsaved changes. Click to open the folder "
+            "in the file manager (Ctrl+Shift+R)"
         ),
         "tip.status_project_unsaved": (
             "Save the project (Ctrl+S) to open its folder in the file manager"
