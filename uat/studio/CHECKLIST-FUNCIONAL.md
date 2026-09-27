@@ -55,6 +55,8 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] Clic en **tablero** → centra cámara y resalta en Workspace.
 - [ ] Inspector tablero: instancias usadas, aprovechamiento y retales
   si hay layout; «sin layout» si no (IDE-0051).
+- [ ] Inspector tablero: área de una hoja, sin multiplicar la cantidad
+  (IDE-0059).
 - [x] Inspector pieza: área L×A (IDE-0055).
 - [x] **Ctrl+Alt+I** copia el texto del Inspector (IDE-0057).
 - [x] Menú contextual pieza: editar / duplicar / eliminar / copiar ID / renombrar.

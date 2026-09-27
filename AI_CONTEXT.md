@@ -68,7 +68,8 @@ alternativas comprensibles para que el usuario decida.
 - Zoom del Workspace al 100% (IDE-0056; Ctrl+Alt+0).
 - Copiar texto del Inspector (IDE-0057; Ctrl+Alt+I).
 - Marca ● de sin guardar en la barra de ruta (IDE-0058).
-- Próximo: cola `0.4.4` vacía (séptima ola cerrada); piloto
+- Inspector de tablero: área de una hoja (IDE-0059).
+- Próximo: cola `0.4.4` octava ola 0060 (quedan 0060…0062); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 
