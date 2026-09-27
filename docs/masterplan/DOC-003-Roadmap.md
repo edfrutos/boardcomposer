@@ -3,10 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.47  
+**Versión:** 1.3.48  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 26/09/2026
+**Última revisión:** 27/09/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
