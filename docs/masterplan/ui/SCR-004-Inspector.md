@@ -163,7 +163,7 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 - Pieza: área L×A (IDE-0055), espesor, rotación 0°/90° y veta (IDE-0046).
   Copiar el texto del dock: **Ctrl+Alt+I** (IDE-0057). Canto sigue en
   Editar…, no en el dock.
-- Tablero: aprovechamiento de panel (IDE-0051). Sin edición inline.
+- Tablero: área de una hoja (IDE-0059) y aprovechamiento de panel (IDE-0051). Sin edición inline.
 - Sin contexto «algoritmo» dedicado (parámetros viven en Preferencias).
 
 ---

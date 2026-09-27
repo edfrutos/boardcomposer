@@ -1031,6 +1031,8 @@ class MainWindow(QMainWindow):
             f"{self._tr('inspector.board')}: {board.board_id}",
             f"{self._tr('inspector.dimensions')}: "
             f"{self._format_size(board.length_mm, board.width_mm)}",
+            f"{self._tr('inspector.piece_area')}: "
+            f"{self._format_summary_area(board.length_mm * board.width_mm)}",
             f"{self._tr('inspector.thickness')}: "
             f"{self._format_length(board.thickness_mm)}",
             f"{self._tr('inspector.quantity')}: {board.quantity}",

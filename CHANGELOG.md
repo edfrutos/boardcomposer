@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Inspector de tablero: área de una hoja (IDE-0059). L×A, sin
+  multiplicar la cantidad. mm en mm² enteros. Abre octava ola
+  0060…0062. Solo lectura. Sin bump `.bcproj`; no cambia el solver.
 - Marca de sin guardar en la barra de ruta (IDE-0058). El nombre del
   `.bcproj` lleva `●` si hay cambios. El título de la ventana ya lo
   tenía. Cierra la séptima ola 0055…0058. Sin bump `.bcproj`.
