@@ -2,6 +2,11 @@
 
 ## Unreleased — 0.4.4.dev0 — 2026-09-27
 
+### Corregido
+
+- Preferencias ya no desborda el alto de la pantalla. Los grupos
+  desplazan; OK, Cancelar y Restaurar quedan visibles.
+
 ### Añadido
 
 - Marca de sin guardar en la barra de ruta (IDE-0058). El nombre del
