@@ -1,9 +1,13 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-26
+## Unreleased — 0.4.4.dev0 — 2026-09-27
 
 ### Añadido
 
+- Docs planificación 2026-09-27: snapshot
+  `docs/masterplan/REVIEW-2026-09-27-planificacion.md`; Issues = 0;
+  `#678` (IDE-0058) abierto 🟡; siguiente: cerrar `#678`. Sin IDE nuevas.
+  Histórico 2026-09-26 desde PR `#677`.
 - Copiar texto del Inspector (IDE-0057). **Ctrl+Alt+I**. Copia el texto
   visible, métricas incluidas. Deshabilitado si el dock está vacío.
   Sin bump `.bcproj`; no cambia el solver.
