@@ -61,7 +61,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0055 Inspector área de la pieza | 🟢 (#673) |
 | IDE-0056 zoom del Workspace al 100% | 🟢 (#675) |
 | IDE-0057 copiar texto del Inspector | 🟢 (`#676`) |
-| IDE-0058 marca sin guardar en la barra de ruta | ⚪ |
+| IDE-0058 marca sin guardar en la barra de ruta | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -95,7 +95,7 @@ CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
 IDE-0037…0057 **entregadas** (`#647`…`#667`, `#671`…`#673`, `#675`, `#676`);
-séptima ola 0055…0058 abierta (queda 0058).
+séptima ola 0055…0058 cerrada.
 
 Desde la revisión 2026-09-25, en `main` entraron `#673` (IDE-0055), `#675`
 (IDE-0056) y `#676` (IDE-0057). Planning `#674` queda histórico.
@@ -140,8 +140,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` séptima ola** — residual IDE-0058 (marca sin guardar en
-   barra de ruta).
+1. **Cola `0.4.4` séptima ola cerrada** — 0058 entregada. Sin IDE nuevas.
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -153,13 +152,13 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0055…0057: **cerrada** en `main` tras `#673`/`#675`/`#676`. Residual abierto:
-IDE-0058 ⚪. Residual bloqueado: piloto DT-0006 D (operativo) + IDE-0008 /
+vacía (séptima ola 0055…0058 cerrada). Residual bloqueado: piloto DT-0006 D
+(operativo) + IDE-0008 /
 LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
 desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
-(cola implementable abierta: IDE-0058).
+(cola implementable vacía; séptima ola cerrada).
 
 Séptima ola ya registrada (no renumerar):
 
@@ -168,9 +167,9 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0055 | Inspector: área de la pieza | Entregado (`#673`) |
 | IDE-0056 | Zoom del Workspace al 100% | Entregado (`#675`) |
 | IDE-0057 | Copiar texto del Inspector | Entregado (`#676`) |
-| IDE-0058 | Marca sin guardar en la barra de ruta | Dirty ● en ruta; SCR-005 |
+| IDE-0058 | Marca sin guardar en la barra de ruta | Entregado |
 
-Prioridad de ataque: **IDE-0058** (marca sin guardar en la barra de ruta).
+Prioridad de ataque: cola implementable vacía. Sin IDE nuevas.
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

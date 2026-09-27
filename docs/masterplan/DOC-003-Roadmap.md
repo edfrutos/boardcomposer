@@ -158,7 +158,11 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Piloto DT-0006 opción D (backup); C diferida.
+<<<<<<< HEAD
 - Cola ciclo `0.4.4` séptima ola: cerrar `#678` (IDE-0058; 0057 entregada).
+=======
+- Cola ciclo `0.4.4` séptima ola cerrada (0058 entregada). Sin IDE nuevas.
+>>>>>>> origin/main
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2
@@ -187,8 +191,13 @@ corte `0.4.3` / `v0.4.3` publicado; ciclo `0.4.4.dev0` ola 1 (0025…0030)
 cerrada; segunda ola IDE-0031…0036 entregada; 0037…0057 entregadas
 (`#647`/`#649`/`#651`/`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/
 `#662`/`#663`/`#664`/`#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/
+<<<<<<< HEAD
 `#676`); sexta ola 0051…0054 cerrada; séptima ola 0055…0058 (0058 🟡
 `#678`). Revisión: `REVIEW-2026-09-27-planificacion.md`.
+=======
+`#676`); sexta ola 0051…0054 cerrada; séptima ola 0055…0058 cerrada.
+Revisión: `REVIEW-2026-09-26-planificacion.md`.
+>>>>>>> origin/main
 
 Pendiente de:
 

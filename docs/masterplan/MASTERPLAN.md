@@ -70,7 +70,11 @@
 
 ## Próxima tarea única
 
+<<<<<<< HEAD
 1. Ciclo `0.4.4` séptima ola: cerrar `#678` (IDE-0058; 0057 entregada).
+=======
+1. Ciclo `0.4.4` séptima ola cerrada (0058 entregada). Sin IDE nuevas.
+>>>>>>> origin/main
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

@@ -2345,16 +2345,21 @@ class MainWindow(QMainWindow):
         label = getattr(self, "_project_path_label", None)
         filename = self.services.projects.filename
         if label is not None:
+            dirty = self.services.projects.is_modified
+            prefix = "● " if dirty else ""
             if filename:
-                label.setText(Path(filename).name)
+                label.setText(f"{prefix}{Path(filename).name}")
+                tip_key = (
+                    "tip.status_project_path_dirty"
+                    if dirty
+                    else "tip.status_project_path"
+                )
                 label.setToolTip(
-                    with_native_shortcuts(
-                        self._tr("tip.status_project_path", path=filename)
-                    )
+                    with_native_shortcuts(self._tr(tip_key, path=filename))
                 )
                 label.setCursor(Qt.CursorShape.PointingHandCursor)
             else:
-                label.setText(self._tr("status.project_unsaved"))
+                label.setText(f"{prefix}{self._tr('status.project_unsaved')}")
                 label.setToolTip(
                     with_native_shortcuts(self._tr("tip.status_project_unsaved"))
                 )
