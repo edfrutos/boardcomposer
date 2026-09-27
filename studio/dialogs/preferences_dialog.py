@@ -6,8 +6,8 @@ from collections.abc import Callable
 from dataclasses import replace
 from pathlib import Path
 
-from PySide6.QtCore import QUrl
-from PySide6.QtGui import QDesktopServices
+from PySide6.QtCore import Qt, QUrl
+from PySide6.QtGui import QDesktopServices, QGuiApplication
 from PySide6.QtWidgets import (
     QCheckBox,
     QComboBox,
@@ -16,14 +16,17 @@ from PySide6.QtWidgets import (
     QDoubleSpinBox,
     QFileDialog,
     QFormLayout,
+    QFrame,
     QGroupBox,
     QHBoxLayout,
     QInputDialog,
     QLabel,
     QMessageBox,
     QPushButton,
+    QScrollArea,
     QSpinBox,
     QVBoxLayout,
+    QWidget,
 )
 
 from boardcomposer.export.pdf_page import (
@@ -113,6 +116,10 @@ class PreferencesDialog(QDialog):
         self._intro.setWordWrap(True)
         layout.addWidget(self._intro)
 
+        self._body = QWidget()
+        body_layout = QVBoxLayout(self._body)
+        body_layout.setContentsMargins(0, 0, 0, 0)
+
         self.general = QGroupBox()
         general_form = QFormLayout(self.general)
 
@@ -140,7 +147,7 @@ class PreferencesDialog(QDialog):
         self.units.setCurrentIndex(units_index if units_index >= 0 else 0)
         self._units_label = QLabel()
         general_form.addRow(self._units_label, self.units)
-        layout.addWidget(self.general)
+        body_layout.addWidget(self.general)
 
         self.workspace = QGroupBox()
         workspace_form = QFormLayout(self.workspace)
@@ -154,7 +161,7 @@ class PreferencesDialog(QDialog):
         self.grid_size_mm.setValue(preferences.grid_size_mm)
         self._grid_size_label = QLabel()
         workspace_form.addRow(self._grid_size_label, self.grid_size_mm)
-        layout.addWidget(self.workspace)
+        body_layout.addWidget(self.workspace)
 
         self.algorithms = QGroupBox()
         algorithms_form = QFormLayout(self.algorithms)
@@ -186,7 +193,7 @@ class PreferencesDialog(QDialog):
         algorithms_form.addRow(self._weight_placed_label, self.placed_boards)
         algorithms_form.addRow(self._weight_compactness_label, self.compactness)
         algorithms_form.addRow(self._weight_rotation_label, self.rotation_penalty)
-        layout.addWidget(self.algorithms)
+        body_layout.addWidget(self.algorithms)
 
         self.export_group = QGroupBox()
         export_form = QFormLayout(self.export_group)
@@ -300,7 +307,7 @@ class PreferencesDialog(QDialog):
         export_form.addRow(
             self._quote_labor_minutes_label, self.quote_labor_minutes_per_piece
         )
-        layout.addWidget(self.export_group)
+        body_layout.addWidget(self.export_group)
 
         self.advanced = QGroupBox()
         advanced_form = QFormLayout(self.advanced)
@@ -358,7 +365,14 @@ class PreferencesDialog(QDialog):
         advanced_form.addRow("", profile_row)
         self.profile_combo.currentIndexChanged.connect(self._on_profile_index)
         self._reload_profile_combo()
-        layout.addWidget(self.advanced)
+        body_layout.addWidget(self.advanced)
+
+        self._scroll = QScrollArea()
+        self._scroll.setWidgetResizable(True)
+        self._scroll.setFrameShape(QFrame.Shape.NoFrame)
+        self._scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self._scroll.setWidget(self._body)
+        layout.addWidget(self._scroll, 1)
 
         self._buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.RestoreDefaults
@@ -376,6 +390,35 @@ class PreferencesDialog(QDialog):
         self._apply_weights_to_spins(preferences.weights)
         self._on_custom_weights_toggled(preferences.use_custom_weights)
         self._retranslate()
+        self._fit_to_screen()
+
+    def showEvent(self, event) -> None:  # noqa: N802 — Qt API
+        super().showEvent(event)
+        self._fit_to_screen()
+
+    def _fit_to_screen(self) -> None:
+        """Keep OK/Cancel on screen; the groups scroll if they do not fit.
+
+        ``QScrollArea.sizeHint()`` stays small, so the dialog would open
+        stubby and hide most groups. Grow up to the screen, then scroll.
+        """
+        screen = self.screen() or QGuiApplication.primaryScreen()
+        if screen is None:
+            return
+        available = screen.availableGeometry()
+        max_height = max(420, available.height() - 48)
+        max_width = max(self.minimumWidth(), available.width() - 48)
+        self.setMaximumHeight(max_height)
+        self.setMaximumWidth(max_width)
+        scroll_hint = max(self._scroll.sizeHint().height(), 1)
+        chrome = max(0, self.sizeHint().height() - scroll_hint)
+        target_height = min(max_height, chrome + self._body.sizeHint().height())
+        target_height = max(min(420, max_height), target_height)
+        target_width = min(
+            max(self.sizeHint().width(), self.minimumWidth()),
+            max_width,
+        )
+        self.resize(target_width, target_height)
 
     def _retranslate(self) -> None:
         language = self.language.currentData() or DEFAULT_LANGUAGE
