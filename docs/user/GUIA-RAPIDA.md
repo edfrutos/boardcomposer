@@ -323,7 +323,9 @@ Chrome de Studio (se recuerda entre sesiones).
 - **Barra de estado:** con proyecto guardado muestra el nombre del `.bcproj`
   (tooltip = ruta completa); **clic** abre la carpeta (igual que
   **Ctrl+Shift+R**). Sin guardar: «Proyecto aún no guardado» — tip pide
-  **Ctrl+S** antes de poder abrir carpeta. El **%** es el zoom del Workspace
+  **Ctrl+S** antes de poder abrir carpeta. Entre el nombre y el **%** va
+  piezas colocadas / total (`1/2`; tooltip «Piezas colocadas: 1 de 2»). El
+  **%** es el zoom del Workspace
   (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**).
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular

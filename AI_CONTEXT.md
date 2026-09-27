@@ -69,7 +69,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar texto del Inspector (IDE-0057; Ctrl+Alt+I).
 - Marca ● de sin guardar en la barra de ruta (IDE-0058).
 - Inspector de tablero: área de una hoja (IDE-0059).
-- Próximo: cola `0.4.4` octava ola 0060 (quedan 0060…0062); piloto
+- Barra de estado: piezas colocadas / total (IDE-0060).
+- Próximo: cola `0.4.4` octava ola 0061 (quedan 0061…0062); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 
