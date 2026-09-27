@@ -4,6 +4,9 @@
 
 ### Añadido
 
+- Marca de sin guardar en la barra de ruta (IDE-0058). El nombre del
+  `.bcproj` lleva `●` si hay cambios. El título de la ventana ya lo
+  tenía. Cierra la séptima ola 0055…0058. Sin bump `.bcproj`.
 - Copiar texto del Inspector (IDE-0057). **Ctrl+Alt+I**. Copia el texto
   visible, métricas incluidas. Deshabilitado si el dock está vacío.
   Sin bump `.bcproj`; no cambia el solver.

@@ -61,7 +61,7 @@ revisión `REVIEW-2026-09-24-planificacion.md`, PR abierto `#673`.
 | IDE-0055 Inspector área de la pieza | 🟡 PR `#673` |
 | IDE-0056 zoom del Workspace al 100% | 🟢 |
 | IDE-0057 copiar texto del Inspector | ⚪ |
-| IDE-0058 marca sin guardar en la barra de ruta | ⚪ |
+| IDE-0058 marca sin guardar en la barra de ruta | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -169,7 +169,7 @@ SCR-005 dirty state en ruta):
 | IDE-0055 | Inspector: área de la pieza | L×A legible; `#673` 🟡 |
 | IDE-0056 | Zoom del Workspace al 100% | Entregado |
 | IDE-0057 | Copiar texto del Inspector | Pegar métricas a taller; sin nube |
-| IDE-0058 | Marca sin guardar en la barra de ruta | Dirty ● en ruta; SCR-005 |
+| IDE-0058 | Marca sin guardar en la barra de ruta | Entregado |
 
 Prioridad de ataque: **IDE-0057** (copiar texto del Inspector).
 
