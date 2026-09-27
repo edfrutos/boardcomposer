@@ -173,7 +173,8 @@ desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
 | IDE-0057 | Copiar texto del Inspector | Idea |
 | IDE-0058 | Marca sin guardar en la barra de ruta | Entregado |
 
-Prioridad de ataque: **IDE-0057** (copiar texto del Inspector).
+Prioridad de ataque: **IDE-0057** (copiar texto del Inspector); IDE-0058 ya
+entregado.
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0053.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
