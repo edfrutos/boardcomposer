@@ -225,6 +225,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.edit_project_kerf": "Espesor de sierra…",
         "action.material_catalog": "Catálogo de materiales…",
         "action.reveal_project_folder": "Abrir carpeta del proyecto",
+        "action.copy_project_path": "Copiar ruta del proyecto",
         "action.diff_bcproj": "Comparar revisiones .bcproj…",
         "action.restore_local_revision": "Restaurar última revisión local…",
         "action.export_revision_backup": "Exportar backup de revisiones…",
@@ -402,9 +403,12 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Abrir la carpeta del archivo .bcproj en el explorador de archivos "
             "(Ctrl+Shift+R)"
         ),
+        "tip.copy_project_path": (
+            "Copiar la ruta del archivo .bcproj al portapapeles (Ctrl+Alt+Shift+C)"
+        ),
         "tip.status_project_path": (
             "{path}\nClic para abrir la carpeta en el explorador de archivos "
-            "(Ctrl+Shift+R)"
+            "(Ctrl+Shift+R). Ctrl+Alt+Shift+C copia la ruta"
         ),
         "tip.status_project_path_dirty": (
             "{path}\nCambios sin guardar. Clic para abrir la carpeta "
@@ -988,6 +992,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.solution": "Solución {n} — {pieces} piezas — {waste} huecos",
         "explorer.context.rename": "Renombrar…",
         "explorer.context.reveal_folder": "Abrir carpeta…",
+        "explorer.context.copy_path": "Copiar ruta",
         "explorer.context.edit": "Editar…",
         "explorer.context.duplicate": "Duplicar",
         "explorer.context.copy_id": "Copiar ID",
@@ -1156,6 +1161,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.project_folder_failed": "No se pudo abrir la carpeta del proyecto",
         "status.project_folder_opened": "Carpeta del proyecto abierta",
+        "status.project_path_copied": "Ruta copiada",
+        "status.project_path_unavailable": "Guarda el proyecto para copiar su ruta",
         "status.welcome": "Pantalla de inicio",
         "status.new_empty": "Nuevo proyecto vacío creado",
         "status.new_project_created": "Proyecto «{name}» creado",
@@ -1884,6 +1891,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.edit_project_kerf": "Saw kerf…",
         "action.material_catalog": "Material catalog…",
         "action.reveal_project_folder": "Open project folder",
+        "action.copy_project_path": "Copy project path",
         "action.diff_bcproj": "Compare .bcproj revisions…",
         "action.restore_local_revision": "Restore latest local revision…",
         "action.export_revision_backup": "Export revisions backup…",
@@ -2059,8 +2067,12 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Open the folder that contains the .bcproj file in the file manager "
             "(Ctrl+Shift+R)"
         ),
+        "tip.copy_project_path": (
+            "Copy the .bcproj file path to the clipboard (Ctrl+Alt+Shift+C)"
+        ),
         "tip.status_project_path": (
-            "{path}\nClick to open the folder in the file manager (Ctrl+Shift+R)"
+            "{path}\nClick to open the folder in the file manager "
+            "(Ctrl+Shift+R). Ctrl+Alt+Shift+C copies the path"
         ),
         "tip.status_project_path_dirty": (
             "{path}\nUnsaved changes. Click to open the folder "
@@ -2616,6 +2628,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.solution": "Solution {n} — {pieces} pieces — {waste} gaps",
         "explorer.context.rename": "Rename…",
         "explorer.context.reveal_folder": "Open folder…",
+        "explorer.context.copy_path": "Copy path",
         "explorer.context.edit": "Edit…",
         "explorer.context.duplicate": "Duplicate",
         "explorer.context.copy_id": "Copy ID",
@@ -2783,6 +2796,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.project_folder_failed": "Could not open the project folder",
         "status.project_folder_opened": "Project folder opened",
+        "status.project_path_copied": "Path copied",
+        "status.project_path_unavailable": "Save the project to copy its path",
         "status.welcome": "Home screen",
         "status.new_empty": "Empty project created",
         "status.new_project_created": "Project “{name}” created",
@@ -3307,6 +3322,7 @@ _ACTION_KEYS = (
     "edit_project_kerf",
     "material_catalog",
     "reveal_project_folder",
+    "copy_project_path",
     "diff_bcproj",
     "restore_local_revision",
     "export_revision_backup",

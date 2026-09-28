@@ -70,7 +70,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` octava ola: IDE-0061 (0060 entregada; quedan 0061…0062).
+1. Ciclo `0.4.4` octava ola: IDE-0062 (0061 entregada; queda 0062).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

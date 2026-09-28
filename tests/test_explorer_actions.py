@@ -27,6 +27,7 @@ def test_explorer_context_actions_for_board_and_categories():
         "rename",
         "edit",
         "reveal_folder",
+        "copy_path",
     )
     assert explorer_context_actions("board:B1") == (
         "edit",
@@ -80,6 +81,9 @@ def test_explorer_context_tip_keys(qapp, tmp_path):
     )
     assert window._explorer_context_tip_key("reveal_folder", "project:root") == (
         "tip.reveal_project_folder"
+    )
+    assert window._explorer_context_tip_key("copy_path", "project:root") == (
+        "tip.copy_project_path"
     )
     assert window._explorer_context_tip_key("place_on_board", "piece:A") is None
     assert window._tr("tip.preview_solution") != "tip.preview_solution"

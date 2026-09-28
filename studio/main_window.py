@@ -251,6 +251,7 @@ class MainWindow(QMainWindow):
         self._menus["project"].addAction(self._actions["edit_project_kerf"])
         self._menus["project"].addAction(self._actions["material_catalog"])
         self._menus["project"].addAction(self._actions["reveal_project_folder"])
+        self._menus["project"].addAction(self._actions["copy_project_path"])
         self._menus["project"].addAction(self._actions["diff_bcproj"])
         self._menus["project"].addAction(self._actions["restore_local_revision"])
         self._menus["project"].addAction(self._actions["export_revision_backup"])
@@ -300,6 +301,7 @@ class MainWindow(QMainWindow):
         self._actions["reveal_project_folder"].triggered.connect(
             self._reveal_project_folder
         )
+        self._actions["copy_project_path"].triggered.connect(self._copy_project_path)
         self._actions["diff_bcproj"].triggered.connect(self._diff_bcproj)
         self._actions["restore_local_revision"].triggered.connect(
             self._restore_latest_local_revision
@@ -2382,6 +2384,16 @@ class MainWindow(QMainWindow):
                 else self._tr("status.project_folder_unavailable")
             )
             reveal.setStatusTip(tip)
+        copy_path = self._actions.get("copy_project_path")
+        if copy_path is not None:
+            has_file = bool(filename)
+            copy_path.setEnabled(has_file)
+            tip = (
+                with_native_shortcuts(self._tr("tip.copy_project_path"))
+                if has_file
+                else self._tr("status.project_path_unavailable")
+            )
+            copy_path.setStatusTip(tip)
         restore = self._actions.get("restore_local_revision")
         if restore is not None:
             has_revs = bool(filename and list_revisions(filename))
@@ -5345,6 +5357,7 @@ class MainWindow(QMainWindow):
             "add_board": "tip.add_board",
             "add_piece": "tip.add_piece",
             "reveal_folder": "tip.reveal_project_folder",
+            "copy_path": "tip.copy_project_path",
         }
         return tips.get(key)
 
@@ -5363,9 +5376,16 @@ class MainWindow(QMainWindow):
         project = self.services.projects.current_project
         for key in actions:
             action = menu.addAction(self._tr(f"explorer.context.{key}"))
-            if key == "reveal_folder" and not self.services.projects.filename:
+            if key in {"reveal_folder", "copy_path"} and (
+                not self.services.projects.filename
+            ):
                 action.setEnabled(False)
-                action.setStatusTip(self._tr("status.project_folder_unavailable"))
+                unavailable = (
+                    "status.project_path_unavailable"
+                    if key == "copy_path"
+                    else "status.project_folder_unavailable"
+                )
+                action.setStatusTip(self._tr(unavailable))
             elif key == "place_on_board":
                 parsed = parse_explorer_role(role)
                 can_place = False
@@ -5418,6 +5438,9 @@ class MainWindow(QMainWindow):
             return
         if kind == "project" and action_key == "reveal_folder":
             self._reveal_project_folder()
+            return
+        if kind == "project" and action_key == "copy_path":
+            self._copy_project_path()
             return
         if action_key == "add_board":
             self._add_board()
@@ -5506,6 +5529,15 @@ class MainWindow(QMainWindow):
             self._status("status.project_folder_failed")
             return
         self._status("status.project_folder_opened")
+
+    def _copy_project_path(self) -> None:
+        """Copy the saved .bcproj path (IDE-0061)."""
+        filename = self.services.projects.filename
+        if not filename:
+            self._status("status.project_path_unavailable")
+            return
+        self._copy_text_to_clipboard(filename)
+        self._status("status.project_path_copied")
 
     def _diff_bcproj(self) -> None:
         """Open structural .bcproj diff dialog (FLW-006 / Core ``diff_bcproj``)."""

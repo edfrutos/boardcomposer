@@ -47,9 +47,11 @@ Salir            Importar piezas…
 
 La barra de estado muestra el basename del `.bcproj` cuando el proyecto está
 guardado; el tooltip lleva la ruta completa. Clic (o **Ctrl+Shift+R**) abre la
-carpeta. Sin archivo en disco: «aún no guardado» + tip **Ctrl+S**. A la
-derecha, piezas colocadas / total del inventario (IDE-0060; una colocación
-de un id que no está en el inventario no cuenta) y el zoom del Workspace.
+carpeta. Sin archivo en disco: «aún no guardado» + tip **Ctrl+S**.
+**Ctrl+Alt+Shift+C** copia la ruta del archivo (deshabilitado si no hay
+archivo en disco). A la derecha, piezas colocadas / total del inventario
+(IDE-0060; una colocación de un id que no está en el inventario no
+cuenta) y el zoom del Workspace.
 
 ---
 
@@ -76,6 +78,7 @@ de un id que no está en el inventario no cuenta) y el zoom del Workspace.
 | Espesor de sierra / kerf | **Ctrl+Alt+K** | Undoable; `.bcproj` v4; hueco al calcular/mover |
 | Catálogo de materiales | **Ctrl+Alt+T** | Usuario; `material_catalog.json`; export/import JSON; no va en el `.bcproj` |
 | Abrir carpeta | **Ctrl+Shift+R** | Solo si hay archivo en disco |
+| Copiar ruta | **Ctrl+Alt+Shift+C** | Ruta del `.bcproj`; sin nube |
 | Comparar revisiones | **Ctrl+Shift+Y** | Diff vs anillo local / archivos; recuerda carpeta (`last_diff_directory`) |
 | Restaurar última revisión | **Ctrl+Alt+Y** | Snapshot más reciente del anillo; dirty hasta Guardar; vacía undo |
 | Exportar backup de revisiones | **Ctrl+Alt+B** | Copia `.bcproj` + anillo a carpeta; diálogo Abrir carpeta; recuerda destino |
