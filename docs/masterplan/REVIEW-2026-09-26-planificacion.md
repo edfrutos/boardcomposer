@@ -65,7 +65,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0059 Inspector área de una hoja de tablero | 🟢 |
 | IDE-0060 barra de estado piezas colocadas / total | 🟢 |
 | IDE-0061 copiar ruta del .bcproj | 🟢 |
-| IDE-0062 clic en el zoom vuelve al 100% | ⚪ |
+| IDE-0062 clic en el zoom vuelve al 100% | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -144,7 +144,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` octava ola** — IDE-0062 (0061 entregada; queda 0062).
+1. **Cola `0.4.4` octava ola cerrada** — 0062 entregada. Sin IDE nuevas.
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -156,13 +156,13 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0062 (octava ola; 0061 entregada). Residual bloqueado: piloto DT-0006 D
+vacía (octava ola 0059…0062 cerrada). Residual bloqueado: piloto DT-0006 D
 (operativo) + IDE-0008 /
 LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
-desarrollo pendiente y bugs cerrados* → octava ola 0059…0062 abierta;
-no se añaden más hasta cerrarla.
+desarrollo pendiente y bugs cerrados* → octava ola 0059…0062 cerrada;
+no se añaden IDE nuevas (cola implementable vacía).
 
 Séptima ola ya registrada (no renumerar):
 
@@ -175,9 +175,9 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0059 | Inspector: área de una hoja de tablero | Entregado |
 | IDE-0060 | Barra de estado: piezas colocadas / total | Entregado |
 | IDE-0061 | Copiar ruta del .bcproj | Entregado |
-| IDE-0062 | Clic en el zoom vuelve al 100% | Idea |
+| IDE-0062 | Clic en el zoom vuelve al 100% | Entregado |
 
-Prioridad de ataque: **IDE-0062** (clic en el zoom vuelve al 100%).
+Prioridad de ataque: cola implementable vacía. Sin IDE nuevas.
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

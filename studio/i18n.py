@@ -1154,7 +1154,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
-            "Ctrl+0 ajusta a todos los tableros; ignora la selección)"
+            "Ctrl+0 ajusta a todos los tableros; ignora la selección). "
+            "Clic vuelve al 100% (Ctrl+Alt+0)"
         ),
         "status.project_folder_unavailable": (
             "Guarda el proyecto para abrir su carpeta en el explorador de archivos"
@@ -2789,7 +2790,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
-            "Ctrl+0 fits all boards; ignores the selection)"
+            "Ctrl+0 fits all boards; ignores the selection). "
+            "Click returns to 100% (Ctrl+Alt+0)"
         ),
         "status.project_folder_unavailable": (
             "Save the project to open its folder in the file manager"

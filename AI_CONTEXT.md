@@ -71,7 +71,8 @@ alternativas comprensibles para que el usuario decida.
 - Inspector de tablero: área de una hoja (IDE-0059).
 - Barra de estado: piezas colocadas / total (IDE-0060).
 - Copiar ruta del `.bcproj` (IDE-0061; Ctrl+Alt+Shift+C).
-- Próximo: cola `0.4.4` octava ola 0062 (queda 0062); piloto
+- Clic en la etiqueta de zoom vuelve al 100% (IDE-0062).
+- Próximo: cola `0.4.4` vacía (octava ola cerrada); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

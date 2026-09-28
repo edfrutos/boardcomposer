@@ -51,7 +51,8 @@ decisión final antes de exportar.
   `quantity > 1` aparece como instancia distinta).
 - Piezas colocadas con id, rotación y panel de origen.
 - Zoom (rueda, **Ctrl+=** / **Ctrl+-**), ajuste (**Ctrl+0**, **Ctrl+Shift+0**),
-  zoom al 100% (**Ctrl+Alt+0**, IDE-0056),
+  zoom al 100% (**Ctrl+Alt+0**, IDE-0056; también clic en el **%**
+  de la barra de estado, IDE-0062),
   pan (botón medio / derecho / Espacio+arrastre) y cuadrícula (**Ctrl+G**).
 
 ### Explorador
