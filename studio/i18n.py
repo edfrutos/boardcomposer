@@ -1158,7 +1158,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.placed_pieces": "{placed}/{total}",
         "tip.status_placed_pieces": ("Piezas colocadas: {placed} de {total}"),
         "status.selection_count": "{n} sel.",
-        "tip.status_selection": "Piezas seleccionadas: {n}",
+        "tip.status_selection": (
+            "Piezas seleccionadas: {n}. Clic ajusta el encuadre (Ctrl+Shift+0)"
+        ),
         "status.project_kerf": "kerf {length}",
         "tip.status_project_kerf": (
             "Espesor de sierra del proyecto: {length} (Ctrl+Alt+K)"
@@ -2810,7 +2812,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.placed_pieces": "{placed}/{total}",
         "tip.status_placed_pieces": "Pieces placed: {placed} of {total}",
         "status.selection_count": "{n} sel.",
-        "tip.status_selection": "Selected pieces: {n}",
+        "tip.status_selection": (
+            "Selected pieces: {n}. Click fits the selection (Ctrl+Shift+0)"
+        ),
         "status.project_kerf": "kerf {length}",
         "tip.status_project_kerf": ("Project saw kerf: {length} (Ctrl+Alt+K)"),
         "status.zoom": "{n}%",

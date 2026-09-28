@@ -329,7 +329,8 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+S** antes de poder abrir carpeta. Entre el nombre y el **%** va
   piezas colocadas / total (`1/2`; tooltip «Piezas colocadas: 1 de 2»).
   Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
-  (oculta si no hay selección). El kerf del proyecto va como `kerf 3.2 mm`
+  (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre
+  (**Ctrl+Shift+0**). El kerf del proyecto va como `kerf 3.2 mm`
   (unidades de Preferencias; oculto si no hay proyecto). El
   **%** es el zoom del Workspace
   (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**). **Clic** en el **%**
