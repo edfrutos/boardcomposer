@@ -62,6 +62,7 @@
 - Clic en la etiqueta de zoom vuelve al 100% (IDE-0062 `#684`).
 - Barra de estado: piezas seleccionadas (IDE-0063 `#686`).
 - Copiar medidas L×A de una pieza (**Ctrl+Alt+Shift+D**, IDE-0064).
+- Copiar medidas L×A de un tablero (**Ctrl+Alt+Shift+B**, IDE-0068).
 - Barra de estado: kerf del proyecto (IDE-0065).
 - Clic en `n sel.` ajusta el encuadre (IDE-0066).
 - Clic en el kerf de la barra abre el espesor de sierra (IDE-0067).
@@ -80,7 +81,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` décima ola: IDE-0068 (0067 entregada; quedan 0068…0070).
+1. Ciclo `0.4.4` décima ola: IDE-0069 (0068 entregada; quedan 0069…0070).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

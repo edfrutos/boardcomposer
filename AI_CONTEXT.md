@@ -77,7 +77,8 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: kerf del proyecto (IDE-0065).
 - Clic en `n sel.` ajusta el encuadre (IDE-0066).
 - Clic en el kerf de la barra abre el espesor de sierra (IDE-0067).
-- Próximo: cola `0.4.4` décima ola 0068 (quedan 0068…0070); piloto
+- Copiar medidas L×A de un tablero (IDE-0068; Ctrl+Alt+Shift+B).
+- Próximo: cola `0.4.4` décima ola 0069 (quedan 0069…0070); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

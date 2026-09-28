@@ -34,6 +34,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [ ] Barra de estado: `n sel.` con piezas seleccionadas en el Workspace; oculta si no hay (IDE-0063). Clic ajusta el encuadre (IDE-0066).
 - [ ] Barra de estado: kerf del proyecto (`kerf 3.2 mm`); unidades de Preferencias; oculta sin proyecto (IDE-0065). Clic abre el espesor de sierra (IDE-0067).
 - [ ] Copiar medidas L×A de una sola pieza (**Ctrl+Alt+Shift+D**); unidades de Preferencias; idle con varias (IDE-0064).
+- [ ] Copiar medidas L×A de un tablero (**Ctrl+Alt+Shift+B**); una hoja; la cantidad no multiplica (IDE-0068).
 - [ ] Copiar ruta del `.bcproj` (**Ctrl+Alt+Shift+C**); idle si no hay archivo (IDE-0061).
 - [x] **Recientes** en inicio y menú: clic / Enter abre; anclar / desanclar vía menú contextual; Delete / menú quita uno; vaciar lista (**Ctrl+Shift+X**; tip de estado) si aplica.
 - [x] **Plantilla de proyecto**: guardar (**Ctrl+Shift+M**; tip de estado) y crear desde plantilla (**Ctrl+Shift+N**; tip de estado).

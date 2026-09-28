@@ -51,6 +51,7 @@ def test_explorer_board_context_includes_delete():
         "rename",
         "duplicate",
         "copy_id",
+        "copy_board_size",
         "delete",
     )
 

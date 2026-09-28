@@ -32,7 +32,7 @@ def explorer_context_actions(role: object) -> tuple[str, ...]:
             "delete",
         )
     if kind == "board":
-        return ("edit", "rename", "duplicate", "copy_id", "delete")
+        return ("edit", "rename", "duplicate", "copy_id", "copy_board_size", "delete")
     if kind == "category" and object_id == "boards":
         return ("add_board",)
     if kind == "category" and object_id == "pieces":

@@ -163,6 +163,8 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 - Pieza: área L×A (IDE-0055), espesor, rotación 0°/90° y veta (IDE-0046).
   Copiar el texto del dock: **Ctrl+Alt+I** (IDE-0057). Copiar solo L×A
   de una pieza: **Ctrl+Alt+Shift+D** (IDE-0064; unidades de Preferencias).
+  Copiar L×A de una hoja de tablero: **Ctrl+Alt+Shift+B** (IDE-0068;
+  la cantidad no multiplica).
   Canto sigue en
   Editar…, no en el dock.
 - Tablero: área de una hoja (IDE-0059) y aprovechamiento de panel (IDE-0051). Sin edición inline.

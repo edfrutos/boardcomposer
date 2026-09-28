@@ -71,7 +71,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0065 barra de estado kerf del proyecto | 🟢 |
 | IDE-0066 clic en la selección ajusta el encuadre | 🟢 |
 | IDE-0067 clic en el kerf abre el espesor de sierra | 🟢 |
-| IDE-0068 copiar medidas L×A del tablero | ⚪ |
+| IDE-0068 copiar medidas L×A del tablero | 🟢 |
 | IDE-0069 barra de estado tableros físicos | ⚪ |
 | IDE-0070 clic en colocadas/total encuadra las colocadas | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
@@ -152,7 +152,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` décima ola** — IDE-0068 (0067 entregada; quedan 0068…0070).
+1. **Cola `0.4.4` décima ola** — IDE-0069 (0068 entregada; quedan 0069…0070).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -189,11 +189,11 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0065 | Barra de estado: kerf del proyecto | Entregado |
 | IDE-0066 | Clic en la selección ajusta el encuadre | Entregado |
 | IDE-0067 | Clic en el kerf abre el espesor de sierra | Entregado |
-| IDE-0068 | Copiar medidas L×A del tablero | Idea |
+| IDE-0068 | Copiar medidas L×A del tablero | Entregado |
 | IDE-0069 | Barra de estado: tableros físicos | Idea |
 | IDE-0070 | Clic en colocadas/total encuadra las piezas colocadas | Idea |
 
-Prioridad de ataque: **IDE-0068** (copiar L×A de un tablero).
+Prioridad de ataque: **IDE-0069** (tableros físicos en la barra de estado).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
