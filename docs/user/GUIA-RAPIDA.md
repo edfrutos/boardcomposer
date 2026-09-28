@@ -330,7 +330,8 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+Shift+R**). Sin guardar: «Proyecto aún no guardado» — tip pide
   **Ctrl+S** antes de poder abrir carpeta. Entre el nombre y el **%** va
   piezas colocadas / total (`1/2`; tooltip «Piezas colocadas: 1 de 2»).
-  Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
+  Los tableros físicos van como `3 tab.` (suma de cantidades; oculto si
+  no hay). Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
   (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre
   (**Ctrl+Shift+0**). El kerf del proyecto va como `kerf 3.2 mm`
   (unidades de Preferencias; oculto si no hay proyecto). **Clic** lo

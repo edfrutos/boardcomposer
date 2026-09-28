@@ -1163,6 +1163,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_unsaved": "Proyecto aún no guardado",
         "status.placed_pieces": "{placed}/{total}",
         "tip.status_placed_pieces": ("Piezas colocadas: {placed} de {total}"),
+        "status.physical_boards": "{n} tab.",
+        "tip.status_physical_boards": "Tableros físicos: {n}",
         "status.selection_count": "{n} sel.",
         "tip.status_selection": (
             "Piezas seleccionadas: {n}. Clic ajusta el encuadre (Ctrl+Shift+0)"
@@ -2827,6 +2829,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_unsaved": "Project not saved yet",
         "status.placed_pieces": "{placed}/{total}",
         "tip.status_placed_pieces": "Pieces placed: {placed} of {total}",
+        "status.physical_boards": "{n} tab.",
+        "tip.status_physical_boards": "Physical boards: {n}",
         "status.selection_count": "{n} sel.",
         "tip.status_selection": (
             "Selected pieces: {n}. Click fits the selection (Ctrl+Shift+0)"
