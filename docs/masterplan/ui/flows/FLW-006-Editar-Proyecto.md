@@ -43,6 +43,7 @@ Crear proyecto: FLW-001. Import CSV/Excel: FLW-002. Abrir/guardar: SCR-005.
 | Duplicar pieza | **Ctrl+D** |
 | Eliminar pieza | **Backspace** / **Delete** |
 | Copiar ID | **Ctrl+Shift+C** |
+| Copiar medidas | **Ctrl+Alt+Shift+D** · una pieza · unidades de Preferencias |
 | Renombrar proyecto | **Ctrl+Shift+F2** · Proyecto · raíz Explorer |
 | Deshacer / Rehacer | **Ctrl+Z** / **Ctrl+Shift+Z** |
 | Mover pieza (panel) | Arrastre en Workspace · flechas (nudge) |

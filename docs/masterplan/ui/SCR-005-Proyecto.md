@@ -113,7 +113,8 @@ botones de la pantalla de inicio (piezas / plantilla / demo).
 - Clic pieza → Inspector + selección en Workspace.
 - Clic tablero → centra/resalta paneles.
 - Doble clic / ctx solución → preview de candidata.
-- Ctx pieza/tablero: editar, renombrar, duplicar, copiar ID, eliminar.
+- Ctx pieza: editar, renombrar, duplicar, copiar ID, copiar medidas, eliminar.
+- Ctx tablero: editar, renombrar, duplicar, copiar ID, eliminar.
 
 ---
 

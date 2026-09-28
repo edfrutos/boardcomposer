@@ -61,6 +61,7 @@
 - Copiar ruta del `.bcproj` (**Ctrl+Alt+Shift+C**, IDE-0061 `#683`).
 - Clic en la etiqueta de zoom vuelve al 100% (IDE-0062 `#684`).
 - Barra de estado: piezas seleccionadas (IDE-0063 `#686`).
+- Copiar medidas L×A de una pieza (**Ctrl+Alt+Shift+D**, IDE-0064).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -76,7 +77,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` novena ola: IDE-0064 (0063 entregada; quedan 0064…0066).
+1. Ciclo `0.4.4` novena ola: IDE-0065 (0064 entregada; quedan 0065…0066).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

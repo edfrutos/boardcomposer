@@ -73,7 +73,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar ruta del `.bcproj` (IDE-0061; Ctrl+Alt+Shift+C).
 - Clic en la etiqueta de zoom vuelve al 100% (IDE-0062).
 - Barra de estado: piezas seleccionadas (IDE-0063).
-- Próximo: cola `0.4.4` novena ola 0064 (quedan 0064…0066); piloto
+- Copiar medidas L×A de la pieza seleccionada (IDE-0064; Ctrl+Alt+Shift+D).
+- Próximo: cola `0.4.4` novena ola 0065 (quedan 0065…0066); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

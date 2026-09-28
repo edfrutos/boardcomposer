@@ -301,6 +301,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.rename_selection": "Renombrar…",
         "action.edit_selection": "Editar…",
         "action.copy_selection_id": "Copiar ID",
+        "action.copy_piece_size": "Copiar medidas",
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -554,6 +555,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_selection_id": (
             "Copiar al portapapeles el ID de la pieza o tablero (Ctrl+Shift+C): "
             "Explorador, selección única o tablero enfocado"
+        ),
+        "tip.copy_piece_size": (
+            "Copiar largo × ancho de la pieza seleccionada "
+            "(Ctrl+Alt+Shift+D); unidades de Preferencias"
         ),
         "tip.copy_inspector": (
             "Copiar el texto visible del Inspector (Ctrl+Alt+I); "
@@ -996,6 +1001,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.context.edit": "Editar…",
         "explorer.context.duplicate": "Duplicar",
         "explorer.context.copy_id": "Copiar ID",
+        "explorer.context.copy_size": "Copiar medidas",
         "explorer.context.delete": "Eliminar",
         "explorer.context.add_board": "Añadir tablero…",
         "explorer.context.add_piece": "Añadir pieza…",
@@ -1356,6 +1362,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_copy_id": (
             "Selecciona una pieza o un tablero para copiar su ID"
+        ),
+        "status.piece_size_copied": "Medidas copiadas: {size}",
+        "status.nothing_to_copy_piece_size": (
+            "Selecciona una sola pieza para copiar sus medidas"
         ),
         "status.no_recent_to_clear": "No hay proyectos recientes para vaciar",
         "status.save_failed": "No se pudo guardar: {error}",
@@ -1969,6 +1979,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.rename_selection": "Rename…",
         "action.edit_selection": "Edit…",
         "action.copy_selection_id": "Copy ID",
+        "action.copy_piece_size": "Copy size",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2215,6 +2226,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_selection_id": (
             "Copy the piece or board ID to the clipboard (Ctrl+Shift+C): "
             "Explorer, single selection, or focused board"
+        ),
+        "tip.copy_piece_size": (
+            "Copy length × width of the selected piece (Ctrl+Alt+Shift+D); "
+            "uses Preferences units"
         ),
         "tip.copy_inspector": (
             "Copy the visible Inspector text (Ctrl+Alt+I); "
@@ -2635,6 +2650,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "explorer.context.edit": "Edit…",
         "explorer.context.duplicate": "Duplicate",
         "explorer.context.copy_id": "Copy ID",
+        "explorer.context.copy_size": "Copy size",
         "explorer.context.delete": "Delete",
         "explorer.context.add_board": "Add board…",
         "explorer.context.add_piece": "Add piece…",
@@ -2984,6 +3000,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_edit_selection": "Select a piece or board to edit",
         "status.nothing_to_copy_id": "Select a piece or board to copy its ID",
+        "status.piece_size_copied": "Size copied: {size}",
+        "status.nothing_to_copy_piece_size": ("Select a single piece to copy its size"),
         "status.no_recent_to_clear": "No recent projects to clear",
         "status.save_failed": "Could not save: {error}",
         "status.project_renamed": "Project renamed: {name}",
@@ -3350,6 +3368,7 @@ _ACTION_KEYS = (
     "rename_selection",
     "edit_selection",
     "copy_selection_id",
+    "copy_piece_size",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",
