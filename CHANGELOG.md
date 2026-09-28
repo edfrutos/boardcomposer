@@ -9,6 +9,9 @@
 
 ### Añadido
 
+- Barra de estado: piezas seleccionadas (IDE-0063). `1 sel.` / `2 sel.`
+  si hay selección en el Workspace; oculta si no hay. Abre la novena
+  ola 0063…0066. Sin bump `.bcproj`; no cambia el solver.
 - Clic en el % de zoom vuelve al 100% (IDE-0062). No mueve el centro.
   Si ya está al 100%, el cursor no es mano y el clic avisa. Cierra la
   octava ola 0059…0062. Sin bump `.bcproj`.

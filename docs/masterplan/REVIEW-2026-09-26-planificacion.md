@@ -66,6 +66,10 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0060 barra de estado piezas colocadas / total | 🟢 |
 | IDE-0061 copiar ruta del .bcproj | 🟢 |
 | IDE-0062 clic en el zoom vuelve al 100% | 🟢 |
+| IDE-0063 barra de estado piezas seleccionadas | 🟢 |
+| IDE-0064 copiar medidas de la pieza seleccionada | ⚪ |
+| IDE-0065 barra de estado kerf del proyecto | ⚪ |
+| IDE-0066 clic en la selección ajusta el encuadre | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -144,7 +148,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` octava ola cerrada** — 0062 entregada. Sin IDE nuevas.
+1. **Cola `0.4.4` novena ola** — IDE-0064 (0063 entregada; quedan 0064…0066).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -156,13 +160,13 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-vacía (octava ola 0059…0062 cerrada). Residual bloqueado: piloto DT-0006 D
+0064…0066 (novena ola; 0063 entregada). Residual bloqueado: piloto DT-0006 D
 (operativo) + IDE-0008 /
 LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
-desarrollo pendiente y bugs cerrados* → octava ola 0059…0062 cerrada;
-no se añaden IDE nuevas (cola implementable vacía).
+desarrollo pendiente y bugs cerrados* → novena ola 0063…0066 abierta;
+no se añaden más hasta cerrarla.
 
 Séptima ola ya registrada (no renumerar):
 
@@ -176,8 +180,12 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0060 | Barra de estado: piezas colocadas / total | Entregado |
 | IDE-0061 | Copiar ruta del .bcproj | Entregado |
 | IDE-0062 | Clic en el zoom vuelve al 100% | Entregado |
+| IDE-0063 | Barra de estado: piezas seleccionadas | Entregado |
+| IDE-0064 | Copiar medidas de la pieza seleccionada | Idea |
+| IDE-0065 | Barra de estado: kerf del proyecto | Idea |
+| IDE-0066 | Clic en la selección ajusta el encuadre | Idea |
 
-Prioridad de ataque: cola implementable vacía. Sin IDE nuevas.
+Prioridad de ataque: **IDE-0064** (copiar L×A de la pieza seleccionada).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
