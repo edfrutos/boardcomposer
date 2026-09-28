@@ -1151,6 +1151,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_unsaved": "Proyecto aún no guardado",
         "status.placed_pieces": "{placed}/{total}",
         "tip.status_placed_pieces": ("Piezas colocadas: {placed} de {total}"),
+        "status.selection_count": "{n} sel.",
+        "tip.status_selection": "Piezas seleccionadas: {n}",
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -2787,6 +2789,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.project_unsaved": "Project not saved yet",
         "status.placed_pieces": "{placed}/{total}",
         "tip.status_placed_pieces": "Pieces placed: {placed} of {total}",
+        "status.selection_count": "{n} sel.",
+        "tip.status_selection": "Selected pieces: {n}",
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "

@@ -51,7 +51,8 @@ carpeta. Sin archivo en disco: «aún no guardado» + tip **Ctrl+S**.
 **Ctrl+Alt+Shift+C** copia la ruta del archivo (deshabilitado si no hay
 archivo en disco). A la derecha, piezas colocadas / total del inventario
 (IDE-0060; una colocación de un id que no está en el inventario no
-cuenta) y el zoom del Workspace.
+cuenta), las piezas seleccionadas en el Workspace (`n sel.`, IDE-0063;
+oculta si no hay selección) y el zoom del Workspace.
 
 ---
 

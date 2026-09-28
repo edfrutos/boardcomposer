@@ -132,6 +132,10 @@ Observaciones:
 | IDE-0060 | Barra de estado: piezas colocadas / total | 🟢 | P3 |
 | IDE-0061 | Copiar ruta del .bcproj | 🟢 | P3 |
 | IDE-0062 | Clic en el zoom vuelve al 100% | 🟢 | P3 |
+| IDE-0063 | Barra de estado: piezas seleccionadas | 🟢 | P3 |
+| IDE-0064 | Copiar medidas de la pieza seleccionada | ⚪ | P3 |
+| IDE-0065 | Barra de estado: kerf del proyecto | ⚪ | P3 |
+| IDE-0066 | Clic en la selección ajusta el encuadre | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -187,6 +191,10 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0060 | S | SCR-005 status | Entregado; colocadas/total; no cambia el solver |
 | IDE-0061 | S | SCR-005 | Entregado; Ctrl+Alt+Shift+C; sin nube |
 | IDE-0062 | S | IDE-0056; SCR-002 | Entregado; clic en el %; no mueve el centro |
+| IDE-0063 | S | SCR-005 status | Entregado; n sel.; oculta si 0 |
+| IDE-0064 | S | SCR-004 pieza | L×A de una pieza; prefs; sin nube |
+| IDE-0065 | S | SCR-005 status | Kerf visible; unidades prefs |
+| IDE-0066 | S | IDE-0063; SCR-002 | Clic en n sel. → encuadrar selección |
 
 ---
 
@@ -223,8 +231,8 @@ cerrada. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
 
 Próximo foco:
 
-1. Cola producto `0.4.4` octava ola cerrada (0062 entregada). Sin IDE
-   nuevas: cola implementable vacía.
+1. Cola producto `0.4.4` novena ola: IDE-0064 (0063 entregada;
+   quedan 0064…0066).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
