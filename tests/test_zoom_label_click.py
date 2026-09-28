@@ -36,8 +36,8 @@ def test_zoom_label_click_resets_to_100_without_moving_center(qapp, tmp_path):
     window._zoom_100()
     assert window.workspace.zoom == 1.0
     assert window.statusBar().currentMessage() == window._tr("status.zoom_already_100")
-    assert window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonPress)) is True
-    assert window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonRelease)) is True
+    assert window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonPress)) is False
+    assert window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonRelease)) is False
     assert window.workspace.zoom == 1.0
 
 

@@ -763,6 +763,7 @@ class MainWindow(QMainWindow):
             if (
                 event.type() == QEvent.Type.MouseButtonPress
                 and event.button() == Qt.MouseButton.LeftButton
+                and self.workspace.can_zoom_100
             ):
                 self._zoom_label_armed = True
                 return True
@@ -774,7 +775,7 @@ class MainWindow(QMainWindow):
             ):
                 armed = self._zoom_label_armed
                 self._zoom_label_armed = False
-                if armed:
+                if armed and self.workspace.can_zoom_100:
                     self._zoom_100()
                     return True
         return super().eventFilter(watched, event)
