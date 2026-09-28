@@ -327,7 +327,8 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+S** antes de poder abrir carpeta. Entre el nombre y el **%** va
   piezas colocadas / total (`1/2`; tooltip «Piezas colocadas: 1 de 2»). El
   **%** es el zoom del Workspace
-  (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**).
+  (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**). **Clic** en el **%**
+  vuelve al 100% (**Ctrl+Alt+0**); si ya está, el cursor no es mano.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

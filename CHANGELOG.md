@@ -9,6 +9,9 @@
 
 ### Añadido
 
+- Clic en el % de zoom vuelve al 100% (IDE-0062). No mueve el centro.
+  Si ya está al 100%, el cursor no es mano y el clic avisa. Cierra la
+  octava ola 0059…0062. Sin bump `.bcproj`.
 - Copiar ruta del `.bcproj` (IDE-0061). **Ctrl+Alt+Shift+C** y menú
   Proyecto / contextual del Explorador. Deshabilitado si aún no hay
   archivo. Sin nube. Sin bump `.bcproj`.
