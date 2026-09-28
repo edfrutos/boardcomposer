@@ -2467,6 +2467,7 @@ class MainWindow(QMainWindow):
         count = len(self.workspace.selection.selected())
         if count <= 0:
             label.clear()
+            label.setToolTip("")
             label.hide()
             return
         label.setText(self._tr("status.selection_count", n=count))
