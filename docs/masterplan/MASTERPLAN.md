@@ -63,6 +63,7 @@
 - Barra de estado: piezas seleccionadas (IDE-0063 `#686`).
 - Copiar medidas L×A de una pieza (**Ctrl+Alt+Shift+D**, IDE-0064).
 - Barra de estado: kerf del proyecto (IDE-0065).
+- Clic en `n sel.` ajusta el encuadre (IDE-0066).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -78,7 +79,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` novena ola: IDE-0066 (0065 entregada; queda 0066).
+1. Ciclo `0.4.4`: novena ola 0063…0066 cerrada. Cola producto vacía.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

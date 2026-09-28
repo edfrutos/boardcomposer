@@ -734,6 +734,8 @@ class MainWindow(QMainWindow):
         self._placed_label.setObjectName("statusPlacedPieces")
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
+        self._selection_label_armed = False
+        self._selection_label.installEventFilter(self)
         self._kerf_label = QLabel()
         self._kerf_label.setObjectName("statusProjectKerf")
         self._zoom_label = QLabel()
@@ -764,6 +766,33 @@ class MainWindow(QMainWindow):
         ):
             self._reveal_project_folder()
             return True
+        selection = getattr(self, "_selection_label", None)
+        if selection is not None and watched is selection:
+            can_fit = bool(self.workspace.selection.selected())
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_fit
+            ):
+                self._selection_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._selection_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._selection_label_armed
+                and not selection.rect().contains(event.position().toPoint())
+            ):
+                self._selection_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._selection_label_armed
+                self._selection_label_armed = False
+                if armed and bool(self.workspace.selection.selected()):
+                    self._fit_selection()
+                    return True
         zoom = getattr(self, "_zoom_label", None)
         if zoom is not None and watched is zoom:
             if (
@@ -2493,10 +2522,14 @@ class MainWindow(QMainWindow):
         if count <= 0:
             label.clear()
             label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
             label.hide()
             return
         label.setText(self._tr("status.selection_count", n=count))
-        label.setToolTip(self._tr("tip.status_selection", n=count))
+        label.setToolTip(
+            with_native_shortcuts(self._tr("tip.status_selection", n=count))
+        )
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_kerf_status(self) -> None:

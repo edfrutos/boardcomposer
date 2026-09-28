@@ -52,7 +52,8 @@ carpeta. Sin archivo en disco: «aún no guardado» + tip **Ctrl+S**.
 archivo en disco). A la derecha, piezas colocadas / total del inventario
 (IDE-0060; una colocación de un id que no está en el inventario no
 cuenta), las piezas seleccionadas en el Workspace (`n sel.`, IDE-0063;
-oculta si no hay selección), el kerf del proyecto (`kerf 3.2 mm`,
+oculta si no hay selección; clic ajusta el encuadre, IDE-0066), el kerf
+del proyecto (`kerf 3.2 mm`,
 IDE-0065; unidades de Preferencias; oculto si no hay proyecto) y el zoom
 del Workspace.
 

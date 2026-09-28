@@ -31,7 +31,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] **Guardar** (**Ctrl+S**) / **Guardar como** (**Ctrl+Shift+S**) / **Abrir** (**Ctrl+O**) `.bcproj` (tips de estado); basename en barra de estado (tooltip = ruta; clic abre carpeta); **Ctrl+Shift+R** abre la carpeta (tip de estado); recuerda carpeta (`last_project_directory`).
 - [ ] Barra de ruta: `●` delante del nombre si hay cambios sin guardar (IDE-0058).
 - [ ] Barra de estado: piezas colocadas / total del inventario (IDE-0060).
-- [ ] Barra de estado: `n sel.` con piezas seleccionadas en el Workspace; oculta si no hay (IDE-0063).
+- [ ] Barra de estado: `n sel.` con piezas seleccionadas en el Workspace; oculta si no hay (IDE-0063). Clic ajusta el encuadre (IDE-0066).
 - [ ] Barra de estado: kerf del proyecto (`kerf 3.2 mm`); unidades de Preferencias; oculta sin proyecto (IDE-0065).
 - [ ] Copiar medidas L×A de una sola pieza (**Ctrl+Alt+Shift+D**); unidades de Preferencias; idle con varias (IDE-0064).
 - [ ] Copiar ruta del `.bcproj` (**Ctrl+Alt+Shift+C**); idle si no hay archivo (IDE-0061).

@@ -69,7 +69,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0063 barra de estado piezas seleccionadas | 🟢 |
 | IDE-0064 copiar medidas de la pieza seleccionada | 🟢 |
 | IDE-0065 barra de estado kerf del proyecto | 🟢 |
-| IDE-0066 clic en la selección ajusta el encuadre | ⚪ |
+| IDE-0066 clic en la selección ajusta el encuadre | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -148,7 +148,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` novena ola** — IDE-0066 (0065 entregada; queda 0066).
+1. **Cola `0.4.4`** — novena ola 0063…0066 cerrada. Cola producto vacía.
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -183,9 +183,9 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0063 | Barra de estado: piezas seleccionadas | Entregado |
 | IDE-0064 | Copiar medidas de la pieza seleccionada | Entregado |
 | IDE-0065 | Barra de estado: kerf del proyecto | Entregado |
-| IDE-0066 | Clic en la selección ajusta el encuadre | Idea |
+| IDE-0066 | Clic en la selección ajusta el encuadre | Entregado |
 
-Prioridad de ataque: **IDE-0066** (clic en `n sel.` encuadra la selección).
+Prioridad de ataque: ninguna IDE. Cola producto vacía.
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

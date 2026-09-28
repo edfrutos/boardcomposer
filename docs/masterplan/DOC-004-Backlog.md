@@ -135,7 +135,7 @@ Observaciones:
 | IDE-0063 | Barra de estado: piezas seleccionadas | 🟢 | P3 |
 | IDE-0064 | Copiar medidas de la pieza seleccionada | 🟢 | P3 |
 | IDE-0065 | Barra de estado: kerf del proyecto | 🟢 | P3 |
-| IDE-0066 | Clic en la selección ajusta el encuadre | ⚪ | P3 |
+| IDE-0066 | Clic en la selección ajusta el encuadre | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -194,7 +194,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0063 | S | SCR-005 status | Entregado; n sel.; oculta si 0 |
 | IDE-0064 | S | SCR-004 pieza | Entregado; L×A; prefs; sin grosor |
 | IDE-0065 | S | SCR-005 status | Entregado; kerf visible; unidades prefs |
-| IDE-0066 | S | IDE-0063; SCR-002 | Clic en n sel. → encuadrar selección |
+| IDE-0066 | S | IDE-0063; SCR-002 | Entregado; clic en n sel. → encuadrar |
 
 ---
 
@@ -222,19 +222,18 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0065 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0065; `#647`/`#649`/`#651`/
+**Estado actual:** 🟢 Actualizado — IDE-0001…0066 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0066; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
 `#682`/`#683`/`#684`/`#686`). Séptima ola cerrada; octava ola cerrada;
-novena ola residual IDE-0066.
+novena ola 0063…0066 cerrada.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
 (001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-28-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` novena ola: IDE-0066 (0065 entregada;
-   queda 0066).
+1. Novena ola 0063…0066 cerrada. Cola producto vacía.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

@@ -9,9 +9,13 @@
 
 ### Añadido
 
+- Clic en `n sel.` ajusta el encuadre (IDE-0066). Misma acción que
+  **Ctrl+Shift+0**. Cursor mano si hay selección. Arrastre fuera no
+  dispara. Cierra la novena ola 0063…0066. Sin bump `.bcproj`; no
+  cambia el solver.
 - Barra de estado: kerf del proyecto (IDE-0065). `kerf 3.2 mm` con las
   unidades de Preferencias. Oculta si no hay proyecto. Sin clic.
-  Siguiente: IDE-0066. Sin bump `.bcproj`; no cambia el solver.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar medidas L×A de una sola pieza (IDE-0064). **Ctrl+Alt+Shift+D**
   y menú Editar / contextual de pieza en el Explorador. Unidades de
   Preferencias; sin grosor. Deshabilitado con varias o ninguna.
@@ -19,7 +23,7 @@
 - Docs planificación 2026-09-28: snapshot
   `docs/masterplan/REVIEW-2026-09-28-planificacion.md`; Issues = 0;
   `#684`/`#686` (IDE-0062/0063) en `main`; novena ola, siguiente
-  IDE-0066 (0065 en esta entrega). Histórico 2026-09-27 desde PR `#679`.
+  IDE-0066 en esta entrega; novena ola cerrada). Histórico 2026-09-27 desde PR `#679`.
 - Barra de estado: piezas seleccionadas (IDE-0063). `1 sel.` / `2 sel.`
   si hay selección en el Workspace; oculta si no hay. Abre la novena
   ola 0063…0066. Sin bump `.bcproj`; no cambia el solver.
