@@ -169,7 +169,7 @@ sin críticas sin plan. `#676` (IDE-0057) en `main`; residual IDE-0058 🟡
 
 **Revisión 2026-09-28 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
 sin críticas sin plan. `#684`/`#686` (IDE-0062/0063) en `main`;
-novena ola 0063…0066 cerrada; Issues = 0.
+décima ola residual IDE-0068; Issues = 0.
 
 ---
 
@@ -207,6 +207,6 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
-- Cola producto ciclo `0.4.4`: novena ola 0063…0066 cerrada
+- Cola producto ciclo `0.4.4` décima ola IDE-0068 (0067 entregada)
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

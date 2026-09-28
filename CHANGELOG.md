@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Clic en el kerf de la barra abre el espesor de sierra (IDE-0067).
+  Misma acción que **Ctrl+Alt+K**. Cursor mano si hay proyecto.
+  Arrastre fuera no abre el diálogo. Abre la décima ola 0067…0070.
+  Siguiente: IDE-0068. Sin bump `.bcproj`; no cambia el solver.
 - Clic en `n sel.` ajusta el encuadre (IDE-0066). Misma acción que
   **Ctrl+Shift+0**. Cursor mano si hay selección. Arrastre fuera no
   dispara. Cierra la novena ola 0063…0066. Sin bump `.bcproj`; no
@@ -22,8 +26,8 @@
   Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-09-28: snapshot
   `docs/masterplan/REVIEW-2026-09-28-planificacion.md`; Issues = 0;
-  `#684`/`#686` (IDE-0062/0063) en `main`; novena ola, siguiente
-  IDE-0066 en esta entrega; novena ola cerrada). Histórico 2026-09-27 desde PR `#679`.
+  `#684`/`#686` (IDE-0062/0063) en `main`; décima ola, siguiente
+  IDE-0068 (0067 en esta entrega). Histórico 2026-09-27 desde PR `#679`.
 - Barra de estado: piezas seleccionadas (IDE-0063). `1 sel.` / `2 sel.`
   si hay selección en el Workspace; oculta si no hay. Abre la novena
   ola 0063…0066. Sin bump `.bcproj`; no cambia el solver.

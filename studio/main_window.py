@@ -738,6 +738,8 @@ class MainWindow(QMainWindow):
         self._selection_label.installEventFilter(self)
         self._kerf_label = QLabel()
         self._kerf_label.setObjectName("statusProjectKerf")
+        self._kerf_label_armed = False
+        self._kerf_label.installEventFilter(self)
         self._zoom_label = QLabel()
         self._zoom_label.setObjectName("statusZoom")
         self._zoom_label_armed = False
@@ -792,6 +794,33 @@ class MainWindow(QMainWindow):
                 self._selection_label_armed = False
                 if armed and bool(self.workspace.selection.selected()):
                     self._fit_selection()
+                    return True
+        kerf = getattr(self, "_kerf_label", None)
+        if kerf is not None and watched is kerf:
+            can_edit = self.services.projects.current_project is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_edit
+            ):
+                self._kerf_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._kerf_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._kerf_label_armed
+                and not kerf.rect().contains(event.position().toPoint())
+            ):
+                self._kerf_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._kerf_label_armed
+                self._kerf_label_armed = False
+                if armed and self.services.projects.current_project is not None:
+                    self._edit_project_kerf()
                     return True
         zoom = getattr(self, "_zoom_label", None)
         if zoom is not None and watched is zoom:
@@ -2541,6 +2570,7 @@ class MainWindow(QMainWindow):
         if project is None:
             label.clear()
             label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
             label.hide()
             return
         length = self._format_length(project.kerf_mm)
@@ -2548,6 +2578,7 @@ class MainWindow(QMainWindow):
         label.setToolTip(
             with_native_shortcuts(self._tr("tip.status_project_kerf", length=length))
         )
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_zoom_status(self, zoom: float | None = None) -> None:
