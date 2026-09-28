@@ -726,13 +726,17 @@ class MainWindow(QMainWindow):
         self._project_path_label = QLabel()
         self._project_path_label.setObjectName("statusProjectPath")
         self._project_path_label.installEventFilter(self)
+        self._placed_label = QLabel()
+        self._placed_label.setObjectName("statusPlacedPieces")
         self._zoom_label = QLabel()
         self._zoom_label.setObjectName("statusZoom")
         status.addPermanentWidget(self._project_path_label, 1)
+        status.addPermanentWidget(self._placed_label)
         status.addPermanentWidget(self._zoom_label)
         status.showMessage(self._tr("status.ready"))
         self.workspace.camera_changed.connect(self._update_zoom_status)
         self._update_project_path_status()
+        self._update_placed_status()
         self._update_zoom_status(self.workspace.zoom)
 
     def eventFilter(self, watched, event):  # noqa: N802 — Qt API
@@ -905,6 +909,7 @@ class MainWindow(QMainWindow):
 
         finally:
             self.explorer.blockSignals(previous_signal_state)
+            self._update_placed_status()
 
     def _find_explorer_item_by_role(self, role: str) -> QTreeWidgetItem | None:
         """Return the first explorer item whose UserRole matches ``role``."""
@@ -2259,6 +2264,7 @@ class MainWindow(QMainWindow):
         else:
             self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
         self._update_project_path_status()
+        self._update_placed_status()
         self._sync_project_file_actions()
         self._sync_generate_actions()
         self._sync_view_actions()
@@ -2397,6 +2403,35 @@ class MainWindow(QMainWindow):
                 else self._tr("status.revision_backup_no_file")
             )
             backup.setStatusTip(tip)
+
+    def _placed_piece_counts(self) -> tuple[int, int]:
+        """Return pieces that have a placement, and the inventory total."""
+        project = self.services.projects.current_project
+        if project is None:
+            return 0, 0
+        placed = sum(
+            1
+            for piece in project.pieces
+            if project.placement_by_piece_id(piece.piece_id) is not None
+        )
+        return placed, len(project.pieces)
+
+    def _update_placed_status(self) -> None:
+        """Refresh placed/total on the status bar (IDE-0060)."""
+        label = getattr(self, "_placed_label", None)
+        if label is None:
+            return
+        placed, total = self._placed_piece_counts()
+        label.setText(self._tr("status.placed_pieces", placed=placed, total=total))
+        label.setToolTip(
+            with_native_shortcuts(
+                self._tr(
+                    "tip.status_placed_pieces",
+                    placed=placed,
+                    total=total,
+                )
+            )
+        )
 
     def _update_zoom_status(self, zoom: float | None = None) -> None:
         """Refresh the permanent Workspace zoom widget."""
@@ -3506,6 +3541,7 @@ class MainWindow(QMainWindow):
 
         self._reload_recent_files_menu()
         self._update_project_path_status()
+        self._update_placed_status()
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
         self.update_undo_redo()

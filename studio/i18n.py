@@ -1144,6 +1144,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.ready": "BoardComposer Studio listo",
         "status.project_unsaved": "Proyecto aún no guardado",
+        "status.placed_pieces": "{placed}/{total}",
+        "tip.status_placed_pieces": ("Piezas colocadas: {placed} de {total}"),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -2769,6 +2771,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.ready": "BoardComposer Studio ready",
         "status.project_unsaved": "Project not saved yet",
+        "status.placed_pieces": "{placed}/{total}",
+        "tip.status_placed_pieces": "Pieces placed: {placed} of {total}",
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "

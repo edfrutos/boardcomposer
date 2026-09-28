@@ -9,6 +9,9 @@
 
 ### Añadido
 
+- Barra de estado: piezas colocadas / total (IDE-0060). Cuenta
+  piezas del inventario con colocación, no placements ajenos. Tooltip
+  en el idioma de la interfaz. Sin bump `.bcproj`; no cambia el solver.
 - Inspector de tablero: área de una hoja (IDE-0059). L×A, sin
   multiplicar la cantidad. mm en mm² enteros. Abre octava ola
   0060…0062. Solo lectura. Sin bump `.bcproj`; no cambia el solver.
