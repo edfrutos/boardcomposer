@@ -26,8 +26,14 @@ def test_zoom_label_click_resets_to_100_without_moving_center(qapp, tmp_path):
     center = window.workspace._camera.center
     cx, cy = center.x(), center.y()
 
-    assert window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonPress)) is True
-    assert window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonRelease)) is True
+    assert (
+        window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonPress))
+        is True
+    )
+    assert (
+        window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonRelease))
+        is True
+    )
     assert window.workspace.zoom == 1.0
     assert abs(window.workspace._camera.center.x() - cx) < 1e-6
     assert abs(window.workspace._camera.center.y() - cy) < 1e-6
@@ -36,8 +42,14 @@ def test_zoom_label_click_resets_to_100_without_moving_center(qapp, tmp_path):
     window._zoom_100()
     assert window.workspace.zoom == 1.0
     assert window.statusBar().currentMessage() == window._tr("status.zoom_already_100")
-    assert window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonPress)) is False
-    assert window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonRelease)) is False
+    assert (
+        window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonPress))
+        is False
+    )
+    assert (
+        window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonRelease))
+        is False
+    )
     assert window.workspace.zoom == 1.0
 
 
@@ -60,7 +72,10 @@ def test_zoom_label_ignores_release_after_dragging_outside(qapp, tmp_path):
     window.workspace.zoom_in()
     assert window.workspace.zoom != 1.0
 
-    assert window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonPress)) is True
+    assert (
+        window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonPress))
+        is True
+    )
     assert (
         window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseMove, -10, -10))
         is False

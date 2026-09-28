@@ -18,6 +18,7 @@ def test_explorer_context_actions_for_piece():
         "rename",
         "duplicate",
         "copy_id",
+        "copy_size",
         "delete",
     )
 
@@ -62,6 +63,10 @@ def test_explorer_context_tip_keys(qapp, tmp_path):
     assert (
         window._explorer_context_tip_key("copy_id", "piece:A")
         == "tip.copy_selection_id"
+    )
+    assert (
+        window._explorer_context_tip_key("copy_size", "piece:A")
+        == "tip.copy_piece_size"
     )
     assert (
         window._explorer_context_tip_key("rename", "project:root")

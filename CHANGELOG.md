@@ -9,10 +9,14 @@
 
 ### Añadido
 
+- Copiar medidas L×A de una sola pieza (IDE-0064). **Ctrl+Alt+Shift+D**
+  y menú Editar / contextual de pieza en el Explorador. Unidades de
+  Preferencias; sin grosor. Deshabilitado con varias o ninguna.
+  Siguiente: IDE-0065. Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-09-28: snapshot
   `docs/masterplan/REVIEW-2026-09-28-planificacion.md`; Issues = 0;
   `#684`/`#686` (IDE-0062/0063) en `main`; novena ola, siguiente
-  IDE-0064. Histórico 2026-09-27 desde PR `#679`.
+  IDE-0065 (0064 en esta entrega). Histórico 2026-09-27 desde PR `#679`.
 - Barra de estado: piezas seleccionadas (IDE-0063). `1 sel.` / `2 sel.`
   si hay selección en el Workspace; oculta si no hay. Abre la novena
   ola 0063…0066. Sin bump `.bcproj`; no cambia el solver.

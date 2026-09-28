@@ -28,6 +28,7 @@ def explorer_context_actions(role: object) -> tuple[str, ...]:
             "rename",
             "duplicate",
             "copy_id",
+            "copy_size",
             "delete",
         )
     if kind == "board":

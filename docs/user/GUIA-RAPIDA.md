@@ -104,7 +104,7 @@ en red; puedes **Copiar**).
 | Espesor de sierra / kerf | Ctrl+Alt+K |
 | Mover pieza seleccionada | Flechas (Shift = tamaño cuadrícula) |
 | Seleccionar todas / Deseleccionar / Invertir | Ctrl+A / Escape / Ctrl+Shift+I |
-| Editar selección / Copiar ID | Return / Ctrl+Shift+C |
+| Editar selección / Copiar ID / Copiar medidas | Return / Ctrl+Shift+C / Ctrl+Alt+Shift+D |
 | Renombrar selección | F2 |
 | Renombrar proyecto | Ctrl+Shift+F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
@@ -155,7 +155,8 @@ Canvas central del layout.
   ajusta al hueco más cercano; incompatibilidad de material/espesor sigue
   revirtiendo.
 - **Selección:** **Ctrl+A** / **Escape** / **Ctrl+Shift+I**; **Return**
-  edita; **Ctrl+Shift+C** copia el ID.
+  edita; **Ctrl+Shift+C** copia el ID; **Ctrl+Alt+Shift+D** copia L×A
+  de una sola pieza (unidades de Preferencias, sin grosor).
 
 ## Explorador
 
@@ -165,7 +166,8 @@ Dock **Ctrl+1**. Árbol del proyecto: **Tableros**, **Piezas** y **Soluciones**.
   colocar y hay tablero enfocado en el Workspace, la **coloca** ahí.
   En una solución: vista previa en el Workspace (sin aplicar).
 - **Menú contextual:** editar / renombrar (**F2**) / duplicar (**Ctrl+D**) /
-  copiar ID (**Ctrl+Shift+C**) / eliminar; en piezas también
+  copiar ID (**Ctrl+Shift+C**) / copiar medidas (**Ctrl+Alt+Shift+D**,
+  solo piezas) / eliminar; en piezas también
   **Colocar en tablero enfocado**; en categorías, añadir tablero/pieza;
   en el proyecto, renombrar, **Abrir carpeta…** o **Copiar ruta**.
 - Piezas sin colocar llevan marca **sin colocar**.
