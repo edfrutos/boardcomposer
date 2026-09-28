@@ -70,7 +70,8 @@ alternativas comprensibles para que el usuario decida.
 - Marca ● de sin guardar en la barra de ruta (IDE-0058).
 - Inspector de tablero: área de una hoja (IDE-0059).
 - Barra de estado: piezas colocadas / total (IDE-0060).
-- Próximo: cola `0.4.4` octava ola 0061 (quedan 0061…0062); piloto
+- Copiar ruta del `.bcproj` (IDE-0061; Ctrl+Alt+Shift+C).
+- Próximo: cola `0.4.4` octava ola 0062 (queda 0062); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

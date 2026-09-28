@@ -9,6 +9,7 @@ def test_explorer_project_root_offers_rename():
         "rename",
         "edit",
         "reveal_folder",
+        "copy_path",
     )
 
 

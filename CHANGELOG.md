@@ -9,6 +9,9 @@
 
 ### Añadido
 
+- Copiar ruta del `.bcproj` (IDE-0061). **Ctrl+Alt+Shift+C** y menú
+  Proyecto / contextual del Explorador. Deshabilitado si aún no hay
+  archivo. Sin nube. Sin bump `.bcproj`.
 - Barra de estado: piezas colocadas / total (IDE-0060). Cuenta
   piezas del inventario con colocación, no placements ajenos. Tooltip
   en el idioma de la interfaz. Sin bump `.bcproj`; no cambia el solver.

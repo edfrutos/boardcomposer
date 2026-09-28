@@ -78,6 +78,7 @@ en red; puedes **Copiar**).
 | Nuevo / Abrir / Guardar | Ctrl+N / Ctrl+O / Ctrl+S |
 | Guardar como | Ctrl+Shift+S |
 | Abrir carpeta del proyecto | Ctrl+Shift+R |
+| Copiar ruta del .bcproj | Ctrl+Alt+Shift+C |
 | Preferencias | Ctrl+, |
 | Añadir tablero / pieza | Ctrl+Shift+B / Ctrl+Shift+P |
 | Importar tableros / piezas (CSV/Excel) | Ctrl+Shift+T / Ctrl+Shift+O |
@@ -166,7 +167,7 @@ Dock **Ctrl+1**. Árbol del proyecto: **Tableros**, **Piezas** y **Soluciones**.
 - **Menú contextual:** editar / renombrar (**F2**) / duplicar (**Ctrl+D**) /
   copiar ID (**Ctrl+Shift+C**) / eliminar; en piezas también
   **Colocar en tablero enfocado**; en categorías, añadir tablero/pieza;
-  en el proyecto, renombrar u **Abrir carpeta…**.
+  en el proyecto, renombrar, **Abrir carpeta…** o **Copiar ruta**.
 - Piezas sin colocar llevan marca **sin colocar**.
 
 ## Inspector
