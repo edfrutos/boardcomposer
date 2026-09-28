@@ -184,11 +184,12 @@ Toda modificación deberá:
 
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
 corte `0.4.3` / `v0.4.3` publicado; ciclo `0.4.4.dev0` ola 1 (0025…0030)
-cerrada; segunda ola IDE-0031…0036 entregada; 0037…0061 entregadas
+cerrada; segunda ola IDE-0031…0036 entregada; 0037…0063 entregadas
 (`#647`/`#649`/`#651`/`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/
 `#662`/`#663`/`#664`/`#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/
-`#676`/`#678`/`#680`/`#682`/`#683`); sexta ola 0051…0054 cerrada;
-séptima ola 0055…0058 cerrada; octava ola 0059…0062 residual IDE-0062.
+`#676`/`#678`/`#680`/`#682`/`#683`/`#684`/`#686`); sexta ola 0051…0054 cerrada;
+séptima ola 0055…0058 cerrada; octava ola 0059…0062 cerrada;
+novena ola 0063…0066 residual IDE-0064.
 Revisión: `REVIEW-2026-09-28-planificacion.md`.
 
 Pendiente de:

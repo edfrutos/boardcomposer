@@ -168,8 +168,8 @@ sin críticas sin plan. `#676` (IDE-0057) en `main`; residual IDE-0058 🟡
 `#678`; Issues = 0.
 
 **Revisión 2026-09-28 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
-sin críticas sin plan. `#678`/`#680`/`#682`/`#683` (IDE-0058…0061) en
-`main`; residual IDE-0062; Issues = 0.
+sin críticas sin plan. `#684`/`#686` (IDE-0062/0063) en `main`;
+novena ola residual IDE-0064; Issues = 0.
 
 ---
 

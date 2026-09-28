@@ -1,14 +1,13 @@
 # Revisión de planificación — 2026-09-28
 
-**Origen:** cron diario; cola implementable residual tras `#683`
-(IDE-0061) en `main`. Confirmar siguiente foco sin abrir IDE nuevas.
+**Origen:** cron diario; corte tras `#686` (IDE-0063) en `main`.
 **Fuentes:** `ROADMAP.md`, `MASTERPLAN.md`, `DOC-003`, `DOC-004`, `DOC-006`,
 spikes IDE-0007 / DT-0006, `CHANGELOG` Unreleased, UAT release smoke,
-revisión `REVIEW-2026-09-27-planificacion.md`, PRs `#678`…`#683`.
+revisión `REVIEW-2026-09-27-planificacion.md`, PRs `#678`…`#686`.
 **Issues GitHub:** `gh issue list --state open` → **vacío**.
-**PRs de producto al corte:** `#678`…`#683` **mergeados** (IDE-0058…0061;
+**PRs de producto al corte:** `#678`…`#686` **mergeados** (IDE-0058…0063;
 fix Preferencias `#681`). Sin PRs de producto abiertos. Residual:
-IDE-0062 ⚪.
+novena ola IDE-0064…0066.
 **Planning previo:** `#679` (2026-09-27) — histórico en `main`.
 
 ---
@@ -66,7 +65,11 @@ IDE-0062 ⚪.
 | IDE-0059 Inspector área de una hoja de tablero | 🟢 (#680) |
 | IDE-0060 barra de estado piezas colocadas / total | 🟢 (#682) |
 | IDE-0061 copiar ruta del `.bcproj` | 🟢 (#683) |
-| IDE-0062 clic en el zoom vuelve al 100% | ⚪ |
+| IDE-0062 clic en el zoom vuelve al 100% | 🟢 (#684) |
+| IDE-0063 barra de estado piezas seleccionadas | 🟢 (#686) |
+| IDE-0064 copiar medidas de la pieza seleccionada | ⚪ |
+| IDE-0065 barra de estado kerf del proyecto | ⚪ |
+| IDE-0066 clic en la selección ajusta el encuadre | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -99,12 +102,12 @@ Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
-IDE-0037…0061 **entregadas** (`#647`…`#667`, `#671`…`#673`, `#675`, `#676`,
-`#678`, `#680`, `#682`, `#683`); octava ola 0059…0062 abierta (queda
-IDE-0062).
+IDE-0037…0063 **entregadas** (`#647`…`#667`, `#671`…`#673`, `#675`, `#676`,
+`#678`, `#680`, `#682`, `#683`, `#684`, `#686`); octava ola 0059…0062
+cerrada; novena ola 0063…0066 abierta (quedan IDE-0064…0066).
 
 Desde la revisión 2026-09-27, planning `#679` entra en `main` como histórico.
-Producto `#678`…`#683` (IDE-0058…0061 + fix Preferencias `#681`) en `main`.
+Producto `#678`…`#686` (IDE-0058…0063 + fix Preferencias `#681`) en `main`.
 Sin PRs de producto abiertos al corte.
 
 Límites conocidos (no son bugs; son alcance):
@@ -128,7 +131,8 @@ Límites conocidos (no son bugs; son alcance):
 - Workspace: sugerir hueco para colocación manual (IDE-0036; SCR-002).
   Preview canvas al terminar Calcular layout, sin aplicar placements
   (IDE-0052 `#667`). Zoom al 100% (**Ctrl+Alt+0**, IDE-0056 `#675`).
-  Clic en etiqueta de zoom → 100%: pendiente (IDE-0062).
+  Clic en la etiqueta de zoom → 100%: entregado (`#684`, IDE-0062).
+  Barra de estado, piezas seleccionadas: entregado (`#686`, IDE-0063).
 - Inspector: unidades prefs mm/cm/in (IDE-0040 `#653`); disco sigue mm.
   Pieza muestra espesor, rotación 0°/90° (— si no colocada), veta
   (IDE-0046 `#661`) y área L×A (IDE-0055 `#673`). Comparador Largo/Ancho
@@ -152,8 +156,8 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` octava ola** — implementar IDE-0062 (clic en la
-   etiqueta de zoom → 100%).
+1. **Cola `0.4.4` novena ola** — IDE-0064 (0063 entregada `#686`;
+   quedan 0064…0066).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -165,26 +169,30 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0058…0061: **cerrada** en `main` tras `#678`/`#680`/`#682`/`#683`. Residual
-abierto: IDE-0062 ⚪. Residual bloqueado: piloto DT-0006 D (operativo) +
+0058…0063: **cerrada** en `main` tras `#678`/`#680`/`#682`…`#686`. Residual
+abierto: IDE-0064…0066. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
-desarrollo pendiente y bugs cerrados* → **no se añaden IDE nuevas**
-(cola implementable abierta: IDE-0062).
+desarrollo pendiente y bugs cerrados* → novena ola 0063…0066 abierta;
+no se añaden más hasta cerrarla.
 
-Octava ola ya registrada (no renumerar):
+Octava y novena ola ya registradas (no renumerar):
 
 | ID | Título | Por qué ahora |
 |----|--------|---------------|
 | IDE-0059 | Inspector: área de una hoja de tablero | Entregado (`#680`) |
 | IDE-0060 | Barra de estado: piezas colocadas / total | Entregado (`#682`) |
 | IDE-0061 | Copiar ruta del `.bcproj` | Entregado (`#683`) |
-| IDE-0062 | Clic en el zoom vuelve al 100% | Idea |
+| IDE-0062 | Clic en el zoom vuelve al 100% | Entregado (`#684`) |
+| IDE-0063 | Barra de estado: piezas seleccionadas | Entregado (`#686`) |
+| IDE-0064 | Copiar medidas de la pieza seleccionada | Idea |
+| IDE-0065 | Barra de estado: kerf del proyecto | Idea |
+| IDE-0066 | Clic en la selección ajusta el encuadre | Idea |
 
-Prioridad de ataque: **IDE-0062** (clic en etiqueta de zoom → 100%).
+Prioridad de ataque: **IDE-0064** (copiar L×A de la pieza seleccionada).
 
-Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0061.
+Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 
 ---
@@ -192,9 +200,10 @@ Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 ## 6. Criterio de esta revisión
 
 - No se implementa código de producto en este pase: solo alinear docs,
-  snapshot y backlog; registrar IDE-0061 como 🟢 (`#683`) y dejar
-  `#679` / `REVIEW-2026-09-27` como histórico. Residual: IDE-0062.
+  snapshot y backlog; registrar IDE-0062 🟢 (`#684`) e IDE-0063 🟢
+  (`#686`). `#679` / `REVIEW-2026-09-27` queda histórico. Residual:
+  IDE-0064…0066.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.
-  Si IDE-0062 mergea y cola queda vacía → proponer nueva ola IDE.
+  Si IDE-0066 mergea y la cola queda vacía → proponer nueva ola IDE.
