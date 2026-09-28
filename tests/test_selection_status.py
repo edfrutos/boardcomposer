@@ -18,6 +18,7 @@ def test_selection_status_hidden_until_pieces_are_selected(qapp, tmp_path):
 
     window.workspace.clear_piece_selection()
     assert window._selection_label.text() == ""
+    assert window._selection_label.toolTip() == ""
     assert window._selection_label.isHidden()
 
 
