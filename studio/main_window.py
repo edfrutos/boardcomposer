@@ -228,6 +228,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["edit_selection"])
         self._menus["edit"].addAction(self._actions["copy_selection_id"])
         self._menus["edit"].addAction(self._actions["copy_piece_size"])
+        self._menus["edit"].addAction(self._actions["copy_board_size"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -328,6 +329,7 @@ class MainWindow(QMainWindow):
         self._actions["edit_selection"].triggered.connect(self._edit_selection)
         self._actions["copy_selection_id"].triggered.connect(self._copy_selection_id)
         self._actions["copy_piece_size"].triggered.connect(self._copy_piece_size)
+        self._actions["copy_board_size"].triggered.connect(self._copy_board_size)
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
             self._duplicate_selected_piece
@@ -3309,6 +3311,7 @@ class MainWindow(QMainWindow):
             )
         self._update_selection_status()
         self._sync_copy_piece_size_action()
+        self._sync_copy_board_size_action()
 
     def _sync_solution_actions(self) -> None:
         """Enable solution actions only when they can do useful work."""
@@ -5499,6 +5502,7 @@ class MainWindow(QMainWindow):
             "delete": "tip.delete_piece",
             "copy_id": "tip.copy_selection_id",
             "copy_size": "tip.copy_piece_size",
+            "copy_board_size": "tip.copy_board_size",
             "add_board": "tip.add_board",
             "add_piece": "tip.add_piece",
             "reveal_folder": "tip.reveal_project_folder",
@@ -5606,6 +5610,9 @@ class MainWindow(QMainWindow):
             return
         if action_key == "copy_size" and kind == "piece":
             self._copy_piece_size(object_id)
+            return
+        if action_key == "copy_board_size" and kind == "board":
+            self._copy_board_size(object_id)
             return
         if kind == "piece":
             if action_key == "place_on_board":
@@ -5958,6 +5965,53 @@ class MainWindow(QMainWindow):
         size = self._format_size(piece.length_mm, piece.width_mm)
         self._copy_text_to_clipboard(size)
         self._status("status.piece_size_copied", size=size)
+
+    def _single_board_id_for_size(self) -> str | None:
+        """One board from the Explorador, else the focused canvas board."""
+        item = self.explorer.currentItem()
+        if item is not None:
+            parsed = parse_explorer_role(item.data(0, Qt.ItemDataRole.UserRole))
+            if parsed is not None and parsed[0] == "board":
+                return parsed[1]
+        return self.workspace.focused_board_id()
+
+    def _sync_copy_board_size_action(self) -> None:
+        action = self._actions.get("copy_board_size")
+        if action is None:
+            return
+        board_id = self._single_board_id_for_size()
+        project = self.services.projects.current_project
+        enabled = False
+        if board_id is not None and project is not None:
+            try:
+                project.board_by_id(board_id)
+            except KeyError:
+                enabled = False
+            else:
+                enabled = True
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_board_size"))
+            if enabled
+            else self._tr("status.nothing_to_copy_board_size")
+        )
+
+    def _copy_board_size(self, board_id: str | bool | None = None) -> None:
+        """Copy one board sheet's length × width in Preferences units (IDE-0068)."""
+        if not isinstance(board_id, str):
+            board_id = self._single_board_id_for_size()
+        project = self.services.projects.current_project
+        if board_id is None or project is None:
+            self._status("status.nothing_to_copy_board_size")
+            return
+        try:
+            board = project.board_by_id(board_id)
+        except KeyError:
+            self._status("status.nothing_to_copy_board_size")
+            return
+        size = self._format_size(board.length_mm, board.width_mm)
+        self._copy_text_to_clipboard(size)
+        self._status("status.board_size_copied", size=size)
 
     def _sync_copy_inspector_action(self) -> None:
         action = self._actions.get("copy_inspector")

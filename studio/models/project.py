@@ -27,6 +27,12 @@ class StudioProject:
                 return piece
         raise KeyError(piece_id)
 
+    def board_by_id(self, board_id: str) -> StudioBoard:
+        for board in self.boards:
+            if board.board_id == board_id:
+                return board
+        raise KeyError(board_id)
+
     def placement_by_piece_id(self, piece_id: str) -> StudioPlacement | None:
         for placement in self.placements:
             if placement.piece_id == piece_id:

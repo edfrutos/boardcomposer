@@ -35,6 +35,7 @@ def test_explorer_context_actions_for_board_and_categories():
         "rename",
         "duplicate",
         "copy_id",
+        "copy_board_size",
         "delete",
     )
     assert explorer_context_actions("category:boards") == ("add_board",)
@@ -67,6 +68,10 @@ def test_explorer_context_tip_keys(qapp, tmp_path):
     assert (
         window._explorer_context_tip_key("copy_size", "piece:A")
         == "tip.copy_piece_size"
+    )
+    assert (
+        window._explorer_context_tip_key("copy_board_size", "board:B1")
+        == "tip.copy_board_size"
     )
     assert (
         window._explorer_context_tip_key("rename", "project:root")
