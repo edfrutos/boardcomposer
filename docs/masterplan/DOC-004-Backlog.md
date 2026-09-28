@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.53
+**Versión:** 1.3.54
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 27/09/2026
+**Última revisión:** 28/09/2026
 
 ---
 
@@ -214,16 +214,17 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0058 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0058; `#647`/`#649`/`#651`/
+**Estado actual:** 🟢 Actualizado — IDE-0001…0061 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0061; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
-`#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`). Séptima ola
-cerrada. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
-(001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-26-planificacion.md`.
+`#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
+`#682`/`#683`). Séptima ola cerrada; octava ola residual IDE-0062.
+IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
+(001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-28-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` octava ola: IDE-0062 (0061 entregada;
+1. Cola producto `0.4.4` octava ola: IDE-0062 (0061 `#683` entregada;
    queda 0062).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.

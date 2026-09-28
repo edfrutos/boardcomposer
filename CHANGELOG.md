@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-27
+## Unreleased — 0.4.4.dev0 — 2026-09-28
 
 ### Corregido
 
@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-28: snapshot
+  `docs/masterplan/REVIEW-2026-09-28-planificacion.md`; Issues = 0;
+  IDE-0058…0061 en `main` (`#678`/`#680`/`#682`/`#683`); residual
+  IDE-0062 → **sin IDE nuevas**. Histórico 2026-09-27 desde PR `#679`.
 - Copiar ruta del `.bcproj` (IDE-0061). **Ctrl+Alt+Shift+C** y menú
   Proyecto / contextual del Explorador. Deshabilitado si aún no hay
   archivo. Sin nube. Sin bump `.bcproj`.

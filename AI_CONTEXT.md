@@ -8,7 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-09-27
+## Estado actual — 2026-09-28
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-09-27-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-09-28-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -70,10 +70,10 @@ alternativas comprensibles para que el usuario decida.
 - Marca ● de sin guardar en la barra de ruta (IDE-0058).
 - Inspector de tablero: área de una hoja (IDE-0059).
 - Barra de estado: piezas colocadas / total (IDE-0060).
-- Copiar ruta del `.bcproj` (IDE-0061; Ctrl+Alt+Shift+C).
-- Próximo: cola `0.4.4` octava ola 0062 (queda 0062); piloto
+- Copiar ruta del `.bcproj` (IDE-0061 `#683`; Ctrl+Alt+Shift+C).
+- Próximo: cola `0.4.4` octava ola IDE-0062 (queda 0062); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
-  bloqueados.
+  bloqueados. Sin IDE nuevas mientras 0062 esté abierta.
 
 ## Fuentes de verdad
 
