@@ -734,6 +734,7 @@ class MainWindow(QMainWindow):
         self._selection_label.setObjectName("statusSelection")
         self._zoom_label = QLabel()
         self._zoom_label.setObjectName("statusZoom")
+        self._zoom_label_armed = False
         self._zoom_label.installEventFilter(self)
         status.addPermanentWidget(self._project_path_label, 1)
         status.addPermanentWidget(self._placed_label)
@@ -758,14 +759,31 @@ class MainWindow(QMainWindow):
             self._reveal_project_folder()
             return True
         zoom = getattr(self, "_zoom_label", None)
-        if (
-            zoom is not None
-            and watched is zoom
-            and event.type() == QEvent.Type.MouseButtonRelease
-            and event.button() == Qt.MouseButton.LeftButton
-        ):
-            self._zoom_100()
-            return True
+        if zoom is not None and watched is zoom:
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and self.workspace.can_zoom_100
+            ):
+                self._zoom_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._zoom_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._zoom_label_armed
+                and not zoom.rect().contains(event.position().toPoint())
+            ):
+                self._zoom_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._zoom_label_armed
+                self._zoom_label_armed = False
+                if armed and self.workspace.can_zoom_100:
+                    self._zoom_100()
+                    return True
         return super().eventFilter(watched, event)
 
     def _load_empty_project(
@@ -2467,6 +2485,7 @@ class MainWindow(QMainWindow):
         count = len(self.workspace.selection.selected())
         if count <= 0:
             label.clear()
+            label.setToolTip("")
             label.hide()
             return
         label.setText(self._tr("status.selection_count", n=count))

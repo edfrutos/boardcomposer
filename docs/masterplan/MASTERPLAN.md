@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-27.
+Última revisión: 2026-09-28.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-27-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-28-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -55,6 +55,12 @@
 - Inspector de pieza: área L×A (IDE-0055 `#673`).
 - Zoom del Workspace al 100% (**Ctrl+Alt+0**, IDE-0056 `#675`).
 - Copiar texto del Inspector (**Ctrl+Alt+I**, IDE-0057 `#676`).
+- Marca ● de sin guardar en la barra de ruta (IDE-0058 `#678`).
+- Inspector de tablero: área de una hoja (IDE-0059 `#680`).
+- Barra de estado: piezas colocadas / total (IDE-0060 `#682`).
+- Copiar ruta del `.bcproj` (**Ctrl+Alt+Shift+C**, IDE-0061 `#683`).
+- Clic en la etiqueta de zoom vuelve al 100% (IDE-0062 `#684`).
+- Barra de estado: piezas seleccionadas (IDE-0063 `#686`).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).

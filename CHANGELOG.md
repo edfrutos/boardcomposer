@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-27
+## Unreleased — 0.4.4.dev0 — 2026-09-28
 
 ### Corregido
 
@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-28: snapshot
+  `docs/masterplan/REVIEW-2026-09-28-planificacion.md`; Issues = 0;
+  `#684`/`#686` (IDE-0062/0063) en `main`; novena ola, siguiente
+  IDE-0064. Histórico 2026-09-27 desde PR `#679`.
 - Barra de estado: piezas seleccionadas (IDE-0063). `1 sel.` / `2 sel.`
   si hay selección en el Workspace; oculta si no hay. Abre la novena
   ola 0063…0066. Sin bump `.bcproj`; no cambia el solver.
