@@ -1159,6 +1159,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_placed_pieces": ("Piezas colocadas: {placed} de {total}"),
         "status.selection_count": "{n} sel.",
         "tip.status_selection": "Piezas seleccionadas: {n}",
+        "status.project_kerf": "kerf {length}",
+        "tip.status_project_kerf": (
+            "Espesor de sierra del proyecto: {length} (Ctrl+Alt+K)"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -2807,6 +2811,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_placed_pieces": "Pieces placed: {placed} of {total}",
         "status.selection_count": "{n} sel.",
         "tip.status_selection": "Selected pieces: {n}",
+        "status.project_kerf": "kerf {length}",
+        "tip.status_project_kerf": ("Project saw kerf: {length} (Ctrl+Alt+K)"),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "

@@ -32,6 +32,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [ ] Barra de ruta: `●` delante del nombre si hay cambios sin guardar (IDE-0058).
 - [ ] Barra de estado: piezas colocadas / total del inventario (IDE-0060).
 - [ ] Barra de estado: `n sel.` con piezas seleccionadas en el Workspace; oculta si no hay (IDE-0063).
+- [ ] Barra de estado: kerf del proyecto (`kerf 3.2 mm`); unidades de Preferencias; oculta sin proyecto (IDE-0065).
 - [ ] Copiar medidas L×A de una sola pieza (**Ctrl+Alt+Shift+D**); unidades de Preferencias; idle con varias (IDE-0064).
 - [ ] Copiar ruta del `.bcproj` (**Ctrl+Alt+Shift+C**); idle si no hay archivo (IDE-0061).
 - [x] **Recientes** en inicio y menú: clic / Enter abre; anclar / desanclar vía menú contextual; Delete / menú quita uno; vaciar lista (**Ctrl+Shift+X**; tip de estado) si aplica.
