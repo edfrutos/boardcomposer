@@ -734,6 +734,7 @@ class MainWindow(QMainWindow):
         self._selection_label.setObjectName("statusSelection")
         self._zoom_label = QLabel()
         self._zoom_label.setObjectName("statusZoom")
+        self._zoom_label_armed = False
         self._zoom_label.installEventFilter(self)
         status.addPermanentWidget(self._project_path_label, 1)
         status.addPermanentWidget(self._placed_label)
@@ -758,14 +759,24 @@ class MainWindow(QMainWindow):
             self._reveal_project_folder()
             return True
         zoom = getattr(self, "_zoom_label", None)
-        if (
-            zoom is not None
-            and watched is zoom
-            and event.type() == QEvent.Type.MouseButtonRelease
-            and event.button() == Qt.MouseButton.LeftButton
-        ):
-            self._zoom_100()
-            return True
+        if zoom is not None and watched is zoom:
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                self._zoom_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._zoom_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._zoom_label_armed
+                self._zoom_label_armed = False
+                if armed:
+                    self._zoom_100()
+                    return True
         return super().eventFilter(watched, event)
 
     def _load_empty_project(
