@@ -14,6 +14,8 @@ DEFAULT_THEME = "system"
 
 _FONTS_REGISTERED = False
 _FONTS_DIR = Path(__file__).resolve().parent / "assets" / "fonts"
+_FONT_FAMILIES: frozenset[str] | None = None
+_APPLIED_THEME: str | None = None
 
 # Families reported by QFontDatabase for the bundled static TTFs.
 _UI_FAMILY = "Source Sans 3"
@@ -23,7 +25,7 @@ _BRAND_CANDIDATES = ("Archivo SemiBold", "Archivo")
 
 def _register_bundled_fonts() -> None:
     """Load OFL fonts from studio/assets/fonts/ once per process."""
-    global _FONTS_REGISTERED
+    global _FONTS_REGISTERED, _FONT_FAMILIES
     if _FONTS_REGISTERED:
         return
     if not _FONTS_DIR.is_dir():
@@ -32,6 +34,19 @@ def _register_bundled_fonts() -> None:
     for path in sorted(_FONTS_DIR.glob("*.ttf")):
         QFontDatabase.addApplicationFont(str(path))
     _FONTS_REGISTERED = True
+    _FONT_FAMILIES = None
+
+
+def _font_families() -> frozenset[str]:
+    """Font families after bundled fonts are registered.
+
+    ``QFontDatabase.families()`` walks fontconfig. On CI that scan is slow
+    and ``apply_theme`` used to repeat it for every window.
+    """
+    global _FONT_FAMILIES
+    if _FONT_FAMILIES is None:
+        _FONT_FAMILIES = frozenset(QFontDatabase.families())
+    return _FONT_FAMILIES
 
 
 def _palette_from_tokens(tokens: ThemeTokens) -> QPalette:
@@ -421,7 +436,7 @@ def build_stylesheet(tokens: ThemeTokens) -> str:
 
 def _resolved_ui_and_brand_families() -> tuple[str | None, str | None]:
     """Return bundled UI / brand family names when registered, else None."""
-    families = set(QFontDatabase.families())
+    families = _font_families()
     ui = _UI_FAMILY if _UI_FAMILY in families else None
     brand = next((name for name in _BRAND_CANDIDATES if name in families), None)
     return ui, brand
@@ -460,7 +475,7 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
         parts.append(
             f'QLabel#welcomeTagline {{ font-family: "{ui}"; font-size: 16px; }}'
         )
-        families = set(QFontDatabase.families())
+        families = _font_families()
         title_family = _UI_SEMIBOLD_FAMILY if _UI_SEMIBOLD_FAMILY in families else ui
         parts.append(
             f"QLabel#workspaceEmptyTitle {{"
@@ -718,13 +733,20 @@ def apply_theme(app: QApplication, theme: str) -> None:
     empty-workspace, outdated-banner, Clear Recent, recent label/list, and
     scoped primary/secondary button chrome on LIGHT tokens (canvas is always
     taller-diurno under system; no full Industrial chrome).
+
+    Repeating the same theme skips stylesheet and font scans. Each
+    ``MainWindow`` calls this, and restyling every live widget again is
+    what pushes the CI suite past 25 minutes.
     """
+    global _APPLIED_THEME
     from studio.workspace.canvas_style import set_active_canvas_theme
 
     _register_bundled_fonts()
     name = theme if theme in VALID_THEMES else DEFAULT_THEME
-    app.setStyle("Fusion")
     set_active_canvas_theme(name)
+    if name == _APPLIED_THEME:
+        return
+    app.setStyle("Fusion")
 
     if name == "system":
         app.setPalette(app.style().standardPalette())
@@ -737,15 +759,17 @@ def apply_theme(app: QApplication, theme: str) -> None:
             app.setFont(QFont(ui, 13))
         # Keep Welcome brand chrome + empty-overlay without full Industrial QSS.
         app.setStyleSheet(_welcome_typography_qss(brand=brand, ui=ui))
+        _APPLIED_THEME = name
         return
 
     tokens = tokens_for(name)
     if tokens is None:
         app.setStyleSheet("")
         app.setPalette(app.style().standardPalette())
+        _APPLIED_THEME = name
         return
 
-    families = set(QFontDatabase.families())
+    families = _font_families()
     ui_family = _UI_FAMILY if _UI_FAMILY in families else tokens.font_ui
     brand_family = next(
         (name for name in _BRAND_CANDIDATES if name in families),
@@ -773,3 +797,4 @@ def apply_theme(app: QApplication, theme: str) -> None:
     app.setPalette(_palette_from_tokens(resolved))
     app.setFont(QFont(ui_family, 13))
     app.setStyleSheet(build_stylesheet(resolved))
+    _APPLIED_THEME = name

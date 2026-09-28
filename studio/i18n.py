@@ -1163,7 +1163,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.project_kerf": "kerf {length}",
         "tip.status_project_kerf": (
-            "Espesor de sierra del proyecto: {length} (Ctrl+Alt+K)"
+            "Espesor de sierra del proyecto: {length}. Clic lo edita (Ctrl+Alt+K)"
         ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
@@ -2816,7 +2816,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Selected pieces: {n}. Click fits the selection (Ctrl+Shift+0)"
         ),
         "status.project_kerf": "kerf {length}",
-        "tip.status_project_kerf": ("Project saw kerf: {length} (Ctrl+Alt+K)"),
+        "tip.status_project_kerf": (
+            "Project saw kerf: {length}. Click edits it (Ctrl+Alt+K)"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
