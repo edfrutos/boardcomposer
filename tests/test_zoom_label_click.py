@@ -6,11 +6,11 @@ from PySide6.QtGui import QMouseEvent
 from tests.test_zoom_limit_enablement import _window
 
 
-def _mouse(event_type: QEvent.Type) -> QMouseEvent:
+def _mouse(event_type: QEvent.Type, x: float = 2, y: float = 2) -> QMouseEvent:
     return QMouseEvent(
         event_type,
-        QPointF(2, 2),
-        QPointF(2, 2),
+        QPointF(x, y),
+        QPointF(x, y),
         Qt.MouseButton.LeftButton,
         Qt.MouseButton.LeftButton,
         Qt.KeyboardModifier.NoModifier,
@@ -47,6 +47,24 @@ def test_zoom_label_ignores_release_without_press(qapp, tmp_path):
     window.workspace.zoom_in()
     assert window.workspace.zoom != 1.0
 
+    assert (
+        window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonRelease))
+        is False
+    )
+    assert window.workspace.zoom != 1.0
+
+
+def test_zoom_label_ignores_release_after_dragging_outside(qapp, tmp_path):
+    del qapp
+    window = _window(tmp_path)
+    window.workspace.zoom_in()
+    assert window.workspace.zoom != 1.0
+
+    assert window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonPress)) is True
+    assert (
+        window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseMove, -10, -10))
+        is False
+    )
     assert (
         window.eventFilter(window._zoom_label, _mouse(QEvent.Type.MouseButtonRelease))
         is False

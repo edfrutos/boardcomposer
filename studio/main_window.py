@@ -770,6 +770,12 @@ class MainWindow(QMainWindow):
             if event.type() == QEvent.Type.Leave:
                 self._zoom_label_armed = False
             if (
+                event.type() == QEvent.Type.MouseMove
+                and self._zoom_label_armed
+                and not zoom.rect().contains(event.position().toPoint())
+            ):
+                self._zoom_label_armed = False
+            if (
                 event.type() == QEvent.Type.MouseButtonRelease
                 and event.button() == Qt.MouseButton.LeftButton
             ):
