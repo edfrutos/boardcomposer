@@ -74,7 +74,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en la etiqueta de zoom vuelve al 100% (IDE-0062).
 - Barra de estado: piezas seleccionadas (IDE-0063).
 - Copiar medidas L×A de la pieza seleccionada (IDE-0064; Ctrl+Alt+Shift+D).
-- Próximo: cola `0.4.4` novena ola 0065 (quedan 0065…0066); piloto
+- Barra de estado: kerf del proyecto (IDE-0065).
+- Próximo: cola `0.4.4` novena ola 0066 (queda 0066); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

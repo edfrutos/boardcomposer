@@ -734,6 +734,8 @@ class MainWindow(QMainWindow):
         self._placed_label.setObjectName("statusPlacedPieces")
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
+        self._kerf_label = QLabel()
+        self._kerf_label.setObjectName("statusProjectKerf")
         self._zoom_label = QLabel()
         self._zoom_label.setObjectName("statusZoom")
         self._zoom_label_armed = False
@@ -741,12 +743,14 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._project_path_label, 1)
         status.addPermanentWidget(self._placed_label)
         status.addPermanentWidget(self._selection_label)
+        status.addPermanentWidget(self._kerf_label)
         status.addPermanentWidget(self._zoom_label)
         status.showMessage(self._tr("status.ready"))
         self.workspace.camera_changed.connect(self._update_zoom_status)
         self._update_project_path_status()
         self._update_placed_status()
         self._update_selection_status()
+        self._update_kerf_status()
         self._update_zoom_status(self.workspace.zoom)
 
     def eventFilter(self, watched, event):  # noqa: N802 — Qt API
@@ -2301,6 +2305,7 @@ class MainWindow(QMainWindow):
             self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
         self._update_project_path_status()
         self._update_placed_status()
+        self._update_kerf_status()
         self._sync_project_file_actions()
         self._sync_generate_actions()
         self._sync_view_actions()
@@ -2492,6 +2497,24 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.selection_count", n=count))
         label.setToolTip(self._tr("tip.status_selection", n=count))
+        label.show()
+
+    def _update_kerf_status(self) -> None:
+        """Show the project saw kerf in Preferences units (IDE-0065)."""
+        label = getattr(self, "_kerf_label", None)
+        if label is None:
+            return
+        project = self.services.projects.current_project
+        if project is None:
+            label.clear()
+            label.setToolTip("")
+            label.hide()
+            return
+        length = self._format_length(project.kerf_mm)
+        label.setText(self._tr("status.project_kerf", length=length))
+        label.setToolTip(
+            with_native_shortcuts(self._tr("tip.status_project_kerf", length=length))
+        )
         label.show()
 
     def _update_zoom_status(self, zoom: float | None = None) -> None:
@@ -3610,6 +3633,7 @@ class MainWindow(QMainWindow):
         self._reload_recent_files_menu()
         self._update_project_path_status()
         self._update_placed_status()
+        self._update_kerf_status()
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
         self.update_undo_redo()
