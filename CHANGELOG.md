@@ -13,6 +13,12 @@
   `docs/masterplan/REVIEW-2026-09-28-planificacion.md`; Issues = 0;
   IDE-0058…0061 en `main` (`#678`/`#680`/`#682`/`#683`); residual
   IDE-0062 → **sin IDE nuevas**. Histórico 2026-09-27 desde PR `#679`.
+- Barra de estado: piezas seleccionadas (IDE-0063). `1 sel.` / `2 sel.`
+  si hay selección en el Workspace; oculta si no hay. Abre la novena
+  ola 0063…0066. Sin bump `.bcproj`; no cambia el solver.
+- Clic en el % de zoom vuelve al 100% (IDE-0062). No mueve el centro.
+  Si ya está al 100%, el cursor no es mano y el clic avisa. Cierra la
+  octava ola 0059…0062. Sin bump `.bcproj`.
 - Copiar ruta del `.bcproj` (IDE-0061). **Ctrl+Alt+Shift+C** y menú
   Proyecto / contextual del Explorador. Deshabilitado si aún no hay
   archivo. Sin nube. Sin bump `.bcproj`.

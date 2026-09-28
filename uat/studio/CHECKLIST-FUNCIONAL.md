@@ -31,6 +31,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] **Guardar** (**Ctrl+S**) / **Guardar como** (**Ctrl+Shift+S**) / **Abrir** (**Ctrl+O**) `.bcproj` (tips de estado); basename en barra de estado (tooltip = ruta; clic abre carpeta); **Ctrl+Shift+R** abre la carpeta (tip de estado); recuerda carpeta (`last_project_directory`).
 - [ ] Barra de ruta: `●` delante del nombre si hay cambios sin guardar (IDE-0058).
 - [ ] Barra de estado: piezas colocadas / total del inventario (IDE-0060).
+- [ ] Barra de estado: `n sel.` con piezas seleccionadas en el Workspace; oculta si no hay (IDE-0063).
 - [ ] Copiar ruta del `.bcproj` (**Ctrl+Alt+Shift+C**); idle si no hay archivo (IDE-0061).
 - [x] **Recientes** en inicio y menú: clic / Enter abre; anclar / desanclar vía menú contextual; Delete / menú quita uno; vaciar lista (**Ctrl+Shift+X**; tip de estado) si aplica.
 - [x] **Plantilla de proyecto**: guardar (**Ctrl+Shift+M**; tip de estado) y crear desde plantilla (**Ctrl+Shift+N**; tip de estado).
@@ -76,6 +77,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] Zoom: rueda / **Ctrl+=** / **Ctrl+-** (tips de estado); % en barra de estado.
 - [x] **Ctrl+0** ajusta a todos los tableros (tip de estado); **Ctrl+Shift+0** a la selección (tip de estado).
 - [ ] **Ctrl+Alt+0** vuelve el zoom al 100% (IDE-0056).
+- [ ] Clic en el **%** de la barra de estado vuelve al 100% sin mover el centro (IDE-0062).
 - [x] Pan: botón medio, botón derecho, **Espacio + arrastre**.
 - [x] Clic en vacío deselecciona; **Ctrl+A** / **Esc** / **Ctrl+Shift+I** (tips de estado en selección).
 - [x] **Flechas** mueven 1 mm; **Shift+flechas** = tamaño de cuadrícula (prefs).

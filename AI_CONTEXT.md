@@ -70,10 +70,12 @@ alternativas comprensibles para que el usuario decida.
 - Marca ● de sin guardar en la barra de ruta (IDE-0058).
 - Inspector de tablero: área de una hoja (IDE-0059).
 - Barra de estado: piezas colocadas / total (IDE-0060).
-- Copiar ruta del `.bcproj` (IDE-0061 `#683`; Ctrl+Alt+Shift+C).
-- Próximo: cola `0.4.4` octava ola IDE-0062 (queda 0062); piloto
+- Copiar ruta del `.bcproj` (IDE-0061; Ctrl+Alt+Shift+C).
+- Clic en la etiqueta de zoom vuelve al 100% (IDE-0062).
+- Barra de estado: piezas seleccionadas (IDE-0063).
+- Próximo: cola `0.4.4` novena ola 0064 (quedan 0064…0066); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
-  bloqueados. Sin IDE nuevas mientras 0062 esté abierta.
+  bloqueados.
 
 ## Fuentes de verdad
 
