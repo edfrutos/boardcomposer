@@ -461,6 +461,9 @@ class MainWindow(QMainWindow):
         self.workspace.selection_or_focus_changed.connect(
             self._update_board_thickness_status
         )
+        self.workspace.selection_or_focus_changed.connect(
+            self._update_board_material_status
+        )
         # Ensure Edit→Rotar / R is available while the canvas has focus.
         self.workspace.addAction(self._actions["rotate_piece"])
         self.workspace.addAction(self._actions["swap_pieces"])
@@ -753,6 +756,8 @@ class MainWindow(QMainWindow):
         self._board_thickness_label.setObjectName("statusBoardThickness")
         self._board_thickness_label_armed = False
         self._board_thickness_label.installEventFilter(self)
+        self._board_material_label = QLabel()
+        self._board_material_label.setObjectName("statusBoardMaterial")
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -769,6 +774,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._placed_label)
         status.addPermanentWidget(self._boards_label)
         status.addPermanentWidget(self._board_thickness_label)
+        status.addPermanentWidget(self._board_material_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
         status.addPermanentWidget(self._zoom_label)
@@ -778,6 +784,7 @@ class MainWindow(QMainWindow):
         self._update_placed_status()
         self._update_boards_status()
         self._update_board_thickness_status()
+        self._update_board_material_status()
         self._update_selection_status()
         self._update_kerf_status()
         self._update_zoom_status(self.workspace.zoom)
@@ -2472,6 +2479,7 @@ class MainWindow(QMainWindow):
         self._update_placed_status()
         self._update_boards_status()
         self._update_board_thickness_status()
+        self._update_board_material_status()
         self._update_kerf_status()
         self._sync_project_file_actions()
         self._sync_generate_actions()
@@ -2718,6 +2726,24 @@ class MainWindow(QMainWindow):
         label.setText(self._tr("status.board_thickness", length=length))
         label.setToolTip(self._tr("tip.status_board_thickness", length=length))
         label.setCursor(Qt.CursorShape.PointingHandCursor)
+        label.show()
+
+    def _update_board_material_status(self) -> None:
+        """Show the status-bar board material (IDE-0076)."""
+        label = getattr(self, "_board_material_label", None)
+        if label is None:
+            return
+        board = self._board_for_thickness_status()
+        material = "" if board is None else board.material.strip()
+        if not material:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.board_material", material=material))
+        label.setToolTip(self._tr("tip.status_board_material", material=material))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
         label.show()
 
     def _update_selection_status(self) -> None:
@@ -3882,6 +3908,7 @@ class MainWindow(QMainWindow):
         self._update_placed_status()
         self._update_boards_status()
         self._update_board_thickness_status()
+        self._update_board_material_status()
         self._update_kerf_status()
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
