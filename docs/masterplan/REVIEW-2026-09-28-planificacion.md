@@ -7,7 +7,7 @@ revisión `REVIEW-2026-09-27-planificacion.md`, PRs `#678`…`#686`.
 **Issues GitHub:** `gh issue list --state open` → **vacío**.
 **PRs de producto al corte:** `#678`…`#686` **mergeados** (IDE-0058…0063;
 fix Preferencias `#681`). Sin PRs de producto abiertos al corte. Residual:
-décima ola IDE-0070 (0069 en esta entrega).
+décima ola cerrada (0070 en esta entrega).
 **Planning previo:** `#679` (2026-09-27) — histórico en `main`.
 
 ---
@@ -73,7 +73,7 @@ décima ola IDE-0070 (0069 en esta entrega).
 | IDE-0067 clic en el kerf abre el espesor de sierra | 🟢 |
 | IDE-0068 copiar medidas L×A del tablero | 🟢 |
 | IDE-0069 barra de estado tableros físicos | 🟢 |
-| IDE-0070 clic en colocadas/total encuadra las colocadas | ⚪ |
+| IDE-0070 clic en colocadas/total encuadra las colocadas | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -108,7 +108,7 @@ producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
 IDE-0037…0063 **entregadas** (`#647`…`#667`, `#671`…`#673`, `#675`, `#676`,
 `#678`, `#680`, `#682`, `#683`, `#684`, `#686`); octava ola 0059…0062
-cerrada; décima ola 0067…0070 abierta (queda IDE-0070).
+cerrada; décima ola 0067…0070 cerrada. Cola vacía.
 
 Desde la revisión 2026-09-27, planning `#679` entra en `main` como histórico.
 Producto `#678`…`#686` (IDE-0058…0063 + fix Preferencias `#681`) en `main`.
@@ -140,6 +140,8 @@ Límites conocidos (no son bugs; son alcance):
   Copiar medidas L×A de una pieza: entregado (IDE-0064; Ctrl+Alt+Shift+D).
   Copiar medidas L×A de un tablero: entregado (IDE-0068; Ctrl+Alt+Shift+B).
   Barra de estado, tableros físicos: entregado (IDE-0069).
+  Clic en colocadas/total encuadra las colocadas: entregado (IDE-0070).
+  Décima ola cerrada.
   Barra de estado, kerf del proyecto: entregado (IDE-0065).
   Clic en `n sel.` ajusta el encuadre: entregado (IDE-0066). Novena ola cerrada.
   Clic en el kerf abre el espesor de sierra: entregado (IDE-0067). Abre la décima ola.
@@ -166,8 +168,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` décima ola** — IDE-0070 (0069 entregada;
-   queda 0070).
+1. **Cola `0.4.4` vacía** — décima ola cerrada (0070 entregada).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -180,7 +181,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
 0058…0064: **cerrada** en esta entrega (0063 en `main` tras `#678`/`#680`/`#682`…`#686`). Residual
-abierto: IDE-0070. Residual bloqueado: piloto DT-0006 D (operativo) +
+abierto: ninguno. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
@@ -202,9 +203,9 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0067 | Clic en el kerf abre el espesor de sierra | Entregado |
 | IDE-0068 | Copiar medidas L×A del tablero | Entregado |
 | IDE-0069 | Barra de estado: tableros físicos | Entregado |
-| IDE-0070 | Clic en colocadas/total encuadra las piezas colocadas | Idea |
+| IDE-0070 | Clic en colocadas/total encuadra las piezas colocadas | Entregado |
 
-Prioridad de ataque: **IDE-0070** (clic en colocadas/total encuadra las piezas colocadas).
+Prioridad de ataque: cola vacía (décima ola cerrada).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
@@ -216,7 +217,7 @@ Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 - No se implementa código de producto en este pase: solo alinear docs,
   snapshot y backlog; registrar IDE-0062 🟢 (`#684`) e IDE-0063 🟢
   (`#686`). IDE-0064 🟢 en esta entrega. `#679` / `REVIEW-2026-09-27`
-  queda histórico. Residual: IDE-0070.
+  queda histórico. Residual: cola vacía.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.
