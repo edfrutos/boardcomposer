@@ -1180,7 +1180,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Tableros físicos: {n}. Clic ajusta el encuadre de todos (Ctrl+0)"
         ),
         "status.board_thickness": "esp. {length}",
-        "tip.status_board_thickness": "Espesor del tablero: {length}",
+        "tip.status_board_thickness": "Espesor del tablero: {length}. Clic lo edita",
         "status.selection_count": "{n} sel.",
         "tip.status_selection": (
             "Piezas seleccionadas: {n}. Clic ajusta el encuadre (Ctrl+Shift+0)"
@@ -2863,7 +2863,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Physical boards: {n}. Click fits all boards (Ctrl+0)"
         ),
         "status.board_thickness": "thk. {length}",
-        "tip.status_board_thickness": "Board thickness: {length}",
+        "tip.status_board_thickness": "Board thickness: {length}. Click edits it",
         "status.selection_count": "{n} sel.",
         "tip.status_selection": (
             "Selected pieces: {n}. Click fits the selection (Ctrl+Shift+0)"

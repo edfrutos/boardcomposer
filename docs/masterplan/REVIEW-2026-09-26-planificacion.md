@@ -77,7 +77,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0071 clic en tableros físicos encuadra todos | 🟢 |
 | IDE-0072 copiar el kerf del proyecto | 🟢 |
 | IDE-0073 barra de estado: espesor del tablero enfocado | 🟢 |
-| IDE-0074 clic en el espesor abre la edición | ⚪ |
+| IDE-0074 clic en el espesor abre la edición | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -156,7 +156,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` undécima ola** — IDE-0074 (0073 entregada; queda 0074).
+1. **Cola `0.4.4` vacía** — undécima ola cerrada (0074 entregada).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -199,9 +199,9 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0071 | Clic en tableros físicos encuadra todos los tableros | Entregado |
 | IDE-0072 | Copiar el kerf del proyecto | Entregado |
 | IDE-0073 | Barra de estado: espesor del tablero enfocado | Entregado |
-| IDE-0074 | Clic en el espesor abre la edición de ese tablero | Idea |
+| IDE-0074 | Clic en el espesor abre la edición de ese tablero | Entregado |
 
-Prioridad de ataque: **IDE-0074** (clic en el espesor abre la edición).
+Prioridad de ataque: cola vacía (undécima ola cerrada).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

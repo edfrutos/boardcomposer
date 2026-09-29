@@ -747,6 +747,8 @@ class MainWindow(QMainWindow):
         self._boards_label.installEventFilter(self)
         self._board_thickness_label = QLabel()
         self._board_thickness_label.setObjectName("statusBoardThickness")
+        self._board_thickness_label_armed = False
+        self._board_thickness_label.installEventFilter(self)
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -840,6 +842,34 @@ class MainWindow(QMainWindow):
                 self._boards_label_armed = False
                 if armed and self._physical_board_count() > 0:
                     self._fit_board()
+                    return True
+        thickness = getattr(self, "_board_thickness_label", None)
+        if thickness is not None and watched is thickness:
+            can_edit = self._board_for_thickness_status() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_edit
+            ):
+                self._board_thickness_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._board_thickness_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._board_thickness_label_armed
+                and not thickness.rect().contains(event.position().toPoint())
+            ):
+                self._board_thickness_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._board_thickness_label_armed
+                self._board_thickness_label_armed = False
+                board = self._board_for_thickness_status()
+                if armed and board is not None:
+                    self._edit_board(board.board_id)
                     return True
         selection = getattr(self, "_selection_label", None)
         if selection is not None and watched is selection:
@@ -2682,7 +2712,7 @@ class MainWindow(QMainWindow):
         length = self._format_length(board.thickness_mm)
         label.setText(self._tr("status.board_thickness", length=length))
         label.setToolTip(self._tr("tip.status_board_thickness", length=length))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_selection_status(self) -> None:
