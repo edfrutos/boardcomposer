@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.54
+**Versión:** 1.3.55
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 28/09/2026
+**Última revisión:** 29/09/2026
 
 ---
 
@@ -139,7 +139,7 @@ Observaciones:
 | IDE-0067 | Clic en el kerf abre el espesor de sierra | 🟢 | P3 |
 | IDE-0068 | Copiar medidas L×A del tablero | 🟢 | P3 |
 | IDE-0069 | Barra de estado: tableros físicos | 🟢 | P3 |
-| IDE-0070 | Clic en colocadas/total encuadra las piezas colocadas | ⚪ | P3 |
+| IDE-0070 | Clic en colocadas/total encuadra las piezas colocadas | 🟡 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -202,7 +202,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0067 | S | IDE-0065; SCR-005 | Entregado; clic en kerf abre Ctrl+Alt+K |
 | IDE-0068 | S | IDE-0064; SCR-004 | Entregado; L×A de una hoja; sin cantidad |
 | IDE-0069 | S | SCR-005 status | Entregado; suma cantidades; oculta si 0 |
-| IDE-0070 | S | IDE-0060; SCR-002 | Clic en colocadas/total → encuadrar colocadas |
+| IDE-0070 | S | IDE-0060; SCR-002 | En desarrollo (#693); clic → encuadrar colocadas |
 
 ---
 
@@ -234,15 +234,15 @@ Detalle: `docs/masterplan/epics/`.
 completadas (ciclo `0.4.4` ola 1 + 0031…0069; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
-`#682`/`#683`/`#684`/`#686`). Séptima ola cerrada; octava ola cerrada;
-novena ola cerrada; décima ola residual IDE-0070.
+`#682`…`#692`). Séptima ola cerrada; octava ola cerrada;
+novena ola cerrada; décima ola residual IDE-0070 🟡 `#693`.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
-(001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-28-planificacion.md`.
+(001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-29-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` décima ola: IDE-0070 (0069 entregada;
-   queda 0070).
+1. Cola producto `0.4.4` décima ola: IDE-0070 🟡 `#693` (0069
+   entregada `#692`; queda 0070).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

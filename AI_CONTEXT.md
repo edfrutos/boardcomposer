@@ -8,7 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-09-28
+## Estado actual — 2026-09-29
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-09-28-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-09-29-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -78,8 +78,10 @@ alternativas comprensibles para que el usuario decida.
 - Clic en `n sel.` ajusta el encuadre (IDE-0066).
 - Clic en el kerf de la barra abre el espesor de sierra (IDE-0067).
 - Copiar medidas L×A de un tablero (IDE-0068; Ctrl+Alt+Shift+B).
-- Barra de estado: tableros físicos (IDE-0069).
-- Próximo: cola `0.4.4` décima ola 0070 (queda 0070); piloto
+- Barra de estado: tableros físicos (IDE-0069 `#692`).
+- Clic en colocadas/total encuadra las piezas colocadas (IDE-0070
+  `#693` 🟡).
+- Próximo: cola `0.4.4` décima ola residual IDE-0070; piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

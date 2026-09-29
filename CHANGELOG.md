@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-28
+## Unreleased — 0.4.4.dev0 — 2026-09-29
 
 ### Corregido
 
@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-29: snapshot
+  `docs/masterplan/REVIEW-2026-09-29-planificacion.md`; Issues = 0;
+  `#692` (IDE-0069) en `main`; residual IDE-0070 🟡 `#693`. Sin IDE
+  nuevas (cola implementable abierta). Histórico 2026-09-28 desde PR
+  `#685`.
 - Barra de estado: tableros físicos (IDE-0069). `3 tab.` suma las
   cantidades; los tipos no cuentan aparte. Oculta si no hay tableros.
   Sin clic. Siguiente: IDE-0070. Sin bump `.bcproj`; no cambia el solver.
