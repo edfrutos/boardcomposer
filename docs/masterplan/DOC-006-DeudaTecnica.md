@@ -171,6 +171,10 @@ sin críticas sin plan. `#676` (IDE-0057) en `main`; residual IDE-0058 🟡
 sin críticas sin plan. `#684`/`#686` (IDE-0062/0063) en `main`;
 undécima ola residual IDE-0072; Issues = 0.
 
+**Revisión 2026-09-29 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
+sin críticas sin plan. `#692` (IDE-0069) en `main`; residual IDE-0070 🟡
+`#693`; Issues = 0.
+
 ---
 
 ## Política de gestión
@@ -197,8 +201,8 @@ undécima ola residual IDE-0072; Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-09-28 en `REVIEW-2026-09-28-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`09-27` (abiertas = 1, DT-0006).
+2026-09-29 en `REVIEW-2026-09-29-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`09-28` (abiertas = 1, DT-0006).
 
 Próximo foco:
 

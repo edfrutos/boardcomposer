@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-28
+## Unreleased — 0.4.4.dev0 — 2026-09-29
 
 ### Corregido
 
@@ -9,6 +9,9 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-29: snapshot
+  `docs/masterplan/REVIEW-2026-09-29-planificacion.md`; Issues = 0;
+  revisión previa a la entrega de IDE-0070 (`#693`).
 - Clic en `n tab.` encuadra todos los tableros (IDE-0071). Misma acción
   que **Ctrl+0**. Cursor mano si hay tableros. Arrastre fuera no
   dispara. Abre la undécima ola 0071…0074. Siguiente: IDE-0072.

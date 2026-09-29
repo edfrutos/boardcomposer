@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.54
+**Versión:** 1.3.55
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 28/09/2026
+**Última revisión:** 29/09/2026
 
 ---
 
@@ -242,10 +242,10 @@ Detalle: `docs/masterplan/epics/`.
 completadas (ciclo `0.4.4` ola 1 + 0031…0071; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
-`#682`/`#683`/`#684`/`#686`). Séptima ola cerrada; octava ola cerrada;
+`#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`). Séptima ola cerrada; octava ola cerrada;
 novena ola cerrada; décima ola cerrada; undécima ola residual IDE-0072.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
-(001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-28-planificacion.md`.
+(001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-29-planificacion.md`.
 
 Próximo foco:
 

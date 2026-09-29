@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-09-28.
+Última revisión: 2026-09-29.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-09-28-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-09-29-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -63,7 +63,7 @@
 - Barra de estado: piezas seleccionadas (IDE-0063 `#686`).
 - Copiar medidas L×A de una pieza (**Ctrl+Alt+Shift+D**, IDE-0064).
 - Copiar medidas L×A de un tablero (**Ctrl+Alt+Shift+B**, IDE-0068).
-- Barra de estado: tableros físicos (IDE-0069).
+- Barra de estado: tableros físicos (IDE-0069 `#692`).
 - Barra de estado: kerf del proyecto (IDE-0065).
 - Clic en `n sel.` ajusta el encuadre (IDE-0066).
 - Clic en el kerf de la barra abre el espesor de sierra (IDE-0067).

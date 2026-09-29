@@ -191,7 +191,7 @@ cerrada; segunda ola IDE-0031…0036 entregada; 0037…0063 entregadas
 séptima ola 0055…0058 cerrada; octava ola 0059…0062 cerrada;
 novena ola 0063…0066 cerrada;
 décima ola 0067…0070 cerrada; undécima ola 0071…0074 residual IDE-0072.
-Revisión: `REVIEW-2026-09-28-planificacion.md`.
+Revisión: `REVIEW-2026-09-29-planificacion.md`.
 
 Pendiente de:
 
