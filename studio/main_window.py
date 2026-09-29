@@ -734,8 +734,12 @@ class MainWindow(QMainWindow):
         self._project_path_label.installEventFilter(self)
         self._placed_label = QLabel()
         self._placed_label.setObjectName("statusPlacedPieces")
+        self._placed_label_armed = False
+        self._placed_label.installEventFilter(self)
         self._boards_label = QLabel()
         self._boards_label.setObjectName("statusPhysicalBoards")
+        self._boards_label_armed = False
+        self._boards_label.installEventFilter(self)
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -774,6 +778,60 @@ class MainWindow(QMainWindow):
         ):
             self._reveal_project_folder()
             return True
+        placed = getattr(self, "_placed_label", None)
+        if placed is not None and watched is placed:
+            can_fit = self._placed_piece_counts()[0] > 0
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_fit
+            ):
+                self._placed_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._placed_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._placed_label_armed
+                and not placed.rect().contains(event.position().toPoint())
+            ):
+                self._placed_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._placed_label_armed
+                self._placed_label_armed = False
+                if armed and self._placed_piece_counts()[0] > 0:
+                    self._fit_placed()
+                    return True
+        boards = getattr(self, "_boards_label", None)
+        if boards is not None and watched is boards:
+            can_fit = self._physical_board_count() > 0
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_fit
+            ):
+                self._boards_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._boards_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._boards_label_armed
+                and not boards.rect().contains(event.position().toPoint())
+            ):
+                self._boards_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._boards_label_armed
+                self._boards_label_armed = False
+                if armed and self._physical_board_count() > 0:
+                    self._fit_board()
+                    return True
         selection = getattr(self, "_selection_label", None)
         if selection is not None and watched is selection:
             can_fit = bool(self.workspace.selection.selected())
@@ -2546,14 +2604,18 @@ class MainWindow(QMainWindow):
             return
         placed, total = self._placed_piece_counts()
         label.setText(self._tr("status.placed_pieces", placed=placed, total=total))
+        tip_key = (
+            "tip.status_placed_pieces_click"
+            if placed > 0
+            else "tip.status_placed_pieces"
+        )
         label.setToolTip(
-            with_native_shortcuts(
-                self._tr(
-                    "tip.status_placed_pieces",
-                    placed=placed,
-                    total=total,
-                )
-            )
+            with_native_shortcuts(self._tr(tip_key, placed=placed, total=total))
+        )
+        label.setCursor(
+            Qt.CursorShape.PointingHandCursor
+            if placed > 0
+            else Qt.CursorShape.ArrowCursor
         )
 
     def _update_boards_status(self) -> None:
@@ -2565,10 +2627,14 @@ class MainWindow(QMainWindow):
         if count <= 0:
             label.clear()
             label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
             label.hide()
             return
         label.setText(self._tr("status.physical_boards", n=count))
-        label.setToolTip(self._tr("tip.status_physical_boards", n=count))
+        label.setToolTip(
+            with_native_shortcuts(self._tr("tip.status_physical_boards", n=count))
+        )
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_selection_status(self) -> None:
@@ -3125,6 +3191,10 @@ class MainWindow(QMainWindow):
     def _fit_selection(self) -> None:
         if not self.workspace.fit_selection():
             self._status("status.nothing_to_fit_selection")
+
+    def _fit_placed(self) -> None:
+        if not self.workspace.fit_placed():
+            self._status("status.nothing_to_fit_placed")
 
     def _zoom_in(self) -> None:
         if not self.workspace.can_zoom_in:

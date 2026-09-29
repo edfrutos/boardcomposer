@@ -632,6 +632,36 @@ class BoardWorkspace(QGraphicsView):
         self._apply_camera()
         return True
 
+    def fit_placed(self) -> bool:
+        """Zoom to inventory pieces that have a placement."""
+        viewport_rect = self.viewport().rect()
+        if viewport_rect.width() <= 0 or viewport_rect.height() <= 0:
+            return False
+
+        project = self.services.projects.current_project
+        if project is None:
+            return False
+
+        rect = QRectF()
+        for piece in project.pieces:
+            if project.placement_by_piece_id(piece.piece_id) is None:
+                continue
+            item = self.piece_item_by_id(piece.piece_id)
+            if item is None:
+                continue
+            piece_rect = item.sceneBoundingRect()
+            rect = piece_rect if rect.isNull() else rect.united(piece_rect)
+
+        if rect.isNull() or rect.width() <= 0 or rect.height() <= 0:
+            return False
+
+        x_zoom = viewport_rect.width() / rect.width()
+        y_zoom = viewport_rect.height() / rect.height()
+        self._camera.zoom = self._camera.clamp_zoom(min(x_zoom, y_zoom) * 0.75)
+        self._camera.center = rect.center()
+        self._apply_camera()
+        return True
+
     def zoom_in(self) -> None:
         """Zoom in around the current camera center."""
         self._zoom_by_steps(1)
