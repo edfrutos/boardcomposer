@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Clic en `n tab.` encuadra todos los tableros (IDE-0071). Misma acción
+  que **Ctrl+0**. Cursor mano si hay tableros. Arrastre fuera no
+  dispara. Abre la undécima ola 0071…0074. Siguiente: IDE-0072.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en colocadas/total encuadra las piezas colocadas (IDE-0070).
   No encuadra el tablero ni la selección. Cursor mano si hay colocadas.
   Arrastre fuera no dispara. Cierra la décima ola 0067…0070.
@@ -37,8 +41,8 @@
   Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-09-28: snapshot
   `docs/masterplan/REVIEW-2026-09-28-planificacion.md`; Issues = 0;
-  `#684`/`#686` (IDE-0062/0063) en `main`; décima ola cerrada; cola
-  vacía. Histórico 2026-09-27 desde PR `#679`.
+  `#684`/`#686` (IDE-0062/0063) en `main`; undécima ola, siguiente
+  IDE-0072 (0071 en esta entrega). Histórico 2026-09-27 desde PR `#679`.
 - Barra de estado: piezas seleccionadas (IDE-0063). `1 sel.` / `2 sel.`
   si hay selección en el Workspace; oculta si no hay. Abre la novena
   ola 0063…0066. Sin bump `.bcproj`; no cambia el solver.

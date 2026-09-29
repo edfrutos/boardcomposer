@@ -53,7 +53,8 @@ decisión final antes de exportar.
 - Zoom (rueda, **Ctrl+=** / **Ctrl+-**), ajuste (**Ctrl+0**, **Ctrl+Shift+0**),
   zoom al 100% (**Ctrl+Alt+0**, IDE-0056; también clic en el **%**
   de la barra de estado, IDE-0062). Clic en colocadas/total encuadra
-  las piezas colocadas (IDE-0070). Clic en `n sel.` ajusta el encuadre
+  las piezas colocadas (IDE-0070). Clic en `n tab.` encuadra todos
+  los tableros (IDE-0071; misma acción que **Ctrl+0**). Clic en `n sel.` ajusta el encuadre
   (IDE-0066; misma acción que **Ctrl+Shift+0**).
   Pan (botón medio / derecho / Espacio+arrastre) y cuadrícula (**Ctrl+G**).
 

@@ -1171,7 +1171,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Clic ajusta el encuadre de las colocadas"
         ),
         "status.physical_boards": "{n} tab.",
-        "tip.status_physical_boards": "Tableros físicos: {n}",
+        "tip.status_physical_boards": (
+            "Tableros físicos: {n}. Clic ajusta el encuadre de todos (Ctrl+0)"
+        ),
         "status.selection_count": "{n} sel.",
         "tip.status_selection": (
             "Piezas seleccionadas: {n}. Clic ajusta el encuadre (Ctrl+Shift+0)"
@@ -2841,7 +2843,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Pieces placed: {placed} of {total}. Click fits the placed pieces"
         ),
         "status.physical_boards": "{n} tab.",
-        "tip.status_physical_boards": "Physical boards: {n}",
+        "tip.status_physical_boards": (
+            "Physical boards: {n}. Click fits all boards (Ctrl+0)"
+        ),
         "status.selection_count": "{n} sel.",
         "tip.status_selection": (
             "Selected pieces: {n}. Click fits the selection (Ctrl+Shift+0)"

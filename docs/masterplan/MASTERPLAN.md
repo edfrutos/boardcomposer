@@ -68,6 +68,7 @@
 - Clic en `n sel.` ajusta el encuadre (IDE-0066).
 - Clic en el kerf de la barra abre el espesor de sierra (IDE-0067).
 - Clic en colocadas/total encuadra las piezas colocadas (IDE-0070).
+- Clic en `n tab.` encuadra todos los tableros (IDE-0071).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -83,7 +84,7 @@
 
 ## Próxima tarea única
 
-1. Cola producto vacía (décima ola cerrada; IDE-0070 entregada).
+1. Ciclo `0.4.4` undécima ola: IDE-0072 (0071 entregada; quedan 0072…0074).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
