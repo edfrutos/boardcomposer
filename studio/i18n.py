@@ -223,6 +223,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.rename_project": "Renombrar proyecto…",
         "action.edit_project_metadata": "Metadatos del proyecto…",
         "action.edit_project_kerf": "Espesor de sierra…",
+        "action.copy_project_kerf": "Copiar espesor de sierra",
         "action.material_catalog": "Catálogo de materiales…",
         "action.reveal_project_folder": "Abrir carpeta del proyecto",
         "action.copy_project_path": "Copiar ruta del proyecto",
@@ -387,6 +388,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Espesor de sierra del proyecto (Ctrl+Alt+K); "
             "se guarda en el .bcproj; al calcular deja hueco entre piezas; "
             "se puede deshacer"
+        ),
+        "tip.copy_project_kerf": (
+            "Copiar el espesor de sierra del proyecto (Ctrl+Alt+Shift+K); "
+            "unidades de Preferencias; no abre el diálogo"
         ),
         "tip.material_catalog": (
             "Editar nombres, espesores y medidas L×A reutilizables entre "
@@ -1394,6 +1399,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_board_size": (
             "Selecciona un solo tablero para copiar sus medidas"
         ),
+        "status.kerf_copied": "Espesor de sierra copiado: {length}",
+        "status.nothing_to_copy_kerf": (
+            "No hay proyecto para copiar el espesor de sierra"
+        ),
         "status.no_recent_to_clear": "No hay proyectos recientes para vaciar",
         "status.save_failed": "No se pudo guardar: {error}",
         "status.project_renamed": "Proyecto renombrado: {name}",
@@ -1929,6 +1938,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.rename_project": "Rename project…",
         "action.edit_project_metadata": "Project metadata…",
         "action.edit_project_kerf": "Saw kerf…",
+        "action.copy_project_kerf": "Copy saw kerf",
         "action.material_catalog": "Material catalog…",
         "action.reveal_project_folder": "Open project folder",
         "action.copy_project_path": "Copy project path",
@@ -2091,6 +2101,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.edit_project_kerf": (
             "Project saw kerf (Ctrl+Alt+K); stored in the .bcproj; "
             "calculating layout leaves a gap between pieces; can be undone"
+        ),
+        "tip.copy_project_kerf": (
+            "Copy the project saw kerf (Ctrl+Alt+Shift+K); "
+            "Preferences units; does not open the dialog"
         ),
         "tip.material_catalog": (
             "Edit reusable material names, thicknesses and L×W sheet sizes "
@@ -3051,6 +3065,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_piece_size": ("Select a single piece to copy its size"),
         "status.board_size_copied": "Board size copied: {size}",
         "status.nothing_to_copy_board_size": ("Select a single board to copy its size"),
+        "status.kerf_copied": "Saw kerf copied: {length}",
+        "status.nothing_to_copy_kerf": "No project to copy the saw kerf",
         "status.no_recent_to_clear": "No recent projects to clear",
         "status.save_failed": "Could not save: {error}",
         "status.project_renamed": "Project renamed: {name}",
@@ -3393,6 +3409,7 @@ _ACTION_KEYS = (
     "rename_project",
     "edit_project_metadata",
     "edit_project_kerf",
+    "copy_project_kerf",
     "material_catalog",
     "reveal_project_folder",
     "copy_project_path",

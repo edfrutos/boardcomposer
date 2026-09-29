@@ -70,11 +70,11 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 Revisión: `docs/masterplan/REVIEW-2026-09-29-planificacion.md`.
 
 1. Release **`0.4.3`** / `v0.4.3` publicado (2026-09-16).
-2. Ciclo **`0.4.4.dev0`** — undécima ola IDE-0072 (0071 entregada; quedan 0072…0074; décima ola cerrada, 0070 entregada; 0069 entregada; 0068 entregada; 0067 entregada; novena ola cerrada, 0066 entregada; 0065 entregada; 0064 entregada; 0063 entregada; octava ola cerrada, 0062 entregada; 0061 entregada; 0060 entregada; 0059 entregada; séptima ola cerrada, 0058 entregada; 0057 entregada; 0056 entregada; 0055 `#673`;
+2. Ciclo **`0.4.4.dev0`** — undécima ola IDE-0073 (0072 entregada; quedan 0073…0074; 0071 entregada; décima ola cerrada, 0070 entregada; 0069 entregada; 0068 entregada; 0067 entregada; novena ola cerrada, 0066 entregada; 0065 entregada; 0064 entregada; 0063 entregada; octava ola cerrada, 0062 entregada; 0061 entregada; 0060 entregada; 0059 entregada; séptima ola cerrada, 0058 entregada; 0057 entregada; 0056 entregada; 0055 `#673`;
    0054 `#672`; 0053 `#671`; 0052 `#667`; 0051 `#666`; 0050 `#665`;
    0049 `#664`; 0048 `#663`; 0047 `#662`; cuarta ola 0043…0046
    `#657`…`#661`; 0042 `#655`; tercera ola 0037…0041; segunda ola
-   0031…0036; ola 1 0025…0030). Quedan 0072…0074.
+   0031…0036; ola 1 0025…0030). Quedan 0073…0074.
 3. Cola producto IDE-0019…0024 cerrada en `0.4.3` (incluye Skyline `#623`).
 4. IDE-0007 eval humana cerrada (2026-09-12); LLM sigue diferido.
 5. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).

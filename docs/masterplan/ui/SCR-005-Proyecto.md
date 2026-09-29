@@ -56,7 +56,7 @@ cantidades; oculto si no hay; clic encuadra todos, IDE-0071), las piezas selecci
 oculta si no hay selección; clic ajusta el encuadre, IDE-0066), el kerf
 del proyecto (`kerf 3.2 mm`,
 IDE-0065; unidades de Preferencias; oculto si no hay proyecto; clic abre
-el espesor de sierra, IDE-0067) y el zoom
+el espesor de sierra, IDE-0067; **Ctrl+Alt+Shift+K** lo copia, IDE-0072) y el zoom
 del Workspace.
 
 ---

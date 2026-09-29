@@ -251,6 +251,7 @@ class MainWindow(QMainWindow):
         self._menus["project"].addAction(self._actions["rename_project"])
         self._menus["project"].addAction(self._actions["edit_project_metadata"])
         self._menus["project"].addAction(self._actions["edit_project_kerf"])
+        self._menus["project"].addAction(self._actions["copy_project_kerf"])
         self._menus["project"].addAction(self._actions["material_catalog"])
         self._menus["project"].addAction(self._actions["reveal_project_folder"])
         self._menus["project"].addAction(self._actions["copy_project_path"])
@@ -299,6 +300,7 @@ class MainWindow(QMainWindow):
             self._edit_project_metadata
         )
         self._actions["edit_project_kerf"].triggered.connect(self._edit_project_kerf)
+        self._actions["copy_project_kerf"].triggered.connect(self._copy_project_kerf)
         self._actions["material_catalog"].triggered.connect(self._open_material_catalog)
         self._actions["reveal_project_folder"].triggered.connect(
             self._reveal_project_folder
@@ -2456,6 +2458,11 @@ class MainWindow(QMainWindow):
                 "edit_project_kerf",
                 "tip.edit_project_kerf",
                 self._tr("status.nothing_to_edit_kerf"),
+            ),
+            (
+                "copy_project_kerf",
+                "tip.copy_project_kerf",
+                self._tr("status.nothing_to_copy_kerf"),
             ),
         )
         for key, tip_key, disabled_tip in pairs:
@@ -6206,6 +6213,17 @@ class MainWindow(QMainWindow):
         self.update_window_title()
         self.update_undo_redo()
         self._status("status.project_metadata_saved")
+
+    def _copy_project_kerf(self, _checked: bool = False) -> None:
+        """Copy the project saw kerf in Preferences units (IDE-0072)."""
+        del _checked
+        project = self.services.projects.current_project
+        if project is None:
+            self._status("status.nothing_to_copy_kerf")
+            return
+        length = self._format_length(project.kerf_mm)
+        self._copy_text_to_clipboard(length)
+        self._status("status.kerf_copied", length=length)
 
     def _edit_project_kerf(self) -> None:
         project = self.services.projects.current_project

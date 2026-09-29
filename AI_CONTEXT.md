@@ -81,7 +81,8 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: tableros físicos (IDE-0069).
 - Clic en colocadas/total encuadra las piezas colocadas (IDE-0070).
 - Clic en `n tab.` encuadra todos los tableros (IDE-0071; Ctrl+0).
-- Próximo: cola `0.4.4` undécima ola 0072 (quedan 0072…0074); piloto
+- Copiar el espesor de sierra del proyecto (IDE-0072; Ctrl+Alt+Shift+K).
+- Próximo: cola `0.4.4` undécima ola 0073 (quedan 0073…0074); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 
