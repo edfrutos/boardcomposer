@@ -12,9 +12,13 @@
 - Docs planificación 2026-09-29: snapshot
   `docs/masterplan/REVIEW-2026-09-29-planificacion.md`; Issues = 0;
   revisión previa a la entrega de IDE-0070 (`#693`).
+- Barra de estado: espesor del tablero (IDE-0073). `esp. 19 mm` /
+  `thk. 19 mm` del tablero enfocado, o del único tipo si no hay foco.
+  Oculto si hay varios y ninguno enfocado. Sin clic. Siguiente: IDE-0074.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el espesor de sierra del proyecto (IDE-0072). **Ctrl+Alt+Shift+K**
   y menú Proyecto. Unidades de Preferencias; kerf 0 también se copia.
-  No abre el diálogo. Siguiente: IDE-0073.
+  No abre el diálogo.
   Sin bump `.bcproj`; no cambia el solver.
 - Clic en `n tab.` encuadra todos los tableros (IDE-0071). Misma acción
   que **Ctrl+0**. Cursor mano si hay tableros. Arrastre fuera no
@@ -49,7 +53,7 @@
 - Docs planificación 2026-09-28: snapshot
   `docs/masterplan/REVIEW-2026-09-28-planificacion.md`; Issues = 0;
   `#684`/`#686` (IDE-0062/0063) en `main`; undécima ola, siguiente
-  IDE-0073 (0072 en esta entrega). Histórico 2026-09-27 desde PR `#679`.
+  IDE-0074 (0073 en esta entrega). Histórico 2026-09-27 desde PR `#679`.
 - Barra de estado: piezas seleccionadas (IDE-0063). `1 sel.` / `2 sel.`
   si hay selección en el Workspace; oculta si no hay. Abre la novena
   ola 0063…0066. Sin bump `.bcproj`; no cambia el solver.

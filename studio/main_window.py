@@ -454,6 +454,9 @@ class MainWindow(QMainWindow):
         self.workspace.selection_or_focus_changed.connect(
             self._sync_edit_selection_actions
         )
+        self.workspace.selection_or_focus_changed.connect(
+            self._update_board_thickness_status
+        )
         # Ensure Edit→Rotar / R is available while the canvas has focus.
         self.workspace.addAction(self._actions["rotate_piece"])
         self.workspace.addAction(self._actions["swap_pieces"])
@@ -742,6 +745,8 @@ class MainWindow(QMainWindow):
         self._boards_label.setObjectName("statusPhysicalBoards")
         self._boards_label_armed = False
         self._boards_label.installEventFilter(self)
+        self._board_thickness_label = QLabel()
+        self._board_thickness_label.setObjectName("statusBoardThickness")
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -757,6 +762,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._project_path_label, 1)
         status.addPermanentWidget(self._placed_label)
         status.addPermanentWidget(self._boards_label)
+        status.addPermanentWidget(self._board_thickness_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
         status.addPermanentWidget(self._zoom_label)
@@ -765,6 +771,7 @@ class MainWindow(QMainWindow):
         self._update_project_path_status()
         self._update_placed_status()
         self._update_boards_status()
+        self._update_board_thickness_status()
         self._update_selection_status()
         self._update_kerf_status()
         self._update_zoom_status(self.workspace.zoom)
@@ -2430,6 +2437,7 @@ class MainWindow(QMainWindow):
         self._update_project_path_status()
         self._update_placed_status()
         self._update_boards_status()
+        self._update_board_thickness_status()
         self._update_kerf_status()
         self._sync_project_file_actions()
         self._sync_generate_actions()
@@ -2642,6 +2650,39 @@ class MainWindow(QMainWindow):
             with_native_shortcuts(self._tr("tip.status_physical_boards", n=count))
         )
         label.setCursor(Qt.CursorShape.PointingHandCursor)
+        label.show()
+
+    def _board_for_thickness_status(self) -> StudioBoard | None:
+        """Focused board, or the only board type when nothing is focused."""
+        project = self.services.projects.current_project
+        if project is None or not project.boards:
+            return None
+        focused_id = self.workspace.focused_board_id()
+        if focused_id:
+            try:
+                return project.board_by_id(focused_id)
+            except KeyError:
+                pass
+        if len(project.boards) == 1:
+            return project.boards[0]
+        return None
+
+    def _update_board_thickness_status(self) -> None:
+        """Show the focused board thickness on the status bar (IDE-0073)."""
+        label = getattr(self, "_board_thickness_label", None)
+        if label is None:
+            return
+        board = self._board_for_thickness_status()
+        if board is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        length = self._format_length(board.thickness_mm)
+        label.setText(self._tr("status.board_thickness", length=length))
+        label.setToolTip(self._tr("tip.status_board_thickness", length=length))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
         label.show()
 
     def _update_selection_status(self) -> None:
@@ -3805,6 +3846,7 @@ class MainWindow(QMainWindow):
         self._update_project_path_status()
         self._update_placed_status()
         self._update_boards_status()
+        self._update_board_thickness_status()
         self._update_kerf_status()
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
