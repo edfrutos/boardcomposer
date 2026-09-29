@@ -143,7 +143,7 @@ Observaciones:
 | IDE-0071 | Clic en tableros físicos encuadra todos los tableros | 🟢 | P3 |
 | IDE-0072 | Copiar el kerf del proyecto | 🟢 | P3 |
 | IDE-0073 | Barra de estado: espesor del tablero enfocado | 🟢 | P3 |
-| IDE-0074 | Clic en el espesor abre la edición de ese tablero | ⚪ | P3 |
+| IDE-0074 | Clic en el espesor abre la edición de ese tablero | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -210,7 +210,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0071 | S | IDE-0069; SCR-002 | Entregado; clic en n tab. → Ctrl+0 |
 | IDE-0072 | S | IDE-0065 | Entregado; Ctrl+Alt+Shift+K; prefs; kerf 0 |
 | IDE-0073 | S | SCR-005 status | Entregado; enfocado o único; oculta si no hay |
-| IDE-0074 | S | IDE-0073 | Clic abre la edición de ese tablero |
+| IDE-0074 | S | IDE-0073 | Entregado; clic abre la edición |
 
 ---
 
@@ -238,19 +238,18 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0073 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0073; `#647`/`#649`/`#651`/
+**Estado actual:** 🟢 Actualizado — IDE-0001…0074 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0074; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
 `#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`). Séptima ola cerrada; octava ola cerrada;
-novena ola cerrada; décima ola cerrada; undécima ola residual IDE-0074.
+novena ola cerrada; décima ola cerrada; undécima ola cerrada. Cola vacía.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
 (001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-29-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` undécima ola: IDE-0074 (0073 entregada;
-   queda 0074).
+1. Cola producto `0.4.4` vacía (undécima ola cerrada; 0074 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

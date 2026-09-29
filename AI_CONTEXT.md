@@ -83,7 +83,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en `n tab.` encuadra todos los tableros (IDE-0071; Ctrl+0).
 - Copiar el espesor de sierra del proyecto (IDE-0072; Ctrl+Alt+Shift+K).
 - Barra de estado: espesor del tablero enfocado (IDE-0073).
-- Próximo: cola `0.4.4` undécima ola 0074 (queda 0074); piloto
+- Clic en el espesor del tablero abre su edición (IDE-0074).
+- Próximo: cola `0.4.4` vacía (undécima ola cerrada); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

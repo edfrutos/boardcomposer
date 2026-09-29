@@ -29,7 +29,8 @@ def test_board_thickness_follows_focus_units_and_language(qapp, tmp_path):
     assert label.text() == "esp. 19 mm"
     assert not label.isHidden()
     assert "espesor" in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
 
     window.workspace.select_piece("A")
     assert label.text() == "esp. 19 mm"
