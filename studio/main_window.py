@@ -734,6 +734,8 @@ class MainWindow(QMainWindow):
         self._project_path_label.installEventFilter(self)
         self._placed_label = QLabel()
         self._placed_label.setObjectName("statusPlacedPieces")
+        self._boards_label = QLabel()
+        self._boards_label.setObjectName("statusPhysicalBoards")
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -748,6 +750,7 @@ class MainWindow(QMainWindow):
         self._zoom_label.installEventFilter(self)
         status.addPermanentWidget(self._project_path_label, 1)
         status.addPermanentWidget(self._placed_label)
+        status.addPermanentWidget(self._boards_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
         status.addPermanentWidget(self._zoom_label)
@@ -755,6 +758,7 @@ class MainWindow(QMainWindow):
         self.workspace.camera_changed.connect(self._update_zoom_status)
         self._update_project_path_status()
         self._update_placed_status()
+        self._update_boards_status()
         self._update_selection_status()
         self._update_kerf_status()
         self._update_zoom_status(self.workspace.zoom)
@@ -2365,6 +2369,7 @@ class MainWindow(QMainWindow):
             self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
         self._update_project_path_status()
         self._update_placed_status()
+        self._update_boards_status()
         self._update_kerf_status()
         self._sync_project_file_actions()
         self._sync_generate_actions()
@@ -2527,6 +2532,13 @@ class MainWindow(QMainWindow):
         )
         return placed, len(project.pieces)
 
+    def _physical_board_count(self) -> int:
+        """Sum of board quantities. Types do not count as extra sheets."""
+        project = self.services.projects.current_project
+        if project is None:
+            return 0
+        return sum(board.quantity for board in project.boards)
+
     def _update_placed_status(self) -> None:
         """Refresh placed/total on the status bar (IDE-0060)."""
         label = getattr(self, "_placed_label", None)
@@ -2543,6 +2555,21 @@ class MainWindow(QMainWindow):
                 )
             )
         )
+
+    def _update_boards_status(self) -> None:
+        """Show physical board sheets on the status bar (IDE-0069)."""
+        label = getattr(self, "_boards_label", None)
+        if label is None:
+            return
+        count = self._physical_board_count()
+        if count <= 0:
+            label.clear()
+            label.setToolTip("")
+            label.hide()
+            return
+        label.setText(self._tr("status.physical_boards", n=count))
+        label.setToolTip(self._tr("tip.status_physical_boards", n=count))
+        label.show()
 
     def _update_selection_status(self) -> None:
         """Show how many Workspace pieces are selected (IDE-0063)."""
@@ -3700,6 +3727,7 @@ class MainWindow(QMainWindow):
         self._reload_recent_files_menu()
         self._update_project_path_status()
         self._update_placed_status()
+        self._update_boards_status()
         self._update_kerf_status()
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())

@@ -78,7 +78,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en `n sel.` ajusta el encuadre (IDE-0066).
 - Clic en el kerf de la barra abre el espesor de sierra (IDE-0067).
 - Copiar medidas L×A de un tablero (IDE-0068; Ctrl+Alt+Shift+B).
-- Próximo: cola `0.4.4` décima ola 0069 (quedan 0069…0070); piloto
+- Barra de estado: tableros físicos (IDE-0069).
+- Próximo: cola `0.4.4` décima ola 0070 (queda 0070); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 
