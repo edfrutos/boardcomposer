@@ -145,7 +145,7 @@ Observaciones:
 | IDE-0073 | Barra de estado: espesor del tablero enfocado | 🟢 | P3 |
 | IDE-0074 | Clic en el espesor abre la edición de ese tablero | 🟢 | P3 |
 | IDE-0075 | Copiar espesor del tablero de la barra | 🟢 | P3 |
-| IDE-0076 | Barra de estado: material del tablero | ⚪ | P3 |
+| IDE-0076 | Barra de estado: material del tablero | 🟢 | P3 |
 | IDE-0077 | Copiar material del tablero | ⚪ | P3 |
 | IDE-0078 | Clic en el material abre la edición de ese tablero | ⚪ | P3 |
 
@@ -216,7 +216,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0073 | S | SCR-005 status | Entregado; enfocado o único; oculta si no hay |
 | IDE-0074 | S | IDE-0073 | Entregado; clic abre la edición |
 | IDE-0075 | S | IDE-0073 | Entregado; Ctrl+Alt+Shift+T; mismo tablero |
-| IDE-0076 | S | IDE-0073; SCR-005 | Mismo tablero; oculto si vacío |
+| IDE-0076 | S | IDE-0073; SCR-005 | Entregado; mismo tablero; oculto si vacío |
 | IDE-0077 | S | IDE-0076 | Ctrl+Alt+Shift+M; deshabilitado si no se muestra |
 | IDE-0078 | S | IDE-0076 | Clic abre la edición; arrastre no |
 
@@ -246,19 +246,19 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0075 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0075; `#647`/`#649`/`#651`/
+**Estado actual:** 🟢 Actualizado — IDE-0001…0076 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0076; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
 `#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`). Séptima ola cerrada; octava ola cerrada;
-novena ola cerrada; décima ola cerrada; undécima ola cerrada; duodécima ola residual IDE-0076.
+novena ola cerrada; décima ola cerrada; undécima ola cerrada; duodécima ola residual IDE-0077.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
 (001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-09-29-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` duodécima ola: IDE-0076 (0075 entregada;
-   quedan 0076…0078).
+1. Cola producto `0.4.4` duodécima ola: IDE-0077 (0076 entregada;
+   quedan 0077…0078).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

@@ -337,7 +337,8 @@ Chrome de Studio (se recuerda entre sesiones).
   no hay). **Clic** encuadra todos los tableros (**Ctrl+0**). El espesor
   del tablero va como `esp. 19 mm` (el enfocado, o el único tipo; oculto
   si hay varios y ninguno enfocado). **Clic** abre la edición de ese
-  tablero. Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
+  tablero. El material va como `mat. Demo` (el mismo tablero; oculto
+  si el material está vacío; sin clic). Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
   (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre
   (**Ctrl+Shift+0**). El kerf del proyecto va como `kerf 3.2 mm`
   (unidades de Preferencias; oculto si no hay proyecto). **Clic** lo
