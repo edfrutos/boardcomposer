@@ -229,6 +229,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_selection_id"])
         self._menus["edit"].addAction(self._actions["copy_piece_size"])
         self._menus["edit"].addAction(self._actions["copy_board_size"])
+        self._menus["edit"].addAction(self._actions["copy_board_thickness"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -332,6 +333,9 @@ class MainWindow(QMainWindow):
         self._actions["copy_selection_id"].triggered.connect(self._copy_selection_id)
         self._actions["copy_piece_size"].triggered.connect(self._copy_piece_size)
         self._actions["copy_board_size"].triggered.connect(self._copy_board_size)
+        self._actions["copy_board_thickness"].triggered.connect(
+            self._copy_board_thickness
+        )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
             self._duplicate_selected_piece
@@ -2699,6 +2703,7 @@ class MainWindow(QMainWindow):
 
     def _update_board_thickness_status(self) -> None:
         """Show the focused board thickness on the status bar (IDE-0073)."""
+        self._sync_copy_board_thickness_action()
         label = getattr(self, "_board_thickness_label", None)
         if label is None:
             return
@@ -6189,6 +6194,32 @@ class MainWindow(QMainWindow):
         size = self._format_size(board.length_mm, board.width_mm)
         self._copy_text_to_clipboard(size)
         self._status("status.board_size_copied", size=size)
+
+    def _sync_copy_board_thickness_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_board_thickness")
+        if action is None:
+            return
+        enabled = self._board_for_thickness_status() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_board_thickness"))
+            if enabled
+            else self._tr("status.nothing_to_copy_board_thickness")
+        )
+
+    def _copy_board_thickness(self, _checked: bool = False) -> None:
+        """Copy the status-bar board thickness in Preferences units (IDE-0075)."""
+        del _checked
+        board = self._board_for_thickness_status()
+        if board is None:
+            self._status("status.nothing_to_copy_board_thickness")
+            return
+        length = self._format_length(board.thickness_mm)
+        self._copy_text_to_clipboard(length)
+        self._status("status.board_thickness_copied", length=length)
 
     def _sync_copy_inspector_action(self) -> None:
         action = self._actions.get("copy_inspector")

@@ -7,7 +7,7 @@ revisión `REVIEW-2026-09-27-planificacion.md`, PRs `#678`…`#686`.
 **Issues GitHub:** `gh issue list --state open` → **vacío**.
 **PRs de producto al corte:** `#678`…`#686` **mergeados** (IDE-0058…0063;
 fix Preferencias `#681`). Sin PRs de producto abiertos al corte. Residual:
-undécima ola cerrada (0074 en esta entrega).
+duodécima ola IDE-0076 (0075 en esta entrega).
 **Planning previo:** `#679` (2026-09-27) — histórico en `main`.
 
 ---
@@ -78,6 +78,10 @@ undécima ola cerrada (0074 en esta entrega).
 | IDE-0072 copiar el kerf del proyecto | 🟢 |
 | IDE-0073 barra de estado: espesor del tablero enfocado | 🟢 |
 | IDE-0074 clic en el espesor abre la edición | 🟢 |
+| IDE-0075 copiar espesor del tablero de la barra | 🟢 |
+| IDE-0076 barra de estado: material del tablero | ⚪ |
+| IDE-0077 copiar material del tablero | ⚪ |
+| IDE-0078 clic en el material abre la edición | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -112,7 +116,7 @@ producto IDE-0019…0024 **cerrada** en `0.4.3`; primera ola `0.4.4.dev0`
 (0025…0030) **cerrada**; segunda ola 0031…0036 **cerrada** (`#640`…`#645`);
 IDE-0037…0063 **entregadas** (`#647`…`#667`, `#671`…`#673`, `#675`, `#676`,
 `#678`, `#680`, `#682`, `#683`, `#684`, `#686`); octava ola 0059…0062
-cerrada; undécima ola 0071…0074 cerrada. Cola vacía.
+cerrada; duodécima ola 0075…0078 abierta (queda IDE-0076).
 
 Desde la revisión 2026-09-27, planning `#679` entra en `main` como histórico.
 Producto `#678`…`#686` (IDE-0058…0063 + fix Preferencias `#681`) en `main`.
@@ -152,6 +156,8 @@ Límites conocidos (no son bugs; son alcance):
   Barra de estado, espesor del tablero: entregado (IDE-0073).
   Clic en el espesor abre la edición: entregado (IDE-0074).
   Undécima ola cerrada.
+  Copiar el espesor del tablero de la barra: entregado (IDE-0075).
+  Abre la duodécima ola.
   Barra de estado, kerf del proyecto: entregado (IDE-0065).
   Clic en `n sel.` ajusta el encuadre: entregado (IDE-0066). Novena ola cerrada.
   Clic en el kerf abre el espesor de sierra: entregado (IDE-0067). Abre la décima ola.
@@ -178,7 +184,8 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` vacía** — undécima ola cerrada (0074 entregada).
+1. **Cola `0.4.4` duodécima ola** — IDE-0076 (0075 entregada;
+   quedan 0076…0078).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -191,12 +198,12 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
 0058…0064: **cerrada** en esta entrega (0063 en `main` tras `#678`/`#680`/`#682`…`#686`). Residual
-abierto: ninguno. Residual bloqueado: piloto DT-0006 D (operativo) +
+abierto: IDE-0076…0078. Residual bloqueado: piloto DT-0006 D (operativo) +
 IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
-desarrollo pendiente y bugs cerrados* → undécima ola 0071…0074 cerrada;
-no se añaden IDs nuevos en esta entrega.
+desarrollo pendiente y bugs cerrados* → duodécima ola 0075…0078 abierta;
+no se añaden más hasta cerrarla.
 
 Octava y novena ola ya registradas (no renumerar):
 
@@ -218,8 +225,12 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0072 | Copiar el kerf del proyecto | Entregado; Ctrl+Alt+Shift+K |
 | IDE-0073 | Barra de estado: espesor del tablero enfocado | Entregado |
 | IDE-0074 | Clic en el espesor abre la edición de ese tablero | Entregado |
+| IDE-0075 | Copiar espesor del tablero de la barra | Entregado |
+| IDE-0076 | Barra de estado: material del tablero | Mismo tablero; oculto si vacío |
+| IDE-0077 | Copiar material del tablero | Ctrl+Alt+Shift+M |
+| IDE-0078 | Clic en el material abre la edición de ese tablero | Tras 0076 |
 
-Prioridad de ataque: cola vacía (undécima ola cerrada).
+Prioridad de ataque: **IDE-0076** (material del tablero en la barra).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
@@ -231,8 +242,8 @@ Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
 - No se implementa código de producto en este pase: solo alinear docs,
   snapshot y backlog; registrar IDE-0062 🟢 (`#684`) e IDE-0063 🟢
   (`#686`). IDE-0064 🟢 en esta entrega. `#679` / `REVIEW-2026-09-27`
-  queda histórico. Residual: cola vacía.
+  queda histórico. Residual: IDE-0076…0078.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.
-  Undécima ola cerrada. No abrir IDs nuevos en esta entrega.
+  Si la duodécima ola mergea y la cola queda vacía → proponer nueva ola IDE.
