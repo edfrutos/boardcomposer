@@ -304,6 +304,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_selection_id": "Copiar ID",
         "action.copy_piece_size": "Copiar medidas",
         "action.copy_board_size": "Copiar medidas del tablero",
+        "action.copy_board_thickness": "Copiar espesor del tablero",
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -569,6 +570,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_board_size": (
             "Copiar largo × ancho de una hoja del tablero "
             "(Ctrl+Alt+Shift+B); unidades de Preferencias; sin multiplicar la cantidad"
+        ),
+        "tip.copy_board_thickness": (
+            "Copiar el espesor del tablero de la barra "
+            "(Ctrl+Alt+Shift+T); el enfocado, o el único tipo; "
+            "unidades de Preferencias; no abre el diálogo"
         ),
         "tip.copy_inspector": (
             "Copiar el texto visible del Inspector (Ctrl+Alt+I); "
@@ -1401,6 +1407,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_board_size": (
             "Selecciona un solo tablero para copiar sus medidas"
         ),
+        "status.board_thickness_copied": "Espesor del tablero copiado: {length}",
+        "status.nothing_to_copy_board_thickness": (
+            "No hay un tablero para copiar su espesor"
+        ),
         "status.kerf_copied": "Espesor de sierra copiado: {length}",
         "status.nothing_to_copy_kerf": (
             "No hay proyecto para copiar el espesor de sierra"
@@ -2020,6 +2030,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_selection_id": "Copy ID",
         "action.copy_piece_size": "Copy size",
         "action.copy_board_size": "Copy board size",
+        "action.copy_board_thickness": "Copy board thickness",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2278,6 +2289,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_board_size": (
             "Copy length × width of one board sheet (Ctrl+Alt+Shift+B); "
             "uses Preferences units; does not multiply quantity"
+        ),
+        "tip.copy_board_thickness": (
+            "Copy the status-bar board thickness (Ctrl+Alt+Shift+T); "
+            "the focused board, or the only type; Preferences units; "
+            "does not open the dialog"
         ),
         "tip.copy_inspector": (
             "Copy the visible Inspector text (Ctrl+Alt+I); "
@@ -3069,6 +3085,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_piece_size": ("Select a single piece to copy its size"),
         "status.board_size_copied": "Board size copied: {size}",
         "status.nothing_to_copy_board_size": ("Select a single board to copy its size"),
+        "status.board_thickness_copied": "Board thickness copied: {length}",
+        "status.nothing_to_copy_board_thickness": "No board to copy its thickness",
         "status.kerf_copied": "Saw kerf copied: {length}",
         "status.nothing_to_copy_kerf": "No project to copy the saw kerf",
         "status.no_recent_to_clear": "No recent projects to clear",
@@ -3440,6 +3458,7 @@ _ACTION_KEYS = (
     "copy_selection_id",
     "copy_piece_size",
     "copy_board_size",
+    "copy_board_thickness",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

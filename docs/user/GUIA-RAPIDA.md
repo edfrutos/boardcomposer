@@ -107,6 +107,7 @@ en red; puedes **Copiar**).
 | Seleccionar todas / Deseleccionar / Invertir | Ctrl+A / Escape / Ctrl+Shift+I |
 | Editar selección / Copiar ID / Copiar medidas | Return / Ctrl+Shift+C / Ctrl+Alt+Shift+D |
 | Copiar medidas del tablero | Ctrl+Alt+Shift+B |
+| Copiar espesor del tablero | Ctrl+Alt+Shift+T |
 | Renombrar selección | F2 |
 | Renombrar proyecto | Ctrl+Shift+F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |

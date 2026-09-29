@@ -84,7 +84,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el espesor de sierra del proyecto (IDE-0072; Ctrl+Alt+Shift+K).
 - Barra de estado: espesor del tablero enfocado (IDE-0073).
 - Clic en el espesor del tablero abre su edición (IDE-0074).
-- Próximo: cola `0.4.4` vacía (undécima ola cerrada); piloto
+- Copiar el espesor del tablero de la barra (IDE-0075; Ctrl+Alt+Shift+T).
+- Próximo: cola `0.4.4` duodécima ola 0076 (quedan 0076…0078); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

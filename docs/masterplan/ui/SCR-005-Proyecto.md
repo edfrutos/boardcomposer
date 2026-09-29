@@ -52,7 +52,7 @@ carpeta. Sin archivo en disco: «aún no guardado» + tip **Ctrl+S**.
 archivo en disco). A la derecha, piezas colocadas / total del inventario
 (IDE-0060; una colocación de un id que no está en el inventario no
 cuenta; clic encuadra las colocadas, IDE-0070), los tableros físicos (`n tab.`, IDE-0069; suma de
-cantidades; oculto si no hay; clic encuadra todos, IDE-0071), el espesor del tablero (`esp. 19 mm`, IDE-0073; el enfocado, o el único tipo; oculto si hay varios sin foco; clic lo edita, IDE-0074), las piezas seleccionadas en el Workspace (`n sel.`, IDE-0063;
+cantidades; oculto si no hay; clic encuadra todos, IDE-0071), el espesor del tablero (`esp. 19 mm`, IDE-0073; el enfocado, o el único tipo; oculto si hay varios sin foco; clic lo edita, IDE-0074; **Ctrl+Alt+Shift+T** lo copia, IDE-0075), las piezas seleccionadas en el Workspace (`n sel.`, IDE-0063;
 oculta si no hay selección; clic ajusta el encuadre, IDE-0066), el kerf
 del proyecto (`kerf 3.2 mm`,
 IDE-0065; unidades de Preferencias; oculto si no hay proyecto; clic abre
