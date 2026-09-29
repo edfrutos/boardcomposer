@@ -102,6 +102,7 @@ en red; puedes **Copiar**).
 | Sugerir hueco | Ctrl+Alt+G |
 | Metadatos del proyecto | Ctrl+Alt+M |
 | Espesor de sierra / kerf | Ctrl+Alt+K |
+| Copiar espesor de sierra | Ctrl+Alt+Shift+K |
 | Mover pieza seleccionada | Flechas (Shift = tamaño cuadrícula) |
 | Seleccionar todas / Deseleccionar / Invertir | Ctrl+A / Escape / Ctrl+Shift+I |
 | Editar selección / Copiar ID / Copiar medidas | Return / Ctrl+Shift+C / Ctrl+Alt+Shift+D |
@@ -336,7 +337,8 @@ Chrome de Studio (se recuerda entre sesiones).
   (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre
   (**Ctrl+Shift+0**). El kerf del proyecto va como `kerf 3.2 mm`
   (unidades de Preferencias; oculto si no hay proyecto). **Clic** lo
-  edita (**Ctrl+Alt+K**). El
+  edita (**Ctrl+Alt+K**). **Ctrl+Alt+Shift+K** copia ese espesor
+  (unidades de Preferencias; kerf 0 también). El
   **%** es el zoom del Workspace
   (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**). **Clic** en el **%**
   vuelve al 100% (**Ctrl+Alt+0**); si ya está, el cursor no es mano.

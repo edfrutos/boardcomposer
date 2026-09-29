@@ -75,7 +75,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0069 barra de estado tableros físicos | 🟢 |
 | IDE-0070 clic en colocadas/total encuadra las colocadas | 🟢 |
 | IDE-0071 clic en tableros físicos encuadra todos | 🟢 |
-| IDE-0072 copiar el kerf del proyecto | ⚪ |
+| IDE-0072 copiar el kerf del proyecto | 🟢 |
 | IDE-0073 barra de estado: espesor del tablero enfocado | ⚪ |
 | IDE-0074 clic en el espesor abre la edición | ⚪ |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
@@ -156,7 +156,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` undécima ola** — IDE-0072 (0071 entregada; quedan 0072…0074).
+1. **Cola `0.4.4` undécima ola** — IDE-0073 (0072 entregada; quedan 0073…0074).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -197,11 +197,11 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0069 | Barra de estado: tableros físicos | Entregado |
 | IDE-0070 | Clic en colocadas/total encuadra las piezas colocadas | Entregado |
 | IDE-0071 | Clic en tableros físicos encuadra todos los tableros | Entregado |
-| IDE-0072 | Copiar el kerf del proyecto | Idea |
+| IDE-0072 | Copiar el kerf del proyecto | Entregado |
 | IDE-0073 | Barra de estado: espesor del tablero enfocado | Idea |
 | IDE-0074 | Clic en el espesor abre la edición de ese tablero | Idea |
 
-Prioridad de ataque: **IDE-0072** (copiar el kerf del proyecto).
+Prioridad de ataque: **IDE-0073** (espesor del tablero enfocado en la barra).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

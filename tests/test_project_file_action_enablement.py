@@ -28,6 +28,7 @@ def test_project_file_actions_disabled_without_project(qapp, tmp_path):
         "rename_project",
         "edit_project_metadata",
         "edit_project_kerf",
+        "copy_project_kerf",
     ):
         assert not window._actions[key].isEnabled(), key
 
@@ -49,6 +50,7 @@ def test_project_file_actions_enabled_with_project(qapp, tmp_path):
         "rename_project",
         "edit_project_metadata",
         "edit_project_kerf",
+        "copy_project_kerf",
     ):
         assert window._actions[key].isEnabled(), key
 
