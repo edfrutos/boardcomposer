@@ -82,7 +82,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en colocadas/total encuadra las piezas colocadas (IDE-0070).
 - Clic en `n tab.` encuadra todos los tableros (IDE-0071; Ctrl+0).
 - Copiar el espesor de sierra del proyecto (IDE-0072; Ctrl+Alt+Shift+K).
-- Próximo: cola `0.4.4` undécima ola 0073 (quedan 0073…0074); piloto
+- Barra de estado: espesor del tablero enfocado (IDE-0073).
+- Próximo: cola `0.4.4` undécima ola 0074 (queda 0074); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 
