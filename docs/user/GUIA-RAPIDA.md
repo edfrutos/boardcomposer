@@ -108,6 +108,7 @@ en red; puedes **Copiar**).
 | Editar selección / Copiar ID / Copiar medidas | Return / Ctrl+Shift+C / Ctrl+Alt+Shift+D |
 | Copiar medidas del tablero | Ctrl+Alt+Shift+B |
 | Copiar espesor del tablero | Ctrl+Alt+Shift+T |
+| Copiar material del tablero | Ctrl+Alt+Shift+M |
 | Renombrar selección | F2 |
 | Renombrar proyecto | Ctrl+Shift+F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
@@ -338,7 +339,8 @@ Chrome de Studio (se recuerda entre sesiones).
   del tablero va como `esp. 19 mm` (el enfocado, o el único tipo; oculto
   si hay varios y ninguno enfocado). **Clic** abre la edición de ese
   tablero. El material va como `mat. Demo` (el mismo tablero; oculto
-  si el material está vacío; sin clic). Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
+  si el material está vacío; sin clic). **Ctrl+Alt+Shift+M** copia ese material.
+  Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
   (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre
   (**Ctrl+Shift+0**). El kerf del proyecto va como `kerf 3.2 mm`
   (unidades de Preferencias; oculto si no hay proyecto). **Clic** lo

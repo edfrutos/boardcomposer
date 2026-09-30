@@ -230,6 +230,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_piece_size"])
         self._menus["edit"].addAction(self._actions["copy_board_size"])
         self._menus["edit"].addAction(self._actions["copy_board_thickness"])
+        self._menus["edit"].addAction(self._actions["copy_board_material"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -335,6 +336,9 @@ class MainWindow(QMainWindow):
         self._actions["copy_board_size"].triggered.connect(self._copy_board_size)
         self._actions["copy_board_thickness"].triggered.connect(
             self._copy_board_thickness
+        )
+        self._actions["copy_board_material"].triggered.connect(
+            self._copy_board_material
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -2728,13 +2732,21 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _status_board_material(self) -> str | None:
+        """Stripped material of the status-bar board, if the label would show."""
+        board = self._board_for_thickness_status()
+        if board is None:
+            return None
+        material = board.material.strip()
+        return material or None
+
     def _update_board_material_status(self) -> None:
         """Show the status-bar board material (IDE-0076)."""
+        self._sync_copy_board_material_action()
         label = getattr(self, "_board_material_label", None)
         if label is None:
             return
-        board = self._board_for_thickness_status()
-        material = "" if board is None else board.material.strip()
+        material = self._status_board_material()
         if not material:
             label.clear()
             label.setToolTip("")
@@ -6247,6 +6259,31 @@ class MainWindow(QMainWindow):
         length = self._format_length(board.thickness_mm)
         self._copy_text_to_clipboard(length)
         self._status("status.board_thickness_copied", length=length)
+
+    def _sync_copy_board_material_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_board_material")
+        if action is None:
+            return
+        enabled = self._status_board_material() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_board_material"))
+            if enabled
+            else self._tr("status.nothing_to_copy_board_material")
+        )
+
+    def _copy_board_material(self, _checked: bool = False) -> None:
+        """Copy the status-bar board material (IDE-0077)."""
+        del _checked
+        material = self._status_board_material()
+        if material is None:
+            self._status("status.nothing_to_copy_board_material")
+            return
+        self._copy_text_to_clipboard(material)
+        self._status("status.board_material_copied", material=material)
 
     def _sync_copy_inspector_action(self) -> None:
         action = self._actions.get("copy_inspector")

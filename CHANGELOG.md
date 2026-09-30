@@ -12,6 +12,11 @@
 - Docs planificación 2026-09-29: snapshot
   `docs/masterplan/REVIEW-2026-09-29-planificacion.md`; Issues = 0;
   revisión previa a la entrega de IDE-0070 (`#693`).
+- Copiar el material del tablero de la barra (IDE-0077).
+  **Ctrl+Alt+Shift+M** y menú Editar. El mismo texto que `mat. …`.
+  Deshabilitado si esa etiqueta está oculta. No abre el diálogo.
+  Siguiente: IDE-0078.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: material del tablero (IDE-0076). `mat. Demo`.
   El mismo tablero que el espesor. Oculta si no hay tablero o el
   material está vacío. Sin clic. Siguiente: IDE-0077.
@@ -66,7 +71,7 @@
 - Docs planificación 2026-09-28: snapshot
   `docs/masterplan/REVIEW-2026-09-28-planificacion.md`; Issues = 0;
   `#684`/`#686` (IDE-0062/0063) en `main`; duodécima ola, siguiente
-  IDE-0077 (0076 en esta entrega). Histórico 2026-09-27 desde PR `#679`.
+  IDE-0078 (0077 en esta entrega). Histórico 2026-09-27 desde PR `#679`.
 - Barra de estado: piezas seleccionadas (IDE-0063). `1 sel.` / `2 sel.`
   si hay selección en el Workspace; oculta si no hay. Abre la novena
   ola 0063…0066. Sin bump `.bcproj`; no cambia el solver.
