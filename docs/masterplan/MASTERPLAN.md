@@ -75,6 +75,7 @@
 - Copiar el espesor del tablero de la barra (IDE-0075).
 - Barra de estado: material del tablero (IDE-0076).
 - Copiar el material del tablero de la barra (IDE-0077).
+- Clic en el material del tablero abre su edición (IDE-0078).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -90,7 +91,7 @@
 
 ## Próxima tarea única
 
-1. Ciclo `0.4.4` duodécima ola: IDE-0078 (0077 entregada; queda 0078).
+1. Ciclo `0.4.4`: duodécima ola cerrada (0078 entregada). Cola vacía.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

@@ -762,6 +762,8 @@ class MainWindow(QMainWindow):
         self._board_thickness_label.installEventFilter(self)
         self._board_material_label = QLabel()
         self._board_material_label.setObjectName("statusBoardMaterial")
+        self._board_material_label_armed = False
+        self._board_material_label.installEventFilter(self)
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -884,6 +886,34 @@ class MainWindow(QMainWindow):
                 self._board_thickness_label_armed = False
                 board = self._board_for_thickness_status()
                 if armed and board is not None:
+                    self._edit_board(board.board_id)
+                    return True
+        material = getattr(self, "_board_material_label", None)
+        if material is not None and watched is material:
+            can_edit = self._status_board_material() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_edit
+            ):
+                self._board_material_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._board_material_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._board_material_label_armed
+                and not material.rect().contains(event.position().toPoint())
+            ):
+                self._board_material_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._board_material_label_armed
+                self._board_material_label_armed = False
+                board = self._board_for_thickness_status()
+                if armed and board is not None and self._status_board_material():
                     self._edit_board(board.board_id)
                     return True
         selection = getattr(self, "_selection_label", None)
@@ -2755,7 +2785,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.board_material", material=material))
         label.setToolTip(self._tr("tip.status_board_material", material=material))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_selection_status(self) -> None:

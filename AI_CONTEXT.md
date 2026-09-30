@@ -87,7 +87,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el espesor del tablero de la barra (IDE-0075; Ctrl+Alt+Shift+T).
 - Barra de estado: material del tablero (IDE-0076).
 - Copiar el material del tablero de la barra (IDE-0077; Ctrl+Alt+Shift+M).
-- Próximo: cola `0.4.4` duodécima ola 0078 (queda 0078); piloto
+- Clic en el material del tablero abre su edición (IDE-0078).
+- Próximo: cola `0.4.4` vacía (duodécima ola cerrada); piloto
   DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C
   bloqueados.
 

@@ -32,8 +32,8 @@ def test_board_material_follows_the_thickness_board(qapp, tmp_path):
     assert label.text() == "mat. Demo"
     assert not label.isHidden()
     assert "material" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert thickness.text() == "esp. 19 mm"
 
     project = window.services.projects.current_project
@@ -65,7 +65,7 @@ def test_board_material_follows_the_thickness_board(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "mat. Demo"
     assert "material" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
+    assert "click" in label.toolTip().casefold()
     assert thickness.text() == "thk. 1.9 cm"
 
 
