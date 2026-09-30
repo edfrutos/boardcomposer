@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-29
+## Unreleased — 0.4.4.dev0 — 2026-09-30
 
 ### Corregido
 
@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Docs planificación 2026-09-30: snapshot
+  `docs/masterplan/REVIEW-2026-09-30-planificacion.md`; Issues = 0;
+  `#701` (IDE-0077) en `main`; residual IDE-0078 🟡 `#702`. Histórico
+  2026-09-29 desde PR `#694`.
 - Docs planificación 2026-09-29: snapshot
   `docs/masterplan/REVIEW-2026-09-29-planificacion.md`; Issues = 0;
   revisión previa a la entrega de IDE-0070 (`#693`).

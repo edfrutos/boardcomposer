@@ -158,7 +158,8 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Piloto DT-0006 opción D (backup); C diferida.
-- Cola ciclo `0.4.4` duodécima ola: IDE-0078 (0077 entregada; queda 0078).
+- Cola ciclo `0.4.4` duodécima ola: IDE-0078 🟡 `#702` (0077 entregada
+  `#701`; queda 0078).
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2
@@ -190,8 +191,9 @@ cerrada; segunda ola IDE-0031…0036 entregada; 0037…0063 entregadas
 `#676`/`#678`/`#680`/`#682`/`#683`/`#684`/`#686`); sexta ola 0051…0054 cerrada;
 séptima ola 0055…0058 cerrada; octava ola 0059…0062 cerrada;
 novena ola 0063…0066 cerrada;
-décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima ola 0075…0078 residual IDE-0078.
-Revisión: `REVIEW-2026-09-29-planificacion.md`.
+décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima ola
+0075…0078 residual IDE-0078 🟡 `#702`.
+Revisión: `REVIEW-2026-09-30-planificacion.md`.
 
 Pendiente de:
 
