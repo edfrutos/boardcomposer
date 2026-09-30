@@ -6,7 +6,7 @@
 **Versión:** 1.3.49  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 28/09/2026
+**Última revisión:** 30/09/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
