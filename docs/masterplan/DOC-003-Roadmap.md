@@ -3,7 +3,7 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.49  
+**Versión:** 1.3.50  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
 **Última revisión:** 30/09/2026
