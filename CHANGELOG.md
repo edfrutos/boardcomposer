@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-29
+## Unreleased — 0.4.4.dev0 — 2026-10-01
 
 ### Corregido
 
@@ -9,13 +9,18 @@
 
 ### Añadido
 
+- Docs planificación 2026-10-01: snapshot
+  `docs/masterplan/REVIEW-2026-10-01-planificacion.md`; Issues = 0;
+  `#702` (IDE-0078) en `main`; cola previa vacía → decimotercera ola
+  IDE-0079…0082 🔵 (omitidas + aprovechamiento en barra). Histórico
+  2026-09-30 desde PR `#703`.
 - Docs planificación 2026-09-29: snapshot
   `docs/masterplan/REVIEW-2026-09-29-planificacion.md`; Issues = 0;
   revisión previa a la entrega de IDE-0070 (`#693`).
 - Clic en el material del tablero abre su edición (IDE-0078).
   El mismo tablero que `mat. …`. Arrastre no abre el diálogo.
   Cursor mano si la etiqueta se ve. Cierra la duodécima ola
-  0075…0078. Cola vacía.
+  0075…0078.
   Sin bump `.bcproj`; no cambia el solver.
 - Copiar el material del tablero de la barra (IDE-0077).
   **Ctrl+Alt+Shift+M** y menú Editar. El mismo texto que `mat. …`.
