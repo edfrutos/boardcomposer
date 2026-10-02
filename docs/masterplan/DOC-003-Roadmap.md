@@ -3,10 +3,10 @@
 ## Documento 3 — Roadmap del Producto
 
 **Código:** DOC-003  
-**Versión:** 1.3.50  
+**Versión:** 1.3.51  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 01/10/2026
+**Última revisión:** 02/10/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
@@ -193,7 +193,7 @@ séptima ola 0055…0058 cerrada; octava ola 0059…0062 cerrada;
 novena ola 0063…0066 cerrada;
 décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima ola 0075…0078 cerrada.
 Decimotercera ola IDE-0079…0082 🔵 (omitidas + aprovechamiento en barra).
-Revisión: `REVIEW-2026-10-01-planificacion.md`.
+Revisión: `REVIEW-2026-10-02-planificacion.md`.
 
 Pendiente de:
 

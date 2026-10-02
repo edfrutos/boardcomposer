@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-01
+## Unreleased — 0.4.4.dev0 — 2026-10-02
 
 ### Corregido
 
@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Docs planificación 2026-10-02: snapshot
+  `docs/masterplan/REVIEW-2026-10-02-planificacion.md`; Issues = 0;
+  `#702` (IDE-0078) en `main`; decimotercera ola IDE-0079…0082 🔵
+  sin PR de producto → **sin IDE nuevas**. Histórico 2026-10-01 /
+  2026-09-30 desde PRs `#704`/`#703`.
 - Docs planificación 2026-10-01: snapshot
   `docs/masterplan/REVIEW-2026-10-01-planificacion.md`; Issues = 0;
   `#702` (IDE-0078) en `main`; cola previa vacía → decimotercera ola

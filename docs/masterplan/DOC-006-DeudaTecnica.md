@@ -6,7 +6,7 @@
 **Versión:** 1.2.46
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 01/10/2026
+**Última revisión:** 02/10/2026
 
 ---
 
@@ -179,6 +179,10 @@ sin críticas sin plan. `#692` (IDE-0069) en `main`; residual IDE-0070 🟡
 sin críticas sin plan. `#702` (IDE-0078) en `main`; duodécima ola cerrada;
 decimotercera ola IDE-0079…0082 🔵; Issues = 0.
 
+**Revisión 2026-10-02 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
+sin críticas sin plan. `#702` (IDE-0078) en `main`; decimotercera ola
+IDE-0079…0082 🔵 sin PR de producto; Issues = 0.
+
 ---
 
 ## Política de gestión
@@ -205,8 +209,8 @@ decimotercera ola IDE-0079…0082 🔵; Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-10-01 en `REVIEW-2026-10-01-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`09-30` (abiertas = 1, DT-0006).
+2026-10-02 en `REVIEW-2026-10-02-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`10-01` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
