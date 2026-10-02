@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Barra de estado: piezas omitidas (IDE-0079). `2 om.` junto a
+  colocadas/total. Inventario sin colocación; un id ajeno no cuenta.
+  Oculta si es 0. Sin clic. Siguiente: IDE-0080.
+  Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-10-02: snapshot
   `docs/masterplan/REVIEW-2026-10-02-planificacion.md`; Issues = 0;
   `#702` (IDE-0078) en `main`; decimotercera ola IDE-0079…0082 🔵

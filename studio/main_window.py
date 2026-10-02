@@ -752,6 +752,8 @@ class MainWindow(QMainWindow):
         self._placed_label.setObjectName("statusPlacedPieces")
         self._placed_label_armed = False
         self._placed_label.installEventFilter(self)
+        self._omitted_label = QLabel()
+        self._omitted_label.setObjectName("statusOmittedPieces")
         self._boards_label = QLabel()
         self._boards_label.setObjectName("statusPhysicalBoards")
         self._boards_label_armed = False
@@ -778,6 +780,7 @@ class MainWindow(QMainWindow):
         self._zoom_label.installEventFilter(self)
         status.addPermanentWidget(self._project_path_label, 1)
         status.addPermanentWidget(self._placed_label)
+        status.addPermanentWidget(self._omitted_label)
         status.addPermanentWidget(self._boards_label)
         status.addPermanentWidget(self._board_thickness_label)
         status.addPermanentWidget(self._board_material_label)
@@ -788,6 +791,7 @@ class MainWindow(QMainWindow):
         self.workspace.camera_changed.connect(self._update_zoom_status)
         self._update_project_path_status()
         self._update_placed_status()
+        self._update_omitted_status()
         self._update_boards_status()
         self._update_board_thickness_status()
         self._update_board_material_status()
@@ -1156,6 +1160,7 @@ class MainWindow(QMainWindow):
         finally:
             self.explorer.blockSignals(previous_signal_state)
             self._update_placed_status()
+            self._update_omitted_status()
 
     def _find_explorer_item_by_role(self, role: str) -> QTreeWidgetItem | None:
         """Return the first explorer item whose UserRole matches ``role``."""
@@ -2511,6 +2516,7 @@ class MainWindow(QMainWindow):
             self.setWindowTitle(f"{marker}BoardComposer Studio — {project.name}")
         self._update_project_path_status()
         self._update_placed_status()
+        self._update_omitted_status()
         self._update_boards_status()
         self._update_board_thickness_status()
         self._update_board_material_status()
@@ -2708,6 +2714,28 @@ class MainWindow(QMainWindow):
             if placed > 0
             else Qt.CursorShape.ArrowCursor
         )
+
+    def _omitted_piece_count(self) -> int:
+        """Inventory pieces without a placement. Stray placements do not count."""
+        placed, total = self._placed_piece_counts()
+        return total - placed
+
+    def _update_omitted_status(self) -> None:
+        """Show unplaced inventory pieces on the status bar (IDE-0079)."""
+        label = getattr(self, "_omitted_label", None)
+        if label is None:
+            return
+        count = self._omitted_piece_count()
+        if count <= 0:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.omitted_pieces", n=count))
+        label.setToolTip(self._tr("tip.status_omitted_pieces", n=count))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
 
     def _update_boards_status(self) -> None:
         """Show physical board sheets on the status bar (IDE-0069)."""
@@ -3948,6 +3976,7 @@ class MainWindow(QMainWindow):
         self._reload_recent_files_menu()
         self._update_project_path_status()
         self._update_placed_status()
+        self._update_omitted_status()
         self._update_boards_status()
         self._update_board_thickness_status()
         self._update_board_material_status()

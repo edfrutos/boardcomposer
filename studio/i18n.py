@@ -1187,6 +1187,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Piezas colocadas: {placed} de {total}. "
             "Clic ajusta el encuadre de las colocadas"
         ),
+        "status.omitted_pieces": "{n} om.",
+        "tip.status_omitted_pieces": "Piezas omitidas: {n}",
         "status.physical_boards": "{n} tab.",
         "tip.status_physical_boards": (
             "Tableros físicos: {n}. Clic ajusta el encuadre de todos (Ctrl+0)"
@@ -2894,6 +2896,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_placed_pieces_click": (
             "Pieces placed: {placed} of {total}. Click fits the placed pieces"
         ),
+        "status.omitted_pieces": "{n} om.",
+        "tip.status_omitted_pieces": "Omitted pieces: {n}",
         "status.physical_boards": "{n} tab.",
         "tip.status_physical_boards": (
             "Physical boards: {n}. Click fits all boards (Ctrl+0)"
