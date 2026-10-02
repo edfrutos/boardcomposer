@@ -6,7 +6,7 @@
 **Versión:** 1.3.50  
 **Estado:** En revisión — actualizado  
 **Fecha de creación:** 01/07/2026  
-**Última revisión:** 30/09/2026
+**Última revisión:** 01/10/2026
 
 Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
@@ -158,8 +158,8 @@ Objetivos:
 ### Prioridad P1 — Siguiente (producto)
 
 - Piloto DT-0006 opción D (backup); C diferida.
-- Cola ciclo `0.4.4` duodécima ola: IDE-0078 🟡 `#702` (0077 entregada
-  `#701`; queda 0078).
+- Cola ciclo `0.4.4`: duodécima ola cerrada (0078 entregada);
+  decimotercera ola IDE-0079…0082 🔵.
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2
@@ -191,11 +191,12 @@ cerrada; segunda ola IDE-0031…0036 entregada; 0037…0063 entregadas
 `#676`/`#678`/`#680`/`#682`/`#683`/`#684`/`#686`); sexta ola 0051…0054 cerrada;
 séptima ola 0055…0058 cerrada; octava ola 0059…0062 cerrada;
 novena ola 0063…0066 cerrada;
-décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima ola
-0075…0078 residual IDE-0078 🟡 `#702`.
-Revisión: `REVIEW-2026-09-30-planificacion.md`.
+décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima ola 0075…0078 cerrada.
+Decimotercera ola IDE-0079…0082 🔵 (omitidas + aprovechamiento en barra).
+Revisión: `REVIEW-2026-10-01-planificacion.md`.
 
 Pendiente de:
 
+- Decimotercera ola IDE-0079…0082;
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.

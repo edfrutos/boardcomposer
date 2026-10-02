@@ -339,7 +339,8 @@ Chrome de Studio (se recuerda entre sesiones).
   del tablero va como `esp. 19 mm` (el enfocado, o el único tipo; oculto
   si hay varios y ninguno enfocado). **Clic** abre la edición de ese
   tablero. El material va como `mat. Demo` (el mismo tablero; oculto
-  si el material está vacío; sin clic). **Ctrl+Alt+Shift+M** copia ese material.
+  si el material está vacío). **Clic** abre la edición de ese tablero.
+  **Ctrl+Alt+Shift+M** copia ese material.
   Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
   (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre
   (**Ctrl+Shift+0**). El kerf del proyecto va como `kerf 3.2 mm`

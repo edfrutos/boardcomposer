@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-09-30
+## Unreleased — 0.4.4.dev0 — 2026-10-01
 
 ### Corregido
 
@@ -9,13 +9,19 @@
 
 ### Añadido
 
-- Docs planificación 2026-09-30: snapshot
-  `docs/masterplan/REVIEW-2026-09-30-planificacion.md`; Issues = 0;
-  `#701` (IDE-0077) en `main`; residual IDE-0078 🟡 `#702`. Histórico
-  2026-09-29 desde PR `#694`.
+- Docs planificación 2026-10-01: snapshot
+  `docs/masterplan/REVIEW-2026-10-01-planificacion.md`; Issues = 0;
+  `#702` (IDE-0078) en `main`; cola previa vacía → decimotercera ola
+  IDE-0079…0082 🔵 (omitidas + aprovechamiento en barra). Histórico
+  2026-09-30 desde PR `#703`.
 - Docs planificación 2026-09-29: snapshot
   `docs/masterplan/REVIEW-2026-09-29-planificacion.md`; Issues = 0;
   revisión previa a la entrega de IDE-0070 (`#693`).
+- Clic en el material del tablero abre su edición (IDE-0078).
+  El mismo tablero que `mat. …`. Arrastre no abre el diálogo.
+  Cursor mano si la etiqueta se ve. Cierra la duodécima ola
+  0075…0078.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el material del tablero de la barra (IDE-0077).
   **Ctrl+Alt+Shift+M** y menú Editar. El mismo texto que `mat. …`.
   Deshabilitado si esa etiqueta está oculta. No abre el diálogo.
@@ -75,7 +81,7 @@
 - Docs planificación 2026-09-28: snapshot
   `docs/masterplan/REVIEW-2026-09-28-planificacion.md`; Issues = 0;
   `#684`/`#686` (IDE-0062/0063) en `main`; duodécima ola, siguiente
-  IDE-0078 (0077 en esta entrega). Histórico 2026-09-27 desde PR `#679`.
+  duodécima ola cerrada (0078 en esta entrega). Histórico 2026-09-27 desde PR `#679`.
 - Barra de estado: piezas seleccionadas (IDE-0063). `1 sel.` / `2 sel.`
   si hay selección en el Workspace; oculta si no hay. Abre la novena
   ola 0063…0066. Sin bump `.bcproj`; no cambia el solver.

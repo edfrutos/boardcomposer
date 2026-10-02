@@ -6,7 +6,7 @@
 **Versión:** 1.2.46
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 30/09/2026
+**Última revisión:** 01/10/2026
 
 ---
 
@@ -169,15 +169,15 @@ sin críticas sin plan. `#676` (IDE-0057) en `main`; residual IDE-0058 🟡
 
 **Revisión 2026-09-28 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
 sin críticas sin plan. `#684`/`#686` (IDE-0062/0063) en `main`;
-duodécima ola residual IDE-0078; Issues = 0.
+duodécima ola cerrada; cola vacía; Issues = 0.
 
 **Revisión 2026-09-29 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
 sin críticas sin plan. `#692` (IDE-0069) en `main`; residual IDE-0070 🟡
 `#693`; Issues = 0.
 
-**Revisión 2026-09-30 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
-sin críticas sin plan. `#701` (IDE-0077) en `main`; residual IDE-0078 🟡
-`#702`; Issues = 0.
+**Revisión 2026-10-01 (`0.4.4.dev0`):** abiertas = **1** (DT-0006 en piloto D);
+sin críticas sin plan. `#702` (IDE-0078) en `main`; duodécima ola cerrada;
+decimotercera ola IDE-0079…0082 🔵; Issues = 0.
 
 ---
 
@@ -205,8 +205,8 @@ sin críticas sin plan. `#701` (IDE-0077) en `main`; residual IDE-0078 🟡
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-09-30 en `REVIEW-2026-09-30-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`09-29` (abiertas = 1, DT-0006).
+2026-10-01 en `REVIEW-2026-10-01-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`09-30` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -215,7 +215,7 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
-- Cola producto ciclo `0.4.4` duodécima ola IDE-0078 🟡 `#702` (0077 entregada
-  `#701`)
+- Cola producto ciclo `0.4.4`: duodécima ola cerrada (0078 `#702`);
+  decimotercera ola IDE-0079…0082 🔵.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
