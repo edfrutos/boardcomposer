@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-02
+## Unreleased — 0.4.4.dev0 — 2026-10-03
 
 ### Corregido
 
@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Docs planificación 2026-10-03: snapshot
+  `docs/masterplan/REVIEW-2026-10-03-planificacion.md`; Issues = 0;
+  `#706` (IDE-0079) en `main`; IDE-0080 🟡 `#707`; residual
+  0081…0082 🔵 → **sin IDE nuevas**. Histórico 2026-10-02 desde PR `#705`.
 - Barra de estado: piezas omitidas (IDE-0079). `2 om.` junto a
   colocadas/total. Inventario sin colocación; un id ajeno no cuenta.
   Oculta si es 0. Sin clic. Siguiente: IDE-0080.

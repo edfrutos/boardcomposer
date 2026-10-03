@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.57
+**Versión:** 1.3.58
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 02/10/2026
+**Última revisión:** 03/10/2026
 
 ---
 
@@ -149,7 +149,7 @@ Observaciones:
 | IDE-0077 | Copiar material del tablero | 🟢 | P3 |
 | IDE-0078 | Clic en el material abre la edición de ese tablero | 🟢 | P3 |
 | IDE-0079 | Barra de estado: piezas omitidas | 🟢 | P3 |
-| IDE-0080 | Clic en omitidas selecciona y encuadra las omitidas | 🔵 | P3 |
+| IDE-0080 | Clic en omitidas selecciona y encuadra las omitidas | 🟡 | P3 |
 | IDE-0081 | Barra de estado: aprovechamiento del tablero enfocado | 🔵 | P3 |
 | IDE-0082 | Clic en el aprovechamiento selecciona ese tablero | 🔵 | P3 |
 
@@ -224,7 +224,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0077 | S | IDE-0076 | Entregado; Ctrl+Alt+Shift+M; deshabilitado si no se muestra |
 | IDE-0078 | S | IDE-0076 | Entregado; clic abre la edición; arrastre no |
 | IDE-0079 | S | IDE-0060; SCR-005 | Entregado; n om.; oculta si 0; sin clic |
-| IDE-0080 | S | IDE-0079; IDE-0070 | Planificada; clic → seleccionar + encuadrar omitidas |
+| IDE-0080 | S | IDE-0079; IDE-0070 | En desarrollo `#707`; clic → seleccionar + encuadrar omitidas |
 | IDE-0081 | S | IDE-0051; SCR-005 | Planificada; % uso tablero enfocado; oculta si no hay |
 | IDE-0082 | S | IDE-0081; SCR-004 | Planificada; clic → seleccionar ese tablero en Inspector |
 
@@ -258,15 +258,16 @@ Detalle: `docs/masterplan/epics/`.
 completadas (ciclo `0.4.4` ola 1 + 0031…0079; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
-`#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`/`#702`). Séptima…duodécima
-ola cerradas. Decimotercera ola residual IDE-0080 (quedan 0080…0082).
-IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
-(001…003) Fase 3 entregadas. Snapshot: `REVIEW-2026-10-02-planificacion.md`.
+`#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`/`#702`/`#706`).
+Séptima…duodécima ola cerradas; IDE-0079 `#706`. Decimotercera ola
+residual: IDE-0080 🟡 `#707` (quedan 0080…0082). IDE-0007 🟢 MVP+eval
+(2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
+`REVIEW-2026-10-03-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: decimotercera ola IDE-0080
-   (0079 entregada; quedan 0080…0082).
+1. Cola producto `0.4.4`: decimotercera ola — cerrar IDE-0080 `#707`;
+   luego IDE-0081…0082.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
