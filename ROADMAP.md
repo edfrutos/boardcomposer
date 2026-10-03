@@ -81,7 +81,8 @@ Revisión: `docs/masterplan/REVIEW-2026-10-03-planificacion.md`.
    0050 `#665`; 0049 `#664`; 0048 `#663`; 0047 `#662`; cuarta ola
    0043…0046 `#657`…`#661`; 0042 `#655`; tercera ola 0037…0041; segunda
    ola 0031…0036; ola 1 0025…0030). IDE-0079 entregada `#706`.
-   Decimotercera ola residual: IDE-0080 🟡 `#707` (quedan 0080…0082).
+   IDE-0080 entregada `#707`. Decimotercera ola residual: IDE-0082
+   (0081 entregada; queda 0082).
 3. Cola producto IDE-0019…0024 cerrada en `0.4.3` (incluye Skyline `#623`).
 4. IDE-0007 eval humana cerrada (2026-09-12); LLM sigue diferido.
 5. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).

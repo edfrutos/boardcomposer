@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Barra de estado: aprovechamiento del tablero enfocado (IDE-0081).
+  `uso 24.0%`. La misma fórmula que el Inspector. Oculto sin foco,
+  sin layout o si el tablero no tiene piezas. Sin clic.
+  Siguiente: IDE-0082.
+  Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-10-03: snapshot
   `docs/masterplan/REVIEW-2026-10-03-planificacion.md`; Issues = 0;
   `#706` (IDE-0079) en `main`; IDE-0080 🟡 `#707`; residual

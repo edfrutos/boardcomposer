@@ -8,7 +8,7 @@ revisión `REVIEW-2026-09-27-planificacion.md`, PRs `#678`…`#686`.
 **PRs de producto al corte:** `#678`…`#686` **mergeados** (IDE-0058…0063;
 fix Preferencias `#681`). Sin PRs de producto abiertos al corte. Residual:
 duodécima ola cerrada (0078 en esta entrega). Decimotercera ola
-IDE-0081 (0080 entregada; quedan 0081…0082).
+IDE-0082 (0081 entregada; queda 0082).
 **Planning previo:** `#679` (2026-09-27) — histórico en `main`.
 
 ---
@@ -85,7 +85,7 @@ IDE-0081 (0080 entregada; quedan 0081…0082).
 | IDE-0078 clic en el material abre la edición | 🟢 |
 | IDE-0079 barra de estado: piezas omitidas | 🟢 |
 | IDE-0080 clic en omitidas selecciona y encuadra | 🟢 |
-| IDE-0081 barra de estado: aprovechamiento del tablero | 🔵 |
+| IDE-0081 barra de estado: aprovechamiento del tablero | 🟢 |
 | IDE-0082 clic en el aprovechamiento selecciona el tablero | 🔵 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
@@ -169,6 +169,7 @@ Límites conocidos (no son bugs; son alcance):
   Duodécima ola cerrada.
   Barra de estado, piezas omitidas: entregado (IDE-0079).
   Clic en las omitidas selecciona y encuadra: entregado (IDE-0080).
+  Aprovechamiento del tablero enfocado: entregado (IDE-0081).
   Barra de estado, kerf del proyecto: entregado (IDE-0065).
   Clic en `n sel.` ajusta el encuadre: entregado (IDE-0066). Novena ola cerrada.
   Clic en el kerf abre el espesor de sierra: entregado (IDE-0067). Abre la décima ola.
@@ -195,7 +196,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` decimotercera ola** — IDE-0081 (0080 entregada; quedan 0081…0082).
+1. **Cola `0.4.4` decimotercera ola** — IDE-0082 (0081 entregada; queda 0082).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -241,8 +242,9 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0078 | Clic en el material abre la edición de ese tablero | Entregado |
 | IDE-0079 | Barra de estado: piezas omitidas | Entregado |
 | IDE-0080 | Clic en omitidas selecciona y encuadra las omitidas | Entregado |
+| IDE-0081 | Barra de estado: aprovechamiento del tablero enfocado | Entregado |
 
-Prioridad de ataque: **IDE-0081** (aprovechamiento del tablero en la barra).
+Prioridad de ataque: **IDE-0082** (clic en el aprovechamiento selecciona el tablero).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

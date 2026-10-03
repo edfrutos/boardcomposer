@@ -468,6 +468,9 @@ class MainWindow(QMainWindow):
         self.workspace.selection_or_focus_changed.connect(
             self._update_board_material_status
         )
+        self.workspace.selection_or_focus_changed.connect(
+            self._update_board_utilization_status
+        )
         # Ensure Edit→Rotar / R is available while the canvas has focus.
         self.workspace.addAction(self._actions["rotate_piece"])
         self.workspace.addAction(self._actions["swap_pieces"])
@@ -768,6 +771,8 @@ class MainWindow(QMainWindow):
         self._board_material_label.setObjectName("statusBoardMaterial")
         self._board_material_label_armed = False
         self._board_material_label.installEventFilter(self)
+        self._board_utilization_label = QLabel()
+        self._board_utilization_label.setObjectName("statusBoardUtilization")
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -786,6 +791,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._boards_label)
         status.addPermanentWidget(self._board_thickness_label)
         status.addPermanentWidget(self._board_material_label)
+        status.addPermanentWidget(self._board_utilization_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
         status.addPermanentWidget(self._zoom_label)
@@ -797,6 +803,7 @@ class MainWindow(QMainWindow):
         self._update_boards_status()
         self._update_board_thickness_status()
         self._update_board_material_status()
+        self._update_board_utilization_status()
         self._update_selection_status()
         self._update_kerf_status()
         self._update_zoom_status(self.workspace.zoom)
@@ -1190,6 +1197,7 @@ class MainWindow(QMainWindow):
             self.explorer.blockSignals(previous_signal_state)
             self._update_placed_status()
             self._update_omitted_status()
+            self._update_board_utilization_status()
 
     def _find_explorer_item_by_role(self, role: str) -> QTreeWidgetItem | None:
         """Return the first explorer item whose UserRole matches ``role``."""
@@ -2549,6 +2557,7 @@ class MainWindow(QMainWindow):
         self._update_boards_status()
         self._update_board_thickness_status()
         self._update_board_material_status()
+        self._update_board_utilization_status()
         self._update_kerf_status()
         self._sync_project_file_actions()
         self._sync_generate_actions()
@@ -2853,6 +2862,47 @@ class MainWindow(QMainWindow):
         label.setText(self._tr("status.board_material", material=material))
         label.setToolTip(self._tr("tip.status_board_material", material=material))
         label.setCursor(Qt.CursorShape.PointingHandCursor)
+        label.show()
+
+    def _focused_board_utilization(self) -> float | None:
+        """Utilization of the focused board, same formula as the Inspector."""
+        project = self.services.projects.current_project
+        if project is None:
+            return None
+        focused_id = self.workspace.focused_board_id()
+        if not focused_id:
+            return None
+        try:
+            board = project.board_by_id(focused_id)
+        except KeyError:
+            return None
+        usage = self._board_usage_metrics(project, board)
+        if usage is None:
+            return None
+        used, _quantity, _pieces, used_area, _offcut_n, _offcut_area = usage
+        if used <= 0:
+            return None
+        stock_area = board.length_mm * board.width_mm * used
+        if stock_area <= 0:
+            return None
+        return used_area / stock_area
+
+    def _update_board_utilization_status(self) -> None:
+        """Show focused-board utilization on the status bar (IDE-0081)."""
+        label = getattr(self, "_board_utilization_label", None)
+        if label is None:
+            return
+        ratio = self._focused_board_utilization()
+        if ratio is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        value = f"{ratio:.1%}"
+        label.setText(self._tr("status.board_utilization", value=value))
+        label.setToolTip(self._tr("tip.status_board_utilization", value=value))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
         label.show()
 
     def _update_selection_status(self) -> None:
@@ -4032,6 +4082,7 @@ class MainWindow(QMainWindow):
         self._update_boards_status()
         self._update_board_thickness_status()
         self._update_board_material_status()
+        self._update_board_utilization_status()
         self._update_kerf_status()
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
