@@ -231,6 +231,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_board_size"])
         self._menus["edit"].addAction(self._actions["copy_board_thickness"])
         self._menus["edit"].addAction(self._actions["copy_board_material"])
+        self._menus["edit"].addAction(self._actions["copy_board_utilization"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -339,6 +340,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_board_material"].triggered.connect(
             self._copy_board_material
+        )
+        self._actions["copy_board_utilization"].triggered.connect(
+            self._copy_board_utilization
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -2920,6 +2924,7 @@ class MainWindow(QMainWindow):
 
     def _update_board_utilization_status(self) -> None:
         """Show focused-board utilization on the status bar (IDE-0081)."""
+        self._sync_copy_board_utilization_action()
         label = getattr(self, "_board_utilization_label", None)
         if label is None:
             return
@@ -6453,6 +6458,33 @@ class MainWindow(QMainWindow):
         length = self._format_length(board.thickness_mm)
         self._copy_text_to_clipboard(length)
         self._status("status.board_thickness_copied", length=length)
+
+    def _sync_copy_board_utilization_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_board_utilization")
+        if action is None:
+            return
+        enabled = self._focused_board_utilization() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_board_utilization"))
+            if enabled
+            else self._tr("status.nothing_to_copy_board_utilization")
+        )
+
+    def _copy_board_utilization(self, _checked: bool = False) -> None:
+        """Copy the status-bar board utilization percentage (IDE-0083)."""
+        del _checked
+        resolved = self._focused_board_utilization()
+        if resolved is None:
+            self._status("status.nothing_to_copy_board_utilization")
+            return
+        _board, ratio = resolved
+        value = f"{ratio:.1%}"
+        self._copy_text_to_clipboard(value)
+        self._status("status.board_utilization_copied", value=value)
 
     def _sync_copy_board_material_action(self) -> None:
         actions = getattr(self, "_actions", None)

@@ -8,7 +8,8 @@ revisión `REVIEW-2026-09-27-planificacion.md`, PRs `#678`…`#686`.
 **PRs de producto al corte:** `#678`…`#686` **mergeados** (IDE-0058…0063;
 fix Preferencias `#681`). Sin PRs de producto abiertos al corte. Residual:
 duodécima ola cerrada (0078 en esta entrega). Decimotercera ola cerrada
-(0082 entregada). Cola vacía.
+(0082 entregada). Decimocuarta ola residual: IDE-0084…0086
+(0083 entregada).
 **Planning previo:** `#679` (2026-09-27) — histórico en `main`.
 
 ---
@@ -87,6 +88,10 @@ duodécima ola cerrada (0078 en esta entrega). Decimotercera ola cerrada
 | IDE-0080 clic en omitidas selecciona y encuadra | 🟢 |
 | IDE-0081 barra de estado: aprovechamiento del tablero | 🟢 |
 | IDE-0082 clic en el aprovechamiento selecciona el tablero | 🟢 |
+| IDE-0083 copiar el aprovechamiento del tablero | 🟢 |
+| IDE-0084 barra de estado: material libre del tablero | 🔵 |
+| IDE-0085 copiar el material libre del tablero | 🔵 |
+| IDE-0086 clic en el material libre selecciona el tablero | 🔵 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -171,7 +176,9 @@ Límites conocidos (no son bugs; son alcance):
   Clic en las omitidas selecciona y encuadra: entregado (IDE-0080).
   Aprovechamiento del tablero enfocado: entregado (IDE-0081).
   Clic en el aprovechamiento selecciona ese tablero: entregado (IDE-0082).
-  Decimotercera ola cerrada. Cola vacía.
+  Decimotercera ola cerrada.
+  Copiar el aprovechamiento: entregado (IDE-0083; Ctrl+Alt+Shift+U).
+  Decimocuarta ola residual: IDE-0084…0086.
   Barra de estado, kerf del proyecto: entregado (IDE-0065).
   Clic en `n sel.` ajusta el encuadre: entregado (IDE-0066). Novena ola cerrada.
   Clic en el kerf abre el espesor de sierra: entregado (IDE-0067). Abre la décima ola.
@@ -198,7 +205,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — decimotercera ola cerrada (0082 entregada). Cola vacía.
+1. **Cola `0.4.4` decimocuarta ola** — IDE-0084 (0083 entregada; quedan 0084…0086).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -246,8 +253,12 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0080 | Clic en omitidas selecciona y encuadra las omitidas | Entregado |
 | IDE-0081 | Barra de estado: aprovechamiento del tablero enfocado | Entregado |
 | IDE-0082 | Clic en el aprovechamiento selecciona ese tablero | Entregado |
+| IDE-0083 | Copiar el aprovechamiento del tablero | Entregado; Ctrl+Alt+Shift+U |
+| IDE-0084 | Barra de estado: material libre del tablero enfocado | Planificada |
+| IDE-0085 | Copiar el material libre del tablero | Planificada; Ctrl+Alt+Shift+F |
+| IDE-0086 | Clic en el material libre selecciona ese tablero | Planificada |
 
-Prioridad de ataque: ninguna en producto (decimotercera ola cerrada; cola vacía).
+Prioridad de ataque: **IDE-0084** (material libre del tablero enfocado en la barra).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

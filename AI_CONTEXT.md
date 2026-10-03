@@ -92,7 +92,9 @@ alternativas comprensibles para que el usuario decida.
 - Clic en las piezas omitidas (IDE-0080 `#707`).
 - Barra de estado: aprovechamiento del tablero enfocado (IDE-0081).
 - Clic en el aprovechamiento selecciona ese tablero (IDE-0082).
-- Próximo: cola `0.4.4` vacía (decimotercera ola cerrada); piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+- Copiar el aprovechamiento del tablero de la barra (IDE-0083; Ctrl+Alt+Shift+U).
+- Próximo: decimocuarta ola IDE-0084 (0083 entregada; quedan 0084…0086);
+  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
