@@ -232,6 +232,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_board_thickness"])
         self._menus["edit"].addAction(self._actions["copy_board_material"])
         self._menus["edit"].addAction(self._actions["copy_board_utilization"])
+        self._menus["edit"].addAction(self._actions["copy_board_free_material"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -343,6 +344,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_board_utilization"].triggered.connect(
             self._copy_board_utilization
+        )
+        self._actions["copy_board_free_material"].triggered.connect(
+            self._copy_board_free_material
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -2925,6 +2929,14 @@ class MainWindow(QMainWindow):
             return None
         return board, used_area / stock_area
 
+    def _focused_board_free_material(self) -> str | None:
+        """Free-material percentage when the status label shows (IDE-0084)."""
+        resolved = self._focused_board_utilization()
+        if resolved is None:
+            return None
+        _board, ratio = resolved
+        return f"{max(0.0, 1.0 - ratio):.1%}"
+
     def _update_board_utilization_status(self) -> None:
         """Show focused-board utilization on the status bar (IDE-0081)."""
         self._sync_copy_board_utilization_action()
@@ -2948,19 +2960,17 @@ class MainWindow(QMainWindow):
 
     def _update_board_free_material_status(self) -> None:
         """Show free material of the focused board (IDE-0084)."""
+        self._sync_copy_board_free_material_action()
         label = getattr(self, "_board_free_material_label", None)
         if label is None:
             return
-        resolved = self._focused_board_utilization()
-        if resolved is None:
+        value = self._focused_board_free_material()
+        if value is None:
             label.clear()
             label.setToolTip("")
             label.setCursor(Qt.CursorShape.ArrowCursor)
             label.hide()
             return
-        _board, ratio = resolved
-        waste = max(0.0, 1.0 - ratio)
-        value = f"{waste:.1%}"
         label.setText(self._tr("status.board_free_material", value=value))
         label.setToolTip(self._tr("tip.status_board_free_material", value=value))
         label.setCursor(Qt.CursorShape.ArrowCursor)
@@ -6509,6 +6519,31 @@ class MainWindow(QMainWindow):
         value = f"{ratio:.1%}"
         self._copy_text_to_clipboard(value)
         self._status("status.board_utilization_copied", value=value)
+
+    def _sync_copy_board_free_material_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_board_free_material")
+        if action is None:
+            return
+        enabled = self._focused_board_free_material() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_board_free_material"))
+            if enabled
+            else self._tr("status.nothing_to_copy_board_free_material")
+        )
+
+    def _copy_board_free_material(self, _checked: bool = False) -> None:
+        """Copy the status-bar free-material percentage (IDE-0085)."""
+        del _checked
+        value = self._focused_board_free_material()
+        if value is None:
+            self._status("status.nothing_to_copy_board_free_material")
+            return
+        self._copy_text_to_clipboard(value)
+        self._status("status.board_free_material_copied", value=value)
 
     def _sync_copy_board_material_action(self) -> None:
         actions = getattr(self, "_actions", None)

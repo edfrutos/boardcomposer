@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Copiar el material libre del tablero de la barra (IDE-0085).
+  **Ctrl+Alt+Shift+F**. Copia `76.0%`, sin el prefijo `libre`. Solo el
+  tablero enfocado, y solo si el rótulo se ve. No selecciona.
+  Siguiente: IDE-0086.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: material libre del tablero enfocado (IDE-0084).
   `libre 76.0%`. Complemento del aprovechamiento. La misma visibilidad.
   Cursor flecha. Sin clic. Siguiente: IDE-0085.
