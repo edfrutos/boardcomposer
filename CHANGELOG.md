@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-02
+## Unreleased — 0.4.4.dev0 — 2026-10-03
 
 ### Corregido
 
@@ -9,10 +9,10 @@
 
 ### Añadido
 
-- Clic en las piezas omitidas (IDE-0080). Selecciona el inventario
-  sin colocación. Si esas piezas están en el Workspace, encuadra;
-  si no, la cámara no se mueve. Arrastre no. Siguiente: IDE-0081.
-  Sin bump `.bcproj`; no cambia el solver.
+- Docs planificación 2026-10-03: snapshot
+  `docs/masterplan/REVIEW-2026-10-03-planificacion.md`; Issues = 0;
+  `#706` (IDE-0079) en `main`; IDE-0080 🟡 `#707`; residual
+  0081…0082 🔵 → **sin IDE nuevas**. Histórico 2026-10-02 desde PR `#705`.
 - Barra de estado: piezas omitidas (IDE-0079). `2 om.` junto a
   colocadas/total. Inventario sin colocación; un id ajeno no cuenta.
   Oculta si es 0. Sin clic. Siguiente: IDE-0080.
