@@ -754,6 +754,8 @@ class MainWindow(QMainWindow):
         self._placed_label.installEventFilter(self)
         self._omitted_label = QLabel()
         self._omitted_label.setObjectName("statusOmittedPieces")
+        self._omitted_label_armed = False
+        self._omitted_label.installEventFilter(self)
         self._boards_label = QLabel()
         self._boards_label.setObjectName("statusPhysicalBoards")
         self._boards_label_armed = False
@@ -836,6 +838,33 @@ class MainWindow(QMainWindow):
                 self._placed_label_armed = False
                 if armed and self._placed_piece_counts()[0] > 0:
                     self._fit_placed()
+                    return True
+        omitted = getattr(self, "_omitted_label", None)
+        if omitted is not None and watched is omitted:
+            can_select = self._omitted_piece_count() > 0
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._omitted_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._omitted_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._omitted_label_armed
+                and not omitted.rect().contains(event.position().toPoint())
+            ):
+                self._omitted_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._omitted_label_armed
+                self._omitted_label_armed = False
+                if armed and self._omitted_piece_count() > 0:
+                    self._select_and_fit_omitted()
                     return True
         boards = getattr(self, "_boards_label", None)
         if boards is not None and watched is boards:
@@ -2715,10 +2744,20 @@ class MainWindow(QMainWindow):
             else Qt.CursorShape.ArrowCursor
         )
 
+    def _omitted_piece_ids(self) -> list[str]:
+        """Inventory piece ids without a placement. Stray placements do not count."""
+        project = self.services.projects.current_project
+        if project is None:
+            return []
+        return [
+            piece.piece_id
+            for piece in project.pieces
+            if project.placement_by_piece_id(piece.piece_id) is None
+        ]
+
     def _omitted_piece_count(self) -> int:
         """Inventory pieces without a placement. Stray placements do not count."""
-        placed, total = self._placed_piece_counts()
-        return total - placed
+        return len(self._omitted_piece_ids())
 
     def _update_omitted_status(self) -> None:
         """Show unplaced inventory pieces on the status bar (IDE-0079)."""
@@ -2734,7 +2773,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.omitted_pieces", n=count))
         label.setToolTip(self._tr("tip.status_omitted_pieces", n=count))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_boards_status(self) -> None:
@@ -3374,6 +3413,19 @@ class MainWindow(QMainWindow):
     def _fit_placed(self) -> None:
         if not self.workspace.fit_placed():
             self._status("status.nothing_to_fit_placed")
+
+    def _select_and_fit_omitted(self) -> None:
+        """Select unplaced inventory pieces and fit them if they are on canvas."""
+        ids = self._omitted_piece_ids()
+        if not ids:
+            self._status("status.nothing_to_select_omitted")
+            return
+        if len(ids) == 1:
+            self.workspace.select_piece(ids[0])
+        else:
+            self.workspace.select_pieces(ids)
+        if not self.workspace.fit_piece_ids(ids):
+            self._status("status.omitted_selected", n=len(ids))
 
     def _zoom_in(self) -> None:
         if not self.workspace.can_zoom_in:

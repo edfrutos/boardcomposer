@@ -662,6 +662,30 @@ class BoardWorkspace(QGraphicsView):
         self._apply_camera()
         return True
 
+    def fit_piece_ids(self, piece_ids: list[str]) -> bool:
+        """Zoom to the given pieces that have a canvas item."""
+        viewport_rect = self.viewport().rect()
+        if viewport_rect.width() <= 0 or viewport_rect.height() <= 0:
+            return False
+
+        rect = QRectF()
+        for piece_id in piece_ids:
+            item = self.piece_item_by_id(piece_id)
+            if item is None:
+                continue
+            piece_rect = item.sceneBoundingRect()
+            rect = piece_rect if rect.isNull() else rect.united(piece_rect)
+
+        if rect.isNull() or rect.width() <= 0 or rect.height() <= 0:
+            return False
+
+        x_zoom = viewport_rect.width() / rect.width()
+        y_zoom = viewport_rect.height() / rect.height()
+        self._camera.zoom = self._camera.clamp_zoom(min(x_zoom, y_zoom) * 0.75)
+        self._camera.center = rect.center()
+        self._apply_camera()
+        return True
+
     def zoom_in(self) -> None:
         """Zoom in around the current camera center."""
         self._zoom_by_steps(1)
