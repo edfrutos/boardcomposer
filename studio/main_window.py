@@ -773,6 +773,8 @@ class MainWindow(QMainWindow):
         self._board_material_label.installEventFilter(self)
         self._board_utilization_label = QLabel()
         self._board_utilization_label.setObjectName("statusBoardUtilization")
+        self._board_utilization_label_armed = False
+        self._board_utilization_label.installEventFilter(self)
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -955,6 +957,35 @@ class MainWindow(QMainWindow):
                 board = self._board_for_thickness_status()
                 if armed and board is not None and self._status_board_material():
                     self._edit_board(board.board_id)
+                    return True
+        utilization = getattr(self, "_board_utilization_label", None)
+        if utilization is not None and watched is utilization:
+            can_select = self._focused_board_utilization() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._board_utilization_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._board_utilization_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._board_utilization_label_armed
+                and not utilization.rect().contains(event.position().toPoint())
+            ):
+                self._board_utilization_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._board_utilization_label_armed
+                self._board_utilization_label_armed = False
+                resolved = self._focused_board_utilization()
+                if armed and resolved is not None:
+                    board, _ratio = resolved
+                    self.select_explorer_board(board.board_id)
                     return True
         selection = getattr(self, "_selection_label", None)
         if selection is not None and watched is selection:
@@ -2864,8 +2895,8 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
-    def _focused_board_utilization(self) -> float | None:
-        """Utilization of the focused board, same formula as the Inspector."""
+    def _focused_board_utilization(self) -> tuple[StudioBoard, float] | None:
+        """Focused board and its Inspector utilization, when the label shows."""
         project = self.services.projects.current_project
         if project is None:
             return None
@@ -2885,24 +2916,25 @@ class MainWindow(QMainWindow):
         stock_area = board.length_mm * board.width_mm * used
         if stock_area <= 0:
             return None
-        return used_area / stock_area
+        return board, used_area / stock_area
 
     def _update_board_utilization_status(self) -> None:
         """Show focused-board utilization on the status bar (IDE-0081)."""
         label = getattr(self, "_board_utilization_label", None)
         if label is None:
             return
-        ratio = self._focused_board_utilization()
-        if ratio is None:
+        resolved = self._focused_board_utilization()
+        if resolved is None:
             label.clear()
             label.setToolTip("")
             label.setCursor(Qt.CursorShape.ArrowCursor)
             label.hide()
             return
+        _board, ratio = resolved
         value = f"{ratio:.1%}"
         label.setText(self._tr("status.board_utilization", value=value))
         label.setToolTip(self._tr("tip.status_board_utilization", value=value))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_selection_status(self) -> None:

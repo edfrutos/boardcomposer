@@ -40,8 +40,8 @@ def test_board_utilization_follows_focus_and_layout(qapp, tmp_path):
     assert label.text() == "uso 24.0%"
     assert not label.isHidden()
     assert "aprovechamiento" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     window._show_board_inspector("B1")
     assert "Aprovechamiento: 24.0%" in window.inspector.toPlainText()
 
@@ -75,4 +75,4 @@ def test_board_utilization_follows_focus_and_layout(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "use 24.0%"
     assert "utilization" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
+    assert "click" in label.toolTip().casefold()
