@@ -159,7 +159,7 @@ Objetivos:
 
 - Piloto DT-0006 opción D (backup); C diferida.
 - Cola ciclo `0.4.4`: duodécima ola cerrada (0078 entregada);
-  decimotercera ola IDE-0079…0082 🔵.
+  decimotercera ola IDE-0080 (0079 entregada; quedan 0080…0082).
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2
@@ -192,11 +192,11 @@ cerrada; segunda ola IDE-0031…0036 entregada; 0037…0063 entregadas
 séptima ola 0055…0058 cerrada; octava ola 0059…0062 cerrada;
 novena ola 0063…0066 cerrada;
 décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima ola 0075…0078 cerrada.
-Decimotercera ola IDE-0079…0082 🔵 (omitidas + aprovechamiento en barra).
+Decimotercera ola IDE-0080 (0079 entregada; quedan 0080…0082).
 Revisión: `REVIEW-2026-10-02-planificacion.md`.
 
 Pendiente de:
 
-- Decimotercera ola IDE-0079…0082;
+- Decimotercera ola IDE-0080 (0079 entregada; quedan 0080…0082);
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.

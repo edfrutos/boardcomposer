@@ -88,8 +88,9 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: material del tablero (IDE-0076).
 - Copiar el material del tablero de la barra (IDE-0077; Ctrl+Alt+Shift+M).
 - Clic en el material del tablero abre su edición (IDE-0078 `#702`).
-- Próximo: decimotercera ola IDE-0079…0082 🔵 (omitidas + aprovechamiento
-  en barra; ataque IDE-0079); piloto DT-0006 D; Issues = 0; eval
+- Barra de estado: piezas omitidas (IDE-0079).
+- Próximo: decimotercera ola IDE-0080 (0079 entregada; quedan 0080…0082);
+  piloto DT-0006 D; Issues = 0; eval
   IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
