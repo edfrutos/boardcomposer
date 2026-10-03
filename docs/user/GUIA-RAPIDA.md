@@ -110,6 +110,7 @@ en red; puedes **Copiar**).
 | Copiar espesor del tablero | Ctrl+Alt+Shift+T |
 | Copiar material del tablero | Ctrl+Alt+Shift+M |
 | Copiar aprovechamiento del tablero | Ctrl+Alt+Shift+U |
+| Copiar material libre del tablero | Ctrl+Alt+Shift+F |
 | Renombrar selección | F2 |
 | Renombrar proyecto | Ctrl+Shift+F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
@@ -349,6 +350,7 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+Alt+Shift+U** copia el porcentaje (`24.0%`), sin el prefijo.
   El material libre va como `libre 76.0%` (complemento del
   aprovechamiento; la misma visibilidad; sin clic).
+  **Ctrl+Alt+Shift+F** copia el porcentaje (`76.0%`), sin el prefijo.
   Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
   (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre
   (**Ctrl+Shift+0**). El kerf del proyecto va como `kerf 3.2 mm`
