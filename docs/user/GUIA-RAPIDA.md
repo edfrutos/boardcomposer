@@ -349,7 +349,7 @@ Chrome de Studio (se recuerda entre sesiones).
   Inspector; oculto sin foco o sin uso). **Clic** selecciona ese tablero.
   **Ctrl+Alt+Shift+U** copia el porcentaje (`24.0%`), sin el prefijo.
   El material libre va como `libre 76.0%` (complemento del
-  aprovechamiento; la misma visibilidad; sin clic).
+  aprovechamiento; la misma visibilidad). **Clic** selecciona ese tablero.
   **Ctrl+Alt+Shift+F** copia el porcentaje (`76.0%`), sin el prefijo.
   Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
   (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre

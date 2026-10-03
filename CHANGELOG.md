@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Clic en el material libre selecciona ese tablero (IDE-0086).
+  El tablero enfocado que muestra `libre …`. Cursor mano si se ve.
+  Arrastre no. Abre el Inspector y el Explorador. Cierra la
+  decimocuarta ola 0083…0086. Cola vacía.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el material libre del tablero de la barra (IDE-0085).
   **Ctrl+Alt+Shift+F**. Copia `76.0%`, sin el prefijo `libre`. Solo el
   tablero enfocado, y solo si el rótulo se ve. No selecciona.

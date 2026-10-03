@@ -785,6 +785,8 @@ class MainWindow(QMainWindow):
         self._board_utilization_label.installEventFilter(self)
         self._board_free_material_label = QLabel()
         self._board_free_material_label.setObjectName("statusBoardFreeMaterial")
+        self._board_free_material_label_armed = False
+        self._board_free_material_label.installEventFilter(self)
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -995,6 +997,39 @@ class MainWindow(QMainWindow):
                 self._board_utilization_label_armed = False
                 resolved = self._focused_board_utilization()
                 if armed and resolved is not None:
+                    board, _ratio = resolved
+                    self.select_explorer_board(board.board_id)
+                    return True
+        free_material = getattr(self, "_board_free_material_label", None)
+        if free_material is not None and watched is free_material:
+            can_select = self._focused_board_free_material() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._board_free_material_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._board_free_material_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._board_free_material_label_armed
+                and not free_material.rect().contains(event.position().toPoint())
+            ):
+                self._board_free_material_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._board_free_material_label_armed
+                self._board_free_material_label_armed = False
+                resolved = self._focused_board_utilization()
+                if (
+                    armed
+                    and resolved is not None
+                    and self._focused_board_free_material() is not None
+                ):
                     board, _ratio = resolved
                     self.select_explorer_board(board.board_id)
                     return True
@@ -2973,7 +3008,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.board_free_material", value=value))
         label.setToolTip(self._tr("tip.status_board_free_material", value=value))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_selection_status(self) -> None:

@@ -1225,7 +1225,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.board_free_material": "libre {value}",
         "tip.status_board_free_material": (
-            "Material libre del tablero: {value}. Complemento del aprovechamiento"
+            "Material libre del tablero: {value}. Complemento del aprovechamiento. "
+            "Clic lo selecciona"
         ),
         "status.selection_count": "{n} sel.",
         "tip.status_selection": (
@@ -2968,7 +2969,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.board_free_material": "free {value}",
         "tip.status_board_free_material": (
-            "Free board material: {value}. Complement of utilization"
+            "Free board material: {value}. Complement of utilization. Click selects it"
         ),
         "status.selection_count": "{n} sel.",
         "tip.status_selection": (
