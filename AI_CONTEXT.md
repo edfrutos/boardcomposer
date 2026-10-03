@@ -89,8 +89,10 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el material del tablero de la barra (IDE-0077; Ctrl+Alt+Shift+M).
 - Clic en el material del tablero abre su edición (IDE-0078 `#702`).
 - Barra de estado: piezas omitidas (IDE-0079 `#706`).
-- Próximo: decimotercera ola residual IDE-0080 🟡 `#707` (quedan
-  0080…0082); piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+- Clic en las piezas omitidas (IDE-0080 `#707`).
+- Barra de estado: aprovechamiento del tablero enfocado (IDE-0081).
+- Próximo: decimotercera ola IDE-0082 (0081 entregada; queda 0082);
+  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

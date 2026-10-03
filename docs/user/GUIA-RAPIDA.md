@@ -342,7 +342,9 @@ Chrome de Studio (se recuerda entre sesiones).
   si hay varios y ninguno enfocado). **Clic** abre la edición de ese
   tablero. El material va como `mat. Demo` (el mismo tablero; oculto
   si el material está vacío). **Clic** abre la edición de ese tablero.
-  **Ctrl+Alt+Shift+M** copia ese material.
+  **Ctrl+Alt+Shift+M** copia ese material. El aprovechamiento del
+  tablero enfocado va como `uso 24.0%` (la misma fórmula que el
+  Inspector; oculto sin foco o sin uso; sin clic).
   Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
   (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre
   (**Ctrl+Shift+0**). El kerf del proyecto va como `kerf 3.2 mm`
