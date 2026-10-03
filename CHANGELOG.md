@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Barra de estado: material libre del tablero enfocado (IDE-0084).
+  `libre 76.0%`. Complemento del aprovechamiento. La misma visibilidad.
+  Cursor flecha. Sin clic. Siguiente: IDE-0085.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el aprovechamiento del tablero de la barra (IDE-0083).
   **Ctrl+Alt+Shift+U**. Copia `24.0%`, sin el prefijo `uso`. Solo el
   tablero enfocado, y solo si el rótulo se ve. No selecciona.
