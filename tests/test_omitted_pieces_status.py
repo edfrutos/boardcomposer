@@ -63,8 +63,8 @@ def test_omitted_status_counts_unplaced_inventory(qapp, tmp_path):
     assert label.text() == "2 om."
     assert not label.isHidden()
     assert "omitidas" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._placed_label.text() == "1/3"
 
     project.pieces.append(StudioPiece("P4", 80, 40))
@@ -77,4 +77,4 @@ def test_omitted_status_counts_unplaced_inventory(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "3 om."
     assert "omitted" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
+    assert "click" in label.toolTip().casefold()

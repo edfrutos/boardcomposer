@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Clic en las piezas omitidas (IDE-0080). Selecciona el inventario
+  sin colocación. Si esas piezas están en el Workspace, encuadra;
+  si no, la cámara no se mueve. Arrastre no. Siguiente: IDE-0081.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: piezas omitidas (IDE-0079). `2 om.` junto a
   colocadas/total. Inventario sin colocación; un id ajeno no cuenta.
   Oculta si es 0. Sin clic. Siguiente: IDE-0080.

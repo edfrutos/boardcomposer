@@ -1188,7 +1188,13 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Clic ajusta el encuadre de las colocadas"
         ),
         "status.omitted_pieces": "{n} om.",
-        "tip.status_omitted_pieces": "Piezas omitidas: {n}",
+        "tip.status_omitted_pieces": (
+            "Piezas omitidas: {n}. Clic las selecciona y encuadra"
+        ),
+        "status.omitted_selected": (
+            "Piezas omitidas seleccionadas: {n}. No están en el Workspace"
+        ),
+        "status.nothing_to_select_omitted": "No hay piezas omitidas que seleccionar",
         "status.physical_boards": "{n} tab.",
         "tip.status_physical_boards": (
             "Tableros físicos: {n}. Clic ajusta el encuadre de todos (Ctrl+0)"
@@ -2897,7 +2903,13 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Pieces placed: {placed} of {total}. Click fits the placed pieces"
         ),
         "status.omitted_pieces": "{n} om.",
-        "tip.status_omitted_pieces": "Omitted pieces: {n}",
+        "tip.status_omitted_pieces": (
+            "Omitted pieces: {n}. Click selects and fits them"
+        ),
+        "status.omitted_selected": (
+            "Omitted pieces selected: {n}. They are not on the Workspace"
+        ),
+        "status.nothing_to_select_omitted": "No omitted pieces to select",
         "status.physical_boards": "{n} tab.",
         "tip.status_physical_boards": (
             "Physical boards: {n}. Click fits all boards (Ctrl+0)"

@@ -335,7 +335,7 @@ Chrome de Studio (se recuerda entre sesiones).
   piezas colocadas / total (`1/2`; tooltip «Piezas colocadas: 1 de 2»).
   **Clic** encuadra esas colocadas (no el tablero ni la selección).
   Las omitidas van como `2 om.` (inventario sin colocación; oculto si
-  es 0; sin clic).
+  es 0). **Clic** las selecciona y encuadra si están en el Workspace.
   Los tableros físicos van como `3 tab.` (suma de cantidades; oculto si
   no hay). **Clic** encuadra todos los tableros (**Ctrl+0**). El espesor
   del tablero va como `esp. 19 mm` (el enfocado, o el único tipo; oculto
