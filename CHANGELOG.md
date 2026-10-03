@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Copiar el aprovechamiento del tablero de la barra (IDE-0083).
+  **Ctrl+Alt+Shift+U**. Copia `24.0%`, sin el prefijo `uso`. Solo el
+  tablero enfocado, y solo si el rótulo se ve. No selecciona.
+  Abre la decimocuarta ola 0083…0086. Siguiente: IDE-0084.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el aprovechamiento selecciona ese tablero (IDE-0082).
   El tablero enfocado que muestra `uso …`. Cursor mano si se ve.
   Arrastre no. Abre el Inspector y el Explorador. Cierra la

@@ -109,6 +109,7 @@ en red; puedes **Copiar**).
 | Copiar medidas del tablero | Ctrl+Alt+Shift+B |
 | Copiar espesor del tablero | Ctrl+Alt+Shift+T |
 | Copiar material del tablero | Ctrl+Alt+Shift+M |
+| Copiar aprovechamiento del tablero | Ctrl+Alt+Shift+U |
 | Renombrar selección | F2 |
 | Renombrar proyecto | Ctrl+Shift+F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
@@ -345,6 +346,7 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+Alt+Shift+M** copia ese material. El aprovechamiento del
   tablero enfocado va como `uso 24.0%` (la misma fórmula que el
   Inspector; oculto sin foco o sin uso). **Clic** selecciona ese tablero.
+  **Ctrl+Alt+Shift+U** copia el porcentaje (`24.0%`), sin el prefijo.
   Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
   (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre
   (**Ctrl+Shift+0**). El kerf del proyecto va como `kerf 3.2 mm`

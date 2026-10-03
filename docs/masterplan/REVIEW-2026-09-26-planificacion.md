@@ -86,6 +86,10 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0080 clic en omitidas selecciona y encuadra | 🟢 |
 | IDE-0081 barra de estado: aprovechamiento del tablero | 🟢 |
 | IDE-0082 clic en el aprovechamiento selecciona el tablero | 🟢 |
+| IDE-0083 copiar el aprovechamiento del tablero | 🟢 |
+| IDE-0084 barra de estado: material libre del tablero | 🔵 |
+| IDE-0085 copiar el material libre del tablero | 🔵 |
+| IDE-0086 clic en el material libre selecciona el tablero | 🔵 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -164,7 +168,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — decimotercera ola cerrada (0082 entregada). Cola vacía.
+1. **Cola `0.4.4` decimocuarta ola** — IDE-0084 (0083 entregada; quedan 0084…0086).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -216,8 +220,12 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0080 | Clic en omitidas selecciona y encuadra las omitidas | Entregado |
 | IDE-0081 | Barra de estado: aprovechamiento del tablero enfocado | Entregado |
 | IDE-0082 | Clic en el aprovechamiento selecciona ese tablero | Entregado |
+| IDE-0083 | Copiar el aprovechamiento del tablero | Entregado; Ctrl+Alt+Shift+U |
+| IDE-0084 | Barra de estado: material libre del tablero enfocado | Planificada |
+| IDE-0085 | Copiar el material libre del tablero | Planificada; Ctrl+Alt+Shift+F |
+| IDE-0086 | Clic en el material libre selecciona ese tablero | Planificada |
 
-Prioridad de ataque: ninguna en producto (decimotercera ola cerrada; cola vacía).
+Prioridad de ataque: **IDE-0084** (material libre del tablero enfocado en la barra).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
