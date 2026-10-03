@@ -779,6 +779,8 @@ class MainWindow(QMainWindow):
         self._board_utilization_label.setObjectName("statusBoardUtilization")
         self._board_utilization_label_armed = False
         self._board_utilization_label.installEventFilter(self)
+        self._board_free_material_label = QLabel()
+        self._board_free_material_label.setObjectName("statusBoardFreeMaterial")
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -798,6 +800,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._board_thickness_label)
         status.addPermanentWidget(self._board_material_label)
         status.addPermanentWidget(self._board_utilization_label)
+        status.addPermanentWidget(self._board_free_material_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
         status.addPermanentWidget(self._zoom_label)
@@ -2925,6 +2928,7 @@ class MainWindow(QMainWindow):
     def _update_board_utilization_status(self) -> None:
         """Show focused-board utilization on the status bar (IDE-0081)."""
         self._sync_copy_board_utilization_action()
+        self._update_board_free_material_status()
         label = getattr(self, "_board_utilization_label", None)
         if label is None:
             return
@@ -2940,6 +2944,26 @@ class MainWindow(QMainWindow):
         label.setText(self._tr("status.board_utilization", value=value))
         label.setToolTip(self._tr("tip.status_board_utilization", value=value))
         label.setCursor(Qt.CursorShape.PointingHandCursor)
+        label.show()
+
+    def _update_board_free_material_status(self) -> None:
+        """Show free material of the focused board (IDE-0084)."""
+        label = getattr(self, "_board_free_material_label", None)
+        if label is None:
+            return
+        resolved = self._focused_board_utilization()
+        if resolved is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        _board, ratio = resolved
+        waste = max(0.0, 1.0 - ratio)
+        value = f"{waste:.1%}"
+        label.setText(self._tr("status.board_free_material", value=value))
+        label.setToolTip(self._tr("tip.status_board_free_material", value=value))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
         label.show()
 
     def _update_selection_status(self) -> None:
