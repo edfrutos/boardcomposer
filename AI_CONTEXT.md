@@ -91,8 +91,8 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: piezas omitidas (IDE-0079 `#706`).
 - Clic en las piezas omitidas (IDE-0080 `#707`).
 - Barra de estado: aprovechamiento del tablero enfocado (IDE-0081).
-- Próximo: decimotercera ola IDE-0082 (0081 entregada; queda 0082);
-  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+- Clic en el aprovechamiento selecciona ese tablero (IDE-0082).
+- Próximo: cola `0.4.4` vacía (decimotercera ola cerrada); piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

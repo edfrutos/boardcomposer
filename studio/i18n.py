@@ -1206,7 +1206,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Material del tablero: {material}. Clic lo edita"
         ),
         "status.board_utilization": "uso {value}",
-        "tip.status_board_utilization": "Aprovechamiento del tablero: {value}",
+        "tip.status_board_utilization": (
+            "Aprovechamiento del tablero: {value}. Clic lo selecciona"
+        ),
         "status.selection_count": "{n} sel.",
         "tip.status_selection": (
             "Piezas seleccionadas: {n}. Clic ajusta el encuadre (Ctrl+Shift+0)"
@@ -2921,7 +2923,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.board_material": "mat. {material}",
         "tip.status_board_material": "Board material: {material}. Click edits it",
         "status.board_utilization": "use {value}",
-        "tip.status_board_utilization": "Board utilization: {value}",
+        "tip.status_board_utilization": (
+            "Board utilization: {value}. Click selects it"
+        ),
         "status.selection_count": "{n} sel.",
         "tip.status_selection": (
             "Selected pieces: {n}. Click fits the selection (Ctrl+Shift+0)"

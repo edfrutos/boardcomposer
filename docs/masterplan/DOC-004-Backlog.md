@@ -151,7 +151,7 @@ Observaciones:
 | IDE-0079 | Barra de estado: piezas omitidas | 🟢 | P3 |
 | IDE-0080 | Clic en omitidas selecciona y encuadra las omitidas | 🟢 | P3 |
 | IDE-0081 | Barra de estado: aprovechamiento del tablero enfocado | 🟢 | P3 |
-| IDE-0082 | Clic en el aprovechamiento selecciona ese tablero | 🔵 | P3 |
+| IDE-0082 | Clic en el aprovechamiento selecciona ese tablero | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -226,7 +226,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0079 | S | IDE-0060; SCR-005 | Entregado; n om.; oculta si 0; sin clic |
 | IDE-0080 | S | IDE-0079; IDE-0070 | Entregado `#707`; clic selecciona; encuadra si hay geometría |
 | IDE-0081 | S | IDE-0051; SCR-005 | Entregado; % uso del enfocado; oculta si no hay |
-| IDE-0082 | S | IDE-0081; SCR-004 | Planificada; clic → seleccionar ese tablero en Inspector |
+| IDE-0082 | S | IDE-0081; SCR-004 | Entregado; clic selecciona el tablero; arrastre no |
 
 ---
 
@@ -254,20 +254,20 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0081 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0081; `#647`/`#649`/`#651`/
+**Estado actual:** 🟢 Actualizado — IDE-0001…0082 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0082; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
 `#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`/`#702`/`#706`).
 Séptima…duodécima ola cerradas; IDE-0079 `#706`; IDE-0080 `#707`.
-Decimotercera ola residual: IDE-0082 (queda 0082). IDE-0007 🟢 MVP+eval
+Decimotercera ola cerrada (0082 entregada). Cola vacía. IDE-0007 🟢 MVP+eval
 (2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-03-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: decimotercera ola IDE-0082
-   (0081 entregada; queda 0082).
+1. Cola producto `0.4.4`: decimotercera ola cerrada (0082 entregada).
+   Cola vacía.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

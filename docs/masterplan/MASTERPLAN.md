@@ -79,6 +79,7 @@
 - Barra de estado: piezas omitidas (IDE-0079 `#706`).
 - Clic en las piezas omitidas (IDE-0080 `#707`).
 - Barra de estado: aprovechamiento del tablero enfocado (IDE-0081).
+- Clic en el aprovechamiento selecciona ese tablero (IDE-0082).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -95,8 +96,7 @@
 ## Próxima tarea única
 
 1. Ciclo `0.4.4`: duodécima ola cerrada (0078 `#702`); IDE-0079 `#706`;
-   IDE-0080 `#707`. Decimotercera ola residual: IDE-0082
-   (0081 entregada; queda 0082).
+   IDE-0080 `#707`. Decimotercera ola cerrada (0082 entregada). Cola vacía.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

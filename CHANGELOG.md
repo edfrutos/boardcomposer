@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Clic en el aprovechamiento selecciona ese tablero (IDE-0082).
+  El tablero enfocado que muestra `uso …`. Cursor mano si se ve.
+  Arrastre no. Abre el Inspector y el Explorador. Cierra la
+  decimotercera ola 0079…0082. Cola vacía.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: aprovechamiento del tablero enfocado (IDE-0081).
   `uso 24.0%`. La misma fórmula que el Inspector. Oculto sin foco,
   sin layout o si el tablero no tiene piezas. Sin clic.
