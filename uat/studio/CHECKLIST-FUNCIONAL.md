@@ -31,7 +31,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] **Guardar** (**Ctrl+S**) / **Guardar como** (**Ctrl+Shift+S**) / **Abrir** (**Ctrl+O**) `.bcproj` (tips de estado); basename en barra de estado (tooltip = ruta; clic abre carpeta); **Ctrl+Shift+R** abre la carpeta (tip de estado); recuerda carpeta (`last_project_directory`).
 - [ ] Barra de ruta: `●` delante del nombre si hay cambios sin guardar (IDE-0058).
 - [ ] Barra de estado: piezas colocadas / total del inventario (IDE-0060). Clic encuadra las colocadas (IDE-0070). Copiar `1/2` (IDE-0087; Ctrl+Alt+Shift+P).
-- [ ] Barra de estado: piezas omitidas (`2 om.`); inventario sin colocación; oculta si es 0 (IDE-0079). Clic las selecciona y encuadra (IDE-0080).
+- [ ] Barra de estado: piezas omitidas (`2 om.`); inventario sin colocación; oculta si es 0 (IDE-0079). Clic las selecciona y encuadra (IDE-0080). Copiar el número (IDE-0088; Ctrl+Alt+Shift+O).
 - [ ] Barra de estado: aprovechamiento del tablero enfocado (`uso 24.0%`); misma fórmula que el Inspector; oculta sin foco o sin uso (IDE-0081). Clic selecciona ese tablero (IDE-0082). Copiar el porcentaje (IDE-0083; Ctrl+Alt+Shift+U).
 - [ ] Barra de estado: material libre del tablero enfocado (`libre 76.0%`); complemento del aprovechamiento; la misma visibilidad (IDE-0084). Clic selecciona ese tablero (IDE-0086). Copiar el porcentaje (IDE-0085; Ctrl+Alt+Shift+F).
 - [ ] Barra de estado: tableros físicos (`3 tab.`); suma cantidades; oculta si no hay (IDE-0069). Clic encuadra todos los tableros (IDE-0071).

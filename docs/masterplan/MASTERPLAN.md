@@ -85,6 +85,7 @@
 - Copiar el material libre del tablero de la barra (IDE-0085).
 - Clic en el material libre selecciona ese tablero (IDE-0086).
 - Copiar las piezas colocadas de la barra (IDE-0087).
+- Copiar las piezas omitidas de la barra (IDE-0088).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -102,8 +103,8 @@
 
 1. Ciclo `0.4.4`: duodécima ola cerrada (0078 `#702`); IDE-0079 `#706`;
    IDE-0080 `#707`. Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
-   (0086 entregada). Decimoquinta ola residual: IDE-0088…0090
-   (0087 entregada; quedan 0088…0090).
+   (0086 entregada). Decimoquinta ola residual: IDE-0089…0090
+   (0088 entregada; quedan 0089…0090).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
