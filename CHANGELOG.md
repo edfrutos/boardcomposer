@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-03
+## Unreleased — 0.4.4.dev0 — 2026-10-04
 
 ### Corregido
 
@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Docs planificación 2026-10-04: snapshot
+  `docs/masterplan/REVIEW-2026-10-04-planificacion.md`; Issues = 0;
+  `#715` (IDE-0087) en `main`; IDE-0088 🟡 `#716`; residual
+  0089…0090 🔵 → **sin IDE nuevas**. Histórico 2026-10-03 desde PR `#708`.
 - Copiar las piezas colocadas de la barra (IDE-0087).
   **Ctrl+Alt+Shift+P**. Copia `1/2`, como el rótulo. También `0/0`.
   No encuadra. Abre la decimoquinta ola 0087…0090. Siguiente: IDE-0088.

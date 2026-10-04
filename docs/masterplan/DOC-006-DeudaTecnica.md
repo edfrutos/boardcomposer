@@ -3,10 +3,10 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.47
+**Versión:** 1.2.48
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 03/10/2026
+**Última revisión:** 04/10/2026
 
 ---
 
@@ -209,8 +209,8 @@ IDE-0079…0082 🔵 sin PR de producto; Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-10-03 en `REVIEW-2026-10-03-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`10-02` (abiertas = 1, DT-0006).
+2026-10-04 en `REVIEW-2026-10-04-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`10-03` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -222,6 +222,7 @@ Próximo foco:
 - Cola producto ciclo `0.4.4`: duodécima ola cerrada (0078 `#702`);
   IDE-0079 `#706`; IDE-0080 `#707`; decimotercera ola cerrada
   (0082 entregada). Decimocuarta ola cerrada (0086 entregada).
-  Decimoquinta ola residual: IDE-0088…0090 (0087 entregada; quedan 0088…0090).
+  Decimoquinta ola residual: IDE-0088 🟡 `#716` + IDE-0089…0090 🔵
+  (0087 entregada `#715`).
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
