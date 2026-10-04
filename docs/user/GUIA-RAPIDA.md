@@ -111,6 +111,7 @@ en red; puedes **Copiar**).
 | Copiar material del tablero | Ctrl+Alt+Shift+M |
 | Copiar aprovechamiento del tablero | Ctrl+Alt+Shift+U |
 | Copiar material libre del tablero | Ctrl+Alt+Shift+F |
+| Copiar piezas colocadas | Ctrl+Alt+Shift+P |
 | Renombrar selección | F2 |
 | Renombrar proyecto | Ctrl+Shift+F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
@@ -336,6 +337,7 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+S** antes de poder abrir carpeta. Entre el nombre y el **%** va
   piezas colocadas / total (`1/2`; tooltip «Piezas colocadas: 1 de 2»).
   **Clic** encuadra esas colocadas (no el tablero ni la selección).
+  **Ctrl+Alt+Shift+P** copia `1/2`, como el rótulo.
   Las omitidas van como `2 om.` (inventario sin colocación; oculto si
   es 0). **Clic** las selecciona y encuadra si están en el Workspace.
   Los tableros físicos van como `3 tab.` (suma de cantidades; oculto si

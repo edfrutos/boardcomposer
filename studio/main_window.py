@@ -233,6 +233,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_board_material"])
         self._menus["edit"].addAction(self._actions["copy_board_utilization"])
         self._menus["edit"].addAction(self._actions["copy_board_free_material"])
+        self._menus["edit"].addAction(self._actions["copy_placed_pieces"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -348,6 +349,7 @@ class MainWindow(QMainWindow):
         self._actions["copy_board_free_material"].triggered.connect(
             self._copy_board_free_material
         )
+        self._actions["copy_placed_pieces"].triggered.connect(self._copy_placed_pieces)
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
             self._duplicate_selected_piece
@@ -2811,6 +2813,7 @@ class MainWindow(QMainWindow):
 
     def _update_placed_status(self) -> None:
         """Refresh placed/total on the status bar (IDE-0060)."""
+        self._sync_copy_placed_pieces_action()
         label = getattr(self, "_placed_label", None)
         if label is None:
             return
@@ -6579,6 +6582,24 @@ class MainWindow(QMainWindow):
             return
         self._copy_text_to_clipboard(value)
         self._status("status.board_free_material_copied", value=value)
+
+    def _sync_copy_placed_pieces_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_placed_pieces")
+        if action is None:
+            return
+        action.setEnabled(True)
+        action.setStatusTip(with_native_shortcuts(self._tr("tip.copy_placed_pieces")))
+
+    def _copy_placed_pieces(self, _checked: bool = False) -> None:
+        """Copy the status-bar placed/total count (IDE-0087)."""
+        del _checked
+        placed, total = self._placed_piece_counts()
+        value = self._tr("status.placed_pieces", placed=placed, total=total)
+        self._copy_text_to_clipboard(value)
+        self._status("status.placed_pieces_copied", value=value)
 
     def _sync_copy_board_material_action(self) -> None:
         actions = getattr(self, "_actions", None)

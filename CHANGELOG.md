@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Copiar las piezas colocadas de la barra (IDE-0087).
+  **Ctrl+Alt+Shift+P**. Copia `1/2`, como el rótulo. También `0/0`.
+  No encuadra. Abre la decimoquinta ola 0087…0090. Siguiente: IDE-0088.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el material libre selecciona ese tablero (IDE-0086).
   El tablero enfocado que muestra `libre …`. Cursor mano si se ve.
   Arrastre no. Abre el Inspector y el Explorador. Cierra la

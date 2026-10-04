@@ -96,7 +96,9 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: material libre del tablero enfocado (IDE-0084).
 - Copiar el material libre del tablero de la barra (IDE-0085; Ctrl+Alt+Shift+F).
 - Clic en el material libre selecciona ese tablero (IDE-0086).
-- Próximo: cola `0.4.4` vacía (decimocuarta ola cerrada); piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+- Copiar las piezas colocadas de la barra (IDE-0087; Ctrl+Alt+Shift+P).
+- Próximo: decimoquinta ola IDE-0088 (0087 entregada; quedan 0088…0090);
+  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad

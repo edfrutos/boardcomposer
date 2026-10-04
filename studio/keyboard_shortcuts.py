@@ -42,6 +42,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("copy_board_material", "Ctrl+Alt+Shift+M"),
     ShortcutBinding("copy_board_utilization", "Ctrl+Alt+Shift+U"),
     ShortcutBinding("copy_board_free_material", "Ctrl+Alt+Shift+F"),
+    ShortcutBinding("copy_placed_pieces", "Ctrl+Alt+Shift+P"),
     ShortcutBinding("copy_inspector", "Ctrl+Alt+I"),
     ShortcutBinding("duplicate_piece", "Ctrl+D"),
     ShortcutBinding("delete_piece", "Backspace", ("Delete",)),
