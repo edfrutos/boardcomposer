@@ -221,6 +221,7 @@ Próximo foco:
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
 - Cola producto ciclo `0.4.4`: duodécima ola cerrada (0078 `#702`);
   IDE-0079 `#706`; IDE-0080 `#707`; decimotercera ola cerrada
-  (0082 entregada). Decimocuarta ola cerrada (0086 entregada). Cola vacía.
+  (0082 entregada). Decimocuarta ola cerrada (0086 entregada).
+  Decimoquinta ola residual: IDE-0088…0090 (0087 entregada; quedan 0088…0090).
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
