@@ -234,6 +234,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_board_utilization"])
         self._menus["edit"].addAction(self._actions["copy_board_free_material"])
         self._menus["edit"].addAction(self._actions["copy_placed_pieces"])
+        self._menus["edit"].addAction(self._actions["copy_omitted_pieces"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -350,6 +351,9 @@ class MainWindow(QMainWindow):
             self._copy_board_free_material
         )
         self._actions["copy_placed_pieces"].triggered.connect(self._copy_placed_pieces)
+        self._actions["copy_omitted_pieces"].triggered.connect(
+            self._copy_omitted_pieces
+        )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
             self._duplicate_selected_piece
@@ -2850,6 +2854,7 @@ class MainWindow(QMainWindow):
 
     def _update_omitted_status(self) -> None:
         """Show unplaced inventory pieces on the status bar (IDE-0079)."""
+        self._sync_copy_omitted_pieces_action()
         label = getattr(self, "_omitted_label", None)
         if label is None:
             return
@@ -6600,6 +6605,32 @@ class MainWindow(QMainWindow):
         value = self._tr("status.placed_pieces", placed=placed, total=total)
         self._copy_text_to_clipboard(value)
         self._status("status.placed_pieces_copied", value=value)
+
+    def _sync_copy_omitted_pieces_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_omitted_pieces")
+        if action is None:
+            return
+        enabled = self._omitted_piece_count() > 0
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_omitted_pieces"))
+            if enabled
+            else self._tr("status.nothing_to_copy_omitted_pieces")
+        )
+
+    def _copy_omitted_pieces(self, _checked: bool = False) -> None:
+        """Copy the status-bar omitted-piece count (IDE-0088)."""
+        del _checked
+        count = self._omitted_piece_count()
+        if count <= 0:
+            self._status("status.nothing_to_copy_omitted_pieces")
+            return
+        value = str(count)
+        self._copy_text_to_clipboard(value)
+        self._status("status.omitted_pieces_copied", n=value)
 
     def _sync_copy_board_material_action(self) -> None:
         actions = getattr(self, "_actions", None)

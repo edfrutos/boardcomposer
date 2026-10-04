@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Copiar las piezas omitidas de la barra (IDE-0088).
+  **Ctrl+Alt+Shift+O**. Copia el número (`1`), sin `om.`.
+  Deshabilitado si el rótulo está oculto. No las selecciona.
+  Siguiente: IDE-0089.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar las piezas colocadas de la barra (IDE-0087).
   **Ctrl+Alt+Shift+P**. Copia `1/2`, como el rótulo. También `0/0`.
   No encuadra. Abre la decimoquinta ola 0087…0090. Siguiente: IDE-0088.

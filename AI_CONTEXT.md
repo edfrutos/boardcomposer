@@ -97,7 +97,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el material libre del tablero de la barra (IDE-0085; Ctrl+Alt+Shift+F).
 - Clic en el material libre selecciona ese tablero (IDE-0086).
 - Copiar las piezas colocadas de la barra (IDE-0087; Ctrl+Alt+Shift+P).
-- Próximo: decimoquinta ola IDE-0088 (0087 entregada; quedan 0088…0090);
+- Copiar las piezas omitidas de la barra (IDE-0088; Ctrl+Alt+Shift+O).
+- Próximo: decimoquinta ola IDE-0089 (0088 entregada; quedan 0089…0090);
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
