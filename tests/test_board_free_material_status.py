@@ -41,8 +41,8 @@ def test_board_free_material_follows_focus_and_layout(qapp, tmp_path):
     assert label.text() == "libre 76.0%"
     assert not label.isHidden()
     assert "material libre" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     window._show_board_inspector("B1")
     assert "Material libre: 76.0%" in window.inspector.toPlainText()
 
@@ -76,4 +76,4 @@ def test_board_free_material_follows_focus_and_layout(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "free 76.0%"
     assert "free" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
+    assert "click" in label.toolTip().casefold()
