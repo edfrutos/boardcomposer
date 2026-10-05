@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Copiar los tableros físicos de la barra (IDE-0089).
+  **Ctrl+Alt+Shift+N**. Copia el número (`5`), sin `tab.`.
+  Deshabilitado si el rótulo está oculto. No encuadra.
+  Siguiente: IDE-0090.
+  Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-10-04: snapshot
   `docs/masterplan/REVIEW-2026-10-04-planificacion.md`; Issues = 0;
   `#715` (IDE-0087) en `main`; IDE-0088 🟡 `#716`; residual

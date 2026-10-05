@@ -113,6 +113,7 @@ en red; puedes **Copiar**).
 | Copiar material libre del tablero | Ctrl+Alt+Shift+F |
 | Copiar piezas colocadas | Ctrl+Alt+Shift+P |
 | Copiar piezas omitidas | Ctrl+Alt+Shift+O |
+| Copiar tableros físicos | Ctrl+Alt+Shift+N |
 | Renombrar selección | F2 |
 | Renombrar proyecto | Ctrl+Shift+F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
@@ -343,7 +344,8 @@ Chrome de Studio (se recuerda entre sesiones).
   es 0). **Clic** las selecciona y encuadra si están en el Workspace.
   **Ctrl+Alt+Shift+O** copia el número, sin `om.`.
   Los tableros físicos van como `3 tab.` (suma de cantidades; oculto si
-  no hay). **Clic** encuadra todos los tableros (**Ctrl+0**). El espesor
+  no hay). **Clic** encuadra todos los tableros (**Ctrl+0**).
+  **Ctrl+Alt+Shift+N** copia el número, sin `tab.`. El espesor
   del tablero va como `esp. 19 mm` (el enfocado, o el único tipo; oculto
   si hay varios y ninguno enfocado). **Clic** abre la edición de ese
   tablero. El material va como `mat. Demo` (el mismo tablero; oculto
