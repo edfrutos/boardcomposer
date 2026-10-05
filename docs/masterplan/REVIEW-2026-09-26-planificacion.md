@@ -94,6 +94,10 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0088 copiar las piezas omitidas | 🟢 |
 | IDE-0089 copiar los tableros físicos | 🟢 |
 | IDE-0090 copiar la selección de la barra | 🟢 |
+| IDE-0091 copiar el zoom de la barra | 🟢 |
+| IDE-0092 barra: retales de la solución seleccionada | 🔵 |
+| IDE-0093 copiar los retales de la barra | 🔵 |
+| IDE-0094 clic en retales selecciona su tablero | 🔵 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -172,7 +176,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — ninguna en producto (decimoquinta ola cerrada; cola vacía).
+1. **Cola `0.4.4` decimosexta ola** — IDE-0092 (0091 entregada; quedan 0092…0094).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -232,8 +236,12 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0088 | Copiar las piezas omitidas de la barra | Entregado; Ctrl+Alt+Shift+O |
 | IDE-0089 | Copiar los tableros físicos de la barra | Entregado; Ctrl+Alt+Shift+N |
 | IDE-0090 | Copiar la selección de la barra | Entregado; Ctrl+Alt+Shift+S |
+| IDE-0091 | Copiar el zoom de la barra | Entregado; Ctrl+Alt+Shift+Z |
+| IDE-0092 | Barra: retales de la solución seleccionada | Planificada; `n ret.`; oculta si 0 |
+| IDE-0093 | Copiar los retales de la barra | Planificada; Ctrl+Alt+Shift+R |
+| IDE-0094 | Clic en retales selecciona su tablero | Planificada; no encuadra; no promociona |
 
-Prioridad de ataque: **ninguna en producto** (decimoquinta ola cerrada; cola vacía).
+Prioridad de ataque: **IDE-0092** (retales de la solución seleccionada en la barra).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

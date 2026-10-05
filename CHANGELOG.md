@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Copiar el zoom de la barra (IDE-0091).
+  **Ctrl+Alt+Shift+Z**. Copia el mismo texto del rótulo (`48%`, `100%`).
+  Siempre habilitado. No vuelve al 100%.
+  Abre la decimosexta ola 0091…0094. Siguiente: IDE-0092.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la selección de la barra (IDE-0090).
   **Ctrl+Alt+Shift+S**. Copia el número (`2`), sin `sel.`.
   Deshabilitado si el rótulo está oculto. No encuadra.
