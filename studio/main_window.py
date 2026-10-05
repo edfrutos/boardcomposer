@@ -235,6 +235,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_board_free_material"])
         self._menus["edit"].addAction(self._actions["copy_placed_pieces"])
         self._menus["edit"].addAction(self._actions["copy_omitted_pieces"])
+        self._menus["edit"].addAction(self._actions["copy_physical_boards"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -353,6 +354,9 @@ class MainWindow(QMainWindow):
         self._actions["copy_placed_pieces"].triggered.connect(self._copy_placed_pieces)
         self._actions["copy_omitted_pieces"].triggered.connect(
             self._copy_omitted_pieces
+        )
+        self._actions["copy_physical_boards"].triggered.connect(
+            self._copy_physical_boards
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -2872,6 +2876,7 @@ class MainWindow(QMainWindow):
 
     def _update_boards_status(self) -> None:
         """Show physical board sheets on the status bar (IDE-0069)."""
+        self._sync_copy_physical_boards_action()
         label = getattr(self, "_boards_label", None)
         if label is None:
             return
@@ -6631,6 +6636,32 @@ class MainWindow(QMainWindow):
         value = str(count)
         self._copy_text_to_clipboard(value)
         self._status("status.omitted_pieces_copied", n=value)
+
+    def _sync_copy_physical_boards_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_physical_boards")
+        if action is None:
+            return
+        enabled = self._physical_board_count() > 0
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_physical_boards"))
+            if enabled
+            else self._tr("status.nothing_to_copy_physical_boards")
+        )
+
+    def _copy_physical_boards(self, _checked: bool = False) -> None:
+        """Copy the status-bar physical board count (IDE-0089)."""
+        del _checked
+        count = self._physical_board_count()
+        if count <= 0:
+            self._status("status.nothing_to_copy_physical_boards")
+            return
+        value = str(count)
+        self._copy_text_to_clipboard(value)
+        self._status("status.physical_boards_copied", n=value)
 
     def _sync_copy_board_material_action(self) -> None:
         actions = getattr(self, "_actions", None)

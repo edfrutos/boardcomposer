@@ -222,7 +222,7 @@ Próximo foco:
 - Cola producto ciclo `0.4.4`: duodécima ola cerrada (0078 `#702`);
   IDE-0079 `#706`; IDE-0080 `#707`; decimotercera ola cerrada
   (0082 entregada). Decimocuarta ola cerrada (0086 entregada).
-  Decimoquinta ola residual: IDE-0088 🟡 `#716` + IDE-0089…0090 🔵
-  (0087 entregada `#715`).
+  Decimoquinta ola residual: IDE-0090 (0089 entregada; queda 0090).
+  IDE-0088 entregada `#716`.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

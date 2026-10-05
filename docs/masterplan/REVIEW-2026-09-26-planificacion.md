@@ -92,7 +92,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0086 clic en el material libre selecciona el tablero | 🟢 |
 | IDE-0087 copiar piezas colocadas/total | 🟢 |
 | IDE-0088 copiar las piezas omitidas | 🟢 |
-| IDE-0089 copiar los tableros físicos | 🔵 |
+| IDE-0089 copiar los tableros físicos | 🟢 |
 | IDE-0090 copiar la selección de la barra | 🔵 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
@@ -172,7 +172,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` decimoquinta ola** — IDE-0089 (0088 entregada; quedan 0089…0090).
+1. **Cola `0.4.4` decimoquinta ola** — IDE-0090 (0089 entregada; queda 0090).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -230,10 +230,10 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0086 | Clic en el material libre selecciona ese tablero | Entregado |
 | IDE-0087 | Copiar piezas colocadas/total de la barra | Entregado; Ctrl+Alt+Shift+P |
 | IDE-0088 | Copiar las piezas omitidas de la barra | Entregado; Ctrl+Alt+Shift+O |
-| IDE-0089 | Copiar los tableros físicos de la barra | Planificada; Ctrl+Alt+Shift+N |
+| IDE-0089 | Copiar los tableros físicos de la barra | Entregado; Ctrl+Alt+Shift+N |
 | IDE-0090 | Copiar la selección de la barra | Planificada; Ctrl+Alt+Shift+S |
 
-Prioridad de ataque: **IDE-0089** (copiar los tableros físicos de la barra).
+Prioridad de ataque: **IDE-0090** (copiar la selección de la barra).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
