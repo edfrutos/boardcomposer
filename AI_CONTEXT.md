@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-10-03-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-10-04-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -97,8 +97,7 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el material libre del tablero de la barra (IDE-0085; Ctrl+Alt+Shift+F).
 - Clic en el material libre selecciona ese tablero (IDE-0086).
 - Copiar las piezas colocadas de la barra (IDE-0087; Ctrl+Alt+Shift+P).
-- Copiar las piezas omitidas de la barra (IDE-0088; Ctrl+Alt+Shift+O).
-- Próximo: decimoquinta ola IDE-0089 (0088 entregada; quedan 0089…0090);
+- Próximo: cerrar `#716` (IDE-0088); luego IDE-0089…0090;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
