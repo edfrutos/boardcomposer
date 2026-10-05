@@ -236,6 +236,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_placed_pieces"])
         self._menus["edit"].addAction(self._actions["copy_omitted_pieces"])
         self._menus["edit"].addAction(self._actions["copy_physical_boards"])
+        self._menus["edit"].addAction(self._actions["copy_selection_count"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -357,6 +358,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_physical_boards"].triggered.connect(
             self._copy_physical_boards
+        )
+        self._actions["copy_selection_count"].triggered.connect(
+            self._copy_selection_count
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -3026,6 +3030,7 @@ class MainWindow(QMainWindow):
 
     def _update_selection_status(self) -> None:
         """Show how many Workspace pieces are selected (IDE-0063)."""
+        self._sync_copy_selection_count_action()
         label = getattr(self, "_selection_label", None)
         if label is None:
             return
@@ -6662,6 +6667,32 @@ class MainWindow(QMainWindow):
         value = str(count)
         self._copy_text_to_clipboard(value)
         self._status("status.physical_boards_copied", n=value)
+
+    def _sync_copy_selection_count_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_selection_count")
+        if action is None:
+            return
+        enabled = bool(self.workspace.selection.selected())
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_selection_count"))
+            if enabled
+            else self._tr("status.nothing_to_copy_selection_count")
+        )
+
+    def _copy_selection_count(self, _checked: bool = False) -> None:
+        """Copy the status-bar selection count (IDE-0090)."""
+        del _checked
+        count = len(self.workspace.selection.selected())
+        if count <= 0:
+            self._status("status.nothing_to_copy_selection_count")
+            return
+        value = str(count)
+        self._copy_text_to_clipboard(value)
+        self._status("status.selection_count_copied", n=value)
 
     def _sync_copy_board_material_action(self) -> None:
         actions = getattr(self, "_actions", None)

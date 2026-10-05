@@ -311,6 +311,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_placed_pieces": "Copiar piezas colocadas",
         "action.copy_omitted_pieces": "Copiar piezas omitidas",
         "action.copy_physical_boards": "Copiar tableros físicos",
+        "action.copy_selection_count": "Copiar selección",
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -610,6 +611,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.copy_physical_boards": (
             "Copiar los tableros físicos de la barra (Ctrl+Alt+Shift+N); "
+            "el número, sin el prefijo; deshabilitado si la etiqueta está oculta; "
+            "no encuadra"
+        ),
+        "tip.copy_selection_count": (
+            "Copiar la selección de la barra (Ctrl+Alt+Shift+S); "
             "el número, sin el prefijo; deshabilitado si la etiqueta está oculta; "
             "no encuadra"
         ),
@@ -1490,6 +1496,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_physical_boards": (
             "No hay tableros físicos que copiar"
         ),
+        "status.selection_count_copied": "Selección copiada: {n}",
+        "status.nothing_to_copy_selection_count": (
+            "No hay piezas seleccionadas que copiar"
+        ),
         "status.kerf_copied": "Espesor de sierra copiado: {length}",
         "status.nothing_to_copy_kerf": (
             "No hay proyecto para copiar el espesor de sierra"
@@ -2116,6 +2126,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_placed_pieces": "Copy placed pieces",
         "action.copy_omitted_pieces": "Copy omitted pieces",
         "action.copy_physical_boards": "Copy physical boards",
+        "action.copy_selection_count": "Copy selection count",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2401,6 +2412,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "tip.copy_physical_boards": (
             "Copy the status-bar physical boards (Ctrl+Alt+Shift+N); "
+            "the count, without the prefix; disabled when the label is hidden; "
+            "does not fit the view"
+        ),
+        "tip.copy_selection_count": (
+            "Copy the status-bar selection count (Ctrl+Alt+Shift+S); "
             "the count, without the prefix; disabled when the label is hidden; "
             "does not fit the view"
         ),
@@ -3232,6 +3248,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_omitted_pieces": "No omitted pieces to copy",
         "status.physical_boards_copied": "Physical boards copied: {n}",
         "status.nothing_to_copy_physical_boards": "No physical boards to copy",
+        "status.selection_count_copied": "Selection copied: {n}",
+        "status.nothing_to_copy_selection_count": "No selected pieces to copy",
         "status.kerf_copied": "Saw kerf copied: {length}",
         "status.nothing_to_copy_kerf": "No project to copy the saw kerf",
         "status.no_recent_to_clear": "No recent projects to clear",
@@ -3610,6 +3628,7 @@ _ACTION_KEYS = (
     "copy_placed_pieces",
     "copy_omitted_pieces",
     "copy_physical_boards",
+    "copy_selection_count",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

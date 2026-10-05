@@ -114,6 +114,7 @@ en red; puedes **Copiar**).
 | Copiar piezas colocadas | Ctrl+Alt+Shift+P |
 | Copiar piezas omitidas | Ctrl+Alt+Shift+O |
 | Copiar tableros físicos | Ctrl+Alt+Shift+N |
+| Copiar selección de la barra | Ctrl+Alt+Shift+S |
 | Renombrar selección | F2 |
 | Renombrar proyecto | Ctrl+Shift+F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
@@ -359,7 +360,8 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+Alt+Shift+F** copia el porcentaje (`76.0%`), sin el prefijo.
   Si hay piezas seleccionadas en el Workspace, aparece `1 sel.` / `2 sel.`
   (oculta si no hay selección). **Clic** en `n sel.` ajusta el encuadre
-  (**Ctrl+Shift+0**). El kerf del proyecto va como `kerf 3.2 mm`
+  (**Ctrl+Shift+0**). **Ctrl+Alt+Shift+S** copia el número, sin `sel.`.
+  El kerf del proyecto va como `kerf 3.2 mm`
   (unidades de Preferencias; oculto si no hay proyecto). **Clic** lo
   edita (**Ctrl+Alt+K**). **Ctrl+Alt+Shift+K** copia ese espesor
   (unidades de Preferencias; kerf 0 también). El

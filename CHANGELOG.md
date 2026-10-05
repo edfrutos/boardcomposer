@@ -9,6 +9,16 @@
 
 ### Añadido
 
+- Copiar la selección de la barra (IDE-0090).
+  **Ctrl+Alt+Shift+S**. Copia el número (`2`), sin `sel.`.
+  Deshabilitado si el rótulo está oculto. No encuadra.
+  Cierra la decimoquinta ola 0087…0090. Cola vacía.
+  Sin bump `.bcproj`; no cambia el solver.
+- Copiar los tableros físicos de la barra (IDE-0089).
+  **Ctrl+Alt+Shift+N**. Copia el número (`5`), sin `tab.`.
+  Deshabilitado si el rótulo está oculto. No encuadra.
+  Siguiente: IDE-0090.
+  Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-10-05: snapshot
   `docs/masterplan/REVIEW-2026-10-05-planificacion.md`; Issues = 0;
   `#716` (IDE-0088) en `main`; IDE-0089 🟡 `#718`; residual
