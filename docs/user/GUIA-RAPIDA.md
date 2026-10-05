@@ -112,6 +112,7 @@ en red; puedes **Copiar**).
 | Copiar aprovechamiento del tablero | Ctrl+Alt+Shift+U |
 | Copiar material libre del tablero | Ctrl+Alt+Shift+F |
 | Copiar piezas colocadas | Ctrl+Alt+Shift+P |
+| Copiar piezas omitidas | Ctrl+Alt+Shift+O |
 | Renombrar selección | F2 |
 | Renombrar proyecto | Ctrl+Shift+F2 |
 | Duplicar / Eliminar | Ctrl+D / Backspace o Delete |
@@ -340,6 +341,7 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+Alt+Shift+P** copia `1/2`, como el rótulo.
   Las omitidas van como `2 om.` (inventario sin colocación; oculto si
   es 0). **Clic** las selecciona y encuadra si están en el Workspace.
+  **Ctrl+Alt+Shift+O** copia el número, sin `om.`.
   Los tableros físicos van como `3 tab.` (suma de cantidades; oculto si
   no hay). **Clic** encuadra todos los tableros (**Ctrl+0**). El espesor
   del tablero va como `esp. 19 mm` (el enfocado, o el único tipo; oculto

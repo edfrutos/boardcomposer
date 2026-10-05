@@ -309,6 +309,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_board_utilization": "Copiar aprovechamiento del tablero",
         "action.copy_board_free_material": "Copiar material libre del tablero",
         "action.copy_placed_pieces": "Copiar piezas colocadas",
+        "action.copy_omitted_pieces": "Copiar piezas omitidas",
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -600,6 +601,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_placed_pieces": (
             "Copiar las piezas colocadas de la barra (Ctrl+Alt+Shift+P); "
             "colocadas/total, como el rótulo; no encuadra"
+        ),
+        "tip.copy_omitted_pieces": (
+            "Copiar las piezas omitidas de la barra (Ctrl+Alt+Shift+O); "
+            "el número, sin el prefijo; deshabilitado si la etiqueta está oculta; "
+            "no las selecciona"
         ),
         "tip.copy_inspector": (
             "Copiar el texto visible del Inspector (Ctrl+Alt+I); "
@@ -1472,6 +1478,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "No hay material libre de tablero que copiar"
         ),
         "status.placed_pieces_copied": "Piezas colocadas copiadas: {value}",
+        "status.omitted_pieces_copied": "Piezas omitidas copiadas: {n}",
+        "status.nothing_to_copy_omitted_pieces": ("No hay piezas omitidas que copiar"),
         "status.kerf_copied": "Espesor de sierra copiado: {length}",
         "status.nothing_to_copy_kerf": (
             "No hay proyecto para copiar el espesor de sierra"
@@ -2096,6 +2104,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_board_utilization": "Copy board utilization",
         "action.copy_board_free_material": "Copy free board material",
         "action.copy_placed_pieces": "Copy placed pieces",
+        "action.copy_omitted_pieces": "Copy omitted pieces",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2373,6 +2382,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_placed_pieces": (
             "Copy the status-bar placed pieces (Ctrl+Alt+Shift+P); "
             "placed/total, as on the label; does not fit the view"
+        ),
+        "tip.copy_omitted_pieces": (
+            "Copy the status-bar omitted pieces (Ctrl+Alt+Shift+O); "
+            "the count, without the prefix; disabled when the label is hidden; "
+            "does not select them"
         ),
         "tip.copy_board_material": (
             "Copy the status-bar board material (Ctrl+Alt+Shift+M); "
@@ -3198,6 +3212,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "No free board material to copy"
         ),
         "status.placed_pieces_copied": "Placed pieces copied: {value}",
+        "status.omitted_pieces_copied": "Omitted pieces copied: {n}",
+        "status.nothing_to_copy_omitted_pieces": "No omitted pieces to copy",
         "status.kerf_copied": "Saw kerf copied: {length}",
         "status.nothing_to_copy_kerf": "No project to copy the saw kerf",
         "status.no_recent_to_clear": "No recent projects to clear",
@@ -3574,6 +3590,7 @@ _ACTION_KEYS = (
     "copy_board_utilization",
     "copy_board_free_material",
     "copy_placed_pieces",
+    "copy_omitted_pieces",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",
