@@ -37,7 +37,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [ ] Barra de estado: tableros físicos (`3 tab.`); suma cantidades; oculta si no hay (IDE-0069). Clic encuadra todos los tableros (IDE-0071). Copiar el número (IDE-0089; Ctrl+Alt+Shift+N).
 - [ ] Barra de estado: espesor del tablero (`esp. 19 mm`); enfocado o el único tipo; oculta si hay varios sin foco (IDE-0073). Clic abre la edición de ese tablero (IDE-0074). Copiar espesor (IDE-0075; Ctrl+Alt+Shift+T).
 - [ ] Barra de estado: material del tablero (`mat. Demo`); mismo tablero que el espesor; oculta si está vacío o no hay tablero (IDE-0076). Clic abre la edición de ese tablero (IDE-0078). Copiar material (IDE-0077; Ctrl+Alt+Shift+M).
-- [ ] Barra de estado: `n sel.` con piezas seleccionadas en el Workspace; oculta si no hay (IDE-0063). Clic ajusta el encuadre (IDE-0066).
+- [ ] Barra de estado: `n sel.` con piezas seleccionadas en el Workspace; oculta si no hay (IDE-0063). Clic ajusta el encuadre (IDE-0066). Copiar el número (IDE-0090; Ctrl+Alt+Shift+S).
 - [ ] Barra de estado: kerf del proyecto (`kerf 3.2 mm`); unidades de Preferencias; oculta sin proyecto (IDE-0065). Clic abre el espesor de sierra (IDE-0067). Copiar espesor (IDE-0072; Ctrl+Alt+Shift+K).
 - [ ] Copiar medidas L×A de una sola pieza (**Ctrl+Alt+Shift+D**); unidades de Preferencias; idle con varias (IDE-0064).
 - [ ] Copiar medidas L×A de un tablero (**Ctrl+Alt+Shift+B**); una hoja; la cantidad no multiplica (IDE-0068).
