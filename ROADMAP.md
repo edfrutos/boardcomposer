@@ -67,7 +67,7 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 ## Próximo foco (operativo)
 
-Revisión: `docs/masterplan/REVIEW-2026-10-04-planificacion.md`.
+Revisión: `docs/masterplan/REVIEW-2026-10-05-planificacion.md`.
 
 1. Release **`0.4.3`** / `v0.4.3` publicado (2026-09-16).
 2. Ciclo **`0.4.4.dev0`** — duodécima ola cerrada (0078 entregada `#702`;
@@ -82,8 +82,9 @@ Revisión: `docs/masterplan/REVIEW-2026-10-04-planificacion.md`.
    0043…0046 `#657`…`#661`; 0042 `#655`; tercera ola 0037…0041; segunda
    ola 0031…0036; ola 1 0025…0030). IDE-0079 entregada `#706`.
    IDE-0080 entregada `#707`. Decimotercera ola cerrada (0082 entregada).
-   Decimocuarta ola cerrada (0086 entregada). Decimoquinta ola residual:
-   IDE-0088 🟡 `#716` + IDE-0089…0090 🔵 (0087 entregada `#715`).
+   Decimocuarta ola cerrada (0086 entregada). IDE-0087 `#715`;
+   IDE-0088 `#716`. Decimoquinta ola residual: IDE-0089 🟡 `#718` +
+   IDE-0090 🔵.
 3. Cola producto IDE-0019…0024 cerrada en `0.4.3` (incluye Skyline `#623`).
 4. IDE-0007 eval humana cerrada (2026-09-12); LLM sigue diferido.
 5. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).

@@ -157,8 +157,8 @@ Observaciones:
 | IDE-0085 | Copiar el material libre del tablero | 🟢 | P3 |
 | IDE-0086 | Clic en el material libre selecciona ese tablero | 🟢 | P3 |
 | IDE-0087 | Copiar piezas colocadas/total de la barra | 🟢 | P3 |
-| IDE-0088 | Copiar las piezas omitidas de la barra | 🟡 | P3 |
-| IDE-0089 | Copiar los tableros físicos de la barra | 🔵 | P3 |
+| IDE-0088 | Copiar las piezas omitidas de la barra | 🟢 | P3 |
+| IDE-0089 | Copiar los tableros físicos de la barra | 🟡 | P3 |
 | IDE-0090 | Copiar la selección de la barra | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -240,8 +240,8 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0085 | S | IDE-0084 | Entregado; Ctrl+Alt+Shift+F; porcentaje sin prefijo |
 | IDE-0086 | S | IDE-0084 | Entregado; clic selecciona el tablero; arrastre no |
 | IDE-0087 | S | IDE-0060; SCR-005 | Entregado; Ctrl+Alt+Shift+P; `1/2`; no encuadra |
-| IDE-0088 | S | IDE-0079 | En `#716`; Ctrl+Alt+Shift+O; el número, sin `om.` |
-| IDE-0089 | S | IDE-0069 | Planificada; Ctrl+Alt+Shift+N; el número, sin `tab.` |
+| IDE-0088 | S | IDE-0079 | Entregado `#716`; Ctrl+Alt+Shift+O; el número, sin `om.` |
+| IDE-0089 | S | IDE-0069 | En `#718`; Ctrl+Alt+Shift+N; el número, sin `tab.` |
 | IDE-0090 | S | IDE-0063 | Planificada; Ctrl+Alt+Shift+S; el número, sin `sel.` |
 
 ---
@@ -274,17 +274,18 @@ Detalle: `docs/masterplan/epics/`.
 completadas (ciclo `0.4.4` ola 1 + 0031…0088; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
-`#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`/`#702`/`#706`/`#715`).
+`#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`/`#702`/`#706`/`#715`/
+`#716`).
 Séptima…duodécima ola cerradas; IDE-0079 `#706`; IDE-0080 `#707`.
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
-(0086 entregada). Decimoquinta ola residual: IDE-0088 🟡 `#716` +
-IDE-0089…0090 🔵 (0087 entregada `#715`). IDE-0007 🟢 MVP+eval
+(0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`. Decimoquinta ola
+residual: IDE-0089 🟡 `#718` + IDE-0090 🔵. IDE-0007 🟢 MVP+eval
 (2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-04-planificacion.md`.
+`REVIEW-2026-10-05-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: cerrar `#716` (IDE-0088); luego IDE-0089…0090.
+1. Cola producto `0.4.4`: cerrar `#718` (IDE-0089); luego IDE-0090.
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-04
+## Unreleased — 0.4.4.dev0 — 2026-10-05
 
 ### Corregido
 
@@ -9,6 +9,16 @@
 
 ### Añadido
 
+- Docs planificación 2026-10-05: snapshot
+  `docs/masterplan/REVIEW-2026-10-05-planificacion.md`; Issues = 0;
+  `#716` (IDE-0088) en `main`; IDE-0089 🟡 `#718`; residual
+  0090 🔵 → **sin IDE nuevas**. Histórico 2026-10-04 desde PR `#717`.
+  Realinea docs tras merge de `#717` sobre `#716`.
+- Copiar las piezas omitidas de la barra (IDE-0088).
+  **Ctrl+Alt+Shift+O**. Copia el número (`1`), sin `om.`.
+  Deshabilitado si el rótulo está oculto. No las selecciona.
+  Siguiente: IDE-0089.
+  Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-10-04: snapshot
   `docs/masterplan/REVIEW-2026-10-04-planificacion.md`; Issues = 0;
   `#715` (IDE-0087) en `main`; IDE-0088 🟡 `#716`; residual
