@@ -237,6 +237,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_omitted_pieces"])
         self._menus["edit"].addAction(self._actions["copy_physical_boards"])
         self._menus["edit"].addAction(self._actions["copy_selection_count"])
+        self._menus["edit"].addAction(self._actions["copy_zoom"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -362,6 +363,7 @@ class MainWindow(QMainWindow):
         self._actions["copy_selection_count"].triggered.connect(
             self._copy_selection_count
         )
+        self._actions["copy_zoom"].triggered.connect(self._copy_zoom)
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
             self._duplicate_selected_piece
@@ -3070,11 +3072,10 @@ class MainWindow(QMainWindow):
 
     def _update_zoom_status(self, zoom: float | None = None) -> None:
         """Refresh the permanent Workspace zoom widget."""
+        self._sync_copy_zoom_action()
         label = getattr(self, "_zoom_label", None)
         if label is not None:
-            factor = self.workspace.zoom if zoom is None else zoom
-            percent = max(1, int(round(factor * 100)))
-            label.setText(self._tr("status.zoom", n=percent))
+            label.setText(self._zoom_status_text(zoom))
             tip = with_native_shortcuts(self._tr("tip.zoom_status"))
             label.setToolTip(tip if tip != "tip.zoom_status" else "")
             label.setCursor(
@@ -6693,6 +6694,28 @@ class MainWindow(QMainWindow):
         value = str(count)
         self._copy_text_to_clipboard(value)
         self._status("status.selection_count_copied", n=value)
+
+    def _zoom_status_text(self, zoom: float | None = None) -> str:
+        factor = self.workspace.zoom if zoom is None else zoom
+        percent = max(1, int(round(factor * 100)))
+        return self._tr("status.zoom", n=percent)
+
+    def _sync_copy_zoom_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_zoom")
+        if action is None:
+            return
+        action.setEnabled(True)
+        action.setStatusTip(with_native_shortcuts(self._tr("tip.copy_zoom")))
+
+    def _copy_zoom(self, _checked: bool = False) -> None:
+        """Copy the status-bar zoom (IDE-0091)."""
+        del _checked
+        value = self._zoom_status_text()
+        self._copy_text_to_clipboard(value)
+        self._status("status.zoom_copied", n=value)
 
     def _sync_copy_board_material_action(self) -> None:
         actions = getattr(self, "_actions", None)

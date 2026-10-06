@@ -100,7 +100,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar las piezas omitidas de la barra (IDE-0088; Ctrl+Alt+Shift+O).
 - Copiar los tableros físicos de la barra (IDE-0089; Ctrl+Alt+Shift+N).
 - Copiar la selección de la barra (IDE-0090; Ctrl+Alt+Shift+S).
-- Próximo: ninguna en producto (decimoquinta ola cerrada; cola vacía);
+- Copiar el zoom de la barra (IDE-0091; Ctrl+Alt+Shift+Z).
+- Próximo: IDE-0092 (decimosexta ola 0091…0094; quedan 0092…0094);
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
