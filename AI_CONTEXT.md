@@ -101,7 +101,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar los tableros físicos de la barra (IDE-0089; Ctrl+Alt+Shift+N).
 - Copiar la selección de la barra (IDE-0090; Ctrl+Alt+Shift+S).
 - Copiar el zoom de la barra (IDE-0091; Ctrl+Alt+Shift+Z).
-- Próximo: IDE-0092 (decimosexta ola 0091…0094; quedan 0092…0094);
+- Barra de estado: retales de la solución seleccionada (IDE-0092).
+- Próximo: IDE-0093 (decimosexta ola 0091…0094; quedan 0093…0094);
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

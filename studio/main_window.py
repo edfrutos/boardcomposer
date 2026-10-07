@@ -803,6 +803,8 @@ class MainWindow(QMainWindow):
         self._board_free_material_label.setObjectName("statusBoardFreeMaterial")
         self._board_free_material_label_armed = False
         self._board_free_material_label.installEventFilter(self)
+        self._offcuts_label = QLabel()
+        self._offcuts_label.setObjectName("statusOffcuts")
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -823,6 +825,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._board_material_label)
         status.addPermanentWidget(self._board_utilization_label)
         status.addPermanentWidget(self._board_free_material_label)
+        status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
         status.addPermanentWidget(self._zoom_label)
@@ -835,6 +838,7 @@ class MainWindow(QMainWindow):
         self._update_board_thickness_status()
         self._update_board_material_status()
         self._update_board_utilization_status()
+        self._update_offcuts_status()
         self._update_selection_status()
         self._update_kerf_status()
         self._update_zoom_status(self.workspace.zoom)
@@ -1291,6 +1295,7 @@ class MainWindow(QMainWindow):
             self._update_placed_status()
             self._update_omitted_status()
             self._update_board_utilization_status()
+            self._update_offcuts_status()
 
     def _find_explorer_item_by_role(self, role: str) -> QTreeWidgetItem | None:
         """Return the first explorer item whose UserRole matches ``role``."""
@@ -2651,6 +2656,7 @@ class MainWindow(QMainWindow):
         self._update_board_thickness_status()
         self._update_board_material_status()
         self._update_board_utilization_status()
+        self._update_offcuts_status()
         self._update_kerf_status()
         self._sync_project_file_actions()
         self._sync_generate_actions()
@@ -2878,6 +2884,30 @@ class MainWindow(QMainWindow):
         label.setText(self._tr("status.omitted_pieces", n=count))
         label.setToolTip(self._tr("tip.status_omitted_pieces", n=count))
         label.setCursor(Qt.CursorShape.PointingHandCursor)
+        label.show()
+
+    def _selected_solution_offcut_count(self) -> int:
+        """Offcuts reported by the selected solution. None means zero."""
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return 0
+        return len(solution.offcuts)
+
+    def _update_offcuts_status(self) -> None:
+        """Show offcuts of the selected solution (IDE-0092)."""
+        label = getattr(self, "_offcuts_label", None)
+        if label is None:
+            return
+        count = self._selected_solution_offcut_count()
+        if count <= 0:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.offcuts", n=count))
+        label.setToolTip(self._tr("tip.status_offcuts", n=count))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
         label.show()
 
     def _update_boards_status(self) -> None:
@@ -4208,6 +4238,7 @@ class MainWindow(QMainWindow):
         self._update_board_thickness_status()
         self._update_board_material_status()
         self._update_board_utilization_status()
+        self._update_offcuts_status()
         self._update_kerf_status()
         self._update_zoom_status()
         self.workspace.retranslate(self._ui_language())
@@ -4744,6 +4775,7 @@ class MainWindow(QMainWindow):
 
         self.inspector.setText("\n".join(lines))
         self.console.set_replay_solution(solution)
+        self._update_offcuts_status()
 
     def _on_timeline_replay_step(self, solution, reveal_count: int) -> None:
         if solution is None:

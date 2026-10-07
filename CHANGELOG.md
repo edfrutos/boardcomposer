@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Barra de estado: retales de la solución seleccionada (IDE-0092).
+  `2 ret.`. Cuenta los retales de esa solución. Oculto si no hay
+  solución o si es 0. Sin clic. Siguiente: IDE-0093.
+  Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-10-07: snapshot
   `docs/masterplan/REVIEW-2026-10-07-planificacion.md`; Issues = 0;
   `#721` (IDE-0091) en `main`; residual IDE-0092…0094 🔵 →
