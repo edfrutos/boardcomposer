@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.59
+**Versión:** 1.3.61
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 04/10/2026
+**Última revisión:** 07/10/2026
 
 ---
 
@@ -289,7 +289,7 @@ Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada). Decimosexta ola residual: IDE-0092…0094 (0091 entregada). IDE-0007 🟢 MVP+eval
 (2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-05-planificacion.md`.
+`REVIEW-2026-10-07-planificacion.md`.
 
 Próximo foco:
 

@@ -3,10 +3,10 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.48
+**Versión:** 1.2.50
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 04/10/2026
+**Última revisión:** 07/10/2026
 
 ---
 
@@ -209,8 +209,8 @@ IDE-0079…0082 🔵 sin PR de producto; Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-10-05 en `REVIEW-2026-10-05-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`10-04` (abiertas = 1, DT-0006).
+2026-10-07 en `REVIEW-2026-10-07-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`10-06` (abiertas = 1, DT-0006).
 
 Próximo foco:
 

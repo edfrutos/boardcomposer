@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-05
+## Unreleased — 0.4.4.dev0 — 2026-10-07
 
 ### Corregido
 
@@ -9,6 +9,14 @@
 
 ### Añadido
 
+- Docs planificación 2026-10-07: snapshot
+  `docs/masterplan/REVIEW-2026-10-07-planificacion.md`; Issues = 0;
+  `#721` (IDE-0091) en `main`; residual IDE-0092…0094 🔵 →
+  **sin IDE nuevas**. Histórico 2026-10-06 desde PR `#722` (draft).
+- Docs planificación 2026-10-06: snapshot
+  `docs/masterplan/REVIEW-2026-10-06-planificacion.md`; Issues = 0;
+  `#721` (IDE-0091) en `main`; residual IDE-0092…0094 🔵 →
+  **sin IDE nuevas**. Histórico 2026-10-05 desde PR `#719`.
 - Copiar el zoom de la barra (IDE-0091).
   **Ctrl+Alt+Shift+Z**. Copia el mismo texto del rótulo (`48%`, `100%`).
   Siempre habilitado. No vuelve al 100%.
