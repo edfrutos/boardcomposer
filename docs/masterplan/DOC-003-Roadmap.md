@@ -202,6 +202,6 @@ Revisión: `REVIEW-2026-10-07-planificacion.md`.
 
 Pendiente de:
 
-- IDE-0092 (decimosexta ola residual 0092…0094; 0091 entregada);
+- IDE-0092 (decimosexta ola residual 0092…0094; 0091 entregada `#721`);
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.

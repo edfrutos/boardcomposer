@@ -8,7 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-10-02
+## Estado actual — 2026-10-06
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
