@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Copiar los retales de la barra (IDE-0093).
+  **Ctrl+Alt+Shift+R**. Copia el número (`2`), sin `ret.`.
+  Deshabilitado si el rótulo está oculto. No promociona.
+  Siguiente: IDE-0094.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: retales de la solución seleccionada (IDE-0092).
   `2 ret.`. Cuenta los retales de esa solución. Oculto si no hay
   solución o si es 0. Sin clic. Siguiente: IDE-0093.
