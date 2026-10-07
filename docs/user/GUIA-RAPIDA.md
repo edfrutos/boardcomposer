@@ -370,6 +370,8 @@ Chrome de Studio (se recuerda entre sesiones).
   (rueda, **Ctrl+=** / **Ctrl+-**, **Ctrl+0**). **Clic** en el **%**
   vuelve al 100% (**Ctrl+Alt+0**); si ya está, el cursor no es mano.
   **Ctrl+Alt+Shift+Z** copia ese porcentaje, sin volver al 100%.
+  Los retales de la solución seleccionada van como `2 ret.` (oculto si
+  no hay solución o si es 0). Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

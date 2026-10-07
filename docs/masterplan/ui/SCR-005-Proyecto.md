@@ -58,7 +58,7 @@ oculta si no hay selección; clic ajusta el encuadre, IDE-0066;
 del proyecto (`kerf 3.2 mm`,
 IDE-0065; unidades de Preferencias; oculto si no hay proyecto; clic abre
 el espesor de sierra, IDE-0067; **Ctrl+Alt+Shift+K** lo copia, IDE-0072) y el zoom
-del Workspace (clic vuelve al 100%, IDE-0062; **Ctrl+Alt+Shift+Z** lo copia, IDE-0091).
+del Workspace (clic vuelve al 100%, IDE-0062; **Ctrl+Alt+Shift+Z** lo copia, IDE-0091), los retales de la solución seleccionada (`n ret.`, IDE-0092; ocultos si no hay solución o si es 0; sin clic).
 
 ---
 
