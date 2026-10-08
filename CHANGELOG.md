@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-07
+## Unreleased — 0.4.4.dev0 — 2026-10-08
 
 ### Corregido
 
@@ -9,6 +9,10 @@
 
 ### Añadido
 
+- Docs planificación 2026-10-08: snapshot
+  `docs/masterplan/REVIEW-2026-10-08-planificacion.md`; Issues = 0;
+  `#724` (IDE-0092) en `main`; IDE-0093 🟡 `#725`; residual IDE-0094 🔵 →
+  **sin IDE nuevas**. Histórico 2026-10-07 desde PR `#723`.
 - Barra de estado: retales de la solución seleccionada (IDE-0092).
   `2 ret.`. Cuenta los retales de esa solución. Oculto si no hay
   solución o si es 0. Sin clic. Siguiente: IDE-0093.
