@@ -162,7 +162,7 @@ Observaciones:
 | IDE-0090 | Copiar la selección de la barra | 🟢 | P3 |
 | IDE-0091 | Copiar el zoom de la barra | 🟢 | P3 |
 | IDE-0092 | Barra de estado: retales de la solución seleccionada | 🟢 | P3 |
-| IDE-0093 | Copiar los retales de la barra | 🔵 | P3 |
+| IDE-0093 | Copiar los retales de la barra | 🟡 | P3 |
 | IDE-0094 | Clic en retales selecciona su tablero | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -249,7 +249,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0090 | S | IDE-0063 | Entregado `#720`; Ctrl+Alt+Shift+S; el número, sin `sel.` |
 | IDE-0091 | S | IDE-0062 | Entregado `#721`; Ctrl+Alt+Shift+Z; el mismo texto del rótulo; no vuelve al 100% |
 | IDE-0092 | S | solución seleccionada | Entregado; `n ret.`; `len(offcuts)` de la solución seleccionada; oculta si 0; sin clic |
-| IDE-0093 | S | IDE-0092 | Planificada; Ctrl+Alt+Shift+R; el número, sin `ret.`; no promociona |
+| IDE-0093 | S | IDE-0092 | En curso `#725`; Ctrl+Alt+Shift+R; el número, sin `ret.`; no promociona |
 | IDE-0094 | S | IDE-0092 | Planificada; clic selecciona el tablero (`stock_panel_index`); no encuadra; no promociona; arrastre no |
 
 ---
@@ -288,13 +288,13 @@ Séptima…duodécima ola cerradas; IDE-0079 `#706`; IDE-0080 `#707`.
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada `#720`). Decimosexta ola
-residual: IDE-0093…0094 (0092 entregada; 0091 `#721`). IDE-0007 🟢 MVP+eval
-(2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-07-planificacion.md`.
+residual: IDE-0093 🟡 `#725` + IDE-0094 🔵 (0092 `#724`; 0091 `#721`).
+IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
+entregadas. Snapshot: `REVIEW-2026-10-12-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0093 (quedan 0093…0094).
+1. Cola producto `0.4.4`: cerrar IDE-0093 `#725` (quedan 0093…0094).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
