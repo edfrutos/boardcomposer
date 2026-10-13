@@ -7,7 +7,9 @@ server, which is what makes these tests runnable in CI and in sandboxed
 agent environments alike.
 """
 
+import atexit
 import os
+import sys
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 # First QWidget/QDialog on Linux can block on AT-SPI/DBus or fontconfig
@@ -20,6 +22,19 @@ import pytest  # noqa: E402
 from PySide6.QtWidgets import QApplication  # noqa: E402
 
 
+def _save_coverage() -> None:
+    try:
+        import coverage
+    except ImportError:
+        return
+    current = getattr(coverage.Coverage, "current", None)
+    if current is None:
+        return
+    cov = current()
+    if cov is not None:
+        cov.save()
+
+
 @pytest.fixture(scope="session")
 def qapp():
     """Provide a single QApplication instance for the whole test session."""
@@ -27,3 +42,21 @@ def qapp():
     if app is None:
         app = QApplication([])
     yield app
+
+
+def pytest_sessionfinish(session, exitstatus):
+    """Leave before PySide tears down QObjects at interpreter shutdown.
+
+    A green suite still segfaults (exit 139) when Python deletes shared
+    styles, fonts and leftover windows. The result is already recorded.
+    """
+    del session
+    code = int(exitstatus)
+
+    def _finish() -> None:
+        _save_coverage()
+        sys.stdout.flush()
+        sys.stderr.flush()
+        os._exit(code)
+
+    atexit.register(_finish)
