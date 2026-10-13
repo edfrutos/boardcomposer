@@ -813,6 +813,8 @@ class MainWindow(QMainWindow):
         self._solution_label.setObjectName("statusSolution")
         self._solution_label_armed = False
         self._solution_label.installEventFilter(self)
+        self._solution_waste_label = QLabel()
+        self._solution_waste_label.setObjectName("statusSolutionWaste")
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -838,6 +840,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._board_utilization_label)
         status.addPermanentWidget(self._board_free_material_label)
         status.addPermanentWidget(self._solution_label)
+        status.addPermanentWidget(self._solution_waste_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -3022,9 +3025,36 @@ class MainWindow(QMainWindow):
             return None
         return index + 1, total
 
+    def _selected_solution_waste_text(self) -> str | None:
+        """Format internal gaps of the selected solution, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return None
+        return f"{solution.waste_ratio:.1%}"
+
+    def _update_solution_waste_status(self) -> None:
+        """Show internal gaps of the selected solution (IDE-0098)."""
+        label = getattr(self, "_solution_waste_label", None)
+        if label is None:
+            return
+        value = self._selected_solution_waste_text()
+        if value is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_waste", value=value))
+        label.setToolTip(self._tr("tip.status_solution_waste", value=value))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
+        self._update_solution_waste_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
