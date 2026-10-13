@@ -106,7 +106,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en los retales selecciona su tablero (IDE-0094).
 - Barra de estado: índice de la solución seleccionada (IDE-0095).
 - Copiar el índice de la solución de la barra (IDE-0096; Ctrl+Alt+Shift+L).
-- Próximo: IDE-0097 (decimoséptima ola residual 0097…0098);
+- Clic en el índice de la solución pasa a la siguiente (IDE-0097).
+- Próximo: IDE-0098 (decimoséptima ola residual);
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

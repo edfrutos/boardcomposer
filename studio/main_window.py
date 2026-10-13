@@ -811,6 +811,8 @@ class MainWindow(QMainWindow):
         self._board_free_material_label.installEventFilter(self)
         self._solution_label = QLabel()
         self._solution_label.setObjectName("statusSolution")
+        self._solution_label_armed = False
+        self._solution_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1064,6 +1066,33 @@ class MainWindow(QMainWindow):
                 ):
                     board, _ratio = resolved
                     self.select_explorer_board(board.board_id)
+                    return True
+        solution = getattr(self, "_solution_label", None)
+        if solution is not None and watched is solution:
+            can_step = self._selected_solution_index_label() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_step
+            ):
+                self._solution_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_label_armed
+                and not solution.rect().contains(event.position().toPoint())
+            ):
+                self._solution_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_label_armed
+                self._solution_label_armed = False
+                if armed and self._selected_solution_index_label() is not None:
+                    self._step_layout_solution(1)
                     return True
         offcuts = getattr(self, "_offcuts_label", None)
         if offcuts is not None and watched is offcuts:
@@ -3009,7 +3038,7 @@ class MainWindow(QMainWindow):
         current, total = resolved
         label.setText(self._tr("status.solution", current=current, total=total))
         label.setToolTip(self._tr("tip.status_solution", current=current, total=total))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_offcuts_status(self) -> None:

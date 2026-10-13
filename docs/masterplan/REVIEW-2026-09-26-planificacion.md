@@ -100,7 +100,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0094 clic en retales selecciona su tablero | 🟢 |
 | IDE-0095 barra: índice de la solución seleccionada | 🟢 |
 | IDE-0096 copiar el índice de la solución | 🟢 |
-| IDE-0097 clic en el índice pasa a la siguiente | 🔵 |
+| IDE-0097 clic en el índice pasa a la siguiente | 🟢 |
 | IDE-0098 barra: huecos internos de la solución | 🔵 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
@@ -180,7 +180,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — IDE-0097 (decimoséptima ola residual; 0096 entregada).
+1. **Cola `0.4.4`** — IDE-0098 (decimoséptima ola residual; 0097 entregada).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -244,12 +244,12 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0092 | Barra: retales de la solución seleccionada | Entregado; `n ret.`; oculta si 0; sin clic |
 | IDE-0093 | Copiar los retales de la barra | Entregado; Ctrl+Alt+Shift+R |
 | IDE-0094 | Clic en retales selecciona su tablero | Entregado; no encuadra; no promociona |
-| IDE-0095 | Barra: índice de la solución seleccionada | Entregado; `1/2 sol.`; sin clic |
+| IDE-0095 | Barra: índice de la solución seleccionada | Entregado; `1/2 sol.` |
 | IDE-0096 | Copiar el índice de la solución | Entregado; Ctrl+Alt+Shift+L; `1/2` sin `sol.`; no avanza |
-| IDE-0097 | Clic en el índice pasa a la siguiente solución | 🔵 arrastre no; no aplica el layout |
+| IDE-0097 | Clic en el índice pasa a la siguiente solución | Entregado; arrastre no; no aplica el layout |
 | IDE-0098 | Barra: huecos internos de la solución seleccionada | 🔵 misma visibilidad; sin clic |
 
-Prioridad de ataque: **IDE-0097** (decimoséptima ola residual; 0096 entregada).
+Prioridad de ataque: **IDE-0098** (decimoséptima ola residual; 0097 entregada).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
