@@ -124,6 +124,7 @@ en red; puedes **Copiar**).
 | Copiar zoom | Ctrl+Alt+Shift+Z |
 | Copiar retales | Ctrl+Alt+Shift+R |
 | Copiar índice de la solución | Ctrl+Alt+Shift+L |
+| Copiar huecos internos | Ctrl+Alt+Shift+G |
 | Zoom + / − (también rueda) | Ctrl+= / Ctrl+- |
 | Desplazar cámara (pan) | Botón medio / derecho / Espacio+arrastre |
 | Nuevo desde plantilla | Ctrl+Shift+N |
@@ -382,6 +383,7 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+Alt+Shift+L** copia `1/2`, sin `sol.`. No avanza.
   Los huecos internos van como `hueco 0.0%` (en inglés `gap 0.0%`).
   La misma visibilidad que el índice. `0.0%` se muestra. Sin clic.
+  **Ctrl+Alt+Shift+G** copia el porcentaje, sin `hueco`. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

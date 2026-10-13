@@ -96,6 +96,7 @@
 - Copiar el índice de la solución (**Ctrl+Alt+Shift+L**, IDE-0096).
 - Clic en el índice de la solución pasa a la siguiente (IDE-0097).
 - Barra de estado: huecos internos de la solución seleccionada (IDE-0098).
+- Copiar los huecos internos de la barra (IDE-0099; Ctrl+Alt+Shift+G).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -116,7 +117,8 @@
    ola cerrada (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`;
    IDE-0089 `#718`. Decimoquinta ola cerrada (0090 `#720`).
    Decimosexta ola cerrada (0094 entregada). Decimoséptima ola cerrada
-   (0098 entregada). Cola vacía.
+   (0098 entregada). Decimoctava ola residual: IDE-0100…0102
+   (0099 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
