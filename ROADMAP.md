@@ -85,7 +85,7 @@ Revisión: `docs/masterplan/REVIEW-2026-10-13-planificacion.md`.
    Decimocuarta ola cerrada (0086 entregada). IDE-0087 `#715`;
    IDE-0088 `#716`. IDE-0089 `#718`. Decimoquinta ola cerrada
    (0090 `#720`). Decimosexta ola cerrada (0094 entregada).
-   Decimoséptima ola residual: IDE-0096…0098 (0095 entregada).
+   Decimoséptima ola residual: IDE-0097…0098 (0096 entregada).
 3. Cola producto IDE-0019…0024 cerrada en `0.4.3` (incluye Skyline `#623`).
 4. IDE-0007 eval humana cerrada (2026-09-12); LLM sigue diferido.
 5. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).

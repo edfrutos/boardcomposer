@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Copiar el índice de la solución de la barra (IDE-0096).
+  **Ctrl+Alt+Shift+L**. Copia `1/2`, sin `sol.`.
+  Deshabilitado si el rótulo está oculto. No avanza.
+  Siguiente: IDE-0097.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: índice de la solución seleccionada (IDE-0095).
   `1/2 sol.`. Índice con base 1. Oculto si no hay solución o si el
   índice no mapea. Sin clic. Abre la decimoséptima ola 0095…0098.

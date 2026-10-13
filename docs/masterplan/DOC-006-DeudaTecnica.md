@@ -224,6 +224,6 @@ Próximo foco:
   (0082 entregada). Decimocuarta ola cerrada (0086 entregada).
   IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`. Decimoquinta ola
   cerrada (0090 `#720`). Decimosexta ola cerrada (0094 entregada).
-  Decimoséptima ola residual: IDE-0096…0098 (0095 entregada).
+  Decimoséptima ola residual: IDE-0097…0098 (0096 entregada).
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

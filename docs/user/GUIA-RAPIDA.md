@@ -123,6 +123,7 @@ en red; puedes **Copiar**).
 | Zoom al 100% | Ctrl+Alt+0 |
 | Copiar zoom | Ctrl+Alt+Shift+Z |
 | Copiar retales | Ctrl+Alt+Shift+R |
+| Copiar índice de la solución | Ctrl+Alt+Shift+L |
 | Zoom + / − (también rueda) | Ctrl+= / Ctrl+- |
 | Desplazar cámara (pan) | Botón medio / derecho / Espacio+arrastre |
 | Nuevo desde plantilla | Ctrl+Shift+N |
@@ -377,6 +378,7 @@ Chrome de Studio (se recuerda entre sesiones).
   número, sin `ret.`.
   La solución seleccionada va como `1/2 sol.` (oculto si no hay
   solución o si el índice no mapea). Sin clic.
+  **Ctrl+Alt+Shift+L** copia `1/2`, sin `sol.`. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

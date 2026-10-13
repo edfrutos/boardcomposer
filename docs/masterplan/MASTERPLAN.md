@@ -93,6 +93,7 @@
 - Copiar los retales de la barra (**Ctrl+Alt+Shift+R**, IDE-0093 `#725`).
 - Clic en los retales selecciona su tablero (IDE-0094).
 - Barra de estado: índice de la solución seleccionada (IDE-0095).
+- Copiar el índice de la solución (**Ctrl+Alt+Shift+L**, IDE-0096).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -113,7 +114,7 @@
    ola cerrada (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`;
    IDE-0089 `#718`. Decimoquinta ola cerrada (0090 `#720`).
    Decimosexta ola cerrada (0094 entregada). Decimoséptima ola residual:
-   IDE-0096…0098 (0095 entregada).
+   IDE-0097…0098 (0096 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
