@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Barra de estado: huecos internos de la solución seleccionada (IDE-0098).
+  `hueco 0.0%` / `gap 33.3%`. La misma visibilidad que el índice.
+  `0.0%` se muestra. Sin clic. Cierra la decimoséptima ola 0095…0098.
+  Cola vacía.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el índice de la solución pasa a la siguiente (IDE-0097).
   Cursor mano si se ve. Arrastre no. No aplica el layout ni cambia
   el zoom. Una sola solución no cambia el índice.

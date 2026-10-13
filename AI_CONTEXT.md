@@ -107,7 +107,8 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: índice de la solución seleccionada (IDE-0095).
 - Copiar el índice de la solución de la barra (IDE-0096; Ctrl+Alt+Shift+L).
 - Clic en el índice de la solución pasa a la siguiente (IDE-0097).
-- Próximo: IDE-0098 (decimoséptima ola residual);
+- Barra de estado: huecos internos de la solución seleccionada (IDE-0098).
+- Próximo: ninguna en producto (decimoséptima ola cerrada; cola vacía);
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

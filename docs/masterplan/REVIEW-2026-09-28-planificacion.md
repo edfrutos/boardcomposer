@@ -103,7 +103,7 @@ Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada (0094 entrega
 | IDE-0095 barra: índice de la solución seleccionada | 🟢 |
 | IDE-0096 copiar el índice de la solución | 🟢 |
 | IDE-0097 clic en el índice pasa a la siguiente | 🟢 |
-| IDE-0098 barra: huecos internos de la solución | 🔵 |
+| IDE-0098 barra: huecos internos de la solución | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -224,7 +224,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — IDE-0098 (decimoséptima ola residual; 0097 entregada).
+1. **Cola `0.4.4`** — ninguna en producto (decimoséptima ola cerrada; cola vacía).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -287,9 +287,9 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0095 | Barra: índice de la solución seleccionada | Entregado; `1/2 sol.` |
 | IDE-0096 | Copiar el índice de la solución | Entregado; Ctrl+Alt+Shift+L; `1/2` sin `sol.`; no avanza |
 | IDE-0097 | Clic en el índice pasa a la siguiente solución | Entregado; arrastre no; no aplica el layout |
-| IDE-0098 | Barra: huecos internos de la solución seleccionada | 🔵 misma visibilidad; sin clic |
+| IDE-0098 | Barra: huecos internos de la solución seleccionada | Entregado; `hueco 0.0%`; sin clic |
 
-Prioridad de ataque: **IDE-0098** (decimoséptima ola residual; 0097 entregada).
+Prioridad de ataque: **ninguna en producto** (decimoséptima ola cerrada; cola vacía).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

@@ -380,6 +380,8 @@ Chrome de Studio (se recuerda entre sesiones).
   solución o si el índice no mapea). **Clic** pasa a la siguiente.
   No aplica el layout ni cambia el zoom. Arrastre no.
   **Ctrl+Alt+Shift+L** copia `1/2`, sin `sol.`. No avanza.
+  Los huecos internos van como `hueco 0.0%` (en inglés `gap 0.0%`).
+  La misma visibilidad que el índice. `0.0%` se muestra. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
