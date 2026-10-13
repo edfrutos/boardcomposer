@@ -49,8 +49,8 @@ def test_offcuts_status_follows_the_selected_solution(qapp, tmp_path):
     assert not label.isHidden()
     assert "retales" in label.toolTip().casefold()
     assert "2" in label.toolTip()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
 
     calls: list[str] = []
     window._promote_offcuts = lambda: calls.append("promote")
@@ -68,4 +68,4 @@ def test_offcuts_status_follows_the_selected_solution(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "1 ret."
     assert "offcuts" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
+    assert "click" in label.toolTip().casefold()

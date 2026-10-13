@@ -372,7 +372,8 @@ Chrome de Studio (se recuerda entre sesiones).
   vuelve al 100% (**Ctrl+Alt+0**); si ya está, el cursor no es mano.
   **Ctrl+Alt+Shift+Z** copia ese porcentaje, sin volver al 100%.
   Los retales de la solución seleccionada van como `2 ret.` (oculto si
-  no hay solución o si es 0). Sin clic. **Ctrl+Alt+Shift+R** copia el
+  no hay solución o si es 0). **Clic** selecciona su tablero. No encuadra
+  ni promociona. **Ctrl+Alt+Shift+R** copia el
   número, sin `ret.`.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular

@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Clic en los retales selecciona su tablero (IDE-0094).
+  El tablero cuyo índice es `stock_panel_index`. Cursor mano si se ve.
+  Arrastre no. No encuadra ni promociona. Cierra la decimosexta ola
+  0091…0094. Cola vacía.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar los retales de la barra (IDE-0093).
   **Ctrl+Alt+Shift+R**. Copia el número (`2`), sin `ret.`.
   Deshabilitado si el rótulo está oculto. No promociona.

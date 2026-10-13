@@ -807,6 +807,8 @@ class MainWindow(QMainWindow):
         self._board_free_material_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
+        self._offcuts_label_armed = False
+        self._offcuts_label.installEventFilter(self)
         self._selection_label = QLabel()
         self._selection_label.setObjectName("statusSelection")
         self._selection_label_armed = False
@@ -1054,6 +1056,34 @@ class MainWindow(QMainWindow):
                 ):
                     board, _ratio = resolved
                     self.select_explorer_board(board.board_id)
+                    return True
+        offcuts = getattr(self, "_offcuts_label", None)
+        if offcuts is not None and watched is offcuts:
+            can_select = bool(self._offcut_owner_board_ids())
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._offcuts_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._offcuts_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._offcuts_label_armed
+                and not offcuts.rect().contains(event.position().toPoint())
+            ):
+                self._offcuts_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._offcuts_label_armed
+                self._offcuts_label_armed = False
+                owners = self._offcut_owner_board_ids()
+                if armed and owners:
+                    self._select_offcut_boards(owners)
                     return True
         selection = getattr(self, "_selection_label", None)
         if selection is not None and watched is selection:
@@ -2895,6 +2925,53 @@ class MainWindow(QMainWindow):
             return 0
         return len(solution.offcuts)
 
+    def _offcut_owner_board_ids(self) -> list[str] | None:
+        """Stock boards that own the selected solution's offcuts.
+
+        ``None`` means an offcut index does not map to a project board.
+        """
+        solution = self.services.layout.selected_solution
+        project = self.services.projects.current_project
+        if solution is None or project is None or not solution.offcuts:
+            return []
+        ids: list[str] = []
+        for offcut in solution.offcuts:
+            index = offcut.panel_reference.stock_panel_index
+            if index < 0 or index >= len(project.boards):
+                return None
+            board_id = project.boards[index].board_id
+            if board_id not in ids:
+                ids.append(board_id)
+        return ids
+
+    def _select_offcut_boards(self, board_ids: list[str]) -> None:
+        """Select the boards that own the offcuts. Does not fit or promote."""
+        if len(board_ids) == 1:
+            self.select_explorer_board(board_ids[0])
+            return
+        self.workspace.clear_piece_selection()
+        self.workspace.focus_board(board_ids[0])
+        self._show_board_inspector(board_ids[0])
+        blocked = self.explorer.blockSignals(True)
+        self.explorer.setSelectionMode(
+            QAbstractItemView.SelectionMode.ExtendedSelection
+        )
+        try:
+            self.explorer.clearSelection()
+            items = []
+            for board_id in board_ids:
+                item = self._find_explorer_item_by_role(f"board:{board_id}")
+                if item is not None:
+                    items.append(item)
+            if not items:
+                return
+            self.explorer.setCurrentItem(items[0])
+            for item in items:
+                item.setSelected(True)
+            self.explorer.scrollToItem(items[0])
+        finally:
+            self.explorer.blockSignals(blocked)
+
     def _update_offcuts_status(self) -> None:
         """Show offcuts of the selected solution (IDE-0092)."""
         self._sync_copy_offcuts_action()
@@ -2910,7 +2987,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.offcuts", n=count))
         label.setToolTip(self._tr("tip.status_offcuts", n=count))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_boards_status(self) -> None:
