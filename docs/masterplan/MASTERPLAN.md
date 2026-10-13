@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-10-07.
+Última revisión: 2026-10-13.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-10-07-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-10-13-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -89,8 +89,8 @@
 - Copiar los tableros físicos de la barra (IDE-0089 `#718`).
 - Copiar la selección de la barra (IDE-0090).
 - Copiar el zoom de la barra (IDE-0091).
-- Barra de estado: retales de la solución seleccionada (IDE-0092).
-- Copiar los retales de la barra (IDE-0093).
+- Barra de estado: retales de la solución seleccionada (IDE-0092 `#724`).
+- Copiar los retales de la barra (**Ctrl+Alt+Shift+R**, IDE-0093 `#725`).
 - Clic en los retales selecciona su tablero (IDE-0094).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
@@ -110,8 +110,8 @@
 1. Ciclo `0.4.4`: duodécima ola cerrada (0078 `#702`); IDE-0079 `#706`;
    IDE-0080 `#707`. Decimotercera ola cerrada (0082 entregada). Decimocuarta
    ola cerrada (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`;
-   IDE-0089 `#718`.    Decimoquinta ola cerrada (0090 `#720`). Decimosexta ola cerrada
-   (0094 entregada). Cola vacía.
+   IDE-0089 `#718`. Decimoquinta ola cerrada (0090 `#720`).
+   Decimosexta ola cerrada (0094 entregada). Cola vacía.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

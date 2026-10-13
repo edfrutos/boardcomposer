@@ -249,7 +249,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0090 | S | IDE-0063 | Entregado `#720`; Ctrl+Alt+Shift+S; el número, sin `sel.` |
 | IDE-0091 | S | IDE-0062 | Entregado `#721`; Ctrl+Alt+Shift+Z; el mismo texto del rótulo; no vuelve al 100% |
 | IDE-0092 | S | solución seleccionada | Entregado; `n ret.`; `len(offcuts)` de la solución seleccionada; oculta si 0; sin clic |
-| IDE-0093 | S | IDE-0092 | Entregado; Ctrl+Alt+Shift+R; el número, sin `ret.`; no promociona |
+| IDE-0093 | S | IDE-0092 | Entregado `#725`; Ctrl+Alt+Shift+R; el número, sin `ret.`; no promociona |
 | IDE-0094 | S | IDE-0092 | Entregado; clic selecciona el tablero (`stock_panel_index`); no encuadra; no promociona; arrastre no |
 
 ---
@@ -283,14 +283,14 @@ completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
 `#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`/`#702`/`#706`/`#715`/
-`#716`/`#718`/`#720`/`#721`).
+`#716`/`#718`/`#720`/`#721`/`#724`/`#725`).
 Séptima…duodécima ola cerradas; IDE-0079 `#706`; IDE-0080 `#707`.
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada `#720`). Decimosexta ola
 cerrada (0094 entregada). Cola vacía. IDE-0007 🟢 MVP+eval
 (2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-07-planificacion.md`.
+`REVIEW-2026-10-13-planificacion.md`.
 
 Próximo foco:
 
