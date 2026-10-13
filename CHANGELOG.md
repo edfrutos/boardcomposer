@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Barra de estado: índice de la solución seleccionada (IDE-0095).
+  `1/2 sol.`. Índice con base 1. Oculto si no hay solución o si el
+  índice no mapea. Sin clic. Abre la decimoséptima ola 0095…0098.
+  Siguiente: IDE-0096.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en los retales selecciona su tablero (IDE-0094).
   El tablero cuyo índice es `stock_panel_index`. Cursor mano si se ve.
   Arrastre no. No encuadra ni promociona. Cierra la decimosexta ola
