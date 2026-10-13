@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Clic en los retales selecciona su tablero (IDE-0094).
+  El tablero cuyo índice es `stock_panel_index`. Cursor mano si se ve.
+  Arrastre no. No encuadra ni promociona. Cierra la decimosexta ola
+  0091…0094. Cola vacía.
+  Sin bump `.bcproj`; no cambia el solver.
 - Docs planificación 2026-10-13: snapshot
   `docs/masterplan/REVIEW-2026-10-13-planificacion.md`; Issues = 0;
   `#725` (IDE-0093) en `main`; IDE-0094 🟡 `#731` (CI test fallo) →

@@ -1248,7 +1248,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Tableros físicos: {n}. Clic ajusta el encuadre de todos (Ctrl+0)"
         ),
         "status.offcuts": "{n} ret.",
-        "tip.status_offcuts": "Retales de la solución seleccionada: {n}",
+        "tip.status_offcuts": (
+            "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
+        ),
         "status.board_thickness": "esp. {length}",
         "tip.status_board_thickness": "Espesor del tablero: {length}. Clic lo edita",
         "status.board_material": "mat. {material}",
@@ -3044,7 +3046,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Physical boards: {n}. Click fits all boards (Ctrl+0)"
         ),
         "status.offcuts": "{n} ret.",
-        "tip.status_offcuts": "Offcuts in the selected solution: {n}",
+        "tip.status_offcuts": (
+            "Offcuts in the selected solution: {n}. Click selects their board"
+        ),
         "status.board_thickness": "thk. {length}",
         "tip.status_board_thickness": "Board thickness: {length}. Click edits it",
         "status.board_material": "mat. {material}",

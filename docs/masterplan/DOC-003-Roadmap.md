@@ -162,8 +162,8 @@ Objetivos:
   IDE-0079 entregada `#706`; IDE-0080 entregada `#707`;
   decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
   (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
-  Decimoquinta ola cerrada (0090 entregada). Decimosexta ola residual:
-  IDE-0094 🟡 `#731` (0093 `#725`; 0092 `#724`).
+  Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada
+  (0094 entregada). Cola vacía.
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2
@@ -198,12 +198,12 @@ novena ola 0063…0066 cerrada;
 décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima ola 0075…0078 cerrada.
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
-Decimoquinta ola cerrada (0090 entregada). Decimosexta ola residual:
-IDE-0094 🟡 `#731` (0093 `#725`; 0092 `#724`).
+Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada
+(0094 entregada). Cola vacía.
 Revisión: `REVIEW-2026-10-13-planificacion.md`.
 
 Pendiente de:
 
-- IDE-0094 🟡 `#731` (decimosexta ola residual; 0093 `#725`);
+- Ninguna en producto (decimosexta ola cerrada; cola vacía);
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.

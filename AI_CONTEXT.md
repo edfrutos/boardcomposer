@@ -103,9 +103,10 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el zoom de la barra (IDE-0091; Ctrl+Alt+Shift+Z).
 - Barra de estado: retales de la solución seleccionada (IDE-0092 `#724`).
 - Copiar los retales de la barra (IDE-0093 `#725`; Ctrl+Alt+Shift+R).
-- Próximo: cerrar IDE-0094 🟡 `#731` (decimosexta ola residual);
-  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins /
-  C bloqueados.
+- Clic en los retales selecciona su tablero (IDE-0094).
+- Próximo: ninguna en producto (decimosexta ola cerrada; cola vacía);
+  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+  LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 
