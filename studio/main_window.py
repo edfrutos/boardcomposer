@@ -805,6 +805,8 @@ class MainWindow(QMainWindow):
         self._board_free_material_label.setObjectName("statusBoardFreeMaterial")
         self._board_free_material_label_armed = False
         self._board_free_material_label.installEventFilter(self)
+        self._solution_label = QLabel()
+        self._solution_label.setObjectName("statusSolution")
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -829,6 +831,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._board_material_label)
         status.addPermanentWidget(self._board_utilization_label)
         status.addPermanentWidget(self._board_free_material_label)
+        status.addPermanentWidget(self._solution_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -842,6 +845,7 @@ class MainWindow(QMainWindow):
         self._update_board_thickness_status()
         self._update_board_material_status()
         self._update_board_utilization_status()
+        self._update_solution_status()
         self._update_offcuts_status()
         self._update_selection_status()
         self._update_kerf_status()
@@ -1327,6 +1331,7 @@ class MainWindow(QMainWindow):
             self._update_placed_status()
             self._update_omitted_status()
             self._update_board_utilization_status()
+            self._update_solution_status()
             self._update_offcuts_status()
 
     def _find_explorer_item_by_role(self, role: str) -> QTreeWidgetItem | None:
@@ -2688,6 +2693,7 @@ class MainWindow(QMainWindow):
         self._update_board_thickness_status()
         self._update_board_material_status()
         self._update_board_utilization_status()
+        self._update_solution_status()
         self._update_offcuts_status()
         self._update_kerf_status()
         self._sync_project_file_actions()
@@ -2971,6 +2977,35 @@ class MainWindow(QMainWindow):
             self.explorer.scrollToItem(items[0])
         finally:
             self.explorer.blockSignals(blocked)
+
+    def _selected_solution_index_label(self) -> tuple[int, int] | None:
+        """Return the 1-based index and total, or None when none apply."""
+        layout = self.services.layout
+        total = len(layout.solutions)
+        if total <= 0:
+            return None
+        index = layout.selected_solution_index
+        if index < 0 or index >= total:
+            return None
+        return index + 1, total
+
+    def _update_solution_status(self) -> None:
+        """Show the selected solution index (IDE-0095)."""
+        label = getattr(self, "_solution_label", None)
+        if label is None:
+            return
+        resolved = self._selected_solution_index_label()
+        if resolved is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        current, total = resolved
+        label.setText(self._tr("status.solution", current=current, total=total))
+        label.setToolTip(self._tr("tip.status_solution", current=current, total=total))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
 
     def _update_offcuts_status(self) -> None:
         """Show offcuts of the selected solution (IDE-0092)."""
@@ -4318,6 +4353,7 @@ class MainWindow(QMainWindow):
         self._update_board_thickness_status()
         self._update_board_material_status()
         self._update_board_utilization_status()
+        self._update_solution_status()
         self._update_offcuts_status()
         self._update_kerf_status()
         self._update_zoom_status()
@@ -4855,6 +4891,7 @@ class MainWindow(QMainWindow):
 
         self.inspector.setText("\n".join(lines))
         self.console.set_replay_solution(solution)
+        self._update_solution_status()
         self._update_offcuts_status()
 
     def _on_timeline_replay_step(self, solution, reveal_count: int) -> None:

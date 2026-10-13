@@ -375,6 +375,8 @@ Chrome de Studio (se recuerda entre sesiones).
   no hay solución o si es 0). **Clic** selecciona su tablero. No encuadra
   ni promociona. **Ctrl+Alt+Shift+R** copia el
   número, sin `ret.`.
+  La solución seleccionada va como `1/2 sol.` (oculto si no hay
+  solución o si el índice no mapea). Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
