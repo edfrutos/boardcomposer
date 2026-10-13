@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-07
+## Unreleased — 0.4.4.dev0 — 2026-10-13
 
 ### Corregido
 
@@ -9,6 +9,36 @@
 
 ### Añadido
 
+- Docs planificación 2026-10-13: snapshot
+  `docs/masterplan/REVIEW-2026-10-13-planificacion.md`; Issues = 0;
+  `#725` (IDE-0093) en `main`; IDE-0094 🟡 `#731` (CI test fallo) →
+  **sin IDE nuevas**. Histórico 2026-10-08…10-12 desde PRs `#726` /
+  `#727` / `#728` / `#729` / `#730` (draft/open).
+- Docs planificación 2026-10-12: snapshot
+  `docs/masterplan/REVIEW-2026-10-12-planificacion.md`; Issues = 0;
+  `#724` (IDE-0092) en `main`; IDE-0093 🟡 `#725` (CI verde);
+  residual IDE-0094 🔵 → **sin IDE nuevas**. Histórico 2026-10-08…
+  10-11 desde PRs `#726` / `#727` / `#728` / `#729` (draft).
+- Docs planificación 2026-10-11: snapshot
+  `docs/masterplan/REVIEW-2026-10-11-planificacion.md`; Issues = 0;
+  `#724` (IDE-0092) en `main`; IDE-0093 🟡 `#725` (CI verde);
+  residual IDE-0094 🔵 → **sin IDE nuevas**. Histórico 2026-10-08…
+  10-10 desde PRs `#726` / `#727` / `#728` (draft).
+- Docs planificación 2026-10-10: snapshot
+  `docs/masterplan/REVIEW-2026-10-10-planificacion.md`; Issues = 0;
+  `#724` (IDE-0092) en `main`; IDE-0093 🟡 `#725`; residual
+  IDE-0094 🔵 → **sin IDE nuevas**. Histórico 2026-10-08 / 10-09
+  desde PRs `#726` / `#727` (draft).
+- Docs planificación 2026-10-09: snapshot
+  `docs/masterplan/REVIEW-2026-10-09-planificacion.md`; Issues = 0;
+  `#724` (IDE-0092) en `main`; IDE-0093 🟡 `#725`; residual
+  IDE-0094 🔵 → **sin IDE nuevas**. Histórico 2026-10-08 desde PR
+  `#726` (draft).
+- Docs planificación 2026-10-08: snapshot
+  `docs/masterplan/REVIEW-2026-10-08-planificacion.md`; Issues = 0;
+  `#724` (IDE-0092) en `main`; IDE-0093 🟡 `#725`; residual
+  IDE-0094 🔵 → **sin IDE nuevas**. Histórico 2026-10-07 desde PR
+  `#723`.
 - Copiar los retales de la barra (IDE-0093).
   **Ctrl+Alt+Shift+R**. Copia el número (`2`), sin `ret.`.
   Deshabilitado si el rótulo está oculto. No promociona.

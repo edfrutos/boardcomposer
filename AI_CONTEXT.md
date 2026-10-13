@@ -8,7 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-10-06
+## Estado actual — 2026-10-13
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-10-07-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-10-13-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -101,11 +101,11 @@ alternativas comprensibles para que el usuario decida.
 - Copiar los tableros físicos de la barra (IDE-0089; Ctrl+Alt+Shift+N).
 - Copiar la selección de la barra (IDE-0090; Ctrl+Alt+Shift+S).
 - Copiar el zoom de la barra (IDE-0091; Ctrl+Alt+Shift+Z).
-- Barra de estado: retales de la solución seleccionada (IDE-0092).
-- Copiar los retales de la barra (IDE-0093; Ctrl+Alt+Shift+R).
-- Próximo: IDE-0094 (decimosexta ola 0091…0094; queda 0094);
-  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
-  LLM / plugins / C bloqueados.
+- Barra de estado: retales de la solución seleccionada (IDE-0092 `#724`).
+- Copiar los retales de la barra (IDE-0093 `#725`; Ctrl+Alt+Shift+R).
+- Próximo: cerrar IDE-0094 🟡 `#731` (decimosexta ola residual);
+  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM / plugins /
+  C bloqueados.
 
 ## Fuentes de verdad
 
