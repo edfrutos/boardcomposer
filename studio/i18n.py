@@ -1254,7 +1254,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Tableros físicos: {n}. Clic ajusta el encuadre de todos (Ctrl+0)"
         ),
         "status.solution": "{current}/{total} sol.",
-        "tip.status_solution": "Solución seleccionada: {current} de {total}",
+        "tip.status_solution": (
+            "Solución seleccionada: {current} de {total}. Clic pasa a la siguiente"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3062,7 +3064,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Physical boards: {n}. Click fits all boards (Ctrl+0)"
         ),
         "status.solution": "{current}/{total} sol.",
-        "tip.status_solution": "Selected solution: {current} of {total}",
+        "tip.status_solution": (
+            "Selected solution: {current} of {total}. Click steps to the next"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Offcuts in the selected solution: {n}. Click selects their board"

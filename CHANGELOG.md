@@ -9,6 +9,11 @@
 
 ### Añadido
 
+- Clic en el índice de la solución pasa a la siguiente (IDE-0097).
+  Cursor mano si se ve. Arrastre no. No aplica el layout ni cambia
+  el zoom. Una sola solución no cambia el índice.
+  Siguiente: IDE-0098.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el índice de la solución de la barra (IDE-0096).
   **Ctrl+Alt+Shift+L**. Copia `1/2`, sin `sol.`.
   Deshabilitado si el rótulo está oculto. No avanza.

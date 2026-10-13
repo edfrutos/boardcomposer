@@ -377,7 +377,8 @@ Chrome de Studio (se recuerda entre sesiones).
   ni promociona. **Ctrl+Alt+Shift+R** copia el
   número, sin `ret.`.
   La solución seleccionada va como `1/2 sol.` (oculto si no hay
-  solución o si el índice no mapea). Sin clic.
+  solución o si el índice no mapea). **Clic** pasa a la siguiente.
+  No aplica el layout ni cambia el zoom. Arrastre no.
   **Ctrl+Alt+Shift+L** copia `1/2`, sin `sol.`. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
