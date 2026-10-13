@@ -313,6 +313,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_physical_boards": "Copiar tableros físicos",
         "action.copy_selection_count": "Copiar selección",
         "action.copy_zoom": "Copiar zoom",
+        "action.copy_offcuts": "Copiar retales",
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -623,6 +624,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_zoom": (
             "Copiar el zoom de la barra (Ctrl+Alt+Shift+Z); "
             "el mismo texto del rótulo; no vuelve al 100%"
+        ),
+        "tip.copy_offcuts": (
+            "Copiar los retales de la barra (Ctrl+Alt+Shift+R); "
+            "el número, sin el prefijo; deshabilitado si la etiqueta está oculta; "
+            "no promociona"
         ),
         "tip.copy_inspector": (
             "Copiar el texto visible del Inspector (Ctrl+Alt+I); "
@@ -1267,6 +1273,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Espesor de sierra del proyecto: {length}. Clic lo edita (Ctrl+Alt+K)"
         ),
         "status.zoom_copied": "Zoom copiado: {n}",
+        "status.offcuts_copied": "Retales copiados: {n}",
+        "status.nothing_to_copy_offcuts": "No hay retales que copiar",
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -2136,6 +2144,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_physical_boards": "Copy physical boards",
         "action.copy_selection_count": "Copy selection count",
         "action.copy_zoom": "Copy zoom",
+        "action.copy_offcuts": "Copy offcuts",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2432,6 +2441,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_zoom": (
             "Copy the status-bar zoom (Ctrl+Alt+Shift+Z); "
             "the same label text; does not return to 100%"
+        ),
+        "tip.copy_offcuts": (
+            "Copy the status-bar offcuts (Ctrl+Alt+Shift+R); "
+            "the count, without the prefix; disabled when the label is hidden; "
+            "does not promote them"
         ),
         "tip.copy_board_material": (
             "Copy the status-bar board material (Ctrl+Alt+Shift+M); "
@@ -3052,6 +3066,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Project saw kerf: {length}. Click edits it (Ctrl+Alt+K)"
         ),
         "status.zoom_copied": "Zoom copied: {n}",
+        "status.offcuts_copied": "Offcuts copied: {n}",
+        "status.nothing_to_copy_offcuts": "No offcuts to copy",
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -3646,6 +3662,7 @@ _ACTION_KEYS = (
     "copy_physical_boards",
     "copy_selection_count",
     "copy_zoom",
+    "copy_offcuts",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

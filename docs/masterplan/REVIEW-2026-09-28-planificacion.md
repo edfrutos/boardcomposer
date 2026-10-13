@@ -9,7 +9,7 @@ revisión `REVIEW-2026-09-27-planificacion.md`, PRs `#678`…`#686`.
 fix Preferencias `#681`). Sin PRs de producto abiertos al corte. Residual:
 duodécima ola cerrada (0078 en esta entrega). Decimotercera ola cerrada
 (0082 entregada). Decimocuarta ola cerrada (0086 entregada).
-Decimoquinta ola cerrada (0090 entregada). Decimosexta ola residual: IDE-0093…0094 (0092 entregada).
+Decimoquinta ola cerrada (0090 entregada). Decimosexta ola residual: IDE-0094 (0093 entregada).
 **Planning previo:** `#679` (2026-09-27) — histórico en `main`.
 
 ---
@@ -98,7 +98,7 @@ Decimoquinta ola cerrada (0090 entregada). Decimosexta ola residual: IDE-0093…
 | IDE-0090 copiar la selección de la barra | 🟢 |
 | IDE-0091 copiar el zoom de la barra | 🟢 |
 | IDE-0092 barra: retales de la solución seleccionada | 🟢 |
-| IDE-0093 copiar los retales de la barra | 🔵 |
+| IDE-0093 copiar los retales de la barra | 🟢 |
 | IDE-0094 clic en retales selecciona su tablero | 🔵 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
@@ -193,7 +193,7 @@ Límites conocidos (no son bugs; son alcance):
   Copiar las piezas colocadas: entregado (IDE-0087; Ctrl+Alt+Shift+P).
   Copiar las piezas omitidas: entregado (IDE-0088; Ctrl+Alt+Shift+O).
   Copiar los tableros físicos: entregado (IDE-0089; Ctrl+Alt+Shift+N).
-  Decimoquinta ola cerrada (0090 entregada). Decimosexta ola residual: IDE-0093…0094 (0092 entregada).
+  Decimoquinta ola cerrada (0090 entregada). Decimosexta ola residual: IDE-0094 (0093 entregada).
   Barra de estado, kerf del proyecto: entregado (IDE-0065).
   Clic en `n sel.` ajusta el encuadre: entregado (IDE-0066). Novena ola cerrada.
   Clic en el kerf abre el espesor de sierra: entregado (IDE-0067). Abre la décima ola.
@@ -220,7 +220,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` decimosexta ola** — IDE-0093 (0092 entregada; quedan 0093…0094).
+1. **Cola `0.4.4` decimosexta ola** — IDE-0094 (0093 entregada; queda 0094).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -278,10 +278,10 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0090 | Copiar la selección de la barra | Entregado; Ctrl+Alt+Shift+S |
 | IDE-0091 | Copiar el zoom de la barra | Entregado; Ctrl+Alt+Shift+Z |
 | IDE-0092 | Barra: retales de la solución seleccionada | Entregado; `n ret.`; oculta si 0; sin clic |
-| IDE-0093 | Copiar los retales de la barra | Planificada; Ctrl+Alt+Shift+R |
+| IDE-0093 | Copiar los retales de la barra | Entregado; Ctrl+Alt+Shift+R |
 | IDE-0094 | Clic en retales selecciona su tablero | Planificada; no encuadra; no promociona |
 
-Prioridad de ataque: **IDE-0093** (copiar los retales de la barra).
+Prioridad de ataque: **IDE-0094** (clic en retales selecciona su tablero).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
