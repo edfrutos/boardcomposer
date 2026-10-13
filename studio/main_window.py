@@ -239,6 +239,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_selection_count"])
         self._menus["edit"].addAction(self._actions["copy_zoom"])
         self._menus["edit"].addAction(self._actions["copy_offcuts"])
+        self._menus["edit"].addAction(self._actions["copy_solution_index"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -366,6 +367,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_zoom"].triggered.connect(self._copy_zoom)
         self._actions["copy_offcuts"].triggered.connect(self._copy_offcuts)
+        self._actions["copy_solution_index"].triggered.connect(
+            self._copy_solution_index
+        )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
             self._duplicate_selected_piece
@@ -2991,6 +2995,7 @@ class MainWindow(QMainWindow):
 
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
+        self._sync_copy_solution_action()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
@@ -6865,6 +6870,33 @@ class MainWindow(QMainWindow):
         value = self._zoom_status_text()
         self._copy_text_to_clipboard(value)
         self._status("status.zoom_copied", n=value)
+
+    def _sync_copy_solution_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_index")
+        if action is None:
+            return
+        enabled = self._selected_solution_index_label() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_index"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution")
+        )
+
+    def _copy_solution_index(self, _checked: bool = False) -> None:
+        """Copy the status-bar solution index (IDE-0096)."""
+        del _checked
+        resolved = self._selected_solution_index_label()
+        if resolved is None:
+            self._status("status.nothing_to_copy_solution")
+            return
+        current, total = resolved
+        value = f"{current}/{total}"
+        self._copy_text_to_clipboard(value)
+        self._status("status.solution_copied", n=value)
 
     def _sync_copy_offcuts_action(self) -> None:
         actions = getattr(self, "_actions", None)

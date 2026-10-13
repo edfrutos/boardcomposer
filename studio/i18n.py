@@ -314,6 +314,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_selection_count": "Copiar selección",
         "action.copy_zoom": "Copiar zoom",
         "action.copy_offcuts": "Copiar retales",
+        "action.copy_solution_index": "Copiar índice de la solución",
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -629,6 +630,11 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Copiar los retales de la barra (Ctrl+Alt+Shift+R); "
             "el número, sin el prefijo; deshabilitado si la etiqueta está oculta; "
             "no promociona"
+        ),
+        "tip.copy_solution_index": (
+            "Copiar el índice de la solución de la barra (Ctrl+Alt+Shift+L); "
+            "el índice, sin sol.; deshabilitado si la etiqueta está oculta; "
+            "no avanza"
         ),
         "tip.copy_inspector": (
             "Copiar el texto visible del Inspector (Ctrl+Alt+I); "
@@ -1279,6 +1285,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.zoom_copied": "Zoom copiado: {n}",
         "status.offcuts_copied": "Retales copiados: {n}",
         "status.nothing_to_copy_offcuts": "No hay retales que copiar",
+        "status.solution_copied": "Índice de solución copiado: {n}",
+        "status.nothing_to_copy_solution": "No hay solución que copiar",
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -2149,6 +2157,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_selection_count": "Copy selection count",
         "action.copy_zoom": "Copy zoom",
         "action.copy_offcuts": "Copy offcuts",
+        "action.copy_solution_index": "Copy solution index",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2450,6 +2459,11 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Copy the status-bar offcuts (Ctrl+Alt+Shift+R); "
             "the count, without the prefix; disabled when the label is hidden; "
             "does not promote them"
+        ),
+        "tip.copy_solution_index": (
+            "Copy the status-bar solution index (Ctrl+Alt+Shift+L); "
+            "the index, without sol.; disabled when the label is hidden; "
+            "does not step to the next solution"
         ),
         "tip.copy_board_material": (
             "Copy the status-bar board material (Ctrl+Alt+Shift+M); "
@@ -3076,6 +3090,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.zoom_copied": "Zoom copied: {n}",
         "status.offcuts_copied": "Offcuts copied: {n}",
         "status.nothing_to_copy_offcuts": "No offcuts to copy",
+        "status.solution_copied": "Solution index copied: {n}",
+        "status.nothing_to_copy_solution": "No solution to copy",
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -3671,6 +3687,7 @@ _ACTION_KEYS = (
     "copy_selection_count",
     "copy_zoom",
     "copy_offcuts",
+    "copy_solution_index",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

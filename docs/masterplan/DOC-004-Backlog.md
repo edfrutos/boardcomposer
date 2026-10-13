@@ -165,7 +165,7 @@ Observaciones:
 | IDE-0093 | Copiar los retales de la barra | 🟢 | P3 |
 | IDE-0094 | Clic en retales selecciona su tablero | 🟢 | P3 |
 | IDE-0095 | Barra: índice de la solución seleccionada | 🟢 | P3 |
-| IDE-0096 | Copiar el índice de la solución | 🔵 | P3 |
+| IDE-0096 | Copiar el índice de la solución | 🟢 | P3 |
 | IDE-0097 | Clic en el índice pasa a la siguiente solución | 🔵 | P3 |
 | IDE-0098 | Barra: huecos internos de la solución seleccionada | 🔵 | P3 |
 
@@ -256,7 +256,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0093 | S | IDE-0092 | Entregado `#725`; Ctrl+Alt+Shift+R; el número, sin `ret.`; no promociona |
 | IDE-0094 | S | IDE-0092 | Entregado; clic selecciona el tablero (`stock_panel_index`); no encuadra; no promociona; arrastre no |
 | IDE-0095 | S | solución seleccionada | Entregado; `1/2 sol.`; índice con base 1; oculta si no hay o el índice no mapea; sin clic |
-| IDE-0096 | S | IDE-0095 | Ctrl+Alt+Shift+L; copia `1/2` sin `sol.`; no avanza |
+| IDE-0096 | S | IDE-0095 | Entregado; Ctrl+Alt+Shift+L; copia `1/2` sin `sol.`; no avanza |
 | IDE-0097 | S | IDE-0095 | Clic avanza (`_step_layout_solution(1)`); arrastre no; no aplica el layout; no cambia el zoom |
 | IDE-0098 | S | IDE-0095 | `hueco {ratio}` / `gap {ratio}`; misma visibilidad que el índice; `0.0%` se muestra; sin clic |
 
@@ -286,7 +286,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0095 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0096 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -296,14 +296,14 @@ Séptima…duodécima ola cerradas; IDE-0079 `#706`; IDE-0080 `#707`.
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada `#720`). Decimosexta ola
-cerrada (0094 entregada). Decimoséptima ola residual: IDE-0096…0098
-(0095 entregada). IDE-0007 🟢 MVP+eval
+cerrada (0094 entregada). Decimoséptima ola residual: IDE-0097…0098
+(0096 entregada). IDE-0007 🟢 MVP+eval
 (2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-13-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0096 (decimoséptima ola residual; quedan 0097…0098).
+1. Cola producto `0.4.4`: IDE-0097 (decimoséptima ola residual; quedan 0097…0098).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
