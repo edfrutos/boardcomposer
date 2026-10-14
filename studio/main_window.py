@@ -241,6 +241,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_offcuts"])
         self._menus["edit"].addAction(self._actions["copy_solution_index"])
         self._menus["edit"].addAction(self._actions["copy_solution_waste"])
+        self._menus["edit"].addAction(self._actions["copy_solution_strategy"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -373,6 +374,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_solution_waste"].triggered.connect(
             self._copy_solution_waste
+        )
+        self._actions["copy_solution_strategy"].triggered.connect(
+            self._copy_solution_strategy
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -3102,6 +3106,7 @@ class MainWindow(QMainWindow):
 
     def _update_solution_strategy_status(self) -> None:
         """Show the strategy of the selected solution (IDE-0103)."""
+        self._sync_copy_solution_strategy_action()
         label = getattr(self, "_solution_strategy_label", None)
         if label is None:
             return
@@ -7048,6 +7053,31 @@ class MainWindow(QMainWindow):
             return
         self._copy_text_to_clipboard(value)
         self._status("status.solution_waste_copied", n=value)
+
+    def _sync_copy_solution_strategy_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_strategy")
+        if action is None:
+            return
+        enabled = self._selected_solution_strategy_text() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_strategy"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_strategy")
+        )
+
+    def _copy_solution_strategy(self, _checked: bool = False) -> None:
+        """Copy the status-bar strategy name (IDE-0104)."""
+        del _checked
+        name = self._selected_solution_strategy_text()
+        if name is None:
+            self._status("status.nothing_to_copy_solution_strategy")
+            return
+        self._copy_text_to_clipboard(name)
+        self._status("status.solution_strategy_copied", n=name)
 
     def _sync_copy_offcuts_action(self) -> None:
         actions = getattr(self, "_actions", None)

@@ -15,6 +15,10 @@
 
 ### Añadido
 
+- Copiar la estrategia de la barra (IDE-0104). Ctrl+Alt+Shift+Y.
+  El nombre (`material`, `desconocida`), sin `est.`. Deshabilitado si
+  la etiqueta está oculta. No avanza. Siguiente: IDE-0105.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: estrategia de la solución seleccionada (IDE-0103).
   `est. material` / `str. material`. La misma visibilidad que el índice.
   Sin nombre: `est. desconocida` / `str. unknown`; se muestra.
