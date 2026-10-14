@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-10-13-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-10-14-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -103,15 +103,14 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el zoom de la barra (IDE-0091; Ctrl+Alt+Shift+Z).
 - Barra de estado: retales de la solución seleccionada (IDE-0092 `#724`).
 - Copiar los retales de la barra (IDE-0093 `#725`; Ctrl+Alt+Shift+R).
-- Clic en los retales selecciona su tablero (IDE-0094).
-- Barra de estado: índice de la solución seleccionada (IDE-0095).
-- Copiar el índice de la solución de la barra (IDE-0096; Ctrl+Alt+Shift+L).
-- Clic en el índice de la solución pasa a la siguiente (IDE-0097).
-- Barra de estado: huecos internos de la solución seleccionada (IDE-0098).
-- Copiar los huecos internos de la barra (IDE-0099; Ctrl+Alt+Shift+G).
-- Próximo: IDE-0100 (decimoctava ola residual 0100…0102; 0099 entregada);
-  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
-  LLM / plugins / C bloqueados.
+- Clic en los retales selecciona su tablero (IDE-0094 `#731`).
+- Barra de estado: índice de la solución seleccionada (IDE-0095 `#733`).
+- Copiar el índice de la solución de la barra (IDE-0096 `#734`; Ctrl+Alt+Shift+L).
+- Clic en el índice de la solución pasa a la siguiente (IDE-0097 `#735`).
+- Barra de estado: huecos internos de la solución seleccionada (IDE-0098 `#736`).
+- Copiar los huecos internos de la barra (IDE-0099 `#737`; Ctrl+Alt+Shift+G).
+- Próximo: IDE-0100 🟡 `#738` (luego 0101 → 0102); piloto DT-0006 D;
+  Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 

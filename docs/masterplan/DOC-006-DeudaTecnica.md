@@ -209,8 +209,8 @@ IDE-0079…0082 🔵 sin PR de producto; Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-10-13 en `REVIEW-2026-10-13-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`10-12` (abiertas = 1, DT-0006).
+2026-10-14 en `REVIEW-2026-10-14-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`10-13` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -223,8 +223,8 @@ Próximo foco:
   IDE-0079 `#706`; IDE-0080 `#707`; decimotercera ola cerrada
   (0082 entregada). Decimocuarta ola cerrada (0086 entregada).
   IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`. Decimoquinta ola
-  cerrada (0090 `#720`). Decimosexta ola cerrada (0094 entregada).
-  Decimoséptima ola cerrada (0098 entregada). Decimoctava ola residual:
-  IDE-0100…0102 (0099 entregada).
+  cerrada (0090 `#720`). Decimosexta ola cerrada (0094 `#731`).
+  Decimoséptima ola cerrada (0098 `#736`). Decimoctava ola residual:
+  IDE-0100 🟡 `#738` + IDE-0101/0102 🔵 (0099 `#737`).
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

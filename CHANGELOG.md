@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-13
+## Unreleased — 0.4.4.dev0 — 2026-10-14
 
 ### Corregido
 
@@ -12,6 +12,11 @@
 
 ### Añadido
 
+- Docs planificación 2026-10-14: snapshot
+  `docs/masterplan/REVIEW-2026-10-14-planificacion.md`; Issues = 0;
+  `#731`…`#737` (IDE-0094…0099) en `main`; IDE-0100 🟡 `#738` +
+  IDE-0101/0102 🔵 → **sin IDE nuevas**. Histórico 2026-10-13 desde
+  PR `#732`.
 - Copiar los huecos internos de la barra (IDE-0099). Ctrl+Alt+Shift+G.
   El porcentaje (`0.0%`, `33.3%`), sin `hueco`. Deshabilitado si la
   etiqueta está oculta. No avanza. Abre la decimoctava ola 0099…0102.
