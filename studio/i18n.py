@@ -316,6 +316,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_offcuts": "Copiar retales",
         "action.copy_solution_index": "Copiar índice de la solución",
         "action.copy_solution_waste": "Copiar huecos internos",
+        "action.copy_solution_strategy": "Copiar estrategia",
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -640,6 +641,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_waste": (
             "Copiar los huecos internos de la barra (Ctrl+Alt+Shift+G); "
             "el porcentaje, sin hueco; deshabilitado si la etiqueta está oculta; "
+            "no avanza"
+        ),
+        "tip.copy_solution_strategy": (
+            "Copiar la estrategia de la barra (Ctrl+Alt+Shift+Y); "
+            "el nombre, sin est.; deshabilitado si la etiqueta está oculta; "
             "no avanza"
         ),
         "tip.copy_inspector": (
@@ -1306,6 +1312,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution": "No hay solución que copiar",
         "status.solution_waste_copied": "Huecos copiados: {n}",
         "status.nothing_to_copy_solution_waste": "No hay huecos internos que copiar",
+        "status.solution_strategy_copied": "Estrategia copiada: {n}",
+        "status.nothing_to_copy_solution_strategy": "No hay estrategia que copiar",
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -2178,6 +2186,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_offcuts": "Copy offcuts",
         "action.copy_solution_index": "Copy solution index",
         "action.copy_solution_waste": "Copy internal gaps",
+        "action.copy_solution_strategy": "Copy strategy",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2488,6 +2497,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_waste": (
             "Copy the status-bar internal gaps (Ctrl+Alt+Shift+G); "
             "the percentage, without gap; disabled when the label is hidden; "
+            "does not step to the next solution"
+        ),
+        "tip.copy_solution_strategy": (
+            "Copy the status-bar strategy (Ctrl+Alt+Shift+Y); "
+            "the name, without str.; disabled when the label is hidden; "
             "does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -3128,6 +3142,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution": "No solution to copy",
         "status.solution_waste_copied": "Internal gaps copied: {n}",
         "status.nothing_to_copy_solution_waste": "No internal gaps to copy",
+        "status.solution_strategy_copied": "Strategy copied: {n}",
+        "status.nothing_to_copy_solution_strategy": "No strategy to copy",
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -3725,6 +3741,7 @@ _ACTION_KEYS = (
     "copy_offcuts",
     "copy_solution_index",
     "copy_solution_waste",
+    "copy_solution_strategy",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

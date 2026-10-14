@@ -125,6 +125,7 @@ en red; puedes **Copiar**).
 | Copiar retales | Ctrl+Alt+Shift+R |
 | Copiar índice de la solución | Ctrl+Alt+Shift+L |
 | Copiar huecos internos | Ctrl+Alt+Shift+G |
+| Copiar estrategia | Ctrl+Alt+Shift+Y |
 | Zoom + / − (también rueda) | Ctrl+= / Ctrl+- |
 | Desplazar cámara (pan) | Botón medio / derecho / Espacio+arrastre |
 | Nuevo desde plantilla | Ctrl+Shift+N |
@@ -389,6 +390,8 @@ Chrome de Studio (se recuerda entre sesiones).
   La estrategia va como `est. material` (en inglés `str. material`).
   La misma visibilidad que el índice. Sin nombre: `est. desconocida`.
   Cursor flecha. Sin clic.
+  **Ctrl+Alt+Shift+Y** copia el nombre (`material`, `desconocida`),
+  sin `est.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
