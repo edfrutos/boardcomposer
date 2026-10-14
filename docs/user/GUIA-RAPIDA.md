@@ -386,6 +386,9 @@ Chrome de Studio (se recuerda entre sesiones).
   **Clic** selecciona esa solución en el explorador. No avanza ni
   aplica el layout. Arrastre no.
   **Ctrl+Alt+Shift+G** copia el porcentaje, sin `hueco`. No avanza.
+  La estrategia va como `est. material` (en inglés `str. material`).
+  La misma visibilidad que el índice. Sin nombre: `est. desconocida`.
+  Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

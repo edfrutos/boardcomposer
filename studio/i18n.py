@@ -1268,6 +1268,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Huecos internos de la solución seleccionada: {value}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_strategy": "est. {name}",
+        "tip.status_solution_strategy": (
+            "Estrategia de la solución seleccionada: {name}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3091,6 +3095,8 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Internal gaps in the selected solution: {value}. "
             "Click selects the solution"
         ),
+        "status.solution_strategy": "str. {name}",
+        "tip.status_solution_strategy": ("Strategy of the selected solution: {name}"),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Offcuts in the selected solution: {n}. Click selects their board"

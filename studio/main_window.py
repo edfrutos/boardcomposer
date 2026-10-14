@@ -821,6 +821,8 @@ class MainWindow(QMainWindow):
         self._solution_waste_label.setObjectName("statusSolutionWaste")
         self._solution_waste_label_armed = False
         self._solution_waste_label.installEventFilter(self)
+        self._solution_strategy_label = QLabel()
+        self._solution_strategy_label.setObjectName("statusSolutionStrategy")
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -847,6 +849,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._board_free_material_label)
         status.addPermanentWidget(self._solution_label)
         status.addPermanentWidget(self._solution_waste_label)
+        status.addPermanentWidget(self._solution_strategy_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -3086,10 +3089,39 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_strategy_text(self) -> str | None:
+        """Strategy name of the current layout, or None without a solution."""
+        if self._selected_solution_index_label() is None:
+            return None
+        if self.services.layout.selected_solution is None:
+            return None
+        name = self.services.layout.strategy_name
+        if not name:
+            return self._tr("inspector.strategy_unknown")
+        return name
+
+    def _update_solution_strategy_status(self) -> None:
+        """Show the strategy of the selected solution (IDE-0103)."""
+        label = getattr(self, "_solution_strategy_label", None)
+        if label is None:
+            return
+        name = self._selected_solution_strategy_text()
+        if name is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_strategy", name=name))
+        label.setToolTip(self._tr("tip.status_solution_strategy", name=name))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
         self._update_solution_waste_status()
+        self._update_solution_strategy_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
