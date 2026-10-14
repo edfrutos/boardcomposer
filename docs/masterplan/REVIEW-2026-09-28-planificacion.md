@@ -110,7 +110,7 @@ Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada (0094 entrega
 | IDE-0102 copiar el coste de la solución | ⚪ diferido |
 | IDE-0103 barra: estrategia de la solución seleccionada | 🟢 |
 | IDE-0104 copiar la estrategia | 🟢 |
-| IDE-0105 clic en la estrategia selecciona su solución | 🔵 |
+| IDE-0105 clic en la estrategia selecciona su solución | 🟢 |
 | IDE-0106 barra: piezas de la solución seleccionada | 🔵 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
@@ -232,7 +232,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — IDE-0105 (decimonovena ola 0103…0106; 0104 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+1. **Cola `0.4.4`** — IDE-0106 (decimonovena ola 0103…0106; 0105 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -302,10 +302,10 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0102 | Copiar el coste de la solución | Diferido; sin costes |
 | IDE-0103 | Barra: estrategia de la solución seleccionada | Entregado; `est. material`; `desconocida` se muestra; sin clic |
 | IDE-0104 | Copiar la estrategia | Entregado; Ctrl+Alt+Shift+Y; el nombre, sin `est.`; no avanza |
-| IDE-0105 | Clic en la estrategia selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0105 | Clic en la estrategia selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0106 | Barra: piezas de la solución seleccionada | `n pza`; `0` se muestra; sin clic |
 
-Prioridad de ataque: **IDE-0105** (decimonovena ola 0103…0106; 0104 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0106** (decimonovena ola 0103…0106; 0105 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

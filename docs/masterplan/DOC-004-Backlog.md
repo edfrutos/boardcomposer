@@ -174,7 +174,7 @@ Observaciones:
 | IDE-0102 | Copiar el coste de la solución | ⚪ | P3 |
 | IDE-0103 | Barra: estrategia de la solución seleccionada | 🟢 | P3 |
 | IDE-0104 | Copiar la estrategia | 🟢 | P3 |
-| IDE-0105 | Clic en la estrategia selecciona su solución | 🔵 | P3 |
+| IDE-0105 | Clic en la estrategia selecciona su solución | 🟢 | P3 |
 | IDE-0106 | Barra: piezas de la solución seleccionada | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -273,7 +273,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0102 | S | IDE-0101 | Diferido; sin costes por ahora |
 | IDE-0103 | S | IDE-0095 | Entregado; `est. material` / `str. material`; misma visibilidad que el índice; `desconocida` se muestra; sin clic |
 | IDE-0104 | S | IDE-0103 | Entregado; Ctrl+Alt+Shift+Y; el nombre, sin `est.`; no avanza |
-| IDE-0105 | S | IDE-0103 | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0105 | S | IDE-0103 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0106 | S | IDE-0095 | `n pza`; `len(placements)`; `0` se muestra; sin clic |
 
 ---
@@ -302,7 +302,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0104 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0105 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -313,13 +313,13 @@ Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada `#720`). Decimosexta ola
 cerrada (0094 entregada). Decimoséptima ola cerrada (0098 entregada).
-Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola: 0104 entregada. Residual IDE-0105…0106. IDE-0007 🟢 MVP+eval
+Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola: 0105 entregada. Residual IDE-0106. IDE-0007 🟢 MVP+eval
 (2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-13-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0105. Decimonovena ola 0103…0106 (0104 entregada). IDE-0101 e IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
+1. Cola producto `0.4.4`: IDE-0106. Decimonovena ola 0103…0106 (0105 entregada). IDE-0101 e IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

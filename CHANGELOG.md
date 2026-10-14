@@ -15,6 +15,10 @@
 
 ### Añadido
 
+- Clic en la estrategia selecciona esa solución (IDE-0105).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Siguiente: IDE-0106.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la estrategia de la barra (IDE-0104). Ctrl+Alt+Shift+Y.
   El nombre (`material`, `desconocida`), sin `est.`. Deshabilitado si
   la etiqueta está oculta. No avanza. Siguiente: IDE-0105.
