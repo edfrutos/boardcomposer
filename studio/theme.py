@@ -725,6 +725,22 @@ def bootstrap_ui_font(app: QApplication) -> None:
         app.setFont(QFont(ui, 13))
 
 
+def _keep_fusion_style(app: QApplication) -> None:
+    """Install Fusion once per process.
+
+    ``setStyle("Fusion")`` always allocates a new style and deletes the
+    previous one. Offscreen CI segfaults on that delete once widgets exist,
+    whether the live style is the platform ``QFusionStyle`` or the
+    ``QStyleSheetStyle`` installed by an earlier theme.
+    """
+    style = app.style()
+    if style is not None:
+        name = style.metaObject().className()
+        if name in {"QFusionStyle", "QStyleSheetStyle"}:
+            return
+    app.setStyle("Fusion")
+
+
 def apply_theme(app: QApplication, theme: str) -> None:
     """Apply a Studio theme to `app`.
 
@@ -746,7 +762,7 @@ def apply_theme(app: QApplication, theme: str) -> None:
     set_active_canvas_theme(name)
     if name == _APPLIED_THEME:
         return
-    app.setStyle("Fusion")
+    _keep_fusion_style(app)
 
     if name == "system":
         app.setPalette(app.style().standardPalette())

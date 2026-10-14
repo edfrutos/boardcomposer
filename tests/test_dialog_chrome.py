@@ -54,6 +54,22 @@ def test_polish_primary_button_sets_object_name_and_height(qapp):
     assert button.minimumHeight() >= 44
 
 
+def test_second_apply_theme_keeps_stylesheet_style(qapp):
+    """Replacing Fusion while widgets exist segfaults on offscreen CI."""
+    app = QApplication.instance()
+    assert app is not None
+    apply_theme(app, "light")
+    style = app.style()
+    assert style is not None
+    assert style.metaObject().className() == "QStyleSheetStyle"
+    host = QWidget()
+    QVBoxLayout(host).addWidget(QPushButton("Go"))
+    host.show()
+    app.processEvents()
+    apply_theme(app, "system")
+    assert app.style() is style
+
+
 def test_repolish_secondary_buttons_after_theme_switch(qapp):
     """light → system can wipe minimumHeight; repolish restores it."""
     del qapp

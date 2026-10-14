@@ -4,11 +4,19 @@
 
 ### Corregido
 
+- Cambiar de tema ya no sustituye el estilo Fusion si ya está activo.
+  En CI offscreen eso borraba el estilo con widgets vivos y el test
+  acababa en segfault (139).
 - Preferencias ya no desborda el alto de la pantalla. Los grupos
   desplazan; OK, Cancelar y Restaurar quedan visibles.
 
 ### Añadido
 
+- Copiar los huecos internos de la barra (IDE-0099). Ctrl+Alt+Shift+G.
+  El porcentaje (`0.0%`, `33.3%`), sin `hueco`. Deshabilitado si la
+  etiqueta está oculta. No avanza. Abre la decimoctava ola 0099…0102.
+  Siguiente: IDE-0100.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: huecos internos de la solución seleccionada (IDE-0098).
   `hueco 0.0%` / `gap 33.3%`. La misma visibilidad que el índice.
   `0.0%` se muestra. Sin clic. Cierra la decimoséptima ola 0095…0098.

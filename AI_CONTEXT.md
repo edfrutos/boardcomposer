@@ -108,7 +108,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el índice de la solución de la barra (IDE-0096; Ctrl+Alt+Shift+L).
 - Clic en el índice de la solución pasa a la siguiente (IDE-0097).
 - Barra de estado: huecos internos de la solución seleccionada (IDE-0098).
-- Próximo: ninguna en producto (decimoséptima ola cerrada; cola vacía);
+- Copiar los huecos internos de la barra (IDE-0099; Ctrl+Alt+Shift+G).
+- Próximo: IDE-0100 (decimoctava ola residual 0100…0102; 0099 entregada);
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
