@@ -15,6 +15,12 @@
 
 ### Añadido
 
+- Barra de estado: estrategia de la solución seleccionada (IDE-0103).
+  `est. material` / `str. material`. La misma visibilidad que el índice.
+  Sin nombre: `est. desconocida` / `str. unknown`; se muestra.
+  Cursor flecha. Sin clic. Abre la decimonovena ola 0103…0106.
+  Siguiente: IDE-0104.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en los huecos internos selecciona esa solución (IDE-0100).
   Elige `solution:{index}` en el explorador. Arrastre no. No avanza
   ni aplica el layout. IDE-0101 e IDE-0102 quedan diferidas: sin

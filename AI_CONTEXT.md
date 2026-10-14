@@ -110,8 +110,10 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: huecos internos de la solución seleccionada (IDE-0098).
 - Copiar los huecos internos de la barra (IDE-0099; Ctrl+Alt+Shift+G).
 - Clic en los huecos internos selecciona esa solución (IDE-0100).
-- Próximo: ninguna en producto (0100 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+- Barra de estado: estrategia de la solución seleccionada (IDE-0103).
+- Próximo: IDE-0104. Decimonovena ola 0103…0106 (0103 entregada).
+  IDE-0101 e IDE-0102 diferidas, sin costes. Bloqueados sin reanudar:
+  DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
