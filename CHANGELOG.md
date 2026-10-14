@@ -8,6 +8,8 @@
   En CI offscreen eso borraba el estilo con widgets vivos y el test
   acababa en segfault (139). La hoja nueva se instala vaciando el
   proxy y creando otro: repulir el proxy vivo superaba el timeout.
+  Un índice de solución fuera de rango ya no lanza IndexError al
+  repintar: el filtro de eventos leía esa solución.
 - Preferencias ya no desborda el alto de la pantalla. Los grupos
   desplazan; OK, Cancelar y Restaurar quedan visibles.
 
