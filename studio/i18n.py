@@ -1265,7 +1265,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_waste": "hueco {value}",
         "tip.status_solution_waste": (
-            "Huecos internos de la solución seleccionada: {value}"
+            "Huecos internos de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3087,7 +3088,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_waste": "gap {value}",
         "tip.status_solution_waste": (
-            "Internal gaps in the selected solution: {value}"
+            "Internal gaps in the selected solution: {value}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

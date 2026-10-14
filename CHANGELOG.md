@@ -12,6 +12,11 @@
 
 ### Añadido
 
+- Clic en los huecos internos selecciona esa solución (IDE-0100).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. IDE-0101 e IDE-0102 quedan diferidas: sin
+  costes por ahora. Cola implementable vacía.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar los huecos internos de la barra (IDE-0099). Ctrl+Alt+Shift+G.
   El porcentaje (`0.0%`, `33.3%`), sin `hueco`. Deshabilitado si la
   etiqueta está oculta. No avanza. Abre la decimoctava ola 0099…0102.

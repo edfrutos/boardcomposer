@@ -382,7 +382,9 @@ Chrome de Studio (se recuerda entre sesiones).
   No aplica el layout ni cambia el zoom. Arrastre no.
   **Ctrl+Alt+Shift+L** copia `1/2`, sin `sol.`. No avanza.
   Los huecos internos van como `hueco 0.0%` (en inglés `gap 0.0%`).
-  La misma visibilidad que el índice. `0.0%` se muestra. Sin clic.
+  La misma visibilidad que el índice. `0.0%` se muestra.
+  **Clic** selecciona esa solución en el explorador. No avanza ni
+  aplica el layout. Arrastre no.
   **Ctrl+Alt+Shift+G** copia el porcentaje, sin `hueco`. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular

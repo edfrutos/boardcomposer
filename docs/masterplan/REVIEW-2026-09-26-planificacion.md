@@ -103,9 +103,9 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0097 clic en el índice pasa a la siguiente | 🟢 |
 | IDE-0098 barra: huecos internos de la solución | 🟢 |
 | IDE-0099 copiar los huecos internos de la barra | 🟢 |
-| IDE-0100 clic en huecos selecciona su solución | 🔵 |
-| IDE-0101 barra: coste de la solución seleccionada | 🔵 |
-| IDE-0102 copiar el coste de la solución | 🔵 |
+| IDE-0100 clic en huecos selecciona su solución | 🟢 |
+| IDE-0101 barra: coste de la solución seleccionada | ⚪ diferido |
+| IDE-0102 copiar el coste de la solución | ⚪ diferido |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -184,7 +184,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — IDE-0100 (decimoctava ola residual 0100…0102; 0099 entregada).
+1. **Cola `0.4.4`** — ninguna en producto (0100 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -253,11 +253,11 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0097 | Clic en el índice pasa a la siguiente solución | Entregado; arrastre no; no aplica el layout |
 | IDE-0098 | Barra: huecos internos de la solución seleccionada | Entregado; `hueco 0.0%`; sin clic |
 | IDE-0099 | Copiar los huecos internos de la barra | Entregado; Ctrl+Alt+Shift+G; sin `hueco`; no avanza |
-| IDE-0100 | Clic en huecos selecciona su solución | Abierto |
-| IDE-0101 | Barra: coste de la solución seleccionada | Abierto |
-| IDE-0102 | Copiar el coste de la solución | Abierto |
+| IDE-0100 | Clic en huecos selecciona su solución | Entregado; no avanza; no aplica el layout |
+| IDE-0101 | Barra: coste de la solución seleccionada | Diferido; sin costes |
+| IDE-0102 | Copiar el coste de la solución | Diferido; sin costes |
 
-Prioridad de ataque: **IDE-0100** (decimoctava ola residual 0100…0102; 0099 entregada).
+Prioridad de ataque: **ninguna en producto** (0100 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
