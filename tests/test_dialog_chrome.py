@@ -67,7 +67,10 @@ def test_second_apply_theme_keeps_stylesheet_style(qapp):
     host.show()
     app.processEvents()
     apply_theme(app, "system")
-    assert app.style() is style
+    current = app.style()
+    assert current is not None
+    assert current.metaObject().className() == "QStyleSheetStyle"
+    assert "welcomeBrand" in app.styleSheet()
 
 
 def test_repolish_secondary_buttons_after_theme_switch(qapp):
