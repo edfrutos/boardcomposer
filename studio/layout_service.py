@@ -73,8 +73,10 @@ class LayoutService:
     def selected_solution(self) -> AssemblySolution | None:
         if not self.solutions:
             return None
-
-        return self.solutions[self.selected_solution_index]
+        index = self.selected_solution_index
+        if index < 0 or index >= len(self.solutions):
+            return None
+        return self.solutions[index]
 
     @property
     def solved_project(self) -> Project | None:

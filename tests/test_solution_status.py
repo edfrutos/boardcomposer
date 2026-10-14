@@ -46,6 +46,7 @@ def test_solution_status_follows_the_selected_solution(qapp, tmp_path):
 
     window.services.layout.selected_solution_index = 9
     window._update_solution_status()
+    assert window.services.layout.selected_solution is None
     assert label.isHidden()
     assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
 

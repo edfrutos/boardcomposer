@@ -6,12 +6,20 @@
 
 - Cambiar de tema ya no sustituye el estilo Fusion si ya está activo.
   En CI offscreen eso borraba el estilo con widgets vivos y el test
-  acababa en segfault (139).
+  acababa en segfault (139). La hoja nueva se instala vaciando el
+  proxy y creando otro: repulir el proxy vivo superaba el timeout.
+  Un índice de solución fuera de rango ya no lanza IndexError al
+  repintar: el filtro de eventos leía esa solución.
 - Preferencias ya no desborda el alto de la pantalla. Los grupos
   desplazan; OK, Cancelar y Restaurar quedan visibles.
 
 ### Añadido
 
+- Clic en los huecos internos selecciona esa solución (IDE-0100).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. IDE-0101 e IDE-0102 quedan diferidas: sin
+  costes por ahora. Cola implementable vacía.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar los huecos internos de la barra (IDE-0099). Ctrl+Alt+Shift+G.
   El porcentaje (`0.0%`, `33.3%`), sin `hueco`. Deshabilitado si la
   etiqueta está oculta. No avanza. Abre la decimoctava ola 0099…0102.

@@ -819,6 +819,8 @@ class MainWindow(QMainWindow):
         self._solution_label.installEventFilter(self)
         self._solution_waste_label = QLabel()
         self._solution_waste_label.setObjectName("statusSolutionWaste")
+        self._solution_waste_label_armed = False
+        self._solution_waste_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1101,6 +1103,34 @@ class MainWindow(QMainWindow):
                 if armed and self._selected_solution_index_label() is not None:
                     self._step_layout_solution(1)
                     return True
+        waste = getattr(self, "_solution_waste_label", None)
+        if waste is not None and watched is waste:
+            can_select = self._selected_solution_waste_text() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_waste_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_waste_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_waste_label_armed
+                and not waste.rect().contains(event.position().toPoint())
+            ):
+                self._solution_waste_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_waste_label_armed
+                self._solution_waste_label_armed = False
+                if armed and self._selected_solution_waste_text() is not None:
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
         offcuts = getattr(self, "_offcuts_label", None)
         if offcuts is not None and watched is offcuts:
             can_select = bool(self._offcut_owner_board_ids())
@@ -3053,7 +3083,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.solution_waste", value=value))
         label.setToolTip(self._tr("tip.status_solution_waste", value=value))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_solution_status(self) -> None:
@@ -7576,12 +7606,20 @@ class MainWindow(QMainWindow):
         selected_item = self._find_explorer_item_by_role(f"solution:{selected}")
         if selected_item is None:
             return
+        self._select_explorer_solution(selected)
+
+    def _select_explorer_solution(self, index: int) -> bool:
+        """Highlight ``solution:{index}`` without changing the layout index."""
+        item = self._find_explorer_item_by_role(f"solution:{index}")
+        if item is None:
+            return False
         blocked = self.explorer.blockSignals(True)
         try:
-            self.explorer.setCurrentItem(selected_item)
-            self.explorer.scrollToItem(selected_item)
+            self.explorer.setCurrentItem(item)
+            self.explorer.scrollToItem(item)
         finally:
             self.explorer.blockSignals(blocked)
+        return True
 
     def _select_layout_solution(self, index: int) -> None:
         solution = self.services.layout.select_solution(index)
