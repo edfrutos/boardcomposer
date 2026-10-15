@@ -15,6 +15,11 @@
 
 ### Añadido
 
+- Copiar las omitidas de la solución (IDE-0110). Ctrl+Alt+Shift+Q.
+  El número (`0`, `2`), sin `fuera`. Deshabilitado si la etiqueta está
+  oculta. No avanza. Cierra la vigésima ola 0107…0110.
+  Cola implementable vacía. IDE-0101 e IDE-0102 siguen diferidas: sin costes.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: omitidas de la solución seleccionada (IDE-0109).
   `fuera 0` / `out 2`. La misma visibilidad que el índice. `0` se muestra.
   Distinto de `n om.`. Cursor flecha. Sin clic. Siguiente: IDE-0110.
