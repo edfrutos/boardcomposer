@@ -166,8 +166,8 @@ Objetivos:
   (0094 entregada). Decimoséptima ola cerrada (0098 entregada).
   Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas
   (sin costes). Decimonovena ola cerrada (0106 `#743`).
-  Vigésima ola: 0108 entregada. Residual IDE-0109…0110.
-  Siguiente: IDE-0109.
+  Vigésima ola: 0109 entregada. Residual IDE-0110.
+  Siguiente: IDE-0110.
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2
@@ -203,11 +203,11 @@ décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima o
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada
-(0094 entregada). Decimoséptima ola cerrada (0098 entregada). Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`). Vigésima ola: 0108 entregada. Residual IDE-0109…0110. Siguiente: IDE-0109.
+(0094 entregada). Decimoséptima ola cerrada (0098 entregada). Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`). Vigésima ola: 0109 entregada. Residual IDE-0110. Siguiente: IDE-0110.
 Revisión: `REVIEW-2026-10-15-planificacion.md`.
 
 Pendiente de:
 
-- IDE-0109 (vigésima ola 0107…0110; 0108 entregada). Decimonovena ola cerrada (0106 `#743`). IDE-0101 e IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+- IDE-0110 (vigésima ola 0107…0110; 0109 entregada). Decimonovena ola cerrada (0106 `#743`). IDE-0101 e IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.

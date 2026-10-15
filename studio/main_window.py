@@ -837,6 +837,8 @@ class MainWindow(QMainWindow):
         self._solution_pieces_label.setObjectName("statusSolutionPieces")
         self._solution_pieces_label_armed = False
         self._solution_pieces_label.installEventFilter(self)
+        self._solution_omitted_label = QLabel()
+        self._solution_omitted_label.setObjectName("statusSolutionOmitted")
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -865,6 +867,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_waste_label)
         status.addPermanentWidget(self._solution_strategy_label)
         status.addPermanentWidget(self._solution_pieces_label)
+        status.addPermanentWidget(self._solution_omitted_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -3216,12 +3219,39 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_omitted_count(self) -> int | None:
+        """Omitted pieces of the selected solution, or None without one."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return None
+        return len(solution.omitted_piece_ids)
+
+    def _update_solution_omitted_status(self) -> None:
+        """Show omitted pieces of the selected solution (IDE-0109)."""
+        label = getattr(self, "_solution_omitted_label", None)
+        if label is None:
+            return
+        count = self._selected_solution_omitted_count()
+        if count is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_omitted", n=count))
+        label.setToolTip(self._tr("tip.status_solution_omitted", n=count))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
         self._update_solution_waste_status()
         self._update_solution_strategy_status()
         self._update_solution_pieces_status()
+        self._update_solution_omitted_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
