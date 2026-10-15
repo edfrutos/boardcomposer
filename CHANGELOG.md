@@ -15,6 +15,10 @@
 
 ### Añadido
 
+- Barra de estado: omitidas de la solución seleccionada (IDE-0109).
+  `fuera 0` / `out 2`. La misma visibilidad que el índice. `0` se muestra.
+  Distinto de `n om.`. Cursor flecha. Sin clic. Siguiente: IDE-0110.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en las piezas selecciona esa solución (IDE-0108).
   Elige `solution:{index}` en el explorador. Arrastre no. No avanza
   ni aplica el layout. Siguiente: IDE-0109.

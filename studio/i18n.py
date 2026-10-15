@@ -1289,6 +1289,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_pieces": (
             "Piezas de la solución seleccionada: {n}. Clic selecciona la solución"
         ),
+        "status.solution_omitted": "fuera {n}",
+        "tip.status_solution_omitted": (
+            "Piezas omitidas de la solución seleccionada: {n}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3137,6 +3141,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_pieces": "{n} pcs",
         "tip.status_solution_pieces": (
             "Pieces in the selected solution: {n}. Click selects the solution"
+        ),
+        "status.solution_omitted": "out {n}",
+        "tip.status_solution_omitted": (
+            "Pieces left out of the selected solution: {n}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
