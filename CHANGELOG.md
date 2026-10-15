@@ -15,6 +15,11 @@
 
 ### Añadido
 
+- Copiar las piezas de la solución (IDE-0107). Ctrl+Alt+Shift+J.
+  El número (`0`, `2`), sin `pza`. Deshabilitado si la etiqueta está
+  oculta. No avanza. Abre la vigésima ola 0107…0110.
+  Siguiente: IDE-0108.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: piezas de la solución seleccionada (IDE-0106).
   `0 pza` / `2 pcs`. La misma visibilidad que el índice. `0` se muestra.
   Distinto de colocadas/total. Cursor flecha. Sin clic.
