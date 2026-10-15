@@ -15,6 +15,12 @@
 
 ### Añadido
 
+- Barra de estado: piezas de la solución seleccionada (IDE-0106).
+  `0 pza` / `2 pcs`. La misma visibilidad que el índice. `0` se muestra.
+  Distinto de colocadas/total. Cursor flecha. Sin clic.
+  Cierra la decimonovena ola 0103…0106. Cola implementable vacía.
+  IDE-0101 e IDE-0102 siguen diferidas: sin costes.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la estrategia selecciona esa solución (IDE-0105).
   Elige `solution:{index}` en el explorador. Arrastre no. No avanza
   ni aplica el layout. Siguiente: IDE-0106.
