@@ -1276,7 +1276,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_strategy": "est. {name}",
         "tip.status_solution_strategy": (
-            "Estrategia de la solución seleccionada: {name}"
+            "Estrategia de la solución seleccionada: {name}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3110,7 +3111,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Click selects the solution"
         ),
         "status.solution_strategy": "str. {name}",
-        "tip.status_solution_strategy": ("Strategy of the selected solution: {name}"),
+        "tip.status_solution_strategy": (
+            "Strategy of the selected solution: {name}. Click selects the solution"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Offcuts in the selected solution: {n}. Click selects their board"

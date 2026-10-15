@@ -50,8 +50,8 @@ def test_solution_strategy_follows_the_selected_solution(qapp, tmp_path):
     assert not label.isHidden()
     assert "estrategia" in label.toolTip().casefold()
     assert "desconocida" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "1/2 sol."
 
     calls: list[str] = []
@@ -88,5 +88,5 @@ def test_solution_strategy_follows_the_selected_solution(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "str. material"
     assert "strategy" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

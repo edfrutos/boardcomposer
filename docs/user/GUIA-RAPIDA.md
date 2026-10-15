@@ -389,7 +389,8 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+Alt+Shift+G** copia el porcentaje, sin `hueco`. No avanza.
   La estrategia va como `est. material` (en inglés `str. material`).
   La misma visibilidad que el índice. Sin nombre: `est. desconocida`.
-  Cursor flecha. Sin clic.
+  Cursor mano si está visible. **Clic** selecciona esa solución en
+  el explorador. No avanza ni aplica el layout. Arrastre no.
   **Ctrl+Alt+Shift+Y** copia el nombre (`material`, `desconocida`),
   sin `est.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
