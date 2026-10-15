@@ -126,6 +126,7 @@ en red; puedes **Copiar**).
 | Copiar índice de la solución | Ctrl+Alt+Shift+L |
 | Copiar huecos internos | Ctrl+Alt+Shift+G |
 | Copiar estrategia | Ctrl+Alt+Shift+Y |
+| Copiar piezas de la solución | Ctrl+Alt+Shift+J |
 | Zoom + / − (también rueda) | Ctrl+= / Ctrl+- |
 | Desplazar cámara (pan) | Botón medio / derecho / Espacio+arrastre |
 | Nuevo desde plantilla | Ctrl+Shift+N |
@@ -396,6 +397,8 @@ Chrome de Studio (se recuerda entre sesiones).
   Las piezas de esa solución van como `0 pza` (en inglés `0 pcs`).
   La misma visibilidad que el índice. `0` se muestra. Distinto de
   colocadas/total. Cursor flecha. Sin clic.
+  **Ctrl+Alt+Shift+J** copia el número (`0`, `2`), sin `pza`.
+  Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

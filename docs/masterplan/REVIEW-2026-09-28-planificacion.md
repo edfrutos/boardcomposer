@@ -112,6 +112,10 @@ Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada (0094 entrega
 | IDE-0104 copiar la estrategia | 🟢 |
 | IDE-0105 clic en la estrategia selecciona su solución | 🟢 |
 | IDE-0106 barra: piezas de la solución seleccionada | 🟢 |
+| IDE-0107 copiar las piezas de la solución | 🟢 |
+| IDE-0108 clic en las piezas selecciona su solución | 🔵 |
+| IDE-0109 barra: omitidas de la solución seleccionada | 🔵 |
+| IDE-0110 copiar las omitidas de la solución | 🔵 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -232,7 +236,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — ninguna en producto (0106 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+1. **Cola `0.4.4`** — IDE-0108 (vigésima ola 0107…0110; 0107 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -304,8 +308,12 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0104 | Copiar la estrategia | Entregado; Ctrl+Alt+Shift+Y; el nombre, sin `est.`; no avanza |
 | IDE-0105 | Clic en la estrategia selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0106 | Barra: piezas de la solución seleccionada | Entregado; `n pza` / `n pcs`; `0` se muestra; sin clic |
+| IDE-0107 | Copiar las piezas de la solución | Entregado; Ctrl+Alt+Shift+J; el número, sin `pza`; no avanza |
+| IDE-0108 | Clic en las piezas selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0109 | Barra: omitidas de la solución seleccionada | `fuera {n}` / `out {n}`; `0` se muestra; sin clic |
+| IDE-0110 | Copiar las omitidas de la solución | Ctrl+Alt+Shift+Q; el número, sin `fuera`; no avanza |
 
-Prioridad de ataque: **ninguna en producto** (0106 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0108** (vigésima ola 0107…0110; 0107 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
