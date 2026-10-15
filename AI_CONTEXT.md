@@ -115,7 +115,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en la estrategia selecciona esa solución (IDE-0105 `#742`).
 - Barra de estado: piezas de la solución seleccionada (IDE-0106 `#743`).
 - Copiar las piezas de la solución (IDE-0107; Ctrl+Alt+Shift+J).
-- Próximo: IDE-0108. Vigésima ola 0107…0110 (0107 entregada).
+- Clic en las piezas selecciona esa solución (IDE-0108).
+- Próximo: IDE-0109. Vigésima ola 0107…0110 (0108 entregada).
   Decimonovena ola cerrada (0106 `#743`). IDE-0101 e IDE-0102 diferidas,
   sin costes. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
