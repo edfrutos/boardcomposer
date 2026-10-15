@@ -15,6 +15,10 @@
 
 ### Añadido
 
+- Clic en las piezas selecciona esa solución (IDE-0108).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Siguiente: IDE-0109.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar las piezas de la solución (IDE-0107). Ctrl+Alt+Shift+J.
   El número (`0`, `2`), sin `pza`. Deshabilitado si la etiqueta está
   oculta. No avanza. Abre la vigésima ola 0107…0110.

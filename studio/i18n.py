@@ -1286,7 +1286,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Clic selecciona la solución"
         ),
         "status.solution_pieces": "{n} pza",
-        "tip.status_solution_pieces": ("Piezas de la solución seleccionada: {n}"),
+        "tip.status_solution_pieces": (
+            "Piezas de la solución seleccionada: {n}. Clic selecciona la solución"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3133,7 +3135,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Strategy of the selected solution: {name}. Click selects the solution"
         ),
         "status.solution_pieces": "{n} pcs",
-        "tip.status_solution_pieces": ("Pieces in the selected solution: {n}"),
+        "tip.status_solution_pieces": (
+            "Pieces in the selected solution: {n}. Click selects the solution"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Offcuts in the selected solution: {n}. Click selects their board"
