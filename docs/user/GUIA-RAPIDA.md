@@ -424,6 +424,9 @@ Chrome de Studio (se recuerda entre sesiones).
   explorador. No avanza ni aplica el layout. Arrastre no.
   **Ctrl+Alt+Shift+V** copia el valor (`0.00`, `0.75`), sin `pts.`.
   Deshabilitado si la etiqueta está oculta. No avanza.
+  El tablero libre de esa solución va como `sbr. 0.0%` (en inglés
+  `rem. 76.0%`). La misma visibilidad que el índice. `0.0%` se muestra.
+  Distinto de `libre`. Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

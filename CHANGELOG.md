@@ -15,6 +15,12 @@
 
 ### Añadido
 
+- Barra de estado: tablero libre de la solución seleccionada (IDE-0118).
+  `sbr. 0.0%` / `rem. 76.0%`. La misma visibilidad que el índice. `0.0%` se
+  muestra. Distinto de `libre`. Cursor flecha. Sin clic. Cierra la
+  vigesimosegunda ola 0115…0118. Cola implementable vacía. IDE-0101 e
+  IDE-0102 siguen diferidas: sin costes.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la puntuación selecciona esa solución (IDE-0117).
   Elige `solution:{index}` en el explorador. Arrastre no. No avanza
   ni aplica el layout. Siguiente: IDE-0118.
