@@ -1319,7 +1319,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_score": "pts. {value}",
         "tip.status_solution_score": (
-            "Puntuación de la solución seleccionada: {value}"
+            "Puntuación de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3209,7 +3210,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Boards consumed by the selected solution: {n}. Click selects the solution"
         ),
         "status.solution_score": "pts {value}",
-        "tip.status_solution_score": ("Score of the selected solution: {value}"),
+        "tip.status_solution_score": (
+            "Score of the selected solution: {value}. Click selects the solution"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Offcuts in the selected solution: {n}. Click selects their board"

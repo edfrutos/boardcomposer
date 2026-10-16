@@ -122,7 +122,7 @@ Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada (0094 entrega
 | IDE-0114 clic en los tableros selecciona su solución | 🟢 |
 | IDE-0115 barra: puntuación de la solución seleccionada | 🟢 |
 | IDE-0116 copiar la puntuación de la solución | 🟢 |
-| IDE-0117 clic en la puntuación selecciona su solución | 🔵 |
+| IDE-0117 clic en la puntuación selecciona su solución | 🟢 |
 | IDE-0118 barra: tablero libre de la solución seleccionada | 🔵 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
@@ -244,7 +244,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — IDE-0117 (0116 entregada; 0118 en cola; IDE-0101 e IDE-0102 diferidas, sin costes).
+1. **Cola `0.4.4`** — IDE-0118 (0117 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -326,10 +326,10 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0114 | Clic en los tableros selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0115 | Barra: puntuación de la solución seleccionada | Entregado; `pts. {value}` / `pts {value}`; `0.00` se muestra; sin clic |
 | IDE-0116 | Copiar la puntuación de la solución | Entregado; Ctrl+Alt+Shift+V; el valor, sin `pts.`; no avanza |
-| IDE-0117 | Clic en la puntuación selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0117 | Clic en la puntuación selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0118 | Barra: tablero libre de la solución seleccionada | `sbr. {value}` / `rem. {value}`; `0.0%` se muestra; sin clic; distinto de `libre` |
 
-Prioridad de ataque: **IDE-0117** (0116 entregada; 0118 en cola; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0118** (0117 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
