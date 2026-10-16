@@ -15,6 +15,10 @@
 
 ### Añadido
 
+- Copiar la puntuación de la solución (IDE-0116). Ctrl+Alt+Shift+V.
+  El valor (`0.00`, `0.75`), sin `pts.`. Deshabilitado si la etiqueta
+  está oculta. No avanza. Siguiente: IDE-0117.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: puntuación de la solución seleccionada (IDE-0115).
   `pts. 0.00` / `pts 0.75`. La misma visibilidad que el índice. `0.00` se
   muestra. Cursor flecha. Sin clic. Abre la vigesimosegunda ola 0115…0118.
