@@ -15,6 +15,10 @@
 
 ### Añadido
 
+- Barra de estado: tableros de la solución seleccionada (IDE-0112).
+  `pan. 0` / `pnl 2`. La misma visibilidad que el índice. `0` se muestra.
+  Distinto de `n tab.`. Cursor flecha. Sin clic. Siguiente: IDE-0113.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en las omitidas selecciona esa solución (IDE-0111).
   Elige `solution:{index}` en el explorador. Arrastre no. No avanza
   ni aplica el layout. Abre la vigesimoprimera ola 0111…0114.

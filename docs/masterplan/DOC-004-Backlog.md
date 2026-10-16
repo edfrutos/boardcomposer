@@ -181,7 +181,7 @@ Observaciones:
 | IDE-0109 | Barra: omitidas de la solución seleccionada | 🟢 | P3 |
 | IDE-0110 | Copiar las omitidas de la solución | 🟢 | P3 |
 | IDE-0111 | Clic en las omitidas selecciona su solución | 🟢 | P3 |
-| IDE-0112 | Barra: tableros de la solución seleccionada | 🔵 | P3 |
+| IDE-0112 | Barra: tableros de la solución seleccionada | 🟢 | P3 |
 | IDE-0113 | Copiar los tableros de la solución | 🔵 | P3 |
 | IDE-0114 | Clic en los tableros selecciona su solución | 🔵 | P3 |
 
@@ -288,7 +288,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0109 | S | IDE-0095 | Entregado; `fuera {n}` / `out {n}`; `len(omitted_piece_ids)`; `0` se muestra; sin clic; distinto de `n om.` |
 | IDE-0110 | S | IDE-0109 | Entregado; Ctrl+Alt+Shift+Q; el número, sin `fuera`; no avanza |
 | IDE-0111 | S | IDE-0109 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0112 | S | IDE-0095 | `pan. {n}` / `pnl {n}`; `len(panel_references)`; `0` se muestra; cursor flecha; sin clic; distinto de `n tab.` |
+| IDE-0112 | S | IDE-0095 | Entregado; `pan. {n}` / `pnl {n}`; `len(panel_references)`; `0` se muestra; sin clic; distinto de `n tab.` |
 | IDE-0113 | S | IDE-0112 | Ctrl+Alt+Shift+W; el número, sin `pan.`; deshabilitado si oculta; no avanza |
 | IDE-0114 | S | IDE-0112 | Clic selecciona `solution:{index}`; arrastre no; no avanza |
 
@@ -318,7 +318,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0111 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0112 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -330,12 +330,12 @@ Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 Decimoquinta ola cerrada (0090 entregada `#720`). Decimosexta ola
 cerrada (0094 entregada). Decimoséptima ola cerrada (0098 entregada).
 Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes).
-Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola: 0111 entregada. Siguiente: IDE-0112. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
+Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola: 0112 entregada. Siguiente: IDE-0113. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
 entregadas. Snapshot: `REVIEW-2026-10-15-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0112 (0111 entregada; 0113 y 0114 en cola; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
+1. Cola producto `0.4.4`: IDE-0113 (0112 entregada; 0114 en cola; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
