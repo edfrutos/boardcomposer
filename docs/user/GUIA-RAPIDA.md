@@ -412,7 +412,9 @@ Chrome de Studio (se recuerda entre sesiones).
   Deshabilitado si la etiqueta está oculta. No avanza.
   Los tableros usados por esa solución van como `pan. 0` (en inglés
   `pnl 2`). La misma visibilidad que el índice. `0` se muestra.
-  Distinto de `n tab.`. Cursor flecha. Sin clic.
+  Distinto de `n tab.`. Cursor mano si está visible. **Clic** selecciona
+  esa solución en el explorador. No avanza ni aplica el layout.
+  Arrastre no.
   **Ctrl+Alt+Shift+W** copia el número (`0`, `2`), sin `pan.`.
   Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.

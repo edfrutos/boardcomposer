@@ -15,6 +15,11 @@
 
 ### Añadido
 
+- Clic en los tableros selecciona esa solución (IDE-0114).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Cierra la vigesimoprimera ola 0111…0114.
+  Cola implementable vacía. IDE-0101 e IDE-0102 siguen diferidas: sin costes.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar los tableros de la solución (IDE-0113). Ctrl+Alt+Shift+W.
   El número (`0`, `2`), sin `pan.`. Deshabilitado si la etiqueta está
   oculta. No avanza. Siguiente: IDE-0114.

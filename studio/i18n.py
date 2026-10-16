@@ -1308,7 +1308,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_panels": "pan. {n}",
         "tip.status_solution_panels": (
-            "Tableros usados por la solución seleccionada: {n}"
+            "Tableros usados por la solución seleccionada: {n}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3184,7 +3185,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Pieces left out of the selected solution: {n}. Click selects the solution"
         ),
         "status.solution_panels": "pnl {n}",
-        "tip.status_solution_panels": ("Boards consumed by the selected solution: {n}"),
+        "tip.status_solution_panels": (
+            "Boards consumed by the selected solution: {n}. Click selects the solution"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Offcuts in the selected solution: {n}. Click selects their board"
