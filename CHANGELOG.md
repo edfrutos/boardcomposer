@@ -15,6 +15,10 @@
 
 ### Añadido
 
+- Copiar los tableros de la solución (IDE-0113). Ctrl+Alt+Shift+W.
+  El número (`0`, `2`), sin `pan.`. Deshabilitado si la etiqueta está
+  oculta. No avanza. Siguiente: IDE-0114.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: tableros de la solución seleccionada (IDE-0112).
   `pan. 0` / `pnl 2`. La misma visibilidad que el índice. `0` se muestra.
   Distinto de `n tab.`. Cursor flecha. Sin clic. Siguiente: IDE-0113.

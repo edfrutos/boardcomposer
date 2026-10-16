@@ -120,7 +120,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar las omitidas de la solución (IDE-0110; Ctrl+Alt+Shift+Q).
 - Clic en las omitidas selecciona esa solución (IDE-0111).
 - Barra de estado: tableros de la solución seleccionada (IDE-0112).
-- Próximo: IDE-0113 (copiar tableros de la solución; 0114 en cola).
+- Copiar los tableros de la solución (IDE-0113; Ctrl+Alt+Shift+W).
+- Próximo: IDE-0114 (clic en tableros de la solución).
   Vigesimoprimera ola abierta. IDE-0101 e IDE-0102 diferidas, sin costes.
   Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
