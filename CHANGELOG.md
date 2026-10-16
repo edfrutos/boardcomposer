@@ -15,6 +15,10 @@
 
 ### Añadido
 
+- Clic en la puntuación selecciona esa solución (IDE-0117).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Siguiente: IDE-0118.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la puntuación de la solución (IDE-0116). Ctrl+Alt+Shift+V.
   El valor (`0.00`, `0.75`), sin `pts.`. Deshabilitado si la etiqueta
   está oculta. No avanza. Siguiente: IDE-0117.

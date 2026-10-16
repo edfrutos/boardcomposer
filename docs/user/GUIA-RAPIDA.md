@@ -420,7 +420,8 @@ Chrome de Studio (se recuerda entre sesiones).
   Deshabilitado si la etiqueta está oculta. No avanza.
   La puntuación de esa solución va como `pts. 0.00` (en inglés
   `pts 0.75`). La misma visibilidad que el índice. `0.00` se muestra.
-  Cursor flecha. Sin clic.
+  Cursor mano si está visible. **Clic** selecciona esa solución en el
+  explorador. No avanza ni aplica el layout. Arrastre no.
   **Ctrl+Alt+Shift+V** copia el valor (`0.00`, `0.75`), sin `pts.`.
   Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.

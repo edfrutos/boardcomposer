@@ -124,7 +124,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en los tableros selecciona esa solución (IDE-0114).
 - Barra de estado: puntuación de la solución seleccionada (IDE-0115).
 - Copiar la puntuación de la solución (IDE-0116; Ctrl+Alt+Shift+V).
-- Próximo: IDE-0117 (clic en la puntuación; 0118 en cola).
+- Clic en la puntuación selecciona esa solución (IDE-0117).
+- Próximo: IDE-0118 (tablero libre de la solución).
   Vigesimosegunda ola abierta. IDE-0101 e IDE-0102 diferidas, sin costes.
   Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
