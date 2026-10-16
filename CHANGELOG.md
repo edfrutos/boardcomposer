@@ -15,6 +15,11 @@
 
 ### Añadido
 
+- Clic en las omitidas selecciona esa solución (IDE-0111).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Abre la vigesimoprimera ola 0111…0114.
+  Siguiente: IDE-0112. IDE-0101 e IDE-0102 siguen diferidas: sin costes.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar las omitidas de la solución (IDE-0110). Ctrl+Alt+Shift+Q.
   El número (`0`, `2`), sin `fuera`. Deshabilitado si la etiqueta está
   oculta. No avanza. Cierra la vigésima ola 0107…0110.

@@ -118,8 +118,10 @@ alternativas comprensibles para que el usuario decida.
 - Clic en las piezas selecciona esa solución (IDE-0108).
 - Barra de estado: omitidas de la solución seleccionada (IDE-0109).
 - Copiar las omitidas de la solución (IDE-0110; Ctrl+Alt+Shift+Q).
-- Próximo: ninguna en producto (0110 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Vigésima ola cerrada. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+- Clic en las omitidas selecciona esa solución (IDE-0111).
+- Próximo: IDE-0112 (tableros de la solución; 0113 y 0114 en cola).
+  Vigesimoprimera ola abierta. IDE-0101 e IDE-0102 diferidas, sin costes.
+  Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

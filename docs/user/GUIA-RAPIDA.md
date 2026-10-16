@@ -404,7 +404,9 @@ Chrome de Studio (se recuerda entre sesiones).
   Deshabilitado si la etiqueta está oculta. No avanza.
   Las omitidas de esa solución van como `fuera 0` (en inglés `out 2`).
   La misma visibilidad que el índice. `0` se muestra. Distinto de
-  `n om.`. Cursor flecha. Sin clic.
+  `n om.`. Cursor mano si está visible. **Clic** selecciona
+  esa solución en el explorador. No avanza ni aplica el layout.
+  Arrastre no.
   **Ctrl+Alt+Shift+Q** copia el número (`0`, `2`), sin `fuera`.
   Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
