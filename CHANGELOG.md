@@ -1,22 +1,68 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-14
+## Unreleased — 0.4.4.dev0 — 2026-10-15
 
 ### Corregido
 
 - Cambiar de tema ya no sustituye el estilo Fusion si ya está activo.
   En CI offscreen eso borraba el estilo con widgets vivos y el test
-  acababa en segfault (139).
+  acababa en segfault (139). La hoja nueva se instala vaciando el
+  proxy y creando otro: repulir el proxy vivo superaba el timeout.
+  Un índice de solución fuera de rango ya no lanza IndexError al
+  repintar: el filtro de eventos leía esa solución.
 - Preferencias ya no desborda el alto de la pantalla. Los grupos
   desplazan; OK, Cancelar y Restaurar quedan visibles.
 
 ### Añadido
 
-- Docs planificación 2026-10-14: snapshot
-  `docs/masterplan/REVIEW-2026-10-14-planificacion.md`; Issues = 0;
-  `#731`…`#737` (IDE-0094…0099) en `main`; IDE-0100 🟡 `#738` +
-  IDE-0101/0102 🔵 → **sin IDE nuevas**. Histórico 2026-10-13 desde
-  PR `#732`.
+- Clic en las omitidas selecciona esa solución (IDE-0111).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Abre la vigesimoprimera ola 0111…0114.
+  Siguiente: IDE-0112. IDE-0101 e IDE-0102 siguen diferidas: sin costes.
+  Sin bump `.bcproj`; no cambia el solver.
+- Copiar las omitidas de la solución (IDE-0110). Ctrl+Alt+Shift+Q.
+  El número (`0`, `2`), sin `fuera`. Deshabilitado si la etiqueta está
+  oculta. No avanza. Cierra la vigésima ola 0107…0110.
+  Cola implementable vacía. IDE-0101 e IDE-0102 siguen diferidas: sin costes.
+  Sin bump `.bcproj`; no cambia el solver.
+- Barra de estado: omitidas de la solución seleccionada (IDE-0109).
+  `fuera 0` / `out 2`. La misma visibilidad que el índice. `0` se muestra.
+  Distinto de `n om.`. Cursor flecha. Sin clic. Siguiente: IDE-0110.
+  Sin bump `.bcproj`; no cambia el solver.
+- Clic en las piezas selecciona esa solución (IDE-0108).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Siguiente: IDE-0109.
+  Sin bump `.bcproj`; no cambia el solver.
+- Copiar las piezas de la solución (IDE-0107). Ctrl+Alt+Shift+J.
+  El número (`0`, `2`), sin `pza`. Deshabilitado si la etiqueta está
+  oculta. No avanza. Abre la vigésima ola 0107…0110.
+  Siguiente: IDE-0108.
+  Sin bump `.bcproj`; no cambia el solver.
+- Barra de estado: piezas de la solución seleccionada (IDE-0106).
+  `0 pza` / `2 pcs`. La misma visibilidad que el índice. `0` se muestra.
+  Distinto de colocadas/total. Cursor flecha. Sin clic.
+  Cierra la decimonovena ola 0103…0106. Cola implementable vacía.
+  IDE-0101 e IDE-0102 siguen diferidas: sin costes.
+  Sin bump `.bcproj`; no cambia el solver.
+- Clic en la estrategia selecciona esa solución (IDE-0105).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Siguiente: IDE-0106.
+  Sin bump `.bcproj`; no cambia el solver.
+- Copiar la estrategia de la barra (IDE-0104). Ctrl+Alt+Shift+Y.
+  El nombre (`material`, `desconocida`), sin `est.`. Deshabilitado si
+  la etiqueta está oculta. No avanza. Siguiente: IDE-0105.
+  Sin bump `.bcproj`; no cambia el solver.
+- Barra de estado: estrategia de la solución seleccionada (IDE-0103).
+  `est. material` / `str. material`. La misma visibilidad que el índice.
+  Sin nombre: `est. desconocida` / `str. unknown`; se muestra.
+  Cursor flecha. Sin clic. Abre la decimonovena ola 0103…0106.
+  Siguiente: IDE-0104.
+  Sin bump `.bcproj`; no cambia el solver.
+- Clic en los huecos internos selecciona esa solución (IDE-0100).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. IDE-0101 e IDE-0102 quedan diferidas: sin
+  costes por ahora. Cola implementable vacía.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar los huecos internos de la barra (IDE-0099). Ctrl+Alt+Shift+G.
   El porcentaje (`0.0%`, `33.3%`), sin `hueco`. Deshabilitado si la
   etiqueta está oculta. No avanza. Abre la decimoctava ola 0099…0102.

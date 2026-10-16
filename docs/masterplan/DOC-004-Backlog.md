@@ -169,9 +169,21 @@ Observaciones:
 | IDE-0097 | Clic en el índice pasa a la siguiente solución | 🟢 | P3 |
 | IDE-0098 | Barra: huecos internos de la solución seleccionada | 🟢 | P3 |
 | IDE-0099 | Copiar los huecos internos de la barra | 🟢 | P3 |
-| IDE-0100 | Clic en huecos selecciona su solución | 🟡 | P3 |
-| IDE-0101 | Barra: coste de la solución seleccionada | 🔵 | P3 |
-| IDE-0102 | Copiar el coste de la solución | 🔵 | P3 |
+| IDE-0100 | Clic en huecos selecciona su solución | 🟢 | P3 |
+| IDE-0101 | Barra: coste de la solución seleccionada | ⚪ | P3 |
+| IDE-0102 | Copiar el coste de la solución | ⚪ | P3 |
+| IDE-0103 | Barra: estrategia de la solución seleccionada | 🟢 | P3 |
+| IDE-0104 | Copiar la estrategia | 🟢 | P3 |
+| IDE-0105 | Clic en la estrategia selecciona su solución | 🟢 | P3 |
+| IDE-0106 | Barra: piezas de la solución seleccionada | 🟢 | P3 |
+| IDE-0107 | Copiar las piezas de la solución | 🟢 | P3 |
+| IDE-0108 | Clic en las piezas selecciona su solución | 🟢 | P3 |
+| IDE-0109 | Barra: omitidas de la solución seleccionada | 🟢 | P3 |
+| IDE-0110 | Copiar las omitidas de la solución | 🟢 | P3 |
+| IDE-0111 | Clic en las omitidas selecciona su solución | 🟢 | P3 |
+| IDE-0112 | Barra: tableros de la solución seleccionada | 🔵 | P3 |
+| IDE-0113 | Copiar los tableros de la solución | 🔵 | P3 |
+| IDE-0114 | Clic en los tableros selecciona su solución | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -264,9 +276,21 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0097 | S | IDE-0095 | Entregado; clic avanza (`_step_layout_solution(1)`); arrastre no; no aplica el layout; no cambia el zoom |
 | IDE-0098 | S | IDE-0095 | Entregado; `hueco 0.0%` / `gap 33.3%`; misma visibilidad que el índice; `0.0%` se muestra; sin clic |
 | IDE-0099 | S | IDE-0098 | Entregado; Ctrl+Alt+Shift+G; el porcentaje, sin `hueco`; no avanza |
-| IDE-0100 | S | IDE-0098 | En curso `#738`; clic selecciona `solution:{index}` en el explorador; arrastre no; no avanza; no aplica el layout |
-| IDE-0101 | S | IDE-0095 | Misma visibilidad que el índice; `12.50 €`, `12.50 €*` o `—`; `—` se muestra; sin clic |
-| IDE-0102 | S | IDE-0101 | Ctrl+Alt+Shift+E; copia el texto visible (`12.50 €`, `12.50 €*` o `—`); no abre el presupuesto |
+| IDE-0100 | S | IDE-0098 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza; no aplica el layout |
+| IDE-0101 | S | IDE-0095 | Diferido; sin costes por ahora |
+| IDE-0102 | S | IDE-0101 | Diferido; sin costes por ahora |
+| IDE-0103 | S | IDE-0095 | Entregado; `est. material` / `str. material`; misma visibilidad que el índice; `desconocida` se muestra; sin clic |
+| IDE-0104 | S | IDE-0103 | Entregado; Ctrl+Alt+Shift+Y; el nombre, sin `est.`; no avanza |
+| IDE-0105 | S | IDE-0103 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0106 | S | IDE-0095 | Entregado `#743`; `n pza` / `n pcs`; `len(placements)`; `0` se muestra; sin clic |
+| IDE-0107 | S | IDE-0106 | Entregado; Ctrl+Alt+Shift+J; el número, sin `pza`; no avanza |
+| IDE-0108 | S | IDE-0106 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0109 | S | IDE-0095 | Entregado; `fuera {n}` / `out {n}`; `len(omitted_piece_ids)`; `0` se muestra; sin clic; distinto de `n om.` |
+| IDE-0110 | S | IDE-0109 | Entregado; Ctrl+Alt+Shift+Q; el número, sin `fuera`; no avanza |
+| IDE-0111 | S | IDE-0109 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0112 | S | IDE-0095 | `pan. {n}` / `pnl {n}`; `len(panel_references)`; `0` se muestra; cursor flecha; sin clic; distinto de `n tab.` |
+| IDE-0113 | S | IDE-0112 | Ctrl+Alt+Shift+W; el número, sin `pan.`; deshabilitado si oculta; no avanza |
+| IDE-0114 | S | IDE-0112 | Clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -294,25 +318,24 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0099 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0099; `#647`/`#649`/`#651`/
+**Estado actual:** 🟢 Actualizado — IDE-0001…0111 Studio/Core
+completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
 `#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`/`#702`/`#706`/`#715`/
-`#716`/`#718`/`#720`/`#721`/`#724`/`#725`/`#731`/`#733`…`#737`).
+`#716`/`#718`/`#720`/`#721`/`#724`/`#725`/`#738`/`#740`/`#741`/`#742`).
 Séptima…duodécima ola cerradas; IDE-0079 `#706`; IDE-0080 `#707`.
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada `#720`). Decimosexta ola
-cerrada (0094 `#731`). Decimoséptima ola cerrada (0098 `#736`).
-Decimoctava ola residual: IDE-0100 🟡 `#738` + IDE-0101/0102 🔵
-(0099 `#737`). IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP
-(001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-14-planificacion.md`.
+cerrada (0094 entregada). Decimoséptima ola cerrada (0098 entregada).
+Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes).
+Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola: 0111 entregada. Siguiente: IDE-0112. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
+entregadas. Snapshot: `REVIEW-2026-10-15-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: cerrar IDE-0100 🟡 `#738`; luego 0101 → 0102.
+1. Cola producto `0.4.4`: IDE-0112 (0111 entregada; 0113 y 0114 en cola; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.

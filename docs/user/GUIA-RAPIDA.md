@@ -125,6 +125,9 @@ en red; puedes **Copiar**).
 | Copiar retales | Ctrl+Alt+Shift+R |
 | Copiar índice de la solución | Ctrl+Alt+Shift+L |
 | Copiar huecos internos | Ctrl+Alt+Shift+G |
+| Copiar estrategia | Ctrl+Alt+Shift+Y |
+| Copiar piezas de la solución | Ctrl+Alt+Shift+J |
+| Copiar omitidas de la solución | Ctrl+Alt+Shift+Q |
 | Zoom + / − (también rueda) | Ctrl+= / Ctrl+- |
 | Desplazar cámara (pan) | Botón medio / derecho / Espacio+arrastre |
 | Nuevo desde plantilla | Ctrl+Shift+N |
@@ -382,8 +385,30 @@ Chrome de Studio (se recuerda entre sesiones).
   No aplica el layout ni cambia el zoom. Arrastre no.
   **Ctrl+Alt+Shift+L** copia `1/2`, sin `sol.`. No avanza.
   Los huecos internos van como `hueco 0.0%` (en inglés `gap 0.0%`).
-  La misma visibilidad que el índice. `0.0%` se muestra. Sin clic.
+  La misma visibilidad que el índice. `0.0%` se muestra.
+  **Clic** selecciona esa solución en el explorador. No avanza ni
+  aplica el layout. Arrastre no.
   **Ctrl+Alt+Shift+G** copia el porcentaje, sin `hueco`. No avanza.
+  La estrategia va como `est. material` (en inglés `str. material`).
+  La misma visibilidad que el índice. Sin nombre: `est. desconocida`.
+  Cursor mano si está visible. **Clic** selecciona esa solución en
+  el explorador. No avanza ni aplica el layout. Arrastre no.
+  **Ctrl+Alt+Shift+Y** copia el nombre (`material`, `desconocida`),
+  sin `est.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  Las piezas de esa solución van como `0 pza` (en inglés `0 pcs`).
+  La misma visibilidad que el índice. `0` se muestra. Distinto de
+  colocadas/total. Cursor mano si está visible. **Clic** selecciona
+  esa solución en el explorador. No avanza ni aplica el layout.
+  Arrastre no.
+  **Ctrl+Alt+Shift+J** copia el número (`0`, `2`), sin `pza`.
+  Deshabilitado si la etiqueta está oculta. No avanza.
+  Las omitidas de esa solución van como `fuera 0` (en inglés `out 2`).
+  La misma visibilidad que el índice. `0` se muestra. Distinto de
+  `n om.`. Cursor mano si está visible. **Clic** selecciona
+  esa solución en el explorador. No avanza ni aplica el layout.
+  Arrastre no.
+  **Ctrl+Alt+Shift+Q** copia el número (`0`, `2`), sin `fuera`.
+  Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

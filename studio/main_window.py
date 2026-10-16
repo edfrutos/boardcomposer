@@ -241,6 +241,9 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_offcuts"])
         self._menus["edit"].addAction(self._actions["copy_solution_index"])
         self._menus["edit"].addAction(self._actions["copy_solution_waste"])
+        self._menus["edit"].addAction(self._actions["copy_solution_strategy"])
+        self._menus["edit"].addAction(self._actions["copy_solution_pieces"])
+        self._menus["edit"].addAction(self._actions["copy_solution_omitted"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -373,6 +376,15 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_solution_waste"].triggered.connect(
             self._copy_solution_waste
+        )
+        self._actions["copy_solution_strategy"].triggered.connect(
+            self._copy_solution_strategy
+        )
+        self._actions["copy_solution_pieces"].triggered.connect(
+            self._copy_solution_pieces
+        )
+        self._actions["copy_solution_omitted"].triggered.connect(
+            self._copy_solution_omitted
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -819,6 +831,20 @@ class MainWindow(QMainWindow):
         self._solution_label.installEventFilter(self)
         self._solution_waste_label = QLabel()
         self._solution_waste_label.setObjectName("statusSolutionWaste")
+        self._solution_waste_label_armed = False
+        self._solution_waste_label.installEventFilter(self)
+        self._solution_strategy_label = QLabel()
+        self._solution_strategy_label.setObjectName("statusSolutionStrategy")
+        self._solution_strategy_label_armed = False
+        self._solution_strategy_label.installEventFilter(self)
+        self._solution_pieces_label = QLabel()
+        self._solution_pieces_label.setObjectName("statusSolutionPieces")
+        self._solution_pieces_label_armed = False
+        self._solution_pieces_label.installEventFilter(self)
+        self._solution_omitted_label = QLabel()
+        self._solution_omitted_label.setObjectName("statusSolutionOmitted")
+        self._solution_omitted_label_armed = False
+        self._solution_omitted_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -845,6 +871,9 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._board_free_material_label)
         status.addPermanentWidget(self._solution_label)
         status.addPermanentWidget(self._solution_waste_label)
+        status.addPermanentWidget(self._solution_strategy_label)
+        status.addPermanentWidget(self._solution_pieces_label)
+        status.addPermanentWidget(self._solution_omitted_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -1101,6 +1130,118 @@ class MainWindow(QMainWindow):
                 if armed and self._selected_solution_index_label() is not None:
                     self._step_layout_solution(1)
                     return True
+        waste = getattr(self, "_solution_waste_label", None)
+        if waste is not None and watched is waste:
+            can_select = self._selected_solution_waste_text() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_waste_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_waste_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_waste_label_armed
+                and not waste.rect().contains(event.position().toPoint())
+            ):
+                self._solution_waste_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_waste_label_armed
+                self._solution_waste_label_armed = False
+                if armed and self._selected_solution_waste_text() is not None:
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        strategy = getattr(self, "_solution_strategy_label", None)
+        if strategy is not None and watched is strategy:
+            can_select = self._selected_solution_strategy_text() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_strategy_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_strategy_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_strategy_label_armed
+                and not strategy.rect().contains(event.position().toPoint())
+            ):
+                self._solution_strategy_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_strategy_label_armed
+                self._solution_strategy_label_armed = False
+                if armed and self._selected_solution_strategy_text() is not None:
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        pieces = getattr(self, "_solution_pieces_label", None)
+        if pieces is not None and watched is pieces:
+            can_select = self._selected_solution_piece_count() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_pieces_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_pieces_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_pieces_label_armed
+                and not pieces.rect().contains(event.position().toPoint())
+            ):
+                self._solution_pieces_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_pieces_label_armed
+                self._solution_pieces_label_armed = False
+                if armed and self._selected_solution_piece_count() is not None:
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        omitted = getattr(self, "_solution_omitted_label", None)
+        if omitted is not None and watched is omitted:
+            can_select = self._selected_solution_omitted_count() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_omitted_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_omitted_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_omitted_label_armed
+                and not omitted.rect().contains(event.position().toPoint())
+            ):
+                self._solution_omitted_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_omitted_label_armed
+                self._solution_omitted_label_armed = False
+                if armed and self._selected_solution_omitted_count() is not None:
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
         offcuts = getattr(self, "_offcuts_label", None)
         if offcuts is not None and watched is offcuts:
             can_select = bool(self._offcut_owner_board_ids())
@@ -3053,13 +3194,99 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.solution_waste", value=value))
         label.setToolTip(self._tr("tip.status_solution_waste", value=value))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
+        label.show()
+
+    def _selected_solution_strategy_text(self) -> str | None:
+        """Strategy name of the current layout, or None without a solution."""
+        if self._selected_solution_index_label() is None:
+            return None
+        if self.services.layout.selected_solution is None:
+            return None
+        name = self.services.layout.strategy_name
+        if not name:
+            return self._tr("inspector.strategy_unknown")
+        return name
+
+    def _update_solution_strategy_status(self) -> None:
+        """Show the strategy of the selected solution (IDE-0103)."""
+        self._sync_copy_solution_strategy_action()
+        label = getattr(self, "_solution_strategy_label", None)
+        if label is None:
+            return
+        name = self._selected_solution_strategy_text()
+        if name is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_strategy", name=name))
+        label.setToolTip(self._tr("tip.status_solution_strategy", name=name))
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
+        label.show()
+
+    def _selected_solution_piece_count(self) -> int | None:
+        """Placements in the selected solution, or None without one."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return None
+        return len(solution.placements)
+
+    def _update_solution_pieces_status(self) -> None:
+        """Show pieces of the selected solution (IDE-0106)."""
+        self._sync_copy_solution_pieces_action()
+        label = getattr(self, "_solution_pieces_label", None)
+        if label is None:
+            return
+        count = self._selected_solution_piece_count()
+        if count is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_pieces", n=count))
+        label.setToolTip(self._tr("tip.status_solution_pieces", n=count))
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
+        label.show()
+
+    def _selected_solution_omitted_count(self) -> int | None:
+        """Omitted pieces of the selected solution, or None without one."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return None
+        return len(solution.omitted_piece_ids)
+
+    def _update_solution_omitted_status(self) -> None:
+        """Show omitted pieces of the selected solution (IDE-0109)."""
+        self._sync_copy_solution_omitted_action()
+        label = getattr(self, "_solution_omitted_label", None)
+        if label is None:
+            return
+        count = self._selected_solution_omitted_count()
+        if count is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_omitted", n=count))
+        label.setToolTip(self._tr("tip.status_solution_omitted", n=count))
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
         self._update_solution_waste_status()
+        self._update_solution_strategy_status()
+        self._update_solution_pieces_status()
+        self._update_solution_omitted_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
@@ -6987,6 +7214,83 @@ class MainWindow(QMainWindow):
         self._copy_text_to_clipboard(value)
         self._status("status.solution_waste_copied", n=value)
 
+    def _sync_copy_solution_strategy_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_strategy")
+        if action is None:
+            return
+        enabled = self._selected_solution_strategy_text() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_strategy"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_strategy")
+        )
+
+    def _copy_solution_strategy(self, _checked: bool = False) -> None:
+        """Copy the status-bar strategy name (IDE-0104)."""
+        del _checked
+        name = self._selected_solution_strategy_text()
+        if name is None:
+            self._status("status.nothing_to_copy_solution_strategy")
+            return
+        self._copy_text_to_clipboard(name)
+        self._status("status.solution_strategy_copied", n=name)
+
+    def _sync_copy_solution_pieces_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_pieces")
+        if action is None:
+            return
+        enabled = self._selected_solution_piece_count() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_pieces"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_pieces")
+        )
+
+    def _copy_solution_pieces(self, _checked: bool = False) -> None:
+        """Copy the status-bar solution piece count (IDE-0107)."""
+        del _checked
+        count = self._selected_solution_piece_count()
+        if count is None:
+            self._status("status.nothing_to_copy_solution_pieces")
+            return
+        value = str(count)
+        self._copy_text_to_clipboard(value)
+        self._status("status.solution_pieces_copied", n=value)
+
+    def _sync_copy_solution_omitted_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_omitted")
+        if action is None:
+            return
+        enabled = self._selected_solution_omitted_count() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_omitted"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_omitted")
+        )
+
+    def _copy_solution_omitted(self, _checked: bool = False) -> None:
+        """Copy the status-bar omitted count (IDE-0110)."""
+        del _checked
+        count = self._selected_solution_omitted_count()
+        if count is None:
+            self._status("status.nothing_to_copy_solution_omitted")
+            return
+        value = str(count)
+        self._copy_text_to_clipboard(value)
+        self._status("status.solution_omitted_copied", n=value)
+
     def _sync_copy_offcuts_action(self) -> None:
         actions = getattr(self, "_actions", None)
         if not actions:
@@ -7576,12 +7880,20 @@ class MainWindow(QMainWindow):
         selected_item = self._find_explorer_item_by_role(f"solution:{selected}")
         if selected_item is None:
             return
+        self._select_explorer_solution(selected)
+
+    def _select_explorer_solution(self, index: int) -> bool:
+        """Highlight ``solution:{index}`` without changing the layout index."""
+        item = self._find_explorer_item_by_role(f"solution:{index}")
+        if item is None:
+            return False
         blocked = self.explorer.blockSignals(True)
         try:
-            self.explorer.setCurrentItem(selected_item)
-            self.explorer.scrollToItem(selected_item)
+            self.explorer.setCurrentItem(item)
+            self.explorer.scrollToItem(item)
         finally:
             self.explorer.blockSignals(blocked)
+        return True
 
     def _select_layout_solution(self, index: int) -> None:
         solution = self.services.layout.select_solution(index)

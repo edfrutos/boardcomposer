@@ -8,7 +8,7 @@ Generar, validar, puntuar, comparar y explicar composiciones de corte 2D sobre
 material disponible. BoardComposer no impone una única respuesta: presenta
 alternativas comprensibles para que el usuario decida.
 
-## Estado actual — 2026-10-13
+## Estado actual — 2026-10-15
 
 - Fase de producto: Fase 2 Studio (núcleo usable) + Fase 3 plataforma
   entregada (EP-001…003).
@@ -103,14 +103,27 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el zoom de la barra (IDE-0091; Ctrl+Alt+Shift+Z).
 - Barra de estado: retales de la solución seleccionada (IDE-0092 `#724`).
 - Copiar los retales de la barra (IDE-0093 `#725`; Ctrl+Alt+Shift+R).
-- Clic en los retales selecciona su tablero (IDE-0094 `#731`).
-- Barra de estado: índice de la solución seleccionada (IDE-0095 `#733`).
-- Copiar el índice de la solución de la barra (IDE-0096 `#734`; Ctrl+Alt+Shift+L).
-- Clic en el índice de la solución pasa a la siguiente (IDE-0097 `#735`).
-- Barra de estado: huecos internos de la solución seleccionada (IDE-0098 `#736`).
-- Copiar los huecos internos de la barra (IDE-0099 `#737`; Ctrl+Alt+Shift+G).
-- Próximo: IDE-0100 🟡 `#738` (luego 0101 → 0102); piloto DT-0006 D;
-  Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
+- Clic en los retales selecciona su tablero (IDE-0094).
+- Barra de estado: índice de la solución seleccionada (IDE-0095).
+- Copiar el índice de la solución de la barra (IDE-0096; Ctrl+Alt+Shift+L).
+- Clic en el índice de la solución pasa a la siguiente (IDE-0097).
+- Barra de estado: huecos internos de la solución seleccionada (IDE-0098).
+- Copiar los huecos internos de la barra (IDE-0099; Ctrl+Alt+Shift+G).
+- Clic en los huecos internos selecciona esa solución (IDE-0100).
+- Barra de estado: estrategia de la solución seleccionada (IDE-0103).
+- Copiar la estrategia de la barra (IDE-0104; Ctrl+Alt+Shift+Y).
+- Clic en la estrategia selecciona esa solución (IDE-0105 `#742`).
+- Barra de estado: piezas de la solución seleccionada (IDE-0106 `#743`).
+- Copiar las piezas de la solución (IDE-0107; Ctrl+Alt+Shift+J).
+- Clic en las piezas selecciona esa solución (IDE-0108).
+- Barra de estado: omitidas de la solución seleccionada (IDE-0109).
+- Copiar las omitidas de la solución (IDE-0110; Ctrl+Alt+Shift+Q).
+- Clic en las omitidas selecciona esa solución (IDE-0111).
+- Próximo: IDE-0112 (tableros de la solución; 0113 y 0114 en cola).
+  Vigesimoprimera ola abierta. IDE-0101 e IDE-0102 diferidas, sin costes.
+  Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+  LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 

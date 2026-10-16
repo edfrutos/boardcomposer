@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-10-14.
+Última revisión: 2026-10-15.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-10-14-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-10-15-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -96,7 +96,17 @@
 - Copiar el índice de la solución (**Ctrl+Alt+Shift+L**, IDE-0096).
 - Clic en el índice de la solución pasa a la siguiente (IDE-0097).
 - Barra de estado: huecos internos de la solución seleccionada (IDE-0098).
-- Copiar los huecos internos de la barra (**Ctrl+Alt+Shift+G**, IDE-0099 `#737`).
+- Copiar los huecos internos de la barra (IDE-0099; Ctrl+Alt+Shift+G).
+- Clic en los huecos internos selecciona esa solución (IDE-0100).
+- Barra de estado: estrategia de la solución seleccionada (IDE-0103).
+- Copiar la estrategia de la barra (IDE-0104; Ctrl+Alt+Shift+Y).
+- Clic en la estrategia selecciona esa solución (IDE-0105 `#742`).
+- Barra de estado: piezas de la solución seleccionada (IDE-0106 `#743`).
+- Copiar las piezas de la solución (IDE-0107; Ctrl+Alt+Shift+J).
+- Clic en las piezas selecciona esa solución (IDE-0108).
+- Barra de estado: omitidas de la solución seleccionada (IDE-0109).
+- Copiar las omitidas de la solución (IDE-0110; Ctrl+Alt+Shift+Q).
+- Clic en las omitidas selecciona esa solución (IDE-0111).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -116,9 +126,11 @@
    IDE-0080 `#707`. Decimotercera ola cerrada (0082 entregada). Decimocuarta
    ola cerrada (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`;
    IDE-0089 `#718`. Decimoquinta ola cerrada (0090 `#720`).
-   Decimosexta ola cerrada (0094 `#731`). Decimoséptima ola cerrada
-   (0098 `#736`). Decimoctava ola residual: IDE-0100 🟡 `#738` +
-   IDE-0101/0102 🔵 (0099 `#737`).
+   Decimosexta ola cerrada (0094 entregada). Decimoséptima ola cerrada
+   (0098 entregada).    Decimoctava ola: 0100 entregada. IDE-0101 e
+   IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`).
+   Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola: 0111
+   entregada. Siguiente: IDE-0112.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

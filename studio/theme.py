@@ -725,6 +725,23 @@ def bootstrap_ui_font(app: QApplication) -> None:
         app.setFont(QFont(ui, 13))
 
 
+def _install_stylesheet(app: QApplication, sheet: str) -> None:
+    """Install ``sheet`` by replacing the proxy, not by repolishing it.
+
+    ``setStyleSheet`` on a live ``QStyleSheetStyle`` repolishes every
+    widget. The windows the suite leaves alive push that walk past the
+    CI timeout. Clearing the sheet unwraps to the existing base style;
+    the next call builds a new proxy. ``setStyle("Fusion")`` stays out
+    of this path: a new Fusion deletes the live style and segfaults
+    offscreen.
+    """
+    style = app.style()
+    if style is not None and style.metaObject().className() == "QStyleSheetStyle":
+        app.setStyleSheet("")
+    if sheet:
+        app.setStyleSheet(sheet)
+
+
 def _keep_fusion_style(app: QApplication) -> None:
     """Install Fusion once per process.
 
@@ -774,7 +791,7 @@ def apply_theme(app: QApplication, theme: str) -> None:
         if ui:
             app.setFont(QFont(ui, 13))
         # Keep Welcome brand chrome + empty-overlay without full Industrial QSS.
-        app.setStyleSheet(_welcome_typography_qss(brand=brand, ui=ui))
+        _install_stylesheet(app, _welcome_typography_qss(brand=brand, ui=ui))
         _APPLIED_THEME = name
         return
 
@@ -812,5 +829,5 @@ def apply_theme(app: QApplication, theme: str) -> None:
 
     app.setPalette(_palette_from_tokens(resolved))
     app.setFont(QFont(ui_family, 13))
-    app.setStyleSheet(build_stylesheet(resolved))
+    _install_stylesheet(app, build_stylesheet(resolved))
     _APPLIED_THEME = name
