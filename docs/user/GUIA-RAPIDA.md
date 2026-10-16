@@ -409,6 +409,9 @@ Chrome de Studio (se recuerda entre sesiones).
   Arrastre no.
   **Ctrl+Alt+Shift+Q** copia el número (`0`, `2`), sin `fuera`.
   Deshabilitado si la etiqueta está oculta. No avanza.
+  Los tableros usados por esa solución van como `pan. 0` (en inglés
+  `pnl 2`). La misma visibilidad que el índice. `0` se muestra.
+  Distinto de `n tab.`. Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
