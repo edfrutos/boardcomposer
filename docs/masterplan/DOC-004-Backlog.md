@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.61
+**Versión:** 1.3.62
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 07/10/2026
+**Última revisión:** 14/10/2026
 
 ---
 
