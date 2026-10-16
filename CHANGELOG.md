@@ -15,6 +15,11 @@
 
 ### Añadido
 
+- Barra de estado: puntuación de la solución seleccionada (IDE-0115).
+  `pts. 0.00` / `pts 0.75`. La misma visibilidad que el índice. `0.00` se
+  muestra. Cursor flecha. Sin clic. Abre la vigesimosegunda ola 0115…0118.
+  Siguiente: IDE-0116. IDE-0101 e IDE-0102 siguen diferidas: sin costes.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en los tableros selecciona esa solución (IDE-0114).
   Elige `solution:{index}` en el explorador. Arrastre no. No avanza
   ni aplica el layout. Cierra la vigesimoprimera ola 0111…0114.

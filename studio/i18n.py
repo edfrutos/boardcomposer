@@ -1311,6 +1311,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Tableros usados por la solución seleccionada: {n}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_score": "pts. {value}",
+        "tip.status_solution_score": (
+            "Puntuación de la solución seleccionada: {value}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3188,6 +3192,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_panels": (
             "Boards consumed by the selected solution: {n}. Click selects the solution"
         ),
+        "status.solution_score": "pts {value}",
+        "tip.status_solution_score": ("Score of the selected solution: {value}"),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Offcuts in the selected solution: {n}. Click selects their board"
