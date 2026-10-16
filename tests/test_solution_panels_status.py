@@ -60,8 +60,8 @@ def test_solution_panels_follows_the_selected_solution(qapp, tmp_path):
     assert label.text() == "pan. 0"
     assert not label.isHidden()
     assert "tableros" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "1/2 sol."
     assert label.text() != inventory.text()
     assert "tab." not in label.text()
@@ -107,6 +107,6 @@ def test_solution_panels_follows_the_selected_solution(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "pnl 2"
     assert "boards" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert "tab." not in label.text()

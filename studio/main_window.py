@@ -851,6 +851,8 @@ class MainWindow(QMainWindow):
         self._solution_omitted_label.installEventFilter(self)
         self._solution_panels_label = QLabel()
         self._solution_panels_label.setObjectName("statusSolutionPanels")
+        self._solution_panels_label_armed = False
+        self._solution_panels_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1246,6 +1248,34 @@ class MainWindow(QMainWindow):
                 armed = self._solution_omitted_label_armed
                 self._solution_omitted_label_armed = False
                 if armed and self._selected_solution_omitted_count() is not None:
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        panels = getattr(self, "_solution_panels_label", None)
+        if panels is not None and watched is panels:
+            can_select = self._selected_solution_panel_count() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_panels_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_panels_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_panels_label_armed
+                and not panels.rect().contains(event.position().toPoint())
+            ):
+                self._solution_panels_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_panels_label_armed
+                self._solution_panels_label_armed = False
+                if armed and self._selected_solution_panel_count() is not None:
                     index = self.services.layout.selected_solution_index
                     if self._select_explorer_solution(index):
                         return True
@@ -3311,7 +3341,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.solution_panels", n=count))
         label.setToolTip(self._tr("tip.status_solution_panels", n=count))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_solution_status(self) -> None:

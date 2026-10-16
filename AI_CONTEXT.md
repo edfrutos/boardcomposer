@@ -121,9 +121,9 @@ alternativas comprensibles para que el usuario decida.
 - Clic en las omitidas selecciona esa solución (IDE-0111).
 - Barra de estado: tableros de la solución seleccionada (IDE-0112).
 - Copiar los tableros de la solución (IDE-0113; Ctrl+Alt+Shift+W).
-- Próximo: IDE-0114 (clic en tableros de la solución).
-  Vigesimoprimera ola abierta. IDE-0101 e IDE-0102 diferidas, sin costes.
-  Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+- Clic en los tableros selecciona esa solución (IDE-0114).
+- Próximo: ninguna en producto (0114 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Vigesimoprimera ola cerrada. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
