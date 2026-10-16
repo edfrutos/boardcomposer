@@ -227,6 +227,7 @@ Próximo foco:
   Decimoséptima ola cerrada (0098 entregada).
   Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas
   (sin costes). Decimonovena ola cerrada (0106 `#743`).
-  Vigésima ola cerrada (0110 entregada). Cola implementable vacía.
+  Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola: 0111
+  entregada. Siguiente: IDE-0112.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

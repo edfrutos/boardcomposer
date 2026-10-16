@@ -1297,7 +1297,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_omitted": "fuera {n}",
         "tip.status_solution_omitted": (
-            "Piezas omitidas de la solución seleccionada: {n}"
+            "Piezas omitidas de la solución seleccionada: {n}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3160,7 +3161,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_omitted": "out {n}",
         "tip.status_solution_omitted": (
-            "Pieces left out of the selected solution: {n}"
+            "Pieces left out of the selected solution: {n}. Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
