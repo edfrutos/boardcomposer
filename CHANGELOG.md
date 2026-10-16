@@ -15,6 +15,11 @@
 
 ### Añadido
 
+- Copiar el tablero libre de la solución (IDE-0119). Ctrl+Alt+Shift+E.
+  El porcentaje (`0.0%`, `76.0%`), sin `sbr.`. Deshabilitado si la
+  etiqueta está oculta. No avanza. Abre la vigesimotercera ola 0119…0122.
+  Siguiente: IDE-0120.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: tablero libre de la solución seleccionada (IDE-0118).
   `sbr. 0.0%` / `rem. 76.0%`. La misma visibilidad que el índice. `0.0%` se
   muestra. Distinto de `libre`. Cursor flecha. Sin clic. Cierra la
