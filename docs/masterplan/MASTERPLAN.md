@@ -108,6 +108,7 @@
 - Copiar las omitidas de la solución (IDE-0110; Ctrl+Alt+Shift+Q).
 - Clic en las omitidas selecciona esa solución (IDE-0111).
 - Barra de estado: tableros de la solución seleccionada (IDE-0112).
+- Copiar los tableros de la solución (IDE-0113; Ctrl+Alt+Shift+W).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -130,8 +131,8 @@
    Decimosexta ola cerrada (0094 entregada). Decimoséptima ola cerrada
    (0098 entregada).    Decimoctava ola: 0100 entregada. IDE-0101 e
    IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`).
-   Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola: 0112
-   entregada. Siguiente: IDE-0113.
+   Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola: 0113
+   entregada. Siguiente: IDE-0114.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
