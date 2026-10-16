@@ -179,7 +179,7 @@ Observaciones:
 | IDE-0107 | Copiar las piezas de la solución | 🟢 | P3 |
 | IDE-0108 | Clic en las piezas selecciona su solución | 🟢 | P3 |
 | IDE-0109 | Barra: omitidas de la solución seleccionada | 🟢 | P3 |
-| IDE-0110 | Copiar las omitidas de la solución | 🔵 | P3 |
+| IDE-0110 | Copiar las omitidas de la solución | 🟡 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -282,7 +282,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0107 | S | IDE-0106 | Entregado; Ctrl+Alt+Shift+J; el número, sin `pza`; no avanza |
 | IDE-0108 | S | IDE-0106 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0109 | S | IDE-0095 | Entregado; `fuera {n}` / `out {n}`; `len(omitted_piece_ids)`; `0` se muestra; sin clic; distinto de `n om.` |
-| IDE-0110 | S | IDE-0109 | Ctrl+Alt+Shift+Q; el número, sin `fuera`; no avanza |
+| IDE-0110 | S | IDE-0109 | En curso `#748`; Ctrl+Alt+Shift+Q; el número, sin `fuera`; no avanza |
 
 ---
 
@@ -315,19 +315,25 @@ completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
 `#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`/`#702`/`#706`/`#715`/
-`#716`/`#718`/`#720`/`#721`/`#724`/`#725`/`#738`/`#740`/`#741`/`#742`).
+`#716`/`#718`/`#720`/`#721`/`#724`/`#725`/`#738`/`#740`/`#741`/`#742`/
+`#743`/`#745`/`#746`/`#747`).
 Séptima…duodécima ola cerradas; IDE-0079 `#706`; IDE-0080 `#707`.
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada `#720`). Decimosexta ola
 cerrada (0094 entregada). Decimoséptima ola cerrada (0098 entregada).
 Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes).
-Decimonovena ola cerrada (0106 `#743`). Vigésima ola: 0109 entregada. Residual IDE-0110. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
-entregadas. Snapshot: `REVIEW-2026-10-15-planificacion.md`.
+Decimonovena ola cerrada (0106 `#743`). Vigésima ola: 0109 entregada
+(`#747`). Residual IDE-0110 🟡 `#748`. IDE-0007 🟢 MVP+eval
+(2026-09-12; LLM diferido). EP (001…003) Fase 3 entregadas. Snapshot:
+`REVIEW-2026-10-16-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0110. Vigésima ola 0107…0110 (0109 entregada). Decimonovena ola cerrada (0106 `#743`). IDE-0101 e IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
+1. Cola producto `0.4.4`: IDE-0110 🟡 `#748`. Vigésima ola 0107…0110
+   (0109 entregada). Decimonovena ola cerrada (0106 `#743`). IDE-0101 e
+   IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C
+   (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
