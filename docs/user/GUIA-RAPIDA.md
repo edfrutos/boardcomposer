@@ -127,6 +127,7 @@ en red; puedes **Copiar**).
 | Copiar huecos internos | Ctrl+Alt+Shift+G |
 | Copiar estrategia | Ctrl+Alt+Shift+Y |
 | Copiar piezas de la solución | Ctrl+Alt+Shift+J |
+| Copiar omitidas de la solución | Ctrl+Alt+Shift+Q |
 | Zoom + / − (también rueda) | Ctrl+= / Ctrl+- |
 | Desplazar cámara (pan) | Botón medio / derecho / Espacio+arrastre |
 | Nuevo desde plantilla | Ctrl+Shift+N |
@@ -404,6 +405,8 @@ Chrome de Studio (se recuerda entre sesiones).
   Las omitidas de esa solución van como `fuera 0` (en inglés `out 2`).
   La misma visibilidad que el índice. `0` se muestra. Distinto de
   `n om.`. Cursor flecha. Sin clic.
+  **Ctrl+Alt+Shift+Q** copia el número (`0`, `2`), sin `fuera`.
+  Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
