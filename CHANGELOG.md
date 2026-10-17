@@ -21,6 +21,12 @@
 
 ### Añadido
 
+- Copiar el largo total de la solución (IDE-0122). Ctrl+Alt+Shift+H.
+  El largo con unidad (`0 mm`, `400 mm`, `40 cm`), sin `lrg.`.
+  Deshabilitado si la etiqueta está oculta. No avanza. Cierra la
+  vigesimotercera ola 0119…0122. Cola implementable vacía. IDE-0101 e
+  IDE-0102 siguen diferidas: sin costes.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: largo total de la solución seleccionada (IDE-0121).
   `lrg. 0 mm` / `len. 400 mm`. La misma visibilidad que el índice. `0 mm`
   se muestra. Sigue las unidades de Preferencias. Cursor flecha. Sin clic.
