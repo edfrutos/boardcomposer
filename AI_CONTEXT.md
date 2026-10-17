@@ -128,7 +128,8 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: tablero libre de la solución seleccionada (IDE-0118).
 - Copiar el tablero libre de la solución (IDE-0119; Ctrl+Alt+Shift+E).
 - Clic en el tablero libre selecciona esa solución (IDE-0120).
-- Próximo: IDE-0121 (barra de estado: largo total de la solución seleccionada; 0120 entregada; IDE-0101 e IDE-0102
+- Barra de estado: largo total de la solución seleccionada (IDE-0121).
+- Próximo: IDE-0122 (copiar el largo total de la solución; 0121 entregada; IDE-0101 e IDE-0102
   diferidas, sin costes). Vigesimotercera ola 0119…0122 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.

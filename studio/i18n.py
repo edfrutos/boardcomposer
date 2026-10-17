@@ -1333,6 +1333,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Tablero libre de la solución seleccionada: {value}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_length": "lrg. {length}",
+        "tip.status_solution_length": (
+            "Largo total de la solución seleccionada: {length}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3239,6 +3243,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_board_waste": "rem. {value}",
         "tip.status_solution_board_waste": (
             "Unused board of the selected solution: {value}. Click selects the solution"
+        ),
+        "status.solution_length": "len. {length}",
+        "tip.status_solution_length": (
+            "Total length of the selected solution: {length}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
