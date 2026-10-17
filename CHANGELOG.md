@@ -21,6 +21,11 @@
 
 ### Añadido
 
+- Barra de estado: largo total de la solución seleccionada (IDE-0121).
+  `lrg. 0 mm` / `len. 400 mm`. La misma visibilidad que el índice. `0 mm`
+  se muestra. Sigue las unidades de Preferencias. Cursor flecha. Sin clic.
+  Siguiente: IDE-0122.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el tablero libre selecciona esa solución (IDE-0120).
   Elige `solution:{index}` en el explorador. Arrastre no. No avanza
   ni aplica el layout. Siguiente: IDE-0121.
