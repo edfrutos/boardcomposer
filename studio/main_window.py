@@ -877,6 +877,8 @@ class MainWindow(QMainWindow):
         self._solution_length_label.setObjectName("statusSolutionLength")
         self._solution_length_label_armed = False
         self._solution_length_label.installEventFilter(self)
+        self._solution_width_label = QLabel()
+        self._solution_width_label.setObjectName("statusSolutionWidth")
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -910,6 +912,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_score_label)
         status.addPermanentWidget(self._solution_board_waste_label)
         status.addPermanentWidget(self._solution_length_label)
+        status.addPermanentWidget(self._solution_width_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -3536,6 +3539,32 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_width_text(self) -> str | None:
+        """Formatted total width of the selected solution, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return None
+        return self._format_length(solution.total_width_mm)
+
+    def _update_solution_width_status(self) -> None:
+        """Show total width of the selected solution (IDE-0124)."""
+        label = getattr(self, "_solution_width_label", None)
+        if label is None:
+            return
+        length = self._selected_solution_width_text()
+        if length is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_width", length=length))
+        label.setToolTip(self._tr("tip.status_solution_width", length=length))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
@@ -3547,6 +3576,7 @@ class MainWindow(QMainWindow):
         self._update_solution_score_status()
         self._update_solution_board_waste_status()
         self._update_solution_length_status()
+        self._update_solution_width_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return

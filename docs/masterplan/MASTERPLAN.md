@@ -119,6 +119,7 @@
 - Barra de estado: largo total de la solución seleccionada (IDE-0121).
 - Copiar el largo total de la solución (IDE-0122; Ctrl+Alt+Shift+H).
 - Clic en el largo total selecciona esa solución (IDE-0123).
+- Barra de estado: ancho total de la solución seleccionada (IDE-0124).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -142,7 +143,7 @@
    (0098 entregada).    Decimoctava ola: 0100 entregada. IDE-0101 e
    IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`).
    Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada
-   (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola 0123…0126: 0123 entregada; siguiente IDE-0124.
+   (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola 0123…0126: 0124 entregada; siguiente IDE-0125.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

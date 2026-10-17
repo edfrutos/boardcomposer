@@ -438,6 +438,9 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+Alt+Shift+H** copia el largo con unidad (`0 mm`, `400 mm`,
   `40 cm`), sin `lrg.`. Deshabilitado si la etiqueta está oculta.
   No avanza.
+  El ancho total de esa solución va como `anc. 0 mm` (en inglés
+  `wid. 300 mm`). La misma visibilidad que el índice. `0 mm` se muestra.
+  Sigue las unidades de Preferencias. Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

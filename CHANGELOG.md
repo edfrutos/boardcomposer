@@ -21,6 +21,12 @@
 
 ### Añadido
 
+- Barra de estado: ancho total de la solución seleccionada (IDE-0124).
+  `anc. {length}` (en inglés `wid. {length}`) desde
+  `_format_length(solution.total_width_mm)`. La misma visibilidad que
+  el índice. `0 mm` se muestra. Sigue las unidades de Preferencias.
+  Cursor flecha. Sin clic. Siguiente: IDE-0125.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el largo total selecciona esa solución (IDE-0123).
   Elige `solution:{index}` en el explorador. Arrastre no. No avanza
   ni aplica el layout. Abre la vigesimocuarta ola 0123…0126.
