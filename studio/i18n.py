@@ -1341,7 +1341,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_length": "lrg. {length}",
         "tip.status_solution_length": (
-            "Largo total de la solución seleccionada: {length}"
+            "Largo total de la solución seleccionada: {length}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3264,7 +3265,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_length": "len. {length}",
         "tip.status_solution_length": (
-            "Total length of the selected solution: {length}"
+            "Total length of the selected solution: {length}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
