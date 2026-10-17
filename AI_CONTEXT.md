@@ -130,8 +130,9 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el tablero libre selecciona esa solución (IDE-0120).
 - Barra de estado: largo total de la solución seleccionada (IDE-0121).
 - Copiar el largo total de la solución (IDE-0122; Ctrl+Alt+Shift+H).
-- Próximo: ninguna en producto (0122 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Vigesimotercera ola cerrada. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+- Clic en el largo total selecciona esa solución (IDE-0123).
+- Próximo: IDE-0124 (barra de estado: ancho total de la solución seleccionada; 0123 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Vigesimocuarta ola 0123…0126 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

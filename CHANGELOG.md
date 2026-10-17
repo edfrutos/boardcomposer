@@ -21,6 +21,11 @@
 
 ### Añadido
 
+- Clic en el largo total selecciona esa solución (IDE-0123).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Abre la vigesimocuarta ola 0123…0126.
+  Siguiente: IDE-0124.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el largo total de la solución (IDE-0122). Ctrl+Alt+Shift+H.
   El largo con unidad (`0 mm`, `400 mm`, `40 cm`), sin `lrg.`.
   Deshabilitado si la etiqueta está oculta. No avanza. Cierra la

@@ -432,7 +432,9 @@ Chrome de Studio (se recuerda entre sesiones).
   Deshabilitado si la etiqueta está oculta. No avanza.
   El largo total de esa solución va como `lrg. 0 mm` (en inglés
   `len. 400 mm`). La misma visibilidad que el índice. `0 mm` se muestra.
-  Sigue las unidades de Preferencias. Cursor flecha. Sin clic.
+  Sigue las unidades de Preferencias. Cursor mano si está visible.
+  **Clic** selecciona esa solución en el explorador. No avanza ni
+  aplica el layout. Arrastre no.
   **Ctrl+Alt+Shift+H** copia el largo con unidad (`0 mm`, `400 mm`,
   `40 cm`), sin `lrg.`. Deshabilitado si la etiqueta está oculta.
   No avanza.
