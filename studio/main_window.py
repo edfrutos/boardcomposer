@@ -867,6 +867,8 @@ class MainWindow(QMainWindow):
         self._solution_score_label.installEventFilter(self)
         self._solution_board_waste_label = QLabel()
         self._solution_board_waste_label.setObjectName("statusSolutionBoardWaste")
+        self._solution_board_waste_label_armed = False
+        self._solution_board_waste_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1320,6 +1322,34 @@ class MainWindow(QMainWindow):
                 armed = self._solution_score_label_armed
                 self._solution_score_label_armed = False
                 if armed and self._selected_solution_score_text() is not None:
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        board_waste = getattr(self, "_solution_board_waste_label", None)
+        if board_waste is not None and watched is board_waste:
+            can_select = self._selected_solution_board_waste_text() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_board_waste_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_board_waste_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_board_waste_label_armed
+                and not board_waste.rect().contains(event.position().toPoint())
+            ):
+                self._solution_board_waste_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_board_waste_label_armed
+                self._solution_board_waste_label_armed = False
+                if armed and self._selected_solution_board_waste_text() is not None:
                     index = self.services.layout.selected_solution_index
                     if self._select_explorer_solution(index):
                         return True
@@ -3439,7 +3469,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.solution_board_waste", value=value))
         label.setToolTip(self._tr("tip.status_solution_board_waste", value=value))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_solution_status(self) -> None:

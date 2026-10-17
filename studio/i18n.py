@@ -1330,7 +1330,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_board_waste": "sbr. {value}",
         "tip.status_solution_board_waste": (
-            "Tablero libre de la solución seleccionada: {value}"
+            "Tablero libre de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3237,7 +3238,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_board_waste": "rem. {value}",
         "tip.status_solution_board_waste": (
-            "Unused board of the selected solution: {value}"
+            "Unused board of the selected solution: {value}. Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

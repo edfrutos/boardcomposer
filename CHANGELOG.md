@@ -15,6 +15,10 @@
 
 ### Añadido
 
+- Clic en el tablero libre selecciona esa solución (IDE-0120).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Siguiente: IDE-0121.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el tablero libre de la solución (IDE-0119). Ctrl+Alt+Shift+E.
   El porcentaje (`0.0%`, `76.0%`), sin `sbr.`. Deshabilitado si la
   etiqueta está oculta. No avanza. Abre la vigesimotercera ola 0119…0122.
