@@ -1,6 +1,12 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-15
+## Unreleased — 0.4.4.dev0 — 2026-10-17
+
+### Documentación
+
+- Snapshot de planificación `REVIEW-2026-10-17-planificacion.md`:
+  IDE-0120 🟢 `#759`; cola residual IDE-0121…0122 🔵; Issues = 0;
+  sin IDE nuevas. Hueco `#749` / 2026-10-16 cubierto como histórico.
 
 ### Corregido
 

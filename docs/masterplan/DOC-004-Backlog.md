@@ -190,8 +190,8 @@ Observaciones:
 | IDE-0118 | Barra: tablero libre de la solución seleccionada | 🟢 | P3 |
 | IDE-0119 | Copiar el tablero libre de la solución | 🟢 | P3 |
 | IDE-0120 | Clic en el tablero libre selecciona su solución | 🟢 | P3 |
-| IDE-0121 | Barra: largo total de la solución seleccionada | 🟡 | P3 |
-| IDE-0122 | Copiar el largo total de la solución | 🟡 | P3 |
+| IDE-0121 | Barra: largo total de la solución seleccionada | 🔵 | P3 |
+| IDE-0122 | Copiar el largo total de la solución | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -347,11 +347,11 @@ Decimoquinta ola cerrada (0090 entregada `#720`). Decimosexta ola
 cerrada (0094 entregada). Decimoséptima ola cerrada (0098 entregada).
 Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes).
 Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola 0119…0122: 0120 entregada; siguiente IDE-0121. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
-entregadas. Snapshot: `REVIEW-2026-10-15-planificacion.md`.
+entregadas. Snapshot: `REVIEW-2026-10-17-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0121 (0120 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
+1. Cola producto `0.4.4`: IDE-0121 (0120 entregada `#759`; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
