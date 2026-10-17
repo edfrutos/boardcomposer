@@ -21,6 +21,10 @@
 
 ### Añadido
 
+- Clic en el ancho total selecciona esa solución (IDE-0126).
+  Elige `solution:{index}` en el explorador. Arrastre no. No avanza
+  ni aplica el layout. Cierra la vigesimocuarta ola 0123…0126.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el ancho total de la solución (IDE-0125). Ctrl+Alt+Shift+X.
   Copia el ancho con unidad (`0 mm`, `300 mm`, `30 cm`), sin `anc.` ni
   `wid.`. Deshabilitado si la etiqueta está oculta. No avanza.

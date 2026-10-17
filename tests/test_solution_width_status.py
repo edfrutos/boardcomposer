@@ -51,8 +51,8 @@ def test_solution_width_follows_the_selected_solution(qapp, tmp_path):
     assert label.text() == "anc. 0 mm"
     assert not label.isHidden()
     assert "ancho total" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "1/2 sol."
 
     calls: list[str] = []
@@ -93,5 +93,5 @@ def test_solution_width_follows_the_selected_solution(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "wid. 300 mm"
     assert "total width" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

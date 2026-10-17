@@ -1352,7 +1352,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_width": "anc. {length}",
         "tip.status_solution_width": (
-            "Ancho total de la solución seleccionada: {length}"
+            "Ancho total de la solución seleccionada: {length}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3291,7 +3292,9 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Click selects the solution"
         ),
         "status.solution_width": "wid. {length}",
-        "tip.status_solution_width": ("Total width of the selected solution: {length}"),
+        "tip.status_solution_width": (
+            "Total width of the selected solution: {length}. Click selects the solution"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Offcuts in the selected solution: {n}. Click selects their board"
