@@ -21,6 +21,11 @@
 
 ### Añadido
 
+- Copiar el ancho total de la solución (IDE-0125). Ctrl+Alt+Shift+X.
+  Copia el ancho con unidad (`0 mm`, `300 mm`, `30 cm`), sin `anc.` ni
+  `wid.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  Siguiente: IDE-0126.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: ancho total de la solución seleccionada (IDE-0124).
   `anc. {length}` (en inglés `wid. {length}`) desde
   `_format_length(solution.total_width_mm)`. La misma visibilidad que

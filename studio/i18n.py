@@ -323,6 +323,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_score": "Copiar puntuación de la solución",
         "action.copy_solution_board_waste": "Copiar tablero libre de la solución",
         "action.copy_solution_length": "Copiar largo total de la solución",
+        "action.copy_solution_width": "Copiar ancho total de la solución",
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -682,6 +683,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_length": (
             "Copiar el largo total de la solución (Ctrl+Alt+Shift+H); "
             "el largo con unidad, sin lrg.; deshabilitado si la etiqueta está oculta; "
+            "no avanza"
+        ),
+        "tip.copy_solution_width": (
+            "Copiar el ancho total de la solución (Ctrl+Alt+Shift+X); "
+            "el ancho con unidad, sin anc.; deshabilitado si la etiqueta está oculta; "
             "no avanza"
         ),
         "tip.copy_inspector": (
@@ -1411,6 +1417,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_copy_solution_length": (
             "No hay largo total de la solución que copiar"
+        ),
+        "status.solution_width_copied": (
+            "Ancho total de la solución copiado: {length}"
+        ),
+        "status.nothing_to_copy_solution_width": (
+            "No hay ancho total de la solución que copiar"
         ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
@@ -2291,6 +2303,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_score": "Copy solution score",
         "action.copy_solution_board_waste": "Copy solution unused board",
         "action.copy_solution_length": "Copy solution total length",
+        "action.copy_solution_width": "Copy solution total width",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2636,6 +2649,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_length": (
             "Copy the status-bar solution total length (Ctrl+Alt+Shift+H); "
             "the length with unit, without len.; disabled when the label is hidden; "
+            "does not step to the next solution"
+        ),
+        "tip.copy_solution_width": (
+            "Copy the status-bar solution total width (Ctrl+Alt+Shift+X); "
+            "the width with unit, without wid.; disabled when the label is hidden; "
             "does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -3321,6 +3339,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_length_copied": ("Solution total length copied: {length}"),
         "status.nothing_to_copy_solution_length": ("No solution total length to copy"),
+        "status.solution_width_copied": ("Solution total width copied: {length}"),
+        "status.nothing_to_copy_solution_width": ("No solution total width to copy"),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -3925,6 +3945,7 @@ _ACTION_KEYS = (
     "copy_solution_score",
     "copy_solution_board_waste",
     "copy_solution_length",
+    "copy_solution_width",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",
