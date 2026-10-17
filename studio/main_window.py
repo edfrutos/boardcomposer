@@ -248,6 +248,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_solution_score"])
         self._menus["edit"].addAction(self._actions["copy_solution_board_waste"])
         self._menus["edit"].addAction(self._actions["copy_solution_length"])
+        self._menus["edit"].addAction(self._actions["copy_solution_width"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -401,6 +402,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_solution_length"].triggered.connect(
             self._copy_solution_length
+        )
+        self._actions["copy_solution_width"].triggered.connect(
+            self._copy_solution_width
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -3550,6 +3554,7 @@ class MainWindow(QMainWindow):
 
     def _update_solution_width_status(self) -> None:
         """Show total width of the selected solution (IDE-0124)."""
+        self._sync_copy_solution_width_action()
         label = getattr(self, "_solution_width_label", None)
         if label is None:
             return
@@ -7681,6 +7686,31 @@ class MainWindow(QMainWindow):
             return
         self._copy_text_to_clipboard(length)
         self._status("status.solution_length_copied", length=length)
+
+    def _sync_copy_solution_width_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_width")
+        if action is None:
+            return
+        enabled = self._selected_solution_width_text() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_width"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_width")
+        )
+
+    def _copy_solution_width(self, _checked: bool = False) -> None:
+        """Copy the status-bar solution total width (IDE-0125)."""
+        del _checked
+        length = self._selected_solution_width_text()
+        if length is None:
+            self._status("status.nothing_to_copy_solution_width")
+            return
+        self._copy_text_to_clipboard(length)
+        self._status("status.solution_width_copied", length=length)
 
     def _sync_copy_offcuts_action(self) -> None:
         actions = getattr(self, "_actions", None)
