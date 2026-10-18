@@ -25,6 +25,13 @@
 
 ### Añadido
 
+- Barra de estado: área usada de la solución seleccionada (IDE-0127).
+  `ár. {area}` (en inglés `area {area}`) desde
+  `_format_area(solution.used_area_mm2)`. La misma visibilidad que el
+  índice. `0 mm²` se muestra. Sigue las unidades de Preferencias.
+  Cursor flecha. Sin clic. Abre la vigesimoquinta ola 0127…0130.
+  Siguiente: IDE-0128.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el ancho total selecciona esa solución (IDE-0126).
   Elige `solution:{index}` en el explorador. Arrastre no. No avanza
   ni aplica el layout. Cierra la vigesimocuarta ola 0123…0126.

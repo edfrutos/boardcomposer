@@ -1355,6 +1355,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Ancho total de la solución seleccionada: {length}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_used_area": "ár. {area}",
+        "tip.status_solution_used_area": (
+            "Área usada de la solución seleccionada: {area}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3295,6 +3299,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_width": (
             "Total width of the selected solution: {length}. Click selects the solution"
         ),
+        "status.solution_used_area": "area {area}",
+        "tip.status_solution_used_area": ("Used area of the selected solution: {area}"),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Offcuts in the selected solution: {n}. Click selects their board"
