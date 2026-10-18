@@ -136,7 +136,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el ancho total selecciona esa solución (IDE-0126).
 - Barra de estado: área usada de la solución seleccionada (IDE-0127).
 - Copiar el área usada de la solución (IDE-0128; Ctrl+Alt+Shift+A).
-- Próximo: IDE-0129 (clic en el área usada selecciona su solución; 0128 entregada; IDE-0101 e IDE-0102
+- Clic en el área usada selecciona esa solución (IDE-0129).
+- Próximo: IDE-0130 (barra de estado: área de retales de la solución seleccionada; 0129 entregada; IDE-0101 e IDE-0102
   diferidas, sin costes). Vigesimoquinta ola 0127…0130 abierta. Bloqueados sin reanudar:
   DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval
   IDE-0007 cerrada; LLM / plugins / C bloqueados.

@@ -124,6 +124,7 @@
 - Clic en el ancho total selecciona esa solución (IDE-0126).
 - Barra de estado: área usada de la solución seleccionada (IDE-0127).
 - Copiar el área usada de la solución (IDE-0128; Ctrl+Alt+Shift+A).
+- Clic en el área usada selecciona esa solución (IDE-0129).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -149,8 +150,8 @@
    Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada
    (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada).
    Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola
-   cerrada (0126 `#766`). Vigesimoquinta ola 0127…0130: 0128 entregada;
-   siguiente IDE-0129.
+   cerrada (0126 `#766`). Vigesimoquinta ola 0127…0130: 0129 entregada;
+   siguiente IDE-0130.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
