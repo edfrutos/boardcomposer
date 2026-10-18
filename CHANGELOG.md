@@ -25,12 +25,17 @@
 
 ### Añadido
 
+- Copiar el área de retales de la solución (IDE-0131; **Ctrl+Alt+Shift+I**).
+  Copia el área con unidad (`0 mm²`, `20000 mm²`, `200 cm²`), sin
+  `retár.` ni `offar.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Abre la vigesimosexta ola 0131…0134.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: área de retales de la solución seleccionada
   (IDE-0130). `retár. {area}` (en inglés `offar. {area}`) desde
   `_format_area(solution.total_offcut_area_mm2)`. La misma visibilidad
   que el índice (distinto de `n ret.`). `0 mm²` se muestra. Sigue las
   unidades de Preferencias. Cursor flecha. Sin clic. Cierra la
-  vigesimoquinta ola 0127…0130.
+  vigesimoquinta ola 0127…0130 (`#771`).
   Sin bump `.bcproj`; no cambia el solver.
 - Clic en el área usada selecciona esa solución (IDE-0129).
   Elige `solution:{index}` en el explorador. Arrastre no. No avanza
