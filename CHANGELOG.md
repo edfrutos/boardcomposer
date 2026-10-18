@@ -25,6 +25,11 @@
 
 ### Añadido
 
+- Copiar el área usada de la solución (IDE-0128). Ctrl+Alt+Shift+A.
+  Copia el área con unidad (`0 mm²`, `20000 mm²`, `200 cm²`), sin `ár.`
+  ni `area`. Deshabilitado si la etiqueta está oculta. No avanza.
+  Siguiente: IDE-0129.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: área usada de la solución seleccionada (IDE-0127).
   `ár. {area}` (en inglés `area {area}`) desde
   `_format_area(solution.used_area_mm2)`. La misma visibilidad que el

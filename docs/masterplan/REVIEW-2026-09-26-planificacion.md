@@ -131,7 +131,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0125 copiar el ancho total de la solución | 🟢 |
 | IDE-0126 clic en el ancho total selecciona su solución | 🟢 |
 | IDE-0127 barra: área usada de la solución seleccionada | 🟢 |
-| IDE-0128 copiar el área usada de la solución | 🟡 |
+| IDE-0128 copiar el área usada de la solución | 🟢 |
 | IDE-0129 clic en el área usada selecciona su solución | 🟡 |
 | IDE-0130 barra: área de retales de la solución seleccionada | 🟡 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
@@ -212,7 +212,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — IDE-0128 (0127 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+1. **Cola `0.4.4`** — IDE-0129 (0128 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -309,11 +309,11 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0125 | Copiar el ancho total de la solución | Entregado; Ctrl+Alt+Shift+X; el ancho con unidad, sin `anc.`; no avanza |
 | IDE-0126 | Clic en el ancho total selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0127 | Barra: área usada de la solución seleccionada | Entregado; `ár. {area}` / `area {area}`; `0 mm²` se muestra; sin clic |
-| IDE-0128 | Copiar el área usada de la solución | Copiar el área con unidad, sin `ár.`; no avanza |
+| IDE-0128 | Copiar el área usada de la solución | Entregado; Ctrl+Alt+Shift+A; el área con unidad, sin `ár.`; no avanza |
 | IDE-0129 | Clic en el área usada selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0130 | Barra: área de retales de la solución seleccionada | `retár. {area}` / `offar. {area}`; `0 mm²` se muestra; sin clic |
 
-Prioridad de ataque: **IDE-0128** (0127 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0129** (0128 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
