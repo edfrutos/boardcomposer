@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-10-17.
+Última revisión: 2026-10-18.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-10-17-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-10-18-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -145,7 +145,10 @@
    (0098 entregada).    Decimoctava ola: 0100 entregada. IDE-0101 e
    IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`).
    Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada
-   (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola cerrada (0126 entregada). Cola implementable vacía.
+   (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada).
+   Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola
+   cerrada (0126 `#766`). Vigesimoquinta ola planificada
+   (IDE-0127…0130 🔵; ataque IDE-0127).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

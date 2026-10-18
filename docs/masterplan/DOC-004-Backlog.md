@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.62
+**Versión:** 1.3.63
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 14/10/2026
+**Última revisión:** 18/10/2026
 
 ---
 
@@ -196,6 +196,10 @@ Observaciones:
 | IDE-0124 | Barra: ancho total de la solución seleccionada | 🟢 | P3 |
 | IDE-0125 | Copiar el ancho total de la solución | 🟢 | P3 |
 | IDE-0126 | Clic en el ancho total selecciona su solución | 🟢 | P3 |
+| IDE-0127 | Barra: área usada de la solución seleccionada | 🔵 | P3 |
+| IDE-0128 | Copiar el área usada de la solución | 🔵 | P3 |
+| IDE-0129 | Clic en el área usada selecciona su solución | 🔵 | P3 |
+| IDE-0130 | Barra: área de retales de la solución seleccionada | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -315,6 +319,10 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0124 | S | IDE-0095 | Entregado; `anc. {length}` / `wid. {length}`; `_format_length(solution.total_width_mm)`; `0 mm` se muestra; sin clic |
 | IDE-0125 | S | IDE-0124 | Entregado; Ctrl+Alt+Shift+X; el ancho con unidad, sin `anc.`; no avanza |
 | IDE-0126 | S | IDE-0124 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0127 | S | IDE-0095 | Planificado; `ár. {area}` / `area {area}`; `_format_area(solution.used_area_mm2)`; `0` se muestra; sin clic |
+| IDE-0128 | S | IDE-0127 | Planificado; copiar área con unidad, sin `ár.`; no avanza |
+| IDE-0129 | S | IDE-0127 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0130 | S | IDE-0092 | Planificado; `retár. {area}` / `offar. {area}`; `_format_area(solution.total_offcut_area_mm2)`; `0` se muestra; sin clic; distinto de `n ret.` |
 
 ---
 
@@ -354,12 +362,20 @@ Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 Decimoquinta ola cerrada (0090 entregada `#720`). Decimosexta ola
 cerrada (0094 entregada). Decimoséptima ola cerrada (0098 entregada).
 Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes).
-Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola cerrada (0126 entregada). Cola implementable vacía. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido). EP (001…003) Fase 3
-entregadas. Snapshot: `REVIEW-2026-10-17-planificacion.md`.
+Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada).
+Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada
+(0118 entregada). Vigesimotercera ola cerrada (0122 entregada).
+Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola planificada
+(IDE-0127…0130 🔵). IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
+EP (001…003) Fase 3 entregadas. Snapshot:
+`REVIEW-2026-10-18-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: ninguna (0126 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
+1. Cola producto `0.4.4`: IDE-0127…0130 🔵 (área usada + área retales;
+   ataque IDE-0127). IDE-0101 e IDE-0102 diferidas, sin costes.
+   Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
+   LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.4.dev0` abierto; `v0.4.3` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
