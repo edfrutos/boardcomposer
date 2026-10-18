@@ -448,7 +448,9 @@ Chrome de Studio (se recuerda entre sesiones).
   No avanza.
   El área usada de esa solución va como `ár. 0 mm²` (en inglés
   `area 20000 mm²`). La misma visibilidad que el índice. `0 mm²` se
-  muestra. Sigue las unidades de Preferencias. Cursor flecha. Sin clic.
+  muestra. Sigue las unidades de Preferencias. Cursor mano si está
+  visible. **Clic** selecciona esa solución en el explorador. No avanza
+  ni aplica el layout. Arrastre no.
   **Ctrl+Alt+Shift+A** copia el área con unidad (`0 mm²`, `20000 mm²`,
   `200 cm²`), sin `ár.`. Deshabilitado si la etiqueta está oculta.
   No avanza.
