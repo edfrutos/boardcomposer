@@ -169,8 +169,8 @@ Objetivos:
   Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada
   (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada).
   Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola
-  cerrada (0126 `#766`). Vigesimoquinta ola planificada
-  (IDE-0127…0130 🔵).
+  cerrada (0126 `#766`). Vigesimoquinta ola 0127…0130: 0127 entregada;
+  siguiente IDE-0128.
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 ### Prioridad P2
@@ -206,13 +206,12 @@ décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima o
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada
-(0094 entregada). Decimoséptima ola cerrada (0098 entregada). Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola planificada (IDE-0127…0130 🔵).
+(0094 entregada). Decimoséptima ola cerrada (0098 entregada). Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola 0127…0130: 0127 entregada; siguiente IDE-0128.
 Revisión: `REVIEW-2026-10-18-planificacion.md`.
 
 Pendiente de:
 
-- Cola producto `0.4.4`: IDE-0127…0130 🔵 (ataque IDE-0127); IDE-0101 e
-  IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C,
+- IDE-0128 (0127 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM;
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.
