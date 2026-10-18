@@ -449,6 +449,9 @@ Chrome de Studio (se recuerda entre sesiones).
   El área usada de esa solución va como `ár. 0 mm²` (en inglés
   `area 20000 mm²`). La misma visibilidad que el índice. `0 mm²` se
   muestra. Sigue las unidades de Preferencias. Cursor flecha. Sin clic.
+  **Ctrl+Alt+Shift+A** copia el área con unidad (`0 mm²`, `20000 mm²`,
+  `200 cm²`), sin `ár.`. Deshabilitado si la etiqueta está oculta.
+  No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
