@@ -138,8 +138,9 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el área usada de la solución (IDE-0128; Ctrl+Alt+Shift+A).
 - Clic en el área usada selecciona esa solución (IDE-0129).
 - Barra de estado: área de retales de la solución seleccionada (IDE-0130).
-- Próximo: ninguna en producto (0130 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Vigesimoquinta ola cerrada. Bloqueados sin reanudar:
+- Copiar el área de retales de la solución (IDE-0131; Ctrl+Alt+Shift+I).
+- Próximo: IDE-0132 (clic en el área de retales selecciona esa solución; 0131 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Vigesimosexta ola 0131…0134 abierta. Bloqueados sin reanudar:
   DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval
   IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
