@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-10-18-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-10-19-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -139,8 +139,9 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el área usada selecciona esa solución (IDE-0129).
 - Barra de estado: área de retales de la solución seleccionada (IDE-0130).
 - Copiar el área de retales de la solución (IDE-0131; Ctrl+Alt+Shift+I).
-- Próximo: IDE-0132 (clic en el área de retales selecciona esa solución; 0131 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Vigesimosexta ola 0131…0134 abierta. Bloqueados sin reanudar:
+- Próximo: IDE-0132 (clic en el área de retales; luego 0133 área envolvente /
+  0134 copiar; 0131 `#772`; IDE-0101 e IDE-0102 diferidas, sin costes).
+  Vigesimosexta ola residual 0132…0134 🔵. Bloqueados sin reanudar:
   DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval
   IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
