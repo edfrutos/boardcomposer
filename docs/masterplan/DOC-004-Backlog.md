@@ -201,9 +201,9 @@ Observaciones:
 | IDE-0129 | Clic en el área usada selecciona su solución | 🟢 | P3 |
 | IDE-0130 | Barra: área de retales de la solución seleccionada | 🟢 | P3 |
 | IDE-0131 | Copiar el área de retales de la solución | 🟢 | P3 |
-| IDE-0132 | Clic en el área de retales selecciona su solución | 🟡 | P3 |
-| IDE-0133 | Barra: área envolvente de la solución seleccionada | 🟡 | P3 |
-| IDE-0134 | Copiar el área envolvente de la solución | 🟡 | P3 |
+| IDE-0132 | Clic en el área de retales selecciona su solución | 🔵 | P3 |
+| IDE-0133 | Barra: área envolvente de la solución seleccionada | 🔵 | P3 |
+| IDE-0134 | Copiar el área envolvente de la solución | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -373,13 +373,14 @@ Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes).
 Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada).
 Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada
 (0118 entregada). Vigesimotercera ola cerrada (0122 entregada).
-Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`). Vigesimosexta ola 0131…0134: 0131 entregada; siguiente IDE-0132. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
+Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`). Vigesimosexta ola 0131…0134: 0131 entregada `#772`; residual 0132…0134 🔵. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-18-planificacion.md`.
+`REVIEW-2026-10-19-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0132 (0131 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+1. Cola producto `0.4.4`: IDE-0132 (luego 0133 → 0134; 0131 entregada `#772`;
+   IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
