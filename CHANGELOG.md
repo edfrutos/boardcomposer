@@ -33,6 +33,11 @@
 
 ### Añadido
 
+- Copiar el área envolvente de la solución (IDE-0134; **Ctrl+Alt+Shift+1**).
+  Copia el área con unidad (`0 mm²`, `60000 mm²`, `600 cm²`), sin
+  `env.` ni `bnd.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Cierra la vigesimosexta ola 0131…0134.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: área envolvente de la solución seleccionada
   (IDE-0133). `env. {area}` (en inglés `bnd. {area}`) desde
   `_format_area(solution.bounding_area_mm2)`. La misma visibilidad

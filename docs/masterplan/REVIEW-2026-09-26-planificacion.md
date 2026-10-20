@@ -137,7 +137,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 | IDE-0131 copiar el área de retales de la solución | 🟢 |
 | IDE-0132 clic en el área de retales selecciona su solución | 🟢 |
 | IDE-0133 barra: área envolvente de la solución seleccionada | 🟢 |
-| IDE-0134 copiar el área envolvente de la solución | 🟡 |
+| IDE-0134 copiar el área envolvente de la solución | 🟢 |
 | Import CSV/Excel; export SVG/DXF/PDF/JSON/CSV + plantillas | 🟢 |
 | Fase 3: EP-001 API `v1`, EP-002 batch, EP-003 HTTP/Docker | 🟢 Entregada |
 | IDE-0007 explicación local (sin LLM) | 🟢 MVP + eval humana (2026-09-12) |
@@ -216,7 +216,7 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4`** — IDE-0134 (0133 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+1. **Cola `0.4.4`** — ninguna en producto (0134 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -319,9 +319,9 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0131 | Copiar el área de retales de la solución | Entregado; Ctrl+Alt+Shift+I; el área con unidad, sin `retár.`; no avanza |
 | IDE-0132 | Clic en el área de retales selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0133 | Barra: área envolvente de la solución seleccionada | Entregado; `env. {area}` / `bnd. {area}`; `0 mm²` se muestra; sin clic |
-| IDE-0134 | Copiar el área envolvente de la solución | Ctrl+Alt+Shift+1; el área con unidad, sin `env.`; no avanza |
+| IDE-0134 | Copiar el área envolvente de la solución | Entregado; Ctrl+Alt+Shift+1; el área con unidad, sin `env.`; no avanza |
 
-Prioridad de ataque: **IDE-0134** (0133 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **ninguna en producto** (0134 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
