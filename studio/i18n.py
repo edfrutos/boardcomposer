@@ -1374,7 +1374,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_offcut_area": "retár. {area}",
         "tip.status_solution_offcut_area": (
-            "Área de retales de la solución seleccionada: {area}"
+            "Área de retales de la solución seleccionada: {area}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3346,7 +3347,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_offcut_area": "offar. {area}",
         "tip.status_solution_offcut_area": (
-            "Offcut area of the selected solution: {area}"
+            "Offcut area of the selected solution: {area}. Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

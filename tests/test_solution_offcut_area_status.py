@@ -55,8 +55,8 @@ def test_solution_offcut_area_follows_the_selected_solution(qapp, tmp_path):
     assert not label.isHidden()
     assert window._offcuts_label.isHidden()
     assert "área de retales" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "1/2 sol."
 
     calls: list[str] = []
@@ -101,5 +101,5 @@ def test_solution_offcut_area_follows_the_selected_solution(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "offar. 20000 mm²"
     assert "offcut area" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
