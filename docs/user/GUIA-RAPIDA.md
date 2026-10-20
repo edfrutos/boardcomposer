@@ -457,7 +457,8 @@ Chrome de Studio (se recuerda entre sesiones).
   El área de retales de esa solución va como `retár. 0 mm²` (en inglés
   `offar. 20000 mm²`). La misma visibilidad que el índice (distinto de
   `n ret.`). `0 mm²` se muestra. Sigue las unidades de Preferencias.
-  Cursor flecha. Sin clic.
+  Cursor mano si está visible. Clic selecciona esa solución en el
+  explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+I** copia el área con unidad (`0 mm²`, `20000 mm²`,
   `200 cm²`), sin `retár.`. Deshabilitado si la etiqueta está oculta.
   No avanza.

@@ -201,7 +201,7 @@ Observaciones:
 | IDE-0129 | Clic en el área usada selecciona su solución | 🟢 | P3 |
 | IDE-0130 | Barra: área de retales de la solución seleccionada | 🟢 | P3 |
 | IDE-0131 | Copiar el área de retales de la solución | 🟢 | P3 |
-| IDE-0132 | Clic en el área de retales selecciona su solución | 🔵 | P3 |
+| IDE-0132 | Clic en el área de retales selecciona su solución | 🟢 | P3 |
 | IDE-0133 | Barra: área envolvente de la solución seleccionada | 🔵 | P3 |
 | IDE-0134 | Copiar el área envolvente de la solución | 🔵 | P3 |
 
@@ -328,7 +328,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0129 | S | IDE-0127 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0130 | S | IDE-0092 | Entregado; `retár. {area}` / `offar. {area}`; `_format_area(solution.total_offcut_area_mm2)`; `0` se muestra; sin clic; distinto de `n ret.` |
 | IDE-0131 | S | IDE-0130 | Entregado; Ctrl+Alt+Shift+I; el área con unidad, sin `retár.`; no avanza |
-| IDE-0132 | S | IDE-0130 | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0132 | S | IDE-0130 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0133 | S | IDE-0095 | `env. {area}` / `bnd. {area}`; `_format_area(solution.bounding_area_mm2)`; `0` se muestra; sin clic |
 | IDE-0134 | S | IDE-0133 | Ctrl+Alt+Shift+1; el área con unidad, sin `env.`; no avanza |
 
@@ -358,7 +358,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0131 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0132 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -373,13 +373,13 @@ Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes).
 Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada).
 Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada
 (0118 entregada). Vigesimotercera ola cerrada (0122 entregada).
-Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`). Vigesimosexta ola 0131…0134: 0131 entregada `#772`; residual 0132…0134 🔵. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
+Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`). Vigesimosexta ola 0131…0134: 0132 entregada; siguiente IDE-0133. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-20-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0132 (luego 0133 → 0134; 0131 entregada `#772`;
+1. Cola producto `0.4.4`: IDE-0133 (luego 0134; 0132 entregada;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).

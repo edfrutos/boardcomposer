@@ -33,6 +33,10 @@
 
 ### Añadido
 
+- Clic en el área de retales selecciona esa solución (IDE-0132).
+  Cursor mano si está visible. Selecciona `solution:{index}` en el
+  explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el área de retales de la solución (IDE-0131; **Ctrl+Alt+Shift+I**).
   Copia el área con unidad (`0 mm²`, `20000 mm²`, `200 cm²`), sin
   `retár.` ni `offar.`. Deshabilitado si la etiqueta está oculta. No
