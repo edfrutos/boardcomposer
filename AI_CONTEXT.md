@@ -140,8 +140,9 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: área de retales de la solución seleccionada (IDE-0130).
 - Copiar el área de retales de la solución (IDE-0131; Ctrl+Alt+Shift+I).
 - Clic en el área de retales selecciona esa solución (IDE-0132).
-- Próximo: IDE-0133 (barra de estado: área envolvente de la solución seleccionada; luego 0134 copiar; 0132 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
-  Vigesimosexta ola residual 0133…0134 🔵. Bloqueados sin reanudar:
+- Barra de estado: área envolvente de la solución seleccionada (IDE-0133).
+- Próximo: IDE-0134 (copiar el área envolvente de la solución; 0133 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+  Vigesimosexta ola residual 0134 🔵. Bloqueados sin reanudar:
   DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval
   IDE-0007 cerrada; LLM / plugins / C bloqueados.
 

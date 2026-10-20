@@ -92,7 +92,7 @@ Revisión: `docs/masterplan/REVIEW-2026-10-20-planificacion.md`.
    (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada).
    Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola
    cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`).
-   Vigesimosexta ola 0131…0134: 0132 entregada; siguiente IDE-0133.
+   Vigesimosexta ola 0131…0134: 0133 entregada; siguiente IDE-0134.
 3. Cola producto IDE-0019…0024 cerrada en `0.4.3` (incluye Skyline `#623`).
 4. IDE-0007 eval humana cerrada (2026-09-12); LLM sigue diferido.
 5. Piloto DT-0006 D activo; opción C diferida (demanda multi-usuario + DOC-010).

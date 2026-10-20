@@ -128,6 +128,7 @@
 - Barra de estado: área de retales de la solución seleccionada (IDE-0130).
 - Copiar el área de retales de la solución (IDE-0131; Ctrl+Alt+Shift+I).
 - Clic en el área de retales selecciona esa solución (IDE-0132).
+- Barra de estado: área envolvente de la solución seleccionada (IDE-0133).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -154,7 +155,7 @@
    (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada).
    Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola
    cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`).
-   Vigesimosexta ola 0131…0134: 0132 entregada; siguiente IDE-0133.
+   Vigesimosexta ola 0131…0134: 0133 entregada; siguiente IDE-0134.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

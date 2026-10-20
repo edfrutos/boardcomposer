@@ -33,6 +33,12 @@
 
 ### Añadido
 
+- Barra de estado: área envolvente de la solución seleccionada
+  (IDE-0133). `env. {area}` (en inglés `bnd. {area}`) desde
+  `_format_area(solution.bounding_area_mm2)`. La misma visibilidad
+  que el índice. `0 mm²` se muestra. Sigue las unidades de
+  Preferencias. Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el área de retales selecciona esa solución (IDE-0132).
   Cursor mano si está visible. Selecciona `solution:{index}` en el
   explorador; no avanza ni aplica el layout; arrastre no.

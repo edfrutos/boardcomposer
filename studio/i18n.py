@@ -1377,6 +1377,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Área de retales de la solución seleccionada: {area}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_bounding_area": "env. {area}",
+        "tip.status_solution_bounding_area": (
+            "Área envolvente de la solución seleccionada: {area}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3348,6 +3352,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_offcut_area": "offar. {area}",
         "tip.status_solution_offcut_area": (
             "Offcut area of the selected solution: {area}. Click selects the solution"
+        ),
+        "status.solution_bounding_area": "bnd. {area}",
+        "tip.status_solution_bounding_area": (
+            "Bounding area of the selected solution: {area}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
