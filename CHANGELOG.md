@@ -2,6 +2,14 @@
 
 ## Unreleased — 0.4.4.dev0 — 2026-10-21
 
+### Añadido
+
+- Clic en el área envolvente selecciona esa solución (IDE-0135).
+  Cursor mano si está visible. Selecciona `solution:{index}` en el
+  explorador; no avanza ni aplica el layout; arrastre no. Abre la
+  vigesimoséptima ola 0135…0138.
+  Sin bump `.bcproj`; no cambia el solver.
+
 ### Documentación
 
 - Snapshot de planificación `REVIEW-2026-10-21-planificacion.md`:

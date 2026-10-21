@@ -130,7 +130,7 @@
 - Clic en el área de retales selecciona esa solución (IDE-0132).
 - Barra de estado: área envolvente de la solución seleccionada (IDE-0133).
 - Copiar el área envolvente de la solución (IDE-0134; Ctrl+Alt+Shift+1).
-- Clic en el área envolvente selecciona esa solución (IDE-0135; planificado).
+- Clic en el área envolvente selecciona esa solución (IDE-0135).
 - Barra de estado: área de huecos internos de la solución seleccionada
   (IDE-0136; planificado).
 - Copiar el área de huecos internos de la solución (IDE-0137; planificado).
@@ -163,7 +163,7 @@
    Vigesimotercera ola cerrada (0122 entregada).    Vigesimocuarta ola
    cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`).
    Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola
-   planificada: IDE-0135…0138 🔵.
+   0135…0138: 0135 entregada; siguiente IDE-0136.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
