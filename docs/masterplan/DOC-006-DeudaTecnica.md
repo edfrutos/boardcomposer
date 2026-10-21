@@ -3,10 +3,10 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.67
+**Versión:** 1.2.68
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 20/10/2026
+**Última revisión:** 21/10/2026
 
 ---
 
@@ -209,8 +209,8 @@ IDE-0079…0082 🔵 sin PR de producto; Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-10-20 en `REVIEW-2026-10-20-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`10-19` (abiertas = 1, DT-0006).
+2026-10-21 en `REVIEW-2026-10-21-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`10-20` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -231,6 +231,7 @@ Próximo foco:
   (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada).
   Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola
   cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`).
-  Vigesimosexta ola cerrada (0134 entregada). Cola implementable vacía.
+  Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola
+  planificada: IDE-0135…0138 🔵.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

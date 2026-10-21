@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-10-20-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-10-21-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -142,10 +142,11 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el área de retales selecciona esa solución (IDE-0132).
 - Barra de estado: área envolvente de la solución seleccionada (IDE-0133).
 - Copiar el área envolvente de la solución (IDE-0134; Ctrl+Alt+Shift+1).
-- Próximo: ninguna en producto (0134 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Vigesimosexta ola cerrada. Bloqueados sin reanudar:
-  DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval
-  IDE-0007 cerrada; LLM / plugins / C bloqueados.
+- Próximo: IDE-0135…0138 🔵 (vigesimoséptima ola: clic envolvente +
+  área de huecos internos `waste_area_mm2`; IDE-0101 e IDE-0102
+  diferidas, sin costes). Vigesimosexta ola cerrada (`#777`).
+  Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D;
+  Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 
