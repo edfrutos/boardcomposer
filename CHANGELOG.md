@@ -4,6 +4,12 @@
 
 ### Añadido
 
+- Barra de estado: área de huecos internos de la solución seleccionada
+  (IDE-0136). `hueár. {area}` (en inglés `gapar. {area}`) desde
+  `_format_area(solution.waste_area_mm2)`. La misma visibilidad que el
+  índice (distinto de `hueco n%`). `0 mm²` se muestra. Sigue las
+  unidades de Preferencias. Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el área envolvente selecciona esa solución (IDE-0135).
   Cursor mano si está visible. Selecciona `solution:{index}` en el
   explorador; no avanza ni aplica el layout; arrastre no. Abre la

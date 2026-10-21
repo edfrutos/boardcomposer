@@ -909,6 +909,8 @@ class MainWindow(QMainWindow):
         self._solution_bounding_area_label.setObjectName("statusSolutionBoundingArea")
         self._solution_bounding_area_label_armed = False
         self._solution_bounding_area_label.installEventFilter(self)
+        self._solution_waste_area_label = QLabel()
+        self._solution_waste_area_label.setObjectName("statusSolutionWasteArea")
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -946,6 +948,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_used_area_label)
         status.addPermanentWidget(self._solution_offcut_area_label)
         status.addPermanentWidget(self._solution_bounding_area_label)
+        status.addPermanentWidget(self._solution_waste_area_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -3794,6 +3797,32 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_waste_area_text(self) -> str | None:
+        """Formatted internal-gap area of the selected solution, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return None
+        return self._format_area(solution.waste_area_mm2)
+
+    def _update_solution_waste_area_status(self) -> None:
+        """Show internal-gap area of the selected solution (IDE-0136)."""
+        label = getattr(self, "_solution_waste_area_label", None)
+        if label is None:
+            return
+        area = self._selected_solution_waste_area_text()
+        if area is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_waste_area", area=area))
+        label.setToolTip(self._tr("tip.status_solution_waste_area", area=area))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
@@ -3809,6 +3838,7 @@ class MainWindow(QMainWindow):
         self._update_solution_used_area_status()
         self._update_solution_offcut_area_status()
         self._update_solution_bounding_area_status()
+        self._update_solution_waste_area_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
