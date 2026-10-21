@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-10-20.
+Última revisión: 2026-10-21.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-10-20-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-10-21-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -130,6 +130,12 @@
 - Clic en el área de retales selecciona esa solución (IDE-0132).
 - Barra de estado: área envolvente de la solución seleccionada (IDE-0133).
 - Copiar el área envolvente de la solución (IDE-0134; Ctrl+Alt+Shift+1).
+- Clic en el área envolvente selecciona esa solución (IDE-0135; planificado).
+- Barra de estado: área de huecos internos de la solución seleccionada
+  (IDE-0136; planificado).
+- Copiar el área de huecos internos de la solución (IDE-0137; planificado).
+- Clic en el área de huecos internos selecciona esa solución
+  (IDE-0138; planificado).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -154,9 +160,10 @@
    IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`).
    Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada
    (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada).
-   Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola
+   Vigesimotercera ola cerrada (0122 entregada).    Vigesimocuarta ola
    cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`).
-   Vigesimosexta ola cerrada (0134 entregada). Cola implementable vacía.
+   Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola
+   planificada: IDE-0135…0138 🔵.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

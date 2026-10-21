@@ -1,9 +1,13 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-20
+## Unreleased — 0.4.4.dev0 — 2026-10-21
 
 ### Documentación
 
+- Snapshot de planificación `REVIEW-2026-10-21-planificacion.md`:
+  IDE-0132…0134 🟢 `#775`…`#777`; cola vacía + Issues = 0 →
+  vigesimoséptima ola IDE-0135…0138 🔵 (clic envolvente + área
+  huecos `waste_area_mm2`). `#774` / `REVIEW-2026-10-20` queda histórico.
 - Snapshot de planificación `REVIEW-2026-10-20-planificacion.md`:
   sin merges de producto desde `#772`; residual IDE-0132…0134 🔵
   (vigesimosexta ola); Issues = 0; **sin IDE nuevas**.
