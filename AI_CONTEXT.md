@@ -142,9 +142,9 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el área de retales selecciona esa solución (IDE-0132).
 - Barra de estado: área envolvente de la solución seleccionada (IDE-0133).
 - Copiar el área envolvente de la solución (IDE-0134; Ctrl+Alt+Shift+1).
-- Próximo: IDE-0135…0138 🔵 (vigesimoséptima ola: clic envolvente +
-  área de huecos internos `waste_area_mm2`; IDE-0101 e IDE-0102
-  diferidas, sin costes). Vigesimosexta ola cerrada (`#777`).
+- Clic en el área envolvente selecciona esa solución (IDE-0135).
+- Próximo: IDE-0136 (barra de estado: área de huecos internos de la solución seleccionada; 0135 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Vigesimoséptima ola 0135…0138 abierta.
   Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D;
   Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 

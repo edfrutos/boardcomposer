@@ -204,7 +204,7 @@ Observaciones:
 | IDE-0132 | Clic en el área de retales selecciona su solución | 🟢 | P3 |
 | IDE-0133 | Barra: área envolvente de la solución seleccionada | 🟢 | P3 |
 | IDE-0134 | Copiar el área envolvente de la solución | 🟢 | P3 |
-| IDE-0135 | Clic en el área envolvente selecciona su solución | 🔵 | P3 |
+| IDE-0135 | Clic en el área envolvente selecciona su solución | 🟢 | P3 |
 | IDE-0136 | Barra: área de huecos internos de la solución seleccionada | 🔵 | P3 |
 | IDE-0137 | Copiar el área de huecos internos de la solución | 🔵 | P3 |
 | IDE-0138 | Clic en el área de huecos internos selecciona su solución | 🔵 | P3 |
@@ -335,7 +335,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0132 | S | IDE-0130 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0133 | S | IDE-0095 | Entregado; `env. {area}` / `bnd. {area}`; `_format_area(solution.bounding_area_mm2)`; `0` se muestra; sin clic |
 | IDE-0134 | S | IDE-0133 | Entregado; Ctrl+Alt+Shift+1; el área con unidad, sin `env.`; no avanza |
-| IDE-0135 | S | IDE-0133 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0135 | S | IDE-0133 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0136 | S | IDE-0098 | Planificado; `hueár. {area}` / `gapar. {area}`; `_format_area(solution.waste_area_mm2)`; `0` se muestra; sin clic; distinto de `hueco n%` |
 | IDE-0137 | S | IDE-0136 | Planificado; copiar área con unidad, sin `hueár.`; no avanza |
 | IDE-0138 | S | IDE-0136 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
@@ -366,7 +366,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0134 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0135 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -383,14 +383,14 @@ Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada
 (0118 entregada). Vigesimotercera ola cerrada (0122 entregada).
 Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada
 (0130 `#771`). Vigesimosexta ola cerrada (0134 `#777`).
-Vigesimoséptima ola planificada: IDE-0135…0138 🔵. IDE-0007 🟢
+Vigesimoséptima ola 0135…0138: 0135 entregada; siguiente IDE-0136. IDE-0007 🟢
 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-21-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0135…0138 🔵 (vigesimoséptima ola;
+1. Cola producto `0.4.4`: IDE-0136 (0135 entregada;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).

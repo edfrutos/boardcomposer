@@ -464,7 +464,9 @@ Chrome de Studio (se recuerda entre sesiones).
   No avanza.
   El área envolvente de esa solución va como `env. 0 mm²` (en inglés
   `bnd. 60000 mm²`). La misma visibilidad que el índice. `0 mm²` se
-  muestra. Sigue las unidades de Preferencias. Cursor flecha. Sin clic.
+  muestra. Sigue las unidades de Preferencias. Cursor mano si está
+  visible. Clic selecciona esa solución en el explorador; no avanza;
+  arrastre no.
   **Ctrl+Alt+Shift+1** copia el área con unidad (`0 mm²`, `60000 mm²`,
   `600 cm²`), sin `env.`. Deshabilitado si la etiqueta está oculta.
   No avanza.

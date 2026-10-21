@@ -907,6 +907,8 @@ class MainWindow(QMainWindow):
         self._solution_offcut_area_label.installEventFilter(self)
         self._solution_bounding_area_label = QLabel()
         self._solution_bounding_area_label.setObjectName("statusSolutionBoundingArea")
+        self._solution_bounding_area_label_armed = False
+        self._solution_bounding_area_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1505,6 +1507,36 @@ class MainWindow(QMainWindow):
                 armed = self._solution_offcut_area_label_armed
                 self._solution_offcut_area_label_armed = False
                 if armed and self._selected_solution_offcut_area_text() is not None:
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        solution_bounding_area = getattr(self, "_solution_bounding_area_label", None)
+        if solution_bounding_area is not None and watched is solution_bounding_area:
+            can_select = self._selected_solution_bounding_area_text() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_bounding_area_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_bounding_area_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_bounding_area_label_armed
+                and not solution_bounding_area.rect().contains(
+                    event.position().toPoint()
+                )
+            ):
+                self._solution_bounding_area_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_bounding_area_label_armed
+                self._solution_bounding_area_label_armed = False
+                if armed and self._selected_solution_bounding_area_text() is not None:
                     index = self.services.layout.selected_solution_index
                     if self._select_explorer_solution(index):
                         return True
@@ -3759,7 +3791,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.solution_bounding_area", area=area))
         label.setToolTip(self._tr("tip.status_solution_bounding_area", area=area))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_solution_status(self) -> None:
