@@ -917,6 +917,10 @@ class MainWindow(QMainWindow):
         self._solution_waste_area_label.setObjectName("statusSolutionWasteArea")
         self._solution_waste_area_label_armed = False
         self._solution_waste_area_label.installEventFilter(self)
+        self._solution_board_waste_area_label = QLabel()
+        self._solution_board_waste_area_label.setObjectName(
+            "statusSolutionBoardWasteArea"
+        )
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -955,6 +959,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_offcut_area_label)
         status.addPermanentWidget(self._solution_bounding_area_label)
         status.addPermanentWidget(self._solution_waste_area_label)
+        status.addPermanentWidget(self._solution_board_waste_area_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -3858,6 +3863,32 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_board_waste_area_text(self) -> str | None:
+        """Formatted unused board area of the selected solution, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return None
+        return self._format_area(self.services.layout.board_waste_area_mm2(solution))
+
+    def _update_solution_board_waste_area_status(self) -> None:
+        """Show unused board area of the selected solution (IDE-0139)."""
+        label = getattr(self, "_solution_board_waste_area_label", None)
+        if label is None:
+            return
+        area = self._selected_solution_board_waste_area_text()
+        if area is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_board_waste_area", area=area))
+        label.setToolTip(self._tr("tip.status_solution_board_waste_area", area=area))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
@@ -3874,6 +3905,7 @@ class MainWindow(QMainWindow):
         self._update_solution_offcut_area_status()
         self._update_solution_bounding_area_status()
         self._update_solution_waste_area_status()
+        self._update_solution_board_waste_area_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
