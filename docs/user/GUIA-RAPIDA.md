@@ -474,6 +474,9 @@ Chrome de Studio (se recuerda entre sesiones).
   inglés `gapar. 30000 mm²`). La misma visibilidad que el índice
   (distinto de `hueco n%`). `0 mm²` se muestra. Sigue las unidades de
   Preferencias. Cursor flecha. Sin clic.
+  **Ctrl+Alt+Shift+2** copia el área con unidad (`0 mm²`, `30000 mm²`,
+  `300 cm²`), sin `hueár.`. Deshabilitado si la etiqueta está oculta.
+  No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

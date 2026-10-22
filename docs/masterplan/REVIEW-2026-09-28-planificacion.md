@@ -366,10 +366,10 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0134 | Copiar el área envolvente de la solución | Entregado; Ctrl+Alt+Shift+1; el área con unidad, sin `env.`; no avanza |
 | IDE-0135 | Clic en el área envolvente selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0136 | Barra: área de huecos internos de la solución seleccionada | Entregado; `hueár. {area}` / `gapar. {area}`; `0 mm²` se muestra; sin clic |
-| IDE-0137 | Copiar el área de huecos internos de la solución | Copiar el área con unidad, sin `hueár.`; no avanza |
+| IDE-0137 | Copiar el área de huecos internos de la solución | Entregado; Ctrl+Alt+Shift+2; el área con unidad, sin `hueár.`; no avanza |
 | IDE-0138 | Clic en el área de huecos internos selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: **IDE-0137** (0136 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0138** (0137 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
