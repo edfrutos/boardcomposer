@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Copiar el área de huecos internos de la solución (IDE-0137;
+  **Ctrl+Alt+Shift+2**). Copia el área con unidad (`0 mm²`, `30000 mm²`,
+  `300 cm²`), sin `hueár.` ni `gapar.`. Deshabilitado si la etiqueta
+  está oculta. No avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: área de huecos internos de la solución seleccionada
   (IDE-0136). `hueár. {area}` (en inglés `gapar. {area}`) desde
   `_format_area(solution.waste_area_mm2)`. La misma visibilidad que el
