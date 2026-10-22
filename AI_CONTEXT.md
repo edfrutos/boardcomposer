@@ -145,8 +145,9 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el área envolvente selecciona esa solución (IDE-0135).
 - Barra de estado: área de huecos internos de la solución seleccionada (IDE-0136).
 - Copiar el área de huecos internos de la solución (IDE-0137; Ctrl+Alt+Shift+2).
-- Próximo: IDE-0138 (clic en el área de huecos internos selecciona esa solución; 0137 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Vigesimoséptima ola 0135…0138 abierta.
+- Clic en el área de huecos internos selecciona esa solución (IDE-0138).
+- Próximo: vigesimoséptima ola 0135…0138 cerrada (0138 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Cola vacía.
   Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D;
   Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 

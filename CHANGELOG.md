@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Clic en el área de huecos internos selecciona esa solución (IDE-0138).
+  Cursor mano si está visible. Selecciona `solution:{index}` en el
+  explorador; no avanza ni aplica el layout; arrastre no. Cierra la
+  vigesimoséptima ola 0135…0138.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el área de huecos internos de la solución (IDE-0137;
   **Ctrl+Alt+Shift+2**). Copia el área con unidad (`0 mm²`, `30000 mm²`,
   `300 cm²`), sin `hueár.` ni `gapar.`. Deshabilitado si la etiqueta

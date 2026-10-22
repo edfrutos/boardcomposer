@@ -136,7 +136,7 @@
 - Copiar el área de huecos internos de la solución (IDE-0137;
   Ctrl+Alt+Shift+2).
 - Clic en el área de huecos internos selecciona esa solución
-  (IDE-0138; planificado).
+  (IDE-0138).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -164,7 +164,7 @@
    Vigesimotercera ola cerrada (0122 entregada).    Vigesimocuarta ola
    cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`).
    Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola
-   0135…0138: 0137 entregada; siguiente IDE-0138.
+   cerrada (0138 entregada). Cola vacía.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
