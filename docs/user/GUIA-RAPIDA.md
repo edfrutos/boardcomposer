@@ -473,7 +473,8 @@ Chrome de Studio (se recuerda entre sesiones).
   El área de huecos internos de esa solución va como `hueár. 0 mm²` (en
   inglés `gapar. 30000 mm²`). La misma visibilidad que el índice
   (distinto de `hueco n%`). `0 mm²` se muestra. Sigue las unidades de
-  Preferencias. Cursor flecha. Sin clic.
+  Preferencias. Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+2** copia el área con unidad (`0 mm²`, `30000 mm²`,
   `300 cm²`), sin `hueár.`. Deshabilitado si la etiqueta está oculta.
   No avanza.
