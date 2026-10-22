@@ -386,7 +386,7 @@ Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada
 Vigesimoséptima ola 0135…0138: 0136 entregada; siguiente IDE-0137. IDE-0007 🟢
 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-21-planificacion.md`.
+`REVIEW-2026-10-22-planificacion.md`.
 
 Próximo foco:
 
