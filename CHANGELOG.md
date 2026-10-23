@@ -4,6 +4,13 @@
 
 ### Añadido
 
+- Barra de estado: área de tablero libre de la solución seleccionada
+  (IDE-0139). `sbrár. {area}` (en inglés `remar. {area}`) desde
+  `_format_area(services.layout.board_waste_area_mm2(solution))`. La
+  misma visibilidad que el índice (distinto de `sbr. n%`). `0 mm²` se
+  muestra. Sigue las unidades de Preferencias. Cursor flecha. Sin clic.
+  Abre la vigesimoctava ola 0139…0142.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el área de huecos internos selecciona esa solución (IDE-0138).
   Cursor mano si está visible. Selecciona `solution:{index}` en el
   explorador; no avanza ni aplica el layout; arrastre no. Cierra la

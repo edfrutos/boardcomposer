@@ -137,9 +137,13 @@
   Ctrl+Alt+Shift+2).
 - Clic en el área de huecos internos selecciona esa solución
   (IDE-0138).
-- En curso (`#784`): barra área de tablero libre de la solución
-  (IDE-0139); planificados copy/clic (IDE-0140/0141) y área de
-  tableros consumidos (IDE-0142).
+- Barra de estado: área de tablero libre de la solución seleccionada
+  (IDE-0139).
+- Copiar el área de tablero libre de la solución (IDE-0140; planificado).
+- Clic en el área de tablero libre selecciona esa solución
+  (IDE-0141; planificado).
+- Barra de estado: área de tableros consumidos de la solución seleccionada
+  (IDE-0142; planificado).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -167,8 +171,8 @@
    Vigesimotercera ola cerrada (0122 entregada).    Vigesimocuarta ola
    cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`).
    Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola
-   cerrada (0138 entregada). Vigesimoctava ola 0139…0142: IDE-0139
-   🟡 `#784`; siguiente IDE-0140.
+   cerrada (0138 entregada). Vigesimoctava ola 0139…0142: 0139
+   entregada; siguiente IDE-0140.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
