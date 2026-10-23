@@ -208,6 +208,10 @@ Observaciones:
 | IDE-0136 | Barra: área de huecos internos de la solución seleccionada | 🟢 | P3 |
 | IDE-0137 | Copiar el área de huecos internos de la solución | 🟢 | P3 |
 | IDE-0138 | Clic en el área de huecos internos selecciona su solución | 🟢 | P3 |
+| IDE-0139 | Barra: área de tablero libre de la solución seleccionada | 🟡 | P3 |
+| IDE-0140 | Copiar el área de tablero libre de la solución | 🔵 | P3 |
+| IDE-0141 | Clic en el área de tablero libre selecciona su solución | 🔵 | P3 |
+| IDE-0142 | Barra: área de tableros consumidos de la solución seleccionada | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -339,6 +343,10 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0136 | S | IDE-0098 | Entregado; `hueár. {area}` / `gapar. {area}`; `_format_area(solution.waste_area_mm2)`; `0` se muestra; sin clic; distinto de `hueco n%` |
 | IDE-0137 | S | IDE-0136 | Entregado; Ctrl+Alt+Shift+2; el área con unidad, sin `hueár.`; no avanza |
 | IDE-0138 | S | IDE-0136 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0139 | S | IDE-0118 | En curso `#784`; `sbrár. {area}` / `remar. {area}`; `_format_area(board_waste_area_mm2)`; `0` se muestra; sin clic; distinto de `sbr. n%` |
+| IDE-0140 | S | IDE-0139 | Planificado; copiar área con unidad, sin `sbrár.`; no avanza |
+| IDE-0141 | S | IDE-0139 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0142 | S | IDE-0112 | Planificado; `panár. {area}` / `pnlar. {area}`; `_format_area(board_total_area_mm2)`; `0` se muestra; sin clic; distinto de `pan. {n}` |
 
 ---
 
@@ -383,15 +391,16 @@ Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada
 (0118 entregada). Vigesimotercera ola cerrada (0122 entregada).
 Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada
 (0130 `#771`). Vigesimosexta ola cerrada (0134 `#777`).
-Vigesimoséptima ola cerrada (0138 entregada). Cola vacía. IDE-0007 🟢
+Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola
+0139…0142: IDE-0139 🟡 `#784`; siguiente IDE-0140. IDE-0007 🟢
 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-22-planificacion.md`.
+`REVIEW-2026-10-23-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: vigesimoséptima ola cerrada (0138 entregada;
-   IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
+1. Cola producto `0.4.4`: IDE-0139 🟡 `#784` (luego 0140…0142;
+   IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.

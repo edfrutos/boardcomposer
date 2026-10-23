@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-10-22-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-10-23-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -146,8 +146,8 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: área de huecos internos de la solución seleccionada (IDE-0136).
 - Copiar el área de huecos internos de la solución (IDE-0137; Ctrl+Alt+Shift+2).
 - Clic en el área de huecos internos selecciona esa solución (IDE-0138).
-- Próximo: vigesimoséptima ola 0135…0138 cerrada (0138 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Cola vacía.
+- Próximo: vigesimoctava ola 0139…0142 (IDE-0139 🟡 `#784`; luego
+  0140…0142; IDE-0101 e IDE-0102 diferidas, sin costes).
   Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D;
   Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
