@@ -368,8 +368,12 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0136 | Barra: área de huecos internos de la solución seleccionada | Entregado; `hueár. {area}` / `gapar. {area}`; `0 mm²` se muestra; sin clic |
 | IDE-0137 | Copiar el área de huecos internos de la solución | Entregado; Ctrl+Alt+Shift+2; el área con unidad, sin `hueár.`; no avanza |
 | IDE-0138 | Clic en el área de huecos internos selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0139 | Barra: área de tablero libre de la solución seleccionada | Entregado; `sbrár. {area}` / `remar. {area}`; `0 mm²` se muestra; sin clic |
+| IDE-0140 | Copiar el área de tablero libre de la solución | Copiar el área con unidad, sin `sbrár.`; no avanza |
+| IDE-0141 | Clic en el área de tablero libre selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0142 | Barra: área de tableros consumidos de la solución seleccionada | `panár. {area}` / `pnlar. {area}`; `0 mm²` se muestra; sin clic |
 
-Prioridad de ataque: vigesimoséptima ola cerrada (0138 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
+Prioridad de ataque: **IDE-0140** (0139 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

@@ -281,6 +281,24 @@ class LayoutService:
 
         return max(0.0, 1.0 - solution.used_area_mm2 / board_area)
 
+    def board_waste_area_mm2(self, solution: AssemblySolution) -> float:
+        """Return unused board area in mm² across consumed panels or the source board."""
+        if self._solved_project is not None and solution.panel_references:
+            return max(0.0, solution.total_panel_waste_area_mm2(self._solved_project))
+
+        studio_project = self.services.projects.current_project
+
+        if studio_project is None or not studio_project.boards:
+            return 0.0
+
+        board = studio_project.boards[0]
+        board_area = board.length_mm * board.width_mm
+
+        if board_area <= 0:
+            return 0.0
+
+        return max(0.0, board_area - solution.used_area_mm2)
+
     def material_cost_estimate(
         self, solution: AssemblySolution
     ) -> MaterialCostEstimate:

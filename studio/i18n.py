@@ -1401,6 +1401,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Área de huecos internos de la solución seleccionada: {area}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_board_waste_area": "sbrár. {area}",
+        "tip.status_solution_board_waste_area": (
+            "Área de tablero libre de la solución seleccionada: {area}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3405,6 +3409,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_waste_area": (
             "Internal gap area of the selected solution: {area}. "
             "Click selects the solution"
+        ),
+        "status.solution_board_waste_area": "remar. {area}",
+        "tip.status_solution_board_waste_area": (
+            "Unused board area of the selected solution: {area}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
