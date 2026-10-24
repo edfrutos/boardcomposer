@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Clic en el área de tableros consumidos selecciona esa solución (IDE-0144).
+  Cursor mano si está visible. Selecciona `solution:{index}` en el
+  explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el área de tableros consumidos de la solución (IDE-0143;
   **Ctrl+Alt+Shift+4**). Copia el área con unidad (`0 mm²`, `500000 mm²`,
   `5000 cm²`), sin `panár.` ni `pnlar.`. Deshabilitado si la etiqueta

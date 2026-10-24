@@ -489,7 +489,8 @@ Chrome de Studio (se recuerda entre sesiones).
   El área de tableros consumidos de esa solución va como `panár. 0 mm²`
   (en inglés `pnlar. 500000 mm²`). La misma visibilidad que el índice
   (distinto de `pan. {n}`). `0 mm²` se muestra. Sigue las unidades de
-  Preferencias. Cursor flecha. Sin clic.
+  Preferencias. Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+4** copia el área con unidad (`0 mm²`, `500000 mm²`,
   `5000 cm²`), sin `panár.`. Deshabilitado si la etiqueta está oculta.
   No avanza.
