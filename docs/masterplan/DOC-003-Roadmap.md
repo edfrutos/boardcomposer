@@ -12,7 +12,7 @@ Resumen operativo paralelo: `ROADMAP.md` en la raíz del repo.
 
 ---
 
-## Objetivo
+### Objetivo
 
 Definir la evolución prevista de BoardComposer mediante fases, hitos y
 prioridades, proporcionando una visión clara del desarrollo del producto a
@@ -20,7 +20,7 @@ corto, medio y largo plazo.
 
 ---
 
-## Principios
+### Principios
 
 El Roadmap representa la dirección del proyecto, no una planificación
 cerrada. Podrá evolucionar conforme aparezcan nuevas necesidades, siempre
@@ -28,7 +28,7 @@ respetando el Manifiesto y la Arquitectura.
 
 ---
 
-# Fase 0 — Fundamentos (Completada)
+## Fase 0 — Fundamentos (Completada)
 
 **Estado:** 🟢
 
@@ -38,7 +38,7 @@ respetando el Manifiesto y la Arquitectura.
 
 ---
 
-# Fase 1 — Core (Base completada)
+## Fase 1 — Core (Base completada)
 
 **Estado:** 🟢
 
@@ -60,7 +60,7 @@ controladas que preservan sus contratos públicos.
 
 ---
 
-# Fase 2 — BoardComposer Studio (Núcleo operativo)
+## Fase 2 — BoardComposer Studio (Núcleo operativo)
 
 **Estado:** 🟡 En curso (núcleo usable; evolución continua)
 
@@ -97,12 +97,13 @@ Deuda / evolución dentro de Fase 2 (no bloquea uso diario):
 
 ---
 
-# Fase 3 — Plataforma
+## Fase 3 — Plataforma
 
 **Estado:** 🟢 Entregada (EP-001…003)  
 **Última descomposición:** 26/07/2026 → `docs/masterplan/epics/`
 
 | Épica | Título | Prioridad | Dependencias |
+
 |-------|--------|-----------|--------------|
 | [EP-001](epics/EP-001-API-Publica-Contratos.md) | API pública y contratos `v1` (SPR-001…003 🟢) | P1 | Core / DOC-008 / DOC-009 |
 | [EP-002](epics/EP-002-Automatizacion-Batch.md) | Automatización y batch (SPR-001…003 🟢) | P1 | EP-001 |
@@ -112,7 +113,7 @@ Orden de ataque: EP-001 → EP-002 → EP-003. Índice: [epics/README.md](epics/
 
 ---
 
-# Fase 4 — Inteligencia
+## Fase 4 — Inteligencia
 
 **Estado:** ⚪ Idea consolidada
 
@@ -125,7 +126,7 @@ Objetivos:
 
 ---
 
-# Fase 5 — Ecosistema
+## Fase 5 — Ecosistema
 
 **Estado:** ⚪ Visión futura
 
@@ -138,15 +139,15 @@ Objetivos:
 
 ---
 
-## Prioridades actuales
+### Prioridades actuales
 
-### Prioridad P0 — Completada
+#### Prioridad P0 — Completada
 
 - UAT visual multipanel y flujo Studio núcleo.
 - Movimiento / reasignación entre paneles.
 - Compatibilidad material + multipanel MaxRects.
 
-### Prioridad P1 — Completada (Studio 2026-07)
+#### Prioridad P1 — Completada (Studio 2026-07)
 
 - Importación CSV/Excel tableros y piezas.
 - Comparador visual completo (SCR-003).
@@ -155,7 +156,7 @@ Objetivos:
 - Docs UI sync SCR/FLW.
 - Cobertura Qt de interacción Workspace.
 
-### Prioridad P1 — Siguiente (producto)
+#### Prioridad P1 — Siguiente (producto)
 
 - Piloto DT-0006 opción D (backup); C diferida.
 - Cola ciclo `0.4.4`: duodécima ola cerrada (0078 entregada);
@@ -172,11 +173,11 @@ Objetivos:
   cerrada (0126 `#766`).   Vigesimoquinta ola cerrada (0130 `#771`).
   Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola
   cerrada (0138 entregada). Vigesimoctava ola cerrada (0142
-  entregada). Vigesimonovena ola 0143…0146: 0143 entregada;
-  siguiente IDE-0144.
+  entregada). Vigesimonovena ola 0143…0146: 0144 entregada;
+  siguiente IDE-0145.
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
-### Prioridad P2
+#### Prioridad P2
 
 - IA LLM opt-in (Fase 4; tras política / eval).
 - Plugins / ecosistema (Fase 5).
@@ -184,7 +185,7 @@ Objetivos:
 
 ---
 
-## Criterios para modificar el Roadmap
+### Criterios para modificar el Roadmap
 
 Toda modificación deberá:
 
@@ -195,7 +196,7 @@ Toda modificación deberá:
 
 ---
 
-## Estado
+### Estado
 
 **Estado actual:** 🟢 Fase 3 (EP-001…003) entregada; Studio núcleo usable;
 corte `0.4.3` / `v0.4.3` publicado; ciclo `0.4.4.dev0` ola 1 (0025…0030)
@@ -209,12 +210,12 @@ décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima o
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada
-(0094 entregada). Decimoséptima ola cerrada (0098 entregada). Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`). Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola cerrada (0142 entregada). Vigesimonovena ola 0143…0146: 0143 entregada; siguiente IDE-0144.
+(0094 entregada). Decimoséptima ola cerrada (0098 entregada). Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`). Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola cerrada (0142 entregada). Vigesimonovena ola 0143…0146: 0144 entregada; siguiente IDE-0145.
 Revisión: `REVIEW-2026-10-24-planificacion.md`.
 
 Pendiente de:
 
-- IDE-0144…0146 (0143 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
+- IDE-0145…0146 (0144 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM;
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.

@@ -148,7 +148,7 @@
 - Copiar el área de tableros consumidos de la solución (IDE-0143;
   Ctrl+Alt+Shift+4).
 - Clic en el área de tableros consumidos selecciona esa solución
-  (IDE-0144; planificado).
+  (IDE-0144).
 - Barra de estado: aprovechamiento de tableros de la solución seleccionada
   (IDE-0145; planificado).
 - Copiar el aprovechamiento de tableros de la solución (IDE-0146;
@@ -181,8 +181,8 @@
    cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`).
    Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola
    cerrada (0138 entregada). Vigesimoctava ola cerrada (0142
-   entregada). Vigesimonovena ola 0143…0146: 0143 entregada;
-   siguiente IDE-0144.
+   entregada). Vigesimonovena ola 0143…0146: 0144 entregada;
+   siguiente IDE-0145.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

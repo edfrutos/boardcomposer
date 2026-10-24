@@ -1424,7 +1424,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_panel_area": "panár. {area}",
         "tip.status_solution_panel_area": (
-            "Área de tableros consumidos de la solución seleccionada: {area}"
+            "Área de tableros consumidos de la solución seleccionada: {area}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3462,7 +3463,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_panel_area": "pnlar. {area}",
         "tip.status_solution_panel_area": (
-            "Consumed board area of the selected solution: {area}"
+            "Consumed board area of the selected solution: {area}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
