@@ -7,7 +7,7 @@
 **Versión:** 1.3.65
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 21/10/2026
+**Última revisión:** 24/10/2026
 
 ---
 
@@ -395,7 +395,7 @@ Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola
 0139…0142: 0139 entregada; siguiente IDE-0140. IDE-0007 🟢
 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-22-planificacion.md`.
+`REVIEW-2026-10-24-planificacion.md`.
 
 Próximo foco:
 
