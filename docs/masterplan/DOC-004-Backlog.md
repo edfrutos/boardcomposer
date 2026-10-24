@@ -395,7 +395,7 @@ Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola
 0139…0142: 0139 entregada; siguiente IDE-0140. IDE-0007 🟢
 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-22-planificacion.md`.
+`REVIEW-2026-10-23-planificacion.md`.
 
 Próximo foco:
 
