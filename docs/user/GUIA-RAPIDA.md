@@ -497,6 +497,8 @@ Chrome de Studio (se recuerda entre sesiones).
   El aprovechamiento de tableros de esa solución va como `aprv. 0.0%`
   (en inglés `util. 24.0%`). La misma visibilidad que el índice
   (distinto de `uso`). `0.0%` se muestra. Cursor flecha. Sin clic.
+  **Ctrl+Alt+Shift+5** copia el porcentaje (`0.0%`, `24.0%`), sin
+  `aprv.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

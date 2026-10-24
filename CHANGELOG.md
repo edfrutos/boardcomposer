@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar el aprovechamiento de tableros de la solución (IDE-0146;
+  **Ctrl+Alt+Shift+5**). Copia el porcentaje (`0.0%`, `24.0%`), sin
+  `aprv.` ni `util.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Cierra la vigesimonovena ola 0143…0146.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: aprovechamiento de tableros de la solución
   seleccionada (IDE-0145). `aprv. {value}` (en inglés `util. {value}`)
   desde `f"{services.layout.board_utilization_ratio(solution):.1%}"`.
