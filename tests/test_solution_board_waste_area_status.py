@@ -52,8 +52,8 @@ def test_solution_board_waste_area_follows_the_selected_solution(qapp, tmp_path)
     assert not label.isHidden()
     assert window._solution_board_waste_label.text() == "sbr. 0.0%"
     assert "área de tablero libre" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "1/2 sol."
 
     calls: list[str] = []
@@ -95,5 +95,5 @@ def test_solution_board_waste_area_follows_the_selected_solution(qapp, tmp_path)
     window._retranslate_ui()
     assert label.text() == "remar. 380000 mm²"
     assert "unused board area" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

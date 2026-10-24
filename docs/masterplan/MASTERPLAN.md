@@ -142,7 +142,7 @@
 - Copiar el área de tablero libre de la solución (IDE-0140;
   Ctrl+Alt+Shift+3).
 - Clic en el área de tablero libre selecciona esa solución
-  (IDE-0141; planificado).
+  (IDE-0141).
 - Barra de estado: área de tableros consumidos de la solución seleccionada
   (IDE-0142; planificado).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
@@ -172,8 +172,8 @@
    Vigesimotercera ola cerrada (0122 entregada).    Vigesimocuarta ola
    cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`).
    Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola
-   cerrada (0138 entregada). Vigesimoctava ola 0139…0142: 0140
-   entregada; siguiente IDE-0141.
+   cerrada (0138 entregada). Vigesimoctava ola 0139…0142: 0141
+   entregada; siguiente IDE-0142.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

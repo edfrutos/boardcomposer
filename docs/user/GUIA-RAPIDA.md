@@ -481,7 +481,8 @@ Chrome de Studio (se recuerda entre sesiones).
   El área de tablero libre de esa solución va como `sbrár. 0 mm²` (en
   inglés `remar. 380000 mm²`). La misma visibilidad que el índice
   (distinto de `sbr. n%`). `0 mm²` se muestra. Sigue las unidades de
-  Preferencias. Cursor flecha. Sin clic.
+  Preferencias. Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+3** copia el área con unidad (`0 mm²`, `380000 mm²`,
   `3800 cm²`), sin `sbrár.`. Deshabilitado si la etiqueta está oculta.
   No avanza.

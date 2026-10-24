@@ -1411,7 +1411,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_board_waste_area": "sbrár. {area}",
         "tip.status_solution_board_waste_area": (
-            "Área de tablero libre de la solución seleccionada: {area}"
+            "Área de tablero libre de la solución seleccionada: {area}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3432,7 +3433,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_board_waste_area": "remar. {area}",
         "tip.status_solution_board_waste_area": (
-            "Unused board area of the selected solution: {area}"
+            "Unused board area of the selected solution: {area}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
