@@ -335,9 +335,9 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0143 | Copiar el área de tableros consumidos de la solución | Entregado; Ctrl+Alt+Shift+4; el área con unidad, sin `panár.`; no avanza |
 | IDE-0144 | Clic en el área de tableros consumidos selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0145 | Barra: aprovechamiento de tableros de la solución seleccionada | Entregado; `aprv. {value}` / `util. {value}`; `0.0%` se muestra; sin clic |
-| IDE-0146 | Copiar el aprovechamiento de tableros de la solución | Copiar el porcentaje, sin `aprv.`; no avanza |
+| IDE-0146 | Copiar el aprovechamiento de tableros de la solución | Entregado; Ctrl+Alt+Shift+5; el porcentaje, sin `aprv.`; no avanza |
 
-Prioridad de ataque: **IDE-0146** (0145 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: vigesimonovena ola cerrada (0146 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
