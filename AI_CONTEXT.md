@@ -156,7 +156,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el aprovechamiento de tableros de la solución (IDE-0146; Ctrl+Alt+Shift+5).
 - Clic en el aprovechamiento de tableros selecciona esa solución (IDE-0147).
 - Barra de estado: piezas rotadas de la solución seleccionada (IDE-0148).
-- Próximo: IDE-0149 (copiar las piezas rotadas de la solución; 0148 entregada; IDE-0101 e IDE-0102
+- Copiar las piezas rotadas de la solución (IDE-0149; Ctrl+Alt+Shift+6).
+- Próximo: IDE-0150 (clic en las piezas rotadas selecciona esa solución; 0149 entregada; IDE-0101 e IDE-0102
   diferidas, sin costes). Trigésima ola 0147…0150 abierta.
   Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D;
   Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
