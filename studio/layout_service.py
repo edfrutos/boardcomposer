@@ -281,6 +281,12 @@ class LayoutService:
 
         return max(0.0, 1.0 - solution.used_area_mm2 / board_area)
 
+    def board_utilization_ratio(self, solution: AssemblySolution) -> float:
+        """Return used board area relative to consumed panels or the source board."""
+        if not solution.placements:
+            return 0.0
+        return max(0.0, min(1.0, 1.0 - self.board_waste_ratio(solution)))
+
     def board_waste_area_mm2(self, solution: AssemblySolution) -> float:
         """Return unused board area in mm² across consumed panels or the source board."""
         if self._solved_project is not None and solution.panel_references:

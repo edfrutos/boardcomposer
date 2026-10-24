@@ -494,6 +494,9 @@ Chrome de Studio (se recuerda entre sesiones).
   **Ctrl+Alt+Shift+4** copia el área con unidad (`0 mm²`, `500000 mm²`,
   `5000 cm²`), sin `panár.`. Deshabilitado si la etiqueta está oculta.
   No avanza.
+  El aprovechamiento de tableros de esa solución va como `aprv. 0.0%`
+  (en inglés `util. 24.0%`). La misma visibilidad que el índice
+  (distinto de `uso`). `0.0%` se muestra. Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
