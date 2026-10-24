@@ -378,10 +378,10 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0146 | Copiar el aprovechamiento de tableros de la solución | Entregado; Ctrl+Alt+Shift+5; el porcentaje, sin `aprv.`; no avanza |
 | IDE-0147 | Clic en el aprovechamiento de tableros selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0148 | Barra: piezas rotadas de la solución seleccionada | Entregado; `rot. {n}` / `rot {n}`; `0` se muestra; sin clic |
-| IDE-0149 | Copiar las piezas rotadas de la solución | Copiar el número, sin `rot.`; no avanza |
+| IDE-0149 | Copiar las piezas rotadas de la solución | Entregado; Ctrl+Alt+Shift+6; el número, sin `rot.`; no avanza |
 | IDE-0150 | Clic en las piezas rotadas selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: **IDE-0149** (0148 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0150** (0149 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
