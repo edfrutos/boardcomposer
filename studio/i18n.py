@@ -333,6 +333,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_board_waste_area": (
             "Copiar área de tablero libre de la solución"
         ),
+        "action.copy_solution_panel_area": (
+            "Copiar área de tableros consumidos de la solución"
+        ),
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -722,6 +725,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_board_waste_area": (
             "Copiar el área de tablero libre de la solución (Ctrl+Alt+Shift+3); "
             "el área con unidad, sin sbrár.; deshabilitado si la etiqueta está oculta; "
+            "no avanza"
+        ),
+        "tip.copy_solution_panel_area": (
+            "Copiar el área de tableros consumidos de la solución (Ctrl+Alt+Shift+4); "
+            "el área con unidad, sin panár.; deshabilitado si la etiqueta está oculta; "
             "no avanza"
         ),
         "tip.copy_inspector": (
@@ -1517,6 +1525,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_copy_solution_board_waste_area": (
             "No hay área de tablero libre de la solución que copiar"
+        ),
+        "status.solution_panel_area_copied": (
+            "Área de tableros consumidos de la solución copiada: {area}"
+        ),
+        "status.nothing_to_copy_solution_panel_area": (
+            "No hay área de tableros consumidos de la solución que copiar"
         ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
@@ -2403,6 +2417,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_bounding_area": "Copy solution bounding area",
         "action.copy_solution_waste_area": "Copy solution internal gap area",
         "action.copy_solution_board_waste_area": "Copy solution unused board area",
+        "action.copy_solution_panel_area": "Copy solution consumed board area",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2778,6 +2793,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_board_waste_area": (
             "Copy the status-bar solution unused board area (Ctrl+Alt+Shift+3); "
             "the area with unit, without remar.; disabled when the label is hidden; "
+            "does not step to the next solution"
+        ),
+        "tip.copy_solution_panel_area": (
+            "Copy the status-bar solution consumed board area (Ctrl+Alt+Shift+4); "
+            "the area with unit, without pnlar.; disabled when the label is hidden; "
             "does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -3517,6 +3537,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_board_waste_area": (
             "No solution unused board area to copy"
         ),
+        "status.solution_panel_area_copied": (
+            "Solution consumed board area copied: {area}"
+        ),
+        "status.nothing_to_copy_solution_panel_area": (
+            "No solution consumed board area to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -4127,6 +4153,7 @@ _ACTION_KEYS = (
     "copy_solution_bounding_area",
     "copy_solution_waste_area",
     "copy_solution_board_waste_area",
+    "copy_solution_panel_area",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",
