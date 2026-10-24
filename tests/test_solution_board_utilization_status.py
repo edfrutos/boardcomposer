@@ -52,8 +52,8 @@ def test_solution_board_utilization_follows_the_selected_solution(qapp, tmp_path
     assert not label.isHidden()
     assert window._solution_board_waste_label.text() == "sbr. 100.0%"
     assert "aprovechamiento de tableros" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "1/2 sol."
     assert label.text() != board_util.text()
     assert "uso" not in label.text()
@@ -91,6 +91,6 @@ def test_solution_board_utilization_follows_the_selected_solution(qapp, tmp_path
     window._retranslate_ui()
     assert label.text() == "util. 24.0%"
     assert "board utilization" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert "use" not in label.text()

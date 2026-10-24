@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en el aprovechamiento de tableros selecciona esa solución
+  (IDE-0147). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no. Abre la
+  trigésima ola 0147…0150.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el aprovechamiento de tableros de la solución (IDE-0146;
   **Ctrl+Alt+Shift+5**). Copia el porcentaje (`0.0%`, `24.0%`), sin
   `aprv.` ni `util.`. Deshabilitado si la etiqueta está oculta. No

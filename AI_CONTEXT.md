@@ -154,8 +154,9 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el área de tableros consumidos selecciona esa solución (IDE-0144).
 - Barra de estado: aprovechamiento de tableros de la solución seleccionada (IDE-0145).
 - Copiar el aprovechamiento de tableros de la solución (IDE-0146; Ctrl+Alt+Shift+5).
-- Próximo: vigesimonovena ola 0143…0146 cerrada (0146 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Cola vacía.
+- Clic en el aprovechamiento de tableros selecciona esa solución (IDE-0147).
+- Próximo: IDE-0148 (barra: piezas rotadas de la solución seleccionada; 0147 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Trigésima ola 0147…0150 abierta.
   Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D;
   Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 

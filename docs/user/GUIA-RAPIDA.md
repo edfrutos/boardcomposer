@@ -496,7 +496,8 @@ Chrome de Studio (se recuerda entre sesiones).
   No avanza.
   El aprovechamiento de tableros de esa solución va como `aprv. 0.0%`
   (en inglés `util. 24.0%`). La misma visibilidad que el índice
-  (distinto de `uso`). `0.0%` se muestra. Cursor flecha. Sin clic.
+  (distinto de `uso`). `0.0%` se muestra. Cursor mano si está visible.
+  Clic selecciona esa solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+5** copia el porcentaje (`0.0%`, `24.0%`), sin
   `aprv.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
