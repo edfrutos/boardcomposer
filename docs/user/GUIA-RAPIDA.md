@@ -500,6 +500,9 @@ Chrome de Studio (se recuerda entre sesiones).
   Clic selecciona esa solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+5** copia el porcentaje (`0.0%`, `24.0%`), sin
   `aprv.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  Las piezas rotadas de esa solución van como `rot. 0` (en inglés
+  `rot 2`). La misma visibilidad que el índice (distinto de `n pza`).
+  `0` se muestra. Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

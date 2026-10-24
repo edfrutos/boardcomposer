@@ -156,7 +156,7 @@
 - Clic en el aprovechamiento de tableros selecciona esa solución
   (IDE-0147).
 - Barra de estado: piezas rotadas de la solución seleccionada
-  (IDE-0148; planificado).
+  (IDE-0148).
 - Copiar las piezas rotadas de la solución (IDE-0149; planificado).
 - Clic en las piezas rotadas selecciona esa solución (IDE-0150;
   planificado).
@@ -189,7 +189,7 @@
    Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola
    cerrada (0138 entregada). Vigesimoctava ola cerrada (0142
    entregada). Vigesimonovena ola cerrada (0146 entregada).
-   Trigésima ola 0147…0150: 0147 entregada; siguiente IDE-0148.
+   Trigésima ola 0147…0150: 0148 entregada; siguiente IDE-0149.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

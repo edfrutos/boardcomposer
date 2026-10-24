@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Barra de estado: piezas rotadas de la solución seleccionada
+  (IDE-0148). `rot. {n}` (en inglés `rot {n}`) desde
+  `sum(1 for p in solution.placements if p.rotated)`. La misma
+  visibilidad que el índice (distinto de `n pza`). `0` se muestra.
+  Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el aprovechamiento de tableros selecciona esa solución
   (IDE-0147). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no. Abre la
