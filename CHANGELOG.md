@@ -2,8 +2,14 @@
 
 ## Unreleased — 0.4.4.dev0 — 2026-10-23
 
-### Añadido
+## Añadido
 
+- Barra de estado: aprovechamiento de tableros de la solución
+  seleccionada (IDE-0145). `aprv. {value}` (en inglés `util. {value}`)
+  desde `f"{services.layout.board_utilization_ratio(solution):.1%}"`.
+  La misma visibilidad que el índice (distinto de `uso`). `0.0%` se
+  muestra. Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el área de tableros consumidos selecciona esa solución (IDE-0144).
   Cursor mano si está visible. Selecciona `solution:{index}` en el
   explorador; no avanza ni aplica el layout; arrastre no.
@@ -58,7 +64,7 @@
   vigesimoséptima ola 0135…0138.
   Sin bump `.bcproj`; no cambia el solver.
 
-### Documentación
+## Documentación
 
 - Snapshot de planificación `REVIEW-2026-10-23-planificacion.md`:
   IDE-0137/0138 🟢 `#782`/`#783`; producto `#784` abre
@@ -89,7 +95,7 @@
   IDE-0120 🟢 `#759`; cola residual IDE-0121…0122 🔵; Issues = 0;
   sin IDE nuevas. Hueco `#749` / 2026-10-16 cubierto como histórico.
 
-### Corregido
+## Corregido
 
 - Cambiar de tema ya no sustituye el estilo Fusion si ya está activo.
   En CI offscreen eso borraba el estilo con widgets vivos y el test
@@ -100,7 +106,7 @@
 - Preferencias ya no desborda el alto de la pantalla. Los grupos
   desplazan; OK, Cancelar y Restaurar quedan visibles.
 
-### Añadido
+## Añadido2
 
 - Copiar el área envolvente de la solución (IDE-0134; **Ctrl+Alt+Shift+1**).
   Copia el área con unidad (`0 mm²`, `60000 mm²`, `600 cm²`), sin

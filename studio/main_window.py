@@ -935,6 +935,10 @@ class MainWindow(QMainWindow):
         self._solution_panel_area_label.setObjectName("statusSolutionPanelArea")
         self._solution_panel_area_label_armed = False
         self._solution_panel_area_label.installEventFilter(self)
+        self._solution_board_utilization_label = QLabel()
+        self._solution_board_utilization_label.setObjectName(
+            "statusSolutionBoardUtilization"
+        )
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -975,6 +979,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_waste_area_label)
         status.addPermanentWidget(self._solution_board_waste_area_label)
         status.addPermanentWidget(self._solution_panel_area_label)
+        status.addPermanentWidget(self._solution_board_utilization_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -3998,6 +4003,32 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_board_utilization_text(self) -> str | None:
+        """Formatted board utilization ratio of the selected solution, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return None
+        return f"{self.services.layout.board_utilization_ratio(solution):.1%}"
+
+    def _update_solution_board_utilization_status(self) -> None:
+        """Show board utilization ratio of the selected solution (IDE-0145)."""
+        label = getattr(self, "_solution_board_utilization_label", None)
+        if label is None:
+            return
+        value = self._selected_solution_board_utilization_text()
+        if value is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_board_utilization", value=value))
+        label.setToolTip(self._tr("tip.status_solution_board_utilization", value=value))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
@@ -4016,6 +4047,7 @@ class MainWindow(QMainWindow):
         self._update_solution_waste_area_status()
         self._update_solution_board_waste_area_status()
         self._update_solution_panel_area_status()
+        self._update_solution_board_utilization_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
