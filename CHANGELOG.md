@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Copiar el área de tableros consumidos de la solución (IDE-0143;
+  **Ctrl+Alt+Shift+4**). Copia el área con unidad (`0 mm²`, `500000 mm²`,
+  `5000 cm²`), sin `panár.` ni `pnlar.`. Deshabilitado si la etiqueta
+  está oculta. No avanza. Abre la vigesimonovena ola 0143…0146.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: área de tableros consumidos de la solución seleccionada
   (IDE-0142). `panár. {area}` (en inglés `pnlar. {area}`) desde
   `_format_area(services.layout.board_total_area_mm2(solution))`. La

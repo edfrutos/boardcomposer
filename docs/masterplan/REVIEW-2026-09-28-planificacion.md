@@ -372,8 +372,12 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0140 | Copiar el área de tablero libre de la solución | Entregado; Ctrl+Alt+Shift+3; el área con unidad, sin `sbrár.`; no avanza |
 | IDE-0141 | Clic en el área de tablero libre selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0142 | Barra: área de tableros consumidos de la solución seleccionada | Entregado; `panár. {area}` / `pnlar. {area}`; `0 mm²` se muestra; sin clic |
+| IDE-0143 | Copiar el área de tableros consumidos de la solución | Entregado; Ctrl+Alt+Shift+4; el área con unidad, sin `panár.`; no avanza |
+| IDE-0144 | Clic en el área de tableros consumidos selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0145 | Barra: aprovechamiento de tableros de la solución seleccionada | `aprv. {value}` / `util. {value}`; `0.0%` se muestra; sin clic |
+| IDE-0146 | Copiar el aprovechamiento de tableros de la solución | Copiar el porcentaje, sin `aprv.`; no avanza |
 
-Prioridad de ataque: vigesimoctava ola cerrada (0142 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
+Prioridad de ataque: **IDE-0144** (0143 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
