@@ -4,6 +4,10 @@
 
 ### Añadido
 
+- Clic en el área de tablero libre selecciona esa solución (IDE-0141).
+  Cursor mano si está visible. Selecciona `solution:{index}` en el
+  explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el área de tablero libre de la solución (IDE-0140;
   **Ctrl+Alt+Shift+3**). Copia el área con unidad (`0 mm²`, `380000 mm²`,
   `3800 cm²`), sin `sbrár.` ni `remar.`. Deshabilitado si la etiqueta
