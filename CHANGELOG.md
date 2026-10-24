@@ -4,6 +4,13 @@
 
 ### Añadido
 
+- Barra de estado: área de tableros consumidos de la solución seleccionada
+  (IDE-0142). `panár. {area}` (en inglés `pnlar. {area}`) desde
+  `_format_area(services.layout.board_total_area_mm2(solution))`. La
+  misma visibilidad que el índice (distinto de `pan. {n}`). `0 mm²` se
+  muestra. Sigue las unidades de Preferencias. Cursor flecha. Sin clic.
+  Cierra la vigesimoctava ola 0139…0142.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el área de tablero libre selecciona esa solución (IDE-0141).
   Cursor mano si está visible. Selecciona `solution:{index}` en el
   explorador; no avanza ni aplica el layout; arrastre no.

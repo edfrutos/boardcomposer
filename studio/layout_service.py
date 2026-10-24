@@ -299,6 +299,30 @@ class LayoutService:
 
         return max(0.0, board_area - solution.used_area_mm2)
 
+    def board_total_area_mm2(self, solution: AssemblySolution) -> float:
+        """Return total area in mm² of physical panels consumed by the solution."""
+        if self._solved_project is not None and solution.panel_references:
+            return max(0.0, solution.total_panel_area_mm2(self._solved_project))
+
+        studio_project = self.services.projects.current_project
+
+        if studio_project is None or not studio_project.boards:
+            return 0.0
+
+        if solution.panel_references:
+            total = 0.0
+            for reference in solution.panel_references:
+                if 0 <= reference.stock_panel_index < len(studio_project.boards):
+                    board = studio_project.boards[reference.stock_panel_index]
+                    total += max(0.0, board.length_mm * board.width_mm)
+            return total
+
+        if not solution.placements:
+            return 0.0
+
+        board = studio_project.boards[0]
+        return max(0.0, board.length_mm * board.width_mm)
+
     def material_cost_estimate(
         self, solution: AssemblySolution
     ) -> MaterialCostEstimate:
