@@ -1437,7 +1437,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_board_utilization": "aprv. {value}",
         "tip.status_solution_board_utilization": (
-            "Aprovechamiento de tableros de la solución seleccionada: {value}"
+            "Aprovechamiento de tableros de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3492,7 +3493,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_board_utilization": "util. {value}",
         "tip.status_solution_board_utilization": (
-            "Board utilization of the selected solution: {value}"
+            "Board utilization of the selected solution: {value}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
