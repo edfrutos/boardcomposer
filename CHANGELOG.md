@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Copiar el área de tablero libre de la solución (IDE-0140;
+  **Ctrl+Alt+Shift+3**). Copia el área con unidad (`0 mm²`, `380000 mm²`,
+  `3800 cm²`), sin `sbrár.` ni `remar.`. Deshabilitado si la etiqueta
+  está oculta. No avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: área de tablero libre de la solución seleccionada
   (IDE-0139). `sbrár. {area}` (en inglés `remar. {area}`) desde
   `_format_area(services.layout.board_waste_area_mm2(solution))`. La
