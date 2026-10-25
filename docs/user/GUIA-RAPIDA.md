@@ -508,7 +508,8 @@ Chrome de Studio (se recuerda entre sesiones).
   Deshabilitado si la etiqueta está oculta. No avanza.
   Las piezas sin rotar de esa solución van como `nrot. 0` (en inglés
   `unrot 2`). La misma visibilidad que el índice (distinto de
-  `rot. {n}`). `0` se muestra. Cursor flecha. Sin clic.
+  `rot. {n}`). `0` se muestra. Cursor mano si está visible. Clic
+  selecciona esa solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+7** copia el número (`0`, `2`), sin `nrot.`.
   Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.

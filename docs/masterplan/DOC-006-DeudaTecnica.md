@@ -3,7 +3,7 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.86
+**Versión:** 1.2.87
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
 **Última revisión:** 25/10/2026
@@ -235,6 +235,6 @@ Próximo foco:
   cerrada (0138 entregada). Vigesimoctava ola cerrada (0142
   entregada). Vigesimonovena ola cerrada (0146 entregada). Trigésima
   ola cerrada (0150 entregada). Trigésima primera ola 0151…0154:
-  0152 entregada; siguiente IDE-0153.
+  0153 entregada; siguiente IDE-0154.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

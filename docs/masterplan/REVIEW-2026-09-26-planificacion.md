@@ -342,10 +342,10 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0150 | Clic en las piezas rotadas selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0151 | Barra: piezas sin rotar de la solución seleccionada | Entregado; `nrot. {n}` / `unrot {n}`; `0` se muestra; sin clic |
 | IDE-0152 | Copiar las piezas sin rotar de la solución | Entregado; Ctrl+Alt+Shift+7; el número, sin `nrot.`; no avanza |
-| IDE-0153 | Clic en las piezas sin rotar selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0153 | Clic en las piezas sin rotar selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0154 | Barra: porcentaje de piezas rotadas de la solución seleccionada | `rot% {value}` / `rot% {value}`; `0.0%` se muestra; sin clic |
 
-Prioridad de ataque: **IDE-0153** (0152 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0154** (0153 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
