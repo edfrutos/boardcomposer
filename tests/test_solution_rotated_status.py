@@ -57,8 +57,8 @@ def test_solution_rotated_follows_the_selected_solution(qapp, tmp_path):
     assert not label.isHidden()
     assert window._solution_pieces_label.text() == "0 pza"
     assert "piezas rotadas" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "1/2 sol."
 
     calls: list[str] = []
@@ -91,5 +91,5 @@ def test_solution_rotated_follows_the_selected_solution(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "rot 2"
     assert "rotated pieces" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

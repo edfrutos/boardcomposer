@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en las piezas rotadas selecciona esa solución (IDE-0150).
+  Cursor mano si está visible. Selecciona `solution:{index}` en el
+  explorador; no avanza ni aplica el layout; arrastre no. Cierra la
+  trigésima ola 0147…0150.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar las piezas rotadas de la solución (IDE-0149;
   **Ctrl+Alt+Shift+6**). Copia el número (`0`, `2`), sin `rot.` ni
   `rot`. Deshabilitado si la etiqueta está oculta. No avanza.
