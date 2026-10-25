@@ -502,7 +502,8 @@ Chrome de Studio (se recuerda entre sesiones).
   `aprv.`. Deshabilitado si la etiqueta está oculta. No avanza.
   Las piezas rotadas de esa solución van como `rot. 0` (en inglés
   `rot 2`). La misma visibilidad que el índice (distinto de `n pza`).
-  `0` se muestra. Cursor flecha. Sin clic.
+  `0` se muestra. Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+6** copia el número (`0`, `2`), sin `rot.`.
   Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.

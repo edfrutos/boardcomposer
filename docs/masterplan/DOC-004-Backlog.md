@@ -219,8 +219,8 @@ Observaciones:
 | IDE-0146 | Copiar el aprovechamiento de tableros de la solución | 🟢 | P3 |
 | IDE-0147 | Clic en el aprovechamiento de tableros selecciona su solución | 🟢 | P3 |
 | IDE-0148 | Barra: piezas rotadas de la solución seleccionada | 🟢 | P3 |
-| IDE-0149 | Copiar las piezas rotadas de la solución | 🟡 | P3 |
-| IDE-0150 | Clic en las piezas rotadas selecciona su solución | 🔵 | P3 |
+| IDE-0149 | Copiar las piezas rotadas de la solución | 🟢 | P3 |
+| IDE-0150 | Clic en las piezas rotadas selecciona su solución | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -363,8 +363,8 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0146 | S | IDE-0145 | Entregado; Ctrl+Alt+Shift+5; el porcentaje, sin `aprv.`; no avanza |
 | IDE-0147 | S | IDE-0145 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0148 | S | IDE-0106 | Entregado; `rot. {n}` / `rot {n}`; `sum(1 for p in placements if p.rotated)`; `0` se muestra; sin clic; distinto de `n pza` |
-| IDE-0149 | S | IDE-0148 | En curso `#796`; Ctrl+Alt+Shift+6; el número, sin `rot.`; no avanza |
-| IDE-0150 | S | IDE-0148 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0149 | S | IDE-0148 | Entregado; Ctrl+Alt+Shift+6; el número, sin `rot.`; no avanza |
+| IDE-0150 | S | IDE-0148 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -393,7 +393,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0149 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0150 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -412,16 +412,15 @@ Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada
 (0130 `#771`). Vigesimosexta ola cerrada (0134 `#777`).
 Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola
 cerrada (0142 entregada). Vigesimonovena ola cerrada (0146 entregada).
-Trigésima ola 0147…0150: 0148 entregada; IDE-0149 🟡 `#796`;
-siguiente IDE-0150. IDE-0007 🟢
+Trigésima ola cerrada (0150 entregada). Cola vacía. IDE-0007 🟢
 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-25-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0149 🟡 `#796` (luego IDE-0150;
-   IDE-0101 e IDE-0102 diferidas, sin costes).
+1. Cola producto `0.4.4`: trigésima ola cerrada (0150 entregada;
+   IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
