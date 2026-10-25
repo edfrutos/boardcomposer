@@ -1451,6 +1451,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Piezas rotadas de la solución seleccionada: {n}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_unrotated": "nrot. {n}",
+        "tip.status_solution_unrotated": (
+            "Piezas sin rotar de la solución seleccionada: {n}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3522,6 +3526,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_rotated": "rot {n}",
         "tip.status_solution_rotated": (
             "Rotated pieces in the selected solution: {n}. Click selects the solution"
+        ),
+        "status.solution_unrotated": "unrot {n}",
+        "tip.status_solution_unrotated": (
+            "Unrotated pieces in the selected solution: {n}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
