@@ -161,8 +161,9 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: piezas sin rotar de la solución seleccionada (IDE-0151).
 - Copiar las piezas sin rotar de la solución (IDE-0152; Ctrl+Alt+Shift+7).
 - Clic en las piezas sin rotar selecciona esa solución (IDE-0153).
-- Próximo: IDE-0154 (barra: porcentaje de piezas rotadas de la solución seleccionada; 0153 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Trigésima primera ola 0151…0154 abierta.
+- Barra de estado: porcentaje de piezas rotadas de la solución seleccionada (IDE-0154).
+- Próximo: trigésima primera ola 0151…0154 cerrada (0154 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Cola vacía.
   Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D;
   Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 

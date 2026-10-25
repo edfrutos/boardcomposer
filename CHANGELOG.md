@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Barra de estado: porcentaje de piezas rotadas de la solución
+  seleccionada (IDE-0154). `rot% {value}` (en inglés `rot% {value}`)
+  desde `rotated / len(placements)` (`0.0%` si no hay colocadas).
+  La misma visibilidad que el índice (distinto de `rot. {n}`). `0.0%`
+  se muestra. Cursor flecha. Sin clic. Cierra la trigésima primera ola
+  0151…0154.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en las piezas sin rotar selecciona esa solución (IDE-0153).
   Cursor mano si está visible. Selecciona `solution:{index}` en el
   explorador; no avanza ni aplica el layout; arrastre no.
