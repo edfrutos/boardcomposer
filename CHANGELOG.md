@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Copiar las piezas rotadas de la solución (IDE-0149;
+  **Ctrl+Alt+Shift+6**). Copia el número (`0`, `2`), sin `rot.` ni
+  `rot`. Deshabilitado si la etiqueta está oculta. No avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: piezas rotadas de la solución seleccionada
   (IDE-0148). `rot. {n}` (en inglés `rot {n}`) desde
   `sum(1 for p in solution.placements if p.rotated)`. La misma
