@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Clic en las piezas sin rotar selecciona esa solución (IDE-0153).
+  Cursor mano si está visible. Selecciona `solution:{index}` en el
+  explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar las piezas sin rotar de la solución (IDE-0152;
   **Ctrl+Alt+Shift+7**). Copia el número (`0`, `2`), sin `nrot.` ni
   `unrot`. Deshabilitado si la etiqueta está oculta. No avanza.
