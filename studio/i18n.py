@@ -340,6 +340,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Copiar aprovechamiento de tableros de la solución"
         ),
         "action.copy_solution_rotated": ("Copiar piezas rotadas de la solución"),
+        "action.copy_solution_unrotated": ("Copiar piezas sin rotar de la solución"),
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -744,6 +745,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_rotated": (
             "Copiar las piezas rotadas de la solución (Ctrl+Alt+Shift+6); "
             "el número, sin rot.; deshabilitado si la etiqueta está oculta; "
+            "no avanza"
+        ),
+        "tip.copy_solution_unrotated": (
+            "Copiar las piezas sin rotar de la solución (Ctrl+Alt+Shift+7); "
+            "el número, sin nrot.; deshabilitado si la etiqueta está oculta; "
             "no avanza"
         ),
         "tip.copy_inspector": (
@@ -1572,6 +1578,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_copy_solution_rotated": (
             "No hay piezas rotadas de la solución que copiar"
+        ),
+        "status.solution_unrotated_copied": (
+            "Piezas sin rotar de la solución copiadas: {n}"
+        ),
+        "status.nothing_to_copy_solution_unrotated": (
+            "No hay piezas sin rotar de la solución que copiar"
         ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
@@ -2461,6 +2473,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_panel_area": "Copy solution consumed board area",
         "action.copy_solution_board_utilization": "Copy solution board utilization",
         "action.copy_solution_rotated": "Copy solution rotated pieces",
+        "action.copy_solution_unrotated": "Copy solution unrotated pieces",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2851,6 +2864,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_rotated": (
             "Copy the status-bar solution rotated pieces (Ctrl+Alt+Shift+6); "
             "the count, without rot; disabled when the label is hidden; "
+            "does not step to the next solution"
+        ),
+        "tip.copy_solution_unrotated": (
+            "Copy the status-bar solution unrotated pieces (Ctrl+Alt+Shift+7); "
+            "the count, without unrot; disabled when the label is hidden; "
             "does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -3620,6 +3638,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_rotated": (
             "No solution rotated pieces to copy"
         ),
+        "status.solution_unrotated_copied": ("Solution unrotated pieces copied: {n}"),
+        "status.nothing_to_copy_solution_unrotated": (
+            "No solution unrotated pieces to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -4233,6 +4255,7 @@ _ACTION_KEYS = (
     "copy_solution_panel_area",
     "copy_solution_board_utilization",
     "copy_solution_rotated",
+    "copy_solution_unrotated",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

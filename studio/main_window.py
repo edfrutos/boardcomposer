@@ -257,6 +257,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_solution_panel_area"])
         self._menus["edit"].addAction(self._actions["copy_solution_board_utilization"])
         self._menus["edit"].addAction(self._actions["copy_solution_rotated"])
+        self._menus["edit"].addAction(self._actions["copy_solution_unrotated"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -437,6 +438,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_solution_rotated"].triggered.connect(
             self._copy_solution_rotated
+        )
+        self._actions["copy_solution_unrotated"].triggered.connect(
+            self._copy_solution_unrotated
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -4152,6 +4156,7 @@ class MainWindow(QMainWindow):
 
     def _update_solution_unrotated_status(self) -> None:
         """Show unrotated piece count of the selected solution (IDE-0151)."""
+        self._sync_copy_solution_unrotated_action()
         label = getattr(self, "_solution_unrotated_label", None)
         if label is None:
             return
@@ -8518,6 +8523,32 @@ class MainWindow(QMainWindow):
         text = str(count)
         self._copy_text_to_clipboard(text)
         self._status("status.solution_rotated_copied", n=text)
+
+    def _sync_copy_solution_unrotated_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_unrotated")
+        if action is None:
+            return
+        enabled = self._selected_solution_unrotated_count() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_unrotated"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_unrotated")
+        )
+
+    def _copy_solution_unrotated(self, _checked: bool = False) -> None:
+        """Copy the status-bar solution unrotated piece count (IDE-0152)."""
+        del _checked
+        count = self._selected_solution_unrotated_count()
+        if count is None:
+            self._status("status.nothing_to_copy_solution_unrotated")
+            return
+        text = str(count)
+        self._copy_text_to_clipboard(text)
+        self._status("status.solution_unrotated_copied", n=text)
 
     def _sync_copy_offcuts_action(self) -> None:
         actions = getattr(self, "_actions", None)

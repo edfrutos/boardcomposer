@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Copiar las piezas sin rotar de la solución (IDE-0152;
+  **Ctrl+Alt+Shift+7**). Copia el número (`0`, `2`), sin `nrot.` ni
+  `unrot`. Deshabilitado si la etiqueta está oculta. No avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: piezas sin rotar de la solución seleccionada
   (IDE-0151). `nrot. {n}` (en inglés `unrot {n}`) desde
   `sum(1 for p in solution.placements if not p.rotated)`. La misma

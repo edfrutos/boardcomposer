@@ -162,7 +162,8 @@
 - Clic en las piezas rotadas selecciona esa solución (IDE-0150).
 - Barra de estado: piezas sin rotar de la solución seleccionada
   (IDE-0151).
-- Copiar las piezas sin rotar de la solución (IDE-0152; planificado).
+- Copiar las piezas sin rotar de la solución (IDE-0152;
+  Ctrl+Alt+Shift+7).
 - Clic en las piezas sin rotar selecciona esa solución
   (IDE-0153; planificado).
 - Barra de estado: porcentaje de piezas rotadas de la solución
@@ -197,7 +198,7 @@
    cerrada (0138 entregada). Vigesimoctava ola cerrada (0142
    entregada). Vigesimonovena ola cerrada (0146 entregada).
    Trigésima ola cerrada (0150 entregada). Trigésima primera ola
-   0151…0154: 0151 entregada; siguiente IDE-0152.
+   0151…0154: 0152 entregada; siguiente IDE-0153.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
