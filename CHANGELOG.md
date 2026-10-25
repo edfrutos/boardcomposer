@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Barra de estado: piezas sin rotar de la solución seleccionada
+  (IDE-0151). `nrot. {n}` (en inglés `unrot {n}`) desde
+  `sum(1 for p in solution.placements if not p.rotated)`. La misma
+  visibilidad que el índice (distinto de `rot. {n}`). `0` se muestra.
+  Cursor flecha. Sin clic. Abre la trigésima primera ola 0151…0154.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en las piezas rotadas selecciona esa solución (IDE-0150).
   Cursor mano si está visible. Selecciona `solution:{index}` en el
   explorador; no avanza ni aplica el layout; arrastre no. Cierra la
