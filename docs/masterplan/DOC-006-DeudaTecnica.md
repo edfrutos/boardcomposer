@@ -6,7 +6,7 @@
 **Versión:** 1.2.84
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 24/10/2026
+**Última revisión:** 25/10/2026
 
 ---
 
@@ -209,7 +209,7 @@ IDE-0079…0082 🔵 sin PR de producto; Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-10-24 en `REVIEW-2026-10-24-planificacion.md` (abiertas = 1, DT-0006).
+2026-10-25 en `REVIEW-2026-10-25-planificacion.md` (abiertas = 1, DT-0006).
 Históricos: `REVIEW-2026-09-11`…`10-23` (abiertas = 1, DT-0006).
 
 Próximo foco:
