@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Clic en el porcentaje de piezas rotadas selecciona esa solución
+  (IDE-0156). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el porcentaje de piezas rotadas de la solución (IDE-0155;
   **Ctrl+Alt+Shift+8**). Copia el porcentaje (`0.0%`, `50.0%`), sin
   `rot%`. Deshabilitado si la etiqueta está oculta. No avanza.

@@ -514,7 +514,9 @@ Chrome de Studio (se recuerda entre sesiones).
   Deshabilitado si la etiqueta está oculta. No avanza.
   El porcentaje de piezas rotadas de esa solución va como `rot% 0.0%`
   (en inglés `rot% 50.0%`). La misma visibilidad que el índice
-  (distinto de `rot. {n}`). `0.0%` se muestra. Cursor flecha. Sin clic.
+  (distinto de `rot. {n}`). `0.0%` se muestra. Cursor mano si está
+  visible. Clic selecciona esa solución en el explorador; no avanza;
+  arrastre no.
   **Ctrl+Alt+Shift+8** copia el porcentaje (`0.0%`, `50.0%`), sin
   `rot%`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
