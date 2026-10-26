@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar el porcentaje de piezas sin rotar de la solución (IDE-0158;
+  **Ctrl+Alt+Shift+9**). Copia el porcentaje (`0.0%`, `75.0%`), sin
+  `nrot%` ni `unrot%`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Cierra la trigésima segunda ola 0155…0158.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: porcentaje de piezas sin rotar de la solución
   seleccionada (IDE-0157). `nrot% {value}` (en inglés `unrot% {value}`)
   desde `unrotated / len(placements)` (`0.0%` si no hay colocadas).
