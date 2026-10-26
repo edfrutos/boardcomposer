@@ -164,7 +164,8 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: porcentaje de piezas rotadas de la solución seleccionada (IDE-0154).
 - Copiar el porcentaje de piezas rotadas de la solución (IDE-0155; Ctrl+Alt+Shift+8).
 - Clic en el porcentaje de piezas rotadas selecciona esa solución (IDE-0156).
-- Próximo: IDE-0157 (barra: porcentaje de piezas sin rotar de la solución seleccionada; 0156 entregada; IDE-0101 e IDE-0102
+- Barra de estado: porcentaje de piezas sin rotar de la solución seleccionada (IDE-0157).
+- Próximo: IDE-0158 (copiar el porcentaje de piezas sin rotar de la solución; 0157 entregada; IDE-0101 e IDE-0102
   diferidas, sin costes). Trigésima segunda ola 0155…0158 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
