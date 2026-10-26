@@ -162,9 +162,9 @@ alternativas comprensibles para que el usuario decida.
 - Copiar las piezas sin rotar de la solución (IDE-0152; Ctrl+Alt+Shift+7).
 - Clic en las piezas sin rotar selecciona esa solución (IDE-0153).
 - Barra de estado: porcentaje de piezas rotadas de la solución seleccionada (IDE-0154).
-- Próximo: trigésima segunda ola IDE-0155…0158 🔵 (copy/clic `rot%` +
-  show/copy `nrot%`; ataque IDE-0155; IDE-0101 e IDE-0102 diferidas,
-  sin costes). Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+- Copiar el porcentaje de piezas rotadas de la solución (IDE-0155; Ctrl+Alt+Shift+8).
+- Próximo: IDE-0156 (clic en el porcentaje de piezas rotadas selecciona esa solución; 0155 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Trigésima segunda ola 0155…0158 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

@@ -225,7 +225,7 @@ Observaciones:
 | IDE-0152 | Copiar las piezas sin rotar de la solución | 🟢 | P3 |
 | IDE-0153 | Clic en las piezas sin rotar selecciona su solución | 🟢 | P3 |
 | IDE-0154 | Barra: porcentaje de piezas rotadas de la solución seleccionada | 🟢 | P3 |
-| IDE-0155 | Copiar el porcentaje de piezas rotadas de la solución | 🔵 | P3 |
+| IDE-0155 | Copiar el porcentaje de piezas rotadas de la solución | 🟢 | P3 |
 | IDE-0156 | Clic en el porcentaje de piezas rotadas selecciona su solución | 🔵 | P3 |
 | IDE-0157 | Barra: porcentaje de piezas sin rotar de la solución seleccionada | 🔵 | P3 |
 | IDE-0158 | Copiar el porcentaje de piezas sin rotar de la solución | 🔵 | P3 |
@@ -377,7 +377,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0152 | S | IDE-0151 | Entregado; Ctrl+Alt+Shift+7; el número, sin `nrot.`; no avanza |
 | IDE-0153 | S | IDE-0151 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0154 | S | IDE-0148 | Entregado; `rot% {value}` / `rot% {value}`; `rotated / len(placements)`; `0.0%` se muestra; sin clic; distinto de `rot. {n}` |
-| IDE-0155 | S | IDE-0154 | Planificado; Ctrl+Alt+Shift+8; el porcentaje, sin `rot%`; no avanza |
+| IDE-0155 | S | IDE-0154 | Entregado; Ctrl+Alt+Shift+8; el porcentaje, sin `rot%`; no avanza |
 | IDE-0156 | S | IDE-0154 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0157 | S | IDE-0151 | Planificado; `nrot% {value}` / `unrot% {value}`; `unrotated / len(placements)`; `0.0%` se muestra; sin clic; distinto de `nrot. {n}` |
 | IDE-0158 | S | IDE-0157 | Planificado; Ctrl+Alt+Shift+9; el porcentaje, sin `nrot%`; no avanza |
@@ -409,7 +409,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0154 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0155 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -429,16 +429,15 @@ Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada
 Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola
 cerrada (0142 entregada). Vigesimonovena ola cerrada (0146 entregada).
 Trigésima ola cerrada (0150 entregada). Trigésima primera ola
-cerrada (0154 entregada `#802`). Trigésima segunda ola IDE-0155…0158
-🔵 (nueva). IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
+cerrada (0154 entregada `#802`). Trigésima segunda ola 0155…0158:
+0155 entregada; siguiente IDE-0156. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-26-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: trigésima segunda ola IDE-0155…0158 🔵
-   (copy/clic `rot%` + show/copy `nrot%`; IDE-0101 e IDE-0102 diferidas,
-   sin costes). Ataque: **IDE-0155**.
+1. Cola producto `0.4.4`: IDE-0156 (0155 entregada;
+   IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.

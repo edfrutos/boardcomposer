@@ -384,8 +384,12 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0152 | Copiar las piezas sin rotar de la solución | Entregado; Ctrl+Alt+Shift+7; el número, sin `nrot.`; no avanza |
 | IDE-0153 | Clic en las piezas sin rotar selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0154 | Barra: porcentaje de piezas rotadas de la solución seleccionada | Entregado; `rot% {value}` / `rot% {value}`; `0.0%` se muestra; sin clic |
+| IDE-0155 | Copiar el porcentaje de piezas rotadas de la solución | Entregado; Ctrl+Alt+Shift+8; el porcentaje, sin `rot%`; no avanza |
+| IDE-0156 | Clic en el porcentaje de piezas rotadas selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0157 | Barra: porcentaje de piezas sin rotar de la solución seleccionada | `nrot% {value}` / `unrot% {value}`; `0.0%` se muestra; sin clic |
+| IDE-0158 | Copiar el porcentaje de piezas sin rotar de la solución | Copiar el porcentaje, sin `nrot%`; no avanza |
 
-Prioridad de ataque: trigésima primera ola cerrada (0154 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
+Prioridad de ataque: **IDE-0156** (0155 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

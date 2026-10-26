@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Copiar el porcentaje de piezas rotadas de la solución (IDE-0155;
+  **Ctrl+Alt+Shift+8**). Copia el porcentaje (`0.0%`, `50.0%`), sin
+  `rot%`. Deshabilitado si la etiqueta está oculta. No avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: porcentaje de piezas rotadas de la solución
   seleccionada (IDE-0154). `rot% {value}` (en inglés `rot% {value}`)
   desde `rotated / len(placements)` (`0.0%` si no hay colocadas).
