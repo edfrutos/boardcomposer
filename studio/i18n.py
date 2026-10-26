@@ -344,6 +344,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_rotated_ratio": (
             "Copiar porcentaje de piezas rotadas de la solución"
         ),
+        "action.copy_solution_unrotated_ratio": (
+            "Copiar porcentaje de piezas sin rotar de la solución"
+        ),
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -759,6 +762,11 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Copiar el porcentaje de piezas rotadas de la solución (Ctrl+Alt+Shift+8); "
             "el porcentaje, sin rot%; deshabilitado si la etiqueta está oculta; "
             "no avanza"
+        ),
+        "tip.copy_solution_unrotated_ratio": (
+            "Copiar el porcentaje de piezas sin rotar de la solución "
+            "(Ctrl+Alt+Shift+9); el porcentaje, sin nrot%; deshabilitado si la "
+            "etiqueta está oculta; no avanza"
         ),
         "tip.copy_inspector": (
             "Copiar el texto visible del Inspector (Ctrl+Alt+I); "
@@ -1608,6 +1616,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_copy_solution_rotated_ratio": (
             "No hay porcentaje de piezas rotadas de la solución que copiar"
+        ),
+        "status.solution_unrotated_ratio_copied": (
+            "Porcentaje de piezas sin rotar de la solución copiado: {value}"
+        ),
+        "status.nothing_to_copy_solution_unrotated_ratio": (
+            "No hay porcentaje de piezas sin rotar de la solución que copiar"
         ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
@@ -2501,6 +2515,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_rotated_ratio": (
             "Copy solution rotated pieces percentage"
         ),
+        "action.copy_solution_unrotated_ratio": (
+            "Copy solution unrotated pieces percentage"
+        ),
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2902,6 +2919,11 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Copy the status-bar solution rotated pieces percentage (Ctrl+Alt+Shift+8); "
             "the percentage, without rot%; disabled when the label is hidden; "
             "does not step to the next solution"
+        ),
+        "tip.copy_solution_unrotated_ratio": (
+            "Copy the status-bar solution unrotated pieces percentage "
+            "(Ctrl+Alt+Shift+9); the percentage, without unrot%; disabled when "
+            "the label is hidden; does not step to the next solution"
         ),
         "tip.copy_board_material": (
             "Copy the status-bar board material (Ctrl+Alt+Shift+M); "
@@ -3689,6 +3711,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_rotated_ratio": (
             "No solution rotated pieces percentage to copy"
         ),
+        "status.solution_unrotated_ratio_copied": (
+            "Solution unrotated pieces percentage copied: {value}"
+        ),
+        "status.nothing_to_copy_solution_unrotated_ratio": (
+            "No solution unrotated pieces percentage to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -4304,6 +4332,7 @@ _ACTION_KEYS = (
     "copy_solution_rotated",
     "copy_solution_unrotated",
     "copy_solution_rotated_ratio",
+    "copy_solution_unrotated_ratio",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",
