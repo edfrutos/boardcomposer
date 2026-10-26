@@ -172,7 +172,7 @@
 - Clic en el porcentaje de piezas rotadas selecciona esa solución
   (IDE-0156).
 - Barra de estado: porcentaje de piezas sin rotar de la solución
-  seleccionada (IDE-0157; planificado).
+  seleccionada (IDE-0157).
 - Copiar el porcentaje de piezas sin rotar de la solución
   (IDE-0158; planificado).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
@@ -206,7 +206,7 @@
    entregada). Vigesimonovena ola cerrada (0146 entregada).
    Trigésima ola cerrada (0150 entregada). Trigésima primera ola
    cerrada (0154 entregada `#802`). Trigésima segunda ola
-   0155…0158: 0156 entregada; siguiente IDE-0157.
+   0155…0158: 0157 entregada; siguiente IDE-0158.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

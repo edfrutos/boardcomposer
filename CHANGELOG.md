@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Barra de estado: porcentaje de piezas sin rotar de la solución
+  seleccionada (IDE-0157). `nrot% {value}` (en inglés `unrot% {value}`)
+  desde `unrotated / len(placements)` (`0.0%` si no hay colocadas).
+  La misma visibilidad que el índice (distinto de `nrot. {n}`). `0.0%`
+  se muestra. Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el porcentaje de piezas rotadas selecciona esa solución
   (IDE-0156). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no.

@@ -519,6 +519,10 @@ Chrome de Studio (se recuerda entre sesiones).
   arrastre no.
   **Ctrl+Alt+Shift+8** copia el porcentaje (`0.0%`, `50.0%`), sin
   `rot%`. Deshabilitado si la etiqueta está oculta. No avanza.
+  El porcentaje de piezas sin rotar de esa solución va como
+  `nrot% 0.0%` (en inglés `unrot% 75.0%`). La misma visibilidad que el
+  índice (distinto de `nrot. {n}`). `0.0%` se muestra. Cursor flecha.
+  Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
