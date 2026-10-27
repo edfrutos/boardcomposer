@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en el porcentaje de piezas sin rotar selecciona esa solución
+  (IDE-0159). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no. Abre la
+  trigésima tercera ola 0159…0162.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el porcentaje de piezas sin rotar de la solución (IDE-0158;
   **Ctrl+Alt+Shift+9**). Copia el porcentaje (`0.0%`, `75.0%`), sin
   `nrot%` ni `unrot%`. Deshabilitado si la etiqueta está oculta. No
