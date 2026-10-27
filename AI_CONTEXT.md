@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-10-26-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-10-27-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -166,8 +166,10 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el porcentaje de piezas rotadas selecciona esa solución (IDE-0156).
 - Barra de estado: porcentaje de piezas sin rotar de la solución seleccionada (IDE-0157).
 - Copiar el porcentaje de piezas sin rotar de la solución (IDE-0158; Ctrl+Alt+Shift+9).
-- Próximo: trigésima segunda ola 0155…0158 cerrada (0158 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Cola vacía. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+- Clic en el porcentaje de piezas sin rotar selecciona esa solución (IDE-0159; `#808` 🟡).
+- Próximo: IDE-0160 (barra: aprovechamiento envolvente; 0159 🟡 `#808`; IDE-0101 e
+  IDE-0102 diferidas, sin costes). Trigésima tercera ola 0159…0162 abierta.
+  Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
