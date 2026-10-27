@@ -353,11 +353,11 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0161 | Copiar el aprovechamiento envolvente de la solución | Entregado; Ctrl+Alt+Shift+0; el porcentaje, sin `env%`; no avanza |
 | IDE-0162 | Clic en el aprovechamiento envolvente selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0163 | Barra: porcentaje de retales de la solución seleccionada | Entregado; `ret% {value}` / `off% {value}`; `0.0%` se muestra; sin clic |
-| IDE-0164 | Copiar el porcentaje de retales de la solución | Copiar el porcentaje, sin `ret%`; no avanza |
+| IDE-0164 | Copiar el porcentaje de retales de la solución | Entregado; Ctrl+Alt+Shift+F1; el porcentaje, sin `ret%`; no avanza |
 | IDE-0165 | Clic en el porcentaje de retales selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0166 | Barra: puntuación de desperdicio de la solución seleccionada | `ptsh. {value}` / `ptsw {value}`; `0.00` se muestra; sin clic |
 
-Prioridad de ataque: **IDE-0164** (0163 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0165** (0164 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

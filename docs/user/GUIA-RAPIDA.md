@@ -536,6 +536,8 @@ Chrome de Studio (se recuerda entre sesiones).
   El porcentaje de retales de esa solución va como `ret% 0.0%` (en
   inglés `off% 4.0%`). La misma visibilidad que el índice (distinto de
   `n ret.` y `retár.`). `0.0%` se muestra. Cursor flecha. Sin clic.
+  **Ctrl+Alt+Shift+F1** copia el porcentaje (`0.0%`, `4.0%`), sin
+  `ret%`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
