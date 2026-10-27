@@ -136,6 +136,11 @@
 
 ## Documentación
 
+- Snapshot de planificación `REVIEW-2026-10-27-planificacion.md`:
+  IDE-0155…0158 🟢 `#804`…`#807`; producto `#808` IDE-0159 🟡 abre
+  trigésima tercera ola 0159…0162 (0160…0162 🔵); Issues = 0;
+  **sin IDE nuevas** del cron (IDs ya fijados). `#803` /
+  `REVIEW-2026-10-26` queda histórico.
 - Snapshot de planificación `REVIEW-2026-10-26-planificacion.md`:
   IDE-0149…0154 🟢 `#796`…`#802`; cola vacía + Issues = 0 →
   trigésima segunda ola IDE-0155…0158 🔵 (copy/clic `rot%` +

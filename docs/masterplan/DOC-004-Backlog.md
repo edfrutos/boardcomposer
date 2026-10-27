@@ -385,7 +385,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0156 | S | IDE-0154 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0157 | S | IDE-0151 | Entregado; `nrot% {value}` / `unrot% {value}`; `unrotated / len(placements)`; `0.0%` se muestra; sin clic; distinto de `nrot. {n}` |
 | IDE-0158 | S | IDE-0157 | Entregado; Ctrl+Alt+Shift+9; el porcentaje, sin `nrot%`; no avanza |
-| IDE-0159 | S | IDE-0157 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0159 | S | IDE-0157 | Entregado `#808`; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0160 | S | IDE-0098 | Planificado; `env% {value}` / `bnd% {value}`; `1.0 - solution.waste_ratio` (`0.0%` si no hay envolvente); `0.0%` se muestra; sin clic; distinto de `aprv.` y `uso` |
 | IDE-0161 | S | IDE-0160 | Planificado; Ctrl+Alt+Shift+0; el porcentaje, sin `env%`; no avanza |
 | IDE-0162 | S | IDE-0160 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
@@ -438,14 +438,14 @@ Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola
 cerrada (0142 entregada). Vigesimonovena ola cerrada (0146 entregada).
 Trigésima ola cerrada (0150 entregada). Trigésima primera ola
 cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada (0158
-entregada). Trigésima tercera ola 0159…0162: 0159 entregada; siguiente
-IDE-0160. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
+entregada `#807`). Trigésima tercera ola 0159…0162: 0159 entregada `#808`;
+siguiente IDE-0160. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-26-planificacion.md`.
+`REVIEW-2026-10-27-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0160 (0159 entregada;
+1. Cola producto `0.4.4`: IDE-0160 (0159 entregada `#808`;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
