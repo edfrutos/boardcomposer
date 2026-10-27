@@ -15,7 +15,7 @@ revisión `REVIEW-2026-09-25-planificacion.md`, merge de `#676`.
 ## 1. Funcionalidades (qué hay)
 
 | Área | Estado |
-|------|--------|
+| ------ | -------- |
 | Core 2D (modelos, geometría, pipeline, Skyline/MaxRects, Beam Search) | 🟢 Base Fase 1 |
 | Multipanel MaxRects **y** Skyline (material + espesor, retales, parciales) | 🟢 (#623) |
 | CP-SAT un panel (opcional) | 🟢 Explorado |
@@ -155,7 +155,7 @@ Detalle de ideas: `DOC-004-Backlog.md`.
 ## 2. Planificación de construcción
 
 | Fase | Estado | Notas |
-|------|--------|-------|
+| ------ | -------- | ------- |
 | 0 Fundamentos | 🟢 | Repo, CI, ADR |
 | 1 Core 2D | 🟢 Base | Extensiones controladas (kerf, grain, Skyline MP, freeze) |
 | 2 Studio | 🟡 En curso | Núcleo usable; pulido continuo |
@@ -243,7 +243,7 @@ no se añaden más hasta cerrarla.
 Séptima ola ya registrada (no renumerar):
 
 | ID | Título | Por qué ahora |
-|----|--------|---------------|
+| ---- | -------- | --------------- |
 | IDE-0055 | Inspector: área de la pieza | Entregado (`#673`) |
 | IDE-0056 | Zoom del Workspace al 100% | Entregado (`#675`) |
 | IDE-0057 | Copiar texto del Inspector | Entregado (`#676`) |
@@ -352,8 +352,12 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0160 | Barra: aprovechamiento envolvente de la solución seleccionada | Entregado; `env% {value}` / `bnd% {value}`; `0.0%` se muestra; sin clic |
 | IDE-0161 | Copiar el aprovechamiento envolvente de la solución | Entregado; Ctrl+Alt+Shift+0; el porcentaje, sin `env%`; no avanza |
 | IDE-0162 | Clic en el aprovechamiento envolvente selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0163 | Barra: porcentaje de retales de la solución seleccionada | Entregado; `ret% {value}` / `off% {value}`; `0.0%` se muestra; sin clic |
+| IDE-0164 | Copiar el porcentaje de retales de la solución | Copiar el porcentaje, sin `ret%`; no avanza |
+| IDE-0165 | Clic en el porcentaje de retales selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0166 | Barra: puntuación de desperdicio de la solución seleccionada | `ptsh. {value}` / `ptsw {value}`; `0.00` se muestra; sin clic |
 
-Prioridad de ataque: trigésima tercera ola cerrada (0162 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
+Prioridad de ataque: **IDE-0164** (0163 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

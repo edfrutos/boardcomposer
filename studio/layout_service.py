@@ -329,6 +329,27 @@ class LayoutService:
         board = studio_project.boards[0]
         return max(0.0, board.length_mm * board.width_mm)
 
+    def board_offcut_ratio(self, solution: AssemblySolution) -> float:
+        """Return offcut area relative to consumed panels or the source board."""
+        offcut_area = solution.total_offcut_area_mm2
+        if offcut_area <= 0:
+            return 0.0
+
+        total_area = self.board_total_area_mm2(solution)
+        if total_area > 0:
+            return max(0.0, min(1.0, offcut_area / total_area))
+
+        studio_project = self.services.projects.current_project
+        if studio_project is None or not studio_project.boards:
+            return 0.0
+
+        board = studio_project.boards[0]
+        board_area = board.length_mm * board.width_mm
+        if board_area <= 0:
+            return 0.0
+
+        return max(0.0, min(1.0, offcut_area / board_area))
+
     def material_cost_estimate(
         self, solution: AssemblySolution
     ) -> MaterialCostEstimate:

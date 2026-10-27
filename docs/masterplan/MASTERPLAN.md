@@ -183,6 +183,14 @@
   Ctrl+Alt+Shift+0).
 - Clic en el aprovechamiento envolvente selecciona esa solución
   (IDE-0162).
+- Barra de estado: porcentaje de retales de la solución seleccionada
+  (IDE-0163).
+- Copiar el porcentaje de retales de la solución (IDE-0164;
+  planificado).
+- Clic en el porcentaje de retales selecciona esa solución
+  (IDE-0165; planificado).
+- Barra de estado: puntuación de desperdicio de la solución
+  seleccionada (IDE-0166; planificado).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -215,7 +223,8 @@
    Trigésima ola cerrada (0150 entregada). Trigésima primera ola
    cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada
    (0158 entregada `#807`). Trigésima tercera ola cerrada (0162
-   entregada). Cola vacía.
+   entregada). Trigésima cuarta ola 0163…0166: 0163 entregada;
+   siguiente IDE-0164.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

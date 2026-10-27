@@ -1501,6 +1501,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Aprovechamiento envolvente de la solución seleccionada: {value}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_offcut_ratio": "ret% {value}",
+        "tip.status_solution_offcut_ratio": (
+            "Porcentaje de retales de la solución seleccionada: {value}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3645,6 +3649,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_bounding_utilization": (
             "Bounding utilization of the selected solution: {value}. "
             "Click selects the solution"
+        ),
+        "status.solution_offcut_ratio": "off% {value}",
+        "tip.status_solution_offcut_ratio": (
+            "Offcut percentage of the selected solution: {value}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
