@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Copiar el porcentaje de retales de la solución (IDE-0164;
+  **Ctrl+Alt+Shift+F1**). Copia el porcentaje (`0.0%`, `4.0%`), sin
+  `ret%` ni `off%`. Deshabilitado si la etiqueta está oculta. No avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: porcentaje de retales de la solución seleccionada
   (IDE-0163). `ret% {value}` (en inglés `off% {value}`) desde
   `f"{services.layout.board_offcut_ratio(solution):.1%}"`. La misma
