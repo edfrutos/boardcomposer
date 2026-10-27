@@ -231,7 +231,7 @@ Observaciones:
 | IDE-0158 | Copiar el porcentaje de piezas sin rotar de la solución | 🟢 | P3 |
 | IDE-0159 | Clic en el porcentaje de piezas sin rotar selecciona su solución | 🟢 | P3 |
 | IDE-0160 | Barra: aprovechamiento envolvente de la solución seleccionada | 🟢 | P3 |
-| IDE-0161 | Copiar el aprovechamiento envolvente de la solución | 🔵 | P3 |
+| IDE-0161 | Copiar el aprovechamiento envolvente de la solución | 🟢 | P3 |
 | IDE-0162 | Clic en el aprovechamiento envolvente selecciona su solución | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -387,7 +387,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0158 | S | IDE-0157 | Entregado; Ctrl+Alt+Shift+9; el porcentaje, sin `nrot%`; no avanza |
 | IDE-0159 | S | IDE-0157 | Entregado `#808`; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0160 | S | IDE-0098 | Entregado; `env% {value}` / `bnd% {value}`; `1.0 - solution.waste_ratio` (`0.0%` si no hay envolvente); `0.0%` se muestra; sin clic; distinto de `aprv.` y `uso` |
-| IDE-0161 | S | IDE-0160 | Planificado; Ctrl+Alt+Shift+0; el porcentaje, sin `env%`; no avanza |
+| IDE-0161 | S | IDE-0160 | Entregado; Ctrl+Alt+Shift+0; el porcentaje, sin `env%`; no avanza |
 | IDE-0162 | S | IDE-0160 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
@@ -417,7 +417,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0160 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0161 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -438,14 +438,14 @@ Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola
 cerrada (0142 entregada). Vigesimonovena ola cerrada (0146 entregada).
 Trigésima ola cerrada (0150 entregada). Trigésima primera ola
 cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada (0158
-entregada `#807`). Trigésima tercera ola 0159…0162: 0160 entregada;
-siguiente IDE-0161. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
+entregada `#807`). Trigésima tercera ola 0159…0162: 0161 entregada;
+siguiente IDE-0162. IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-27-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0161 (0160 entregada;
+1. Cola producto `0.4.4`: IDE-0162 (0161 entregada;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).

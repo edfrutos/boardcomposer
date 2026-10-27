@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Copiar el aprovechamiento envolvente de la solución (IDE-0161;
+  **Ctrl+Alt+Shift+0**). Copia el porcentaje (`0.0%`, `50.0%`), sin
+  `env%` ni `bnd%`. Deshabilitado si la etiqueta está oculta. No avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: aprovechamiento envolvente de la solución
   seleccionada (IDE-0160). `env% {value}` (en inglés `bnd% {value}`)
   desde `1.0 - solution.waste_ratio` (`0.0%` si no hay envolvente).
