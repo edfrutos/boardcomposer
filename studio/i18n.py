@@ -1498,7 +1498,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_bounding_utilization": "env% {value}",
         "tip.status_solution_bounding_utilization": (
-            "Aprovechamiento envolvente de la solución seleccionada: {value}"
+            "Aprovechamiento envolvente de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3642,7 +3643,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_bounding_utilization": "bnd% {value}",
         "tip.status_solution_bounding_utilization": (
-            "Bounding utilization of the selected solution: {value}"
+            "Bounding utilization of the selected solution: {value}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en el aprovechamiento envolvente selecciona esa solución
+  (IDE-0162). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no. Cierra
+  la trigésima tercera ola 0159…0162.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el aprovechamiento envolvente de la solución (IDE-0161;
   **Ctrl+Alt+Shift+0**). Copia el porcentaje (`0.0%`, `50.0%`), sin
   `env%` ni `bnd%`. Deshabilitado si la etiqueta está oculta. No avanza.

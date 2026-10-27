@@ -528,8 +528,9 @@ Chrome de Studio (se recuerda entre sesiones).
   `nrot%`. Deshabilitado si la etiqueta está oculta. No avanza.
   El aprovechamiento envolvente de esa solución va como `env% 0.0%`
   (en inglés `bnd% 50.0%`). La misma visibilidad que el índice
-  (distinto de `aprv.` y `uso`). `0.0%` se muestra. Cursor flecha. Sin
-  clic.
+  (distinto de `aprv.` y `uso`). `0.0%` se muestra. Cursor mano si está
+  visible. Clic selecciona esa solución en el explorador; no avanza;
+  arrastre no.
   **Ctrl+Alt+Shift+0** copia el porcentaje (`0.0%`, `50.0%`), sin
   `env%`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
