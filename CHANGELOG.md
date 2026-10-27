@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Barra de estado: aprovechamiento envolvente de la solución
+  seleccionada (IDE-0160). `env% {value}` (en inglés `bnd% {value}`)
+  desde `1.0 - solution.waste_ratio` (`0.0%` si no hay envolvente).
+  La misma visibilidad que el índice (distinto de `aprv.` y `uso`).
+  `0.0%` se muestra. Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el porcentaje de piezas sin rotar selecciona esa solución
   (IDE-0159). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no. Abre la
