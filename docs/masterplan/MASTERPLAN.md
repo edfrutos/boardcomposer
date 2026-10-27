@@ -176,7 +176,7 @@
 - Copiar el porcentaje de piezas sin rotar de la solución (IDE-0158;
   Ctrl+Alt+Shift+9).
 - Clic en el porcentaje de piezas sin rotar selecciona esa solución
-  (IDE-0159; en PR `#808`).
+  (IDE-0159).
 - Barra de estado: aprovechamiento envolvente de la solución
   seleccionada (IDE-0160; planificado).
 - Copiar el aprovechamiento envolvente de la solución (IDE-0161;
@@ -214,8 +214,8 @@
    entregada). Vigesimonovena ola cerrada (0146 entregada).
    Trigésima ola cerrada (0150 entregada). Trigésima primera ola
    cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada
-   (0158 entregada `#807`). Trigésima tercera ola 0159…0162: 0159 🟡
-   `#808`; siguiente IDE-0160.
+   (0158 entregada `#807`). Trigésima tercera ola 0159…0162: 0159
+   entregada `#808`; siguiente IDE-0160.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

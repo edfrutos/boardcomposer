@@ -1485,7 +1485,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_unrotated_ratio": "nrot% {value}",
         "tip.status_solution_unrotated_ratio": (
-            "Porcentaje de piezas sin rotar de la solución seleccionada: {value}"
+            "Porcentaje de piezas sin rotar de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3610,7 +3611,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_unrotated_ratio": "unrot% {value}",
         "tip.status_solution_unrotated_ratio": (
-            "Unrotated pieces percentage in the selected solution: {value}"
+            "Unrotated pieces percentage in the selected solution: {value}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
