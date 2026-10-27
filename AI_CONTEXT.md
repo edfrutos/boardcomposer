@@ -170,8 +170,9 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: aprovechamiento envolvente de la solución seleccionada (IDE-0160).
 - Copiar el aprovechamiento envolvente de la solución (IDE-0161; Ctrl+Alt+Shift+0).
 - Clic en el aprovechamiento envolvente selecciona esa solución (IDE-0162).
-- Próximo: trigésima tercera ola 0159…0162 cerrada (0162 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Cola vacía. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+- Barra de estado: porcentaje de retales de la solución seleccionada (IDE-0163).
+- Próximo: IDE-0164 (copiar el porcentaje de retales de la solución; 0163 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Trigésima cuarta ola 0163…0166 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

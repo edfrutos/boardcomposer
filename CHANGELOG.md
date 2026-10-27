@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Barra de estado: porcentaje de retales de la solución seleccionada
+  (IDE-0163). `ret% {value}` (en inglés `off% {value}`) desde
+  `f"{services.layout.board_offcut_ratio(solution):.1%}"`. La misma
+  visibilidad que el índice (distinto de `n ret.` y `retár.`). `0.0%`
+  se muestra. Cursor flecha. Sin clic. Abre la trigésima cuarta ola
+  0163…0166.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el aprovechamiento envolvente selecciona esa solución
   (IDE-0162). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no. Cierra
@@ -807,7 +814,7 @@
 
 ## 0.4.3 — 2026-09-14
 
-### Añadido
+### Añadido1
 
 - Docs planificación 2026-09-14: snapshot
   `docs/masterplan/REVIEW-2026-09-14-planificacion.md`; cola restante
@@ -1040,7 +1047,7 @@
 - Pack de plantillas de exportación (exportar/importar JSON) recuerda la
   última carpeta (`last_export_templates_directory`).
 
-### Cambiado
+### Cambiado2
 
 - Guía rápida y smoke de release: atajos de taller **Ctrl+Alt+M / K / X / C**
   (metadatos, kerf, intercambio, lista de corte) y veta en pieza; español de
@@ -1304,7 +1311,7 @@
 
 ## 0.4.2 — 2026-08-02
 
-### Añadido
+### Añadido3
 
 - Ayuda → Novedades cae a highlights de la última release si Unreleased está vacío.
 - Piloto **DT-0006 opción D**: `boardcomposer-backup` + Proyecto → Exportar backup
@@ -1317,7 +1324,7 @@
 - Explicar candidata: tras Copiar, status bar confirma «copiada al portapapeles».
 - Tip de Explicar candidata menciona Copiar; piloto DT-0006 D marcado validado.
 
-### Cambiado
+### Cambiado3
 
 - Versión de Studio (Welcome / About) se lee de `pyproject.toml` — una sola fuente.
 - Timeline: transport de replay y Marcador llevan statusTip (idle honesto sin solución).
@@ -1326,12 +1333,12 @@
 
 ## 0.4.1 — 2026-08-01
 
-### Añadido
+### Añadido4
 
 - Proyecto → **Restaurar última revisión local…** (`Ctrl+Alt+Y`): atajo y
   enablement honesto sobre el anillo `.bcproj.revs/`.
 
-### Cambiado
+### Cambiado4
 
 - Anillo local `.bcproj.revs/`: `MAX_REVISIONS` 5 → **10**; FLW-005 deja de
   negar PNG/JPEG (ya soportados en export).
@@ -1346,7 +1353,7 @@
 
 ## 0.4.0 — 2026-07-31
 
-### Añadido
+### Añadido5
 
 - Restaurar revisión local desde Comparar revisiones (anillo `.bcproj.revs/`):
   carga en memoria, misma ruta, dirty hasta Guardar; vacía undo/redo.
@@ -1368,7 +1375,7 @@
 - Regresión UI importación: `tests/test_dialog_chrome.py` valida preview por
   fila (estado `OK` y error visible), cerrando hueco residual de checklist visual.
 
-### Cambiado
+### Cambiado6
 
 - Overlay vacío del Workspace: tips/tooltips en CTAs (paridad con Welcome).
 - Menú contextual Explorador: tips de status en Editar / Duplicar / Eliminar /
@@ -1468,7 +1475,7 @@
 - Timeline: botón «Limpiar filtros» restaura evento/algoritmo/periodo de un
   clic (habilitado solo con filtros activos).
 
-### Corregido
+### Corregido2
 
 - `make run` arranca Studio (`python -m studio.app`); antes lanzaba la CLI
   y salía al instante. CLI corta: `make run-cli` / `make demo`.
@@ -1564,7 +1571,7 @@
   texto `Ctrl+…` (Qt ya mapeaba `Ctrl`→⌘; la UI inducía a pulsar Control ⌃).
   Acordes `Ctrl+…` usan `ApplicationShortcut`; teclas sueltas (R, F2…) no.
 
-### Añadido
+### Añadido6
 
 - Exportación: recuerda la última carpeta de destino (`last_export_directory`
   en `preferences.json`); el diálogo de guardar (solución y Timeline) reabre
@@ -1886,7 +1893,7 @@
 - Tip de estado de Importar piezas incluye Ctrl+Shift+O.
 - CI y deps de desarrollo fijan `ruff==0.15.22` para evitar roturas con 0.16.
 
-### Cambiado
+### Cambiado7
 
 - Fase 3 descompuesta en EP-001…003 (API, batch, integraciones);
   DOC-003/004, INDEX y ROADMAP enlazados; IDE-0006 → 🔵 P1.
