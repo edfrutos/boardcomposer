@@ -389,11 +389,11 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0157 | Barra: porcentaje de piezas sin rotar de la solución seleccionada | Entregado; `nrot% {value}` / `unrot% {value}`; `0.0%` se muestra; sin clic |
 | IDE-0158 | Copiar el porcentaje de piezas sin rotar de la solución | Entregado; Ctrl+Alt+Shift+9; el porcentaje, sin `nrot%`; no avanza |
 | IDE-0159 | Clic en el porcentaje de piezas sin rotar selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0160 | Barra: aprovechamiento envolvente de la solución seleccionada | `env% {value}` / `bnd% {value}`; `0.0%` se muestra; sin clic |
+| IDE-0160 | Barra: aprovechamiento envolvente de la solución seleccionada | Entregado; `env% {value}` / `bnd% {value}`; `0.0%` se muestra; sin clic |
 | IDE-0161 | Copiar el aprovechamiento envolvente de la solución | Copiar el porcentaje, sin `env%`; no avanza |
 | IDE-0162 | Clic en el aprovechamiento envolvente selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: **IDE-0160** (0159 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0161** (0160 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
