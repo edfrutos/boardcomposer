@@ -168,7 +168,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el porcentaje de piezas sin rotar de la solución (IDE-0158; Ctrl+Alt+Shift+9).
 - Clic en el porcentaje de piezas sin rotar selecciona esa solución (IDE-0159).
 - Barra de estado: aprovechamiento envolvente de la solución seleccionada (IDE-0160).
-- Próximo: IDE-0161 (copiar el aprovechamiento envolvente de la solución; 0160 entregada; IDE-0101 e IDE-0102
+- Copiar el aprovechamiento envolvente de la solución (IDE-0161; Ctrl+Alt+Shift+0).
+- Próximo: IDE-0162 (clic en el aprovechamiento envolvente selecciona esa solución; 0161 entregada; IDE-0101 e IDE-0102
   diferidas, sin costes). Trigésima tercera ola 0159…0162 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.

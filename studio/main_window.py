@@ -260,6 +260,9 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_solution_unrotated"])
         self._menus["edit"].addAction(self._actions["copy_solution_rotated_ratio"])
         self._menus["edit"].addAction(self._actions["copy_solution_unrotated_ratio"])
+        self._menus["edit"].addAction(
+            self._actions["copy_solution_bounding_utilization"]
+        )
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -449,6 +452,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_solution_unrotated_ratio"].triggered.connect(
             self._copy_solution_unrotated_ratio
+        )
+        self._actions["copy_solution_bounding_utilization"].triggered.connect(
+            self._copy_solution_bounding_utilization
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -4365,6 +4371,7 @@ class MainWindow(QMainWindow):
 
     def _update_solution_bounding_utilization_status(self) -> None:
         """Show bounding utilization ratio of the selected solution (IDE-0160)."""
+        self._sync_copy_solution_bounding_utilization_action()
         label = getattr(self, "_solution_bounding_utilization_label", None)
         if label is None:
             return
@@ -8812,6 +8819,31 @@ class MainWindow(QMainWindow):
             return
         self._copy_text_to_clipboard(value)
         self._status("status.solution_unrotated_ratio_copied", value=value)
+
+    def _sync_copy_solution_bounding_utilization_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_bounding_utilization")
+        if action is None:
+            return
+        enabled = self._selected_solution_bounding_utilization_text() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_bounding_utilization"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_bounding_utilization")
+        )
+
+    def _copy_solution_bounding_utilization(self, _checked: bool = False) -> None:
+        """Copy the status-bar solution bounding utilization (IDE-0161)."""
+        del _checked
+        value = self._selected_solution_bounding_utilization_text()
+        if value is None:
+            self._status("status.nothing_to_copy_solution_bounding_utilization")
+            return
+        self._copy_text_to_clipboard(value)
+        self._status("status.solution_bounding_utilization_copied", value=value)
 
     def _sync_copy_offcuts_action(self) -> None:
         actions = getattr(self, "_actions", None)
