@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en la puntuación de uso de material selecciona esa solución
+  (IDE-0171). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Abre la trigésima sexta ola 0171…0174.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la puntuación de uso de material de la solución (IDE-0170;
   **Ctrl+Alt+Shift+F3**). Copia el valor (`0.00`, `0.25`), sin
   `ptsu.`. Deshabilitado si la etiqueta está oculta. No

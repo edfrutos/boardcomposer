@@ -548,7 +548,8 @@ Chrome de Studio (se recuerda entre sesiones).
   `ptsh.`. Deshabilitado si la etiqueta está oculta. No avanza.
   La puntuación de uso de material de esa solución va como `ptsu. 0.00`
   (en inglés `ptsu 0.25`). La misma visibilidad que el índice (distinto
-  de `pts.` y `ptsh.`). `0.00` se muestra. Cursor flecha. Sin clic.
+  de `pts.` y `ptsh.`). `0.00` se muestra. Cursor mano si está visible.
+  Clic selecciona esa solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+F3** copia el valor (`0.00`, `0.25`), sin
   `ptsu.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
