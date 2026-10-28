@@ -238,7 +238,7 @@ Observaciones:
 | IDE-0165 | Clic en el porcentaje de retales selecciona su solución | 🟢 | P3 |
 | IDE-0166 | Barra: puntuación de desperdicio de la solución seleccionada | 🟢 | P3 |
 | IDE-0167 | Copiar la puntuación de desperdicio de la solución | 🟢 | P3 |
-| IDE-0168 | Clic en la puntuación de desperdicio selecciona su solución | 🔵 | P3 |
+| IDE-0168 | Clic en la puntuación de desperdicio selecciona su solución | 🟢 | P3 |
 | IDE-0169 | Barra: puntuación de uso de material de la solución seleccionada | 🔵 | P3 |
 | IDE-0170 | Copiar la puntuación de uso de material de la solución | 🔵 | P3 |
 
@@ -402,7 +402,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0165 | S | IDE-0163 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0166 | S | IDE-0115 | Entregado; `ptsh. {value}` / `ptsw {value}`; `score.waste_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.` |
 | IDE-0167 | S | IDE-0166 | Entregado; Ctrl+Alt+Shift+F2; el valor, sin `ptsh.`; no avanza |
-| IDE-0168 | S | IDE-0166 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0168 | S | IDE-0166 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0169 | S | IDE-0115 | Planificado; `ptsu. {value}` / `ptsu {value}`; `score.material_usage_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.` y `ptsh.` |
 | IDE-0170 | S | IDE-0169 | Planificado; Ctrl+Alt+Shift+F3; el valor, sin `ptsu.`; no avanza |
 
@@ -433,7 +433,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0167 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0168 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -456,14 +456,14 @@ Trigésima ola cerrada (0150 entregada). Trigésima primera ola
 cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada (0158
 entregada `#807`). Trigésima tercera ola cerrada (0162 entregada).
 Trigésima cuarta ola cerrada (0166 entregada).
-Trigésima quinta ola 0167…0170: 0167 entregada; siguiente IDE-0168.
+Trigésima quinta ola 0167…0170: 0168 entregada; siguiente IDE-0169.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-28-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0168 (0167 entregada;
+1. Cola producto `0.4.4`: IDE-0169 (0168 entregada;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).

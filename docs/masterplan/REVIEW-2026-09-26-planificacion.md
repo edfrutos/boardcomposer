@@ -357,11 +357,11 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0165 | Clic en el porcentaje de retales selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0166 | Barra: puntuación de desperdicio de la solución seleccionada | Entregado; `ptsh. {value}` / `ptsw {value}`; `0.00` se muestra; sin clic |
 | IDE-0167 | Copiar la puntuación de desperdicio de la solución | Entregado; Ctrl+Alt+Shift+F2; el valor, sin `ptsh.`; no avanza |
-| IDE-0168 | Clic en la puntuación de desperdicio selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0168 | Clic en la puntuación de desperdicio selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0169 | Barra: puntuación de uso de material de la solución seleccionada | `ptsu. {value}` / `ptsu {value}`; `0.00` se muestra; sin clic |
 | IDE-0170 | Copiar la puntuación de uso de material de la solución | Ctrl+Alt+Shift+F3; el valor, sin `ptsu.`; no avanza |
 
-Prioridad de ataque: **IDE-0168** (0167 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0169** (0168 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

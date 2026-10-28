@@ -194,7 +194,7 @@
 - Copiar la puntuación de desperdicio de la solución (IDE-0167;
   Ctrl+Alt+Shift+F2).
 - Clic en la puntuación de desperdicio selecciona esa solución
-  (IDE-0168; planificado).
+  (IDE-0168).
 - Barra de estado: puntuación de uso de material de la solución
   seleccionada (IDE-0169; planificado).
 - Copiar la puntuación de uso de material de la solución (IDE-0170;
@@ -232,7 +232,7 @@
    cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada
    (0158 entregada `#807`). Trigésima tercera ola cerrada (0162
    entregada). Trigésima cuarta ola cerrada (0166 entregada).
-   Trigésima quinta ola 0167…0170: 0167 entregada; siguiente IDE-0168.
+   Trigésima quinta ola 0167…0170: 0168 entregada; siguiente IDE-0169.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
