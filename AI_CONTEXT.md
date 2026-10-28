@@ -174,8 +174,9 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el porcentaje de retales de la solución (IDE-0164; Ctrl+Alt+Shift+F1).
 - Clic en el porcentaje de retales selecciona esa solución (IDE-0165).
 - Barra de estado: puntuación de desperdicio de la solución seleccionada (IDE-0166).
-- Próximo: trigésima cuarta ola 0163…0166 cerrada (0166 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Cola vacía. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+- Copiar la puntuación de desperdicio de la solución (IDE-0167; Ctrl+Alt+Shift+F2).
+- Próximo: IDE-0168 (clic en la puntuación de desperdicio de la solución; 0167 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Trigésima quinta ola 0167…0170 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

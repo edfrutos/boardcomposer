@@ -353,6 +353,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_offcut_ratio": (
             "Copiar porcentaje de retales de la solución"
         ),
+        "action.copy_solution_waste_score": (
+            "Copiar puntuación de desperdicio de la solución"
+        ),
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -782,6 +785,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_offcut_ratio": (
             "Copiar el porcentaje de retales de la solución "
             "(Ctrl+Alt+Shift+F1); el porcentaje, sin ret%; deshabilitado si la "
+            "etiqueta está oculta; no avanza"
+        ),
+        "tip.copy_solution_waste_score": (
+            "Copiar la puntuación de desperdicio de la solución "
+            "(Ctrl+Alt+Shift+F2); el valor, sin ptsh.; deshabilitado si la "
             "etiqueta está oculta; no avanza"
         ),
         "tip.copy_inspector": (
@@ -1665,6 +1673,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_copy_solution_offcut_ratio": (
             "No hay porcentaje de retales de la solución que copiar"
+        ),
+        "status.solution_waste_score_copied": (
+            "Puntuación de desperdicio de la solución copiada: {value}"
+        ),
+        "status.nothing_to_copy_solution_waste_score": (
+            "No hay puntuación de desperdicio de la solución que copiar"
         ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
@@ -2565,6 +2579,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Copy solution bounding utilization"
         ),
         "action.copy_solution_offcut_ratio": ("Copy solution offcut percentage"),
+        "action.copy_solution_waste_score": "Copy solution waste score",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -2980,6 +2995,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_offcut_ratio": (
             "Copy the status-bar solution offcut percentage "
             "(Ctrl+Alt+Shift+F1); the percentage, without off%; disabled when "
+            "the label is hidden; does not step to the next solution"
+        ),
+        "tip.copy_solution_waste_score": (
+            "Copy the status-bar solution waste score "
+            "(Ctrl+Alt+Shift+F2); the value, without ptsw; disabled when "
             "the label is hidden; does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -3801,6 +3821,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_offcut_ratio": (
             "No solution offcut percentage to copy"
         ),
+        "status.solution_waste_score_copied": ("Solution waste score copied: {value}"),
+        "status.nothing_to_copy_solution_waste_score": (
+            "No solution waste score to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -4419,6 +4443,7 @@ _ACTION_KEYS = (
     "copy_solution_unrotated_ratio",
     "copy_solution_bounding_utilization",
     "copy_solution_offcut_ratio",
+    "copy_solution_waste_score",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",
