@@ -543,6 +543,8 @@ Chrome de Studio (se recuerda entre sesiones).
   La puntuación de desperdicio de esa solución va como `ptsh. 0.00`
   (en inglés `ptsw 0.50`). La misma visibilidad que el índice (distinto
   de `pts.`). `0.00` se muestra. Cursor flecha. Sin clic.
+  **Ctrl+Alt+Shift+F2** copia el valor (`0.00`, `0.50`), sin
+  `ptsh.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
