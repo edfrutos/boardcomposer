@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Clic en la puntuación de desperdicio selecciona esa solución (IDE-0168).
+  Cursor mano si está visible. Selecciona `solution:{index}` en el
+  explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la puntuación de desperdicio de la solución (IDE-0167;
   **Ctrl+Alt+Shift+F2**). Copia el valor (`0.00`, `0.50`), sin
   `ptsh.` ni `ptsw`. Deshabilitado si la etiqueta está oculta. No
