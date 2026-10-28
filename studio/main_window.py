@@ -1007,6 +1007,10 @@ class MainWindow(QMainWindow):
         self._solution_waste_score_label.setObjectName("statusSolutionWasteScore")
         self._solution_waste_score_label_armed = False
         self._solution_waste_score_label.installEventFilter(self)
+        self._solution_material_usage_score_label = QLabel()
+        self._solution_material_usage_score_label.setObjectName(
+            "statusSolutionMaterialUsageScore"
+        )
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1055,6 +1059,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_bounding_utilization_label)
         status.addPermanentWidget(self._solution_offcut_ratio_label)
         status.addPermanentWidget(self._solution_waste_score_label)
+        status.addPermanentWidget(self._solution_material_usage_score_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -4559,6 +4564,34 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_material_usage_score_text(self) -> str | None:
+        """Formatted material usage score of the selected solution, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return None
+        return f"{solution.score.material_usage_score:.2f}"
+
+    def _update_solution_material_usage_score_status(self) -> None:
+        """Show material usage score of the selected solution (IDE-0169)."""
+        label = getattr(self, "_solution_material_usage_score_label", None)
+        if label is None:
+            return
+        value = self._selected_solution_material_usage_score_text()
+        if value is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_material_usage_score", value=value))
+        label.setToolTip(
+            self._tr("tip.status_solution_material_usage_score", value=value)
+        )
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
@@ -4585,6 +4618,7 @@ class MainWindow(QMainWindow):
         self._update_solution_bounding_utilization_status()
         self._update_solution_offcut_ratio_status()
         self._update_solution_waste_score_status()
+        self._update_solution_material_usage_score_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
