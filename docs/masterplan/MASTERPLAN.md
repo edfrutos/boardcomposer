@@ -188,7 +188,7 @@
 - Copiar el porcentaje de retales de la solución (IDE-0164;
   Ctrl+Alt+Shift+F1).
 - Clic en el porcentaje de retales selecciona esa solución
-  (IDE-0165; planificado).
+  (IDE-0165).
 - Barra de estado: puntuación de desperdicio de la solución
   seleccionada (IDE-0166; planificado).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
@@ -223,8 +223,8 @@
    Trigésima ola cerrada (0150 entregada). Trigésima primera ola
    cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada
    (0158 entregada `#807`). Trigésima tercera ola cerrada (0162
-   entregada). Trigésima cuarta ola 0163…0166: 0164 entregada;
-   siguiente IDE-0165.
+   entregada). Trigésima cuarta ola 0163…0166: 0165 entregada;
+   siguiente IDE-0166.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

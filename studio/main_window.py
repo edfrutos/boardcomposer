@@ -997,6 +997,8 @@ class MainWindow(QMainWindow):
         self._solution_bounding_utilization_label.installEventFilter(self)
         self._solution_offcut_ratio_label = QLabel()
         self._solution_offcut_ratio_label.setObjectName("statusSolutionOffcutRatio")
+        self._solution_offcut_ratio_label_armed = False
+        self._solution_offcut_ratio_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1923,6 +1925,36 @@ class MainWindow(QMainWindow):
                     armed
                     and self._selected_solution_bounding_utilization_text() is not None
                 ):
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        solution_offcut_ratio = getattr(self, "_solution_offcut_ratio_label", None)
+        if solution_offcut_ratio is not None and watched is solution_offcut_ratio:
+            can_select = self._selected_solution_offcut_ratio_text() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_offcut_ratio_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_offcut_ratio_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_offcut_ratio_label_armed
+                and not solution_offcut_ratio.rect().contains(
+                    event.position().toPoint()
+                )
+            ):
+                self._solution_offcut_ratio_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_offcut_ratio_label_armed
+                self._solution_offcut_ratio_label_armed = False
+                if armed and self._selected_solution_offcut_ratio_text() is not None:
                     index = self.services.layout.selected_solution_index
                     if self._select_explorer_solution(index):
                         return True
@@ -4460,7 +4492,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.solution_offcut_ratio", value=value))
         label.setToolTip(self._tr("tip.status_solution_offcut_ratio", value=value))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_solution_status(self) -> None:

@@ -55,8 +55,8 @@ def test_solution_offcut_ratio_follows_the_selected_solution(qapp, tmp_path):
     assert window._offcuts_label.isHidden()
     assert window._solution_offcut_area_label.text() == "retár. 0 mm²"
     assert "porcentaje de retales" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "1/2 sol."
 
     calls: list[str] = []
@@ -90,5 +90,5 @@ def test_solution_offcut_ratio_follows_the_selected_solution(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "off% 4.0%"
     assert "offcut percentage" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

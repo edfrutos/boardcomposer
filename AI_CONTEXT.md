@@ -172,7 +172,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el aprovechamiento envolvente selecciona esa solución (IDE-0162).
 - Barra de estado: porcentaje de retales de la solución seleccionada (IDE-0163).
 - Copiar el porcentaje de retales de la solución (IDE-0164; Ctrl+Alt+Shift+F1).
-- Próximo: IDE-0165 (clic en el porcentaje de retales selecciona esa solución; 0164 entregada; IDE-0101 e IDE-0102
+- Clic en el porcentaje de retales selecciona esa solución (IDE-0165).
+- Próximo: IDE-0166 (barra: puntuación de desperdicio de la solución seleccionada; 0165 entregada; IDE-0101 e IDE-0102
   diferidas, sin costes). Trigésima cuarta ola 0163…0166 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.

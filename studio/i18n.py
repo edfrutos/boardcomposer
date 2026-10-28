@@ -1511,7 +1511,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_offcut_ratio": "ret% {value}",
         "tip.status_solution_offcut_ratio": (
-            "Porcentaje de retales de la solución seleccionada: {value}"
+            "Porcentaje de retales de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3672,7 +3673,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_offcut_ratio": "off% {value}",
         "tip.status_solution_offcut_ratio": (
-            "Offcut percentage of the selected solution: {value}"
+            "Offcut percentage of the selected solution: {value}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
