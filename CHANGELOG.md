@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-10-26
+## Unreleased — 0.4.4.dev0 — 2026-10-28
 
 ## Añadido
 
@@ -162,6 +162,11 @@
 
 ## Documentación
 
+- Snapshot de planificación `REVIEW-2026-10-28-planificacion.md`:
+  IDE-0159…0164 🟢 `#808`…`#814`; residual IDE-0165…0166 🔵
+  (trigésima cuarta ola); Issues = 0; **sin IDE nuevas** del cron
+  (IDs ya fijados por `#813`). `#809` / `REVIEW-2026-10-27` queda
+  histórico.
 - Snapshot de planificación `REVIEW-2026-10-27-planificacion.md`:
   IDE-0155…0158 🟢 `#804`…`#807`; producto `#808` IDE-0159 🟡 abre
   trigésima tercera ola 0159…0162 (0160…0162 🔵); Issues = 0;
