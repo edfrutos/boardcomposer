@@ -395,9 +395,9 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0163 | Barra: porcentaje de retales de la solución seleccionada | Entregado; `ret% {value}` / `off% {value}`; `0.0%` se muestra; sin clic |
 | IDE-0164 | Copiar el porcentaje de retales de la solución | Entregado; Ctrl+Alt+Shift+F1; el porcentaje, sin `ret%`; no avanza |
 | IDE-0165 | Clic en el porcentaje de retales selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0166 | Barra: puntuación de desperdicio de la solución seleccionada | `ptsh. {value}` / `ptsw {value}`; `0.00` se muestra; sin clic |
+| IDE-0166 | Barra: puntuación de desperdicio de la solución seleccionada | Entregado; `ptsh. {value}` / `ptsw {value}`; `0.00` se muestra; sin clic |
 
-Prioridad de ataque: **IDE-0166** (0165 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: trigésima cuarta ola cerrada (0166 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
