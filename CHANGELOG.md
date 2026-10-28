@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Clic en el porcentaje de retales selecciona esa solución (IDE-0165).
+  Cursor mano si está visible. Selecciona `solution:{index}` en el
+  explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el porcentaje de retales de la solución (IDE-0164;
   **Ctrl+Alt+Shift+F1**). Copia el porcentaje (`0.0%`, `4.0%`), sin
   `ret%` ni `off%`. Deshabilitado si la etiqueta está oculta. No avanza.

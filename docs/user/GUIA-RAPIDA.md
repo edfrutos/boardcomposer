@@ -535,7 +535,9 @@ Chrome de Studio (se recuerda entre sesiones).
   `env%`. Deshabilitado si la etiqueta está oculta. No avanza.
   El porcentaje de retales de esa solución va como `ret% 0.0%` (en
   inglés `off% 4.0%`). La misma visibilidad que el índice (distinto de
-  `n ret.` y `retár.`). `0.0%` se muestra. Cursor flecha. Sin clic.
+  `n ret.` y `retár.`). `0.0%` se muestra. Cursor mano si está
+  visible. Clic selecciona esa solución en el explorador; no avanza;
+  arrastre no.
   **Ctrl+Alt+Shift+F1** copia el porcentaje (`0.0%`, `4.0%`), sin
   `ret%`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
