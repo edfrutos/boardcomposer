@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Barra de estado: puntuación de desperdicio de la solución
+  seleccionada (IDE-0166). `ptsh. {value}` (en inglés `ptsw {value}`)
+  desde `f"{solution.score.waste_score:.2f}"`. La misma visibilidad que
+  el índice (distinto de `pts.`). `0.00` se muestra. Cursor flecha. Sin
+  clic. Cierra la trigésima cuarta ola 0163…0166.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el porcentaje de retales selecciona esa solución (IDE-0165).
   Cursor mano si está visible. Selecciona `solution:{index}` en el
   explorador; no avanza ni aplica el layout; arrastre no.
