@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Barra de estado: puntuación de uso de material de la solución
+  seleccionada (IDE-0169). `ptsu. {value}` (en inglés `ptsu {value}`)
+  desde `f"{solution.score.material_usage_score:.2f}"`. La misma
+  visibilidad que el índice (distinto de `pts.` y `ptsh.`). `0.00` se
+  muestra. Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la puntuación de desperdicio selecciona esa solución (IDE-0168).
   Cursor mano si está visible. Selecciona `solution:{index}` en el
   explorador; no avanza ni aplica el layout; arrastre no.

@@ -1527,6 +1527,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Puntuación de desperdicio de la solución seleccionada: {value}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_material_usage_score": "ptsu. {value}",
+        "tip.status_solution_material_usage_score": (
+            "Puntuación de uso de material de la solución seleccionada: {value}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3704,6 +3708,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_waste_score": "ptsw {value}",
         "tip.status_solution_waste_score": (
             "Waste score of the selected solution: {value}. Click selects the solution"
+        ),
+        "status.solution_material_usage_score": "ptsu {value}",
+        "tip.status_solution_material_usage_score": (
+            "Material usage score of the selected solution: {value}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
