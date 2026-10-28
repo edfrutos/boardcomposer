@@ -356,6 +356,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_waste_score": (
             "Copiar puntuación de desperdicio de la solución"
         ),
+        "action.copy_solution_material_usage_score": (
+            "Copiar puntuación de uso de material de la solución"
+        ),
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -790,6 +793,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_waste_score": (
             "Copiar la puntuación de desperdicio de la solución "
             "(Ctrl+Alt+Shift+F2); el valor, sin ptsh.; deshabilitado si la "
+            "etiqueta está oculta; no avanza"
+        ),
+        "tip.copy_solution_material_usage_score": (
+            "Copiar la puntuación de uso de material de la solución "
+            "(Ctrl+Alt+Shift+F3); el valor, sin ptsu.; deshabilitado si la "
             "etiqueta está oculta; no avanza"
         ),
         "tip.copy_inspector": (
@@ -1684,6 +1692,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.nothing_to_copy_solution_waste_score": (
             "No hay puntuación de desperdicio de la solución que copiar"
+        ),
+        "status.solution_material_usage_score_copied": (
+            "Puntuación de uso de material de la solución copiada: {value}"
+        ),
+        "status.nothing_to_copy_solution_material_usage_score": (
+            "No hay puntuación de uso de material de la solución que copiar"
         ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
@@ -2585,6 +2599,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "action.copy_solution_offcut_ratio": ("Copy solution offcut percentage"),
         "action.copy_solution_waste_score": "Copy solution waste score",
+        "action.copy_solution_material_usage_score": (
+            "Copy solution material usage score"
+        ),
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -3005,6 +3022,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_waste_score": (
             "Copy the status-bar solution waste score "
             "(Ctrl+Alt+Shift+F2); the value, without ptsw; disabled when "
+            "the label is hidden; does not step to the next solution"
+        ),
+        "tip.copy_solution_material_usage_score": (
+            "Copy the status-bar solution material usage score "
+            "(Ctrl+Alt+Shift+F3); the value, without ptsu; disabled when "
             "the label is hidden; does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -3834,6 +3856,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_waste_score": (
             "No solution waste score to copy"
         ),
+        "status.solution_material_usage_score_copied": (
+            "Solution material usage score copied: {value}"
+        ),
+        "status.nothing_to_copy_solution_material_usage_score": (
+            "No solution material usage score to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -4453,6 +4481,7 @@ _ACTION_KEYS = (
     "copy_solution_bounding_utilization",
     "copy_solution_offcut_ratio",
     "copy_solution_waste_score",
+    "copy_solution_material_usage_score",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

@@ -177,8 +177,9 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la puntuación de desperdicio de la solución (IDE-0167; Ctrl+Alt+Shift+F2).
 - Clic en la puntuación de desperdicio selecciona esa solución (IDE-0168).
 - Barra de estado: puntuación de uso de material de la solución seleccionada (IDE-0169).
-- Próximo: IDE-0170 (copiar la puntuación de uso de material de la solución; 0169 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Trigésima quinta ola 0167…0170 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+- Copiar la puntuación de uso de material de la solución (IDE-0170; Ctrl+Alt+Shift+F3).
+- Próximo: trigésima quinta ola 0167…0170 cerrada (0170 entregada; IDE-0101 e IDE-0102
+  diferidas, sin costes). Cola vacía. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

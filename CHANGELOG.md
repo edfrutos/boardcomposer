@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar la puntuación de uso de material de la solución (IDE-0170;
+  **Ctrl+Alt+Shift+F3**). Copia el valor (`0.00`, `0.25`), sin
+  `ptsu.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Cierra la trigésima quinta ola 0167…0170.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: puntuación de uso de material de la solución
   seleccionada (IDE-0169). `ptsu. {value}` (en inglés `ptsu {value}`)
   desde `f"{solution.score.material_usage_score:.2f}"`. La misma
