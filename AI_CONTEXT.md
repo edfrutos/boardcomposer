@@ -181,9 +181,9 @@ alternativas comprensibles para que el usuario decida.
 - Clic en la puntuación de uso de material selecciona esa solución (IDE-0171).
 - Barra de estado: puntuación de cortes de la solución seleccionada (IDE-0172).
 - Copiar la puntuación de cortes de la solución (IDE-0173; Ctrl+Alt+Shift+F4).
-- Próximo: IDE-0174 (clic en `ptsc.` selecciona solución; 0173 entregada;
-  IDE-0101 e IDE-0102 diferidas, sin costes).
-  Trigésima sexta ola 0171…0174 abierta. Bloqueados sin reanudar:
+- Clic en la puntuación de cortes selecciona esa solución (IDE-0174).
+- Próximo: trigésima sexta ola 0171…0174 cerrada (0174 entregada; IDE-0101 e
+  IDE-0102 diferidas, sin costes). Cola vacía. Bloqueados sin reanudar:
   DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
   eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
