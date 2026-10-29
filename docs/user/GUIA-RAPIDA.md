@@ -555,6 +555,8 @@ Chrome de Studio (se recuerda entre sesiones).
   La puntuación de cortes de esa solución va como `ptsc. 0.00`
   (en inglés `ptsc 0.75`). La misma visibilidad que el índice (distinto
   de `pts.`, `ptsh.` y `ptsu.`). `0.00` se muestra. Cursor flecha. Sin clic.
+  **Ctrl+Alt+Shift+F4** copia el valor (`0.00`, `0.75`), sin
+  `ptsc.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

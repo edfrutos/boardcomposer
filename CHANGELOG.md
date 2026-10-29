@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar la puntuación de cortes de la solución (IDE-0173;
+  **Ctrl+Alt+Shift+F4**). Copia el valor (`0.00`, `0.75`), sin
+  `ptsc.`. Deshabilitado si la etiqueta está oculta. No
+  avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: puntuación de cortes de la solución
   seleccionada (IDE-0172). `ptsc. {value}` (en inglés `ptsc {value}`)
   desde `f"{solution.score.cuts_score:.2f}"`. La misma
