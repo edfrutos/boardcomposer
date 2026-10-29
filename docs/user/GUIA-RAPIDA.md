@@ -568,6 +568,8 @@ Chrome de Studio (se recuerda entre sesiones).
   (en inglés `ptsg 0.40`). La misma visibilidad que el índice (distinto
   de `pts.`, `ptsh.`, `ptsu.`, `ptsc.` y `ptsr.`). `0.00` se muestra. Cursor
   flecha. Sin clic.
+  **Ctrl+Alt+Shift+F6** copia el valor (`0.00`, `0.40`), sin
+  `ptsv.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

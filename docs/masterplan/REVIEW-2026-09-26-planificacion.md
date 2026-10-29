@@ -368,8 +368,12 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0176 | Copiar la puntuación de regularidad de la solución | Entregado; Ctrl+Alt+Shift+F5; el valor, sin `ptsr.`; no avanza |
 | IDE-0177 | Clic en la puntuación de regularidad selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0178 | Barra: puntuación de veta de la solución seleccionada | Entregado; `ptsv. {value}` / `ptsg {value}`; `0.00` se muestra; sin clic |
+| IDE-0179 | Copiar la puntuación de veta de la solución | Entregado; Ctrl+Alt+Shift+F6; el valor, sin `ptsv.`; no avanza |
+| IDE-0180 | Clic en la puntuación de veta selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0181 | Barra: completitud de la solución seleccionada | `comp. sí` / `full yes`; `comp. no` / `full no`; `is_complete`; sin clic |
+| IDE-0182 | Copiar la completitud de la solución | Ctrl+Alt+Shift+F7; el valor, sin `comp.`; no avanza |
 
-Prioridad de ataque: trigésima séptima ola cerrada (0178 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
+Prioridad de ataque: **IDE-0180** (0179 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

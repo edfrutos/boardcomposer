@@ -186,9 +186,10 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la puntuación de regularidad de la solución (IDE-0176; Ctrl+Alt+Shift+F5).
 - Clic en la puntuación de regularidad selecciona esa solución (IDE-0177).
 - Barra de estado: puntuación de veta de la solución seleccionada (IDE-0178).
-- Próximo: trigésima séptima ola 0175…0178 cerrada (0178 entregada; IDE-0101 e
-  IDE-0102 diferidas, sin costes). Cola vacía. Bloqueados sin reanudar:
-  DT-0006 C, IDE-0008, LLM;
+- Copiar la puntuación de veta de la solución (IDE-0179; Ctrl+Alt+Shift+F6).
+- Próximo: IDE-0180 (clic en la puntuación de veta; 0179 entregada;
+  IDE-0101 e IDE-0102 diferidas, sin costes). Trigésima octava ola
+  0179…0182 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Copiar la puntuación de veta de la solución (IDE-0179;
+  **Ctrl+Alt+Shift+F6**). Copia el valor (`0.00`, `0.40`), sin
+  `ptsv.`. Deshabilitado si la etiqueta está oculta. No
+  avanza.
+  Abre la trigésima octava ola 0179…0182.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: puntuación de veta de la solución
   seleccionada (IDE-0178). `ptsv. {value}` (en inglés `ptsg {value}`)
   desde `f"{solution.score.grain_score:.2f}"`. La misma
