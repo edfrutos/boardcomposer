@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.67
+**Versión:** 1.3.68
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 28/10/2026
+**Última revisión:** 29/10/2026
 
 ---
 
@@ -241,6 +241,10 @@ Observaciones:
 | IDE-0168 | Clic en la puntuación de desperdicio selecciona su solución | 🟢 | P3 |
 | IDE-0169 | Barra: puntuación de uso de material de la solución seleccionada | 🟢 | P3 |
 | IDE-0170 | Copiar la puntuación de uso de material de la solución | 🟢 | P3 |
+| IDE-0171 | Clic en la puntuación de uso de material selecciona su solución | 🟡 | P3 |
+| IDE-0172 | Barra: puntuación de cortes de la solución seleccionada | 🔵 | P3 |
+| IDE-0173 | Copiar la puntuación de cortes de la solución | 🔵 | P3 |
+| IDE-0174 | Clic en la puntuación de cortes selecciona su solución | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -405,6 +409,10 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0168 | S | IDE-0166 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0169 | S | IDE-0115 | Entregado; `ptsu. {value}` / `ptsu {value}`; `score.material_usage_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.` y `ptsh.` |
 | IDE-0170 | S | IDE-0169 | Entregado; Ctrl+Alt+Shift+F3; el valor, sin `ptsu.`; no avanza |
+| IDE-0171 | S | IDE-0169 | En desarrollo `#822`; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0172 | S | IDE-0115 | Planificado; `ptsc. {value}` / `ptsc {value}`; `score.cuts_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.`, `ptsh.` y `ptsu.` |
+| IDE-0173 | S | IDE-0172 | Planificado; Ctrl+Alt+Shift+F4; el valor, sin `ptsc.`; no avanza |
+| IDE-0174 | S | IDE-0172 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -434,7 +442,8 @@ Detalle: `docs/masterplan/epics/`.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — IDE-0001…0170 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
+completadas en `main`; IDE-0171 🟡 `#822`; IDE-0172…0174 🔵
+(ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
 `#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`/`#702`/`#706`/`#715`/
@@ -456,15 +465,16 @@ Trigésima ola cerrada (0150 entregada). Trigésima primera ola
 cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada (0158
 entregada `#807`). Trigésima tercera ola cerrada (0162 entregada).
 Trigésima cuarta ola cerrada (0166 entregada).
-Trigésima quinta ola cerrada (0170 entregada). Cola vacía.
+Trigésima quinta ola cerrada (0170 entregada `#821`).
+Trigésima sexta ola 0171…0174: 0171 🟡 `#822`; 0172…0174 🔵.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-28-planificacion.md`.
+`REVIEW-2026-10-29-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: trigésima quinta ola cerrada (0170 entregada;
-   IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
+1. Cola producto `0.4.4`: IDE-0171 🟡 `#822` (luego 0172…0174 🔵;
+   IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.

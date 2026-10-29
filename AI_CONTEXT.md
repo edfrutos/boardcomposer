@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-10-28-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-10-29-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -178,10 +178,11 @@ alternativas comprensibles para que el usuario decida.
 - Clic en la puntuación de desperdicio selecciona esa solución (IDE-0168).
 - Barra de estado: puntuación de uso de material de la solución seleccionada (IDE-0169).
 - Copiar la puntuación de uso de material de la solución (IDE-0170; Ctrl+Alt+Shift+F3).
-- Próximo: trigésima quinta ola 0167…0170 cerrada (0170 entregada; IDE-0101 e IDE-0102
-  diferidas, sin costes). Cola vacía. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
-  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
-  LLM / plugins / C bloqueados.
+- Próximo: IDE-0171 🟡 `#822` (clic en `ptsu.` selecciona solución); luego
+  IDE-0172…0174 🔵 (`ptsc.` / `score.cuts_score`). Trigésima quinta ola
+  0167…0170 cerrada; trigésima sexta 0171…0174 abierta. IDE-0101 e
+  IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C,
+  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada.
 
 ## Fuentes de verdad
 
