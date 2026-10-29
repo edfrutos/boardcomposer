@@ -566,8 +566,8 @@ Chrome de Studio (se recuerda entre sesiones).
   `ptsr.`. Deshabilitado si la etiqueta está oculta. No avanza.
   La puntuación de veta de esa solución va como `ptsv. 0.00`
   (en inglés `ptsg 0.40`). La misma visibilidad que el índice (distinto
-  de `pts.`, `ptsh.`, `ptsu.`, `ptsc.` y `ptsr.`). `0.00` se muestra. Cursor
-  flecha. Sin clic.
+  de `pts.`, `ptsh.`, `ptsu.`, `ptsc.` y `ptsr.`). `0.00` se muestra. Cursor mano si está visible.
+  Clic selecciona esa solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+F6** copia el valor (`0.00`, `0.40`), sin
   `ptsv.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
