@@ -54,8 +54,8 @@ def test_solution_material_usage_score_follows_the_selected_solution(qapp, tmp_p
     assert window._solution_score_label.text() == "pts. 0.00"
     assert window._solution_waste_score_label.text() == "ptsh. 0.00"
     assert "puntuación de uso de material" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "1/2 sol."
 
     calls: list[str] = []
@@ -94,5 +94,5 @@ def test_solution_material_usage_score_follows_the_selected_solution(qapp, tmp_p
     window._retranslate_ui()
     assert label.text() == "ptsu 0.25"
     assert "material usage score" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

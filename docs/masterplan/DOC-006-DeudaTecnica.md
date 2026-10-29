@@ -238,7 +238,7 @@ Próximo foco:
   (0154 entregada). Trigésima segunda ola cerrada (0158 entregada).
   Trigésima tercera ola cerrada (0162 entregada). Trigésima cuarta ola
   cerrada (0166 entregada). Trigésima quinta ola cerrada (0170
-  entregada `#821`). Trigésima sexta ola 0171…0174: 0171 🟡 `#822`;
-  0172…0174 🔵.
+  entregada). Trigésima sexta ola 0171…0174: 0171 entregada;
+  siguiente IDE-0172.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

@@ -200,9 +200,9 @@
 - Copiar la puntuación de uso de material de la solución (IDE-0170;
   Ctrl+Alt+Shift+F3).
 - Clic en la puntuación de uso de material selecciona esa solución
-  (IDE-0171; en desarrollo `#822`).
-- Barra: puntuación de cortes de la solución seleccionada
-  (IDE-0172; planificado; `ptsc.` / `score.cuts_score`).
+  (IDE-0171).
+- Barra de estado: puntuación de cortes de la solución
+  seleccionada (IDE-0172; planificado; `ptsc.` / `score.cuts_score`).
 - Copiar la puntuación de cortes de la solución (IDE-0173;
   planificado; Ctrl+Alt+Shift+F4).
 - Clic en la puntuación de cortes selecciona esa solución
@@ -239,9 +239,9 @@
    Trigésima ola cerrada (0150 entregada). Trigésima primera ola
    cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada
    (0158 entregada `#807`). Trigésima tercera ola cerrada (0162
-   entregada).    Trigésima cuarta ola cerrada (0166 entregada).
-   Trigésima quinta ola cerrada (0170 entregada `#821`).
-   Trigésima sexta ola 0171…0174: 0171 🟡 `#822`; 0172…0174 🔵.
+   entregada). Trigésima cuarta ola cerrada (0166 entregada).
+   Trigésima quinta ola cerrada (0170 entregada).
+   Trigésima sexta ola 0171…0174: 0171 entregada; siguiente IDE-0172.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
