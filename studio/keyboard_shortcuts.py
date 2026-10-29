@@ -73,6 +73,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
     ShortcutBinding("copy_solution_offcut_ratio", "Ctrl+Alt+Shift+F1"),
     ShortcutBinding("copy_solution_waste_score", "Ctrl+Alt+Shift+F2"),
     ShortcutBinding("copy_solution_material_usage_score", "Ctrl+Alt+Shift+F3"),
+    ShortcutBinding("copy_solution_cuts_score", "Ctrl+Alt+Shift+F4"),
     ShortcutBinding("copy_inspector", "Ctrl+Alt+I"),
     ShortcutBinding("duplicate_piece", "Ctrl+D"),
     ShortcutBinding("delete_piece", "Backspace", ("Delete",)),
