@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-10-28.
+Última revisión: 2026-10-29.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-10-28-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-10-29-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -202,9 +202,9 @@
 - Clic en la puntuación de uso de material selecciona esa solución
   (IDE-0171).
 - Barra de estado: puntuación de cortes de la solución
-  seleccionada (IDE-0172; planificado).
+  seleccionada (IDE-0172; planificado; `ptsc.` / `score.cuts_score`).
 - Copiar la puntuación de cortes de la solución (IDE-0173;
-  planificado).
+  planificado; Ctrl+Alt+Shift+F4).
 - Clic en la puntuación de cortes selecciona esa solución
   (IDE-0174; planificado).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).

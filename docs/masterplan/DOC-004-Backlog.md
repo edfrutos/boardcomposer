@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.67
+**Versión:** 1.3.68
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 28/10/2026
+**Última revisión:** 29/10/2026
 
 ---
 
@@ -468,7 +468,7 @@ Trigésima quinta ola cerrada (0170 entregada).
 Trigésima sexta ola 0171…0174: 0171 entregada; siguiente IDE-0172.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-28-planificacion.md`.
+`REVIEW-2026-10-29-planificacion.md`.
 
 Próximo foco:
 
