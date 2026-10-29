@@ -564,6 +564,10 @@ Chrome de Studio (se recuerda entre sesiones).
   Clic selecciona esa solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+F5** copia el valor (`0.00`, `0.40`), sin
   `ptsr.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  La puntuación de veta de esa solución va como `ptsv. 0.00`
+  (en inglés `ptsg 0.40`). La misma visibilidad que el índice (distinto
+  de `pts.`, `ptsh.`, `ptsu.`, `ptsc.` y `ptsr.`). `0.00` se muestra. Cursor
+  flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

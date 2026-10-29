@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Barra de estado: puntuación de veta de la solución
+  seleccionada (IDE-0178). `ptsv. {value}` (en inglés `ptsg {value}`)
+  desde `f"{solution.score.grain_score:.2f}"`. La misma
+  visibilidad que el índice (distinto de `pts.`, `ptsh.`, `ptsu.`,
+  `ptsc.` y `ptsr.`). `0.00` se muestra. Cursor flecha. Sin clic.
+  Cierra la trigésima séptima ola 0175…0178.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la puntuación de regularidad selecciona esa solución
   (IDE-0177). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no.
