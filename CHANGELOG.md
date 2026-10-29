@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Barra de estado: puntuación de cortes de la solución
+  seleccionada (IDE-0172). `ptsc. {value}` (en inglés `ptsc {value}`)
+  desde `f"{solution.score.cuts_score:.2f}"`. La misma
+  visibilidad que el índice (distinto de `pts.`, `ptsh.` y `ptsu.`).
+  `0.00` se muestra. Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la puntuación de uso de material selecciona esa solución
   (IDE-0171). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no.
