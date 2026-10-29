@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Barra de estado: completitud de la solución seleccionada
+  (IDE-0181). `comp. {value}` (en inglés `full {value}`) desde
+  `solution.is_complete` (`sí`/`yes` o `no`). La misma visibilidad
+  que el índice (distinto de `fuera`). Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la puntuación de veta selecciona esa solución
   (IDE-0180). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no.
