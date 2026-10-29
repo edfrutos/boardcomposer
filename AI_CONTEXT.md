@@ -182,10 +182,12 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: puntuación de cortes de la solución seleccionada (IDE-0172).
 - Copiar la puntuación de cortes de la solución (IDE-0173; Ctrl+Alt+Shift+F4).
 - Clic en la puntuación de cortes selecciona esa solución (IDE-0174).
-- Próximo: trigésima sexta ola 0171…0174 cerrada (0174 entregada; IDE-0101 e
-  IDE-0102 diferidas, sin costes). Cola vacía. Bloqueados sin reanudar:
-  DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
-  eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
+- Barra de estado: puntuación de regularidad de la solución seleccionada (IDE-0175).
+- Próximo: IDE-0176 (copiar la puntuación de regularidad; 0175 entregada;
+  IDE-0101 e IDE-0102 diferidas, sin costes). Trigésima séptima ola
+  0175…0178 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
+  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+  LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 

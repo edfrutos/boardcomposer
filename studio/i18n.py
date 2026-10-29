@@ -1553,6 +1553,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Puntuación de cortes de la solución seleccionada: {value}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_regularity_score": "ptsr. {value}",
+        "tip.status_solution_regularity_score": (
+            "Puntuación de regularidad de la solución seleccionada: {value}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3765,6 +3769,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_cuts_score": "ptsc {value}",
         "tip.status_solution_cuts_score": (
             "Cuts score of the selected solution: {value}. Click selects the solution"
+        ),
+        "status.solution_regularity_score": "ptsr {value}",
+        "tip.status_solution_regularity_score": (
+            "Regularity score of the selected solution: {value}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

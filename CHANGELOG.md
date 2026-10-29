@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Barra de estado: puntuación de regularidad de la solución
+  seleccionada (IDE-0175). `ptsr. {value}` (en inglés `ptsr {value}`)
+  desde `f"{solution.score.regularity_score:.2f}"`. La misma
+  visibilidad que el índice (distinto de `pts.`, `ptsh.`, `ptsu.` y
+  `ptsc.`). `0.00` se muestra. Cursor flecha. Sin clic.
+  Abre la trigésima séptima ola 0175…0178.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la puntuación de cortes selecciona esa solución
   (IDE-0174). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no.
