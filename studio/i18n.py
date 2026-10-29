@@ -1563,7 +1563,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_regularity_score": "ptsr. {value}",
         "tip.status_solution_regularity_score": (
-            "Puntuación de regularidad de la solución seleccionada: {value}"
+            "Puntuación de regularidad de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3792,7 +3793,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_regularity_score": "ptsr {value}",
         "tip.status_solution_regularity_score": (
-            "Regularity score of the selected solution: {value}"
+            "Regularity score of the selected solution: {value}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

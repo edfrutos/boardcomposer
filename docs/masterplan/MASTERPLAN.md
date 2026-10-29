@@ -212,7 +212,7 @@
 - Copiar la puntuación de regularidad de la solución (IDE-0176;
   Ctrl+Alt+Shift+F5).
 - Clic en la puntuación de regularidad selecciona esa solución
-  (IDE-0177; planificado).
+  (IDE-0177).
 - Barra de estado: puntuación de veta de la solución
   seleccionada (IDE-0178; planificado; `ptsv.` / `score.grain_score`).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
@@ -250,7 +250,7 @@
    entregada). Trigésima cuarta ola cerrada (0166 entregada).
    Trigésima quinta ola cerrada (0170 entregada).
    Trigésima sexta ola cerrada (0174 entregada).
-   Trigésima séptima ola 0175…0178: 0176 entregada; siguiente IDE-0177.
+   Trigésima séptima ola 0175…0178: 0177 entregada; siguiente IDE-0178.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

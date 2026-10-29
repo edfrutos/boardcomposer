@@ -560,8 +560,8 @@ Chrome de Studio (se recuerda entre sesiones).
   `ptsc.`. Deshabilitado si la etiqueta está oculta. No avanza.
   La puntuación de regularidad de esa solución va como `ptsr. 0.00`
   (en inglés `ptsr 0.40`). La misma visibilidad que el índice (distinto
-  de `pts.`, `ptsh.`, `ptsu.` y `ptsc.`). `0.00` se muestra. Cursor
-  flecha. Sin clic.
+  de `pts.`, `ptsh.`, `ptsu.` y `ptsc.`). `0.00` se muestra. Cursor mano si está visible.
+  Clic selecciona esa solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+F5** copia el valor (`0.00`, `0.40`), sin
   `ptsr.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
