@@ -3,7 +3,7 @@
 ## Documento 6 — Gestión de la Deuda Técnica
 
 **Código:** DOC-006
-**Versión:** 1.2.110
+**Versión:** 1.2.111
 **Estado:** Actualizado
 **Fecha de creación:** 01/07/2026
 **Última revisión:** 29/10/2026
@@ -85,6 +85,7 @@ Estado
 ## Registro inicial
 
 | ID | Categoría | Descripción | Estado |
+
 |----|-----------|-------------|--------|
 | DT-0001 | DT-D | Contrastar flujos y pantallas documentados con el Studio real. | 🟢 Controlado (UAT visual 2026-07-28) |
 | DT-0002 | DT-A | Documentar arquitectura interna y contrato multipanel del Solver. | 🟢 Controlado |
@@ -101,6 +102,7 @@ Revisar este documento en cada corte de release (`0.x.y` o RC). Anotar fecha y
 conteo en «Estado» o en las notas de release.
 
 | Métrica | Cómo contar | Umbral |
+
 |---------|-------------|--------|
 | Abiertas ⚪/🔵 | Filas del registro con estado no resuelto/controlado | Advertencia si **> 5**; bloquear release mayor si **> 0 críticas sin plan** |
 | Antigüedad máxima | Días desde última revisión del ítem abierto más viejo | Advertencia si **> 90 días** sin actualización de estado |
@@ -239,7 +241,7 @@ Próximo foco:
   Trigésima tercera ola cerrada (0162 entregada). Trigésima cuarta ola
   cerrada (0166 entregada). Trigésima quinta ola cerrada (0170
   entregada). Trigésima sexta ola cerrada (0174 entregada).
-  Trigésima séptima ola 0175…0178: 0175 entregada;
-  siguiente IDE-0176.
+  Trigésima séptima ola 0175…0178: 0176 entregada;
+  siguiente IDE-0177.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

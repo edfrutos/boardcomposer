@@ -362,6 +362,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_cuts_score": (
             "Copiar puntuación de cortes de la solución"
         ),
+        "action.copy_solution_regularity_score": (
+            "Copiar puntuación de regularidad de la solución"
+        ),
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -806,6 +809,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_cuts_score": (
             "Copiar la puntuación de cortes de la solución "
             "(Ctrl+Alt+Shift+F4); el valor, sin ptsc.; deshabilitado si la "
+            "etiqueta está oculta; no avanza"
+        ),
+        "tip.copy_solution_regularity_score": (
+            "Copiar la puntuación de regularidad de la solución "
+            "(Ctrl+Alt+Shift+F5); el valor, sin ptsr.; deshabilitado si la "
             "etiqueta está oculta; no avanza"
         ),
         "tip.copy_inspector": (
@@ -1723,6 +1731,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_cuts_score": (
             "No hay puntuación de cortes de la solución que copiar"
         ),
+        "status.solution_regularity_score_copied": (
+            "Puntuación de regularidad de la solución copiada: {value}"
+        ),
+        "status.nothing_to_copy_solution_regularity_score": (
+            "No hay puntuación de regularidad de la solución que copiar"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -2627,6 +2641,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Copy solution material usage score"
         ),
         "action.copy_solution_cuts_score": "Copy solution cuts score",
+        "action.copy_solution_regularity_score": ("Copy solution regularity score"),
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -3057,6 +3072,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_cuts_score": (
             "Copy the status-bar solution cuts score "
             "(Ctrl+Alt+Shift+F4); the value, without ptsc; disabled when "
+            "the label is hidden; does not step to the next solution"
+        ),
+        "tip.copy_solution_regularity_score": (
+            "Copy the status-bar solution regularity score "
+            "(Ctrl+Alt+Shift+F5); the value, without ptsr; disabled when "
             "the label is hidden; does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -3905,6 +3925,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_cuts_score": (
             "No solution cuts score to copy"
         ),
+        "status.solution_regularity_score_copied": (
+            "Solution regularity score copied: {value}"
+        ),
+        "status.nothing_to_copy_solution_regularity_score": (
+            "No solution regularity score to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -4526,6 +4552,7 @@ _ACTION_KEYS = (
     "copy_solution_waste_score",
     "copy_solution_material_usage_score",
     "copy_solution_cuts_score",
+    "copy_solution_regularity_score",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

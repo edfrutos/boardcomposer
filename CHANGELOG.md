@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar la puntuación de regularidad de la solución (IDE-0176;
+  **Ctrl+Alt+Shift+F5**). Copia el valor (`0.00`, `0.40`), sin
+  `ptsr.`. Deshabilitado si la etiqueta está oculta. No
+  avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: puntuación de regularidad de la solución
   seleccionada (IDE-0175). `ptsr. {value}` (en inglés `ptsr {value}`)
   desde `f"{solution.score.regularity_score:.2f}"`. La misma
