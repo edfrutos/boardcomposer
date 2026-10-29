@@ -1576,7 +1576,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_grain_score": "ptsv. {value}",
         "tip.status_solution_grain_score": (
-            "Puntuación de veta de la solución seleccionada: {value}"
+            "Puntuación de veta de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3822,7 +3823,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_grain_score": "ptsg {value}",
         "tip.status_solution_grain_score": (
-            "Grain score of the selected solution: {value}"
+            "Grain score of the selected solution: {value}. Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Clic en la puntuación de veta selecciona esa solución
+  (IDE-0180). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la puntuación de veta de la solución (IDE-0179;
   **Ctrl+Alt+Shift+F6**). Copia el valor (`0.00`, `0.40`), sin
   `ptsv.`. Deshabilitado si la etiqueta está oculta. No
