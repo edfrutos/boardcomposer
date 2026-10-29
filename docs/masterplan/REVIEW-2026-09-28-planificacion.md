@@ -404,8 +404,12 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0172 | Barra: puntuación de cortes de la solución seleccionada | Entregado; `ptsc. {value}` / `ptsc {value}`; `0.00` se muestra; sin clic |
 | IDE-0173 | Copiar la puntuación de cortes de la solución | Entregado; Ctrl+Alt+Shift+F4; el valor, sin `ptsc.`; no avanza |
 | IDE-0174 | Clic en la puntuación de cortes selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0175 | Barra: puntuación de regularidad de la solución seleccionada | Entregado; `ptsr. {value}` / `ptsr {value}`; `0.00` se muestra; sin clic |
+| IDE-0176 | Copiar la puntuación de regularidad de la solución | Ctrl+Alt+Shift+F5; el valor, sin `ptsr.`; no avanza |
+| IDE-0177 | Clic en la puntuación de regularidad selecciona su solución | Clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0178 | Barra: puntuación de veta de la solución seleccionada | `ptsv. {value}` / `ptsg {value}`; `0.00` se muestra; sin clic |
 
-Prioridad de ataque: trigésima sexta ola cerrada (0174 entregada; IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
+Prioridad de ataque: **IDE-0176** (0175 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
