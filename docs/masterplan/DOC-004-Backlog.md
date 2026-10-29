@@ -244,7 +244,7 @@ Observaciones:
 | IDE-0171 | Clic en la puntuación de uso de material selecciona su solución | 🟢 | P3 |
 | IDE-0172 | Barra: puntuación de cortes de la solución seleccionada | 🟢 | P3 |
 | IDE-0173 | Copiar la puntuación de cortes de la solución | 🟢 | P3 |
-| IDE-0174 | Clic en la puntuación de cortes selecciona su solución | 🔵 | P3 |
+| IDE-0174 | Clic en la puntuación de cortes selecciona su solución | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -412,7 +412,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0171 | S | IDE-0169 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0172 | S | IDE-0115 | Entregado; `ptsc. {value}` / `ptsc {value}`; `score.cuts_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.`, `ptsh.` y `ptsu.` |
 | IDE-0173 | S | IDE-0172 | Entregado; Ctrl+Alt+Shift+F4; el valor, sin `ptsc.`; no avanza |
-| IDE-0174 | S | IDE-0172 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0174 | S | IDE-0172 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -441,7 +441,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0173 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0174 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -465,15 +465,15 @@ cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada (0158
 entregada `#807`). Trigésima tercera ola cerrada (0162 entregada).
 Trigésima cuarta ola cerrada (0166 entregada).
 Trigésima quinta ola cerrada (0170 entregada).
-Trigésima sexta ola 0171…0174: 0173 entregada; siguiente IDE-0174.
+Trigésima sexta ola cerrada (0174 entregada). Cola vacía.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-29-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0174 (0173 entregada;
-   IDE-0101 e IDE-0102 diferidas, sin costes).
+1. Cola producto `0.4.4`: trigésima sexta ola cerrada (0174 entregada;
+   IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.

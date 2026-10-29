@@ -1550,7 +1550,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_cuts_score": "ptsc. {value}",
         "tip.status_solution_cuts_score": (
-            "Puntuación de cortes de la solución seleccionada: {value}"
+            "Puntuación de cortes de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3763,7 +3764,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_cuts_score": "ptsc {value}",
         "tip.status_solution_cuts_score": (
-            "Cuts score of the selected solution: {value}"
+            "Cuts score of the selected solution: {value}. Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

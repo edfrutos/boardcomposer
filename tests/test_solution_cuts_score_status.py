@@ -57,8 +57,8 @@ def test_solution_cuts_score_follows_the_selected_solution(qapp, tmp_path):
     assert window._solution_waste_score_label.text() == "ptsh. 0.00"
     assert window._solution_material_usage_score_label.text() == "ptsu. 0.00"
     assert "puntuación de cortes" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "1/2 sol."
 
     calls: list[str] = []
@@ -100,5 +100,5 @@ def test_solution_cuts_score_follows_the_selected_solution(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "ptsc 0.75"
     assert "cuts score" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

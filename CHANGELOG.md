@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en la puntuación de cortes selecciona esa solución
+  (IDE-0174). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Cierra la trigésima sexta ola 0171…0174.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la puntuación de cortes de la solución (IDE-0173;
   **Ctrl+Alt+Shift+F4**). Copia el valor (`0.00`, `0.75`), sin
   `ptsc.`. Deshabilitado si la etiqueta está oculta. No
