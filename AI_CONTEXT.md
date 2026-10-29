@@ -183,7 +183,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la puntuación de cortes de la solución (IDE-0173; Ctrl+Alt+Shift+F4).
 - Clic en la puntuación de cortes selecciona esa solución (IDE-0174).
 - Barra de estado: puntuación de regularidad de la solución seleccionada (IDE-0175).
-- Próximo: IDE-0176 (copiar la puntuación de regularidad; 0175 entregada;
+- Copiar la puntuación de regularidad de la solución (IDE-0176; Ctrl+Alt+Shift+F5).
+- Próximo: IDE-0177 (clic en la puntuación de regularidad; 0176 entregada;
   IDE-0101 e IDE-0102 diferidas, sin costes). Trigésima séptima ola
   0175…0178 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
   piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
