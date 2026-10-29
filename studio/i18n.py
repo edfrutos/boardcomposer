@@ -3764,8 +3764,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_cuts_score": "ptsc {value}",
         "tip.status_solution_cuts_score": (
-            "Cuts score of the selected solution: {value}. "
-            "Click selects the solution"
+            "Cuts score of the selected solution: {value}. Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

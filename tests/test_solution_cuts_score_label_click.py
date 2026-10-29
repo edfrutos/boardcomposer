@@ -87,9 +87,7 @@ def test_cuts_score_label_ignores_drag_and_hidden(qapp, tmp_path):
     assert window.eventFilter(label, _mouse(QEvent.Type.MouseButtonPress)) is False
 
 
-def test_cuts_score_label_release_without_explorer_item_does_not_select(
-    qapp, tmp_path
-):
+def test_cuts_score_label_release_without_explorer_item_does_not_select(qapp, tmp_path):
     del qapp
     window = _window(tmp_path)
     window.services.layout.solutions = [
