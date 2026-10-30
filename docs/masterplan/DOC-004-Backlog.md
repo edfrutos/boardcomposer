@@ -255,7 +255,7 @@ Observaciones:
 | IDE-0182 | Copiar la completitud de la solución | 🟢 | P3 |
 | IDE-0183 | Clic en la completitud selecciona su solución | 🟢 | P3 |
 | IDE-0184 | Barra: área del mayor retal de la solución seleccionada | 🟢 | P3 |
-| IDE-0185 | Copiar el área del mayor retal de la solución | 🔵 | P3 |
+| IDE-0185 | Copiar el área del mayor retal de la solución | 🟢 | P3 |
 | IDE-0186 | Clic en el área del mayor retal selecciona su solución | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -435,7 +435,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0182 | S | IDE-0181 | Entregado; Ctrl+Alt+Shift+F7; el valor, sin `comp.`; no avanza |
 | IDE-0183 | S | IDE-0181 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0184 | S | IDE-0092 | Entregado; `maxr. {area}` / `maxo {area}`; oculta si no hay retales; distinta de `n ret.`, `retár.` y `ret%`; sin clic |
-| IDE-0185 | S | IDE-0184 | Planificado; Ctrl+Alt+Shift+F8; el valor, sin `maxr.`; no avanza |
+| IDE-0185 | S | IDE-0184 | Entregado; Ctrl+Alt+Shift+F8; el valor, sin `maxr.`; no avanza |
 | IDE-0186 | S | IDE-0184 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
@@ -492,14 +492,14 @@ Trigésima quinta ola cerrada (0170 entregada).
 Trigésima sexta ola cerrada (0174 entregada).
 Trigésima séptima ola cerrada (0178 entregada).
 Trigésima octava ola cerrada (0182 entregada).
-Trigésima novena ola 0183…0186: 0184 entregada; siguiente IDE-0185.
+Trigésima novena ola 0183…0186: 0185 entregada; siguiente IDE-0186.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-30-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0185 (0184 entregada;
+1. Cola producto `0.4.4`: IDE-0186 (0185 entregada;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).

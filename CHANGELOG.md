@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar el área del mayor retal de la solución (IDE-0185;
+  **Ctrl+Alt+Shift+F8**). Copia el área con unidad, sin
+  `maxr.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Sigue las unidades de Preferencias.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: área del mayor retal de la solución
   seleccionada (IDE-0184). `maxr. {area}` (en inglés `maxo {area}`)
   desde `_format_area(max(offcut.area_mm2))`. Oculta si no hay
