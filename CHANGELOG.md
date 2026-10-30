@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en la completitud selecciona esa solución
+  (IDE-0183). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Abre la trigésima novena ola 0183…0186.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la completitud de la solución (IDE-0182;
   **Ctrl+Alt+Shift+F7**). Copia el valor (`sí`, `no` / `yes`, `no`), sin
   `comp.`. Deshabilitado si la etiqueta está oculta. No

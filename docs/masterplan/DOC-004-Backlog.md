@@ -253,6 +253,10 @@ Observaciones:
 | IDE-0180 | Clic en la puntuación de veta selecciona su solución | 🟢 | P3 |
 | IDE-0181 | Barra: completitud de la solución seleccionada | 🟢 | P3 |
 | IDE-0182 | Copiar la completitud de la solución | 🟢 | P3 |
+| IDE-0183 | Clic en la completitud selecciona su solución | 🟢 | P3 |
+| IDE-0184 | Barra: área del mayor retal de la solución seleccionada | 🔵 | P3 |
+| IDE-0185 | Copiar el área del mayor retal de la solución | 🔵 | P3 |
+| IDE-0186 | Clic en el área del mayor retal selecciona su solución | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -429,6 +433,10 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0180 | S | IDE-0178 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0181 | S | IDE-0095 | Entregado; `comp. sí` / `full yes`; `comp. no` / `full no`; `is_complete`; misma visibilidad que el índice; sin clic |
 | IDE-0182 | S | IDE-0181 | Entregado; Ctrl+Alt+Shift+F7; el valor, sin `comp.`; no avanza |
+| IDE-0183 | S | IDE-0181 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0184 | S | IDE-0092 | Planificado; `maxr. {area}` / `maxo {area}`; oculta si no hay retales; distinta de `n ret.`, `retár.` y `ret%` |
+| IDE-0185 | S | IDE-0184 | Planificado; Ctrl+Alt+Shift+F8; el valor, sin `maxr.`; no avanza |
+| IDE-0186 | S | IDE-0184 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -457,7 +465,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0182 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0183 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -483,15 +491,16 @@ Trigésima cuarta ola cerrada (0166 entregada).
 Trigésima quinta ola cerrada (0170 entregada).
 Trigésima sexta ola cerrada (0174 entregada).
 Trigésima séptima ola cerrada (0178 entregada).
-Trigésima octava ola cerrada (0182 entregada). Cola vacía.
+Trigésima octava ola cerrada (0182 entregada).
+Trigésima novena ola 0183…0186: 0183 entregada; siguiente IDE-0184.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-30-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: trigésima octava ola cerrada (0182 entregada;
-   IDE-0101 e IDE-0102 diferidas, sin costes). Cola vacía.
+1. Cola producto `0.4.4`: IDE-0184 (0183 entregada;
+   IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.

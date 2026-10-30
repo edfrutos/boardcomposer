@@ -223,6 +223,14 @@
   (IDE-0181).
 - Copiar la completitud de la solución (IDE-0182;
   Ctrl+Alt+Shift+F7).
+- Clic en la completitud selecciona esa solución
+  (IDE-0183).
+- Barra de estado: área del mayor retal de la solución
+  seleccionada (IDE-0184; planificado; `maxr.` / oculta si no hay retales).
+- Copiar el área del mayor retal de la solución (IDE-0185; planificado;
+  Ctrl+Alt+Shift+F8).
+- Clic en el área del mayor retal selecciona esa solución
+  (IDE-0186; planificado).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -259,7 +267,8 @@
    Trigésima quinta ola cerrada (0170 entregada).
    Trigésima sexta ola cerrada (0174 entregada).
    Trigésima séptima ola cerrada (0178 entregada).
-   Trigésima octava ola cerrada (0182 entregada). Cola vacía.
+   Trigésima octava ola cerrada (0182 entregada).
+   Trigésima novena ola 0183…0186: 0183 entregada; siguiente IDE-0184.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
