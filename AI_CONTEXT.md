@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-10-29-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-10-30-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -188,10 +188,10 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: puntuación de veta de la solución seleccionada (IDE-0178).
 - Copiar la puntuación de veta de la solución (IDE-0179; Ctrl+Alt+Shift+F6).
 - Clic en la puntuación de veta selecciona esa solución (IDE-0180).
-- Próximo: IDE-0181 (barra: completitud; 0180 entregada;
+- Próximo: IDE-0181 🟡 `#833` (barra: completitud; luego IDE-0182;
   IDE-0101 e IDE-0102 diferidas, sin costes). Trigésima octava ola
-  0179…0182 abierta. Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM;
-  piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+  0179…0182 abierta (0179/0180 🟢). Bloqueados sin reanudar: DT-0006 C,
+  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
