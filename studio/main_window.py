@@ -1045,6 +1045,8 @@ class MainWindow(QMainWindow):
         self._solution_grain_score_label.setObjectName("statusSolutionGrainScore")
         self._solution_grain_score_label_armed = False
         self._solution_grain_score_label.installEventFilter(self)
+        self._solution_complete_label = QLabel()
+        self._solution_complete_label.setObjectName("statusSolutionComplete")
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1097,6 +1099,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_cuts_score_label)
         status.addPermanentWidget(self._solution_regularity_score_label)
         status.addPermanentWidget(self._solution_grain_score_label)
+        status.addPermanentWidget(self._solution_complete_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -4843,6 +4846,37 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_complete_text(self) -> str | None:
+        """Formatted completeness of the selected solution, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None:
+            return None
+        key = (
+            "status.solution_complete_yes"
+            if solution.is_complete
+            else "status.solution_complete_no"
+        )
+        return self._tr(key)
+
+    def _update_solution_complete_status(self) -> None:
+        """Show completeness of the selected solution (IDE-0181)."""
+        label = getattr(self, "_solution_complete_label", None)
+        if label is None:
+            return
+        value = self._selected_solution_complete_text()
+        if value is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_complete", value=value))
+        label.setToolTip(self._tr("tip.status_solution_complete", value=value))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
@@ -4873,6 +4907,7 @@ class MainWindow(QMainWindow):
         self._update_solution_cuts_score_status()
         self._update_solution_regularity_score_status()
         self._update_solution_grain_score_status()
+        self._update_solution_complete_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return

@@ -1579,6 +1579,12 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Puntuación de veta de la solución seleccionada: {value}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_complete": "comp. {value}",
+        "status.solution_complete_yes": "sí",
+        "status.solution_complete_no": "no",
+        "tip.status_solution_complete": (
+            "Completitud de la solución seleccionada: {value}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3824,6 +3830,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_grain_score": "ptsg {value}",
         "tip.status_solution_grain_score": (
             "Grain score of the selected solution: {value}. Click selects the solution"
+        ),
+        "status.solution_complete": "full {value}",
+        "status.solution_complete_yes": "yes",
+        "status.solution_complete_no": "no",
+        "tip.status_solution_complete": (
+            "Completeness of the selected solution: {value}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

@@ -251,7 +251,7 @@ Observaciones:
 | IDE-0178 | Barra: puntuación de veta de la solución seleccionada | 🟢 | P3 |
 | IDE-0179 | Copiar la puntuación de veta de la solución | 🟢 | P3 |
 | IDE-0180 | Clic en la puntuación de veta selecciona su solución | 🟢 | P3 |
-| IDE-0181 | Barra: completitud de la solución seleccionada | 🔵 | P3 |
+| IDE-0181 | Barra: completitud de la solución seleccionada | 🟢 | P3 |
 | IDE-0182 | Copiar la completitud de la solución | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -427,7 +427,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0178 | S | IDE-0115 | Entregado; `ptsv. {value}` / `ptsg {value}`; `score.grain_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.`, `ptsh.`, `ptsu.`, `ptsc.` y `ptsr.` |
 | IDE-0179 | S | IDE-0178 | Entregado; Ctrl+Alt+Shift+F6; el valor, sin `ptsv.`; no avanza |
 | IDE-0180 | S | IDE-0178 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0181 | S | IDE-0095 | Planificado; `comp. sí` / `full yes`; `comp. no` / `full no`; `is_complete`; misma visibilidad que el índice; sin clic |
+| IDE-0181 | S | IDE-0095 | Entregado; `comp. sí` / `full yes`; `comp. no` / `full no`; `is_complete`; misma visibilidad que el índice; sin clic |
 | IDE-0182 | S | IDE-0181 | Planificado; Ctrl+Alt+Shift+F7; el valor, sin `comp.`; no avanza |
 
 ---
@@ -457,7 +457,7 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0180 Studio/Core
+**Estado actual:** 🟢 Actualizado — IDE-0001…0181 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
 `#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
@@ -483,14 +483,14 @@ Trigésima cuarta ola cerrada (0166 entregada).
 Trigésima quinta ola cerrada (0170 entregada).
 Trigésima sexta ola cerrada (0174 entregada).
 Trigésima séptima ola cerrada (0178 entregada).
-Trigésima octava ola 0179…0182: 0180 entregada; siguiente IDE-0181.
+Trigésima octava ola 0179…0182: 0181 entregada; siguiente IDE-0182.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-10-29-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0181 (0180 entregada;
+1. Cola producto `0.4.4`: IDE-0182 (0181 entregada;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
