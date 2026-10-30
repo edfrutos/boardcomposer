@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar la completitud de la solución (IDE-0182;
+  **Ctrl+Alt+Shift+F7**). Copia el valor (`sí`, `no` / `yes`, `no`), sin
+  `comp.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Cierra la trigésima octava ola 0179…0182.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: completitud de la solución seleccionada
   (IDE-0181). `comp. {value}` (en inglés `full {value}`) desde
   `solution.is_complete` (`sí`/`yes` o `no`). La misma visibilidad

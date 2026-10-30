@@ -220,8 +220,8 @@
 - Clic en la puntuación de veta selecciona esa solución
   (IDE-0180).
 - Barra de estado: completitud de la solución seleccionada
-  (IDE-0181; 🟡 `#833`; `comp. sí` / `is_complete`).
-- Copiar la completitud de la solución (IDE-0182; planificado;
+  (IDE-0181).
+- Copiar la completitud de la solución (IDE-0182;
   Ctrl+Alt+Shift+F7).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
@@ -259,8 +259,7 @@
    Trigésima quinta ola cerrada (0170 entregada).
    Trigésima sexta ola cerrada (0174 entregada).
    Trigésima séptima ola cerrada (0178 entregada).
-   Trigésima octava ola 0179…0182: 0180 entregada; 0181 🟡 `#833`;
-   siguiente IDE-0181 → 0182.
+   Trigésima octava ola cerrada (0182 entregada). Cola vacía.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

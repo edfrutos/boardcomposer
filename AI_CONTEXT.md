@@ -188,9 +188,10 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: puntuación de veta de la solución seleccionada (IDE-0178).
 - Copiar la puntuación de veta de la solución (IDE-0179; Ctrl+Alt+Shift+F6).
 - Clic en la puntuación de veta selecciona esa solución (IDE-0180).
-- Próximo: IDE-0181 🟡 `#833` (barra: completitud; luego IDE-0182;
-  IDE-0101 e IDE-0102 diferidas, sin costes). Trigésima octava ola
-  0179…0182 abierta (0179/0180 🟢). Bloqueados sin reanudar: DT-0006 C,
+- Barra de estado: completitud de la solución seleccionada (IDE-0181).
+- Copiar la completitud de la solución (IDE-0182; Ctrl+Alt+Shift+F7).
+- Próximo: trigésima octava ola 0179…0182 cerrada (0182 entregada; IDE-0101 e
+  IDE-0102 diferidas, sin costes). Cola vacía. Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

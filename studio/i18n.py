@@ -368,6 +368,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_grain_score": (
             "Copiar puntuación de veta de la solución"
         ),
+        "action.copy_solution_complete": "Copiar completitud de la solución",
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -822,6 +823,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_grain_score": (
             "Copiar la puntuación de veta de la solución "
             "(Ctrl+Alt+Shift+F6); el valor, sin ptsv.; deshabilitado si la "
+            "etiqueta está oculta; no avanza"
+        ),
+        "tip.copy_solution_complete": (
+            "Copiar la completitud de la solución "
+            "(Ctrl+Alt+Shift+F7); el valor, sin comp.; deshabilitado si la "
             "etiqueta está oculta; no avanza"
         ),
         "tip.copy_inspector": (
@@ -1763,6 +1769,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_grain_score": (
             "No hay puntuación de veta de la solución que copiar"
         ),
+        "status.solution_complete_copied": (
+            "Completitud de la solución copiada: {value}"
+        ),
+        "status.nothing_to_copy_solution_complete": (
+            "No hay completitud de la solución que copiar"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -2669,6 +2681,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_cuts_score": "Copy solution cuts score",
         "action.copy_solution_regularity_score": ("Copy solution regularity score"),
         "action.copy_solution_grain_score": "Copy solution grain score",
+        "action.copy_solution_complete": "Copy solution completeness",
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -3109,6 +3122,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_grain_score": (
             "Copy the status-bar solution grain score "
             "(Ctrl+Alt+Shift+F6); the value, without ptsg; disabled when "
+            "the label is hidden; does not step to the next solution"
+        ),
+        "tip.copy_solution_complete": (
+            "Copy the status-bar solution completeness "
+            "(Ctrl+Alt+Shift+F7); the value, without full; disabled when "
             "the label is hidden; does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -3978,6 +3996,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_grain_score": (
             "No solution grain score to copy"
         ),
+        "status.solution_complete_copied": ("Solution completeness copied: {value}"),
+        "status.nothing_to_copy_solution_complete": (
+            "No solution completeness to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -4601,6 +4623,7 @@ _ACTION_KEYS = (
     "copy_solution_cuts_score",
     "copy_solution_regularity_score",
     "copy_solution_grain_score",
+    "copy_solution_complete",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",
