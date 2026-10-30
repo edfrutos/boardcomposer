@@ -574,6 +574,8 @@ Chrome de Studio (se recuerda entre sesiones).
   `full yes`; `comp. no` / `full no` si hay piezas omitidas).
   La misma visibilidad que el índice (distinto de `fuera`). Cursor
   flecha. Sin clic.
+  **Ctrl+Alt+Shift+F7** copia el valor (`sí`, `no`), sin
+  `comp.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
