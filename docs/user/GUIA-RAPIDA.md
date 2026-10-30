@@ -577,6 +577,10 @@ Chrome de Studio (se recuerda entre sesiones).
   no avanza; arrastre no.
   **Ctrl+Alt+Shift+F7** copia el valor (`sí`, `no`), sin
   `comp.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  El área del mayor retal va como `maxr. 20000 mm²` (en inglés
+  `maxo 20000 mm²`). Oculta si no hay retales (como `n ret.`;
+  distinta de `retár.` y `ret%`). Cursor flecha. Sin clic. Sigue
+  las unidades de Preferencias.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
