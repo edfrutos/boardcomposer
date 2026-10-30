@@ -1589,7 +1589,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_complete_yes": "sí",
         "status.solution_complete_no": "no",
         "tip.status_solution_complete": (
-            "Completitud de la solución seleccionada: {value}"
+            "Completitud de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3853,7 +3854,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_complete_yes": "yes",
         "status.solution_complete_no": "no",
         "tip.status_solution_complete": (
-            "Completeness of the selected solution: {value}"
+            "Completeness of the selected solution: {value}. Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

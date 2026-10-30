@@ -573,7 +573,8 @@ Chrome de Studio (se recuerda entre sesiones).
   La completitud de esa solución va como `comp. sí` (en inglés
   `full yes`; `comp. no` / `full no` si hay piezas omitidas).
   La misma visibilidad que el índice (distinto de `fuera`). Cursor
-  flecha. Sin clic.
+  mano si está visible. Clic selecciona esa solución en el explorador;
+  no avanza; arrastre no.
   **Ctrl+Alt+Shift+F7** copia el valor (`sí`, `no`), sin
   `comp.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
