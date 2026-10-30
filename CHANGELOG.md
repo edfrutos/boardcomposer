@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Barra de estado: área del mayor retal de la solución
+  seleccionada (IDE-0184). `maxr. {area}` (en inglés `maxo {area}`)
+  desde `_format_area(max(offcut.area_mm2))`. Oculta si no hay
+  retales (como `n ret.`; distinta de `retár.` y `ret%`). Cursor
+  flecha. Sin clic. Sigue las unidades de Preferencias.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la completitud selecciona esa solución
   (IDE-0183). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no.

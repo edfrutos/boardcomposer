@@ -1592,6 +1592,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Completitud de la solución seleccionada: {value}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_largest_offcut": "maxr. {area}",
+        "tip.status_solution_largest_offcut": (
+            "Área del mayor retal de la solución seleccionada: {area}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3855,6 +3859,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_complete_no": "no",
         "tip.status_solution_complete": (
             "Completeness of the selected solution: {value}. Click selects the solution"
+        ),
+        "status.solution_largest_offcut": "maxo {area}",
+        "tip.status_solution_largest_offcut": (
+            "Largest offcut area of the selected solution: {area}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

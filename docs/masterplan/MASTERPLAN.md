@@ -226,7 +226,7 @@
 - Clic en la completitud selecciona esa solución
   (IDE-0183).
 - Barra de estado: área del mayor retal de la solución
-  seleccionada (IDE-0184; planificado; `maxr.` / oculta si no hay retales).
+  seleccionada (IDE-0184).
 - Copiar el área del mayor retal de la solución (IDE-0185; planificado;
   Ctrl+Alt+Shift+F8).
 - Clic en el área del mayor retal selecciona esa solución
@@ -268,7 +268,7 @@
    Trigésima sexta ola cerrada (0174 entregada).
    Trigésima séptima ola cerrada (0178 entregada).
    Trigésima octava ola cerrada (0182 entregada).
-   Trigésima novena ola 0183…0186: 0183 entregada; siguiente IDE-0184.
+   Trigésima novena ola 0183…0186: 0184 entregada; siguiente IDE-0185.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
