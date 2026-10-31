@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar el área del menor retal de la solución (IDE-0188;
+  **Ctrl+Alt+Shift+F9**). Copia el área con unidad, sin
+  `minr.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Sigue las unidades de Preferencias.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: área del menor retal de la solución
   seleccionada (IDE-0187). `minr. {area}` (en inglés `mino {area}`)
   desde `_format_area(min(offcut.area_mm2))`. Oculta si no hay
