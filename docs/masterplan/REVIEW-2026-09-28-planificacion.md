@@ -414,10 +414,10 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0182 | Copiar la completitud de la solución | Entregado; Ctrl+Alt+Shift+F7; el valor, sin `comp.`; no avanza |
 | IDE-0183 | Clic en la completitud selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0184 | Barra: área del mayor retal de la solución seleccionada | Entregado; `maxr. {area}` / `maxo {area}`; oculta si no hay retales; sin clic |
-| IDE-0185 | Copiar el área del mayor retal de la solución | Ctrl+Alt+Shift+F8; el valor, sin `maxr.`; no avanza |
+| IDE-0185 | Copiar el área del mayor retal de la solución | Entregado; Ctrl+Alt+Shift+F8; el valor, sin `maxr.`; no avanza |
 | IDE-0186 | Clic en el área del mayor retal selecciona su solución | clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: **IDE-0185** (0184 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0186** (0185 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
