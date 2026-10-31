@@ -579,8 +579,9 @@ Chrome de Studio (se recuerda entre sesiones).
   `comp.`. Deshabilitado si la etiqueta está oculta. No avanza.
   El área del mayor retal va como `maxr. 20000 mm²` (en inglés
   `maxo 20000 mm²`). Oculta si no hay retales (como `n ret.`;
-  distinta de `retár.` y `ret%`). Cursor flecha. Sin clic. Sigue
-  las unidades de Preferencias.
+  distinta de `retár.` y `ret%`). Cursor mano si está visible.
+  Clic selecciona esa solución en el explorador; no avanza;
+  arrastre no. Sigue las unidades de Preferencias.
   **Ctrl+Alt+Shift+F8** copia el área con unidad, sin
   `maxr.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
