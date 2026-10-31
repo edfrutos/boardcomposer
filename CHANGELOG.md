@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en el área del mayor retal selecciona esa solución
+  (IDE-0186). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Cierra la trigésima novena ola 0183…0186.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el área del mayor retal de la solución (IDE-0185;
   **Ctrl+Alt+Shift+F8**). Copia el área con unidad, sin
   `maxr.`. Deshabilitado si la etiqueta está oculta. No
