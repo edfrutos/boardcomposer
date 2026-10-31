@@ -1605,6 +1605,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Área del mayor retal de la solución seleccionada: {area}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_smallest_offcut": "minr. {area}",
+        "tip.status_solution_smallest_offcut": (
+            "Área del menor retal de la solución seleccionada: {area}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -3887,6 +3891,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_largest_offcut": (
             "Largest offcut area of the selected solution: {area}. "
             "Click selects the solution"
+        ),
+        "status.solution_smallest_offcut": "mino {area}",
+        "tip.status_solution_smallest_offcut": (
+            "Smallest offcut area of the selected solution: {area}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

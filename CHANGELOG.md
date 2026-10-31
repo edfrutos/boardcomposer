@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Barra de estado: área del menor retal de la solución
+  seleccionada (IDE-0187). `minr. {area}` (en inglés `mino {area}`)
+  desde `_format_area(min(offcut.area_mm2))`. Oculta si no hay
+  retales (como `n ret.` y `maxr.`; distinta de `maxr.`, `retár.`
+  y `ret%`). Cursor flecha. Sin clic. Sigue las unidades de
+  Preferencias. Abre la cuadragésima ola 0187…0190.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el área del mayor retal selecciona esa solución
   (IDE-0186). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no.

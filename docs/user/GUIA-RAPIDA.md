@@ -584,6 +584,10 @@ Chrome de Studio (se recuerda entre sesiones).
   arrastre no. Sigue las unidades de Preferencias.
   **Ctrl+Alt+Shift+F8** copia el área con unidad, sin
   `maxr.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  El área del menor retal va como `minr. 2500 mm²` (en inglés
+  `mino 2500 mm²`). Oculta si no hay retales (como `n ret.` y
+  `maxr.`; distinta de `maxr.`, `retár.` y `ret%`). Cursor flecha.
+  Sin clic. Sigue las unidades de Preferencias.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
