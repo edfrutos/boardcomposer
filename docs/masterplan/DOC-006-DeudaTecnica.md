@@ -211,8 +211,8 @@ IDE-0079…0082 🔵 sin PR de producto; Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-10-30 en `REVIEW-2026-10-30-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`10-29` (abiertas = 1, DT-0006).
+2026-10-31 en `REVIEW-2026-10-31-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`10-30` (abiertas = 1, DT-0006).
 
 Próximo foco:
 

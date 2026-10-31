@@ -495,7 +495,7 @@ Trigésima octava ola cerrada (0182 entregada).
 Trigésima novena ola cerrada (0186 entregada).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-30-planificacion.md`.
+`REVIEW-2026-10-31-planificacion.md`.
 
 Próximo foco:
 

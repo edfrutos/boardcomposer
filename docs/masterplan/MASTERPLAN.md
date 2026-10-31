@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-10-30.
+Última revisión: 2026-10-31.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-10-30-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-10-31-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -227,7 +227,7 @@
   (IDE-0183).
 - Barra de estado: área del mayor retal de la solución
   seleccionada (IDE-0184).
-- Copiar el área del mayor retal de la solución (IDE-0185;
+- Copiar el área del mayor retal de la solución (IDE-0185; 🟡 `#838`;
   Ctrl+Alt+Shift+F8).
 - Clic en el área del mayor retal selecciona esa solución
   (IDE-0186).
