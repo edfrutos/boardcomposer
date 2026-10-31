@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-10-30-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-10-31-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -192,9 +192,9 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la completitud de la solución (IDE-0182; Ctrl+Alt+Shift+F7).
 - Clic en la completitud selecciona esa solución (IDE-0183).
 - Barra de estado: área del mayor retal de la solución seleccionada (IDE-0184).
-- Próximo: IDE-0185 (copiar el mayor retal; 0184 entregada;
+- Próximo: IDE-0185 🟡 `#838` (copiar el mayor retal; luego IDE-0186;
   IDE-0101 e IDE-0102 diferidas, sin costes). Trigésima novena ola
-  0183…0186 abierta. Bloqueados sin reanudar: DT-0006 C,
+  0183…0186 abierta (0183/0184 🟢). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
