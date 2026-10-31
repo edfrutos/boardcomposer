@@ -192,11 +192,12 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la completitud de la solución (IDE-0182; Ctrl+Alt+Shift+F7).
 - Clic en la completitud selecciona esa solución (IDE-0183).
 - Barra de estado: área del mayor retal de la solución seleccionada (IDE-0184).
-- Próximo: IDE-0185 🟡 `#838` (copiar el mayor retal; luego IDE-0186;
-  IDE-0101 e IDE-0102 diferidas, sin costes). Trigésima novena ola
-  0183…0186 abierta (0183/0184 🟢). Bloqueados sin reanudar: DT-0006 C,
-  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
-  LLM / plugins / C bloqueados.
+- Copiar el área del mayor retal de la solución (IDE-0185; Ctrl+Alt+Shift+F8).
+- Clic en el área del mayor retal selecciona esa solución (IDE-0186).
+- Próximo: cola vacía; siguiente Merge OK abre ola 40 (0186 cierra
+  0183…0186; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
+  sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
+  eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 
