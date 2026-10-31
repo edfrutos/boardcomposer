@@ -192,7 +192,8 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la completitud de la solución (IDE-0182; Ctrl+Alt+Shift+F7).
 - Clic en la completitud selecciona esa solución (IDE-0183).
 - Barra de estado: área del mayor retal de la solución seleccionada (IDE-0184).
-- Próximo: IDE-0185 (copiar el mayor retal; 0184 entregada;
+- Copiar el área del mayor retal de la solución (IDE-0185; Ctrl+Alt+Shift+F8).
+- Próximo: IDE-0186 (clic en el mayor retal; 0185 entregada;
   IDE-0101 e IDE-0102 diferidas, sin costes). Trigésima novena ola
   0183…0186 abierta. Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
