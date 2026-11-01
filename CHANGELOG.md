@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Barra de estado: dimensiones del mayor retal de la solución
+  seleccionada (IDE-0190). `maxd. {size}` (en inglés `maxd {size}`)
+  desde `_format_size` del retal de mayor área. Oculta si no hay
+  retales (como `n ret.` y `maxr.`; distinta de `maxr.`, `minr.`,
+  `retár.` y `ret%`). Cursor flecha. Sin clic. Sigue las unidades
+  de Preferencias. Cierra la cuadragésima ola 0187…0190.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el área del menor retal selecciona esa solución
   (IDE-0189). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no.
