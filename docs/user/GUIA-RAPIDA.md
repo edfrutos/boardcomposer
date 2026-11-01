@@ -596,6 +596,8 @@ Chrome de Studio (se recuerda entre sesiones).
   (como `n ret.` y `maxr.`; distinta de `maxr.`, `minr.`, `retár.`
   y `ret%`). Cursor flecha. Sin clic. Sigue las unidades de
   Preferencias.
+  **Ctrl+Alt+Shift+F10** copia el L×A con unidad, sin
+  `maxd.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

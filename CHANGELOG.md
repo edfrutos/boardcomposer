@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Copiar las dimensiones del mayor retal de la solución
+  (IDE-0191; **Ctrl+Alt+Shift+F10**). Copia el L×A con unidad,
+  sin `maxd.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Sigue las unidades de Preferencias.
+  Abre la cuadragésima primera ola 0191…0194.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: dimensiones del mayor retal de la solución
   seleccionada (IDE-0190). `maxd. {size}` (en inglés `maxd {size}`)
   desde `_format_size` del retal de mayor área. Oculta si no hay
