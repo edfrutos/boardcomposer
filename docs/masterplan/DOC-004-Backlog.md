@@ -258,15 +258,9 @@ Observaciones:
 | IDE-0185 | Copiar el área del mayor retal de la solución | 🟢 | P3 |
 | IDE-0186 | Clic en el área del mayor retal selecciona su solución | 🟢 | P3 |
 | IDE-0187 | Barra: área del menor retal de la solución seleccionada | 🟢 | P3 |
-<<<<<<< HEAD
 | IDE-0188 | Copiar el área del menor retal de la solución | 🟢 | P3 |
 | IDE-0189 | Clic en el área del menor retal selecciona su solución | 🟢 | P3 |
 | IDE-0190 | Barra: dimensiones del mayor retal de la solución seleccionada | 🟢 | P3 |
-=======
-| IDE-0188 | Copiar el área del menor retal de la solución | 🟡 | P3 |
-| IDE-0189 | Clic en el área del menor retal selecciona su solución | 🔵 | P3 |
-| IDE-0190 | Barra: dimensiones del mayor retal de la solución seleccionada | 🔵 | P3 |
->>>>>>> origin/main
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -448,15 +442,9 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0185 | S | IDE-0184 | Entregado; Ctrl+Alt+Shift+F8; el valor, sin `maxr.`; no avanza |
 | IDE-0186 | S | IDE-0184 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0187 | S | IDE-0092 | Entregado; `minr. {area}` / `mino {area}`; oculta si no hay retales; distinta de `maxr.`, `n ret.`, `retár.` y `ret%`; sin clic |
-<<<<<<< HEAD
 | IDE-0188 | S | IDE-0187 | Entregado; Ctrl+Alt+Shift+F9; el valor, sin `minr.`; no avanza |
 | IDE-0189 | S | IDE-0187 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0190 | S | IDE-0184 | Entregado; `maxd. {size}` / `maxd {size}` vía `_format_size` del retal de mayor área; oculta si no hay retales; distinta de `maxr.`; sin clic |
-=======
-| IDE-0188 | S | IDE-0187 | En curso `#842`; Ctrl+Alt+Shift+F9; el valor, sin `minr.`; no avanza |
-| IDE-0189 | S | IDE-0187 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0190 | S | IDE-0184 | Planificado; `maxd. {L}×{A}` / `maxd {L}×{W}` del retal de mayor área; oculta si no hay retales; distinta de `maxr.`; sin clic |
->>>>>>> origin/main
 
 ---
 
@@ -485,7 +473,6 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-<<<<<<< HEAD
 **Estado actual:** 🟢 Actualizado — IDE-0001…0184 Studio/Core
 completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
 `#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
@@ -515,23 +502,13 @@ Trigésima séptima ola cerrada (0178 entregada).
 Trigésima octava ola cerrada (0182 entregada).
 Trigésima novena ola cerrada (0186 entregada).
 Cuadragésima ola cerrada (0190 entregada).
-=======
-**Estado actual:** 🟢 Actualizado — IDE-0001…0187 Studio/Core
-completadas en `main` (ciclo `0.4.4`; IDE-0101/0102 diferidas).
-Trigésima novena ola cerrada (0186 entregada). Cuadragésima ola
-0187…0190: 0187 🟢 `#841`; 0188 🟡 `#842`; 0189…0190 🔵.
->>>>>>> origin/main
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-01-planificacion.md`.
 
 Próximo foco:
 
-<<<<<<< HEAD
 1. Cola producto `0.4.4` vacía (0190 cierra 0187…0190; siguiente Merge OK abre ola 41;
-=======
-1. Cola producto `0.4.4`: IDE-0188 🟡 `#842` (0187 🟢; 0189…0190 🔵;
->>>>>>> origin/main
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).

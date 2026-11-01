@@ -194,7 +194,6 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: área del mayor retal de la solución seleccionada (IDE-0184).
 - Copiar el área del mayor retal de la solución (IDE-0185; Ctrl+Alt+Shift+F8).
 - Clic en el área del mayor retal selecciona esa solución (IDE-0186).
-<<<<<<< HEAD
 - Barra de estado: área del menor retal de la solución seleccionada (IDE-0187).
 - Copiar el área del menor retal de la solución (IDE-0188; Ctrl+Alt+Shift+F9).
 - Clic en el área del menor retal selecciona esa solución (IDE-0189).
@@ -203,15 +202,6 @@ alternativas comprensibles para que el usuario decida.
   0187…0190; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
   sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
   eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
-=======
-- Barra de estado: área del menor retal de la solución seleccionada (IDE-0187 `#841`).
-- Próximo: IDE-0188 🟡 `#842` (copiar el menor retal; 0187 🟢;
-  0189…0190 🔵; IDE-0101 e IDE-0102 diferidas, sin costes).
-  Cuadragésima ola 0187…0190 abierta. Bloqueados sin reanudar:
-  DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval
-  IDE-0007 cerrada; LLM / plugins / C bloqueados.
-  Snapshot: `REVIEW-2026-11-01-planificacion.md`.
->>>>>>> origin/main
 
 ## Fuentes de verdad
 

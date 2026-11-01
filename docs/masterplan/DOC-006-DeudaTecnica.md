@@ -244,11 +244,6 @@ Próximo foco:
   Trigésima séptima ola cerrada (0178 entregada).
   Trigésima octava ola cerrada (0182 entregada).
   Trigésima novena ola cerrada (0186 entregada).
-<<<<<<< HEAD
   Cuadragésima ola cerrada (0190 entregada).
-=======
-  Cuadragésima ola 0187…0190: 0187 🟢 `#841`; 0188 🟡 `#842`;
-  0189…0190 🔵 — siguiente IDE-0188.
->>>>>>> origin/main
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
