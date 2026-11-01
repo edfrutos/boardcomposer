@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Clic en las dimensiones del mayor retal selecciona esa solución
+  (IDE-0192). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar las dimensiones del mayor retal de la solución
   (IDE-0191; **Ctrl+Alt+Shift+F10**). Copia el L×A con unidad,
   sin `maxd.`. Deshabilitado si la etiqueta está oculta. No

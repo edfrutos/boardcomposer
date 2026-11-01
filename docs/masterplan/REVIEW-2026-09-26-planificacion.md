@@ -381,11 +381,11 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0189 | Clic en el área del menor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0190 | Barra: dimensiones del mayor retal de la solución seleccionada | Entregado; `maxd. {size}` / `maxd {size}`; `_format_size` del retal de mayor área; oculta si no hay retales; sin clic |
 | IDE-0191 | Copiar las dimensiones del mayor retal de la solución | Entregado; Ctrl+Alt+Shift+F10; el valor, sin `maxd.`; no avanza |
-| IDE-0192 | Clic en las dimensiones del mayor retal selecciona su solución | clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0192 | Clic en las dimensiones del mayor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0193 | Barra: dimensiones del menor retal de la solución seleccionada | `mind. {size}` / `mind {size}`; oculta si no hay retales; distinta de `minr.` y `maxd.`; sin clic |
 | IDE-0194 | Copiar las dimensiones del menor retal de la solución | Ctrl+Alt+Shift+F11; el valor, sin `mind.`; no avanza |
 
-Prioridad de ataque: **IDE-0192** (0191 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0193** (0192 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

@@ -594,8 +594,9 @@ Chrome de Studio (se recuerda entre sesiones).
   Las dimensiones del mayor retal van como `maxd. 200 x 100 mm`
   (en inglés `maxd 200 x 100 mm`). Oculta si no hay retales
   (como `n ret.` y `maxr.`; distinta de `maxr.`, `minr.`, `retár.`
-  y `ret%`). Cursor flecha. Sin clic. Sigue las unidades de
-  Preferencias.
+  y `ret%`). Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no. Sigue las
+  unidades de Preferencias.
   **Ctrl+Alt+Shift+F10** copia el L×A con unidad, sin
   `maxd.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
