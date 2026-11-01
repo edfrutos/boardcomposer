@@ -238,7 +238,7 @@
 - Clic en el área del menor retal selecciona esa solución
   (IDE-0189).
 - Barra de estado: dimensiones del mayor retal de la solución
-  seleccionada (IDE-0190; planificado).
+  seleccionada (IDE-0190).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -277,8 +277,7 @@
    Trigésima séptima ola cerrada (0178 entregada).
    Trigésima octava ola cerrada (0182 entregada).
    Trigésima novena ola cerrada (0186 entregada).
-   Cuadragésima ola 0187…0190: 0187 🟢 `#841`; 0188 🟡 `#842`;
-   0189…0190 🔵 — siguiente IDE-0188.
+   Cuadragésima ola cerrada (0190 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
