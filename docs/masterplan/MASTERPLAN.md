@@ -233,7 +233,7 @@
   (IDE-0186).
 - Barra de estado: área del menor retal de la solución
   seleccionada (IDE-0187).
-- Copiar el área del menor retal de la solución (IDE-0188; planificado;
+- Copiar el área del menor retal de la solución (IDE-0188;
   Ctrl+Alt+Shift+F9).
 - Clic en el área del menor retal selecciona esa solución
   (IDE-0189; planificado).
@@ -277,7 +277,7 @@
    Trigésima séptima ola cerrada (0178 entregada).
    Trigésima octava ola cerrada (0182 entregada).
    Trigésima novena ola cerrada (0186 entregada).
-   Cuadragésima ola 0187…0190: 0187 entregada; siguiente IDE-0188.
+   Cuadragésima ola 0187…0190: 0188 entregada; siguiente IDE-0189.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
