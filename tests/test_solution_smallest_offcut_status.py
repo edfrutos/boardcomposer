@@ -76,8 +76,8 @@ def test_solution_smallest_offcut_follows_the_selected_solution(qapp, tmp_path):
     assert window._solution_offcut_area_label.text() == "retár. 22500 mm²"
     assert window._offcuts_label.text() == "2 ret."
     assert "menor retal" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "2/2 sol."
     assert calls == []
 
@@ -111,5 +111,5 @@ def test_solution_smallest_offcut_follows_the_selected_solution(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "mino 2500 mm²"
     assert "smallest offcut" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

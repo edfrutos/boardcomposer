@@ -236,7 +236,7 @@
 - Copiar el área del menor retal de la solución (IDE-0188;
   Ctrl+Alt+Shift+F9).
 - Clic en el área del menor retal selecciona esa solución
-  (IDE-0189; planificado).
+  (IDE-0189).
 - Barra de estado: dimensiones del mayor retal de la solución
   seleccionada (IDE-0190; planificado).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
@@ -277,7 +277,7 @@
    Trigésima séptima ola cerrada (0178 entregada).
    Trigésima octava ola cerrada (0182 entregada).
    Trigésima novena ola cerrada (0186 entregada).
-   Cuadragésima ola 0187…0190: 0188 entregada; siguiente IDE-0189.
+   Cuadragésima ola 0187…0190: 0189 entregada; siguiente IDE-0190.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

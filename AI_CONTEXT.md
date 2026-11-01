@@ -196,7 +196,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el área del mayor retal selecciona esa solución (IDE-0186).
 - Barra de estado: área del menor retal de la solución seleccionada (IDE-0187).
 - Copiar el área del menor retal de la solución (IDE-0188; Ctrl+Alt+Shift+F9).
-- Próximo: IDE-0189 (clic en el menor retal; 0188 entregada;
+- Clic en el área del menor retal selecciona esa solución (IDE-0189).
+- Próximo: IDE-0190 (dimensiones del mayor retal; 0189 entregada;
   IDE-0101 e IDE-0102 diferidas, sin costes). Cuadragésima ola
   0187…0190 abierta. Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
