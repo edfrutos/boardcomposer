@@ -375,6 +375,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_smallest_offcut": (
             "Copiar área del menor retal de la solución"
         ),
+        "action.copy_solution_largest_offcut_size": (
+            "Copiar dimensiones del mayor retal de la solución"
+        ),
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -844,6 +847,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_smallest_offcut": (
             "Copiar el área del menor retal de la solución "
             "(Ctrl+Alt+Shift+F9); el área con unidad, sin minr.; "
+            "deshabilitado si la etiqueta está oculta; no avanza"
+        ),
+        "tip.copy_solution_largest_offcut_size": (
+            "Copiar las dimensiones del mayor retal de la solución "
+            "(Ctrl+Alt+Shift+F10); el L×A con unidad, sin maxd.; "
             "deshabilitado si la etiqueta está oculta; no avanza"
         ),
         "tip.copy_inspector": (
@@ -1818,6 +1826,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_smallest_offcut": (
             "No hay área del menor retal de la solución que copiar"
         ),
+        "status.solution_largest_offcut_size_copied": (
+            "Dimensiones del mayor retal de la solución copiadas: {size}"
+        ),
+        "status.nothing_to_copy_solution_largest_offcut_size": (
+            "No hay dimensiones del mayor retal de la solución que copiar"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -2731,6 +2745,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_smallest_offcut": (
             "Copy smallest offcut area of the solution"
         ),
+        "action.copy_solution_largest_offcut_size": (
+            "Copy largest offcut size of the solution"
+        ),
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -3186,6 +3203,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_smallest_offcut": (
             "Copy the status-bar smallest offcut area "
             "(Ctrl+Alt+Shift+F9); the area with unit, without mino; disabled when "
+            "the label is hidden; does not step to the next solution"
+        ),
+        "tip.copy_solution_largest_offcut_size": (
+            "Copy the status-bar largest offcut size "
+            "(Ctrl+Alt+Shift+F10); the L×W with unit, without maxd; disabled when "
             "the label is hidden; does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -4085,6 +4107,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_smallest_offcut": (
             "No smallest offcut area of the solution to copy"
         ),
+        "status.solution_largest_offcut_size_copied": (
+            "Solution largest offcut size copied: {size}"
+        ),
+        "status.nothing_to_copy_solution_largest_offcut_size": (
+            "No largest offcut size of the solution to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -4711,6 +4739,7 @@ _ACTION_KEYS = (
     "copy_solution_complete",
     "copy_solution_largest_offcut",
     "copy_solution_smallest_offcut",
+    "copy_solution_largest_offcut_size",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

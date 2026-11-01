@@ -198,10 +198,12 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el área del menor retal de la solución (IDE-0188; Ctrl+Alt+Shift+F9).
 - Clic en el área del menor retal selecciona esa solución (IDE-0189).
 - Barra de estado: dimensiones del mayor retal de la solución seleccionada (IDE-0190).
-- Próximo: cola vacía; siguiente Merge OK abre ola 41 (0190 cierra
-  0187…0190; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
-  sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
-  eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
+- Copiar las dimensiones del mayor retal de la solución (IDE-0191; Ctrl+Alt+Shift+F10).
+- Próximo: IDE-0192 (clic en maxd.; 0191 entregada;
+  IDE-0101 e IDE-0102 diferidas, sin costes). Cuadragésima primera ola
+  0191…0194 abierta. Bloqueados sin reanudar: DT-0006 C,
+  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+  LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 
