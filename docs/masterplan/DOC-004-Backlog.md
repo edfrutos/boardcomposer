@@ -258,8 +258,8 @@ Observaciones:
 | IDE-0185 | Copiar el área del mayor retal de la solución | 🟢 | P3 |
 | IDE-0186 | Clic en el área del mayor retal selecciona su solución | 🟢 | P3 |
 | IDE-0187 | Barra: área del menor retal de la solución seleccionada | 🟢 | P3 |
-| IDE-0188 | Copiar el área del menor retal de la solución | 🟢 | P3 |
-| IDE-0189 | Clic en el área del menor retal selecciona su solución | 🟢 | P3 |
+| IDE-0188 | Copiar el área del menor retal de la solución | 🟡 | P3 |
+| IDE-0189 | Clic en el área del menor retal selecciona su solución | 🔵 | P3 |
 | IDE-0190 | Barra: dimensiones del mayor retal de la solución seleccionada | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -442,8 +442,8 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0185 | S | IDE-0184 | Entregado; Ctrl+Alt+Shift+F8; el valor, sin `maxr.`; no avanza |
 | IDE-0186 | S | IDE-0184 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0187 | S | IDE-0092 | Entregado; `minr. {area}` / `mino {area}`; oculta si no hay retales; distinta de `maxr.`, `n ret.`, `retár.` y `ret%`; sin clic |
-| IDE-0188 | S | IDE-0187 | Entregado; Ctrl+Alt+Shift+F9; el valor, sin `minr.`; no avanza |
-| IDE-0189 | S | IDE-0187 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0188 | S | IDE-0187 | En curso `#842`; Ctrl+Alt+Shift+F9; el valor, sin `minr.`; no avanza |
+| IDE-0189 | S | IDE-0187 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0190 | S | IDE-0184 | Planificado; `maxd. {L}×{A}` / `maxd {L}×{W}` del retal de mayor área; oculta si no hay retales; distinta de `maxr.`; sin clic |
 
 ---
@@ -473,42 +473,17 @@ Detalle: `docs/masterplan/epics/`.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — IDE-0001…0184 Studio/Core
-completadas (ciclo `0.4.4` ola 1 + 0031…0094; `#647`/`#649`/`#651`/
-`#653`/`#654`/`#655`/`#657`/`#658`/`#659`/`#661`/`#662`/`#663`/`#664`/
-`#665`/`#666`/`#667`/`#671`/`#672`/`#673`/`#675`/`#676`/`#678`/`#680`/
-`#682`/`#683`/`#684`/`#686`/`#692`/`#693`/`#695`/`#702`/`#706`/`#715`/
-`#716`/`#718`/`#720`/`#721`/`#724`/`#725`/`#738`/`#740`/`#741`/`#742`).
-Séptima…duodécima ola cerradas; IDE-0079 `#706`; IDE-0080 `#707`.
-Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
-(0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
-Decimoquinta ola cerrada (0090 entregada `#720`). Decimosexta ola
-cerrada (0094 entregada). Decimoséptima ola cerrada (0098 entregada).
-Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes).
-Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada).
-Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada
-(0118 entregada). Vigesimotercera ola cerrada (0122 entregada).
-Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada
-(0130 `#771`). Vigesimosexta ola cerrada (0134 `#777`).
-Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola
-cerrada (0142 entregada). Vigesimonovena ola cerrada (0146 entregada).
-Trigésima ola cerrada (0150 entregada). Trigésima primera ola
-cerrada (0154 entregada `#802`). Trigésima segunda ola cerrada (0158
-entregada `#807`). Trigésima tercera ola cerrada (0162 entregada).
-Trigésima cuarta ola cerrada (0166 entregada).
-Trigésima quinta ola cerrada (0170 entregada).
-Trigésima sexta ola cerrada (0174 entregada).
-Trigésima séptima ola cerrada (0178 entregada).
-Trigésima octava ola cerrada (0182 entregada).
-Trigésima novena ola cerrada (0186 entregada).
-Cuadragésima ola 0187…0190: 0189 entregada; siguiente IDE-0190.
+**Estado actual:** 🟢 Actualizado — IDE-0001…0187 Studio/Core
+completadas en `main` (ciclo `0.4.4`; IDE-0101/0102 diferidas).
+Trigésima novena ola cerrada (0186 entregada). Cuadragésima ola
+0187…0190: 0187 🟢 `#841`; 0188 🟡 `#842`; 0189…0190 🔵.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-10-31-planificacion.md`.
+`REVIEW-2026-11-01-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0190 (0189 entregada;
+1. Cola producto `0.4.4`: IDE-0188 🟡 `#842` (0187 🟢; 0189…0190 🔵;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
