@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Clic en el área del menor retal selecciona esa solución
+  (IDE-0189). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el área del menor retal de la solución (IDE-0188;
   **Ctrl+Alt+Shift+F9**). Copia el área con unidad, sin
   `minr.`. Deshabilitado si la etiqueta está oculta. No
