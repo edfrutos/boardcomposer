@@ -262,7 +262,7 @@ Observaciones:
 | IDE-0189 | Clic en el área del menor retal selecciona su solución | 🟢 | P3 |
 | IDE-0190 | Barra: dimensiones del mayor retal de la solución seleccionada | 🟢 | P3 |
 | IDE-0191 | Copiar las dimensiones del mayor retal de la solución | 🟢 | P3 |
-| IDE-0192 | Clic en las dimensiones del mayor retal selecciona su solución | 🔵 | P3 |
+| IDE-0192 | Clic en las dimensiones del mayor retal selecciona su solución | 🟢 | P3 |
 | IDE-0193 | Barra: dimensiones del menor retal de la solución seleccionada | 🔵 | P3 |
 | IDE-0194 | Copiar las dimensiones del menor retal de la solución | 🔵 | P3 |
 
@@ -450,7 +450,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0189 | S | IDE-0187 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0190 | S | IDE-0184 | Entregado; `maxd. {size}` / `maxd {size}` vía `_format_size` del retal de mayor área; oculta si no hay retales; distinta de `maxr.`; sin clic |
 | IDE-0191 | S | IDE-0190 | Entregado; Ctrl+Alt+Shift+F10; el valor, sin `maxd.`; no avanza |
-| IDE-0192 | S | IDE-0190 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0192 | S | IDE-0190 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0193 | S | IDE-0187 | Planificado; `mind. {size}` / `mind {size}` vía `_format_size` del retal de menor área; oculta si no hay retales; distinta de `minr.` y `maxd.`; sin clic |
 | IDE-0194 | S | IDE-0193 | Planificado; Ctrl+Alt+Shift+F11; el valor, sin `mind.`; no avanza |
 
@@ -510,14 +510,14 @@ Trigésima séptima ola cerrada (0178 entregada).
 Trigésima octava ola cerrada (0182 entregada).
 Trigésima novena ola cerrada (0186 entregada).
 Cuadragésima ola cerrada (0190 entregada).
-Cuadragésima primera ola 0191…0194: 0191 entregada; siguiente IDE-0192.
+Cuadragésima primera ola 0191…0194: 0191…0192 entregadas; siguiente IDE-0193.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-01-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0192 (0191 entregada;
+1. Cola producto `0.4.4`: IDE-0193 (0192 entregada;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).

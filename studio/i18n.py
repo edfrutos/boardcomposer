@@ -1628,7 +1628,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_largest_offcut_size": "maxd. {size}",
         "tip.status_solution_largest_offcut_size": (
-            "Dimensiones del mayor retal de la solución seleccionada: {size}"
+            "Dimensiones del mayor retal de la solución seleccionada: {size}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3948,7 +3949,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_largest_offcut_size": "maxd {size}",
         "tip.status_solution_largest_offcut_size": (
-            "Largest offcut size of the selected solution: {size}"
+            "Largest offcut size of the selected solution: {size}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

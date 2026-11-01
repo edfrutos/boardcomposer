@@ -78,8 +78,8 @@ def test_solution_largest_offcut_size_follows_the_selected_solution(qapp, tmp_pa
     assert window._solution_offcut_area_label.text() == "retár. 22500 mm²"
     assert window._offcuts_label.text() == "2 ret."
     assert "mayor retal" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "2/2 sol."
     assert calls == []
 
@@ -113,5 +113,5 @@ def test_solution_largest_offcut_size_follows_the_selected_solution(qapp, tmp_pa
     window._retranslate_ui()
     assert label.text() == "maxd 200 x 100 mm"
     assert "largest offcut" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
