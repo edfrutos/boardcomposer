@@ -236,7 +236,7 @@
 - Copiar el área del menor retal de la solución (IDE-0188 🟡 `#842`;
   Ctrl+Alt+Shift+F9).
 - Clic en el área del menor retal selecciona esa solución
-  (IDE-0189; planificado).
+  (IDE-0189).
 - Barra de estado: dimensiones del mayor retal de la solución
   seleccionada (IDE-0190; planificado).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).

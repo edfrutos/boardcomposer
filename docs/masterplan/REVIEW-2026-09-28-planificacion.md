@@ -417,11 +417,11 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0185 | Copiar el área del mayor retal de la solución | Entregado; Ctrl+Alt+Shift+F8; el valor, sin `maxr.`; no avanza |
 | IDE-0186 | Clic en el área del mayor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0187 | Barra: área del menor retal de la solución seleccionada | Entregado; `minr. {area}` / `mino {area}`; oculta si no hay retales; sin clic |
-| IDE-0188 | Copiar el área del menor retal de la solución | Ctrl+Alt+Shift+F9; el valor, sin `minr.`; no avanza |
-| IDE-0189 | Clic en el área del menor retal selecciona su solución | clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0188 | Copiar el área del menor retal de la solución | Entregado; Ctrl+Alt+Shift+F9; el valor, sin `minr.`; no avanza |
+| IDE-0189 | Clic en el área del menor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0190 | Barra: dimensiones del mayor retal de la solución seleccionada | `maxd. {L}×{A}` / `maxd {L}×{W}`; oculta si no hay retales; distinta de `maxr.`; sin clic |
 
-Prioridad de ataque: **IDE-0188** (0187 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0190** (0189 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
