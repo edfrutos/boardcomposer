@@ -513,7 +513,7 @@ Cuadragésima ola cerrada (0190 entregada).
 Cuadragésima primera ola 0191…0194: 0191…0192 entregadas; siguiente IDE-0193.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-11-01-planificacion.md`.
+`REVIEW-2026-11-02-planificacion.md`.
 
 Próximo foco:
 
