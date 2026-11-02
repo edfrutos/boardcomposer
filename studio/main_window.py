@@ -1083,6 +1083,10 @@ class MainWindow(QMainWindow):
         )
         self._solution_largest_offcut_size_label_armed = False
         self._solution_largest_offcut_size_label.installEventFilter(self)
+        self._solution_smallest_offcut_size_label = QLabel()
+        self._solution_smallest_offcut_size_label.setObjectName(
+            "statusSolutionSmallestOffcutSize"
+        )
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1139,6 +1143,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_largest_offcut_label)
         status.addPermanentWidget(self._solution_smallest_offcut_label)
         status.addPermanentWidget(self._solution_largest_offcut_size_label)
+        status.addPermanentWidget(self._solution_smallest_offcut_size_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -5142,6 +5147,42 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_smallest_offcut_size_text(self) -> str | None:
+        """Formatted L×W of the smallest offcut, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None or not solution.offcuts:
+            return None
+        smallest = min(
+            solution.offcuts,
+            key=lambda offcut: (
+                offcut.area_mm2,
+                offcut.length_mm,
+                offcut.width_mm,
+            ),
+        )
+        return self._format_size(smallest.length_mm, smallest.width_mm)
+
+    def _update_solution_smallest_offcut_size_status(self) -> None:
+        """Show smallest offcut size of the selected solution (IDE-0193)."""
+        label = getattr(self, "_solution_smallest_offcut_size_label", None)
+        if label is None:
+            return
+        size = self._selected_solution_smallest_offcut_size_text()
+        if size is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_smallest_offcut_size", size=size))
+        label.setToolTip(
+            self._tr("tip.status_solution_smallest_offcut_size", size=size)
+        )
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
@@ -5176,6 +5217,7 @@ class MainWindow(QMainWindow):
         self._update_solution_largest_offcut_status()
         self._update_solution_smallest_offcut_status()
         self._update_solution_largest_offcut_size_status()
+        self._update_solution_smallest_offcut_size_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
