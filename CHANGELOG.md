@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Copiar las dimensiones del menor retal de la solución
+  (IDE-0194; **Ctrl+Alt+Shift+F11**). Copia el L×A con unidad,
+  sin `mind.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Sigue las unidades de Preferencias.
+  Cierra la cuadragésima primera ola 0191…0194.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: dimensiones del menor retal de la solución
   seleccionada (IDE-0193). `mind. {size}` (en inglés `mind {size}`)
   desde `_format_size` del retal de menor área. Oculta si no hay
