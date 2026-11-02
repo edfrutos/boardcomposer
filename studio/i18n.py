@@ -1641,7 +1641,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_smallest_offcut_size": "mind. {size}",
         "tip.status_solution_smallest_offcut_size": (
-            "Dimensiones del menor retal de la solución seleccionada: {size}"
+            "Dimensiones del menor retal de la solución seleccionada: {size}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -3980,7 +3981,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_smallest_offcut_size": "mind {size}",
         "tip.status_solution_smallest_offcut_size": (
-            "Smallest offcut size of the selected solution: {size}"
+            "Smallest offcut size of the selected solution: {size}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
