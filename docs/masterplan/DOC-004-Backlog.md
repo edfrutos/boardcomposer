@@ -267,7 +267,7 @@ Observaciones:
 | IDE-0194 | Copiar las dimensiones del menor retal de la solución | 🟢 | P3 |
 | IDE-0195 | Clic en las dimensiones del menor retal selecciona su solución | 🟡 | P3 |
 | IDE-0195 | Clic en las dimensiones del menor retal selecciona su solución | 🟢 | P3 |
-| IDE-0196 | Barra: área media de retales de la solución seleccionada | 🔵 | P3 |
+| IDE-0196 | Barra: área media de retales de la solución seleccionada | 🟢 | P3 |
 | IDE-0197 | Copiar el área media de retales de la solución | 🔵 | P3 |
 | IDE-0198 | Clic en el área media de retales selecciona su solución | 🔵 | P3 |
 
@@ -460,7 +460,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0194 | S | IDE-0193 | Entregado; Ctrl+Alt+Shift+F11; el valor, sin `mind.`; no avanza |
 | IDE-0195 | S | IDE-0193 | En desarrollo `#850`; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0195 | S | IDE-0193 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0196 | S | IDE-0187 | Planificado; `medr. {area}` / `avgo {area}` media de áreas; oculta si no hay retales; distinta de `minr.`, `maxr.` y `retár.`; sin clic |
+| IDE-0196 | S | IDE-0187 | Entregado; `medr. {area}` / `avgo {area}` media de áreas; oculta si no hay retales; distinta de `minr.`, `maxr.` y `retár.`; sin clic |
 | IDE-0197 | S | IDE-0196 | Planificado; Ctrl+Alt+Shift+F12; el valor, sin `medr.`; no avanza |
 | IDE-0198 | S | IDE-0196 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
@@ -521,16 +521,14 @@ Trigésima octava ola cerrada (0182 entregada).
 Trigésima novena ola cerrada (0186 entregada).
 Cuadragésima ola cerrada (0190 entregada).
 Cuadragésima primera ola cerrada (0194 entregada).
-Cuadragésima segunda ola 0195…0198: 0195 🟡 `#850`; 0196…0198 🔵.
-Cuadragésima segunda ola 0195…0198: 0195 entregada; siguiente IDE-0196.
+Cuadragésima segunda ola 0195…0198: 0195…0196 entregadas; siguiente IDE-0197.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-03-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0195 🟡 `#850` (luego 0196…0198;
-1. Cola producto `0.4.4`: IDE-0196 (0195 entregada;
+1. Cola producto `0.4.4`: IDE-0197 (0196 entregada;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).

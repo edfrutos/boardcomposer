@@ -202,10 +202,11 @@ alternativas comprensibles para que el usuario decida.
 - Clic en las dimensiones del mayor retal selecciona esa solución (IDE-0192).
 - Barra de estado: dimensiones del menor retal de la solución seleccionada (IDE-0193).
 - Copiar las dimensiones del menor retal de la solución (IDE-0194; Ctrl+Alt+Shift+F11).
-- Clic en las dimensiones del menor retal selecciona esa solución (IDE-0195; 🟡 `#850`).
-- Próximo: IDE-0195 🟡 `#850` → IDE-0196…0198 🔵 (`medr.` / `avgo`;
-  IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
-  sin reanudar: DT-0006 C,
+- Clic en las dimensiones del menor retal selecciona esa solución (IDE-0195).
+- Barra de estado: área media de retales de la solución seleccionada (IDE-0196).
+- Próximo: IDE-0197 (copiar medr. F12; 0196 entregada;
+  IDE-0101 e IDE-0102 diferidas, sin costes). Cuadragésima segunda ola
+  0195…0198 abierta. Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 
