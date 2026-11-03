@@ -602,8 +602,9 @@ Chrome de Studio (se recuerda entre sesiones).
   Las dimensiones del menor retal van como `mind. 50 x 50 mm`
   (en inglés `mind 50 x 50 mm`). Oculta si no hay retales
   (como `n ret.` y `minr.`; distinta de `minr.`, `maxd.`, `retár.`
-  y `ret%`). Cursor flecha. Sin clic. Sigue las unidades de
-  Preferencias.
+  y `ret%`). Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no. Sigue las
+  unidades de Preferencias.
   **Ctrl+Alt+Shift+F11** copia el L×A con unidad, sin
   `mind.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
