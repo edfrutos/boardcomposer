@@ -211,8 +211,8 @@ IDE-0079…0082 🔵 sin PR de producto; Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-11-01 en `REVIEW-2026-11-01-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`10-31` (abiertas = 1, DT-0006).
+2026-11-03 en `REVIEW-2026-11-03-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`11-01` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -246,5 +246,6 @@ Próximo foco:
   Trigésima novena ola cerrada (0186 entregada).
   Cuadragésima ola cerrada (0190 entregada).
   Cuadragésima primera ola cerrada (0194 entregada).
+  Cuadragésima segunda ola 0195…0198: 0195 🟡 `#850`; 0196…0198 🔵.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
