@@ -386,10 +386,10 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0194 | Copiar las dimensiones del menor retal de la solución | Entregado; Ctrl+Alt+Shift+F11; el valor, sin `mind.`; no avanza |
 | IDE-0195 | Clic en las dimensiones del menor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0196 | Barra: área media de retales de la solución seleccionada | Entregado; `medr. {area}` / `avgo {area}`; media de áreas; oculta si no hay retales; sin clic |
-| IDE-0197 | Copiar el área media de retales de la solución | Ctrl+Alt+Shift+F12; el valor, sin `medr.`; no avanza |
+| IDE-0197 | Copiar el área media de retales de la solución | Entregado; Ctrl+Alt+Shift+F12; el valor, sin `medr.`; no avanza |
 | IDE-0198 | Clic en el área media de retales selecciona su solución | clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: **IDE-0197** (0196 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0198** (0197 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
