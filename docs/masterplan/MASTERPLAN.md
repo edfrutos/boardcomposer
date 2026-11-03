@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-11-01.
+Última revisión: 2026-11-03.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-11-01-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-11-03-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -248,6 +248,7 @@
 - Copiar las dimensiones del menor retal de la solución (IDE-0194;
   Ctrl+Alt+Shift+F11).
 - Clic en las dimensiones del menor retal selecciona esa solución
+  (IDE-0195; 🟡 `#850`).
   (IDE-0195).
 - Barra de estado: área media de retales de la solución
   seleccionada (IDE-0196; planificado).
@@ -295,6 +296,7 @@
    Trigésima novena ola cerrada (0186 entregada).
    Cuadragésima ola cerrada (0190 entregada).
    Cuadragésima primera ola cerrada (0194 entregada).
+   Cuadragésima segunda ola 0195…0198: 0195 🟡 `#850`; siguiente IDE-0196.
    Cuadragésima segunda ola 0195…0198: 0195 entregada; siguiente IDE-0196.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
