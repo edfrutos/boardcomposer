@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en las dimensiones del menor retal selecciona esa solución
+  (IDE-0195). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Abre la cuadragésima segunda ola 0195…0198.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar las dimensiones del menor retal de la solución
   (IDE-0194; **Ctrl+Alt+Shift+F11**). Copia el L×A con unidad,
   sin `mind.`. Deshabilitado si la etiqueta está oculta. No
