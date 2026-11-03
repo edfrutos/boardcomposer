@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Barra de estado: área media de retales de la solución
+  seleccionada (IDE-0196). `medr. {area}` (en inglés `avgo {area}`)
+  media de las áreas de retales. Oculta si no hay retales
+  (como `n ret.` y `minr.`; distinta de `minr.`, `maxr.`,
+  `retár.` y `ret%`). Cursor flecha. Sin clic. Sigue las unidades
+  de Preferencias.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en las dimensiones del menor retal selecciona esa solución
   (IDE-0195). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no.
