@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.69
+**Versión:** 1.3.70
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 30/10/2026
+**Última revisión:** 04/11/2026
 
 ---
 
@@ -265,7 +265,6 @@ Observaciones:
 | IDE-0192 | Clic en las dimensiones del mayor retal selecciona su solución | 🟢 | P3 |
 | IDE-0193 | Barra: dimensiones del menor retal de la solución seleccionada | 🟢 | P3 |
 | IDE-0194 | Copiar las dimensiones del menor retal de la solución | 🟢 | P3 |
-| IDE-0195 | Clic en las dimensiones del menor retal selecciona su solución | 🟡 | P3 |
 | IDE-0195 | Clic en las dimensiones del menor retal selecciona su solución | 🟢 | P3 |
 | IDE-0196 | Barra: área media de retales de la solución seleccionada | 🟢 | P3 |
 | IDE-0197 | Copiar el área media de retales de la solución | 🟢 | P3 |
@@ -458,10 +457,9 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0192 | S | IDE-0190 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0193 | S | IDE-0187 | Entregado; `mind. {size}` / `mind {size}` vía `_format_size` del retal de menor área; oculta si no hay retales; distinta de `minr.` y `maxd.`; sin clic |
 | IDE-0194 | S | IDE-0193 | Entregado; Ctrl+Alt+Shift+F11; el valor, sin `mind.`; no avanza |
-| IDE-0195 | S | IDE-0193 | En desarrollo `#850`; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0195 | S | IDE-0193 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0196 | S | IDE-0187 | Entregado; `medr. {area}` / `avgo {area}` media de áreas; oculta si no hay retales; distinta de `minr.`, `maxr.` y `retár.`; sin clic |
-| IDE-0197 | S | IDE-0196 | Entregado; Ctrl+Alt+Shift+F12; el valor, sin `medr.`; no avanza |
+| IDE-0195 | S | IDE-0193 | Entregado `#850`; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0196 | S | IDE-0187 | Entregado `#852`; `medr. {area}` / `avgo {area}` media de áreas; oculta si no hay retales; distinta de `minr.`, `maxr.` y `retár.`; sin clic |
+| IDE-0197 | S | IDE-0196 | Entregado `#853`; Ctrl+Alt+Shift+F12; el valor, sin `medr.`; no avanza |
 | IDE-0198 | S | IDE-0196 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
@@ -524,7 +522,7 @@ Cuadragésima primera ola cerrada (0194 entregada).
 Cuadragésima segunda ola 0195…0198: 0195…0197 entregadas; siguiente IDE-0198.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-11-03-planificacion.md`.
+`REVIEW-2026-11-04-planificacion.md`.
 
 Próximo foco:
 
