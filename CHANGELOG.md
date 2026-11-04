@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar el área media de retales de la solución
+  (IDE-0197; **Ctrl+Alt+Shift+F12**). Copia el área con unidad,
+  sin `medr.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Sigue las unidades de Preferencias.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: área media de retales de la solución
   seleccionada (IDE-0196). `medr. {area}` (en inglés `avgo {area}`)
   media de las áreas de retales. Oculta si no hay retales
