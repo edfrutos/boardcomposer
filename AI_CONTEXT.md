@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-11-03-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-11-04-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -204,11 +204,11 @@ alternativas comprensibles para que el usuario decida.
 - Copiar las dimensiones del menor retal de la solución (IDE-0194; Ctrl+Alt+Shift+F11).
 - Clic en las dimensiones del menor retal selecciona esa solución (IDE-0195).
 - Barra de estado: área media de retales de la solución seleccionada (IDE-0196).
-- Próximo: IDE-0197 (copiar medr. F12; 0196 entregada;
-  IDE-0101 e IDE-0102 diferidas, sin costes). Cuadragésima segunda ola
-  0195…0198 abierta. Bloqueados sin reanudar: DT-0006 C,
-  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
-  LLM / plugins / C bloqueados.
+- Próximo: IDE-0197 🟡 `#853` (copiar medr. F12); luego IDE-0198
+  (clic); 0195…0196 entregadas; IDE-0101 e IDE-0102 diferidas, sin
+  costes. Cuadragésima segunda ola 0195…0198 abierta. Bloqueados sin
+  reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
+  eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 
