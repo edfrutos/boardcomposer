@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en el área media de retales selecciona esa solución
+  (IDE-0198). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Cierra la cuadragésima segunda ola 0195…0198.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el área media de retales de la solución
   (IDE-0197; **Ctrl+Alt+Shift+F12**). Copia el área con unidad,
   sin `medr.`. Deshabilitado si la etiqueta está oculta. No

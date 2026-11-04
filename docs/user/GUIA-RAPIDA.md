@@ -610,7 +610,8 @@ Chrome de Studio (se recuerda entre sesiones).
   El área media de retales va como `medr. 11250 mm²` (en inglés
   `avgo 11250 mm²`). Oculta si no hay retales (como `n ret.` y
   `minr.`; distinta de `minr.`, `maxr.`, `retár.` y `ret%`).
-  Cursor flecha. Sin clic. Sigue las unidades de Preferencias.
+  Cursor mano si está visible. Clic selecciona esa solución en el
+  explorador; no avanza; arrastre no. Sigue las unidades de Preferencias.
   **Ctrl+Alt+Shift+F12** copia el área con unidad, sin
   `medr.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.

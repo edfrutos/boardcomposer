@@ -1654,7 +1654,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_mean_offcut": "medr. {area}",
         "tip.status_solution_mean_offcut": (
-            "Área media de los retales de la solución seleccionada: {area}"
+            "Área media de los retales de la solución seleccionada: {area}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -4012,7 +4013,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_mean_offcut": "avgo {area}",
         "tip.status_solution_mean_offcut": (
-            "Average offcut area of the selected solution: {area}"
+            "Average offcut area of the selected solution: {area}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
