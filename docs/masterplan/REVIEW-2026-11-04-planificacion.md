@@ -1,17 +1,18 @@
 # Revisión de planificación — 2026-11-04
 
-**Origen:** cron diario; corte tras `#852` (IDE-0196) en `main`.
-PRs de producto abiertos: **`#853`** (IDE-0197). Issues abiertos: **0**.
+**Origen:** cron diario; corte original tras `#852` (IDE-0196).
+Conflictos resueltos tras `#853` (IDE-0197 🟢 en `main`).
+PRs de producto abiertos: **ninguno**. Issues abiertos: **0**.
 Planning `#851` / `REVIEW-2026-11-03-planificacion.md` **mergeado**
 (histórico; entonces 0195 🟡 `#850` + 0196…0198 🔵; ahora
-0195…0196 🟢 `#850`/`#852`; 0197 🟡 `#853`; 0198 🔵).
+0195…0197 🟢 `#850`/`#852`/`#853`; 0198 🔵).
 **Fuentes:** `ROADMAP.md`, `MASTERPLAN.md`, `DOC-003`, `DOC-004`, `DOC-006`,
 spikes IDE-0007 / DT-0006, `CHANGELOG` Unreleased, UAT release smoke,
 revisión `REVIEW-2026-11-03-planificacion.md`, PRs `#850`…`#853`.
 **Issues GitHub:** `gh issue list --state open` → **vacío**.
-**PRs de producto al corte:** `#850`/`#852` **mergeados**
-(IDE-0195…0196). Abierto: `#853` (IDE-0197).
-Cola implementable residual: IDE-0197 🟡 + IDE-0198 🔵.
+**PRs de producto al corte:** `#850`/`#852`/`#853` **mergeados**
+(IDE-0195…0197). Abierto: ninguno de producto.
+Cola implementable residual: IDE-0198 🔵.
 Residual diferido (no cola): IDE-0101/0102 ⚪ (sin costes).
 Residual bloqueado: piloto DT-0006 D + IDE-0008 / LLM / DT-0006 C.
 **Planning previo:** `#851` / `REVIEW-2026-11-03` queda histórico.
@@ -31,7 +32,7 @@ Residual bloqueado: piloto DT-0006 D + IDE-0008 / LLM / DT-0006 C.
 | IDE-0019…0196 (swap, kerf, grain, cut list, catalog, quote, status QoL…) | 🟢 en `main` |
 | IDE-0195 clic en dimensiones del menor retal selecciona su solución | 🟢 (#850) |
 | IDE-0196 barra: área media de retales (`medr.` / `avgo`) | 🟢 (#852) |
-| IDE-0197 copiar el área media de retales | 🟡 (#853) |
+| IDE-0197 copiar el área media de retales | 🟢 (#853) |
 | IDE-0198 clic en el área media de retales selecciona su solución | 🔵 |
 | IDE-0101 barra: coste de la solución seleccionada | ⚪ Diferido (sin costes) |
 | IDE-0102 copiar el coste de la solución | ⚪ Diferido (sin costes) |
@@ -66,16 +67,16 @@ etiqueta `v0.4.3` **publicada** 2026-09-16 — latest GitHub Releases).
 Producto **operativo** para flujo diario de corte 2D multipanel en Studio, con
 CLI, batch e HTTP de referencia. No es greenfield: plataforma entregada; cola
 producto IDE-0019…0024 **cerrada** en `0.4.3`; olas `0.4.4.dev0`
-0025…0196 **cerradas** en `main` (`#631`…`#852`; IDE-0101/0102
+0025…0197 **cerradas** en `main` (`#631`…`#853`; IDE-0101/0102
 diferidas ⚪). Cuadragésima primera ola 0191…0194 **cerrada**
 (`#846`…`#849`). Cuadragésima segunda ola 0195…0198 **abierta** por
-producto (`#850`): 0195…0196 🟢; 0197 🟡 `#853`; 0198 🔵.
+producto (`#850`): 0195…0197 🟢; 0198 🔵.
 
 Desde la revisión 2026-11-03 (PR `#851`, mergeado): mergeados
-`#850`/`#852` (IDE-0195…0196). Issues = 0. PR abierto = `#853`.
-Criterio del cron **no** cumplido para nuevas IDE fuera de esa ola:
-queda cola implementable residual (0197…0198). IDs ya fijados por
-producto (`#850` abrió 0195…0198) — **no renumerar**.
+`#850`/`#852`/`#853` (IDE-0195…0197). Issues = 0. PR abierto = ninguno
+de producto. Criterio del cron **no** cumplido para nuevas IDE fuera
+de esa ola: queda cola implementable residual (0198). IDs ya fijados
+por producto (`#850` abrió 0195…0198) — **no renumerar**.
 
 Límites conocidos (no son bugs; son alcance):
 
@@ -129,7 +130,7 @@ Límites conocidos (no son bugs; son alcance):
   IDE-0190…0192 🟢), dimensiones del menor retal (`mind. {size}` /
   `mind {size}`, IDE-0193…0195 🟢 `#848`…`#850`), área media de
   retales (`medr. {area}` / `avgo {area}`, IDE-0196 🟢 `#852`; copiar
-  IDE-0197 🟡 `#853`; clic IDE-0198 🔵).
+  IDE-0197 🟢 `#853`; clic IDE-0198 🔵).
 - Inspector: unidades prefs mm/cm/in; disco sigue mm. Prefs:
   export/import JSON; perfiles nombrados locales; sin nube.
 
@@ -140,10 +141,9 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 
 ## 4. Siguientes pasos (orden)
 
-1. **Cola `0.4.4` cuadragésima segunda ola** — cerrar IDE-0197 🟡 `#853`
-   (copiar `medr.` / Ctrl+Alt+Shift+F12; valor sin prefijo);
-   luego IDE-0198 (clic en `medr.` selecciona `solution:{index}`;
-   arrastre no).
+1. **Cola `0.4.4` cuadragésima segunda ola** — cerrar IDE-0198
+   (clic en `medr.` selecciona `solution:{index}`; arrastre no).
+   IDE-0197 🟢 `#853` (copiar `medr.` / Ctrl+Alt+Shift+F12).
 2. **Piloto DT-0006 D** — seguir runbook `docs/ops/PILOT-DT-0006-backup.md`;
    no abrir C sin multi-usuario real + DOC-010.
 3. **Gate release** — `uat/RELEASE-SMOKE.md` en cada corte.
@@ -156,24 +156,23 @@ plan (`DOC-006`). Bugs GitHub abiertos: **0** (consulta `gh`).
 ## 5. Cola candidata / criterio de nuevas ideas
 
 Bugs abiertos: **0**. Eval IDE-0007: **cerrada**. Cola implementable
-0195…0196: **cerrada** en `main` (`#850`/`#852`). En cola
-(producto `#853`): IDE-0197 🟡 + IDE-0198 🔵 (cuadragésima
-segunda ola). Diferidas (fuera de cola): IDE-0101/0102 ⚪. Residual
-bloqueado: piloto DT-0006 D (operativo) + IDE-0008 / LLM / DT-0006 C.
+0195…0197: **cerrada** en `main` (`#850`/`#852`/`#853`). En cola:
+IDE-0198 🔵 (cuadragésima segunda ola). Diferidas (fuera de cola):
+IDE-0101/0102 ⚪. Residual bloqueado: piloto DT-0006 D (operativo) +
+IDE-0008 / LLM / DT-0006 C.
 
 Criterio del cron: *solo proponer nuevas funcionalidades si no queda
 desarrollo pendiente y bugs cerrados* → residual implementable **no**
 vacío → **sin IDE nuevas del cron**. IDs 0195…0198 ya fijados por
 producto (`#850`) — no renumerar. Ancladas a límites ya escritos:
-`medr.` (IDE-0196) cerrado en `main`; falta copy simétrico
-(IDE-0197 `#853`) y click (IDE-0198).
+`medr.` (IDE-0196) y copy (IDE-0197 `#853`) cerrados en `main`;
+falta click (IDE-0198).
 
 | ID | Título | Por qué ahora |
 |----|--------|---------------|
-| IDE-0197 | Copiar el área media de retales de la solución | Valor sin prefijo `medr.`; Ctrl+Alt+Shift+F12 (`#853`) |
 | IDE-0198 | Clic en el área media de retales selecciona su solución | Simetría click → `solution:{index}`; arrastre no |
 
-Prioridad de ataque: **IDE-0197** (luego 0198).
+Prioridad de ataque: **IDE-0198**.
 
 Cuadragésima segunda ola (no renumerar; **abierta**):
 
@@ -181,7 +180,7 @@ Cuadragésima segunda ola (no renumerar; **abierta**):
 |----|--------|--------|
 | IDE-0195 | Clic en las dimensiones del menor retal selecciona su solución | 🟢 (#850) |
 | IDE-0196 | Barra: área media de retales de la solución seleccionada | 🟢 (#852) |
-| IDE-0197 | Copiar el área media de retales de la solución | 🟡 (#853) |
+| IDE-0197 | Copiar el área media de retales de la solución | 🟢 (#853) |
 | IDE-0198 | Clic en el área media de retales selecciona su solución | 🔵 |
 
 Olas ya cerradas en este ciclo (no renumerar):
@@ -214,20 +213,19 @@ Olas ya cerradas en este ciclo (no renumerar):
 | Cuadragésima primera | 0191…0194 | 🟢 |
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0100,
-IDE-0103…0196.
+IDE-0103…0197.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
-En curso (cuadragésima segunda ola): IDE-0197…0198.
+En curso (cuadragésima segunda ola): IDE-0198.
 
 ---
 
 ## 6. Criterio de esta revisión
 
 - No se implementa código de producto en este pase: solo alinear docs,
-  snapshot y backlog; confirmar IDE-0195…0196 🟢 (`#850`/`#852`)
-  y alinear residual IDE-0197 🟡 `#853` + IDE-0198 🔵 (IDs del
-  producto; sin inventar ola nueva). `#851` / `REVIEW-2026-11-03`
-  queda histórico.
+  snapshot y backlog; confirmar IDE-0195…0197 🟢 (`#850`/`#852`/`#853`)
+  y alinear residual IDE-0198 🔵 (IDs del producto; sin inventar ola
+  nueva). `#851` / `REVIEW-2026-11-03` queda histórico.
 - Bugs: Issues GitHub abiertos = 0 (`gh issue list`).
 - Próxima revisión automática: re-leer DOC-003/004/006 + CHANGELOG Unreleased
   y sustituir referencias a esta fecha por `REVIEW-YYYY-MM-DD-…`.
-  Si IDE-0197…0198 mergean y la cola queda vacía → proponer nueva ola IDE.
+  Si IDE-0198 mergea y la cola queda vacía → proponer nueva ola IDE.

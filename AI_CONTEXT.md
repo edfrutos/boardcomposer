@@ -204,11 +204,12 @@ alternativas comprensibles para que el usuario decida.
 - Copiar las dimensiones del menor retal de la solución (IDE-0194; Ctrl+Alt+Shift+F11).
 - Clic en las dimensiones del menor retal selecciona esa solución (IDE-0195).
 - Barra de estado: área media de retales de la solución seleccionada (IDE-0196).
-- Próximo: IDE-0197 🟡 `#853` (copiar medr. F12); luego IDE-0198
-  (clic); 0195…0196 entregadas; IDE-0101 e IDE-0102 diferidas, sin
-  costes. Cuadragésima segunda ola 0195…0198 abierta. Bloqueados sin
-  reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
-  eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
+- Copiar el área media de retales de la solución (IDE-0197; Ctrl+Alt+Shift+F12).
+- Próximo: IDE-0198 (clic en medr.; 0197 entregada;
+  IDE-0101 e IDE-0102 diferidas, sin costes). Cuadragésima segunda ola
+  0195…0198 abierta. Bloqueados sin reanudar: DT-0006 C,
+  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+  LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 
