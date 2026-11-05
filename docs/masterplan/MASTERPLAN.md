@@ -255,9 +255,11 @@
   Ctrl+Alt+Shift+F12).
 - Clic en el área media de retales selecciona esa solución
   (IDE-0198 `#855`).
-- Planificado (cuadragésima tercera ola): área mediana de retales
-  (`mdnr.`/`medo`, IDE-0199…0201) y dimensiones del retal de área
-  mediana (`mdnd.`/`medd`, IDE-0202).
+- Barra de estado: área mediana de retales de la solución
+  seleccionada (IDE-0199).
+- Planificado: copiar el área mediana (IDE-0200), clic en `mdnr.`
+  (IDE-0201) y dimensiones del retal de área mediana
+  (`mdnd.`/`medd`, IDE-0202).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -299,7 +301,7 @@
    Cuadragésima ola cerrada (0190 entregada).
    Cuadragésima primera ola cerrada (0194 entregada).
    Cuadragésima segunda ola cerrada (0198 entregada).
-   Cuadragésima tercera ola abierta (0199…0202 planificadas).
+   Cuadragésima tercera ola 0199…0202: 0199 entregada; siguiente IDE-0200.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
