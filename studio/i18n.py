@@ -1670,6 +1670,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Área mediana de los retales de la solución seleccionada: {area}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_median_offcut_size": "mdnd. {size}",
+        "tip.status_solution_median_offcut_size": (
+            "Dimensiones del retal de área mediana de la solución seleccionada: {size}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -4047,6 +4051,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_median_offcut": (
             "Median offcut area of the selected solution: {area}. "
             "Click selects the solution"
+        ),
+        "status.solution_median_offcut_size": "medd {size}",
+        "tip.status_solution_median_offcut_size": (
+            "Median-area offcut size of the selected solution: {size}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
