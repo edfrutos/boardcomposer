@@ -80,8 +80,8 @@ def test_solution_mean_offcut_size_follows_the_selected_solution(qapp, tmp_path)
     assert window._solution_largest_offcut_size_label.text() == "maxd. 200 x 100 mm"
     assert "mm²" not in label.text()
     assert "área media" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "2/2 sol."
     window.eventFilter(label, _mouse(QEvent.Type.MouseButtonPress))
     window.eventFilter(label, _mouse(QEvent.Type.MouseButtonRelease))
@@ -150,5 +150,5 @@ def test_solution_mean_offcut_size_follows_the_selected_solution(qapp, tmp_path)
     window._retranslate_ui()
     assert label.text() == "avgd 100 x 50 mm"
     assert "mean-area offcut" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

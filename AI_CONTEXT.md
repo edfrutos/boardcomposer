@@ -214,8 +214,9 @@ alternativas comprensibles para que el usuario decida.
 - Clic en las dimensiones del retal de área mediana selecciona esa solución (IDE-0204).
 - Barra de estado: dimensiones del retal de área media (IDE-0205; `mdds.`/`avgd`).
 - Copiar las dimensiones del retal de área media (IDE-0206; Ctrl+Alt+Shift+[).
-- Próximo: cola vacía; siguiente Merge OK abre ola 45 (0206 cierra
-  0203…0206; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
+- Clic en las dimensiones del retal de área media selecciona esa solución (IDE-0207).
+- Próximo: IDE-0208 (amplitud de áreas `ampr.`/`spno`; 0207 entregada;
+  ola 45 0207…0210; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
   sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.

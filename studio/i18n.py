@@ -1693,7 +1693,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_mean_offcut_size": "mdds. {size}",
         "tip.status_solution_mean_offcut_size": (
-            "Dimensiones del retal de área media de la solución seleccionada: {size}"
+            "Dimensiones del retal de área media de la solución seleccionada: {size}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -4108,7 +4109,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_mean_offcut_size": "avgd {size}",
         "tip.status_solution_mean_offcut_size": (
-            "Mean-area offcut size of the selected solution: {size}"
+            "Mean-area offcut size of the selected solution: {size}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
