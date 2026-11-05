@@ -212,8 +212,9 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: dimensiones del retal de área mediana (IDE-0202).
 - Copiar las dimensiones del retal de área mediana (IDE-0203; Ctrl+Alt+Shift+=).
 - Clic en las dimensiones del retal de área mediana selecciona esa solución (IDE-0204).
-- Próximo: IDE-0205 (dimensiones del retal de área media `mdds.`/`avgd`;
-  0204 entregada; ola 44 0203…0206; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
+- Barra de estado: dimensiones del retal de área media (IDE-0205; `mdds.`/`avgd`).
+- Próximo: IDE-0206 (copiar `mdds.`/`avgd`; 0205 entregada; ola 44 0203…0206;
+  IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
   sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
