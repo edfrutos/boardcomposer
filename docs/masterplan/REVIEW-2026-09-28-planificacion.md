@@ -434,10 +434,10 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0202 | Barra: dimensiones del retal de área mediana | Entregado; `mdnd. {size}` / `medd {size}`; `_format_size` del retal de área mediana; oculta si no hay retales; sin clic |
 | IDE-0203 | Copiar las dimensiones del retal de área mediana | Entregado; Ctrl+Alt+Shift+=; el L×A, sin `mdnd.`; no avanza |
 | IDE-0204 | Clic en las dimensiones del retal de área mediana selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0205 | Barra: dimensiones del retal de área media | Planificado; `mdds. {size}` / `avgd {size}`; retal más próximo a la media; oculta si no hay retales; sin clic |
+| IDE-0205 | Barra: dimensiones del retal de área media | Entregado; `mdds. {size}` / `avgd {size}`; retal más próximo a la media; oculta si no hay retales; sin clic |
 | IDE-0206 | Copiar las dimensiones del retal de área media | Planificado; Ctrl+Alt+Shift+[; el L×A, sin `mdds.`; no avanza |
 
-Prioridad de ataque: **IDE-0205** (0204 entregada; ola 44 0203…0206; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0206** (0205 entregada; ola 44 0203…0206; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

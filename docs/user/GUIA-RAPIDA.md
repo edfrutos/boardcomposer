@@ -629,6 +629,11 @@ Chrome de Studio (se recuerda entre sesiones).
   unidades de Preferencias.
   **Ctrl+Alt+Shift+=** copia el L×A con unidad, sin
   `mdnd.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  Las dimensiones del retal de área media van como
+  `mdds. 100 x 50 mm` (en inglés `avgd 100 x 50 mm`). Oculta si
+  no hay retales (como `n ret.` y `medr.`; distinta de `medr.`,
+  `mdnd.`, `maxd.` y `mind.`). Cursor flecha. Sin clic. Sigue las
+  unidades de Preferencias.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
