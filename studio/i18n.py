@@ -387,6 +387,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_median_offcut": (
             "Copiar área mediana de retales de la solución"
         ),
+        "action.copy_solution_median_offcut_size": (
+            "Copiar dimensiones del retal de área mediana"
+        ),
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -876,6 +879,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_median_offcut": (
             "Copiar el área mediana de retales de la solución "
             "(Ctrl+Alt+Shift+-); el área con unidad, sin mdnr.; "
+            "deshabilitado si la etiqueta está oculta; no avanza"
+        ),
+        "tip.copy_solution_median_offcut_size": (
+            "Copiar las dimensiones del retal de área mediana "
+            "(Ctrl+Alt+Shift+=); el L×A con unidad, sin mdnd.; "
             "deshabilitado si la etiqueta está oculta; no avanza"
         ),
         "tip.copy_inspector": (
@@ -1894,6 +1902,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_median_offcut": (
             "No hay área mediana de retales de la solución que copiar"
         ),
+        "status.solution_median_offcut_size_copied": (
+            "Dimensiones del retal de área mediana copiadas: {size}"
+        ),
+        "status.nothing_to_copy_solution_median_offcut_size": (
+            "No hay dimensiones del retal de área mediana que copiar"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -2819,6 +2833,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_median_offcut": (
             "Copy median offcut area of the solution"
         ),
+        "action.copy_solution_median_offcut_size": (
+            "Copy median-area offcut size of the solution"
+        ),
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -3294,6 +3311,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_median_offcut": (
             "Copy the status-bar median offcut area "
             "(Ctrl+Alt+Shift+-); the area with unit, without medo; disabled when "
+            "the label is hidden; does not step to the next solution"
+        ),
+        "tip.copy_solution_median_offcut_size": (
+            "Copy the status-bar median-area offcut size "
+            "(Ctrl+Alt+Shift+=); the L×W with unit, without medd; disabled when "
             "the label is hidden; does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -4237,6 +4259,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_median_offcut": (
             "No median offcut area of the solution to copy"
         ),
+        "status.solution_median_offcut_size_copied": (
+            "Solution median-area offcut size copied: {size}"
+        ),
+        "status.nothing_to_copy_solution_median_offcut_size": (
+            "No median-area offcut size of the solution to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -4867,6 +4895,7 @@ _ACTION_KEYS = (
     "copy_solution_smallest_offcut_size",
     "copy_solution_mean_offcut",
     "copy_solution_median_offcut",
+    "copy_solution_median_offcut_size",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

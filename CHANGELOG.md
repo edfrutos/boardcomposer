@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Copiar las dimensiones del retal de área mediana
+  (IDE-0203; **Ctrl+Alt+Shift+=**). Copia el L×A con unidad,
+  sin `mdnd.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Sigue las unidades de Preferencias.
+  Abre la cuadragésima cuarta ola 0203…0206 (0204 clic mdnd.;
+  0205/0206 dimensiones del retal de área media).
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: dimensiones del retal de área mediana
   (IDE-0202). `mdnd. {size}` (en inglés `medd {size}`) vía
   `_format_size` del retal de área mediana (orden área, largo,

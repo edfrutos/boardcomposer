@@ -210,8 +210,10 @@ alternativas comprensibles para que el usuario decida.
 - Copiar el área mediana de retales de la solución (IDE-0200; Ctrl+Alt+Shift+-).
 - Clic en el área mediana de retales selecciona esa solución (IDE-0201).
 - Barra de estado: dimensiones del retal de área mediana (IDE-0202).
-- Próximo: cola vacía; siguiente Merge OK abre ola 44 (0202 cierra
-  0199…0202; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
+- Copiar las dimensiones del retal de área mediana (IDE-0203; Ctrl+Alt+Shift+=).
+- Próximo: IDE-0204 (clic en mdnd.; 0203 entregada; ola 44 0203…0206:
+  0204 clic mdnd.; 0205/0206 dimensiones del retal de área media
+  `mdds.`/`avgd`; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
   sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
