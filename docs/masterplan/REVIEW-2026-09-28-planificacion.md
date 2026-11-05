@@ -430,10 +430,10 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0198 | Clic en el área media de retales selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0199 | Barra: área mediana de retales de la solución seleccionada | Entregado; `mdnr. {area}` / `medo {area}`; mediana de áreas; oculta si no hay retales; sin clic |
 | IDE-0200 | Copiar el área mediana de retales de la solución | Entregado; Ctrl+Alt+Shift+-; el valor, sin `mdnr.`; no avanza |
-| IDE-0201 | Clic en el área mediana de retales selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0201 | Clic en el área mediana de retales selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0202 | Barra: dimensiones del retal de área mediana | Planificado; `mdnd. {size}` / `medd {size}`; `_format_size` del retal de área mediana; oculta si no hay retales; sin clic |
 
-Prioridad de ataque: **IDE-0201** (0200 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0202** (0201 entregada; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

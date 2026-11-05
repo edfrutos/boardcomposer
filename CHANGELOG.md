@@ -4,6 +4,10 @@
 
 ## Añadido
 
+- Clic en el área mediana de retales selecciona esa solución
+  (IDE-0201). Cursor mano si está visible. Selecciona `solution:{index}`
+  en el explorador; no avanza ni aplica el layout; arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar el área mediana de retales de la solución
   (IDE-0200; **Ctrl+Alt+Shift+-**). Copia el área con unidad,
   sin `mdnr.`. Deshabilitado si la etiqueta está oculta. No

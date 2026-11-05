@@ -208,7 +208,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en el área media de retales selecciona esa solución (IDE-0198).
 - Barra de estado: área mediana de retales de la solución seleccionada (IDE-0199).
 - Copiar el área mediana de retales de la solución (IDE-0200; Ctrl+Alt+Shift+-).
-- Próximo: IDE-0201 (clic en mdnr.; 0200 entregada;
+- Clic en el área mediana de retales selecciona esa solución (IDE-0201).
+- Próximo: IDE-0202 (barra mdnd.; 0201 entregada;
   IDE-0101 e IDE-0102 diferidas, sin costes). Cuadragésima tercera ola
   0199…0202 abierta. Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;

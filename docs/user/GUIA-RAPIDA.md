@@ -617,7 +617,8 @@ Chrome de Studio (se recuerda entre sesiones).
   El área mediana de retales va como `mdnr. 5000 mm²` (en inglés
   `medo 5000 mm²`). Oculta si no hay retales (como `n ret.` y
   `medr.`; distinta de `medr.`, `minr.`, `maxr.`, `retár.` y
-  `ret%`). Cursor flecha. Sin clic. Sigue las unidades de Preferencias.
+  `ret%`). Cursor mano si está visible. Clic selecciona esa solución en el
+  explorador; no avanza; arrastre no. Sigue las unidades de Preferencias.
   **Ctrl+Alt+Shift+-** copia el área con unidad, sin
   `mdnr.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.

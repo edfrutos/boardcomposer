@@ -1667,7 +1667,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_median_offcut": "mdnr. {area}",
         "tip.status_solution_median_offcut": (
-            "Área mediana de los retales de la solución seleccionada: {area}"
+            "Área mediana de los retales de la solución seleccionada: {area}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -4044,7 +4045,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_median_offcut": "medo {area}",
         "tip.status_solution_median_offcut": (
-            "Median offcut area of the selected solution: {area}"
+            "Median offcut area of the selected solution: {area}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
