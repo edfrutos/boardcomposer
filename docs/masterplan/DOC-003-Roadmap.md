@@ -187,7 +187,7 @@ Objetivos:
   Cuadragésima primera ola cerrada (0194 entregada).
   Cuadragésima segunda ola cerrada (0198 entregada).
   Cuadragésima tercera ola cerrada (0202 entregada).
-  Cuadragésima cuarta ola 0203…0206: 0203 entregada; siguiente IDE-0204.
+  Cuadragésima cuarta ola 0203…0206: 0204 entregada; siguiente IDE-0205.
 - Cola producto IDE-0019…0024 cerrada en `0.4.3` (Skyline incluido).
 
 #### Prioridad P2
@@ -223,12 +223,12 @@ décima ola 0067…0070 cerrada; undécima ola 0071…0074 cerrada; duodécima o
 Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada
-(0094 entregada). Decimoséptima ola cerrada (0098 entregada). Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`). Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola cerrada (0142 entregada). Vigesimonovena ola cerrada (0146 entregada). Trigésima ola cerrada (0150 entregada). Trigésima primera ola cerrada (0154 entregada). Trigésima segunda ola cerrada (0158 entregada). Trigésima tercera ola cerrada (0162 entregada). Trigésima cuarta ola cerrada (0166 entregada). Trigésima quinta ola cerrada (0170 entregada). Trigésima sexta ola cerrada (0174 entregada). Trigésima séptima ola cerrada (0178 entregada). Trigésima octava ola cerrada (0182 entregada). Trigésima novena ola cerrada (0186 entregada). Cuadragésima ola cerrada (0190 entregada). Cuadragésima primera ola cerrada (0194 entregada). Cuadragésima segunda ola cerrada (0198 entregada). Cuadragésima tercera ola cerrada (0202 entregada). Cuadragésima cuarta ola 0203…0206: 0203 entregada; siguiente IDE-0204.
+(0094 entregada). Decimoséptima ola cerrada (0098 entregada). Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`). Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola cerrada (0142 entregada). Vigesimonovena ola cerrada (0146 entregada). Trigésima ola cerrada (0150 entregada). Trigésima primera ola cerrada (0154 entregada). Trigésima segunda ola cerrada (0158 entregada). Trigésima tercera ola cerrada (0162 entregada). Trigésima cuarta ola cerrada (0166 entregada). Trigésima quinta ola cerrada (0170 entregada). Trigésima sexta ola cerrada (0174 entregada). Trigésima séptima ola cerrada (0178 entregada). Trigésima octava ola cerrada (0182 entregada). Trigésima novena ola cerrada (0186 entregada). Cuadragésima ola cerrada (0190 entregada). Cuadragésima primera ola cerrada (0194 entregada). Cuadragésima segunda ola cerrada (0198 entregada). Cuadragésima tercera ola cerrada (0202 entregada). Cuadragésima cuarta ola 0203…0206: 0204 entregada; siguiente IDE-0205.
 Revisión: `REVIEW-2026-11-05-planificacion.md`.
 
 Pendiente de:
 
-- IDE-0204 (0203 entregada; ola 44 0203…0206; 0205/0206 propuestas: dimensiones del retal de área media; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
+- IDE-0205 (0204 entregada; ola 44 0203…0206; 0205/0206 dimensiones del retal de área media; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM;
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.

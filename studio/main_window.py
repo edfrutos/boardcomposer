@@ -1120,6 +1120,8 @@ class MainWindow(QMainWindow):
         self._solution_median_offcut_size_label.setObjectName(
             "statusSolutionMedianOffcutSize"
         )
+        self._solution_median_offcut_size_label_armed = False
+        self._solution_median_offcut_size_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -2484,6 +2486,44 @@ class MainWindow(QMainWindow):
                 if (
                     armed
                     and self._selected_solution_median_offcut_area_text() is not None
+                ):
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        solution_median_offcut_size = getattr(
+            self, "_solution_median_offcut_size_label", None
+        )
+        if (
+            solution_median_offcut_size is not None
+            and watched is solution_median_offcut_size
+        ):
+            can_select = self._selected_solution_median_offcut_size_text() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_median_offcut_size_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_median_offcut_size_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_median_offcut_size_label_armed
+                and not solution_median_offcut_size.rect().contains(
+                    event.position().toPoint()
+                )
+            ):
+                self._solution_median_offcut_size_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_median_offcut_size_label_armed
+                self._solution_median_offcut_size_label_armed = False
+                if (
+                    armed
+                    and self._selected_solution_median_offcut_size_text() is not None
                 ):
                     index = self.services.layout.selected_solution_index
                     if self._select_explorer_solution(index):
@@ -5412,7 +5452,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.solution_median_offcut_size", size=size))
         label.setToolTip(self._tr("tip.status_solution_median_offcut_size", size=size))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_solution_status(self) -> None:

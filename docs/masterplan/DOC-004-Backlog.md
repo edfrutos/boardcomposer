@@ -274,7 +274,7 @@ Observaciones:
 | IDE-0201 | Clic en el área mediana de retales selecciona su solución | 🟢 | P3 |
 | IDE-0202 | Barra: dimensiones del retal de área mediana | 🟢 | P3 |
 | IDE-0203 | Copiar las dimensiones del retal de área mediana | 🟢 | P3 |
-| IDE-0204 | Clic en las dimensiones del retal de área mediana selecciona su solución | 🔵 | P3 |
+| IDE-0204 | Clic en las dimensiones del retal de área mediana selecciona su solución | 🟢 | P3 |
 | IDE-0205 | Barra: dimensiones del retal de área media | 🔵 | P3 |
 | IDE-0206 | Copiar las dimensiones del retal de área media | 🔵 | P3 |
 
@@ -474,7 +474,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0201 | S | IDE-0199 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0202 | S | IDE-0199 | Entregado; `mdnd. {size}` / `medd {size}` vía `_format_size` del retal de área mediana (orden `(area, length, width)`; n impar → medio; n par → el inferior de los dos centrales); oculta si no hay retales; distinta de `mdnr.`, `maxd.` y `mind.`; sin clic |
 | IDE-0203 | S | IDE-0202 | Entregado; Ctrl+Alt+Shift+=; el L×A, sin `mdnd.`; no avanza |
-| IDE-0204 | S | IDE-0202 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0204 | S | IDE-0202 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0205 | S | IDE-0196 | Planificado; `mdds. {size}` / `avgd {size}` vía `_format_size` del retal cuya área está más próxima a la media (empate: menor `(length, width)`); oculta si no hay retales; distinta de `medr.`, `mdnd.`, `maxd.` y `mind.`; sin clic |
 | IDE-0206 | S | IDE-0205 | Planificado; Ctrl+Alt+Shift+[; el L×A, sin `mdds.`; no avanza |
 
@@ -537,14 +537,14 @@ Cuadragésima ola cerrada (0190 entregada).
 Cuadragésima primera ola cerrada (0194 entregada).
 Cuadragésima segunda ola cerrada (0198 entregada).
 Cuadragésima tercera ola cerrada (0202 entregada).
-Cuadragésima cuarta ola 0203…0206: 0203 entregada; siguiente IDE-0204.
+Cuadragésima cuarta ola 0203…0206: 0204 entregada; siguiente IDE-0205.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-05-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0204 (0203 entregada; ola 44 0203…0206;
+1. Cola producto `0.4.4`: IDE-0205 (0204 entregada; ola 44 0203…0206;
    0205/0206 dimensiones del retal de área media `mdds.`/`avgd`;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
