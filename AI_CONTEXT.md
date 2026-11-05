@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-11-04-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-11-05-planificacion.md`.
 - Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -206,11 +206,11 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: área media de retales de la solución seleccionada (IDE-0196).
 - Copiar el área media de retales de la solución (IDE-0197; Ctrl+Alt+Shift+F12).
 - Clic en el área media de retales selecciona esa solución (IDE-0198).
-- Próximo: cola vacía; siguiente Merge OK abre ola 43 (0198 cierra
-  0195…0198; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
-  sin reanudar: DT-0006 C,
-  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
-  LLM / plugins / C bloqueados.
+- Próximo: cuadragésima tercera ola IDE-0199…0202 🔵 (área mediana
+  `mdnr.`/`medo` show/copy/clic + dimensiones `mdnd.`/`medd`;
+  IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar:
+  DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval
+  IDE-0007 cerrada; LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 

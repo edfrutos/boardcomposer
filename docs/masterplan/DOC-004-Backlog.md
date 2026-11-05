@@ -269,6 +269,10 @@ Observaciones:
 | IDE-0196 | Barra: área media de retales de la solución seleccionada | 🟢 | P3 |
 | IDE-0197 | Copiar el área media de retales de la solución | 🟢 | P3 |
 | IDE-0198 | Clic en el área media de retales selecciona su solución | 🟢 | P3 |
+| IDE-0199 | Barra: área mediana de retales de la solución seleccionada | 🔵 | P3 |
+| IDE-0200 | Copiar el área mediana de retales de la solución | 🔵 | P3 |
+| IDE-0201 | Clic en el área mediana de retales selecciona su solución | 🔵 | P3 |
+| IDE-0202 | Barra: dimensiones del retal de área mediana | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -460,7 +464,11 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0195 | S | IDE-0193 | Entregado `#850`; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0196 | S | IDE-0187 | Entregado `#852`; `medr. {area}` / `avgo {area}` media de áreas; oculta si no hay retales; distinta de `minr.`, `maxr.` y `retár.`; sin clic |
 | IDE-0197 | S | IDE-0196 | Entregado `#853`; Ctrl+Alt+Shift+F12; el valor, sin `medr.`; no avanza |
-| IDE-0198 | S | IDE-0196 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0198 | S | IDE-0196 | Entregado `#855`; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0199 | S | IDE-0196 | Planificado; `mdnr. {area}` / `medo {area}` mediana de áreas; oculta si no hay retales; distinta de `medr.`, `minr.`, `maxr.` y `retár.`; sin clic |
+| IDE-0200 | S | IDE-0199 | Planificado; Ctrl+Alt+Shift+-; el valor, sin `mdnr.`; no avanza |
+| IDE-0201 | S | IDE-0199 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0202 | S | IDE-0199 | Planificado; `mdnd. {size}` / `medd {size}` vía `_format_size` del retal de área mediana (orden `(area, length, width)`; n impar → medio; n par → el inferior de los dos centrales); oculta si no hay retales; distinta de `mdnr.`, `maxd.` y `mind.`; sin clic |
 
 ---
 
@@ -520,13 +528,15 @@ Trigésima novena ola cerrada (0186 entregada).
 Cuadragésima ola cerrada (0190 entregada).
 Cuadragésima primera ola cerrada (0194 entregada).
 Cuadragésima segunda ola cerrada (0198 entregada).
+Cuadragésima tercera ola abierta (0199…0202 planificadas).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-11-04-planificacion.md`.
+`REVIEW-2026-11-05-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` vacía (0198 cierra 0195…0198; siguiente Merge OK abre ola 43;
+1. Cola producto `0.4.4` cuadragésima tercera ola — IDE-0199…0202 🔵
+   (área mediana `mdnr.`/`medo` show/copy/clic + dimensiones `mdnd.`/`medd`;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).

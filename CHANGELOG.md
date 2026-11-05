@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-11-04
+## Unreleased — 0.4.4.dev0 — 2026-11-05
 
 ## Añadido
 
@@ -345,6 +345,11 @@
 
 ## Documentación
 
+- Snapshot de planificación `REVIEW-2026-11-05-planificacion.md`:
+  IDE-0195…0198 🟢 `#850`/`#852`/`#853`/`#855`; cola vacía + Issues = 0 →
+  cuadragésima tercera ola IDE-0199…0202 🔵 (área mediana `mdnr.`/`medo`
+  show/copy/clic + dimensiones `mdnd.`/`medd`). `#854` /
+  `REVIEW-2026-11-04` queda histórico.
 - Snapshot de planificación `REVIEW-2026-11-01-planificacion.md`:
   IDE-0185…0187 🟢 `#838`/`#840`/`#841`; producto `#842` IDE-0188 🟡 +
   IDE-0189…0190 🔵 (cuadragésima ola); Issues = 0;
