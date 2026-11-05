@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Barra de estado: amplitud de áreas de retales de la solución
+  seleccionada (IDE-0208). `ampr. {area}` (en inglés `spno {area}`)
+  es la mayor área de retal menos la menor. Oculta si no hay
+  retales (como `n ret.`; distinta de `maxr.`, `minr.` y `retár.`).
+  Con un solo retal se muestra `0`. Cursor flecha. Sin clic.
+  Sigue las unidades de Preferencias.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en las dimensiones del retal de área media selecciona esa
   solución (IDE-0207). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;
