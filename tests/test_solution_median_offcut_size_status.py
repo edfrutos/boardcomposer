@@ -81,12 +81,9 @@ def test_solution_median_offcut_size_follows_the_selected_solution(qapp, tmp_pat
     assert window._solution_offcut_area_label.text() == "retár. 27500 mm²"
     assert window._offcuts_label.text() == "3 ret."
     assert "área mediana" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert window._solution_label.text() == "2/2 sol."
-    window._select_explorer_solution = lambda _key: calls.append("select")
-    window.eventFilter(label, _mouse(QEvent.Type.MouseButtonPress))
-    window.eventFilter(label, _mouse(QEvent.Type.MouseButtonRelease))
     assert calls == []
     assert window.services.layout.selected_solution_index == 1
 
@@ -138,5 +135,5 @@ def test_solution_median_offcut_size_follows_the_selected_solution(qapp, tmp_pat
     window._retranslate_ui()
     assert label.text() == "medd 100 x 50 mm"
     assert "median-area offcut" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

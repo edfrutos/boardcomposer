@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en las dimensiones del retal de área mediana selecciona esa
+  solución (IDE-0204). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar las dimensiones del retal de área mediana
   (IDE-0203; **Ctrl+Alt+Shift+=**). Copia el L×A con unidad,
   sin `mdnd.`. Deshabilitado si la etiqueta está oculta. No
