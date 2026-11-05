@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Clic en las dimensiones del retal de área media selecciona esa
+  solución (IDE-0207). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no.
+  Abre la cuadragésima quinta ola 0207…0210 (0208 amplitud de áreas
+  `ampr.`/`spno`; 0209 copiar; 0210 clic).
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar las dimensiones del retal de área media
   (IDE-0206; **Ctrl+Alt+Shift+[**). Copia el L×A con unidad,
   sin `mdds.`. Deshabilitado si la etiqueta está oculta. No
