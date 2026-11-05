@@ -206,11 +206,12 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: área media de retales de la solución seleccionada (IDE-0196).
 - Copiar el área media de retales de la solución (IDE-0197; Ctrl+Alt+Shift+F12).
 - Clic en el área media de retales selecciona esa solución (IDE-0198).
-- Próximo: cuadragésima tercera ola IDE-0199…0202 🔵 (área mediana
-  `mdnr.`/`medo` show/copy/clic + dimensiones `mdnd.`/`medd`;
-  IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar:
-  DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval
-  IDE-0007 cerrada; LLM / plugins / C bloqueados.
+- Barra de estado: área mediana de retales de la solución seleccionada (IDE-0199).
+- Próximo: IDE-0200 (copiar mdnr. Ctrl+Alt+Shift+-; 0199 entregada;
+  IDE-0101 e IDE-0102 diferidas, sin costes). Cuadragésima tercera ola
+  0199…0202 abierta. Bloqueados sin reanudar: DT-0006 C,
+  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+  LLM / plugins / C bloqueados.
 
 ## Fuentes de verdad
 

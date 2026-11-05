@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Barra de estado: área mediana de retales de la solución
+  seleccionada (IDE-0199). `mdnr. {area}` (en inglés `medo {area}`)
+  mediana de las áreas de retales. Oculta si no hay retales
+  (como `n ret.` y `medr.`; distinta de `medr.`, `minr.`, `maxr.`
+  y `retár.`). Cursor flecha. Sin clic. Sigue las unidades
+  de Preferencias.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en el área media de retales selecciona esa solución
   (IDE-0198). Cursor mano si está visible. Selecciona `solution:{index}`
   en el explorador; no avanza ni aplica el layout; arrastre no.

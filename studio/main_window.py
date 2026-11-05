@@ -1,6 +1,7 @@
 """Main window for BoardComposer Studio."""
 
 from pathlib import Path
+from statistics import median
 
 from PySide6.QtCore import QByteArray, QEvent, QPoint, QSize, Qt, QTimer
 from PySide6.QtGui import QAction, QBrush, QCloseEvent, QColor, QIcon
@@ -1103,6 +1104,8 @@ class MainWindow(QMainWindow):
         self._solution_mean_offcut_label.setObjectName("statusSolutionMeanOffcut")
         self._solution_mean_offcut_label_armed = False
         self._solution_mean_offcut_label.installEventFilter(self)
+        self._solution_median_offcut_label = QLabel()
+        self._solution_median_offcut_label.setObjectName("statusSolutionMedianOffcut")
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1161,6 +1164,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_largest_offcut_size_label)
         status.addPermanentWidget(self._solution_smallest_offcut_size_label)
         status.addPermanentWidget(self._solution_mean_offcut_label)
+        status.addPermanentWidget(self._solution_median_offcut_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -5298,6 +5302,34 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_median_offcut_area_text(self) -> str | None:
+        """Formatted median offcut area of the selected solution, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None or not solution.offcuts:
+            return None
+        return self._format_area(
+            float(median(offcut.area_mm2 for offcut in solution.offcuts))
+        )
+
+    def _update_solution_median_offcut_status(self) -> None:
+        """Show median offcut area of the selected solution (IDE-0199)."""
+        label = getattr(self, "_solution_median_offcut_label", None)
+        if label is None:
+            return
+        area = self._selected_solution_median_offcut_area_text()
+        if area is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_median_offcut", area=area))
+        label.setToolTip(self._tr("tip.status_solution_median_offcut", area=area))
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
@@ -5334,6 +5366,7 @@ class MainWindow(QMainWindow):
         self._update_solution_largest_offcut_size_status()
         self._update_solution_smallest_offcut_size_status()
         self._update_solution_mean_offcut_status()
+        self._update_solution_median_offcut_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
