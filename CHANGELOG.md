@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar el área mediana de retales de la solución
+  (IDE-0200; **Ctrl+Alt+Shift+-**). Copia el área con unidad,
+  sin `mdnr.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Sigue las unidades de Preferencias.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: área mediana de retales de la solución
   seleccionada (IDE-0199). `mdnr. {area}` (en inglés `medo {area}`)
   mediana de las áreas de retales. Oculta si no hay retales
