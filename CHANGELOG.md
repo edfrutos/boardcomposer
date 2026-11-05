@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Copiar las dimensiones del retal de área media
+  (IDE-0206; **Ctrl+Alt+Shift+[**). Copia el L×A con unidad,
+  sin `mdds.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Sigue las unidades de Preferencias.
+  Cierra la cuadragésima cuarta ola 0203…0206.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: dimensiones del retal de área media
   (IDE-0205). `mdds. {size}` (en inglés `avgd {size}`) vía
   `_format_size` del retal cuya área está más próxima a la media

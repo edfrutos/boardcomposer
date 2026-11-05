@@ -88,6 +88,7 @@ STUDIO_SHORTCUTS: tuple[ShortcutBinding, ...] = (
         "Ctrl+Alt+Shift+=",
         ("Ctrl+Alt+Shift++",),
     ),
+    ShortcutBinding("copy_solution_mean_offcut_size", "Ctrl+Alt+Shift+["),
     ShortcutBinding("copy_inspector", "Ctrl+Alt+I"),
     ShortcutBinding("duplicate_piece", "Ctrl+D"),
     ShortcutBinding("delete_piece", "Backspace", ("Delete",)),
