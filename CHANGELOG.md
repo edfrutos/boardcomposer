@@ -4,6 +4,26 @@
 
 ## Añadido
 
+- Barra de estado: dimensiones del retal de área media
+  (IDE-0205). `mdds. {size}` (en inglés `avgd {size}`) vía
+  `_format_size` del retal cuya área está más próxima a la media
+  (empate: menor largo y, si persiste, menor ancho). Oculta si no
+  hay retales (como `n ret.` y `medr.`; distinta de `medr.`,
+  `mdnd.`, `maxd.` y `mind.`). Cursor flecha. Sin clic. Sigue las
+  unidades de Preferencias.
+  Sin bump `.bcproj`; no cambia el solver.
+- Clic en las dimensiones del retal de área mediana selecciona esa
+  solución (IDE-0204). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
+- Copiar las dimensiones del retal de área mediana
+  (IDE-0203; **Ctrl+Alt+Shift+=**). Copia el L×A con unidad,
+  sin `mdnd.`. Deshabilitado si la etiqueta está oculta. No
+  avanza. Sigue las unidades de Preferencias.
+  Abre la cuadragésima cuarta ola 0203…0206 (0204 clic mdnd.;
+  0205/0206 dimensiones del retal de área media).
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: dimensiones del retal de área mediana
   (IDE-0202). `mdnd. {size}` (en inglés `medd {size}`) vía
   `_format_size` del retal de área mediana (orden área, largo,

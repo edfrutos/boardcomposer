@@ -283,6 +283,7 @@ class MainWindow(QMainWindow):
         )
         self._menus["edit"].addAction(self._actions["copy_solution_mean_offcut"])
         self._menus["edit"].addAction(self._actions["copy_solution_median_offcut"])
+        self._menus["edit"].addAction(self._actions["copy_solution_median_offcut_size"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -514,6 +515,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_solution_median_offcut"].triggered.connect(
             self._copy_solution_median_offcut
+        )
+        self._actions["copy_solution_median_offcut_size"].triggered.connect(
+            self._copy_solution_median_offcut_size
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -1116,6 +1120,12 @@ class MainWindow(QMainWindow):
         self._solution_median_offcut_size_label.setObjectName(
             "statusSolutionMedianOffcutSize"
         )
+        self._solution_median_offcut_size_label_armed = False
+        self._solution_median_offcut_size_label.installEventFilter(self)
+        self._solution_mean_offcut_size_label = QLabel()
+        self._solution_mean_offcut_size_label.setObjectName(
+            "statusSolutionMeanOffcutSize"
+        )
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1176,6 +1186,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_mean_offcut_label)
         status.addPermanentWidget(self._solution_median_offcut_label)
         status.addPermanentWidget(self._solution_median_offcut_size_label)
+        status.addPermanentWidget(self._solution_mean_offcut_size_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -2480,6 +2491,44 @@ class MainWindow(QMainWindow):
                 if (
                     armed
                     and self._selected_solution_median_offcut_area_text() is not None
+                ):
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        solution_median_offcut_size = getattr(
+            self, "_solution_median_offcut_size_label", None
+        )
+        if (
+            solution_median_offcut_size is not None
+            and watched is solution_median_offcut_size
+        ):
+            can_select = self._selected_solution_median_offcut_size_text() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_median_offcut_size_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_median_offcut_size_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_median_offcut_size_label_armed
+                and not solution_median_offcut_size.rect().contains(
+                    event.position().toPoint()
+                )
+            ):
+                self._solution_median_offcut_size_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_median_offcut_size_label_armed
+                self._solution_median_offcut_size_label_armed = False
+                if (
+                    armed
+                    and self._selected_solution_median_offcut_size_text() is not None
                 ):
                     index = self.services.layout.selected_solution_index
                     if self._select_explorer_solution(index):
@@ -5395,6 +5444,7 @@ class MainWindow(QMainWindow):
 
     def _update_solution_median_offcut_size_status(self) -> None:
         """Show median-area offcut size of the selected solution (IDE-0202)."""
+        self._sync_copy_solution_median_offcut_size_action()
         label = getattr(self, "_solution_median_offcut_size_label", None)
         if label is None:
             return
@@ -5407,6 +5457,41 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.solution_median_offcut_size", size=size))
         label.setToolTip(self._tr("tip.status_solution_median_offcut_size", size=size))
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
+        label.show()
+
+    def _selected_solution_mean_offcut_size_text(self) -> str | None:
+        """Formatted L×W of the offcut closest to the mean area, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None or not solution.offcuts:
+            return None
+        mean = solution.total_offcut_area_mm2 / len(solution.offcuts)
+        chosen = min(
+            solution.offcuts,
+            key=lambda offcut: (
+                abs(offcut.area_mm2 - mean),
+                offcut.length_mm,
+                offcut.width_mm,
+            ),
+        )
+        return self._format_size(chosen.length_mm, chosen.width_mm)
+
+    def _update_solution_mean_offcut_size_status(self) -> None:
+        """Show mean-area offcut size of the selected solution (IDE-0205)."""
+        label = getattr(self, "_solution_mean_offcut_size_label", None)
+        if label is None:
+            return
+        size = self._selected_solution_mean_offcut_size_text()
+        if size is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_mean_offcut_size", size=size))
+        label.setToolTip(self._tr("tip.status_solution_mean_offcut_size", size=size))
         label.setCursor(Qt.CursorShape.ArrowCursor)
         label.show()
 
@@ -5448,6 +5533,7 @@ class MainWindow(QMainWindow):
         self._update_solution_mean_offcut_status()
         self._update_solution_median_offcut_status()
         self._update_solution_median_offcut_size_status()
+        self._update_solution_mean_offcut_size_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return
@@ -10204,6 +10290,31 @@ class MainWindow(QMainWindow):
             return
         self._copy_text_to_clipboard(area)
         self._status("status.solution_median_offcut_copied", area=area)
+
+    def _sync_copy_solution_median_offcut_size_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_median_offcut_size")
+        if action is None:
+            return
+        enabled = self._selected_solution_median_offcut_size_text() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_median_offcut_size"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_median_offcut_size")
+        )
+
+    def _copy_solution_median_offcut_size(self, _checked: bool = False) -> None:
+        """Copy the status-bar median-area offcut size (IDE-0203)."""
+        del _checked
+        size = self._selected_solution_median_offcut_size_text()
+        if size is None:
+            self._status("status.nothing_to_copy_solution_median_offcut_size")
+            return
+        self._copy_text_to_clipboard(size)
+        self._status("status.solution_median_offcut_size_copied", size=size)
 
     def _sync_copy_offcuts_action(self) -> None:
         actions = getattr(self, "_actions", None)

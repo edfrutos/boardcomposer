@@ -263,6 +263,12 @@
   (IDE-0201).
 - Barra de estado: dimensiones del retal de área mediana
   (IDE-0202).
+- Copiar las dimensiones del retal de área mediana (IDE-0203;
+  Ctrl+Alt+Shift+=).
+- Clic en las dimensiones del retal de área mediana selecciona esa
+  solución (IDE-0204).
+- Barra de estado: dimensiones del retal de área media (IDE-0205).
+- Planificado: copiar `mdds.`/`avgd` (IDE-0206).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -305,6 +311,7 @@
    Cuadragésima primera ola cerrada (0194 entregada).
    Cuadragésima segunda ola cerrada (0198 entregada).
    Cuadragésima tercera ola cerrada (0202 entregada).
+   Cuadragésima cuarta ola 0203…0206: 0205 entregada; siguiente IDE-0206.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
