@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar la amplitud de áreas de retales de la solución
+  (IDE-0209; **Ctrl+Alt+Shift+]**). Copia el área con unidad,
+  sin `ampr.` (en inglés sin `spno`). Deshabilitado si la
+  etiqueta está oculta. Con un retal copia `0`. No avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: amplitud de áreas de retales de la solución
   seleccionada (IDE-0208). `ampr. {area}` (en inglés `spno {area}`)
   es la mayor área de retal menos la menor. Oculta si no hay
