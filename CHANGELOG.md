@@ -4,6 +4,16 @@
 
 ## Añadido
 
+- Barra de estado: cuota del mayor retal sobre el área total de
+  retales de la solución seleccionada (IDE-0211). `cmay. {value}`
+  (en inglés `lsh {value}`) es la mayor área partida por la suma.
+  Oculta si no hay retales (como `maxr.`; distinta de `maxr.`,
+  `retár.`, `ret%` y `ampr.`). Con un retal se muestra `100.0%`.
+  No sigue las unidades de Preferencias. Cursor flecha. Sin clic.
+  Abre la cuadragésima sexta ola 0211…0214 (0212 copiar,
+  Ctrl+Alt+Shift y barra invertida; 0213 clic; 0214 cuota del
+  menor retal `cmen.`/`ssh`).
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la amplitud de áreas de retales selecciona esa
   solución (IDE-0210). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;

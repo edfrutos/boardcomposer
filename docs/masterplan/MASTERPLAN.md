@@ -277,6 +277,9 @@
   Ctrl+Alt+Shift+]).
 - Clic en la amplitud de áreas de retales selecciona esa
   solución (IDE-0210).
+- Barra de estado: cuota del mayor retal (IDE-0211).
+- Planificado: copiar `cmay.`/`lsh` (IDE-0212), clic (IDE-0213) y
+  cuota del menor `cmen.`/`ssh` (IDE-0214).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -321,6 +324,7 @@
    Cuadragésima tercera ola cerrada (0202 entregada).
    Cuadragésima cuarta ola cerrada (0206 entregada).
    Cuadragésima quinta ola cerrada (0210 entregada).
+   Cuadragésima sexta ola 0211…0214: 0211 entregada; siguiente IDE-0212.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
