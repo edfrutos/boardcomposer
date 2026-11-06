@@ -438,10 +438,10 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0206 | Copiar las dimensiones del retal de área media | Entregado; Ctrl+Alt+Shift+[; el L×A, sin `mdds.`; no avanza |
 | IDE-0207 | Clic en las dimensiones del retal de área media selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0208 | Barra: amplitud de áreas de retales de la solución seleccionada | Entregado; `ampr. {area}` / `spno {area}`; mayor − menor; oculta si no hay retales; sin clic |
-| IDE-0209 | Copiar la amplitud de áreas de retales de la solución | Planificado; Ctrl+Alt+Shift+]; el valor, sin `ampr.`; no avanza |
+| IDE-0209 | Copiar la amplitud de áreas de retales de la solución | Entregado; Ctrl+Alt+Shift+]; el valor, sin `ampr.`; no avanza |
 | IDE-0210 | Clic en la amplitud de áreas de retales selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: **IDE-0209** (0208 entregada; ola 45 0207…0210; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0210** (0209 entregada; ola 45 0207…0210; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
