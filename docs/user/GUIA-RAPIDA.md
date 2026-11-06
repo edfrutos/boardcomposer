@@ -637,6 +637,11 @@ Chrome de Studio (se recuerda entre sesiones).
   unidades de Preferencias.
   **Ctrl+Alt+Shift+[** copia el L×A con unidad, sin
   `mdds.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  La amplitud de áreas de retales va como `ampr. 17500 mm²`
+  (en inglés `spno 17500 mm²`): mayor área menos menor. Oculta si
+  no hay retales (distinta de `maxr.`, `minr.` y `retár.`). Con un
+  solo retal se muestra `0`. Cursor flecha. Sin clic. Sigue las
+  unidades de Preferencias.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

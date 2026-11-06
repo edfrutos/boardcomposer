@@ -278,7 +278,7 @@ Observaciones:
 | IDE-0205 | Barra: dimensiones del retal de área media | 🟢 | P3 |
 | IDE-0206 | Copiar las dimensiones del retal de área media | 🟢 | P3 |
 | IDE-0207 | Clic en las dimensiones del retal de área media selecciona su solución | 🟢 | P3 |
-| IDE-0208 | Barra: amplitud de áreas de retales de la solución seleccionada | 🟡 | P3 |
+| IDE-0208 | Barra: amplitud de áreas de retales de la solución seleccionada | 🟢 | P3 |
 | IDE-0209 | Copiar la amplitud de áreas de retales de la solución | 🔵 | P3 |
 | IDE-0210 | Clic en la amplitud de áreas de retales selecciona su solución | 🔵 | P3 |
 
@@ -482,7 +482,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0205 | S | IDE-0196 | Entregado; `mdds. {size}` / `avgd {size}` vía `_format_size` del retal cuya área está más próxima a la media (empate: menor `(length, width)`); oculta si no hay retales; distinta de `medr.`, `mdnd.`, `maxd.` y `mind.`; sin clic |
 | IDE-0206 | S | IDE-0205 | Entregado; Ctrl+Alt+Shift+[; el L×A, sin `mdds.`; no avanza |
 | IDE-0207 | S | IDE-0205 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0208 | S | IDE-0184 | En curso `#866`; `ampr. {area}` / `spno {area}` = mayor área − menor área; oculta si no hay retales; `0` se muestra con un retal; distinta de `maxr.`, `minr.` y `retár.`; sin clic |
+| IDE-0208 | S | IDE-0184 | Entregado; `ampr. {area}` / `spno {area}` = mayor área − menor área; oculta si no hay retales; `0` se muestra con un retal; distinta de `maxr.`, `minr.` y `retár.`; sin clic |
 | IDE-0209 | S | IDE-0208 | Planificado; Ctrl+Alt+Shift+]; el valor, sin `ampr.`; no avanza |
 | IDE-0210 | S | IDE-0208 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
@@ -546,18 +546,16 @@ Cuadragésima primera ola cerrada (0194 entregada).
 Cuadragésima segunda ola cerrada (0198 entregada).
 Cuadragésima tercera ola cerrada (0202 entregada).
 Cuadragésima cuarta ola cerrada (0206 entregada).
-Cuadragésima quinta ola 0207…0210: 0207 entregada; 0208 en curso `#866`;
-siguiente IDE-0209 tras merge.
+Cuadragésima quinta ola 0207…0210: 0208 entregada; siguiente IDE-0209.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-06-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: cerrar IDE-0208 🟡 `#866` (ola 45 0207…0210;
-   amplitud de áreas de retales `ampr.`/`spno`); luego IDE-0209
-   (copiar) y IDE-0210 (clic);
-   IDE-0101 e IDE-0102 diferidas, sin costes.
+1. Cola producto `0.4.4`: IDE-0209 (0208 entregada; ola 45 0207…0210;
+   copiar `ampr.`/`spno`; luego IDE-0210 clic;
+   IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.

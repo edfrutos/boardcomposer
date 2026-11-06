@@ -214,10 +214,10 @@ alternativas comprensibles para que el usuario decida.
 - Clic en las dimensiones del retal de área mediana selecciona esa solución (IDE-0204).
 - Barra de estado: dimensiones del retal de área media (IDE-0205; `mdds.`/`avgd`).
 - Copiar las dimensiones del retal de área media (IDE-0206; Ctrl+Alt+Shift+[).
-- Clic en las dimensiones del retal de área media selecciona esa solución (IDE-0207 `#865`).
-- En curso: IDE-0208 🟡 `#866` (amplitud de áreas `ampr.`/`spno`);
-  luego IDE-0209 (copiar) y IDE-0210 (clic); ola 45 0207…0210;
-  IDE-0101 e IDE-0102 diferidas, sin costes. Bloqueados
+- Clic en las dimensiones del retal de área media selecciona esa solución (IDE-0207).
+- Barra de estado: amplitud de áreas de retales (IDE-0208; `ampr.`/`spno`).
+- Próximo: IDE-0209 (copiar `ampr.`/`spno`; 0208 entregada; ola 45
+  0207…0210; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
   sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
