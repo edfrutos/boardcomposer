@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-11-05.
+Última revisión: 2026-11-06.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-11-05-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-11-06-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -271,7 +271,7 @@
 - Copiar las dimensiones del retal de área media (IDE-0206;
   Ctrl+Alt+Shift+[).
 - Clic en las dimensiones del retal de área media selecciona esa
-  solución (IDE-0207).
+ solución (IDE-0207).
 - Barra de estado: amplitud de áreas de retales (IDE-0208).
 - Planificado: copiar `ampr.`/`spno` (IDE-0209) y clic (IDE-0210).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).

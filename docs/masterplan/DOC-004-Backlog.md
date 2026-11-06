@@ -549,7 +549,7 @@ Cuadragésima cuarta ola cerrada (0206 entregada).
 Cuadragésima quinta ola 0207…0210: 0208 entregada; siguiente IDE-0209.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-11-05-planificacion.md`.
+`REVIEW-2026-11-06-planificacion.md`.
 
 Próximo foco:
 
