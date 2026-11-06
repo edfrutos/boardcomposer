@@ -1140,6 +1140,8 @@ class MainWindow(QMainWindow):
         self._solution_offcut_area_span_label.setObjectName(
             "statusSolutionOffcutAreaSpan"
         )
+        self._solution_offcut_area_span_label_armed = False
+        self._solution_offcut_area_span_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -2582,6 +2584,44 @@ class MainWindow(QMainWindow):
                 if (
                     armed
                     and self._selected_solution_mean_offcut_size_text() is not None
+                ):
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        solution_offcut_area_span = getattr(
+            self, "_solution_offcut_area_span_label", None
+        )
+        if (
+            solution_offcut_area_span is not None
+            and watched is solution_offcut_area_span
+        ):
+            can_select = self._selected_solution_offcut_area_span_text() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_offcut_area_span_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_offcut_area_span_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_offcut_area_span_label_armed
+                and not solution_offcut_area_span.rect().contains(
+                    event.position().toPoint()
+                )
+            ):
+                self._solution_offcut_area_span_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_offcut_area_span_label_armed
+                self._solution_offcut_area_span_label_armed = False
+                if (
+                    armed
+                    and self._selected_solution_offcut_area_span_text() is not None
                 ):
                     index = self.services.layout.selected_solution_index
                     if self._select_explorer_solution(index):
@@ -5574,7 +5614,7 @@ class MainWindow(QMainWindow):
             return
         label.setText(self._tr("status.solution_offcut_area_span", area=area))
         label.setToolTip(self._tr("tip.status_solution_offcut_area_span", area=area))
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_solution_status(self) -> None:

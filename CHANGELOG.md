@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en la amplitud de áreas de retales selecciona esa
+  solución (IDE-0210). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no. Cierra la cuadragésima quinta ola 0207…0210.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la amplitud de áreas de retales de la solución
   (IDE-0209; **Ctrl+Alt+Shift+]**). Copia el área con unidad,
   sin `ampr.` (en inglés sin `spno`). Deshabilitado si la

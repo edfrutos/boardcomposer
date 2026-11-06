@@ -280,7 +280,7 @@ Observaciones:
 | IDE-0207 | Clic en las dimensiones del retal de área media selecciona su solución | 🟢 | P3 |
 | IDE-0208 | Barra: amplitud de áreas de retales de la solución seleccionada | 🟢 | P3 |
 | IDE-0209 | Copiar la amplitud de áreas de retales de la solución | 🟢 | P3 |
-| IDE-0210 | Clic en la amplitud de áreas de retales selecciona su solución | 🔵 | P3 |
+| IDE-0210 | Clic en la amplitud de áreas de retales selecciona su solución | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -484,7 +484,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0207 | S | IDE-0205 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0208 | S | IDE-0184 | Entregado; `ampr. {area}` / `spno {area}` = mayor área − menor área; oculta si no hay retales; `0` se muestra con un retal; distinta de `maxr.`, `minr.` y `retár.`; sin clic |
 | IDE-0209 | S | IDE-0208 | Entregado; Ctrl+Alt+Shift+]; el valor, sin `ampr.`; no avanza |
-| IDE-0210 | S | IDE-0208 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0210 | S | IDE-0208 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -546,15 +546,14 @@ Cuadragésima primera ola cerrada (0194 entregada).
 Cuadragésima segunda ola cerrada (0198 entregada).
 Cuadragésima tercera ola cerrada (0202 entregada).
 Cuadragésima cuarta ola cerrada (0206 entregada).
-Cuadragésima quinta ola 0207…0210: 0209 entregada; siguiente IDE-0210.
+Cuadragésima quinta ola cerrada (0210 entregada).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-06-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0210 (0209 entregada; ola 45 0207…0210;
-   clic en `ampr.`/`spno`;
+1. Cola producto `0.4.4` vacía (0210 cierra 0207…0210; siguiente Merge OK abre ola 46;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).

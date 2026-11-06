@@ -1706,7 +1706,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_offcut_area_span": "ampr. {area}",
         "tip.status_solution_offcut_area_span": (
-            "Amplitud de áreas de retales de la solución seleccionada: {area}"
+            "Amplitud de áreas de retales de la solución seleccionada: {area}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -4140,7 +4141,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_offcut_area_span": "spno {area}",
         "tip.status_solution_offcut_area_span": (
-            "Offcut area span of the selected solution: {area}"
+            "Offcut area span of the selected solution: {area}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
