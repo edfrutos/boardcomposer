@@ -77,8 +77,8 @@ def test_solution_offcut_area_span_follows_the_selected_solution(qapp, tmp_path)
     assert window._solution_offcut_area_label.text() == "retár. 27500 mm²"
     assert label.text() != window._solution_offcut_area_label.text()
     assert "amplitud" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     window.eventFilter(label, _mouse(QEvent.Type.MouseButtonPress))
     window.eventFilter(label, _mouse(QEvent.Type.MouseButtonRelease))
     assert calls == []
@@ -127,5 +127,5 @@ def test_solution_offcut_area_span_follows_the_selected_solution(qapp, tmp_path)
     window._retranslate_ui()
     assert label.text() == "spno 17500 mm²"
     assert "offcut area span" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

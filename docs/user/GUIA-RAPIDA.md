@@ -640,7 +640,8 @@ Chrome de Studio (se recuerda entre sesiones).
   La amplitud de áreas de retales va como `ampr. 17500 mm²`
   (en inglés `spno 17500 mm²`): mayor área menos menor. Oculta si
   no hay retales (distinta de `maxr.`, `minr.` y `retár.`). Con un
-  solo retal se muestra `0`. Cursor flecha. Sin clic. Sigue las
+  solo retal se muestra `0`. Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no. Sigue las
   unidades de Preferencias.
   **Ctrl+Alt+Shift+]** copia el área con unidad, sin
   `ampr.`. Deshabilitado si la etiqueta está oculta. No avanza.

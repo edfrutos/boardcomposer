@@ -217,7 +217,8 @@ alternativas comprensibles para que el usuario decida.
 - Clic en las dimensiones del retal de área media selecciona esa solución (IDE-0207).
 - Barra de estado: amplitud de áreas de retales (IDE-0208; `ampr.`/`spno`).
 - Copiar la amplitud de áreas de retales (IDE-0209; Ctrl+Alt+Shift+]).
-- Próximo: IDE-0210 (clic en `ampr.`/`spno`; 0209 entregada; ola 45
+- Clic en la amplitud de áreas de retales selecciona esa solución (IDE-0210).
+- Próximo: cola vacía; siguiente Merge OK abre ola 46 (0210 cierra
   0207…0210; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
   sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;

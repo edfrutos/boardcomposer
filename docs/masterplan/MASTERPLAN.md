@@ -275,7 +275,8 @@
 - Barra de estado: amplitud de áreas de retales (IDE-0208).
 - Copiar la amplitud de áreas de retales (IDE-0209;
   Ctrl+Alt+Shift+]).
-- Planificado: clic en `ampr.`/`spno` (IDE-0210).
+- Clic en la amplitud de áreas de retales selecciona esa
+  solución (IDE-0210).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -319,7 +320,7 @@
    Cuadragésima segunda ola cerrada (0198 entregada).
    Cuadragésima tercera ola cerrada (0202 entregada).
    Cuadragésima cuarta ola cerrada (0206 entregada).
-   Cuadragésima quinta ola 0207…0210: 0209 entregada; siguiente IDE-0210.
+   Cuadragésima quinta ola cerrada (0210 entregada).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

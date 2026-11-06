@@ -399,9 +399,9 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0207 | Clic en las dimensiones del retal de área media selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0208 | Barra: amplitud de áreas de retales de la solución seleccionada | Entregado; `ampr. {area}` / `spno {area}`; mayor − menor; oculta si no hay retales; sin clic |
 | IDE-0209 | Copiar la amplitud de áreas de retales de la solución | Entregado; Ctrl+Alt+Shift+]; el valor, sin `ampr.`; no avanza |
-| IDE-0210 | Clic en la amplitud de áreas de retales selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0210 | Clic en la amplitud de áreas de retales selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: **IDE-0210** (0209 entregada; ola 45 0207…0210; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: cola vacía (0210 cierra 0207…0210; siguiente Merge OK abre ola 46; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
