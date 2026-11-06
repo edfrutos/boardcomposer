@@ -440,8 +440,12 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0208 | Barra: amplitud de áreas de retales de la solución seleccionada | Entregado; `ampr. {area}` / `spno {area}`; mayor − menor; oculta si no hay retales; sin clic |
 | IDE-0209 | Copiar la amplitud de áreas de retales de la solución | Entregado; Ctrl+Alt+Shift+]; el valor, sin `ampr.`; no avanza |
 | IDE-0210 | Clic en la amplitud de áreas de retales selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0211 | Barra: cuota del mayor retal sobre el área total de retales | Entregado; `cmay. {value}` / `lsh {value}`; mayor / suma; oculta si no hay retales; sin clic |
+| IDE-0212 | Copiar la cuota del mayor retal de la solución | Planificado; Ctrl+Alt+Shift+\\ (barra invertida); el porcentaje, sin `cmay.`; no avanza |
+| IDE-0213 | Clic en la cuota del mayor retal selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0214 | Barra: cuota del menor retal sobre el área total de retales | Planificado; `cmen. {value}` / `ssh {value}`; menor / suma; oculta si no hay retales; sin clic |
 
-Prioridad de ataque: cola vacía (0210 cierra 0207…0210; siguiente Merge OK abre ola 46; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0212** (0211 entregada; ola 46 0211…0214; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

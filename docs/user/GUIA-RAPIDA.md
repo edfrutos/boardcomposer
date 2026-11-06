@@ -645,6 +645,11 @@ Chrome de Studio (se recuerda entre sesiones).
   unidades de Preferencias.
   **Ctrl+Alt+Shift+]** copia el área con unidad, sin
   `ampr.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  La cuota del mayor retal va como `cmay. 72.7%`
+  (en inglés `lsh 72.7%`): mayor área partida por la suma de
+  retales. Oculta si no hay retales (distinta de `maxr.`, `retár.`,
+  `ret%` y `ampr.`). Con un solo retal se muestra `100.0%`.
+  No sigue las unidades. Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
