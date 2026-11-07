@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar la cuota del mayor retal de la solución
+  (IDE-0212; **Ctrl+Alt+Shift+\\**). Copia el porcentaje,
+  sin `cmay.` (en inglés sin `lsh`). Deshabilitado si la
+  etiqueta está oculta. Con un retal copia `100.0%`. No avanza.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: cuota del mayor retal sobre el área total de
   retales de la solución seleccionada (IDE-0211). `cmay. {value}`
   (en inglés `lsh {value}`) es la mayor área partida por la suma.
