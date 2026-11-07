@@ -226,7 +226,7 @@ Decimotercera ola cerrada (0082 entregada). Decimocuarta ola cerrada
 (0086 entregada). IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`.
 Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada
 (0094 entregada). Decimoséptima ola cerrada (0098 entregada). Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`). Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola cerrada (0142 entregada). Vigesimonovena ola cerrada (0146 entregada). Trigésima ola cerrada (0150 entregada). Trigésima primera ola cerrada (0154 entregada). Trigésima segunda ola cerrada (0158 entregada). Trigésima tercera ola cerrada (0162 entregada). Trigésima cuarta ola cerrada (0166 entregada). Trigésima quinta ola cerrada (0170 entregada). Trigésima sexta ola cerrada (0174 entregada). Trigésima séptima ola cerrada (0178 entregada). Trigésima octava ola cerrada (0182 entregada). Trigésima novena ola cerrada (0186 entregada). Cuadragésima ola cerrada (0190 entregada). Cuadragésima primera ola cerrada (0194 entregada). Cuadragésima segunda ola cerrada (0198 entregada). Cuadragésima tercera ola cerrada (0202 entregada). Cuadragésima cuarta ola cerrada (0206 entregada). Cuadragésima quinta ola cerrada (0210 entregada). Cuadragésima sexta ola 0211…0214: 0211 entregada; siguiente IDE-0212.
-Revisión: `REVIEW-2026-11-06-planificacion.md`.
+Revisión: `REVIEW-2026-11-07-planificacion.md`.
 
 Pendiente de:
 
