@@ -284,7 +284,7 @@ Observaciones:
 | IDE-0211 | Barra: cuota del mayor retal sobre el área total de retales | 🟢 | P3 |
 | IDE-0212 | Copiar la cuota del mayor retal de la solución | 🟢 | P3 |
 | IDE-0213 | Clic en la cuota del mayor retal selecciona su solución | 🟢 | P3 |
-| IDE-0214 | Barra: cuota del menor retal sobre el área total de retales | 🔵 | P3 |
+| IDE-0214 | Barra: cuota del menor retal sobre el área total de retales | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -492,7 +492,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0211 | S | IDE-0184 | Entregado; `cmay. {value}` / `lsh {value}` = mayor área / suma; oculta si no hay retales; `100.0%` con un retal; distinta de `maxr.`, `retár.`, `ret%` y `ampr.`; sin clic |
 | IDE-0212 | S | IDE-0211 | Entregado; Ctrl+Alt+Shift+\\ (barra invertida); el porcentaje, sin `cmay.`; no avanza |
 | IDE-0213 | S | IDE-0211 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0214 | S | IDE-0187 | Planificado; `cmen. {value}` / `ssh {value}` = menor área / suma; oculta si no hay retales; `100.0%` con un retal; distinta de `cmay.`, `minr.` y `retár.`; sin clic |
+| IDE-0214 | S | IDE-0187 | Entregado; `cmen. {value}` / `ssh {value}` = menor área / suma; oculta si no hay retales; `100.0%` con un retal; distinta de `cmay.`, `minr.` y `retár.`; sin clic |
 
 ---
 
@@ -555,15 +555,14 @@ Cuadragésima segunda ola cerrada (0198 entregada).
 Cuadragésima tercera ola cerrada (0202 entregada).
 Cuadragésima cuarta ola cerrada (0206 entregada).
 Cuadragésima quinta ola cerrada (0210 entregada).
-Cuadragésima sexta ola 0211…0214: 0213 entregada; siguiente IDE-0214.
+Cuadragésima sexta ola cerrada (0214 entregada).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-08-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0214 (0213 entregada; ola 46 0211…0214;
-   cuota del menor `cmen.`/`ssh`;
+1. Cola producto `0.4.4` vacía (0214 cierra 0211…0214; siguiente Merge OK abre ola 47;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
