@@ -402,10 +402,10 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0210 | Clic en la amplitud de áreas de retales selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0211 | Barra: cuota del mayor retal sobre el área total de retales | Entregado; `cmay. {value}` / `lsh {value}`; mayor / suma; oculta si no hay retales; sin clic |
 | IDE-0212 | Copiar la cuota del mayor retal de la solución | Entregado; Ctrl+Alt+Shift+\\ (barra invertida); el porcentaje, sin `cmay.`; no avanza |
-| IDE-0213 | Clic en la cuota del mayor retal selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0213 | Clic en la cuota del mayor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0214 | Barra: cuota del menor retal sobre el área total de retales | Planificado; `cmen. {value}` / `ssh {value}`; menor / suma; oculta si no hay retales; sin clic |
 
-Prioridad de ataque: **IDE-0213** (0212 entregada; ola 46 0211…0214; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: **IDE-0214** (0213 entregada; ola 46 0211…0214; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
