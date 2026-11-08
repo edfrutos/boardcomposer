@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en la cuota del mayor retal selecciona esa solución
+  (IDE-0213). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la cuota del mayor retal de la solución
   (IDE-0212; **Ctrl+Alt+Shift+\\**). Copia el porcentaje,
   sin `cmay.` (en inglés sin `lsh`). Deshabilitado si la

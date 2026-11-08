@@ -79,8 +79,8 @@ def test_solution_largest_offcut_share_follows_the_selected_solution(qapp, tmp_p
     assert "72.7%" not in window._solution_largest_offcut_label.text()
     assert "72.7%" not in window._solution_offcut_area_label.text()
     assert "cuota" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     window.eventFilter(label, _mouse(QEvent.Type.MouseButtonPress))
     window.eventFilter(label, _mouse(QEvent.Type.MouseButtonRelease))
     assert calls == []
@@ -129,5 +129,5 @@ def test_solution_largest_offcut_share_follows_the_selected_solution(qapp, tmp_p
     window._retranslate_ui()
     assert label.text() == "lsh 88.9%"
     assert "largest offcut share" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor

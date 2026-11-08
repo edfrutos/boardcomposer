@@ -649,7 +649,8 @@ Chrome de Studio (se recuerda entre sesiones).
   (en inglés `lsh 72.7%`): mayor área partida por la suma de
   retales. Oculta si no hay retales (distinta de `maxr.`, `retár.`,
   `ret%` y `ampr.`). Con un solo retal se muestra `100.0%`.
-  No sigue las unidades. Cursor flecha. Sin clic.
+  No sigue las unidades. Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+\\** copia el porcentaje, sin
   `cmay.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
