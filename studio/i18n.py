@@ -1723,6 +1723,11 @@ _STRINGS: dict[str, dict[str, str]] = {
             "de la solución seleccionada: {value}. "
             "Clic selecciona la solución"
         ),
+        "status.solution_smallest_offcut_share": "cmen. {value}",
+        "tip.status_solution_smallest_offcut_share": (
+            "Cuota del menor retal sobre el área total de retales "
+            "de la solución seleccionada: {value}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -4176,6 +4181,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_largest_offcut_share": (
             "Largest offcut share of the selected solution's offcut area: "
             "{value}. Click selects the solution"
+        ),
+        "status.solution_smallest_offcut_share": "ssh {value}",
+        "tip.status_solution_smallest_offcut_share": (
+            "Smallest offcut share of the selected solution's offcut area: {value}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

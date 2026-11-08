@@ -4,6 +4,14 @@
 
 ## Añadido
 
+- Barra de estado: cuota del menor retal sobre el área total de
+  retales de la solución seleccionada (IDE-0214). `cmen. {value}`
+  (en inglés `ssh {value}`) es la menor área partida por la suma.
+  Oculta si no hay retales (como `minr.`; distinta de `cmay.`,
+  `minr.` y `retár.`). Con un retal se muestra `100.0%`.
+  No sigue las unidades de Preferencias. Cursor flecha. Sin clic.
+  Cierra la cuadragésima sexta ola 0211…0214.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la cuota del mayor retal selecciona esa solución
   (IDE-0213). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;

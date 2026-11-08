@@ -443,9 +443,9 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0211 | Barra: cuota del mayor retal sobre el área total de retales | Entregado; `cmay. {value}` / `lsh {value}`; mayor / suma; oculta si no hay retales; sin clic |
 | IDE-0212 | Copiar la cuota del mayor retal de la solución | Entregado; Ctrl+Alt+Shift+\\ (barra invertida); el porcentaje, sin `cmay.`; no avanza |
 | IDE-0213 | Clic en la cuota del mayor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0214 | Barra: cuota del menor retal sobre el área total de retales | Planificado; `cmen. {value}` / `ssh {value}`; menor / suma; oculta si no hay retales; sin clic |
+| IDE-0214 | Barra: cuota del menor retal sobre el área total de retales | Entregado; `cmen. {value}` / `ssh {value}`; menor / suma; oculta si no hay retales; sin clic |
 
-Prioridad de ataque: **IDE-0214** (0213 entregada; ola 46 0211…0214; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: cola vacía (0214 cierra 0211…0214; siguiente Merge OK abre ola 47; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

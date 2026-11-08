@@ -653,6 +653,11 @@ Chrome de Studio (se recuerda entre sesiones).
   solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+\\** copia el porcentaje, sin
   `cmay.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  La cuota del menor retal va como `cmen. 9.1%`
+  (en inglés `ssh 11.1%`): menor área partida por la suma de
+  retales. Oculta si no hay retales (distinta de `cmay.`, `minr.`
+  y `retár.`). Con un solo retal se muestra `100.0%`.
+  No sigue las unidades. Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
