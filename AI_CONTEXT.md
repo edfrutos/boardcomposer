@@ -222,8 +222,9 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la cuota del mayor retal (IDE-0212; Ctrl+Alt+Shift+\\).
 - Clic en la cuota del mayor retal selecciona esa solución (IDE-0213).
 - Barra de estado: cuota del menor retal (IDE-0214; `cmen.`/`ssh`).
-- Próximo: cola vacía; siguiente Merge OK abre ola 47 (0214 cierra
-  0211…0214; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
+- Copiar la cuota del menor retal (IDE-0215; Ctrl+Alt+Shift+;).
+- Próximo: IDE-0216 (0215 entregada; ola 47 0215…0218; clic en `cmen.`;
+  luego IDE-0217 relación del mayor retal; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
  sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.

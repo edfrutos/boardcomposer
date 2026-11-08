@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Copiar la cuota del menor retal de la solución
+  (IDE-0215; **Ctrl+Alt+Shift+;**). Copia el porcentaje,
+  sin `cmen.` (en inglés sin `ssh`). Deshabilitado si la
+  etiqueta está oculta. No avanza ni aplica el layout.
+  Abre la cuadragésima séptima ola 0215…0218.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: cuota del menor retal sobre el área total de
   retales de la solución seleccionada (IDE-0214). `cmen. {value}`
   (en inglés `ssh {value}`) es la menor área partida por la suma.
