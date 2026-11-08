@@ -282,7 +282,7 @@ Observaciones:
 | IDE-0209 | Copiar la amplitud de áreas de retales de la solución | 🟢 | P3 |
 | IDE-0210 | Clic en la amplitud de áreas de retales selecciona su solución | 🟢 | P3 |
 | IDE-0211 | Barra: cuota del mayor retal sobre el área total de retales | 🟢 | P3 |
-| IDE-0212 | Copiar la cuota del mayor retal de la solución | 🔵 | P3 |
+| IDE-0212 | Copiar la cuota del mayor retal de la solución | 🟢 | P3 |
 | IDE-0213 | Clic en la cuota del mayor retal selecciona su solución | 🔵 | P3 |
 | IDE-0214 | Barra: cuota del menor retal sobre el área total de retales | 🔵 | P3 |
 
@@ -490,7 +490,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0209 | S | IDE-0208 | Entregado; Ctrl+Alt+Shift+]; el valor, sin `ampr.`; no avanza |
 | IDE-0210 | S | IDE-0208 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0211 | S | IDE-0184 | Entregado; `cmay. {value}` / `lsh {value}` = mayor área / suma; oculta si no hay retales; `100.0%` con un retal; distinta de `maxr.`, `retár.`, `ret%` y `ampr.`; sin clic |
-| IDE-0212 | S | IDE-0211 | Planificado; Ctrl+Alt+Shift+\\ (barra invertida); el porcentaje, sin `cmay.`; no avanza |
+| IDE-0212 | S | IDE-0211 | Entregado; Ctrl+Alt+Shift+\\ (barra invertida); el porcentaje, sin `cmay.`; no avanza |
 | IDE-0213 | S | IDE-0211 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0214 | S | IDE-0187 | Planificado; `cmen. {value}` / `ssh {value}` = menor área / suma; oculta si no hay retales; `100.0%` con un retal; distinta de `cmay.`, `minr.` y `retár.`; sin clic |
 
@@ -555,15 +555,15 @@ Cuadragésima segunda ola cerrada (0198 entregada).
 Cuadragésima tercera ola cerrada (0202 entregada).
 Cuadragésima cuarta ola cerrada (0206 entregada).
 Cuadragésima quinta ola cerrada (0210 entregada).
-Cuadragésima sexta ola 0211…0214: 0211 entregada; siguiente IDE-0212.
+Cuadragésima sexta ola 0211…0214: 0212 entregada; siguiente IDE-0213.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-07-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0212 (0211 entregada; ola 46 0211…0214;
-   copiar `cmay.`/`lsh`; luego IDE-0213 clic; IDE-0214 cuota del menor;
+1. Cola producto `0.4.4`: IDE-0213 (0212 entregada; ola 46 0211…0214;
+   clic en `cmay.`/`lsh`; luego IDE-0214 cuota del menor;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
