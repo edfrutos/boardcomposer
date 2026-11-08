@@ -285,6 +285,10 @@ Observaciones:
 | IDE-0212 | Copiar la cuota del mayor retal de la solución | 🟢 | P3 |
 | IDE-0213 | Clic en la cuota del mayor retal selecciona su solución | 🟢 | P3 |
 | IDE-0214 | Barra: cuota del menor retal sobre el área total de retales | 🟢 | P3 |
+| IDE-0215 | Copiar la cuota del menor retal de la solución | 🟢 | P3 |
+| IDE-0216 | Clic en la cuota del menor retal selecciona su solución | 🔵 | P3 |
+| IDE-0217 | Barra: relación de forma del mayor retal | 🔵 | P3 |
+| IDE-0218 | Copiar la relación de forma del mayor retal | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -493,6 +497,10 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0212 | S | IDE-0211 | Entregado; Ctrl+Alt+Shift+\\ (barra invertida); el porcentaje, sin `cmay.`; no avanza |
 | IDE-0213 | S | IDE-0211 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0214 | S | IDE-0187 | Entregado; `cmen. {value}` / `ssh {value}` = menor área / suma; oculta si no hay retales; `100.0%` con un retal; distinta de `cmay.`, `minr.` y `retár.`; sin clic |
+| IDE-0215 | S | IDE-0214 | Entregado; Ctrl+Alt+Shift+; el porcentaje, sin `cmen.`; no avanza |
+| IDE-0216 | S | IDE-0214 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0217 | S | IDE-0190 | Planificado; `relr. {value}` / `aspr {value}` = max(L, A) / min(L, A) del retal de mayor área (empate por largo y ancho, como `maxd.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `maxd.`; sin clic |
+| IDE-0218 | S | IDE-0217 | Planificado; Ctrl+Alt+Shift+' el valor, sin `relr.`; no avanza |
 
 ---
 
@@ -556,13 +564,15 @@ Cuadragésima tercera ola cerrada (0202 entregada).
 Cuadragésima cuarta ola cerrada (0206 entregada).
 Cuadragésima quinta ola cerrada (0210 entregada).
 Cuadragésima sexta ola cerrada (0214 entregada).
+Cuadragésima séptima ola 0215…0218: 0215 entregada; siguiente IDE-0216.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-08-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` vacía (0214 cierra 0211…0214; siguiente Merge OK abre ola 47;
+1. Cola producto `0.4.4`: IDE-0216 (0215 entregada; ola 47 0215…0218;
+   clic en `cmen.`/`ssh`; luego IDE-0217 relación del mayor retal;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
