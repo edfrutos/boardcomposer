@@ -7,7 +7,7 @@
 **Versión:** 1.3.70
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 04/11/2026
+**Última revisión:** 08/11/2026
 
 ---
 
@@ -558,7 +558,7 @@ Cuadragésima quinta ola cerrada (0210 entregada).
 Cuadragésima sexta ola 0211…0214: 0212 entregada; siguiente IDE-0213.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-11-07-planificacion.md`.
+`REVIEW-2026-11-08-planificacion.md`.
 
 Próximo foco:
 
