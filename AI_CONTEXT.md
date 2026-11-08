@@ -219,9 +219,10 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la amplitud de áreas de retales (IDE-0209; Ctrl+Alt+Shift+]).
 - Clic en la amplitud de áreas de retales selecciona esa solución (IDE-0210).
 - Barra de estado: cuota del mayor retal (IDE-0211; `cmay.`/`lsh`).
-- Próximo: IDE-0212 🟡 `#872` (copiar `cmay.`/`lsh`; 0211 entregada;
-  ola 46 0211…0214; luego 0213 clic / 0214 `cmen.`; IDE-0101 e
-  IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
+- Copiar la cuota del mayor retal (IDE-0212; Ctrl+Alt+Shift+\\).
+- Próximo: IDE-0213 (clic en `cmay.`/`lsh`; 0212 entregada; ola 46
+ 0211…0214; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
+ sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados.
 

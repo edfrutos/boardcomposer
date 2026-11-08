@@ -286,6 +286,9 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(self._actions["copy_solution_median_offcut_size"])
         self._menus["edit"].addAction(self._actions["copy_solution_mean_offcut_size"])
         self._menus["edit"].addAction(self._actions["copy_solution_offcut_area_span"])
+        self._menus["edit"].addAction(
+            self._actions["copy_solution_largest_offcut_share"]
+        )
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -526,6 +529,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_solution_offcut_area_span"].triggered.connect(
             self._copy_solution_offcut_area_span
+        )
+        self._actions["copy_solution_largest_offcut_share"].triggered.connect(
+            self._copy_solution_largest_offcut_share
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -5637,6 +5643,7 @@ class MainWindow(QMainWindow):
 
     def _update_solution_largest_offcut_share_status(self) -> None:
         """Show largest-offcut share of the selected solution (IDE-0211)."""
+        self._sync_copy_solution_largest_offcut_share_action()
         label = getattr(self, "_solution_largest_offcut_share_label", None)
         if label is None:
             return
@@ -10526,6 +10533,31 @@ class MainWindow(QMainWindow):
             return
         self._copy_text_to_clipboard(area)
         self._status("status.solution_offcut_area_span_copied", area=area)
+
+    def _sync_copy_solution_largest_offcut_share_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_largest_offcut_share")
+        if action is None:
+            return
+        enabled = self._selected_solution_largest_offcut_share_text() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_largest_offcut_share"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_largest_offcut_share")
+        )
+
+    def _copy_solution_largest_offcut_share(self, _checked: bool = False) -> None:
+        """Copy the status-bar largest offcut share (IDE-0212)."""
+        del _checked
+        value = self._selected_solution_largest_offcut_share_text()
+        if value is None:
+            self._status("status.nothing_to_copy_solution_largest_offcut_share")
+            return
+        self._copy_text_to_clipboard(value)
+        self._status("status.solution_largest_offcut_share_copied", value=value)
 
     def _sync_copy_offcuts_action(self) -> None:
         actions = getattr(self, "_actions", None)
