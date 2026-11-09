@@ -657,7 +657,8 @@ Chrome de Studio (se recuerda entre sesiones).
   (en inglés `ssh 11.1%`): menor área partida por la suma de
   retales. Oculta si no hay retales (distinta de `cmay.`, `minr.`
   y `retár.`). Con un solo retal se muestra `100.0%`.
-  No sigue las unidades. Cursor flecha. Sin clic.
+  No sigue las unidades. Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+;** copia el porcentaje, sin
   `cmen.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.

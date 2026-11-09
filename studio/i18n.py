@@ -1734,7 +1734,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_smallest_offcut_share": "cmen. {value}",
         "tip.status_solution_smallest_offcut_share": (
             "Cuota del menor retal sobre el área total de retales "
-            "de la solución seleccionada: {value}"
+            "de la solución seleccionada: {value}. "
+            "Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -4206,7 +4207,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_smallest_offcut_share": "ssh {value}",
         "tip.status_solution_smallest_offcut_share": (
-            "Smallest offcut share of the selected solution's offcut area: {value}"
+            "Smallest offcut share of the selected solution's offcut area: "
+            "{value}. Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

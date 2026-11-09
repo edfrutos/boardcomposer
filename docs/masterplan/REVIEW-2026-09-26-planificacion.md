@@ -405,11 +405,11 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0213 | Clic en la cuota del mayor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0214 | Barra: cuota del menor retal sobre el área total de retales | Entregado; `cmen. {value}` / `ssh {value}`; menor / suma; oculta si no hay retales; sin clic |
 | IDE-0215 | Copiar la cuota del menor retal de la solución | Entregado; Ctrl+Alt+Shift+; el porcentaje, sin `cmen.`; no avanza |
-| IDE-0216 | Clic en la cuota del menor retal selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0216 | Clic en la cuota del menor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0217 | Barra: relación de forma del mayor retal | Planificado; `relr.`/`aspr` = max(L, A) / min(L, A) del mayor; `1.00` si es cuadrado; sin clic |
 | IDE-0218 | Copiar la relación de forma del mayor retal | Planificado; Ctrl+Alt+Shift+' el valor, sin `relr.`; no avanza |
 
-Prioridad de ataque: IDE-0216 (0215 entregada; ola 47 0215…0218; clic en `cmen.`/`ssh`; luego IDE-0217 relación del mayor retal; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: IDE-0217 (0216 entregada; ola 47 0215…0218; relación `relr.`/`aspr`; luego IDE-0218 copiarla; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

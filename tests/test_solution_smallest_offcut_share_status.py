@@ -79,8 +79,8 @@ def test_solution_smallest_offcut_share_follows_the_selected_solution(qapp, tmp_
     assert "9.1%" not in window._solution_smallest_offcut_label.text()
     assert "9.1%" not in window._solution_offcut_area_label.text()
     assert "cuota" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     window.eventFilter(label, _mouse(QEvent.Type.MouseButtonPress))
     window.eventFilter(label, _mouse(QEvent.Type.MouseButtonRelease))
     assert calls == []
@@ -131,5 +131,5 @@ def test_solution_smallest_offcut_share_follows_the_selected_solution(qapp, tmp_
     assert label.text() == "ssh 11.1%"
     assert window._solution_largest_offcut_share_label.text() == "lsh 88.9%"
     assert "smallest offcut share" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
