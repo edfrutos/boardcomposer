@@ -4,6 +4,14 @@
 
 ## Añadido
 
+- Barra de estado: relación de forma del mayor retal de la
+  solución seleccionada (IDE-0217). `relr. {value}`
+  (en inglés `aspr {value}`) es el lado largo partido por el
+  lado corto del retal de mayor área. Empate por largo y ancho,
+  como `maxd.`. Oculta si no hay retales. Un cuadrado muestra
+  `1.00`. No sigue las unidades de Preferencias. Distinta de
+  `maxd.`. Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la cuota del menor retal selecciona esa solución
   (IDE-0216). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;
