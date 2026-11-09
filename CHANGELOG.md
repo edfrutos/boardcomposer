@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Copiar la relación de forma del mayor retal de la solución
+  (IDE-0218; **Ctrl+Alt+Shift+'**). Copia el valor, sin `relr.`
+  (en inglés sin `aspr`). Deshabilitado si la etiqueta está
+  oculta. No avanza ni aplica el layout.
+  Cierra la cuadragésima séptima ola 0215…0218.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: relación de forma del mayor retal de la
   solución seleccionada (IDE-0217). `relr. {value}`
   (en inglés `aspr {value}`) es el lado largo partido por el

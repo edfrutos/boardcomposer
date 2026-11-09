@@ -407,9 +407,9 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0215 | Copiar la cuota del menor retal de la solución | Entregado; Ctrl+Alt+Shift+; el porcentaje, sin `cmen.`; no avanza |
 | IDE-0216 | Clic en la cuota del menor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0217 | Barra: relación de forma del mayor retal | Entregado; `relr.`/`aspr` = max(L, A) / min(L, A) del mayor; `1.00` si es cuadrado; sin clic |
-| IDE-0218 | Copiar la relación de forma del mayor retal | Planificado; Ctrl+Alt+Shift+' el valor, sin `relr.`; no avanza |
+| IDE-0218 | Copiar la relación de forma del mayor retal | Entregado; Ctrl+Alt+Shift+' el valor, sin `relr.`; no avanza |
 
-Prioridad de ataque: IDE-0218 (0217 entregada; ola 47 0215…0218; copiar `relr.`/`aspr` con Ctrl+Alt+Shift+'; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: cola vacía (0218 cierra 0215…0218; siguiente Merge OK abre ola 48; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
