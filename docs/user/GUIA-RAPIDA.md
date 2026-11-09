@@ -666,6 +666,8 @@ Chrome de Studio (se recuerda entre sesiones).
   Empate por largo y ancho, como `maxd.`. Oculta si no hay
   retales. Un cuadrado muestra `1.00`. No sigue las unidades.
   Distinta de `maxd.`. Cursor flecha. Sin clic.
+  **Ctrl+Alt+Shift+'** copia el valor, sin
+  `relr.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

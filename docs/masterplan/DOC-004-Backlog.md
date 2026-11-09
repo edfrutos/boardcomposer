@@ -288,7 +288,7 @@ Observaciones:
 | IDE-0215 | Copiar la cuota del menor retal de la solución | 🟢 | P3 |
 | IDE-0216 | Clic en la cuota del menor retal selecciona su solución | 🟢 | P3 |
 | IDE-0217 | Barra: relación de forma del mayor retal | 🟢 | P3 |
-| IDE-0218 | Copiar la relación de forma del mayor retal | 🔵 | P3 |
+| IDE-0218 | Copiar la relación de forma del mayor retal | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -500,7 +500,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0215 | S | IDE-0214 | Entregado; Ctrl+Alt+Shift+; el porcentaje, sin `cmen.`; no avanza |
 | IDE-0216 | S | IDE-0214 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0217 | S | IDE-0190 | Entregado; `relr. {value}` / `aspr {value}` = max(L, A) / min(L, A) del retal de mayor área (empate por largo y ancho, como `maxd.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `maxd.`; sin clic |
-| IDE-0218 | S | IDE-0217 | Planificado; Ctrl+Alt+Shift+' el valor, sin `relr.`; no avanza |
+| IDE-0218 | S | IDE-0217 | Entregado; Ctrl+Alt+Shift+' el valor, sin `relr.`; no avanza |
 
 ---
 
@@ -564,15 +564,14 @@ Cuadragésima tercera ola cerrada (0202 entregada).
 Cuadragésima cuarta ola cerrada (0206 entregada).
 Cuadragésima quinta ola cerrada (0210 entregada).
 Cuadragésima sexta ola cerrada (0214 entregada).
-Cuadragésima séptima ola 0215…0218: 0215…0217 entregadas; siguiente IDE-0218.
+Cuadragésima séptima ola cerrada (0218 entregada).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-09-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0218 (0217 entregada; ola 47 0215…0218;
-   copiar `relr.`/`aspr` con Ctrl+Alt+Shift+';
+1. Cola producto `0.4.4` vacía (0218 cierra 0215…0218; siguiente Merge OK abre ola 48;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
