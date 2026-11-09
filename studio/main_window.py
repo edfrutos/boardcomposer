@@ -1164,6 +1164,8 @@ class MainWindow(QMainWindow):
         self._solution_smallest_offcut_share_label.setObjectName(
             "statusSolutionSmallestOffcutShare"
         )
+        self._solution_smallest_offcut_share_label_armed = False
+        self._solution_smallest_offcut_share_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -2684,6 +2686,46 @@ class MainWindow(QMainWindow):
                 if (
                     armed
                     and self._selected_solution_largest_offcut_share_text() is not None
+                ):
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        solution_smallest_offcut_share = getattr(
+            self, "_solution_smallest_offcut_share_label", None
+        )
+        if (
+            solution_smallest_offcut_share is not None
+            and watched is solution_smallest_offcut_share
+        ):
+            can_select = (
+                self._selected_solution_smallest_offcut_share_text() is not None
+            )
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_smallest_offcut_share_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_smallest_offcut_share_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_smallest_offcut_share_label_armed
+                and not solution_smallest_offcut_share.rect().contains(
+                    event.position().toPoint()
+                )
+            ):
+                self._solution_smallest_offcut_share_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_smallest_offcut_share_label_armed
+                self._solution_smallest_offcut_share_label_armed = False
+                if (
+                    armed
+                    and self._selected_solution_smallest_offcut_share_text() is not None
                 ):
                     index = self.services.layout.selected_solution_index
                     if self._select_explorer_solution(index):
@@ -5742,7 +5784,7 @@ class MainWindow(QMainWindow):
         label.setToolTip(
             self._tr("tip.status_solution_smallest_offcut_share", value=value)
         )
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_solution_status(self) -> None:

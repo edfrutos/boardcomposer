@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en la cuota del menor retal selecciona esa solución
+  (IDE-0216). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la cuota del menor retal de la solución
   (IDE-0215; **Ctrl+Alt+Shift+;**). Copia el porcentaje,
   sin `cmen.` (en inglés sin `ssh`). Deshabilitado si la

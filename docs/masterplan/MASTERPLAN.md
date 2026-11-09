@@ -284,8 +284,8 @@
 - Barra de estado: cuota del menor retal (IDE-0214).
 - Copiar la cuota del menor retal (IDE-0215;
   Ctrl+Alt+Shift+;).
-- Planificado: clic en la cuota del menor retal (IDE-0216),
-  relación de forma del mayor retal `relr.`/`aspr` (IDE-0217)
+- Clic en la cuota del menor retal selecciona esa solución (IDE-0216).
+- Planificado: relación de forma del mayor retal `relr.`/`aspr` (IDE-0217)
   y copiarla (IDE-0218).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
@@ -332,7 +332,7 @@
    Cuadragésima cuarta ola cerrada (0206 entregada).
    Cuadragésima quinta ola cerrada (0210 entregada).
    Cuadragésima sexta ola cerrada (0214 entregada).
-   Cuadragésima séptima ola 0215…0218: 0215 entregada; siguiente IDE-0216.
+   Cuadragésima séptima ola 0215…0218: 0215…0216 entregadas; siguiente IDE-0217.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
