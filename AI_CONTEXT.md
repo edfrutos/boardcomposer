@@ -227,8 +227,9 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: relación de forma del mayor retal (IDE-0217; `relr.`/`aspr`).
 - Copiar la relación de forma del mayor retal (IDE-0218; Ctrl+Alt+Shift+').
 - Clic en la relación de forma del mayor retal selecciona esa solución (IDE-0219).
-- Próximo: IDE-0220 (0219 entregada; ola 48 0219…0222; relación `relm.`/`asps`;
-  luego IDE-0221 copiarla; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
+- Barra de estado: relación de forma del menor retal (IDE-0220; `relm.`/`asps`).
+- Próximo: IDE-0221 (0220 entregada; ola 48 0219…0222; copiar `relm.`/`asps`;
+  luego IDE-0222 clic; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados. Snapshot:
   `REVIEW-2026-11-10-planificacion.md`.

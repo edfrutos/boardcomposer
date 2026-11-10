@@ -4,6 +4,14 @@
 
 ## Añadido
 
+- Barra de estado: relación de forma del menor retal de la
+  solución seleccionada (IDE-0220). `relm. {value}`
+  (en inglés `asps {value}`) es el lado largo partido por el
+  lado corto del retal de menor área. Empate por largo y ancho,
+  como `mind.`. Oculta si no hay retales. Un cuadrado muestra
+  `1.00`. No sigue las unidades de Preferencias. Distinta de
+  `mind.` y de `relr.`. Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la relación de forma del mayor retal selecciona esa
   solución (IDE-0219). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;
