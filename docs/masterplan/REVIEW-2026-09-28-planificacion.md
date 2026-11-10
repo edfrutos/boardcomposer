@@ -448,8 +448,12 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0216 | Clic en la cuota del menor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0217 | Barra: relación de forma del mayor retal | Entregado; `relr.`/`aspr` = max(L, A) / min(L, A) del mayor; `1.00` si es cuadrado; sin clic |
 | IDE-0218 | Copiar la relación de forma del mayor retal | Entregado; Ctrl+Alt+Shift+' el valor, sin `relr.`; no avanza |
+| IDE-0219 | Clic en la relación de forma del mayor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0220 | Barra: relación de forma del menor retal | Planificado; `relm.`/`asps` = max(L, A) / min(L, A) del menor; `1.00` si es cuadrado; sin clic |
+| IDE-0221 | Copiar la relación de forma del menor retal | Planificado; Ctrl+Alt+Shift+\` el valor, sin `relm.`; no avanza |
+| IDE-0222 | Clic en la relación de forma del menor retal selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: cola vacía (0218 cierra 0215…0218; siguiente Merge OK abre ola 48; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: IDE-0220 (0219 entregada; ola 48 0219…0222; relación `relm.`/`asps`; luego IDE-0221 copiarla; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

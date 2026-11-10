@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en la relación de forma del mayor retal selecciona esa
+  solución (IDE-0219). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no. Abre la cuadragésima octava ola 0219…0222.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la relación de forma del mayor retal de la solución
   (IDE-0218; **Ctrl+Alt+Shift+'**). Copia el valor, sin `relr.`
   (en inglés sin `aspr`). Deshabilitado si la etiqueta está

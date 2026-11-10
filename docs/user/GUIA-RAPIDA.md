@@ -665,7 +665,8 @@ Chrome de Studio (se recuerda entre sesiones).
   (en inglés `aspr 2.00`): lado largo partido por lado corto.
   Empate por largo y ancho, como `maxd.`. Oculta si no hay
   retales. Un cuadrado muestra `1.00`. No sigue las unidades.
-  Distinta de `maxd.`. Cursor flecha. Sin clic.
+  Distinta de `maxd.`. Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+'** copia el valor, sin
   `relr.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
