@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Clic en la relación de forma del menor retal selecciona esa
+  solución (IDE-0222). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no. Cierra la cuadragésima octava ola 0219…0222.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la relación de forma del menor retal de la solución
   (IDE-0221; **Ctrl+Alt+Shift+\`**). Copia el valor, sin `relm.`
   (en inglés sin `asps`). Deshabilitado si la etiqueta está
