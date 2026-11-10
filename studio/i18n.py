@@ -1747,7 +1747,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_largest_offcut_aspect": "relr. {value}",
         "tip.status_solution_largest_offcut_aspect": (
-            "Relación de forma del mayor retal de la solución seleccionada: {value}"
+            "Relación de forma del mayor retal de la solución "
+            "seleccionada: {value}. Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -4238,7 +4239,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_largest_offcut_aspect": "aspr {value}",
         "tip.status_solution_largest_offcut_aspect": (
-            "Aspect ratio of the selected solution's largest offcut: {value}"
+            "Aspect ratio of the selected solution's largest offcut: "
+            "{value}. Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
