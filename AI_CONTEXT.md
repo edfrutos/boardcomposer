@@ -226,11 +226,12 @@ alternativas comprensibles para que el usuario decida.
 - Clic en la cuota del menor retal selecciona esa solución (IDE-0216).
 - Barra de estado: relación de forma del mayor retal (IDE-0217; `relr.`/`aspr`).
 - Copiar la relación de forma del mayor retal (IDE-0218; Ctrl+Alt+Shift+').
-- Próximo: cola vacía; siguiente Merge OK abre ola 48 (0218 cierra
-  0215…0218; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
- sin reanudar: DT-0006 C,
+- Próximo: cuadragésima octava ola IDE-0219…0222 🔵 (clic `relr.` →
+  barra `relm.`/`asps` → copiar Ctrl+Alt+Shift+\` → clic; IDE-0101 e
+  IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
-  LLM / plugins / C bloqueados.
+  LLM / plugins / C bloqueados. Snapshot:
+  `REVIEW-2026-11-10-planificacion.md`.
 
 ## Fuentes de verdad
 
