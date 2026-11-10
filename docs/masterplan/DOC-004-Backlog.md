@@ -292,7 +292,7 @@ Observaciones:
 | IDE-0219 | Clic en la relación de forma del mayor retal selecciona su solución | 🟢 | P3 |
 | IDE-0220 | Barra: relación de forma del menor retal | 🟢 | P3 |
 | IDE-0221 | Copiar la relación de forma del menor retal | 🟢 | P3 |
-| IDE-0222 | Clic en la relación de forma del menor retal selecciona su solución | 🔵 | P3 |
+| IDE-0222 | Clic en la relación de forma del menor retal selecciona su solución | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -508,7 +508,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0219 | S | IDE-0217 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0220 | S | IDE-0193 | Entregado; `relm. {value}` / `asps {value}` = max(L, A) / min(L, A) del retal de menor área (empate por largo y ancho, como `mind.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mind.` y de `relr.`; sin clic |
 | IDE-0221 | S | IDE-0220 | Entregado; Ctrl+Alt+Shift+\` el valor, sin `relm.`; no avanza |
-| IDE-0222 | S | IDE-0220 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0222 | S | IDE-0220 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -573,15 +573,15 @@ Cuadragésima cuarta ola cerrada (0206 entregada).
 Cuadragésima quinta ola cerrada (0210 entregada).
 Cuadragésima sexta ola cerrada (0214 entregada).
 Cuadragésima séptima ola cerrada (0218 entregada).
-Cuadragésima octava ola 0219…0222: 0219…0221 entregadas; siguiente IDE-0222.
+Cuadragésima octava ola cerrada (0222 entregada).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-10-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4`: IDE-0222 (0221 entregada; ola 48 0219…0222;
-   clic en `relm.`/`asps`; IDE-0101 e IDE-0102 diferidas, sin costes).
+1. Cola producto `0.4.4` vacía (0222 cierra 0219…0222; siguiente Merge OK abre ola 49;
+   IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.

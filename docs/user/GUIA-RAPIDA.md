@@ -673,7 +673,8 @@ Chrome de Studio (se recuerda entre sesiones).
   (en inglés `asps 1.00`): lado largo partido por lado corto.
   Empate por largo y ancho, como `mind.`. Oculta si no hay
   retales. Un cuadrado muestra `1.00`. No sigue las unidades.
-  Distinta de `mind.` y de `relr.`. Cursor flecha. Sin clic.
+  Distinta de `mind.` y de `relr.`. Cursor mano si está visible. Clic selecciona esa
+  solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+\`** copia el valor, sin
   `relm.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
