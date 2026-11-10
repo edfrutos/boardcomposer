@@ -291,8 +291,9 @@
   Ctrl+Alt+Shift+').
 - Clic en la relación de forma del mayor retal selecciona esa
   solución (IDE-0219).
-- Planificado: relación del menor retal `relm.`/`asps` (IDE-0220),
-  copiarla (IDE-0221; Ctrl+Alt+Shift+\`) y clic (IDE-0222).
+- Barra de estado: relación de forma del menor retal (IDE-0220;
+  `relm.`/`asps`).
+- Planificado: copiarla (IDE-0221; Ctrl+Alt+Shift+\`) y clic (IDE-0222).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -339,7 +340,7 @@
    Cuadragésima quinta ola cerrada (0210 entregada).
    Cuadragésima sexta ola cerrada (0214 entregada).
    Cuadragésima séptima ola cerrada (0218 entregada).
-   Cuadragésima octava ola 0219…0222: 0219 entregada; siguiente IDE-0220.
+   Cuadragésima octava ola 0219…0222: 0219…0220 entregadas; siguiente IDE-0221.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
