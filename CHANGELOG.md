@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar la relación de forma del menor retal de la solución
+  (IDE-0221; **Ctrl+Alt+Shift+\`**). Copia el valor, sin `relm.`
+  (en inglés sin `asps`). Deshabilitado si la etiqueta está
+  oculta. No avanza ni aplica el layout.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: relación de forma del menor retal de la
   solución seleccionada (IDE-0220). `relm. {value}`
   (en inglés `asps {value}`) es el lado largo partido por el
