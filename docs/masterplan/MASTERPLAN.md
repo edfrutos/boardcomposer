@@ -297,6 +297,10 @@
   Ctrl+Alt+Shift+\`).
 - Clic en la relación de forma del menor retal selecciona esa
   solución (IDE-0222).
+- Barra de estado: relación de forma del retal de área mediana
+  (IDE-0223; `reln.`/`aspm`).
+- Planificado: copiarla (IDE-0224; Ctrl+Alt+Shift+,) y clic (IDE-0225).
+  Siguiente muestra: retal de área media (`rela.`/`aspa`, IDE-0226).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -344,6 +348,7 @@
    Cuadragésima sexta ola cerrada (0214 entregada).
    Cuadragésima séptima ola cerrada (0218 entregada).
    Cuadragésima octava ola cerrada (0222 entregada).
+   Cuadragésima novena ola 0223…0226: 0223 entregada; siguiente IDE-0224.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

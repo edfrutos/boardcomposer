@@ -1190,6 +1190,10 @@ class MainWindow(QMainWindow):
         )
         self._solution_smallest_offcut_aspect_label_armed = False
         self._solution_smallest_offcut_aspect_label.installEventFilter(self)
+        self._solution_median_offcut_aspect_label = QLabel()
+        self._solution_median_offcut_aspect_label.setObjectName(
+            "statusSolutionMedianOffcutAspect"
+        )
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -1256,6 +1260,7 @@ class MainWindow(QMainWindow):
         status.addPermanentWidget(self._solution_smallest_offcut_share_label)
         status.addPermanentWidget(self._solution_largest_offcut_aspect_label)
         status.addPermanentWidget(self._solution_smallest_offcut_aspect_label)
+        status.addPermanentWidget(self._solution_median_offcut_aspect_label)
         status.addPermanentWidget(self._offcuts_label)
         status.addPermanentWidget(self._selection_label)
         status.addPermanentWidget(self._kerf_label)
@@ -5976,6 +5981,47 @@ class MainWindow(QMainWindow):
         label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
+    def _selected_solution_median_offcut_aspect_text(self) -> str | None:
+        """Formatted aspect ratio of the median-area offcut, or None."""
+        if self._selected_solution_index_label() is None:
+            return None
+        solution = self.services.layout.selected_solution
+        if solution is None or not solution.offcuts:
+            return None
+        ordered = sorted(
+            solution.offcuts,
+            key=lambda offcut: (
+                offcut.area_mm2,
+                offcut.length_mm,
+                offcut.width_mm,
+            ),
+        )
+        chosen = ordered[(len(ordered) - 1) // 2]
+        long_side = max(chosen.length_mm, chosen.width_mm)
+        short_side = min(chosen.length_mm, chosen.width_mm)
+        if short_side <= 0:
+            return None
+        return f"{long_side / short_side:.2f}"
+
+    def _update_solution_median_offcut_aspect_status(self) -> None:
+        """Show median-area offcut aspect ratio of the selected solution (IDE-0223)."""
+        label = getattr(self, "_solution_median_offcut_aspect_label", None)
+        if label is None:
+            return
+        value = self._selected_solution_median_offcut_aspect_text()
+        if value is None:
+            label.clear()
+            label.setToolTip("")
+            label.setCursor(Qt.CursorShape.ArrowCursor)
+            label.hide()
+            return
+        label.setText(self._tr("status.solution_median_offcut_aspect", value=value))
+        label.setToolTip(
+            self._tr("tip.status_solution_median_offcut_aspect", value=value)
+        )
+        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.show()
+
     def _update_solution_status(self) -> None:
         """Show the selected solution index (IDE-0095)."""
         self._sync_copy_solution_action()
@@ -6020,6 +6066,7 @@ class MainWindow(QMainWindow):
         self._update_solution_smallest_offcut_share_status()
         self._update_solution_largest_offcut_aspect_status()
         self._update_solution_smallest_offcut_aspect_status()
+        self._update_solution_median_offcut_aspect_status()
         label = getattr(self, "_solution_label", None)
         if label is None:
             return

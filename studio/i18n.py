@@ -1763,6 +1763,11 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Relación de forma del menor retal de la solución "
             "seleccionada: {value}. Clic selecciona la solución"
         ),
+        "status.solution_median_offcut_aspect": "reln. {value}",
+        "tip.status_solution_median_offcut_aspect": (
+            "Relación de forma del retal de área mediana de la solución "
+            "seleccionada: {value}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -4273,6 +4278,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_smallest_offcut_aspect": (
             "Aspect ratio of the selected solution's smallest offcut: "
             "{value}. Click selects the solution"
+        ),
+        "status.solution_median_offcut_aspect": "aspm {value}",
+        "tip.status_solution_median_offcut_aspect": (
+            "Aspect ratio of the selected solution's median-area offcut: {value}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

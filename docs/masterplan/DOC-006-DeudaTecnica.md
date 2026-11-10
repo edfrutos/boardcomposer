@@ -253,5 +253,6 @@ Próximo foco:
   Cuadragésima sexta ola cerrada (0214 entregada).
   Cuadragésima séptima ola cerrada (0218 entregada).
   Cuadragésima octava ola cerrada (0222 entregada).
+  Cuadragésima novena ola 0223…0226: 0223 entregada; siguiente IDE-0224.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

@@ -4,6 +4,13 @@
 
 ## Añadido
 
+- Barra de estado: relación de forma del retal de área mediana
+  (IDE-0223; `reln.` / `aspm`). Mismo retal que `mdnd.`: orden
+  `(área, largo, ancho)`; n impar el del medio, n par el inferior
+  de los dos centrales. `1.00` si es cuadrado. Oculta si no hay
+  retales. No sigue las unidades. Cursor flecha. Sin clic.
+  Abre la cuadragésima novena ola 0223…0226. Sin bump `.bcproj`;
+  no cambia el solver.
 - Clic en la relación de forma del menor retal selecciona esa
   solución (IDE-0222). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;
