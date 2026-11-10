@@ -450,10 +450,10 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0218 | Copiar la relación de forma del mayor retal | Entregado; Ctrl+Alt+Shift+' el valor, sin `relr.`; no avanza |
 | IDE-0219 | Clic en la relación de forma del mayor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0220 | Barra: relación de forma del menor retal | Entregado; `relm.`/`asps` = max(L, A) / min(L, A) del menor; `1.00` si es cuadrado; sin clic |
-| IDE-0221 | Copiar la relación de forma del menor retal | Planificado; Ctrl+Alt+Shift+\` el valor, sin `relm.`; no avanza |
+| IDE-0221 | Copiar la relación de forma del menor retal | Entregado; Ctrl+Alt+Shift+\` el valor, sin `relm.`; no avanza |
 | IDE-0222 | Clic en la relación de forma del menor retal selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: IDE-0221 (0220 entregada; ola 48 0219…0222; copiar `relm.`/`asps` con Ctrl+Alt+Shift+\`; luego IDE-0222 clic; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: IDE-0222 (0221 entregada; ola 48 0219…0222; clic en `relm.`/`asps`; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
