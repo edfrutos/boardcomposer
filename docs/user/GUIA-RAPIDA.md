@@ -682,7 +682,8 @@ Chrome de Studio (se recuerda entre sesiones).
   retal que `mdnd.`. N impar, el del medio. N par, el inferior de los
   dos centrales. Oculta si no hay retales. Un cuadrado muestra `1.00`.
   No sigue las unidades. Distinta de `mdnd.`, `relr.` y `relm.`.
-  Cursor flecha. Sin clic.
+  Cursor mano si está visible. Clic selecciona esa solución en el
+  explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+,** copia el valor, sin
   `reln.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
