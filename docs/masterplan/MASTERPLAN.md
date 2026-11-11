@@ -6,7 +6,7 @@
 
 - Fase de producto: **Fase 2 — BoardComposer Studio** (núcleo usable;
   Fase 3 plataforma entregada).
-- Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
+- Versión: `0.4.4` (anterior estable: `0.4.3` /
   `v0.4.3` publicada).
 - Core base consolidado y cubierto por tests (incluye kerf IDE-0020,
   veta IDE-0021, Skyline multipanel IDE-0022 y freeze/re-pack IDE-0030).
@@ -305,6 +305,10 @@
   solución (IDE-0225).
 - Barra de estado: relación de forma del retal de área media
   (IDE-0226; `rela.`/`aspa`).
+- Copiar la relación de forma del retal de área media (IDE-0227;
+  Ctrl+Alt+Shift+.).
+- Clic en la relación de forma del retal de área media selecciona esa
+  solución (IDE-0228).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
@@ -353,6 +357,7 @@
    Cuadragésima séptima ola cerrada (0218 entregada).
    Cuadragésima octava ola cerrada (0222 entregada).
    Cuadragésima novena ola cerrada (0226 entregada).
+   Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

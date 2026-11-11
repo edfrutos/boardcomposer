@@ -54,7 +54,7 @@ alternativas comprensibles para que el usuario decida.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
   `docs/masterplan/REVIEW-2026-11-09-planificacion.md`.
-- Versión de desarrollo: `0.4.4.dev0` (última estable: `0.4.3` /
+- Versión: `0.4.4` (anterior estable: `0.4.3` /
   `v0.4.3` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
   locales ni ventana; fusionar o reemplazar; sin nube.
@@ -234,8 +234,10 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la relación de forma del retal de área mediana (IDE-0224; Ctrl+Alt+Shift+,).
 - Clic en la relación de forma del retal de área mediana selecciona esa solución (IDE-0225).
 - Barra de estado: relación de forma del retal de área media (IDE-0226; `rela.`/`aspa`).
-- Próximo: cola vacía; siguiente Merge OK abre ola 50 (0226 cierra
-  0223…0226; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
+- Copiar la relación de forma del retal de área media (IDE-0227; Ctrl+Alt+Shift+.).
+- Clic en la relación de forma del retal de área media selecciona esa solución (IDE-0228).
+- Próximo: etiqueta `v0.4.4` (corte `0.4.4`; olas 1…50 cerradas, IDE-0025…0228;
+  IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados. Snapshot:
   `REVIEW-2026-11-11-planificacion.md`.

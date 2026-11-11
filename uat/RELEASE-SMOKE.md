@@ -1,8 +1,8 @@
 # Release / demo smoke — BoardComposer
 
-**Versión:** `0.4.3`  
-**Fecha:** 2026-09-14  
-**Base:** `main` @ release `0.4.3`
+**Versión:** `0.4.4`  
+**Fecha:** 2026-11-11  
+**Base:** `main` @ release `0.4.4`
 
 Checklist corta para validar «listo para demo / uso diario» sin sustituir UAT
 completo (`uat/studio/`, `uat/plataforma/`).
@@ -17,7 +17,7 @@ completo (`uat/studio/`, `uat/plataforma/`).
 
 ## 2. Studio (manual ligero, 5–10 min)
 
-- [ ] `make run` → Welcome / About muestran `0.4.3`
+- [ ] `make run` → Welcome / About muestran `0.4.4`
 - [ ] Nuevo demo → calcular layout → Comparador → **Ctrl+Alt+E** Explicar candidata → Copiar
   (eval 5 candidatas: [`studio/CHECKLIST-EXPLAIN-EVAL.md`](studio/CHECKLIST-EXPLAIN-EVAL.md))
 - [ ] **Ctrl+Alt+M** metadatos; **Ctrl+Alt+K** kerf; pieza con veta fija no rota (**R**)
@@ -29,16 +29,16 @@ completo (`uat/studio/`, `uat/plataforma/`).
 
 ## 3. Docs / deuda
 
-- [x] `ROADMAP.md` / CHANGELOG 0.4.3
-- [x] DOC-006: DT-0006 en piloto D; cola 0019…0024 cerrada
+- [x] `ROADMAP.md` / CHANGELOG 0.4.4
+- [x] DOC-006: DT-0006 en piloto D; cola 0025…0228 cerrada
 - [x] UAT plataforma marcado OK (`uat/plataforma/CHECKLIST.md`)
 
 ## Resultado (rellenar al ejecutar)
 
 | Bloque | ¿OK? | Notas |
 |--------|------|-------|
-| 1 Automatizado | OK | 1182 passed; demo layout `free_space` |
+| 1 Automatizado | OK | Suite verde; demo layout `free_space` |
 | 2 Studio |  | Pendiente `make run` humano |
-| 3 Docs / deuda | OK | Corte 0.4.3 |
+| 3 Docs / deuda | OK | Corte 0.4.4 |
 
 **Veredicto:** [ ] OK demo · [ ] Con reservas · [ ] Bloqueante
