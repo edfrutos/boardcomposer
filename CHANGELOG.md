@@ -4,6 +4,12 @@
 
 ## Añadido
 
+- Barra de estado: relación de forma del retal de área media
+  (IDE-0226; `rela.` / `aspa`). Mismo retal que `mdds.`: el de área
+  más próxima a la media (empate: menor largo y ancho). `1.00` si es
+  cuadrado. Oculta si no hay retales. No sigue las unidades. Cursor
+  flecha. Sin clic. Cierra la cuadragésima novena ola 0223…0226.
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la relación de forma del retal de área mediana selecciona esa
   solución (IDE-0225). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;

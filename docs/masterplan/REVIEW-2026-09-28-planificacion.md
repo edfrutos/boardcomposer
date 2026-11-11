@@ -455,9 +455,9 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0223 | Barra: relación de forma del retal de área mediana | Entregado; `reln.`/`aspm`; mismo retal que `mdnd.`; sin clic |
 | IDE-0224 | Copiar la relación de forma del retal de área mediana | Entregado; Ctrl+Alt+Shift+, el valor, sin `reln.`; no avanza |
 | IDE-0225 | Clic en la relación de forma del retal de área mediana selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0226 | Barra: relación de forma del retal de área media | Planificado; `rela.`/`aspa`; mismo retal que `mdds.`; sin clic |
+| IDE-0226 | Barra: relación de forma del retal de área media | Entregado; `rela.`/`aspa`; mismo retal que `mdds.`; sin clic |
 
-Prioridad de ataque: IDE-0226 (0225 entregada; ola 49 0223…0226; `rela.`/`aspa` relación de forma del retal de área media; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: cola vacía (0226 cierra 0223…0226; siguiente Merge OK abre ola 50; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
