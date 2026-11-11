@@ -4,6 +4,11 @@
 
 ## Añadido
 
+- Copiar la relación de forma del retal de área mediana de la solución
+  (IDE-0224; **Ctrl+Alt+Shift+,**). Copia el valor, sin `reln.`
+  (en inglés sin `aspm`). Deshabilitado si la etiqueta está
+  oculta. No avanza ni aplica el layout.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: relación de forma del retal de área mediana
   (IDE-0223; `reln.` / `aspm`). Mismo retal que `mdnd.`: orden
   `(área, largo, ancho)`; n impar el del medio, n par el inferior
