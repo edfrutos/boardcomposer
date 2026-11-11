@@ -237,7 +237,7 @@ alternativas comprensibles para que el usuario decida.
   relación de forma del retal de área media; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados. Snapshot:
-  `REVIEW-2026-11-10-planificacion.md`.
+  `REVIEW-2026-11-11-planificacion.md`.
 
 ## Fuentes de verdad
 
