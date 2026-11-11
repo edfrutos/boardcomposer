@@ -301,6 +301,7 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(
             self._actions["copy_solution_median_offcut_aspect"]
         )
+        self._menus["edit"].addAction(self._actions["copy_solution_mean_offcut_aspect"])
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -556,6 +557,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_solution_median_offcut_aspect"].triggered.connect(
             self._copy_solution_median_offcut_aspect
+        )
+        self._actions["copy_solution_mean_offcut_aspect"].triggered.connect(
+            self._copy_solution_mean_offcut_aspect
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -1206,6 +1210,8 @@ class MainWindow(QMainWindow):
         self._solution_mean_offcut_aspect_label.setObjectName(
             "statusSolutionMeanOffcutAspect"
         )
+        self._solution_mean_offcut_aspect_label_armed = False
+        self._solution_mean_offcut_aspect_label.installEventFilter(self)
         self._offcuts_label = QLabel()
         self._offcuts_label.setObjectName("statusOffcuts")
         self._offcuts_label_armed = False
@@ -2889,6 +2895,44 @@ class MainWindow(QMainWindow):
                 if (
                     armed
                     and self._selected_solution_median_offcut_aspect_text() is not None
+                ):
+                    index = self.services.layout.selected_solution_index
+                    if self._select_explorer_solution(index):
+                        return True
+        solution_mean_offcut_aspect = getattr(
+            self, "_solution_mean_offcut_aspect_label", None
+        )
+        if (
+            solution_mean_offcut_aspect is not None
+            and watched is solution_mean_offcut_aspect
+        ):
+            can_select = self._selected_solution_mean_offcut_aspect_text() is not None
+            if (
+                event.type() == QEvent.Type.MouseButtonPress
+                and event.button() == Qt.MouseButton.LeftButton
+                and can_select
+            ):
+                self._solution_mean_offcut_aspect_label_armed = True
+                return True
+            if event.type() == QEvent.Type.Leave:
+                self._solution_mean_offcut_aspect_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseMove
+                and self._solution_mean_offcut_aspect_label_armed
+                and not solution_mean_offcut_aspect.rect().contains(
+                    event.position().toPoint()
+                )
+            ):
+                self._solution_mean_offcut_aspect_label_armed = False
+            if (
+                event.type() == QEvent.Type.MouseButtonRelease
+                and event.button() == Qt.MouseButton.LeftButton
+            ):
+                armed = self._solution_mean_offcut_aspect_label_armed
+                self._solution_mean_offcut_aspect_label_armed = False
+                if (
+                    armed
+                    and self._selected_solution_mean_offcut_aspect_text() is not None
                 ):
                     index = self.services.layout.selected_solution_index
                     if self._select_explorer_solution(index):
@@ -6098,6 +6142,7 @@ class MainWindow(QMainWindow):
 
     def _update_solution_mean_offcut_aspect_status(self) -> None:
         """Show mean-area offcut aspect ratio of the selected solution (IDE-0226)."""
+        self._sync_copy_solution_mean_offcut_aspect_action()
         label = getattr(self, "_solution_mean_offcut_aspect_label", None)
         if label is None:
             return
@@ -6112,7 +6157,7 @@ class MainWindow(QMainWindow):
         label.setToolTip(
             self._tr("tip.status_solution_mean_offcut_aspect", value=value)
         )
-        label.setCursor(Qt.CursorShape.ArrowCursor)
+        label.setCursor(Qt.CursorShape.PointingHandCursor)
         label.show()
 
     def _update_solution_status(self) -> None:
@@ -11117,6 +11162,31 @@ class MainWindow(QMainWindow):
             return
         self._copy_text_to_clipboard(value)
         self._status("status.solution_median_offcut_aspect_copied", value=value)
+
+    def _sync_copy_solution_mean_offcut_aspect_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_mean_offcut_aspect")
+        if action is None:
+            return
+        enabled = self._selected_solution_mean_offcut_aspect_text() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_mean_offcut_aspect"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_mean_offcut_aspect")
+        )
+
+    def _copy_solution_mean_offcut_aspect(self, _checked: bool = False) -> None:
+        """Copy the status-bar mean-area offcut aspect ratio (IDE-0227)."""
+        del _checked
+        value = self._selected_solution_mean_offcut_aspect_text()
+        if value is None:
+            self._status("status.nothing_to_copy_solution_mean_offcut_aspect")
+            return
+        self._copy_text_to_clipboard(value)
+        self._status("status.solution_mean_offcut_aspect_copied", value=value)
 
     def _sync_copy_offcuts_action(self) -> None:
         actions = getattr(self, "_actions", None)
