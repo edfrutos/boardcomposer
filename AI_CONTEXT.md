@@ -231,8 +231,9 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la relación de forma del menor retal (IDE-0221; Ctrl+Alt+Shift+\`).
 - Clic en la relación de forma del menor retal selecciona esa solución (IDE-0222).
 - Barra de estado: relación de forma del retal de área mediana (IDE-0223; `reln.`/`aspm`).
-- Próximo: IDE-0224 (0223 entregada; ola 49 0223…0226; copiar `reln.`;
-  Ctrl+Alt+Shift+,; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
+- Copiar la relación de forma del retal de área mediana (IDE-0224; Ctrl+Alt+Shift+,).
+- Próximo: IDE-0225 (0224 entregada; ola 49 0223…0226; clic en `reln.`;
+  luego IDE-0226 `rela.`/`aspa`; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados. Snapshot:
   `REVIEW-2026-11-10-planificacion.md`.

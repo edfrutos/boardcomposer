@@ -413,11 +413,11 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0221 | Copiar la relación de forma del menor retal | Entregado; Ctrl+Alt+Shift+\` el valor, sin `relm.`; no avanza |
 | IDE-0222 | Clic en la relación de forma del menor retal selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0223 | Barra: relación de forma del retal de área mediana | Entregado; `reln.`/`aspm`; mismo retal que `mdnd.`; sin clic |
-| IDE-0224 | Copiar la relación de forma del retal de área mediana | Planificado; Ctrl+Alt+Shift+, el valor, sin `reln.`; no avanza |
+| IDE-0224 | Copiar la relación de forma del retal de área mediana | Entregado; Ctrl+Alt+Shift+, el valor, sin `reln.`; no avanza |
 | IDE-0225 | Clic en la relación de forma del retal de área mediana selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0226 | Barra: relación de forma del retal de área media | Planificado; `rela.`/`aspa`; mismo retal que `mdds.`; sin clic |
 
-Prioridad de ataque: IDE-0224 (0223 entregada; ola 49 0223…0226; copiar `reln.`/`aspm`, Ctrl+Alt+Shift+,; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: IDE-0225 (0224 entregada; ola 49 0223…0226; clic en `reln.`/`aspm`; luego IDE-0226 `rela.`/`aspa`; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
