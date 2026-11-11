@@ -4,6 +4,23 @@
 
 ## Añadido
 
+- Clic en la relación de forma del retal de área mediana selecciona esa
+  solución (IDE-0225). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no.
+  Sin bump `.bcproj`; no cambia el solver.
+- Copiar la relación de forma del retal de área mediana de la solución
+  (IDE-0224; **Ctrl+Alt+Shift+,**). Copia el valor, sin `reln.`
+  (en inglés sin `aspm`). Deshabilitado si la etiqueta está
+  oculta. No avanza ni aplica el layout.
+  Sin bump `.bcproj`; no cambia el solver.
+- Barra de estado: relación de forma del retal de área mediana
+  (IDE-0223; `reln.` / `aspm`). Mismo retal que `mdnd.`: orden
+  `(área, largo, ancho)`; n impar el del medio, n par el inferior
+  de los dos centrales. `1.00` si es cuadrado. Oculta si no hay
+  retales. No sigue las unidades. Cursor flecha. Sin clic.
+  Abre la cuadragésima novena ola 0223…0226. Sin bump `.bcproj`;
+  no cambia el solver.
 - Clic en la relación de forma del menor retal selecciona esa
   solución (IDE-0222). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;

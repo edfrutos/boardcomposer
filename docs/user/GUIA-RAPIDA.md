@@ -677,6 +677,15 @@ Chrome de Studio (se recuerda entre sesiones).
   solución en el explorador; no avanza; arrastre no.
   **Ctrl+Alt+Shift+\`** copia el valor, sin
   `relm.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  La relación de forma del retal de área mediana va como `reln. 2.50`
+  (en inglés `aspm 2.50`): lado largo partido por lado corto del mismo
+  retal que `mdnd.`. N impar, el del medio. N par, el inferior de los
+  dos centrales. Oculta si no hay retales. Un cuadrado muestra `1.00`.
+  No sigue las unidades. Distinta de `mdnd.`, `relr.` y `relm.`.
+  Cursor mano si está visible. Clic selecciona esa solución en el
+  explorador; no avanza; arrastre no.
+  **Ctrl+Alt+Shift+,** copia el valor, sin
+  `reln.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Ctrl+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

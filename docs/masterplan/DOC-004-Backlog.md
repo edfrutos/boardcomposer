@@ -293,9 +293,9 @@ Observaciones:
 | IDE-0220 | Barra: relación de forma del menor retal | 🟢 | P3 |
 | IDE-0221 | Copiar la relación de forma del menor retal | 🟢 | P3 |
 | IDE-0222 | Clic en la relación de forma del menor retal selecciona su solución | 🟢 | P3 |
-| IDE-0223 | Barra: relación de forma del retal de área mediana | 🟡 | P3 |
-| IDE-0224 | Copiar la relación de forma del retal de área mediana | 🔵 | P3 |
-| IDE-0225 | Clic en la relación de forma del retal de área mediana selecciona su solución | 🔵 | P3 |
+| IDE-0223 | Barra: relación de forma del retal de área mediana | 🟢 | P3 |
+| IDE-0224 | Copiar la relación de forma del retal de área mediana | 🟢 | P3 |
+| IDE-0225 | Clic en la relación de forma del retal de área mediana selecciona su solución | 🟢 | P3 |
 | IDE-0226 | Barra: relación de forma del retal de área media | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -513,9 +513,9 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0220 | S | IDE-0193 | Entregado; `relm. {value}` / `asps {value}` = max(L, A) / min(L, A) del retal de menor área (empate por largo y ancho, como `mind.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mind.` y de `relr.`; sin clic |
 | IDE-0221 | S | IDE-0220 | Entregado; Ctrl+Alt+Shift+\` el valor, sin `relm.`; no avanza |
 | IDE-0222 | S | IDE-0220 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0223 | S | IDE-0202 | En curso `#886`; `reln. {value}` / `aspm {value}` = max(L, A) / min(L, A) del retal de área mediana (orden `(area, length, width)`; n impar → medio; n par → el inferior de los dos centrales, como `mdnd.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdnd.`, `relr.` y `relm.`; sin clic |
-| IDE-0224 | S | IDE-0223 | Planificado; Ctrl+Alt+Shift+, el valor, sin `reln.`; no avanza |
-| IDE-0225 | S | IDE-0223 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0223 | S | IDE-0202 | Entregado; `reln. {value}` / `aspm {value}` = max(L, A) / min(L, A) del retal de área mediana (orden `(area, length, width)`; n impar → medio; n par → el inferior de los dos centrales, como `mdnd.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdnd.`, `relr.` y `relm.`; sin clic |
+| IDE-0224 | S | IDE-0223 | Entregado; Ctrl+Alt+Shift+, el valor, sin `reln.`; no avanza |
+| IDE-0225 | S | IDE-0223 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0226 | S | IDE-0205 | Planificado; `rela. {value}` / `aspa {value}` = max(L, A) / min(L, A) del retal cuya área está más próxima a la media (empate: menor `(length, width)`, como `mdds.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdds.`, `reln.`, `relr.` y `relm.`; sin clic |
 
 ---
@@ -582,16 +582,15 @@ Cuadragésima quinta ola cerrada (0210 entregada).
 Cuadragésima sexta ola cerrada (0214 entregada).
 Cuadragésima séptima ola cerrada (0218 entregada).
 Cuadragésima octava ola cerrada (0222 entregada).
-Cuadragésima novena ola 0223…0226: 0223 🟡 `#886`; 0224…0226 🔵.
+Cuadragésima novena ola 0223…0226: 0223…0225 entregadas; siguiente IDE-0226.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-11-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` cuadragésima novena ola — IDE-0223 🟡 `#886`
-   → IDE-0224…0226 🔵 (`reln.`/`aspm` → copiar Ctrl+Alt+Shift+, →
-   clic → `rela.`/`aspa`; IDE-0101 e IDE-0102 diferidas, sin costes).
+1. Cola producto `0.4.4`: IDE-0226 (0225 entregada; ola 49 0223…0226;
+   `rela.`/`aspa` relación de forma del retal de área media; IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.

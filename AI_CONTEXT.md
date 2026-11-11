@@ -230,13 +230,14 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: relación de forma del menor retal (IDE-0220; `relm.`/`asps`).
 - Copiar la relación de forma del menor retal (IDE-0221; Ctrl+Alt+Shift+\`).
 - Clic en la relación de forma del menor retal selecciona esa solución (IDE-0222).
-- Barra de estado: relación de forma del retal de área mediana
-  (IDE-0223 🟡 `#886`; `reln.`/`aspm`).
-- Próximo: IDE-0224…0226 🔵 (ola 49; copiar `reln.` Ctrl+Alt+Shift+,;
-  clic; `rela.`/`aspa`; IDE-0101 e IDE-0102 diferidas, sin costes).
-  Bloqueados sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D;
-  Issues = 0; eval IDE-0007 cerrada; LLM / plugins / C bloqueados.
-  Snapshot: `REVIEW-2026-11-11-planificacion.md`.
+- Barra de estado: relación de forma del retal de área mediana (IDE-0223; `reln.`/`aspm`).
+- Copiar la relación de forma del retal de área mediana (IDE-0224; Ctrl+Alt+Shift+,).
+- Clic en la relación de forma del retal de área mediana selecciona esa solución (IDE-0225).
+- Próximo: IDE-0226 (0225 entregada; ola 49 0223…0226; `rela.`/`aspa`
+  relación de forma del retal de área media; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
+  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+  LLM / plugins / C bloqueados. Snapshot:
+  `REVIEW-2026-11-11-planificacion.md`.
 
 ## Fuentes de verdad
 
