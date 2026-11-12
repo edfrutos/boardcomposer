@@ -29,7 +29,7 @@ resultado válido del pipeline).
 ## Distribución en Studio
 
 Dock inferior (`Comparador de soluciones`), tabificado junto al Timeline.
-Visible/ocultable con **Ver → Comparador de soluciones** (**Ctrl+4**).
+Visible/ocultable con **Ver → Comparador de soluciones** (**Cmd+4**).
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -57,7 +57,7 @@ Visible/ocultable con **Ver → Comparador de soluciones** (**Ctrl+4**).
 - **Fijar como referencia:** usa la candidata seleccionada como base del panel
   de diferencias (se reinicia tras un nuevo cálculo).
 - **Banner desactualizadas:** si el proyecto cambió tras calcular, muestra
-  aviso + CTA **Calcular layout** (mismo flujo que Ctrl+Return; tip
+  aviso + CTA **Calcular layout** (mismo flujo que Cmd+Return; tip
   `tip.solve_layout_outdated` si hay candidatas viejas).
 
 ### Miniaturas
@@ -96,19 +96,19 @@ el texto. También se actualiza en sync con el replay del Timeline
 |--------|-----------------|--------|
 | Seleccionar candidata | clic fila o miniatura | Preview en Workspace + Inspector |
 | Solución anterior / siguiente | **Re Pág** / **Av Pág** | Sigue orden/filtro visibles; si outdated, tip avisa candidatas viejas |
-| Aplicar al proyecto | **Ctrl+Shift+Return** | Si outdated: diálogo **Calcular layout** / Aplicar de todos modos / Cancelar |
-| Exportar seleccionada | **Ctrl+Shift+E** | Si outdated: diálogo **Calcular layout** / Exportar de todos modos / Cancelar; luego SCR-007 |
-| Explicar candidata | **Ctrl+Alt+E** | Ayuda → diálogo determinista + Copiar; si outdated, tip/cabecera avisan |
+| Aplicar al proyecto | **Cmd+Shift+Return** | Si outdated: diálogo **Calcular layout** / Aplicar de todos modos / Cancelar |
+| Exportar seleccionada | **Cmd+Shift+E** | Si outdated: diálogo **Calcular layout** / Exportar de todos modos / Cancelar; luego SCR-007 |
+| Explicar candidata | **Cmd+Alt+E** | Ayuda → diálogo determinista + Copiar; si outdated, tip/cabecera avisan |
 | Fijar referencia | botón pin | Si outdated, tip avisa que el diff usa candidatas viejas |
 | Vista previa (Explorador) | menú contextual | Si outdated, tip avisa candidata vieja (sin bloquear) |
-| Mostrar/ocultar dock | **Ctrl+4** | Toggle Comparador |
+| Mostrar/ocultar dock | **Cmd+4** | Toggle Comparador |
 
 ---
 
 ## Flujo principal
 
-1. **Calcular layout** (**Ctrl+Return**).
-2. Abrir el Comparador (**Ctrl+4**) si no está visible.
+1. **Calcular layout** (**Cmd+Return**).
+2. Abrir el Comparador (**Cmd+4**) si no está visible.
 3. Ordenar / filtrar; fijar referencia si conviene.
 4. Revisar miniaturas, métricas y panel de diferencias.
 5. **Aplicar** o **exportar** la elegida.

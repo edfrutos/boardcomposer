@@ -10,6 +10,8 @@
 
 Marca cada ítem al comprobarlo. Objetivo: ver **qué hay implementado y usable**, no buscar bugs de borde.
 
+> **Atajos en macOS:** **Cmd** = **⌘** (Command), **Alt** = **⌥** (Option), **Shift** = **⇧** (en Windows/Linux, **Cmd** equivale a **Ctrl**).
+
 Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 `docs/masterplan/ui/`.
 
@@ -18,37 +20,37 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 ## 0. Arranque y entorno
 
 - [x] La app abre con icono propio (no el genérico de Python).
-- [x] Pantalla de inicio (SCR-001): hero, CTAs, recientes, plantilla, docs/novedades/atajos/acerca; volver con **Ctrl+Shift+H** (tip de estado); demo con **Ctrl+Shift+D** (tip de estado).
+- [x] Pantalla de inicio (SCR-001): hero, CTAs, recientes, plantilla, docs/novedades/atajos/acerca; volver con **Cmd+Shift+H** (tip de estado); demo con **Cmd+Shift+D** (tip de estado).
 - [x] Tema «Industrial madera» se ve coherente (claro/oscuro vía Preferencias).
-- [x] Idioma es/en cambia menús y tip de estado (`Editar → Preferencias…`, **Ctrl+,**).
+- [x] Idioma es/en cambia menús y tip de estado (`Editar → Preferencias…`, **Cmd+,**).
 
 ---
 
 ## 1. Proyecto (SCR-005 / FLW-001)
 
-- [x] **Nuevo proyecto** (**Ctrl+N**, tip de estado) pide nombre y unidades; aparece workspace vacío con CTAs.
-- [x] **Añadir tablero** (**Ctrl+Shift+B**; tip de estado) y **añadir pieza** (**Ctrl+Shift+P**; tip de estado) (menú / Explorador / CTA vacío).
-- [x] **Guardar** (**Ctrl+S**) / **Guardar como** (**Ctrl+Shift+S**) / **Abrir** (**Ctrl+O**) `.bcproj` (tips de estado); basename en barra de estado (tooltip = ruta; clic abre carpeta); **Ctrl+Shift+R** abre la carpeta (tip de estado); recuerda carpeta (`last_project_directory`).
+- [x] **Nuevo proyecto** (**Cmd+N**, tip de estado) pide nombre y unidades; aparece workspace vacío con CTAs.
+- [x] **Añadir tablero** (**Cmd+Shift+B**; tip de estado) y **añadir pieza** (**Cmd+Shift+P**; tip de estado) (menú / Explorador / CTA vacío).
+- [x] **Guardar** (**Cmd+S**) / **Guardar como** (**Cmd+Shift+S**) / **Abrir** (**Cmd+O**) `.bcproj` (tips de estado); basename en barra de estado (tooltip = ruta; clic abre carpeta); **Cmd+Shift+R** abre la carpeta (tip de estado); recuerda carpeta (`last_project_directory`).
 - [ ] Barra de ruta: `●` delante del nombre si hay cambios sin guardar (IDE-0058).
-- [ ] Barra de estado: piezas colocadas / total del inventario (IDE-0060). Clic encuadra las colocadas (IDE-0070). Copiar `1/2` (IDE-0087; Ctrl+Alt+Shift+P).
-- [ ] Barra de estado: piezas omitidas (`2 om.`); inventario sin colocación; oculta si es 0 (IDE-0079). Clic las selecciona y encuadra (IDE-0080). Copiar el número (IDE-0088; Ctrl+Alt+Shift+O).
-- [ ] Barra de estado: aprovechamiento del tablero enfocado (`uso 24.0%`); misma fórmula que el Inspector; oculta sin foco o sin uso (IDE-0081). Clic selecciona ese tablero (IDE-0082). Copiar el porcentaje (IDE-0083; Ctrl+Alt+Shift+U).
-- [ ] Barra de estado: material libre del tablero enfocado (`libre 76.0%`); complemento del aprovechamiento; la misma visibilidad (IDE-0084). Clic selecciona ese tablero (IDE-0086). Copiar el porcentaje (IDE-0085; Ctrl+Alt+Shift+F).
-- [ ] Barra de estado: tableros físicos (`3 tab.`); suma cantidades; oculta si no hay (IDE-0069). Clic encuadra todos los tableros (IDE-0071). Copiar el número (IDE-0089; Ctrl+Alt+Shift+N).
-- [ ] Barra de estado: espesor del tablero (`esp. 19 mm`); enfocado o el único tipo; oculta si hay varios sin foco (IDE-0073). Clic abre la edición de ese tablero (IDE-0074). Copiar espesor (IDE-0075; Ctrl+Alt+Shift+T).
-- [ ] Barra de estado: material del tablero (`mat. Demo`); mismo tablero que el espesor; oculta si está vacío o no hay tablero (IDE-0076). Clic abre la edición de ese tablero (IDE-0078). Copiar material (IDE-0077; Ctrl+Alt+Shift+M).
-- [ ] Barra de estado: `n sel.` con piezas seleccionadas en el Workspace; oculta si no hay (IDE-0063). Clic ajusta el encuadre (IDE-0066). Copiar el número (IDE-0090; Ctrl+Alt+Shift+S).
-- [ ] Barra de estado: kerf del proyecto (`kerf 3.2 mm`); unidades de Preferencias; oculta sin proyecto (IDE-0065). Clic abre el espesor de sierra (IDE-0067). Copiar espesor (IDE-0072; Ctrl+Alt+Shift+K).
-- [ ] Copiar medidas L×A de una sola pieza (**Ctrl+Alt+Shift+D**); unidades de Preferencias; idle con varias (IDE-0064).
-- [ ] Copiar medidas L×A de un tablero (**Ctrl+Alt+Shift+B**); una hoja; la cantidad no multiplica (IDE-0068).
-- [ ] Copiar ruta del `.bcproj` (**Ctrl+Alt+Shift+C**); idle si no hay archivo (IDE-0061).
-- [x] **Recientes** en inicio y menú: clic / Enter abre; anclar / desanclar vía menú contextual; Delete / menú quita uno; vaciar lista (**Ctrl+Shift+X**; tip de estado) si aplica.
-- [x] **Plantilla de proyecto**: guardar (**Ctrl+Shift+M**; tip de estado) y crear desde plantilla (**Ctrl+Shift+N**; tip de estado).
-- [x] Cerrar / **Salir** (**Ctrl+Q**; tip de estado) con cambios sin guardar → diálogo claro (nombre/ruta/botones).
-- [x] **Renombrar proyecto** (menú, clic derecho en raíz del Explorador, **F2** o **Ctrl+Shift+F2**; tip de estado).
-- [x] **Comparar revisiones `.bcproj`** (**Ctrl+Shift+Y**; tip de estado): tras guardar varias veces, abre diff con cambios estructurales legibles (`diff:` / `changes:`); recuerda carpeta examinada (`last_diff_directory`).
-- [x] **Restaurar última revisión local** (**Ctrl+Alt+Y** / menú Proyecto; tip idle si no hay anillo): tras ≥2 guardados, confirma → inventario en memoria vuelve al snapshot; título dirty; Guardar escribe en disco.
-- [x] **Exportar backup de revisiones…** (**Ctrl+Alt+B**; tip idle sin archivo): elige carpeta → copia `.bcproj` + anillo; diálogo «Carpeta creada» / **Abrir carpeta**; recuerda destino (`last_backup_directory`).
+- [ ] Barra de estado: piezas colocadas / total del inventario (IDE-0060). Clic encuadra las colocadas (IDE-0070). Copiar `1/2` (IDE-0087; Cmd+Alt+Shift+P).
+- [ ] Barra de estado: piezas omitidas (`2 om.`); inventario sin colocación; oculta si es 0 (IDE-0079). Clic las selecciona y encuadra (IDE-0080). Copiar el número (IDE-0088; Cmd+Alt+Shift+O).
+- [ ] Barra de estado: aprovechamiento del tablero enfocado (`uso 24.0%`); misma fórmula que el Inspector; oculta sin foco o sin uso (IDE-0081). Clic selecciona ese tablero (IDE-0082). Copiar el porcentaje (IDE-0083; Cmd+Alt+Shift+U).
+- [ ] Barra de estado: material libre del tablero enfocado (`libre 76.0%`); complemento del aprovechamiento; la misma visibilidad (IDE-0084). Clic selecciona ese tablero (IDE-0086). Copiar el porcentaje (IDE-0085; Cmd+Alt+Shift+F).
+- [ ] Barra de estado: tableros físicos (`3 tab.`); suma cantidades; oculta si no hay (IDE-0069). Clic encuadra todos los tableros (IDE-0071). Copiar el número (IDE-0089; Cmd+Alt+Shift+N).
+- [ ] Barra de estado: espesor del tablero (`esp. 19 mm`); enfocado o el único tipo; oculta si hay varios sin foco (IDE-0073). Clic abre la edición de ese tablero (IDE-0074). Copiar espesor (IDE-0075; Cmd+Alt+Shift+T).
+- [ ] Barra de estado: material del tablero (`mat. Demo`); mismo tablero que el espesor; oculta si está vacío o no hay tablero (IDE-0076). Clic abre la edición de ese tablero (IDE-0078). Copiar material (IDE-0077; Cmd+Alt+Shift+M).
+- [ ] Barra de estado: `n sel.` con piezas seleccionadas en el Workspace; oculta si no hay (IDE-0063). Clic ajusta el encuadre (IDE-0066). Copiar el número (IDE-0090; Cmd+Alt+Shift+S).
+- [ ] Barra de estado: kerf del proyecto (`kerf 3.2 mm`); unidades de Preferencias; oculta sin proyecto (IDE-0065). Clic abre el espesor de sierra (IDE-0067). Copiar espesor (IDE-0072; Cmd+Alt+Shift+K).
+- [ ] Copiar medidas L×A de una sola pieza (**Cmd+Alt+Shift+D**); unidades de Preferencias; idle con varias (IDE-0064).
+- [ ] Copiar medidas L×A de un tablero (**Cmd+Alt+Shift+B**); una hoja; la cantidad no multiplica (IDE-0068).
+- [ ] Copiar ruta del `.bcproj` (**Cmd+Alt+Shift+C**); idle si no hay archivo (IDE-0061).
+- [x] **Recientes** en inicio y menú: clic / Enter abre; anclar / desanclar vía menú contextual; Delete / menú quita uno; vaciar lista (**Cmd+Shift+X**; tip de estado) si aplica.
+- [x] **Plantilla de proyecto**: guardar (**Cmd+Shift+M**; tip de estado) y crear desde plantilla (**Cmd+Shift+N**; tip de estado).
+- [x] Cerrar / **Salir** (**Cmd+Q**; tip de estado) con cambios sin guardar → diálogo claro (nombre/ruta/botones).
+- [x] **Renombrar proyecto** (menú, clic derecho en raíz del Explorador, **F2** o **Cmd+Shift+F2**; tip de estado).
+- [x] **Comparar revisiones `.bcproj`** (**Cmd+Shift+Y**; tip de estado): tras guardar varias veces, abre diff con cambios estructurales legibles (`diff:` / `changes:`); recuerda carpeta examinada (`last_diff_directory`).
+- [x] **Restaurar última revisión local** (**Cmd+Alt+Y** / menú Proyecto; tip idle si no hay anillo): tras ≥2 guardados, confirma → inventario en memoria vuelve al snapshot; título dirty; Guardar escribe en disco.
+- [x] **Exportar backup de revisiones…** (**Cmd+Alt+B**; tip idle sin archivo): elige carpeta → copia `.bcproj` + anillo; diálogo «Carpeta creada» / **Abrir carpeta**; recuerda destino (`last_backup_directory`).
 
 ---
 
@@ -70,7 +72,7 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [ ] Inspector tablero: área de una hoja, sin multiplicar la cantidad
   (IDE-0059).
 - [x] Inspector pieza: área L×A (IDE-0055).
-- [x] **Ctrl+Alt+I** copia el texto del Inspector (IDE-0057).
+- [x] **Cmd+Alt+I** copia el texto del Inspector (IDE-0057).
 - [x] Menú contextual pieza: editar / duplicar / eliminar / copiar ID / renombrar.
 - [x] Menú contextual tablero: editar / duplicar / eliminar / copiar ID / renombrar.
 - [x] Clic / doble clic / Enter en **solución** del Explorador → vista previa
@@ -83,23 +85,23 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 - [x] Paneles físicos lado a lado (cantidad > 1 en un tablero).
 - [x] Arrastrar pieza dentro del panel; soltar en **otro panel** reasigna instancia.
 - [x] Solape inválido revierte el movimiento.
-- [x] Zoom: rueda / **Ctrl+=** / **Ctrl+-** (tips de estado); % en barra de estado.
-- [x] **Ctrl+0** ajusta a todos los tableros (tip de estado); **Ctrl+Shift+0** a la selección (tip de estado).
-- [ ] **Ctrl+Alt+0** vuelve el zoom al 100% (IDE-0056).
-- [ ] Clic en el **%** de la barra de estado vuelve al 100% sin mover el centro (IDE-0062). Copiar el porcentaje (IDE-0091; Ctrl+Alt+Shift+Z).
-- [ ] Barra de estado: retales de la solución seleccionada (`2 ret.`); oculta si no hay solución o si es 0 (IDE-0092). Clic selecciona su tablero (IDE-0094). Copiar el número (IDE-0093; Ctrl+Alt+Shift+R).
-- [ ] Barra de estado: índice de la solución seleccionada (`1/2 sol.`); oculto si no hay solución o si el índice no mapea (IDE-0095). Clic pasa a la siguiente (IDE-0097); no aplica el layout. Copiar `1/2` sin `sol.` (IDE-0096; Ctrl+Alt+Shift+L). Huecos internos `hueco 0.0%` / `gap 33.3%` (IDE-0098); la misma visibilidad; `0.0%` se muestra. Clic selecciona esa solución en el explorador (IDE-0100); no avanza. Copiar el porcentaje sin `hueco` (IDE-0099; Ctrl+Alt+Shift+G). Estrategia `est. material` / `str. material` (IDE-0103); la misma visibilidad; sin nombre se muestra `est. desconocida`. Clic selecciona esa solución en el explorador (IDE-0105); no avanza. Copiar el nombre sin `est.` (IDE-0104; Ctrl+Alt+Shift+Y). Piezas de esa solución `n pza` / `n pcs` (IDE-0106); la misma visibilidad; `0` se muestra. Clic selecciona esa solución en el explorador (IDE-0108); no avanza. Distinto de colocadas/total. Copiar el número sin `pza` (IDE-0107; Ctrl+Alt+Shift+J). Omitidas de esa solución `fuera 0` / `out 2` (IDE-0109); la misma visibilidad; `0` se muestra. Clic selecciona esa solución en el explorador (IDE-0111); no avanza. Distinto de `n om.`. Copiar el número sin `fuera` (IDE-0110; Ctrl+Alt+Shift+Q). Tableros de esa solución `pan. 0` / `pnl 2` (IDE-0112); la misma visibilidad; `0` se muestra. Clic selecciona esa solución en el explorador (IDE-0114); no avanza. Distinto de `n tab.`. Copiar el número sin `pan.` (IDE-0113; Ctrl+Alt+Shift+W). Puntuación de esa solución `pts. 0.00` / `pts 0.75` (IDE-0115); la misma visibilidad; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0117); no avanza. Copiar el valor sin `pts.` (IDE-0116; Ctrl+Alt+Shift+V). Tablero libre de esa solución `sbr. 0.0%` / `rem. 76.0%` (IDE-0118); la misma visibilidad; `0.0%` se muestra. Clic selecciona esa solución en el explorador (IDE-0120); no avanza. Distinto de `libre`. Copiar el porcentaje sin `sbr.` (IDE-0119; Ctrl+Alt+Shift+E). Largo total de esa solución `lrg. 0 mm` / `len. 400 mm` (IDE-0121); la misma visibilidad; `0 mm` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0123); no avanza. Copiar el largo con unidad sin `lrg.` (IDE-0122; Ctrl+Alt+Shift+H). Ancho total de esa solución `anc. 0 mm` / `wid. 300 mm` (IDE-0124); la misma visibilidad; `0 mm` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0126); no avanza. Copiar el ancho con unidad sin `anc.` (IDE-0125; Ctrl+Alt+Shift+X). Área usada de esa solución `ár. 0 mm²` / `area 20000 mm²` (IDE-0127); la misma visibilidad; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0129); no avanza. Copiar el área con unidad sin `ár.` (IDE-0128; Ctrl+Alt+Shift+A). Área de retales de esa solución `retár. 0 mm²` / `offar. 20000 mm²` (IDE-0130); la misma visibilidad que el índice; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0132); no avanza. Copiar el área con unidad sin `retár.` (IDE-0131; Ctrl+Alt+Shift+I). Área envolvente de esa solución `env. 0 mm²` / `bnd. 60000 mm²` (IDE-0133); la misma visibilidad que el índice; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0135); no avanza. Copiar el área con unidad sin `env.` (IDE-0134; Ctrl+Alt+Shift+1). Área de huecos internos de esa solución `hueár. 0 mm²` / `gapar. 30000 mm²` (IDE-0136); la misma visibilidad que el índice; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0138); no avanza. Copiar el área con unidad sin `hueár.` (IDE-0137; Ctrl+Alt+Shift+2). Área de tablero libre de esa solución `sbrár. 0 mm²` / `remar. 380000 mm²` (IDE-0139); la misma visibilidad que el índice; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0141); no avanza. Copiar el área con unidad sin `sbrár.` (IDE-0140; Ctrl+Alt+Shift+3). Área de tableros consumidos de esa solución `panár. 0 mm²` / `pnlar. 500000 mm²` (IDE-0142); la misma visibilidad que el índice; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0144); no avanza. Copiar el área con unidad sin `panár.` (IDE-0143; Ctrl+Alt+Shift+4). Aprovechamiento de tableros de esa solución `aprv. 0.0%` / `util. 24.0%` (IDE-0145); la misma visibilidad que el índice; `0.0%` se muestra; distinto de `uso`. Clic selecciona esa solución en el explorador (IDE-0147); no avanza. Copiar el porcentaje sin `aprv.` (IDE-0146; Ctrl+Alt+Shift+5). Piezas rotadas de esa solución `rot. 0` / `rot 2` (IDE-0148); la misma visibilidad que el índice; `0` se muestra; distinto de `n pza`. Clic selecciona esa solución en el explorador (IDE-0150); no avanza. Copiar el número sin `rot.` (IDE-0149; Ctrl+Alt+Shift+6). Piezas sin rotar de esa solución `nrot. 0` / `unrot 2` (IDE-0151); la misma visibilidad que el índice; `0` se muestra; distinto de `rot. {n}`. Clic selecciona esa solución en el explorador (IDE-0153); no avanza. Copiar el número sin `nrot.` (IDE-0152; Ctrl+Alt+Shift+7). Porcentaje de piezas rotadas de esa solución `rot% 0.0%` / `rot% 50.0%` (IDE-0154); la misma visibilidad que el índice; `0.0%` se muestra; distinto de `rot. {n}`. Clic selecciona esa solución en el explorador (IDE-0156); no avanza. Copiar el porcentaje sin `rot%` (IDE-0155; Ctrl+Alt+Shift+8). Porcentaje de piezas sin rotar de esa solución `nrot% 0.0%` / `unrot% 75.0%` (IDE-0157); la misma visibilidad que el índice; `0.0%` se muestra; distinto de `nrot. {n}`. Clic selecciona esa solución en el explorador (IDE-0159); no avanza. Copiar el porcentaje sin `nrot%` (IDE-0158; Ctrl+Alt+Shift+9). Aprovechamiento envolvente de esa solución `env% 0.0%` / `bnd% 50.0%` (IDE-0160); la misma visibilidad que el índice; `0.0%` se muestra; distinto de `aprv.` y `uso`. Clic selecciona esa solución en el explorador (IDE-0162); no avanza. Copiar el porcentaje sin `env%` (IDE-0161; Ctrl+Alt+Shift+0). Porcentaje de retales de esa solución `ret% 0.0%` / `off% 4.0%` (IDE-0163); la misma visibilidad que el índice; `0.0%` se muestra; distinto de `n ret.` y `retár.`. Clic selecciona esa solución en el explorador (IDE-0165); no avanza. Copiar el porcentaje sin `ret%` (IDE-0164; Ctrl+Alt+Shift+F1). Puntuación de desperdicio de esa solución `ptsh. 0.00` / `ptsw 0.50` (IDE-0166); la misma visibilidad que el índice; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0168); no avanza. Copiar el valor sin `ptsh.` (IDE-0167; Ctrl+Alt+Shift+F2). Distinto de `pts.`. Puntuación de uso de material de esa solución `ptsu. 0.00` / `ptsu 0.25` (IDE-0169); la misma visibilidad que el índice; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0171); no avanza. Copiar el valor sin `ptsu.` (IDE-0170; Ctrl+Alt+Shift+F3). Distinto de `pts.` y `ptsh.`. Puntuación de cortes de esa solución `ptsc. 0.00` / `ptsc 0.75` (IDE-0172); la misma visibilidad que el índice; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0174); no avanza. Copiar el valor sin `ptsc.` (IDE-0173; Ctrl+Alt+Shift+F4). Distinto de `pts.`, `ptsh.` y `ptsu.`. Puntuación de regularidad de esa solución `ptsr. 0.00` / `ptsr 0.40` (IDE-0175); la misma visibilidad que el índice; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0177); no avanza. Copiar el valor sin `ptsr.` (IDE-0176; Ctrl+Alt+Shift+F5). Distinto de `pts.`, `ptsh.`, `ptsu.` y `ptsc.`. Puntuación de veta de esa solución `ptsv. 0.00` / `ptsg 0.40` (IDE-0178); la misma visibilidad que el índice; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0180); no avanza. Copiar el valor sin `ptsv.` (IDE-0179; Ctrl+Alt+Shift+F6). Distinto de `pts.`, `ptsh.`, `ptsu.`, `ptsc.` y `ptsr.`. Completitud de esa solución `comp. sí` / `full yes` (IDE-0181); `comp. no` / `full no` si hay omitidas; la misma visibilidad que el índice; distinto de `fuera`. Clic selecciona esa solución en el explorador (IDE-0183); no avanza. Copiar el valor sin `comp.` (IDE-0182; Ctrl+Alt+Shift+F7). Área del mayor retal `maxr. 20000 mm²` / `maxo 20000 mm²` (IDE-0184); oculta si no hay retales; distinta de `n ret.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0186); no avanza. Copiar el área con unidad, sin `maxr.` (IDE-0185; Ctrl+Alt+Shift+F8). Área del menor retal `minr. 2500 mm²` / `mino 2500 mm²` (IDE-0187); oculta si no hay retales; distinta de `maxr.`, `n ret.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0189); no avanza. Copiar el área con unidad, sin `minr.` (IDE-0188; Ctrl+Alt+Shift+F9). Dimensiones del mayor retal `maxd. 200 x 100 mm` / `maxd 200 x 100 mm` (IDE-0190); oculta si no hay retales; distinta de `maxr.`, `minr.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0192); no avanza. Copiar el L×A con unidad, sin `maxd.` (IDE-0191; Ctrl+Alt+Shift+F10). Dimensiones del menor retal `mind. 50 x 50 mm` / `mind 50 x 50 mm` (IDE-0193); oculta si no hay retales; distinta de `minr.`, `maxd.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0195); no avanza. Copiar el L×A con unidad, sin `mind.` (IDE-0194; Ctrl+Alt+Shift+F11). Área media de retales `medr. 11250 mm²` / `avgo 11250 mm²` (IDE-0196); oculta si no hay retales; distinta de `minr.`, `maxr.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0198); no avanza. Copiar el área con unidad, sin `medr.` (IDE-0197; Ctrl+Alt+Shift+F12). Área mediana de retales `mdnr. 5000 mm²` / `medo 5000 mm²` (IDE-0199); oculta si no hay retales; distinta de `medr.`, `minr.`, `maxr.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0201); no avanza. Copiar el área con unidad, sin `mdnr.` (IDE-0200; Ctrl+Alt+Shift+-). Dimensiones del retal de área mediana `mdnd.`/`medd` (IDE-0202); oculta si no hay retales; cursor mano si está visible. Clic selecciona esa solución en el explorador (IDE-0204); no avanza; arrastre no. Copiar el L×A con unidad, sin `mdnd.` (IDE-0203; Ctrl+Alt+Shift+=). Dimensiones del retal de área media `mdds.`/`avgd` (IDE-0205); oculta si no hay retales; cursor mano si está visible. Clic selecciona esa solución en el explorador (IDE-0207); no avanza; arrastre no. Copiar el L×A con unidad, sin `mdds.` (IDE-0206; Ctrl+Alt+Shift+[). Amplitud de áreas de retales `ampr.`/`spno` (IDE-0208); mayor − menor; oculta si no hay retales; `0` con un retal; cursor flecha; sin clic. Copiar el área con unidad, sin `ampr.` (IDE-0209; Ctrl+Alt+Shift+]). Clic selecciona esa solución en el explorador (IDE-0210); no avanza; arrastre no. Cuota del mayor retal `cmay.`/`lsh` (IDE-0211); mayor área / suma; oculta si no hay retales; `100.0%` con un retal; cursor flecha; sin clic. Copiar el porcentaje, sin `cmay.` (IDE-0212; Ctrl+Alt+Shift+\\). Clic selecciona esa solución en el explorador (IDE-0213); no avanza; arrastre no. Cuota del menor retal `cmen.`/`ssh` (IDE-0214); menor área / suma; oculta si no hay retales; `100.0%` con un retal; distinta de `cmay.`; cursor mano si está visible; clic selecciona esa solución en el explorador (IDE-0216); no avanza; arrastre no. Copiar el porcentaje sin `cmen.` (IDE-0215; Ctrl+Alt+Shift+;); deshabilitado si la etiqueta está oculta; no avanza. Relación de forma del mayor retal `relr.`/`aspr` (IDE-0217); max(L, A) / min(L, A); empate como `maxd.`; oculta si no hay retales; `1.00` si es cuadrado; distinta de `maxd.`; no sigue las unidades; cursor mano si está visible; clic selecciona esa solución en el explorador (IDE-0219); no avanza; arrastre no. Copiar el valor sin `relr.` (IDE-0218; Ctrl+Alt+Shift+'); deshabilitado si la etiqueta está oculta; no avanza. Relación de forma del menor retal `relm.`/`asps` (IDE-0220); max(L, A) / min(L, A); empate como `mind.`; oculta si no hay retales; `1.00` si es cuadrado; distinta de `mind.` y de `relr.`; no sigue las unidades; cursor mano si está visible; clic selecciona esa solución en el explorador (IDE-0222); no avanza; arrastre no. Copiar el valor sin `relm.` (IDE-0221; Ctrl+Alt+Shift+\`); deshabilitado si la etiqueta está oculta; no avanza. Relación de forma del retal de área mediana `reln.`/`aspm` (IDE-0223); max(L, A) / min(L, A); mismo retal que `mdnd.`; n impar el del medio; n par el inferior de los dos centrales; oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdnd.`, `relr.` y `relm.`; no sigue las unidades; cursor mano si está visible; clic selecciona esa solución en el explorador (IDE-0225); no avanza; arrastre no. Copiar el valor sin `reln.` (IDE-0224; Ctrl+Alt+Shift+,); deshabilitado si la etiqueta está oculta; no avanza. Relación de forma del retal de área media `rela.`/`aspa` (IDE-0226); max(L, A) / min(L, A); mismo retal que `mdds.`; área más próxima a la media (empate: menor largo y ancho); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdds.`, `reln.`, `relr.` y `relm.`; no sigue las unidades; cursor mano si está visible; clic selecciona esa solución en el explorador (IDE-0228); no avanza; arrastre no. Copiar el valor sin `rela.` (IDE-0227; Ctrl+Alt+Shift+.); deshabilitado si la etiqueta está oculta; no avanza.
+- [x] Zoom: rueda / **Cmd+=** / **Cmd+-** (tips de estado); % en barra de estado.
+- [x] **Cmd+0** ajusta a todos los tableros (tip de estado); **Cmd+Shift+0** a la selección (tip de estado).
+- [ ] **Cmd+Alt+0** vuelve el zoom al 100% (IDE-0056).
+- [ ] Clic en el **%** de la barra de estado vuelve al 100% sin mover el centro (IDE-0062). Copiar el porcentaje (IDE-0091; Cmd+Alt+Shift+Z).
+- [ ] Barra de estado: retales de la solución seleccionada (`2 ret.`); oculta si no hay solución o si es 0 (IDE-0092). Clic selecciona su tablero (IDE-0094). Copiar el número (IDE-0093; Cmd+Alt+Shift+R).
+- [ ] Barra de estado: índice de la solución seleccionada (`1/2 sol.`); oculto si no hay solución o si el índice no mapea (IDE-0095). Clic pasa a la siguiente (IDE-0097); no aplica el layout. Copiar `1/2` sin `sol.` (IDE-0096; Cmd+Alt+Shift+L). Huecos internos `hueco 0.0%` / `gap 33.3%` (IDE-0098); la misma visibilidad; `0.0%` se muestra. Clic selecciona esa solución en el explorador (IDE-0100); no avanza. Copiar el porcentaje sin `hueco` (IDE-0099; Cmd+Alt+Shift+G). Estrategia `est. material` / `str. material` (IDE-0103); la misma visibilidad; sin nombre se muestra `est. desconocida`. Clic selecciona esa solución en el explorador (IDE-0105); no avanza. Copiar el nombre sin `est.` (IDE-0104; Cmd+Alt+Shift+Y). Piezas de esa solución `n pza` / `n pcs` (IDE-0106); la misma visibilidad; `0` se muestra. Clic selecciona esa solución en el explorador (IDE-0108); no avanza. Distinto de colocadas/total. Copiar el número sin `pza` (IDE-0107; Cmd+Alt+Shift+J). Omitidas de esa solución `fuera 0` / `out 2` (IDE-0109); la misma visibilidad; `0` se muestra. Clic selecciona esa solución en el explorador (IDE-0111); no avanza. Distinto de `n om.`. Copiar el número sin `fuera` (IDE-0110; Cmd+Alt+Shift+Q). Tableros de esa solución `pan. 0` / `pnl 2` (IDE-0112); la misma visibilidad; `0` se muestra. Clic selecciona esa solución en el explorador (IDE-0114); no avanza. Distinto de `n tab.`. Copiar el número sin `pan.` (IDE-0113; Cmd+Alt+Shift+W). Puntuación de esa solución `pts. 0.00` / `pts 0.75` (IDE-0115); la misma visibilidad; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0117); no avanza. Copiar el valor sin `pts.` (IDE-0116; Cmd+Alt+Shift+V). Tablero libre de esa solución `sbr. 0.0%` / `rem. 76.0%` (IDE-0118); la misma visibilidad; `0.0%` se muestra. Clic selecciona esa solución en el explorador (IDE-0120); no avanza. Distinto de `libre`. Copiar el porcentaje sin `sbr.` (IDE-0119; Cmd+Alt+Shift+E). Largo total de esa solución `lrg. 0 mm` / `len. 400 mm` (IDE-0121); la misma visibilidad; `0 mm` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0123); no avanza. Copiar el largo con unidad sin `lrg.` (IDE-0122; Cmd+Alt+Shift+H). Ancho total de esa solución `anc. 0 mm` / `wid. 300 mm` (IDE-0124); la misma visibilidad; `0 mm` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0126); no avanza. Copiar el ancho con unidad sin `anc.` (IDE-0125; Cmd+Alt+Shift+X). Área usada de esa solución `ár. 0 mm²` / `area 20000 mm²` (IDE-0127); la misma visibilidad; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0129); no avanza. Copiar el área con unidad sin `ár.` (IDE-0128; Cmd+Alt+Shift+A). Área de retales de esa solución `retár. 0 mm²` / `offar. 20000 mm²` (IDE-0130); la misma visibilidad que el índice; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0132); no avanza. Copiar el área con unidad sin `retár.` (IDE-0131; Cmd+Alt+Shift+I). Área envolvente de esa solución `env. 0 mm²` / `bnd. 60000 mm²` (IDE-0133); la misma visibilidad que el índice; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0135); no avanza. Copiar el área con unidad sin `env.` (IDE-0134; Cmd+Alt+Shift+1). Área de huecos internos de esa solución `hueár. 0 mm²` / `gapar. 30000 mm²` (IDE-0136); la misma visibilidad que el índice; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0138); no avanza. Copiar el área con unidad sin `hueár.` (IDE-0137; Cmd+Alt+Shift+2). Área de tablero libre de esa solución `sbrár. 0 mm²` / `remar. 380000 mm²` (IDE-0139); la misma visibilidad que el índice; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0141); no avanza. Copiar el área con unidad sin `sbrár.` (IDE-0140; Cmd+Alt+Shift+3). Área de tableros consumidos de esa solución `panár. 0 mm²` / `pnlar. 500000 mm²` (IDE-0142); la misma visibilidad que el índice; `0 mm²` se muestra; unidades de Preferencias. Clic selecciona esa solución en el explorador (IDE-0144); no avanza. Copiar el área con unidad sin `panár.` (IDE-0143; Cmd+Alt+Shift+4). Aprovechamiento de tableros de esa solución `aprv. 0.0%` / `util. 24.0%` (IDE-0145); la misma visibilidad que el índice; `0.0%` se muestra; distinto de `uso`. Clic selecciona esa solución en el explorador (IDE-0147); no avanza. Copiar el porcentaje sin `aprv.` (IDE-0146; Cmd+Alt+Shift+5). Piezas rotadas de esa solución `rot. 0` / `rot 2` (IDE-0148); la misma visibilidad que el índice; `0` se muestra; distinto de `n pza`. Clic selecciona esa solución en el explorador (IDE-0150); no avanza. Copiar el número sin `rot.` (IDE-0149; Cmd+Alt+Shift+6). Piezas sin rotar de esa solución `nrot. 0` / `unrot 2` (IDE-0151); la misma visibilidad que el índice; `0` se muestra; distinto de `rot. {n}`. Clic selecciona esa solución en el explorador (IDE-0153); no avanza. Copiar el número sin `nrot.` (IDE-0152; Cmd+Alt+Shift+7). Porcentaje de piezas rotadas de esa solución `rot% 0.0%` / `rot% 50.0%` (IDE-0154); la misma visibilidad que el índice; `0.0%` se muestra; distinto de `rot. {n}`. Clic selecciona esa solución en el explorador (IDE-0156); no avanza. Copiar el porcentaje sin `rot%` (IDE-0155; Cmd+Alt+Shift+8). Porcentaje de piezas sin rotar de esa solución `nrot% 0.0%` / `unrot% 75.0%` (IDE-0157); la misma visibilidad que el índice; `0.0%` se muestra; distinto de `nrot. {n}`. Clic selecciona esa solución en el explorador (IDE-0159); no avanza. Copiar el porcentaje sin `nrot%` (IDE-0158; Cmd+Alt+Shift+9). Aprovechamiento envolvente de esa solución `env% 0.0%` / `bnd% 50.0%` (IDE-0160); la misma visibilidad que el índice; `0.0%` se muestra; distinto de `aprv.` y `uso`. Clic selecciona esa solución en el explorador (IDE-0162); no avanza. Copiar el porcentaje sin `env%` (IDE-0161; Cmd+Alt+Shift+0). Porcentaje de retales de esa solución `ret% 0.0%` / `off% 4.0%` (IDE-0163); la misma visibilidad que el índice; `0.0%` se muestra; distinto de `n ret.` y `retár.`. Clic selecciona esa solución en el explorador (IDE-0165); no avanza. Copiar el porcentaje sin `ret%` (IDE-0164; Cmd+Alt+Shift+F1). Puntuación de desperdicio de esa solución `ptsh. 0.00` / `ptsw 0.50` (IDE-0166); la misma visibilidad que el índice; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0168); no avanza. Copiar el valor sin `ptsh.` (IDE-0167; Cmd+Alt+Shift+F2). Distinto de `pts.`. Puntuación de uso de material de esa solución `ptsu. 0.00` / `ptsu 0.25` (IDE-0169); la misma visibilidad que el índice; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0171); no avanza. Copiar el valor sin `ptsu.` (IDE-0170; Cmd+Alt+Shift+F3). Distinto de `pts.` y `ptsh.`. Puntuación de cortes de esa solución `ptsc. 0.00` / `ptsc 0.75` (IDE-0172); la misma visibilidad que el índice; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0174); no avanza. Copiar el valor sin `ptsc.` (IDE-0173; Cmd+Alt+Shift+F4). Distinto de `pts.`, `ptsh.` y `ptsu.`. Puntuación de regularidad de esa solución `ptsr. 0.00` / `ptsr 0.40` (IDE-0175); la misma visibilidad que el índice; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0177); no avanza. Copiar el valor sin `ptsr.` (IDE-0176; Cmd+Alt+Shift+F5). Distinto de `pts.`, `ptsh.`, `ptsu.` y `ptsc.`. Puntuación de veta de esa solución `ptsv. 0.00` / `ptsg 0.40` (IDE-0178); la misma visibilidad que el índice; `0.00` se muestra. Clic selecciona esa solución en el explorador (IDE-0180); no avanza. Copiar el valor sin `ptsv.` (IDE-0179; Cmd+Alt+Shift+F6). Distinto de `pts.`, `ptsh.`, `ptsu.`, `ptsc.` y `ptsr.`. Completitud de esa solución `comp. sí` / `full yes` (IDE-0181); `comp. no` / `full no` si hay omitidas; la misma visibilidad que el índice; distinto de `fuera`. Clic selecciona esa solución en el explorador (IDE-0183); no avanza. Copiar el valor sin `comp.` (IDE-0182; Cmd+Alt+Shift+F7). Área del mayor retal `maxr. 20000 mm²` / `maxo 20000 mm²` (IDE-0184); oculta si no hay retales; distinta de `n ret.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0186); no avanza. Copiar el área con unidad, sin `maxr.` (IDE-0185; Cmd+Alt+Shift+F8). Área del menor retal `minr. 2500 mm²` / `mino 2500 mm²` (IDE-0187); oculta si no hay retales; distinta de `maxr.`, `n ret.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0189); no avanza. Copiar el área con unidad, sin `minr.` (IDE-0188; Cmd+Alt+Shift+F9). Dimensiones del mayor retal `maxd. 200 x 100 mm` / `maxd 200 x 100 mm` (IDE-0190); oculta si no hay retales; distinta de `maxr.`, `minr.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0192); no avanza. Copiar el L×A con unidad, sin `maxd.` (IDE-0191; Cmd+Alt+Shift+F10). Dimensiones del menor retal `mind. 50 x 50 mm` / `mind 50 x 50 mm` (IDE-0193); oculta si no hay retales; distinta de `minr.`, `maxd.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0195); no avanza. Copiar el L×A con unidad, sin `mind.` (IDE-0194; Cmd+Alt+Shift+F11). Área media de retales `medr. 11250 mm²` / `avgo 11250 mm²` (IDE-0196); oculta si no hay retales; distinta de `minr.`, `maxr.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0198); no avanza. Copiar el área con unidad, sin `medr.` (IDE-0197; Cmd+Alt+Shift+F12). Área mediana de retales `mdnr. 5000 mm²` / `medo 5000 mm²` (IDE-0199); oculta si no hay retales; distinta de `medr.`, `minr.`, `maxr.`, `retár.` y `ret%`. Clic selecciona esa solución en el explorador (IDE-0201); no avanza. Copiar el área con unidad, sin `mdnr.` (IDE-0200; Cmd+Alt+Shift+-). Dimensiones del retal de área mediana `mdnd.`/`medd` (IDE-0202); oculta si no hay retales; cursor mano si está visible. Clic selecciona esa solución en el explorador (IDE-0204); no avanza; arrastre no. Copiar el L×A con unidad, sin `mdnd.` (IDE-0203; Cmd+Alt+Shift+=). Dimensiones del retal de área media `mdds.`/`avgd` (IDE-0205); oculta si no hay retales; cursor mano si está visible. Clic selecciona esa solución en el explorador (IDE-0207); no avanza; arrastre no. Copiar el L×A con unidad, sin `mdds.` (IDE-0206; Cmd+Alt+Shift+[). Amplitud de áreas de retales `ampr.`/`spno` (IDE-0208); mayor − menor; oculta si no hay retales; `0` con un retal; cursor flecha; sin clic. Copiar el área con unidad, sin `ampr.` (IDE-0209; Cmd+Alt+Shift+]). Clic selecciona esa solución en el explorador (IDE-0210); no avanza; arrastre no. Cuota del mayor retal `cmay.`/`lsh` (IDE-0211); mayor área / suma; oculta si no hay retales; `100.0%` con un retal; cursor flecha; sin clic. Copiar el porcentaje, sin `cmay.` (IDE-0212; Cmd+Alt+Shift+\\). Clic selecciona esa solución en el explorador (IDE-0213); no avanza; arrastre no. Cuota del menor retal `cmen.`/`ssh` (IDE-0214); menor área / suma; oculta si no hay retales; `100.0%` con un retal; distinta de `cmay.`; cursor mano si está visible; clic selecciona esa solución en el explorador (IDE-0216); no avanza; arrastre no. Copiar el porcentaje sin `cmen.` (IDE-0215; Cmd+Alt+Shift+;); deshabilitado si la etiqueta está oculta; no avanza. Relación de forma del mayor retal `relr.`/`aspr` (IDE-0217); max(L, A) / min(L, A); empate como `maxd.`; oculta si no hay retales; `1.00` si es cuadrado; distinta de `maxd.`; no sigue las unidades; cursor mano si está visible; clic selecciona esa solución en el explorador (IDE-0219); no avanza; arrastre no. Copiar el valor sin `relr.` (IDE-0218; Cmd+Alt+Shift+'); deshabilitado si la etiqueta está oculta; no avanza. Relación de forma del menor retal `relm.`/`asps` (IDE-0220); max(L, A) / min(L, A); empate como `mind.`; oculta si no hay retales; `1.00` si es cuadrado; distinta de `mind.` y de `relr.`; no sigue las unidades; cursor mano si está visible; clic selecciona esa solución en el explorador (IDE-0222); no avanza; arrastre no. Copiar el valor sin `relm.` (IDE-0221; Cmd+Alt+Shift+\`); deshabilitado si la etiqueta está oculta; no avanza. Relación de forma del retal de área mediana `reln.`/`aspm` (IDE-0223); max(L, A) / min(L, A); mismo retal que `mdnd.`; n impar el del medio; n par el inferior de los dos centrales; oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdnd.`, `relr.` y `relm.`; no sigue las unidades; cursor mano si está visible; clic selecciona esa solución en el explorador (IDE-0225); no avanza; arrastre no. Copiar el valor sin `reln.` (IDE-0224; Cmd+Alt+Shift+,); deshabilitado si la etiqueta está oculta; no avanza. Relación de forma del retal de área media `rela.`/`aspa` (IDE-0226); max(L, A) / min(L, A); mismo retal que `mdds.`; área más próxima a la media (empate: menor largo y ancho); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdds.`, `reln.`, `relr.` y `relm.`; no sigue las unidades; cursor mano si está visible; clic selecciona esa solución en el explorador (IDE-0228); no avanza; arrastre no. Copiar el valor sin `rela.` (IDE-0227; Cmd+Alt+Shift+.); deshabilitado si la etiqueta está oculta; no avanza.
 - [x] Pan: botón medio, botón derecho, **Espacio + arrastre**.
-- [x] Clic en vacío deselecciona; **Ctrl+A** / **Esc** / **Ctrl+Shift+I** (tips de estado en selección).
+- [x] Clic en vacío deselecciona; **Cmd+A** / **Esc** / **Cmd+Shift+I** (tips de estado en selección).
 - [x] **Flechas** mueven 1 mm; **Shift+flechas** = tamaño de cuadrícula (prefs).
 - [x] **R** rota si cabe (tip de estado); si no, se rechaza. Con **veta
   fija** la acción queda deshabilitada (`status.cannot_rotate_grain`).
 - [x] Doble clic pieza/tablero → editar; vacío → ajustar vista.
-- [x] **Enter/Return** edita selección (tip de estado); **F2** renombra (tip de estado); **Ctrl+Shift+C** copia ID (tip de estado).
-- [x] **Ctrl+D** duplica pieza o tablero enfocado (tip de estado).
+- [x] **Enter/Return** edita selección (tip de estado); **F2** renombra (tip de estado); **Cmd+Shift+C** copia ID (tip de estado).
+- [x] **Cmd+D** duplica pieza o tablero enfocado (tip de estado).
 - [x] **Delete/Backspace** elimina pieza o tablero enfocado (con confirmación; tip de estado).
-- [x] **Ctrl+G** muestra/oculta cuadrícula (tip de estado menciona el atajo).
-- [x] Docks: Ver → Explorador (**Ctrl+1**; tip de estado) / Inspector (**Ctrl+2**; tip de estado) / Timeline (**Ctrl+3**; tip de estado) / Comparador (**Ctrl+4**; tip de estado); barra de herramientas (**Ctrl+Shift+K**; tip de estado); restablecer disposición (**Ctrl+Shift+W**; tip de estado).
+- [x] **Cmd+G** muestra/oculta cuadrícula (tip de estado menciona el atajo).
+- [x] Docks: Ver → Explorador (**Cmd+1**; tip de estado) / Inspector (**Cmd+2**; tip de estado) / Timeline (**Cmd+3**; tip de estado) / Comparador (**Cmd+4**; tip de estado); barra de herramientas (**Cmd+Shift+K**; tip de estado); restablecer disposición (**Cmd+Shift+W**; tip de estado).
 
 ---
 
@@ -108,8 +110,8 @@ Flujos de referencia: FLW-001…006 y pantallas SCR-001…007 en
 Precondición para checks de comparador multi-candidata:
 
 - En Preferencias, `Máx. soluciones a conservar` > 1 (recomendado 20).
-- Atajo rápido: **Ctrl+Shift+D** (proyecto demo). Si el máx. era 1, Studio
-  lo restaura a 20 y el tip de estado lo dice. Luego **Ctrl+Return**.
+- Atajo rápido: **Cmd+Shift+D** (proyecto demo). Si el máx. era 1, Studio
+  lo restaura a 20 y el tip de estado lo dice. Luego **Cmd+Return**.
 - Dataset que produzca >=2 candidatas únicas/aceptadas (el demo basta).
 - Si tras Calcular solo hay 1, el tip de estado dirá «única candidata… no
   hay más distintas» (no es fallo del límite).
@@ -117,12 +119,12 @@ Precondición para checks de comparador multi-candidata:
 - Regresión auto: `pytest tests/test_uat_multi_candidate_flow.py`
   (demo→solve≥2, Re/Av Pág, pin/diff, export+open-after).
 
-- [x] **Ctrl+Return** calcula layout (progreso + Cancelar funcionan; tip de estado menciona el atajo).
+- [x] **Cmd+Return** calcula layout (progreso + Cancelar funcionan; tip de estado menciona el atajo).
 - [x] Aparecen >=2 soluciones en Comparador + Explorador (si el dataset y preferencias lo permiten).
 - [x] **Re Pág** / **Av Pág** (tips de estado) recorren candidatas (preview + status) cuando hay >=2 visibles; con 1 quedan deshabilitados.
 - [ ] Tras **Calcular layout**, el canvas muestra preview de la mejor
   candidata sin aplicar `placements` (IDE-0052).
-- [x] **Ctrl+Shift+Return** aplica la solución al proyecto (tip de estado).
+- [x] **Cmd+Shift+Return** aplica la solución al proyecto (tip de estado).
 - [x] Editar pieza tras aplicar → aviso de soluciones **desactualizadas**
   (banner Comparador + CTA **Calcular layout**).
 - [x] Aplicar / Exportar con outdated: tip honesto + diálogo **Calcular layout**
@@ -135,9 +137,9 @@ Precondición para checks de comparador multi-candidata:
   (`tip.preview_solution_outdated`).
 - [x] Comparador: ordenar, filtrar «solo completas», miniaturas, fijar referencia
   visible + diff (requiere >=2; botón pin deshabilitado con 1; tip post-solve).
-- [x] **Ctrl+Shift+E** (menú **Exportar** / toolbar) abre exportar solución
+- [x] **Cmd+Shift+E** (menú **Exportar** / toolbar) abre exportar solución
   (SVG/PNG/JPEG/PDF/DXF/JSON/CSV + preview). Tras Calcular, el tip de estado
-  lo recuerda; sin layout: tip pide Ctrl+Return primero.
+  lo recuerda; sin layout: tip pide Cmd+Return primero.
 - [x] Tras exportar OK (solución **o** Timeline): diálogo «Abrir archivo» /
   «Mostrar en carpeta».
 
@@ -145,15 +147,15 @@ Precondición para checks de comparador multi-candidata:
 
 ## 5. Importación (FLW-002)
 
-- [x] Importar **tableros** CSV/Excel (**Ctrl+Shift+T**; tip de estado) con vista previa.
-- [x] Importar **piezas** CSV/Excel (**Ctrl+Shift+O**; tip de estado; cantidad expandida si aplica).
+- [x] Importar **tableros** CSV/Excel (**Cmd+Shift+T**; tip de estado) con vista previa.
+- [x] Importar **piezas** CSV/Excel (**Cmd+Shift+O**; tip de estado; cantidad expandida si aplica).
 - [x] Import recuerda última carpeta (`last_import_directory`).
 - [x] Diff `.bcproj` recuerda última carpeta (`last_diff_directory`).
 - [x] Pack plantillas exportación recuerda carpeta (`last_export_templates_directory`).
 - [ ] Pack catálogo materiales recuerda carpeta (`last_material_catalog_directory`).
 - [x] Excel multi-hoja: selector de hoja.
 - [x] Si fallan columnas: asistente de mapeo + guardar/reaplicar/eliminar plantilla.
-- [x] Importación **deshacible** (**Ctrl+Z** / **Ctrl+Shift+Z**, tips de Deshacer/Rehacer).
+- [x] Importación **deshacible** (**Cmd+Z** / **Cmd+Shift+Z**, tips de Deshacer/Rehacer).
 
 ---
 
@@ -163,7 +165,7 @@ Precondición para checks de comparador multi-candidata:
 - [x] Replay colocaciones / fases (no muta el proyecto).
 - [x] Filtros por algoritmo / periodo; marcador de usuario.
 - [x] Clic en hecho → busca contexto.
-- [x] Exportar historial Timeline JSON/CSV (**Ctrl+Shift+L**; tip de estado).
+- [x] Exportar historial Timeline JSON/CSV (**Cmd+Shift+L**; tip de estado).
 
 ---
 
@@ -178,9 +180,9 @@ Precondición para checks de comparador multi-candidata:
   (IDE-0054). OK persiste. Sin nube.
 - [x] Geometría de ventana/docks se recuerda al reiniciar.
 - [x] **Ayuda → Atajos de teclado…** (**F1**; tip de estado) lista el catálogo
-  (incl. PgUp/PgDown, Ctrl+Shift+Return/E, Ctrl+Alt+B/E/M/K/X/C/T).
-- [x] Ayuda → Novedades (**Ctrl+Shift+U**; tip de estado) / Documentación (**Shift+F1**; tip de estado) / Acerca de (**Ctrl+Shift+A**; tip de estado, icono correcto).
-- [x] **Ayuda → Explicar candidata…** (**Ctrl+Alt+E**; tip idle sin layout): tras Calcular, diálogo con fortalezas/debilidades/notas + **Copiar** (status bar confirma).
+  (incl. PgUp/PgDown, Cmd+Shift+Return/E, Cmd+Alt+B/E/M/K/X/C/T).
+- [x] Ayuda → Novedades (**Cmd+Shift+U**; tip de estado) / Documentación (**Shift+F1**; tip de estado) / Acerca de (**Cmd+Shift+A**; tip de estado, icono correcto).
+- [x] **Ayuda → Explicar candidata…** (**Cmd+Alt+E**; tip idle sin layout): tras Calcular, diálogo con fortalezas/debilidades/notas + **Copiar** (status bar confirma).
   Eval humana 5 candidatas: [`CHECKLIST-EXPLAIN-EVAL.md`](CHECKLIST-EXPLAIN-EVAL.md).
 
 ---
@@ -200,15 +202,15 @@ Regresión auto: `tests/test_grain.py`, `tests/test_kerf.py`,
 `tests/test_cut_list.py`, `tests/test_multi_panel_skyline.py`,
 `tests/test_project_serializer.py`. Guía: `docs/user/GUIA-RAPIDA.md`.
 
-- [x] **Ctrl+Alt+M** metadatos (cliente / referencia / notas); Inspector en
+- [x] **Cmd+Alt+M** metadatos (cliente / referencia / notas); Inspector en
   raíz del Explorador; `.bcproj` v3+.
-- [x] **Ctrl+Alt+K** espesor de sierra; 0 mm = sin hueco; recalcular tras
+- [x] **Cmd+Alt+K** espesor de sierra; 0 mm = sin hueco; recalcular tras
   cambiar kerf marca soluciones desactualizadas.
 - [x] Pieza: desmarcar «Permitir rotación» → veta fija; Calcular y **R** no
   giran; Inspector muestra veta.
-- [x] **Ctrl+Alt+X** intercambia dos piezas colocadas; no-op si no caben o
+- [x] **Cmd+Alt+X** intercambia dos piezas colocadas; no-op si no caben o
   material/espesor no coinciden; se puede deshacer.
-- [x] **Ctrl+Alt+C** lista de corte CSV/PDF (flujo aparte de Exportar
+- [x] **Cmd+Alt+C** lista de corte CSV/PDF (flujo aparte de Exportar
   solución); pide recalcular si outdated.
 - [x] Varios tableros físicos: pipeline MaxRects **y** Skyline; Inspector
   panel + instancia.
@@ -224,44 +226,44 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
 `tests/test_export_batch.py`,
 `tests/test_suggest_gap.py`.
 
-- [ ] **Ctrl+Shift+E** plano SVG/PDF: piezas muestran id y LxW según
+- [ ] **Cmd+Shift+E** plano SVG/PDF: piezas muestran id y LxW según
   unidades de Preferencias (mm: `A 400x300`; cm: `A 40x30 cm`); retales
   y cotas L×A del tablero igual; desmarcar «Etiquetas de
   piezas», «Etiquetas de retales», «Cotas L×A del tablero» o
   «Trazabilidad (versión, algoritmo, fecha)» deja el plano sin ese
   texto; Workspace sigue mostrando solo piezas. El pie muestra
   versión, algoritmo y fecha; JSON/CSV no activan la casilla.
-- [ ] **Ctrl+Shift+E** PDF de plano: papel A4/A3/Letter o ajustar al
+- [ ] **Cmd+Shift+E** PDF de plano: papel A4/A3/Letter o ajustar al
   dibujo; escala fit o 1:n; márgenes mm. Lista de corte y presupuesto
   PDF no cambian de página.
-- [ ] **Ctrl+Shift+E** PNG/JPEG: DPI 36–300 cambia el tamaño del archivo;
+- [ ] **Cmd+Shift+E** PNG/JPEG: DPI 36–300 cambia el tamaño del archivo;
   JPEG calidad baja el peso; deshabilitado en SVG/PDF/DXF. Preferencias
   recuerdan DPI y calidad.
-- [ ] **Ctrl+Shift+E** DXF: LibreCAD/QCAD lista capas PANELS / PIECES /
+- [ ] **Cmd+Shift+E** DXF: LibreCAD/QCAD lista capas PANELS / PIECES /
   OFFCUTS / DIMS / SEQ / META; ocultar DIMS o META no quita geometría.
-- [ ] **Ctrl+Shift+E** lote: con ≥2 candidatas, marca «Exportar las N
+- [ ] **Cmd+Shift+E** lote: con ≥2 candidatas, marca «Exportar las N
   candidatas del ranking»; elige carpeta; aparecen
   `boardcomposer-solution-01` y siguientes. Con 1 candidata la casilla
   está deshabilitada. No usa `boardcomposer-batch`.
-- [ ] **Ctrl+Alt+Q** presupuesto PDF: total material = tableros físicos
+- [ ] **Cmd+Alt+Q** presupuesto PDF: total material = tableros físicos
   × €/m²; si Preferencias tiene EUR/h y min/pieza > 0, suma mano de obra;
   0 omite labor; materiales sin precio aparecen como «-»; pie de
   versión/algoritmo/fecha; desmarcar trazabilidad en Preferencias lo
   quita; LxW/espesor siguen prefs.units; área m²; no cambia el `.bcproj`.
-- [ ] **Ctrl+Alt+C** lista de corte: CSV/PDF con `sequence` y pasos de
+- [ ] **Cmd+Alt+C** lista de corte: CSV/PDF con `sequence` y pasos de
   sierra (`saw`); el PDF incluye pie de trazabilidad y prefs.units; el
   CSV sigue mm y no lleva pie; el plano muestra el número de orden por
   panel.
-- [ ] **Ctrl+Alt+F** en candidata parcial: piezas OK no se mueven;
+- [ ] **Cmd+Alt+F** en candidata parcial: piezas OK no se mueven;
   omitidas caben en retales o tablero libre; acción deshabilitada si la
   solución es completa.
-- [ ] **Ctrl+Alt+R** con retales ≥ 50 mm: Explorer muestra tableros
+- [ ] **Cmd+Alt+R** con retales ≥ 50 mm: Explorer muestra tableros
   remnant; segundo disparo no duplica; undo los quita; origen no baja solo.
-- [ ] **Ctrl+Alt+T** catálogo de materiales: añade un nombre/espesor/medida
+- [ ] **Cmd+Alt+T** catálogo de materiales: añade un nombre/espesor/medida
   L×A; al añadir tablero el combo ofrece el nombre y la medida típica
   (`2800×2070`); el `.bcproj` no cambia de versión. **Exportar** genera
   JSON; **Importar** fusiona o reemplaza; no usa nube.
-- [ ] **Ctrl+Alt+G** con una pieza: colocada → mismo panel al hueco
+- [ ] **Cmd+Alt+G** con una pieza: colocada → mismo panel al hueco
   MaxRects; sin colocar → tablero enfocado. Drop que solapa ajusta al
   hueco más cercano; material/espesor incompatible sigue revirtiendo.
   Veta fija no rota. Se puede deshacer.

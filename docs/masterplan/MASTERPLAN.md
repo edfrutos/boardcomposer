@@ -30,11 +30,11 @@
 - Workspace y SVG con paneles físicos lado a lado.
 - Movimiento y reasignación interactiva de piezas entre paneles (arrastre en
   Workspace, con undo; incompatibilidad revierte; solape ajusta al hueco).
-- Intercambio de dos piezas colocadas (**Ctrl+Alt+X**, IDE-0019).
-- Colocación manual asistida / sugerir hueco (**Ctrl+Alt+G**, IDE-0036).
-- Kerf / espesor de sierra en packing (**Ctrl+Alt+K**, IDE-0020).
+- Intercambio de dos piezas colocadas (**Cmd+Alt+X**, IDE-0019).
+- Colocación manual asistida / sugerir hueco (**Cmd+Alt+G**, IDE-0036).
+- Kerf / espesor de sierra en packing (**Cmd+Alt+K**, IDE-0020).
 - Veta fija por pieza (**Permitir rotación**, IDE-0021).
-- Lista de corte / informe taller (**Ctrl+Alt+C**, IDE-0023).
+- Lista de corte / informe taller (**Cmd+Alt+C**, IDE-0023).
 - Etiquetas de piezas en plano SVG/PDF/DXF (IDE-0026).
 - Etiquetas de retales (LxW mm) en plano SVG/PDF/DXF (IDE-0033).
 - Cotas L×A del tablero en plano SVG/PDF/DXF (IDE-0037).
@@ -53,16 +53,16 @@
   (IDE-0053 `#671`). Preferencias; no va en el `.bcproj`.
 - Perfiles nombrados de preferencias, locales (IDE-0054 `#672`). Sin nube.
 - Inspector de pieza: área L×A (IDE-0055 `#673`).
-- Zoom del Workspace al 100% (**Ctrl+Alt+0**, IDE-0056 `#675`).
-- Copiar texto del Inspector (**Ctrl+Alt+I**, IDE-0057 `#676`).
+- Zoom del Workspace al 100% (**Cmd+Alt+0**, IDE-0056 `#675`).
+- Copiar texto del Inspector (**Cmd+Alt+I**, IDE-0057 `#676`).
 - Marca ● de sin guardar en la barra de ruta (IDE-0058 `#678`).
 - Inspector de tablero: área de una hoja (IDE-0059 `#680`).
 - Barra de estado: piezas colocadas / total (IDE-0060 `#682`).
-- Copiar ruta del `.bcproj` (**Ctrl+Alt+Shift+C**, IDE-0061 `#683`).
+- Copiar ruta del `.bcproj` (**Cmd+Alt+Shift+C**, IDE-0061 `#683`).
 - Clic en la etiqueta de zoom vuelve al 100% (IDE-0062 `#684`).
 - Barra de estado: piezas seleccionadas (IDE-0063 `#686`).
-- Copiar medidas L×A de una pieza (**Ctrl+Alt+Shift+D**, IDE-0064).
-- Copiar medidas L×A de un tablero (**Ctrl+Alt+Shift+B**, IDE-0068).
+- Copiar medidas L×A de una pieza (**Cmd+Alt+Shift+D**, IDE-0064).
+- Copiar medidas L×A de un tablero (**Cmd+Alt+Shift+B**, IDE-0068).
 - Barra de estado: tableros físicos (IDE-0069 `#692`).
 - Barra de estado: kerf del proyecto (IDE-0065).
 - Clic en `n sel.` ajusta el encuadre (IDE-0066).
@@ -90,234 +90,234 @@
 - Copiar la selección de la barra (IDE-0090).
 - Copiar el zoom de la barra (IDE-0091).
 - Barra de estado: retales de la solución seleccionada (IDE-0092 `#724`).
-- Copiar los retales de la barra (**Ctrl+Alt+Shift+R**, IDE-0093 `#725`).
+- Copiar los retales de la barra (**Cmd+Alt+Shift+R**, IDE-0093 `#725`).
 - Clic en los retales selecciona su tablero (IDE-0094).
 - Barra de estado: índice de la solución seleccionada (IDE-0095).
-- Copiar el índice de la solución (**Ctrl+Alt+Shift+L**, IDE-0096).
+- Copiar el índice de la solución (**Cmd+Alt+Shift+L**, IDE-0096).
 - Clic en el índice de la solución pasa a la siguiente (IDE-0097).
 - Barra de estado: huecos internos de la solución seleccionada (IDE-0098).
-- Copiar los huecos internos de la barra (IDE-0099; Ctrl+Alt+Shift+G).
+- Copiar los huecos internos de la barra (IDE-0099; Cmd+Alt+Shift+G).
 - Clic en los huecos internos selecciona esa solución (IDE-0100).
 - Barra de estado: estrategia de la solución seleccionada (IDE-0103).
-- Copiar la estrategia de la barra (IDE-0104; Ctrl+Alt+Shift+Y).
+- Copiar la estrategia de la barra (IDE-0104; Cmd+Alt+Shift+Y).
 - Clic en la estrategia selecciona esa solución (IDE-0105 `#742`).
 - Barra de estado: piezas de la solución seleccionada (IDE-0106 `#743`).
-- Copiar las piezas de la solución (IDE-0107; Ctrl+Alt+Shift+J).
+- Copiar las piezas de la solución (IDE-0107; Cmd+Alt+Shift+J).
 - Clic en las piezas selecciona esa solución (IDE-0108).
 - Barra de estado: omitidas de la solución seleccionada (IDE-0109).
-- Copiar las omitidas de la solución (IDE-0110; Ctrl+Alt+Shift+Q).
+- Copiar las omitidas de la solución (IDE-0110; Cmd+Alt+Shift+Q).
 - Clic en las omitidas selecciona esa solución (IDE-0111).
 - Barra de estado: tableros de la solución seleccionada (IDE-0112).
-- Copiar los tableros de la solución (IDE-0113; Ctrl+Alt+Shift+W).
+- Copiar los tableros de la solución (IDE-0113; Cmd+Alt+Shift+W).
 - Clic en los tableros selecciona esa solución (IDE-0114).
 - Barra de estado: puntuación de la solución seleccionada (IDE-0115).
-- Copiar la puntuación de la solución (IDE-0116; Ctrl+Alt+Shift+V).
+- Copiar la puntuación de la solución (IDE-0116; Cmd+Alt+Shift+V).
 - Clic en la puntuación selecciona esa solución (IDE-0117).
 - Barra de estado: tablero libre de la solución seleccionada (IDE-0118).
-- Copiar el tablero libre de la solución (IDE-0119; Ctrl+Alt+Shift+E).
+- Copiar el tablero libre de la solución (IDE-0119; Cmd+Alt+Shift+E).
 - Clic en el tablero libre selecciona esa solución (IDE-0120).
 - Barra de estado: largo total de la solución seleccionada (IDE-0121).
-- Copiar el largo total de la solución (IDE-0122; Ctrl+Alt+Shift+H).
+- Copiar el largo total de la solución (IDE-0122; Cmd+Alt+Shift+H).
 - Clic en el largo total selecciona esa solución (IDE-0123).
 - Barra de estado: ancho total de la solución seleccionada (IDE-0124).
-- Copiar el ancho total de la solución (IDE-0125; Ctrl+Alt+Shift+X).
+- Copiar el ancho total de la solución (IDE-0125; Cmd+Alt+Shift+X).
 - Clic en el ancho total selecciona esa solución (IDE-0126).
 - Barra de estado: área usada de la solución seleccionada (IDE-0127).
-- Copiar el área usada de la solución (IDE-0128; Ctrl+Alt+Shift+A).
+- Copiar el área usada de la solución (IDE-0128; Cmd+Alt+Shift+A).
 - Clic en el área usada selecciona esa solución (IDE-0129).
 - Barra de estado: área de retales de la solución seleccionada (IDE-0130).
-- Copiar el área de retales de la solución (IDE-0131; Ctrl+Alt+Shift+I).
+- Copiar el área de retales de la solución (IDE-0131; Cmd+Alt+Shift+I).
 - Clic en el área de retales selecciona esa solución (IDE-0132).
 - Barra de estado: área envolvente de la solución seleccionada (IDE-0133).
-- Copiar el área envolvente de la solución (IDE-0134; Ctrl+Alt+Shift+1).
+- Copiar el área envolvente de la solución (IDE-0134; Cmd+Alt+Shift+1).
 - Clic en el área envolvente selecciona esa solución (IDE-0135).
 - Barra de estado: área de huecos internos de la solución seleccionada
   (IDE-0136).
 - Copiar el área de huecos internos de la solución (IDE-0137;
-  Ctrl+Alt+Shift+2).
+  Cmd+Alt+Shift+2).
 - Clic en el área de huecos internos selecciona esa solución
   (IDE-0138).
 - Barra de estado: área de tablero libre de la solución seleccionada
   (IDE-0139).
 - Copiar el área de tablero libre de la solución (IDE-0140;
-  Ctrl+Alt+Shift+3).
+  Cmd+Alt+Shift+3).
 - Clic en el área de tablero libre selecciona esa solución
   (IDE-0141).
 - Barra de estado: área de tableros consumidos de la solución seleccionada
   (IDE-0142).
 - Copiar el área de tableros consumidos de la solución (IDE-0143;
-  Ctrl+Alt+Shift+4).
+  Cmd+Alt+Shift+4).
 - Clic en el área de tableros consumidos selecciona esa solución
   (IDE-0144).
 - Barra de estado: aprovechamiento de tableros de la solución seleccionada
   (IDE-0145).
 - Copiar el aprovechamiento de tableros de la solución (IDE-0146;
-  Ctrl+Alt+Shift+5).
+  Cmd+Alt+Shift+5).
 - Clic en el aprovechamiento de tableros selecciona esa solución
   (IDE-0147).
 - Barra de estado: piezas rotadas de la solución seleccionada
   (IDE-0148).
 - Copiar las piezas rotadas de la solución (IDE-0149;
-  Ctrl+Alt+Shift+6).
+  Cmd+Alt+Shift+6).
 - Clic en las piezas rotadas selecciona esa solución (IDE-0150).
 - Barra de estado: piezas sin rotar de la solución seleccionada
   (IDE-0151).
 - Copiar las piezas sin rotar de la solución (IDE-0152;
-  Ctrl+Alt+Shift+7).
+  Cmd+Alt+Shift+7).
 - Clic en las piezas sin rotar selecciona esa solución (IDE-0153).
 - Barra de estado: porcentaje de piezas rotadas de la solución
   seleccionada (IDE-0154).
 - Copiar el porcentaje de piezas rotadas de la solución (IDE-0155;
-  Ctrl+Alt+Shift+8).
+  Cmd+Alt+Shift+8).
 - Clic en el porcentaje de piezas rotadas selecciona esa solución
   (IDE-0156).
 - Barra de estado: porcentaje de piezas sin rotar de la solución
   seleccionada (IDE-0157).
 - Copiar el porcentaje de piezas sin rotar de la solución (IDE-0158;
-  Ctrl+Alt+Shift+9).
+  Cmd+Alt+Shift+9).
 - Clic en el porcentaje de piezas sin rotar selecciona esa solución
   (IDE-0159).
 - Barra de estado: aprovechamiento envolvente de la solución
   seleccionada (IDE-0160).
 - Copiar el aprovechamiento envolvente de la solución (IDE-0161;
-  Ctrl+Alt+Shift+0).
+  Cmd+Alt+Shift+0).
 - Clic en el aprovechamiento envolvente selecciona esa solución
   (IDE-0162).
 - Barra de estado: porcentaje de retales de la solución seleccionada
   (IDE-0163).
 - Copiar el porcentaje de retales de la solución (IDE-0164;
-  Ctrl+Alt+Shift+F1).
+  Cmd+Alt+Shift+F1).
 - Clic en el porcentaje de retales selecciona esa solución
   (IDE-0165).
 - Barra de estado: puntuación de desperdicio de la solución
   seleccionada (IDE-0166).
 - Copiar la puntuación de desperdicio de la solución (IDE-0167;
-  Ctrl+Alt+Shift+F2).
+  Cmd+Alt+Shift+F2).
 - Clic en la puntuación de desperdicio selecciona esa solución
   (IDE-0168).
 - Barra de estado: puntuación de uso de material de la solución
   seleccionada (IDE-0169).
 - Copiar la puntuación de uso de material de la solución (IDE-0170;
-  Ctrl+Alt+Shift+F3).
+  Cmd+Alt+Shift+F3).
 - Clic en la puntuación de uso de material selecciona esa solución
   (IDE-0171).
 - Barra de estado: puntuación de cortes de la solución
   seleccionada (IDE-0172).
 - Copiar la puntuación de cortes de la solución (IDE-0173;
-  Ctrl+Alt+Shift+F4).
+  Cmd+Alt+Shift+F4).
 - Clic en la puntuación de cortes selecciona esa solución
   (IDE-0174).
 - Barra de estado: puntuación de regularidad de la solución
   seleccionada (IDE-0175).
 - Copiar la puntuación de regularidad de la solución (IDE-0176;
-  Ctrl+Alt+Shift+F5).
+  Cmd+Alt+Shift+F5).
 - Clic en la puntuación de regularidad selecciona esa solución
   (IDE-0177).
 - Barra de estado: puntuación de veta de la solución
   seleccionada (IDE-0178).
 - Copiar la puntuación de veta de la solución (IDE-0179;
-  Ctrl+Alt+Shift+F6).
+  Cmd+Alt+Shift+F6).
 - Clic en la puntuación de veta selecciona esa solución
   (IDE-0180).
 - Barra de estado: completitud de la solución seleccionada
   (IDE-0181).
 - Copiar la completitud de la solución (IDE-0182;
-  Ctrl+Alt+Shift+F7).
+  Cmd+Alt+Shift+F7).
 - Clic en la completitud selecciona esa solución
   (IDE-0183).
 - Barra de estado: área del mayor retal de la solución
   seleccionada (IDE-0184).
 - Copiar el área del mayor retal de la solución (IDE-0185;
-  Ctrl+Alt+Shift+F8).
+  Cmd+Alt+Shift+F8).
 - Clic en el área del mayor retal selecciona esa solución
   (IDE-0186).
 - Barra de estado: área del menor retal de la solución
   seleccionada (IDE-0187 `#841`).
 - Copiar el área del menor retal de la solución (IDE-0188;
-  Ctrl+Alt+Shift+F9).
+  Cmd+Alt+Shift+F9).
 - Clic en el área del menor retal selecciona esa solución
   (IDE-0189).
 - Barra de estado: dimensiones del mayor retal de la solución
   seleccionada (IDE-0190).
 - Copiar las dimensiones del mayor retal de la solución (IDE-0191;
-  Ctrl+Alt+Shift+F10).
+  Cmd+Alt+Shift+F10).
 - Clic en las dimensiones del mayor retal selecciona esa solución
   (IDE-0192).
 - Barra de estado: dimensiones del menor retal de la solución
   seleccionada (IDE-0193).
 - Copiar las dimensiones del menor retal de la solución (IDE-0194;
-  Ctrl+Alt+Shift+F11).
+  Cmd+Alt+Shift+F11).
 - Clic en las dimensiones del menor retal selecciona esa solución
   (IDE-0195).
 - Barra de estado: área media de retales de la solución
   seleccionada (IDE-0196 `#852`).
 - Copiar el área media de retales de la solución (IDE-0197;
-  Ctrl+Alt+Shift+F12).
+  Cmd+Alt+Shift+F12).
 - Clic en el área media de retales selecciona esa solución
   (IDE-0198 `#855`).
 - Barra de estado: área mediana de retales de la solución
   seleccionada (IDE-0199).
 - Copiar el área mediana de retales de la solución (IDE-0200;
-  Ctrl+Alt+Shift+-).
+  Cmd+Alt+Shift+-).
 - Clic en el área mediana de retales selecciona esa solución
   (IDE-0201).
 - Barra de estado: dimensiones del retal de área mediana
   (IDE-0202).
 - Copiar las dimensiones del retal de área mediana (IDE-0203;
-  Ctrl+Alt+Shift+=).
+  Cmd+Alt+Shift+=).
 - Clic en las dimensiones del retal de área mediana selecciona esa
   solución (IDE-0204).
 - Barra de estado: dimensiones del retal de área media (IDE-0205).
 - Copiar las dimensiones del retal de área media (IDE-0206;
-  Ctrl+Alt+Shift+[).
+  Cmd+Alt+Shift+[).
 - Clic en las dimensiones del retal de área media selecciona esa
  solución (IDE-0207).
 - Barra de estado: amplitud de áreas de retales (IDE-0208).
 - Copiar la amplitud de áreas de retales (IDE-0209;
-  Ctrl+Alt+Shift+]).
+  Cmd+Alt+Shift+]).
 - Clic en la amplitud de áreas de retales selecciona esa
   solución (IDE-0210).
 - Barra de estado: cuota del mayor retal (IDE-0211).
 - Copiar la cuota del mayor retal (IDE-0212;
-  Ctrl+Alt+Shift+\\).
+  Cmd+Alt+Shift+\\).
 - Clic en la cuota del mayor retal selecciona esa solución (IDE-0213).
 - Barra de estado: cuota del menor retal (IDE-0214).
 - Copiar la cuota del menor retal (IDE-0215;
-  Ctrl+Alt+Shift+;).
+  Cmd+Alt+Shift+;).
 - Clic en la cuota del menor retal selecciona esa solución (IDE-0216).
 - Barra de estado: relación de forma del mayor retal (IDE-0217;
   `relr.`/`aspr`).
 - Copiar la relación de forma del mayor retal (IDE-0218;
-  Ctrl+Alt+Shift+').
+  Cmd+Alt+Shift+').
 - Clic en la relación de forma del mayor retal selecciona esa
   solución (IDE-0219).
 - Barra de estado: relación de forma del menor retal (IDE-0220;
   `relm.`/`asps`).
 - Copiar la relación de forma del menor retal (IDE-0221;
-  Ctrl+Alt+Shift+\`).
+  Cmd+Alt+Shift+\`).
 - Clic en la relación de forma del menor retal selecciona esa
   solución (IDE-0222).
 - Barra de estado: relación de forma del retal de área mediana
   (IDE-0223; `reln.`/`aspm`).
 - Copiar la relación de forma del retal de área mediana (IDE-0224;
-  Ctrl+Alt+Shift+,).
+  Cmd+Alt+Shift+,).
 - Clic en la relación de forma del retal de área mediana selecciona esa
   solución (IDE-0225).
 - Barra de estado: relación de forma del retal de área media
   (IDE-0226; `rela.`/`aspa`).
 - Copiar la relación de forma del retal de área media (IDE-0227;
-  Ctrl+Alt+Shift+.).
+  Cmd+Alt+Shift+.).
 - Clic en la relación de forma del retal de área media selecciona esa
   solución (IDE-0228).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
-- Congelar layout OK y re-empaquetar omitidas (**Ctrl+Alt+F**, IDE-0030).
-- Retales a inventario del mismo proyecto (**Ctrl+Alt+R**, IDE-0025).
-- Catálogo de materiales / espesores / L×A de usuario (**Ctrl+Alt+T**,
+- Congelar layout OK y re-empaquetar omitidas (**Cmd+Alt+F**, IDE-0030).
+- Retales a inventario del mismo proyecto (**Cmd+Alt+R**, IDE-0025).
+- Catálogo de materiales / espesores / L×A de usuario (**Cmd+Alt+T**,
   IDE-0028/0031); export/import JSON (IDE-0042). Preferencias de taller
   también export/import JSON (IDE-0049).
 - Coste estimado de material (precio €/m² del catálogo; IDE-0029).
-- Presupuesto de material PDF (**Ctrl+Alt+Q**, IDE-0032) con mano de
+- Presupuesto de material PDF (**Cmd+Alt+Q**, IDE-0032) con mano de
   obra opcional (IDE-0045; EUR/h × min/pieza en Preferencias).
 - Packing Skyline multipanel (IDE-0022; junto a MaxRects).
 - ADR-014 / ADR-016 y documentación técnica alineada en README, backlog y UAT.
@@ -378,7 +378,7 @@
   (CP-SAT exacto sigue siendo un solo panel, opcional).
 - Una sola candidata tras «Calcular layout» es válida: el pipeline puede
   deduplicar a una solución única según inventario y heurísticas.
-- Retales (ADR-016) se reportan y, con **Ctrl+Alt+R**, pueden pasar a
+- Retales (ADR-016) se reportan y, con **Cmd+Alt+R**, pueden pasar a
   inventario remnant del mismo `.bcproj` (IDE-0025). Sin librería entre
   proyectos.
 - Guía de usuario final: [`docs/user/GUIA-RAPIDA.md`](../user/GUIA-RAPIDA.md)

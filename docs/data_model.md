@@ -46,7 +46,7 @@ al panel físico.
 Región rectangular sobrante en un panel físico consumido: `panel_reference`,
 posición y dimensiones locales al panel, y `area_mm2`. El reporte es
 informativo (ADR-016). IDE-0025 puede promoverlos a tableros `remnant` del
-mismo `.bcproj` (**Ctrl+Alt+R**).
+mismo `.bcproj` (**Cmd+Alt+R**).
 
 ### AssemblySolution
 

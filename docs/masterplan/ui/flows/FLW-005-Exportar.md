@@ -34,10 +34,10 @@ historial del Timeline) a un archivo. Detalle de UI: SCR-007.
 
 | Acción | Atajo / menú |
 |--------|----------------|
-| Exportar solución seleccionada… | **Ctrl+Shift+E** · menú Exportar · toolbar |
-| Exportar lista de corte… | **Ctrl+Alt+C** · menú Exportar (CSV/PDF; no usa ExportDialog) |
-| Exportar presupuesto… | **Ctrl+Alt+Q** · menú Exportar (PDF; no usa ExportDialog) |
-| Exportar historial del Timeline… | **Ctrl+Shift+L** · menú Exportar · Timeline |
+| Exportar solución seleccionada… | **Cmd+Shift+E** · menú Exportar · toolbar |
+| Exportar lista de corte… | **Cmd+Alt+C** · menú Exportar (CSV/PDF; no usa ExportDialog) |
+| Exportar presupuesto… | **Cmd+Alt+Q** · menú Exportar (PDF; no usa ExportDialog) |
+| Exportar historial del Timeline… | **Cmd+Shift+L** · menú Exportar · Timeline |
 
 Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.
 
@@ -46,7 +46,7 @@ Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.
 ## Flujo principal — solución
 
 1. El usuario tiene una candidata activa (Comparador / Re-Av Pág / post-cálculo).
-2. Dispara **Exportar solución seleccionada…** (**Ctrl+Shift+E**).
+2. Dispara **Exportar solución seleccionada…** (**Cmd+Shift+E**).
 3. Si `solutions_outdated`: diálogo **Calcular layout** (default) /
    Exportar de todos modos / Cancelar. Recalcular o cancelar no abre SCR-007.
 4. Se abre `ExportDialog` (SCR-007) con última elección o defaults.
@@ -90,7 +90,7 @@ Defaults de formato/flags: Preferencias (SCR-006) → `preferences.json`.
 
 ## Flujo paralelo — Timeline
 
-1. **Ctrl+Shift+L** (no usa `ExportDialog`).
+1. **Cmd+Shift+L** (no usa `ExportDialog`).
 2. `QFileDialog` → JSON o CSV del historial filtrado del Timeline.
 3. Código: `studio/timeline/export.py`.
 

@@ -6,7 +6,7 @@ Aceptada.
 
 ## Contexto
 
-La selección de piezas está mezclada entre BoardWorkspace, MainWindow y SelectionManager. Esto dificulta evolucionar hacia multiselección, selección por ventana, Ctrl+Click, Shift+Click e Inspector sincronizado.
+La selección de piezas está mezclada entre BoardWorkspace, MainWindow y SelectionManager. Esto dificulta evolucionar hacia multiselección, selección por ventana, Cmd+Click, Shift+Click e Inspector sincronizado.
 
 ## Decisión
 

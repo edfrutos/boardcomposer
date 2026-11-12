@@ -2,7 +2,7 @@
 
 **Spike:** [`SPIKE-IDE-0007`](../../docs/masterplan/spikes/SPIKE-IDE-0007-asistente-ia.md)  
 **Objetivo:** 5 candidatas del demo → ¿explicación útil o ruido?  
-**Atajo:** **Ctrl+Alt+E** (o Ayuda → Explicar candidata…)
+**Atajo:** **Cmd+Alt+E** (o Ayuda → Explicar candidata…)
 
 ## Preparación
 

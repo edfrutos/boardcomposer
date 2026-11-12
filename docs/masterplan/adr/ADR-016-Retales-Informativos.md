@@ -49,7 +49,7 @@ Los retales se muestran en:
 ## Evolución (IDE-0025)
 
 Los retales de una candidata se pueden **promover** a tableros `remnant`
-del mismo `.bcproj` (**Ctrl+Alt+R**). El origen no se descuenta solo: el
+del mismo `.bcproj` (**Cmd+Alt+R**). El origen no se descuenta solo: el
 usuario baja la cantidad de tableros ya cortados. No hay librería
 compartida entre proyectos (ciclo de vida / concurrencia sigue fuera).
 

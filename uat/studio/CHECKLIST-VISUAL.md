@@ -9,6 +9,8 @@
 Marca cada ítem al **verlo** en pantalla. Objetivo: confirmar que la UI se
 comporta y se ve bien de punta a punta. No es caza de bugs de borde.
 
+> **Atajos en macOS:** **Cmd** = **⌘** (Command), **Alt** = **⌥** (Option), **Shift** = **⇧** (en Windows/Linux, **Cmd** equivale a **Ctrl**).
+
 Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.md).
 
 ---
@@ -28,20 +30,20 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 
 ## 1. Proyecto
 
-- [x] Nuevo proyecto (Ctrl+N): diálogo nombre/unidades → workspace vacío con CTAs.
-- [x] Añadir tablero (Ctrl+Shift+B): aparece en Explorador y canvas.
-- [x] Añadir pieza (Ctrl+Shift+P): aparece en Explorador.
+- [x] Nuevo proyecto (Cmd+N): diálogo nombre/unidades → workspace vacío con CTAs.
+- [x] Añadir tablero (Cmd+Shift+B): aparece en Explorador y canvas.
+- [x] Añadir pieza (Cmd+Shift+P): aparece en Explorador.
 - [x] Guardar / Guardar como / Abrir `.bcproj`; basename en barra de estado (tooltip = ruta; clic abre carpeta).
-- [x] Abrir carpeta del proyecto (Ctrl+Shift+R) si hay ruta.
-- [x] Comparar revisiones `.bcproj` (Ctrl+Shift+Y): diálogo abre con proyecto actual y muestra diff textual comprensible.
-- [x] Restaurar última revisión (Ctrl+Alt+Y / menú Proyecto): confirmación clara; status y dirty tras restaurar.
-- [x] Exportar backup de revisiones (Ctrl+Alt+B): diálogo carpeta → «Carpeta creada» / Abrir carpeta.
+- [x] Abrir carpeta del proyecto (Cmd+Shift+R) si hay ruta.
+- [x] Comparar revisiones `.bcproj` (Cmd+Shift+Y): diálogo abre con proyecto actual y muestra diff textual comprensible.
+- [x] Restaurar última revisión (Cmd+Alt+Y / menú Proyecto): confirmación clara; status y dirty tras restaurar.
+- [x] Exportar backup de revisiones (Cmd+Alt+B): diálogo carpeta → «Carpeta creada» / Abrir carpeta.
 - [x] Recientes en inicio y menú; quitar / vaciar lista si aplica.
 - [x] Guardar como plantilla y crear desde plantilla (si hay plantillas).
 - [x] Renombrar proyecto (F2 / menú / clic derecho raíz).
-- [x] Metadatos del proyecto (**Ctrl+Alt+M**): cliente / referencia / notas.
-- [x] Espesor de sierra (**Ctrl+Alt+K**): diálogo mm; Inspector en raíz.
-- [ ] Catálogo (**Ctrl+Alt+T**): botones Exportar/Importar JSON visibles.
+- [x] Metadatos del proyecto (**Cmd+Alt+M**): cliente / referencia / notas.
+- [x] Espesor de sierra (**Cmd+Alt+K**): diálogo mm; Inspector en raíz.
+- [ ] Catálogo (**Cmd+Alt+T**): botones Exportar/Importar JSON visibles.
 - [x] Cerrar o Salir con cambios sin guardar → diálogo claro (nombre, ruta, botones).
 
 ---
@@ -70,14 +72,14 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 - [x] Zoom +/- respeta límites (acciones deshabilitadas en tope).
 - [x] Pan / scroll de cámara fluido.
 - [x] Ajustar al tablero / a la selección funcionan o muestran status honesto.
-- [x] Cuadrícula Ctrl+G: visible/oculta + tip Mostrar/Ocultar.
+- [x] Cuadrícula Cmd+G: visible/oculta + tip Mostrar/Ocultar.
 - [x] Selección pieza: borde/resaltado claro.
 - [x] Seleccionar todas / Invertir / Deseleccionar (Escape) según estado.
 - [x] Rotar (R) con pieza seleccionada; deshabilitado sin selección o con
   veta fija (status lo dice).
-- [x] Intercambiar dos piezas colocadas (**Ctrl+Alt+X**); no-op visible si
+- [x] Intercambiar dos piezas colocadas (**Cmd+Alt+X**); no-op visible si
   no caben.
-- [x] Sugerir hueco (**Ctrl+Alt+G**); drop que solapa ajusta al hueco
+- [x] Sugerir hueco (**Cmd+Alt+G**); drop que solapa ajusta al hueco
   cercano.
 - [x] Mover pieza entre paneles físicos (drag o flujo previsto) se refleja.
 - [x] Identificador / instancia de panel visible en Inspector de pieza.
@@ -88,7 +90,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 
 - [x] Calcular layout con proyecto válido produce ≥1 solución (o mensaje claro).
 - [ ] Tras Calcular, el canvas muestra la mejor candidata (preview, no apply).
-- [x] Demo (Ctrl+Shift+D) deja proyecto usable con soluciones.
+- [x] Demo (Cmd+Shift+D) deja proyecto usable con soluciones.
 - [x] Comparador: ≥2 candidatas si el caso las genera; miniaturas legibles.
 - [x] Navegar candidatas (Re Pág / Av Pág o UI) cambia vista.
 - [x] Pin / diff de diferencias visible y comprensible.
@@ -120,7 +122,7 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
   pie en META.
 - [ ] Exportar PNG/JPEG: subir DPI agranda el archivo; bajar calidad JPEG
   lo aligera.
-- [x] Lista de corte (**Ctrl+Alt+C**): elige CSV o PDF; no es el CSV del
+- [x] Lista de corte (**Cmd+Alt+C**): elige CSV o PDF; no es el CSV del
   diálogo de solución.
 - [ ] Lista de corte / presupuesto PDF: pie versión · algoritmo · fecha;
   CSV de corte sin pie. Preferencias cm/in: LxW del PDF en esas
@@ -134,10 +136,10 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 
 ## 7. Docks, barra y navegación UI
 
-- [x] Toggle docks Ctrl+1…4: tip Mostrar/Ocultar + status.
-- [x] Toggle barra Ctrl+Shift+K: tip Mostrar/Ocultar + status.
-- [x] Pantalla de inicio Ctrl+Shift+H: tip si ya estás en Welcome.
-- [x] Preferencias (Ctrl+,): unidades, idioma, tema aplican al cerrar.
+- [x] Toggle docks Cmd+1…4: tip Mostrar/Ocultar + status.
+- [x] Toggle barra Cmd+Shift+K: tip Mostrar/Ocultar + status.
+- [x] Pantalla de inicio Cmd+Shift+H: tip si ya estás en Welcome.
+- [x] Preferencias (Cmd+,): unidades, idioma, tema aplican al cerrar.
 - [ ] Preferencias Avanzado: Exportar / Importar JSON de taller (IDE-0049).
 - [ ] Preferencias Avanzado: combo de material por defecto (IDE-0053).
 - [ ] Preferencias Avanzado: perfil de taller guardar/aplicar/eliminar
@@ -149,8 +151,8 @@ Referencia funcional histórica: [`CHECKLIST-FUNCIONAL.md`](CHECKLIST-FUNCIONAL.
 
 - [x] Ayuda → Documentación abre la guía rápida (`docs/user/GUIA-RAPIDA.md`).
 - [x] Ayuda → Novedades muestra bullets de CHANGELOG Unreleased.
-- [x] Ayuda → Atajos lista atajos legibles (incl. Ctrl+Alt+B / E / M / K / X / C).
-- [x] Ayuda → Explicar candidata (Ctrl+Alt+E): texto + Copiar tras Calcular layout.
+- [x] Ayuda → Atajos lista atajos legibles (incl. Cmd+Alt+B / E / M / K / X / C).
+- [x] Ayuda → Explicar candidata (Cmd+Alt+E): texto + Copiar tras Calcular layout.
 - [x] Acerca de muestra nombre/versión coherente.
 
 ---

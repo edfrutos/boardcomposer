@@ -30,7 +30,7 @@ scoring personales.
 
 - **Editar → Preferencias…**
 - Botón en pantalla de inicio (SCR-001)
-- Atajo **Ctrl+,**
+- Atajo **Cmd+,**
 
 Persistencia: `~/.boardcomposer/preferences.json` y
 `~/.boardcomposer/material_catalog.json` (fuera del proyecto).
@@ -77,7 +77,7 @@ Restaurar valores por defecto.
 
 | Campo | Notas |
 | --- | --- |
-| Mostrar cuadrícula | Toggle en vista (**Ctrl+G**); persiste al instante |
+| Mostrar cuadrícula | Toggle en vista (**Cmd+G**); persiste al instante |
 | Tamaño de cuadrícula | 10–500 mm (paso 10) |
 
 ### Algoritmos
@@ -110,7 +110,7 @@ Restaurar valores por defecto.
 | --- | --- |
 | Máx. soluciones | 1–100 (default 20); trunca ranking tras calcular |
 | Material por defecto | Combo editable del catálogo (IDE-0053); tableros y piezas nuevos; semilla «Melamina blanca»; no va en el `.bcproj` |
-| Catálogo de materiales | Editor (**Ctrl+Alt+T**); nombres, espesores, L×A y €/m² (0 = sin coste); export/import JSON (IDE-0042) |
+| Catálogo de materiales | Editor (**Cmd+Alt+T**); nombres, espesores, L×A y €/m² (0 = sin coste); export/import JSON (IDE-0042) |
 | Exportar / importar preferencias | JSON de taller (IDE-0049); fusionar o reemplazar; sin rutas locales ni ventana; OK guarda |
 | Perfil de taller | Guardar / aplicar / eliminar (IDE-0054); local; no viaja en el pack ni en el `.bcproj`; OK persiste |
 | Abrir carpeta de datos | Revela `~/.boardcomposer/` |
@@ -136,7 +136,7 @@ width, caché, hilos, logs de depuración, búsqueda de preferencias.
 
 ## Flujo principal
 
-1. Abrir Preferencias (**Ctrl+,**).
+1. Abrir Preferencias (**Cmd+,**).
 2. Ajustar grupos necesarios.
 3. OK → persistir y refrescar UI afectada.
 4. Calcular / exportar usando estrategia, `max_solutions` y defaults de export.
