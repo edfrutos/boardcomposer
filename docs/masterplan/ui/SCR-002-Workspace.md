@@ -50,13 +50,13 @@ decisión final antes de exportar.
 - Representa **paneles físicos** lado a lado (cada unidad de inventario con
   `quantity > 1` aparece como instancia distinta).
 - Piezas colocadas con id, rotación y panel de origen.
-- Zoom (rueda, **Ctrl+=** / **Ctrl+-**), ajuste (**Ctrl+0**, **Ctrl+Shift+0**),
-  zoom al 100% (**Ctrl+Alt+0**, IDE-0056; también clic en el **%**
+- Zoom (rueda, **Cmd+=** / **Cmd+-**), ajuste (**Cmd+0**, **Cmd+Shift+0**),
+  zoom al 100% (**Cmd+Alt+0**, IDE-0056; también clic en el **%**
   de la barra de estado, IDE-0062). Clic en colocadas/total encuadra
   las piezas colocadas (IDE-0070). Clic en `n tab.` encuadra todos
-  los tableros (IDE-0071; misma acción que **Ctrl+0**). Clic en `n sel.` ajusta el encuadre
-  (IDE-0066; misma acción que **Ctrl+Shift+0**).
-  Pan (botón medio / derecho / Espacio+arrastre) y cuadrícula (**Ctrl+G**).
+  los tableros (IDE-0071; misma acción que **Cmd+0**). Clic en `n sel.` ajusta el encuadre
+  (IDE-0066; misma acción que **Cmd+Shift+0**).
+  Pan (botón medio / derecho / Espacio+arrastre) y cuadrícula (**Cmd+G**).
 
 ### Explorador
 
@@ -76,19 +76,19 @@ Historial de eventos y tabla de candidatas (si hay más de una tras calcular).
 ## Interacción: mover y reasignar piezas
 
 Reasignación por **arrastrar y soltar**, o **intercambiar** dos piezas
-colocadas (**Ctrl+Alt+X** / Editar → Intercambiar piezas):
+colocadas (**Cmd+Alt+X** / Editar → Intercambiar piezas):
 
 1. Selecciona una pieza en el canvas (o en el Explorador).
 2. Arrástrala dentro de su panel para reposicionarla, **o** suéltala sobre
    **otro panel físico** visible en el Workspace.
 3. Si la pieza cabe sin solape y el **material/espesor** son compatibles con el
    panel destino, la colocación se actualiza y se registra en el historial
-   (undo/redo con **Ctrl+Z** / **Ctrl+Shift+Z**).
+   (undo/redo con **Cmd+Z** / **Cmd+Shift+Z**).
 4. Si el destino es inválido por **material/espesor incompatible**, el
    movimiento **revierte** a la posición anterior.
 5. Si el destino es inválido por **solape o fuera de límites**, el
    Workspace **ajusta** la pieza al hueco libre más cercano en el panel
-   compatible (**Ctrl+Alt+G** / Editar → Sugerir hueco hace lo mismo a
+   compatible (**Cmd+Alt+G** / Editar → Sugerir hueco hace lo mismo a
    petición: pieza colocada en su panel; pieza sin colocar en el tablero
    enfocado). Si no hay hueco, revierte. Se puede deshacer.
 6. Con **exactamente dos** piezas colocadas seleccionadas, Intercambiar
@@ -109,13 +109,13 @@ Notas:
 
 1. Abrir o crear un proyecto.
 2. Añadir / importar tableros y piezas.
-3. **Calcular layout** (**Ctrl+Return**). El canvas muestra preview de
+3. **Calcular layout** (**Cmd+Return**). El canvas muestra preview de
    la mejor candidata **sin aplicar** (IDE-0052).
 4. Si hay varias candidatas, recorrerlas (**Re Pág** / **Av Pág**) y comparar.
-5. **Aplicar** la elegida (**Ctrl+Shift+Return**).
+5. **Aplicar** la elegida (**Cmd+Shift+Return**).
 6. Ajustar a mano en el Workspace (arrastre / rotación **R** /
-   intercambiar **Ctrl+Alt+X** / sugerir hueco **Ctrl+Alt+G** / flechas).
-7. Exportar (**Ctrl+Shift+E**).
+   intercambiar **Cmd+Alt+X** / sugerir hueco **Cmd+Alt+G** / flechas).
+7. Exportar (**Cmd+Shift+E**).
 
 Una sola candidata tras calcular es un resultado válido del pipeline
 (deduplicación / inventario restringido).

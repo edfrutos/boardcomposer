@@ -36,17 +36,17 @@ Crear proyecto: FLW-001. Import CSV/Excel: FLW-002. Abrir/guardar: SCR-005.
 
 | Acción | Atajo / UI |
 |--------|------------|
-| Añadir tablero | **Ctrl+Shift+B** · Proyecto · overlay vacío |
-| Añadir pieza | **Ctrl+Shift+P** · Proyecto · overlay vacío |
+| Añadir tablero | **Cmd+Shift+B** · Proyecto · overlay vacío |
+| Añadir pieza | **Cmd+Shift+P** · Proyecto · overlay vacío |
 | Editar selección | **Return** · doble clic canvas/Explorer · contexto |
 | Renombrar selección | **F2** |
-| Duplicar pieza | **Ctrl+D** |
+| Duplicar pieza | **Cmd+D** |
 | Eliminar pieza | **Backspace** / **Delete** |
-| Copiar ID | **Ctrl+Shift+C** |
-| Copiar medidas | **Ctrl+Alt+Shift+D** · una pieza · unidades de Preferencias |
-| Copiar medidas del tablero | **Ctrl+Alt+Shift+B** · una hoja · sin multiplicar la cantidad |
-| Renombrar proyecto | **Ctrl+Shift+F2** · Proyecto · raíz Explorer |
-| Deshacer / Rehacer | **Ctrl+Z** / **Ctrl+Shift+Z** |
+| Copiar ID | **Cmd+Shift+C** |
+| Copiar medidas | **Cmd+Alt+Shift+D** · una pieza · unidades de Preferencias |
+| Copiar medidas del tablero | **Cmd+Alt+Shift+B** · una hoja · sin multiplicar la cantidad |
+| Renombrar proyecto | **Cmd+Shift+F2** · Proyecto · raíz Explorer |
+| Deshacer / Rehacer | **Cmd+Z** / **Cmd+Shift+Z** |
 | Mover pieza (panel) | Arrastre en Workspace · flechas (nudge) |
 
 Inspector (SCR-004) refleja selección; edición de dims/material suele ir por
@@ -66,10 +66,10 @@ del catálogo de materiales, IDE-0028/0029; precio €/m² opcional).
    - si `affects_layout` → flag `solutions_outdated` + `SolutionsMarkedOutdated`
      (banner Comparador con CTA **Calcular layout**; al **Aplicar**, diálogo
      prioriza recalcular / aplicar de todos modos / cancelar)
-6. Usuario guarda (**Ctrl+S**) o sigue; al salir/reemplazar proyecto → diálogo
+6. Usuario guarda (**Cmd+S**) o sigue; al salir/reemplazar proyecto → diálogo
    unsaved (`unsaved_changes_message`: nombre, ruta o «aún no guardado»).
 
-Regenerar layout (FLW-003 / CTA del banner / **Ctrl+Return**) limpia el aviso
+Regenerar layout (FLW-003 / CTA del banner / **Cmd+Return**) limpia el aviso
 outdated.
 
 ---
@@ -85,7 +85,7 @@ outdated.
 - Eliminar: `DeleteBoardCommand` desde Explorer; piezas se conservan;
   colocaciones de ese tablero se quitan.
 - Duplicar tablero: acción Explorer / handler `_duplicate_board`.
-- Añadir retales: **Ctrl+Alt+R** desde candidata con offcuts;
+- Añadir retales: **Cmd+Alt+R** desde candidata con offcuts;
   `PromoteOffcutsCommand` (undo); marca `remnant`; no descuenta origen.
 
 ### Piezas
@@ -98,16 +98,16 @@ outdated.
 - Mover entre paneles físicos: drag-drop en Workspace; material/espesor deben
   coincidir; drop incompatible revierte; solape ajusta al hueco más cercano
   (IDE-0036); `MovePieceCommand` (también nudge).
-- Sugerir hueco: **Ctrl+Alt+G**; `SuggestGapCommand`; pieza colocada en su
+- Sugerir hueco: **Cmd+Alt+G**; `SuggestGapCommand`; pieza colocada en su
   panel o sin colocar en el tablero enfocado; veta fija no rota.
-- Intercambiar dos colocadas: **Ctrl+Alt+X**; `SwapPiecesCommand`; si no
+- Intercambiar dos colocadas: **Cmd+Alt+X**; `SwapPiecesCommand`; si no
   caben / material no coincide, no-op.
 
 ### Proyecto
 
 - Renombrar: `RenameProjectCommand` con `affects_layout=False` (no marca
   outdated).
-- Revelar carpeta `.bcproj`: **Ctrl+Shift+R** (no edita datos).
+- Revelar carpeta `.bcproj`: **Cmd+Shift+R** (no edita datos).
 
 ---
 
@@ -134,7 +134,7 @@ outdated.
 | Add/edit/delete board/piece, move, import, duplicate | Sí | Sí |
 | Rename project | Sí | No |
 | Preferencias UI sin tocar inventario | No (vía prefs) | No |
-| Catálogo de materiales (Ctrl+Alt+T) | No | No |
+| Catálogo de materiales (Cmd+Alt+T) | No | No |
 
 Export/import JSON del catálogo (IDE-0042) tampoco marca dirty ni outdated;
 vive fuera del `.bcproj`.
@@ -200,15 +200,15 @@ candidatas válidas.
 ## Límites conocidos
 
 - Diff estructural Core/CLI + UI Studio (`boardcomposer-diff` / diálogo
-  **Comparar revisiones .bcproj…**, **Ctrl+Shift+Y**); anillo local de hasta 10
+  **Comparar revisiones .bcproj…**, **Cmd+Shift+Y**); anillo local de hasta 10
   revisiones al guardar (`.<nombre>.bcproj.revs/`). Recuerda la última carpeta
   examinada (`last_diff_directory`). Sin historial cloud ni auditoría
   multi-usuario.
 - **Restaurar** una revisión del anillo: botón en el diálogo de comparar, o
-  **Proyecto → Restaurar última revisión local…** (**Ctrl+Alt+Y**). Carga en
+  **Proyecto → Restaurar última revisión local…** (**Cmd+Alt+Y**). Carga en
   memoria (misma ruta); dirty hasta Guardar; vacía la pila undo/redo de sesión.
 - **Backup** del anillo: **Proyecto → Exportar backup de revisiones…**
-  (**Ctrl+Alt+B**) o CLI `boardcomposer-backup`; destino recordado y diálogo
+  (**Cmd+Alt+B**) o CLI `boardcomposer-backup`; destino recordado y diálogo
   Abrir carpeta tras éxito.
 - Sin edición colaborativa ni bloqueo de recursos.
 - Sin evento bus `PieceMoved` / `ProjectValidated` / `ProjectHistoryUpdated`.

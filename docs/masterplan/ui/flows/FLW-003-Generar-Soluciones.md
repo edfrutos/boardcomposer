@@ -36,9 +36,9 @@ Comparador / Inspector.
 
 | Control | Atajo |
 |---------|--------|
-| Generar → Calcular layout | **Ctrl+Return** |
-| Generar → Re-empaquetar omitidas | **Ctrl+Alt+F** |
-| Generar → Añadir retales al inventario | **Ctrl+Alt+R** |
+| Generar → Calcular layout | **Cmd+Return** |
+| Generar → Re-empaquetar omitidas | **Cmd+Alt+F** |
+| Generar → Añadir retales al inventario | **Cmd+Alt+R** |
 | Botón toolbar «Calcular layout» | igual |
 
 Preferencias que afectan el cálculo (SCR-006):
@@ -63,12 +63,12 @@ Preferencias que afectan el cálculo (SCR-006):
    diagnóstico) y **preview del Workspace** con la candidata 0 (mejor
    score), sin aplicar `placements` (IDE-0052). Recorrer candidatas
    (**Re Pág** / **Av Pág**) cambia el preview. **Aplicar**
-   (**Ctrl+Shift+Return**) persiste.
-8. El usuario explora (FLW-004), aplica (**Ctrl+Shift+Return**) o exporta
+   (**Cmd+Shift+Return**) persiste.
+8. El usuario explora (FLW-004), aplica (**Cmd+Shift+Return**) o exporta
    (FLW-005). Si la candidata es **parcial**, **Re-empaquetar omitidas**
-   (**Ctrl+Alt+F**) congela las colocaciones OK y solo empaqueta las
+   (**Cmd+Alt+F**) congela las colocaciones OK y solo empaqueta las
    piezas omitidas en el espacio libre (retales + instancias sin usar).
-   **Añadir retales al inventario** (**Ctrl+Alt+R**) convierte esos retales
+   **Añadir retales al inventario** (**Cmd+Alt+R**) convierte esos retales
    en tableros remnant del proyecto (no descuenta el origen).
 
 Una sola candidata tras el ranking es un resultado **válido** (dedupe /

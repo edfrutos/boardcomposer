@@ -48,7 +48,7 @@ usa el `.bcproj` y avisa en stderr. `--force` copia el path tal cual.
 
 ## Studio
 
-**Proyecto → Exportar backup de revisiones…** (**Ctrl+Alt+B**) — elige carpeta
+**Proyecto → Exportar backup de revisiones…** (**Cmd+Alt+B**) — elige carpeta
 destino (mismo layout que el CLI). Requiere proyecto ya guardado en disco.
 
 Tras éxito:

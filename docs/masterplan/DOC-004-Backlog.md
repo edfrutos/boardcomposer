@@ -311,24 +311,24 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0007 | L–XL | Caso de uso claro; política de datos | Fase 4; MVP+eval 2026-09-12; LLM diferido |
 | IDE-0008 | XL | ADR-004; contratos de extensión | Fase 5; marketplace fuera del MVP plugin |
 | DT-0006 | M (opción D/A) · L–XL (opción C) | Piloto nombrado; DOC-005 | Spike: `spikes/SPIKE-DT-0006-historial-cloud.md` |
-| IDE-0019 | S–M | SelectionController; Command Pattern | Entregado; Ctrl+Alt+X; no-op si no cabe |
+| IDE-0019 | S–M | SelectionController; Command Pattern | Entregado; Cmd+Alt+X; no-op si no cabe |
 | IDE-0020 | M | PlacementValidator (ADR-010); migraciones | Entregado; v4 `kerf_mm`; default prefs |
 | IDE-0021 | M | Modelo de pieza; solvers | Entregado; v5 `grain`; no rotar |
 | IDE-0022 | M–L | ADR-014 contrato multipanel | Entregado; Skyline + MaxRects (#623) |
-| IDE-0023 | M | Export PDF/CSV; SCR-007 | Entregado; Ctrl+Alt+C; CSV/PDF |
+| IDE-0023 | M | Export PDF/CSV; SCR-007 | Entregado; Cmd+Alt+C; CSV/PDF |
 | IDE-0024 | S | SCR-005 evolución; persistencia v3 | Entregado; kerf/vetas en 0020/0021 |
-| IDE-0025 | M–L | ADR-016; migraciones `.bcproj`; StockPanel | Entregado; Ctrl+Alt+R; v6 remnant |
+| IDE-0025 | M–L | ADR-016; migraciones `.bcproj`; StockPanel | Entregado; Cmd+Alt+R; v6 remnant |
 | IDE-0026 | S–M | SCR-007 export; Workspace labels | Entregado; id + LxW mm; casilla export |
 | IDE-0027 | M | IDE-0023; métricas por panel | Entregado; CSV/PDF + números plano |
-| IDE-0028 | M | SCR-005; prefs / archivo usuario | Entregado; Ctrl+Alt+T; JSON usuario |
+| IDE-0028 | M | SCR-005; prefs / archivo usuario | Entregado; Cmd+Alt+T; JSON usuario |
 | IDE-0029 | S–M | IDE-0028 útil; scoring / export | Entregado; €/m² catálogo; tablero físico |
-| IDE-0030 | M | Pipeline parciales; Command Pattern | Entregado; Ctrl+Alt+F; freeze OK |
+| IDE-0030 | M | Pipeline parciales; Command Pattern | Entregado; Cmd+Alt+F; freeze OK |
 | IDE-0031 | S | IDE-0028; NewBoardDialog | Entregado; L×A en catálogo; combo tablero |
 | IDE-0032 | S–M | IDE-0029; IDE-0023; SCR-007 | PDF presupuesto; no cambia solver |
 | IDE-0033 | S–M | IDE-0026; ADR-016 | Medidas de retal en plano |
 | IDE-0034 | M | SCR-007; export PDF | Entregado; papel/márgenes/escala plano |
 | IDE-0035 | M | SCR-007; ExportDialog | Entregado; lote candidatas Studio |
-| IDE-0036 | M–L | Workspace; PlacementValidator | Entregado; Ctrl+Alt+G; snap drop |
+| IDE-0036 | M–L | Workspace; PlacementValidator | Entregado; Cmd+Alt+G; snap drop |
 | IDE-0037 | S–M | SCR-007; export SVG/PDF/DXF | Entregado; cotas L×A; casilla export |
 | IDE-0038 | S | SCR-007; raster PNG/JPEG | Entregado; DPI 36–300; JPEG 1–100 |
 | IDE-0039 | S–M | SCR-007; export plan | Entregado; pie versión/algoritmo/fecha |
@@ -348,178 +348,178 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0053 | S | FLW-001 material | Entregado (#671); prefs catálogo; no va en `.bcproj` |
 | IDE-0054 | S | SCR-006; IDE-0049 | Entregado (#672); perfiles locales; sin sync |
 | IDE-0055 | S | SCR-004 pieza | Entregado (#673); área prefs; no inline edit |
-| IDE-0056 | S | SCR-002 zoom | Entregado; Ctrl+Alt+0; no mueve el centro |
-| IDE-0057 | S | SCR-004 | Entregado; Ctrl+Alt+I; sin nube |
+| IDE-0056 | S | SCR-002 zoom | Entregado; Cmd+Alt+0; no mueve el centro |
+| IDE-0057 | S | SCR-004 | Entregado; Cmd+Alt+I; sin nube |
 | IDE-0058 | S | SCR-005 status | Entregado; ● en la ruta si hay cambios |
 | IDE-0059 | S | SCR-004 tablero | Entregado; área de una hoja; no × cantidad |
 | IDE-0060 | S | SCR-005 status | Entregado; colocadas/total; no cambia el solver |
-| IDE-0061 | S | SCR-005 | Entregado; Ctrl+Alt+Shift+C; sin nube |
+| IDE-0061 | S | SCR-005 | Entregado; Cmd+Alt+Shift+C; sin nube |
 | IDE-0062 | S | IDE-0056; SCR-002 | Entregado; clic en el %; no mueve el centro |
 | IDE-0063 | S | SCR-005 status | Entregado; n sel.; oculta si 0 |
 | IDE-0064 | S | SCR-004 pieza | Entregado; L×A; prefs; sin grosor |
 | IDE-0065 | S | SCR-005 status | Entregado; kerf visible; unidades prefs |
 | IDE-0066 | S | IDE-0063; SCR-002 | Entregado; clic en n sel. → encuadrar |
-| IDE-0067 | S | IDE-0065; SCR-005 | Entregado; clic en kerf abre Ctrl+Alt+K |
+| IDE-0067 | S | IDE-0065; SCR-005 | Entregado; clic en kerf abre Cmd+Alt+K |
 | IDE-0068 | S | IDE-0064; SCR-004 | Entregado; L×A de una hoja; sin cantidad |
 | IDE-0069 | S | SCR-005 status | Entregado; suma cantidades; oculta si 0 |
 | IDE-0070 | S | IDE-0060; SCR-002 | Entregado; clic encuadra colocadas |
-| IDE-0071 | S | IDE-0069; SCR-002 | Entregado; clic en n tab. → Ctrl+0 |
-| IDE-0072 | S | IDE-0065 | Entregado; Ctrl+Alt+Shift+K; prefs; kerf 0 |
+| IDE-0071 | S | IDE-0069; SCR-002 | Entregado; clic en n tab. → Cmd+0 |
+| IDE-0072 | S | IDE-0065 | Entregado; Cmd+Alt+Shift+K; prefs; kerf 0 |
 | IDE-0073 | S | SCR-005 status | Entregado; enfocado o único; oculta si no hay |
 | IDE-0074 | S | IDE-0073 | Entregado; clic abre la edición |
-| IDE-0075 | S | IDE-0073 | Entregado; Ctrl+Alt+Shift+T; mismo tablero |
+| IDE-0075 | S | IDE-0073 | Entregado; Cmd+Alt+Shift+T; mismo tablero |
 | IDE-0076 | S | IDE-0073; SCR-005 | Entregado; mismo tablero; oculto si vacío |
-| IDE-0077 | S | IDE-0076 | Entregado; Ctrl+Alt+Shift+M; deshabilitado si no se muestra |
+| IDE-0077 | S | IDE-0076 | Entregado; Cmd+Alt+Shift+M; deshabilitado si no se muestra |
 | IDE-0078 | S | IDE-0076 | Entregado; clic abre la edición; arrastre no |
 | IDE-0079 | S | IDE-0060; SCR-005 | Entregado; n om.; oculta si 0; sin clic |
 | IDE-0080 | S | IDE-0079; IDE-0070 | Entregado `#707`; clic selecciona; encuadra si hay geometría |
 | IDE-0081 | S | IDE-0051; SCR-005 | Entregado; % uso del enfocado; oculta si no hay |
 | IDE-0082 | S | IDE-0081; SCR-004 | Entregado; clic selecciona el tablero; arrastre no |
-| IDE-0083 | S | IDE-0081; SCR-005 | Entregado; Ctrl+Alt+Shift+U; porcentaje sin prefijo |
+| IDE-0083 | S | IDE-0081; SCR-005 | Entregado; Cmd+Alt+Shift+U; porcentaje sin prefijo |
 | IDE-0084 | S | IDE-0081; SCR-005 | Entregado; `libre 76.0%`; complemento; misma visibilidad; sin clic |
-| IDE-0085 | S | IDE-0084 | Entregado; Ctrl+Alt+Shift+F; porcentaje sin prefijo |
+| IDE-0085 | S | IDE-0084 | Entregado; Cmd+Alt+Shift+F; porcentaje sin prefijo |
 | IDE-0086 | S | IDE-0084 | Entregado; clic selecciona el tablero; arrastre no |
-| IDE-0087 | S | IDE-0060; SCR-005 | Entregado; Ctrl+Alt+Shift+P; `1/2`; no encuadra |
-| IDE-0088 | S | IDE-0079 | Entregado `#716`; Ctrl+Alt+Shift+O; el número, sin `om.` |
-| IDE-0089 | S | IDE-0069 | Entregado `#718`; Ctrl+Alt+Shift+N; el número, sin `tab.` |
-| IDE-0090 | S | IDE-0063 | Entregado `#720`; Ctrl+Alt+Shift+S; el número, sin `sel.` |
-| IDE-0091 | S | IDE-0062 | Entregado `#721`; Ctrl+Alt+Shift+Z; el mismo texto del rótulo; no vuelve al 100% |
+| IDE-0087 | S | IDE-0060; SCR-005 | Entregado; Cmd+Alt+Shift+P; `1/2`; no encuadra |
+| IDE-0088 | S | IDE-0079 | Entregado `#716`; Cmd+Alt+Shift+O; el número, sin `om.` |
+| IDE-0089 | S | IDE-0069 | Entregado `#718`; Cmd+Alt+Shift+N; el número, sin `tab.` |
+| IDE-0090 | S | IDE-0063 | Entregado `#720`; Cmd+Alt+Shift+S; el número, sin `sel.` |
+| IDE-0091 | S | IDE-0062 | Entregado `#721`; Cmd+Alt+Shift+Z; el mismo texto del rótulo; no vuelve al 100% |
 | IDE-0092 | S | solución seleccionada | Entregado; `n ret.`; `len(offcuts)` de la solución seleccionada; oculta si 0; sin clic |
-| IDE-0093 | S | IDE-0092 | Entregado `#725`; Ctrl+Alt+Shift+R; el número, sin `ret.`; no promociona |
+| IDE-0093 | S | IDE-0092 | Entregado `#725`; Cmd+Alt+Shift+R; el número, sin `ret.`; no promociona |
 | IDE-0094 | S | IDE-0092 | Entregado; clic selecciona el tablero (`stock_panel_index`); no encuadra; no promociona; arrastre no |
 | IDE-0095 | S | solución seleccionada | Entregado; `1/2 sol.`; índice con base 1; oculta si no hay o el índice no mapea |
-| IDE-0096 | S | IDE-0095 | Entregado; Ctrl+Alt+Shift+L; copia `1/2` sin `sol.`; no avanza |
+| IDE-0096 | S | IDE-0095 | Entregado; Cmd+Alt+Shift+L; copia `1/2` sin `sol.`; no avanza |
 | IDE-0097 | S | IDE-0095 | Entregado; clic avanza (`_step_layout_solution(1)`); arrastre no; no aplica el layout; no cambia el zoom |
 | IDE-0098 | S | IDE-0095 | Entregado; `hueco 0.0%` / `gap 33.3%`; misma visibilidad que el índice; `0.0%` se muestra; sin clic |
-| IDE-0099 | S | IDE-0098 | Entregado; Ctrl+Alt+Shift+G; el porcentaje, sin `hueco`; no avanza |
+| IDE-0099 | S | IDE-0098 | Entregado; Cmd+Alt+Shift+G; el porcentaje, sin `hueco`; no avanza |
 | IDE-0100 | S | IDE-0098 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza; no aplica el layout |
 | IDE-0101 | S | IDE-0095 | Diferido; sin costes por ahora |
 | IDE-0102 | S | IDE-0101 | Diferido; sin costes por ahora |
 | IDE-0103 | S | IDE-0095 | Entregado; `est. material` / `str. material`; misma visibilidad que el índice; `desconocida` se muestra; sin clic |
-| IDE-0104 | S | IDE-0103 | Entregado; Ctrl+Alt+Shift+Y; el nombre, sin `est.`; no avanza |
+| IDE-0104 | S | IDE-0103 | Entregado; Cmd+Alt+Shift+Y; el nombre, sin `est.`; no avanza |
 | IDE-0105 | S | IDE-0103 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0106 | S | IDE-0095 | Entregado `#743`; `n pza` / `n pcs`; `len(placements)`; `0` se muestra; sin clic |
-| IDE-0107 | S | IDE-0106 | Entregado; Ctrl+Alt+Shift+J; el número, sin `pza`; no avanza |
+| IDE-0107 | S | IDE-0106 | Entregado; Cmd+Alt+Shift+J; el número, sin `pza`; no avanza |
 | IDE-0108 | S | IDE-0106 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0109 | S | IDE-0095 | Entregado; `fuera {n}` / `out {n}`; `len(omitted_piece_ids)`; `0` se muestra; sin clic; distinto de `n om.` |
-| IDE-0110 | S | IDE-0109 | Entregado; Ctrl+Alt+Shift+Q; el número, sin `fuera`; no avanza |
+| IDE-0110 | S | IDE-0109 | Entregado; Cmd+Alt+Shift+Q; el número, sin `fuera`; no avanza |
 | IDE-0111 | S | IDE-0109 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0112 | S | IDE-0095 | Entregado; `pan. {n}` / `pnl {n}`; `len(panel_references)`; `0` se muestra; sin clic; distinto de `n tab.` |
-| IDE-0113 | S | IDE-0112 | Entregado; Ctrl+Alt+Shift+W; el número, sin `pan.`; no avanza |
+| IDE-0113 | S | IDE-0112 | Entregado; Cmd+Alt+Shift+W; el número, sin `pan.`; no avanza |
 | IDE-0114 | S | IDE-0112 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0115 | S | IDE-0095 | Entregado; `pts. {value}` / `pts {value}`; `score.total:.2f`; `0.00` se muestra; sin clic |
-| IDE-0116 | S | IDE-0115 | Entregado; Ctrl+Alt+Shift+V; el valor, sin `pts.`; no avanza |
+| IDE-0116 | S | IDE-0115 | Entregado; Cmd+Alt+Shift+V; el valor, sin `pts.`; no avanza |
 | IDE-0117 | S | IDE-0115 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0118 | S | IDE-0095 | Entregado; `sbr. {value}` / `rem. {value}`; `board_waste_ratio(solution):.1%`; `0.0%` se muestra; sin clic; distinto de `libre` |
-| IDE-0119 | S | IDE-0118 | Entregado; Ctrl+Alt+Shift+E; el porcentaje, sin `sbr.`; no avanza |
+| IDE-0119 | S | IDE-0118 | Entregado; Cmd+Alt+Shift+E; el porcentaje, sin `sbr.`; no avanza |
 | IDE-0120 | S | IDE-0118 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0121 | S | IDE-0095 | Entregado; `lrg. {length}` / `len. {length}`; `_format_length(solution.total_length_mm)`; `0 mm` se muestra; sin clic |
-| IDE-0122 | S | IDE-0121 | Entregado; Ctrl+Alt+Shift+H; el largo con unidad, sin `lrg.`; no avanza |
+| IDE-0122 | S | IDE-0121 | Entregado; Cmd+Alt+Shift+H; el largo con unidad, sin `lrg.`; no avanza |
 | IDE-0123 | S | IDE-0121 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0124 | S | IDE-0095 | Entregado; `anc. {length}` / `wid. {length}`; `_format_length(solution.total_width_mm)`; `0 mm` se muestra; sin clic |
-| IDE-0125 | S | IDE-0124 | Entregado; Ctrl+Alt+Shift+X; el ancho con unidad, sin `anc.`; no avanza |
+| IDE-0125 | S | IDE-0124 | Entregado; Cmd+Alt+Shift+X; el ancho con unidad, sin `anc.`; no avanza |
 | IDE-0126 | S | IDE-0124 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0127 | S | IDE-0095 | Entregado; `ár. {area}` / `area {area}`; `_format_area(solution.used_area_mm2)`; `0` se muestra; sin clic |
-| IDE-0128 | S | IDE-0127 | Entregado; Ctrl+Alt+Shift+A; el área con unidad, sin `ár.`; no avanza |
+| IDE-0128 | S | IDE-0127 | Entregado; Cmd+Alt+Shift+A; el área con unidad, sin `ár.`; no avanza |
 | IDE-0129 | S | IDE-0127 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0130 | S | IDE-0092 | Entregado; `retár. {area}` / `offar. {area}`; `_format_area(solution.total_offcut_area_mm2)`; `0` se muestra; sin clic; distinto de `n ret.` |
-| IDE-0131 | S | IDE-0130 | Entregado; Ctrl+Alt+Shift+I; el área con unidad, sin `retár.`; no avanza |
+| IDE-0131 | S | IDE-0130 | Entregado; Cmd+Alt+Shift+I; el área con unidad, sin `retár.`; no avanza |
 | IDE-0132 | S | IDE-0130 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0133 | S | IDE-0095 | Entregado; `env. {area}` / `bnd. {area}`; `_format_area(solution.bounding_area_mm2)`; `0` se muestra; sin clic |
-| IDE-0134 | S | IDE-0133 | Entregado; Ctrl+Alt+Shift+1; el área con unidad, sin `env.`; no avanza |
+| IDE-0134 | S | IDE-0133 | Entregado; Cmd+Alt+Shift+1; el área con unidad, sin `env.`; no avanza |
 | IDE-0135 | S | IDE-0133 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0136 | S | IDE-0098 | Entregado; `hueár. {area}` / `gapar. {area}`; `_format_area(solution.waste_area_mm2)`; `0` se muestra; sin clic; distinto de `hueco n%` |
-| IDE-0137 | S | IDE-0136 | Entregado; Ctrl+Alt+Shift+2; el área con unidad, sin `hueár.`; no avanza |
+| IDE-0137 | S | IDE-0136 | Entregado; Cmd+Alt+Shift+2; el área con unidad, sin `hueár.`; no avanza |
 | IDE-0138 | S | IDE-0136 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0139 | S | IDE-0118 | Entregado; `sbrár. {area}` / `remar. {area}`; `_format_area(board_waste_area_mm2)`; `0` se muestra; sin clic; distinto de `sbr. n%` |
-| IDE-0140 | S | IDE-0139 | Entregado; Ctrl+Alt+Shift+3; el área con unidad, sin `sbrár.`; no avanza |
+| IDE-0140 | S | IDE-0139 | Entregado; Cmd+Alt+Shift+3; el área con unidad, sin `sbrár.`; no avanza |
 | IDE-0141 | S | IDE-0139 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0142 | S | IDE-0112 | Entregado; `panár. {area}` / `pnlar. {area}`; `_format_area(board_total_area_mm2)`; `0` se muestra; sin clic; distinto de `pan. {n}` |
-| IDE-0143 | S | IDE-0142 | Entregado; Ctrl+Alt+Shift+4; el área con unidad, sin `panár.`; no avanza |
+| IDE-0143 | S | IDE-0142 | Entregado; Cmd+Alt+Shift+4; el área con unidad, sin `panár.`; no avanza |
 | IDE-0144 | S | IDE-0142 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0145 | S | IDE-0118 | Entregado; `aprv. {value}` / `util. {value}`; `board_utilization_ratio(solution):.1%`; `0.0%` se muestra; sin clic; distinto de `uso` |
-| IDE-0146 | S | IDE-0145 | Entregado; Ctrl+Alt+Shift+5; el porcentaje, sin `aprv.`; no avanza |
+| IDE-0146 | S | IDE-0145 | Entregado; Cmd+Alt+Shift+5; el porcentaje, sin `aprv.`; no avanza |
 | IDE-0147 | S | IDE-0145 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0148 | S | IDE-0106 | Entregado; `rot. {n}` / `rot {n}`; `sum(1 for p in placements if p.rotated)`; `0` se muestra; sin clic; distinto de `n pza` |
-| IDE-0149 | S | IDE-0148 | Entregado; Ctrl+Alt+Shift+6; el número, sin `rot.`; no avanza |
+| IDE-0149 | S | IDE-0148 | Entregado; Cmd+Alt+Shift+6; el número, sin `rot.`; no avanza |
 | IDE-0150 | S | IDE-0148 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0151 | S | IDE-0148 | Entregado; `nrot. {n}` / `unrot {n}`; `sum(1 for p in placements if not p.rotated)`; `0` se muestra; sin clic; distinto de `rot. {n}` |
-| IDE-0152 | S | IDE-0151 | Entregado; Ctrl+Alt+Shift+7; el número, sin `nrot.`; no avanza |
+| IDE-0152 | S | IDE-0151 | Entregado; Cmd+Alt+Shift+7; el número, sin `nrot.`; no avanza |
 | IDE-0153 | S | IDE-0151 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0154 | S | IDE-0148 | Entregado; `rot% {value}` / `rot% {value}`; `rotated / len(placements)`; `0.0%` se muestra; sin clic; distinto de `rot. {n}` |
-| IDE-0155 | S | IDE-0154 | Entregado; Ctrl+Alt+Shift+8; el porcentaje, sin `rot%`; no avanza |
+| IDE-0155 | S | IDE-0154 | Entregado; Cmd+Alt+Shift+8; el porcentaje, sin `rot%`; no avanza |
 | IDE-0156 | S | IDE-0154 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0157 | S | IDE-0151 | Entregado; `nrot% {value}` / `unrot% {value}`; `unrotated / len(placements)`; `0.0%` se muestra; sin clic; distinto de `nrot. {n}` |
-| IDE-0158 | S | IDE-0157 | Entregado; Ctrl+Alt+Shift+9; el porcentaje, sin `nrot%`; no avanza |
+| IDE-0158 | S | IDE-0157 | Entregado; Cmd+Alt+Shift+9; el porcentaje, sin `nrot%`; no avanza |
 | IDE-0159 | S | IDE-0157 | Entregado `#808`; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0160 | S | IDE-0098 | Entregado; `env% {value}` / `bnd% {value}`; `1.0 - solution.waste_ratio` (`0.0%` si no hay envolvente); `0.0%` se muestra; sin clic; distinto de `aprv.` y `uso` |
-| IDE-0161 | S | IDE-0160 | Entregado; Ctrl+Alt+Shift+0; el porcentaje, sin `env%`; no avanza |
+| IDE-0161 | S | IDE-0160 | Entregado; Cmd+Alt+Shift+0; el porcentaje, sin `env%`; no avanza |
 | IDE-0162 | S | IDE-0160 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0163 | S | IDE-0130 | Entregado; `ret% {value}` / `off% {value}`; `board_offcut_ratio(solution):.1%`; `0.0%` se muestra; sin clic; distinto de `n ret.` y `retár.` |
-| IDE-0164 | S | IDE-0163 | Entregado; Ctrl+Alt+Shift+F1; el porcentaje, sin `ret%`; no avanza |
+| IDE-0164 | S | IDE-0163 | Entregado; Cmd+Alt+Shift+F1; el porcentaje, sin `ret%`; no avanza |
 | IDE-0165 | S | IDE-0163 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0166 | S | IDE-0115 | Entregado; `ptsh. {value}` / `ptsw {value}`; `score.waste_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.` |
-| IDE-0167 | S | IDE-0166 | Entregado; Ctrl+Alt+Shift+F2; el valor, sin `ptsh.`; no avanza |
+| IDE-0167 | S | IDE-0166 | Entregado; Cmd+Alt+Shift+F2; el valor, sin `ptsh.`; no avanza |
 | IDE-0168 | S | IDE-0166 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0169 | S | IDE-0115 | Entregado; `ptsu. {value}` / `ptsu {value}`; `score.material_usage_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.` y `ptsh.` |
-| IDE-0170 | S | IDE-0169 | Entregado; Ctrl+Alt+Shift+F3; el valor, sin `ptsu.`; no avanza |
+| IDE-0170 | S | IDE-0169 | Entregado; Cmd+Alt+Shift+F3; el valor, sin `ptsu.`; no avanza |
 | IDE-0171 | S | IDE-0169 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0172 | S | IDE-0115 | Entregado; `ptsc. {value}` / `ptsc {value}`; `score.cuts_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.`, `ptsh.` y `ptsu.` |
-| IDE-0173 | S | IDE-0172 | Entregado; Ctrl+Alt+Shift+F4; el valor, sin `ptsc.`; no avanza |
+| IDE-0173 | S | IDE-0172 | Entregado; Cmd+Alt+Shift+F4; el valor, sin `ptsc.`; no avanza |
 | IDE-0174 | S | IDE-0172 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0175 | S | IDE-0115 | Entregado; `ptsr. {value}` / `ptsr {value}`; `score.regularity_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.`, `ptsh.`, `ptsu.` y `ptsc.` |
-| IDE-0176 | S | IDE-0175 | Entregado; Ctrl+Alt+Shift+F5; el valor, sin `ptsr.`; no avanza |
+| IDE-0176 | S | IDE-0175 | Entregado; Cmd+Alt+Shift+F5; el valor, sin `ptsr.`; no avanza |
 | IDE-0177 | S | IDE-0175 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0178 | S | IDE-0115 | Entregado; `ptsv. {value}` / `ptsg {value}`; `score.grain_score:.2f`; `0.00` se muestra; sin clic; distinto de `pts.`, `ptsh.`, `ptsu.`, `ptsc.` y `ptsr.` |
-| IDE-0179 | S | IDE-0178 | Entregado; Ctrl+Alt+Shift+F6; el valor, sin `ptsv.`; no avanza |
+| IDE-0179 | S | IDE-0178 | Entregado; Cmd+Alt+Shift+F6; el valor, sin `ptsv.`; no avanza |
 | IDE-0180 | S | IDE-0178 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0181 | S | IDE-0095 | Entregado; `comp. sí` / `full yes`; `comp. no` / `full no`; `is_complete`; misma visibilidad que el índice; sin clic |
-| IDE-0182 | S | IDE-0181 | Entregado; Ctrl+Alt+Shift+F7; el valor, sin `comp.`; no avanza |
+| IDE-0182 | S | IDE-0181 | Entregado; Cmd+Alt+Shift+F7; el valor, sin `comp.`; no avanza |
 | IDE-0183 | S | IDE-0181 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0184 | S | IDE-0092 | Entregado; `maxr. {area}` / `maxo {area}`; oculta si no hay retales; distinta de `n ret.`, `retár.` y `ret%`; sin clic |
-| IDE-0185 | S | IDE-0184 | Entregado; Ctrl+Alt+Shift+F8; el valor, sin `maxr.`; no avanza |
+| IDE-0185 | S | IDE-0184 | Entregado; Cmd+Alt+Shift+F8; el valor, sin `maxr.`; no avanza |
 | IDE-0186 | S | IDE-0184 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0187 | S | IDE-0092 | Entregado; `minr. {area}` / `mino {area}`; oculta si no hay retales; distinta de `maxr.`, `n ret.`, `retár.` y `ret%`; sin clic |
-| IDE-0188 | S | IDE-0187 | Entregado; Ctrl+Alt+Shift+F9; el valor, sin `minr.`; no avanza |
+| IDE-0188 | S | IDE-0187 | Entregado; Cmd+Alt+Shift+F9; el valor, sin `minr.`; no avanza |
 | IDE-0189 | S | IDE-0187 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0190 | S | IDE-0184 | Entregado; `maxd. {size}` / `maxd {size}` vía `_format_size` del retal de mayor área; oculta si no hay retales; distinta de `maxr.`; sin clic |
-| IDE-0191 | S | IDE-0190 | Entregado; Ctrl+Alt+Shift+F10; el valor, sin `maxd.`; no avanza |
+| IDE-0191 | S | IDE-0190 | Entregado; Cmd+Alt+Shift+F10; el valor, sin `maxd.`; no avanza |
 | IDE-0192 | S | IDE-0190 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0193 | S | IDE-0187 | Entregado; `mind. {size}` / `mind {size}` vía `_format_size` del retal de menor área; oculta si no hay retales; distinta de `minr.` y `maxd.`; sin clic |
-| IDE-0194 | S | IDE-0193 | Entregado; Ctrl+Alt+Shift+F11; el valor, sin `mind.`; no avanza |
+| IDE-0194 | S | IDE-0193 | Entregado; Cmd+Alt+Shift+F11; el valor, sin `mind.`; no avanza |
 | IDE-0195 | S | IDE-0193 | Entregado `#850`; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0196 | S | IDE-0187 | Entregado `#852`; `medr. {area}` / `avgo {area}` media de áreas; oculta si no hay retales; distinta de `minr.`, `maxr.` y `retár.`; sin clic |
-| IDE-0197 | S | IDE-0196 | Entregado `#853`; Ctrl+Alt+Shift+F12; el valor, sin `medr.`; no avanza |
+| IDE-0197 | S | IDE-0196 | Entregado `#853`; Cmd+Alt+Shift+F12; el valor, sin `medr.`; no avanza |
 | IDE-0198 | S | IDE-0196 | Entregado `#855`; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0199 | S | IDE-0196 | Entregado; `mdnr. {area}` / `medo {area}` mediana de áreas; oculta si no hay retales; distinta de `medr.`, `minr.`, `maxr.` y `retár.`; sin clic |
-| IDE-0200 | S | IDE-0199 | Entregado; Ctrl+Alt+Shift+-; el valor, sin `mdnr.`; no avanza |
+| IDE-0200 | S | IDE-0199 | Entregado; Cmd+Alt+Shift+-; el valor, sin `mdnr.`; no avanza |
 | IDE-0201 | S | IDE-0199 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0202 | S | IDE-0199 | Entregado; `mdnd. {size}` / `medd {size}` vía `_format_size` del retal de área mediana (orden `(area, length, width)`; n impar → medio; n par → el inferior de los dos centrales); oculta si no hay retales; distinta de `mdnr.`, `maxd.` y `mind.`; sin clic |
-| IDE-0203 | S | IDE-0202 | Entregado; Ctrl+Alt+Shift+=; el L×A, sin `mdnd.`; no avanza |
+| IDE-0203 | S | IDE-0202 | Entregado; Cmd+Alt+Shift+=; el L×A, sin `mdnd.`; no avanza |
 | IDE-0204 | S | IDE-0202 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0205 | S | IDE-0196 | Entregado; `mdds. {size}` / `avgd {size}` vía `_format_size` del retal cuya área está más próxima a la media (empate: menor `(length, width)`); oculta si no hay retales; distinta de `medr.`, `mdnd.`, `maxd.` y `mind.`; sin clic |
-| IDE-0206 | S | IDE-0205 | Entregado; Ctrl+Alt+Shift+[; el L×A, sin `mdds.`; no avanza |
+| IDE-0206 | S | IDE-0205 | Entregado; Cmd+Alt+Shift+[; el L×A, sin `mdds.`; no avanza |
 | IDE-0207 | S | IDE-0205 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0208 | S | IDE-0184 | Entregado; `ampr. {area}` / `spno {area}` = mayor área − menor área; oculta si no hay retales; `0` se muestra con un retal; distinta de `maxr.`, `minr.` y `retár.`; sin clic |
-| IDE-0209 | S | IDE-0208 | Entregado; Ctrl+Alt+Shift+]; el valor, sin `ampr.`; no avanza |
+| IDE-0209 | S | IDE-0208 | Entregado; Cmd+Alt+Shift+]; el valor, sin `ampr.`; no avanza |
 | IDE-0210 | S | IDE-0208 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0211 | S | IDE-0184 | Entregado; `cmay. {value}` / `lsh {value}` = mayor área / suma; oculta si no hay retales; `100.0%` con un retal; distinta de `maxr.`, `retár.`, `ret%` y `ampr.`; sin clic |
-| IDE-0212 | S | IDE-0211 | Entregado; Ctrl+Alt+Shift+\\ (barra invertida); el porcentaje, sin `cmay.`; no avanza |
+| IDE-0212 | S | IDE-0211 | Entregado; Cmd+Alt+Shift+\\ (barra invertida); el porcentaje, sin `cmay.`; no avanza |
 | IDE-0213 | S | IDE-0211 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0214 | S | IDE-0187 | Entregado; `cmen. {value}` / `ssh {value}` = menor área / suma; oculta si no hay retales; `100.0%` con un retal; distinta de `cmay.`, `minr.` y `retár.`; sin clic |
-| IDE-0215 | S | IDE-0214 | Entregado; Ctrl+Alt+Shift+; el porcentaje, sin `cmen.`; no avanza |
+| IDE-0215 | S | IDE-0214 | Entregado; Cmd+Alt+Shift+; el porcentaje, sin `cmen.`; no avanza |
 | IDE-0216 | S | IDE-0214 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0217 | S | IDE-0190 | Entregado; `relr. {value}` / `aspr {value}` = max(L, A) / min(L, A) del retal de mayor área (empate por largo y ancho, como `maxd.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `maxd.`; sin clic |
-| IDE-0218 | S | IDE-0217 | Entregado; Ctrl+Alt+Shift+' el valor, sin `relr.`; no avanza |
+| IDE-0218 | S | IDE-0217 | Entregado; Cmd+Alt+Shift+' el valor, sin `relr.`; no avanza |
 | IDE-0219 | S | IDE-0217 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0220 | S | IDE-0193 | Entregado; `relm. {value}` / `asps {value}` = max(L, A) / min(L, A) del retal de menor área (empate por largo y ancho, como `mind.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mind.` y de `relr.`; sin clic |
-| IDE-0221 | S | IDE-0220 | Entregado; Ctrl+Alt+Shift+\` el valor, sin `relm.`; no avanza |
+| IDE-0221 | S | IDE-0220 | Entregado; Cmd+Alt+Shift+\` el valor, sin `relm.`; no avanza |
 | IDE-0222 | S | IDE-0220 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0223 | S | IDE-0202 | Entregado; `reln. {value}` / `aspm {value}` = max(L, A) / min(L, A) del retal de área mediana (orden `(area, length, width)`; n impar → medio; n par → el inferior de los dos centrales, como `mdnd.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdnd.`, `relr.` y `relm.`; sin clic |
-| IDE-0224 | S | IDE-0223 | Entregado; Ctrl+Alt+Shift+, el valor, sin `reln.`; no avanza |
+| IDE-0224 | S | IDE-0223 | Entregado; Cmd+Alt+Shift+, el valor, sin `reln.`; no avanza |
 | IDE-0225 | S | IDE-0223 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0226 | S | IDE-0205 | Entregado; `rela. {value}` / `aspa {value}` = max(L, A) / min(L, A) del retal cuya área está más próxima a la media (empate: menor `(length, width)`, como `mdds.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdds.`, `reln.`, `relr.` y `relm.`; sin clic |
-| IDE-0227 | S | IDE-0226 | Entregado; Ctrl+Alt+Shift+. el valor, sin `rela.`; no avanza |
+| IDE-0227 | S | IDE-0226 | Entregado; Cmd+Alt+Shift+. el valor, sin `rela.`; no avanza |
 | IDE-0228 | S | IDE-0226 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---

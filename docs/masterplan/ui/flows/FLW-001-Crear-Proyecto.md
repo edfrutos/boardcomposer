@@ -36,16 +36,16 @@ Abrir y guardar `.bcproj` viven en SCR-005; editar inventario en FLW-006.
 
 | Acción | Atajo / menú / CTA |
 |--------|---------------------|
-| Nuevo proyecto… | **Ctrl+N** · Archivo · Welcome |
-| Nuevo desde plantilla… | **Ctrl+Shift+N** · Archivo · Welcome |
-| Proyecto demo | **Ctrl+Shift+D** · Archivo · Welcome |
-| Guardar como plantilla… | **Ctrl+Shift+M** · Archivo (proyecto actual) |
+| Nuevo proyecto… | **Cmd+N** · Archivo · Welcome |
+| Nuevo desde plantilla… | **Cmd+Shift+N** · Archivo · Welcome |
+| Proyecto demo | **Cmd+Shift+D** · Archivo · Welcome |
+| Guardar como plantilla… | **Cmd+Shift+M** · Archivo (proyecto actual) |
 
 ---
 
 ## Flujo principal — vacío (`NewProjectDialog`)
 
-1. El usuario dispara **Nuevo proyecto** (**Ctrl+N**).
+1. El usuario dispara **Nuevo proyecto** (**Cmd+N**).
 2. Confirmación de cambios sin guardar (si aplica).
 3. Se abre `NewProjectDialog`: nombre (obligatorio) + unidades
    (defaults desde Preferencias SCR-006).
@@ -57,13 +57,13 @@ Abrir y guardar `.bcproj` viven en SCR-005; editar inventario en FLW-006.
 8. Se limpia el layout/soluciones; se muestra Workspace (`WorkspaceOpened`).
 9. Evento `ProjectCreated` (`kind=empty`, `name=…`) + tip de estado.
 
-El proyecto queda **sin guardar** hasta Ctrl+S / Guardar como (`.bcproj` v2).
+El proyecto queda **sin guardar** hasta Cmd+S / Guardar como (`.bcproj` v2).
 
 ---
 
 ## Flujo paralelo A — Demo
 
-1. **Ctrl+Shift+D** (o CTA Welcome).
+1. **Cmd+Shift+D** (o CTA Welcome).
 2. Confirmación unsaved.
 3. `_load_demo_project`: tablero + 3 piezas + placements fijos
    (`project_id=PRJ-DEMO-001`).
@@ -73,7 +73,7 @@ El proyecto queda **sin guardar** hasta Ctrl+S / Guardar como (`.bcproj` v2).
 
 ## Flujo paralelo B — Desde plantilla
 
-1. **Ctrl+Shift+N**.
+1. **Cmd+Shift+N**.
 2. Confirmación unsaved.
 3. Si no hay plantillas → info + status; no se crea.
 4. `ProjectTemplatePickerDialog` → `instantiate(name, include_placements=False)`.
@@ -85,7 +85,7 @@ El proyecto queda **sin guardar** hasta Ctrl+S / Guardar como (`.bcproj` v2).
 
 ## Flujo paralelo C — Guardar como plantilla
 
-1. Hay proyecto actual; **Ctrl+Shift+M**.
+1. Hay proyecto actual; **Cmd+Shift+M**.
 2. `save_from_project` en el gestor de plantillas.
 3. No crea un proyecto nuevo; solo persiste plantilla reutilizable.
 

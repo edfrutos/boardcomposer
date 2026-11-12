@@ -37,18 +37,18 @@ Detalle de UI: SCR-003. Generación previa: FLW-003.
 
 | Control | Atajo |
 |---------|--------|
-| Ver → Comparador de soluciones | **Ctrl+4** |
+| Ver → Comparador de soluciones | **Cmd+4** |
 | Selección tras calcular | dock inferior (tabificado con Timeline) |
 | Solución anterior / siguiente | **Re Pág** / **Av Pág** |
-| Aplicar layout calculado | **Ctrl+Shift+Return** |
-| Exportar solución seleccionada | **Ctrl+Shift+E** (FLW-005) |
+| Aplicar layout calculado | **Cmd+Shift+Return** |
+| Exportar solución seleccionada | **Cmd+Shift+E** (FLW-005) |
 
 ---
 
 ## Flujo principal (≥ 2 candidatas)
 
 1. Tras FLW-003, el Comparador lista candidatas (miniaturas + tabla).
-2. El usuario abre el dock si hace falta (**Ctrl+4**).
+2. El usuario abre el dock si hace falta (**Cmd+4**).
 3. Opcional: ordenar (ranking / piezas / huecos / tablero libre / coste /
   score) y
    filtrar «solo completas».

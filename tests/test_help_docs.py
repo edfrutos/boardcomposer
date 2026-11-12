@@ -35,15 +35,15 @@ def test_documentation_paths_exist():
 def test_user_guide_mentions_workshop_shortcuts_and_spain_spanish():
     text = documentation_paths()["user_guide"].read_text(encoding="utf-8")
     for needle in (
-        "Ctrl+Alt+C",
-        "Ctrl+Alt+Q",
-        "Ctrl+Alt+K",
-        "Ctrl+Alt+X",
-        "Ctrl+Alt+G",
-        "Ctrl+Alt+F",
-        "Ctrl+Alt+R",
-        "Ctrl+Alt+T",
-        "Ctrl+Alt+M",
+        "Cmd+Alt+C",
+        "Cmd+Alt+Q",
+        "Cmd+Alt+K",
+        "Cmd+Alt+X",
+        "Cmd+Alt+G",
+        "Cmd+Alt+F",
+        "Cmd+Alt+R",
+        "Cmd+Alt+T",
+        "Cmd+Alt+M",
         "veta",
         "lista de corte",
         "presupuesto",
@@ -58,15 +58,15 @@ def test_uat_funcional_mentions_workshop_shortcuts():
         encoding="utf-8"
     )
     for needle in (
-        "Ctrl+Alt+C",
-        "Ctrl+Alt+Q",
-        "Ctrl+Alt+K",
-        "Ctrl+Alt+X",
-        "Ctrl+Alt+G",
-        "Ctrl+Alt+F",
-        "Ctrl+Alt+R",
-        "Ctrl+Alt+T",
-        "Ctrl+Alt+M",
+        "Cmd+Alt+C",
+        "Cmd+Alt+Q",
+        "Cmd+Alt+K",
+        "Cmd+Alt+X",
+        "Cmd+Alt+G",
+        "Cmd+Alt+F",
+        "Cmd+Alt+R",
+        "Cmd+Alt+T",
+        "Cmd+Alt+M",
         "veta",
     ):
         assert needle in text

@@ -30,10 +30,10 @@ canvas sin calcular.
 
 | Acción | Atajo / menú |
 |--------|----------------|
-| Exportar solución seleccionada… | **Ctrl+Shift+E** · Exportar · toolbar |
-| Exportar lista de corte… | **Ctrl+Alt+C** · Exportar (flujo aparte; CSV/PDF) |
-| Exportar presupuesto… | **Ctrl+Alt+Q** · Exportar (flujo aparte; PDF) |
-| Exportar historial del Timeline… | **Ctrl+Shift+L** · Exportar · Timeline (flujo aparte) |
+| Exportar solución seleccionada… | **Cmd+Shift+E** · Exportar · toolbar |
+| Exportar lista de corte… | **Cmd+Alt+C** · Exportar (flujo aparte; CSV/PDF) |
+| Exportar presupuesto… | **Cmd+Alt+Q** · Exportar (flujo aparte; PDF) |
+| Exportar historial del Timeline… | **Cmd+Shift+L** · Exportar · Timeline (flujo aparte) |
 
 Sin solución calculada/seleccionada: el tip de estado pide calcular layout
 antes. Si `solutions_outdated`, tip/diálogo priorizan **Calcular layout**
@@ -113,7 +113,7 @@ No implementados: más formatos de imagen (WebP, TIFF).
   Plano SVG/PDF/DXF (0039) y PDF de lista de corte / presupuesto (0043).
   Default: sí (casilla Preferencias / Exportar plano). JSON/CSV y CSV
   de corte no. Capa DXF `META`. Sin bump `.bcproj`.
-- **Mano de obra (IDE-0045):** solo presupuesto PDF (**Ctrl+Alt+Q**).
+- **Mano de obra (IDE-0045):** solo presupuesto PDF (**Cmd+Alt+Q**).
   Preferencias: EUR/h (0–999) y minutos por pieza colocada (0–180).
   Default 0 omite la línea. Total = material (catálogo EUR/m²) + labor.
   JSON de métricas y lista de corte no. Sin herrajes. Sin bump `.bcproj`.
@@ -122,7 +122,7 @@ No implementados: más formatos de imagen (WebP, TIFF).
   `$INSUNITS` = mm. LibreCAD / QCAD / CAM pueden ocultar capas. SVG/PDF
   no. Sin checkbox extra.
 - **Números de secuencia (IDE-0027):** siempre en SVG/PDF/DXF (paso de
-  pieza en su panel). La lista de corte (Ctrl+Alt+C) añade el orden de
+  pieza en su panel). La lista de corte (Cmd+Alt+C) añade el orden de
   sierra (guillotina o por posición) en CSV y PDF.
 - **Papel / orientación / escala / márgenes (IDE-0034):** solo formato
   **PDF** de plano. Papel: ajustar al dibujo (default, 1:1, página a
@@ -180,7 +180,7 @@ Tras un export correcto se guardan en `preferences.json`:
 También editables en Preferencias (SCR-006), salvo las carpetas (solo
 persistencia silenciosa).
 
-**Backup de revisiones** (menú Proyecto / **Ctrl+Alt+B**, no `ExportDialog`)
+**Backup de revisiones** (menú Proyecto / **Cmd+Alt+B**, no `ExportDialog`)
 usa `last_backup_directory` por separado: mismo patrón silencioso; tras éxito
 ofrece Abrir carpeta. Detalle operativo: `docs/ops/PILOT-DT-0006-backup.md`.
 
@@ -190,7 +190,7 @@ ofrece Abrir carpeta. Detalle operativo: `docs/ops/PILOT-DT-0006-backup.md`.
 
 No usa `ExportDialog`. Flujo propio:
 
-1. **Ctrl+Shift+L** (o menú / botón Timeline).
+1. **Cmd+Shift+L** (o menú / botón Timeline).
 2. `QFileDialog` → JSON o CSV del historial filtrado del Timeline.
 3. Código: `studio/timeline/export.py`.
 
@@ -199,7 +199,7 @@ No usa `ExportDialog`. Flujo propio:
 ## Flujo principal (solución)
 
 1. Calcular layout y seleccionar candidata (SCR-003).
-2. **Ctrl+Shift+E** (si outdated: confirmar recalcular / exportar / cancelar).
+2. **Cmd+Shift+E** (si outdated: confirmar recalcular / exportar / cancelar).
 3. Elegir formato / opciones / plantilla.
 4. Revisar vista previa.
 5. Exportar y, si se desea, abrir o revelar el archivo.
@@ -233,7 +233,7 @@ No usa `ExportDialog`. Flujo propio:
 ## Límites conocidos (Studio actual)
 
 - Métricas/explicación solo en JSON.
-- CSV del diálogo limitado a placements; lista de corte (Ctrl+Alt+C)
+- CSV del diálogo limitado a placements; lista de corte (Cmd+Alt+C)
   cubre piezas/tableros/cortes y secuencia de sierra en CSV o PDF.
 - Sin publicación a la nube.
 

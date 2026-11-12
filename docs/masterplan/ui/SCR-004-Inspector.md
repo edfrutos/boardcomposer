@@ -24,7 +24,7 @@ panel.
 ## Dónde vive en Studio
 
 - Dock derecho `Inspector`.
-- Mostrar/ocultar: **Ver → Inspector** (**Ctrl+2**).
+- Mostrar/ocultar: **Ver → Inspector** (**Cmd+2**).
 - Se actualiza al cambiar la selección del Explorador o del Workspace.
 
 ---
@@ -139,7 +139,7 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 - Pieza colocada identifica panel e instancia.
 - Solución parcial y retales informativos visibles cuando existen.
 - Diagnóstico útil cuando el solver no devuelve candidatas.
-- Toggle **Ctrl+2** no pierde el último contexto al volver a mostrar.
+- Toggle **Cmd+2** no pierde el último contexto al volver a mostrar.
 
 ---
 
@@ -161,9 +161,9 @@ usuario canceló: mensaje de cancelación sin diagnóstico.
 - Unidades de prefs en pieza, tablero, kerf, posición y métricas de layout
   (IDE-0040). Disco / `.bcproj` / JSON siguen en mm.
 - Pieza: área L×A (IDE-0055), espesor, rotación 0°/90° y veta (IDE-0046).
-  Copiar el texto del dock: **Ctrl+Alt+I** (IDE-0057). Copiar solo L×A
-  de una pieza: **Ctrl+Alt+Shift+D** (IDE-0064; unidades de Preferencias).
-  Copiar L×A de una hoja de tablero: **Ctrl+Alt+Shift+B** (IDE-0068;
+  Copiar el texto del dock: **Cmd+Alt+I** (IDE-0057). Copiar solo L×A
+  de una pieza: **Cmd+Alt+Shift+D** (IDE-0064; unidades de Preferencias).
+  Copiar L×A de una hoja de tablero: **Cmd+Alt+Shift+B** (IDE-0068;
   la cantidad no multiplica).
   Canto sigue en
   Editar…, no en el dock.

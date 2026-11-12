@@ -36,8 +36,8 @@ plantillas de mapeo, vista previa y commit deshacible.
 
 | Acción | Atajo / menú / CTA |
 |--------|---------------------|
-| Importar inventario de tableros (CSV/Excel)… | **Ctrl+Shift+T** · menú Proyecto · overlay vacío Workspace |
-| Importar piezas (CSV/Excel)… | **Ctrl+Shift+O** · menú Proyecto · overlay vacío · Welcome |
+| Importar inventario de tableros (CSV/Excel)… | **Cmd+Shift+T** · menú Proyecto · overlay vacío Workspace |
+| Importar piezas (CSV/Excel)… | **Cmd+Shift+O** · menú Proyecto · overlay vacío · Welcome |
 
 Filtro de archivo: CSV y Excel (`dialog.filter_csv_excel`).
 
@@ -133,7 +133,7 @@ directo del comando + `_mark_project_modified`.)
 ## Resultado esperado
 
 Tableros o piezas válidos **añadidos** al proyecto (append, no reemplazo),
-con undo (Ctrl+Z), Workspace/Explorer actualizados y registro en Timeline.
+con undo (Cmd+Z), Workspace/Explorer actualizados y registro en Timeline.
 
 ---
 

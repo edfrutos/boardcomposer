@@ -27,7 +27,7 @@
 
 - [x] Formateo de fortalezas / debilidades / notas reutilizable.
 - [x] Ayuda → **Explicar candidata…** (enablement si hay solución seleccionada;
-  atajo **Ctrl+Alt+E**).
+  atajo **Cmd+Alt+E**).
 - [x] Botón **Copiar** + confirmación en status bar; tip en el botón.
 - [x] Eval humana: 5 candidatas demo → explicación útil vs ruido
   ([checklist UAT](../../../uat/studio/CHECKLIST-EXPLAIN-EVAL.md);

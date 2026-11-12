@@ -51,7 +51,7 @@ recientes y alcanzar las acciones principales sin pasar por el Workspace.
 ```
 
 Al arrancar, el stack central muestra el welcome delante del Workspace.
-Volver: **Archivo → Pantalla de inicio** (**Ctrl+Shift+H**).
+Volver: **Archivo → Pantalla de inicio** (**Cmd+Shift+H**).
 
 ---
 
@@ -70,13 +70,13 @@ Volver: **Archivo → Pantalla de inicio** (**Ctrl+Shift+H**).
 | Nuevo proyecto | Diálogo nuevo (SCR-005) |
 | Abrir proyecto… | Diálogo `.bcproj` |
 | Importar piezas (CSV/Excel)… | Flujo FLW-002 (piezas) |
-| Proyecto de ejemplo | Demo (**Ctrl+Shift+D**) |
+| Proyecto de ejemplo | Demo (**Cmd+Shift+D**) |
 | Desde plantilla… | Picker de plantillas; info si el catálogo está vacío |
 | Documentación… | Abre guía rápida usuario (`docs/user/GUIA-RAPIDA.md`) |
 | Novedades… | Diálogo CHANGELOG (Unreleased) |
 | Preferencias… | SCR-006 |
 | Atajos… | Diálogo atajos (**F1**; misma entrada que Ayuda) |
-| Acerca de… | Diálogo About (**Ctrl+Shift+A**) |
+| Acerca de… | Diálogo About (**Cmd+Shift+A**) |
 
 Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 
@@ -93,7 +93,7 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 - Quitar uno: **Delete** / **Backspace** o menú contextual «Quitar de
   recientes» (sin confirmación; el archivo en disco no se borra).
 - Vaciar lista: botón en cabecera + confirmación (también
-  **Ctrl+Shift+X** / menú Archivo).
+  **Cmd+Shift+X** / menú Archivo).
 - Paridad **Archivo → Abrir recientes**: submenú por proyecto con Abrir /
   anclar / Mostrar en carpeta / quitar (mismas acciones que el menú
   contextual de Welcome).
@@ -115,7 +115,7 @@ Fila help (tercera): Atajos / Acerca de, sin abarrotar la fila secundaria.
 - Brand legible como señal principal del primer viewport.
 - Recientes con miniatura y fecha; abrir en un gesto (clic / Enter);
   anclar / quitar uno con menú contextual (Delete quita).
-- Volver al welcome desde el Workspace con **Ctrl+Shift+H**.
+- Volver al welcome desde el Workspace con **Cmd+Shift+H**.
 - Tema claro/oscuro/sistema se aplica vía Preferencias (no selector en welcome).
 
 ---
