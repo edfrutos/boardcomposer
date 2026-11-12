@@ -1,14 +1,33 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.4.dev0 — 2026-11-12
+## Unreleased — 0.4.5.dev0 — 2026-11-12
+
+### Añadido
+
+- _(ciclo post-`0.4.4` — vacío al corte)_
+
+### Cambiado
+
+## 0.4.4 — 2026-11-12
 
 ## Añadido
 
+- Clic en la relación de forma del retal de área media selecciona esa
+  solución (IDE-0228). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no. Cierra la quincuagésima ola (0227…0228) y el ciclo `0.4.4`
+  con simetría 100% en la barra de estado.
+  Sin bump `.bcproj`; no cambia el solver.
+- Copiar la relación de forma del retal de área media de la solución
+  (IDE-0227; **Ctrl+Alt+Shift+.**). Copia el valor, sin `rela.`
+  (en inglés sin `aspa`). Deshabilitado si la etiqueta está
+  oculta. No avanza ni aplica el layout.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: relación de forma del retal de área media
   (IDE-0226; `rela.` / `aspa`). Mismo retal que `mdds.`: el de área
   más próxima a la media (empate: menor largo y ancho). `1.00` si es
   cuadrado. Oculta si no hay retales. No sigue las unidades. Cursor
-  flecha. Sin clic. Cierra la cuadragésima novena ola 0223…0226.
+  mano si está visible. Cierra la cuadragésima novena ola 0223…0226.
   Sin bump `.bcproj`; no cambia el solver.
 - Clic en la relación de forma del retal de área mediana selecciona esa
   solución (IDE-0225). Cursor mano si está visible. Selecciona
