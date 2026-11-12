@@ -297,6 +297,8 @@ Observaciones:
 | IDE-0224 | Copiar la relación de forma del retal de área mediana | 🟢 | P3 |
 | IDE-0225 | Clic en la relación de forma del retal de área mediana selecciona su solución | 🟢 | P3 |
 | IDE-0226 | Barra: relación de forma del retal de área media | 🟢 | P3 |
+| IDE-0227 | Copiar la relación de forma del retal de área media | 🔵 | P3 |
+| IDE-0228 | Clic en la relación de forma del retal de área media selecciona su solución | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -517,6 +519,8 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0224 | S | IDE-0223 | Entregado; Ctrl+Alt+Shift+, el valor, sin `reln.`; no avanza |
 | IDE-0225 | S | IDE-0223 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0226 | S | IDE-0205 | Entregado; `rela. {value}` / `aspa {value}` = max(L, A) / min(L, A) del retal cuya área está más próxima a la media (empate: menor `(length, width)`, como `mdds.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdds.`, `reln.`, `relr.` y `relm.`; sin clic |
+| IDE-0227 | S | IDE-0226 | Planificado; Ctrl+Alt+Shift+. el valor, sin `rela.`; no avanza; IDs `#891` |
+| IDE-0228 | S | IDE-0226 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza; IDs `#891` |
 
 ---
 
@@ -583,13 +587,15 @@ Cuadragésima sexta ola cerrada (0214 entregada).
 Cuadragésima séptima ola cerrada (0218 entregada).
 Cuadragésima octava ola cerrada (0222 entregada).
 Cuadragésima novena ola cerrada (0226 entregada).
+Quincuagésima ola abierta (0227…0228; IDs `#891`).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-11-11-planificacion.md`.
+`REVIEW-2026-11-12-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` vacía (0226 cierra 0223…0226; siguiente Merge OK abre ola 50;
+1. Cola producto `0.4.4` quincuagésima ola IDE-0227…0228 (copy/clic
+   `rela.`/`aspa`; tip `#891` fuera de `main`; luego corte `0.4.4`;
    IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
