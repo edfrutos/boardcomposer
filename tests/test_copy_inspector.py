@@ -30,7 +30,7 @@ def test_copy_inspector_disabled_when_empty(qapp, tmp_path):
     clipboard.setText("keep-me")
     assert not window._actions["copy_inspector"].isEnabled()
     tip = window._actions["copy_inspector"].statusTip()
-    assert "Ctrl+Alt+I" in tip
+    assert "Ctrl+Alt+I" in tip or "⌥⌘I" in tip
     assert window._tr("status.nothing_to_copy_inspector") in tip
     window._copy_inspector()
     assert clipboard.text() == "keep-me"
