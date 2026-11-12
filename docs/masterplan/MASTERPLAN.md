@@ -6,8 +6,8 @@
 
 - Fase de producto: **Fase 2 — BoardComposer Studio** (núcleo usable;
   Fase 3 plataforma entregada).
-- Versión: `0.4.4` (anterior estable: `0.4.3` /
-  `v0.4.3` publicada).
+- Versión de desarrollo: `0.4.5.dev0` (última estable: `0.4.4` /
+  `v0.4.4` publicada).
 - Core base consolidado y cubierto por tests (incluye kerf IDE-0020,
   veta IDE-0021, Skyline multipanel IDE-0022 y freeze/re-pack IDE-0030).
 - Studio dispone de flujo funcional de proyecto, edición, cálculo y exportación
