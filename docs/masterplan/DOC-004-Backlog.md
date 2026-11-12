@@ -599,6 +599,6 @@ Próximo foco:
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
-3. Corte `0.4.4` listo (`v0.4.3` publicado).
+3. Ciclo `0.4.5.dev0` abierto; `v0.4.4` publicado.
 4. Plugins (IDE-0008) — XL; no priorizar sin ADR-004 operativo.
 5. LLM opt-in — solo tras DEC-0011 / política de datos (eval ya cerrada).
