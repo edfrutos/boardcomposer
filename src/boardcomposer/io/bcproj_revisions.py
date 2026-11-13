@@ -8,6 +8,8 @@ without a full VCS.
 
 from __future__ import annotations
 
+import hashlib
+import os
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
@@ -15,20 +17,43 @@ from pathlib import Path
 MAX_REVISIONS = 10
 
 
-def revisions_dir(path: str | Path) -> Path:
-    """Sidecar directory for snapshots of ``path``."""
-    target = Path(path)
+def _sidecar_revisions_dir(target: Path) -> Path:
     return target.parent / f".{target.name}.revs"
+
+
+def _sandbox_fallback_revisions_dir(target: Path) -> Path:
+    resolved = str(target.resolve())
+    digest = hashlib.sha256(resolved.encode("utf-8")).hexdigest()[:16]
+    return Path.home() / ".boardcomposer" / "revs" / f"{target.name}-{digest}.revs"
+
+
+def revisions_dir(path: str | Path) -> Path:
+    """Sidecar directory for snapshots of ``path`` (with App Sandbox fallback)."""
+    target = Path(path)
+    sidecar = _sidecar_revisions_dir(target)
+    if sidecar.is_dir():
+        return sidecar
+    if os.environ.get("APP_SANDBOX_CONTAINER_ID"):
+        fallback = _sandbox_fallback_revisions_dir(target)
+        if fallback.is_dir():
+            return fallback
+    return sidecar
 
 
 def list_revisions(path: str | Path) -> list[Path]:
     """Return saved revisions newest-first (missing dir → empty)."""
-    folder = revisions_dir(path)
-    if not folder.is_dir():
-        return []
-    files = [p for p in folder.glob("*.bcproj") if p.is_file()]
-    files.sort(key=lambda p: p.name, reverse=True)
-    return files
+    target = Path(path)
+    candidates = [
+        _sidecar_revisions_dir(target),
+        _sandbox_fallback_revisions_dir(target),
+    ]
+    for folder in candidates:
+        if folder.is_dir():
+            files = [p for p in folder.glob("*.bcproj") if p.is_file()]
+            files.sort(key=lambda p: p.name, reverse=True)
+            if files:
+                return files
+    return []
 
 
 def latest_revision(path: str | Path) -> Path | None:
@@ -44,19 +69,31 @@ def snapshot_before_overwrite(
     """Copy ``path`` into the revisions ring if it already exists on disk.
 
     Returns the new snapshot path, or ``None`` when there was nothing to copy.
+    Falls back to ``~/.boardcomposer/revs/`` if App Sandbox blocks creating
+    the sibling hidden folder next to the user-selected file.
     """
     target = Path(path)
     if not target.is_file():
         return None
 
     folder = revisions_dir(target)
-    folder.mkdir(parents=True, exist_ok=True)
+    try:
+        folder.mkdir(parents=True, exist_ok=True)
+    except PermissionError:
+        folder = _sandbox_fallback_revisions_dir(target)
+        folder.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     dest = folder / f"{stamp}.bcproj"
     # Avoid clobbering if two saves share the same UTC second.
     if dest.exists():
         dest = folder / f"{stamp}_{target.stat().st_mtime_ns}.bcproj"
-    shutil.copy2(target, dest)
+    try:
+        shutil.copy2(target, dest)
+    except PermissionError:
+        folder = _sandbox_fallback_revisions_dir(target)
+        folder.mkdir(parents=True, exist_ok=True)
+        dest = folder / dest.name
+        shutil.copy2(target, dest)
     _prune(folder, keep=keep)
     return dest
 
@@ -103,7 +140,11 @@ def export_project_backup(
     folder.mkdir(parents=False, exist_ok=False)
 
     shutil.copy2(source, folder / source.name)
-    ring = revisions_dir(source)
+    ring = _sidecar_revisions_dir(source)
+    if not ring.is_dir():
+        fallback = _sandbox_fallback_revisions_dir(source)
+        if fallback.is_dir():
+            ring = fallback
     if ring.is_dir():
-        shutil.copytree(ring, folder / ring.name)
+        shutil.copytree(ring, folder / f".{source.name}.revs")
     return folder
