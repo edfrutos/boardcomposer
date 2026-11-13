@@ -92,12 +92,17 @@ def test_macos_packaging_plists_and_spec_are_valid():
     assert build_script.is_file()
 
     info = plistlib.loads(info_plist.read_bytes())
-    assert info["CFBundleIdentifier"] == "com.edfdeveloper.boardcomposer"
+    assert info["CFBundleIdentifier"] == "com.edefrutos.boardcomposer"
     assert info["CFBundleIconFile"] == "AppIcon.icns"
     assert info["ITSAppUsesNonExemptEncryption"] is False
     assert info["LSApplicationCategoryType"] == "public.app-category.productivity"
 
     mas = plistlib.loads(mas_plist.read_bytes())
+    assert (
+        mas["com.apple.application-identifier"]
+        == "V29BTBRY6G.com.edefrutos.boardcomposer"
+    )
+    assert mas["com.apple.developer.team-identifier"] == "V29BTBRY6G"
     assert mas["com.apple.security.app-sandbox"] is True
     assert mas["com.apple.security.files.user-selected.read-write"] is True
 

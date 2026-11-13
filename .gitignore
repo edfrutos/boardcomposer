@@ -1,6 +1,7 @@
 .venv/
 build/
 dist/
+packaging/macos/*.provisionprofile
 __pycache__/
 .pytest_cache/
 *.pyc
