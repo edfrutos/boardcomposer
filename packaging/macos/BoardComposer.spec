@@ -107,7 +107,7 @@ app = BUNDLE(
     coll,
     name="BoardComposer.app",
     icon=str(REPO_ROOT / "studio" / "assets" / "AppIcon.icns"),
-    bundle_identifier="com.edfdeveloper.boardcomposer",
+    bundle_identifier="com.edefrutos.boardcomposer",
     version=INFO_PLIST.get("CFBundleShortVersionString", "0.4.4"),
     info_plist=INFO_PLIST,
 )

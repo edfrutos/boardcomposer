@@ -11,7 +11,7 @@
     <key>CFBundleIconFile</key>
     <string>AppIcon.icns</string>
     <key>CFBundleIdentifier</key>
-    <string>com.edfdeveloper.boardcomposer</string>
+    <string>com.edefrutos.boardcomposer</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleLocalizations</key>
@@ -54,7 +54,7 @@
             <string>Owner</string>
             <key>LSItemContentTypes</key>
             <array>
-                <string>com.edfdeveloper.boardcomposer.project</string>
+                <string>com.edefrutos.boardcomposer.project</string>
             </array>
         </dict>
     </array>
@@ -71,7 +71,7 @@
             <key>UTTypeIconFile</key>
             <string>AppIcon.icns</string>
             <key>UTTypeIdentifier</key>
-            <string>com.edfdeveloper.boardcomposer.project</string>
+            <string>com.edefrutos.boardcomposer.project</string>
             <key>UTTypeTagSpecification</key>
             <dict>
                 <key>public.filename-extension</key>
