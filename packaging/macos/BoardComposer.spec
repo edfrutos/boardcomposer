@@ -56,7 +56,6 @@ DATAS = [
     (str(REPO_ROOT / "docs" / "user" / "GUIA-RAPIDA.md"), "docs/user"),
     (str(REPO_ROOT / "docs" / "masterplan" / "INDEX.md"), "docs/masterplan"),
     (str(REPO_ROOT / "studio" / "assets"), "studio/assets"),
-    (str(REPO_ROOT / "studio" / "fonts"), "studio/fonts"),
     (str(REPO_ROOT / "data" / "samples"), "data/samples"),
 ]
 
