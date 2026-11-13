@@ -210,9 +210,9 @@ IDE-0079…0082 🔵 sin PR de producto; Issues = 0.
 
 ## Estado
 
-**Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.4.dev0`; snapshot
-2026-11-12 en `REVIEW-2026-11-12-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`11-11` (abiertas = 1, DT-0006).
+**Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.5.dev0`; snapshot
+2026-11-13 en `REVIEW-2026-11-13-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`11-12` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -221,39 +221,8 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
-- Cola producto ciclo `0.4.4`: duodécima ola cerrada (0078 `#702`);
-  IDE-0079 `#706`; IDE-0080 `#707`; decimotercera ola cerrada
-  (0082 entregada). Decimocuarta ola cerrada (0086 entregada).
-  IDE-0087 `#715`; IDE-0088 `#716`; IDE-0089 `#718`. Decimoquinta ola
-  cerrada (0090 `#720`). Decimosexta ola cerrada (0094 entregada).
-  Decimoséptima ola cerrada (0098 entregada).
-  Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas
-  (sin costes). Decimonovena ola cerrada (0106 `#743`).
-  Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada
-  (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada).
-  Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola
-  cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`).
-  Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola
-  cerrada (0138 entregada). Vigesimoctava ola cerrada (0142
-  entregada). Vigesimonovena ola cerrada (0146 entregada). Trigésima
-  ola cerrada (0150 entregada). Trigésima primera ola cerrada
-  (0154 entregada). Trigésima segunda ola cerrada (0158 entregada).
-  Trigésima tercera ola cerrada (0162 entregada). Trigésima cuarta ola
-  cerrada (0166 entregada). Trigésima quinta ola cerrada (0170
-  entregada). Trigésima sexta ola cerrada (0174 entregada).
-  Trigésima séptima ola cerrada (0178 entregada).
-  Trigésima octava ola cerrada (0182 entregada).
-  Trigésima novena ola cerrada (0186 entregada).
-  Cuadragésima ola cerrada (0190 entregada).
-  Cuadragésima primera ola cerrada (0194 entregada).
-  Cuadragésima segunda ola cerrada (0198 entregada).
-  Cuadragésima tercera ola cerrada (0202 entregada).
-  Cuadragésima cuarta ola cerrada (0206 entregada).
-  Cuadragésima quinta ola cerrada (0210 entregada).
-  Cuadragésima sexta ola cerrada (0214 entregada).
-  Cuadragésima séptima ola cerrada (0218 entregada).
-  Cuadragésima octava ola cerrada (0222 entregada).
-  Cuadragésima novena ola cerrada (0226 entregada).
-  Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
+- Cola producto ciclo `0.4.5.dev0`: quincuagésima primera ola abierta
+  (0229…0232). Ciclo `0.4.4` cerrado (0025…0228; corte `v0.4.4`).
+  IDE-0101 e IDE-0102 diferidas (sin costes).
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
