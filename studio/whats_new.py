@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 from studio.i18n import DEFAULT_LANGUAGE, tr
@@ -10,7 +11,10 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 def repo_root() -> Path:
-    """Return the BoardComposer repository root (parent of `studio/`)."""
+    """Return the BoardComposer repository or bundled resource root."""
+    meipass = getattr(sys, "_MEIPASS", None)
+    if meipass:
+        return Path(meipass)
     return _REPO_ROOT
 
 

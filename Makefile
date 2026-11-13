@@ -3,7 +3,7 @@ PYTEST := .venv/bin/pytest
 RUFF := .venv/bin/ruff
 BOARDCOMPOSER := .venv/bin/boardcomposer
 
-.PHONY: test run run-cli demo json status check lint format benchmark-multipanel
+.PHONY: test run run-cli demo json status check lint format benchmark-multipanel build-macos-app
 
 test:
 	$(PYTEST)
@@ -38,3 +38,6 @@ format:
 
 benchmark-multipanel:
 	$(PYTHON) scripts/benchmark_multipanel_maxrects.py
+
+build-macos-app:
+	bash packaging/macos/build_mas.sh

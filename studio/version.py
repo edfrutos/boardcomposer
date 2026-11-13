@@ -8,11 +8,20 @@ install without the source tree).
 from __future__ import annotations
 
 import re
+import sys
 import tomllib
 from importlib import metadata
 from pathlib import Path
 
-_REPO_ROOT = Path(__file__).resolve().parents[1]
+
+def _default_root() -> Path:
+    meipass = getattr(sys, "_MEIPASS", None)
+    if meipass:
+        return Path(meipass)
+    return Path(__file__).resolve().parents[1]
+
+
+_REPO_ROOT = _default_root()
 _VERSION_RE = re.compile(
     r'^version\s*=\s*["\']([^"\']+)["\']\s*$',
     re.MULTILINE,

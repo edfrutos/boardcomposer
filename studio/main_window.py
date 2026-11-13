@@ -201,6 +201,10 @@ class MainWindow(QMainWindow):
         for key in action_keys():
             self._actions[key] = QAction("", self)
 
+        self._actions["about"].setMenuRole(QAction.MenuRole.AboutRole)
+        self._actions["preferences"].setMenuRole(QAction.MenuRole.PreferencesRole)
+        self._actions["exit"].setMenuRole(QAction.MenuRole.QuitRole)
+
         self._recent_menu = self._menus["file"].addMenu("")
 
         apply_shortcuts(self._actions)
