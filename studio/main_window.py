@@ -21,6 +21,7 @@ from PySide6.QtWidgets import (
     QMenuBar,
     QMessageBox,
     QPushButton,
+    QSizePolicy,
     QStatusBar,
     QStackedWidget,
     QTableWidget,
@@ -718,6 +719,9 @@ class MainWindow(QMainWindow):
         self.welcome.about_requested.connect(self._show_about)
 
         self._central_stack = QStackedWidget()
+        self._central_stack.setSizePolicy(
+            QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored
+        )
         self._central_stack.addWidget(self.welcome)
         self._central_stack.addWidget(self.workspace)
         self.setCentralWidget(self._central_stack)
@@ -972,6 +976,7 @@ class MainWindow(QMainWindow):
 
     def _build_statusbar(self):
         status = QStatusBar(self)
+        status.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Fixed)
         self.setStatusBar(status)
         self._project_path_label = QLabel()
         self._project_path_label.setObjectName("statusProjectPath")

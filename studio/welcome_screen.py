@@ -52,6 +52,7 @@ class WelcomeScreen(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("welcomeRoot")
+        self.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
 
         self._language = DEFAULT_LANGUAGE
         self._recent_paths: list[str] = []
