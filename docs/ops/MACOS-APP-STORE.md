@@ -297,12 +297,33 @@ Apple exige entre **1 y 10 capturas de pantalla** de macOS en relación de aspec
 - `2560 × 1600` px
 - `2880 × 1800` px
 
-**5 capturas recomendadas:**
-1. **Workspace + Proyecto demo:** Vista principal con los tableros físicos, piezas acotadas, retales y el Inspector a la derecha.
-2. **Comparador de soluciones (`Cmd+4`):** Tabla inferior comparando candidatas y miniaturas junto al diálogo de **Explicar candidata** (`Cmd+Alt+E`).
-3. **Diálogo de Exportación (`Cmd+Shift+E`):** Vista previa del plano con cotas, secuencia de corte y selección de formato (SVG/PDF/DXF/PNG).
-4. **Catálogo de materiales (`Cmd+Alt+T`):** Tabla de materiales con espesores, precios €/m² y medidas estándar.
-5. **Pantalla de Inicio (Welcome):** Con acceso rápido a proyectos recientes, plantillas y proyecto demo.
+**5 capturas recomendadas (con `scripts/captura-boardcomposer.sh`):**
+
+```bash
+# 1. Abre la aplicación empaquetada
+open dist/BoardComposer.app
+
+# 2. Captura 1 — Pantalla de Inicio (Welcome)
+scripts/captura-boardcomposer.sh 1-welcome
+
+# 3. Pulsa Cmd+Shift+D (Proyecto demo) y Cmd+Return (Calcular layout)
+#    Captura 2 — Workspace multipanel + Inspector
+scripts/captura-boardcomposer.sh 2-workspace
+
+# 4. Abre Explicar candidata (Cmd+Alt+E) encima de la ventana de 1440×900
+#    Captura 3 — Comparador + Explicación local
+scripts/captura-boardcomposer.sh --sin-redimensionar 3-comparador-explicar
+
+# 5. Abre Exportar solución (Cmd+Shift+E)
+#    Captura 4 — Diálogo de Exportación con vista previa
+scripts/captura-boardcomposer.sh --sin-redimensionar 4-exportar
+
+# 6. Abre Catálogo de materiales (Cmd+Alt+T)
+#    Captura 5 — Catálogo de materiales y precios
+scripts/captura-boardcomposer.sh --sin-redimensionar 5-catalogo
+```
+
+Las 5 capturas quedan en `~/Desktop/appstore-*.png` a `2880 × 1800` px (o `1440 × 900` px) listas para arrastrar a App Store Connect.
 
 ---
 
