@@ -1,6 +1,6 @@
 # Plan y seguimiento — Empaquetado macOS y Mac App Store (MAS)
 
-**Estado:** 🟢 Fases 1, 2, 3 y 4 completadas (`dist/BoardComposer-0.4.4.pkg` construido y firmado) · 🔵 Fase 5 lista para subida a App Store Connect  
+**Estado:** 🟢 Fases 1–4 completadas y `.pkg` (`0.4.4` build `44`) subido y procesado en TestFlight / App Store Connect · 🟡 Fase 5 en cierre de ficha y envío a revisión  
 **Versión base:** `0.4.4` (ciclo `0.4.5.dev0`)  
 **Plataforma destino:** macOS (`arm64` Apple Silicon, `LSMinimumSystemVersion = 14.0`)  
 **Canal principal:** Mac App Store (`dist/BoardComposer-0.4.4.pkg` firmado con App Sandbox)
@@ -73,18 +73,12 @@ make build-macos-app
 - [x] Verificación `codesign --verify --deep --strict --verbose=2 dist/BoardComposer.app` → `valid on disk` / `satisfies its Designated Requirement`.
 - [x] Generación y verificación de `dist/BoardComposer-0.4.4.pkg` (43 MB) con `productbuild` + `pkgutil --check-signature` (`3rd Party Mac Developer Installer: Eugenio de Frutos Sanchez (V29BTBRY6G)`).
 
-### Fase 5 — Validación y subida a App Store Connect (🔵 Lista para subir)
+### Fase 5 — Validación y subida a App Store Connect (🟡 Build en TestFlight)
 
-- [ ] Subir `dist/BoardComposer-0.4.4.pkg` con **Transporter.app** (arrastrar `/Volumes/BACKUPS_PROYECTOS/__01.-Github_Repositories/boardcomposer/dist/BoardComposer-0.4.4.pkg` a Transporter y pulsar **Entregar** / **Deliver**), o por CLI:
-  ```bash
-  xcrun altool --validate-app -f dist/BoardComposer-0.4.4.pkg \
-    -t macos -u "<apple-id>" -p "<app-specific-password>"
-  xcrun altool --upload-app -f dist/BoardComposer-0.4.4.pkg \
-    -t macos -u "<apple-id>" -p "<app-specific-password>"
-  ```
+- [x] Subir `dist/BoardComposer-0.4.4.pkg` con **Transporter.app** (build `0.4.4 (44)` procesado en TestFlight sin errores).
 - [ ] Probar compilación desde **TestFlight para macOS** (verifica contenedor Sandbox, apertura/guardado `.bcproj` y exportación PDF/SVG/DXF/CSV).
-- [ ] Completar metadatos de App Store Connect usando la sección 5 de este documento.
-- [ ] Enviar a revisión de Apple (**Submit for Review**).
+- [ ] Completar metadatos y capturas de App Store Connect usando la sección 5 de este documento.
+- [ ] Seleccionar la compilación `0.4.4 (44)` en la sección **Compilación (Build)** de la versión y pulsar **Añadir para revisión** / **Submit for Review**.
 
 ---
 
@@ -336,4 +330,5 @@ Las 5 capturas quedan en `~/Desktop/appstore-*.png` a `2880 × 1800` px (o `1440
 | 2026-11-13 | Fase 2 | `QAction.MenuRole` macOS, soporte `sys._MEIPASS`, fallback `.revs/` en App Sandbox y entitlements MAS | 🟢 Hecho |
 | 2026-11-13 | Fase 3 | `packaging/macos/BoardComposer.spec`, `packaging/macos/build_mas.sh` y build `dist/BoardComposer.app` (104 MB `arm64`) | 🟢 Hecho |
 | 2026-11-13 | Fase 4 | Incrustación de `BoardComposer.provisionprofile`, firma profunda MAS y generación de `dist/BoardComposer-0.4.4.pkg` (43 MB) | 🟢 Hecho |
-| — | Fase 5 | Subida con Transporter, TestFlight macOS y envío a revisión | 🔵 Pendiente |
+| 2026-11-13 | Fase 5 | Subida con Transporter y procesamiento de la compilación `0.4.4 (44)` en TestFlight OK | 🟢 Hecho |
+| — | Fase 5 | Capturas 16:10, selección de build en la versión y envío a revisión (Submit for Review) | 🟡 En curso |
