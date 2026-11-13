@@ -82,6 +82,7 @@ En la app: **Ayuda → Documentación** abre la guía rápida.
 | [`masterplan/REVIEW-2026-09-14-planificacion.md`](masterplan/REVIEW-2026-09-14-planificacion.md) | Snapshot previo (histórico) |
 | [`masterplan/DOC-005-Decisiones.md`](masterplan/DOC-005-Decisiones.md) | Índice de decisiones → ADR |
 | [`ops/MACOS-APP-STORE.md`](ops/MACOS-APP-STORE.md) | Empaquetado `.app`/`.pkg` y subida a Mac App Store |
+| [`PRIVACY.md`](PRIVACY.md) | Política de privacidad pública (App Store Connect) |
 | [`ops/PILOT-DT-0006-backup.md`](ops/PILOT-DT-0006-backup.md) | Piloto backup de revisiones (opción D) |
 | [`architecture.md`](architecture.md), [`data_model.md`](data_model.md), [`algorithms.md`](algorithms.md), [`scoring.md`](scoring.md) | Técnica viva |
 | [`project_structure.md`](project_structure.md) | Árbol del repo |
