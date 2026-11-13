@@ -37,6 +37,23 @@ def test_macos_menu_roles_configured(qapp, tmp_path):
     assert window._actions["exit"].menuRole() == QAction.MenuRole.QuitRole
 
 
+def test_statusbar_does_not_force_window_minimum_width_above_1440(qapp, tmp_path):
+    from PySide6.QtWidgets import QSizePolicy
+
+    del qapp
+    services = StudioServices(preferences=PreferencesManager(tmp_path / "prefs.json"))
+    window = MainWindow(services)
+    assert (
+        window.statusBar().sizePolicy().horizontalPolicy() == QSizePolicy.Policy.Ignored
+    )
+    window._new_demo_project()
+    window._solve_layout()
+    window.resize(1440, 900)
+    assert window.minimumSizeHint().width() <= 1440
+    assert window.width() == 1440
+    assert window.height() == 900
+
+
 def test_frozen_meipass_resolution(monkeypatch, tmp_path):
     fake_bundle = tmp_path / "Contents" / "Resources"
     fake_bundle.mkdir(parents=True)
