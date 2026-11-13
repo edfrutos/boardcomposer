@@ -107,7 +107,7 @@ make build-macos-app
 
 | Campo | Español (ES) | English (EN-US) |
 |---|---|---|
-| **Nombre (30 máx.)** | `BoardComposer` | `BoardComposer` |
+| **Nombre (30 máx.)** | `BoardComposer` | `BoardComposer Cut Studio` |
 | **Subtítulo (30 máx.)** | `Optimizador de corte 2D` | `2D Panel Cut Optimizer` |
 | **Categoría principal** | `Productividad` (*Productivity*) | `Productivity` |
 | **Categoría secundaria** | `Diseño gráfico` (*Graphics & Design*) | `Graphics & Design` |
@@ -207,6 +207,11 @@ https://github.com/edfrutos/boardcomposer
 ---
 
 ### 5.6 Textos de la versión `0.4.4` — English (U.S. / U.K.)
+
+**Name (30 chars max):**
+```text
+BoardComposer Cut Studio
+```
 
 **Subtitle (30 chars max):**
 ```text
