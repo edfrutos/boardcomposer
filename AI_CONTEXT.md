@@ -53,7 +53,7 @@ alternativas comprensibles para que el usuario decida.
 - Exportar DXF: capas por rol (IDE-0041 `#654`) PANELS/PIECES/OFFCUTS/DIMS/SEQ/META.
 - Docs: mapa en `docs/README.md`; guía usuario `docs/user/GUIA-RAPIDA.md`;
   UAT visual `uat/studio/CHECKLIST-VISUAL.md`; planificación
-  `docs/masterplan/REVIEW-2026-11-09-planificacion.md`.
+  `docs/masterplan/REVIEW-2026-11-13-planificacion.md`.
 - Versión de desarrollo: `0.4.5.dev0` (última estable: `0.4.4` /
   `v0.4.4` publicada).
 - Preferencias: export/import JSON de taller (IDE-0049 `#664`); sin rutas
@@ -236,11 +236,15 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: relación de forma del retal de área media (IDE-0226; `rela.`/`aspa`).
 - Copiar la relación de forma del retal de área media (IDE-0227; Cmd+Alt+Shift+.).
 - Clic en la relación de forma del retal de área media selecciona esa solución (IDE-0228).
-- Próximo: ciclo `0.4.5.dev0` abierto tras `v0.4.4` (olas 1…50 cerradas en `0.4.4`,
-  IDE-0025…0228; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
-  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
-  LLM / plugins / C bloqueados. Snapshot:
-  `REVIEW-2026-11-12-planificacion.md`.
+- Barra de estado: amplitud de relaciones de forma de retales (IDE-0229; `arel.`/`spna`; 🔵).
+- Copiar la amplitud de relaciones de forma de retales (IDE-0230; Cmd+Alt+Shift+/; 🔵).
+- Clic en la amplitud de relaciones de forma selecciona esa solución (IDE-0231; 🔵).
+- Barra de estado: relación de forma media de retales (IDE-0232; `relp.`/`asav`; 🔵).
+- Próximo: quincuagésima primera ola IDE-0229…0232 (ciclo `0.4.5.dev0`
+  tras `v0.4.4`; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
+  sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
+  eval IDE-0007 cerrada; LLM / plugins / C bloqueados. Snapshot:
+  `REVIEW-2026-11-13-planificacion.md`.
 
 ## Fuentes de verdad
 

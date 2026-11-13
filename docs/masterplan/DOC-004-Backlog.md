@@ -4,10 +4,10 @@
 ## Documento 4 — Backlog del Producto
 
 **Código:** DOC-004
-**Versión:** 1.3.73
+**Versión:** 1.3.74
 **Estado:** En revisión — actualizado
 **Fecha de creación:** 01/07/2026
-**Última revisión:** 11/11/2026
+**Última revisión:** 13/11/2026
 
 ---
 
@@ -299,6 +299,10 @@ Observaciones:
 | IDE-0226 | Barra: relación de forma del retal de área media | 🟢 | P3 |
 | IDE-0227 | Copiar la relación de forma del retal de área media | 🟢 | P3 |
 | IDE-0228 | Clic en la relación de forma del retal de área media selecciona su solución | 🟢 | P3 |
+| IDE-0229 | Barra: amplitud de relaciones de forma de retales | 🔵 | P3 |
+| IDE-0230 | Copiar la amplitud de relaciones de forma de retales | 🔵 | P3 |
+| IDE-0231 | Clic en la amplitud de relaciones de forma selecciona su solución | 🔵 | P3 |
+| IDE-0232 | Barra: relación de forma media de retales | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -521,6 +525,10 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0226 | S | IDE-0205 | Entregado; `rela. {value}` / `aspa {value}` = max(L, A) / min(L, A) del retal cuya área está más próxima a la media (empate: menor `(length, width)`, como `mdds.`); oculta si no hay retales; `1.00` si es cuadrado; distinta de `mdds.`, `reln.`, `relr.` y `relm.`; sin clic |
 | IDE-0227 | S | IDE-0226 | Entregado; Cmd+Alt+Shift+. el valor, sin `rela.`; no avanza |
 | IDE-0228 | S | IDE-0226 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0229 | S | IDE-0217 | Planificado; `arel. {value}` / `spna {value}` = max(aspect)−min(aspect); oculta si no hay retales; `0.00` con un retal; distinta de `ampr.`, `relr.`, `relm.`, `reln.` y `rela.`; sin clic |
+| IDE-0230 | S | IDE-0229 | Planificado; Cmd+Alt+Shift+/ el valor, sin `arel.`; no avanza |
+| IDE-0231 | S | IDE-0229 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0232 | S | IDE-0226 | Planificado; `relp. {value}` / `asav {value}` = media de max(L,A)/min(L,A) de todos los retales; distinta de `rela.`/`aspa`; oculta si no hay retales; sin clic |
 
 ---
 
@@ -588,14 +596,16 @@ Cuadragésima séptima ola cerrada (0218 entregada).
 Cuadragésima octava ola cerrada (0222 entregada).
 Cuadragésima novena ola cerrada (0226 entregada).
 Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
+Quincuagésima primera ola abierta (0229…0232; ciclo `0.4.5.dev0`).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-11-12-planificacion.md`.
+`REVIEW-2026-11-13-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.4` cerrada (0228 cierra 0227…0228 y el corte `0.4.4`;
-   IDE-0101 e IDE-0102 diferidas, sin costes).
+1. Cola producto `0.4.5` quincuagésima primera ola IDE-0229…0232
+   (amplitud / media de relaciones de forma `arel.`/`spna` +
+   `relp.`/`asav`; IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.

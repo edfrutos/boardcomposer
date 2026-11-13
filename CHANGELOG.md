@@ -1,14 +1,22 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.5.dev0 — 2026-11-12
+## Unreleased — 0.4.5.dev0 — 2026-11-13
 
 ### Añadido
 
-- _(ciclo post-`0.4.4` — vacío al corte)_
+- _(ciclo post-`0.4.4` — vacío al corte; ola 51 planificada IDE-0229…0232)_
 
 ### Cambiado
 
 - Docs ciclo (`AI_CONTEXT`, MASTERPLAN, ROADMAP) alineados con `0.4.5.dev0`.
+
+### Documentación
+
+- Snapshot de planificación `REVIEW-2026-11-13-planificacion.md`:
+  IDE-0227…0228 🟢 `#893` + corte `0.4.4` / `0.4.5.dev0` `#894`;
+  cola vacía + Issues = 0 → **nueva ola** IDE-0229…0232 🔵
+  (quincuagésima primera; amplitud / media de relaciones de forma).
+  `#892` / `REVIEW-2026-11-12` queda histórico.
 
 ## 0.4.4 — 2026-11-12
 
