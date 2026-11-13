@@ -658,6 +658,8 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
             f" color: {LIGHT.text};"
             f" border: 1px solid {LIGHT.border};"
             f" border-radius: 4px;"
+            f" padding-left: 14px;"
+            f" padding-right: 14px;"
             f"{align}"
             f" }}"
         )
@@ -697,6 +699,9 @@ def _welcome_typography_qss(*, brand: str | None, ui: str | None) -> str:
             f"{primary_font}"
             f" font-weight: 600;"
             f" min-height: 44px;"
+            f" min-width: 88px;"
+            f" padding-left: 16px;"
+            f" padding-right: 16px;"
             f" }}"
         )
         parts.append(
