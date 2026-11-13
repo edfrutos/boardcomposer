@@ -38,16 +38,24 @@ def test_macos_menu_roles_configured(qapp, tmp_path):
 
 
 def test_frozen_meipass_resolution(monkeypatch, tmp_path):
-    fake_bundle = tmp_path / "bundle_resources"
-    fake_bundle.mkdir()
+    fake_bundle = tmp_path / "Contents" / "Resources"
+    fake_bundle.mkdir(parents=True)
     (fake_bundle / "pyproject.toml").write_text(
         '[project]\nname = "boardcomposer"\nversion = "9.8.7"\n',
         encoding="utf-8",
     )
     monkeypatch.setattr(sys, "_MEIPASS", str(fake_bundle), raising=False)
+    monkeypatch.setattr(sys, "frozen", False, raising=False)
     assert _default_root() == fake_bundle
     assert repo_root() == fake_bundle
     assert read_package_version(fake_bundle / "pyproject.toml") == "9.8.7"
+
+    info_plist = tmp_path / "Contents" / "Info.plist"
+    info_plist.write_bytes(
+        plistlib.dumps({"CFBundleShortVersionString": "0.4.4", "CFBundleVersion": "45"})
+    )
+    monkeypatch.setattr(sys, "frozen", True, raising=False)
+    assert read_package_version() == "0.4.4"
 
 
 def test_revisions_fallback_on_permission_error(monkeypatch, tmp_path):

@@ -26,14 +26,20 @@ rm -rf build/BoardComposer dist/BoardComposer dist/BoardComposer.app
 echo "==> 2. Construyendo BoardComposer.app con PyInstaller..."
 "$PYTHON" -m PyInstaller "$SPEC" --noconfirm --clean
 
-echo "==> 3. Limpiando atributos extendidos de Finder y archivos residuales..."
+echo "==> 3. Incrustando perfil de aprovisionamiento y limpiando atributos extendidos..."
+if [[ -n "$PROVISION_PROFILE" && -f "$PROVISION_PROFILE" ]]; then
+  echo "    Perfil: $PROVISION_PROFILE"
+  xattr -c "$PROVISION_PROFILE" 2>/dev/null || true
+  cp "$PROVISION_PROFILE" "$APP_BUNDLE/Contents/embedded.provisionprofile"
+fi
+
 find "$APP_BUNDLE" -name "Icon"$'\r' -delete || true
 find "$APP_BUNDLE" -name ".DS_Store" -delete || true
 xattr -cr "$APP_BUNDLE"
 
-if [[ -n "$PROVISION_PROFILE" && -f "$PROVISION_PROFILE" ]]; then
-  echo "==> 4. Incrustando perfil de aprovisionamiento ($PROVISION_PROFILE)..."
-  cp "$PROVISION_PROFILE" "$APP_BUNDLE/Contents/embedded.provisionprofile"
+if xattr -lr "$APP_BUNDLE" | grep -q "com.apple.quarantine"; then
+  echo "Error: aún quedan atributos com.apple.quarantine en $APP_BUNDLE" >&2
+  exit 1
 fi
 
 if [[ -n "${MAS_APP_IDENTITY:-}" ]]; then

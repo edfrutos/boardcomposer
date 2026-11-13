@@ -55,6 +55,7 @@ def polish_dialog_button_box(buttons: QDialogButtonBox) -> None:
     ok = buttons.button(QDialogButtonBox.StandardButton.Ok)
     if ok is not None:
         polish_primary_button(ok, min_height=36)
+        ok.setMinimumWidth(88)
     for role in (
         QDialogButtonBox.StandardButton.Cancel,
         QDialogButtonBox.StandardButton.Close,
@@ -63,3 +64,4 @@ def polish_dialog_button_box(buttons: QDialogButtonBox) -> None:
         button = buttons.button(role)
         if isinstance(button, QPushButton):
             polish_secondary_button(button)
+            button.setMinimumWidth(88)

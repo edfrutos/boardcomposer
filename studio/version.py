@@ -1,12 +1,14 @@
 """Single package version for Studio UI (Welcome / About).
 
-Source of truth is ``pyproject.toml`` at the repo root. Installed package
-metadata is only a fallback when the TOML file is missing (e.g. frozen
-install without the source tree).
+Source of truth is ``pyproject.toml`` at the repo root (or the bundled macOS
+``Contents/Info.plist`` ``CFBundleShortVersionString`` when running inside a
+frozen ``.app`` bundle). Installed package metadata is only a fallback when
+the TOML file is missing.
 """
 
 from __future__ import annotations
 
+import plistlib
 import re
 import sys
 import tomllib
@@ -26,6 +28,29 @@ _VERSION_RE = re.compile(
     r'^version\s*=\s*["\']([^"\']+)["\']\s*$',
     re.MULTILINE,
 )
+
+
+def _read_bundle_info_plist_version() -> str | None:
+    if not getattr(sys, "frozen", False):
+        return None
+    candidates: list[Path] = []
+    meipass = getattr(sys, "_MEIPASS", None)
+    if meipass:
+        candidates.append(Path(meipass).parent / "Info.plist")
+    executable = getattr(sys, "executable", None)
+    if executable:
+        candidates.append(Path(executable).resolve().parents[1] / "Info.plist")
+    for info_plist in candidates:
+        if not info_plist.is_file():
+            continue
+        try:
+            data = plistlib.loads(info_plist.read_bytes())
+        except Exception:
+            continue
+        short = data.get("CFBundleShortVersionString")
+        if isinstance(short, str) and short.strip():
+            return short.strip()
+    return None
 
 
 def _read_pyproject_version(path: Path) -> str | None:
@@ -55,6 +80,10 @@ def _read_installed_version() -> str | None:
 
 def read_package_version(pyproject_path: Path | None = None) -> str:
     """Return BoardComposer version string for UI and docs surfaces."""
+    if pyproject_path is None:
+        bundle_version = _read_bundle_info_plist_version()
+        if bundle_version is not None:
+            return bundle_version
     path = (
         pyproject_path if pyproject_path is not None else _REPO_ROOT / "pyproject.toml"
     )
