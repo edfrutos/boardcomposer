@@ -54,12 +54,12 @@
 
 - [x] Añadir grupo opcional `packaging = ["pyinstaller>=6.0"]` en `pyproject.toml`.
 - [x] Crear `packaging/macos/BoardComposer.spec` y script `packaging/macos/build_mas.sh` (+ target `make build-macos-app`).
-- [ ] Ejecutar build local del bundle `.app`:
+- [x] Ejecutar build local del bundle `.app` (`dist/BoardComposer.app`, 104 MB, `arm64`, 0 restos de `QtWebEngine`, `Info.plist` y `codesign --verify --deep --strict` OK):
   ```bash
   .venv/bin/pip install -e ".[packaging]"
   make build-macos-app
   ```
-- [ ] Verificar arranque de `dist/BoardComposer.app`.
+- [x] Verificar arranque de `dist/BoardComposer.app` (`RUNNING OK`, cierre limpio con `SIGINT`).
 
 ### Fase 4 — Firma profunda (`codesign`) y empaquetado `.pkg` (🔵 Pendiente de certificados)
 
@@ -103,6 +103,6 @@ make build-macos-app
 | 2026-11-12 | Prep | Cierre de `v0.4.4`, UAT smoke en macOS `OK` y creación del plan de seguimiento | 🟢 Hecho |
 | 2026-11-13 | Fase 1 | Generación de `studio/assets/AppIcon.icns`, soporte en `branding.py` y `packaging/macos/Info.plist` | 🟢 Hecho |
 | 2026-11-13 | Fase 2 | `QAction.MenuRole` macOS, soporte `sys._MEIPASS`, fallback `.revs/` en App Sandbox y entitlements MAS | 🟢 Hecho |
-| 2026-11-13 | Fase 3 | `packaging/macos/BoardComposer.spec`, `packaging/macos/build_mas.sh` y target `make build-macos-app` | 🟢 Hecho |
+| 2026-11-13 | Fase 3 | `packaging/macos/BoardComposer.spec`, `packaging/macos/build_mas.sh`, build `dist/BoardComposer.app` (104 MB `arm64`) y verificación de arranque OK | 🟢 Hecho |
 | — | Fase 4 | Firma con certificados MAS + generación de `.pkg` | 🔵 Pendiente |
 | — | Fase 5 | Subida con Transporter, TestFlight macOS y envío a revisión | 🔵 Pendiente |
