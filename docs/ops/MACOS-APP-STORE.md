@@ -1,7 +1,7 @@
 # Plan y seguimiento — Empaquetado macOS y Mac App Store (MAS)
 
-**Estado:** 🟢 Fases 1–4 completadas y `.pkg` (`0.4.4` build `44`) subido y procesado en TestFlight / App Store Connect · 🟡 Fase 5 en cierre de ficha y envío a revisión  
-**Versión base:** `0.4.4` (ciclo `0.4.5.dev0`)  
+**Estado:** 🟢 Fases 1–5 completadas · App **`BoardComposer` (`0.4.4`, Apple ID `6834470521`, SKU `BC-MACOS-001`)** en estado **Lista para revisión (*Ready for Review*)** en App Store Connect  
+**Versión base:** `0.4.4` (build `46` · ciclo `0.4.5.dev0`)  
 **Plataforma destino:** macOS (`arm64` Apple Silicon, `LSMinimumSystemVersion = 14.0`)  
 **Canal principal:** Mac App Store (`dist/BoardComposer-0.4.4.pkg` firmado con App Sandbox)
 
@@ -26,6 +26,8 @@
 | Elemento | Valor registrado | Estado |
 |---|---|---|
 | **Apple Developer Team** | `Eugenio de Frutos Sanchez` (`V29BTBRY6G`) | 🟢 Activo |
+| **Apple ID de la App** | `6834470521` | 🟢 Asignado en App Store Connect |
+| **SKU** | `BC-MACOS-001` | 🟢 Registrado |
 | **Bundle ID** | `com.edefrutos.boardcomposer` (`V29BTBRY6G.com.edefrutos.boardcomposer`) | 🟢 Registrado |
 | **Categoría App Store** | `public.app-category.productivity` | 🟢 Definido en `Info.plist` |
 | **Certificado App (MAS)** | `Apple Distribution: Eugenio de Frutos Sanchez (V29BTBRY6G)` (`C4F503FE87828623C3664F818F9C9E350FCCEB5A`) | 🟢 Instalado y verificado |
@@ -73,12 +75,12 @@ make build-macos-app
 - [x] Verificación `codesign --verify --deep --strict --verbose=2 dist/BoardComposer.app` → `valid on disk` / `satisfies its Designated Requirement`.
 - [x] Generación y verificación de `dist/BoardComposer-0.4.4.pkg` (43 MB) con `productbuild` + `pkgutil --check-signature` (`3rd Party Mac Developer Installer: Eugenio de Frutos Sanchez (V29BTBRY6G)`).
 
-### Fase 5 — Validación y subida a App Store Connect (🟡 Build en TestFlight)
+### Fase 5 — Validación y subida a App Store Connect (🟢 Lista para revisión)
 
-- [x] Subir `dist/BoardComposer-0.4.4.pkg` con **Transporter.app** (build `0.4.4 (44)` procesado en TestFlight sin errores).
-- [ ] Probar compilación desde **TestFlight para macOS** (verifica contenedor Sandbox, apertura/guardado `.bcproj` y exportación PDF/SVG/DXF/CSV).
-- [ ] Completar metadatos y capturas de App Store Connect usando la sección 5 de este documento.
-- [ ] Seleccionar la compilación `0.4.4 (44)` en la sección **Compilación (Build)** de la versión y pulsar **Añadir para revisión** / **Submit for Review**.
+- [x] Subir `dist/BoardComposer-0.4.4.pkg` con **Transporter.app** (builds `44`–`46` procesadas en TestFlight sin errores).
+- [x] Probar compilación desde **TestFlight para macOS** (verificado contenedor Sandbox, versión `0.4.4` desde `Info.plist`, botones y redimensionado `1440×900`).
+- [x] Completar metadatos, política de privacidad y capturas 16:10 de App Store Connect usando la sección 5 de este documento.
+- [x] Seleccionar compilación de `0.4.4` y dejar la app en estado **Lista para revisión (*Ready for Review*)** (Apple ID `6834470521`).
 
 ---
 
@@ -93,6 +95,7 @@ make build-macos-app
 | **Idioma principal (Primary Language)** | `Español (España)` *(Spanish - Spain)* |
 | **ID del paquete (Bundle ID)** | `BoardComposer - com.edefrutos.boardcomposer` |
 | **SKU** | `BC-MACOS-001` |
+| **ID de Apple (Apple ID)** | `6834470521` |
 | **Acceso de usuarios (User Access)** | `Acceso completo (Full Access)` |
 
 ---
@@ -330,5 +333,5 @@ Las 5 capturas quedan en `~/Desktop/appstore-*.png` a `2880 × 1800` px (o `1440
 | 2026-11-13 | Fase 2 | `QAction.MenuRole` macOS, soporte `sys._MEIPASS`, fallback `.revs/` en App Sandbox y entitlements MAS | 🟢 Hecho |
 | 2026-11-13 | Fase 3 | `packaging/macos/BoardComposer.spec`, `packaging/macos/build_mas.sh` y build `dist/BoardComposer.app` (104 MB `arm64`) | 🟢 Hecho |
 | 2026-11-13 | Fase 4 | Incrustación de `BoardComposer.provisionprofile`, firma profunda MAS y generación de `dist/BoardComposer-0.4.4.pkg` (43 MB) | 🟢 Hecho |
-| 2026-11-13 | Fase 5 | Subida con Transporter y procesamiento de la compilación `0.4.4 (44)` en TestFlight OK | 🟢 Hecho |
-| — | Fase 5 | Capturas 16:10, selección de build en la versión y envío a revisión (Submit for Review) | 🟡 En curso |
+| 2026-11-13 | Fase 5 | Subida con Transporter y procesamiento de la compilación `0.4.4` (`44`–`46`) en TestFlight OK | 🟢 Hecho |
+| 2026-11-13 | Fase 5 | Ficha completada, capturas 16:10 subidas y estado cambiado a **Lista para revisión** (Apple ID `6834470521`, SKU `BC-MACOS-001`) | 🟢 Hecho |
