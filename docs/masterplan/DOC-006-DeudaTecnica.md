@@ -86,7 +86,7 @@ Estado
 
 | ID | Categoría | Descripción | Estado |
 
-|----|-----------|-------------|--------|
+| --- | --- | --- | --- |
 | DT-0001 | DT-D | Contrastar flujos y pantallas documentados con el Studio real. | 🟢 Controlado (UAT visual 2026-07-28) |
 | DT-0002 | DT-A | Documentar arquitectura interna y contrato multipanel del Solver. | 🟢 Controlado |
 | DT-0003 | DT-T | Mantener la cobertura de pruebas por encima del objetivo definido. | 🟢 Controlado |
@@ -103,7 +103,7 @@ conteo en «Estado» o en las notas de release.
 
 | Métrica | Cómo contar | Umbral |
 
-|---------|-------------|--------|
+| --- | --- | --- |
 | Abiertas ⚪/🔵 | Filas del registro con estado no resuelto/controlado | Advertencia si **> 5**; bloquear release mayor si **> 0 críticas sin plan** |
 | Antigüedad máxima | Días desde última revisión del ítem abierto más viejo | Advertencia si **> 90 días** sin actualización de estado |
 | Por categoría | Conteo DT-A / C / T / D / P / UX abiertas | Flag si DT-A o DT-T abiertas crecen respecto al release anterior |

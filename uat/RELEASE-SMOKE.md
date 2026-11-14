@@ -38,7 +38,7 @@ completo (`uat/studio/`, `uat/plataforma/`).
 ## Resultado (rellenar al ejecutar)
 
 | Bloque | ¿OK? | Notas |
-| -------- | ------ | ------- |
+| --- | --- | --- |
 | 1 Automatizado | OK | Suite verde; demo layout `free_space` |
 | 2 Studio | OK | Verificación humana OK en macOS (`make run`) |
 | 3 Docs / deuda | OK | Corte 0.4.4 |
