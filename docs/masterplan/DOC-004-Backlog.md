@@ -599,7 +599,7 @@ Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
 Quincuagésima primera ola abierta (0229…0232; ciclo `0.4.5.dev0`).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-11-13-planificacion.md`.
+`REVIEW-2026-11-14-planificacion.md`.
 
 Próximo foco:
 
