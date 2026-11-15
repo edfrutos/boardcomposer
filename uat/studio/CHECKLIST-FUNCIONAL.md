@@ -273,7 +273,7 @@ Regresión auto: `tests/test_svg_exporter.py`, `tests/test_dxf_pdf_exporters.py`
 ## Resultado
 
 | Bloque | ¿OK? | Notas |
-|--------|------|-------|
+| --- | --- | --- |
 | 0 Arranque | OK | Welcome + tip/gates |
 | 1 Proyecto | OK | Save/reveal/template |
 | 2 Explorador/Inspector | OK | Edit selection gates |

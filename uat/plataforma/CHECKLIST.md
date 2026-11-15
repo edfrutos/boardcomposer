@@ -49,7 +49,7 @@ Objetivo: validar uso operativo **sin UI Studio** (CLI batch + HTTP API).
 ## Resultado
 
 | Bloque | ¿OK? | Notas |
-|--------|------|-------|
+| --- | --- | --- |
 | 0 Entorno | OK | Python 3.13.13 + `.venv` |
 | 1 Batch CLI | OK | help + run + dry-run; error parcial vía tests |
 | 2 HTTP API | OK | vía `tests/test_http_api.py` |

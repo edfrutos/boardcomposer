@@ -25,7 +25,7 @@ Las discrepancias deben corregirse, no mantenerse como conocimiento implícito.
 ## Dirección del proyecto
 
 | Documento | Contenido | Estado |
-|---|---|---|
+| --- | --- | --- |
 | `DOC-000-Manifiesto.md` | Principios fundacionales | Aprobado |
 | `DOC-001-Producto.md` | Problema, propuesta y usuarios | En revisión |
 | `DOC-002-Arquitectura.md` | Arquitectura objetivo | En revisión |

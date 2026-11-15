@@ -70,7 +70,7 @@ Observaciones:
 
 | ID | Título | Estado | Prioridad |
 
-|----|--------|--------|-----------|
+| --- | --- | --- | --- |
 | IDE-0001 | Workspace interactivo | 🟢 | P0 |
 | IDE-0002 | Comparador de algoritmos | 🟢 | P0 |
 | IDE-0003 | Inspector de piezas | 🟢 | P0 |
@@ -311,7 +311,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 
 | ID | Esfuerzo | Dependencias | Notas |
 
-|----|----------|--------------|-------|
+| --- | --- | --- | --- |
 | IDE-0007 | L–XL | Caso de uso claro; política de datos | Fase 4; MVP+eval 2026-09-12; LLM diferido |
 | IDE-0008 | XL | ADR-004; contratos de extensión | Fase 5; marketplace fuera del MVP plugin |
 | DT-0006 | M (opción D/A) · L–XL (opción C) | Piloto nombrado; DOC-005 | Spike: `spikes/SPIKE-DT-0006-historial-cloud.md` |
@@ -536,7 +536,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 
 | ID | Título | Estado | Prioridad | Ideas |
 
-|----|--------|--------|-----------|-------|
+| --- | --- | --- | --- | --- |
 | EP-001 | API pública y contratos | 🟢 | P1 | IDE-0006 |
 | EP-002 | Automatización y batch | 🟢 | P1 | IDE-0006 |
 | EP-003 | Integraciones remotas | 🟢 | P2 | IDE-0006 |

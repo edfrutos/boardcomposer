@@ -59,7 +59,7 @@ Al **Guardar** sobre un archivo ya existente, Studio copia la versión anterior
 en una carpeta oculta junto al proyecto (`.<nombre>.bcproj.revs/`, máx. 10).
 
 | Acción | Cómo |
-|---|---|
+| --- | --- |
 | Comparar | **Proyecto → Comparar revisiones .bcproj…** (**Cmd+Shift+Y**) |
 | Restaurar la última | **Proyecto → Restaurar última revisión local…** (**Cmd+Alt+Y**) |
 | Restaurar una concreta | En el diálogo de comparar, elige revisión → **Restaurar esta revisión…** |
@@ -76,7 +76,7 @@ en red; puedes **Copiar**).
 ## Atajos útiles
 
 | Acción | Atajo |
-|---|---|
+| --- | --- |
 | Nuevo / Abrir / Guardar | Cmd+N / Cmd+O / Cmd+S |
 | Guardar como | Cmd+Shift+S |
 | Abrir carpeta del proyecto | Cmd+Shift+R |

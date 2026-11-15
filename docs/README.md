@@ -5,7 +5,7 @@ Mapa rápido: **quién lee qué**.
 ## Usuario final (Studio)
 
 | Documento | Uso |
-|---|---|
+| --- | --- |
 | [`user/GUIA-RAPIDA.md`](user/GUIA-RAPIDA.md) | Arranque, menús, flujos diarios |
 | [`DESIGN.md`](DESIGN.md) | Look & feel (Industrial madera) |
 | [`../CHANGELOG.md`](../CHANGELOG.md) | Novedades (Ayuda → Novedades) |
@@ -16,7 +16,7 @@ En la app: **Ayuda → Documentación** abre la guía rápida.
 ## Proyecto (equipo / agentes)
 
 | Documento | Uso |
-|---|---|
+| --- | --- |
 | [`masterplan/INDEX.md`](masterplan/INDEX.md) | Índice + precedencia canónica |
 | [`masterplan/DOC-000-Manifiesto.md`](masterplan/DOC-000-Manifiesto.md) | Propósito |
 | [`masterplan/DOC-003-Roadmap.md`](masterplan/DOC-003-Roadmap.md) | Fases |
@@ -91,7 +91,7 @@ En la app: **Ayuda → Documentación** abre la guía rápida.
 ## UAT
 
 | Documento | Uso |
-|---|---|
+| --- | --- |
 | [`../uat/README.md`](../uat/README.md) | Índice UAT |
 | [`../uat/studio/CHECKLIST-FUNCIONAL.md`](../uat/studio/CHECKLIST-FUNCIONAL.md) | Funcional (histórico marcado) |
 | [`../uat/studio/CHECKLIST-VISUAL.md`](../uat/studio/CHECKLIST-VISUAL.md) | Visual fresca (sin marcar) |

@@ -10,7 +10,7 @@
 ## 1. Fidelidad con Apple HIG y App Store Review Guidelines (macOS)
 
 | Criterio de Apple (HIG / Review Guideline) | Implementación en BoardComposer | Estado |
-|---|---|---|
+| --- | --- | --- |
 | **HIG — App Icons (macOS)** | `studio/assets/AppIcon.icns` generado con `iconutil` (`16` a `1024` px `@1x`/`@2x`), sin pre-máscara para que macOS aplique la máscara squircle y efectos dinámicos. | 🟢 Listo |
 | **HIG — The Menu Bar (macOS App Menu)** | `QAction.MenuRole`: `AboutRole` (`about`), `PreferencesRole` (`preferences` con `⌘,`) y `QuitRole` (`exit` con `⌘Q`) ubicados automáticamente en el menú **BoardComposer** de macOS. | 🟢 Listo |
 | **Guideline 2.4.5(i) — App Sandbox** | `packaging/macos/entitlements.mas.plist` (`com.apple.application-identifier = V29BTBRY6G.com.edefrutos.boardcomposer`, `com.apple.developer.team-identifier = V29BTBRY6G`, `com.apple.security.app-sandbox = true`, `com.apple.security.files.user-selected.read-write = true`, `com.apple.security.print = true`) y `entitlements.inherit.plist` para binarios internos. | 🟢 Listo |
@@ -24,7 +24,7 @@
 ## 2. Identificadores y certificados registrados (Apple Developer)
 
 | Elemento | Valor registrado | Estado |
-|---|---|---|
+| --- | --- | --- |
 | **Apple Developer Team** | `Eugenio de Frutos Sanchez` (`V29BTBRY6G`) | 🟢 Activo |
 | **Apple ID de la App** | `6834470521` | 🟢 Asignado en App Store Connect |
 | **SKU** | `BC-MACOS-001` | 🟢 Registrado |
@@ -89,7 +89,7 @@ make build-macos-app
 ### 5.1 Alta inicial («Nueva App» / New App)
 
 | Campo en App Store Connect | Valor a rellenar |
-|---|---|
+| --- | --- |
 | **Plataformas (Platforms)** | `macOS` |
 | **Nombre (Name)** | `BoardComposer` *(máx. 30 caracteres)* |
 | **Idioma principal (Primary Language)** | `Español (España)` *(Spanish - Spain)* |
@@ -103,7 +103,7 @@ make build-macos-app
 ### 5.2 Información de la App (App Information)
 
 | Campo | Español (ES) | English (EN-US) |
-|---|---|---|
+| --- | --- | --- |
 | **Nombre (30 máx.)** | `BoardComposer` | `BoardComposer Cut Studio` |
 | **Subtítulo (30 máx.)** | `Optimizador de corte 2D` | `2D Panel Cut Optimizer` |
 | **Categoría principal** | `Productividad` (*Productivity*) | `Productivity` |
@@ -136,11 +136,13 @@ make build-macos-app
 ### 5.5 Textos de la versión `0.4.4` — Español (España)
 
 **Texto promocional (Promotional Text — máx. 170 caracteres; 159 car.):**
+
 ```text
 Optimiza el despiece de tableros en tu taller: compara soluciones de corte 2D, controla veta y espesor de sierra (kerf) y exporta planos CAD/PDF y presupuestos.
 ```
 
 **Descripción (Description — máx. 4000 caracteres):**
+
 ```text
 BoardComposer Studio es una herramienta de escritorio para carpinteros, ebanistas, fabricantes de mobiliario y talleres de corte que necesitan optimizar el despiece de tableros 2D sobre uno o varios paneles físicos.
 
@@ -173,11 +175,13 @@ CARACTERÍSTICAS PRINCIPALES
 ```
 
 **Palabras clave (Keywords — máx. 100 caracteres, separadas por comas sin espacios; 96 car.):**
+
 ```text
 carpinteria,despiece,tableros,corte,madera,optimizador,nesting,plano,dxf,presupuesto,taller,cad
 ```
 
 **Novedades de esta versión (What's New in This Version):**
+
 ```text
 Versión inicial en Mac App Store (0.4.4):
 • Motor de optimización 2D multipanel con algoritmos MaxRects y Skyline.
@@ -187,16 +191,19 @@ Versión inicial en Mac App Store (0.4.4):
 ```
 
 **URL de soporte (Support URL):**
+
 ```text
 https://github.com/edfrutos/boardcomposer/issues
 ```
 
 **URL de marketing (Marketing URL — opcional):**
+
 ```text
 https://github.com/edfrutos/boardcomposer
 ```
 
 **Derechos de autor (Copyright):**
+
 ```text
 © 2026 Eugenio de Frutos Sánchez
 ```
@@ -206,21 +213,25 @@ https://github.com/edfrutos/boardcomposer
 ### 5.6 Textos de la versión `0.4.4` — English (U.S. / U.K.)
 
 **Name (30 chars max):**
+
 ```text
 BoardComposer Cut Studio
 ```
 
 **Subtitle (30 chars max):**
+
 ```text
 2D Panel Cut Optimizer
 ```
 
 **Promotional Text (170 chars max; 156 chars):**
+
 ```text
 Optimize 2D sheet goods cutting in your workshop: compare multi-panel layouts, lock wood grain, set saw kerf, and export CAD/PDF cut lists and quotes.
 ```
 
 **Description:**
+
 ```text
 BoardComposer Studio is a desktop tool for woodworkers, cabinetmakers, furniture makers, and cutting workshops that need to optimize 2D sheet goods cutting across one or multiple stock panels.
 
@@ -253,11 +264,13 @@ KEY FEATURES
 ```
 
 **Keywords (100 chars max; 94 chars):**
+
 ```text
 woodworking,cutlist,optimizer,nesting,sheetgoods,plywood,cabinet,carpentry,panel,saw,dxf,quote
 ```
 
 **What's New in This Version:**
+
 ```text
 Initial Mac App Store release (0.4.4):
 • Multi-panel 2D cutting optimization with MaxRects and Skyline solvers.
@@ -272,6 +285,7 @@ Initial Mac App Store release (0.4.4):
 
 - **Inicio de sesión requerido (Sign-in required):** **Desmarcar (No)** — la app no tiene login.
 - **Notas para el revisor (Notes for Review):**
+
 ```text
 Thank you for reviewing BoardComposer Studio!
 
@@ -289,6 +303,7 @@ Quick 1-minute walkthrough to test all core features:
 ### 5.8 Capturas de pantalla para Mac App Store (Requisitos)
 
 Apple exige entre **1 y 10 capturas de pantalla** de macOS en relación de aspecto **16:10** en cualquiera de estas resoluciones exactas:
+
 - `1280 × 800` px
 - `1440 × 900` px
 - `2560 × 1600` px
@@ -327,7 +342,7 @@ Las 5 capturas quedan en `~/Desktop/appstore-*.png` a `2880 × 1800` px (o `1440
 ## 4. Registro de progreso
 
 | Fecha | Fase | Hito / Resultado | Estado |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 2026-11-12 | Prep | Cierre de `v0.4.4`, UAT smoke en macOS `OK` y creación del plan de seguimiento | 🟢 Hecho |
 | 2026-11-13 | Fase 1 | Generación de `studio/assets/AppIcon.icns`, soporte en `branding.py` y `packaging/macos/Info.plist` (`com.edefrutos.boardcomposer`) | 🟢 Hecho |
 | 2026-11-13 | Fase 2 | `QAction.MenuRole` macOS, soporte `sys._MEIPASS`, fallback `.revs/` en App Sandbox y entitlements MAS | 🟢 Hecho |
