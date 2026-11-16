@@ -350,7 +350,7 @@ Las 5 capturas quedan en `~/Desktop/appstore-*.png` a `2880 × 1800` px (o `1440
 | 2026-11-13 | Fase 4 | Incrustación de `BoardComposer.provisionprofile`, firma profunda MAS y generación de `dist/BoardComposer-0.4.4.pkg` (43 MB) | 🟢 Hecho |
 | 2026-11-13 | Fase 5 | Subida con Transporter y procesamiento de la compilación `0.4.4` (`44`–`46`) en TestFlight OK | 🟢 Hecho |
 | 2026-11-13 | Fase 5 | Ficha completada, capturas 16:10 subidas y estado cambiado a **Lista para revisión** (Apple ID `6834470521`, SKU `BC-MACOS-001`) | 🟢 Hecho |
-| 2026-11-16 | Fase 5 | Respuesta a cuestionario estándar de App Review (Guidelines 4.3 / 4.2.6, Submission ID `878b3b3b-9b09-46e8-843f-1c60268f74a1`) lista para enviar sin reenviar binario | 🟡 En curso |
+| 2026-11-16 | Fase 5 | Respuesta enviada en App Store Connect al cuestionario de App Review (Guidelines 4.3 / 4.2.6, Submission ID `878b3b3b-9b09-46e8-843f-1c60268f74a1`); esperando respuesta de Apple | 🟢 Enviada |
 
 ---
 
@@ -408,4 +408,3 @@ No. Conceived, designed, developed, and branded entirely by me as my own origina
 Best regards,
 Eugenio de Frutos Sanchez
 ```
-
