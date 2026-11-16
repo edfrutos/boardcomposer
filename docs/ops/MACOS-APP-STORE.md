@@ -350,3 +350,81 @@ Las 5 capturas quedan en `~/Desktop/appstore-*.png` a `2880 × 1800` px (o `1440
 | 2026-11-13 | Fase 4 | Incrustación de `BoardComposer.provisionprofile`, firma profunda MAS y generación de `dist/BoardComposer-0.4.4.pkg` (43 MB) | 🟢 Hecho |
 | 2026-11-13 | Fase 5 | Subida con Transporter y procesamiento de la compilación `0.4.4` (`44`–`46`) en TestFlight OK | 🟢 Hecho |
 | 2026-11-13 | Fase 5 | Ficha completada, capturas 16:10 subidas y estado cambiado a **Lista para revisión** (Apple ID `6834470521`, SKU `BC-MACOS-001`) | 🟢 Hecho |
+| 2026-11-16 | Fase 5 | Respuesta a cuestionario estándar de App Review (Guidelines 4.3 / 4.2.6, Submission ID `878b3b3b-9b09-46e8-843f-1c60268f74a1`) lista para enviar sin reenviar binario | 🟡 En curso |
+
+---
+
+## 6. Respuesta oficial a App Review (Guidelines 4.3 & 4.2.6)
+
+> **Importante (instrucción expresa de Apple):** *"If you believe the app already meets the requirements of guidelines 4.3(a), 4.3(b) and 4.2.6, **do not resubmit the app**. Instead, reply to this message and answer all of the following questions in full."*  
+> Responde directamente en el hilo de **App Store Connect → App Review (Resolution Center)** copiando y pegando el siguiente texto en inglés:
+
+```text
+Hello App Review Team,
+
+Thank you for your review of BoardComposer (Apple ID: 6834470521, Version 0.4.4, Submission ID: 878b3b3b-9b09-46e8-843f-1c60268f74a1).
+
+BoardComposer is a 100% original, custom-engineered 2D sheet-goods cutting optimization ("2D bin packing / nesting") CAD/CAM desktop application written from scratch by me (Eugenio de Frutos Sanchez). It is not built from any template or app generation service, nor does it duplicate any other app on my account or on the App Store.
+
+Below are the full, detailed answers to all nine questions:
+
+1. Describe in detail what this app does and the primary problem it solves for users. Do not use the App Store marketing description as your response.
+
+BoardComposer solves the two-dimensional rectangular cutting stock and guillotine/non-guillotine bin-packing problem (NP-hard 2D nesting) for physical sheet materials (wood panels, MDF, melamine, plywood, acrylic, and sheet metal).
+In a physical workshop, when a carpenter or fabricator needs to cut dozens of rectangular parts of varying dimensions out of standard stock sheets (e.g., 2440×1220 mm or 2800×2070 mm), doing the layout manually wastes 15–30% of raw material and leads to errors with saw blade thickness (kerf) and wood grain orientation.
+Technically, BoardComposer implements a custom computational geometry engine from scratch (`src/boardcomposer/`) featuring:
+- Multi-panel MaxRects (Maximal Rectangles) and Skyline heuristic solvers, plus Beam Search and an exact single-panel constraint solver, evaluating multiple board/panel orderings and placement heuristics.
+- Physical workshop constraints: saw kerf spacing (`kerf_mm`) between every cut, per-piece grain direction locking (`grain: locked` preventing 90° rotation when wood fiber direction matters), material-type and thickness matching across heterogeneous stock inventories, and partial-solution diagnostics when inventory is insufficient.
+- Interactive 2D CAD canvas (`BoardWorkspace`): users can manually drag and reassign pieces across physical panel instances, swap placed pieces (`Cmd+Alt+X`), auto-suggest valid free gaps (`Cmd+Alt+G`), freeze approved placements (`Cmd+Alt+F`) to re-pack only omitted pieces, and promote usable rectangular offcuts (`Offcut`) back into the project's remnant stock inventory (`Cmd+Alt+R`).
+- Multi-candidate visual comparator and deterministic explanation engine: instead of outputting a single black-box layout, the solver ranks distinct candidate solutions across weighted criteria (material utilization, bounding box, cut regularity, waste, and grain score) and explains in plain language why one candidate outperforms another.
+- Native vector and tabular manufacturing outputs generated directly by our own exporters (no external CAD dependencies): multi-layer DXF files (`PANELS`, `PIECES`, `OFFCUTS`, `DIMS`, `SEQ`, `META`) for CNC/CAD software, scaled vector SVG/PDF cutting plans with saw-cut sequence numbering, saw-ordered workshop cut lists (CSV/PDF), and itemized material + labor cost quotes (PDF).
+
+2. Who is the intended user of this app? Provide a detailed description of the specific target audience.
+
+The target audience consists of:
+- Professional cabinetmakers, carpenters, furniture designers, and woodworking shops who cut sheet goods (melamine, plywood, MDF, particleboard) on panel saws, table saws, or CNC routers.
+- Glaziers, acrylic/plastics fabricators, and light sheet-metal workshops that cut rectangular flat stock.
+- Advanced DIY woodworkers and luthiers/makers running macOS who need an offline desktop tool to calculate how many stock boards to buy, generate a numbered saw-cutting sequence for the workshop floor, and produce a formal PDF material/labor estimate for their clients.
+
+3. What need or gap in the market does this app address that existing apps do not currently address, or address less effectively? Provide a detailed, substantive explanation.
+
+Existing cut-list calculators on macOS or the web suffer from three major limitations that BoardComposer specifically addresses:
+- Black-box single output vs. human-in-the-loop comparison: Traditional calculators output a single rigid layout. If a workshop operator dislikes a specific cut on panel #2, they cannot easily compare alternative heuristics or manually drag/swap pieces between panels with real-time collision and kerf validation. BoardComposer generates multiple ranked candidate solutions, shows side-by-side visual diffs, explains the trade-offs locally, and allows interactive post-solve manual editing on the canvas with full Undo/Redo and an Action Timeline replay.
+- End-to-end offcut lifecycle (Remnant reuse): Most tools treat leftover areas as dead waste. BoardComposer computes usable rectangular offcuts (`Offcut`), reports their exact dimensions, areas, shares, and aspect ratios, and lets the user promote those offcuts into reusable `remnant` stock boards within the `.bcproj` project file.
+- Native offline macOS engineering workflow with layered DXF & local revision ring: Many competing tools are cloud-only web wrappers requiring paid monthly subscriptions and internet access on the workshop floor. BoardComposer runs 100% offline in the macOS App Sandbox, exports industry-standard R12 ASCII DXF with semantic CAD layers (`PANELS`, `PIECES`, `OFFCUTS`, `DIMS`, `SEQ`, `META`), and maintains an automatic local revision history ring (`.revs/`) with a built-in project diff viewer (`BcprojDiffDialog`).
+
+4. What beta testing did you conduct before submitting the app for review? Provide examples of user feedback provided in beta that was applied to the production build.
+
+Before submitting for App Review, we conducted structured User Acceptance Testing (UAT) across 50 iterative development waves (tracked in our repository under `uat/studio/CHECKLIST-FUNCIONAL.md`, `uat/studio/CHECKLIST-VISUAL.md`, and `uat/RELEASE-SMOKE.md`) as well as macOS TestFlight testing (builds 44, 45, and 46).
+Concrete examples of feedback found during beta testing and applied directly to the production build (build 46):
+- Example 1 (Window width overflow on 1440×900 MacBook screens): During TestFlight testing of build 45, calculating a multi-panel layout activated ~40 permanent metric indicators in the bottom `QStatusBar`, which caused Qt's layout engine to force the minimum window width to 2699 px—wider than standard MacBook screens. Based on this beta finding, we updated `QStatusBar` and the central stack size policies (`QSizePolicy.Policy.Ignored`) in build 46 so the window resizes smoothly down to 937×475 pt and fits 1440×900 displays properly.
+- Example 2 (macOS keyboard shortcut conventions & native App Menu): Beta testing on macOS highlighted that documentation and status tips needed native macOS modifier conventions (`⌘`, `⌥`, `⇧`) and standard macOS Application Menu placement (`About BoardComposer`, `Settings…` with `⌘,`, and `Quit` with `⌘Q` via `QAction.MenuRole`).
+- Example 3 (System theme button padding & frozen bundle version resolution): In TestFlight build 44, testing revealed that under the macOS `system` theme the `OK` button in the About dialog had tight horizontal padding, and the version label read the development cycle string instead of `CFBundleShortVersionString` (`0.4.4`). Both were fixed and verified in builds 45 and 46.
+- Example 4 (Workshop workflow feedback from early UAT): Testers requested the ability to lock piece rotation for wood grain (`IDE-0021`), account for saw kerf thickness (`IDE-0020`), freeze already-cut panels while re-packing omitted pieces (`IDE-0030`), and include optional hourly labor cost in client PDF quotes (`IDE-0045`). All of these were implemented and verified prior to submission.
+
+5. Is this app intended to function as a standalone product, or is it part of a suite of related apps published under your developer account? If part of a suite, provide a detailed description of how this app's scope and functionality differ from each other app in the suite.
+
+BoardComposer is a completely standalone product. Its domain (industrial 2D cutting stock optimization, woodworking layout, CAD DXF/SVG/PDF plan generation, and carpentry workshop quoting) is entirely unrelated to any other app under my developer account (such as text/URL utilities or task management tools).
+
+6. Could the functionality of this app be fully delivered as an in-app purchase, feature expansion, or content addition within any other app on your developer account? If so, provide a detailed explanation of why this functionality was not consolidated into that existing app.
+
+No. BoardComposer is a specialized CAD/CAM and combinatorial optimization application for woodworking and sheet-goods manufacturing, with its own `.bcproj` document format (versioned schema v1–v6), 2D geometric packing solvers, interactive canvas, and DXF/SVG/PDF CAD exporters. It shares no domain, user workflow, or purpose with any other app on my developer account, so consolidating it into another app would make no sense for users.
+
+7. Does this app's binary share any significant code, frameworks, or assets with any other app on your developer account, beyond standard third-party frameworks? If so, identify each shared component and describe its role in detail.
+
+No. BoardComposer does not share any application code, domain logic, UI components, or graphical assets with any other app on my developer account. The entire codebase (~12,000+ lines of domain/solver/export/studio code and 1,670+ automated unit and integration tests) was written specifically for BoardComposer. Beyond the standard Python 3.13 runtime and PySide6 (Qt6) UI framework, all solvers, DXF/PDF/SVG exporters, and studio widgets are 100% bespoke to BoardComposer.
+
+8. Does this app share any codebase, SDK, or content library with any third-party app, beyond standard third-party frameworks? If so, identify the shared component and provide a detailed explanation of the original functionality this app adds beyond it.
+
+No. BoardComposer does not share any codebase, template, SDK, or content library with any third-party app. It uses only standard open-source runtime libraries (Python standard library and PySide6/Qt6 for the desktop GUI, plus open-source OFL fonts Archivo and Source Sans 3). All 2D packing algorithms (`MaxRects`, `Skyline`, `Beam Search`), the `.bcproj` serializer, the layered DXF writer, the PDF/SVG plan and quote renderers, and the Studio interface are original code written for this project.
+
+9. Was this app created for a client, partner, or other third party who provided the app's content, concept, or branding? If so, identify who provided the content and provide a detailed explanation of why the app is submitted under your developer account rather than theirs.
+
+No. BoardComposer was conceived, designed, developed, and branded entirely by me (Eugenio de Frutos Sanchez) as my own original product. No client, partner, template service, or third party provided the concept, code, content, or branding.
+
+Please let me know if you need any additional technical details or a video walkthrough of the solver and CAD export workflows.
+
+Best regards,
+Eugenio de Frutos Sanchez
+```
+
