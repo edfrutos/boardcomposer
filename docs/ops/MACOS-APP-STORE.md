@@ -350,3 +350,61 @@ Las 5 capturas quedan en `~/Desktop/appstore-*.png` a `2880 × 1800` px (o `1440
 | 2026-11-13 | Fase 4 | Incrustación de `BoardComposer.provisionprofile`, firma profunda MAS y generación de `dist/BoardComposer-0.4.4.pkg` (43 MB) | 🟢 Hecho |
 | 2026-11-13 | Fase 5 | Subida con Transporter y procesamiento de la compilación `0.4.4` (`44`–`46`) en TestFlight OK | 🟢 Hecho |
 | 2026-11-13 | Fase 5 | Ficha completada, capturas 16:10 subidas y estado cambiado a **Lista para revisión** (Apple ID `6834470521`, SKU `BC-MACOS-001`) | 🟢 Hecho |
+| 2026-11-16 | Fase 5 | Respuesta enviada en App Store Connect al cuestionario de App Review (Guidelines 4.3 / 4.2.6, Submission ID `878b3b3b-9b09-46e8-843f-1c60268f74a1`); esperando respuesta de Apple | 🟢 Enviada |
+
+---
+
+## 6. Respuesta oficial a App Review (Guidelines 4.3 & 4.2.6 — ≤ 4000 caracteres)
+
+> **Importante (instrucción expresa de Apple):** *"If you believe the app already meets the requirements of guidelines 4.3(a), 4.3(b) and 4.2.6, **do not resubmit the app**. Instead, reply to this message and answer all of the following questions in full."*  
+> Responde directamente en el hilo de **App Store Connect → App Review (Resolution Center)** copiando y pegando el siguiente texto en inglés (**3927 / 4000 caracteres**):
+
+```text
+Hello App Review Team,
+
+Thank you for reviewing BoardComposer (ID: 6834470521, v0.4.4). It is a 100% original 2D cutting-stock ("nesting") CAD/CAM app written from scratch by me (Eugenio de Frutos Sanchez). Answers to all 9 questions:
+
+1. What the app does & primary problem solved:
+BoardComposer solves the 2D rectangular cutting-stock problem for sheet materials (wood, MDF, melamine, plywood, acrylic). Manual layout wastes 15-30% of material and causes saw kerf and wood grain errors.
+Our custom geometry engine implements:
+- Multi-panel MaxRects, Skyline, and Beam Search solvers evaluating multiple board/panel orderings.
+- Workshop constraints: saw kerf (`kerf_mm`), per-piece grain lock (no 90° rotation), material/thickness matching across stock panels, and partial-solution diagnostics.
+- Interactive 2D CAD canvas: drag/reassign pieces across panels, swap pieces, suggest free gaps, freeze placements to re-pack omitted pieces, and promote usable offcuts into project `remnant` stock.
+- Multi-candidate comparator & local explanation engine: ranks candidates by utilization, bounding box, cut regularity, waste, and grain score, explaining trade-offs locally.
+- Native CAD/workshop outputs: layered R12 DXF for CNC/CAD, scaled SVG/PDF plans with saw sequence numbers, CSV/PDF cut lists, and PDF material/labor quotes.
+
+2. Intended users & target audience:
+- Cabinetmakers, carpenters, and woodworking shops using panel saws, table saws, or CNC routers.
+- Glaziers, acrylic, and sheet-metal shops cutting flat stock.
+- DIY woodworkers and luthiers on macOS needing an offline tool for cut plans and PDF quotes.
+
+3. Market gap addressed:
+- Human-in-the-loop comparison vs. black-box output: Traditional calculators output one rigid layout. BoardComposer ranks multiple candidates, shows visual diffs, explains trade-offs locally, and allows post-solve manual dragging/swapping on the canvas with real-time collision/kerf checks, Undo/Redo, and Timeline replay.
+- Offcut lifecycle (remnant reuse): Computes usable rectangular offcuts with exact dimensions/aspect ratios and promotes them into reusable `remnant` stock boards inside `.bcproj`.
+- Offline macOS CAD workflow: Runs 100% offline in the macOS App Sandbox, exports layered CAD DXF, and keeps a local revision ring (`.revs/`) with a built-in diff viewer.
+
+4. Beta testing conducted & feedback applied:
+We ran 50 UAT waves and macOS TestFlight testing (builds 44-46). Feedback applied to build 46:
+- Window width overflow: In build 45, status-bar labels forced min width to 2699 px; in build 46 we set `QSizePolicy.Policy.Ignored` on `QStatusBar` so it resizes smoothly to 937x475 pt (1440x900).
+- Native macOS menu & shortcuts: Applied `QAction.MenuRole` (`About`, `Settings…`, `Quit`) and native `Cmd`/`Opt`/`Shift` symbols.
+- Fixed system-theme button padding and `Info.plist` version display (`0.4.4`) in builds 45-46.
+- Added UAT workshop features: grain lock, saw kerf, freeze/repack omitted pieces, and labor in PDF quotes.
+
+5. Standalone product or suite?
+Standalone product. Its CAD/CAM 2D cutting-stock domain is unrelated to any other app on my account.
+
+6. Could it be an IAP or feature in another app on my account?
+No. Specialized CAD/CAM tool with its own `.bcproj` format, 2D solvers, canvas, and DXF/SVG/PDF exporters, sharing no domain or workflow with my other apps.
+
+7. Shared code, frameworks, or assets with other apps on my account?
+No. All ~12,000+ lines of code, UI widgets, icons, and 1,670+ tests were written exclusively for BoardComposer (Python 3.13 + PySide6/Qt6).
+
+8. Shared codebase, SDK, or content library with any third-party app?
+No. Uses only standard Python and PySide6/Qt6 plus OFL fonts. All solvers, exporters, and UI are 100% original.
+
+9. Created for a client, partner, or third party?
+No. Conceived, designed, developed, and branded entirely by me as my own original product.
+
+Best regards,
+Eugenio de Frutos Sanchez
+```
