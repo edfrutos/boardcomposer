@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Copiar la mediana de relaciones de forma de retales de la solución
+  (IDE-0236; **Ctrl+Alt+Shift+{**). Copia el valor, sin `mrel.`
+  (en inglés sin `mdas`). Deshabilitado si la etiqueta está
+  oculta. No avanza ni aplica el layout.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: mediana de relaciones de forma de retales
   (IDE-0235; `mrel.` / `mdas`). Mediana de `max(L,A)/min(L,A)` de
   todos los retales (n par → el inferior de los dos centrales).
@@ -53,8 +58,9 @@
 ### Documentación
 
 - Snapshot de planificación `REVIEW-2026-11-21-planificacion.md`:
-  ola 52 cerrada (`#921`); abre ola 53 IDE-0235…0237; Issues = 0.
-  `REVIEW-2026-11-20` queda histórico.
+  ola 53 abierta (0235 🟢; 0236 esta entrega; residual 0237); Issues = 0.
+  Ops MAS: `0.4.4` build 46 TestFlight; respuesta App Review 4.3/4.2.6
+  enviada 2026-11-16; esperando Apple. `REVIEW-2026-11-20` queda histórico.
 
 ## 0.4.4 — 2026-11-12
 

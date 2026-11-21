@@ -244,14 +244,16 @@ alternativas comprensibles para que el usuario decida.
 - Clic en la relación de forma media selecciona esa solución (IDE-0234).
 - Barra de estado: mediana de relaciones de forma de retales (IDE-0235;
   `mrel.`/`mdas`).
-- Copiar la mediana de relaciones de forma de retales (IDE-0236; 🔵).
+- Copiar la mediana de relaciones de forma de retales (IDE-0236;
+  Cmd+Alt+Shift+{).
 - Clic en la mediana de relaciones de forma selecciona esa solución
   (IDE-0237; 🔵).
-- Próximo: IDE-0236 (0235 entregada; ola 53 0235…0237; ciclo `0.4.5.dev0`
+- Próximo: IDE-0237 (0236 entregada; ola 53 0235…0237; ciclo `0.4.5.dev0`
   tras `v0.4.4`; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
   sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
-  eval IDE-0007 cerrada; LLM / plugins / C bloqueados. Snapshot:
-  `REVIEW-2026-11-21-planificacion.md`.
+  eval IDE-0007 cerrada; LLM / plugins / C bloqueados. Ops MAS:
+  `0.4.4`/46 TestFlight; respuesta Review 4.3/4.2.6 enviada (16 nov);
+  esperando Apple. Snapshot: `REVIEW-2026-11-21-planificacion.md`.
 
 ## Fuentes de verdad
 

@@ -323,7 +323,8 @@
   (IDE-0234).
 - Barra de estado: mediana de relaciones de forma de retales (IDE-0235;
   `mrel.`/`mdas`).
-- Copiar la mediana de relaciones de forma de retales (IDE-0236; 🔵).
+- Copiar la mediana de relaciones de forma de retales (IDE-0236;
+  Cmd+Alt+Shift+{).
 - Clic en la mediana de relaciones de forma selecciona esa solución
   (IDE-0237; 🔵).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
@@ -377,7 +378,7 @@
    Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
    Quincuagésima primera ola cerrada (0232 entregada).
    Quincuagésima segunda ola cerrada (0234 entregada). Quincuagésima
-   tercera ola 0235…0237: 0235 entregada; residual 0236…0237 (ciclo
+   tercera ola 0235…0237: 0235–0236 entregadas; residual 0237 (ciclo
    `0.4.5.dev0`).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
