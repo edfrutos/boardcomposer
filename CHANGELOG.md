@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Copiar la desviación típica de relaciones de forma de retales de la
+  solución (IDE-0239; **Ctrl+Alt+Shift+}**). Copia el valor, sin
+  `drel.` (en inglés sin `sdas`). Deshabilitado si la etiqueta está
+  oculta. No avanza ni aplica el layout.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: desviación típica de relaciones de forma de retales
   (IDE-0238; `drel.` / `sdas`). Desviación típica poblacional de
   `max(L,A)/min(L,A)` de todos los retales. Distinta de `arel.`,
@@ -70,7 +75,7 @@
 ### Documentación
 
 - Snapshot de planificación `REVIEW-2026-11-21-planificacion.md`:
-  ola 53 cerrada (`#925`); abre ola 54 IDE-0238…0240; Issues = 0.
+  ola 54 abierta (0238–0239 🟢; residual 0240); Issues = 0.
   Ops MAS: `0.4.4`/46 TestFlight; Review 4.3/4.2.6 respondida 16 nov;
   esperando Apple. `REVIEW-2026-11-20` histórico.
 
