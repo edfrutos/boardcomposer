@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Copiar la amplitud de relaciones de forma de retales de la solución
+  (IDE-0230; **Ctrl+Alt+Shift+/**). Copia el valor, sin `arel.`
+  (en inglés sin `spna`). Deshabilitado si la etiqueta está
+  oculta. No avanza ni aplica el layout.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: amplitud de relaciones de forma de retales
   (IDE-0229; `arel.` / `spna`). `max(aspect) − min(aspect)` sobre los
   retales de la solución seleccionada. Oculta si no hay retales. Con un
