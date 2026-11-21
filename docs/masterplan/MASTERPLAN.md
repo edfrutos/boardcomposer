@@ -326,7 +326,7 @@
 - Copiar la mediana de relaciones de forma de retales (IDE-0236;
   Cmd+Alt+Shift+{).
 - Clic en la mediana de relaciones de forma selecciona esa solución
-  (IDE-0237; 🔵).
+  (IDE-0237).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Cmd+Alt+F**, IDE-0030).
@@ -378,8 +378,8 @@
    Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
    Quincuagésima primera ola cerrada (0232 entregada).
    Quincuagésima segunda ola cerrada (0234 entregada). Quincuagésima
-   tercera ola 0235…0237: 0235–0236 entregadas; residual 0237 (ciclo
-   `0.4.5.dev0`).
+   tercera ola cerrada (0237 entregada; ciclo `0.4.5.dev0`). Cola vacía;
+   siguiente Merge OK abre ola 54.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

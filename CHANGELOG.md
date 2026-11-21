@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Clic en la mediana de relaciones de forma de retales selecciona esa
+  solución (IDE-0237). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no. Cierra la quincuagésima tercera ola (0235…0237).
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la mediana de relaciones de forma de retales de la solución
   (IDE-0236; **Ctrl+Alt+Shift+{**). Copia el valor, sin `mrel.`
   (en inglés sin `mdas`). Deshabilitado si la etiqueta está
@@ -58,9 +63,9 @@
 ### Documentación
 
 - Snapshot de planificación `REVIEW-2026-11-21-planificacion.md`:
-  ola 53 abierta (0235 🟢; 0236 esta entrega; residual 0237); Issues = 0.
-  Ops MAS: `0.4.4` build 46 TestFlight; respuesta App Review 4.3/4.2.6
-  enviada 2026-11-16; esperando Apple. `REVIEW-2026-11-20` queda histórico.
+  ola 53 cerrada (0235…0237); cola vacía; Issues = 0; siguiente Merge OK
+  abre ola 54. Ops MAS: `0.4.4`/46 TestFlight; Review 4.3/4.2.6
+  respondida 16 nov; esperando Apple. `REVIEW-2026-11-20` histórico.
 
 ## 0.4.4 — 2026-11-12
 
