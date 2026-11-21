@@ -719,6 +719,8 @@ Chrome de Studio (se recuerda entre sesiones).
   Distinta de `reln.`/`aspm` y de `relp.`/`asav`. Oculta si no hay
   retales. Todos cuadrados → `1.00`. No sigue las unidades. Cursor
   flecha. Sin clic.
+  **Cmd+Alt+Shift+{** copia el valor, sin
+  `mrel.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Cmd+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
