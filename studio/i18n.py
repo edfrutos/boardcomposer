@@ -1826,7 +1826,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.solution_offcut_aspect_median": "mrel. {value}",
         "tip.status_solution_offcut_aspect_median": (
             "Mediana de relaciones de forma de retales de la solución "
-            "seleccionada: {value}"
+            "seleccionada: {value}. Clic selecciona la solución"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
@@ -4432,7 +4432,8 @@ _STRINGS: dict[str, dict[str, str]] = {
         ),
         "status.solution_offcut_aspect_median": "mdas {value}",
         "tip.status_solution_offcut_aspect_median": (
-            "Median offcut aspect ratio of the selected solution: {value}"
+            "Median offcut aspect ratio of the selected solution: {value}. "
+            "Click selects the solution"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
