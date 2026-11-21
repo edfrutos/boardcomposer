@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Clic en la relación de forma media de retales selecciona esa
+  solución (IDE-0234). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no. Cierra la quincuagésima segunda ola (0233…0234).
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la relación de forma media de retales de la solución
   (IDE-0233; **Ctrl+Alt+Shift+?**). Copia el valor, sin `relp.`
   (en inglés sin `asav`). Deshabilitado si la etiqueta está
@@ -41,8 +46,8 @@
 ### Documentación
 
 - Snapshot de planificación `REVIEW-2026-11-21-planificacion.md`:
-  ola 51 cerrada (`#919`); abre ola 52 IDE-0233…0234; Issues = 0.
-  `REVIEW-2026-11-20` queda histórico.
+  ola 52 cerrada (0233…0234); cola vacía; Issues = 0; siguiente
+  Merge OK abre ola 53. `REVIEW-2026-11-20` queda histórico.
 
 ## 0.4.4 — 2026-11-12
 
