@@ -305,6 +305,9 @@ Observaciones:
 | IDE-0232 | Barra: relación de forma media de retales | 🟢 | P3 |
 | IDE-0233 | Copiar la relación de forma media de retales | 🟢 | P3 |
 | IDE-0234 | Clic en la relación de forma media selecciona su solución | 🟢 | P3 |
+| IDE-0235 | Barra: mediana de relaciones de forma de retales | 🟢 | P3 |
+| IDE-0236 | Copiar la mediana de relaciones de forma de retales | 🔵 | P3 |
+| IDE-0237 | Clic en la mediana de relaciones de forma selecciona su solución | 🔵 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -533,6 +536,9 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0232 | S | IDE-0226 | Entregado; `relp. {value}` / `asav {value}` = media de max(L,A)/min(L,A) de todos los retales; distinta de `rela.`/`aspa`; oculta si no hay retales; `1.00` si todos cuadrados; sin clic |
 | IDE-0233 | S | IDE-0232 | Entregado; Cmd+Alt+Shift+? el valor, sin `relp.`; no avanza |
 | IDE-0234 | S | IDE-0232 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0235 | S | IDE-0232 | Entregado; `mrel. {value}` / `mdas {value}` = mediana de max(L,A)/min(L,A) de todos los retales; n par → inferior de los dos centrales; distinta de `reln.`/`aspm` y de `relp.`/`asav`; oculta si no hay retales; `1.00` si todos cuadrados; sin clic |
+| IDE-0236 | S | IDE-0235 | Planificado; Cmd+Alt+Shift+{ el valor, sin `mrel.`; no avanza |
+| IDE-0237 | S | IDE-0235 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -601,17 +607,19 @@ Cuadragésima octava ola cerrada (0222 entregada).
 Cuadragésima novena ola cerrada (0226 entregada).
 Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
 Quincuagésima primera ola cerrada (0232 entregada).
-Quincuagésima segunda ola cerrada (0234 entregada; ciclo `0.4.5.dev0`).
-Cola vacía; siguiente Merge OK abre ola 53.
+Quincuagésima segunda ola cerrada (0234 entregada).
+Quincuagésima tercera ola 0235…0237: 0235 entregada; siguiente
+IDE-0236 (ciclo `0.4.5.dev0`).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-21-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.5` vacía (ola 52 0233…0234 🟢; IDE-0101 e
-   IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C
-   (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
+1. Cola producto `0.4.5`: IDE-0236 (0235 entregada; ola 53 0235…0237;
+   copy/clic `mrel.`/`mdas`; IDE-0101 e IDE-0102 diferidas, sin costes).
+   Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
+   LLM (DEC-0011).
 
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.5.dev0` abierto; `v0.4.4` publicado.
