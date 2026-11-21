@@ -464,8 +464,11 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0232 | Barra: relación de forma media de retales | Entregado; `relp.`/`asav` = media de aspectos; distinta de `rela.`; sin clic |
 | IDE-0233 | Copiar la relación de forma media de retales | Entregado; Ctrl+Alt+Shift+? el valor, sin `relp.`; no avanza |
 | IDE-0234 | Clic en la relación de forma media selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0235 | Barra: mediana de relaciones de forma de retales | Entregado; `mrel.`/`mdas` = mediana de aspectos; distinta de `reln.` y `relp.`; sin clic |
+| IDE-0236 | Copiar la mediana de relaciones de forma de retales | Planificado; Ctrl+Alt+Shift+{ el valor, sin `mrel.`; no avanza |
+| IDE-0237 | Clic en la mediana de relaciones de forma selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: cola vacía (0234 cierra 0233…0234; siguiente Merge OK abre ola 53; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: IDE-0236 (0235 entregada; ola 53 0235…0237; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

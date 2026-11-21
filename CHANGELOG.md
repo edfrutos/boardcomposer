@@ -4,6 +4,13 @@
 
 ### Añadido
 
+- Barra de estado: mediana de relaciones de forma de retales
+  (IDE-0235; `mrel.` / `mdas`). Mediana de `max(L,A)/min(L,A)` de
+  todos los retales (n par → el inferior de los dos centrales).
+  Distinta de `reln.`/`aspm` y de `relp.`/`asav`. Oculta si no hay
+  retales. `1.00` si todos cuadrados. No sigue las unidades. Cursor
+  flecha. Sin clic. Abre la quincuagésima tercera ola (0235…0237).
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la relación de forma media de retales selecciona esa
   solución (IDE-0234). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;
@@ -46,8 +53,8 @@
 ### Documentación
 
 - Snapshot de planificación `REVIEW-2026-11-21-planificacion.md`:
-  ola 52 cerrada (0233…0234); cola vacía; Issues = 0; siguiente
-  Merge OK abre ola 53. `REVIEW-2026-11-20` queda histórico.
+  ola 52 cerrada (`#921`); abre ola 53 IDE-0235…0237; Issues = 0.
+  `REVIEW-2026-11-20` queda histórico.
 
 ## 0.4.4 — 2026-11-12
 
