@@ -317,6 +317,10 @@
   (IDE-0231).
 - Barra de estado: relación de forma media de retales (IDE-0232;
   `relp.`/`asav`).
+- Copiar la relación de forma media de retales (IDE-0233;
+  Cmd+Alt+Shift+?).
+- Clic en la relación de forma media selecciona esa solución
+  (IDE-0234; 🔵).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Cmd+Alt+F**, IDE-0030).
@@ -366,7 +370,9 @@
    Cuadragésima octava ola cerrada (0222 entregada).
    Cuadragésima novena ola cerrada (0226 entregada).
    Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
-   Quincuagésima primera ola cerrada (0232 entregada; ciclo `0.4.5.dev0`).
+   Quincuagésima primera ola cerrada (0232 entregada).
+   Quincuagésima segunda ola 0233…0234: 0233 entregada; residual 0234
+   (ciclo `0.4.5.dev0`).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

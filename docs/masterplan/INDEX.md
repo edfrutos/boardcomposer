@@ -31,7 +31,8 @@ Las discrepancias deben corregirse, no mantenerse como conocimiento implícito.
 | `DOC-002-Arquitectura.md` | Arquitectura objetivo | En revisión |
 | `DOC-003-Roadmap.md` | Fases del producto | Actualizado |
 | `DOC-004-Backlog.md` | Iniciativas priorizadas | Actualizado |
-| `REVIEW-2026-11-20-planificacion.md` | Snapshot estado / siguientes pasos | Actualizado |
+| `REVIEW-2026-11-21-planificacion.md` | Snapshot estado / siguientes pasos | Actualizado |
+| `REVIEW-2026-11-20-planificacion.md` | Snapshot previo (histórico) | Histórico |
 | `REVIEW-2026-11-17-planificacion.md` | Snapshot previo (histórico) | Histórico |
 | `REVIEW-2026-11-16-planificacion.md` | Snapshot previo (histórico) | Histórico |
 | `REVIEW-2026-11-15-planificacion.md` | Snapshot previo (histórico) | Histórico |
