@@ -248,13 +248,17 @@ alternativas comprensibles para que el usuario decida.
   Cmd+Alt+Shift+{).
 - Clic en la mediana de relaciones de forma selecciona esa solución
   (IDE-0237).
-- Próximo: cola vacía (ola 53 0235…0237 🟢 cerrada; ciclo `0.4.5.dev0`
-  tras `v0.4.4`; siguiente Merge OK abre ola 54; IDE-0101 e IDE-0102
-  diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C, IDE-0008,
-  LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM /
-  plugins / C bloqueados. Ops MAS: `0.4.4`/46 TestFlight; Review
-  4.3/4.2.6 respondida (16 nov); esperando Apple. Snapshot:
-  `REVIEW-2026-11-21-planificacion.md`.
+- Barra de estado: desviación típica de relaciones de forma de retales
+  (IDE-0238; `drel.`/`sdas`).
+- Copiar la desviación típica de relaciones de forma (IDE-0239; 🔵).
+- Clic en la desviación típica de relaciones de forma selecciona esa
+  solución (IDE-0240; 🔵).
+- Próximo: IDE-0239 (0238 entregada; ola 54 0238…0240; ciclo `0.4.5.dev0`
+  tras `v0.4.4`; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
+  sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
+  eval IDE-0007 cerrada; LLM / plugins / C bloqueados. Ops MAS:
+  `0.4.4`/46 TestFlight; Review 4.3/4.2.6 respondida (16 nov);
+  esperando Apple. Snapshot: `REVIEW-2026-11-21-planificacion.md`.
 
 ## Fuentes de verdad
 

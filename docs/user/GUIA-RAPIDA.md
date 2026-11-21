@@ -722,6 +722,11 @@ Chrome de Studio (se recuerda entre sesiones).
   explorador; no avanza; arrastre no.
   **Cmd+Alt+Shift+{** copia el valor, sin
   `mrel.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  La desviación típica de relaciones de forma de retales va como
+  `drel. 0.62` (en inglés `sdas 0.62`): desviación típica poblacional
+  de lado largo / lado corto de todos los retales. Distinta de
+  `arel.`, `relp.` y `mrel.`. Oculta si no hay retales. Un retal →
+  `0.00`. No sigue las unidades. Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Cmd+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
