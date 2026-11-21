@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.5.dev0 — 2026-11-17
+## Unreleased — 0.4.5.dev0 — 2026-11-20
 
 ### Añadido
 
@@ -12,11 +12,11 @@
 
 ### Documentación
 
-- Snapshot de planificación `REVIEW-2026-11-17-planificacion.md`:
+- Snapshot de planificación `REVIEW-2026-11-20-planificacion.md`:
   cola IDE-0229…0232 🔵 sigue abierta (sin PR de producto); Issues = 0;
-  `#911`/`#912` mergeados; PRs abiertos = 0 → **sin IDE nuevas**.
-  `#911` / `REVIEW-2026-11-16` queda histórico.
-  `#912` = ops MAS App Review (no cola IDE).
+  `#913` mergeado; PRs abiertos = 0 → **sin IDE nuevas**.
+  `#913` / `REVIEW-2026-11-17` queda histórico.
+  Sin commits de producto entre 11-17 y 11-20.
 
 ## 0.4.4 — 2026-11-12
 
