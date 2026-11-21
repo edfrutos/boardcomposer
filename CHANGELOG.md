@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Clic en la amplitud de relaciones de forma de retales selecciona esa
+  solución (IDE-0231). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no. Cierra el trío 0229…0231.
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la amplitud de relaciones de forma de retales de la solución
   (IDE-0230; **Ctrl+Alt+Shift+/**). Copia el valor, sin `arel.`
   (en inglés sin `spna`). Deshabilitado si la etiqueta está
