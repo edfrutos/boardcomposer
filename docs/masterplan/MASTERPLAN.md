@@ -314,7 +314,7 @@
 - Copiar la amplitud de relaciones de forma de retales (IDE-0230;
   Cmd+Alt+Shift+/).
 - Clic en la amplitud de relaciones de forma selecciona esa solución
-  (IDE-0231; 🔵).
+  (IDE-0231).
 - Barra de estado: relación de forma media de retales (IDE-0232;
   `relp.`/`asav`; 🔵).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
@@ -366,8 +366,8 @@
    Cuadragésima octava ola cerrada (0222 entregada).
    Cuadragésima novena ola cerrada (0226 entregada).
    Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
-   Quincuagésima primera ola 0229…0232: 0229–0230 entregadas; residual
-   0231…0232 (ciclo `0.4.5.dev0`).
+   Quincuagésima primera ola 0229…0232: 0229–0231 entregadas; residual
+   0232 (ciclo `0.4.5.dev0`).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
