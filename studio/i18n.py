@@ -2077,8 +2077,7 @@ _STRINGS: dict[str, dict[str, str]] = {
             "No hay relación de forma del retal de área media de la solución que copiar"
         ),
         "status.solution_offcut_aspect_span_copied": (
-            "Amplitud de relaciones de forma de retales de la solución "
-            "copiada: {value}"
+            "Amplitud de relaciones de forma de retales de la solución copiada: {value}"
         ),
         "status.nothing_to_copy_solution_offcut_aspect_span": (
             "No hay amplitud de relaciones de forma de retales de la "
