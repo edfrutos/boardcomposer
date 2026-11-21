@@ -310,7 +310,7 @@
 - Clic en la relación de forma del retal de área media selecciona esa
   solución (IDE-0228).
 - Barra de estado: amplitud de relaciones de forma de retales
-  (IDE-0229; `arel.`/`spna`; 🔵).
+  (IDE-0229; `arel.`/`spna`).
 - Copiar la amplitud de relaciones de forma de retales (IDE-0230;
   Cmd+Alt+Shift+/; 🔵).
 - Clic en la amplitud de relaciones de forma selecciona esa solución
@@ -366,7 +366,8 @@
    Cuadragésima octava ola cerrada (0222 entregada).
    Cuadragésima novena ola cerrada (0226 entregada).
    Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
-   Quincuagésima primera ola abierta (0229…0232; ciclo `0.4.5.dev0`).
+   Quincuagésima primera ola 0229…0232: 0229 entregada; residual
+   0230…0232 (ciclo `0.4.5.dev0`).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

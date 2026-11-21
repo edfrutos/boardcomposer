@@ -1789,6 +1789,11 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Relación de forma del retal de área media de la solución "
             "seleccionada: {value}. Clic selecciona la solución"
         ),
+        "status.solution_offcut_aspect_span": "arel. {value}",
+        "tip.status_solution_offcut_aspect_span": (
+            "Amplitud de relaciones de forma de retales de la solución "
+            "seleccionada: {value}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -4337,6 +4342,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_mean_offcut_aspect": (
             "Aspect ratio of the selected solution's mean-area offcut: "
             "{value}. Click selects the solution"
+        ),
+        "status.solution_offcut_aspect_span": "spna {value}",
+        "tip.status_solution_offcut_aspect_span": (
+            "Offcut aspect-ratio span of the selected solution: {value}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

@@ -236,11 +236,11 @@ alternativas comprensibles para que el usuario decida.
 - Barra de estado: relación de forma del retal de área media (IDE-0226; `rela.`/`aspa`).
 - Copiar la relación de forma del retal de área media (IDE-0227; Cmd+Alt+Shift+.).
 - Clic en la relación de forma del retal de área media selecciona esa solución (IDE-0228).
-- Barra de estado: amplitud de relaciones de forma de retales (IDE-0229; `arel.`/`spna`; 🔵).
+- Barra de estado: amplitud de relaciones de forma de retales (IDE-0229; `arel.`/`spna`).
 - Copiar la amplitud de relaciones de forma de retales (IDE-0230; Cmd+Alt+Shift+/; 🔵).
 - Clic en la amplitud de relaciones de forma selecciona esa solución (IDE-0231; 🔵).
 - Barra de estado: relación de forma media de retales (IDE-0232; `relp.`/`asav`; 🔵).
-- Próximo: quincuagésima primera ola IDE-0229…0232 (ciclo `0.4.5.dev0`
+- Próximo: IDE-0230 (0229 entregada; ola 51 0229…0232; ciclo `0.4.5.dev0`
   tras `v0.4.4`; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
   sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
   eval IDE-0007 cerrada; LLM / plugins / C bloqueados. Snapshot:
