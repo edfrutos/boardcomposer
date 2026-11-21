@@ -4,6 +4,13 @@
 
 ### Añadido
 
+- Barra de estado: desviación típica de relaciones de forma de retales
+  (IDE-0238; `drel.` / `sdas`). Desviación típica poblacional de
+  `max(L,A)/min(L,A)` de todos los retales. Distinta de `arel.`,
+  `relp.` y `mrel.`. Oculta si no hay retales. Con un retal muestra
+  `0.00`. No sigue las unidades. Cursor flecha. Sin clic. Abre la
+  quincuagésima cuarta ola (0238…0240).
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la mediana de relaciones de forma de retales selecciona esa
   solución (IDE-0237). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;
@@ -63,9 +70,9 @@
 ### Documentación
 
 - Snapshot de planificación `REVIEW-2026-11-21-planificacion.md`:
-  ola 53 cerrada (0235…0237); cola vacía; Issues = 0; siguiente Merge OK
-  abre ola 54. Ops MAS: `0.4.4`/46 TestFlight; Review 4.3/4.2.6
-  respondida 16 nov; esperando Apple. `REVIEW-2026-11-20` histórico.
+  ola 53 cerrada (`#925`); abre ola 54 IDE-0238…0240; Issues = 0.
+  Ops MAS: `0.4.4`/46 TestFlight; Review 4.3/4.2.6 respondida 16 nov;
+  esperando Apple. `REVIEW-2026-11-20` histórico.
 
 ## 0.4.4 — 2026-11-12
 
