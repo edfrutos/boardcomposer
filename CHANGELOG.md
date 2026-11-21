@@ -4,6 +4,12 @@
 
 ### Añadido
 
+- Copiar la relación de forma media de retales de la solución
+  (IDE-0233; **Ctrl+Alt+Shift+?**). Copia el valor, sin `relp.`
+  (en inglés sin `asav`). Deshabilitado si la etiqueta está
+  oculta. No avanza ni aplica el layout. Abre la quincuagésima
+  segunda ola (0233…0234).
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: relación de forma media de retales
   (IDE-0232; `relp.` / `asav`). Media aritmética de
   `max(L,A)/min(L,A)` de todos los retales. Oculta si no hay retales.
@@ -34,9 +40,9 @@
 
 ### Documentación
 
-- Snapshot de planificación `REVIEW-2026-11-20-planificacion.md`
-  (histórico al entregar IDE-0229): residual cola IDE-0230…0232 🔵;
-  Issues = 0.
+- Snapshot de planificación `REVIEW-2026-11-21-planificacion.md`:
+  ola 51 cerrada (`#919`); abre ola 52 IDE-0233…0234; Issues = 0.
+  `REVIEW-2026-11-20` queda histórico.
 
 ## 0.4.4 — 2026-11-12
 

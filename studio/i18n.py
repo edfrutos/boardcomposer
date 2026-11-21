@@ -417,6 +417,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_offcut_aspect_span": (
             "Copiar amplitud de relaciones de forma de retales de la solución"
         ),
+        "action.copy_solution_offcut_aspect_average": (
+            "Copiar relación de forma media de retales de la solución"
+        ),
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -956,6 +959,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_offcut_aspect_span": (
             "Copiar la amplitud de relaciones de forma de retales de la solución "
             "(Ctrl+Alt+Shift+/); el valor, sin arel.; "
+            "deshabilitado si la etiqueta está oculta; no avanza"
+        ),
+        "tip.copy_solution_offcut_aspect_average": (
+            "Copiar la relación de forma media de retales de la solución "
+            "(Ctrl+Alt+Shift+?); el valor, sin relp.; "
             "deshabilitado si la etiqueta está oculta; no avanza"
         ),
         "tip.copy_inspector": (
@@ -2087,6 +2095,12 @@ _STRINGS: dict[str, dict[str, str]] = {
             "No hay amplitud de relaciones de forma de retales de la "
             "solución que copiar"
         ),
+        "status.solution_offcut_aspect_average_copied": (
+            "Relación de forma media de retales de la solución copiada: {value}"
+        ),
+        "status.nothing_to_copy_solution_offcut_aspect_average": (
+            "No hay relación de forma media de retales de la solución que copiar"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -3042,6 +3056,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_offcut_aspect_span": (
             "Copy offcut aspect-ratio span of the solution"
         ),
+        "action.copy_solution_offcut_aspect_average": (
+            "Copy mean offcut aspect ratio of the solution"
+        ),
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -3567,6 +3584,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_offcut_aspect_span": (
             "Copy the status-bar offcut aspect-ratio span "
             "(Ctrl+Alt+Shift+/); the value, without spna; disabled when "
+            "the label is hidden; does not step to the next solution"
+        ),
+        "tip.copy_solution_offcut_aspect_average": (
+            "Copy the status-bar mean offcut aspect ratio "
+            "(Ctrl+Alt+Shift+?); the value, without asav; disabled when "
             "the label is hidden; does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -4620,6 +4642,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_offcut_aspect_span": (
             "No offcut aspect-ratio span of the solution to copy"
         ),
+        "status.solution_offcut_aspect_average_copied": (
+            "Solution mean offcut aspect ratio copied: {value}"
+        ),
+        "status.nothing_to_copy_solution_offcut_aspect_average": (
+            "No mean offcut aspect ratio of the solution to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -5260,6 +5288,7 @@ _ACTION_KEYS = (
     "copy_solution_median_offcut_aspect",
     "copy_solution_mean_offcut_aspect",
     "copy_solution_offcut_aspect_span",
+    "copy_solution_offcut_aspect_average",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",
