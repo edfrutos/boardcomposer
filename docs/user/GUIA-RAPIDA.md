@@ -705,6 +705,11 @@ Chrome de Studio (se recuerda entre sesiones).
   selecciona esa solución en el explorador; no avanza; arrastre no.
   **Cmd+Alt+Shift+/** copia el valor, sin
   `arel.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  La relación de forma media de retales va como `relp. 1.83`
+  (en inglés `asav 1.83`): media aritmética de lado largo / lado corto
+  de todos los retales. Oculta si no hay retales. Todos cuadrados →
+  `1.00`. No sigue las unidades. Distinta de `rela.`/`aspa`. Cursor
+  flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Cmd+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

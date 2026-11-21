@@ -4,6 +4,13 @@
 
 ### Añadido
 
+- Barra de estado: relación de forma media de retales
+  (IDE-0232; `relp.` / `asav`). Media aritmética de
+  `max(L,A)/min(L,A)` de todos los retales. Oculta si no hay retales.
+  `1.00` si todos son cuadrados. No sigue las unidades. Distinta de
+  `rela.`/`aspa`. Cursor flecha. Sin clic. Cierra la quincuagésima
+  primera ola (0229…0232).
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la amplitud de relaciones de forma de retales selecciona esa
   solución (IDE-0231). Cursor mano si está visible. Selecciona
   `solution:{index}` en el explorador; no avanza ni aplica el layout;

@@ -302,7 +302,7 @@ Observaciones:
 | IDE-0229 | Barra: amplitud de relaciones de forma de retales | 🟢 | P3 |
 | IDE-0230 | Copiar la amplitud de relaciones de forma de retales | 🟢 | P3 |
 | IDE-0231 | Clic en la amplitud de relaciones de forma selecciona su solución | 🟢 | P3 |
-| IDE-0232 | Barra: relación de forma media de retales | 🔵 | P3 |
+| IDE-0232 | Barra: relación de forma media de retales | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -528,7 +528,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0229 | S | IDE-0217 | Entregado; `arel. {value}` / `spna {value}` = max(aspect)−min(aspect); oculta si no hay retales; `0.00` con un retal; distinta de `ampr.`, `relr.`, `relm.`, `reln.` y `rela.`; sin clic |
 | IDE-0230 | S | IDE-0229 | Entregado; Cmd+Alt+Shift+/ el valor, sin `arel.`; no avanza |
 | IDE-0231 | S | IDE-0229 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0232 | S | IDE-0226 | Planificado; `relp. {value}` / `asav {value}` = media de max(L,A)/min(L,A) de todos los retales; distinta de `rela.`/`aspa`; oculta si no hay retales; sin clic |
+| IDE-0232 | S | IDE-0226 | Entregado; `relp. {value}` / `asav {value}` = media de max(L,A)/min(L,A) de todos los retales; distinta de `rela.`/`aspa`; oculta si no hay retales; `1.00` si todos cuadrados; sin clic |
 
 ---
 
@@ -596,17 +596,15 @@ Cuadragésima séptima ola cerrada (0218 entregada).
 Cuadragésima octava ola cerrada (0222 entregada).
 Cuadragésima novena ola cerrada (0226 entregada).
 Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
-Quincuagésima primera ola 0229…0232: 0229–0231 entregadas; siguiente
-IDE-0232 (ciclo `0.4.5.dev0`).
+Quincuagésima primera ola cerrada (0232 entregada; ciclo `0.4.5.dev0`).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-20-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.5`: IDE-0232 (0231 entregada; ola 51 0229…0232;
-   barra relación de forma media `relp.`/`asav`;
-   IDE-0101 e IDE-0102 diferidas, sin costes).
+1. Cola producto `0.4.5` vacía (0232 cierra 0229…0232; siguiente Merge OK
+   abre ola 52; IDE-0101 e IDE-0102 diferidas, sin costes).
    Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
    LLM (DEC-0011).
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
