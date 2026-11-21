@@ -247,13 +247,14 @@ alternativas comprensibles para que el usuario decida.
 - Copiar la mediana de relaciones de forma de retales (IDE-0236;
   Cmd+Alt+Shift+{).
 - Clic en la mediana de relaciones de forma selecciona esa solución
-  (IDE-0237; 🔵).
-- Próximo: IDE-0237 (0236 entregada; ola 53 0235…0237; ciclo `0.4.5.dev0`
-  tras `v0.4.4`; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
-  sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
-  eval IDE-0007 cerrada; LLM / plugins / C bloqueados. Ops MAS:
-  `0.4.4`/46 TestFlight; respuesta Review 4.3/4.2.6 enviada (16 nov);
-  esperando Apple. Snapshot: `REVIEW-2026-11-21-planificacion.md`.
+  (IDE-0237).
+- Próximo: cola vacía (ola 53 0235…0237 🟢 cerrada; ciclo `0.4.5.dev0`
+  tras `v0.4.4`; siguiente Merge OK abre ola 54; IDE-0101 e IDE-0102
+  diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C, IDE-0008,
+  LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM /
+  plugins / C bloqueados. Ops MAS: `0.4.4`/46 TestFlight; Review
+  4.3/4.2.6 respondida (16 nov); esperando Apple. Snapshot:
+  `REVIEW-2026-11-21-planificacion.md`.
 
 ## Fuentes de verdad
 
