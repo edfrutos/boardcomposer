@@ -419,8 +419,9 @@ Séptima ola ya registrada (no renumerar):
 | IDE-0227 | Copiar la relación de forma del retal de área media | Entregado; Ctrl+Alt+Shift+. el valor, sin `rela.`; no avanza |
 | IDE-0228 | Clic en la relación de forma del retal de área media selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0229 | Barra: amplitud de relaciones de forma de retales | Entregado; `arel.`/`spna` = max(aspect)−min(aspect); `0.00` con un retal; sin clic |
+| IDE-0230 | Copiar la amplitud de relaciones de forma de retales | Entregado; Ctrl+Alt+Shift+/ el valor, sin `arel.`; no avanza |
 
-Prioridad de ataque: IDE-0230 (0229 entregada; ola 51 0229…0232; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: IDE-0231 (0230 entregada; ola 51 0229…0232; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0057.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

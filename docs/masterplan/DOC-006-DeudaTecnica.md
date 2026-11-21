@@ -222,7 +222,7 @@ Próximo foco:
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
 - Cola producto ciclo `0.4.5.dev0`: quincuagésima primera ola 0229…0232
-  (0229 entregada; residual 0230…0232). Ciclo `0.4.4` cerrado
+  (0229–0230 entregadas; residual 0231…0232). Ciclo `0.4.4` cerrado
   (0025…0228; corte `v0.4.4`). IDE-0101 e IDE-0102 diferidas (sin costes).
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.
