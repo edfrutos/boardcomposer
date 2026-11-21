@@ -709,7 +709,8 @@ Chrome de Studio (se recuerda entre sesiones).
   (en inglés `asav 1.83`): media aritmética de lado largo / lado corto
   de todos los retales. Oculta si no hay retales. Todos cuadrados →
   `1.00`. No sigue las unidades. Distinta de `rela.`/`aspa`. Cursor
-  flecha. Sin clic.
+  mano si está visible. Clic selecciona esa solución en el
+  explorador; no avanza; arrastre no.
   **Cmd+Alt+Shift+?** copia el valor, sin
   `relp.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.

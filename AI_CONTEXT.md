@@ -241,11 +241,12 @@ alternativas comprensibles para que el usuario decida.
 - Clic en la amplitud de relaciones de forma selecciona esa solución (IDE-0231).
 - Barra de estado: relación de forma media de retales (IDE-0232; `relp.`/`asav`).
 - Copiar la relación de forma media de retales (IDE-0233; Cmd+Alt+Shift+?).
-- Clic en la relación de forma media selecciona esa solución (IDE-0234; 🔵).
-- Próximo: IDE-0234 (0233 entregada; ola 52 0233…0234; ciclo `0.4.5.dev0`
-  tras `v0.4.4`; IDE-0101 e IDE-0102 diferidas, sin costes). Bloqueados
-  sin reanudar: DT-0006 C, IDE-0008, LLM; piloto DT-0006 D; Issues = 0;
-  eval IDE-0007 cerrada; LLM / plugins / C bloqueados. Snapshot:
+- Clic en la relación de forma media selecciona esa solución (IDE-0234).
+- Próximo: cola vacía (ola 52 0233…0234 🟢 cerrada; ciclo `0.4.5.dev0`
+  tras `v0.4.4`; siguiente Merge OK abre ola 53; IDE-0101 e IDE-0102
+  diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C, IDE-0008,
+  LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM /
+  plugins / C bloqueados. Snapshot:
   `REVIEW-2026-11-21-planificacion.md`.
 
 ## Fuentes de verdad
