@@ -697,6 +697,11 @@ Chrome de Studio (se recuerda entre sesiones).
   explorador; no avanza; arrastre no.
   **Cmd+Alt+Shift+.** copia el valor, sin
   `rela.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  La amplitud de relaciones de forma de retales va como `arel. 1.50`
+  (en inglés `spna 1.50`): mayor relación de forma menos la menor
+  (`max(L,A)/min(L,A)`). Oculta si no hay retales. Con un retal
+  muestra `0.00`. No sigue las unidades. Distinta de `ampr.`, `relr.`,
+  `relm.`, `reln.` y `rela.`. Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Cmd+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

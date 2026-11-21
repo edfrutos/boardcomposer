@@ -1,10 +1,15 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.5.dev0 — 2026-11-20
+## Unreleased — 0.4.5.dev0 — 2026-11-21
 
 ### Añadido
 
-- _(ciclo post-`0.4.4` — vacío al corte; ola 51 planificada IDE-0229…0232)_
+- Barra de estado: amplitud de relaciones de forma de retales
+  (IDE-0229; `arel.` / `spna`). `max(aspect) − min(aspect)` sobre los
+  retales de la solución seleccionada. Oculta si no hay retales. Con un
+  retal muestra `0.00`. No sigue las unidades. Distinta de `ampr.`,
+  `relr.`, `relm.`, `reln.` y `rela.`. Cursor flecha. Sin clic.
+  Sin bump `.bcproj`; no cambia el solver.
 
 ### Cambiado
 
@@ -12,11 +17,9 @@
 
 ### Documentación
 
-- Snapshot de planificación `REVIEW-2026-11-20-planificacion.md`:
-  cola IDE-0229…0232 🔵 sigue abierta (sin PR de producto); Issues = 0;
-  `#913` mergeado; PRs abiertos = 0 → **sin IDE nuevas**.
-  `#913` / `REVIEW-2026-11-17` queda histórico.
-  Sin commits de producto entre 11-17 y 11-20.
+- Snapshot de planificación `REVIEW-2026-11-20-planificacion.md`
+  (histórico al entregar IDE-0229): residual cola IDE-0230…0232 🔵;
+  Issues = 0.
 
 ## 0.4.4 — 2026-11-12
 
