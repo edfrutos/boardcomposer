@@ -4,6 +4,12 @@
 
 ### Añadido
 
+- Clic en la desviación típica de relaciones de forma de retales
+  selecciona esa solución (IDE-0240). Cursor mano si está visible.
+  Selecciona `solution:{index}` en el explorador; no avanza ni aplica
+  el layout; arrastre no. Cierra la quincuagésima cuarta ola
+  (0238…0240).
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la desviación típica de relaciones de forma de retales de la
   solución (IDE-0239; **Ctrl+Alt+Shift+}**). Copia el valor, sin
   `drel.` (en inglés sin `sdas`). Deshabilitado si la etiqueta está
@@ -75,9 +81,9 @@
 ### Documentación
 
 - Snapshot de planificación `REVIEW-2026-11-21-planificacion.md`:
-  ola 54 abierta (0238–0239 🟢; residual 0240); Issues = 0.
-  Ops MAS: `0.4.4`/46 TestFlight; Review 4.3/4.2.6 respondida 16 nov;
-  esperando Apple. `REVIEW-2026-11-20` histórico.
+  ola 54 cerrada (0238…0240); cola vacía; Issues = 0; siguiente Merge OK
+  abre ola 55. Ops MAS: `0.4.4`/46 TestFlight; Review 4.3/4.2.6
+  respondida 16 nov; esperando Apple. `REVIEW-2026-11-20` histórico.
 
 ## 0.4.4 — 2026-11-12
 

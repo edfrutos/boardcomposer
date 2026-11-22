@@ -89,10 +89,10 @@ def test_solution_offcut_aspect_stddev_follows_the_selected_solution(qapp, tmp_p
     assert label.text() != window._solution_offcut_aspect_span_label.text()
     assert "mm" not in label.text()
     assert "desviación" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
-    assert window.eventFilter(label, _mouse(QEvent.Type.MouseButtonPress)) is False
-    assert window.eventFilter(label, _mouse(QEvent.Type.MouseButtonRelease)) is False
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
+    window.eventFilter(label, _mouse(QEvent.Type.MouseButtonPress))
+    window.eventFilter(label, _mouse(QEvent.Type.MouseButtonRelease))
     assert calls == []
     assert window.services.layout.selected_solution_index == 1
     assert window.workspace.zoom == zoom
@@ -149,6 +149,6 @@ def test_solution_offcut_aspect_stddev_follows_the_selected_solution(qapp, tmp_p
     assert window._solution_offcut_aspect_average_label.text() == "asav 3.56"
     assert window._solution_offcut_aspect_median_label.text() == "mdas 1.25"
     assert "stddev" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert "mm" not in label.text()

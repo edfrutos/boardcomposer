@@ -469,9 +469,9 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0237 | Clic en la mediana de relaciones de forma selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0238 | Barra: desviación típica de relaciones de forma de retales | Entregado; `drel.`/`sdas` = pstdev de aspectos; distinta de `arel.`, `relp.`, `mrel.`; sin clic |
 | IDE-0239 | Copiar la desviación típica de relaciones de forma de retales | Entregado; Ctrl+Alt+Shift+} el valor, sin `drel.`; no avanza |
-| IDE-0240 | Clic en la desviación típica de relaciones de forma selecciona su solución | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0240 | Clic en la desviación típica de relaciones de forma selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: IDE-0240 (0239 entregada; ola 54 0238…0240; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: cola vacía (0240 cierra 0238…0240; siguiente Merge OK abre ola 55; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

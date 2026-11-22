@@ -310,7 +310,7 @@ Observaciones:
 | IDE-0237 | Clic en la mediana de relaciones de forma selecciona su solución | 🟢 | P3 |
 | IDE-0238 | Barra: desviación típica de relaciones de forma de retales | 🟢 | P3 |
 | IDE-0239 | Copiar la desviación típica de relaciones de forma de retales | 🟢 | P3 |
-| IDE-0240 | Clic en la desviación típica de relaciones de forma selecciona su solución | 🔵 | P3 |
+| IDE-0240 | Clic en la desviación típica de relaciones de forma selecciona su solución | 🟢 | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -544,7 +544,7 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0237 | S | IDE-0235 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0238 | S | IDE-0235 | Entregado; `drel. {value}` / `sdas {value}` = pstdev de max(L,A)/min(L,A) de todos los retales; distinta de `arel.`, `relp.` y `mrel.`; oculta si no hay retales; `0.00` con un retal; sin clic |
 | IDE-0239 | S | IDE-0238 | Entregado; Cmd+Alt+Shift+} el valor, sin `drel.`; no avanza |
-| IDE-0240 | S | IDE-0238 | Planificado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0240 | S | IDE-0238 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -615,18 +615,17 @@ Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`).
 Quincuagésima primera ola cerrada (0232 entregada).
 Quincuagésima segunda ola cerrada (0234 entregada).
 Quincuagésima tercera ola cerrada (0237 entregada).
-Quincuagésima cuarta ola 0238…0240: 0238–0239 entregadas; siguiente
-IDE-0240 (ciclo `0.4.5.dev0`).
+Quincuagésima cuarta ola cerrada (0240 entregada; ciclo `0.4.5.dev0`).
+Cola vacía; siguiente Merge OK abre ola 55.
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-21-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.5`: IDE-0240 (0239 entregada; ola 54 0238…0240;
-   clic `drel.`/`sdas`; IDE-0101 e IDE-0102 diferidas, sin costes).
-   Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior),
-   LLM (DEC-0011).
+1. Cola producto `0.4.5` vacía (ola 54 0238…0240 🟢; IDE-0101 e
+   IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C
+   (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
 
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.5.dev0` abierto; `v0.4.4` publicado.
