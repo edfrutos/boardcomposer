@@ -256,11 +256,13 @@ alternativas comprensibles para que el usuario decida.
   solución (IDE-0240).
 - Barra de estado: media geométrica de relaciones de forma de retales
   (IDE-0241; `grel.`/`gmas`).
-- Próximo: ola 55 abierta (0241…0243; 0241 esta entrega; copy/click
-  residuales; ciclo `0.4.5.dev0` tras `v0.4.4`; IDE-0101 e IDE-0102
-  diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C, IDE-0008,
-  LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM /
-  plugins / C bloqueados. Ops MAS: `0.4.4`/46 TestFlight; Review
+- Copiar la media geométrica de relaciones de forma (IDE-0242;
+  Cmd+Alt+Shift+|).
+- Próximo: ola 55 abierta (0241…0243; 0242 esta entrega; click
+  residual IDE-0243; ciclo `0.4.5.dev0` tras `v0.4.4`; IDE-0101 e
+  IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
+  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
+  LLM / plugins / C bloqueados. Ops MAS: `0.4.4`/46 TestFlight; Review
   4.3/4.2.6 respondida (16 nov); esperando Apple. Snapshot:
   `REVIEW-2026-11-21-planificacion.md`.
 
