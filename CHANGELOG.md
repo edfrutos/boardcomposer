@@ -4,6 +4,13 @@
 
 ### Añadido
 
+- Barra de estado: media geométrica de relaciones de forma de retales
+  (IDE-0241; `grel.` / `gmas`). Media geométrica de
+  `max(L,A)/min(L,A)` de todos los retales. Distinta de `arel.`,
+  `relp.`, `mrel.` y `drel.`. Oculta si no hay retales. `1.00` si
+  todos cuadrados. No sigue las unidades. Cursor flecha. Sin clic.
+  Abre la quincuagésima quinta ola (0241…0243).
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la desviación típica de relaciones de forma de retales
   selecciona esa solución (IDE-0240). Cursor mano si está visible.
   Selecciona `solution:{index}` en el explorador; no avanza ni aplica

@@ -311,6 +311,9 @@ Observaciones:
 | IDE-0238 | Barra: desviación típica de relaciones de forma de retales | 🟢 | P3 |
 | IDE-0239 | Copiar la desviación típica de relaciones de forma de retales | 🟢 | P3 |
 | IDE-0240 | Clic en la desviación típica de relaciones de forma selecciona su solución | 🟢 | P3 |
+| IDE-0241 | Barra: media geométrica de relaciones de forma de retales | 🟡 | P3 |
+| IDE-0242 | Copiar la media geométrica de relaciones de forma de retales | ⚪ | P3 |
+| IDE-0243 | Clic en la media geométrica de relaciones de forma selecciona su solución | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -545,6 +548,9 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0238 | S | IDE-0235 | Entregado; `drel. {value}` / `sdas {value}` = pstdev de max(L,A)/min(L,A) de todos los retales; distinta de `arel.`, `relp.` y `mrel.`; oculta si no hay retales; `0.00` con un retal; sin clic |
 | IDE-0239 | S | IDE-0238 | Entregado; Cmd+Alt+Shift+} el valor, sin `drel.`; no avanza |
 | IDE-0240 | S | IDE-0238 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0241 | S | IDE-0238 | En curso; `grel. {value}` / `gmas {value}` = geometric_mean de max(L,A)/min(L,A) de todos los retales; distinta de `arel.`, `relp.`, `mrel.` y `drel.`; oculta si no hay retales; `1.00` si todos cuadrados; sin clic |
+| IDE-0242 | S | IDE-0241 | Pendiente; Cmd+Alt+Shift+\| el valor, sin `grel.`; no avanza |
+| IDE-0243 | S | IDE-0241 | Pendiente; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -616,16 +622,17 @@ Quincuagésima primera ola cerrada (0232 entregada).
 Quincuagésima segunda ola cerrada (0234 entregada).
 Quincuagésima tercera ola cerrada (0237 entregada).
 Quincuagésima cuarta ola cerrada (0240 entregada; ciclo `0.4.5.dev0`).
-Cola vacía; siguiente Merge OK abre ola 55.
+Quincuagésima quinta ola abierta (0241…0243; 0241 en curso).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-21-planificacion.md`.
 
 Próximo foco:
 
-1. Cola producto `0.4.5` vacía (ola 54 0238…0240 🟢; IDE-0101 e
-   IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C
-   (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011).
+1. Ola 55 (0241…0243): media geométrica `grel.`/`gmas`; copy/click
+   residuales. IDE-0101 e IDE-0102 diferidas, sin costes. Bloqueados
+   sin reanudar: DT-0006 C (DEC-0010), IDE-0008 (SDK posterior), LLM
+   (DEC-0011).
 
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.
 3. Ciclo `0.4.5.dev0` abierto; `v0.4.4` publicado.
