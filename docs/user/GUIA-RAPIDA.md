@@ -730,6 +730,11 @@ Chrome de Studio (se recuerda entre sesiones).
   selecciona esa solución en el explorador; no avanza; arrastre no.
   **Cmd+Alt+Shift+}** copia el valor, sin
   `drel.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  La media geométrica de relaciones de forma de retales va como
+  `grel. 1.71` (en inglés `gmas 1.71`): media geométrica de lado
+  largo / lado corto de todos los retales. Distinta de `arel.`,
+  `relp.`, `mrel.` y `drel.`. Oculta si no hay retales. Todos
+  cuadrados → `1.00`. No sigue las unidades. Cursor flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Cmd+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.
