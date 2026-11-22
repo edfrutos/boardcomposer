@@ -332,7 +332,7 @@
 - Copiar la desviación típica de relaciones de forma (IDE-0239;
   Cmd+Alt+Shift+}).
 - Clic en la desviación típica de relaciones de forma selecciona esa
-  solución (IDE-0240; 🔵).
+  solución (IDE-0240).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Cmd+Alt+F**, IDE-0030).
@@ -385,7 +385,8 @@
    Quincuagésima primera ola cerrada (0232 entregada).
    Quincuagésima segunda ola cerrada (0234 entregada). Quincuagésima
    tercera ola cerrada (0237 entregada). Quincuagésima cuarta ola
-   0238…0240: 0238–0239 entregadas; residual 0240 (ciclo `0.4.5.dev0`).
+   cerrada (0240 entregada; ciclo `0.4.5.dev0`). Cola vacía; siguiente
+   Merge OK abre ola 55.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
