@@ -317,6 +317,9 @@ class MainWindow(QMainWindow):
         self._menus["edit"].addAction(
             self._actions["copy_solution_offcut_aspect_stddev"]
         )
+        self._menus["edit"].addAction(
+            self._actions["copy_solution_offcut_aspect_geomean"]
+        )
         self._menus["edit"].addAction(self._actions["copy_inspector"])
         self._menus["edit"].addAction(self._actions["duplicate_piece"])
         self._menus["edit"].addAction(self._actions["delete_piece"])
@@ -587,6 +590,9 @@ class MainWindow(QMainWindow):
         )
         self._actions["copy_solution_offcut_aspect_stddev"].triggered.connect(
             self._copy_solution_offcut_aspect_stddev
+        )
+        self._actions["copy_solution_offcut_aspect_geomean"].triggered.connect(
+            self._copy_solution_offcut_aspect_geomean
         )
         self._actions["copy_inspector"].triggered.connect(self._copy_inspector)
         self._actions["duplicate_piece"].triggered.connect(
@@ -6552,6 +6558,7 @@ class MainWindow(QMainWindow):
 
     def _update_solution_offcut_aspect_geomean_status(self) -> None:
         """Show geometric mean of offcut aspect ratios (IDE-0241)."""
+        self._sync_copy_solution_offcut_aspect_geomean_action()
         label = getattr(self, "_solution_offcut_aspect_geomean_label", None)
         if label is None:
             return
@@ -11701,6 +11708,31 @@ class MainWindow(QMainWindow):
             return
         self._copy_text_to_clipboard(value)
         self._status("status.solution_offcut_aspect_stddev_copied", value=value)
+
+    def _sync_copy_solution_offcut_aspect_geomean_action(self) -> None:
+        actions = getattr(self, "_actions", None)
+        if not actions:
+            return
+        action = actions.get("copy_solution_offcut_aspect_geomean")
+        if action is None:
+            return
+        enabled = self._selected_solution_offcut_aspect_geomean_text() is not None
+        action.setEnabled(enabled)
+        action.setStatusTip(
+            with_native_shortcuts(self._tr("tip.copy_solution_offcut_aspect_geomean"))
+            if enabled
+            else self._tr("status.nothing_to_copy_solution_offcut_aspect_geomean")
+        )
+
+    def _copy_solution_offcut_aspect_geomean(self, _checked: bool = False) -> None:
+        """Copy the status-bar offcut aspect-ratio geometric mean (IDE-0242)."""
+        del _checked
+        value = self._selected_solution_offcut_aspect_geomean_text()
+        if value is None:
+            self._status("status.nothing_to_copy_solution_offcut_aspect_geomean")
+            return
+        self._copy_text_to_clipboard(value)
+        self._status("status.solution_offcut_aspect_geomean_copied", value=value)
 
     def _sync_copy_offcuts_action(self) -> None:
         actions = getattr(self, "_actions", None)
