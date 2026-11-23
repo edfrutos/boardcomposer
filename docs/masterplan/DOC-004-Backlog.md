@@ -622,10 +622,11 @@ Quincuagésima primera ola cerrada (0232 entregada).
 Quincuagésima segunda ola cerrada (0234 entregada).
 Quincuagésima tercera ola cerrada (0237 entregada).
 Quincuagésima cuarta ola cerrada (0240 entregada; ciclo `0.4.5.dev0`).
-Quincuagésima quinta ola abierta (0241…0243; 0241 en curso).
+Quincuagésima quinta ola abierta (0241 🟢 `#929`; 0242 🟡 `#930`;
+residual 0243).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
-`REVIEW-2026-11-21-planificacion.md`.
+`REVIEW-2026-11-23-planificacion.md`.
 
 Próximo foco:
 

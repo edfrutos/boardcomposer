@@ -264,7 +264,7 @@ alternativas comprensibles para que el usuario decida.
   IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
   LLM / plugins / C bloqueados. Ops MAS: `0.4.4`/46 TestFlight; Review
   4.3/4.2.6 respondida (16 nov); esperando Apple. Snapshot:
-  `REVIEW-2026-11-21-planificacion.md`.
+  `REVIEW-2026-11-23-planificacion.md`.
 
 ## Fuentes de verdad
 

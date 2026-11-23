@@ -211,8 +211,8 @@ IDE-0079…0082 🔵 sin PR de producto; Issues = 0.
 ## Estado
 
 **Estado actual:** 🟢 Actualizado — revisado para ciclo `0.4.5.dev0`; snapshot
-2026-11-20 en `REVIEW-2026-11-20-planificacion.md` (abiertas = 1, DT-0006).
-Históricos: `REVIEW-2026-09-11`…`11-17` (abiertas = 1, DT-0006).
+2026-11-23 en `REVIEW-2026-11-23-planificacion.md` (abiertas = 1, DT-0006).
+Históricos: `REVIEW-2026-09-11`…`11-21` (abiertas = 1, DT-0006).
 
 Próximo foco:
 
@@ -222,8 +222,9 @@ Próximo foco:
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
 - Cola producto ciclo `0.4.5.dev0`: ola 51–54 cerradas (0240); ola 55
-  abierta (0241…0243; media geométrica). Ciclo `0.4.4` cerrado
-  (0025…0228; corte `v0.4.4`). IDE-0101 e IDE-0102 diferidas (sin
-  costes). Ops MAS: build 46 TestFlight; Review respondida.
+  abierta (0241 🟢 `#929`; 0242 🟡 `#930`; residual 0243). Ciclo
+  `0.4.4` cerrado (0025…0228; corte `v0.4.4`). IDE-0101 e IDE-0102
+  diferidas (sin costes). Ops MAS: build 46 TestFlight; Review
+  respondida.
 - Aplicar métricas de la sección «Métricas mínimas por release» en cada corte.
 - Vincular revisión DOC-006 al cierre de sprint y a `uat/RELEASE-SMOKE.md`.

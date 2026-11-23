@@ -1,6 +1,6 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.5.dev0 — 2026-11-21
+## Unreleased — 0.4.5.dev0 — 2026-11-23
 
 ### Añadido
 
@@ -92,10 +92,11 @@
 
 ### Documentación
 
-- Snapshot de planificación `REVIEW-2026-11-21-planificacion.md`:
-  ola 54 cerrada (0238…0240); cola vacía; Issues = 0; siguiente Merge OK
-  abre ola 55. Ops MAS: `0.4.4`/46 TestFlight; Review 4.3/4.2.6
-  respondida 16 nov; esperando Apple. `REVIEW-2026-11-20` histórico.
+- Snapshot de planificación `REVIEW-2026-11-23-planificacion.md`:
+  ola 55 abierta (0241 🟢 `#929`; 0242 🟡 `#930`; residual 0243);
+  Issues = 0; **sin IDE nuevas** (cola no vacía). Ops MAS: `0.4.4`/46
+  TestFlight; Review 4.3/4.2.6 respondida 16 nov; esperando Apple.
+  `REVIEW-2026-11-21` histórico.
 
 ## 0.4.4 — 2026-11-12
 
