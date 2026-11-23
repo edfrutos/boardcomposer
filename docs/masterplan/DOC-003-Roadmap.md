@@ -233,14 +233,12 @@ Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada
 segunda ola cerrada (0234 entregada). Quincuagésima tercera ola
 cerrada (0237 entregada). Quincuagésima cuarta ola cerrada (0240
 entregada; ciclo `0.4.5.dev0`). Quincuagésima quinta ola abierta
-(0241 🟢 `#929`; 0242 🟡 `#930`; residual 0243).
-Revisión: `REVIEW-2026-11-23-planificacion.md`.
+(0241…0243; 0242 esta entrega).
+Revisión: `REVIEW-2026-11-21-planificacion.md`.
 
 Pendiente de:
 
-- Ola 55 (0241…0243): media geométrica `grel.`/`gmas`; 0241 en `main`;
-  copy `#930` en vuelo; residual click IDE-0243. IDE-0101 e IDE-0102
-  diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C,
+- Ola 55 (0241…0243): media geométrica `grel.`/`gmas`; residual click IDE-0243. IDE-0101 e IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM;
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.

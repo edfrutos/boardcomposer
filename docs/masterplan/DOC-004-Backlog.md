@@ -313,7 +313,7 @@ Observaciones:
 | IDE-0240 | Clic en la desviación típica de relaciones de forma selecciona su solución | 🟢 | P3 |
 | IDE-0241 | Barra: media geométrica de relaciones de forma de retales | 🟢 | P3 |
 | IDE-0242 | Copiar la media geométrica de relaciones de forma de retales | 🟡 | P3 |
-| IDE-0243 | Clic en la media geométrica de relaciones de forma selecciona su solución | 🔵 | P3 |
+| IDE-0243 | Clic en la media geométrica de relaciones de forma selecciona su solución | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
 
@@ -549,8 +549,8 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0239 | S | IDE-0238 | Entregado; Cmd+Alt+Shift+} el valor, sin `drel.`; no avanza |
 | IDE-0240 | S | IDE-0238 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
 | IDE-0241 | S | IDE-0238 | Entregado; `grel. {value}` / `gmas {value}` = geometric_mean de max(L,A)/min(L,A) de todos los retales; distinta de `arel.`, `relp.`, `mrel.` y `drel.`; oculta si no hay retales; `1.00` si todos cuadrados; sin clic |
-| IDE-0242 | S | IDE-0241 | En curso `#930`; Cmd+Alt+Shift+\| el valor, sin `grel.`; no avanza |
-| IDE-0243 | S | IDE-0241 | Planificada; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0242 | S | IDE-0241 | En curso; Cmd+Alt+Shift+\| el valor, sin `grel.`; no avanza |
+| IDE-0243 | S | IDE-0241 | Pendiente; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
 
@@ -630,9 +630,9 @@ EP (001…003) Fase 3 entregadas. Snapshot:
 
 Próximo foco:
 
-1. Ola 55 (0241…0243): media geométrica `grel.`/`gmas`; merge `#930`
-   (copy) luego click IDE-0243. IDE-0101 e IDE-0102 diferidas, sin
-   costes. Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008
+1. Ola 55 (0241…0243): media geométrica `grel.`/`gmas`; 0241–0242
+   entregadas; residual click IDE-0243. IDE-0101 e IDE-0102 diferidas,
+   sin costes. Bloqueados sin reanudar: DT-0006 C (DEC-0010), IDE-0008
    (SDK posterior), LLM (DEC-0011).
 
 2. Mantener piloto DT-0006 D; no abrir C sin demanda multi-usuario.

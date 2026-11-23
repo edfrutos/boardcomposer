@@ -470,11 +470,11 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0238 | Barra: desviación típica de relaciones de forma de retales | Entregado; `drel.`/`sdas` = pstdev de aspectos; distinta de `arel.`, `relp.`, `mrel.`; sin clic |
 | IDE-0239 | Copiar la desviación típica de relaciones de forma de retales | Entregado; Ctrl+Alt+Shift+} el valor, sin `drel.`; no avanza |
 | IDE-0240 | Clic en la desviación típica de relaciones de forma selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0241 | Barra: media geométrica de relaciones de forma de retales | En curso; `grel.`/`gmas` = geometric_mean de aspectos; distinta de `arel.`, `relp.`, `mrel.`, `drel.`; sin clic |
-| IDE-0242 | Copiar la media geométrica de relaciones de forma de retales | Pendiente; Ctrl+Alt+Shift+\| el valor, sin `grel.`; no avanza |
+| IDE-0241 | Barra: media geométrica de relaciones de forma de retales | Entregado; `grel.`/`gmas` = geometric_mean de aspectos; distinta de `arel.`, `relp.`, `mrel.`, `drel.`; sin clic |
+| IDE-0242 | Copiar la media geométrica de relaciones de forma de retales | En curso; Ctrl+Alt+Shift+\| el valor, sin `grel.`; no avanza |
 | IDE-0243 | Clic en la media geométrica de relaciones de forma selecciona su solución | Pendiente; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: ola 55 (0241…0243; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: ola 55 residual IDE-0243 (IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).

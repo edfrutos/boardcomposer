@@ -426,6 +426,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_offcut_aspect_stddev": (
             "Copiar desviación típica de relaciones de forma de retales de la solución"
         ),
+        "action.copy_solution_offcut_aspect_geomean": (
+            "Copiar media geométrica de relaciones de forma de retales de la solución"
+        ),
         "action.copy_inspector": "Copiar Inspector",
         "action.duplicate_piece": "Duplicar",
         "action.delete_piece": "Eliminar",
@@ -980,6 +983,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_offcut_aspect_stddev": (
             "Copiar la desviación típica de relaciones de forma de retales "
             "de la solución (Ctrl+Alt+Shift+}); el valor, sin drel.; "
+            "deshabilitado si la etiqueta está oculta; no avanza"
+        ),
+        "tip.copy_solution_offcut_aspect_geomean": (
+            "Copiar la media geométrica de relaciones de forma de retales "
+            "de la solución (Ctrl+Alt+Shift+|); el valor, sin grel.; "
             "deshabilitado si la etiqueta está oculta; no avanza"
         ),
         "tip.copy_inspector": (
@@ -2147,6 +2155,14 @@ _STRINGS: dict[str, dict[str, str]] = {
             "No hay desviación típica de relaciones de forma de retales "
             "de la solución que copiar"
         ),
+        "status.solution_offcut_aspect_geomean_copied": (
+            "Media geométrica de relaciones de forma de retales de la "
+            "solución copiada: {value}"
+        ),
+        "status.nothing_to_copy_solution_offcut_aspect_geomean": (
+            "No hay media geométrica de relaciones de forma de retales "
+            "de la solución que copiar"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Nivel de zoom del Workspace (rueda, Ctrl+= / Ctrl+-; "
@@ -3111,6 +3127,9 @@ _STRINGS: dict[str, dict[str, str]] = {
         "action.copy_solution_offcut_aspect_stddev": (
             "Copy stddev of offcut aspect ratios of the solution"
         ),
+        "action.copy_solution_offcut_aspect_geomean": (
+            "Copy geometric mean of offcut aspect ratios of the solution"
+        ),
         "action.copy_inspector": "Copy Inspector",
         "action.duplicate_piece": "Duplicate",
         "action.delete_piece": "Delete",
@@ -3651,6 +3670,11 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.copy_solution_offcut_aspect_stddev": (
             "Copy the status-bar stddev of offcut aspect ratios "
             "(Ctrl+Alt+Shift+}); the value, without sdas; disabled when "
+            "the label is hidden; does not step to the next solution"
+        ),
+        "tip.copy_solution_offcut_aspect_geomean": (
+            "Copy the status-bar geometric mean of offcut aspect ratios "
+            "(Ctrl+Alt+Shift+|); the value, without gmas; disabled when "
             "the label is hidden; does not step to the next solution"
         ),
         "tip.copy_board_material": (
@@ -4737,6 +4761,12 @@ _STRINGS: dict[str, dict[str, str]] = {
         "status.nothing_to_copy_solution_offcut_aspect_stddev": (
             "No offcut aspect-ratio stddev of the solution to copy"
         ),
+        "status.solution_offcut_aspect_geomean_copied": (
+            "Solution offcut aspect-ratio geometric mean copied: {value}"
+        ),
+        "status.nothing_to_copy_solution_offcut_aspect_geomean": (
+            "No offcut aspect-ratio geometric mean of the solution to copy"
+        ),
         "status.zoom": "{n}%",
         "tip.zoom_status": (
             "Workspace zoom level (wheel, Ctrl+= / Ctrl+-; "
@@ -5380,6 +5410,7 @@ _ACTION_KEYS = (
     "copy_solution_offcut_aspect_average",
     "copy_solution_offcut_aspect_median",
     "copy_solution_offcut_aspect_stddev",
+    "copy_solution_offcut_aspect_geomean",
     "copy_inspector",
     "duplicate_piece",
     "delete_piece",

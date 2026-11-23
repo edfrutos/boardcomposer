@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Copiar la media geométrica de relaciones de forma de retales de la
+  solución (IDE-0242; **Ctrl+Alt+Shift+|**). Copia el valor, sin
+  `grel.` (en inglés sin `gmas`). Deshabilitado si la etiqueta está
+  oculta. No avanza ni aplica el layout.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: media geométrica de relaciones de forma de retales
   (IDE-0241; `grel.` / `gmas`). Media geométrica de
   `max(L,A)/min(L,A)` de todos los retales. Distinta de `arel.`,
