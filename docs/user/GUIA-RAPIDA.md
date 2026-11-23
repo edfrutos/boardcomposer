@@ -734,7 +734,9 @@ Chrome de Studio (se recuerda entre sesiones).
   `grel. 1.71` (en inglés `gmas 1.71`): media geométrica de lado
   largo / lado corto de todos los retales. Distinta de `arel.`,
   `relp.`, `mrel.` y `drel.`. Oculta si no hay retales. Todos
-  cuadrados → `1.00`. No sigue las unidades. Cursor flecha. Sin clic.
+  cuadrados → `1.00`. No sigue las unidades. Cursor mano si está
+  visible. Clic selecciona esa solución en el explorador; no avanza;
+  arrastre no.
   **Cmd+Alt+Shift+|** copia el valor, sin
   `grel.`. Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.

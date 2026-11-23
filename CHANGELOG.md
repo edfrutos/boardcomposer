@@ -4,6 +4,12 @@
 
 ### Añadido
 
+- Clic en la media geométrica de relaciones de forma de retales
+  selecciona esa solución (IDE-0243). Cursor mano si está visible.
+  Selecciona `solution:{index}` en el explorador; no avanza ni aplica
+  el layout; arrastre no. Cierra la quincuagésima quinta ola
+  (0241…0243).
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la media geométrica de relaciones de forma de retales de la
   solución (IDE-0242; **Ctrl+Alt+Shift+|**). Copia el valor, sin
   `grel.` (en inglés sin `gmas`). Deshabilitado si la etiqueta está

@@ -351,6 +351,7 @@ Las 5 capturas quedan en `~/Desktop/appstore-*.png` a `2880 × 1800` px (o `1440
 | 2026-11-13 | Fase 5 | Subida con Transporter y procesamiento de la compilación `0.4.4` (`44`–`46`) en TestFlight OK | 🟢 Hecho |
 | 2026-11-13 | Fase 5 | Ficha completada, capturas 16:10 subidas y estado cambiado a **Lista para revisión** (Apple ID `6834470521`, SKU `BC-MACOS-001`) | 🟢 Hecho |
 | 2026-11-16 | Fase 5 | Respuesta enviada en App Store Connect al cuestionario de App Review (Guidelines 4.3 / 4.2.6, Submission ID `878b3b3b-9b09-46e8-843f-1c60268f74a1`); esperando respuesta de Apple | 🟢 Enviada |
+| 2026-11-23 | Fase 5 | Seguimiento: sin cambio de política — **no reenviar**; estado vivo solo en Resolution Center / App Store Connect (Apple ID `6834470521`, build 46). Agente sin sesión ASC → verificación manual pendiente | 🟡 Esperando Apple |
 
 ---
 
