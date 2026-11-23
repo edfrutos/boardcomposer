@@ -1,6 +1,6 @@
 # BoardComposer — MASTERPLAN
 
-Última revisión: 2026-11-20.
+Última revisión: 2026-11-23.
 
 ## Estado actual
 
@@ -15,7 +15,7 @@
   etiquetas IDE-0026; secuencia IDE-0027).
 - Vertical multipanel MaxRects **y** Skyline, con compatibilidad de material
   y espesor, Workspace interactivo y suite Qt de arrastre/reasignación.
-- Snapshot de planificación: `REVIEW-2026-11-20-planificacion.md`.
+- Snapshot de planificación: `REVIEW-2026-11-23-planificacion.md`.
 
 ## Último bloque consolidado
 
@@ -335,6 +335,7 @@
   solución (IDE-0240).
 - Barra de estado: media geométrica de relaciones de forma de retales
   (IDE-0241; `grel.`/`gmas`).
+- Copiar / clic media geométrica: IDE-0242 🟡 `#930`; IDE-0243 🔵.
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Cmd+Alt+F**, IDE-0030).
@@ -387,8 +388,8 @@
    Quincuagésima primera ola cerrada (0232 entregada).
    Quincuagésima segunda ola cerrada (0234 entregada). Quincuagésima
    tercera ola cerrada (0237 entregada). Quincuagésima cuarta ola
-   cerrada (0240 entregada; ciclo `0.4.5.dev0`). Quincuagésima quinta
-   ola abierta (0241…0243; 0241 esta entrega).
+   cerrada (0240 entregada; ciclo `0.4.5.dev0`).    Quincuagésima quinta
+   ola abierta (0241 🟢 `#929`; 0242 🟡 `#930`; residual 0243).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
