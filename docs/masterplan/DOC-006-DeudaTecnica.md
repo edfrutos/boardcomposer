@@ -221,8 +221,8 @@ Próximo foco:
   con multi-usuario real.
 - IDE-0007: MVP explicación local + eval humana cerrada 2026-09-12
   (`spikes/SPIKE-IDE-0007-asistente-ia.md`); LLM diferido (DEC-0011).
-- Cola producto ciclo `0.4.5.dev0`: ola 51–55 cerradas (0243); ola 56
-  abierta (0244 🟢 `#933`; 0245 🟡; residual 0246). Ciclo `0.4.4`
+- Cola producto ciclo `0.4.5.dev0`: ola 51–56 cerradas (0246); cola
+  vacía; decidir panel de métricas antes de ola 57. Ciclo `0.4.4`
   cerrado (0025…0228; corte `v0.4.4`). IDE-0101 e
   IDE-0102 diferidas (sin costes). Ops MAS: build 46 TestFlight;
   Review 4.3/4.2.6 respondida 16 nov; esperando Apple (**no reenviar**).
