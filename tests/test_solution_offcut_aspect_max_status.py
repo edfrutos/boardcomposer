@@ -2,25 +2,13 @@
 
 from dataclasses import replace
 
-from PySide6.QtCore import QEvent, QPointF, Qt
-from PySide6.QtGui import QMouseEvent
+from PySide6.QtCore import Qt
 
 from boardcomposer.domain import AssemblySolution, Offcut, PanelReference
 from studio.main_window import MainWindow
 from studio.preferences import PreferencesManager, StudioPreferences
 from studio.services import StudioServices
 from tests.test_inspector_board_utilization import _window
-
-
-def _mouse(event_type: QEvent.Type) -> QMouseEvent:
-    return QMouseEvent(
-        event_type,
-        QPointF(2, 2),
-        QPointF(2, 2),
-        Qt.MouseButton.LeftButton,
-        Qt.MouseButton.LeftButton,
-        Qt.KeyboardModifier.NoModifier,
-    )
 
 
 def _solution(*sizes: tuple[float, float]) -> AssemblySolution:
@@ -72,8 +60,9 @@ def test_offcut_aspect_max_follows_the_selected_solution(qapp, tmp_path):
     # aspects 1.00, 2.50, 2.00
     assert label.text() == "xrel. 2.50"
     assert not label.isHidden()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert "máxima" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
+    assert "clic" in label.toolTip().casefold()
 
     window._select_layout_solution(2)
     # aspects 1.00, 10.00, 1.25, 2.00; the largest-area offcut is 2.00
@@ -88,6 +77,7 @@ def test_offcut_aspect_max_follows_the_selected_solution(qapp, tmp_path):
     assert label.isHidden()
     assert label.text() == ""
     assert label.toolTip() == ""
+    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
 
 
 def test_offcut_aspect_max_ignores_orientation(qapp, tmp_path):
@@ -100,23 +90,6 @@ def test_offcut_aspect_max_ignores_orientation(qapp, tmp_path):
 
     _select(window, (10, 40), (40, 20))
     assert label.text() == "xrel. 4.00"
-
-
-def test_offcut_aspect_max_label_is_not_clickable(qapp, tmp_path):
-    del qapp
-    window = _window(tmp_path)
-    label = window._solution_offcut_aspect_max_label
-    _select(window, (100, 40))
-    zoom = window.workspace.zoom
-    calls: list[str] = []
-    window._step_layout_solution = lambda _delta: calls.append("step")
-
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
-    assert window.eventFilter(label, _mouse(QEvent.Type.MouseButtonPress)) is False
-    assert window.eventFilter(label, _mouse(QEvent.Type.MouseButtonRelease)) is False
-    assert calls == []
-    assert window.services.layout.selected_solution_index == 0
-    assert window.workspace.zoom == zoom
 
 
 def test_offcut_aspect_max_ignores_units_and_translates(qapp, tmp_path):
@@ -137,4 +110,4 @@ def test_offcut_aspect_max_ignores_units_and_translates(qapp, tmp_path):
     window._retranslate_ui()
     assert label.text() == "mxas 10.00"
     assert "maximum" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
+    assert "click" in label.toolTip().casefold()

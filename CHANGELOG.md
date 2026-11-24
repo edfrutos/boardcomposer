@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Clic en la relación de forma máxima de retales selecciona esa
+  solución (IDE-0246). Cursor mano si está visible. Selecciona
+  `solution:{index}` en el explorador; no avanza ni aplica el layout;
+  arrastre no. Cierra la quincuagésima sexta ola (0244…0246).
+  Sin bump `.bcproj`; no cambia el solver.
 - Copiar la relación de forma máxima de retales de la solución
   (IDE-0245; menú Editar, sin atajo). Copia el valor, sin `xrel.` (en
   inglés sin `mxas`). Deshabilitado si la etiqueta está oculta. No

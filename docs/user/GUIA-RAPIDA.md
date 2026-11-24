@@ -744,7 +744,8 @@ Chrome de Studio (se recuerda entre sesiones).
   retales, es decir, la tira más alargada. Distinta de `relr.` (retal
   de mayor área) y de `arel.` (máximo − mínimo). Oculta si no hay
   retales. Todos cuadrados → `1.00`. No sigue las unidades. Cursor
-  flecha. Sin clic. **Editar ▸ Copiar relación de forma máxima de
+  mano si está visible. Clic selecciona esa solución en el
+  explorador; no avanza; arrastre no. **Editar ▸ Copiar relación de forma máxima de
   retales de la solución** copia el valor, sin `xrel.` (sin atajo).
   Deshabilitado si la etiqueta está oculta. No avanza.
 - Material y espesor deben ser compatibles entre pieza y tablero.
