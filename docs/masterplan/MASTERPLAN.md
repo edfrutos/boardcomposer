@@ -337,6 +337,8 @@
   (IDE-0241; `grel.`/`gmas`).
 - Copiar la media geométrica de relaciones de forma (IDE-0242;
   Cmd+Alt+Shift+|).
+- Clic en la media geométrica de relaciones de forma selecciona esa
+  solución (IDE-0243).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Cmd+Alt+F**, IDE-0030).
@@ -390,7 +392,8 @@
    Quincuagésima segunda ola cerrada (0234 entregada). Quincuagésima
    tercera ola cerrada (0237 entregada). Quincuagésima cuarta ola
    cerrada (0240 entregada; ciclo `0.4.5.dev0`). Quincuagésima quinta
-   ola abierta (0241…0243; 0242 esta entrega).
+   ola cerrada (0243 entregada; ciclo `0.4.5.dev0`). Cola vacía;
+   siguiente Merge OK abre ola 56.
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.

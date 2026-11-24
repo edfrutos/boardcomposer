@@ -258,13 +258,15 @@ alternativas comprensibles para que el usuario decida.
   (IDE-0241; `grel.`/`gmas`).
 - Copiar la media geométrica de relaciones de forma (IDE-0242;
   Cmd+Alt+Shift+|).
-- Próximo: ola 55 abierta (0241…0243; 0242 esta entrega; click
-  residual IDE-0243; ciclo `0.4.5.dev0` tras `v0.4.4`; IDE-0101 e
-  IDE-0102 diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C,
-  IDE-0008, LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada;
-  LLM / plugins / C bloqueados. Ops MAS: `0.4.4`/46 TestFlight; Review
-  4.3/4.2.6 respondida (16 nov); esperando Apple. Snapshot:
-  `REVIEW-2026-11-23-planificacion.md`.
+- Clic en la media geométrica de relaciones de forma selecciona esa
+  solución (IDE-0243).
+- Próximo: cola vacía (ola 55 0241…0243 🟢 cerrada; ciclo `0.4.5.dev0`
+  tras `v0.4.4`; siguiente Merge OK abre ola 56; IDE-0101 e IDE-0102
+  diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C, IDE-0008,
+  LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM /
+  plugins / C bloqueados. Ops MAS: `0.4.4`/46 TestFlight; Review
+  4.3/4.2.6 respondida (16 nov); esperando Apple (**no reenviar**).
+  Snapshot: `REVIEW-2026-11-23-planificacion.md`.
 
 ## Fuentes de verdad
 

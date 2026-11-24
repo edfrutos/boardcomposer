@@ -232,13 +232,13 @@ Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada
 (0094 entregada). Decimoséptima ola cerrada (0098 entregada). Decimoctava ola: 0100 entregada. IDE-0101 e IDE-0102 diferidas (sin costes). Decimonovena ola cerrada (0106 `#743`). Vigésima ola cerrada (0110 entregada). Vigesimoprimera ola cerrada (0114 entregada). Vigesimosegunda ola cerrada (0118 entregada). Vigesimotercera ola cerrada (0122 entregada). Vigesimocuarta ola cerrada (0126 `#766`). Vigesimoquinta ola cerrada (0130 `#771`). Vigesimosexta ola cerrada (0134 `#777`). Vigesimoséptima ola cerrada (0138 entregada). Vigesimoctava ola cerrada (0142 entregada). Vigesimonovena ola cerrada (0146 entregada). Trigésima ola cerrada (0150 entregada). Trigésima primera ola cerrada (0154 entregada). Trigésima segunda ola cerrada (0158 entregada). Trigésima tercera ola cerrada (0162 entregada). Trigésima cuarta ola cerrada (0166 entregada). Trigésima quinta ola cerrada (0170 entregada). Trigésima sexta ola cerrada (0174 entregada). Trigésima séptima ola cerrada (0178 entregada). Trigésima octava ola cerrada (0182 entregada). Trigésima novena ola cerrada (0186 entregada). Cuadragésima ola cerrada (0190 entregada). Cuadragésima primera ola cerrada (0194 entregada). Cuadragésima segunda ola cerrada (0198 entregada). Cuadragésima tercera ola cerrada (0202 entregada). Cuadragésima cuarta ola cerrada (0206 entregada). Cuadragésima quinta ola cerrada (0210 entregada). Cuadragésima sexta ola cerrada (0214 entregada). Cuadragésima séptima ola cerrada (0218 entregada). Cuadragésima octava ola cerrada (0222 entregada). Cuadragésima novena ola cerrada (0226 entregada). Quincuagésima ola cerrada (0228 entregada; corte `0.4.4`). Quincuagésima primera ola cerrada (0232 entregada). Quincuagésima
 segunda ola cerrada (0234 entregada). Quincuagésima tercera ola
 cerrada (0237 entregada). Quincuagésima cuarta ola cerrada (0240
-entregada; ciclo `0.4.5.dev0`). Quincuagésima quinta ola abierta
-(0241…0243; 0242 esta entrega).
-Revisión: `REVIEW-2026-11-21-planificacion.md`.
+entregada; ciclo `0.4.5.dev0`). Quincuagésima quinta ola cerrada
+(0243 entregada). Cola vacía; siguiente Merge OK abre ola 56.
+Revisión: `REVIEW-2026-11-23-planificacion.md`.
 
 Pendiente de:
 
-- Ola 55 (0241…0243): media geométrica `grel.`/`gmas`; residual click IDE-0243. IDE-0101 e IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C,
+- Cola producto `0.4.5` vacía (ola 55 0241…0243 🟢; IDE-0101 e IDE-0102 diferidas, sin costes). Ops MAS: esperando Apple (**no reenviar**). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM;
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.

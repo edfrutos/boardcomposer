@@ -90,8 +90,8 @@ def test_solution_offcut_aspect_geomean_follows_the_selected_solution(qapp, tmp_
     assert label.text() != window._solution_offcut_aspect_span_label.text()
     assert "mm" not in label.text()
     assert "geométrica" in label.toolTip().casefold()
-    assert "clic" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "clic" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     window.eventFilter(label, _mouse(QEvent.Type.MouseButtonPress))
     window.eventFilter(label, _mouse(QEvent.Type.MouseButtonRelease))
     assert calls == []
@@ -155,6 +155,6 @@ def test_solution_offcut_aspect_geomean_follows_the_selected_solution(qapp, tmp_
     assert window._solution_offcut_aspect_median_label.text() == "mdas 1.25"
     assert window._solution_offcut_aspect_stddev_label.text() == "sdas 3.73"
     assert "geometric" in label.toolTip().casefold()
-    assert "click" not in label.toolTip().casefold()
-    assert label.cursor().shape() == Qt.CursorShape.ArrowCursor
+    assert "click" in label.toolTip().casefold()
+    assert label.cursor().shape() == Qt.CursorShape.PointingHandCursor
     assert "mm" not in label.text()
