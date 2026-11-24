@@ -314,8 +314,8 @@ Observaciones:
 | IDE-0241 | Barra: media geométrica de relaciones de forma de retales | 🟢 | P3 |
 | IDE-0242 | Copiar la media geométrica de relaciones de forma de retales | 🟢 | P3 |
 | IDE-0243 | Clic en la media geométrica de relaciones de forma selecciona su solución | 🟢 | P3 |
-| IDE-0244 | Barra: relación de forma máxima de retales | 🟡 | P3 |
-| IDE-0245 | Copiar la relación de forma máxima de retales | ⚪ | P3 |
+| IDE-0244 | Barra: relación de forma máxima de retales | 🟢 | P3 |
+| IDE-0245 | Copiar la relación de forma máxima de retales | 🟡 | P3 |
 | IDE-0246 | Clic en la relación de forma máxima selecciona su solución | ⚪ | P3 |
 
 ### Estimaciones de esfuerzo (ideas abiertas)
@@ -554,8 +554,8 @@ Escala: **S** ≤ 1 semana · **M** 2–4 semanas · **L** 1–2 meses · **XL**
 | IDE-0241 | S | IDE-0238 | Entregado; `grel. {value}` / `gmas {value}` = geometric_mean de max(L,A)/min(L,A) de todos los retales; distinta de `arel.`, `relp.`, `mrel.` y `drel.`; oculta si no hay retales; `1.00` si todos cuadrados; sin clic |
 | IDE-0242 | S | IDE-0241 | Entregado; Cmd+Alt+Shift+\| el valor, sin `grel.`; no avanza |
 | IDE-0243 | S | IDE-0241 | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
-| IDE-0244 | S | IDE-0241 | En curso; `xrel. {value}` / `mxas {value}` = máximo de max(L,A)/min(L,A) de todos los retales; distinta de `relr.` y `arel.`; oculta si no hay retales; `1.00` si todos cuadrados; sin clic |
-| IDE-0245 | S | IDE-0244 | Pendiente; copia el valor, sin `xrel.`; no avanza; solo menú, sin atajo (decisión 2026-11-24: Cmd+Alt+Shift+ agotado en letras, dígitos y F1–F12) |
+| IDE-0244 | S | IDE-0241 | Entregado; `xrel. {value}` / `mxas {value}` = máximo de max(L,A)/min(L,A) de todos los retales; distinta de `relr.` y `arel.`; oculta si no hay retales; `1.00` si todos cuadrados; sin clic |
+| IDE-0245 | S | IDE-0244 | En curso; copia el valor, sin `xrel.`; no avanza; solo menú, sin atajo (decisión 2026-11-24: Cmd+Alt+Shift+ agotado en letras, dígitos y F1–F12) |
 | IDE-0246 | S | IDE-0244 | Pendiente; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
 ---
@@ -629,7 +629,8 @@ Quincuagésima segunda ola cerrada (0234 entregada).
 Quincuagésima tercera ola cerrada (0237 entregada).
 Quincuagésima cuarta ola cerrada (0240 entregada; ciclo `0.4.5.dev0`).
 Quincuagésima quinta ola cerrada (0243 entregada; ciclo `0.4.5.dev0`).
-Quincuagésima sexta ola abierta (0244…0246; 0244 en curso).
+Quincuagésima sexta ola abierta (0244 🟢 `#933`; 0245 en curso;
+residual 0246).
 IDE-0007 🟢 MVP+eval (2026-09-12; LLM diferido).
 EP (001…003) Fase 3 entregadas. Snapshot:
 `REVIEW-2026-11-23-planificacion.md`.
@@ -637,7 +638,7 @@ EP (001…003) Fase 3 entregadas. Snapshot:
 Próximo foco:
 
 1. Ola 56 (0244…0246): relación de forma máxima `xrel.`/`mxas`;
-   copy (solo menú) / click residuales. Al cerrarla, proponer panel que
+   0244–0245 entregadas; residual click IDE-0246. Al cerrarla, proponer panel que
    agrupe métricas antes que otra métrica en la barra. IDE-0101 e
    IDE-0102 diferidas, sin costes. Bloqueados sin reanudar: DT-0006 C
    (DEC-0010), IDE-0008 (SDK posterior), LLM (DEC-0011). Ops MAS:

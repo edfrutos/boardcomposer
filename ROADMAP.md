@@ -69,7 +69,7 @@ Historial cloud `.bcproj`: spike `docs/masterplan/spikes/SPIKE-DT-0006-historial
 
 Revisión: `docs/masterplan/REVIEW-2026-11-23-planificacion.md`.
 
-1. Release **`0.4.4`** / `v0.4.4` publicado (2026-11-12). Ciclo **`0.4.5.dev0`** abierto — ola 51–55 🟢 cerradas; ola 56 abierta (0244…0246; `xrel.`/`mxas`). Ops: TestFlight build 46; App Review 4.3/4.2.6 respondida 2026-11-16; esperando Apple (**no reenviar**).
+1. Release **`0.4.4`** / `v0.4.4` publicado (2026-11-12). Ciclo **`0.4.5.dev0`** abierto — ola 51–55 🟢 cerradas; ola 56 abierta (0244…0246; 0244–0245; residual 0246). Ops: TestFlight build 46; App Review 4.3/4.2.6 respondida 2026-11-16; esperando Apple (**no reenviar**).
 2. Ciclo **`0.4.4`** cerrado — duodécima ola cerrada (0078 entregada `#702`;
    undécima ola cerrada, 0074 entregada; 0073 entregada; 0072 entregada;
    0071 entregada; décima ola cerrada, 0070 entregada; 0069 entregada;

@@ -4,6 +4,11 @@
 
 ### Añadido
 
+- Copiar la relación de forma máxima de retales de la solución
+  (IDE-0245; menú Editar, sin atajo). Copia el valor, sin `xrel.` (en
+  inglés sin `mxas`). Deshabilitado si la etiqueta está oculta. No
+  avanza ni aplica el layout.
+  Sin bump `.bcproj`; no cambia el solver.
 - Barra de estado: relación de forma máxima de retales (IDE-0244;
   `xrel.` / `mxas`). Máximo de `max(L,A)/min(L,A)` de todos los
   retales: la tira más alargada. Distinta de `relr.` (retal de mayor

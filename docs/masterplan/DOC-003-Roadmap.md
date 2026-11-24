@@ -233,13 +233,13 @@ Decimoquinta ola cerrada (0090 entregada). Decimosexta ola cerrada
 segunda ola cerrada (0234 entregada). Quincuagésima tercera ola
 cerrada (0237 entregada). Quincuagésima cuarta ola cerrada (0240
 entregada; ciclo `0.4.5.dev0`). Quincuagésima quinta ola cerrada
-(0243 entregada). Quincuagésima sexta ola abierta (0244…0246; 0244
+(0243 entregada). Quincuagésima sexta ola abierta (0244…0246; 0245
 esta entrega).
 Revisión: `REVIEW-2026-11-23-planificacion.md`.
 
 Pendiente de:
 
-- Ola 56 (0244…0246): relación de forma máxima `xrel.`/`mxas`; copy/click residuales. IDE-0101 e IDE-0102 diferidas, sin costes. Ops MAS: esperando Apple (**no reenviar**). Bloqueados sin reanudar: DT-0006 C,
+- Ola 56 (0244…0246): relación de forma máxima `xrel.`/`mxas`; residual click IDE-0246. IDE-0101 e IDE-0102 diferidas, sin costes. Ops MAS: esperando Apple (**no reenviar**). Bloqueados sin reanudar: DT-0006 C,
   IDE-0008, LLM;
 - Piloto DT-0006 D (activo; C diferida);
 - aprobar como hoja de ruta oficial del proyecto.
