@@ -739,6 +739,12 @@ Chrome de Studio (se recuerda entre sesiones).
   arrastre no.
   **Cmd+Alt+Shift+|** copia el valor, sin
   `grel.`. Deshabilitado si la etiqueta está oculta. No avanza.
+  La relación de forma máxima de retales va como `xrel. 2.50` (en
+  inglés `mxas 2.50`): el mayor lado largo / lado corto de todos los
+  retales, es decir, la tira más alargada. Distinta de `relr.` (retal
+  de mayor área) y de `arel.` (máximo − mínimo). Oculta si no hay
+  retales. Todos cuadrados → `1.00`. No sigue las unidades. Cursor
+  flecha. Sin clic.
 - Material y espesor deben ser compatibles entre pieza y tablero.
 - El **kerf** (**Cmd+Alt+K**) deja hueco de sierra entre piezas al calcular
   y al mover; 0 mm = sin hueco. Piezas con **veta fija** no rotan.

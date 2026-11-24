@@ -473,8 +473,11 @@ Octava y novena ola ya registradas (no renumerar):
 | IDE-0241 | Barra: media geométrica de relaciones de forma de retales | Entregado; `grel.`/`gmas` = geometric_mean de aspectos; distinta de `arel.`, `relp.`, `mrel.`, `drel.`; sin clic |
 | IDE-0242 | Copiar la media geométrica de relaciones de forma de retales | Entregado; Ctrl+Alt+Shift+\| el valor, sin `grel.`; no avanza |
 | IDE-0243 | Clic en la media geométrica de relaciones de forma selecciona su solución | Entregado; clic selecciona `solution:{index}`; arrastre no; no avanza |
+| IDE-0244 | Barra: relación de forma máxima de retales | En curso; `xrel.`/`mxas` = máximo de aspectos; distinta de `relr.` y `arel.`; sin clic |
+| IDE-0245 | Copiar la relación de forma máxima de retales | Pendiente; copia el valor, sin `xrel.`; solo menú, sin atajo; no avanza |
+| IDE-0246 | Clic en la relación de forma máxima selecciona su solución | Pendiente; clic selecciona `solution:{index}`; arrastre no; no avanza |
 
-Prioridad de ataque: cola vacía (0243 cierra 0241…0243; siguiente Merge OK abre ola 56; IDE-0101 e IDE-0102 diferidas, sin costes).
+Prioridad de ataque: ola 56 (0244…0246; IDE-0101 e IDE-0102 diferidas, sin costes).
 
 Cerradas en este ciclo `0.4.4.dev0` (en `main`): IDE-0025…0063.
 Cerradas en `0.4.3`: IDE-0019…0024 (+ eval IDE-0007 2026-09-12).
