@@ -1854,6 +1854,10 @@ _STRINGS: dict[str, dict[str, str]] = {
             "Media geométrica de relaciones de forma de retales de la "
             "solución seleccionada: {value}. Clic selecciona la solución"
         ),
+        "status.solution_offcut_aspect_max": "xrel. {value}",
+        "tip.status_solution_offcut_aspect_max": (
+            "Relación de forma máxima de retales de la solución seleccionada: {value}"
+        ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (
             "Retales de la solución seleccionada: {n}. Clic selecciona su tablero"
@@ -4502,6 +4506,10 @@ _STRINGS: dict[str, dict[str, str]] = {
         "tip.status_solution_offcut_aspect_geomean": (
             "Geometric mean of offcut aspect ratios of the selected "
             "solution: {value}. Click selects the solution"
+        ),
+        "status.solution_offcut_aspect_max": "mxas {value}",
+        "tip.status_solution_offcut_aspect_max": (
+            "Maximum offcut aspect ratio of the selected solution: {value}"
         ),
         "status.offcuts": "{n} ret.",
         "tip.status_offcuts": (

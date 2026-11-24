@@ -1,9 +1,16 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.5.dev0 — 2026-11-23
+## Unreleased — 0.4.5.dev0 — 2026-11-24
 
 ### Añadido
 
+- Barra de estado: relación de forma máxima de retales (IDE-0244;
+  `xrel.` / `mxas`). Máximo de `max(L,A)/min(L,A)` de todos los
+  retales: la tira más alargada. Distinta de `relr.` (retal de mayor
+  área) y de `arel.` (máximo − mínimo). Oculta si no hay retales.
+  `1.00` si todos cuadrados. No sigue las unidades. Cursor flecha.
+  Sin clic. Abre la quincuagésima sexta ola (0244…0246).
+  Sin bump `.bcproj`; no cambia el solver.
 - Clic en la media geométrica de relaciones de forma de retales
   selecciona esa solución (IDE-0243). Cursor mano si está visible.
   Selecciona `solution:{index}` en el explorador; no avanza ni aplica

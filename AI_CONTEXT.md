@@ -260,8 +260,10 @@ alternativas comprensibles para que el usuario decida.
   Cmd+Alt+Shift+|).
 - Clic en la media geométrica de relaciones de forma selecciona esa
   solución (IDE-0243).
-- Próximo: cola vacía (ola 55 0241…0243 🟢 cerrada; ciclo `0.4.5.dev0`
-  tras `v0.4.4`; siguiente Merge OK abre ola 56; IDE-0101 e IDE-0102
+- Barra de estado: relación de forma máxima de retales
+  (IDE-0244; `xrel.`/`mxas`).
+- Próximo: ola 56 abierta (0244…0246; 0244 esta entrega; copy/click
+  residuales; ciclo `0.4.5.dev0` tras `v0.4.4`; IDE-0101 e IDE-0102
   diferidas, sin costes). Bloqueados sin reanudar: DT-0006 C, IDE-0008,
   LLM; piloto DT-0006 D; Issues = 0; eval IDE-0007 cerrada; LLM /
   plugins / C bloqueados. Ops MAS: `0.4.4`/46 TestFlight; Review
