@@ -341,6 +341,7 @@
   solución (IDE-0243).
 - Barra de estado: relación de forma máxima de retales
   (IDE-0244; `xrel.`/`mxas`).
+- Copiar la relación de forma máxima (IDE-0245; solo menú, sin atajo).
 - Capas DXF por rol PANELS/PIECES/OFFCUTS/DIMS (IDE-0041 `#654`).
 - Secuencia de corte por panel (IDE-0027; orden de sierra en CSV/PDF y números en plano).
 - Congelar layout OK y re-empaquetar omitidas (**Cmd+Alt+F**, IDE-0030).
@@ -395,7 +396,7 @@
    tercera ola cerrada (0237 entregada). Quincuagésima cuarta ola
    cerrada (0240 entregada; ciclo `0.4.5.dev0`). Quincuagésima quinta
    ola cerrada (0243 entregada; ciclo `0.4.5.dev0`). Quincuagésima
-   sexta ola abierta (0244…0246; 0244 esta entrega).
+   sexta ola abierta (0244…0246; 0245 esta entrega).
 2. Mantener piloto DT-0006 D; no abrir C sin multi-usuario.
 3. Backlog grande bloqueado hasta demanda real:
    - DT-0006 **C** (API revisiones + ACL) — solo multi-usuario real + DOC-010.
