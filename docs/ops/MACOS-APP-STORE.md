@@ -358,6 +358,7 @@ Las 5 capturas quedan en `~/Desktop/appstore-*.png` a `2880 × 1800` px (o `1440
 | 2026-11-23 | Fase 5 | Seguimiento: sin cambio de política — **no reenviar**; estado vivo solo en Resolution Center / App Store Connect (Apple ID `6834470521`, build 46). Agente sin sesión ASC → verificación manual pendiente | 🟡 Esperando Apple |
 | 2026-11-26 | Fase 5 | Sin respuesta de Apple (10 días). Preparada `1.0.0` (build `47`): idioma inicial según macOS (inglés fuera de sistemas en español), nombre unificado **BoardComposer Studio** en ES/EN, notas al revisor en inglés. Recordatorio en Resolution Center (sección 7). **No reenviar** hasta respuesta de Apple o apelación | 🟡 Esperando Apple |
 | 2026-11-26 | Fase 5 | *Seller name* confirmado: **Eugenio de Frutos Sanchez**. Copyright `Info.plist` y `organizationName` alineados con él (antes «EDF Developer»). TablaTeca rechazada con la misma 4.3/4.2.6 → patrón a nivel de cuenta | 🟡 Esperando Apple |
+| 2026-11-26 | Fase 5 | Recordatorio enviado en Resolution Center (versión corta: solo corrección de ~45.000 líneas; **sin** párrafo de contexto de cuenta ni nota «EDF Developer» de la sección 7, reservados por si Apple pregunta). Build `1.0.0` (`47`) sin firmar generada y verificada manualmente (UI en inglés). TablaTeca respondida y de nuevo en revisión. Apelación al App Review Board si no hay respuesta hacia el 2026-12-03 | 🟡 Esperando Apple |
 
 ---
 
