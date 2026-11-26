@@ -4,11 +4,13 @@ from __future__ import annotations
 
 import signal
 import sys
+from dataclasses import replace
 
 from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QApplication
 
 from studio.branding import app_icon
+from studio.i18n import system_default_language
 from studio.main_window import MainWindow
 from studio.material_catalog import MaterialCatalogManager
 from studio.services import StudioServices
@@ -36,12 +38,17 @@ def main() -> int:
     app = QApplication(sys.argv)
     bootstrap_ui_font(app)
     app.setApplicationName("BoardComposer Studio")
-    app.setOrganizationName("EDF Developer")
+    app.setOrganizationName("Eugenio de Frutos Sanchez")
     _install_sigint_handler(app)
     icon = app_icon()
     if not icon.isNull():
         app.setWindowIcon(icon)
     services = StudioServices(material_catalog=MaterialCatalogManager())
+    if not services.preferences.path.is_file():
+        # First run: follow the macOS preferred language instead of Spanish.
+        services.preferences.current = replace(
+            services.preferences.current, language=system_default_language()
+        )
     apply_theme(app, services.preferences.current.theme)
     window = MainWindow(services=services)
     if not icon.isNull():

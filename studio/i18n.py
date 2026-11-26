@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
+
 VALID_LANGUAGES = ("es", "en")
 DEFAULT_LANGUAGE = "es"
 
@@ -5481,6 +5483,34 @@ _ACTION_KEYS = (
 
 def normalize_language(language: str) -> str:
     return language if language in VALID_LANGUAGES else DEFAULT_LANGUAGE
+
+
+# Language used when the system prefers a language Studio does not ship.
+FALLBACK_SYSTEM_LANGUAGE = "en"
+
+
+def system_default_language(ui_languages: Iterable[str] | None = None) -> str:
+    """Pick the first-run UI language from the system preferred languages.
+
+    Walks the ordered preference list (``QLocale.system().uiLanguages()`` by
+    default, e.g. ``["en-GB", "es-ES"]``) and returns the first supported
+    language. Unsupported systems get English rather than Spanish, so App
+    Review and non-Spanish users see a localized UI on first launch.
+    """
+    tags: Iterable[str]
+    if ui_languages is None:
+        try:
+            from PySide6.QtCore import QLocale
+        except ImportError:
+            return DEFAULT_LANGUAGE
+        tags = QLocale.system().uiLanguages()
+    else:
+        tags = ui_languages
+    for tag in tags:
+        code = tag.replace("_", "-").split("-", 1)[0].lower()
+        if code in VALID_LANGUAGES:
+            return code
+    return FALLBACK_SYSTEM_LANGUAGE
 
 
 def tr(key: str, language: str = DEFAULT_LANGUAGE, **kwargs: object) -> str:

@@ -108,6 +108,6 @@ app = BUNDLE(
     name="BoardComposer.app",
     icon=str(REPO_ROOT / "studio" / "assets" / "AppIcon.icns"),
     bundle_identifier="com.edefrutos.boardcomposer",
-    version=INFO_PLIST.get("CFBundleShortVersionString", "0.4.4"),
+    version=INFO_PLIST.get("CFBundleShortVersionString", "1.0.0"),
     info_plist=INFO_PLIST,
 )
