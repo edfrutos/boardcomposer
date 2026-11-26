@@ -1,6 +1,19 @@
 # CHANGELOG — BoardComposer
 
-## Unreleased — 0.4.5.dev0 — 2026-11-24
+## Unreleased — 1.0.0.dev0 — 2026-11-26
+
+### Cambiado
+
+- Primer arranque: el idioma de la interfaz sigue el idioma preferido de
+  macOS (`QLocale.system().uiLanguages()`); inglés si el sistema no usa
+  español ni inglés. Las preferencias guardadas no cambian. Respuesta a
+  App Review (Guidelines 4.3 / 4.2.6).
+- Versión de distribución MAS `1.0.0` (build `47`); ciclo `1.0.0.dev0`
+  sustituye a `0.4.5.dev0`. Nombre de ficha unificado: **BoardComposer
+  Studio** (ES/EN).
+- Copyright (`NSHumanReadableCopyright`) y `organizationName` de Qt pasan
+  de «EDF Developer» al *Seller name* de App Store Connect: Eugenio de
+  Frutos Sanchez.
 
 ### Añadido
 

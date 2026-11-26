@@ -104,7 +104,7 @@ make build-macos-app
 
 | Campo | Español (ES) | English (EN-US) |
 | --- | --- | --- |
-| **Nombre (30 máx.)** | `BoardComposer` | `BoardComposer Cut Studio` |
+| **Nombre (30 máx.)** | `BoardComposer Studio` | `BoardComposer Studio` |
 | **Subtítulo (30 máx.)** | `Optimizador de corte 2D` | `2D Panel Cut Optimizer` |
 | **Categoría principal** | `Productividad` (*Productivity*) | `Productivity` |
 | **Categoría secundaria** | `Diseño gráfico` (*Graphics & Design*) | `Graphics & Design` |
@@ -215,7 +215,7 @@ https://github.com/edfrutos/boardcomposer
 **Name (30 chars max):**
 
 ```text
-BoardComposer Cut Studio
+BoardComposer Studio
 ```
 
 **Subtitle (30 chars max):**
@@ -291,9 +291,13 @@ Thank you for reviewing BoardComposer Studio!
 
 No account, login, or external hardware is required to test the application.
 
+The interface follows the macOS preferred language on first launch (English, or Spanish on Spanish systems). It can be changed in Settings > Language.
+
+I am an individual developer (Eugenio de Frutos Sanchez) and I design, write and maintain all of BoardComposer Studio's code myself. "EDF Developer" on the app icon is only my personal label, not a separate company or app-generation service.
+
 Quick 1-minute walkthrough to test all core features:
-1. On the Welcome screen, click "Proyecto demo" (Demo project) — or press Cmd+Shift+D. This loads a ready-to-use multi-panel project with sample boards, pieces, and calculated solutions.
-2. Press Cmd+Return ("Calcular layout" / Calculate layout) to run the 2D multi-panel solver.
+1. On the Welcome screen, click "Sample project" — or press Cmd+Shift+D. This loads a ready-to-use multi-panel project with sample boards and pieces.
+2. Press Cmd+Return ("Calculate layout") to run the 2D multi-panel solver.
 3. Switch between candidate solutions in the bottom Comparator table or Explorer tree, and press Cmd+Alt+E to open the local candidate explanation dialog.
 4. Press Cmd+Alt+C to export a workshop Cut List (CSV or PDF), Cmd+Alt+Q to export a PDF Quote, or Cmd+Shift+E to export the cutting plan (SVG, PDF, DXF, PNG, JPEG) using the standard macOS Save panel.
 ```
@@ -352,6 +356,8 @@ Las 5 capturas quedan en `~/Desktop/appstore-*.png` a `2880 × 1800` px (o `1440
 | 2026-11-13 | Fase 5 | Ficha completada, capturas 16:10 subidas y estado cambiado a **Lista para revisión** (Apple ID `6834470521`, SKU `BC-MACOS-001`) | 🟢 Hecho |
 | 2026-11-16 | Fase 5 | Respuesta enviada en App Store Connect al cuestionario de App Review (Guidelines 4.3 / 4.2.6, Submission ID `878b3b3b-9b09-46e8-843f-1c60268f74a1`); esperando respuesta de Apple | 🟢 Enviada |
 | 2026-11-23 | Fase 5 | Seguimiento: sin cambio de política — **no reenviar**; estado vivo solo en Resolution Center / App Store Connect (Apple ID `6834470521`, build 46). Agente sin sesión ASC → verificación manual pendiente | 🟡 Esperando Apple |
+| 2026-11-26 | Fase 5 | Sin respuesta de Apple (10 días). Preparada `1.0.0` (build `47`): idioma inicial según macOS (inglés fuera de sistemas en español), nombre unificado **BoardComposer Studio** en ES/EN, notas al revisor en inglés. Recordatorio en Resolution Center (sección 7). **No reenviar** hasta respuesta de Apple o apelación | 🟡 Esperando Apple |
+| 2026-11-26 | Fase 5 | *Seller name* confirmado: **Eugenio de Frutos Sanchez**. Copyright `Info.plist` y `organizationName` alineados con él (antes «EDF Developer»). TablaTeca rechazada con la misma 4.3/4.2.6 → patrón a nivel de cuenta | 🟡 Esperando Apple |
 
 ---
 
@@ -405,6 +411,29 @@ No. Uses only standard Python and PySide6/Qt6 plus OFL fonts. All solvers, expor
 
 9. Created for a client, partner, or third party?
 No. Conceived, designed, developed, and branded entirely by me as my own original product.
+
+Best regards,
+Eugenio de Frutos Sanchez
+```
+
+---
+
+## 7. Seguimiento en Resolution Center (2026-11-26)
+
+> Enviar en el **mismo hilo** del Resolution Center. No adjuntar build nuevo mientras Apple no conteste. Si no hay respuesta en ~7 días más, apelar ante el App Review Board.
+
+```text
+Hello App Review Team,
+
+I am following up on my reply of November 16 regarding BoardComposer (Apple ID 6834470521, version 0.4.4, build 46), in which I answered all nine questions about Guidelines 4.3 and 4.2.6.
+
+As instructed, I have not resubmitted the app. I would be grateful if you could let me know whether my answers were sufficient, or whether you need any further information, such as a screen recording of the workflow, sample project files (.bcproj), or additional details about the original solver and export code.
+
+One correction to my previous reply: the codebase is roughly 45,000 lines of original application code plus a similar amount of automated tests, all written specifically for BoardComposer. "EDF Developer" on the app icon is only my personal label, not a company or app-generation service.
+
+For context on my account: my other apps (TablaTeca, Gestor de Correos, SystemBack, Replacer, GestorTareas, Extractor URL, S3Manager, EDF-Catálogo) are separate utilities in unrelated domains, each built on its own codebase and technology stack (Swift, Node.js, Python). None of them shares a solver, a file format, or a workflow with BoardComposer.
+
+Thank you for your time.
 
 Best regards,
 Eugenio de Frutos Sanchez
